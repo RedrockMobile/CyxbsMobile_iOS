@@ -1,0 +1,19 @@
+${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-resources.sh
+${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle
+${PODS_ROOT}/GMImagePicker/GMImagePicker/GMEmptyFolder@1x.png
+${PODS_ROOT}/GMImagePicker/GMImagePicker/GMEmptyFolder@2x.png
+${PODS_ROOT}/GMImagePicker/GMImagePicker/GMSelected.png
+${PODS_ROOT}/GMImagePicker/GMImagePicker/GMSelected@2x.png
+${PODS_ROOT}/GMImagePicker/GMImagePicker/GMVideoIcon.png
+${PODS_ROOT}/GMImagePicker/GMImagePicker/GMVideoIcon@2x.png
+${PODS_ROOT}/GMImagePicker/GMImagePicker/Base.lproj
+${PODS_ROOT}/GMImagePicker/GMImagePicker/ca.lproj
+${PODS_ROOT}/GMImagePicker/GMImagePicker/de.lproj
+${PODS_ROOT}/GMImagePicker/GMImagePicker/en.lproj
+${PODS_ROOT}/GMImagePicker/GMImagePicker/es.lproj
+${PODS_ROOT}/GMImagePicker/GMImagePicker/fr.lproj
+${PODS_ROOT}/GMImagePicker/GMImagePicker/it.lproj
+${PODS_ROOT}/GMImagePicker/GMImagePicker/pt.lproj
+${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle
+${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle
+${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialUI/UMSocialSDKResources.bundle

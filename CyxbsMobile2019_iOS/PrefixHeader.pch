@@ -1,0 +1,344 @@
+//
+//  PrefixHeader.pch
+//  CyxbsMobile2019_iOS
+//
+//  Created by 方昱恒 on 2019/10/22.
+//  Copyright © 2019 Redrock. All rights reserved.
+//
+
+#ifndef MoblieCQUPT_iOS_PrefixHeader_pch
+#define MoblieCQUPT_iOS_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#if DEBUG
+    #define DDLog(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+    #define NSLog(format, ...) do {                                                                          \
+    fprintf(stderr, "<%s : %d> | %s\n",                                           \
+    [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
+    __LINE__, __func__);                                                        \
+    (NSLog)((format), ##__VA_ARGS__);                                           \
+    fprintf(stderr, "-------\n");                                               \
+    } while (0)
+#else
+    #define DDLog(xx, ...)     ;
+    //#define NSLog(format, ...) ;
+#endif
+#define BACK_COLOR [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1.0]
+#define MAIN_COLOR  [UIColor colorWithRed:84/255.0 green:172/255.0 blue:255/255.0 alpha:1]
+#define FONT_COLOR  [UIColor colorWithRed:89/255.0 green:89/255.0 blue:89/255.0 alpha:1]
+//#define MAIN_COLOR  [UIColor colorWithRed:111/255.0 green:219/255.0 blue:188/255.0 alpha:1]
+#define rectStartsBar [UIApplication sharedApplication].statusBarFrame.size.height
+#define MAIN_SCREEN_H [UIScreen mainScreen].bounds.size.height
+#define MAIN_SCREEN_W [UIScreen mainScreen].bounds.size.width
+#define kBarTintColor MAIN_COLOR
+#define kItemTintColor [UIColor blackColor]
+#define kFont [UIFont fontWithName:@"Arial" size:14]
+#define kTextColor [UIColor colorWithRed:100/255.0 green:100/255.0 blue:100/255.0 alpha:1]
+#define kDetailTextColor [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:0.7]
+
+#define COLOR_NEED [UIColor colorWithRed:101/255.0 green:178/255.0 blue:255/255.0 alpha:1]
+#define COLOR_NONEED [UIColor colorWithRed:148/255.0 green:148/255.0 blue:148/255.0 alpha:0.6]
+
+#define COLOR_GREEN1 [UIColor colorWithRed:111/255.0 green:234/255.0 blue:214/255.0 alpha:1]
+#define COLOR_GREEN2 [UIColor colorWithRed:158/255.0 green:252/255.0 blue:238/255.0 alpha:1]
+#define COLOR_GREEN3 [UIColor colorWithRed:215/255.0 green:255/255.0 blue:249/255.0 alpha:1]
+#define COLOR_GREEN4 [UIColor colorWithRed:248/255.0 green:255/255.0 blue:254/255.0 alpha:1]
+
+
+#define COLOR_BULE1 [UIColor colorWithRed:122/255.0 green:200/255.0 blue:239/255.0 alpha:1]
+#define COLOR_BULE2 [UIColor colorWithRed:185/255.0 green:229/255.0 blue:254/255.0 alpha:1]
+#define COLOR_BULE3 [UIColor colorWithRed:225/255.0 green:248/255.0 blue:255/255.0 alpha:1]
+#define COLOR_BULE4 [UIColor colorWithRed:248/255.0 green:252/255.0 blue:255/255.0 alpha:1]
+
+
+#define COLOR_PINK1 [UIColor colorWithRed:255/255.0 green:173/255.0 blue:203/255.0 alpha:1]
+#define COLOR_PINK2 [UIColor colorWithRed:255/255.0 green:210/255.0 blue:227/255.0 alpha:1]
+#define COLOR_PINK3 [UIColor colorWithRed:255/255.0 green:246/255.0 blue:248/255.0 alpha:1]
+#define COLOR_PINK4 [UIColor colorWithRed:255/255.0 green:253/255.0 blue:255/255.0 alpha:1]
+
+#define COLOR_YELLOW1 [UIColor colorWithRed:236/255.0 green:216/255.0 blue:111/255.0 alpha:1]
+#define COLOR_YELLOW2 [UIColor colorWithRed:251/255.0 green:254/255.0 blue:185/255.0 alpha:1]
+#define COLOR_YELLOW3 [UIColor colorWithRed:253/255.0 green:250/255.0 blue:235/255.0 alpha:1]
+#define COLOR_YELLOW4 [UIColor colorWithRed:255/255.0 green:255/255.0 blue:251/255.0 alpha:1]
+
+#import <AFNetworking.h>
+#import <MJRefresh.h>
+#import <UIImageView+WebCache.h>
+#import <YYKit.h>
+#import <Masonry.h>
+#import <MBProgressHUD.h>
+#import <UMMobClick/MobClick.h>
+#import "NetWork.h"
+#import "HttpClient.h"
+#import "UIColor+Helper.h"
+#import "UserDefaultTool.h"
+#import "BaseViewController.h"
+//#import "AESCipher.h"         // 加密用的暂时没什么用，有用的时候再打开注释吧
+
+
+#pragma Group共享
+#define kAPPGroupID @"group.com.redrock.mobile"
+#define kAppGroupShareNowDay @"nowDay"
+#define kAppGroupShareThisWeekArray @"thisWeekArray"
+
+#define kAPPUserDefaultLoginName @"name"
+#define kAPPUserDefaultStudentID @"stuNum"
+
+#define kWidthGrid  (SCREEN_WIDTH/7.5)
+#define RGBColor(r,g,b,a) ([UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a])
+
+#define ColorArray [[NSMutableArray alloc]initWithObjects:@"254,145,103",@"120,201,252",@"111,219,188",@"191,161,233",nil]
+
+#define kPhotoImageViewW (SCREEN_WIDTH - 2 * 10 - 4) / 3
+
+//gege
+#define BACK_GRAY_COLOR [UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]
+//登录
+#define LOGIN_API @"https://cyxbsmobile.redrock.team/api/verify"
+
+
+//首页图接口
+#define SPLASH_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Photo/showPicture"
+#define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
+#define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
+#define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
+#define EDITREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
+#define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
+#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peoplelist"
+#define PHOTOURL @"https://cyxbsmobile.redrock.team/cyxbsMobile/Public/photo/"
+#define BASE_URL @"https://cyxbsmobile.redrock.team"
+#define LOSTAPI @"https://cyxbsmobile.redrock.team/laf/api"
+#define UPLOAD_IMAGE_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/photo/upload"
+#define SUGGESTION_API @"https://cyxbsmobile.redrock.team/cyxbs_api_2014/cqupthelp/index.php/admin/shop/registSuggestion"
+#define GRADEAPI @"https://cyxbsmobile.redrock.team/api/examGrade"
+#define MakeApi @"https://cyxbsmobile.redrock.team/api/examReexam"
+#define EmptyClassApi @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
+#define MYJOINTOPIC_URL @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Topic/myJoinedTopic"
+#define Carousel_API @"https://cyxbsmobile.redrock.team/app/api/pictureCarousel.php"
+
+//空教室接口
+#define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
+//成绩接口
+#define GRADEAPI @"https://cyxbsmobile.redrock.team/api/examGrade"
+//考试教室接口
+#define GRADECLASSAPI @"https://cyxbsmobile.redrock.team/api/examSchedule"
+//补考接口
+
+//校车位置
+#define SCHOOLBUSAPI @"https://cqxbsmobile.redrock.team/234/schoolbus/status"
+
+#define MAKEAPI @"https://cyxbsmobile.redrock.team/api/examReexam"
+
+//教务新闻列表
+#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
+//教务新闻详情
+#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
+//教务新闻附件
+#define NEWSFILE @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
+
+/* 2019迎新接口 */
+// 学院群
+#define ACADEMYGROUPAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/7"
+// 老乡群
+#define HOMETOWNGROUPAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/77"
+// 搜索学院群
+#define SEARCHACADEMYAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/select/college"
+// 搜索老乡群
+#define SEARCHHOMETOWNAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/select/province"
+// 线上活动
+#define ONLINEACTIVITYAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/8"
+// 入学流程
+#define STARTSTEPSAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/2"
+
+// 快递接口
+#define EXPRESSAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/33"
+// 食堂和宿舍
+#define DININGHALLANDDORMITORYAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/3"
+
+
+/* 全面屏相关 */
+#define IS_IPHONEX ((SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f) || (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 896.f)? YES : NO)
+#define SAFE_AREA_BOTTOM (IS_IPHONEX ? (34.f) : (0.f))
+
+/* 屏幕宽高 */
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+
+/* TabBar高度 */
+#define TABBARHEIGHT (IS_IPHONEX ? (49.f + SAFE_AREA_BOTTOM) : (49.f))
+
+/* 状态栏高度 */
+#define STATUSBARHEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
+
+/* NavigationBar高度 */
+#define NVGBARHEIGHT (44.f)
+
+/* 顶部总高度 */
+#define TOTAL_TOP_HEIGHT (STATUSBARHEIGHT + NVGBARHEIGHT)
+
+#define kSegmentViewTitleHeight (SCREEN_HEIGHT * 50 / 667)
+
+
+
+
+
+
+#define HEADERHEIGHT (STATUSBARHEIGHT+NVGBARHEIGHT)
+#define MWIDTH ((SCREEN_WIDTH)/(DAY*2+1)) //monthLabel的宽度
+#define MHEIGHT (1.6*MWIDTH) //monthLabel的高度
+#define DAY 7
+#define LESSON 12
+#define WEEK 20
+#define LONGLESSON (LESSON/2)
+#define LESSONBTNSIDE (((SCREEN_WIDTH)-(MWIDTH))/DAY)
+#define SEGMENT 2
+#define autoSizeScaleX SCREEN_WIDTH/375.0
+#define autoSizeScaleY SCREEN_HEIGHT/667.0
+#define font(R) (R)*([UIScreen mainScreen].bounds.size.width)/375.0
+#define SCREEN_RATE (667/[UIScreen mainScreen].bounds.size.height)
+#define ZOOM(x) x / SCREEN_RATE
+
+
+
+/************************************************/
+/*                   邮问接口                     */
+/************************************************/
+/*
+ 问题部分
+ */
+
+//全部问题列表
+#define YOUWEN_ALL_QUESTIONS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getQuestionList"
+
+//添加新问题
+#define YOUWEN_ADD_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/add"
+
+//问题图片上传
+#define YOUWEN_UPLOAD_PIC_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/uploadPicture"
+
+//取消提问
+#define YOUWEN_CANCEL_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/cancelQuestion"
+
+//问题详情
+#define YOUWEN_QUESTION_DETAIL_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getDetailedInfo"
+
+//问题回答列表
+#define YOUWEN_QUESTION_ANSWERLIST @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getAnswerlist"
+
+//忽略问题
+#define YOUWEN_IGNORE_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/ignore"
+
+/*
+ 回答部分
+ */
+
+//回答问题
+#define YOUWEN_ANSWER_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
+
+//某个问题下的回答列表
+#define YOUWEN_QUESTION_ANSWER_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
+
+//采纳答案
+#define YOUWEN_ADOPT_ANSWER_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/adopt"
+
+//赞接口
+#define YOUWEN_ADD_LIKE_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/praise"
+
+//取消赞接口
+#define YOUWEN_CANCEL_LIKE_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/cancelPraise"
+
+//某个回答下的评论列表
+#define YOUWEN_QUESTION_DISUCESS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getRemarkList"
+
+//在回答下添加评论
+#define YOUWEN_ADD_DISCUSS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/remark"
+
+/*
+ 积分部分
+ */
+
+//积分商城列表
+#define YOUWEN_STORE_ITEMS_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Integral/getItemList"
+
+//添加积分商城物品
+#define YOUWEN_STORE_ADD_ITEM_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Integral/getItemList"
+
+//积分使用记录
+#define YOUWEN_CREDIT_USE_RECORD_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/integralRecord"
+
+/*
+ 个人部分
+ */
+
+//帮一帮
+#define YOUWEN_MY_HELP_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/help"
+
+//问一问
+#define YOUWEN_MY_ASK_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/ask"
+
+//草稿箱列表
+#define YOUWEN_DARAFTBOX_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getDraftList"
+
+//草稿箱删除
+#define YOUWEN_DARAFTBOX_DELETE_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/addItemInDraft"
+
+//增加草稿箱内容
+#define YOUWEN_DARAFTBOX_ADD_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/addItemInDraft"
+
+//修改草稿箱内容
+#define YOUWEN_DARAFTBOX_MODIFY_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/updateItemInDraft"
+
+//关于我的信息
+#define YOUWEN_MY_INFO_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/aboutMe"
+
+//签到信息
+#define YOUWEN_MY_CHECKININFO @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getScoreStatus"
+
+/*
+ 举报部分
+ */
+
+//举报列表
+#define YOUWEN_INFORM_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/reportList"
+
+//增加举报
+#define YOUWEN_ADD_INFORM_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
+
+//删除举报
+#define YOUWEN_DELETE_INFORM_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
+
+/*
+ 其他
+ */
+
+// baseURL
+#define YOUWEN_BASEURL @"https://cyxbsmobile.redrock.team"
+
+//签到
+#define YOUWEN_CHECKIN_API [NSString stringWithFormat:@"%@%@", YOUWEN_BASEURL, @"/app/index.php/QA/Integral/checkIn"]
+
+//获取掌邮用户信息
+#define YOUWEN_USER_INFO_API [NSString stringWithFormat:@"%@%@", YOUWEN_BASEURL, @"/app/index.php/Home/Person/search"]
+
+//设置个人信息
+#define SET_MY_INFO_API [NSString stringWithFormat:@"%@%@", YOUWEN_BASEURL, @"/app/index.php/Home/Person/setInfo"]
+
+
+/************************************************/
+/*                   过时接口                     */
+/************************************************/
+
+//话题列表接口
+#define TOPIC_API @"http://hongyan.cqupt.edu.cn/app"
+
+//话题文章列表接口
+#define TOPICARTICLE_API @"http://hongyan.cqupt.edu.cn/app"
+
+//发布话题文章接口
+#define ADDTOPICARTICLE_API @"http://hongyan.cqupt.edu.cn/app"
+
+//动态查询接口
+#define SEARCHTREBDS_API @"http://hongyan.cqupt.edu.cn/app"
+
+#endif
