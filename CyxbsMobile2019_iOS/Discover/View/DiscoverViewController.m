@@ -19,7 +19,11 @@
     self.title = @"发现";
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-    view.backgroundColor = [UIColor labelColor];
+    if (@available(iOS 13.0, *)) {
+        view.backgroundColor = [UIColor labelColor];
+    } else {
+        view.backgroundColor = [UIColor whiteColor];
+    }
     [self.view addSubview:view];
 }
 
