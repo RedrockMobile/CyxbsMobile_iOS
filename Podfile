@@ -13,6 +13,7 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'AMapLocation'
 	pod 'AMap2DMap'
 	pod 'UMengAnalytics-NO-IDFA'
+	pod 'MJExtension'
 	# U-Share SDK UI模块（分享面板，建议添加）
     	pod 'UMengUShare/UI'
     	# 集成微信(精简版0.2M)

@@ -7,6 +7,7 @@
 //
 
 #import "MineViewController.h"
+#import "LoginViewController.h"
 
 @interface MineViewController ()
 
@@ -16,7 +17,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的";
+    
+    UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    quitButton.frame = CGRectMake(10, 100, 100, 40);
+    [quitButton setTitle:@"退出登录" forState:UIControlStateNormal];
+    [quitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:quitButton];
+    
+    UIButton *printButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    printButton.frame = CGRectMake(120, 100, 100, 40);
+    [printButton setTitle:@"打印信息" forState:UIControlStateNormal];
+    [printButton addTarget:self action:@selector(print) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:printButton];
+}
+
+- (void)quit {
+    [UserItemTool removeUserData];
+    LoginViewController *vc = [[LoginViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)print {
+    NSLog(@"%@", [UserItemTool defaultItem].realName);
 }
 
 /*

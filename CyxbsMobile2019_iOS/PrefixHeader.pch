@@ -69,12 +69,14 @@
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 #import <UMMobClick/MobClick.h>
+#import <MJExtension.h>
 #import "NetWork.h"
 #import "HttpClient.h"
 #import "UIColor+Helper.h"
 #import "UserDefaultTool.h"
+#import "UserItemTool.h"
 #import "BaseViewController.h"
-//#import "AESCipher.h"         // 加密用的暂时没什么用，有用的时候再打开注释吧
+//#import "AESCipher.h"         // 加密用的，暂时没什么用，有用的时候再打开注释吧
 
 
 #pragma Group共享
@@ -94,67 +96,7 @@
 
 //gege
 #define BACK_GRAY_COLOR [UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]
-//登录
-#define LOGIN_API @"https://cyxbsmobile.redrock.team/api/verify"
 
-
-//首页图接口
-#define SPLASH_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Photo/showPicture"
-#define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
-#define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
-#define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
-#define EDITREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
-#define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
-#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peoplelist"
-#define PHOTOURL @"https://cyxbsmobile.redrock.team/cyxbsMobile/Public/photo/"
-#define BASE_URL @"https://cyxbsmobile.redrock.team"
-#define LOSTAPI @"https://cyxbsmobile.redrock.team/laf/api"
-#define UPLOAD_IMAGE_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/photo/upload"
-#define SUGGESTION_API @"https://cyxbsmobile.redrock.team/cyxbs_api_2014/cqupthelp/index.php/admin/shop/registSuggestion"
-#define GRADEAPI @"https://cyxbsmobile.redrock.team/api/examGrade"
-#define MakeApi @"https://cyxbsmobile.redrock.team/api/examReexam"
-#define EmptyClassApi @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
-#define MYJOINTOPIC_URL @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Topic/myJoinedTopic"
-#define Carousel_API @"https://cyxbsmobile.redrock.team/app/api/pictureCarousel.php"
-
-//空教室接口
-#define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
-//成绩接口
-#define GRADEAPI @"https://cyxbsmobile.redrock.team/api/examGrade"
-//考试教室接口
-#define GRADECLASSAPI @"https://cyxbsmobile.redrock.team/api/examSchedule"
-//补考接口
-
-//校车位置
-#define SCHOOLBUSAPI @"https://cqxbsmobile.redrock.team/234/schoolbus/status"
-
-#define MAKEAPI @"https://cyxbsmobile.redrock.team/api/examReexam"
-
-//教务新闻列表
-#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
-//教务新闻详情
-#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
-//教务新闻附件
-#define NEWSFILE @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
-
-/* 2019迎新接口 */
-// 学院群
-#define ACADEMYGROUPAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/7"
-// 老乡群
-#define HOMETOWNGROUPAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/77"
-// 搜索学院群
-#define SEARCHACADEMYAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/select/college"
-// 搜索老乡群
-#define SEARCHHOMETOWNAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/select/province"
-// 线上活动
-#define ONLINEACTIVITYAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/8"
-// 入学流程
-#define STARTSTEPSAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/2"
-
-// 快递接口
-#define EXPRESSAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/33"
-// 食堂和宿舍
-#define DININGHALLANDDORMITORYAPI @"https://cyxbsmobile.redrock.team/zscy/zsqy/json/3"
 
 
 /* 全面屏相关 */
@@ -200,145 +142,13 @@
 #define ZOOM(x) x / SCREEN_RATE
 
 
+/*----------------------------------------------------------------
+ ｜                            各种接口                            |
+ -----------------------------------------------------------------*/
 
-/************************************************/
-/*                   邮问接口                     */
-/************************************************/
-/*
- 问题部分
- */
+/// 登录接口
+#define LOGINAPI @"https://cyxbsmobile.redrock.team/app/token"
 
-//全部问题列表
-#define YOUWEN_ALL_QUESTIONS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getQuestionList"
-
-//添加新问题
-#define YOUWEN_ADD_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/add"
-
-//问题图片上传
-#define YOUWEN_UPLOAD_PIC_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/uploadPicture"
-
-//取消提问
-#define YOUWEN_CANCEL_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/cancelQuestion"
-
-//问题详情
-#define YOUWEN_QUESTION_DETAIL_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getDetailedInfo"
-
-//问题回答列表
-#define YOUWEN_QUESTION_ANSWERLIST @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getAnswerlist"
-
-//忽略问题
-#define YOUWEN_IGNORE_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/ignore"
-
-/*
- 回答部分
- */
-
-//回答问题
-#define YOUWEN_ANSWER_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
-
-//某个问题下的回答列表
-#define YOUWEN_QUESTION_ANSWER_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
-
-//采纳答案
-#define YOUWEN_ADOPT_ANSWER_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/adopt"
-
-//赞接口
-#define YOUWEN_ADD_LIKE_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/praise"
-
-//取消赞接口
-#define YOUWEN_CANCEL_LIKE_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/cancelPraise"
-
-//某个回答下的评论列表
-#define YOUWEN_QUESTION_DISUCESS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getRemarkList"
-
-//在回答下添加评论
-#define YOUWEN_ADD_DISCUSS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/remark"
-
-/*
- 积分部分
- */
-
-//积分商城列表
-#define YOUWEN_STORE_ITEMS_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Integral/getItemList"
-
-//添加积分商城物品
-#define YOUWEN_STORE_ADD_ITEM_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Integral/getItemList"
-
-//积分使用记录
-#define YOUWEN_CREDIT_USE_RECORD_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/integralRecord"
-
-/*
- 个人部分
- */
-
-//帮一帮
-#define YOUWEN_MY_HELP_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/help"
-
-//问一问
-#define YOUWEN_MY_ASK_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/ask"
-
-//草稿箱列表
-#define YOUWEN_DARAFTBOX_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getDraftList"
-
-//草稿箱删除
-#define YOUWEN_DARAFTBOX_DELETE_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/addItemInDraft"
-
-//增加草稿箱内容
-#define YOUWEN_DARAFTBOX_ADD_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/addItemInDraft"
-
-//修改草稿箱内容
-#define YOUWEN_DARAFTBOX_MODIFY_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/updateItemInDraft"
-
-//关于我的信息
-#define YOUWEN_MY_INFO_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/aboutMe"
-
-//签到信息
-#define YOUWEN_MY_CHECKININFO @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getScoreStatus"
-
-/*
- 举报部分
- */
-
-//举报列表
-#define YOUWEN_INFORM_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/reportList"
-
-//增加举报
-#define YOUWEN_ADD_INFORM_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
-
-//删除举报
-#define YOUWEN_DELETE_INFORM_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
-
-/*
- 其他
- */
-
-// baseURL
-#define YOUWEN_BASEURL @"https://cyxbsmobile.redrock.team"
-
-//签到
-#define YOUWEN_CHECKIN_API [NSString stringWithFormat:@"%@%@", YOUWEN_BASEURL, @"/app/index.php/QA/Integral/checkIn"]
-
-//获取掌邮用户信息
-#define YOUWEN_USER_INFO_API [NSString stringWithFormat:@"%@%@", YOUWEN_BASEURL, @"/app/index.php/Home/Person/search"]
-
-//设置个人信息
-#define SET_MY_INFO_API [NSString stringWithFormat:@"%@%@", YOUWEN_BASEURL, @"/app/index.php/Home/Person/setInfo"]
-
-
-/************************************************/
-/*                   过时接口                     */
-/************************************************/
-
-//话题列表接口
-#define TOPIC_API @"http://hongyan.cqupt.edu.cn/app"
-
-//话题文章列表接口
-#define TOPICARTICLE_API @"http://hongyan.cqupt.edu.cn/app"
-
-//发布话题文章接口
-#define ADDTOPICARTICLE_API @"http://hongyan.cqupt.edu.cn/app"
-
-//动态查询接口
-#define SEARCHTREBDS_API @"http://hongyan.cqupt.edu.cn/app"
+#define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/app/token/refresh"
 
 #endif

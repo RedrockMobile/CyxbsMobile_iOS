@@ -105,6 +105,26 @@
     return [self valueWithKey:@"idNum"];
 }
 
++(void)saveIdNum:(NSString *)idNum {
+    [self saveValue:idNum forKey:@"idNum"];
+}
+
++ (void)saveRefreshToken:(NSString *)refresh {
+    [self saveValue:refresh forKey:@"refreshToken"];
+}
+
++ (NSString *)getRefreshToken {
+    return [self valueWithKey:@"refreshToken"];
+}
+
++ (void)saveToken:(NSString *)token {
+    [self saveValue:token forKey:@"token"];
+}
+
++ (NSString *)getToken {
+    return [self valueWithKey:@"token"];
+}
+
 +(void)removeALLData{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *dic = [defaults dictionaryRepresentation];

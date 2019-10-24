@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,11 +27,11 @@
             </objects>
             <point key="canvasLocation" x="123" y="-246"/>
         </scene>
-        <!--Item-->
+        <!--发现-->
         <scene sceneID="0Bf-T6-idt">
             <objects>
-                <navigationController id="csH-T6-l3r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="lkW-ZO-7tQ"/>
+                <navigationController title="发现" id="csH-T6-l3r" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="发现" id="lkW-ZO-7tQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wMw-0P-YR5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -43,27 +44,27 @@
             </objects>
             <point key="canvasLocation" x="-704" y="555"/>
         </scene>
-        <!--Discover View Controller-->
+        <!--发现-->
         <scene sceneID="Qwi-p1-FIi">
             <objects>
-                <viewController id="DRh-DO-htN" customClass="DiscoverViewController" sceneMemberID="viewController">
+                <viewController title="发现" id="DRh-DO-htN" customClass="DiscoverViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ftj-ZW-XbT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Ux3-0V-50A"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ucb-xo-tml"/>
+                    <navigationItem key="navigationItem" title="发现" id="ucb-xo-tml"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fns-Pr-blB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-704" y="1284"/>
         </scene>
-        <!--Item-->
+        <!--邮问-->
         <scene sceneID="KiW-4y-yeI">
             <objects>
-                <navigationController id="J1I-im-Hff" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ypO-e7-Kpl"/>
+                <navigationController title="邮问" id="J1I-im-Hff" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="邮问" id="ypO-e7-Kpl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XBu-Bk-4nF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -76,27 +77,27 @@
             </objects>
             <point key="canvasLocation" x="122" y="554"/>
         </scene>
-        <!--Questions View Controller-->
+        <!--邮问-->
         <scene sceneID="dfA-sD-qhx">
             <objects>
-                <viewController id="kXR-bh-Wbj" customClass="QAQuestionsViewController" sceneMemberID="viewController">
+                <viewController title="邮问" id="kXR-bh-Wbj" customClass="QAQuestionsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ega-Mc-Pep">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="968-rb-pBw"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ayR-z8-Fpy"/>
+                    <navigationItem key="navigationItem" title="邮问" id="ayR-z8-Fpy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSM-7D-zQW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="122" y="1284"/>
         </scene>
-        <!--Item-->
+        <!--我的-->
         <scene sceneID="vN3-oO-uqq">
             <objects>
-                <navigationController id="WUU-3u-z3L" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="7rs-Zy-wVD"/>
+                <navigationController title="我的" id="WUU-3u-z3L" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="我的" id="7rs-Zy-wVD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fNx-8T-sFv">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -109,17 +110,17 @@
             </objects>
             <point key="canvasLocation" x="942" y="554"/>
         </scene>
-        <!--Mine View Controller-->
+        <!--我的-->
         <scene sceneID="d26-de-fO4">
             <objects>
-                <viewController id="jCg-wf-KoG" customClass="MineViewController" sceneMemberID="viewController">
+                <viewController title="我的" id="jCg-wf-KoG" customClass="MineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PaO-5e-asf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="z6U-C2-0Qa"/>
                     </view>
-                    <navigationItem key="navigationItem" id="a4S-X7-RAa"/>
+                    <navigationItem key="navigationItem" title="我的" id="a4S-X7-RAa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yw6-Pg-WDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

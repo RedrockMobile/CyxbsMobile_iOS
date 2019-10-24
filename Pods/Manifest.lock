@@ -32,6 +32,7 @@ PODS:
   - GMImagePicker (0.0.2)
   - Masonry (1.1.0)
   - MBProgressHUD (0.9.2)
+  - MJExtension (3.2.1)
   - MJRefresh (3.2.0)
   - pop (1.0.12)
   - SDCycleScrollView (1.80):
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - GMImagePicker
   - Masonry
   - MBProgressHUD (~> 0.9.2)
+  - MJExtension
   - MJRefresh
   - pop
   - SDCycleScrollView
@@ -77,6 +79,7 @@ SPEC REPOS:
     - GMImagePicker
     - Masonry
     - MBProgressHUD
+    - MJExtension
     - MJRefresh
     - pop
     - SDCycleScrollView
@@ -95,6 +98,7 @@ SPEC CHECKSUMS:
   GMImagePicker: 6438a6764d6280b1dbf19b59140313f5a73daeeb
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
@@ -103,6 +107,6 @@ SPEC CHECKSUMS:
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 18a910cd1937dc4129ba5d9640b360a185911489
+PODFILE CHECKSUM: 81bb7dd44fcfe815e474ef8066daedf5962f8ace
 
 COCOAPODS: 1.8.3

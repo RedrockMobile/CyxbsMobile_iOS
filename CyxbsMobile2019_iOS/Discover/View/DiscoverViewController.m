@@ -7,6 +7,7 @@
 //
 
 #import "DiscoverViewController.h"
+#import "LoginViewController.h"
 
 @interface DiscoverViewController ()
 
@@ -16,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"发现";
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
     if (@available(iOS 13.0, *)) {

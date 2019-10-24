@@ -25,5 +25,21 @@
 
 +(NSString *)getIdNum;
 
++(void)saveIdNum:(NSString *)idNum;
+
++(void)saveStuNum:(NSString *)stuNum;
+
+/// 该方法用于刷新Token，45天内有效，只能使用一次
++ (void)saveRefreshToken:(NSString *)refresh;
+
+/// 用于刷新Token，45天内有效，只能使用一次
++ (NSString *)getRefreshToken;
+
+/// 保存Token
++ (void)saveToken:(NSString *)token;
+
++ (NSString *)getToken;
+
 +(void)removeALLData;
+
 @end
