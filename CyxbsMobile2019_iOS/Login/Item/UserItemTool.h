@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserItemTool : NSObject
 
-@property (nonatomic, strong) UserItem *item;
-
 /// 获取UserItem单例对象
 + (UserItem *)defaultItem;
 

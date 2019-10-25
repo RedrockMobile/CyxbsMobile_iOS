@@ -8,6 +8,12 @@
 
 #import "UserItemTool.h"
 
+@interface UserItemTool ()
+
+@property (nonatomic, strong) UserItem *item;
+
+@end
+
 @implementation UserItemTool
 
 #pragma mark - 单例
