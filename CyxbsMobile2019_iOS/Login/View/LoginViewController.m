@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
 
 @property (weak, nonatomic) IBOutlet UITextField *stuNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *idNumTextField;
-@property (weak, nonatomic) MBProgressHUD *hud;
+@property (weak, nonatomic) MBProgressHUD *loginHUD;
 
 @end
 
@@ -76,13 +76,14 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
         [_presenter loginWithStuNum:self.stuNumTextField.text andIdNum:self.idNumTextField.text];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeIndeterminate;
-        [hud hide:YES afterDelay:1.5];
+        self.loginHUD = hud;
     }
 }
 
 - (void)loginSucceeded:(UserItem *)item {
     [UserDefaultTool saveStuNum:self.stuNumTextField.text];
     [UserDefaultTool saveIdNum:self.idNumTextField.text];
+    [self.loginHUD hide:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
