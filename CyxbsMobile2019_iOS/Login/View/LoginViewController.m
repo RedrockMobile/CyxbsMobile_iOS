@@ -10,19 +10,20 @@
 #import "LoginPresenter.h"
 #import "LoginViewProtocol.h"
 
+typedef NS_ENUM(NSInteger, LZLoginState) {
+    LZLoginStateLackPassword,
+    LZLoginStateLackAccount,
+    LZLoginStateAccountOrPasswordWrong,
+    LZLoginStateOK
+};
+
 @interface LoginViewController() <LoginViewProtocol>
 
 @property (nonatomic, strong) LoginPresenter *presenter;
 
 @property (weak, nonatomic) IBOutlet UITextField *stuNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *idNumTextField;
-
-typedef NS_ENUM(NSInteger, LZLoginState) {
-    LZLoginStateLackPassword,
-    LZLoginStateLackAccount,
-    LZLoginStateAccountOrPasswordWrong,
-    LZLoginStateNetWorkWrong
-};
+@property (weak, nonatomic) MBProgressHUD *hud;
 
 @end
 
@@ -55,7 +56,28 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
 }
 
 - (IBAction)loginButtonClicked:(UIButton *)sender {
-    [_presenter loginWithStuNum:self.stuNumTextField.text andIdNum:self.idNumTextField.text];
+    
+    if ([self.stuNumTextField.text isEqualToString:@""] && [self.idNumTextField.text isEqualToString:@""]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"你账号密码都没输诶";
+        [hud hide:YES afterDelay:1.5];
+    } else if ([self.idNumTextField.text isEqualToString:@""]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"你没有输密码诶";
+        [hud hide:YES afterDelay:1.5];
+    } else if ([self.stuNumTextField.text isEqualToString:@""]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"你没有输账号诶";
+        [hud hide:YES afterDelay:1.5];
+    } else  {
+        [_presenter loginWithStuNum:self.stuNumTextField.text andIdNum:self.idNumTextField.text];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        [hud hide:YES afterDelay:1.5];
+    }
 }
 
 - (void)loginSucceeded:(UserItem *)item {

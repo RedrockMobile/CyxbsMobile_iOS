@@ -32,9 +32,8 @@
 }
 
 - (void)quit {
-    [UserItemTool removeUserData];
-    LoginViewController *vc = [[LoginViewController alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
+    [UserItemTool logout];
+    NSLog(@"%@", [UserItemTool defaultItem].realName);
 }
 
 - (void)print {

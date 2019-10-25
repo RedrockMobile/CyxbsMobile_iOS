@@ -22,8 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 归档对象
 + (void)archive:(UserItem *)item;
 
-/// 删除本地用户数据
-+ (void)removeUserData;
+
+/// 退出登录
++ (void)logout;
 
 /// 刷新Token
 + (void)refresh;

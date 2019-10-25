@@ -7,6 +7,7 @@
 //
 
 #import "UserItemTool.h"
+#import "LoginViewController.h"
 
 @interface UserItemTool ()
 
@@ -52,8 +53,19 @@ static UserItemTool *instance;
     [NSKeyedArchiver archiveRootObject:item toFile:[UserItemTool userItemPath]];
 }
 
-+ (void)removeUserData {
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), @"UserItem.data"];
+/// 退出登录（清除用户缓存）
++ (void)logout {
+    LoginViewController *loginVC = [[LoginViewController alloc] init];
+    UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    if (tabBarVC.presentedViewController) {
+        [tabBarVC dismissViewControllerAnimated:YES completion:^{
+            [tabBarVC presentViewController:loginVC animated:YES completion:nil];
+        }];
+    } else {
+        [tabBarVC presentViewController:loginVC animated:YES completion:nil];
+    }
+    
+    NSString *filePath = [self userItemPath];
     
     // 删除偏好设置
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
