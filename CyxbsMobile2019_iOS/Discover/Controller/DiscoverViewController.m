@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "LQQFinderView.h"
 #import "LQQGlanceView.h"
+#import "ElectricFeeModel.h"
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
     LoginTimeOut,
@@ -24,7 +25,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak) UIScrollView *contentView;
 @property (nonatomic, weak) LQQGlanceView *glanceView;//下方剩余页面
 //Model
-
+@property ElectricFeeModel *elecModel;
 @end
 
 @implementation DiscoverViewController
@@ -48,10 +49,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
     }
+    self.navigationController.navigationBar.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self addContentView];
     [self addFinderView];
     [self addGlanceView];
+    [self requestData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:@"electricFeeDataSucceed" object:nil];
 }
 
 - (void)presentToLogin {
@@ -65,6 +69,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [loginVC presentViewController:alert animated:YES completion:nil];
     }
 }
+
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     self.contentView = contentView;
@@ -101,9 +106,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)addGlanceView {
     LQQGlanceView *glanceView = [[LQQGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width, self.view.height * 0.7)];
+    self.glanceView = glanceView;
     [self.contentView addSubview:glanceView];
     glanceView.backgroundColor = [UIColor redColor];
 }
-
+- (void)requestData {
+    ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
+    self.elecModel = elecModel;
+}
+- (void)updateUI {
+    self.glanceView.electricFeeMoney.text = self.elecModel.money;
+    self.glanceView.electricFeeDegree.text = self.elecModel.degree;
+    self.glanceView.electricFeeTime.text = self.elecModel.time;
+}
 
 @end

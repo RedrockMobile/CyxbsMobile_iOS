@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ElectricFeeViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 电费查询部分
-@property ElectricFeeViewModel *electricFeeViewModel;
 @property (nonatomic, weak)UILabel *electricFeeTitle;
 @property (nonatomic, weak)UILabel *electricFeeTime;
 @property (nonatomic, weak)UILabel *electricFeeMoney;

@@ -29,7 +29,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self configElectricFeeViewModel];
         [self addElectricFeeButton];
         [self addVolunteerButton];
         self.electricFee.backgroundColor = [UIColor whiteColor];
@@ -38,11 +37,7 @@
     }
     return self;
 }
-- (void) configElectricFeeViewModel {
-    ElectricFeeViewModel *viewModel = [[ElectricFeeViewModel alloc]init];
-    self.electricFeeViewModel = viewModel;
-    [self.electricFeeViewModel bindView:self];
-}
+
 //MARK: 电费查询部分
 - (void) addElectricFeeButton {
     UIButton *button = [[UIButton alloc]init];
@@ -73,7 +68,7 @@
 - (void)addTime {
     UILabel *time = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = time;
-    time.text = self.electricFeeViewModel.time;
+    time.text = @"1666年抄表";
     time.textColor = Color21_49_91;
     time.alpha = 0.54;
     time.font = [UIFont fontWithName:PingFangSCLight size: 10];
@@ -82,7 +77,7 @@
 - (void)addMoney {
     UILabel *money = [[UILabel alloc]init];//左边数字
     self.electricFeeMoney = money;
-    money.text = self.electricFeeViewModel.money;
+    money.text = @"12.42";
     money.textColor = Color42_78_132;
     money.font = [UIFont fontWithName:BahnschriftBold size: 50];
     [self.electricFee addSubview:money];
@@ -90,7 +85,7 @@
 - (void)addDegree {
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
-    degree.text = self.electricFeeViewModel.degree;
+    degree.text = @"50.2";
     degree.textColor = Color42_78_132;
     degree.font = [UIFont fontWithName: BahnschriftBold size: 50];
     [self.electricFee addSubview:degree];
