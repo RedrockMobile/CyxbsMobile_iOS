@@ -24,13 +24,23 @@ NS_ASSUME_NONNULL_BEGIN
 /// 编辑按钮
 @property (nonatomic, weak) UIButton *editButton;
 
+/// 签到天数Label
+@property (nonatomic, weak) UILabel *signinDaysLabel;
+
+/// 签到按钮
+@property (nonatomic, weak) UIButton *signinButton;
+
+/// 提问数量Label
 @property (nonatomic, weak) UILabel *questionsNumberLabel;
 
+/// 回答数量Label
 @property (nonatomic, weak) UILabel *answerNumberLabel;
 
+/// 收到的回复数量Label
 @property (nonatomic, weak) UILabel *responseNumberLabel;
 
-//@property (nonatomic, weak) UILabel *
+/// 获赞数量Label
+@property (nonatomic, weak) UILabel *praiseNumberLabel;
 
 @end
 

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MineContentView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MineViewController : UIViewController
+
+@property (nonatomic, weak) MineContentView *contentView;
 
 @end
 

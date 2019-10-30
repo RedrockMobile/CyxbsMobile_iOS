@@ -7,6 +7,13 @@
 //
 
 #import "MineContentView.h"
+#import "MineContentViewDelegate.h"
+
+@interface MineContentView ()
+
+@property (nonatomic, weak) id<MineContentViewDelegate> delegate;
+
+@end
 
 @implementation MineContentView
 
@@ -14,10 +21,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UITableView *settingsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H) style:UITableViewStyleGrouped];
-        [self addSubview:settingsTableView];
-        self.settingsTableView = settingsTableView;
+        self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
         
+        MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 291)];
+        [self addSubview:headerView];
+        self.headerView = headerView;
     }
     return self;
 }

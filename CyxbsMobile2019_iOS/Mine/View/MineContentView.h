@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MineHeaderView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MineContentView : UIView
 
 @property (nonatomic, weak) UITableView *settingsTableView;
+@property (nonatomic, weak) MineHeaderView *headerView;
 
 @end
 

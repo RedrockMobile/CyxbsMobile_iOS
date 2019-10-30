@@ -152,6 +152,7 @@
 		1A7BAC652369AC2900CA512D /* MineContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineContentView.m; sourceTree = "<group>"; };
 		1A7BAC672369B28400CA512D /* MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
 		1A7BAC682369B28400CA512D /* MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
+		1A7BAC6A2369C93400CA512D /* MineContentViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineContentViewDelegate.h; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* CyxbsMobile2019_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyxbsMobile2019_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B766A235F50A600725937 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A9B766B235F50A600725937 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -482,6 +483,7 @@
 		1A7BAC632369AB9500CA512D /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				1A7BAC6A2369C93400CA512D /* MineContentViewDelegate.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";

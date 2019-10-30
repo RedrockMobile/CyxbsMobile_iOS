@@ -17,18 +17,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    MineContentView *contentView = [[MineContentView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:contentView];
     
     UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    quitButton.frame = CGRectMake(10, 100, 100, 40);
+    quitButton.frame = CGRectMake(10, 400, 100, 40);
     [quitButton setTitle:@"退出登录" forState:UIControlStateNormal];
     [quitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:quitButton];
     
     UIButton *printButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    printButton.frame = CGRectMake(120, 100, 100, 40);
+    printButton.frame = CGRectMake(120, 400, 100, 40);
     [printButton setTitle:@"打印信息" forState:UIControlStateNormal];
     [printButton addTarget:self action:@selector(print) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:printButton];
+    
 }
 
 - (void)quit {
@@ -37,7 +40,7 @@
 }
 
 - (void)print {
-    NSLog(@"%@", [UserItemTool defaultItem].realName);
+    NSLog(@"%@", [UserItemTool defaultItem].nickname);
 }
 
 /*

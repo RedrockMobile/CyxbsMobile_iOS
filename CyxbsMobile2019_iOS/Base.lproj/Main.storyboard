@@ -20,7 +20,7 @@
                     <connections>
                         <segue destination="csH-T6-l3r" kind="relationship" relationship="viewControllers" id="FsZ-0Y-vAP"/>
                         <segue destination="J1I-im-Hff" kind="relationship" relationship="viewControllers" id="Rwd-b8-5Q6"/>
-                        <segue destination="WUU-3u-z3L" kind="relationship" relationship="viewControllers" id="B0x-4D-pQ0"/>
+                        <segue destination="jCg-wf-KoG" kind="relationship" relationship="viewControllers" id="JvG-7h-mWs"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -94,23 +94,6 @@
             <point key="canvasLocation" x="122" y="1284"/>
         </scene>
         <!--我的-->
-        <scene sceneID="vN3-oO-uqq">
-            <objects>
-                <navigationController title="我的" id="WUU-3u-z3L" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" id="7rs-Zy-wVD"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fNx-8T-sFv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="jCg-wf-KoG" kind="relationship" relationship="rootViewController" id="9QN-rN-1bU"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cK4-dH-sYJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="942" y="554"/>
-        </scene>
-        <!--我的-->
         <scene sceneID="d26-de-fO4">
             <objects>
                 <viewController title="我的" id="jCg-wf-KoG" customClass="MineViewController" sceneMemberID="viewController">
@@ -120,11 +103,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="z6U-C2-0Qa"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="我的" id="OtG-Uj-3x1"/>
                     <navigationItem key="navigationItem" title="我的" id="a4S-X7-RAa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yw6-Pg-WDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="942" y="1284"/>
+            <point key="canvasLocation" x="975" y="554"/>
         </scene>
     </scenes>
 </document>
