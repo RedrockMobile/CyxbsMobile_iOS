@@ -30,7 +30,6 @@
         int month = [returnTime substringToIndex:1].intValue;
         int day = [returnTime substringWithRange:NSMakeRange(3, 2)].intValue;
         self.time = [NSString stringWithFormat:@"2019.%d.%d",month,day];
-        NSLog(@"%@",responseObject);
         //发消息告诉ViewModel更新数据
         [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

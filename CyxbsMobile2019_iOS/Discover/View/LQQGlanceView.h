@@ -17,14 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 电费查询部分
-@property (nonatomic, weak)UILabel *electricFeeTitle;
-@property (nonatomic, weak)UILabel *electricFeeTime;
-@property (nonatomic, weak)UILabel *electricFeeMoney;
-@property (nonatomic, weak)UILabel *electricFeeDegree;
-@property (nonatomic, weak)UILabel *electricFeeYuan;
-@property (nonatomic, weak)UILabel *electricFeeDu;
-@property (nonatomic, weak)UILabel *electricFeeHintLeft;
-@property (nonatomic, weak)UILabel *electricFeeHintRight;
+@property (nonatomic, weak)UILabel *electricFeeTitle;//”电费查询“
+@property (nonatomic, weak)UILabel *electricFeeTime;//右上角时间
+@property (nonatomic, weak)UILabel *electricFeeMoney;//钱的数字
+@property (nonatomic, weak)UILabel *electricFeeDegree;//度的数字
+@property (nonatomic, weak)UILabel *electricFeeYuan;//“元”
+@property (nonatomic, weak)UILabel *electricFeeDu;//“度”
+@property (nonatomic, weak)UILabel *electricFeeHintLeft;//“费用/本月”
+@property (nonatomic, weak)UILabel *electricFeeHintRight;//“使用度数/本月”
 
 ///志愿时长部分
 @property (nonatomic, weak) UILabel *volunteerTitle;

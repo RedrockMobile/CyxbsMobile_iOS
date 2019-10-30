@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     AlreadyLogin,
 };
 
-@interface DiscoverViewController ()
+@interface DiscoverViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
 //View
@@ -49,9 +49,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
     }
-    self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
     self.view.backgroundColor = [UIColor whiteColor];
     [self addContentView];
+    [self configNavagationBar];
     [self addFinderView];
     [self addGlanceView];
     [self requestData];
@@ -69,16 +70,36 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [loginVC presentViewController:alert animated:YES completion:nil];
     }
 }
+- (void)configNavagationBar {
+    self.contentView.delegate = self;
+}
+//这个方法中零零散散的注释了四行代码是因为我想加动画但是失败了
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.finderView.finderTitle.height){
+//        [UIView animateWithDuration:1 animations:^{
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]}];
+//        }];
+    }else{
+//        [UIView animateWithDuration:1 animations:^{
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
+//        }];
+    }
+}
 
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+    if(@available(iOS 11.0, *)){
+        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+        contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + statusBarFrame.size.height, self.view.width, self.view.height);
+    }
     self.contentView = contentView;
-        contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+    contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     contentView.backgroundColor = [UIColor greenColor];
     contentView.contentSize = CGSizeMake(self.view.width, 1.5 * self.view.height);
     [self.view addSubview:contentView];
     
 }
+
 - (void)addFinderView {
     //下策
     LQQFinderView *finderView;

@@ -56,7 +56,7 @@
 		EE899DE72367D89A00DDB0D9 /* LQQFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DDC2367D89900DDB0D9 /* LQQFinderView.m */; };
 		EE899DE82367D89A00DDB0D9 /* LQQGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DDD2367D89900DDB0D9 /* LQQGlanceView.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
-		EE899DEC236811F500DDB0D9 /* 当前模块架构图.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = EE899DEB236811F500DDB0D9 /* 当前模块架构图.jpeg */; };
+		EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DEE2369A19B00DDB0D9 /* OneNewsModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,7 +173,8 @@
 		EE899DDF2367D89900DDB0D9 /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
 		EE899DE02367D89900DDB0D9 /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
 		EE899DE12367D89900DDB0D9 /* LQQGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQGlanceView.h; sourceTree = "<group>"; };
-		EE899DEB236811F500DDB0D9 /* 当前模块架构图.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "当前模块架构图.jpeg"; sourceTree = "<group>"; };
+		EE899DED2369A19B00DDB0D9 /* OneNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneNewsModel.h; sourceTree = "<group>"; };
+		EE899DEE2369A19B00DDB0D9 /* OneNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsModel.m; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,7 +253,6 @@
 		1A141323235F52290001417E /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				EE899DEB236811F500DDB0D9 /* 当前模块架构图.jpeg */,
 				EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */,
 				EE899DD22367D89900DDB0D9 /* Model */,
 				EE899DD52367D89900DDB0D9 /* Controller */,
@@ -552,6 +552,8 @@
 			children = (
 				EE899DD42367D89900DDB0D9 /* ElectricFeeModel.h */,
 				EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */,
+				EE899DED2369A19B00DDB0D9 /* OneNewsModel.h */,
+				EE899DEE2369A19B00DDB0D9 /* OneNewsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -688,7 +690,6 @@
 				1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */,
 				1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */,
 				1A9B7677235F50A800725937 /* LaunchScreen.storyboard in Resources */,
-				EE899DEC236811F500DDB0D9 /* 当前模块架构图.jpeg in Resources */,
 				1A9B7674235F50A800725937 /* Assets.xcassets in Resources */,
 				1A9B7672235F50A600725937 /* Main.storyboard in Resources */,
 				EE899DE52367D89A00DDB0D9 /* NewDiscover6.0Media.xcassets in Resources */,
@@ -767,6 +768,7 @@
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
+				EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */,
 				EE899DE82367D89A00DDB0D9 /* LQQGlanceView.m in Sources */,
 				1A141329235F52290001417E /* DiscoverViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
@@ -969,7 +971,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPM8HVK7C6;
+				DEVELOPMENT_TEAM = 55ST287647;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -990,7 +992,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPM8HVK7C6;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
