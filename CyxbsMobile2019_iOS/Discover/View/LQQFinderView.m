@@ -91,7 +91,7 @@
     [self addSubview:newsButton];
 }
 - (void) addSomeEnters {
-    //循环将四个按钮添加到数组self.array
+    //循环将四个按钮添加到数组self.enterButtonArray
     NSArray *nameArray = @[@"教室查询", @"校车轨迹", @"课表查询", @"更多功能"];//用来保存图片和名称
     NSMutableArray *array = [NSMutableArray array];
     for (NSString *name in nameArray){
@@ -103,17 +103,17 @@
         button = [[EnterButton alloc]initWithImageButton:imageButton label:label];
         [array addObject:button];
     }
-    self.array = array;
+    self.enterButtonArray = array;
     
     //点击教室查询
-    [self.array[0].imageButton addTarget:self action:@selector(touchFindClass) forControlEvents:UIControlEventTouchUpInside];
+    [self.enterButtonArray[0].imageButton addTarget:self action:@selector(touchFindClass) forControlEvents:UIControlEventTouchUpInside];
     //点击校车轨迹
-    [self.array[1].imageButton addTarget:self action:@selector(touchSchoolCar) forControlEvents:UIControlEventTouchUpInside];
+    [self.enterButtonArray[1].imageButton addTarget:self action:@selector(touchSchoolCar) forControlEvents:UIControlEventTouchUpInside];
     //点击课表查询
-    [self.array[2].imageButton addTarget:self action:@selector(touchSchedule) forControlEvents:UIControlEventTouchUpInside];
+    [self.enterButtonArray[2].imageButton addTarget:self action:@selector(touchSchedule) forControlEvents:UIControlEventTouchUpInside];
     //点击更多功能
-    [self.array[3].imageButton addTarget:self action:@selector(touchMore) forControlEvents:UIControlEventTouchUpInside];
-    for (EnterButton *enterButton in self.array) {
+    [self.enterButtonArray[3].imageButton addTarget:self action:@selector(touchMore) forControlEvents:UIControlEventTouchUpInside];
+    for (EnterButton *enterButton in self.enterButtonArray) {
         [self addSubview:enterButton];
     }
 
@@ -163,28 +163,28 @@
     
         //i是用来记录当前正在设置哪一个控件的约束
         int i = 0;
-        for (EnterButton *button in self.array) {
-            if(button == self.array[0]){//NSLog(@"正在配置第一个");
+        for (EnterButton *button in self.enterButtonArray) {
+            if(button == self.enterButtonArray[0]){//NSLog(@"正在配置第一个");
                 [button mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(self).offset(Gap);
                     make.top.equalTo(self.newsSender.mas_bottom).offset(25);
                     make.width.height.equalTo(@EnterButtonWidth);
                 }];
-            }else if(button == self.array[self.array.count - 1]){//NSLog(@"正在配置最后一个");
+            }else if(button == self.enterButtonArray[self.enterButtonArray.count - 1]){//NSLog(@"正在配置最后一个");
                 [button mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.right.equalTo(self).offset(-Gap);
-                    make.top.equalTo(self.array[0].imageButton);
+                    make.top.equalTo(self.enterButtonArray[0].imageButton);
                     make.width.height.equalTo(@EnterButtonWidth);
                 }];
             }else {//NSLog(@"正在配置第%d个",i);
                 //x表示第一个button的右边和最后一个button的左边中间的距离
                 float x = self.width - 2 * Gap - 2 * EnterButtonWidth;
                 //y表示x减去控件长度之后剩下的长度
-                float y = x - (self.array.count - 2) * EnterButtonWidth;
+                float y = x - (self.enterButtonArray.count - 2) * EnterButtonWidth;
                 //z代表每个控件左边距离self的距离
-                float z = Gap + EnterButtonWidth + i * y / (self.array.count - 1) + (i - 1) * EnterButtonWidth;
+                float z = Gap + EnterButtonWidth + i * y / (self.enterButtonArray.count - 1) + (i - 1) * EnterButtonWidth;
                 [button mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.array[0].imageButton);
+                    make.top.equalTo(self.enterButtonArray[0].imageButton);
                     make.width.height.equalTo(@EnterButtonWidth);
                     make.left.equalTo(@(z));
                 }];
