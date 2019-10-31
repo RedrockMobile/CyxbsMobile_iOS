@@ -33,17 +33,11 @@
         [self addSubview:nicknameLabel];
         nicknameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
         nicknameLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
-        nicknameLabel.text = [UserItemTool defaultItem].nickname;
         self.nicknameLabel = nicknameLabel;
         
         UILabel *introductionLabel = [[UILabel alloc] init];
         introductionLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
         introductionLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
-        if ([UserItemTool defaultItem].introduction.length != 0) {
-            introductionLabel.text = [UserItemTool defaultItem].introduction;
-        } else {
-            introductionLabel.text = @"写下你想对世界说的话，就现在";
-        }
         [self addSubview:introductionLabel];
         self.introductionLabel = introductionLabel;
         
@@ -60,7 +54,6 @@
         UILabel *signinDaysLabel = [[UILabel alloc] init];
         signinDaysLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
         signinDaysLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
-        signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", [UserItemTool defaultItem].checkInDay];
         [self addSubview:signinDaysLabel];
         self.signinDaysLabel = signinDaysLabel;
         

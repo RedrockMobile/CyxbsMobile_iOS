@@ -15,6 +15,8 @@
 
 @implementation MineViewController
 
+
+#pragma mark - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     MineContentView *contentView = [[MineContentView alloc] initWithFrame:self.view.bounds];
@@ -32,6 +34,18 @@
     [printButton addTarget:self action:@selector(print) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:printButton];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.contentView.headerView.nicknameLabel.text = [UserItemTool defaultItem].nickname;
+    
+    if ([UserItemTool defaultItem].introduction.length == 0) {
+        self.contentView.headerView.introductionLabel.text = @"写下你想对世界说的话，就现在";
+    } else {
+        self.contentView.headerView.introductionLabel.text = [UserItemTool defaultItem].introduction;
+    }
+    
+    self.contentView.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", [UserItemTool defaultItem].checkInDay];
 }
 
 - (void)quit {
