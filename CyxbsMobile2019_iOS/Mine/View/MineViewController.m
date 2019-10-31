@@ -19,6 +19,7 @@
     [super viewDidLoad];
     MineContentView *contentView = [[MineContentView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:contentView];
+    self.contentView = contentView;
     
     UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
     quitButton.frame = CGRectMake(10, 400, 100, 40);
@@ -32,6 +33,19 @@
     [printButton addTarget:self action:@selector(print) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:printButton];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    UserItem *user = [UserItemTool defaultItem];
+    self.contentView.headerView.nicknameLabel.text = user.nickname;
+    
+    if (user.introduction.length == 0) {
+        self.contentView.headerView.introductionLabel.text = @"写下你想对世界说的话，就现在";
+    } else {
+        self.contentView.headerView.introductionLabel.text = user.introduction;
+    }
+    
+    self.contentView.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user.checkInDay];
 }
 
 - (void)quit {
