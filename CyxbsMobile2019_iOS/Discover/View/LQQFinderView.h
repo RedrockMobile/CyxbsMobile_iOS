@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIView *bannerView;//
 @property (nonatomic, weak) UIButton *newsSender;//教务在线标题
 @property (nonatomic, weak) UIButton *news;//教务在线具体新闻标题
-@property (nonatomic, copy)NSMutableArray <EnterButton*>*array;//四个入口按钮
+@property (nonatomic, copy)NSMutableArray <EnterButton*>*enterButtonArray;//四个入口按钮
 @end
 
 NS_ASSUME_NONNULL_END
