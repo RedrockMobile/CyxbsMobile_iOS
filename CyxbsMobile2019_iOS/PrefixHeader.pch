@@ -100,6 +100,9 @@
 
 
 
+/* 小屏适配 */
+#define IS_IPHONESE (SCREEN_WIDTH == 320.f && SCREEN_HEIGHT == 568.f)
+
 /* 全面屏相关 */
 #define IS_IPHONEX ((SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f) || (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 896.f)? YES : NO)
 #define SAFE_AREA_BOTTOM (IS_IPHONEX ? (34.f) : (0.f))
