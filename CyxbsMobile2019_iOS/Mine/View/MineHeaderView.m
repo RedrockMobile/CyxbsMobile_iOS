@@ -57,39 +57,83 @@
         [self addSubview:signinDaysLabel];
         self.signinDaysLabel = signinDaysLabel;
         
-        UIButton *signinButton = [[UIButton alloc] init];
+        UIButton *signinButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        signinButton.backgroundColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:209/255.0 alpha:1.0];
+        signinButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [signinButton setTitle:@"签到" forState:UIControlStateNormal];
+        [signinButton setTintColor:[UIColor whiteColor]];
         [self addSubview:signinButton];
         self.signinButton = signinButton;
         
         UILabel *questionNumberLabel = [[UILabel alloc] init];
+        if (IS_IPHONESE) {
+            questionNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:40];
+        } else {
+            questionNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:50];
+        }
+        questionNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        questionNumberLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:questionNumberLabel];
         self.questionsNumberLabel = questionNumberLabel;
         
         UILabel *answerNumberLabel = [[UILabel alloc] init];
+        if (IS_IPHONESE) {
+            answerNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:40];
+        } else {
+            answerNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:50];
+        }
+        answerNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        answerNumberLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:answerNumberLabel];
         self.answerNumberLabel = answerNumberLabel;
         
         UILabel *responseNumberLabel = [[UILabel alloc] init];
+        if (IS_IPHONESE) {
+            responseNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:40];
+        } else {
+            responseNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:50];
+        }
+        responseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        responseNumberLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:responseNumberLabel];
         self.responseNumberLabel = responseNumberLabel;
         
         UILabel *praiseNumberLabel = [[UILabel alloc] init];
+        if (IS_IPHONESE) {
+            praiseNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:40];
+        } else {
+            praiseNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:50];
+        }
+        praiseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        praiseNumberLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:praiseNumberLabel];
         self.praiseNumberLabel = praiseNumberLabel;
         
         UILabel *questionLabel = [[UILabel alloc] init];
+        questionLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
+        questionLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        questionLabel.text = @"提问";
         [self addSubview:questionLabel];
         self.questionLabel = questionLabel;
         
         UILabel *answerLabel = [[UILabel alloc] init];
+        answerLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
+        answerLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        answerLabel.text = @"回答";
         [self addSubview:answerLabel];
         self.answerLabel = answerLabel;
         
         UILabel *responseLabel = [[UILabel alloc] init];
+        responseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
+        responseLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        responseLabel.text = @"评论";
         [self addSubview:responseLabel];
         self.responseLabel = responseLabel;
         
         UILabel *praiseLabel = [[UILabel alloc] init];
+        praiseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
+        praiseLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        praiseLabel.text = @"获赞";
         [self addSubview:praiseLabel];
         self.praiseLabel = praiseLabel;
     }
@@ -135,6 +179,94 @@
     [self.signinDaysLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.whiteBoard).offset(14);
         make.top.equalTo(self.whiteBoard).offset(16);
+    }];
+    
+    [self.signinButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.signinDaysLabel);
+        make.trailing.equalTo(self.whiteBoard).offset(-14);
+        make.top.equalTo(self.whiteBoard).offset(13);
+        make.height.equalTo(@28);
+        make.width.equalTo(@52);
+    }];
+    self.signinButton.layer.cornerRadius = 14;
+    
+    int interval = (MAIN_SCREEN_W * 0.912 - MAIN_SCREEN_W * 0.12 * 4 - 30) / 3.0;
+    if (IS_IPHONESE) {
+        [self.questionsNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.leading.equalTo(self.whiteBoard).offset(15);
+            make.top.equalTo(self.whiteBoard).offset(43);
+        }];
+        self.questionsNumberLabel.text = @"96";
+        
+        [self.answerNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.leading.equalTo(self.questionsNumberLabel.mas_trailing).offset(interval);
+            make.top.equalTo(self.questionsNumberLabel);
+        }];
+        self.answerNumberLabel.text = @"96";
+        
+        [self.responseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.leading.equalTo(self.answerNumberLabel.mas_trailing).offset(interval);
+            make.top.equalTo(self.questionsNumberLabel);
+        }];
+        self.responseNumberLabel.text = @"96";
+
+        [self.praiseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.leading.equalTo(self.responseNumberLabel.mas_trailing).offset(interval);
+            make.top.equalTo(self.questionsNumberLabel);
+        }];
+        self.praiseNumberLabel.text = @"96";
+    } else {
+        [self.questionsNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.leading.equalTo(self.whiteBoard).offset(15);
+            make.top.equalTo(self.whiteBoard).offset(53);
+        }];
+        self.questionsNumberLabel.text = @"96";
+        
+        [self.answerNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.leading.equalTo(self.questionsNumberLabel.mas_trailing).offset(interval);
+            make.top.equalTo(self.questionsNumberLabel);
+        }];
+        self.answerNumberLabel.text = @"96";
+        
+        [self.responseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.leading.equalTo(self.answerNumberLabel.mas_trailing).offset(interval);
+            make.top.equalTo(self.questionsNumberLabel);
+        }];
+        self.responseNumberLabel.text = @"96";
+        
+        [self.praiseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.leading.equalTo(self.responseNumberLabel.mas_trailing).offset(interval);
+            make.top.equalTo(self.questionsNumberLabel);
+        }];
+        self.praiseNumberLabel.text = @"96";
+    }
+    
+    [self.questionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.questionsNumberLabel);
+        make.top.equalTo(self.questionsNumberLabel.mas_bottom);
+    }];
+    
+    [self.answerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.answerNumberLabel);
+        make.top.equalTo(self.answerNumberLabel.mas_bottom);
+    }];
+    
+    [self.responseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.responseNumberLabel);
+        make.top.equalTo(self.responseNumberLabel.mas_bottom);
+    }];
+    
+    [self.praiseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.praiseNumberLabel);
+        make.top.equalTo(self.praiseNumberLabel.mas_bottom);
     }];
 }
 
