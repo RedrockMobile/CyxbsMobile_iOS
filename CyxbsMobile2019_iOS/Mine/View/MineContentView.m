@@ -7,11 +7,11 @@
 //
 
 #import "MineContentView.h"
-#import "MineContentViewDelegate.h"
+#import "MineContentViewProtocol.h"
 
 @interface MineContentView ()
 
-@property (nonatomic, weak) id<MineContentViewDelegate> delegate;
+@property (nonatomic, weak) id<MineContentViewProtocol> delegate;
 
 @end
 

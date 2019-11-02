@@ -8,8 +8,12 @@
 
 #import "MineViewController.h"
 #import "LoginViewController.h"
+#import "MineContentViewProtocol.h"
+#import "MinePresenter.h"
 
-@interface MineViewController ()
+@interface MineViewController () <MineContentViewProtocol>
+
+@property (nonatomic, strong) MinePresenter *presenter;
 
 @end
 
@@ -19,21 +23,44 @@
 #pragma mark - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 绑定Presenter
+    self.presenter = [[MinePresenter alloc] init];
+    [self.presenter attachView:self];
+    
+    // 加载邮问数据
+    [self.presenter requestQAInfo];
+    
+    // 添加contentView
     MineContentView *contentView = [[MineContentView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:contentView];
+    self.contentView = contentView;
     
+    
+    // 临时的退出按钮
     UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
     quitButton.frame = CGRectMake(10, 400, 100, 40);
     [quitButton setTitle:@"退出登录" forState:UIControlStateNormal];
     [quitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:quitButton];
     
-    UIButton *printButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    printButton.frame = CGRectMake(120, 400, 100, 40);
-    [printButton setTitle:@"打印信息" forState:UIControlStateNormal];
-    [printButton addTarget:self action:@selector(print) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:printButton];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    UserItem *user = [UserItemTool defaultItem];
+    self.contentView.headerView.nicknameLabel.text = user.nickname;
     
+    if (user.introduction.length == 0) {
+        self.contentView.headerView.introductionLabel.text = @"写下你想对世界说的话，就现在";
+    } else {
+        self.contentView.headerView.introductionLabel.text = user.introduction;
+    }
+    
+    self.contentView.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user.checkInDay];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.presenter detachView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -53,18 +80,9 @@
     NSLog(@"%@", [UserItemTool defaultItem].realName);
 }
 
-- (void)print {
-    NSLog(@"%@", [UserItemTool defaultItem].nickname);
+// Presenter回调
+- (void)QAInfoRequestsSucceeded {
+    NSLog(@"邮问数据请求成功");
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
