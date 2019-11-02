@@ -99,13 +99,15 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    
+    // 所有的约束均根据屏幕的长宽比例与控件所占的比例来计算
     [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.mas_leading).offset(16);
-        make.top.equalTo(self.mas_top).offset(80);
-        make.height.width.equalTo(@65);
+        make.leading.equalTo(self.mas_leading).offset(MAIN_SCREEN_W * 0.042);
+        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_W * 0.21321);
+        make.height.width.equalTo(@(MAIN_SCREEN_W * 0.1733));
     }];
     self.headerImageView.clipsToBounds = YES;
-    self.headerImageView.layer.cornerRadius = 32.5;
+    self.headerImageView.layer.cornerRadius = MAIN_SCREEN_W * 0.1733 * 0.5;
     
     [self.nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.headerImageView.mas_trailing).offset(20);
@@ -119,15 +121,15 @@
     
     [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.headerImageView);
-        make.trailing.equalTo(self).offset(-16);
+        make.trailing.equalTo(self).offset(-MAIN_SCREEN_W * 0.0437);
         make.height.width.equalTo(@24);
     }];
     
     [self.whiteBoard mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.headerImageView);
         make.top.equalTo(self.headerImageView.mas_bottom).offset(20);
-        make.height.equalTo(@126);
-        make.width.equalTo(@342);
+        make.height.equalTo(@(MAIN_SCREEN_W * 0.336));
+        make.width.equalTo(@(MAIN_SCREEN_W * 0.912));
     }];
     
     [self.signinDaysLabel mas_makeConstraints:^(MASConstraintMaker *make) {

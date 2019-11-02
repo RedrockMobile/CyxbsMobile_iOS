@@ -50,6 +50,7 @@
 		1A9B767A235F50A800725937 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7679235F50A800725937 /* main.m */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
+		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		EE899DE32367D89A00DDB0D9 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */; };
@@ -152,7 +153,7 @@
 		1A7BAC652369AC2900CA512D /* MineContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineContentView.m; sourceTree = "<group>"; };
 		1A7BAC672369B28400CA512D /* MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
 		1A7BAC682369B28400CA512D /* MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
-		1A7BAC6A2369C93400CA512D /* MineContentViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineContentViewDelegate.h; sourceTree = "<group>"; };
+		1A7BAC6A2369C93400CA512D /* MineContentViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineContentViewProtocol.h; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* CyxbsMobile2019_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyxbsMobile2019_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B766A235F50A600725937 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A9B766B235F50A600725937 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -167,6 +168,8 @@
 		1A9B768A235F50A900725937 /* CyxbsMobile2019_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsMobile2019_iOSUITests.m; sourceTree = "<group>"; };
 		1A9B7690235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AAFACF6236B360F00E854A3 /* MinePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePresenter.h; sourceTree = "<group>"; };
+		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
 		1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Timestamp.m"; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 		1A14132B235F523B0001417E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				1AAFACF6236B360F00E854A3 /* MinePresenter.h */,
+				1AAFACF7236B360F00E854A3 /* MinePresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -483,7 +488,7 @@
 		1A7BAC632369AB9500CA512D /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				1A7BAC6A2369C93400CA512D /* MineContentViewDelegate.h */,
+				1A7BAC6A2369C93400CA512D /* MineContentViewProtocol.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -801,6 +806,7 @@
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
 				1A14136B235F524B0001417E /* MOHImageParamModel.m in Sources */,
 				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
+				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  MineContentViewDelegate.h
+//  MineContentViewProtocol.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 方昱恒 on 2019/10/30.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol MineContentViewDelegate <NSObject>
+@protocol MineContentViewProtocol <NSObject>
 
-- (void)setUserInfo;
+- (void)QAInfoRequestsSucceeded;
 
 @end
 
