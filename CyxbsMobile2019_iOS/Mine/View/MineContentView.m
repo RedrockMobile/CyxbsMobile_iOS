@@ -12,8 +12,7 @@
 @interface MineContentView () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, copy) NSArray<NSDictionary<NSString *, id> *> *settingsArray;
-@property (nonatomic, weak) UITableView *appSettingTableView;
-@property (nonatomic, weak) UITableView *classScheduleTableView;
+@property (nonatomic, assign) BOOL isFold;
 
 @end
 
@@ -79,13 +78,13 @@
         self.classScheduleTableView = classScheduleSettingsTable;
         
         // 添加headerView（个人信息相关）
-        MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 291)];
+        MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_W * 0.776)];
         classScheduleSettingsTable.tableHeaderView = headerView;
         self.headerView = headerView;
         [headerView.editButton addTarget:self action:@selector(editButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         
-        // 添加APP设置TableView
-        UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 511, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 58) style:UITableViewStyleGrouped];
+        // 添加FooterView（APP设置TableView）
+        UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 58) style:UITableViewStyleGrouped];
         appSettingTabelView.delegate = self;
         appSettingTabelView.dataSource = self;
         appSettingTabelView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
@@ -107,7 +106,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.classScheduleTableView) {
-        return ((NSArray *)(self.settingsArray[0][@"settings"])).count;;
+        if (self.isFold) {
+            return 0;
+        } else {
+            return ((NSArray *)(self.settingsArray[0][@"settings"])).count;;
+        }
     } else {
         return ((NSArray *)(self.settingsArray[1][@"settings"])).count;
     }
@@ -119,7 +122,7 @@
     cell.backgroundColor = tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.textColor = [UIColor colorWithRed:25/255.0 green:56/255.0 blue:102/255.0 alpha:1.0];
-    if (indexPath.section == 0) {
+    if (tableView == self.classScheduleTableView) {
         cell.textLabel.font = [UIFont systemFontOfSize:13];
     } else {
         cell.textLabel.font = [UIFont systemFontOfSize:15];
@@ -166,9 +169,13 @@
         titleLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1.0];
         [headerView addSubview:titleLabel];
         
-        UIButton *foldArrow = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 27 - 16, 24, 16, 8)];
-        foldArrow.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
-        [headerView addSubview:foldArrow];
+        UIButton *foldButton = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 27 - 15, 24, 20, 10)];
+        foldButton.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
+        if (self.isFold) {
+            foldButton.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        }
+        [foldButton addTarget:self action:@selector(foldButtonClicked:foldState:) forControlEvents:UIControlEventTouchUpInside];
+        [headerView addSubview:foldButton];
         
         return headerView;
     } else {
@@ -182,11 +189,32 @@
     }
 }
 
+
 #pragma mark - 按钮回调
 - (void)editButtonClicked {
     if ([self.delegate respondsToSelector:@selector(editButtonClicked)]) {
         [self.delegate editButtonClicked];
     }
+}
+
+- (void)foldButtonClicked:(UIButton *)foldButton foldState:(BOOL)isFold {
+    if ([self.delegate respondsToSelector:@selector(foldButtonClicked:foldState:)]) {
+        [UserDefaultTool saveValue:@(![[UserDefaultTool valueWithKey:@"Mine_isFold"] boolValue]) forKey:@"Mine_isFold"];
+        [self.delegate foldButtonClicked:foldButton foldState:self.isFold];
+    }
+}
+
+
+#pragma mark - getter, setter
+- (BOOL)isFold {
+    BOOL Mine_isFold = [[UserDefaultTool valueWithKey:@"Mine_isFold"] boolValue];
+    if (!Mine_isFold) {
+        [UserDefaultTool saveValue:@NO forKey:@"Mine_isFold"];
+        _isFold = NO;
+    } else {
+        _isFold = Mine_isFold;
+    }
+    return _isFold;
 }
 
 @end

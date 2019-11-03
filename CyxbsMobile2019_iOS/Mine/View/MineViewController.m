@@ -77,6 +77,17 @@
     NSLog(@"跳转到修改信息");
 }
 
+- (void)foldButtonClicked:(UIButton *)foldButton foldState:(BOOL)isFold {
+    [UIView animateWithDuration:0.25 animations:^{
+        if (isFold) {
+            foldButton.transform = CGAffineTransformMakeRotation(-M_PI_2);
+        } else {
+            foldButton.transform = CGAffineTransformMakeRotation(M_PI_2);
+        }
+    }];
+    [self.contentView.classScheduleTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationFade];
+}
+
 
 #pragma mark - Presenter回调
 - (void)QAInfoRequestsSucceeded {

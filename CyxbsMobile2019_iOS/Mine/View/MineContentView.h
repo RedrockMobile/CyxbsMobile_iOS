@@ -14,12 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MineContentViewDelegate <NSObject>
 
 - (void)editButtonClicked;
+- (void)foldButtonClicked:(UIButton *)foldButton foldState:(BOOL)isFold;
 
 @end
 
 @interface MineContentView : UIView
 
-@property (nonatomic, weak) UITableView *settingsTableView;
+@property (nonatomic, weak) UITableView *appSettingTableView;
+@property (nonatomic, weak) UITableView *classScheduleTableView;
 @property (nonatomic, weak) MineHeaderView *headerView;
 @property (nonatomic, weak) id<MineContentViewDelegate> delegate;
 
