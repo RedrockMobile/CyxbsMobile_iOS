@@ -11,7 +11,7 @@
 #import "MineContentViewProtocol.h"
 #import "MinePresenter.h"
 
-@interface MineViewController () <MineContentViewProtocol>
+@interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol>
 
 @property (nonatomic, strong) MinePresenter *presenter;
 
@@ -35,14 +35,15 @@
     MineContentView *contentView = [[MineContentView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:contentView];
     self.contentView = contentView;
+    contentView.delegate = self;
     
     
     // 临时的退出按钮
     UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    quitButton.frame = CGRectMake(10, 400, 100, 40);
+    quitButton.frame = CGRectMake(250, 100, 100, 40);
     [quitButton setTitle:@"退出登录" forState:UIControlStateNormal];
     [quitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:quitButton];
+    [contentView.headerView addSubview:quitButton];
     
 }
 
@@ -63,12 +64,21 @@
     [self.presenter detachView];
 }
 
+
+#pragma mark - 按钮回调
 - (void)quit {
     [UserItemTool logout];
     NSLog(@"%@", [UserItemTool defaultItem].realName);
 }
 
-// Presenter回调
+
+#pragma mark - ContentView代理
+- (void)editButtonClicked {
+    NSLog(@"跳转到修改信息");
+}
+
+
+#pragma mark - Presenter回调
 - (void)QAInfoRequestsSucceeded {
     NSLog(@"邮问数据请求成功");
 }

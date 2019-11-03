@@ -11,10 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol MineContentViewDelegate <NSObject>
+
+- (void)editButtonClicked;
+
+@end
+
 @interface MineContentView : UIView
 
 @property (nonatomic, weak) UITableView *settingsTableView;
 @property (nonatomic, weak) MineHeaderView *headerView;
+@property (nonatomic, weak) id<MineContentViewDelegate> delegate;
 
 @end
 
