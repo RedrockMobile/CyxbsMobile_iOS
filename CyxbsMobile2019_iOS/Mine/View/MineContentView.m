@@ -136,7 +136,7 @@
             UISwitch *settingSwitch = [[UISwitch alloc] init];
             settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);
             settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
-            settingSwitch.backgroundColor = [UIColor colorWithRed:200/255.0 green:217/255.0 blue:243/255.0 alpha:1.0];
+            settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
             settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
             [cell.contentView addSubview:settingSwitch];
         }
@@ -157,7 +157,7 @@
     return  cell;
 }
 
-// TableView的header
+// Section的header
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (tableView == self.classScheduleTableView) {
         tableView.sectionHeaderHeight = 54;
@@ -169,7 +169,8 @@
         titleLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1.0];
         [headerView addSubview:titleLabel];
         
-        UIButton *foldButton = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 27 - 15, 24, 20, 10)];
+        UIButton *foldButton = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 27 - 19, 19, 22, 14)];
+        foldButton.imageEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
         foldButton.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
         if (self.isFold) {
             foldButton.transform = CGAffineTransformMakeRotation(-M_PI_2);
