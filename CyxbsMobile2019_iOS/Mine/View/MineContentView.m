@@ -169,8 +169,8 @@
         titleLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1.0];
         [headerView addSubview:titleLabel];
         
-        UIButton *foldButton = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 27 - 19, 19, 22, 14)];
-        foldButton.imageEdgeInsets = UIEdgeInsetsMake(3, 3, 3, 3);
+        UIButton *foldButton = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 27 - 19, 15, 22, 22)];
+        foldButton.imageEdgeInsets = UIEdgeInsetsMake(7, 3, 7, 3);
         foldButton.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
         if (self.isFold) {
             foldButton.transform = CGAffineTransformMakeRotation(-M_PI_2);
