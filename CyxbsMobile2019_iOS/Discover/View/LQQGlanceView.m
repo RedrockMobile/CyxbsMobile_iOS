@@ -17,7 +17,7 @@
 #define Color42_78_132 [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]
 #define Color21_49_91 [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]
 @interface LQQGlanceView()
-
+@property NSUserDefaults *defaults;
 
 
 
@@ -29,6 +29,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self loadUserDefaults];//加载缓存用作视图的初始化
         [self addElectricFeeButton];
         [self addVolunteerButton];
         self.electricFee.backgroundColor = [UIColor whiteColor];
@@ -37,7 +38,10 @@
     }
     return self;
 }
-
+- (void)loadUserDefaults {
+    NSUserDefaults *defualts = [NSUserDefaults standardUserDefaults];
+    self.defaults = defualts;
+}
 //MARK: 电费查询部分
 - (void) addElectricFeeButton {
     UIButton *button = [[UIButton alloc]init];
@@ -68,7 +72,7 @@
 - (void)addTime {
     UILabel *time = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = time;
-    time.text = @"1666年抄表";
+    time.text = [self.defaults objectForKey:@"userElectricTime"];
     time.textColor = Color21_49_91;
     time.alpha = 0.54;
     time.font = [UIFont fontWithName:PingFangSCLight size: 10];
@@ -77,7 +81,7 @@
 - (void)addMoney {
     UILabel *money = [[UILabel alloc]init];//左边数字
     self.electricFeeMoney = money;
-    money.text = @"12.42";
+    money.text = [self.defaults objectForKey:@"userElectricMoney"];
     money.textColor = Color42_78_132;
     money.font = [UIFont fontWithName:BahnschriftBold size: 50];
     [self.electricFee addSubview:money];
@@ -85,7 +89,7 @@
 - (void)addDegree {
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
-    degree.text = @"50.2";
+    degree.text = [self.defaults objectForKey:@"userElectricDegree"];
     degree.textColor = Color42_78_132;
     degree.font = [UIFont fontWithName: BahnschriftBold size: 50];
     [self.electricFee addSubview:degree];
