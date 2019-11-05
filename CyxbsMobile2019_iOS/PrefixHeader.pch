@@ -155,4 +155,19 @@
 
 #define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/app/token/refresh"
 
+
+
+
+
+
+//教务新闻列表
+#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
+//教务新闻详情
+#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
+//教务新闻附件
+#define NEWSFILE @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
+
+//电费
+#define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
+
 #endif

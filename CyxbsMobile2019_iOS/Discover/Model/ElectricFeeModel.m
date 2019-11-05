@@ -7,7 +7,6 @@
 //
 
 #import "ElectricFeeModel.h"
-#define URL @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
 @implementation ElectricFeeModel
 - (instancetype)init
 {
@@ -22,15 +21,15 @@
     NSString *building = @"26";
     NSString *room = @"412";
     NSDictionary *parameters = @{@"building":building, @"room":room};
-    [client requestWithPath:URL method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self.money = [NSString stringWithFormat:@"%@.%@",responseObject[@"elec_inf"][@"elec_cost"][0],responseObject[@"elec_inf"][@"elec_cost"][1]];
         self.degree = responseObject[@"elec_inf"][@"elec_spend"];
         //接口返回了06月21日
         NSString *returnTime = (NSString*)responseObject[@"elec_inf"][@"record_time"];
-        int month = [returnTime substringToIndex:1].intValue;
+        int month = [returnTime substringToIndex:2].intValue;
         int day = [returnTime substringWithRange:NSMakeRange(3, 2)].intValue;
         self.time = [NSString stringWithFormat:@"2019.%d.%d",month,day];
-        //发消息告诉ViewModel更新数据
+        //发消息告诉ViewController更新数据
         [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"请求电费网络错误！");

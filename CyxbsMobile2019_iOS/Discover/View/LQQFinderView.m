@@ -12,7 +12,7 @@
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
 @interface LQQFinderView()
-
+@property NSUserDefaults *defaults;
 
 @end
 @implementation LQQFinderView
@@ -22,6 +22,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+        [self configUserDefaults];
         [self addWeekTimeLabel];
         [self addFinderTitle];
         [self addWriteButton];
@@ -31,6 +32,9 @@
         [self addSomeEnters];
     }
     return self;
+}
+- (void)configUserDefaults {
+    self.defaults = [NSUserDefaults standardUserDefaults];
 }
 //MARK: - 添加子控件部分
 - (void) addWeekTimeLabel {
@@ -84,7 +88,9 @@
 - (void) addNews {
     UIButton *newsButton = [[UIButton alloc]init];
     self.news = newsButton;
-    [newsButton setTitle:@"666的红领巾志愿服务小分队" forState:normal];
+    NSString *title = [self.defaults objectForKey:@"oneNews"];
+    NSLog(@"缓存的是%@",title);
+    [newsButton setTitle: title forState:normal];
     [newsButton setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:normal];
     newsButton.titleLabel.font = [UIFont fontWithName:PingFangSC size: 15];
     [newsButton addTarget:self action:@selector(touchNews) forControlEvents:UIControlEventTouchUpInside];

@@ -53,6 +53,7 @@
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
+		EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3C180B23715BAD004233C5 /* VolunteerModel.m */; };
 		EE899DE32367D89A00DDB0D9 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */; };
 		EE899DE52367D89A00DDB0D9 /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */; };
 		EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DDB2367D89900DDB0D9 /* EnterButton.m */; };
@@ -173,6 +174,8 @@
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
 		1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Timestamp.m"; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		EE3C180A23715BAD004233C5 /* VolunteerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
+		EE3C180B23715BAD004233C5 /* VolunteerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
 		EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
 		EE899DD42367D89900DDB0D9 /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
 		EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
@@ -584,10 +587,12 @@
 		EE899DD22367D89900DDB0D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EE899DD42367D89900DDB0D9 /* ElectricFeeModel.h */,
-				EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */,
 				EE899DED2369A19B00DDB0D9 /* OneNewsModel.h */,
 				EE899DEE2369A19B00DDB0D9 /* OneNewsModel.m */,
+				EE899DD42367D89900DDB0D9 /* ElectricFeeModel.h */,
+				EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */,
+				EE3C180A23715BAD004233C5 /* VolunteerModel.h */,
+				EE3C180B23715BAD004233C5 /* VolunteerModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -824,6 +829,7 @@
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
+				EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				1A141318235F51F20001417E /* ClassScheduleViewController.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
