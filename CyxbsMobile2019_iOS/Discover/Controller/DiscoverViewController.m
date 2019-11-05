@@ -11,6 +11,7 @@
 #import "LQQFinderView.h"
 #import "LQQGlanceView.h"
 #import "ElectricFeeModel.h"
+#import "OneNewsModel.h"
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
     LoginTimeOut,
@@ -26,6 +27,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak) LQQGlanceView *glanceView;//下方剩余页面
 //Model
 @property ElectricFeeModel *elecModel;
+@property OneNewsModel *oneNewsModel;
+@property NSUserDefaults *defaults;
 @end
 
 @implementation DiscoverViewController
@@ -49,14 +52,16 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
     }
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
+    [self configDefaults];
     self.view.backgroundColor = [UIColor whiteColor];
     [self addContentView];
     [self configNavagationBar];
     [self addFinderView];
     [self addGlanceView];
     [self requestData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateUI) name:@"electricFeeDataSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
+
 }
 
 - (void)presentToLogin {
@@ -70,8 +75,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [loginVC presentViewController:alert animated:YES completion:nil];
     }
 }
+- (void)configDefaults {
+    self.defaults = [NSUserDefaults standardUserDefaults];
+}
 - (void)configNavagationBar {
     self.contentView.delegate = self;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
 }
 //这个方法中零零散散的注释了四行代码是因为我想加动画但是失败了
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -134,11 +143,23 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
     self.elecModel = elecModel;
+    OneNewsModel *oneNewsModel = [[OneNewsModel alloc]init];
+    self.oneNewsModel = oneNewsModel;
+    
 }
-- (void)updateUI {
+- (void)updateElectricFeeUI {
     self.glanceView.electricFeeMoney.text = self.elecModel.money;
     self.glanceView.electricFeeDegree.text = self.elecModel.degree;
     self.glanceView.electricFeeTime.text = self.elecModel.time;
+    //同时写入缓存
+    [self.defaults setObject:self.elecModel.money forKey:@"userElectricMoney"];
+    [self.defaults setObject:self.elecModel.degree forKey:@"userElectricDegree"];
+    [self.defaults setObject:self.elecModel.time forKey:@"userElectricTime"];
 }
-
+- (void)updateNewsUI {
+    [self.finderView.news setTitle:self.oneNewsModel.title forState:normal];
+    
+    //同时写入缓存
+    [self.defaults setObject:self.oneNewsModel.title forKey:@"oneNews"];
+}
 @end
