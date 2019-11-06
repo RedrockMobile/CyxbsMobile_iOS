@@ -23,6 +23,7 @@
 #pragma mark - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceded) name:@"Login_LoginSuceeded" object:nil];
     
     // 绑定Presenter
     self.presenter = [[MinePresenter alloc] init];
@@ -128,6 +129,14 @@
 #pragma mark - Presenter回调
 - (void)QAInfoRequestsSucceeded {
     NSLog(@"邮问数据请求成功");
+}
+
+
+#pragma mark - 通知中心回调
+// 退出登录后刷新开关，是否折叠等界面信息
+- (void)loginSucceded {
+    [self.contentView.classScheduleTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
+    [self.contentView.appSettingTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end
