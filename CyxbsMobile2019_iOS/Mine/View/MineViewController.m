@@ -88,6 +88,42 @@
     [self.contentView.classScheduleTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationFade];
 }
 
+- (void)switchedRemindBeforeClass:(UISwitch *)sender {
+    if (sender.on) {            // 打开开关
+        [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindBeforeClass"];
+    } else {                    // 关闭开关
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindBeforeClass"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (void)switchedRemindEveryDay:(UISwitch *)sender {
+    if (sender.on) {            // 打开开关
+        [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindEveryDay"];
+    } else {                    // 关闭开关
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindEveryDay"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (void)switchedDisplayMemoPad:(UISwitch *)sender {
+    if (sender.on) {            // 打开开关
+        [UserDefaultTool saveValue:@"test" forKey:@"Mine_DisplayMemoPad"];
+    } else {                    // 关闭开关
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_DisplayMemoPad"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+- (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender {
+    if (sender.on) {            // 打开开关
+        [UserDefaultTool saveValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
+    } else {                    // 关闭开关
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
 
 #pragma mark - Presenter回调
 - (void)QAInfoRequestsSucceeded {

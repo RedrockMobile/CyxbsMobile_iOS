@@ -29,39 +29,39 @@
             @{
                 @"sectionTitle": @"课前提醒",
                 @"settings": @[
-                        @{
-                            @"title": @"上课前提醒我",
-                            @"hasSwitch": @YES
-                        },
-                        @{
-                            @"title": @"每天推送课表给我",
-                            @"hasSwitch": @YES
-                        },
-                        @{
-                            @"title": @"在没课的地方显示备忘录",
-                            @"hasSwitch": @YES
-                        }
+                    @{
+                        @"title": @"上课前提醒我",
+                        @"hasSwitch": @YES
+                    },
+                    @{
+                        @"title": @"每天推送课表给我",
+                        @"hasSwitch": @YES
+                    },
+                    @{
+                        @"title": @"在没课的地方显示备忘录",
+                        @"hasSwitch": @YES
+                    }
                 ]
             },
             @{
                 @"sectionTitle": @"其他设置",
                 @"settings": @[
-                        @{
-                            @"title": @"启动APP时优先显示课表页面",
-                            @"hasSwitch": @YES
-                        },
-                        @{
-                            @"title": @"自定义桌面小图标",
-                            @"hasSwitch": @NO
-                        },
-                        @{
-                            @"title": @"意见与反馈",
-                            @"hasSwitch": @NO
-                        },
-                        @{
-                            @"title": @"红岩网校",
-                            @"hasSwitch": @NO
-                        }
+                    @{
+                        @"title": @"启动APP时优先显示课表页面",
+                        @"hasSwitch": @YES
+                    },
+                    @{
+                        @"title": @"自定义桌面小图标",
+                        @"hasSwitch": @NO
+                    },
+                    @{
+                        @"title": @"意见与反馈",
+                        @"hasSwitch": @NO
+                    },
+                    @{
+                        @"title": @"红岩网校",
+                        @"hasSwitch": @NO
+                    }
                 ]
             }
         ];
@@ -139,6 +139,26 @@
             settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
             settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
             [cell.contentView addSubview:settingSwitch];
+            
+            if ([cell.textLabel.text hasPrefix:@"上课前"]) {
+                [settingSwitch addTarget:self action:@selector(switchedRemindBeforeClass:) forControlEvents:UIControlEventValueChanged];
+                if ([UserDefaultTool valueWithKey:@"Mine_RemindBeforeClass"]) {
+                    settingSwitch.on = YES;
+                    // 在这里读取缓存，设置cell的text
+                }
+            } else if ([cell.textLabel.text hasPrefix:@"每天"]) {
+                [settingSwitch addTarget:self action:@selector(switchedRemindEveryDay:) forControlEvents:UIControlEventValueChanged];
+                if ([UserDefaultTool valueWithKey:@"Mine_RemindEveryDay"]) {
+                    settingSwitch.on = YES;
+                    // 在这里读取缓存，设置cell的text
+                }
+            } else if ([cell.textLabel.text hasPrefix:@"在没课的地方显示备忘录"]) {
+                [settingSwitch addTarget:self action:@selector(switchedDisplayMemoPad:) forControlEvents:UIControlEventValueChanged];
+                if ([UserDefaultTool valueWithKey:@"Mine_DisplayMemoPad"]) {
+                    settingSwitch.on = YES;
+                    // 在这里读取缓存，设置cell的text
+                }
+            }
         }
     } else {
         cell.textLabel.text = ((NSArray *)(self.settingsArray[1][@"settings"]))[indexPath.row][@"title"];
@@ -151,6 +171,13 @@
             settingSwitch.backgroundColor = [UIColor colorWithRed:200/255.0 green:217/255.0 blue:243/255.0 alpha:1.0];
             settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
             [cell.contentView addSubview:settingSwitch];
+            if ([cell.textLabel.text hasPrefix:@"启动"]) {
+               [settingSwitch addTarget:self action:@selector(switchedLaunchingWithClassScheduleView:) forControlEvents:UIControlEventValueChanged];
+               if ([UserDefaultTool valueWithKey:@"Mine_LaunchingWithClassScheduleView"]) {
+                   settingSwitch.on = YES;
+                   // 在这里读取缓存，设置cell的text
+               }
+           }
         }
     }
     
@@ -202,6 +229,30 @@
     if ([self.delegate respondsToSelector:@selector(foldButtonClicked:foldState:)]) {
         [UserDefaultTool saveValue:@(![[UserDefaultTool valueWithKey:@"Mine_isFold"] boolValue]) forKey:@"Mine_isFold"];
         [self.delegate foldButtonClicked:foldButton foldState:self.isFold];
+    }
+}
+
+- (void)switchedRemindBeforeClass:(UISwitch *)sender {
+    if ([self.delegate respondsToSelector:@selector(switchedRemindBeforeClass:)]) {
+        [self.delegate switchedRemindBeforeClass:sender];
+    }
+}
+
+- (void)switchedRemindEveryDay:(UISwitch *)sender {
+    if ([self.delegate respondsToSelector:@selector(switchedRemindEveryDay:)]) {
+        [self.delegate switchedRemindEveryDay:sender];
+    }
+}
+
+- (void)switchedDisplayMemoPad:(UISwitch *)sender {
+    if ([self.delegate respondsToSelector:@selector(switchedDisplayMemoPad:)]) {
+        [self.delegate switchedDisplayMemoPad:sender];
+    }
+}
+
+- (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender {
+    if ([self.delegate respondsToSelector:@selector(switchedLaunchingWithClassScheduleView:)]) {
+        [self.delegate switchedLaunchingWithClassScheduleView:sender];
     }
 }
 
