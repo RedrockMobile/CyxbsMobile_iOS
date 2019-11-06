@@ -85,6 +85,7 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
     [UserDefaultTool saveIdNum:self.idNumTextField.text];
     [self.loginHUD hide:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Login_LoginSuceeded" object:nil userInfo:@{@"userItem": [UserItemTool defaultItem]}];
 }
 
 - (void)loginFailed {
