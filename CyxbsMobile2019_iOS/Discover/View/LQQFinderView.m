@@ -89,7 +89,6 @@
     UIButton *newsButton = [[UIButton alloc]init];
     self.news = newsButton;
     NSString *title = [self.defaults objectForKey:@"oneNews"];
-    NSLog(@"缓存的是%@",title);
     [newsButton setTitle: title forState:normal];
     [newsButton setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:normal];
     newsButton.titleLabel.font = [UIFont fontWithName:PingFangSC size: 15];
@@ -170,19 +169,19 @@
         //i是用来记录当前正在设置哪一个控件的约束
         int i = 0;
         for (EnterButton *button in self.enterButtonArray) {
-            if(button == self.enterButtonArray[0]){//NSLog(@"正在配置第一个");
+            if (button == self.enterButtonArray[0]) {
                 [button mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(self).offset(Gap);
                     make.top.equalTo(self.newsSender.mas_bottom).offset(25);
                     make.width.height.equalTo(@EnterButtonWidth);
                 }];
-            }else if(button == self.enterButtonArray[self.enterButtonArray.count - 1]){//NSLog(@"正在配置最后一个");
+            } else if (button == self.enterButtonArray[self.enterButtonArray.count - 1]) {
                 [button mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.right.equalTo(self).offset(-Gap);
                     make.top.equalTo(self.enterButtonArray[0].imageButton);
                     make.width.height.equalTo(@EnterButtonWidth);
                 }];
-            }else {//NSLog(@"正在配置第%d个",i);
+            } else {
                 //x表示第一个button的右边和最后一个button的左边中间的距离
                 float x = self.width - 2 * Gap - 2 * EnterButtonWidth;
                 //y表示x减去控件长度之后剩下的长度

@@ -32,7 +32,7 @@
         //发消息告诉ViewController更新数据
         [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"请求电费网络错误！");
+        NSLog(@"电费信息请求失败");
     }];
     
 }

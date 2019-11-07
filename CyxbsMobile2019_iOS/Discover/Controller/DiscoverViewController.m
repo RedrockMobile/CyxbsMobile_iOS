@@ -113,19 +113,14 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     //下策
     LQQFinderView *finderView;
     if(MAIN_SCREEN_W / MAIN_SCREEN_H == 320 / 568.0){
-        NSLog(@"iphoneSE");
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 667.0) {
-        NSLog(@"iphone6,6S,7,8");
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.53)];
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 736.0) {
-        NSLog(@"iphonePlus");
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.49)];
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 812.0) {
-        NSLog(@"11Pro/X/XS");
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.44)];
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 896.0) {
-        NSLog(@"11/11ProMax/XR/XS Max");
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
     }else {//以防万一
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];

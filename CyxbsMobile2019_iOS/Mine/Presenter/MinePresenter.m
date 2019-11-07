@@ -19,7 +19,7 @@
 }
 
 - (void)requestQAInfo {
-    NSLog(@"请求邮问数据。。。");
+    // 请求邮问数据
     [self.attachedView QAInfoRequestsSucceeded];
 }
 
