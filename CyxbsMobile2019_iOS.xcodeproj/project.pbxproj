@@ -155,7 +155,7 @@
 		1A7BAC672369B28400CA512D /* MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
 		1A7BAC682369B28400CA512D /* MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
 		1A7BAC6A2369C93400CA512D /* MineContentViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineContentViewProtocol.h; sourceTree = "<group>"; };
-		1A9B7667235F50A600725937 /* CyxbsMobile2019_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyxbsMobile2019_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B766A235F50A600725937 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A9B766B235F50A600725937 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1A9B7671235F50A600725937 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -511,7 +511,7 @@
 		1A9B7668235F50A600725937 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1A9B7667235F50A600725937 /* CyxbsMobile2019_iOS.app */,
+				1A9B7667235F50A600725937 /* 掌上重邮.app */,
 				1A9B767F235F50A900725937 /* CyxbsMobile2019_iOSTests.xctest */,
 				1A9B768A235F50A900725937 /* CyxbsMobile2019_iOSUITests.xctest */,
 			);
@@ -638,7 +638,7 @@
 			);
 			name = CyxbsMobile2019_iOS;
 			productName = CyxbsMobile2019_iOS;
-			productReference = 1A9B7667235F50A600725937 /* CyxbsMobile2019_iOS.app */;
+			productReference = 1A9B7667235F50A600725937 /* 掌上重邮.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1A9B767E235F50A900725937 /* CyxbsMobile2019_iOSTests */ = {
@@ -1023,7 +1023,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1044,7 +1044,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
