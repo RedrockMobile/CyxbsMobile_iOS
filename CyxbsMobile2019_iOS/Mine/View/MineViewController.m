@@ -60,7 +60,6 @@
     
     self.contentView.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user.checkInDay];
     
-    NSLog(@"%@", [UserItemTool defaultItem].headImgUrl);
     NSURL *headerImageURL = [NSURL URLWithString:[UserItemTool defaultItem].headImgUrl];
     [self.contentView.headerView.headerImageView sd_setImageWithURL:headerImageURL placeholderImage:nil options:SDWebImageRefreshCached];
 }
