@@ -93,6 +93,7 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
     hud.mode = MBProgressHUDModeText;
     hud.labelText = @"密码输错了吧小老弟？";
     [hud hide:YES afterDelay:1.5];
+    [self.loginHUD hide:YES];
 }
 
 @end
