@@ -59,6 +59,10 @@
     }
     
     self.contentView.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user.checkInDay];
+    
+    NSLog(@"%@", [UserItemTool defaultItem].headImgUrl);
+    NSURL *headerImageURL = [NSURL URLWithString:[UserItemTool defaultItem].headImgUrl];
+    [self.contentView.headerView.headerImageView sd_setImageWithURL:headerImageURL placeholderImage:nil options:SDWebImageRefreshCached];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -69,7 +73,6 @@
 #pragma mark - 按钮回调
 - (void)quit {
     [UserItemTool logout];
-    NSLog(@"%@", [UserItemTool defaultItem].realName);
 }
 
 
@@ -128,7 +131,7 @@
 
 #pragma mark - Presenter回调
 - (void)QAInfoRequestsSucceeded {
-    NSLog(@"邮问数据请求成功");
+    //邮问数据请求成功
 }
 
 
