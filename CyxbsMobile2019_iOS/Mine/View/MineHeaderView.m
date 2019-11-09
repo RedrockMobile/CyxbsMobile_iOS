@@ -70,7 +70,7 @@
         if (IS_IPHONESE) {
             questionNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
         } else {
-            questionNumberLabel.font = [UIFont fontWithName:@"Impact" size:30];
+            questionNumberLabel.font = [UIFont fontWithName:@"Impact" size:35];
         }
         questionNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         questionNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -81,7 +81,7 @@
         if (IS_IPHONESE) {
             answerNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
         } else {
-            answerNumberLabel.font = [UIFont fontWithName:@"Impact" size:30];
+            answerNumberLabel.font = [UIFont fontWithName:@"Impact" size:35];
         }
         answerNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         answerNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -92,7 +92,7 @@
         if (IS_IPHONESE) {
             responseNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
         } else {
-            responseNumberLabel.font = [UIFont fontWithName:@"Impact" size:30];
+            responseNumberLabel.font = [UIFont fontWithName:@"Impact" size:35];
         }
         responseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         responseNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -103,7 +103,7 @@
         if (IS_IPHONESE) {
             praiseNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
         } else {
-            praiseNumberLabel.font = [UIFont fontWithName:@"Impact" size:30];
+            praiseNumberLabel.font = [UIFont fontWithName:@"Impact" size:35];
         }
         praiseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         praiseNumberLabel.textAlignment = NSTextAlignmentCenter;

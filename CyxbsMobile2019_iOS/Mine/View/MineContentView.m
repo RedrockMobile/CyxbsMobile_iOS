@@ -123,9 +123,9 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.textColor = [UIColor colorWithRed:25/255.0 green:56/255.0 blue:102/255.0 alpha:1.0];
     if (tableView == self.classScheduleTableView) {
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.textLabel.font = [UIFont systemFontOfSize:13];
     } else {
-        cell.textLabel.font = [UIFont systemFontOfSize:18];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
     }
     
     if (tableView == self.classScheduleTableView) {
@@ -192,7 +192,7 @@
         headerView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 16, 70, 21)];
         titleLabel.text = self.settingsArray[section][@"sectionTitle"];
-        titleLabel.font = [UIFont fontWithName:@"PingFang SC-Medium" size:18];
+        titleLabel.font = [UIFont fontWithName:@"PingFang SC-Medium" size:15];
         titleLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1.0];
         [headerView addSubview:titleLabel];
         
