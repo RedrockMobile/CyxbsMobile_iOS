@@ -41,7 +41,7 @@
     
     // 临时的退出按钮
     UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    quitButton.frame = CGRectMake(250, 100, 100, 40);
+    quitButton.frame = CGRectMake(150, 40, 100, 40);
     [quitButton setTitle:@"退出登录" forState:UIControlStateNormal];
     [quitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
     [contentView.headerView addSubview:quitButton];

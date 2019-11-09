@@ -42,6 +42,7 @@
         self.introductionLabel = introductionLabel;
         
         UIButton *editButton = [[UIButton alloc] init];
+        [editButton setBackgroundImage:[UIImage imageNamed:@"Mine_edit"] forState:UIControlStateNormal];
         [self addSubview:editButton];
         self.editButton = editButton;
         
@@ -67,9 +68,9 @@
         
         UILabel *questionNumberLabel = [[UILabel alloc] init];
         if (IS_IPHONESE) {
-            questionNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:40];
+            questionNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
         } else {
-            questionNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:50];
+            questionNumberLabel.font = [UIFont fontWithName:@"Impact" size:30];
         }
         questionNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         questionNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -78,9 +79,9 @@
         
         UILabel *answerNumberLabel = [[UILabel alloc] init];
         if (IS_IPHONESE) {
-            answerNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:40];
+            answerNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
         } else {
-            answerNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:50];
+            answerNumberLabel.font = [UIFont fontWithName:@"Impact" size:30];
         }
         answerNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         answerNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -89,9 +90,9 @@
         
         UILabel *responseNumberLabel = [[UILabel alloc] init];
         if (IS_IPHONESE) {
-            responseNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:40];
+            responseNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
         } else {
-            responseNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:50];
+            responseNumberLabel.font = [UIFont fontWithName:@"Impact" size:30];
         }
         responseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         responseNumberLabel.textAlignment = NSTextAlignmentCenter;
@@ -100,9 +101,9 @@
         
         UILabel *praiseNumberLabel = [[UILabel alloc] init];
         if (IS_IPHONESE) {
-            praiseNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:40];
+            praiseNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
         } else {
-            praiseNumberLabel.font = [UIFont fontWithName:@"Bahnschrift_Bold" size:50];
+            praiseNumberLabel.font = [UIFont fontWithName:@"Impact" size:30];
         }
         praiseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         praiseNumberLabel.textAlignment = NSTextAlignmentCenter;
