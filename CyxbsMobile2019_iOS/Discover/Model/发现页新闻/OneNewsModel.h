@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "OneNewsItem.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OneNewsModel : NSObject
-@property(nonatomic, copy)NSString *title;
+@property OneNewsItem *oneNewsItem;
 @end
 
 NS_ASSUME_NONNULL_END

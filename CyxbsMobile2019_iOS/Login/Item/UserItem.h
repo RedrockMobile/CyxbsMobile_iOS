@@ -57,6 +57,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 积分
 @property (nonatomic, copy) NSString *integral;
 
+/// 楼栋：例如26
+@property (nonatomic, copy) NSString *building;
+
+/// 房间号：例如413
+@property (nonatomic, copy) NSString *room;
+
 /// 获得单例对象
 + (UserItem *)defaultItem;
 

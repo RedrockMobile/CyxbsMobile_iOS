@@ -7,6 +7,7 @@
 //
 
 #import "ElectricFeeModel.h"
+
 @implementation ElectricFeeModel
 - (instancetype)init
 {
@@ -22,13 +23,8 @@
     NSString *room = @"412";
     NSDictionary *parameters = @{@"building":building, @"room":room};
     [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        self.money = [NSString stringWithFormat:@"%@.%@",responseObject[@"elec_inf"][@"elec_cost"][0],responseObject[@"elec_inf"][@"elec_cost"][1]];
-        self.degree = responseObject[@"elec_inf"][@"elec_spend"];
-        //接口返回了06月21日
-        NSString *returnTime = (NSString*)responseObject[@"elec_inf"][@"record_time"];
-        int month = [returnTime substringToIndex:2].intValue;
-        int day = [returnTime substringWithRange:NSMakeRange(3, 2)].intValue;
-        self.time = [NSString stringWithFormat:@"2019.%d.%d",month,day];
+        ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
+        self.electricFeeItem = item;
         //发消息告诉ViewController更新数据
         [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

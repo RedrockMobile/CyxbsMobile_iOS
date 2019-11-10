@@ -22,7 +22,8 @@
 
     NSDictionary *parameters = @{@"page":@1};
     [client requestWithPath:NEWSLIST method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        self.title = responseObject[@"data"][0][@"title"];
+        OneNewsItem *item = [[OneNewsItem alloc]initWithDict:responseObject];
+        self.oneNewsItem = item;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"oneNewsSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"教务新闻请求失败");
