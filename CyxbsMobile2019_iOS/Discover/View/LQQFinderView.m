@@ -74,9 +74,7 @@
 - (void) addNewsSender {
     UIButton *button = [[UIButton alloc]init];
     self.newsSender = button;
-
-//    [button setImage:<#(nullable UIImage *)#> forState:normal];
-    button.backgroundColor = [UIColor blueColor];
+    [button setBackgroundImage:[UIImage imageNamed:@"教务在线背景"] forState:normal];
     [button addTarget:self action:@selector(touchNewsSender) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"教务在线" forState:normal];
     button.titleLabel.textColor = [UIColor whiteColor];
@@ -88,7 +86,7 @@
 - (void) addNews {
     UIButton *newsButton = [[UIButton alloc]init];
     self.news = newsButton;
-    NSString *title = [self.defaults objectForKey:@"oneNews"];
+    NSString *title = [self.defaults objectForKey:@"OneNews_oneNews"];
     [newsButton setTitle: title forState:normal];
     [newsButton setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:normal];
     newsButton.titleLabel.font = [UIFont fontWithName:PingFangSC size: 15];
@@ -158,7 +156,8 @@
     }];
     [self.news mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.newsSender);
-        make.left.equalTo(self.newsSender.mas_right).offset(16);
+        make.left.equalTo(self.newsSender.mas_right).offset(14);
+        make.right.equalTo(self.bannerView);
         make.height.equalTo(self.newsSender);
     }];
     

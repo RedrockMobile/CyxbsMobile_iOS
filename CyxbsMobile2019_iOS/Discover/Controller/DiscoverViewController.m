@@ -143,18 +143,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
 }
 - (void)updateElectricFeeUI {
-    self.glanceView.electricFeeMoney.text = self.elecModel.money;
-    self.glanceView.electricFeeDegree.text = self.elecModel.degree;
-    self.glanceView.electricFeeTime.text = self.elecModel.time;
+    self.glanceView.electricFeeMoney.text = self.elecModel.electricFeeItem.money;
+    self.glanceView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
+    self.glanceView.electricFeeTime.text = self.elecModel.electricFeeItem.time;
     //同时写入缓存
-    [self.defaults setObject:self.elecModel.money forKey:@"userElectricMoney"];
-    [self.defaults setObject:self.elecModel.degree forKey:@"userElectricDegree"];
-    [self.defaults setObject:self.elecModel.time forKey:@"userElectricTime"];
+    [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
+    [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
+    [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
 }
 - (void)updateNewsUI {
-    [self.finderView.news setTitle:self.oneNewsModel.title forState:normal];
+    [self.finderView.news setTitle:self.oneNewsModel.oneNewsItem.oneNews forState:normal];
     
     //同时写入缓存
-    [self.defaults setObject:self.oneNewsModel.title forKey:@"oneNews"];
+    [self.defaults setObject:self.oneNewsModel.oneNewsItem.oneNews forKey:@"OneNews_oneNews"];
 }
 @end

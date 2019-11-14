@@ -72,7 +72,7 @@
 - (void)addTime {
     UILabel *time = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = time;
-    time.text = [self.defaults objectForKey:@"userElectricTime"];
+    time.text = [self.defaults objectForKey:@"ElectricFee_time"];
     time.textColor = Color21_49_91;
     time.alpha = 0.54;
     time.font = [UIFont fontWithName:PingFangSCLight size: 10];
@@ -81,7 +81,7 @@
 - (void)addMoney {
     UILabel *money = [[UILabel alloc]init];//左边数字
     self.electricFeeMoney = money;
-    money.text = [self.defaults objectForKey:@"userElectricMoney"];
+    money.text = [self.defaults objectForKey:@"ElectricFee_money"];
     money.textColor = Color42_78_132;
     money.font = [UIFont fontWithName:BahnschriftBold size: 50];
     [self.electricFee addSubview:money];
@@ -89,7 +89,7 @@
 - (void)addDegree {
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
-    degree.text = [self.defaults objectForKey:@"userElectricDegree"];
+    degree.text = [self.defaults objectForKey:@"ElectricFee_degree"];
     degree.textColor = Color42_78_132;
     degree.font = [UIFont fontWithName: BahnschriftBold size: 50];
     [self.electricFee addSubview:degree];
