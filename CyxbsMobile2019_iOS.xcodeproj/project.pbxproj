@@ -596,7 +596,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		EE062F352377F73C00E5919E /* 发现页新闻 */ = {
+		EE062F352377F73C00E5919E /* News */ = {
 			isa = PBXGroup;
 			children = (
 				EE899DED2369A19B00DDB0D9 /* OneNewsModel.h */,
@@ -604,10 +604,10 @@
 				EE062F322377F5D600E5919E /* OneNewsItem.h */,
 				EE062F332377F5D600E5919E /* OneNewsItem.m */,
 			);
-			path = "发现页新闻";
+			path = News;
 			sourceTree = "<group>";
 		};
-		EE062F362377F77700E5919E /* 发现页电费 */ = {
+		EE062F362377F77700E5919E /* ElectricBill */ = {
 			isa = PBXGroup;
 			children = (
 				EE899DD42367D89900DDB0D9 /* ElectricFeeModel.h */,
@@ -615,24 +615,24 @@
 				EE80ADFE2377B6660003023C /* ElectricFeeItem.h */,
 				EE80ADFF2377B6660003023C /* ElectricFeeItem.m */,
 			);
-			path = "发现页电费";
+			path = ElectricBill;
 			sourceTree = "<group>";
 		};
-		EE062F372377F79300E5919E /* 发现页志愿服务 */ = {
+		EE062F372377F79300E5919E /* Volunteer */ = {
 			isa = PBXGroup;
 			children = (
 				EE3C180A23715BAD004233C5 /* VolunteerModel.h */,
 				EE3C180B23715BAD004233C5 /* VolunteerModel.m */,
 			);
-			path = "发现页志愿服务";
+			path = Volunteer;
 			sourceTree = "<group>";
 		};
 		EE899DD22367D89900DDB0D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EE062F372377F79300E5919E /* 发现页志愿服务 */,
-				EE062F362377F77700E5919E /* 发现页电费 */,
-				EE062F352377F73C00E5919E /* 发现页新闻 */,
+				EE062F372377F79300E5919E /* Volunteer */,
+				EE062F362377F77700E5919E /* ElectricBill */,
+				EE062F352377F73C00E5919E /* News */,
 			);
 			path = Model;
 			sourceTree = "<group>";
