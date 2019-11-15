@@ -198,24 +198,39 @@
 }
 //MARK: - 按钮触发事件部分实现
 - (void) touchNewsSender {
-    
+    if([self.delegate respondsToSelector:@selector(touchNewsSender)]) {
+        [self.delegate touchNewsSender];
+    }
 }
 - (void) touchNews {
-    
+    if([self.delegate respondsToSelector:@selector(touchNews)]) {
+        [self.delegate touchNews];
+    }
 }
 - (void) touchWriteButton {
-    
+    if([self.delegate respondsToSelector:@selector(touchWriteButton)]) {
+        [self.delegate touchWriteButton];
+    }
 }
 - (void) touchFindClass {
-    
+    if([self.delegate respondsToSelector:@selector(touchFindClass)]) {
+        [self.delegate touchFindClass];
+    }
 }
 - (void) touchSchoolCar {
+    if([self.delegate respondsToSelector:@selector(touchSchoolCar)]) {
+        [self.delegate touchSchoolCar];
+    }
     
 }
 - (void) touchSchedule {
-    
+    if ([self.delegate respondsToSelector:@selector(touchSchedule)]) {
+        [self.delegate touchSchedule];
+    }
 }
 - (void) touchMore {
-    
+    if([self.delegate respondsToSelector:@selector(touchMore)]) {
+        [self.delegate touchMore];
+    }
 }
 @end
