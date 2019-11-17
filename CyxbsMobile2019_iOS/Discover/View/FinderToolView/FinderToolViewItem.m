@@ -52,17 +52,17 @@
 }
 - (void)layoutSubviews {
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(39);
+        make.bottom.equalTo(self.myTitleLabel.mas_top).offset(-31);
         make.left.equalTo(self).offset(23);
         make.width.height.equalTo(@40);
     }];
     [self.myTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconView);
-        make.top.equalTo(self.iconView.mas_bottom).offset(31);
+        make.bottom.equalTo(self.myDetailLabel.mas_top).offset(-7);
     }];
     [self.myDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconView);
-        make.top.equalTo(self.myTitleLabel.mas_bottom).offset(7);
+        make.top.equalTo(self.mas_bottom).offset(-73);
     }];
 }
 @end

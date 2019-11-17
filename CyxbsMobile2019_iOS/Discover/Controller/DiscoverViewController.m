@@ -84,6 +84,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.contentView.delegate = self;
     self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
+    //隐藏导航栏的分割线
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+
 }
 //这个方法中零零散散的注释了四行代码是因为我想加动画但是失败了
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
