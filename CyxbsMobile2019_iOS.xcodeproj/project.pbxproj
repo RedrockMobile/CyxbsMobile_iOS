@@ -62,6 +62,8 @@
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		EE062F342377F5D600E5919E /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE062F332377F5D600E5919E /* OneNewsItem.m */; };
 		EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3C180B23715BAD004233C5 /* VolunteerModel.m */; };
+		EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */; };
+		EE67A4EF237E691B00BCF5F4 /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */; };
 		EE80AE002377B6660003023C /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE80ADFF2377B6660003023C /* ElectricFeeItem.m */; };
 		EE899DE32367D89A00DDB0D9 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */; };
 		EE899DE52367D89A00DDB0D9 /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */; };
@@ -200,6 +202,10 @@
 		EE062F332377F5D600E5919E /* OneNewsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
 		EE3C180A23715BAD004233C5 /* VolunteerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
 		EE3C180B23715BAD004233C5 /* VolunteerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
+		EE67A4EA237E60F500BCF5F4 /* FinderToolViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
+		EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
+		EE67A4ED237E691B00BCF5F4 /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
+		EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LQQFinderToolViewController.m; sourceTree = "<group>"; };
 		EE80ADFE2377B6660003023C /* ElectricFeeItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
 		EE80ADFF2377B6660003023C /* ElectricFeeItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
 		EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
@@ -702,6 +708,28 @@
 			path = Volunteer;
 			sourceTree = "<group>";
 		};
+		EE67A4E8237E60D400BCF5F4 /* FinderView */ = {
+			isa = PBXGroup;
+			children = (
+				EE899DE02367D89900DDB0D9 /* EnterButton.h */,
+				EE899DDB2367D89900DDB0D9 /* EnterButton.m */,
+				EE899DDF2367D89900DDB0D9 /* LQQFinderView.h */,
+				EE899DDC2367D89900DDB0D9 /* LQQFinderView.m */,
+				EE899DE12367D89900DDB0D9 /* LQQGlanceView.h */,
+				EE899DDD2367D89900DDB0D9 /* LQQGlanceView.m */,
+			);
+			path = FinderView;
+			sourceTree = "<group>";
+		};
+		EE67A4E9237E60E200BCF5F4 /* FinderToolView */ = {
+			isa = PBXGroup;
+			children = (
+				EE67A4EA237E60F500BCF5F4 /* FinderToolViewItem.h */,
+				EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */,
+			);
+			path = FinderToolView;
+			sourceTree = "<group>";
+		};
 		EE899DD22367D89900DDB0D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +745,8 @@
 			children = (
 				1A141327235F52290001417E /* DiscoverViewController.h */,
 				1A141328235F52290001417E /* DiscoverViewController.m */,
+				EE67A4ED237E691B00BCF5F4 /* LQQFinderToolViewController.h */,
+				EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -724,12 +754,8 @@
 		EE899DDA2367D89900DDB0D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE899DE02367D89900DDB0D9 /* EnterButton.h */,
-				EE899DDB2367D89900DDB0D9 /* EnterButton.m */,
-				EE899DDF2367D89900DDB0D9 /* LQQFinderView.h */,
-				EE899DDC2367D89900DDB0D9 /* LQQFinderView.m */,
-				EE899DE12367D89900DDB0D9 /* LQQGlanceView.h */,
-				EE899DDD2367D89900DDB0D9 /* LQQGlanceView.m */,
+				EE67A4E9237E60E200BCF5F4 /* FinderToolView */,
+				EE67A4E8237E60D400BCF5F4 /* FinderView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -927,6 +953,7 @@
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */,
+				EE67A4EF237E691B00BCF5F4 /* LQQFinderToolViewController.m in Sources */,
 				EE899DE82367D89A00DDB0D9 /* LQQGlanceView.m in Sources */,
 				1A141329235F52290001417E /* DiscoverViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
@@ -948,6 +975,7 @@
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
+				EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,

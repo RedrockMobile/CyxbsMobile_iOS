@@ -8,6 +8,7 @@
 
 #import "DiscoverViewController.h"
 #import "LoginViewController.h"
+#import "LQQFinderToolViewController.h"
 #import "LQQFinderView.h"
 #import "LQQGlanceView.h"
 #import "ElectricFeeModel.h"
@@ -18,7 +19,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     AlreadyLogin,
 };
 
-@interface DiscoverViewController ()<UIScrollViewDelegate>
+@interface DiscoverViewController ()<UIScrollViewDelegate, LQQFinderViewDelegate>
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
 //View
@@ -52,6 +53,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
     }
+    
     [self configDefaults];
     self.view.backgroundColor = [UIColor whiteColor];
     [self addContentView];
@@ -80,7 +82,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 - (void)configNavagationBar {
     self.contentView.delegate = self;
+    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
+    //隐藏导航栏的分割线
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+
 }
 //这个方法中零零散散的注释了四行代码是因为我想加动画但是失败了
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -126,6 +133,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
     }
     self.finderView = finderView;
+    self.finderView.delegate = self;
     [self.contentView addSubview:finderView];
 }
 
@@ -156,5 +164,31 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
     //同时写入缓存
     [self.defaults setObject:self.oneNewsModel.oneNewsItem.oneNews forKey:@"OneNews_oneNews"];
+}
+//MARK: FinderView代理
+- (void)touchWriteButton {
+    NSLog(@"点击了签到button");
+}
+
+- (void)touchNewsSender {
+    NSLog(@"点击了“教务在线”");
+}
+- (void)touchNews {
+    NSLog(@"点击了新闻");
+}
+- (void)touchFindClass {
+    NSLog(@"点击了教室查询");
+}
+- (void)touchSchoolCar {
+    NSLog(@"点击了校车查询");
+}
+- (void)touchSchedule {
+    NSLog(@"点击了课表查询");
+}
+- (void)touchMore {
+    NSLog(@"点击了更多功能");
+    LQQFinderToolViewController *vc = [[LQQFinderToolViewController alloc]init];
+//    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

@@ -170,4 +170,15 @@
 //电费
 #define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
 
+//雷千专用
+///平方字体部分
+#define PingFangSCRegular @"PingFang-SC-Regular"
+#define PingFangSCLight @"PingFang-SC-Light"
+#define PingFangSCMedium @"PingFang-SC-Medium"
+#define PingFangSCBold @"PingFang-SC-Semibold"
+//Bahnschrift字体部分
+#define BahnschriftBold @"Bahnschrift_Bold"
+//颜色部分
+#define Color42_78_132 [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]
+#define Color21_49_91 [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]
 #endif
