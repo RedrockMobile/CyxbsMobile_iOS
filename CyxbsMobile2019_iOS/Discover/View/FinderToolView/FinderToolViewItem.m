@@ -7,16 +7,7 @@
 //
 
 #import "FinderToolViewItem.h"
-///平方字体部分
-#define PingFangSCRegular @"PingFang-SC-Regular"
-#define PingFangSCLight @"PingFang-SC-Light"
-#define PingFangSCMedium @"PingFang-SC-Medium"
-#define PingFangSCBold @"PingFang-SC-Semibold"
-//Bahnschrift字体部分
-#define BahnschriftBold @"Bahnschrift_Bold"
-//颜色部分
-#define Color42_78_132 [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]
-#define Color21_49_91 [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]
+
 
 @interface FinderToolViewItem()
 @property (nonatomic, weak)UIImageView *iconView;
@@ -56,20 +47,22 @@
     self.myDetailLabel = label;
     label.textColor = Color42_78_132;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    label.numberOfLines = 0;
     [self addSubview:label];
 }
 - (void)layoutSubviews {
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(39);
+        make.bottom.equalTo(self.myTitleLabel.mas_top).offset(-31);
         make.left.equalTo(self).offset(23);
+        make.width.height.equalTo(@40);
     }];
     [self.myTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconView);
-        make.top.equalTo(self.iconView.mas_bottom).offset(31);
+        make.bottom.equalTo(self.myDetailLabel.mas_top).offset(-7);
     }];
     [self.myDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconView);
-        make.top.equalTo(self.myTitleLabel.mas_bottom).offset(7);
+        make.top.equalTo(self.mas_bottom).offset(-73);
     }];
 }
 @end
