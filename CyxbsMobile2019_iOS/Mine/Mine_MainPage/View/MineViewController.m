@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "MineContentViewProtocol.h"
 #import "MinePresenter.h"
+#import "EditMyInfoViewController.h"
 
 @interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol>
 
@@ -61,7 +62,7 @@
     self.contentView.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user.checkInDay];
     
     NSURL *headerImageURL = [NSURL URLWithString:[UserItemTool defaultItem].headImgUrl];
-    [self.contentView.headerView.headerImageView sd_setImageWithURL:headerImageURL placeholderImage:nil options:SDWebImageRefreshCached];
+    [self.contentView.headerView.headerImageView sd_setImageWithURL:headerImageURL placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageRefreshCached];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -77,7 +78,8 @@
 
 #pragma mark - ContentView代理
 - (void)editButtonClicked {
-    NSLog(@"跳转到修改信息");
+    EditMyInfoViewController *vc = [[EditMyInfoViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)foldButtonClicked:(UIButton *)foldButton foldState:(BOOL)isFold {

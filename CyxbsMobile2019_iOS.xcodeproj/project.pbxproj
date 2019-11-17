@@ -54,6 +54,11 @@
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
+		1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */; };
+		1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD151B237D81DD004D9CEA /* EditMyInfoPresenter.m */; };
+		1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD151E237D81F1004D9CEA /* EditMyInfoModel.m */; };
+		1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1523237D826A004D9CEA /* EditMyInfoContentView.m */; };
+		1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		EE062F342377F5D600E5919E /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE062F332377F5D600E5919E /* OneNewsItem.m */; };
 		EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3C180B23715BAD004233C5 /* VolunteerModel.m */; };
@@ -179,6 +184,17 @@
 		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
 		1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Timestamp.m"; sourceTree = "<group>"; };
+		1AFD1517237D81AF004D9CEA /* EditMyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoViewController.h; sourceTree = "<group>"; };
+		1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoViewController.m; sourceTree = "<group>"; };
+		1AFD151A237D81DD004D9CEA /* EditMyInfoPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPresenter.h; sourceTree = "<group>"; };
+		1AFD151B237D81DD004D9CEA /* EditMyInfoPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPresenter.m; sourceTree = "<group>"; };
+		1AFD151D237D81F1004D9CEA /* EditMyInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoModel.h; sourceTree = "<group>"; };
+		1AFD151E237D81F1004D9CEA /* EditMyInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoModel.m; sourceTree = "<group>"; };
+		1AFD1521237D823B004D9CEA /* EditMyInfoViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoViewProtocol.h; sourceTree = "<group>"; };
+		1AFD1522237D826A004D9CEA /* EditMyInfoContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoContentView.h; sourceTree = "<group>"; };
+		1AFD1523237D826A004D9CEA /* EditMyInfoContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoContentView.m; sourceTree = "<group>"; };
+		1AFD1525237D9A7E004D9CEA /* MineEditTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineEditTextField.h; sourceTree = "<group>"; };
+		1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineEditTextField.m; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EE062F322377F5D600E5919E /* OneNewsItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
 		EE062F332377F5D600E5919E /* OneNewsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
@@ -288,10 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				1A31062E23770C7300A56468 /* Mine.xcassets */,
-				1A7BAC632369AB9500CA512D /* Protocol */,
-				1A14132B235F523B0001417E /* Presenter */,
-				1A14132C235F523B0001417E /* Model */,
-				1A14132D235F523B0001417E /* View */,
+				1AFD1513237D8166004D9CEA /* EditMyInformation */,
+				1AFD1512237D814D004D9CEA /* Mine_MainPage */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -579,6 +593,67 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		1AFD1512237D814D004D9CEA /* Mine_MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				1A7BAC632369AB9500CA512D /* Protocol */,
+				1A14132B235F523B0001417E /* Presenter */,
+				1A14132C235F523B0001417E /* Model */,
+				1A14132D235F523B0001417E /* View */,
+			);
+			path = Mine_MainPage;
+			sourceTree = "<group>";
+		};
+		1AFD1513237D8166004D9CEA /* EditMyInformation */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD1520237D821F004D9CEA /* Protocol */,
+				1AFD1515237D817A004D9CEA /* View */,
+				1AFD1516237D8184004D9CEA /* Presenter */,
+				1AFD1514237D8175004D9CEA /* Model */,
+			);
+			path = EditMyInformation;
+			sourceTree = "<group>";
+		};
+		1AFD1514237D8175004D9CEA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD151D237D81F1004D9CEA /* EditMyInfoModel.h */,
+				1AFD151E237D81F1004D9CEA /* EditMyInfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1AFD1515237D817A004D9CEA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD1517237D81AF004D9CEA /* EditMyInfoViewController.h */,
+				1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */,
+				1AFD1522237D826A004D9CEA /* EditMyInfoContentView.h */,
+				1AFD1523237D826A004D9CEA /* EditMyInfoContentView.m */,
+				1AFD1525237D9A7E004D9CEA /* MineEditTextField.h */,
+				1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1AFD1516237D8184004D9CEA /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD151A237D81DD004D9CEA /* EditMyInfoPresenter.h */,
+				1AFD151B237D81DD004D9CEA /* EditMyInfoPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1AFD1520237D821F004D9CEA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD1521237D823B004D9CEA /* EditMyInfoViewProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		2CDC888D97D2E7657DB18FB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -839,6 +914,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				1A141338235F52440001417E /* QAQuestionsViewController.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
@@ -848,6 +924,7 @@
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
+				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */,
 				EE899DE82367D89A00DDB0D9 /* LQQGlanceView.m in Sources */,
@@ -860,12 +937,14 @@
 				1A14136A235F524B0001417E /* ORWRequestCache.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
+				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
 				1A14136B235F524B0001417E /* MOHImageParamModel.m in Sources */,
 				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
+				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
@@ -882,6 +961,7 @@
 				1A141367235F524B0001417E /* NetWork.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */,
+				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
 				1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */,

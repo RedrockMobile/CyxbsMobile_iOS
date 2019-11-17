@@ -20,6 +20,8 @@
 
 @implementation MineHeaderView
 
+
+#pragma mark - 添加子控件
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -141,6 +143,18 @@
     return self;
 }
 
+// 禁止使用init方法，使用“initWithFrame:”方法
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        @throw [[NSException alloc] initWithName:NSInvalidArgumentException reason:@"Use 'initWithFrame:'" userInfo:nil];
+    }
+    return self;
+}
+
+
+#pragma mark - 添加约束
 - (void)layoutSubviews {
     [super layoutSubviews];
     
