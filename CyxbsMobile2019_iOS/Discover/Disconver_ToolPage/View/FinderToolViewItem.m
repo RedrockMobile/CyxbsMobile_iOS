@@ -33,6 +33,7 @@
 - (void) addIconView {
     UIImageView *iconView = [[UIImageView alloc]init];
     self.iconView = iconView;
+    iconView.contentMode = UIViewContentModeScaleAspectFit;
     [self addSubview:iconView];
 }
 - (void) addTitleLabel {

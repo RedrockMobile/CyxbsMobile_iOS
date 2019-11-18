@@ -298,10 +298,9 @@
 		1A141323235F52290001417E /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				EE4C44A7238273970004E00E /* Discover_MainPage */,
 				EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */,
-				EE899DD22367D89900DDB0D9 /* Model */,
-				EE899DD52367D89900DDB0D9 /* Controller */,
-				EE899DDA2367D89900DDB0D9 /* View */,
+				EE899DD22367D89900DDB0D9 /* Disconver_ToolPage */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -708,7 +707,17 @@
 			path = Volunteer;
 			sourceTree = "<group>";
 		};
-		EE67A4E8237E60D400BCF5F4 /* FinderView */ = {
+		EE4C44A7238273970004E00E /* Discover_MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE4C44AA238273B90004E00E /* Model */,
+				EE4C44A9238273AF0004E00E /* Controller */,
+				EE4C44A8238273A80004E00E /* View */,
+			);
+			path = Discover_MainPage;
+			sourceTree = "<group>";
+		};
+		EE4C44A8238273A80004E00E /* View */ = {
 			isa = PBXGroup;
 			children = (
 				EE899DE02367D89900DDB0D9 /* EnterButton.h */,
@@ -718,19 +727,19 @@
 				EE899DE12367D89900DDB0D9 /* LQQGlanceView.h */,
 				EE899DDD2367D89900DDB0D9 /* LQQGlanceView.m */,
 			);
-			path = FinderView;
+			path = View;
 			sourceTree = "<group>";
 		};
-		EE67A4E9237E60E200BCF5F4 /* FinderToolView */ = {
+		EE4C44A9238273AF0004E00E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EE67A4EA237E60F500BCF5F4 /* FinderToolViewItem.h */,
-				EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */,
+				1A141327235F52290001417E /* DiscoverViewController.h */,
+				1A141328235F52290001417E /* DiscoverViewController.m */,
 			);
-			path = FinderToolView;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		EE899DD22367D89900DDB0D9 /* Model */ = {
+		EE4C44AA238273B90004E00E /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				EE062F372377F79300E5919E /* Volunteer */,
@@ -740,11 +749,32 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		EE67A4E8237E60D400BCF5F4 /* FinderView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FinderView;
+			sourceTree = "<group>";
+		};
+		EE67A4E9237E60E200BCF5F4 /* FinderToolView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FinderToolView;
+			sourceTree = "<group>";
+		};
+		EE899DD22367D89900DDB0D9 /* Disconver_ToolPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE899DD52367D89900DDB0D9 /* Controller */,
+				EE899DDA2367D89900DDB0D9 /* View */,
+			);
+			path = Disconver_ToolPage;
+			sourceTree = "<group>";
+		};
 		EE899DD52367D89900DDB0D9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1A141327235F52290001417E /* DiscoverViewController.h */,
-				1A141328235F52290001417E /* DiscoverViewController.m */,
 				EE67A4ED237E691B00BCF5F4 /* LQQFinderToolViewController.h */,
 				EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */,
 			);
@@ -754,6 +784,8 @@
 		EE899DDA2367D89900DDB0D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE67A4EA237E60F500BCF5F4 /* FinderToolViewItem.h */,
+				EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */,
 				EE67A4E9237E60E200BCF5F4 /* FinderToolView */,
 				EE67A4E8237E60D400BCF5F4 /* FinderView */,
 			);
@@ -1165,7 +1197,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPM8HVK7C6;
+				DEVELOPMENT_TEAM = 55ST287647;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -1186,7 +1218,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPM8HVK7C6;
+				DEVELOPMENT_TEAM = 55ST287647;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
