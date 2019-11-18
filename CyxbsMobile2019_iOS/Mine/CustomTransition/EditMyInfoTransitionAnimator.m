@@ -13,7 +13,7 @@
 @implementation EditMyInfoTransitionAnimator
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.3;
+    return 0.4;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -35,7 +35,7 @@
     [transitionContext.containerView layoutIfNeeded];
     
     if ([to isMemberOfClass:[EditMyInfoViewController class]]) {
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
             tabBarVC.tabBar.hidden = YES;
 //            from.view.frame = CGRectMake(41, 92, MAIN_SCREEN_W - 82, MAIN_SCREEN_H - 92 - 24);
             from.view.layer.affineTransform = CGAffineTransformMakeScale(0.8, 0.8);
