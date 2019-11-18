@@ -59,6 +59,7 @@
 		1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD151E237D81F1004D9CEA /* EditMyInfoModel.m */; };
 		1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1523237D826A004D9CEA /* EditMyInfoContentView.m */; };
 		1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */; };
+		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		EE062F342377F5D600E5919E /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE062F332377F5D600E5919E /* OneNewsItem.m */; };
 		EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3C180B23715BAD004233C5 /* VolunteerModel.m */; };
@@ -197,6 +198,8 @@
 		1AFD1523237D826A004D9CEA /* EditMyInfoContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoContentView.m; sourceTree = "<group>"; };
 		1AFD1525237D9A7E004D9CEA /* MineEditTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineEditTextField.h; sourceTree = "<group>"; };
 		1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineEditTextField.m; sourceTree = "<group>"; };
+		1AFD153023819FBD004D9CEA /* EditMyInfoTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoTransitionAnimator.h; sourceTree = "<group>"; };
+		1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoTransitionAnimator.m; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EE062F322377F5D600E5919E /* OneNewsItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
 		EE062F332377F5D600E5919E /* OneNewsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
@@ -310,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				1A31062E23770C7300A56468 /* Mine.xcassets */,
+				1AFD152C23819505004D9CEA /* CustomTransition */,
 				1AFD1513237D8166004D9CEA /* EditMyInformation */,
 				1AFD1512237D814D004D9CEA /* Mine_MainPage */,
 			);
@@ -660,6 +664,15 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		1AFD152C23819505004D9CEA /* CustomTransition */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD153023819FBD004D9CEA /* EditMyInfoTransitionAnimator.h */,
+				1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */,
+			);
+			path = CustomTransition;
+			sourceTree = "<group>";
+		};
 		2CDC888D97D2E7657DB18FB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -978,6 +991,7 @@
 				EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */,
+				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,

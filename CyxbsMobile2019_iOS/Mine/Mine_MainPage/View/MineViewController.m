@@ -11,8 +11,9 @@
 #import "MineContentViewProtocol.h"
 #import "MinePresenter.h"
 #import "EditMyInfoViewController.h"
+#import "EditMyInfoTransitionAnimator.h"
 
-@interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol>
+@interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) MinePresenter *presenter;
 
@@ -34,9 +35,12 @@
     [self.presenter requestQAInfo];
     
     // 添加contentView
-    MineContentView *contentView = [[MineContentView alloc] initWithFrame:self.view.bounds];
+    MineContentView *contentView = [[MineContentView alloc] init];
     [self.view addSubview:contentView];
     self.contentView = contentView;
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     contentView.delegate = self;
     
     
@@ -79,7 +83,9 @@
 #pragma mark - ContentView代理
 - (void)editButtonClicked {
     EditMyInfoViewController *vc = [[EditMyInfoViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    vc.transitioningDelegate = self;
+    vc.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)foldButtonClicked:(UIButton *)foldButton foldState:(BOOL)isFold {
@@ -141,6 +147,14 @@
 - (void)loginSucceded {
     [self.contentView.classScheduleTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
     [self.contentView.appSettingTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return [[EditMyInfoTransitionAnimator alloc] init];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[EditMyInfoTransitionAnimator alloc] init];
 }
 
 @end

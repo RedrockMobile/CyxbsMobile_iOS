@@ -23,6 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+        self.layer.cornerRadius = 16;
         
         // NSArray<NSDictionary<NSString *, id> *> *settingsArray;
         self.settingsArray = @[
@@ -68,6 +69,7 @@
         
         // 添加课前提醒TableView
         UITableView *classScheduleSettingsTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H) style:UITableViewStyleGrouped];
+        classScheduleSettingsTable.layer.cornerRadius = 16;
         classScheduleSettingsTable.delegate = self;
         classScheduleSettingsTable.dataSource = self;
         classScheduleSettingsTable.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
@@ -192,7 +194,7 @@
         headerView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 16, 70, 21)];
         titleLabel.text = self.settingsArray[section][@"sectionTitle"];
-        titleLabel.font = [UIFont fontWithName:@"PingFang SC-Medium" size:15];
+        titleLabel.font = [UIFont systemFontOfSize:15];
         titleLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1.0];
         [headerView addSubview:titleLabel];
         

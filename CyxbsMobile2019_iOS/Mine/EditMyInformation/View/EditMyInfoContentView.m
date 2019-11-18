@@ -42,13 +42,14 @@
 @implementation EditMyInfoContentView
 
 #pragma mark - 添加子控件
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        
+- (instancetype)init {
+    if (self = [super init]) {
         self.backgroundColor = [UIColor whiteColor];
+        self.layer.cornerRadius = 16;
         
         UIScrollView *scrollView = [[UIScrollView alloc] init];
         [self addSubview:scrollView];
+        scrollView.showsVerticalScrollIndicator = NO;
         self.contentScrollView = scrollView;
         
         UIImageView *headerImageView = [[UIImageView alloc] init];
@@ -72,7 +73,7 @@
         
         MineEditTextField *nicknameTextField = [[MineEditTextField alloc] init];
         NSString *oldNickname = [UserItemTool defaultItem].nickname;
-        if (oldNickname) {
+        if (!oldNickname || ![oldNickname isEqualToString:@""]) {
             NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
             nicknameTextField.attributedPlaceholder = string;
         } else {
@@ -91,7 +92,7 @@
         
         MineEditTextField *introductionField = [[MineEditTextField alloc] init];
         NSString *oldIntroduction = [UserItemTool defaultItem].introduction;
-        if (oldNickname) {
+        if (!oldIntroduction || ![oldIntroduction isEqualToString:@""]) {
             NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldIntroduction attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
             introductionField.attributedPlaceholder = string;
         } else {
@@ -110,7 +111,7 @@
         
         MineEditTextField *QQTextField = [[MineEditTextField alloc] init];
         NSString *oldQQ = [UserItemTool defaultItem].qq;
-        if (oldNickname) {
+        if (!oldQQ || ![oldQQ isEqualToString:@""]) {
             NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
             QQTextField.attributedPlaceholder = string;
         } else {
@@ -129,7 +130,7 @@
         
         MineEditTextField *phoneNumberTextField = [[MineEditTextField alloc] init];
         NSString *oldPhoneNumber = [UserItemTool defaultItem].phone;
-        if (oldNickname) {
+        if (!oldPhoneNumber || ![oldPhoneNumber isEqualToString:@""]) {
             NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
             phoneNumberTextField.attributedPlaceholder = string;
         } else {
@@ -172,14 +173,14 @@
     return self;
 }
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        @throw [[NSException alloc] initWithName:NSInvalidArgumentException reason:@"use 'initWithFrame:'" userInfo:nil];
-    }
-    return self;
-}
+//- (instancetype)init
+//{
+//    self = [super init];
+//    if (self) {
+//        @throw [[NSException alloc] initWithName:NSInvalidArgumentException reason:@"use 'initWithFrame:'" userInfo:nil];
+//    }
+//    return self;
+//}
 
 
 #pragma mark - 添加约束

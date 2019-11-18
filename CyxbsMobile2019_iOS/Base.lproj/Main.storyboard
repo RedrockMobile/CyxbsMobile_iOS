@@ -20,7 +20,7 @@
                     <connections>
                         <segue destination="csH-T6-l3r" kind="relationship" relationship="viewControllers" id="FsZ-0Y-vAP"/>
                         <segue destination="J1I-im-Hff" kind="relationship" relationship="viewControllers" id="Rwd-b8-5Q6"/>
-                        <segue destination="nIh-Ap-RE5" kind="relationship" relationship="viewControllers" id="rQA-21-pWn"/>
+                        <segue destination="jCg-wf-KoG" kind="relationship" relationship="viewControllers" id="Z7y-VW-3TK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -108,24 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yw6-Pg-WDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="946" y="1284"/>
-        </scene>
-        <!--我的-->
-        <scene sceneID="6FP-eU-XQ4">
-            <objects>
-                <navigationController id="nIh-Ap-RE5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" id="CCf-5X-Aht"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uiB-81-Itt">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="jCg-wf-KoG" kind="relationship" relationship="rootViewController" id="iUl-He-uvX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3o5-f4-QKG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="945" y="554"/>
+            <point key="canvasLocation" x="955" y="554"/>
         </scene>
     </scenes>
 </document>
