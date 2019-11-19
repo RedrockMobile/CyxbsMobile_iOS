@@ -39,7 +39,7 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
             ((UITabBarController *)from).tabBar.hidden = YES;
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.8, 0.8);
-            mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.47);
+            mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.46);
             mineVC.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:250/255.0 alpha:1];
             mineVC.view.userInteractionEnabled = NO;
             
