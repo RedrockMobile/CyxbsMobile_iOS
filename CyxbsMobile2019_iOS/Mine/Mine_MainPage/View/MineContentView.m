@@ -124,11 +124,7 @@
     cell.backgroundColor = tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.textColor = [UIColor colorWithRed:25/255.0 green:56/255.0 blue:102/255.0 alpha:1.0];
-    if (tableView == self.classScheduleTableView) {
-        cell.textLabel.font = [UIFont systemFontOfSize:13];
-    } else {
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
-    }
+    cell.textLabel.font = [UIFont systemFontOfSize:15];
     
     if (tableView == self.classScheduleTableView) {
         cell.textLabel.text = ((NSArray *)(self.settingsArray[0][@"settings"]))[indexPath.row][@"title"];

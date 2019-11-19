@@ -162,7 +162,7 @@
     // 所有的约束均根据屏幕的长宽比例与控件所占的比例来计算
     [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.mas_leading).offset(MAIN_SCREEN_W * 0.042);
-        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_W * 0.21321);
+        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_W * 0.16);
         make.height.width.equalTo(@(MAIN_SCREEN_W * 0.1733));
     }];
     self.headerImageView.clipsToBounds = YES;
