@@ -26,7 +26,7 @@
     if ([from isMemberOfClass:[UITabBarController class]]) {
         [transitionContext.containerView addSubview:to.view];
         
-        to.view.frame = CGRectMake(25, 667, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
+        to.view.frame = CGRectMake(25, MAIN_SCREEN_H, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
         [transitionContext.containerView layoutIfNeeded];
         
         MineViewController *mineVC;
@@ -39,7 +39,13 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
             ((UITabBarController *)from).tabBar.hidden = YES;
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.8, 0.8);
-            mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.46);
+            if (IS_IPHONEX) {
+                mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.49);
+            } else if (IS_IPHONESE) {
+                mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.428);
+            } else {
+                mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.47);
+            }
             mineVC.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:250/255.0 alpha:1];
             mineVC.view.userInteractionEnabled = NO;
             
@@ -68,7 +74,7 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
             ((UITabBarController *)to).tabBar.hidden = NO;
             
-            from.view.frame = CGRectMake(25, 667, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
+            from.view.frame = CGRectMake(25, MAIN_SCREEN_H, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
             mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.5);
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
             mineVC.view.userInteractionEnabled = YES;
