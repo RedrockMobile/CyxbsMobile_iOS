@@ -77,6 +77,7 @@
 
 #pragma mark - contentView代理回调
 - (void)saveButtonClicked:(UIButton *)sender {
+    ((MineViewController *)self.transitioningDelegate).panGesture = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
