@@ -69,6 +69,7 @@
             ((UITabBarController *)to).tabBar.hidden = NO;
             
             from.view.frame = CGRectMake(25, 667, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
+            mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.5);
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
             mineVC.view.userInteractionEnabled = YES;
             
