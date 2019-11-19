@@ -53,6 +53,7 @@
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
+		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
 		1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */; };
 		1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD151B237D81DD004D9CEA /* EditMyInfoPresenter.m */; };
@@ -185,6 +186,8 @@
 		1A9B7690235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AAFACF6236B360F00E854A3 /* MinePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePresenter.h; sourceTree = "<group>"; };
 		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
+		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
+		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
 		1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Timestamp.m"; sourceTree = "<group>"; };
 		1AFD1517237D81AF004D9CEA /* EditMyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoViewController.h; sourceTree = "<group>"; };
@@ -668,6 +671,8 @@
 			children = (
 				1AFD153023819FBD004D9CEA /* EditMyInfoTransitionAnimator.h */,
 				1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */,
+				1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */,
+				1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */,
 			);
 			path = CustomTransition;
 			sourceTree = "<group>";
@@ -1021,6 +1026,7 @@
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */,
+				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,

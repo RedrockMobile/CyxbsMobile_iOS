@@ -35,7 +35,6 @@
 @property (nonatomic, weak) UILabel *phoneNumberLabel;
 @property (nonatomic, weak) UILabel *academyLabel;
 @property (nonatomic, weak) UILabel *explainLabel;
-@property (nonatomic, weak) UIScrollView *contentScrollView;
 
 @end
 
@@ -47,10 +46,16 @@
         self.backgroundColor = [UIColor whiteColor];
         self.layer.cornerRadius = 16;
         
+        
         UIScrollView *scrollView = [[UIScrollView alloc] init];
         [self addSubview:scrollView];
         scrollView.showsVerticalScrollIndicator = NO;
         self.contentScrollView = scrollView;
+        
+        UIView *gestureView = [[UIView alloc] init];
+        gestureView.backgroundColor = UIColor.clearColor;
+        [self.contentScrollView addSubview:gestureView];
+        self.gestureView = gestureView;
         
         UIImageView *headerImageView = [[UIImageView alloc] init];
         [self.contentScrollView addSubview:headerImageView];
@@ -188,6 +193,13 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
+    [self.gestureView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentScrollView);
+        make.leading.equalTo(self.headerImageView.mas_trailing);
+        make.trailing.equalTo(self.whatsThisButton.mas_leading);
+        make.bottom.equalTo(self.headerImageView);
+    }];
+    
     [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.leading.equalTo(self.contentScrollView).offset(16);
         make.height.width.equalTo(self.mas_width).multipliedBy(0.19);
@@ -280,6 +292,8 @@
     }];
 }
 
+
+#pragma mark - 按钮调用
 - (void)saveButtonClicked:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(saveButtonClicked:)]) {
         [self.delegate saveButtonClicked:sender];

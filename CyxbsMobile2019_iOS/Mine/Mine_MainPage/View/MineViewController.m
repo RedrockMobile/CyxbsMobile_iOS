@@ -12,6 +12,7 @@
 #import "MinePresenter.h"
 #import "EditMyInfoViewController.h"
 #import "EditMyInfoTransitionAnimator.h"
+#import "EditMyInfoPercentDrivenController.h"
 
 @interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol, UIViewControllerTransitioningDelegate>
 
@@ -154,7 +155,19 @@
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [[EditMyInfoTransitionAnimator alloc] init];
+    if (self.panGesture) {
+        return [[EditMyInfoTransitionAnimator alloc] initWithPanGesture:self.panGesture];
+    } else {
+        return [[EditMyInfoTransitionAnimator alloc] init];
+    }
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    if (self.panGesture) {
+        return [[EditMyInfoPercentDrivenController alloc] initWithPanGesture:self.panGesture];
+    } else {
+        return nil;
+    }
 }
 
 @end

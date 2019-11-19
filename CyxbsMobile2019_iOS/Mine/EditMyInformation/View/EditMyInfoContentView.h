@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<EditMyInfoContentViewDelegate> delegate;
 
+@property (nonatomic, weak) UIView *gestureView;
+
+@property (nonatomic, weak) UIScrollView *contentScrollView;
 @property (nonatomic, weak) UIImageView *headerImageView;
 @property (nonatomic, weak) MineEditTextField *nicknameTextField;
 @property (nonatomic, weak) MineEditTextField *introductionTextField;

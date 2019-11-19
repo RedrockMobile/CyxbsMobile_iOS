@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) MineContentView *contentView;
 
+/// 用于编辑界面的返回
+@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
+
 @end
 
 NS_ASSUME_NONNULL_END

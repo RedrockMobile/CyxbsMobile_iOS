@@ -9,16 +9,28 @@
 #import "EditMyInfoViewController.h"
 #import "EditMyInfoContentView.h"
 #import "EditMyInfoPresenter.h"
+#import "MineViewController.h"
 
-@interface EditMyInfoViewController () <EditMyInfoContentViewDelegate>
+@interface EditMyInfoViewController () <EditMyInfoContentViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) EditMyInfoPresenter *presenter;
 
 @property (nonatomic, weak) EditMyInfoContentView *contentView;
 
+@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
+
 @end
 
 @implementation EditMyInfoViewController
+
+
+#pragma mark - Getter & Setter
+- (UIPanGestureRecognizer *)panGesture {
+    if (!_panGesture) {
+        _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(slideToDismiss:)];
+    }
+    return _panGesture;
+}
 
 
 - (void)viewDidLoad {
@@ -31,6 +43,8 @@
     [self.view addSubview:contentView];
     self.contentView = contentView;
     contentView.delegate = self;
+    [contentView.gestureView addGestureRecognizer:self.panGesture];
+    contentView.contentScrollView.delegate = self;
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.leading.trailing.equalTo(self.view);
     }];
@@ -41,8 +55,40 @@
     [self.presenter dettatchView];
 }
 
+
+#pragma mark - scrollView代理回调
+//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+//    CGPoint translatedPoint = [scrollView.panGestureRecognizer translationInView:self.view];
+//    if (scrollView.contentOffset.y == 0 && translatedPoint.y > 0) {
+//        ((MineViewController *)self.transitioningDelegate).panGesture = scrollView.panGestureRecognizer;
+//
+//        [scrollView scrollToTop];
+////        scrollView.scrollEnabled = NO;
+//
+//        [self dismissViewControllerAnimated:YES completion:nil];
+////        NSLog(@"%@", NSStringFromCGPoint(translatedPoint));
+//    }
+//}
+
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+//    scrollView.scrollEnabled = YES;
+//}
+
+
+#pragma mark - contentView代理回调
 - (void)saveButtonClicked:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - 手势调用
+- (void)slideToDismiss:(UIPanGestureRecognizer *)sender {
+    CGPoint translatedPoint = [self.contentView.contentScrollView.panGestureRecognizer locationInView:self.view];
+    if (translatedPoint.y > 0) {
+        ((MineViewController *)self.transitioningDelegate).panGesture = sender;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+//    self.contentView.contentScrollView
 }
 
 @end

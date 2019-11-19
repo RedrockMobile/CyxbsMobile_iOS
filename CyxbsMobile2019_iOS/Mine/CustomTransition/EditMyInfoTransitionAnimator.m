@@ -10,7 +10,20 @@
 #import "EditMyInfoViewController.h"
 #import "MineViewController.h"
 
+@interface EditMyInfoTransitionAnimator ()
+
+@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
+
+@end
+
 @implementation EditMyInfoTransitionAnimator
+
+- (instancetype)initWithPanGesture:(UIPanGestureRecognizer *)panGesture {
+    if (self = [super init]) {
+        _panGesture = panGesture;
+    }
+    return self;
+}
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return 0.5;
@@ -72,7 +85,6 @@
         
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            ((UITabBarController *)to).tabBar.hidden = NO;
             
             from.view.frame = CGRectMake(25, MAIN_SCREEN_H, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
             mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.5);
@@ -81,8 +93,11 @@
             
             [transitionContext.containerView layoutIfNeeded];
         } completion:^(BOOL finished) {
-            [from.view removeFromSuperview];
             BOOL wasCanceled = [transitionContext transitionWasCancelled];
+            if (!wasCanceled) {
+                ((UITabBarController *)to).tabBar.hidden = NO;
+                [from.view removeFromSuperview];
+            }
             [transitionContext completeTransition:!wasCanceled];
         }];
     }
