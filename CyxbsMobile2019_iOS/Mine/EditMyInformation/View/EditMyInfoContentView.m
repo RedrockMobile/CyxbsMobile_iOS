@@ -166,6 +166,7 @@
         [saveButton setTitle:@"保 存" forState:UIControlStateNormal];
         [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         saveButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
+        [saveButton addTarget:self action:@selector(saveButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentScrollView addSubview:saveButton];
         self.saveButton = saveButton;
     }
@@ -277,6 +278,12 @@
         make.top.leading.trailing.height.equalTo(self);
         make.bottom.equalTo(self.saveButton).offset(52);
     }];
+}
+
+- (void)saveButtonClicked:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(saveButtonClicked:)]) {
+        [self.delegate saveButtonClicked:sender];
+    }
 }
 
 @end

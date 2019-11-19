@@ -11,7 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol EditMyInfoContentViewDelegate <NSObject>
+
+- (void)saveButtonClicked:(UIButton *)sender;
+
+@end
+
 @interface EditMyInfoContentView : UIView
+
+@property (nonatomic, weak) id<EditMyInfoContentViewDelegate> delegate;
 
 @property (nonatomic, weak) UIImageView *headerImageView;
 @property (nonatomic, weak) MineEditTextField *nicknameTextField;
@@ -19,7 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) MineEditTextField *QQTextField;
 @property (nonatomic, weak) MineEditTextField *phoneNumberTextField;
 @property (nonatomic, weak) UIButton *academyButton;
-
 @property (nonatomic, weak) UIButton *saveButton;
 
 @end

@@ -10,7 +10,7 @@
 #import "EditMyInfoContentView.h"
 #import "EditMyInfoPresenter.h"
 
-@interface EditMyInfoViewController ()
+@interface EditMyInfoViewController () <EditMyInfoContentViewDelegate>
 
 @property (nonatomic, strong) EditMyInfoPresenter *presenter;
 
@@ -30,6 +30,7 @@
     EditMyInfoContentView *contentView = [[EditMyInfoContentView alloc] init];
     [self.view addSubview:contentView];
     self.contentView = contentView;
+    contentView.delegate = self;
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.leading.trailing.equalTo(self.view);
     }];
@@ -38,6 +39,10 @@
 - (void)dealloc
 {
     [self.presenter dettatchView];
+}
+
+- (void)saveButtonClicked:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

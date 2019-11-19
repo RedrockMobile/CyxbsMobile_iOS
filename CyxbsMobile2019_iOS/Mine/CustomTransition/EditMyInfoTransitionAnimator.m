@@ -13,35 +13,38 @@
 @implementation EditMyInfoTransitionAnimator
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.4;
+    return 0.5;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    // 这里的from获取到的是tabBarViewController
-    UITabBarController *tabBarVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    MineViewController *from;
-    for (UIViewController *childVC in tabBarVC.childViewControllers) {
-        if ([childVC isMemberOfClass:[MineViewController class]]) {
-            from = (MineViewController *)childVC;
-        }
-    }
+    
+    // present的时候获取到的from是UITabBarController
+    UIViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    // dismiss的时候获取到的to是UITabBarController
     UIViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    [transitionContext.containerView addSubview:tabBarVC.view];
-    [transitionContext.containerView addSubview:to.view];
     
-    transitionContext.containerView.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:250/255.0 alpha:1];
-
-    to.view.frame = CGRectMake(25, 667, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
-    [transitionContext.containerView layoutIfNeeded];
-    
-    if ([to isMemberOfClass:[EditMyInfoViewController class]]) {
+    if ([from isMemberOfClass:[UITabBarController class]]) {
+        [transitionContext.containerView addSubview:to.view];
+        
+        to.view.frame = CGRectMake(25, 667, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
+        [transitionContext.containerView layoutIfNeeded];
+        
+        MineViewController *mineVC;
+        for (UIViewController *childVC in from.childViewControllers) {
+            if ([childVC isMemberOfClass:[MineViewController class]]) {
+                mineVC = (MineViewController *)childVC;
+            }
+        }
+        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            tabBarVC.tabBar.hidden = YES;
-//            from.view.frame = CGRectMake(41, 92, MAIN_SCREEN_W - 82, MAIN_SCREEN_H - 92 - 24);
-            from.view.layer.affineTransform = CGAffineTransformMakeScale(0.8, 0.8);
-            from.view.layer.anchorPoint = CGPointMake(0.5, 0.47);
+            ((UITabBarController *)from).tabBar.hidden = YES;
+            mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.8, 0.8);
+            mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.47);
+            mineVC.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:250/255.0 alpha:1];
+            mineVC.view.userInteractionEnabled = NO;
+            
             to.view.frame = CGRectMake(25, 100, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
-            from.view.layer.cornerRadius = 16;
+            
             
             [transitionContext.containerView layoutIfNeeded];
         } completion:^(BOOL finished) {
@@ -49,7 +52,32 @@
             [transitionContext completeTransition:!wasCanceled];
         }];
     } else {        // dismiss
+        /*
+            to: UITabBarViewController
+            from: EditMyInfoViewController
+         */
         
+        MineViewController *mineVC;
+        for (UIViewController *childVC in to.childViewControllers) {
+            if ([childVC isMemberOfClass:[MineViewController class]]) {
+                mineVC = (MineViewController *)childVC;
+            }
+        }
+        
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            ((UITabBarController *)to).tabBar.hidden = NO;
+            
+            from.view.frame = CGRectMake(25, 667, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
+            mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
+            mineVC.view.userInteractionEnabled = YES;
+            
+            [transitionContext.containerView layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            [from.view removeFromSuperview];
+            BOOL wasCanceled = [transitionContext transitionWasCancelled];
+            [transitionContext completeTransition:!wasCanceled];
+        }];
     }
 }
 
