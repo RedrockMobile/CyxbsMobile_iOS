@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)editButtonClicked;
 - (void)foldButtonClicked:(UIButton *)foldButton foldState:(BOOL)isFold;
+- (void)quitButtonClicked:(UIButton *)sender;
 - (void)switchedRemindBeforeClass:(UISwitch *)sender;
 - (void)switchedRemindEveryDay:(UISwitch *)sender;
 - (void)switchedDisplayMemoPad:(UISwitch *)sender;

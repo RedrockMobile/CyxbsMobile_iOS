@@ -43,15 +43,6 @@
         make.edges.equalTo(self.view);
     }];
     contentView.delegate = self;
-    
-    
-    // 临时的退出按钮
-    UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    quitButton.frame = CGRectMake(150, 40, 100, 40);
-    [quitButton setTitle:@"退出登录" forState:UIControlStateNormal];
-    [quitButton addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
-    [contentView.headerView addSubview:quitButton];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,12 +66,6 @@
 }
 
 
-#pragma mark - 按钮回调
-- (void)quit {
-    [UserItemTool logout];
-}
-
-
 #pragma mark - ContentView代理
 - (void)editButtonClicked {
     EditMyInfoViewController *vc = [[EditMyInfoViewController alloc] init];
@@ -98,6 +83,18 @@
         }
     }];
     [self.contentView.classScheduleTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)quitButtonClicked:(UIButton *)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"退出登录" message:@"退出登录将清除所有账号信息哟，你确定要退出吗？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *determine = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [UserItemTool logout];
+    }];
+    [alertController addAction:determine];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancel];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)switchedRemindBeforeClass:(UISwitch *)sender {

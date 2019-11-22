@@ -86,7 +86,7 @@
         [headerView.editButton addTarget:self action:@selector(editButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         
         // 添加FooterView（APP设置TableView）
-        UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 58) style:UITableViewStyleGrouped];
+        UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 138) style:UITableViewStyleGrouped];
         appSettingTabelView.delegate = self;
         appSettingTabelView.dataSource = self;
         appSettingTabelView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
@@ -96,6 +96,27 @@
         appSettingTabelView.scrollEnabled = NO;
         self.appSettingTableView = appSettingTabelView;
         classScheduleSettingsTable.tableFooterView = appSettingTabelView;
+        
+        
+        UIView *appSettingTableViewFooter = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 127)];
+        appSettingTableViewFooter.backgroundColor = [UIColor clearColor];
+        self.appSettingTableView.sectionFooterHeight = 10;
+        appSettingTabelView.tableFooterView = appSettingTableViewFooter;
+        
+        UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        quitButton.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1];
+        [quitButton setTitle:@"退 出 登 录" forState:UIControlStateNormal];
+        [quitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        quitButton.titleLabel.font = [UIFont systemFontOfSize:18];
+        [quitButton addTarget:self action:@selector(quitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [appSettingTableViewFooter addSubview:quitButton];
+        [quitButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(appSettingTableViewFooter);
+            make.centerX.equalTo(appSettingTableViewFooter);
+            make.width.equalTo(@184);
+            make.height.equalTo(@40);
+        }];
+        quitButton.layer.cornerRadius = 20;
     }
     return self;
 }
@@ -227,6 +248,12 @@
     if ([self.delegate respondsToSelector:@selector(foldButtonClicked:foldState:)]) {
         [UserDefaultTool saveValue:@(![[UserDefaultTool valueWithKey:@"Mine_isFold"] boolValue]) forKey:@"Mine_isFold"];
         [self.delegate foldButtonClicked:foldButton foldState:self.isFold];
+    }
+}
+
+- (void)quitButtonClicked:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(quitButtonClicked:)]) {
+        [self.delegate quitButtonClicked:sender];
     }
 }
 
