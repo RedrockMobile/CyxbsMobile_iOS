@@ -50,7 +50,7 @@
         }
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            ((UITabBarController *)from).tabBar.hidden = YES;
+            ((UITabBarController *)from).tabBar.alpha = 0;
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.8, 0.8);
             if (IS_IPHONEX) {
                 mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.49);
@@ -85,6 +85,7 @@
         
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            ((UITabBarController *)to).tabBar.alpha = 1;
             
             from.view.frame = CGRectMake(25, MAIN_SCREEN_H, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
             mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.5);
@@ -95,7 +96,6 @@
         } completion:^(BOOL finished) {
             BOOL wasCanceled = [transitionContext transitionWasCancelled];
             if (!wasCanceled) {
-                ((UITabBarController *)to).tabBar.hidden = NO;
                 [from.view removeFromSuperview];
             }
             [transitionContext completeTransition:!wasCanceled];

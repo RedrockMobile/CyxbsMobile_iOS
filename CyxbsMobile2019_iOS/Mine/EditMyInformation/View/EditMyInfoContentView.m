@@ -197,7 +197,7 @@
         make.top.equalTo(self.contentScrollView);
         make.leading.equalTo(self.headerImageView.mas_trailing);
         make.trailing.equalTo(self.whatsThisButton.mas_leading);
-        make.bottom.equalTo(self.headerImageView);
+        make.bottom.equalTo(self.nicknameTextField.mas_top);
     }];
     
     [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
