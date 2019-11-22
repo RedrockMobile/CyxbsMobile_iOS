@@ -113,7 +113,7 @@
         [quitButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(appSettingTableViewFooter);
             make.centerX.equalTo(appSettingTableViewFooter);
-            make.width.equalTo(@184);
+            make.width.equalTo(self.mas_width).multipliedBy(0.49);
             make.height.equalTo(@40);
         }];
         quitButton.layer.cornerRadius = 20;
