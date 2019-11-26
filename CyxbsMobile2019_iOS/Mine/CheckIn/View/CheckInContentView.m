@@ -33,6 +33,7 @@
     if (self) {
         UIImageView *backgroundImageView = [[UIImageView alloc] init];
         backgroundImageView.image = [UIImage imageNamed:@"签到背景"];
+        backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:backgroundImageView];
         self.backgroundImageView = backgroundImageView;
         
