@@ -13,6 +13,7 @@
 #import "EditMyInfoViewController.h"
 #import "EditMyInfoTransitionAnimator.h"
 #import "EditMyInfoPercentDrivenController.h"
+#import "CheckInViewController.h"
 
 @interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol, UIViewControllerTransitioningDelegate>
 
@@ -71,6 +72,12 @@
     EditMyInfoViewController *vc = [[EditMyInfoViewController alloc] init];
     vc.transitioningDelegate = self;
     vc.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)checkInButtonClicked:(UIButton *)sender {
+    CheckInViewController *vc = [[CheckInViewController alloc] init];
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
 }
 

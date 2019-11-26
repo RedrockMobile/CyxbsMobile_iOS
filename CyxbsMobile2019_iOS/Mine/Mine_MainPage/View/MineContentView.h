@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MineContentViewDelegate <NSObject>
 
 - (void)editButtonClicked;
+- (void)checkInButtonClicked:(UIButton *)sender;
 - (void)foldButtonClicked:(UIButton *)foldButton foldState:(BOOL)isFold;
 - (void)quitButtonClicked:(UIButton *)sender;
 - (void)switchedRemindBeforeClass:(UISwitch *)sender;

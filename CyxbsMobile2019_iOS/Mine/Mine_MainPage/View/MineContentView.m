@@ -84,6 +84,7 @@
         classScheduleSettingsTable.tableHeaderView = headerView;
         self.headerView = headerView;
         [headerView.editButton addTarget:self action:@selector(editButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [headerView.signinButton addTarget:self action:@selector(checkInButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         // 添加FooterView（APP设置TableView）
         UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 138) style:UITableViewStyleGrouped];
@@ -241,6 +242,12 @@
 - (void)editButtonClicked {
     if ([self.delegate respondsToSelector:@selector(editButtonClicked)]) {
         [self.delegate editButtonClicked];
+    }
+}
+
+- (void)checkInButtonClicked:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(checkInButtonClicked:)]) {
+        [self.delegate checkInButtonClicked:sender];
     }
 }
 

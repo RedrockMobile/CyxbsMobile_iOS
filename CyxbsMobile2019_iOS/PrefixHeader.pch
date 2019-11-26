@@ -126,7 +126,15 @@
 #define kSegmentViewTitleHeight (SCREEN_HEIGHT * 50 / 667)
 
 
-
+/*----------------------------------------------------------------
+｜                              字体                              |
+-----------------------------------------------------------------*/
+#define PingFangSCRegular @"PingFangSC-Regular"
+#define PingFangSCLight @"PingFangSC-Light"
+#define PingFangSCMedium @"PingFangSC-Medium"
+#define PingFangSCBold @"PingFangSC-Semibold"
+// Bahnschrift字体
+#define BahnschriftBold @"Bahnschrift_Bold"
 
 
 
@@ -156,28 +164,17 @@
 #define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/app/token/refresh"
 
 
-
-
-
-
-//教务新闻列表
+/// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
-//教务新闻详情
+/// 教务新闻详情
 #define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
-//教务新闻附件
+/// 教务新闻附件
 #define NEWSFILE @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 
-//电费
+/// 电费
 #define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
 
 //雷千专用
-///平方字体部分
-#define PingFangSCRegular @"PingFang-SC-Regular"
-#define PingFangSCLight @"PingFang-SC-Light"
-#define PingFangSCMedium @"PingFang-SC-Medium"
-#define PingFangSCBold @"PingFang-SC-Semibold"
-//Bahnschrift字体部分
-#define BahnschriftBold @"Bahnschrift_Bold"
 //颜色部分
 #define Color42_78_132 [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]
 #define Color21_49_91 [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]
