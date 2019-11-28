@@ -8,11 +8,9 @@
 #import "LQQGlanceView.h"
 ///平方字体部分
 #define PingFangSC @".PingFang SC"
-#define PingFangSCLight @"PingFang-SC-Light"
-#define PingFangSCMedium @"PingFang-SC-Medium"
-#define PingFangSCBold @"PingFang-SC-Semibold"
 //Bahnschrift字体部分
-#define BahnschriftBold @"Bahnschrift_Bold"
+#define ImpactMedium @"Impact"
+#define ImpactRegular @"Impact"
 //颜色部分
 #define Color42_78_132 [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]
 #define Color21_49_91 [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]
@@ -83,7 +81,7 @@
     self.electricFeeMoney = money;
     money.text = [self.defaults objectForKey:@"ElectricFee_money"];
     money.textColor = Color42_78_132;
-    money.font = [UIFont fontWithName:BahnschriftBold size: 50];
+    money.font = [UIFont fontWithName:ImpactMedium size: 36];
     [self.electricFee addSubview:money];
 }
 - (void)addDegree {
@@ -91,7 +89,7 @@
     self.electricFeeDegree = degree;
     degree.text = [self.defaults objectForKey:@"ElectricFee_degree"];
     degree.textColor = Color42_78_132;
-    degree.font = [UIFont fontWithName: BahnschriftBold size: 50];
+    degree.font = [UIFont fontWithName: ImpactMedium size: 36];
     [self.electricFee addSubview:degree];
 }
 - (void)addYuan {
@@ -99,7 +97,7 @@
     self.electricFeeYuan = yuan;
         yuan.text = @"元";
     yuan.textColor = Color21_49_91;
-    yuan.font = [UIFont fontWithName:PingFangSCLight size: 13];
+    yuan.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self.electricFee addSubview:yuan];
 }
 - (void)addDu {
@@ -107,7 +105,7 @@
     self.electricFeeDu = du;
         du.text = @"度";
     du.textColor = Color21_49_91;
-    du.font = [UIFont fontWithName:PingFangSCLight size: 13];
+    du.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self.electricFee addSubview:du];
 }
 - (void)addHintLeft {
@@ -165,7 +163,7 @@
     UILabel *allTime = [[UILabel alloc]init];
     self.allTime = allTime;
     allTime.text = @"18";
-    allTime.font = [UIFont fontWithName:BahnschriftBold size:45];
+    allTime.font = [UIFont fontWithName:ImpactRegular size:36];
     allTime.textColor = Color21_49_91;
     [self.allTimeBackImage addSubview:allTime];
 }
@@ -181,7 +179,7 @@
     UILabel *recentTitle = [[UILabel alloc]init];
     self.recentTitle = recentTitle;
     recentTitle.text = @"测试标题";
-    recentTitle.font = [UIFont fontWithName: PingFangSC size:15];
+    recentTitle.font = [UIFont fontWithName: PingFangSCRegular size:15];
     recentTitle.textColor = Color21_49_91;
     [self.volunteer addSubview:recentTitle];
 }
@@ -232,7 +230,7 @@
         make.centerX.equalTo(self).offset(-self.width / 4.0);
     }];
     [self.electricFeeYuan mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.electricFeeMoney.mas_right).offset(2);
+        make.left.equalTo(self.electricFeeMoney.mas_right).offset(9);
         make.bottom.equalTo(self.electricFeeMoney).offset(-6);
     }];
     [self.electricFeeDegree mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -240,16 +238,16 @@
         make.centerX.equalTo(self).offset(self.width / 4.0);
     }];
     [self.electricFeeDu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.electricFeeDegree.mas_right).offset(2);
+        make.left.equalTo(self.electricFeeDegree.mas_right).offset(9);
         make.bottom.equalTo(self.electricFeeDegree).offset(-6);
     }];
     [self.electricFeeHintLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.electricFeeMoney.mas_bottom).offset(-5);
-        make.centerX.equalTo(self.electricFeeMoney).offset(10);
+        make.centerX.equalTo(self.electricFeeMoney);
     }];
     [self.electricFeeHintRight mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.electricFeeDegree.mas_bottom).offset(-5);
-        make.centerX.equalTo(self.electricFeeDegree).offset(10);
+        make.centerX.equalTo(self.electricFeeDegree);
     }];
     //MARK: - 志愿服务部分的约束
     [self.volunteer mas_makeConstraints:^(MASConstraintMaker *make) {

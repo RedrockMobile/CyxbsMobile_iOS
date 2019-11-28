@@ -95,7 +95,7 @@
 }
 - (void) addSomeEnters {
     //循环将四个按钮添加到数组self.enterButtonArray
-    NSArray *nameArray = @[@"教室查询", @"校车轨迹", @"课表查询", @"更多功能"];//用来保存图片和名称
+    NSArray *nameArray = @[@"教室查询", @"校车轨迹", @"空课表", @"更多功能"];//用来保存图片和名称
     NSMutableArray *array = [NSMutableArray array];
     for (NSString *name in nameArray){
         UIButton *imageButton= [[UIButton alloc]init];

@@ -13,6 +13,7 @@
 #import "LQQGlanceView.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
+
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
     LoginTimeOut,
@@ -89,16 +90,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
 }
-//这个方法中零零散散的注释了四行代码是因为我想加动画但是失败了
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.finderView.finderTitle.height){
-//        [UIView animateWithDuration:1 animations:^{
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:1]}];
-//        }];
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]}];
     }else{
-//        [UIView animateWithDuration:1 animations:^{
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
-//        }];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0]}];
     }
 }
 
@@ -188,7 +184,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchMore {
     NSLog(@"点击了更多功能");
     LQQFinderToolViewController *vc = [[LQQFinderToolViewController alloc]init];
-//    [self presentViewController:vc animated:YES completion:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end
