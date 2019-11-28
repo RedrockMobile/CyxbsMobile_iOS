@@ -46,6 +46,12 @@
     self.electricFee = button;
     button.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
     [self addChildViewToElectricFeeButton];//给按钮添加子视图
+    
+    button.layer.shadowColor = [UIColor blackColor].CGColor;
+    button.layer.shadowOpacity = 0.16f;
+    button.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
+    button.layer.shadowOffset = CGSizeMake(0, 5);
+    
     [self addSubview:self.electricFee];
 }
 - (void)addChildViewToElectricFeeButton {

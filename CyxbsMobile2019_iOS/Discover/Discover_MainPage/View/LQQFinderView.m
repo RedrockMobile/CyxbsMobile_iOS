@@ -69,6 +69,10 @@
     self.bannerView = view;
     view.backgroundColor = [UIColor blueColor];
     view.layer.cornerRadius = 15;
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+    view.layer.shadowOpacity = 0.33f;
+    view.layer.shadowColor = [UIColor colorWithRed:140/255.0 green:150/255.0 blue:217/255.0 alpha:1].CGColor;
+    view.layer.shadowOffset = CGSizeMake(0, 3);
     [self addSubview:view];
 }
 - (void) addNewsSender {

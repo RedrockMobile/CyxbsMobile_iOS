@@ -13,7 +13,6 @@
 #import "LQQGlanceView.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
-
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
     LoginTimeOut,
@@ -179,7 +178,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     NSLog(@"点击了校车查询");
 }
 - (void)touchSchedule {
-    NSLog(@"点击了课表查询");
+    NSLog(@"点击了空课表");
 }
 - (void)touchMore {
     NSLog(@"点击了更多功能");

@@ -174,5 +174,7 @@
 /// 电费
 #define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
 
+//教务新闻列表
+#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
 
 #endif
