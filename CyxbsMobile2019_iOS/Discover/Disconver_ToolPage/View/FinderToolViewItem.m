@@ -8,6 +8,8 @@
 
 #import "FinderToolViewItem.h"
 
+#define Color42_78_132 [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]
+#define Color21_49_91 [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]
 
 @interface FinderToolViewItem()
 @property (nonatomic, weak)UIImageView *iconView;

@@ -69,6 +69,10 @@
     self.bannerView = view;
     view.backgroundColor = [UIColor blueColor];
     view.layer.cornerRadius = 15;
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+    view.layer.shadowOpacity = 0.33f;
+    view.layer.shadowColor = [UIColor colorWithRed:140/255.0 green:150/255.0 blue:217/255.0 alpha:1].CGColor;
+    view.layer.shadowOffset = CGSizeMake(0, 3);
     [self addSubview:view];
 }
 - (void) addNewsSender {
@@ -95,7 +99,7 @@
 }
 - (void) addSomeEnters {
     //循环将四个按钮添加到数组self.enterButtonArray
-    NSArray *nameArray = @[@"教室查询", @"校车轨迹", @"课表查询", @"更多功能"];//用来保存图片和名称
+    NSArray *nameArray = @[@"教室查询", @"校车轨迹", @"空课表", @"更多功能"];//用来保存图片和名称
     NSMutableArray *array = [NSMutableArray array];
     for (NSString *name in nameArray){
         UIButton *imageButton= [[UIButton alloc]init];

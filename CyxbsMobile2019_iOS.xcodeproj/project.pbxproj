@@ -66,6 +66,7 @@
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		EE062F342377F5D600E5919E /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE062F332377F5D600E5919E /* OneNewsItem.m */; };
 		EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3C180B23715BAD004233C5 /* VolunteerModel.m */; };
+		EE4ECA72238FEDD700E676D2 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4ECA71238FEDD700E676D2 /* NewsViewController.m */; };
 		EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */; };
 		EE67A4EF237E691B00BCF5F4 /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */; };
 		EE80AE002377B6660003023C /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE80ADFF2377B6660003023C /* ElectricFeeItem.m */; };
@@ -214,6 +215,8 @@
 		EE062F332377F5D600E5919E /* OneNewsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
 		EE3C180A23715BAD004233C5 /* VolunteerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
 		EE3C180B23715BAD004233C5 /* VolunteerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
+		EE4ECA70238FEDD700E676D2 /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		EE4ECA71238FEDD700E676D2 /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
 		EE67A4EA237E60F500BCF5F4 /* FinderToolViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
 		EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
 		EE67A4ED237E691B00BCF5F4 /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
@@ -310,6 +313,7 @@
 		1A141323235F52290001417E /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				EE4ECA52238FDB9500E676D2 /* Discover_News */,
 				EE4C44A7238273970004E00E /* Discover_MainPage */,
 				EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */,
 				EE899DD22367D89900DDB0D9 /* Disconver_ToolPage */,
@@ -817,6 +821,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		EE4ECA52238FDB9500E676D2 /* Discover_News */ = {
+			isa = PBXGroup;
+			children = (
+				EE4ECA70238FEDD700E676D2 /* NewsViewController.h */,
+				EE4ECA71238FEDD700E676D2 /* NewsViewController.m */,
+			);
+			path = Discover_News;
+			sourceTree = "<group>";
+		};
 		EE67A4E8237E60D400BCF5F4 /* FinderView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1057,6 +1070,7 @@
 				EE899DE82367D89A00DDB0D9 /* LQQGlanceView.m in Sources */,
 				1A141329235F52290001417E /* DiscoverViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
+				EE4ECA72238FEDD700E676D2 /* NewsViewController.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
