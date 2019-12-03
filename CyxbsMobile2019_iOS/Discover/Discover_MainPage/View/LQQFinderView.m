@@ -92,7 +92,7 @@
     button.titleLabel.textColor = [UIColor whiteColor];
     if (@available(iOS 11.0, *)) {
         [button setBackgroundImage:[UIImage imageNamed:@"教务在线背景"] forState:normal];
-        [button setTitleColor:[UIColor colorNamed:@"color21_49_91_&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] forState:normal];
+        [button setTitleColor:[UIColor colorNamed:@"colorWhiteTo21_49_91" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] forState:normal];
     }
     button.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 11];
     

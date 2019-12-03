@@ -12,9 +12,8 @@
 #define ImpactMedium @"Impact"
 #define ImpactRegular @"Impact"
 //颜色部分
-#define Color42_78_132 [UIColor colorNamed:@"color42_78_132" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-#define Color21_49_91  [UIColor colorNamed:@"color21_49_91" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 @interface LQQGlanceView()
 @property NSUserDefaults *defaults;
@@ -77,7 +76,7 @@
     title.text = @"电费查询";
     title.font = [UIFont fontWithName:PingFangSCBold size: 18];if (@available(iOS 11.0, *)) {
         
-        title.textColor = Color21_49_91;
+        title.textColor = Color21_49_91_F0F0F2;
     } else {
         // Fallback on earlier versions
     }
@@ -88,7 +87,7 @@
     self.electricFeeTime = time;
     time.text = [self.defaults objectForKey:@"ElectricFee_time"];
     if (@available(iOS 11.0, *)) {
-        time.textColor = Color21_49_91;
+        time.textColor = Color21_49_91_F0F0F2;
     } else {
         // Fallback on earlier versions
     }
@@ -125,7 +124,7 @@
     self.electricFeeYuan = yuan;
         yuan.text = @"元";
     if (@available(iOS 11.0, *)) {
-        yuan.textColor = Color21_49_91;
+        yuan.textColor = Color21_49_91_F0F0F2;
     } else {
         // Fallback on earlier versions
     }
@@ -137,7 +136,7 @@
     self.electricFeeDu = du;
         du.text = @"度";
     if (@available(iOS 11.0, *)) {
-        du.textColor = Color21_49_91;
+        du.textColor = Color21_49_91_F0F0F2;
     } else {
         // Fallback on earlier versions
     }
@@ -197,7 +196,7 @@
     title.text = @"志愿时长";
     title.font = [UIFont fontWithName:PingFangSCBold size: 18];
     if (@available(iOS 11.0, *)) {
-        title.textColor = Color21_49_91;
+        title.textColor = Color21_49_91_F0F0F2;
     } else {
         // Fallback on earlier versions
     }
@@ -217,7 +216,7 @@
     allTime.text = @"18";
     allTime.font = [UIFont fontWithName:ImpactRegular size:36];
     if (@available(iOS 11.0, *)) {
-        allTime.textColor = Color21_49_91;
+        allTime.textColor = Color21_49_91_F0F0F2;
     } else {
         // Fallback on earlier versions
     }
