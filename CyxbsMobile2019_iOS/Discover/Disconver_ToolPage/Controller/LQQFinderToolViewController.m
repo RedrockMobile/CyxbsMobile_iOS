@@ -8,6 +8,10 @@
 
 #import "LQQFinderToolViewController.h"
 #import "FinderToolViewItem.h"
+#define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
 @interface LQQFinderToolViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *contentView;
 @property (nonatomic)NSArray<FinderToolViewItem *> *toolViewItems;
@@ -23,7 +27,11 @@
     [self addToolTitle];
     [self addSettingButton];
     [self addToolViewItems];//将每个工具添加到当前页面
-    self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = color242_243_248to000000;
+    } else {
+        // Fallback on earlier versions
+    }
     [self layoutItems];
 
 }
@@ -35,8 +43,11 @@
         contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + statusBarFrame.size.height, self.view.width, self.view.height);
     }
     self.contentView = contentView;
-//    contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
-    contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        contentView.backgroundColor = color242_243_248to000000;
+    } else {
+        // Fallback on earlier versions
+    }
 
     contentView.contentSize = CGSizeMake(self.view.width, 1.5 * self.view.height);
     [self.view addSubview:contentView];
@@ -49,9 +60,17 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.toolTitle.height){
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]}];
+        if (@available(iOS 11.0, *)) {
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:color242_243_248toFFFFFF}];
+        } else {
+            // Fallback on earlier versions
+        }
     }else{
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0]}];
+        if (@available(iOS 11.0, *)) {
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:color242_243_248to000000}];
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
 - (void) addToolTitle {
@@ -59,7 +78,11 @@
     self.toolTitle = toolTitle;
     toolTitle.text = @"工具";
     toolTitle.font = [UIFont fontWithName:PingFangSCBold size: 34];
-    toolTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        toolTitle.textColor = Color21_49_91_F0F0F2;
+    } else {
+        // Fallback on earlier versions
+    }
     [self.contentView addSubview:toolTitle];
     [toolTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(14);

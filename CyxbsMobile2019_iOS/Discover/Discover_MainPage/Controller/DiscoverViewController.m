@@ -53,10 +53,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
     }
-    
+    [self addContentView];
+    self.contentView.delegate = self;
     [self configDefaults];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self addContentView];
     [self configNavagationBar];
     [self addFinderView];
     [self addGlanceView];
@@ -81,19 +81,37 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.defaults = [NSUserDefaults standardUserDefaults];
 }
 - (void)configNavagationBar {
-    self.contentView.delegate = self;
-    self.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    } else {
+        // Fallback on earlier versions
+    }
+    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
     //隐藏导航栏的分割线
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    if (@available(iOS 11.0, *)) {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    } else {
+        // Fallback on earlier versions
+    }
+    
+    
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.finderView.finderTitle.height){
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]}];
+        if (@available(iOS 11.0, *)) {
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]}];
+        } else {
+            // Fallback on earlier versions
+        }
     }else{
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0]}];
+        if (@available(iOS 11.0, *)) {
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]}];
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
 
@@ -105,7 +123,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
     self.contentView = contentView;
     contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
-    contentView.backgroundColor = [UIColor greenColor];
+    if (@available(iOS 11.0, *)) {
+        contentView.backgroundColor = [UIColor greenColor];
+    } else {
+        // Fallback on earlier versions
+    }
     contentView.contentSize = CGSizeMake(self.view.width, 1.5 * self.view.height);
     [self.view addSubview:contentView];
     

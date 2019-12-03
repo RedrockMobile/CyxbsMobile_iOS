@@ -12,8 +12,10 @@
 #define ImpactMedium @"Impact"
 #define ImpactRegular @"Impact"
 //颜色部分
-#define Color42_78_132 [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]
-#define Color21_49_91 [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]
+#define Color42_78_132 [UIColor colorNamed:@"color42_78_132" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
+#define Color21_49_91  [UIColor colorNamed:@"color21_49_91" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 @interface LQQGlanceView()
 @property NSUserDefaults *defaults;
 
@@ -30,7 +32,7 @@
         [self loadUserDefaults];//加载缓存用作视图的初始化
         [self addElectricFeeButton];
         [self addVolunteerButton];
-        self.electricFee.backgroundColor = [UIColor whiteColor];
+        
         self.layer.cornerRadius = 30;
         self.clipsToBounds = YES;
     }
@@ -44,7 +46,11 @@
 - (void) addElectricFeeButton {
     UIButton *button = [[UIButton alloc]init];
     self.electricFee = button;
-    button.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
+     if (@available(iOS 11.0, *)) {
+        button.backgroundColor = [UIColor colorNamed:@"color248_249_252&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    } else {
+        // Fallback on earlier versions
+    }
     [self addChildViewToElectricFeeButton];//给按钮添加子视图
     
     button.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -69,15 +75,23 @@
     UILabel *title = [[UILabel alloc]init];//左上角标题
     self.electricFeeTitle = title;
     title.text = @"电费查询";
-    title.font = [UIFont fontWithName:PingFangSCBold size: 18];
-    title.textColor = Color21_49_91;
+    title.font = [UIFont fontWithName:PingFangSCBold size: 18];if (@available(iOS 11.0, *)) {
+        
+        title.textColor = Color21_49_91;
+    } else {
+        // Fallback on earlier versions
+    }
     [self.electricFee addSubview:title];
 }
 - (void)addTime {
     UILabel *time = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = time;
     time.text = [self.defaults objectForKey:@"ElectricFee_time"];
-    time.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        time.textColor = Color21_49_91;
+    } else {
+        // Fallback on earlier versions
+    }
     time.alpha = 0.54;
     time.font = [UIFont fontWithName:PingFangSCLight size: 10];
     [self.electricFee addSubview:time];
@@ -86,7 +100,11 @@
     UILabel *money = [[UILabel alloc]init];//左边数字
     self.electricFeeMoney = money;
     money.text = [self.defaults objectForKey:@"ElectricFee_money"];
-    money.textColor = Color42_78_132;
+    if (@available(iOS 11.0, *)) {
+        money.textColor = Color42_78_132;
+    } else {
+        // Fallback on earlier versions
+    }
     money.font = [UIFont fontWithName:ImpactMedium size: 36];
     [self.electricFee addSubview:money];
 }
@@ -94,7 +112,11 @@
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
     degree.text = [self.defaults objectForKey:@"ElectricFee_degree"];
-    degree.textColor = Color42_78_132;
+    if (@available(iOS 11.0, *)) {
+        degree.textColor = Color42_78_132;
+    } else {
+        // Fallback on earlier versions
+    }
     degree.font = [UIFont fontWithName: ImpactMedium size: 36];
     [self.electricFee addSubview:degree];
 }
@@ -102,7 +124,11 @@
     UILabel *yuan = [[UILabel alloc]init];//汉字“元”
     self.electricFeeYuan = yuan;
         yuan.text = @"元";
-    yuan.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        yuan.textColor = Color21_49_91;
+    } else {
+        // Fallback on earlier versions
+    }
     yuan.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self.electricFee addSubview:yuan];
 }
@@ -110,7 +136,11 @@
     UILabel *du = [[UILabel alloc]init];//汉字“度”
     self.electricFeeDu = du;
         du.text = @"度";
-    du.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        du.textColor = Color21_49_91;
+    } else {
+        // Fallback on earlier versions
+    }
     du.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self.electricFee addSubview:du];
 }
@@ -119,7 +149,11 @@
     self.electricFeeHintLeft = hintLeft;
     hintLeft.text = @"费用/本月";
     hintLeft.font = [UIFont fontWithName:PingFangSCLight size: 13];
-    hintLeft.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        hintLeft.textColor = Color21_49_91_F0F0F2;
+    } else {
+        // Fallback on earlier versions
+    }
     hintLeft.alpha = 0.6;
     [self.electricFee addSubview:hintLeft];
 }
@@ -128,7 +162,11 @@
     self.electricFeeHintRight = hintRight;
         hintRight.text = @"使用度数/本月";
     hintRight.font = [UIFont fontWithName:PingFangSCLight size: 13];
-    hintRight.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        hintRight.textColor = Color21_49_91_F0F0F2;
+    } else {
+        // Fallback on earlier versions
+    }
     hintRight.alpha = 0.6;
     [self.electricFee addSubview:hintRight];
 }
@@ -136,7 +174,11 @@
 - (void)addVolunteerButton {
     UIButton *button = [[UIButton alloc]init];
     self.volunteer = button;
-    button.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        button.backgroundColor = [UIColor colorNamed:@"color248_249_252&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    } else {
+        // Fallback on earlier versions
+    }
     [self addChildViewToVolunteerButton];//给按钮添加子视图
     [self addSubview:self.volunteer];
 }
@@ -154,7 +196,11 @@
     self.volunteerTitle = title;
     title.text = @"志愿时长";
     title.font = [UIFont fontWithName:PingFangSCBold size: 18];
-    title.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        title.textColor = Color21_49_91;
+    } else {
+        // Fallback on earlier versions
+    }
     [self.volunteer addSubview:title];
 }
 - (void)addAllTimeBackImage {
@@ -170,7 +216,11 @@
     self.allTime = allTime;
     allTime.text = @"18";
     allTime.font = [UIFont fontWithName:ImpactRegular size:36];
-    allTime.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        allTime.textColor = Color21_49_91;
+    } else {
+        // Fallback on earlier versions
+    }
     [self.allTimeBackImage addSubview:allTime];
 }
 - (void)addShi {
@@ -178,7 +228,11 @@
     self.shi = shi;
     shi.text = @"时";
     shi.font = [UIFont fontWithName:PingFangSCBold size:10];
-    shi.textColor = Color42_78_132;
+    if (@available(iOS 11.0, *)) {
+        shi.textColor = Color42_78_132;
+    } else {
+        // Fallback on earlier versions
+    }
     [self.allTimeBackImage addSubview:shi];
 }
 - (void)addRecentTitle {
@@ -186,7 +240,11 @@
     self.recentTitle = recentTitle;
     recentTitle.text = @"测试标题";
     recentTitle.font = [UIFont fontWithName: PingFangSCRegular size:15];
-    recentTitle.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        recentTitle.textColor = Color21_49_91_F0F0F2;
+    } else {
+        // Fallback on earlier versions
+    }
     [self.volunteer addSubview:recentTitle];
 }
 - (void)addRecentDate {
@@ -194,7 +252,11 @@
     self.recentDate = recentDate;
     recentDate.text = @"2019.8.2";
     recentDate.font = [UIFont fontWithName:PingFangSCLight size: 10];
-    recentDate.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        recentDate.textColor = Color21_49_91_F0F0F2;
+    } else {
+        // Fallback on earlier versions
+    }
     recentDate.alpha = 0.54;
     [self.volunteer addSubview:recentDate];
 }
@@ -203,7 +265,11 @@
     self.recentTime = recentTime;
     recentTime.text = @"5小时";
     recentTime.font = [UIFont fontWithName:PingFangSCLight size: 13];
-    recentTime.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        recentTime.textColor = Color21_49_91_F0F0F2;
+    } else {
+        // Fallback on earlier versions
+    }
     recentTime.alpha = 0.8;
     [self.volunteer addSubview:recentTime];
 }
@@ -212,7 +278,11 @@
     self.recentTeam = recentTeam;
     recentTeam.text = @"红领巾志愿服务小分队";
     recentTeam.font = [UIFont fontWithName:PingFangSCLight size: 13];
-    recentTeam.textColor = Color21_49_91;
+    if (@available(iOS 11.0, *)) {
+        recentTeam.textColor = Color21_49_91_F0F0F2;
+    } else {
+        // Fallback on earlier versions
+    }
     recentTeam.alpha = 0.8;
     [self.volunteer addSubview:recentTeam];
 }
