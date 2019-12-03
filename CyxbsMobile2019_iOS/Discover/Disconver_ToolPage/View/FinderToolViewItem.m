@@ -21,7 +21,7 @@
 - (instancetype)initWithIconView:(NSString *)iconViewName Title:(NSString *)title Detail:(NSString *)detail {
     if(self = [super init]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"color248_249_252&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+            self.backgroundColor = [UIColor colorNamed:@"colorWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
         } else {
             // Fallback on earlier versions
         }
