@@ -8,9 +8,11 @@
 
 #import "LQQFinderView.h"
 #define PingFangSC @".PingFang SC"
-#define PingFangSCBold @"PingFang-SC-Semibold"
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
+
+#define color21_49_91_F2F4FF [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
 @interface LQQFinderView()
 @property NSUserDefaults *defaults;
 
@@ -21,7 +23,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        } else {
+            // Fallback on earlier versions
+        }
         [self configUserDefaults];
         [self addWeekTimeLabel];
         [self addFinderTitle];
@@ -39,10 +45,11 @@
 //MARK: - 添加子控件部分
 - (void) addWeekTimeLabel {
     UILabel *weekTimeLabel = [[UILabel alloc]init];
-    weekTimeLabel.backgroundColor = [UIColor blackColor];
     self.weekTime = weekTimeLabel;
     weekTimeLabel.text = @"第666周，周666";
-    weekTimeLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        weekTimeLabel.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    }
     weekTimeLabel.font = [UIFont fontWithName:PingFangSCBold size: 10];
     [self addSubview:weekTimeLabel];
 
@@ -52,7 +59,9 @@
     self.finderTitle = finderTitle;
     finderTitle .text = @"发现";
     finderTitle.font = [UIFont fontWithName:PingFangSCBold size: 34];
-    finderTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        finderTitle.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    }
     [self addSubview:finderTitle];
 }
 - (void) addWriteButton {
@@ -78,10 +87,13 @@
 - (void) addNewsSender {
     UIButton *button = [[UIButton alloc]init];
     self.newsSender = button;
-    [button setBackgroundImage:[UIImage imageNamed:@"教务在线背景"] forState:normal];
     [button addTarget:self action:@selector(touchNewsSender) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"教务在线" forState:normal];
     button.titleLabel.textColor = [UIColor whiteColor];
+    if (@available(iOS 11.0, *)) {
+        [button setBackgroundImage:[UIImage imageNamed:@"教务在线背景"] forState:normal];
+        [button setTitleColor:[UIColor colorNamed:@"color21_49_91_&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] forState:normal];
+    }
     button.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 11];
     
     button.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -92,7 +104,9 @@
     self.news = newsButton;
     NSString *title = [self.defaults objectForKey:@"OneNews_oneNews"];
     [newsButton setTitle: title forState:normal];
-    [newsButton setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:normal];
+    if (@available(iOS 11.0, *)) {
+        [newsButton setTitleColor:color21_49_91_F2F4FF forState:normal];
+    }
     newsButton.titleLabel.font = [UIFont fontWithName:PingFangSC size: 15];
     [newsButton addTarget:self action:@selector(touchNews) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:newsButton];
@@ -161,7 +175,7 @@
     [self.news mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.newsSender);
         make.left.equalTo(self.newsSender.mas_right).offset(14);
-        make.right.equalTo(self.bannerView);
+        make.right.lessThanOrEqualTo(self.bannerView);
         make.height.equalTo(self.newsSender);
     }];
     

@@ -8,8 +8,7 @@
 
 #import "FinderToolViewItem.h"
 
-#define Color42_78_132 [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]
-#define Color21_49_91 [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]
+#define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#DFDFE3" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
 
 @interface FinderToolViewItem()
 @property (nonatomic, weak)UIImageView *iconView;
@@ -21,7 +20,11 @@
 
 - (instancetype)initWithIconView:(NSString *)iconViewName Title:(NSString *)title Detail:(NSString *)detail {
     if(self = [super init]) {
-        self.backgroundColor = UIColor.whiteColor;
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"color248_249_252&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        } else {
+            // Fallback on earlier versions
+        }
         self.layer.cornerRadius = 10;
         [self addIconView];
         [self addTitleLabel];
@@ -41,14 +44,22 @@
 - (void) addTitleLabel {
     UILabel *label = [[UILabel alloc]init];
     self.myTitleLabel = label;
-    label.textColor = Color42_78_132;
+    if (@available(iOS 11.0, *)) {
+      label.textColor = Color42_78_132;
+    } else {
+        // Fallback on earlier versions
+    }
     label.font = [UIFont fontWithName:PingFangSCBold size:24];
     [self addSubview:label];
 }
 - (void) addDetailLabel {
     UILabel *label =[[UILabel alloc]init];
     self.myDetailLabel = label;
-    label.textColor = Color42_78_132;
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color42_78_132;
+    } else {
+        // Fallback on earlier versions
+    }
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     label.numberOfLines = 0;
     [self addSubview:label];

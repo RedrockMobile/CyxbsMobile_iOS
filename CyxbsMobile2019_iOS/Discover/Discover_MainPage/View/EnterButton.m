@@ -26,7 +26,10 @@
     [self addSubview:self.label];
     self.label.contentMode = UIViewContentModeCenter;
     self.label.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:11];
-    self.label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.6];
+   [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.6];
+    if (@available(iOS 11.0, *)) {
+         self.label.textColor =[UIColor colorNamed:@"color21_49_91_&#8c8c8c" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    }
 }
 - (void)layoutSubviews {
     [super layoutSubviews];
