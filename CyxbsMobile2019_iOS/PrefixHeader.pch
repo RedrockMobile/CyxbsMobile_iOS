@@ -70,7 +70,6 @@
 #import <MBProgressHUD.h>
 #import <UMMobClick/MobClick.h>
 #import <MJExtension.h>
-#import "NetWork.h"
 #import "HttpClient.h"
 #import "UIColor+Helper.h"
 #import "UserDefaultTool.h"
