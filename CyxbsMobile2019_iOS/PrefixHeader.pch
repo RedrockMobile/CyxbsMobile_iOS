@@ -175,5 +175,10 @@
 
 //教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
-
+//课表、备忘接口
+#define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
+#define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
+#define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
+#define EDITREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
+#define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 #endif

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,6 +18,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Cdw-Za-eBY" kind="relationship" relationship="viewControllers" id="IWc-B6-i7z"/>
                         <segue destination="csH-T6-l3r" kind="relationship" relationship="viewControllers" id="FsZ-0Y-vAP"/>
                         <segue destination="J1I-im-Hff" kind="relationship" relationship="viewControllers" id="Rwd-b8-5Q6"/>
                         <segue destination="jCg-wf-KoG" kind="relationship" relationship="viewControllers" id="Z7y-VW-3TK"/>
@@ -51,7 +52,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ftj-ZW-XbT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ux3-0V-50A"/>
                     </view>
                     <navigationItem key="navigationItem" title="发现" id="ucb-xo-tml"/>
@@ -84,7 +85,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ega-Mc-Pep">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="968-rb-pBw"/>
                     </view>
                     <navigationItem key="navigationItem" title="邮问" id="ayR-z8-Fpy"/>
@@ -100,7 +101,7 @@
                     <view key="view" contentMode="scaleToFill" id="PaO-5e-asf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="z6U-C2-0Qa"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="我的" id="OtG-Uj-3x1"/>
@@ -109,6 +110,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yw6-Pg-WDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="955" y="554"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="eEM-25-2u9">
+            <objects>
+                <navigationController id="Cdw-Za-eBY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Xxr-oI-9Ir"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cam-cl-tw8">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8R9-cj-BM3" kind="relationship" relationship="rootViewController" id="6CX-g5-m0L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DUw-zJ-Ip7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1526" y="554"/>
+        </scene>
+        <!--Class Book View Controller-->
+        <scene sceneID="ZvR-k5-7gm">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AuX-x6-IYM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="8R9-cj-BM3" customClass="WYCClassBookViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c6N-V3-yFF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="nME-xd-oiK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aFF-7V-FvI"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-1526" y="1284"/>
         </scene>
     </scenes>
 </document>
