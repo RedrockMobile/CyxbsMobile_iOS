@@ -34,6 +34,7 @@
         UIImageView *backgroundImageView = [[UIImageView alloc] init];
         backgroundImageView.image = [UIImage imageNamed:@"签到背景"];
         backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+        backgroundImageView.clipsToBounds = YES;
         [self addSubview:backgroundImageView];
         self.backgroundImageView = backgroundImageView;
         
