@@ -11,7 +11,6 @@
 @interface CheckInContentView ()
 
 @property (nonatomic, weak) UIImageView *backgroundImageView;
-@property (nonatomic, weak) UILabel *tipsLabel;
 @property (nonatomic, weak) UILabel *yearsLabel;
 @property (nonatomic, weak) UILabel *weekLabel;
 @property (nonatomic, weak) UILabel *daysLabel;
@@ -37,13 +36,6 @@
         backgroundImageView.clipsToBounds = YES;
         [self addSubview:backgroundImageView];
         self.backgroundImageView = backgroundImageView;
-        
-        UILabel *tipsLabel = [[UILabel alloc] init];
-        tipsLabel.text = @"半期考试周打卡翻倍";
-        tipsLabel.font = [UIFont systemFontOfSize:13];
-        [self.backgroundImageView addSubview:tipsLabel];
-        tipsLabel.textColor = [UIColor whiteColor];
-        self.tipsLabel = tipsLabel;
         
         UILabel *yearsLabel = [[UILabel alloc] init];
         yearsLabel.text = @"2019-2020";
@@ -80,10 +72,10 @@
         self.checkInRankLabel = checkInRankLabel;
         
         UILabel *checkInRankPercentLabel = [[UILabel alloc] init];
-        checkInRankPercentLabel.textColor = [UIColor colorWithRed:157/255.0 green:165/255.0 blue:170/255.0 alpha:1];
+        checkInRankPercentLabel.textColor = [UIColor colorWithWhite:1 alpha:0.64];
         checkInRankPercentLabel.text = [NSString stringWithFormat:@"超过%d%%的邮子", 60];
-        checkInRankPercentLabel.font = [UIFont systemFontOfSize:11];
-        [checkInView addSubview:checkInRankPercentLabel];
+        checkInRankPercentLabel.font = [UIFont systemFontOfSize:15];
+        [self.backgroundImageView addSubview:checkInRankPercentLabel];
         self.checkInRankPercentLabel = checkInRankPercentLabel;
         
         UIButton *checkInButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -135,31 +127,24 @@
         make.edges.equalTo(self);
     }];
     
-    if (IS_IPHONEX) {
-        [self.tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(70);
-            make.leading.equalTo(self).offset(16);
-        }];
-    } else {
-        [self.tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(55);
-            make.leading.equalTo(self).offset(16);
-        }];
-    }
-    
     [self.yearsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.tipsLabel.mas_bottom).offset(5);
-        make.leading.equalTo(self.tipsLabel);
+        make.top.equalTo(self.backgroundImageView).offset(57);
+        make.leading.equalTo(self).offset(15);
     }];
     
     [self.weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.tipsLabel);
+        make.leading.equalTo(self.yearsLabel);
         make.top.equalTo(self.yearsLabel.mas_bottom);
     }];
     
     [self.daysLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.tipsLabel);
+        make.leading.equalTo(self.yearsLabel);
         make.top.equalTo(self.weekLabel.mas_bottom).offset(8);
+    }];
+    
+    [self.checkInRankPercentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.yearsLabel);
+        make.top.equalTo(self.daysLabel.mas_bottom).offset(5);
     }];
 
     if (IS_IPHONEX) {
@@ -179,11 +164,6 @@
         make.top.equalTo(self.checkInView).offset(31);
     }];
 
-    [self.checkInRankPercentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.checkInRankLabel.mas_bottom).offset(4);
-        make.leading.equalTo(self.checkInRankLabel);
-    }];
-
     if (IS_IPHONEX) {
         [self.checkInButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
@@ -201,11 +181,19 @@
     }
     self.checkInButton.layer.cornerRadius = 20;
 
-    [self.storeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self);
-        make.height.equalTo(@104);
-        make.bottom.equalTo(self).offset(16);       // 隐藏下圆角
-    }];
+    if (IS_IPHONEX) {
+        [self.storeView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.trailing.equalTo(self);
+            make.height.equalTo(@104);
+            make.bottom.equalTo(self).offset(16);       // 隐藏下圆角
+        }];
+    } else {
+        [self.storeView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.trailing.equalTo(self);
+            make.height.equalTo(@89);
+            make.bottom.equalTo(self).offset(16);       // 隐藏下圆角
+        }];
+    }
     
     [self.dragHintView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.storeView);
