@@ -47,7 +47,7 @@
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     
     // 加载签到数据
-    [self.presenter loadCheckInData];
+    [self.contentView loadCheckInBarWithModel:[CheckInModel model]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -81,8 +81,5 @@
 }
 
 #pragma mark - Presenter回调
-- (void)checkInDataLoadSucceeded:(CheckInModel *)model {
-    [self.contentView loadCheckInBarWithModel:model];
-}
 
 @end

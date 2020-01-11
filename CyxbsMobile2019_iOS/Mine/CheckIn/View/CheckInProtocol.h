@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol CheckInProtocol <NSObject>
 
-- (void)checkInDataLoadSucceeded:(CheckInModel *)model;
-
 @end
 
 NS_ASSUME_NONNULL_END

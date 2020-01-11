@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *continuallyCheckInDays;
 @property (nonatomic, assign) BOOL checkedInToday;
 
++ (instancetype)model;
 + (NSString *)archivePath;
 
 @end

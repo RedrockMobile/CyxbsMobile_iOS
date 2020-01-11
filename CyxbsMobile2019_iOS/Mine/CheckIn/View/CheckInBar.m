@@ -46,7 +46,13 @@
         
         // 添加小圆点
         for (int i = 1; i <= 7; i++) {
-            NSInteger today = [NSDate date].weekday - 1;
+            NSInteger today;
+            if ([NSDate date].weekday == 1) {
+                today = 7;
+            } else {
+                today = [NSDate date].weekday - 1;
+            }
+            
             if (i == today) {
                 TodaysDot *dot = [[TodaysDot alloc] init];
                 dot.center = CGPointMake(8 + (i - 1) * 52.5, 6);

@@ -36,6 +36,9 @@
     // 加载邮问数据
     [self.presenter requestQAInfo];
     
+    // 加载签到数据
+    [self.presenter requestCheckInInfo];
+    
     // 添加contentView
     MineContentView *contentView = [[MineContentView alloc] init];
     [self.view addSubview:contentView];
@@ -144,6 +147,10 @@
 #pragma mark - Presenter回调
 - (void)QAInfoRequestsSucceeded {
     //邮问数据请求成功
+}
+
+- (void)CheckInInfoRequestSucceededWithModel:(CheckInModel *)model {
+    
 }
 
 

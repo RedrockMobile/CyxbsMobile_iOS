@@ -25,11 +25,6 @@
 }
 
 
-- (void)loadCheckInData {
-    [self.view checkInDataLoadSucceeded:self.checkInModel];
-}
-
-
 - (void)attachView:(UIViewController<CheckInProtocol> *)view {
     _view = view;
 }

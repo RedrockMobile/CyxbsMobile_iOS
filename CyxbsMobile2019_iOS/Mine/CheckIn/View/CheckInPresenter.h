@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)attachView:(UIViewController<CheckInProtocol> *) view;
 - (void)dettachView;
-- (void)loadCheckInData;
 
 @end
 

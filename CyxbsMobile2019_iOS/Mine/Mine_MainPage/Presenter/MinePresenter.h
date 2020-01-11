@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)attachView:(UIViewController<MineContentViewProtocol> *)view;
 - (void)detachView;
 - (void)requestQAInfo;
+- (void)requestCheckInInfo;
 
 @end
 

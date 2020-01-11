@@ -573,13 +573,6 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		1A14132C235F523B0001417E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		1A14132D235F523B0001417E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -895,12 +888,19 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		1AC2550C23C9E2B800DF0475 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1AFD1512237D814D004D9CEA /* Mine_MainPage */ = {
 			isa = PBXGroup;
 			children = (
 				1A7BAC632369AB9500CA512D /* Protocol */,
 				1A14132B235F523B0001417E /* Presenter */,
-				1A14132C235F523B0001417E /* Model */,
+				1AC2550C23C9E2B800DF0475 /* Model */,
 				1A14132D235F523B0001417E /* View */,
 			);
 			path = Mine_MainPage;
