@@ -7,6 +7,7 @@
 //
 
 #import "CheckInContentView.h"
+#import "CheckInBar.h"
 
 @interface CheckInContentView ()
 
@@ -21,6 +22,7 @@
 @property (nonatomic, weak) UILabel *storeTitlelabel;
 @property (nonatomic, weak) UIImageView *scoreImageView;
 @property (nonatomic, weak) UILabel *scoreLabel;
+@property (nonatomic, weak) CheckInBar *bar;
 
 @end
 
@@ -118,6 +120,19 @@
         self.dragHintView = dragHintView;
     }
     return self;
+}
+
+- (void)loadCheckInBarWithModel:(CheckInModel *)model {
+    CheckInBar *bar = [[CheckInBar alloc] initWithCheckInModel:model];
+    [self.checkInView addSubview:bar];
+    self.bar = bar;
+    
+    [self.bar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.checkInView).offset(126);
+        make.leading.equalTo(self.checkInView).offset(16);
+        make.height.equalTo(@21);
+        make.trailing.equalTo(self.checkInView).offset(-16);
+    }];
 }
 
 - (void)layoutSubviews {

@@ -8,20 +8,30 @@
 
 #import "CheckInViewController.h"
 #import "CheckInContentView.h"
+#import "CheckInProtocol.h"
+#import "CheckInPresenter.h"
 
-@interface CheckInViewController ()
+@interface CheckInViewController () <CheckInProtocol>
 
 @property (nonatomic, weak) CheckInContentView *contentView;
+@property (nonatomic, strong) CheckInPresenter *presenter;
 
 @end
 
 @implementation CheckInViewController
 
+
+#pragma mark - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    // 绑定Presenter
+    self.presenter = [[CheckInPresenter alloc] init];
+    [self.presenter attachView:self];
+    
+    // 添加子视图
     CheckInContentView *contentView = [[CheckInContentView alloc] init];
     [self.view addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -35,10 +45,19 @@
     backBtn.frame = CGRectMake(200, 100, 100, 40);
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    // 加载签到数据
+    [self.presenter loadCheckInData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self animationForViewWillAppear];
+}
+
+- (void)dealloc
+{
+    [self.presenter dettachView];
+    _presenter = nil;
 }
 
 - (void)animationForViewWillAppear {
@@ -59,6 +78,11 @@
 #pragma mark - 按钮回调
 - (void)back {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Presenter回调
+- (void)checkInDataLoadSucceeded:(CheckInModel *)model {
+    [self.contentView loadCheckInBarWithModel:model];
 }
 
 @end

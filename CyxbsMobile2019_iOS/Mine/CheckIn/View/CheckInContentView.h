@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CheckInModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 // views
 @property (nonatomic, weak) UIView *checkInView;
 @property (nonatomic, weak) UIView *storeView;
+
+- (void)loadCheckInBarWithModel:(CheckInModel *)model;
 
 @end
 
