@@ -57,6 +57,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// 积分
 @property (nonatomic, copy) NSString *integral;
 
+/// 签到排名
+@property (nonatomic, copy) NSString *rank;
+
+/// 签到排名（百分比）
+@property (nonatomic, copy) NSString *rank_Persent;
+
+/// 一周内的签到情况
+@property (nonatomic, copy) NSString *week_info;
+
 /// 楼栋：例如26
 @property (nonatomic, copy) NSString *building;
 

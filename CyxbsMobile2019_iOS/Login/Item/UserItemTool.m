@@ -17,24 +17,6 @@
 
 @implementation UserItemTool
 
-#pragma mark - 单例
-// 该单例对象不能在其他类中获取，因为获取了以后没什么卵用
-static UserItemTool *instance;
-+ (UserItemTool *)defaultTool {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[UserItemTool alloc] init];
-    });
-    return instance;
-}
-
-+ (instancetype)allocWithZone:(struct _NSZone *)zone {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [super allocWithZone:zone];
-    });
-    return instance;
-}
 
 #pragma mark - 工具类方法
 + (NSString *)userItemPath {
@@ -43,9 +25,6 @@ static UserItemTool *instance;
 
 + (UserItem *)defaultItem {
     UserItem *item = [UserItem defaultItem];
-    UserItemTool *tool = [UserItemTool defaultTool];
-    [tool addObserver:tool forKeyPath:@"item" options:NSKeyValueObservingOptionNew context:nil];
-    
     return item;
 }
 
@@ -117,17 +96,6 @@ static UserItemTool *instance;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
-}
-
-#pragma mark - KVO监听相关
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    [UserItemTool archive:change[@"new"]];
-}
-
-- (void)dealloc
-{
-    [self removeObserver:self forKeyPath:@"item" context:nil];
 }
 
 @end
