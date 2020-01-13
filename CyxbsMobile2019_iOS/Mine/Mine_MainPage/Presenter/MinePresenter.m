@@ -23,17 +23,4 @@
     [self.attachedView QAInfoRequestsSucceeded];
 }
 
-- (void)requestCheckInInfo {
-    // 请求签到数据
-    
-    CheckInModel *checkInModel = [NSKeyedUnarchiver unarchiveObjectWithFile:[CheckInModel archivePath]];
-    if (!checkInModel || [NSDate date].weekday == 2) {
-        checkInModel = [[CheckInModel alloc] init];
-        checkInModel.checkInDays = @[@1, @3, @4, @5];
-        checkInModel.continuallyCheckInDays = @0;
-    }
-    
-    [self.attachedView CheckInInfoRequestSucceededWithModel:checkInModel];
-}
-
 @end

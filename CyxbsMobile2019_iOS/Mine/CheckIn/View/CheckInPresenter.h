@@ -11,12 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CheckInModel;
-
 @interface CheckInPresenter : NSObject
 
 @property (nonatomic, strong) UIViewController<CheckInProtocol> *view;
-@property (nonatomic, strong) CheckInModel *checkInModel;
 
 - (void)attachView:(UIViewController<CheckInProtocol> *) view;
 - (void)dettachView;

@@ -7,14 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CheckInModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol MineContentViewProtocol <NSObject>
 
 - (void)QAInfoRequestsSucceeded;
-- (void)CheckInInfoRequestSucceededWithModel:(CheckInModel *)model;
 
 @end
 

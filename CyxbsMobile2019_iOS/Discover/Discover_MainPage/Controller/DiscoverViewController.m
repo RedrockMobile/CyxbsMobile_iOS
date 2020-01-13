@@ -93,6 +93,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
         [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
+        [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
+        [UserItemTool defaultItem].rank_Persent = responseObject[@"data"][@"percent"];
+        [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];

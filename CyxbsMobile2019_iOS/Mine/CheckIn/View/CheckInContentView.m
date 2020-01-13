@@ -68,17 +68,22 @@
         
         UILabel *checkInRankLabel = [[UILabel alloc] init];
         checkInRankLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        checkInRankLabel.text = [NSString stringWithFormat:@"今日第%ld位打卡", self.signInRank];
+        checkInRankLabel.text = [NSString stringWithFormat:@"今日第%@位打卡", [UserItemTool defaultItem].rank];
         checkInRankLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
         [checkInView addSubview:checkInRankLabel];
         self.checkInRankLabel = checkInRankLabel;
         
         UILabel *checkInRankPercentLabel = [[UILabel alloc] init];
         checkInRankPercentLabel.textColor = [UIColor colorWithWhite:1 alpha:0.64];
-        checkInRankPercentLabel.text = [NSString stringWithFormat:@"超过%d%%的邮子", 60];
+        checkInRankPercentLabel.text = [NSString stringWithFormat:@"超过%d%%的邮子", [UserItemTool defaultItem].rank_Persent.intValue];
         checkInRankPercentLabel.font = [UIFont systemFontOfSize:15];
         [self.backgroundImageView addSubview:checkInRankPercentLabel];
         self.checkInRankPercentLabel = checkInRankPercentLabel;
+        
+        if ([UserItemTool defaultItem].rank.intValue == 0) {
+            checkInRankLabel.text = @"你今天还没有签到哦";
+            checkInRankPercentLabel.hidden = YES;
+        }
         
         UIButton *checkInButton = [UIButton buttonWithType:UIButtonTypeSystem];
         checkInButton.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1];
@@ -118,21 +123,12 @@
         dragHintView.backgroundColor = [UIColor colorWithRed:226/255.0 green:237/255.0 blue:251/255.0 alpha:1.0];
         [self.storeView addSubview:dragHintView];
         self.dragHintView = dragHintView;
+        
+        CheckInBar *bar = [[CheckInBar alloc] init];
+        [self.checkInView addSubview:bar];
+        self.bar = bar;
     }
     return self;
-}
-
-- (void)loadCheckInBarWithModel:(CheckInModel *)model {
-    CheckInBar *bar = [[CheckInBar alloc] initWithCheckInModel:model];
-    [self.checkInView addSubview:bar];
-    self.bar = bar;
-    
-    [self.bar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.checkInView).offset(126);
-        make.leading.equalTo(self.checkInView).offset(16);
-        make.height.equalTo(@21);
-        make.trailing.equalTo(self.checkInView).offset(-16);
-    }];
 }
 
 - (void)layoutSubviews {
@@ -232,6 +228,13 @@
         make.centerY.equalTo(self.storeTitlelabel);
         make.trailing.equalTo(self.scoreLabel.mas_leading).offset(-9);
         make.height.width.equalTo(@21);
+    }];
+    
+    [self.bar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.checkInView).offset(126);
+        make.leading.equalTo(self.checkInView).offset(16);
+        make.height.equalTo(@21);
+        make.trailing.equalTo(self.checkInView).offset(-16);
     }];
 }
 

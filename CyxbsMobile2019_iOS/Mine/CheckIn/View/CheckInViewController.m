@@ -45,9 +45,6 @@
     backBtn.frame = CGRectMake(200, 100, 100, 40);
     [self.view addSubview:backBtn];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    // 加载签到数据
-    [self.contentView loadCheckInBarWithModel:[CheckInModel model]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

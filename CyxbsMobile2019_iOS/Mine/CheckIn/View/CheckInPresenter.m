@@ -7,22 +7,8 @@
 //
 
 #import "CheckInPresenter.h"
-#import "CheckInModel.h"
 
 @implementation CheckInPresenter
-
-#pragma mark - Getter
-- (CheckInModel *)checkInModel {
-    if (!_checkInModel) {
-        _checkInModel = [NSKeyedUnarchiver unarchiveObjectWithFile:[CheckInModel archivePath]];
-        if (!_checkInModel) {
-            _checkInModel = [[CheckInModel alloc] init];
-            _checkInModel.checkInDays = @[@1, @4, @5];
-            _checkInModel.continuallyCheckInDays = @0;
-        }
-    }
-    return _checkInModel;
-}
 
 
 - (void)attachView:(UIViewController<CheckInProtocol> *)view {

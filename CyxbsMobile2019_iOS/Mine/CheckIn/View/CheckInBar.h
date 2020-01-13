@@ -10,14 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CheckInModel;
-
 @interface CheckInBar : UIView
 
 @property (nonatomic, copy) NSMutableArray<UIView *> *dotArray;
 @property (nonatomic, copy) NSMutableArray<UIView *> *barArray;
-
-- (instancetype)initWithCheckInModel:(CheckInModel *)model;
 
 @end
 
