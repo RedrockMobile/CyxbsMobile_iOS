@@ -85,6 +85,7 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
     [UserDefaultTool saveIdNum:self.idNumTextField.text];
     [self.loginHUD hide:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
+    ((UITabBarController *)([UIApplication sharedApplication].delegate.window.rootViewController)).selectedIndex = 1;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Login_LoginSuceeded" object:nil userInfo:@{@"userItem": [UserItemTool defaultItem]}];
 }
 

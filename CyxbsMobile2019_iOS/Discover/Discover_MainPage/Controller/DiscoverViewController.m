@@ -48,11 +48,16 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
+    } else {
+        [self RequestCheckinInfo];
     }
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     [self addContentView];
     self.contentView.delegate = self;
     [self configDefaults];
@@ -77,9 +82,26 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [loginVC presentViewController:alert animated:YES completion:nil];
     }
 }
+
+- (void)RequestCheckinInfo {
+    NSDictionary *params = @{
+        @"stunum": [UserDefaultTool getStuNum],
+        @"idnum": [UserDefaultTool getIdNum]
+    };
+    
+    HttpClient *client = [HttpClient defaultClient];
+    [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
+        [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
 - (void)configDefaults {
     self.defaults = [NSUserDefaults standardUserDefaults];
 }
+
 - (void)configNavagationBar {
     if (@available(iOS 11.0, *)) {
         self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
@@ -99,6 +121,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
 }
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.finderView.finderTitle.height){
         if (@available(iOS 11.0, *)) {
@@ -160,6 +183,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.contentView addSubview:glanceView];
     glanceView.backgroundColor = [UIColor redColor];
 }
+
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
     self.elecModel = elecModel;
@@ -167,6 +191,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.oneNewsModel = oneNewsModel;
     
 }
+
 - (void)updateElectricFeeUI {
     self.glanceView.electricFeeMoney.text = self.elecModel.electricFeeItem.money;
     self.glanceView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
@@ -176,12 +201,14 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
     [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
 }
+
 - (void)updateNewsUI {
     [self.finderView.news setTitle:self.oneNewsModel.oneNewsItem.oneNews forState:normal];
     
     //同时写入缓存
     [self.defaults setObject:self.oneNewsModel.oneNewsItem.oneNews forKey:@"OneNews_oneNews"];
 }
+
 //MARK: FinderView代理
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
@@ -190,21 +217,27 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchNewsSender {
     NSLog(@"点击了“教务在线”");
 }
+
 - (void)touchNews {
     NSLog(@"点击了新闻");
 }
+
 - (void)touchFindClass {
     NSLog(@"点击了教室查询");
 }
+
 - (void)touchSchoolCar {
     NSLog(@"点击了校车查询");
 }
+
 - (void)touchSchedule {
     NSLog(@"点击了空课表");
 }
+
 - (void)touchMore {
     NSLog(@"点击了更多功能");
     LQQFinderToolViewController *vc = [[LQQFinderToolViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 @end

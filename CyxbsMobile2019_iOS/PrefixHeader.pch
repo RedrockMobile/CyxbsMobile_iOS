@@ -159,8 +159,10 @@
 
 /// 登录接口
 #define LOGINAPI @"https://cyxbsmobile.redrock.team/app/token"
-
+/// 刷新token
 #define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/app/token/refresh"
+/// 获取签到信息
+#define CHECKININFOAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/User/getScoreStatus"
 
 
 /// 教务新闻列表
@@ -173,9 +175,9 @@
 /// 电费
 #define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
 
-//教务新闻列表
+/// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
-//课表、备忘接口
+/// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
 #define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
 #define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
