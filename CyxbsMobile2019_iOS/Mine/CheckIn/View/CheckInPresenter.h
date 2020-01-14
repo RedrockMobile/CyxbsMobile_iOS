@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIViewController<CheckInProtocol> *view;
 
+- (void)checkIn;
 - (void)attachView:(UIViewController<CheckInProtocol> *) view;
 - (void)dettachView;
 

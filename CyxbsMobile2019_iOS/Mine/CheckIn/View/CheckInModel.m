@@ -10,29 +10,38 @@
 
 @implementation CheckInModel
 
-MJExtensionCodingImplementation
-
-- (void)setCheckInDays:(NSArray<NSNumber *> *)checkInDays {
-    _checkInDays = checkInDays;
-    [NSKeyedArchiver archiveRootObject:self toFile:[CheckInModel archivePath]];
+- (void)CheckInSucceeded:(void (^)(void))succeded Failed:(void (^)(NSError * _Nonnull))failed {
+    NSDictionary *params = @{
+        @"stunum": [UserDefaultTool getStuNum],
+        @"idnum": [UserDefaultTool getIdNum]
+    };
+    
+    HttpClient *client = [HttpClient defaultClient];
+    
+    [client requestWithPath:CHECKINAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self requestCheckInInfoWithParams:params succeeded:succeded];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failed(error);
+    }];
 }
 
-- (void)setContinuallyCheckInDays:(NSNumber *)continuallyCheckInDays {
-    continuallyCheckInDays = continuallyCheckInDays;
-    [NSKeyedArchiver archiveRootObject:self toFile:[CheckInModel archivePath]];
-}
-
-- (void)setCheckedInToday:(BOOL)checkedInToday {
-    _checkedInToday = checkedInToday;
-    [NSKeyedArchiver archiveRootObject:self toFile:[CheckInModel archivePath]];
-}
-
-+ (NSString *)archivePath {
-    return [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), @"CheckIn.data"];
-}
-
-+ (instancetype)model {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[CheckInModel archivePath]];
+- (void)requestCheckInInfoWithParams:(NSDictionary *)params succeeded:(void (^)(void))succeded {
+    HttpClient *client = [HttpClient defaultClient];
+    
+    [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
+        [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
+        [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
+        [UserItemTool defaultItem].rank_Persent = responseObject[@"data"][@"percent"];
+        [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
+        succeded();
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
 }
 
 @end

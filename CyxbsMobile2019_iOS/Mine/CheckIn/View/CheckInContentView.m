@@ -7,7 +7,6 @@
 //
 
 #import "CheckInContentView.h"
-#import "CheckInBar.h"
 
 @interface CheckInContentView ()
 
@@ -22,7 +21,6 @@
 @property (nonatomic, weak) UILabel *storeTitlelabel;
 @property (nonatomic, weak) UIImageView *scoreImageView;
 @property (nonatomic, weak) UILabel *scoreLabel;
-@property (nonatomic, weak) CheckInBar *bar;
 
 @end
 
@@ -90,6 +88,7 @@
         [checkInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         checkInButton.titleLabel.font = [UIFont systemFontOfSize:18];
         [checkInButton setTitle:@"签 到" forState:UIControlStateNormal];
+        [checkInButton addTarget:self action:@selector(CheckInButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [checkInView addSubview:checkInButton];
         self.checkInButton = checkInButton;
         
@@ -236,6 +235,25 @@
         make.height.equalTo(@21);
         make.trailing.equalTo(self.checkInView).offset(-16);
     }];
+}
+
+- (void)CheckInSucceded {
+    [self.bar removeFromSuperview];
+    CheckInBar *bar = [[CheckInBar alloc] init];
+    [self.checkInView addSubview:bar];
+    self.bar = bar;
+    [self layoutSubviews];
+    
+    self.checkInRankLabel.text = [NSString stringWithFormat:@"今日第%@位打卡", [UserItemTool defaultItem].rank];
+    self.checkInRankPercentLabel.hidden = NO;
+    self.checkInRankPercentLabel.text = [NSString stringWithFormat:@"超过%d%%的邮子", [UserItemTool defaultItem].rank_Persent.intValue];
+}
+
+#pragma mark - 按钮
+- (void)CheckInButtonClicked:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(CheckInButtonClicked:)]) {
+        [self.delegate CheckInButtonClicked:sender];
+    }
 }
 
 

@@ -161,8 +161,12 @@
 #define LOGINAPI @"https://cyxbsmobile.redrock.team/app/token"
 /// 刷新token
 #define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/app/token/refresh"
+
+
 /// 获取签到信息
 #define CHECKININFOAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/User/getScoreStatus"
+/// 签到
+#define CHECKINAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/Integral/checkIn"
 
 
 /// 教务新闻列表

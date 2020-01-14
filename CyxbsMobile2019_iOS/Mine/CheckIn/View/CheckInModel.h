@@ -12,12 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckInModel : NSObject
 
-@property (nonatomic, copy) NSArray<NSNumber *> *checkInDays;
-@property (nonatomic, strong) NSNumber *continuallyCheckInDays;
-@property (nonatomic, assign) BOOL checkedInToday;
-
-+ (instancetype)model;
-+ (NSString *)archivePath;
+- (void)CheckInSucceeded:(void (^)(void)) succeded Failed:(void (^)(NSError *err)) failed;
 
 @end
 

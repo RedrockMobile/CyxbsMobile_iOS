@@ -11,10 +11,12 @@
 #import "CheckInProtocol.h"
 #import "CheckInPresenter.h"
 
-@interface CheckInViewController () <CheckInProtocol>
+@interface CheckInViewController () <CheckInProtocol, CheckInContentViewDelegate>
 
 @property (nonatomic, weak) CheckInContentView *contentView;
 @property (nonatomic, strong) CheckInPresenter *presenter;
+
+@property (nonatomic, weak) MBProgressHUD *chekingHUD;
 
 @end
 
@@ -37,6 +39,7 @@
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    contentView.delegate = self;
     self.contentView = contentView;
     
     // 临时返回
@@ -77,6 +80,44 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark - 代理回调
+- (void)CheckInButtonClicked:(UIButton *)sender {
+    if ([UserItemTool defaultItem].rank.intValue != 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"今天签过到了哦～";
+        [hud hide:YES afterDelay:1.5];
+        return;
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"正在签到...";
+        self.chekingHUD = hud;
+    }
+    [self.presenter checkIn];
+}
+
+
 #pragma mark - Presenter回调
+- (void)checkInSucceded {
+    [self.contentView CheckInSucceded];
+    
+    [self.chekingHUD hide:YES];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"签到成功";
+    [hud hide:YES afterDelay:1.5];
+}
+
+- (void)checkInFailed {
+    [self.chekingHUD hide:YES];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"Σ（ﾟдﾟlll）签到失败了...";
+    [hud hide:YES afterDelay:1.5];
+}
 
 @end

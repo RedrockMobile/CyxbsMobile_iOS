@@ -7,14 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CheckInBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CheckInContentViewDelegate <NSObject>
+
+- (void)CheckInButtonClicked:(UIButton *)sender;
+
+@end
+
 @interface CheckInContentView : UIView
 
+@property (nonatomic, weak) id<CheckInContentViewDelegate> delegate;
+
 // views
+@property (nonatomic, weak) CheckInBar *bar;
 @property (nonatomic, weak) UIView *checkInView;
 @property (nonatomic, weak) UIView *storeView;
+
+- (void)CheckInSucceded;
 
 @end
 

@@ -7,11 +7,27 @@
 //
 
 #import "CheckInPresenter.h"
+#import "CheckInModel.h"
+
+@interface CheckInPresenter ()
+
+@property (nonatomic, strong) CheckInModel *model;
+
+@end
 
 @implementation CheckInPresenter
 
+- (void)checkIn {
+    [self.model CheckInSucceeded:^{
+        [self.view checkInSucceded];
+    } Failed:^(NSError * _Nonnull err) {
+        [self.view checkInFailed];
+    }];
+}
+
 
 - (void)attachView:(UIViewController<CheckInProtocol> *)view {
+    _model = [[CheckInModel alloc] init];
     _view = view;
 }
 

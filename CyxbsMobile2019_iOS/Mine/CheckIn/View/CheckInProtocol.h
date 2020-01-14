@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol CheckInProtocol <NSObject>
 
+- (void)checkInSucceded;
+- (void)checkInFailed;
+
 @end
 
 NS_ASSUME_NONNULL_END
