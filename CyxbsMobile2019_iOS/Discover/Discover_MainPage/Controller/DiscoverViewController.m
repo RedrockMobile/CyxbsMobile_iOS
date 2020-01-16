@@ -11,6 +11,7 @@
 #import "LQQFinderToolViewController.h"
 #import "LQQFinderView.h"
 #import "LQQGlanceView.h"
+#import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
 typedef NS_ENUM(NSUInteger, LoginStates) {
@@ -227,11 +228,14 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)touchFindClass {
     NSLog(@"点击了教室查询");
+    EmptyClassViewController *vc = [[EmptyClassViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchSchoolCar {
     NSLog(@"点击了校车查询");
 }
+
 
 - (void)touchSchedule {
     NSLog(@"点击了空课表");
