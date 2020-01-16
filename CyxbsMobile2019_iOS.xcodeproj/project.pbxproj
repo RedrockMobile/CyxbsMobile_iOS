@@ -179,6 +179,10 @@
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
 		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
 		EE062F342377F5D600E5919E /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE062F332377F5D600E5919E /* OneNewsItem.m */; };
+		EE1C9E3E23D0457100B0FA66 /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1C9E3523D0457100B0FA66 /* EmptyClassViewController.m */; };
+		EE1C9E3F23D0457100B0FA66 /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1C9E3723D0457100B0FA66 /* EmptyClassModel.m */; };
+		EE1C9E4023D0457100B0FA66 /* StoreyResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1C9E3C23D0457100B0FA66 /* StoreyResultView.m */; };
+		EE1C9E4123D0457100B0FA66 /* LQButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1C9E3D23D0457100B0FA66 /* LQButton.m */; };
 		EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3C180B23715BAD004233C5 /* VolunteerModel.m */; };
 		EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */; };
 		EE67A4EF237E691B00BCF5F4 /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */; };
@@ -480,6 +484,14 @@
 		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EE062F322377F5D600E5919E /* OneNewsItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
 		EE062F332377F5D600E5919E /* OneNewsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
+		EE1C9E3423D0457100B0FA66 /* EmptyClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
+		EE1C9E3523D0457100B0FA66 /* EmptyClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
+		EE1C9E3723D0457100B0FA66 /* EmptyClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassModel.m; sourceTree = "<group>"; };
+		EE1C9E3823D0457100B0FA66 /* EmptyClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassModel.h; sourceTree = "<group>"; };
+		EE1C9E3A23D0457100B0FA66 /* StoreyResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreyResultView.h; sourceTree = "<group>"; };
+		EE1C9E3B23D0457100B0FA66 /* LQButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQButton.h; sourceTree = "<group>"; };
+		EE1C9E3C23D0457100B0FA66 /* StoreyResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreyResultView.m; sourceTree = "<group>"; };
+		EE1C9E3D23D0457100B0FA66 /* LQButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQButton.m; sourceTree = "<group>"; };
 		EE3C180A23715BAD004233C5 /* VolunteerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
 		EE3C180B23715BAD004233C5 /* VolunteerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
 		EE67A4EA237E60F500BCF5F4 /* FinderToolViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
@@ -545,6 +557,7 @@
 		1A141323235F52290001417E /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				EE1C9E3223D0457100B0FA66 /* Discover_emptyClass */,
 				EE4C44A7238273970004E00E /* Discover_MainPage */,
 				EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */,
 				EE899DD22367D89900DDB0D9 /* Disconver_ToolPage */,
@@ -1277,6 +1290,45 @@
 			path = Volunteer;
 			sourceTree = "<group>";
 		};
+		EE1C9E3223D0457100B0FA66 /* Discover_emptyClass */ = {
+			isa = PBXGroup;
+			children = (
+				EE1C9E3323D0457100B0FA66 /* Controller */,
+				EE1C9E3623D0457100B0FA66 /* Model */,
+				EE1C9E3923D0457100B0FA66 /* View */,
+			);
+			path = Discover_emptyClass;
+			sourceTree = "<group>";
+		};
+		EE1C9E3323D0457100B0FA66 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE1C9E3423D0457100B0FA66 /* EmptyClassViewController.h */,
+				EE1C9E3523D0457100B0FA66 /* EmptyClassViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE1C9E3623D0457100B0FA66 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE1C9E3723D0457100B0FA66 /* EmptyClassModel.m */,
+				EE1C9E3823D0457100B0FA66 /* EmptyClassModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE1C9E3923D0457100B0FA66 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE1C9E3A23D0457100B0FA66 /* StoreyResultView.h */,
+				EE1C9E3B23D0457100B0FA66 /* LQButton.h */,
+				EE1C9E3C23D0457100B0FA66 /* StoreyResultView.m */,
+				EE1C9E3D23D0457100B0FA66 /* LQButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		EE4C44A7238273970004E00E /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1633,8 +1685,10 @@
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
+				EE1C9E3F23D0457100B0FA66 /* EmptyClassModel.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
+				EE1C9E4123D0457100B0FA66 /* LQButton.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
@@ -1643,6 +1697,7 @@
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
+				EE1C9E3E23D0457100B0FA66 /* EmptyClassViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */,
 				DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */,
@@ -1679,6 +1734,7 @@
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
+				EE1C9E4023D0457100B0FA66 /* StoreyResultView.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
