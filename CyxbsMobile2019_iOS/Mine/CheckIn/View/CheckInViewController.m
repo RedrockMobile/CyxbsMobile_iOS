@@ -7,14 +7,17 @@
 //
 
 #import "CheckInViewController.h"
-#import "CheckInContentView.h"
 #import "CheckInProtocol.h"
 #import "CheckInPresenter.h"
+#import "IntegralStoreViewController.h"
+#import "IntegralStoreTransitionAnimator.h"
+#import "IntegralStorePercentDrivenController.h"
 
-@interface CheckInViewController () <CheckInProtocol, CheckInContentViewDelegate>
+@interface CheckInViewController () <CheckInProtocol, CheckInContentViewDelegate, UIViewControllerTransitioningDelegate>
 
-@property (nonatomic, weak) CheckInContentView *contentView;
 @property (nonatomic, strong) CheckInPresenter *presenter;
+
+@property (nonatomic, weak) UIPanGestureRecognizer *presentPanGesture;
 
 @property (nonatomic, weak) MBProgressHUD *chekingHUD;
 
@@ -98,6 +101,17 @@
     [self.presenter checkIn];
 }
 
+- (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        self.presentPanGesture = pan;
+        
+        IntegralStoreViewController *vc = [[IntegralStoreViewController alloc] init];
+        vc.modalPresentationStyle = UIModalPresentationCustom;
+        vc.transitioningDelegate = self;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+}
+
 
 #pragma mark - Presenter回调
 - (void)checkInSucceded {
@@ -118,6 +132,32 @@
     hud.mode = MBProgressHUDModeText;
     hud.labelText = @"Σ（ﾟдﾟlll）签到失败了...";
     [hud hide:YES afterDelay:1.5];
+}
+
+
+#pragma mark - 转场动画
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[IntegralStoreTransitionAnimator alloc] init];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return [[IntegralStoreTransitionAnimator alloc] init];
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
+    if (self.presentPanGesture) {
+        return [[IntegralStorePercentDrivenController alloc] initWithPanGesture:self.presentPanGesture];
+    } else {
+        return nil;
+    }
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    if (self.presentPanGesture) {
+        return [[IntegralStorePercentDrivenController alloc] initWithPanGesture:self.presentPanGesture];
+    } else {
+        return nil;
+    }
 }
 
 @end

@@ -154,6 +154,8 @@
     [self.contentView.appSettingTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationNone];
 }
 
+
+#pragma mark - 转场动画
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     return [[EditMyInfoTransitionAnimator alloc] init];
 }

@@ -96,6 +96,8 @@
         storeView.backgroundColor = [UIColor whiteColor];
         storeView.layer.cornerRadius = 16;
         [self.checkInView addSubview:storeView];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(presentIntegralStore:)];
+        [storeView addGestureRecognizer:pan];
         self.storeView = storeView;
         
         UILabel *storeTitlelabel = [[UILabel alloc] init];
@@ -253,6 +255,12 @@
 - (void)CheckInButtonClicked:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(CheckInButtonClicked:)]) {
         [self.delegate CheckInButtonClicked:sender];
+    }
+}
+
+- (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
+    if ([self.delegate respondsToSelector:@selector(presentIntegralStore:)]) {
+        [self.delegate presentIntegralStore:pan];
     }
 }
 

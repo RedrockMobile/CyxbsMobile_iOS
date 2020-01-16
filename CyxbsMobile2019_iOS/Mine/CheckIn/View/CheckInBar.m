@@ -148,7 +148,7 @@
         integral = 30;
     }
     
-    UILabel *integralLabel = [[UILabel alloc] initWithFrame:CGRectMake(9.5, 5, 35, 16)];
+    UILabel *integralLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 38, 16)];
     integralLabel.text = [NSString stringWithFormat:@"%ld积分", integral];
     integralLabel.textColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:0.73];
     integralLabel.font = [UIFont systemFontOfSize:11];

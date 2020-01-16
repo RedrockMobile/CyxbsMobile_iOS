@@ -32,6 +32,10 @@
 		1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A15DF96238D03B3005E0843 /* CheckInContentView.m */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
 		1A1E869A23C8D7BA00321367 /* CheckInPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869923C8D7BA00321367 /* CheckInPresenter.m */; };
+		1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */; };
+		1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */; };
+		1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */; };
+		1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */; };
 		1A31062F23770C7300A56468 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A31062E23770C7300A56468 /* Mine.xcassets */; };
 		1A3106312377173B00A56468 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A310630237711A800A56468 /* Impact.ttf */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
@@ -267,6 +271,14 @@
 		1A1E869823C8D7BA00321367 /* CheckInPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CheckInPresenter.h; path = CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInPresenter.h; sourceTree = SOURCE_ROOT; };
 		1A1E869923C8D7BA00321367 /* CheckInPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CheckInPresenter.m; path = CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInPresenter.m; sourceTree = SOURCE_ROOT; };
 		1A1E869B23C8D7D900321367 /* CheckInProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CheckInProtocol.h; path = CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInProtocol.h; sourceTree = SOURCE_ROOT; };
+		1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreViewController.h; sourceTree = "<group>"; };
+		1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreViewController.m; sourceTree = "<group>"; };
+		1A30F39523D05AB200FBBD83 /* IntegralStoreTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreTransitionAnimator.h; sourceTree = "<group>"; };
+		1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreTransitionAnimator.m; sourceTree = "<group>"; };
+		1A30F39823D09CD800FBBD83 /* IntegralStoreContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreContentView.h; sourceTree = "<group>"; };
+		1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreContentView.m; sourceTree = "<group>"; };
+		1A30F39B23D0B86400FBBD83 /* IntegralStorePercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStorePercentDrivenController.h; sourceTree = "<group>"; };
+		1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStorePercentDrivenController.m; sourceTree = "<group>"; };
 		1A31062E23770C7300A56468 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		1A310630237711A800A56468 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -568,9 +580,10 @@
 		1A14132A235F523B0001417E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				1A30F38E23D0574F00FBBD83 /* IntegralStore */,
 				1A31062E23770C7300A56468 /* Mine.xcassets */,
-				1ABE801F238D01A600E88C4E /* CheckIn */,
 				1AFD152C23819505004D9CEA /* CustomTransition */,
+				1ABE801F238D01A600E88C4E /* CheckIn */,
 				1AFD1513237D8166004D9CEA /* EditMyInformation */,
 				1AFD1512237D814D004D9CEA /* Mine_MainPage */,
 			);
@@ -703,6 +716,41 @@
 				1A141364235F524B0001417E /* SYCSegmentView.h */,
 			);
 			path = SegmentView;
+			sourceTree = "<group>";
+		};
+		1A30F38E23D0574F00FBBD83 /* IntegralStore */ = {
+			isa = PBXGroup;
+			children = (
+				1A30F39123D0579600FBBD83 /* View */,
+				1A30F39023D0578F00FBBD83 /* Presenter */,
+				1A30F38F23D0578600FBBD83 /* Model */,
+			);
+			path = IntegralStore;
+			sourceTree = "<group>";
+		};
+		1A30F38F23D0578600FBBD83 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A30F39023D0578F00FBBD83 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1A30F39123D0579600FBBD83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */,
+				1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */,
+				1A30F39823D09CD800FBBD83 /* IntegralStoreContentView.h */,
+				1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1A5A5ED423600BA300543BAE /* Login */ = {
@@ -976,6 +1024,10 @@
 				1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */,
 				1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */,
 				1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */,
+				1A30F39523D05AB200FBBD83 /* IntegralStoreTransitionAnimator.h */,
+				1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */,
+				1A30F39B23D0B86400FBBD83 /* IntegralStorePercentDrivenController.h */,
+				1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */,
 			);
 			path = CustomTransition;
 			sourceTree = "<group>";
@@ -1688,6 +1740,7 @@
 				EE1C9E3F23D0457100B0FA66 /* EmptyClassModel.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
+				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
 				EE1C9E4123D0457100B0FA66 /* LQButton.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
@@ -1724,8 +1777,11 @@
 				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
+				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
+				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
+				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
