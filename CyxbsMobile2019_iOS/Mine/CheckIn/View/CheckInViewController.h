@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckInViewController : UIViewController
 
+@property (nonatomic, strong) UIPanGestureRecognizer *presentPanGesture;
+
 @property (nonatomic, weak) CheckInContentView *contentView;
 
 @end

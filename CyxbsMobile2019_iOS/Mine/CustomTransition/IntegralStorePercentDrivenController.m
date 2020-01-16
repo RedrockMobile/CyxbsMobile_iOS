@@ -7,6 +7,7 @@
 //
 
 #import "IntegralStorePercentDrivenController.h"
+#import "CheckInViewController.h"
 
 @interface IntegralStorePercentDrivenController ()
 
@@ -38,7 +39,7 @@
             break;
             
         case UIGestureRecognizerStateChanged:
-            [self updateInteractiveTransition:percent / 5];
+            [self updateInteractiveTransition:percent / 4];
             
             break;
             
@@ -59,11 +60,20 @@
 - (CGFloat)gesturePercent:(UIPanGestureRecognizer *)sender {
     CGPoint translation = [sender translationInView:self.transitionContext.containerView];
     
-    _lastTranslationY = translation.y;
+//    _lastTranslationY = translation.y;
     
-    CGFloat percent = - (translation.y / MAIN_SCREEN_H);
+    // 如果是下拉
+    if ([[self.transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] isMemberOfClass:[CheckInViewController class]]) {
+        CGFloat percent = translation.y / MAIN_SCREEN_H;
+        if (percent > 0) {
+            return percent;
+        } else {
+            return 0;
+        }
+    } else {
+        return - translation.y / MAIN_SCREEN_H;
+    }
     
-    return percent;
 }
 
 @end

@@ -17,8 +17,6 @@
 
 @property (nonatomic, strong) CheckInPresenter *presenter;
 
-@property (nonatomic, weak) UIPanGestureRecognizer *presentPanGesture;
-
 @property (nonatomic, weak) MBProgressHUD *chekingHUD;
 
 @end

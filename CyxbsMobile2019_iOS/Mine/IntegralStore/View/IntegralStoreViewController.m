@@ -7,8 +7,9 @@
 //
 
 #import "IntegralStoreViewController.h"
+#import "CheckInViewController.h"
 
-@interface IntegralStoreViewController ()
+@interface IntegralStoreViewController () <IntegralStoreContentViewDelegate>
 
 @end
 
@@ -20,20 +21,16 @@
 //    self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:247/255.0 alpha:1];
 
     IntegralStoreContentView *contentView = [[IntegralStoreContentView alloc] init];
+    contentView.delegate = self;
     [self.view addSubview:contentView];
     self.contentView = contentView;
-    
-    
-    // 临时返回
-    UIButton *back = [UIButton buttonWithType:UIButtonTypeSystem];
-    back.frame = CGRectMake(200, 200, 100, 30);
-    [back setTitle:@"back" forState:UIControlStateNormal];
-    [self.contentView addSubview:back];
-    [back addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)back {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)dismissWithGesture:(UIPanGestureRecognizer *)gesture {
+    ((CheckInViewController *)self.transitioningDelegate).presentPanGesture = gesture;
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

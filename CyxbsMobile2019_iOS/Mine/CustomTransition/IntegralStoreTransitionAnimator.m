@@ -13,7 +13,7 @@
 @implementation IntegralStoreTransitionAnimator
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 0.7;
+    return 0.5;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -24,7 +24,7 @@
         to.view.backgroundColor = [UIColor clearColor];
         [transitionContext.containerView addSubview:to.view];
 
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
             to.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:247/255.0 alpha:1];
             to.view.frame = CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H);
         } completion:^(BOOL finished) {
@@ -40,13 +40,15 @@
         CheckInViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         
         
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
             from.view.backgroundColor = [UIColor clearColor];
             from.view.frame = CGRectMake(0, MAIN_SCREEN_H - 89 - 30 + 16, MAIN_SCREEN_W, MAIN_SCREEN_H);
         } completion:^(BOOL finished) {
-//            [transitionContext.containerView addSubview:to.view];
-
-            [transitionContext completeTransition:YES];
+            BOOL wasCanceled = [transitionContext transitionWasCancelled];
+            if (!wasCanceled) {
+                [from.view removeFromSuperview];
+            }
+            [transitionContext completeTransition:!wasCanceled];
         }];
     }
     

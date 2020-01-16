@@ -28,6 +28,8 @@
         UIView *storeView = [[UIView alloc] init];
         storeView.backgroundColor = [UIColor whiteColor];
         storeView.layer.cornerRadius = 16;
+        UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dismissWithGesture:)];
+        [storeView addGestureRecognizer:panGesture];
         [self addSubview:storeView];
         self.storeView = storeView;
         
@@ -103,6 +105,12 @@
         make.trailing.equalTo(self.scoreLabel.mas_leading).offset(-9);
         make.height.width.equalTo(@21);
     }];
+}
+
+- (void)dismissWithGesture:(UIPanGestureRecognizer *)sender {
+    if ([self.delegate respondsToSelector:@selector(dismissWithGesture:)]) {
+        [self.delegate dismissWithGesture:sender];
+    }
 }
 
 @end

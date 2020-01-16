@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol IntegralStoreContentViewDelegate <NSObject>
+
+- (void)dismissWithGesture:(UIPanGestureRecognizer *)gesture;
+
+@end
+
 @interface IntegralStoreContentView : UIView
+
+@property (nonatomic, weak) id<IntegralStoreContentViewDelegate> delegate;
 
 @end
 
