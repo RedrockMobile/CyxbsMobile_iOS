@@ -31,11 +31,13 @@
 		1A141378235F524B0001417E /* SYCSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141362235F524B0001417E /* SYCSegmentView.m */; };
 		1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A15DF96238D03B3005E0843 /* CheckInContentView.m */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
-		1A1E869A23C8D7BA00321367 /* CheckInPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869923C8D7BA00321367 /* CheckInPresenter.m */; };
 		1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */; };
 		1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */; };
 		1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */; };
 		1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */; };
+		1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3A623D33F1300FBBD83 /* CheckInPresenter.m */; };
+		1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3A923D33F1300FBBD83 /* CheckInModel.m */; };
+		1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */; };
 		1A31062F23770C7300A56468 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A31062E23770C7300A56468 /* Mine.xcassets */; };
 		1A3106312377173B00A56468 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A310630237711A800A56468 /* Impact.ttf */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
@@ -55,10 +57,8 @@
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
-		1AC254FF23C8DD2F00DF0475 /* CheckInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC254FE23C8DD2F00DF0475 /* CheckInModel.m */; };
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
-		1AC2550B23C9B23200DF0475 /* TodaysDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550A23C9B23200DF0475 /* TodaysDot.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
 		1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */; };
@@ -268,9 +268,6 @@
 		1A15DF96238D03B3005E0843 /* CheckInContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInContentView.m; sourceTree = "<group>"; };
 		1A1E869523C8D1DE00321367 /* CheckInBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInBar.h; sourceTree = "<group>"; };
 		1A1E869623C8D1DE00321367 /* CheckInBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInBar.m; sourceTree = "<group>"; };
-		1A1E869823C8D7BA00321367 /* CheckInPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CheckInPresenter.h; path = CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInPresenter.h; sourceTree = SOURCE_ROOT; };
-		1A1E869923C8D7BA00321367 /* CheckInPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CheckInPresenter.m; path = CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInPresenter.m; sourceTree = SOURCE_ROOT; };
-		1A1E869B23C8D7D900321367 /* CheckInProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CheckInProtocol.h; path = CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInProtocol.h; sourceTree = SOURCE_ROOT; };
 		1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreViewController.h; sourceTree = "<group>"; };
 		1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreViewController.m; sourceTree = "<group>"; };
 		1A30F39523D05AB200FBBD83 /* IntegralStoreTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreTransitionAnimator.h; sourceTree = "<group>"; };
@@ -279,6 +276,12 @@
 		1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreContentView.m; sourceTree = "<group>"; };
 		1A30F39B23D0B86400FBBD83 /* IntegralStorePercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStorePercentDrivenController.h; sourceTree = "<group>"; };
 		1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStorePercentDrivenController.m; sourceTree = "<group>"; };
+		1A30F3A523D33F1300FBBD83 /* CheckInPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInPresenter.h; sourceTree = "<group>"; };
+		1A30F3A623D33F1300FBBD83 /* CheckInPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInPresenter.m; sourceTree = "<group>"; };
+		1A30F3A823D33F1300FBBD83 /* CheckInModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInModel.h; sourceTree = "<group>"; };
+		1A30F3A923D33F1300FBBD83 /* CheckInModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInModel.m; sourceTree = "<group>"; };
+		1A30F3AB23D33F1300FBBD83 /* CheckInProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInProtocol.h; sourceTree = "<group>"; };
+		1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodaysDot.m; sourceTree = "<group>"; };
 		1A31062E23770C7300A56468 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		1A310630237711A800A56468 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -316,14 +319,11 @@
 		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
 		1ABE8024238D01EC00E88C4E /* CheckInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
 		1ABE8025238D01EC00E88C4E /* CheckInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInViewController.m; sourceTree = "<group>"; };
-		1AC254FD23C8DD2F00DF0475 /* CheckInModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CheckInModel.h; path = CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInModel.h; sourceTree = SOURCE_ROOT; };
-		1AC254FE23C8DD2F00DF0475 /* CheckInModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CheckInModel.m; path = CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInModel.m; sourceTree = SOURCE_ROOT; };
 		1AC2550323C9AB3700DF0475 /* CheckedInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckedInDot.h; sourceTree = "<group>"; };
 		1AC2550423C9AB3700DF0475 /* CheckedInDot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckedInDot.m; sourceTree = "<group>"; };
 		1AC2550623C9B14F00DF0475 /* DidNotCheckInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DidNotCheckInDot.h; sourceTree = "<group>"; };
 		1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DidNotCheckInDot.m; sourceTree = "<group>"; };
 		1AC2550923C9B23200DF0475 /* TodaysDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodaysDot.h; sourceTree = "<group>"; };
-		1AC2550A23C9B23200DF0475 /* TodaysDot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodaysDot.m; sourceTree = "<group>"; };
 		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
@@ -753,6 +753,32 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1A30F3A423D33F1300FBBD83 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1A30F3A523D33F1300FBBD83 /* CheckInPresenter.h */,
+				1A30F3A623D33F1300FBBD83 /* CheckInPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1A30F3A723D33F1300FBBD83 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A30F3A823D33F1300FBBD83 /* CheckInModel.h */,
+				1A30F3A923D33F1300FBBD83 /* CheckInModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A30F3AA23D33F1300FBBD83 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				1A30F3AB23D33F1300FBBD83 /* CheckInProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		1A5A5ED423600BA300543BAE /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,21 +922,12 @@
 		1ABE801F238D01A600E88C4E /* CheckIn */ = {
 			isa = PBXGroup;
 			children = (
-				1ABE8023238D01D100E88C4E /* Protocol */,
-				1ABE8022238D01CB00E88C4E /* Presenter */,
+				1A30F3A723D33F1300FBBD83 /* Model */,
+				1A30F3A423D33F1300FBBD83 /* Presenter */,
+				1A30F3AA23D33F1300FBBD83 /* Protocol */,
 				1ABE8021238D01C600E88C4E /* View */,
-				1ABE8020238D01BF00E88C4E /* Model */,
 			);
 			path = CheckIn;
-			sourceTree = "<group>";
-		};
-		1ABE8020238D01BF00E88C4E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1AC254FD23C8DD2F00DF0475 /* CheckInModel.h */,
-				1AC254FE23C8DD2F00DF0475 /* CheckInModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1ABE8021238D01C600E88C4E /* View */ = {
@@ -927,26 +944,9 @@
 				1AC2550623C9B14F00DF0475 /* DidNotCheckInDot.h */,
 				1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */,
 				1AC2550923C9B23200DF0475 /* TodaysDot.h */,
-				1AC2550A23C9B23200DF0475 /* TodaysDot.m */,
+				1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1ABE8022238D01CB00E88C4E /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				1A1E869823C8D7BA00321367 /* CheckInPresenter.h */,
-				1A1E869923C8D7BA00321367 /* CheckInPresenter.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		1ABE8023238D01D100E88C4E /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				1A1E869B23C8D7D900321367 /* CheckInProtocol.h */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		1AC2550C23C9E2B800DF0475 /* Model */ = {
@@ -1726,12 +1726,12 @@
 				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
-				1A1E869A23C8D7BA00321367 /* CheckInPresenter.m in Sources */,
 				1A141338235F52440001417E /* QAQuestionsViewController.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				EE899DE72367D89A00DDB0D9 /* LQQFinderView.m in Sources */,
+				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				EE80AE002377B6660003023C /* ElectricFeeItem.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
@@ -1746,6 +1746,7 @@
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
+				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
@@ -1796,6 +1797,7 @@
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
+				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
@@ -1803,7 +1805,6 @@
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
-				1AC254FF23C8DD2F00DF0475 /* CheckInModel.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
@@ -1814,7 +1815,6 @@
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				EE062F342377F5D600E5919E /* OneNewsItem.m in Sources */,
-				1AC2550B23C9B23200DF0475 /* TodaysDot.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,
