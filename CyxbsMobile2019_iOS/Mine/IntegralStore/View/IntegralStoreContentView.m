@@ -7,6 +7,7 @@
 //
 
 #import "IntegralStoreContentView.h"
+#import "WaterFallLayout.h"
 
 @interface IntegralStoreContentView ()
 
@@ -57,6 +58,12 @@
         dragHintView.backgroundColor = [UIColor colorWithRed:226/255.0 green:237/255.0 blue:251/255.0 alpha:1.0];
         [self.storeView addSubview:dragHintView];
         self.dragHintView = dragHintView;
+        
+        WaterFallLayout *layout = [[WaterFallLayout alloc] init];
+        UICollectionView *storeCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 73, MAIN_SCREEN_W, MAIN_SCREEN_H - 73 - 30) collectionViewLayout:layout];
+        storeCollectionView.backgroundColor = [UIColor whiteColor];
+        self.storeCollectionView = storeCollectionView;
+        [self addSubview:storeCollectionView];
     }
     return self;
 }

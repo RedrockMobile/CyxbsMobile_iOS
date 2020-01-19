@@ -168,6 +168,7 @@
 /// 签到
 #define CHECKINAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/Integral/checkIn"
 
+#define INTEGRALSTORELISTAPI @"https://getman.cn/mock/integralStore"
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get

@@ -11,7 +11,7 @@
 @implementation OneNewsItem
 -(instancetype)initWithDict: (NSDictionary *)dict {
     if (self = [super init]) {
-       self.oneNews = dict[@"data"][0][@"title"];
+//       self.oneNews = dict[@"data"][0][@"title"];
     }
     return self;
     

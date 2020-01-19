@@ -38,6 +38,12 @@
 		1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3A623D33F1300FBBD83 /* CheckInPresenter.m */; };
 		1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3A923D33F1300FBBD83 /* CheckInModel.m */; };
 		1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */; };
+		1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3B123D340EF00FBBD83 /* StoreCollectionViewCell.m */; };
+		1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3F723D4330E00FBBD83 /* WaterFallLayout.m */; };
+		1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3FB23D490BD00FBBD83 /* IntegralStoreModel.m */; };
+		1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3FE23D4910900FBBD83 /* IntegralStorePresenter.m */; };
+		1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F40323D494A900FBBD83 /* IntegralStoreDataItem.m */; };
+		1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */; };
 		1A31062F23770C7300A56468 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A31062E23770C7300A56468 /* Mine.xcassets */; };
 		1A3106312377173B00A56468 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A310630237711A800A56468 /* Impact.ttf */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
@@ -282,6 +288,19 @@
 		1A30F3A923D33F1300FBBD83 /* CheckInModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInModel.m; sourceTree = "<group>"; };
 		1A30F3AB23D33F1300FBBD83 /* CheckInProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInProtocol.h; sourceTree = "<group>"; };
 		1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodaysDot.m; sourceTree = "<group>"; };
+		1A30F3B023D340EF00FBBD83 /* StoreCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreCollectionViewCell.h; sourceTree = "<group>"; };
+		1A30F3B123D340EF00FBBD83 /* StoreCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreCollectionViewCell.m; sourceTree = "<group>"; };
+		1A30F3F723D4330E00FBBD83 /* WaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterFallLayout.m; sourceTree = "<group>"; };
+		1A30F3F823D4330E00FBBD83 /* WaterFallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterFallLayout.h; sourceTree = "<group>"; };
+		1A30F3FA23D490BD00FBBD83 /* IntegralStoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreModel.h; sourceTree = "<group>"; };
+		1A30F3FB23D490BD00FBBD83 /* IntegralStoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreModel.m; sourceTree = "<group>"; };
+		1A30F3FD23D4910900FBBD83 /* IntegralStorePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStorePresenter.h; sourceTree = "<group>"; };
+		1A30F3FE23D4910900FBBD83 /* IntegralStorePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStorePresenter.m; sourceTree = "<group>"; };
+		1A30F40123D4914700FBBD83 /* IntegralStorePresenterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStorePresenterProtocol.h; sourceTree = "<group>"; };
+		1A30F40223D494A900FBBD83 /* IntegralStoreDataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreDataItem.h; sourceTree = "<group>"; };
+		1A30F40323D494A900FBBD83 /* IntegralStoreDataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreDataItem.m; sourceTree = "<group>"; };
+		1A30F40723D4A04C00FBBD83 /* IntegralStoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreCell.h; sourceTree = "<group>"; };
+		1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreCell.m; sourceTree = "<group>"; };
 		1A31062E23770C7300A56468 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		1A310630237711A800A56468 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -721,6 +740,7 @@
 		1A30F38E23D0574F00FBBD83 /* IntegralStore */ = {
 			isa = PBXGroup;
 			children = (
+				1A30F40023D4911B00FBBD83 /* Protocol */,
 				1A30F39123D0579600FBBD83 /* View */,
 				1A30F39023D0578F00FBBD83 /* Presenter */,
 				1A30F38F23D0578600FBBD83 /* Model */,
@@ -731,6 +751,10 @@
 		1A30F38F23D0578600FBBD83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1A30F3FA23D490BD00FBBD83 /* IntegralStoreModel.h */,
+				1A30F3FB23D490BD00FBBD83 /* IntegralStoreModel.m */,
+				1A30F40223D494A900FBBD83 /* IntegralStoreDataItem.h */,
+				1A30F40323D494A900FBBD83 /* IntegralStoreDataItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -738,6 +762,8 @@
 		1A30F39023D0578F00FBBD83 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				1A30F3FD23D4910900FBBD83 /* IntegralStorePresenter.h */,
+				1A30F3FE23D4910900FBBD83 /* IntegralStorePresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -745,10 +771,14 @@
 		1A30F39123D0579600FBBD83 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1A30F40623D4A02300FBBD83 /* CollectionViewLayout */,
+				1A30F40523D4A01500FBBD83 /* CollectionCell */,
 				1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */,
 				1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */,
 				1A30F39823D09CD800FBBD83 /* IntegralStoreContentView.h */,
 				1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */,
+				1A30F3B023D340EF00FBBD83 /* StoreCollectionViewCell.h */,
+				1A30F3B123D340EF00FBBD83 /* StoreCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -777,6 +807,32 @@
 				1A30F3AB23D33F1300FBBD83 /* CheckInProtocol.h */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		1A30F40023D4911B00FBBD83 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				1A30F40123D4914700FBBD83 /* IntegralStorePresenterProtocol.h */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		1A30F40523D4A01500FBBD83 /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				1A30F40723D4A04C00FBBD83 /* IntegralStoreCell.h */,
+				1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */,
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		1A30F40623D4A02300FBBD83 /* CollectionViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				1A30F3F823D4330E00FBBD83 /* WaterFallLayout.h */,
+				1A30F3F723D4330E00FBBD83 /* WaterFallLayout.m */,
+			);
+			path = CollectionViewLayout;
 			sourceTree = "<group>";
 		};
 		1A5A5ED423600BA300543BAE /* Login */ = {
@@ -1725,8 +1781,10 @@
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
+				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				1A141338235F52440001417E /* QAQuestionsViewController.m in Sources */,
+				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
@@ -1746,11 +1804,13 @@
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
+				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
+				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				EE1C9E3E23D0457100B0FA66 /* EmptyClassViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */,
@@ -1789,6 +1849,7 @@
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
+				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				EE1C9E4023D0457100B0FA66 /* StoreyResultView.m in Sources */,
@@ -1811,6 +1872,7 @@
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
+				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,

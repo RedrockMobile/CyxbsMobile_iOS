@@ -11,8 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class IntegralStorePresenter;
 @interface IntegralStoreViewController : UIViewController
 
+@property (nonatomic, strong) IntegralStorePresenter *presenter;
 @property (nonatomic, weak) IntegralStoreContentView *contentView;
 
 @end
