@@ -12,7 +12,6 @@
 		1A141322235F521C0001417E /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131C235F521C0001417E /* BaseNavigationController.m */; };
 		1A141329235F52290001417E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141328235F52290001417E /* DiscoverViewController.m */; };
 		1A141330235F523B0001417E /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14132F235F523B0001417E /* MineViewController.m */; };
-		1A141338235F52440001417E /* QAQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141337235F52440001417E /* QAQuestionsViewController.m */; };
 		1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14133B235F524B0001417E /* UIFont+AdaptiveFont.m */; };
 		1A141366235F524B0001417E /* AESCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14133E235F524B0001417E /* AESCipher.m */; };
 		1A141368235F524B0001417E /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141347235F524B0001417E /* HttpClient.m */; };
@@ -74,6 +73,10 @@
 		1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */; };
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
+		D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A7FE23D4E054001A4774 /* QAListSegmentView.m */; };
+		D026A80523D4E054001A4774 /* QAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A80023D4E054001A4774 /* QAListViewController.m */; };
+		D026A80623D4E054001A4774 /* QA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D026A80223D4E054001A4774 /* QA.xcassets */; };
+		D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A80323D4E054001A4774 /* QAQuestionsViewController.m */; };
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
 		DB34EACE239BD4550052B65E /* DateModle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2D239BD4540052B65E /* DateModle.m */; };
 		DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */; };
@@ -235,8 +238,6 @@
 		1A141328235F52290001417E /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		1A14132E235F523B0001417E /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		1A14132F235F523B0001417E /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
-		1A141336235F52440001417E /* QAQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAQuestionsViewController.h; sourceTree = "<group>"; };
-		1A141337235F52440001417E /* QAQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAQuestionsViewController.m; sourceTree = "<group>"; };
 		1A14133A235F524B0001417E /* UILabel+Adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Adapter.h"; sourceTree = "<group>"; };
 		1A14133B235F524B0001417E /* UIFont+AdaptiveFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AdaptiveFont.m"; sourceTree = "<group>"; };
 		1A14133C235F524B0001417E /* NSNull+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+Helper.h"; sourceTree = "<group>"; };
@@ -361,6 +362,13 @@
 		1AFD153023819FBD004D9CEA /* EditMyInfoTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoTransitionAnimator.h; sourceTree = "<group>"; };
 		1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoTransitionAnimator.m; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D026A7FC23D4E054001A4774 /* QAListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListViewController.h; sourceTree = "<group>"; };
+		D026A7FE23D4E054001A4774 /* QAListSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListSegmentView.m; sourceTree = "<group>"; };
+		D026A7FF23D4E054001A4774 /* QAListSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListSegmentView.h; sourceTree = "<group>"; };
+		D026A80023D4E054001A4774 /* QAListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListViewController.m; sourceTree = "<group>"; };
+		D026A80123D4E054001A4774 /* QAQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAQuestionsViewController.h; sourceTree = "<group>"; };
+		D026A80223D4E054001A4774 /* QA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QA.xcassets; sourceTree = "<group>"; };
+		D026A80323D4E054001A4774 /* QAQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAQuestionsViewController.m; sourceTree = "<group>"; };
 		DB34EA2A239BD4540052B65E /* WYCClassBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassBookViewController.h; sourceTree = "<group>"; };
 		DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCClassBookViewController.m; sourceTree = "<group>"; };
 		DB34EA2D239BD4540052B65E /* DateModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateModle.m; sourceTree = "<group>"; };
@@ -634,6 +642,10 @@
 		1A141331235F52440001417E /* QA */ = {
 			isa = PBXGroup;
 			children = (
+				D026A80223D4E054001A4774 /* QA.xcassets */,
+				D026A7FB23D4E054001A4774 /* QAList */,
+				D026A80123D4E054001A4774 /* QAQuestionsViewController.h */,
+				D026A80323D4E054001A4774 /* QAQuestionsViewController.m */,
 				1A141332235F52440001417E /* QAQuestions */,
 			);
 			path = QA;
@@ -666,8 +678,6 @@
 		1A141335235F52440001417E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1A141336235F52440001417E /* QAQuestionsViewController.h */,
-				1A141337235F52440001417E /* QAQuestionsViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1103,6 +1113,25 @@
 				F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D026A7FB23D4E054001A4774 /* QAList */ = {
+			isa = PBXGroup;
+			children = (
+				D026A7FC23D4E054001A4774 /* QAListViewController.h */,
+				D026A7FD23D4E054001A4774 /* QAListSegmentView */,
+				D026A80023D4E054001A4774 /* QAListViewController.m */,
+			);
+			path = QAList;
+			sourceTree = "<group>";
+		};
+		D026A7FD23D4E054001A4774 /* QAListSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				D026A7FE23D4E054001A4774 /* QAListSegmentView.m */,
+				D026A7FF23D4E054001A4774 /* QAListSegmentView.h */,
+			);
+			path = QAListSegmentView;
 			sourceTree = "<group>";
 		};
 		DB34EA28239BD4540052B65E /* ClassSchedule */ = {
@@ -1690,6 +1719,7 @@
 				DB34EADF239BD4550052B65E /* remind0@3x.png in Resources */,
 				DB34EB0B239BD4550052B65E /* timeTable_image_add@2x.png in Resources */,
 				DB34EAD3239BD4550052B65E /* WYCNoteDetailView.xib in Resources */,
+				D026A80623D4E054001A4774 /* QA.xcassets in Resources */,
 				DB34EB07239BD4550052B65E /* 多课2@3x.png in Resources */,
 				DB34EAF9239BD4550052B65E /* remind_image_remind@3x.png in Resources */,
 				DB34EAEC239BD4550052B65E /* remind_image_time@2x.png in Resources */,
@@ -1783,8 +1813,8 @@
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
-				1A141338235F52440001417E /* QAQuestionsViewController.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
+				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
@@ -1811,6 +1841,7 @@
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
+				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
 				EE1C9E3E23D0457100B0FA66 /* EmptyClassViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */,
@@ -1871,6 +1902,7 @@
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */,
+				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
