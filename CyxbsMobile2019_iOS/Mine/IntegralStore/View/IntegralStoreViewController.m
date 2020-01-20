@@ -29,6 +29,8 @@ static NSString *const ItemID = @"ItemID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor clearColor];
+    
     self.presenter = [[IntegralStorePresenter alloc] init];
     [self.presenter attachView:self];
 

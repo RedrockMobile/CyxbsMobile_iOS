@@ -13,13 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class IntegralStoreDataItem;
 @interface IntegralStoreCell : UICollectionViewCell
 
-@property (nonatomic, weak) UIImageView *photoImageView;
-@property (nonatomic, weak) UILabel *nameLabel;
-@property (nonatomic, weak) UILabel *numberLabel;
-@property (nonatomic, weak) UIImageView *integralImageView;
-@property (nonatomic, weak) UILabel *priceLabel;
-@property (nonatomic, weak) UIButton *buyButton;
-
 @property (nonatomic, strong) IntegralStoreDataItem *item;
 
 @end

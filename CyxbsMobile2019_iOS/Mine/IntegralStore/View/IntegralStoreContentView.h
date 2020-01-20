@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface IntegralStoreContentView : UIView
 
 @property (nonatomic, weak) id<IntegralStoreContentViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate> delegate;
+
+@property (nonatomic, weak) UIView *storeView;
 @property (nonatomic, weak) UICollectionView *storeCollectionView;
 
 @end

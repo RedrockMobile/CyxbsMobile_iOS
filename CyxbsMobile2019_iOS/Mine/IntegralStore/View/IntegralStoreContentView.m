@@ -11,7 +11,6 @@
 
 @interface IntegralStoreContentView ()
 
-@property (nonatomic, weak) UIView *storeView;
 @property (nonatomic, weak) UILabel *storeTitlelabel;
 @property (nonatomic, weak) UIImageView *scoreImageView;
 @property (nonatomic, weak) UILabel *scoreLabel;
@@ -25,7 +24,6 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:247/255.0 alpha:1];
         UIView *storeView = [[UIView alloc] init];
         storeView.backgroundColor = [UIColor whiteColor];
         storeView.layer.cornerRadius = 16;
