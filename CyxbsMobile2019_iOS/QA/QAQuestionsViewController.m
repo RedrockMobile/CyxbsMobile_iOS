@@ -29,7 +29,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QAListDataLoadFailure)
                                                  name:@"QAListDataLoadFailure" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadView)
+                                                 name:@"QAListDataReLoad" object:nil];
     self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     [self configNavagationBar];
     [self addContentView];
@@ -163,5 +165,11 @@
     [self presentViewController:controller animated:YES completion:^{
         
     }];
+}
+-(void)reloadView{
+    [self.view removeAllSubviews];
+    [self addContentView];
+    [self.model getData];
+    
 }
 @end
