@@ -77,6 +77,10 @@
 		D026A80523D4E054001A4774 /* QAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A80023D4E054001A4774 /* QAListViewController.m */; };
 		D026A80623D4E054001A4774 /* QA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D026A80223D4E054001A4774 /* QA.xcassets */; };
 		D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A80323D4E054001A4774 /* QAQuestionsViewController.m */; };
+		D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A80D23D4F7D0001A4774 /* QAListTableViewCell.m */; };
+		D026A81023D4F7D0001A4774 /* QAListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D026A80E23D4F7D0001A4774 /* QAListTableViewCell.xib */; };
+		D026A81723D50421001A4774 /* QADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81623D50421001A4774 /* QADetailViewController.m */; };
+		D026A81B23D5C119001A4774 /* QAListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81A23D5C119001A4774 /* QAListModel.m */; };
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
 		DB34EACE239BD4550052B65E /* DateModle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2D239BD4540052B65E /* DateModle.m */; };
 		DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */; };
@@ -369,6 +373,13 @@
 		D026A80123D4E054001A4774 /* QAQuestionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAQuestionsViewController.h; sourceTree = "<group>"; };
 		D026A80223D4E054001A4774 /* QA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QA.xcassets; sourceTree = "<group>"; };
 		D026A80323D4E054001A4774 /* QAQuestionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAQuestionsViewController.m; sourceTree = "<group>"; };
+		D026A80C23D4F7D0001A4774 /* QAListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAListTableViewCell.h; sourceTree = "<group>"; };
+		D026A80D23D4F7D0001A4774 /* QAListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAListTableViewCell.m; sourceTree = "<group>"; };
+		D026A80E23D4F7D0001A4774 /* QAListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QAListTableViewCell.xib; sourceTree = "<group>"; };
+		D026A81523D50421001A4774 /* QADetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailViewController.h; sourceTree = "<group>"; };
+		D026A81623D50421001A4774 /* QADetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailViewController.m; sourceTree = "<group>"; };
+		D026A81923D5C119001A4774 /* QAListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAListModel.h; sourceTree = "<group>"; };
+		D026A81A23D5C119001A4774 /* QAListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAListModel.m; sourceTree = "<group>"; };
 		DB34EA2A239BD4540052B65E /* WYCClassBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassBookViewController.h; sourceTree = "<group>"; };
 		DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCClassBookViewController.m; sourceTree = "<group>"; };
 		DB34EA2D239BD4540052B65E /* DateModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateModle.m; sourceTree = "<group>"; };
@@ -642,6 +653,7 @@
 		1A141331235F52440001417E /* QA */ = {
 			isa = PBXGroup;
 			children = (
+				D026A81123D502F8001A4774 /* QADetail */,
 				D026A80223D4E054001A4774 /* QA.xcassets */,
 				D026A7FB23D4E054001A4774 /* QAList */,
 				D026A80123D4E054001A4774 /* QAQuestionsViewController.h */,
@@ -1118,8 +1130,10 @@
 		D026A7FB23D4E054001A4774 /* QAList */ = {
 			isa = PBXGroup;
 			children = (
-				D026A7FC23D4E054001A4774 /* QAListViewController.h */,
+				D026A81823D5C106001A4774 /* Model */,
+				D026A80823D4E41E001A4774 /* View */,
 				D026A7FD23D4E054001A4774 /* QAListSegmentView */,
+				D026A7FC23D4E054001A4774 /* QAListViewController.h */,
 				D026A80023D4E054001A4774 /* QAListViewController.m */,
 			);
 			path = QAList;
@@ -1132,6 +1146,34 @@
 				D026A7FF23D4E054001A4774 /* QAListSegmentView.h */,
 			);
 			path = QAListSegmentView;
+			sourceTree = "<group>";
+		};
+		D026A80823D4E41E001A4774 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D026A80C23D4F7D0001A4774 /* QAListTableViewCell.h */,
+				D026A80D23D4F7D0001A4774 /* QAListTableViewCell.m */,
+				D026A80E23D4F7D0001A4774 /* QAListTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D026A81123D502F8001A4774 /* QADetail */ = {
+			isa = PBXGroup;
+			children = (
+				D026A81523D50421001A4774 /* QADetailViewController.h */,
+				D026A81623D50421001A4774 /* QADetailViewController.m */,
+			);
+			path = QADetail;
+			sourceTree = "<group>";
+		};
+		D026A81823D5C106001A4774 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D026A81923D5C119001A4774 /* QAListModel.h */,
+				D026A81A23D5C119001A4774 /* QAListModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DB34EA28239BD4540052B65E /* ClassSchedule */ = {
@@ -1708,6 +1750,7 @@
 				1A9B7674235F50A800725937 /* Assets.xcassets in Resources */,
 				DB34EB1D239BD4550052B65E /* remind@3x.png in Resources */,
 				DB34EAE5239BD4550052B65E /* 老师@2x.png in Resources */,
+				D026A81023D4F7D0001A4774 /* QAListTableViewCell.xib in Resources */,
 				DB34EB1C239BD4550052B65E /* 选择@2x.png in Resources */,
 				DB34EB09239BD4550052B65E /* remind1@2x.png in Resources */,
 				DB34EADE239BD4550052B65E /* timeTable_image_pull@2x.png in Resources */,
@@ -1835,10 +1878,13 @@
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
+				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
+				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
+				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,

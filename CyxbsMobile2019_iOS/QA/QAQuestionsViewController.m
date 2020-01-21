@@ -10,19 +10,32 @@
 #import "QAListViewController.h"
 #import "QAListSegmentView.h"
 #import "SYCSegmentView.h"
+#import "QAListModel.h"
 
 @interface QAQuestionsViewController ()
-
+@property(strong,nonatomic)QAListModel *model;
 @end
 
 @implementation QAQuestionsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QAListDataLoadSuccess)
+                                                 name:@"QAListDataLoadSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QAListDataLoadError)
+                                                 name:@"QAListDataLoadError" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QAListDataLoadFailure)
+                                                 name:@"QAListDataLoadFailure" object:nil];
+    
     self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     [self configNavagationBar];
     [self addContentView];
-    [self setupUI];
+    [self loadData];
+
+    
     
 }
 -(void)addContentView{
@@ -83,6 +96,14 @@
 -(void)setupUI{
     //加载4个分类板块，并添加进SegmentView
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
+    NSArray *titleArray = @[@"最新",@"学习",@"匿名",@"生活",@"更多"];
+    NSMutableArray *views = [NSMutableArray arrayWithCapacity:5];
+    for (int i = 0;i < 5; i++) {
+        QAListViewController *vc = [[QAListViewController alloc] initViewStyle:titleArray[i] dataArray:self.model.dataArray[i]];
+        vc.title = titleArray[i];
+        [views addObject:vc];
+    }
+    /*
     QAListViewController *latestView = [[QAListViewController alloc] initViewStyle:@"最新"];
     latestView.title = @"最新";
     QAListViewController *learningView = [[QAListViewController alloc] initViewStyle:@"学习"];
@@ -95,10 +116,52 @@
     moreView.title = @"更多";
     
     NSArray *views = @[latestView, learningView, anonymousView, lifeView,moreView];
-   
-//    QAListSegmentView *segView = [[QAListSegmentView alloc] initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT + 50, SCREEN_WIDTH, SCREEN_HEIGHT - TOTAL_TOP_HEIGHT - TABBARHEIGHT - 50)];
-//    SYCSegmentView *segView = [[SYCSegmentView alloc] initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT + 50, SCREEN_WIDTH, SCREEN_HEIGHT - TOTAL_TOP_HEIGHT - TABBARHEIGHT - 50) controllers:views type:SYCSegmentViewTypeNormal];
+     */
+    for (QAListViewController *view in views) {
+        view.superController = self;
+    }
     QAListSegmentView *segView = [[QAListSegmentView alloc] initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT + 50, SCREEN_WIDTH, SCREEN_HEIGHT - TOTAL_TOP_HEIGHT - TABBARHEIGHT - 50) controllers:views];
     [self.view addSubview:segView];
+}
+
+-(void)loadData{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"加载数据中...";
+    hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
+    self.model = [[QAListModel alloc]init];
+    [self.model getData];
+}
+-(void)QAListDataLoadSuccess{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self setupUI];
+//    NSLog(@"%D,%@",self.model.dataArray.count, self.model.dataArray[0]);
+}
+-(void)QAListDataLoadError{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"数据加载错误" message:@"网络数据解析错误" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [controller addAction:act1];
+    
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
+}
+
+-(void)QAListDataLoadFailure{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"数据加载失败" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [controller addAction:act1];
+    
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
 }
 @end

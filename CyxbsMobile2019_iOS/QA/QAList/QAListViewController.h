@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QAListViewController : UIViewController
-- (instancetype)initViewStyle:(NSString *)style;
+@property (strong, nonatomic) UIViewController *superController;
+- (instancetype)initViewStyle:(NSString *)style dataArray:(NSArray *)array;
 @end
 
 NS_ASSUME_NONNULL_END

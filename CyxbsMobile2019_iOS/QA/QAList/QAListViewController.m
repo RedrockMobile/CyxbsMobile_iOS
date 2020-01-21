@@ -7,31 +7,72 @@
 //
 
 #import "QAListViewController.h"
+#import "QAListTableViewCell.h"
+#import "QADetailViewController.h"
 
-@interface QAListViewController ()
+@interface QAListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(strong,nonatomic)UITableView *tableView;
+@property(strong,nonatomic)NSMutableArray *dataArray;
 @end
 
 @implementation QAListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
 }
-- (instancetype)initViewStyle:(NSString *)style{
+- (instancetype)initViewStyle:(NSString *)style dataArray:(NSArray *)array{
     self = [super init];
     self.title = style;
+    self.dataArray = array;
+//    NSLog(@"%d",array.count);
+    
     self.view.backgroundColor = [UIColor whiteColor];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - TOTAL_TOP_HEIGHT - 50)];
+//    self.tableView.estimatedRowHeight = 145;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"QAListTableViewCell" bundle:nil] forCellReuseIdentifier:@"QAListTableViewCell"];
+    
+    [self.view addSubview:self.tableView];
+   
     return self;
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
 }
-*/
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArray.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 145;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // always reuse the cell
+    QAListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAListTableViewCell" forIndexPath:indexPath];
+    NSDictionary *dic = _dataArray[indexPath.row];
+    [cell.name setText:[dic objectForKey:@"nickname"]];
+    NSString *date = [dic objectForKey:@"disappear_at"];
+    [cell.date setText:[date substringWithRange:NSMakeRange(0, 10)]];
+    [cell.content setText:[dic objectForKey:@"description"]];
+    [cell.answerNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"answer_num"]]];
+    //后端数据还没有点赞数和浏览数，先用回答数
+    [cell.integralNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"answer_num"]]];
+    [cell.viewNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"answer_num"]]];
+    
+//    NSLog(@"%@",dic);
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    QADetailViewController *detailVC = [[QADetailViewController alloc] init];
+    NSDictionary *dic = _dataArray[indexPath.row];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.superController.navigationController pushViewController:detailVC animated:YES];
+}
 
 @end
