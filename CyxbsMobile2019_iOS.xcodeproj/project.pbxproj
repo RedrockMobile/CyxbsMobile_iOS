@@ -10,7 +10,6 @@
 		1A141320235F521C0001417E /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131A235F521C0001417E /* BaseTableViewController.m */; };
 		1A141321235F521C0001417E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131B235F521C0001417E /* BaseViewController.m */; };
 		1A141322235F521C0001417E /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131C235F521C0001417E /* BaseNavigationController.m */; };
-		1A141329235F52290001417E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141328235F52290001417E /* DiscoverViewController.m */; };
 		1A141330235F523B0001417E /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14132F235F523B0001417E /* MineViewController.m */; };
 		1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14133B235F524B0001417E /* UIFont+AdaptiveFont.m */; };
 		1A141366235F524B0001417E /* AESCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14133E235F524B0001417E /* AESCipher.m */; };
@@ -200,22 +199,27 @@
 		DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC9239BD4550052B65E /* DayLabel.m */; };
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
 		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
-		EE062F342377F5D600E5919E /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE062F332377F5D600E5919E /* OneNewsItem.m */; };
-		EE1C9E3E23D0457100B0FA66 /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1C9E3523D0457100B0FA66 /* EmptyClassViewController.m */; };
-		EE1C9E3F23D0457100B0FA66 /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1C9E3723D0457100B0FA66 /* EmptyClassModel.m */; };
-		EE1C9E4023D0457100B0FA66 /* StoreyResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1C9E3C23D0457100B0FA66 /* StoreyResultView.m */; };
-		EE1C9E4123D0457100B0FA66 /* LQButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE1C9E3D23D0457100B0FA66 /* LQButton.m */; };
-		EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3C180B23715BAD004233C5 /* VolunteerModel.m */; };
-		EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */; };
-		EE67A4EF237E691B00BCF5F4 /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */; };
-		EE80AE002377B6660003023C /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE80ADFF2377B6660003023C /* ElectricFeeItem.m */; };
-		EE899DE32367D89A00DDB0D9 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */; };
-		EE899DE52367D89A00DDB0D9 /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */; };
-		EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DDB2367D89900DDB0D9 /* EnterButton.m */; };
-		EE899DE72367D89A00DDB0D9 /* LQQFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DDC2367D89900DDB0D9 /* LQQFinderView.m */; };
-		EE899DE82367D89A00DDB0D9 /* LQQGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DDD2367D89900DDB0D9 /* LQQGlanceView.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
-		EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE899DEE2369A19B00DDB0D9 /* OneNewsModel.m */; };
+		EEF3120B23D8A6DC001ED02E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */; };
+		EEF3120C23D8A6DC001ED02E /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */; };
+		EEF3120D23D8A6DC001ED02E /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311DA23D8A6DC001ED02E /* ElectricFeeModel.m */; };
+		EEF3120E23D8A6DC001ED02E /* OneNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E023D8A6DC001ED02E /* OneNewsModel.m */; };
+		EEF3120F23D8A6DC001ED02E /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E123D8A6DC001ED02E /* OneNewsItem.m */; };
+		EEF3121023D8A6DC001ED02E /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E323D8A6DC001ED02E /* VolunteerModel.m */; };
+		EEF3121123D8A6DC001ED02E /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E623D8A6DC001ED02E /* EnterButton.m */; };
+		EEF3121223D8A6DC001ED02E /* LQQFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E723D8A6DC001ED02E /* LQQFinderView.m */; };
+		EEF3121323D8A6DC001ED02E /* LQQGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E823D8A6DC001ED02E /* LQQGlanceView.m */; };
+		EEF3121423D8A6DC001ED02E /* StudentScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311EE23D8A6DC001ED02E /* StudentScheduleViewController.m */; };
+		EEF3121523D8A6DC001ED02E /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311F223D8A6DC001ED02E /* ScheduleInquiryViewController.m */; };
+		EEF3121623D8A6DC001ED02E /* TeacherScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311F323D8A6DC001ED02E /* TeacherScheduleViewController.m */; };
+		EEF3121723D8A6DC001ED02E /* HistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311F523D8A6DC001ED02E /* HistoryView.m */; };
+		EEF3121823D8A6DC001ED02E /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311FA23D8A6DC001ED02E /* EmptyClassViewController.m */; };
+		EEF3121923D8A6DC001ED02E /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311FC23D8A6DC001ED02E /* EmptyClassModel.m */; };
+		EEF3121A23D8A6DC001ED02E /* StoreyResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF3120123D8A6DC001ED02E /* StoreyResultView.m */; };
+		EEF3121B23D8A6DC001ED02E /* LQButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF3120223D8A6DC001ED02E /* LQButton.m */; };
+		EEF3121C23D8A6DC001ED02E /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF3120323D8A6DC001ED02E /* NewDiscover6.0Media.xcassets */; };
+		EEF3121D23D8A6DC001ED02E /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF3120723D8A6DC001ED02E /* LQQFinderToolViewController.m */; };
+		EEF3121E23D8A6DC001ED02E /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF3120A23D8A6DC001ED02E /* FinderToolViewItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,8 +247,6 @@
 		1A14131D235F521C0001417E /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		1A14131E235F521C0001417E /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		1A14131F235F521C0001417E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
-		1A141327235F52290001417E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
-		1A141328235F52290001417E /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		1A14132E235F523B0001417E /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		1A14132F235F523B0001417E /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		1A14133A235F524B0001417E /* UILabel+Adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Adapter.h"; sourceTree = "<group>"; };
@@ -547,36 +549,46 @@
 		DB34EACB239BD4550052B65E /* ORWInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORWInputTextView.h; sourceTree = "<group>"; };
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
 		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		EE062F322377F5D600E5919E /* OneNewsItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
-		EE062F332377F5D600E5919E /* OneNewsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
-		EE1C9E3423D0457100B0FA66 /* EmptyClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
-		EE1C9E3523D0457100B0FA66 /* EmptyClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
-		EE1C9E3723D0457100B0FA66 /* EmptyClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassModel.m; sourceTree = "<group>"; };
-		EE1C9E3823D0457100B0FA66 /* EmptyClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassModel.h; sourceTree = "<group>"; };
-		EE1C9E3A23D0457100B0FA66 /* StoreyResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreyResultView.h; sourceTree = "<group>"; };
-		EE1C9E3B23D0457100B0FA66 /* LQButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQButton.h; sourceTree = "<group>"; };
-		EE1C9E3C23D0457100B0FA66 /* StoreyResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreyResultView.m; sourceTree = "<group>"; };
-		EE1C9E3D23D0457100B0FA66 /* LQButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQButton.m; sourceTree = "<group>"; };
-		EE3C180A23715BAD004233C5 /* VolunteerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
-		EE3C180B23715BAD004233C5 /* VolunteerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
-		EE67A4EA237E60F500BCF5F4 /* FinderToolViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
-		EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
-		EE67A4ED237E691B00BCF5F4 /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
-		EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LQQFinderToolViewController.m; sourceTree = "<group>"; };
-		EE80ADFE2377B6660003023C /* ElectricFeeItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
-		EE80ADFF2377B6660003023C /* ElectricFeeItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
-		EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
-		EE899DD42367D89900DDB0D9 /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
-		EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
-		EE899DDB2367D89900DDB0D9 /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
-		EE899DDC2367D89900DDB0D9 /* LQQFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderView.m; sourceTree = "<group>"; };
-		EE899DDD2367D89900DDB0D9 /* LQQGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQGlanceView.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
-		EE899DDF2367D89900DDB0D9 /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
-		EE899DE02367D89900DDB0D9 /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
-		EE899DE12367D89900DDB0D9 /* LQQGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQGlanceView.h; sourceTree = "<group>"; };
-		EE899DED2369A19B00DDB0D9 /* OneNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneNewsModel.h; sourceTree = "<group>"; };
-		EE899DEE2369A19B00DDB0D9 /* OneNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsModel.m; sourceTree = "<group>"; };
+		EEF311D523D8A6DC001ED02E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
+		EEF311DA23D8A6DC001ED02E /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
+		EEF311DB23D8A6DC001ED02E /* ElectricFeeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
+		EEF311DC23D8A6DC001ED02E /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
+		EEF311DE23D8A6DC001ED02E /* OneNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsModel.h; sourceTree = "<group>"; };
+		EEF311DF23D8A6DC001ED02E /* OneNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
+		EEF311E023D8A6DC001ED02E /* OneNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsModel.m; sourceTree = "<group>"; };
+		EEF311E123D8A6DC001ED02E /* OneNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
+		EEF311E323D8A6DC001ED02E /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
+		EEF311E423D8A6DC001ED02E /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
+		EEF311E623D8A6DC001ED02E /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
+		EEF311E723D8A6DC001ED02E /* LQQFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderView.m; sourceTree = "<group>"; };
+		EEF311E823D8A6DC001ED02E /* LQQGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQGlanceView.m; sourceTree = "<group>"; };
+		EEF311E923D8A6DC001ED02E /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
+		EEF311EA23D8A6DC001ED02E /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
+		EEF311EB23D8A6DC001ED02E /* LQQGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQGlanceView.h; sourceTree = "<group>"; };
+		EEF311EE23D8A6DC001ED02E /* StudentScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentScheduleViewController.m; sourceTree = "<group>"; };
+		EEF311EF23D8A6DC001ED02E /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
+		EEF311F023D8A6DC001ED02E /* TeacherScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherScheduleViewController.h; sourceTree = "<group>"; };
+		EEF311F123D8A6DC001ED02E /* StudentScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentScheduleViewController.h; sourceTree = "<group>"; };
+		EEF311F223D8A6DC001ED02E /* ScheduleInquiryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleInquiryViewController.m; sourceTree = "<group>"; };
+		EEF311F323D8A6DC001ED02E /* TeacherScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherScheduleViewController.m; sourceTree = "<group>"; };
+		EEF311F523D8A6DC001ED02E /* HistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryView.m; sourceTree = "<group>"; };
+		EEF311F623D8A6DC001ED02E /* HistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryView.h; sourceTree = "<group>"; };
+		EEF311F923D8A6DC001ED02E /* EmptyClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
+		EEF311FA23D8A6DC001ED02E /* EmptyClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
+		EEF311FC23D8A6DC001ED02E /* EmptyClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassModel.m; sourceTree = "<group>"; };
+		EEF311FD23D8A6DC001ED02E /* EmptyClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassModel.h; sourceTree = "<group>"; };
+		EEF311FF23D8A6DC001ED02E /* StoreyResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreyResultView.h; sourceTree = "<group>"; };
+		EEF3120023D8A6DC001ED02E /* LQButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQButton.h; sourceTree = "<group>"; };
+		EEF3120123D8A6DC001ED02E /* StoreyResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreyResultView.m; sourceTree = "<group>"; };
+		EEF3120223D8A6DC001ED02E /* LQButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQButton.m; sourceTree = "<group>"; };
+		EEF3120323D8A6DC001ED02E /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
+		EEF3120623D8A6DC001ED02E /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
+		EEF3120723D8A6DC001ED02E /* LQQFinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderToolViewController.m; sourceTree = "<group>"; };
+		EEF3120923D8A6DC001ED02E /* FinderToolViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
+		EEF3120A23D8A6DC001ED02E /* FinderToolViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -617,17 +629,6 @@
 				1A14131F235F521C0001417E /* BaseViewController.h */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		1A141323235F52290001417E /* Discover */ = {
-			isa = PBXGroup;
-			children = (
-				EE1C9E3223D0457100B0FA66 /* Discover_emptyClass */,
-				EE4C44A7238273970004E00E /* Discover_MainPage */,
-				EE899DD82367D89900DDB0D9 /* NewDiscover6.0Media.xcassets */,
-				EE899DD22367D89900DDB0D9 /* Disconver_ToolPage */,
-			);
-			path = Discover;
 			sourceTree = "<group>";
 		};
 		1A14132A235F523B0001417E /* Mine */ = {
@@ -1026,8 +1027,8 @@
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
 				1AAFAD41236DC96300E854A3 /* Fonts */,
 				1A14132A235F523B0001417E /* Mine */,
+				EEF311D223D8A6DC001ED02E /* Discover */,
 				1A141331235F52440001417E /* QA */,
-				1A141323235F52290001417E /* Discover */,
 				1A5A5ED423600BA300543BAE /* Login */,
 				1A141319235F521C0001417E /* Base */,
 				1A141339235F524B0001417E /* Tool */,
@@ -1511,157 +1512,184 @@
 			path = InputTextView;
 			sourceTree = "<group>";
 		};
-		EE062F352377F73C00E5919E /* News */ = {
+		EEF311D223D8A6DC001ED02E /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				EE899DED2369A19B00DDB0D9 /* OneNewsModel.h */,
-				EE899DEE2369A19B00DDB0D9 /* OneNewsModel.m */,
-				EE062F322377F5D600E5919E /* OneNewsItem.h */,
-				EE062F332377F5D600E5919E /* OneNewsItem.m */,
+				EEF311D323D8A6DC001ED02E /* Discover_MainPage */,
+				EEF311EC23D8A6DC001ED02E /* Discover_FindScheduleInquiry */,
+				EEF311F723D8A6DC001ED02E /* Discover_EmptyClass */,
+				EEF3120323D8A6DC001ED02E /* NewDiscover6.0Media.xcassets */,
+				EEF3120423D8A6DC001ED02E /* Disconver_ToolPage */,
 			);
-			path = News;
+			path = Discover;
 			sourceTree = "<group>";
 		};
-		EE062F362377F77700E5919E /* ElectricBill */ = {
+		EEF311D323D8A6DC001ED02E /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				EE899DD42367D89900DDB0D9 /* ElectricFeeModel.h */,
-				EE899DD32367D89900DDB0D9 /* ElectricFeeModel.m */,
-				EE80ADFE2377B6660003023C /* ElectricFeeItem.h */,
-				EE80ADFF2377B6660003023C /* ElectricFeeItem.m */,
-			);
-			path = ElectricBill;
-			sourceTree = "<group>";
-		};
-		EE062F372377F79300E5919E /* Volunteer */ = {
-			isa = PBXGroup;
-			children = (
-				EE3C180A23715BAD004233C5 /* VolunteerModel.h */,
-				EE3C180B23715BAD004233C5 /* VolunteerModel.m */,
-			);
-			path = Volunteer;
-			sourceTree = "<group>";
-		};
-		EE1C9E3223D0457100B0FA66 /* Discover_emptyClass */ = {
-			isa = PBXGroup;
-			children = (
-				EE1C9E3323D0457100B0FA66 /* Controller */,
-				EE1C9E3623D0457100B0FA66 /* Model */,
-				EE1C9E3923D0457100B0FA66 /* View */,
-			);
-			path = Discover_emptyClass;
-			sourceTree = "<group>";
-		};
-		EE1C9E3323D0457100B0FA66 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				EE1C9E3423D0457100B0FA66 /* EmptyClassViewController.h */,
-				EE1C9E3523D0457100B0FA66 /* EmptyClassViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		EE1C9E3623D0457100B0FA66 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EE1C9E3723D0457100B0FA66 /* EmptyClassModel.m */,
-				EE1C9E3823D0457100B0FA66 /* EmptyClassModel.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EE1C9E3923D0457100B0FA66 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EE1C9E3A23D0457100B0FA66 /* StoreyResultView.h */,
-				EE1C9E3B23D0457100B0FA66 /* LQButton.h */,
-				EE1C9E3C23D0457100B0FA66 /* StoreyResultView.m */,
-				EE1C9E3D23D0457100B0FA66 /* LQButton.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		EE4C44A7238273970004E00E /* Discover_MainPage */ = {
-			isa = PBXGroup;
-			children = (
-				EE4C44AA238273B90004E00E /* Model */,
-				EE4C44A9238273AF0004E00E /* Controller */,
-				EE4C44A8238273A80004E00E /* View */,
+				EEF311D423D8A6DC001ED02E /* Controller */,
+				EEF311D723D8A6DC001ED02E /* Model */,
+				EEF311E523D8A6DC001ED02E /* View */,
 			);
 			path = Discover_MainPage;
 			sourceTree = "<group>";
 		};
-		EE4C44A8238273A80004E00E /* View */ = {
+		EEF311D423D8A6DC001ED02E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EE899DE02367D89900DDB0D9 /* EnterButton.h */,
-				EE899DDB2367D89900DDB0D9 /* EnterButton.m */,
-				EE899DDF2367D89900DDB0D9 /* LQQFinderView.h */,
-				EE899DDC2367D89900DDB0D9 /* LQQFinderView.m */,
-				EE899DE12367D89900DDB0D9 /* LQQGlanceView.h */,
-				EE899DDD2367D89900DDB0D9 /* LQQGlanceView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		EE4C44A9238273AF0004E00E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1A141327235F52290001417E /* DiscoverViewController.h */,
-				1A141328235F52290001417E /* DiscoverViewController.m */,
+				EEF311D523D8A6DC001ED02E /* DiscoverViewController.h */,
+				EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		EE4C44AA238273B90004E00E /* Model */ = {
+		EEF311D723D8A6DC001ED02E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EE062F372377F79300E5919E /* Volunteer */,
-				EE062F362377F77700E5919E /* ElectricBill */,
-				EE062F352377F73C00E5919E /* News */,
+				EEF311D823D8A6DC001ED02E /* ElectricBill */,
+				EEF311DD23D8A6DC001ED02E /* News */,
+				EEF311E223D8A6DC001ED02E /* Volunteer */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		EE67A4E8237E60D400BCF5F4 /* FinderView */ = {
+		EEF311D823D8A6DC001ED02E /* ElectricBill */ = {
 			isa = PBXGroup;
 			children = (
+				EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */,
+				EEF311DA23D8A6DC001ED02E /* ElectricFeeModel.m */,
+				EEF311DB23D8A6DC001ED02E /* ElectricFeeItem.h */,
+				EEF311DC23D8A6DC001ED02E /* ElectricFeeModel.h */,
 			);
-			path = FinderView;
+			path = ElectricBill;
 			sourceTree = "<group>";
 		};
-		EE67A4E9237E60E200BCF5F4 /* FinderToolView */ = {
+		EEF311DD23D8A6DC001ED02E /* News */ = {
 			isa = PBXGroup;
 			children = (
+				EEF311DE23D8A6DC001ED02E /* OneNewsModel.h */,
+				EEF311DF23D8A6DC001ED02E /* OneNewsItem.h */,
+				EEF311E023D8A6DC001ED02E /* OneNewsModel.m */,
+				EEF311E123D8A6DC001ED02E /* OneNewsItem.m */,
 			);
-			path = FinderToolView;
+			path = News;
 			sourceTree = "<group>";
 		};
-		EE899DD22367D89900DDB0D9 /* Disconver_ToolPage */ = {
+		EEF311E223D8A6DC001ED02E /* Volunteer */ = {
 			isa = PBXGroup;
 			children = (
-				EE899DD52367D89900DDB0D9 /* Controller */,
-				EE899DDA2367D89900DDB0D9 /* View */,
+				EEF311E323D8A6DC001ED02E /* VolunteerModel.m */,
+				EEF311E423D8A6DC001ED02E /* VolunteerModel.h */,
 			);
-			path = Disconver_ToolPage;
+			path = Volunteer;
 			sourceTree = "<group>";
 		};
-		EE899DD52367D89900DDB0D9 /* Controller */ = {
+		EEF311E523D8A6DC001ED02E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE67A4ED237E691B00BCF5F4 /* LQQFinderToolViewController.h */,
-				EE67A4EE237E691B00BCF5F4 /* LQQFinderToolViewController.m */,
+				EEF311E623D8A6DC001ED02E /* EnterButton.m */,
+				EEF311E723D8A6DC001ED02E /* LQQFinderView.m */,
+				EEF311E823D8A6DC001ED02E /* LQQGlanceView.m */,
+				EEF311E923D8A6DC001ED02E /* LQQFinderView.h */,
+				EEF311EA23D8A6DC001ED02E /* EnterButton.h */,
+				EEF311EB23D8A6DC001ED02E /* LQQGlanceView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EEF311EC23D8A6DC001ED02E /* Discover_FindScheduleInquiry */ = {
+			isa = PBXGroup;
+			children = (
+				EEF311ED23D8A6DC001ED02E /* Controller */,
+				EEF311F423D8A6DC001ED02E /* View */,
+			);
+			path = Discover_FindScheduleInquiry;
+			sourceTree = "<group>";
+		};
+		EEF311ED23D8A6DC001ED02E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EEF311EE23D8A6DC001ED02E /* StudentScheduleViewController.m */,
+				EEF311EF23D8A6DC001ED02E /* ScheduleInquiryViewController.h */,
+				EEF311F023D8A6DC001ED02E /* TeacherScheduleViewController.h */,
+				EEF311F123D8A6DC001ED02E /* StudentScheduleViewController.h */,
+				EEF311F223D8A6DC001ED02E /* ScheduleInquiryViewController.m */,
+				EEF311F323D8A6DC001ED02E /* TeacherScheduleViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		EE899DDA2367D89900DDB0D9 /* View */ = {
+		EEF311F423D8A6DC001ED02E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE67A4EA237E60F500BCF5F4 /* FinderToolViewItem.h */,
-				EE67A4EB237E60F500BCF5F4 /* FinderToolViewItem.m */,
-				EE67A4E9237E60E200BCF5F4 /* FinderToolView */,
-				EE67A4E8237E60D400BCF5F4 /* FinderView */,
+				EEF311F523D8A6DC001ED02E /* HistoryView.m */,
+				EEF311F623D8A6DC001ED02E /* HistoryView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EEF311F723D8A6DC001ED02E /* Discover_EmptyClass */ = {
+			isa = PBXGroup;
+			children = (
+				EEF311F823D8A6DC001ED02E /* Controller */,
+				EEF311FB23D8A6DC001ED02E /* Model */,
+				EEF311FE23D8A6DC001ED02E /* View */,
+			);
+			path = Discover_EmptyClass;
+			sourceTree = "<group>";
+		};
+		EEF311F823D8A6DC001ED02E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EEF311F923D8A6DC001ED02E /* EmptyClassViewController.h */,
+				EEF311FA23D8A6DC001ED02E /* EmptyClassViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EEF311FB23D8A6DC001ED02E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EEF311FC23D8A6DC001ED02E /* EmptyClassModel.m */,
+				EEF311FD23D8A6DC001ED02E /* EmptyClassModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EEF311FE23D8A6DC001ED02E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EEF311FF23D8A6DC001ED02E /* StoreyResultView.h */,
+				EEF3120023D8A6DC001ED02E /* LQButton.h */,
+				EEF3120123D8A6DC001ED02E /* StoreyResultView.m */,
+				EEF3120223D8A6DC001ED02E /* LQButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EEF3120423D8A6DC001ED02E /* Disconver_ToolPage */ = {
+			isa = PBXGroup;
+			children = (
+				EEF3120523D8A6DC001ED02E /* Controller */,
+				EEF3120823D8A6DC001ED02E /* View */,
+			);
+			path = Disconver_ToolPage;
+			sourceTree = "<group>";
+		};
+		EEF3120523D8A6DC001ED02E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EEF3120623D8A6DC001ED02E /* LQQFinderToolViewController.h */,
+				EEF3120723D8A6DC001ED02E /* LQQFinderToolViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EEF3120823D8A6DC001ED02E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EEF3120923D8A6DC001ED02E /* FinderToolViewItem.h */,
+				EEF3120A23D8A6DC001ED02E /* FinderToolViewItem.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1833,6 +1861,7 @@
 				DB34EAED239BD4550052B65E /* remind_image_remind@2x.png in Resources */,
 				DB34EB0D239BD4550052B65E /* remind@2x.png in Resources */,
 				DB34EADF239BD4550052B65E /* remind0@3x.png in Resources */,
+				EEF3121C23D8A6DC001ED02E /* NewDiscover6.0Media.xcassets in Resources */,
 				DB34EB0B239BD4550052B65E /* timeTable_image_add@2x.png in Resources */,
 				DB34EAD3239BD4550052B65E /* WYCNoteDetailView.xib in Resources */,
 				D026A80623D4E054001A4774 /* QA.xcassets in Resources */,
@@ -1854,7 +1883,6 @@
 				DB34EB1E239BD4550052B65E /* timeTable_image_add@3x.png in Resources */,
 				DB34EB0F239BD4550052B65E /* 编辑箭头@3x.png in Resources */,
 				DB34EAF7239BD4550052B65E /* remind_image_content@3x.png in Resources */,
-				EE899DE52367D89A00DDB0D9 /* NewDiscover6.0Media.xcassets in Resources */,
 				DB34EB17239BD4550052B65E /* 提醒@3x.png in Resources */,
 				DB34EB04239BD4550052B65E /* 多课0@2x.png in Resources */,
 				DB34EB16239BD4550052B65E /* remind_image_confirm@3x.png in Resources */,
@@ -1927,31 +1955,34 @@
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
+				EEF3121523D8A6DC001ED02E /* ScheduleInquiryViewController.m in Sources */,
+				EEF3120D23D8A6DC001ED02E /* ElectricFeeModel.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
+				EEF3121923D8A6DC001ED02E /* EmptyClassModel.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
-				EE899DE72367D89A00DDB0D9 /* LQQFinderView.m in Sources */,
+				EEF3121323D8A6DC001ED02E /* LQQGlanceView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
-				EE80AE002377B6660003023C /* ElectricFeeItem.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
-				EE1C9E3F23D0457100B0FA66 /* EmptyClassModel.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
+				EEF3121A23D8A6DC001ED02E /* StoreyResultView.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
-				EE1C9E4123D0457100B0FA66 /* LQButton.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
+				EEF3120E23D8A6DC001ED02E /* OneNewsModel.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
+				EEF3120C23D8A6DC001ED02E /* ElectricFeeItem.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
@@ -1962,28 +1993,27 @@
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
-				EE1C9E3E23D0457100B0FA66 /* EmptyClassViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
-				EE899DEF2369A19B00DDB0D9 /* OneNewsModel.m in Sources */,
 				DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */,
+				EEF3121823D8A6DC001ED02E /* EmptyClassViewController.m in Sources */,
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
-				EE67A4EF237E691B00BCF5F4 /* LQQFinderToolViewController.m in Sources */,
+				EEF3121E23D8A6DC001ED02E /* FinderToolViewItem.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
-				EE899DE82367D89A00DDB0D9 /* LQQGlanceView.m in Sources */,
-				1A141329235F52290001417E /* DiscoverViewController.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
+				EEF3120F23D8A6DC001ED02E /* OneNewsItem.m in Sources */,
+				EEF3121623D8A6DC001ED02E /* TeacherScheduleViewController.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsDraftCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
-				EE899DE32367D89A00DDB0D9 /* ElectricFeeModel.m in Sources */,
+				EEF3121023D8A6DC001ED02E /* VolunteerModel.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
@@ -2005,40 +2035,42 @@
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
-				EE1C9E4023D0457100B0FA66 /* StoreyResultView.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
+				EEF3121B23D8A6DC001ED02E /* LQButton.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
-				EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
 				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
-				EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
+				EEF3121423D8A6DC001ED02E /* StudentScheduleViewController.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
+				EEF3121223D8A6DC001ED02E /* LQQFinderView.m in Sources */,
+				EEF3121723D8A6DC001ED02E /* HistoryView.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
-				EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsReleasedCell.m in Sources */,
+				EEF3121D23D8A6DC001ED02E /* LQQFinderToolViewController.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
+				EEF3121123D8A6DC001ED02E /* EnterButton.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
-				EE062F342377F5D600E5919E /* OneNewsItem.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
+				EEF3120B23D8A6DC001ED02E /* DiscoverViewController.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
