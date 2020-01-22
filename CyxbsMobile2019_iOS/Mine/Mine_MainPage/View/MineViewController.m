@@ -14,6 +14,7 @@
 #import "EditMyInfoTransitionAnimator.h"
 #import "EditMyInfoPercentDrivenController.h"
 #import "CheckInViewController.h"
+#import "MineQAController.h"
 
 @interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol, UIViewControllerTransitioningDelegate>
 
@@ -47,6 +48,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // 隐藏导航栏
+    self.navigationController.navigationBarHidden = YES;
+    
     UserItem *user = [UserItemTool defaultItem];
     self.contentView.headerView.nicknameLabel.text = user.nickname;
     
@@ -63,6 +67,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = NO;
     [self.presenter detachView];
 }
 
@@ -138,6 +143,12 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+}
+
+- (void)answerLabelClicked {
+    MineQAController *vc = [[MineQAController alloc] init];
+    vc.title = @"我的回答";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

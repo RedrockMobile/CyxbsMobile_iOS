@@ -23,7 +23,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
-        self.layer.cornerRadius = 16;
         
         // NSArray<NSDictionary<NSString *, id> *> *settingsArray;
         self.settingsArray = @[
@@ -85,6 +84,9 @@
         self.headerView = headerView;
         [headerView.editButton addTarget:self action:@selector(editButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [headerView.signinButton addTarget:self action:@selector(checkInButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UITapGestureRecognizer *answerLabelGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(answerLabelClicked)];
+        [headerView.answerNumberLabel addGestureRecognizer:answerLabelGesture];
         
         // 添加FooterView（APP设置TableView）
         UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 138) style:UITableViewStyleGrouped];
@@ -285,6 +287,12 @@
 - (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender {
     if ([self.delegate respondsToSelector:@selector(switchedLaunchingWithClassScheduleView:)]) {
         [self.delegate switchedLaunchingWithClassScheduleView:sender];
+    }
+}
+
+- (void)answerLabelClicked {
+    if ([self.delegate respondsToSelector:@selector(answerLabelClicked)]) {
+        [self.delegate answerLabelClicked];
     }
 }
 

@@ -29,6 +29,11 @@
 		1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141361235F524B0001417E /* SYCSegmentViewButton.m */; };
 		1A141378235F524B0001417E /* SYCSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141362235F524B0001417E /* SYCSegmentView.m */; };
 		1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A15DF96238D03B3005E0843 /* CheckInContentView.m */; };
+		1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16591C23D84B560039BA46 /* MineSegmentedView.m */; };
+		1A16592023D85CD60039BA46 /* MineQAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16591F23D85CD60039BA46 /* MineQAController.m */; };
+		1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592223D87E460039BA46 /* MineQATableViewController.m */; };
+		1A16592A23D880900039BA46 /* MyQuestionsReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592923D880900039BA46 /* MyQuestionsReleasedCell.m */; };
+		1A16592D23D880BE0039BA46 /* MyQuestionsDraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592C23D880BE0039BA46 /* MyQuestionsDraftCell.m */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
 		1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */; };
 		1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */; };
@@ -277,6 +282,16 @@
 		1A141379235F52550001417E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1A15DF95238D03B3005E0843 /* CheckInContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInContentView.h; sourceTree = "<group>"; };
 		1A15DF96238D03B3005E0843 /* CheckInContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInContentView.m; sourceTree = "<group>"; };
+		1A16591B23D84B560039BA46 /* MineSegmentedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSegmentedView.h; sourceTree = "<group>"; };
+		1A16591C23D84B560039BA46 /* MineSegmentedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineSegmentedView.m; sourceTree = "<group>"; };
+		1A16591E23D85CD60039BA46 /* MineQAController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAController.h; sourceTree = "<group>"; };
+		1A16591F23D85CD60039BA46 /* MineQAController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAController.m; sourceTree = "<group>"; };
+		1A16592123D87E460039BA46 /* MineQATableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQATableViewController.h; sourceTree = "<group>"; };
+		1A16592223D87E460039BA46 /* MineQATableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQATableViewController.m; sourceTree = "<group>"; };
+		1A16592823D880900039BA46 /* MyQuestionsReleasedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyQuestionsReleasedCell.h; sourceTree = "<group>"; };
+		1A16592923D880900039BA46 /* MyQuestionsReleasedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsReleasedCell.m; sourceTree = "<group>"; };
+		1A16592B23D880BE0039BA46 /* MyQuestionsDraftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyQuestionsDraftCell.h; sourceTree = "<group>"; };
+		1A16592C23D880BE0039BA46 /* MyQuestionsDraftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsDraftCell.m; sourceTree = "<group>"; };
 		1A1E869523C8D1DE00321367 /* CheckInBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInBar.h; sourceTree = "<group>"; };
 		1A1E869623C8D1DE00321367 /* CheckInBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInBar.m; sourceTree = "<group>"; };
 		1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreViewController.h; sourceTree = "<group>"; };
@@ -618,6 +633,7 @@
 		1A14132A235F523B0001417E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				1A16591423D84AC00039BA46 /* Mine_QA */,
 				1A30F38E23D0574F00FBBD83 /* IntegralStore */,
 				1A31062E23770C7300A56468 /* Mine.xcassets */,
 				1AFD152C23819505004D9CEA /* CustomTransition */,
@@ -757,6 +773,63 @@
 				1A141364235F524B0001417E /* SYCSegmentView.h */,
 			);
 			path = SegmentView;
+			sourceTree = "<group>";
+		};
+		1A16591423D84AC00039BA46 /* Mine_QA */ = {
+			isa = PBXGroup;
+			children = (
+				1A16591523D84AD50039BA46 /* MyQuestions */,
+			);
+			path = Mine_QA;
+			sourceTree = "<group>";
+		};
+		1A16591523D84AD50039BA46 /* MyQuestions */ = {
+			isa = PBXGroup;
+			children = (
+				1A16591A23D84B2D0039BA46 /* Presenter */,
+				1A16591923D84B290039BA46 /* View */,
+				1A16591823D84B200039BA46 /* Model */,
+			);
+			path = MyQuestions;
+			sourceTree = "<group>";
+		};
+		1A16591823D84B200039BA46 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A16591923D84B290039BA46 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A16592423D880290039BA46 /* Cells */,
+				1A16591E23D85CD60039BA46 /* MineQAController.h */,
+				1A16591F23D85CD60039BA46 /* MineQAController.m */,
+				1A16591B23D84B560039BA46 /* MineSegmentedView.h */,
+				1A16591C23D84B560039BA46 /* MineSegmentedView.m */,
+				1A16592123D87E460039BA46 /* MineQATableViewController.h */,
+				1A16592223D87E460039BA46 /* MineQATableViewController.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A16591A23D84B2D0039BA46 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1A16592423D880290039BA46 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1A16592B23D880BE0039BA46 /* MyQuestionsDraftCell.h */,
+				1A16592C23D880BE0039BA46 /* MyQuestionsDraftCell.m */,
+				1A16592823D880900039BA46 /* MyQuestionsReleasedCell.h */,
+				1A16592923D880900039BA46 /* MyQuestionsReleasedCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		1A30F38E23D0574F00FBBD83 /* IntegralStore */ = {
@@ -1868,6 +1941,7 @@
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
+				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
 				EE1C9E3F23D0457100B0FA66 /* EmptyClassModel.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
@@ -1903,6 +1977,7 @@
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
+				1A16592D23D880BE0039BA46 /* MyQuestionsDraftCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
@@ -1922,6 +1997,7 @@
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
+				1A16592023D85CD60039BA46 /* MineQAController.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
@@ -1935,6 +2011,7 @@
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				EE67A4EC237E60F500BCF5F4 /* FinderToolViewItem.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
+				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
 				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				EE899DE62367D89A00DDB0D9 /* EnterButton.m in Sources */,
@@ -1950,6 +2027,7 @@
 				EE3C180C23715BAD004233C5 /* VolunteerModel.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
+				1A16592A23D880900039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,

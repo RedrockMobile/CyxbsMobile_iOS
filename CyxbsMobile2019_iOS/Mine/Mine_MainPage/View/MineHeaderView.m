@@ -87,6 +87,7 @@
         }
         answerNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         answerNumberLabel.textAlignment = NSTextAlignmentCenter;
+        answerNumberLabel.userInteractionEnabled = YES;
         [self addSubview:answerNumberLabel];
         self.answerNumberLabel = answerNumberLabel;
         
@@ -247,7 +248,7 @@
             make.leading.equalTo(self.questionsNumberLabel.mas_trailing).offset(interval);
             make.top.equalTo(self.questionsNumberLabel);
         }];
-        self.answerNumberLabel.text = @"96";
+        self.answerNumberLabel.text = @"9";
         
         [self.responseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));

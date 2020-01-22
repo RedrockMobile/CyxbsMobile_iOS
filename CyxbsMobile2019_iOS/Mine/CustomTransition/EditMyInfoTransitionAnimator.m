@@ -43,15 +43,16 @@
         [transitionContext.containerView layoutIfNeeded];
         
         MineViewController *mineVC;
-        for (UIViewController *childVC in from.childViewControllers) {
-            if ([childVC isMemberOfClass:[MineViewController class]]) {
-                mineVC = (MineViewController *)childVC;
+        for (UINavigationController *childVC in from.childViewControllers) {
+            if ([childVC.viewControllers[0] isMemberOfClass:[MineViewController class]]) {
+                mineVC = (MineViewController *)childVC.viewControllers[0];
             }
         }
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
             ((UITabBarController *)from).tabBar.alpha = 0;
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.8, 0.8);
+            mineVC.contentView.layer.cornerRadius = 16;
             if (IS_IPHONEX) {
                 mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.49);
             } else if (IS_IPHONESE) {
@@ -77,9 +78,9 @@
          */
         
         MineViewController *mineVC;
-        for (UIViewController *childVC in to.childViewControllers) {
-            if ([childVC isMemberOfClass:[MineViewController class]]) {
-                mineVC = (MineViewController *)childVC;
+        for (UINavigationController *childVC in to.childViewControllers) {
+            if ([childVC.viewControllers[0] isMemberOfClass:[MineViewController class]]) {
+                mineVC = (MineViewController *)childVC.viewControllers[0];
             }
         }
         
@@ -90,6 +91,7 @@
             from.view.frame = CGRectMake(25, MAIN_SCREEN_H, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
             mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.5);
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
+            mineVC.contentView.layer.cornerRadius = 0;
             mineVC.view.userInteractionEnabled = YES;
             
             [transitionContext.containerView layoutIfNeeded];

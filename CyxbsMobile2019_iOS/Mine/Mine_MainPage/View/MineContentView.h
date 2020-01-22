@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)switchedRemindEveryDay:(UISwitch *)sender;
 - (void)switchedDisplayMemoPad:(UISwitch *)sender;
 - (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender;
+- (void)answerLabelClicked;
 
 @end
 
