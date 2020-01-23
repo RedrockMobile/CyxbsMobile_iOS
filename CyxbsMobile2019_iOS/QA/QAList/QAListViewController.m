@@ -25,7 +25,7 @@
 - (instancetype)initViewStyle:(NSString *)style dataArray:(NSArray *)array{
     self = [super init];
     self.title = style;
-    self.dataArray = array;
+    self.dataArray = [array mutableCopy];
 //    NSLog(@"%d",array.count);
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -64,6 +64,8 @@
     //后端数据还没有点赞数和浏览数，先用回答数
     [cell.integralNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"answer_num"]]];
     [cell.viewNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"answer_num"]]];
+    NSString *userIconUrl = [dic objectForKey:@"photo_thumbnail_src"];
+    [cell.userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"userIcon"]];
     
 //    NSLog(@"%@",dic);
     return cell;
@@ -74,5 +76,11 @@
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.superController.navigationController pushViewController:detailVC animated:YES];
 }
-
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSLog(@"y:%f",self.scrollView.contentOffset.y);
+    if (self.tableView.contentOffset.y <= -100) {
+       [[NSNotificationCenter defaultCenter] postNotificationName:@"QAListDataReLoad" object:nil];
+    }
+    
+}
 @end
