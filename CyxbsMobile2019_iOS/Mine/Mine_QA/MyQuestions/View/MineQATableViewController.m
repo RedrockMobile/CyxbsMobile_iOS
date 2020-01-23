@@ -7,6 +7,7 @@
 //
 
 #import "MineQATableViewController.h"
+#import "MyQuestionsDraftCell.h"
 
 @interface MineQATableViewController ()
 
@@ -39,7 +40,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[UITableViewCell alloc] init];
+    return [[MyQuestionsDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
 }
 
 

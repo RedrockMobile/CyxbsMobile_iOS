@@ -11,7 +11,7 @@
 @interface MineSegmentedView () <UIScrollViewDelegate>
 
 @property (nonatomic, weak) UIView *segmentedBar;
-@property (nonatomic, copy) NSArray *segmentedButtons;
+@property (nonatomic, copy) NSArray<UIButton *> *segmentedButtons;
 @property (nonatomic, weak) UIImageView *sliderView;
 @property (nonatomic, weak) UIScrollView *scrollView;
 
@@ -24,7 +24,11 @@
         self.childViewControllers = [childViewControllers mutableCopy];
         
         UIView *segmentedBar = [[UIView alloc] init];
-        segmentedBar.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            segmentedBar.backgroundColor = [UIColor colorNamed:@"Mine_QA_HeaderBarColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         [self addSubview:segmentedBar];
         self.segmentedBar = segmentedBar;
         
@@ -33,7 +37,16 @@
         for (int i = 0; i < controllersCount; i++) {
             UIButton *segmentedButton = [UIButton buttonWithType:UIButtonTypeSystem];
             [segmentedButton setTitle:self.childViewControllers[i].title forState:UIControlStateNormal];
-            [segmentedButton setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:UIControlStateNormal];
+            if (@available(iOS 11.0, *)) {
+                [segmentedButton setTitleColor:[UIColor colorNamed:@"Mine_QA_TitleLabelColor"] forState:UIControlStateNormal];
+            } else {
+                // Fallback on earlier versions
+            }
+            
+            if (i == 1) {
+                segmentedButton.alpha = 0.5;
+            }
+            
             segmentedButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 18];
             [tmp addObject:segmentedButton];
             [self.segmentedBar addSubview:segmentedButton];
@@ -98,7 +111,7 @@
         [self.childViewControllers[i].view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.equalTo(@(i * MAIN_SCREEN_W));
             make.width.equalTo(@(MAIN_SCREEN_W));
-            make.bottom.equalTo(self);
+            make.bottom.equalTo(self).offset(- TABBARHEIGHT);
             make.top.equalTo(self.segmentedBar.mas_bottom);
         }];
     }
@@ -110,6 +123,15 @@
     CGFloat buttonWidth = MAIN_SCREEN_W / (self.segmentedButtons.count);
     
     self.sliderView.layer.affineTransform = CGAffineTransformMakeTranslation(buttonWidth * offsetPercent, 0);
+    
+    if (offsetPercent == 0) {
+        // 选中第一个
+        self.segmentedButtons[0].alpha = 1;
+        self.segmentedButtons[1].alpha = 0.5;
+    } else if (offsetPercent == 1) {
+        self.segmentedButtons[1].alpha = 1;
+        self.segmentedButtons[0].alpha = 0.5;
+    }
 }
 
 @end

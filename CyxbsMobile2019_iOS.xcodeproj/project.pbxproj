@@ -34,6 +34,7 @@
 		1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592223D87E460039BA46 /* MineQATableViewController.m */; };
 		1A16592A23D880900039BA46 /* MyQuestionsReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592923D880900039BA46 /* MyQuestionsReleasedCell.m */; };
 		1A16592D23D880BE0039BA46 /* MyQuestionsDraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592C23D880BE0039BA46 /* MyQuestionsDraftCell.m */; };
+		1A16593123D984840039BA46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A16593023D984840039BA46 /* Assets.xcassets */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
 		1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */; };
 		1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */; };
@@ -292,6 +293,7 @@
 		1A16592923D880900039BA46 /* MyQuestionsReleasedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsReleasedCell.m; sourceTree = "<group>"; };
 		1A16592B23D880BE0039BA46 /* MyQuestionsDraftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyQuestionsDraftCell.h; sourceTree = "<group>"; };
 		1A16592C23D880BE0039BA46 /* MyQuestionsDraftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsDraftCell.m; sourceTree = "<group>"; };
+		1A16593023D984840039BA46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A1E869523C8D1DE00321367 /* CheckInBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInBar.h; sourceTree = "<group>"; };
 		1A1E869623C8D1DE00321367 /* CheckInBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInBar.m; sourceTree = "<group>"; };
 		1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreViewController.h; sourceTree = "<group>"; };
@@ -778,6 +780,7 @@
 		1A16591423D84AC00039BA46 /* Mine_QA */ = {
 			isa = PBXGroup;
 			children = (
+				1A16593023D984840039BA46 /* Assets.xcassets */,
 				1A16591523D84AD50039BA46 /* MyQuestions */,
 			);
 			path = Mine_QA;
@@ -1817,6 +1820,7 @@
 				DB34EAFA239BD4550052B65E /* remind_image_time@3x.png in Resources */,
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				DB34EAEE239BD4550052B65E /* remind_image_content@2x.png in Resources */,
+				1A16593123D984840039BA46 /* Assets.xcassets in Resources */,
 				DB34EAE2239BD4550052B65E /* 书@3x.png in Resources */,
 				DB34EB13239BD4550052B65E /* 提醒@2x.png in Resources */,
 				DB34EAF2239BD4550052B65E /* 地点@2x.png in Resources */,
