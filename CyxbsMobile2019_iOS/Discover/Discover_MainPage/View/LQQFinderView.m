@@ -7,13 +7,14 @@
 //
 
 #import "LQQFinderView.h"
+#import <SDCycleScrollView.h>
 #define PingFangSC @".PingFang SC"
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
 
 #define color21_49_91_F2F4FF [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-@interface LQQFinderView()
+@interface LQQFinderView()<SDCycleScrollViewDelegate>
 @property NSUserDefaults *defaults;
 
 @end
@@ -74,15 +75,25 @@
     [self addSubview:writeButton];
 }
 - (void) addBannerView {
-    UIView *view = [[UIView alloc] init];
-    self.bannerView = view;
-    view.backgroundColor = [UIColor blueColor];
-    view.layer.cornerRadius = 15;
-    view.layer.shadowColor = [UIColor blackColor].CGColor;
-    view.layer.shadowOpacity = 0.33f;
-    view.layer.shadowColor = [UIColor colorWithRed:140/255.0 green:150/255.0 blue:217/255.0 alpha:1].CGColor;
-    view.layer.shadowOffset = CGSizeMake(0, 3);
-    [self addSubview:view];
+    NSArray *imagesURLStrings = @[
+                           @"https://ss2.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a4b3d7085dee3d6d2293d48b252b5910/0e2442a7d933c89524cd5cd4d51373f0830200ea.jpg",
+                           @"https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/super/whfpf%3D425%2C260%2C50/sign=a41eb338dd33c895a62bcb3bb72e47c2/5fdf8db1cb134954a2192ccb524e9258d1094a1e.jpg",
+                           @"http://c.hiphotos.baidu.com/image/w%3D400/sign=c2318ff84334970a4773112fa5c8d1c0/b7fd5266d0160924c1fae5ccd60735fae7cd340d.jpg"
+                           ];
+    
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"Discover_placeholder"]];
+    self.bannerView = cycleScrollView;
+    cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+    cycleScrollView.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
+    cycleScrollView.imageURLStringsGroup = imagesURLStrings;
+    cycleScrollView.clipsToBounds = YES;
+    cycleScrollView.layer.cornerRadius = 15;
+    cycleScrollView.layer.shadowColor = [UIColor blackColor].CGColor;
+    cycleScrollView.layer.shadowOpacity = 0.33f;
+    cycleScrollView.layer.shadowColor = [UIColor colorWithRed:140/255.0 green:150/255.0 blue:217/255.0 alpha:1].CGColor;
+    cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
+    [self addSubview:cycleScrollView];
+    
 }
 - (void) addNewsSender {
     UIButton *button = [[UIButton alloc]init];
@@ -179,7 +190,7 @@
         make.height.equalTo(self.newsSender);
     }];
     
-    // 下面是封装好的四个按钮入口的约束
+    // 下面是按钮入口的约束
 
     /*这里的实现思路是：将第一个和最后一个控件的位置写定，然后剩下的控件平分的排列在中央*/
     
@@ -213,6 +224,10 @@
             }
             i++;
         }
+}
+//MARK: - bannerView按钮触发事件
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    NSLog(@"点击了第%ld个bannerView", (long)index);
 }
 //MARK: - 按钮触发事件部分实现
 - (void) touchNewsSender {

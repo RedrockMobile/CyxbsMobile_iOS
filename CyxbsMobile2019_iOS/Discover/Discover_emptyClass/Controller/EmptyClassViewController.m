@@ -60,6 +60,8 @@
     
     // Do any additional setup after loading the view.
 }
+
+
 - (void)addBackButton {
     UIButton *backButton = [[UIButton alloc]init];
     [self.view addSubview:backButton];
@@ -73,7 +75,9 @@
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void) back {
+    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 //MARK: 选择第几周
 - (void) addHorizontallyScrollView {
