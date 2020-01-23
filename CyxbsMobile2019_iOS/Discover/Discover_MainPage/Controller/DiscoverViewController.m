@@ -14,6 +14,7 @@
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
+
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
     LoginTimeOut,
@@ -151,11 +152,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.contentView = contentView;
     contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     if (@available(iOS 11.0, *)) {
-        contentView.backgroundColor = [UIColor greenColor];
+//        contentView.backgroundColor = [UIColor greenColor];
     } else {
         // Fallback on earlier versions
     }
-    contentView.contentSize = CGSizeMake(self.view.width, 1.5 * self.view.height);
+//    contentView.contentSize = CGSizeMake(self.view.width, 1.5 * self.view.height);
     [self.view addSubview:contentView];
     
 }
@@ -185,7 +186,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     LQQGlanceView *glanceView = [[LQQGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width, self.view.height * 0.7)];
     self.glanceView = glanceView;
     [self.contentView addSubview:glanceView];
-    glanceView.backgroundColor = [UIColor redColor];
+//    glanceView.backgroundColor = [UIColor redColor];
 }
 
 - (void)requestData {

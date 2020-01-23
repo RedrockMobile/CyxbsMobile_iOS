@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EnterButton.h"
 NS_ASSUME_NONNULL_BEGIN
-
+@class SDCycleScrollView;
 @protocol LQQFinderViewDelegate <NSObject>
 
 - (void) touchNewsSender;
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UILabel *weekTime;//当前周数
 @property (nonatomic, weak) UILabel *finderTitle;//“发现”标题
 @property (nonatomic, weak) UIButton *writeButton;//签到按钮
-@property (nonatomic, weak) UIView *bannerView;//
+@property (nonatomic, weak) SDCycleScrollView *bannerView;//
 @property (nonatomic, weak) UIButton *newsSender;//教务在线标题
 @property (nonatomic, weak) UIButton *news;//教务在线具体新闻标题
 @property (nonatomic, copy)NSMutableArray <EnterButton*>*enterButtonArray;//四个入口按钮
