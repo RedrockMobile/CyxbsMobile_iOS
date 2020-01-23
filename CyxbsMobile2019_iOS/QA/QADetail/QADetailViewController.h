@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QADetailViewController : UIViewController
--(void)setViewWithDic:(NSDictionary *)dic;
+-(instancetype)initViewWithId:(NSNumber *)id title:(NSString *)title;
 @end
 
 NS_ASSUME_NONNULL_END

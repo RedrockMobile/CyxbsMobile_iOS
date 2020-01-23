@@ -24,10 +24,7 @@
         [client requestWithPath:QA_ALL_QUESTIONS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSString *info = [responseObject objectForKey:@"info"];
             if ([info isEqualToString:@"success"]) {
-                NSArray *arr = [responseObject objectForKey:@"data"];
-                NSDictionary *dic = arr[0];
-//                NSLog(@"%@,%@",titleArray[i],dic);
-//                [self.dataArray addObject:[responseObject objectForKey:@"data"]];
+                
                 if ([responseObject objectForKey:@"data"] != nil) {
                     self.dataArray[i] = [responseObject objectForKey:@"data"];
                 }

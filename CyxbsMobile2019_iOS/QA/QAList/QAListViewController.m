@@ -71,8 +71,11 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    QADetailViewController *detailVC = [[QADetailViewController alloc] init];
+    
     NSDictionary *dic = _dataArray[indexPath.row];
+    NSNumber *id = [dic objectForKey:@"id"];
+    NSString *title = [dic objectForKey:@"title"];
+    QADetailViewController *detailVC = [[QADetailViewController alloc] initViewWithId:id title:title];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.superController.navigationController pushViewController:detailVC animated:YES];
 }

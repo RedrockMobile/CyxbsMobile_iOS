@@ -81,6 +81,9 @@
 		D026A81023D4F7D0001A4774 /* QAListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D026A80E23D4F7D0001A4774 /* QAListTableViewCell.xib */; };
 		D026A81723D50421001A4774 /* QADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81623D50421001A4774 /* QADetailViewController.m */; };
 		D026A81B23D5C119001A4774 /* QAListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81A23D5C119001A4774 /* QAListModel.m */; };
+		D03E59B023D9C4C700E0F34D /* QADetailImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */; };
+		D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */; };
+		D069799023D737800007E479 /* QADetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D069798F23D737800007E479 /* QADetailModel.m */; };
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
 		DB34EACE239BD4550052B65E /* DateModle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2D239BD4540052B65E /* DateModle.m */; };
 		DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */; };
@@ -380,6 +383,11 @@
 		D026A81623D50421001A4774 /* QADetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailViewController.m; sourceTree = "<group>"; };
 		D026A81923D5C119001A4774 /* QAListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAListModel.h; sourceTree = "<group>"; };
 		D026A81A23D5C119001A4774 /* QAListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAListModel.m; sourceTree = "<group>"; };
+		D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QADetailImageView.xib; sourceTree = "<group>"; };
+		D03E59B223D9D8BE00E0F34D /* QAAnswerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAAnswerViewController.h; sourceTree = "<group>"; };
+		D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAAnswerViewController.m; sourceTree = "<group>"; };
+		D069798E23D737800007E479 /* QADetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailModel.h; sourceTree = "<group>"; };
+		D069798F23D737800007E479 /* QADetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailModel.m; sourceTree = "<group>"; };
 		DB34EA2A239BD4540052B65E /* WYCClassBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassBookViewController.h; sourceTree = "<group>"; };
 		DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCClassBookViewController.m; sourceTree = "<group>"; };
 		DB34EA2D239BD4540052B65E /* DateModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateModle.m; sourceTree = "<group>"; };
@@ -653,6 +661,7 @@
 		1A141331235F52440001417E /* QA */ = {
 			isa = PBXGroup;
 			children = (
+				D03E59B123D9D8A400E0F34D /* QAAnswer */,
 				D026A81123D502F8001A4774 /* QADetail */,
 				D026A80223D4E054001A4774 /* QA.xcassets */,
 				D026A7FB23D4E054001A4774 /* QAList */,
@@ -1161,6 +1170,8 @@
 		D026A81123D502F8001A4774 /* QADetail */ = {
 			isa = PBXGroup;
 			children = (
+				D03E59AE23D9C44D00E0F34D /* View */,
+				D069798D23D737610007E479 /* Model */,
 				D026A81523D50421001A4774 /* QADetailViewController.h */,
 				D026A81623D50421001A4774 /* QADetailViewController.m */,
 			);
@@ -1172,6 +1183,32 @@
 			children = (
 				D026A81923D5C119001A4774 /* QAListModel.h */,
 				D026A81A23D5C119001A4774 /* QAListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D03E59AE23D9C44D00E0F34D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D03E59B123D9D8A400E0F34D /* QAAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				D03E59B223D9D8BE00E0F34D /* QAAnswerViewController.h */,
+				D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */,
+			);
+			path = QAAnswer;
+			sourceTree = "<group>";
+		};
+		D069798D23D737610007E479 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D069798E23D737800007E479 /* QADetailModel.h */,
+				D069798F23D737800007E479 /* QADetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1699,6 +1736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB34EADD239BD4550052B65E /* 多课1@3x.png in Resources */,
+				D03E59B023D9C4C700E0F34D /* QADetailImageView.xib in Resources */,
 				DB34EAFD239BD4550052B65E /* remind_image_title@2x.png in Resources */,
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
 				DB34EB15239BD4550052B65E /* 无事项@3x.png in Resources */,
@@ -1859,6 +1897,7 @@
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
+				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				EE899DE72367D89A00DDB0D9 /* LQQFinderView.m in Sources */,
@@ -1913,6 +1952,7 @@
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
 				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
+				D069799023D737800007E479 /* QADetailModel.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
