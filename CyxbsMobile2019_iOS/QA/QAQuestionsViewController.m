@@ -11,7 +11,7 @@
 #import "QAListSegmentView.h"
 #import "SYCSegmentView.h"
 #import "QAListModel.h"
-
+#import "QAAskViewController.h"
 @interface QAQuestionsViewController ()
 @property(strong,nonatomic)QAListModel *model;
 @end
@@ -57,7 +57,7 @@
     btn.backgroundColor = [UIColor colorWithHexString:@"#2921D1"];
     [btn setTitle:@"提问" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-
+    [btn addTarget:self action:@selector(tapAskBtn) forControlEvents:UIControlEventTouchUpInside];
     btn.layer.cornerRadius = 16;
     [view addSubview:btn];
     
@@ -105,20 +105,7 @@
         vc.title = titleArray[i];
         [views addObject:vc];
     }
-    /*
-    QAListViewController *latestView = [[QAListViewController alloc] initViewStyle:@"最新"];
-    latestView.title = @"最新";
-    QAListViewController *learningView = [[QAListViewController alloc] initViewStyle:@"学习"];
-    learningView.title = @"学习";
-    QAListViewController *anonymousView = [[QAListViewController alloc] initViewStyle:@"匿名"];
-    anonymousView.title = @"匿名";
-    QAListViewController *lifeView = [[QAListViewController alloc] initViewStyle:@"生活"];
-    lifeView.title = @"生活";
-    QAListViewController *moreView = [[QAListViewController alloc] initViewStyle:@"更多"];
-    moreView.title = @"更多";
-    
-    NSArray *views = @[latestView, learningView, anonymousView, lifeView,moreView];
-     */
+   
     for (QAListViewController *view in views) {
         view.superController = self;
     }
@@ -171,5 +158,9 @@
     [self addContentView];
     [self.model getData];
     
+}
+-(void)tapAskBtn{
+    QAAskViewController *vc = [[QAAskViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

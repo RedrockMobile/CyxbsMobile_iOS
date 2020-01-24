@@ -1,36 +1,30 @@
 //
-//  QAAnswerViewController.m
+//  QAAskViewController.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 王一成 on 2020/1/23.
+//  Created by 王一成 on 2020/1/24.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "QAAnswerViewController.h"
-#import "QAAnswerModel.h"
-@interface QAAnswerViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-@property(strong,nonatomic)NSNumber *questionId;
-@property(copy,nonatomic)NSString *content;
-@property(strong,nonatomic)NSMutableArray *answerImageArray;
-@property(strong,nonatomic)UITextView *answerTextView;
-@property(strong,nonatomic)QAAnswerModel *model;
+#import "QAAskViewController.h"
+#import "QAAskModel.h"
+#import "QAAskNextStepView.h"
+@interface QAAskViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@property(strong,nonatomic)UITextView *askTextView;
+@property(strong,nonatomic)NSMutableArray *askImageArray;
+@property(strong,nonatomic)QAAskModel *model;
 @end
 
-@implementation QAAnswerViewController
+@implementation QAAskViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
--(instancetype)initWithQuestionId:(NSNumber *)questionId content:(NSString *)content{
-    self = [super init];
-    self.questionId = questionId;
-    self.content = content;
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setNavigationBar:@"回答"];
+//    self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+    [self setNavigationBar:@"提问"];
     [self setupUI];
-    return self;
 }
+
 -(void)setNavigationBar:(NSString *)title{
     //设置标题
     UILabel *label = [[UILabel alloc]init];
@@ -46,10 +40,10 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0 , 0, 60, 60);
-    [button setTitle:@"提交" forState:UIControlStateNormal];
+    [button setTitle:@"下一步" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:23]];
-    [button addTarget:self action:@selector(commitAnswer) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
     // 设置rightBarButtonItem
     UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = rightItem;
@@ -78,7 +72,7 @@
     
 }
 -(void)setupUI{
-   
+    
     
     UIView *separateView = [[UIView alloc]init];
     separateView.backgroundColor = [UIColor colorWithHexString:@"#2A4E84"];
@@ -92,56 +86,63 @@
         make.height.mas_equalTo(1);
     }];
     
-    UILabel *titleLabel = [[UILabel alloc]init];
-    [titleLabel setText:@"问题描述"];
-    [titleLabel setAlpha:0.64];
-    [titleLabel setTextColor: [UIColor colorWithHexString:@"#15315B"]];
-    [titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:15]];
-    [self.view addSubview:titleLabel];
-    
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
+    UIView *titleView = [[UIView alloc]init];
+    [self.view addSubview:titleView];
+    [titleView  mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
+        make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
         make.top.mas_equalTo(separateView.mas_bottom).mas_offset(20);
         make.height.mas_equalTo(25);
     }];
+    NSArray *titleArray = @[@"学习",@"匿名",@"生活",@"其他"];
+    for (int i = 0; i < titleArray.count; i++) {
+        
+        UIButton *titleBtn = [[UIButton alloc]init];
+        [titleBtn setTitle:titleArray[i] forState:UIControlStateNormal];
+        [titleBtn setTitleColor:[UIColor colorWithHexString:@"#94A6C4"] forState:UIControlStateNormal];
+        titleBtn.layer.cornerRadius = 12;
+        if (i == 0) {
+            [titleBtn setFrame:CGRectMake(20, 5, 45, 23)];
+            titleBtn.backgroundColor = [UIColor colorWithHexString:@"#F7DAD7"];
+        }else{
+            [titleBtn setFrame:CGRectMake(20+i*65, 5, 45, 23)];
+            titleBtn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+        }
+        [titleView addSubview:titleBtn];
+        
+    }
+    UITextField *titleTextField = [[UITextField alloc]init];
+    titleTextField.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+    [self.view addSubview:titleTextField];
     
-    UILabel *contentLabel = [[UILabel alloc] init];
-    contentLabel.numberOfLines = 0;
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:self.content attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCRegular size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
-    
-    contentLabel.attributedText = string;
-    contentLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    contentLabel.alpha = 1.0;
-    
-    [self.view addSubview:contentLabel];
-    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
+    [titleTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.top.mas_equalTo(titleLabel.mas_bottom).mas_offset(9);
+        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
+        make.top.mas_equalTo(titleView.mas_bottom).mas_offset(10);
+        make.height.mas_equalTo(40);
     }];
     
-    self.answerTextView = [[UITextView alloc]init];
-    self.answerTextView.backgroundColor = [UIColor colorWithHexString:@"#e8edfd"];
-    [self.answerTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+    self.askTextView = [[UITextView alloc]init];
+    self.askTextView.backgroundColor = [UIColor colorWithHexString:@"#e8edfd"];
+    [self.askTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     //自适应高度
-    self.answerTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.answerTextView.text = @"回复。。";
-    [self.answerTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
-    self.answerTextView.delegate = self;
-    [self.view addSubview:self.answerTextView];
-    [self.answerTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.askTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    self.askTextView.text = @"提问内容";
+    [self.askTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
+    self.askTextView.delegate = self;
+    [self.view addSubview:self.askTextView];
+    [self.askTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(10);
+        make.top.mas_equalTo(titleTextField.mas_bottom).mas_offset(10);
         make.height.mas_equalTo(215);
     }];
     
     UIImageView *addImageView = [[UIImageView alloc]init];
-    self.answerImageArray = [NSMutableArray array];
-    [self.answerImageArray addObject:addImageView];
+    self.askImageArray = [NSMutableArray array];
+    [self.askImageArray addObject:addImageView];
     [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
-    //    [addImageView setImage:self.answerImageArray[0]];
+    //    [addImageView setImage:self.askImageArray[0]];
     addImageView.userInteractionEnabled = YES;
     //添加点击手势
     UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
@@ -149,11 +150,11 @@
     [self.view addSubview:addImageView];
     [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
+        make.top.mas_equalTo(self.askTextView.mas_bottom).mas_offset(10);
         make.height.width.mas_equalTo(110);
         
     }];
-   
+//
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
@@ -169,11 +170,10 @@
     
 }
 
-
 -(void)setAddImageView{
-   
-
-    if (self.answerImageArray.count<3&&self.answerImageArray.count>0) {
+    
+    
+    if (self.askImageArray.count<3&&self.askImageArray.count>0) {
         
         UIImageView *addImageView = [[UIImageView alloc]init];
         
@@ -183,44 +183,38 @@
         UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
         [addImageView addGestureRecognizer:tapGesture];
         [self.view addSubview:addImageView];
-        NSInteger count = self.answerImageArray.count;
-       
+        NSInteger count = self.askImageArray.count;
+        
         [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.view.mas_left).mas_offset(20+110*count);
-            make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
-            make.height.width.mas_equalTo(110);
+            make.top.mas_equalTo(self.askTextView.mas_bottom).mas_offset(10);
+            make.height.width.mas_equalTo(100);
             
         }];
-        [self.answerImageArray addObject:addImageView];
+        [self.askImageArray addObject:addImageView];
+        
+    }else if (self.askImageArray.count>2&&self.askImageArray.count<6){
+        
+        UIImageView *addImageView = [[UIImageView alloc]init];
+        
+        [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
+        addImageView.userInteractionEnabled = YES;
+        //添加点击手势
+        UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
+        [addImageView addGestureRecognizer:tapGesture];
+        [self.view addSubview:addImageView];
+        NSInteger count = self.askImageArray.count;
+        
+        [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view.mas_left).mas_offset(20+110*(count-3));
+            make.top.mas_equalTo(self.askTextView.mas_bottom).mas_offset(120);
+            make.height.width.mas_equalTo(100);
+            
+        }];
+        [self.askImageArray addObject:addImageView];
+    }else{
         
     }
-    //    UIView *imageBackgroundView = [[UIView alloc]init];
-    //    imageBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
-    //    [self.view addSubview:imageBackgroundView];
-    //    [imageBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
-    //        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-    //        make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
-    //        make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-10);
-    //    }];
-    
-    
-    //    [self.answerImageArray addObject:[UIImage imageNamed:@"userIcon"]];
-    //    UIImageView *addImageView = [[UIImageView alloc]init];
-    //    [self.answerImageArray addObject:addImageView];
-    //    [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
-    //    //    [addImageView setImage:self.answerImageArray[0]];
-    //    addImageView.userInteractionEnabled = YES;
-    //    //添加点击手势
-    //    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
-    //    [addImageView addGestureRecognizer:tapGesture];
-    //    [self.view addSubview:addImageView];
-    //    [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {\
-    //        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-    //        make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
-    //        make.height.width.mas_equalTo(110);
-    //
-    //    }];
     
 }
 -(void)addImage{
@@ -268,8 +262,8 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    //    self.answerImageArray[0] = image;
-    UIImageView *imgView = [self.answerImageArray lastObject];
+    //    self.askImageArray[0] = image;
+    UIImageView *imgView = [self.askImageArray lastObject];
     [imgView setImage:image];
     [self setAddImageView];
     //    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
@@ -282,10 +276,48 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
--(void)commitAnswer{
-    self.model = [[QAAnswerModel alloc]init];
-    [self.model commitAnswer:self.questionId content:self.answerTextView.text];
-    //    NSLog(@"%@",self.answerTextView.text);
-    [self.navigationController popViewControllerAnimated:YES];
+-(void)nextStep{
+    if ([[UIApplication sharedApplication].keyWindow viewWithTag:999]) {
+        [[[UIApplication sharedApplication].keyWindow viewWithTag:999] removeFromSuperview];
+    }
+    //初始化全屏view
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    //设置view的tag
+    view.tag = 999;
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView *blurBackgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurBackgroundView.frame = view.frame;
+    [view addSubview:blurBackgroundView];
+    
+    QAAskNextStepView *nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500)];
+    nextStepView.userInteractionEnabled = YES;
+    
+    //添加点击手势
+    UIGestureRecognizer *hiddenNextStepView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNextStepView)];
+    [view addGestureRecognizer:hiddenNextStepView];
+    //显示全屏view
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:view];
+    CGRect frame = CGRectMake(0, SCREEN_HEIGHT - 480, SCREEN_WIDTH, 500);
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
+        view.frame = frame;
+    } completion:nil];
+    
+}
+-(void)hiddenNextStepView{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIView *view = [window viewWithTag:999];
+    [UIView animateWithDuration:0.4f animations:^{
+        CGRect frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500);
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
+}
+
+-(void)commitAsk{
+//    self.model = [[QAAskModel alloc]init];
+////    [self.model commitAsk:self.questionId content:self.askTextView.text];
+//    //    NSLog(@"%@",self.askTextView.text);
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
