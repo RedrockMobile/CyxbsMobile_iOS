@@ -47,6 +47,15 @@
     self.navigationController.navigationBar.topItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:@"#122D55"];
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0 , 0, 60, 60);
+    [button setImage:[UIImage imageNamed:@"moreIcon"] forState:UIControlStateNormal];
+    //    [self.view addSubview:button];
+    
+    // 设置rightBarButtonItem
+    UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
 }
 -(void)setScrollView{
     //添加问题详情信息界面
@@ -79,21 +88,7 @@
     }
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0 , 0, 60, 60);
-    [button setImage:[UIImage imageNamed:@"moreIcon"] forState:UIControlStateNormal];
-//    [self.view addSubview:button];
-    
-    // 设置rightBarButtonItem
-    UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    
-//    UIButton *rightBtn = [[UIButton alloc]init];
-//    [rightBtn setSize:CGSizeMake(30, 10)];
-//    [rightBtn setImage:[UIImage imageNamed:@"moreIcon"] forState:UIControlStateNormal];
-//
-//    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
-//    self.navigationItem.rightBarButtonItem = rightButtonItem;
+  
     
 }
 -(void)setupUI{

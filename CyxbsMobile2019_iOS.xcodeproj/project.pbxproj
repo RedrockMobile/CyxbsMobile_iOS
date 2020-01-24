@@ -88,6 +88,10 @@
 		D026A81B23D5C119001A4774 /* QAListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81A23D5C119001A4774 /* QAListModel.m */; };
 		D03E59B023D9C4C700E0F34D /* QADetailImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */; };
 		D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */; };
+		D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59CB23DB30A900E0F34D /* QAAskModel.m */; };
+		D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59CE23DB30A900E0F34D /* QAAskNextStepView.m */; };
+		D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59D023DB30A900E0F34D /* QAAskViewController.m */; };
+		D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59D623DB30D100E0F34D /* QAAnswerModel.m */; };
 		D069799023D737800007E479 /* QADetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D069798F23D737800007E479 /* QADetailModel.m */; };
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
 		DB34EACE239BD4550052B65E /* DateModle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2D239BD4540052B65E /* DateModle.m */; };
@@ -405,6 +409,14 @@
 		D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QADetailImageView.xib; sourceTree = "<group>"; };
 		D03E59B223D9D8BE00E0F34D /* QAAnswerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAAnswerViewController.h; sourceTree = "<group>"; };
 		D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAAnswerViewController.m; sourceTree = "<group>"; };
+		D03E59C923DB30A900E0F34D /* QAAskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAskViewController.h; sourceTree = "<group>"; };
+		D03E59CB23DB30A900E0F34D /* QAAskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAskModel.m; sourceTree = "<group>"; };
+		D03E59CC23DB30A900E0F34D /* QAAskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAskModel.h; sourceTree = "<group>"; };
+		D03E59CE23DB30A900E0F34D /* QAAskNextStepView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAskNextStepView.m; sourceTree = "<group>"; };
+		D03E59CF23DB30A900E0F34D /* QAAskNextStepView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAskNextStepView.h; sourceTree = "<group>"; };
+		D03E59D023DB30A900E0F34D /* QAAskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAskViewController.m; sourceTree = "<group>"; };
+		D03E59D523DB30D100E0F34D /* QAAnswerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerModel.h; sourceTree = "<group>"; };
+		D03E59D623DB30D100E0F34D /* QAAnswerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerModel.m; sourceTree = "<group>"; };
 		D069798E23D737800007E479 /* QADetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailModel.h; sourceTree = "<group>"; };
 		D069798F23D737800007E479 /* QADetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailModel.m; sourceTree = "<group>"; };
 		DB34EA2A239BD4540052B65E /* WYCClassBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassBookViewController.h; sourceTree = "<group>"; };
@@ -680,6 +692,7 @@
 		1A141331235F52440001417E /* QA */ = {
 			isa = PBXGroup;
 			children = (
+				D03E59C823DB30A900E0F34D /* QAAsk */,
 				D03E59B123D9D8A400E0F34D /* QAAnswer */,
 				D026A81123D502F8001A4774 /* QADetail */,
 				D026A80223D4E054001A4774 /* QA.xcassets */,
@@ -1275,10 +1288,49 @@
 		D03E59B123D9D8A400E0F34D /* QAAnswer */ = {
 			isa = PBXGroup;
 			children = (
+				D03E59D423DB30D100E0F34D /* Model */,
 				D03E59B223D9D8BE00E0F34D /* QAAnswerViewController.h */,
 				D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */,
 			);
 			path = QAAnswer;
+			sourceTree = "<group>";
+		};
+		D03E59C823DB30A900E0F34D /* QAAsk */ = {
+			isa = PBXGroup;
+			children = (
+				D03E59C923DB30A900E0F34D /* QAAskViewController.h */,
+				D03E59CA23DB30A900E0F34D /* Model */,
+				D03E59CD23DB30A900E0F34D /* View */,
+				D03E59D023DB30A900E0F34D /* QAAskViewController.m */,
+			);
+			path = QAAsk;
+			sourceTree = "<group>";
+		};
+		D03E59CA23DB30A900E0F34D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D03E59CB23DB30A900E0F34D /* QAAskModel.m */,
+				D03E59CC23DB30A900E0F34D /* QAAskModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D03E59CD23DB30A900E0F34D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D03E59CE23DB30A900E0F34D /* QAAskNextStepView.m */,
+				D03E59CF23DB30A900E0F34D /* QAAskNextStepView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D03E59D423DB30D100E0F34D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D03E59D523DB30D100E0F34D /* QAAnswerModel.h */,
+				D03E59D623DB30D100E0F34D /* QAAnswerModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D069798D23D737610007E479 /* Model */ = {
@@ -1999,6 +2051,7 @@
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				EEF3121523D8A6DC001ED02E /* ScheduleInquiryViewController.m in Sources */,
 				EEF3120D23D8A6DC001ED02E /* ElectricFeeModel.m in Sources */,
+				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				EEF3121923D8A6DC001ED02E /* EmptyClassModel.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
@@ -2025,6 +2078,7 @@
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
+				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
 				EEF3120C23D8A6DC001ED02E /* ElectricFeeItem.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
@@ -2055,6 +2109,7 @@
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
+				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				EEF3121023D8A6DC001ED02E /* VolunteerModel.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
@@ -2097,6 +2152,7 @@
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				EEF3121223D8A6DC001ED02E /* LQQFinderView.m in Sources */,
+				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
 				EEF3121723D8A6DC001ED02E /* HistoryView.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
