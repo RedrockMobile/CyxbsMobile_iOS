@@ -35,7 +35,7 @@
     [self.integralNum setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
     [self.viewNum setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
     [self.date setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
-//    self.separatorView.backgroundColor = [UIColor colorWithHexString:@"#BDCCE5"];
+    self.separatorView.backgroundColor = [UIColor colorWithHexString:@"#BDCCE5"];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

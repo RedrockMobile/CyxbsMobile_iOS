@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(weak,nonatomic)IBOutlet UIImageView *answerIcon;
 @property(weak,nonatomic)IBOutlet UIImageView *integralIcon;
 @property(weak,nonatomic)IBOutlet UIImageView *viewIcon;
-//@property (weak, nonatomic) IBOutlet UIView *separatorView;
+@property (weak, nonatomic) IBOutlet UIView *separatorView;
 -(instancetype)initWithDic:(NSDictionary *)dic;
 @end
 

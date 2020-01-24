@@ -75,6 +75,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yby-iT-6Mg">
+                        <rect key="frame" x="0.0" y="143.5" width="375" height="1"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="X85-qV-NaJ"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Fek-NL-JCC" firstAttribute="leading" secondItem="8If-0i-L7f" secondAttribute="trailing" constant="6" id="5Ze-DO-TCA"/>
@@ -95,11 +102,14 @@
                     <constraint firstItem="dP0-ue-PGD" firstAttribute="centerY" secondItem="AuC-ru-OrZ" secondAttribute="centerY" id="ccG-PB-wlG"/>
                     <constraint firstItem="Yma-Tv-Bci" firstAttribute="width" secondItem="8If-0i-L7f" secondAttribute="width" id="dcq-QU-HKm"/>
                     <constraint firstAttribute="bottom" secondItem="8If-0i-L7f" secondAttribute="bottom" constant="19" id="eHz-Bb-sSp"/>
+                    <constraint firstItem="yby-iT-6Mg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="luA-U7-y4k"/>
                     <constraint firstItem="jKl-jo-Ucz" firstAttribute="leading" secondItem="8If-0i-L7f" secondAttribute="trailing" constant="270" id="ns5-wG-r77"/>
+                    <constraint firstAttribute="bottom" secondItem="yby-iT-6Mg" secondAttribute="bottom" id="nsH-Ug-5oj"/>
                     <constraint firstItem="Fek-NL-JCC" firstAttribute="centerY" secondItem="8If-0i-L7f" secondAttribute="centerY" id="nzt-v5-ahg"/>
                     <constraint firstItem="dP0-ue-PGD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="rrA-lN-0Jz"/>
                     <constraint firstItem="Yma-Tv-Bci" firstAttribute="height" secondItem="8If-0i-L7f" secondAttribute="height" id="s3v-3i-ajF"/>
                     <constraint firstItem="AuC-ru-OrZ" firstAttribute="leading" secondItem="dP0-ue-PGD" secondAttribute="trailing" constant="10" id="sw2-Q1-39h"/>
+                    <constraint firstAttribute="trailing" secondItem="yby-iT-6Mg" secondAttribute="trailing" id="xKN-IV-2An"/>
                     <constraint firstItem="dP0-ue-PGD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="ya1-vd-BBM"/>
                 </constraints>
             </tableViewCellContentView>
@@ -110,6 +120,7 @@
                 <outlet property="date" destination="9K6-IQ-z01" id="emq-ue-6KB"/>
                 <outlet property="integralNum" destination="88G-V4-Rbc" id="s9q-GW-zZI"/>
                 <outlet property="name" destination="AuC-ru-OrZ" id="7Qe-S9-tWe"/>
+                <outlet property="separatorView" destination="yby-iT-6Mg" id="UK5-Rj-43J"/>
                 <outlet property="userIcon" destination="dP0-ue-PGD" id="CJ1-S5-e07"/>
                 <outlet property="viewNum" destination="QO1-tq-860" id="Fc2-X1-rpS"/>
             </connections>
