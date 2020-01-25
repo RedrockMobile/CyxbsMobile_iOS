@@ -26,21 +26,29 @@
     
     self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     
-    MineQATableViewController *vc1 = [[MineQATableViewController alloc] init];
-    if (@available(iOS 11.0, *)) {
-        vc1.tableView.backgroundColor = [UIColor colorNamed:@"Mine_QA_BackgroundColor"];
-    } else {
-        // Fallback on earlier versions
-    }
-    vc1.title = @"已发布";
+    MineQATableViewController *vc1 = [[MineQATableViewController alloc] initWithTitle:self.title andSubTitle:@"已发布"];
     
-    MineQATableViewController *vc2 = [[MineQATableViewController alloc] init];
+    if ([self.title isEqualToString:@"评论回复"]) {
+        vc1.subTittle = @"发出评论";
+    }
+    
     if (@available(iOS 11.0, *)) {
         vc1.tableView.backgroundColor = [UIColor colorNamed:@"Mine_QA_BackgroundColor"];
     } else {
         // Fallback on earlier versions
     }
-    vc2.title = @"草稿箱";
+    
+    MineQATableViewController *vc2 = [[MineQATableViewController alloc] initWithTitle:self.title andSubTitle:@"草稿箱"];
+    
+    if ([self.title isEqualToString:@"评论回复"]) {
+        vc2.subTittle = @"收到回复";
+    }
+    
+    if (@available(iOS 11.0, *)) {
+        vc2.tableView.backgroundColor = [UIColor colorNamed:@"Mine_QA_BackgroundColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     NSArray *arr = @[vc1, vc2];
     
     
@@ -73,9 +81,15 @@
     [navigationBar addSubview:titleLabel];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    backButton.frame = CGRectMake(17, 12.5 + STATUSBARHEIGHT, 9, 19);
+    backButton.frame = CGRectMake(17, 12.5 + STATUSBARHEIGHT, 19, 19);
+    backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     backButton.backgroundColor = [UIColor blueColor];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [navigationBar addSubview:backButton];
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

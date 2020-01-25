@@ -1,8 +1,8 @@
 //
-//  MyQuestionsReleasedCell.h
+//  MyResponseSentCell.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 方昱恒 on 2020/1/22.
+//  Created by 方昱恒 on 2020/1/25.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MyQuestionsDraftCell : UITableViewCell
+@interface MyResponseSentCell : UITableViewCell
 
 @end
 

@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)switchedDisplayMemoPad:(UISwitch *)sender;
 - (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender;
 - (void)answerLabelClicked;
+- (void)questionLabelClicked;
+- (void)responseLabelClicked;
 
 @end
 

@@ -76,6 +76,7 @@
         }
         questionNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         questionNumberLabel.textAlignment = NSTextAlignmentCenter;
+        questionNumberLabel.userInteractionEnabled = YES;
         [self addSubview:questionNumberLabel];
         self.questionsNumberLabel = questionNumberLabel;
         
@@ -99,6 +100,7 @@
         }
         responseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         responseNumberLabel.textAlignment = NSTextAlignmentCenter;
+        responseNumberLabel.userInteractionEnabled = YES;
         [self addSubview:responseNumberLabel];
         self.responseNumberLabel = responseNumberLabel;
         

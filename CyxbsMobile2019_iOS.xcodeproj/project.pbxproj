@@ -31,8 +31,8 @@
 		1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16591C23D84B560039BA46 /* MineSegmentedView.m */; };
 		1A16592023D85CD60039BA46 /* MineQAController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16591F23D85CD60039BA46 /* MineQAController.m */; };
 		1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592223D87E460039BA46 /* MineQATableViewController.m */; };
-		1A16592A23D880900039BA46 /* MyQuestionsReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592923D880900039BA46 /* MyQuestionsReleasedCell.m */; };
-		1A16592D23D880BE0039BA46 /* MyQuestionsDraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592C23D880BE0039BA46 /* MyQuestionsDraftCell.m */; };
+		1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592923D880900039BA46 /* MyQuestionsDraftCell.m */; };
+		1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592C23D880BE0039BA46 /* MyQuestionsReleasedCell.m */; };
 		1A16593123D984840039BA46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A16593023D984840039BA46 /* Assets.xcassets */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
 		1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */; };
@@ -50,6 +50,10 @@
 		1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */; };
 		1A31062F23770C7300A56468 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A31062E23770C7300A56468 /* Mine.xcassets */; };
 		1A3106312377173B00A56468 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A310630237711A800A56468 /* Impact.ttf */; };
+		1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C33E23DC65C2005DC1F3 /* MyAnswerReleasedCell.m */; };
+		1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34123DC6CE2005DC1F3 /* MyAnswerDraftCell.m */; };
+		1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34423DC6F14005DC1F3 /* MyResponseSentCell.m */; };
+		1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34723DC6F58005DC1F3 /* MyResponseRecievedCell.m */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
 		1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDA23600C9100543BAE /* LoginViewController.m */; };
 		1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDD23600CBE00543BAE /* Login.xcassets */; };
@@ -298,10 +302,10 @@
 		1A16591F23D85CD60039BA46 /* MineQAController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAController.m; sourceTree = "<group>"; };
 		1A16592123D87E460039BA46 /* MineQATableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQATableViewController.h; sourceTree = "<group>"; };
 		1A16592223D87E460039BA46 /* MineQATableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQATableViewController.m; sourceTree = "<group>"; };
-		1A16592823D880900039BA46 /* MyQuestionsReleasedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyQuestionsReleasedCell.h; sourceTree = "<group>"; };
-		1A16592923D880900039BA46 /* MyQuestionsReleasedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsReleasedCell.m; sourceTree = "<group>"; };
-		1A16592B23D880BE0039BA46 /* MyQuestionsDraftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyQuestionsDraftCell.h; sourceTree = "<group>"; };
-		1A16592C23D880BE0039BA46 /* MyQuestionsDraftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsDraftCell.m; sourceTree = "<group>"; };
+		1A16592823D880900039BA46 /* MyQuestionsDraftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyQuestionsDraftCell.h; sourceTree = "<group>"; };
+		1A16592923D880900039BA46 /* MyQuestionsDraftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsDraftCell.m; sourceTree = "<group>"; };
+		1A16592B23D880BE0039BA46 /* MyQuestionsReleasedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyQuestionsReleasedCell.h; sourceTree = "<group>"; };
+		1A16592C23D880BE0039BA46 /* MyQuestionsReleasedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsReleasedCell.m; sourceTree = "<group>"; };
 		1A16593023D984840039BA46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A1E869523C8D1DE00321367 /* CheckInBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInBar.h; sourceTree = "<group>"; };
 		1A1E869623C8D1DE00321367 /* CheckInBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInBar.m; sourceTree = "<group>"; };
@@ -334,6 +338,14 @@
 		1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreCell.m; sourceTree = "<group>"; };
 		1A31062E23770C7300A56468 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		1A310630237711A800A56468 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
+		1A46C33D23DC65C2005DC1F3 /* MyAnswerReleasedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAnswerReleasedCell.h; sourceTree = "<group>"; };
+		1A46C33E23DC65C2005DC1F3 /* MyAnswerReleasedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAnswerReleasedCell.m; sourceTree = "<group>"; };
+		1A46C34023DC6CE2005DC1F3 /* MyAnswerDraftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAnswerDraftCell.h; sourceTree = "<group>"; };
+		1A46C34123DC6CE2005DC1F3 /* MyAnswerDraftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAnswerDraftCell.m; sourceTree = "<group>"; };
+		1A46C34323DC6F14005DC1F3 /* MyResponseSentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyResponseSentCell.h; sourceTree = "<group>"; };
+		1A46C34423DC6F14005DC1F3 /* MyResponseSentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyResponseSentCell.m; sourceTree = "<group>"; };
+		1A46C34623DC6F58005DC1F3 /* MyResponseRecievedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyResponseRecievedCell.h; sourceTree = "<group>"; };
+		1A46C34723DC6F58005DC1F3 /* MyResponseRecievedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyResponseRecievedCell.m; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1A5A5ED923600C9100543BAE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1A5A5EDA23600C9100543BAE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -850,10 +862,18 @@
 		1A16592423D880290039BA46 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				1A16592B23D880BE0039BA46 /* MyQuestionsDraftCell.h */,
-				1A16592C23D880BE0039BA46 /* MyQuestionsDraftCell.m */,
-				1A16592823D880900039BA46 /* MyQuestionsReleasedCell.h */,
-				1A16592923D880900039BA46 /* MyQuestionsReleasedCell.m */,
+				1A16592B23D880BE0039BA46 /* MyQuestionsReleasedCell.h */,
+				1A16592C23D880BE0039BA46 /* MyQuestionsReleasedCell.m */,
+				1A16592823D880900039BA46 /* MyQuestionsDraftCell.h */,
+				1A16592923D880900039BA46 /* MyQuestionsDraftCell.m */,
+				1A46C33D23DC65C2005DC1F3 /* MyAnswerReleasedCell.h */,
+				1A46C33E23DC65C2005DC1F3 /* MyAnswerReleasedCell.m */,
+				1A46C34023DC6CE2005DC1F3 /* MyAnswerDraftCell.h */,
+				1A46C34123DC6CE2005DC1F3 /* MyAnswerDraftCell.m */,
+				1A46C34323DC6F14005DC1F3 /* MyResponseSentCell.h */,
+				1A46C34423DC6F14005DC1F3 /* MyResponseSentCell.m */,
+				1A46C34623DC6F58005DC1F3 /* MyResponseRecievedCell.h */,
+				1A46C34723DC6F58005DC1F3 /* MyResponseRecievedCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2071,6 +2091,7 @@
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				EEF3121A23D8A6DC001ED02E /* StoreyResultView.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
+				1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				EEF3120E23D8A6DC001ED02E /* OneNewsModel.m in Sources */,
@@ -2082,6 +2103,7 @@
 				EEF3120C23D8A6DC001ED02E /* ElectricFeeItem.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
+				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
@@ -2104,7 +2126,7 @@
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				EEF3120F23D8A6DC001ED02E /* OneNewsItem.m in Sources */,
 				EEF3121623D8A6DC001ED02E /* TeacherScheduleViewController.m in Sources */,
-				1A16592D23D880BE0039BA46 /* MyQuestionsDraftCell.m in Sources */,
+				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
@@ -2122,6 +2144,7 @@
 				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
+				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
@@ -2157,7 +2180,7 @@
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
-				1A16592A23D880900039BA46 /* MyQuestionsReleasedCell.m in Sources */,
+				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
 				EEF3121D23D8A6DC001ED02E /* LQQFinderToolViewController.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
@@ -2170,6 +2193,7 @@
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
+				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,
 				EEF3120B23D8A6DC001ED02E /* DiscoverViewController.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,

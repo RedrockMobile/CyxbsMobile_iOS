@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MineQATableViewController;
 @interface MineSegmentedView : UIView
 
-@property (nonatomic, copy) NSArray<UIViewController *> *childViewControllers;
+@property (nonatomic, copy) NSArray<MineQATableViewController *> *childViewControllers;
 
 - (instancetype)initWithChildViewControllers:(NSArray *)childViewControllers;
 

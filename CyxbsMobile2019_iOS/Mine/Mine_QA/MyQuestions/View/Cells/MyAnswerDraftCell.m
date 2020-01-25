@@ -1,23 +1,22 @@
 //
-//  MyQuestionsReleasedCell.m
+//  MyAnswerDraftCell.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 方昱恒 on 2020/1/22.
+//  Created by 方昱恒 on 2020/1/25.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "MyQuestionsDraftCell.h"
+#import "MyAnswerDraftCell.h"
 
-@interface MyQuestionsDraftCell ()
+@interface MyAnswerDraftCell ()
 
-@property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UILabel *contentLabel;
 @property (nonatomic, weak) UILabel *timeLabel;
 @property (nonatomic, weak) UIButton *deleteButton;
 
 @end
 
-@implementation MyQuestionsDraftCell
+@implementation MyAnswerDraftCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -28,18 +27,6 @@
         } else {
             // Fallback on earlier versions
         }
-        
-        // 标题
-        UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.text = @"标题";
-        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 15];
-        if (@available(iOS 11.0, *)) {
-            titleLabel.textColor = [UIColor colorNamed:@"Mine_QA_TitleLabelColor"];
-        } else {
-            // Fallback on earlier versions
-        }
-        [self.contentView addSubview:titleLabel];
-        self.titleLabel = titleLabel;
         
         // 内容
         UILabel *contentLabel = [[UILabel alloc] init];
@@ -79,18 +66,14 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.top.equalTo(@18);
-    }];
-    
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.titleLabel);
+        make.leading.equalTo(@18);
         make.trailing.equalTo(self.contentView).offset(-12);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(9);
+        make.top.equalTo(@15);
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.titleLabel);
+        make.leading.equalTo(self.contentLabel);
         make.top.equalTo(self.contentLabel.mas_bottom).offset(9);
     }];
     

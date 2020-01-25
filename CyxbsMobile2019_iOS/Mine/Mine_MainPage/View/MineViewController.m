@@ -145,9 +145,21 @@
     }
 }
 
+- (void)questionLabelClicked {
+    MineQAController *vc = [[MineQAController alloc] init];
+    vc.title = @"我的提问";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)answerLabelClicked {
     MineQAController *vc = [[MineQAController alloc] init];
     vc.title = @"我的回答";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)responseLabelClicked {
+    MineQAController *vc = [[MineQAController alloc] init];
+    vc.title = @"评论回复";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

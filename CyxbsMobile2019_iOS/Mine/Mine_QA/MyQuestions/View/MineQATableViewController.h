@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MineQATableViewController : UITableViewController
 
-- (instancetype)initWithTitle:(NSString *)title;
+@property (nonatomic, copy) NSString *subTittle;
+
+- (instancetype)initWithTitle:(NSString *)title andSubTitle:(NSString *)subTitle;
 
 @end
 

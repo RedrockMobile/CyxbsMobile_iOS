@@ -1,5 +1,5 @@
 //
-//  MyQuestionsReleasedCell.h
+//  MyQuestionsDraftCell.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 方昱恒 on 2020/1/22.

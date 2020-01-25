@@ -7,6 +7,7 @@
 //
 
 #import "MineSegmentedView.h"
+#import "MineQATableViewController.h"
 
 @interface MineSegmentedView () <UIScrollViewDelegate>
 
@@ -36,7 +37,7 @@
         NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:controllersCount];
         for (int i = 0; i < controllersCount; i++) {
             UIButton *segmentedButton = [UIButton buttonWithType:UIButtonTypeSystem];
-            [segmentedButton setTitle:self.childViewControllers[i].title forState:UIControlStateNormal];
+            [segmentedButton setTitle:self.childViewControllers[i].subTittle forState:UIControlStateNormal];
             if (@available(iOS 11.0, *)) {
                 [segmentedButton setTitleColor:[UIColor colorNamed:@"Mine_QA_TitleLabelColor"] forState:UIControlStateNormal];
             } else {
@@ -48,6 +49,7 @@
             }
             
             segmentedButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 18];
+            [segmentedButton addTarget:self action:@selector(segmentedButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
             [tmp addObject:segmentedButton];
             [self.segmentedBar addSubview:segmentedButton];
         }
@@ -59,7 +61,7 @@
         self.sliderView = sliderView;
         
         UIScrollView *scrollView = [[UIScrollView alloc] init];
-        scrollView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+        scrollView.backgroundColor = self.backgroundColor;
         scrollView.pagingEnabled = YES;
         scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W * self.childViewControllers.count, 0);
         scrollView.delegate = self;
@@ -131,6 +133,15 @@
     } else if (offsetPercent == 1) {
         self.segmentedButtons[1].alpha = 1;
         self.segmentedButtons[0].alpha = 0.5;
+    }
+}
+
+
+- (void)segmentedButtonClicked:(UIButton *)sender {
+    if ([sender isEqual:self.segmentedButtons[0]]) {
+        [self.scrollView scrollToLeft];
+    } else {
+        [self.scrollView scrollToRight];
     }
 }
 

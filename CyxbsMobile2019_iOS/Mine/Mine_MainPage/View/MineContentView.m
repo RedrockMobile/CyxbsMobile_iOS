@@ -85,8 +85,15 @@
         [headerView.editButton addTarget:self action:@selector(editButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [headerView.signinButton addTarget:self action:@selector(checkInButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
+        UITapGestureRecognizer *questionLabelGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(questionLabelClicked)];
+        [headerView.questionsNumberLabel addGestureRecognizer:questionLabelGesture];
+        
         UITapGestureRecognizer *answerLabelGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(answerLabelClicked)];
         [headerView.answerNumberLabel addGestureRecognizer:answerLabelGesture];
+        
+        UITapGestureRecognizer *responseLabelGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(responseLabelClicked)];
+        [headerView.responseNumberLabel addGestureRecognizer:responseLabelGesture];
+        
         
         // 添加FooterView（APP设置TableView）
         UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 138) style:UITableViewStyleGrouped];
@@ -293,6 +300,18 @@
 - (void)answerLabelClicked {
     if ([self.delegate respondsToSelector:@selector(answerLabelClicked)]) {
         [self.delegate answerLabelClicked];
+    }
+}
+
+- (void)questionLabelClicked {
+    if ([self.delegate respondsToSelector:@selector(questionLabelClicked)]) {
+        [self.delegate questionLabelClicked];
+    }
+}
+
+- (void)responseLabelClicked {
+    if ([self.delegate respondsToSelector:@selector(responseLabelClicked)]) {
+        [self.delegate responseLabelClicked];
     }
 }
 
