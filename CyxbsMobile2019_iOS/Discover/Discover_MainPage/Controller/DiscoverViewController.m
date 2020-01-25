@@ -145,19 +145,17 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-    if(@available(iOS 11.0, *)){
+//    if(@available(iOS 11.0, *)){
         CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-        contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + statusBarFrame.size.height, self.view.width, self.view.height);
-    }
+        self.contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + [[UIApplication sharedApplication] statusBarFrame].size.height, self.view.width,self.view.height);
+
+
+//    }
     self.contentView = contentView;
     contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
-    if (@available(iOS 11.0, *)) {
-//        contentView.backgroundColor = [UIColor greenColor];
-    } else {
-        // Fallback on earlier versions
-    }
-//    contentView.contentSize = CGSizeMake(self.view.width, 1.5 * self.view.height);
+    contentView.contentSize = CGSizeMake(self.view.width, self.view.height);
     [self.view addSubview:contentView];
+    contentView.backgroundColor = UIColor.greenColor;
     
 }
 
@@ -166,16 +164,23 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     LQQFinderView *finderView;
     if(MAIN_SCREEN_W / MAIN_SCREEN_H == 320 / 568.0){
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 667.0) {
+            self.contentView.contentSize = CGSizeMake(self.view.width,1.10*self.view.height);
+    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 667.0) {//6,6s,7,8
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.53)];
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 736.0) {
+            self.contentView.contentSize = CGSizeMake(self.view.width,1.05*self.view.height);
+    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 736.0) {//plus
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.49)];
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 812.0) {
+            self.contentView.contentSize = CGSizeMake(self.view.width,0.96*self.view.height);
+    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 812.0) {//11pro,x,xs
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.44)];
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 896.0) {
+            self.contentView.contentSize = CGSizeMake(self.view.width,0.88*self.view.height);
+    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 896.0) {//11,11promax,xr,xsmax
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
+            self.contentView.contentSize = CGSizeZero;
+
     }else {//以防万一
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
+            self.contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + [[UIApplication sharedApplication] statusBarFrame].size.height, self.view.width,0.8*self.view.height);
     }
     self.finderView = finderView;
     self.finderView.delegate = self;
