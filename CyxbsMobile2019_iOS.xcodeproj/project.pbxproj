@@ -211,12 +211,17 @@
 		DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC9239BD4550052B65E /* DayLabel.m */; };
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
 		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
+		EE85033A23E0A485008120D1 /* buildCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE85030823E0A484008120D1 /* buildCircleView.m */; };
+		EE85034C23E0A485008120D1 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE85032423E0A484008120D1 /* InstallBuildTableViewCell.m */; };
+		EE85034E23E0A485008120D1 /* InstallRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE85032723E0A484008120D1 /* InstallRoomViewController.m */; };
+		EE85035623E0A4B9008120D1 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE85035523E0A4B9008120D1 /* electricity_header_setting.gif */; };
+		EE85035923E0A80C008120D1 /* SetBuilding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE85035823E0A80C008120D1 /* SetBuilding.xcassets */; };
+		EE85035B23E0AF28008120D1 /* README in Resources */ = {isa = PBXBuildFile; fileRef = EE85035A23E0AF28008120D1 /* README */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
 		EE8BD94323E014E5003E7241 /* ElectricFeeGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94223E014E5003E7241 /* ElectricFeeGlanceView.m */; };
 		EE8BD94623E018C9003E7241 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94523E018C9003E7241 /* VolunteerGlanceView.m */; };
 		EE8BD94923E01F68003E7241 /* NotSetElectriceFeeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94823E01F68003E7241 /* NotSetElectriceFeeButton.m */; };
 		EE8BD94C23E024A5003E7241 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94B23E024A5003E7241 /* NotSetVolunteerButton.m */; };
-		EE8BD94F23E03C25003E7241 /* SetBuildingAndRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94E23E03C25003E7241 /* SetBuildingAndRoomViewController.m */; };
 		EEF3120B23D8A6DC001ED02E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */; };
 		EEF3120C23D8A6DC001ED02E /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */; };
 		EEF3120D23D8A6DC001ED02E /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311DA23D8A6DC001ED02E /* ElectricFeeModel.m */; };
@@ -588,6 +593,15 @@
 		DB34EACB239BD4550052B65E /* ORWInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORWInputTextView.h; sourceTree = "<group>"; };
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
 		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EE85030823E0A484008120D1 /* buildCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildCircleView.m; sourceTree = "<group>"; };
+		EE85030A23E0A484008120D1 /* buildCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildCircleView.h; sourceTree = "<group>"; };
+		EE85032423E0A484008120D1 /* InstallBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallBuildTableViewCell.m; sourceTree = "<group>"; };
+		EE85032723E0A484008120D1 /* InstallRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallRoomViewController.m; sourceTree = "<group>"; };
+		EE85032B23E0A484008120D1 /* InstallBuildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallBuildTableViewCell.h; sourceTree = "<group>"; };
+		EE85032E23E0A485008120D1 /* InstallRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallRoomViewController.h; sourceTree = "<group>"; };
+		EE85035523E0A4B9008120D1 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
+		EE85035823E0A80C008120D1 /* SetBuilding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SetBuilding.xcassets; sourceTree = "<group>"; };
+		EE85035A23E0AF28008120D1 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		EE8BD94123E014E5003E7241 /* ElectricFeeGlanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceView.h; sourceTree = "<group>"; };
 		EE8BD94223E014E5003E7241 /* ElectricFeeGlanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeGlanceView.m; sourceTree = "<group>"; };
@@ -597,8 +611,6 @@
 		EE8BD94823E01F68003E7241 /* NotSetElectriceFeeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotSetElectriceFeeButton.m; sourceTree = "<group>"; };
 		EE8BD94A23E024A5003E7241 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
 		EE8BD94B23E024A5003E7241 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
-		EE8BD94D23E03C25003E7241 /* SetBuildingAndRoomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetBuildingAndRoomViewController.h; sourceTree = "<group>"; };
-		EE8BD94E23E03C25003E7241 /* SetBuildingAndRoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetBuildingAndRoomViewController.m; sourceTree = "<group>"; };
 		EEF311D523D8A6DC001ED02E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
@@ -1639,6 +1651,22 @@
 			path = InputTextView;
 			sourceTree = "<group>";
 		};
+		EE8502FE23E0A484008120D1 /* ChooseBuildingFile */ = {
+			isa = PBXGroup;
+			children = (
+				EE85035A23E0AF28008120D1 /* README */,
+				EE85030823E0A484008120D1 /* buildCircleView.m */,
+				EE85030A23E0A484008120D1 /* buildCircleView.h */,
+				EE85032E23E0A485008120D1 /* InstallRoomViewController.h */,
+				EE85032723E0A484008120D1 /* InstallRoomViewController.m */,
+				EE85032423E0A484008120D1 /* InstallBuildTableViewCell.m */,
+				EE85032B23E0A484008120D1 /* InstallBuildTableViewCell.h */,
+				EE85035823E0A80C008120D1 /* SetBuilding.xcassets */,
+				EE85035523E0A4B9008120D1 /* electricity_header_setting.gif */,
+			);
+			path = ChooseBuildingFile;
+			sourceTree = "<group>";
+		};
 		EEF311D223D8A6DC001ED02E /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -1654,6 +1682,7 @@
 		EEF311D323D8A6DC001ED02E /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
+				EE8502FE23E0A484008120D1 /* ChooseBuildingFile */,
 				EEF311D423D8A6DC001ED02E /* Controller */,
 				EEF311D723D8A6DC001ED02E /* Model */,
 				EEF311E523D8A6DC001ED02E /* View */,
@@ -1666,8 +1695,6 @@
 			children = (
 				EEF311D523D8A6DC001ED02E /* DiscoverViewController.h */,
 				EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */,
-				EE8BD94D23E03C25003E7241 /* SetBuildingAndRoomViewController.h */,
-				EE8BD94E23E03C25003E7241 /* SetBuildingAndRoomViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1939,6 +1966,7 @@
 				DB34EADD239BD4550052B65E /* 多课1@3x.png in Resources */,
 				D03E59B023D9C4C700E0F34D /* QADetailImageView.xib in Resources */,
 				DB34EAFD239BD4550052B65E /* remind_image_title@2x.png in Resources */,
+				EE85035923E0A80C008120D1 /* SetBuilding.xcassets in Resources */,
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
 				DB34EB15239BD4550052B65E /* 无事项@3x.png in Resources */,
 				DB34EAF4239BD4550052B65E /* 地点@3x.png in Resources */,
@@ -1955,6 +1983,7 @@
 				DB34EAEA239BD4550052B65E /* 无课@3x.png in Resources */,
 				DB34EAFC239BD4550052B65E /* 时间@2x.png in Resources */,
 				DB34EB03239BD4550052B65E /* 不提醒@3x.png in Resources */,
+				EE85035B23E0AF28008120D1 /* README in Resources */,
 				DB34EB06239BD4550052B65E /* 左三角@2x.png in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
 				1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */,
@@ -1995,6 +2024,7 @@
 				DB34EB09239BD4550052B65E /* remind1@2x.png in Resources */,
 				DB34EADE239BD4550052B65E /* timeTable_image_pull@2x.png in Resources */,
 				DB34EB18239BD4550052B65E /* remind_image_week@2x.png in Resources */,
+				EE85035623E0A4B9008120D1 /* electricity_header_setting.gif in Resources */,
 				DB34EB0C239BD4550052B65E /* 选择@3x.png in Resources */,
 				DB34EB0E239BD4550052B65E /* 删除@2x.png in Resources */,
 				DB34EAED239BD4550052B65E /* remind_image_remind@2x.png in Resources */,
@@ -2104,6 +2134,7 @@
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
+				EE85034C23E0A485008120D1 /* InstallBuildTableViewCell.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				EEF3121323D8A6DC001ED02E /* LQQGlanceView.m in Sources */,
@@ -2122,6 +2153,7 @@
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				EEF3120E23D8A6DC001ED02E /* OneNewsModel.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
+				EE85033A23E0A485008120D1 /* buildCircleView.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
@@ -2164,6 +2196,7 @@
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
 				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
+				EE85034E23E0A485008120D1 /* InstallRoomViewController.m in Sources */,
 				D069799023D737800007E479 /* QADetailModel.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
@@ -2191,7 +2224,6 @@
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
 				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
-				EE8BD94F23E03C25003E7241 /* SetBuildingAndRoomViewController.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				EE8BD94923E01F68003E7241 /* NotSetElectriceFeeButton.m in Sources */,

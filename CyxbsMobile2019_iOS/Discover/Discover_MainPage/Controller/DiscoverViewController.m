@@ -18,7 +18,7 @@
 #import "VolunteerGlanceView.h"
 #import "NotSetElectriceFeeButton.h"
 #import "NotSetVolunteerButton.h"
-
+#import "InstallRoomViewController.h"
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
     LoginTimeOut,
@@ -64,6 +64,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     } else {
         [self RequestCheckinInfo];
     }
+     [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
 }
 
 - (void)viewDidLoad {
@@ -74,7 +75,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.view.backgroundColor = [UIColor whiteColor];
     [self configNavagationBar];
     [self addFinderView];
-    [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
     [self requestData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
@@ -196,8 +196,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)addGlanceView {
     UserItem *userItem = [UserItem defaultItem];
-    NSLog(@"当前的building时%@,当前的room时%@",userItem.building,userItem.room);
+    NSLog(@"当前的building是%@,当前的room是%@",userItem.building,userItem.room);
     if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword != nil) {//用户已经绑定电费和志愿
+        NSLog(@"用户已经绑定电费和志愿");
             ElectricFeeGlanceView *eleGlanceView = [[ElectricFeeGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,152)];
             self.eleGlanceView = eleGlanceView;
             [self.contentView addSubview:eleGlanceView];
@@ -205,20 +206,24 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
             self.volGlanceView = volGlanceView;
             [self.contentView addSubview:volGlanceView];
     }else if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword == nil) {//用户仅绑定宿舍
+        NSLog(@"用户仅绑定宿舍");
         ElectricFeeGlanceView *eleGlanceView = [[ElectricFeeGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,152)];
         self.eleGlanceView = eleGlanceView;
         [self.contentView addSubview:eleGlanceView];
-        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - 12, self.view.width, 152 + 12)];
+        
+        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - 12, self.view.width, 152 + 12)];
         self.volButton = volButton;
         [self.contentView addSubview:volButton];
     }else if(userItem.building == nil && userItem.room == nil && userItem.volunteerPassword != nil) {//用户仅绑定了志愿服务账号
+        NSLog(@"用户仅绑定了志愿服务账号");
         NotSetElectriceFeeButton *eleButton = [[NotSetElectriceFeeButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,152 + 12)];
         self.eleButton = eleButton;
         [self.contentView addSubview:eleButton];
-        VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - 12, self.view.width, 152)];
+        VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - 12, self.view.width, 152)];
         self.volGlanceView = volGlanceView;
         [self.contentView addSubview:volGlanceView];
     }else {//用户什么都没绑定
+        NSLog(@"用户什么都没绑定");
         NotSetElectriceFeeButton *eleButton = [[NotSetElectriceFeeButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,152 + 12)];
         self.eleButton = eleButton;
         [self.contentView addSubview:eleButton];
@@ -259,7 +264,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 - (void) bundlingBuildingAndRoom {
     NSLog(@"点击了绑定宿舍房间号");
-    
+    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 //MARK: FinderView代理
 - (void)touchWriteButton {
