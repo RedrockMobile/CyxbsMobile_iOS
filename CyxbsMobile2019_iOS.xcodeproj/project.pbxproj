@@ -212,6 +212,11 @@
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
 		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
+		EE8BD94323E014E5003E7241 /* ElectricFeeGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94223E014E5003E7241 /* ElectricFeeGlanceView.m */; };
+		EE8BD94623E018C9003E7241 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94523E018C9003E7241 /* VolunteerGlanceView.m */; };
+		EE8BD94923E01F68003E7241 /* NotSetElectriceFeeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94823E01F68003E7241 /* NotSetElectriceFeeButton.m */; };
+		EE8BD94C23E024A5003E7241 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94B23E024A5003E7241 /* NotSetVolunteerButton.m */; };
+		EE8BD94F23E03C25003E7241 /* SetBuildingAndRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94E23E03C25003E7241 /* SetBuildingAndRoomViewController.m */; };
 		EEF3120B23D8A6DC001ED02E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */; };
 		EEF3120C23D8A6DC001ED02E /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */; };
 		EEF3120D23D8A6DC001ED02E /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311DA23D8A6DC001ED02E /* ElectricFeeModel.m */; };
@@ -584,6 +589,16 @@
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
 		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
+		EE8BD94123E014E5003E7241 /* ElectricFeeGlanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceView.h; sourceTree = "<group>"; };
+		EE8BD94223E014E5003E7241 /* ElectricFeeGlanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeGlanceView.m; sourceTree = "<group>"; };
+		EE8BD94423E018C9003E7241 /* VolunteerGlanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerGlanceView.h; sourceTree = "<group>"; };
+		EE8BD94523E018C9003E7241 /* VolunteerGlanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolunteerGlanceView.m; sourceTree = "<group>"; };
+		EE8BD94723E01F68003E7241 /* NotSetElectriceFeeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotSetElectriceFeeButton.h; sourceTree = "<group>"; };
+		EE8BD94823E01F68003E7241 /* NotSetElectriceFeeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotSetElectriceFeeButton.m; sourceTree = "<group>"; };
+		EE8BD94A23E024A5003E7241 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
+		EE8BD94B23E024A5003E7241 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
+		EE8BD94D23E03C25003E7241 /* SetBuildingAndRoomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetBuildingAndRoomViewController.h; sourceTree = "<group>"; };
+		EE8BD94E23E03C25003E7241 /* SetBuildingAndRoomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetBuildingAndRoomViewController.m; sourceTree = "<group>"; };
 		EEF311D523D8A6DC001ED02E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
@@ -1651,6 +1666,8 @@
 			children = (
 				EEF311D523D8A6DC001ED02E /* DiscoverViewController.h */,
 				EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */,
+				EE8BD94D23E03C25003E7241 /* SetBuildingAndRoomViewController.h */,
+				EE8BD94E23E03C25003E7241 /* SetBuildingAndRoomViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1700,11 +1717,19 @@
 			isa = PBXGroup;
 			children = (
 				EEF311E623D8A6DC001ED02E /* EnterButton.m */,
-				EEF311E723D8A6DC001ED02E /* LQQFinderView.m */,
-				EEF311E823D8A6DC001ED02E /* LQQGlanceView.m */,
 				EEF311E923D8A6DC001ED02E /* LQQFinderView.h */,
-				EEF311EA23D8A6DC001ED02E /* EnterButton.h */,
+				EEF311E723D8A6DC001ED02E /* LQQFinderView.m */,
 				EEF311EB23D8A6DC001ED02E /* LQQGlanceView.h */,
+				EEF311E823D8A6DC001ED02E /* LQQGlanceView.m */,
+				EEF311EA23D8A6DC001ED02E /* EnterButton.h */,
+				EE8BD94123E014E5003E7241 /* ElectricFeeGlanceView.h */,
+				EE8BD94223E014E5003E7241 /* ElectricFeeGlanceView.m */,
+				EE8BD94723E01F68003E7241 /* NotSetElectriceFeeButton.h */,
+				EE8BD94823E01F68003E7241 /* NotSetElectriceFeeButton.m */,
+				EE8BD94423E018C9003E7241 /* VolunteerGlanceView.h */,
+				EE8BD94523E018C9003E7241 /* VolunteerGlanceView.m */,
+				EE8BD94A23E024A5003E7241 /* NotSetVolunteerButton.h */,
+				EE8BD94B23E024A5003E7241 /* NotSetVolunteerButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2085,6 +2110,7 @@
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
+				EE8BD94623E018C9003E7241 /* VolunteerGlanceView.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
@@ -2165,9 +2191,12 @@
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
 				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
+				EE8BD94F23E03C25003E7241 /* SetBuildingAndRoomViewController.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
+				EE8BD94923E01F68003E7241 /* NotSetElectriceFeeButton.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
+				EE8BD94C23E024A5003E7241 /* NotSetVolunteerButton.m in Sources */,
 				EEF3121423D8A6DC001ED02E /* StudentScheduleViewController.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
@@ -2196,6 +2225,7 @@
 				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,
 				EEF3120B23D8A6DC001ED02E /* DiscoverViewController.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
+				EE8BD94323E014E5003E7241 /* ElectricFeeGlanceView.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
 				1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */,

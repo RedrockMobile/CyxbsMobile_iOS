@@ -14,6 +14,10 @@
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
+#import "ElectricFeeGlanceView.h"
+#import "VolunteerGlanceView.h"
+#import "NotSetElectriceFeeButton.h"
+#import "NotSetVolunteerButton.h"
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
@@ -27,6 +31,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //View
 @property(nonatomic, weak) LQQFinderView *finderView;//上方发现页面
 @property (nonatomic, weak) UIScrollView *contentView;
+@property (nonatomic, weak) ElectricFeeGlanceView *eleGlanceView;//电费button页面
+@property (nonatomic, weak) VolunteerGlanceView *volGlanceView;//志愿服务button页面
+@property (nonatomic, weak) NotSetElectriceFeeButton *eleButton;//未绑定账号时电费button页面
+@property (nonatomic, weak) NotSetVolunteerButton *volButton;//未绑定账号时电费button页面
 @property (nonatomic, weak) LQQGlanceView *glanceView;//下方剩余页面
 //Model
 @property ElectricFeeModel *elecModel;
@@ -66,7 +74,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.view.backgroundColor = [UIColor whiteColor];
     [self configNavagationBar];
     [self addFinderView];
-    [self addGlanceView];
+    [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
     [self requestData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
@@ -155,7 +163,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     contentView.contentSize = CGSizeMake(self.view.width, self.view.height);
     [self.view addSubview:contentView];
-    contentView.backgroundColor = UIColor.greenColor;
     
 }
 
@@ -188,10 +195,42 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)addGlanceView {
-    LQQGlanceView *glanceView = [[LQQGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width, self.view.height * 0.7)];
-    self.glanceView = glanceView;
-    [self.contentView addSubview:glanceView];
-//    glanceView.backgroundColor = [UIColor redColor];
+    UserItem *userItem = [UserItem defaultItem];
+    NSLog(@"当前的building时%@,当前的room时%@",userItem.building,userItem.room);
+    if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword != nil) {//用户已经绑定电费和志愿
+            ElectricFeeGlanceView *eleGlanceView = [[ElectricFeeGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,152)];
+            self.eleGlanceView = eleGlanceView;
+            [self.contentView addSubview:eleGlanceView];
+            VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - 12, self.view.width, 152)];
+            self.volGlanceView = volGlanceView;
+            [self.contentView addSubview:volGlanceView];
+    }else if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword == nil) {//用户仅绑定宿舍
+        ElectricFeeGlanceView *eleGlanceView = [[ElectricFeeGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,152)];
+        self.eleGlanceView = eleGlanceView;
+        [self.contentView addSubview:eleGlanceView];
+        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - 12, self.view.width, 152 + 12)];
+        self.volButton = volButton;
+        [self.contentView addSubview:volButton];
+    }else if(userItem.building == nil && userItem.room == nil && userItem.volunteerPassword != nil) {//用户仅绑定了志愿服务账号
+        NotSetElectriceFeeButton *eleButton = [[NotSetElectriceFeeButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,152 + 12)];
+        self.eleButton = eleButton;
+        [self.contentView addSubview:eleButton];
+        VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - 12, self.view.width, 152)];
+        self.volGlanceView = volGlanceView;
+        [self.contentView addSubview:volGlanceView];
+    }else {//用户什么都没绑定
+        NotSetElectriceFeeButton *eleButton = [[NotSetElectriceFeeButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,152 + 12)];
+        self.eleButton = eleButton;
+        [self.contentView addSubview:eleButton];
+        
+        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - 12, self.view.width, 152 + 12)];
+        self.volButton = volButton;
+        [self.contentView addSubview:volButton];
+    }
+     [self.eleButton addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
+
+
+    
 }
 
 - (void)requestData {
@@ -218,7 +257,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     //同时写入缓存
     [self.defaults setObject:self.oneNewsModel.oneNewsItem.oneNews forKey:@"OneNews_oneNews"];
 }
-
+- (void) bundlingBuildingAndRoom {
+    NSLog(@"点击了绑定宿舍房间号");
+    
+}
 //MARK: FinderView代理
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
