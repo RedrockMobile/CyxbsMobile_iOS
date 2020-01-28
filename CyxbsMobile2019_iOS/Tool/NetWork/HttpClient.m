@@ -141,7 +141,25 @@
     
 }
 
-
+- (void)uploadImageWithJson:(NSString *)url
+                 method:(NSInteger)method
+                 parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray 
+         prepareExecute:(PrepareExecuteBlock) prepare
+               progress:(void (^)(NSProgress * progress))progress
+                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 15.0;
+    //发送网络请求
+    [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        for (int i = 0; i < imageArray.count; i++) {
+            UIImage *image = imageArray[i];
+            NSData *data = UIImagePNGRepresentation(image);
+//            [formData appendPartWithFileData:data name:[NSString stringWithFormat:@"photo[%d]",i] fileName:[NSString stringWithFormat:@"image%d.png",i] mimeType:@"image/png"]; }
+         [formData appendPartWithFileData:data name:[NSString stringWithFormat:@"photo%d",i] fileName:@"tmp.png" mimeType:@"image/png"]; }
+        
+    } success:success failure:failure];
+}
 //- (BOOL)isReachability{
 //    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
 //    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {

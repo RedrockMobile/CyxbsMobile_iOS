@@ -12,6 +12,7 @@
 @property(strong,nonatomic)NSNumber *questionId;
 @property(copy,nonatomic)NSString *content;
 @property(strong,nonatomic)NSMutableArray *answerImageArray;
+@property(strong,nonatomic)NSMutableArray *answerImageViewArray;
 @property(strong,nonatomic)UITextView *answerTextView;
 @property(strong,nonatomic)QAAnswerModel *model;
 @end
@@ -27,6 +28,7 @@
     self.questionId = questionId;
     self.content = content;
     self.view.backgroundColor = [UIColor whiteColor];
+    [self setNotification];
     [self setNavigationBar:@"回答"];
     [self setupUI];
     return self;
@@ -77,6 +79,15 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
 }
+-(void)setNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QAAnswerCommitSuccess)
+                                                 name:@"QAAnswerCommitSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QAAnswerCommitFailure)
+                                                 name:@"QAAnswerCommitFailure" object:nil];
+}
+
 -(void)setupUI{
    
     
@@ -139,9 +150,10 @@
     
     UIImageView *addImageView = [[UIImageView alloc]init];
     self.answerImageArray = [NSMutableArray array];
-    [self.answerImageArray addObject:addImageView];
+    self.answerImageViewArray = [NSMutableArray array];
+    [self.answerImageViewArray addObject:addImageView];
     [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
-    //    [addImageView setImage:self.answerImageArray[0]];
+    //    [addImageView setImage:self.answerImageViewArray[0]];
     addImageView.userInteractionEnabled = YES;
     //添加点击手势
     UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
@@ -173,7 +185,7 @@
 -(void)setAddImageView{
    
 
-    if (self.answerImageArray.count<3&&self.answerImageArray.count>0) {
+    if (self.answerImageViewArray.count<3&&self.answerImageViewArray.count>0) {
         
         UIImageView *addImageView = [[UIImageView alloc]init];
         
@@ -183,7 +195,7 @@
         UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
         [addImageView addGestureRecognizer:tapGesture];
         [self.view addSubview:addImageView];
-        NSInteger count = self.answerImageArray.count;
+        NSInteger count = self.answerImageViewArray.count;
        
         [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.view.mas_left).mas_offset(20+110*count);
@@ -191,37 +203,9 @@
             make.height.width.mas_equalTo(110);
             
         }];
-        [self.answerImageArray addObject:addImageView];
+        [self.answerImageViewArray addObject:addImageView];
         
     }
-    //    UIView *imageBackgroundView = [[UIView alloc]init];
-    //    imageBackgroundView.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
-    //    [self.view addSubview:imageBackgroundView];
-    //    [imageBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
-    //        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-    //        make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
-    //        make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-10);
-    //    }];
-    
-    
-    //    [self.answerImageArray addObject:[UIImage imageNamed:@"userIcon"]];
-    //    UIImageView *addImageView = [[UIImageView alloc]init];
-    //    [self.answerImageArray addObject:addImageView];
-    //    [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
-    //    //    [addImageView setImage:self.answerImageArray[0]];
-    //    addImageView.userInteractionEnabled = YES;
-    //    //添加点击手势
-    //    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
-    //    [addImageView addGestureRecognizer:tapGesture];
-    //    [self.view addSubview:addImageView];
-    //    [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {\
-    //        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-    //        make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
-    //        make.height.width.mas_equalTo(110);
-    //
-    //    }];
-    
 }
 -(void)addImage{
     
@@ -268,12 +252,11 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    //    self.answerImageArray[0] = image;
-    UIImageView *imgView = [self.answerImageArray lastObject];
+    [self.answerImageArray addObject:image];
+    UIImageView *imgView = [self.answerImageViewArray lastObject];
     [imgView setImage:image];
     [self setAddImageView];
-    //    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    //    [self calulateImageFileSize:image];
+
     //当选择的类型是图片
     
 }
@@ -284,8 +267,23 @@
 }
 -(void)commitAnswer{
     self.model = [[QAAnswerModel alloc]init];
-    [self.model commitAnswer:self.questionId content:self.answerTextView.text];
-    //    NSLog(@"%@",self.answerTextView.text);
+    [self.model commitAnswer:self.questionId content:self.answerTextView.text imageArray:self.answerImageArray];
+
+}
+-(void)QAAnswerCommitSuccess{
     [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)QAAnswerCommitFailure{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"答案提交失败" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [controller addAction:act1];
+    
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
 }
 @end

@@ -9,6 +9,7 @@
 #import "QAAskViewController.h"
 #import "QAAskModel.h"
 #import "QAAskNextStepView.h"
+#import "QAAskNextStepViewController.h"
 @interface QAAskViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(strong,nonatomic)UITextView *askTextView;
 @property(strong,nonatomic)NSMutableArray *askImageArray;
@@ -20,7 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-//    self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+    //    self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+    [self configNavagationBar];
     [self setNavigationBar:@"提问"];
     [self setupUI];
 }
@@ -54,12 +56,12 @@
     
 }
 - (void)configNavagationBar {
-    if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-    } else {
-        // Fallback on earlier versions
-    }
-    
+    //    if (@available(iOS 11.0, *)) {
+    //        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    //    } else {
+    //        // Fallback on earlier versions
+    //    }
+    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
     //隐藏导航栏的分割线
     if (@available(iOS 11.0, *)) {
@@ -154,7 +156,7 @@
         make.height.width.mas_equalTo(110);
         
     }];
-//
+    //
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
@@ -277,47 +279,60 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)nextStep{
-    if ([[UIApplication sharedApplication].keyWindow viewWithTag:999]) {
-        [[[UIApplication sharedApplication].keyWindow viewWithTag:999] removeFromSuperview];
-    }
-    //初始化全屏view
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    //设置view的tag
-    view.tag = 999;
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    UIVisualEffectView *blurBackgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    blurBackgroundView.frame = view.frame;
-    [view addSubview:blurBackgroundView];
+    //    if ([[UIApplication sharedApplication].keyWindow viewWithTag:999]) {
+    //        [[[UIApplication sharedApplication].keyWindow viewWithTag:999] removeFromSuperview];
+    //    }
+    //    //初始化全屏view
+    //    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    //    view.backgroundColor = [UIColor colorWithHexString:@"#DCDDE3"];
+    //    //设置view的tag
+    //    view.tag = 999;
+    //    UIView *backView = [[UIView alloc]init];
+    //    [backView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    //    backView.alpha = 0;
+    //    //添加点击手势
+    //    UIGestureRecognizer *hiddenNextStepView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNextStepView)];
+    //    [backView addGestureRecognizer:hiddenNextStepView];
+    //    [view addSubview:backView];
+    //
+    //    QAAskNextStepView *nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500)];
+    //    nextStepView.userInteractionEnabled = YES;
+    //    nextStepView.alpha = 1;
+    //    [view addSubview:nextStepView];
+    //
+    //    //显示全屏view
+    //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    //    [window addSubview:view];
+    //    CGRect frame = CGRectMake(0, SCREEN_HEIGHT - 480, SCREEN_WIDTH, 500);
+    //    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
+    //        nextStepView.frame = frame;
+    //    } completion:nil];
+    //    [backView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 480)];
+    QAAskNextStepViewController *vc = [[QAAskNextStepViewController alloc]init];
+    vc.modalTransitionStyle =  UIModalTransitionStyleCoverVertical;
+    vc.hidesBottomBarWhenPushed = YES;
+    //    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+    //    navi.definesPresentationContext = YES;
+    //    navi.modalPresentationStyle = UIModalPresentationCurrentContext;
     
-    QAAskNextStepView *nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500)];
-    nextStepView.userInteractionEnabled = YES;
-    
-    //添加点击手势
-    UIGestureRecognizer *hiddenNextStepView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNextStepView)];
-    [view addGestureRecognizer:hiddenNextStepView];
-    //显示全屏view
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:view];
-    CGRect frame = CGRectMake(0, SCREEN_HEIGHT - 480, SCREEN_WIDTH, 500);
-    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
-        view.frame = frame;
-    } completion:nil];
-    
-}
--(void)hiddenNextStepView{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UIView *view = [window viewWithTag:999];
-    [UIView animateWithDuration:0.4f animations:^{
-        CGRect frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500);
-    } completion:^(BOOL finished) {
-        [view removeFromSuperview];
+    [self.navigationController presentViewController:vc animated:YES completion:^{
+        //        navi.navigationBarHidden = YES;
     }];
 }
+//-(void)hiddenNextStepView{
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    UIView *view = [window viewWithTag:999];
+//    [UIView animateWithDuration:0.4f animations:^{
+//        CGRect frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500);
+//    } completion:^(BOOL finished) {
+//        [view removeFromSuperview];
+//    }];
+//}
 
 -(void)commitAsk{
-//    self.model = [[QAAskModel alloc]init];
-////    [self.model commitAsk:self.questionId content:self.askTextView.text];
-//    //    NSLog(@"%@",self.askTextView.text);
-//    [self.navigationController popViewControllerAnimated:YES];
+    //    self.model = [[QAAskModel alloc]init];
+    ////    [self.model commitAsk:self.questionId content:self.askTextView.text];
+    //    //    NSLog(@"%@",self.askTextView.text);
+    //    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
