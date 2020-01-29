@@ -46,27 +46,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.title isEqualToString:@"我的提问"]) {
-        self.tableView.rowHeight = 135;
-        
         if ([self.subTittle isEqualToString:@"已发布"]) {
+            self.tableView.rowHeight = 135;
             return [[MyQuestionsReleasedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
         } else {
+            self.tableView.rowHeight = 139;
             return [[MyQuestionsDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
         }
     } else if ([self.title isEqualToString:@"我的回答"]) {
-        self.tableView.rowHeight = 112;
-        
         if ([self.subTittle isEqualToString:@"已发布"]) {
+            self.tableView.rowHeight = 112;
             return [[MyAnswerReleasedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
         } else {
+            self.tableView.rowHeight = 106;
             return [[MyAnswerDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
         }
     } else if ([self.title isEqualToString:@"评论回复"]) {
-        self.tableView.rowHeight = 81;
-        
         if ([self.subTittle isEqualToString:@"发出评论"]) {
+            self.tableView.rowHeight = 81;
             return [[MyResponseSentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
         } else {
+            self.tableView.rowHeight = 71;
             return [[MyResponseRecievedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
         }
     } else {

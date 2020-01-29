@@ -7,6 +7,7 @@
 //
 
 #import "MineHeaderView.h"
+#import "MineQADataItem.h"
 
 @interface MineHeaderView ()
 
@@ -68,6 +69,9 @@
         [self addSubview:signinButton];
         self.signinButton = signinButton;
         
+        
+        MineQADataItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[MineQADataItem archivePath]];
+        
         UILabel *questionNumberLabel = [[UILabel alloc] init];
         if (IS_IPHONESE) {
             questionNumberLabel.font = [UIFont fontWithName:@"Impact" size:25];
@@ -77,6 +81,7 @@
         questionNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         questionNumberLabel.textAlignment = NSTextAlignmentCenter;
         questionNumberLabel.userInteractionEnabled = YES;
+        questionNumberLabel.text = item.askNum;
         [self addSubview:questionNumberLabel];
         self.questionsNumberLabel = questionNumberLabel;
         
@@ -89,6 +94,7 @@
         answerNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         answerNumberLabel.textAlignment = NSTextAlignmentCenter;
         answerNumberLabel.userInteractionEnabled = YES;
+        answerNumberLabel.text = item.answerNum;
         [self addSubview:answerNumberLabel];
         self.answerNumberLabel = answerNumberLabel;
         
@@ -101,6 +107,7 @@
         responseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         responseNumberLabel.textAlignment = NSTextAlignmentCenter;
         responseNumberLabel.userInteractionEnabled = YES;
+        responseNumberLabel.text = item.commentNum;
         [self addSubview:responseNumberLabel];
         self.responseNumberLabel = responseNumberLabel;
         
@@ -112,6 +119,7 @@
         }
         praiseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         praiseNumberLabel.textAlignment = NSTextAlignmentCenter;
+        praiseNumberLabel.text = item.praiseNum;
         [self addSubview:praiseNumberLabel];
         self.praiseNumberLabel = praiseNumberLabel;
         
@@ -215,56 +223,48 @@
             make.leading.equalTo(self.whiteBoard).offset(15);
             make.top.equalTo(self.whiteBoard).offset(43);
         }];
-        self.questionsNumberLabel.text = @"96";
         
         [self.answerNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
             make.leading.equalTo(self.questionsNumberLabel.mas_trailing).offset(interval);
             make.top.equalTo(self.questionsNumberLabel);
         }];
-        self.answerNumberLabel.text = @"96";
         
         [self.responseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
             make.leading.equalTo(self.answerNumberLabel.mas_trailing).offset(interval);
             make.top.equalTo(self.questionsNumberLabel);
         }];
-        self.responseNumberLabel.text = @"96";
 
         [self.praiseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
             make.leading.equalTo(self.responseNumberLabel.mas_trailing).offset(interval);
             make.top.equalTo(self.questionsNumberLabel);
         }];
-        self.praiseNumberLabel.text = @"96";
     } else {
         [self.questionsNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
             make.leading.equalTo(self.whiteBoard).offset(15);
             make.top.equalTo(self.whiteBoard).offset(53);
         }];
-        self.questionsNumberLabel.text = @"96";
         
         [self.answerNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
             make.leading.equalTo(self.questionsNumberLabel.mas_trailing).offset(interval);
             make.top.equalTo(self.questionsNumberLabel);
         }];
-        self.answerNumberLabel.text = @"9";
         
         [self.responseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
             make.leading.equalTo(self.answerNumberLabel.mas_trailing).offset(interval);
             make.top.equalTo(self.questionsNumberLabel);
         }];
-        self.responseNumberLabel.text = @"96";
         
         [self.praiseNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
             make.leading.equalTo(self.responseNumberLabel.mas_trailing).offset(interval);
             make.top.equalTo(self.questionsNumberLabel);
         }];
-        self.praiseNumberLabel.text = @"96";
     }
     
     [self.questionLabel mas_makeConstraints:^(MASConstraintMaker *make) {

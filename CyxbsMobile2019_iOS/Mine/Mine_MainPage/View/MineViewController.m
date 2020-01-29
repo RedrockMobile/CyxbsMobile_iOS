@@ -15,6 +15,7 @@
 #import "EditMyInfoPercentDrivenController.h"
 #import "CheckInViewController.h"
 #import "MineQAController.h"
+#import "MineQADataItem.h"
 
 @interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol, UIViewControllerTransitioningDelegate>
 
@@ -34,9 +35,6 @@
     self.presenter = [[MinePresenter alloc] init];
     [self.presenter attachView:self];
     
-    // 加载邮问数据
-    [self.presenter requestQAInfo];
-    
     // 添加contentView
     MineContentView *contentView = [[MineContentView alloc] init];
     [self.view addSubview:contentView];
@@ -45,6 +43,9 @@
         make.edges.equalTo(self.view);
     }];
     contentView.delegate = self;
+    
+    // 加载邮问数据
+    [self.presenter requestQAInfo];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -165,8 +166,11 @@
 
 
 #pragma mark - Presenter回调
-- (void)QAInfoRequestsSucceeded {
-    //邮问数据请求成功
+- (void)QAInfoRequestsSucceededWithItem:(MineQADataItem *)item {
+    self.contentView.headerView.questionsNumberLabel.text = item.askNum;
+    self.contentView.headerView.answerNumberLabel.text = item.answerNum;
+    self.contentView.headerView.responseNumberLabel.text = item.commentNum;
+    self.contentView.headerView.praiseNumberLabel.text = item.praiseNum;
 }
 
 

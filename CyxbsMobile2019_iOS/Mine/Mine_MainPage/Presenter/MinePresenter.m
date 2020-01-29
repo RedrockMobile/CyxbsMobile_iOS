@@ -7,6 +7,8 @@
 //
 
 #import "MinePresenter.h"
+#import "MineQADataItem.h"
+#import "MineModel.h"
 
 @implementation MinePresenter
 
@@ -19,8 +21,11 @@
 }
 
 - (void)requestQAInfo {
-    // 请求邮问数据
-    [self.attachedView QAInfoRequestsSucceeded];
+    [MineModel requestQADataSucceeded:^(MineQADataItem * _Nonnull responseItem) {        
+        [self.attachedView QAInfoRequestsSucceededWithItem:responseItem];
+    } failed:^(NSError * _Nonnull err) {
+        
+    }];
 }
 
 @end

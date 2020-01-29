@@ -10,9 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MineQADataItem;
 @protocol MineContentViewProtocol <NSObject>
 
-- (void)QAInfoRequestsSucceeded;
+- (void)QAInfoRequestsSucceededWithItem:(MineQADataItem *)item;
 
 @end
 

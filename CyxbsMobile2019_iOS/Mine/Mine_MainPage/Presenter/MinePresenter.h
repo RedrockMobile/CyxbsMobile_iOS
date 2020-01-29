@@ -11,9 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MineModel;
 @interface MinePresenter : NSObject
 
 @property (nonatomic, strong) UIViewController<MineContentViewProtocol> *attachedView;
+@property (nonatomic, strong) MineModel *model;
 
 - (void)attachView:(UIViewController<MineContentViewProtocol> *)view;
 - (void)detachView;

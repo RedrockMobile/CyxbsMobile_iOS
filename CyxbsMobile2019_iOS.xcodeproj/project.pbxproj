@@ -73,6 +73,8 @@
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
+		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
+		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
 		1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */; };
@@ -397,6 +399,10 @@
 		1AC2550623C9B14F00DF0475 /* DidNotCheckInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DidNotCheckInDot.h; sourceTree = "<group>"; };
 		1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DidNotCheckInDot.m; sourceTree = "<group>"; };
 		1AC2550923C9B23200DF0475 /* TodaysDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodaysDot.h; sourceTree = "<group>"; };
+		1AD6D1BD23E161100099A7E2 /* MineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineModel.h; sourceTree = "<group>"; };
+		1AD6D1BE23E161100099A7E2 /* MineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineModel.m; sourceTree = "<group>"; };
+		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
+		1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQADataItem.m; sourceTree = "<group>"; };
 		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
@@ -698,9 +704,9 @@
 		1A14132A235F523B0001417E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				1A31062E23770C7300A56468 /* Mine.xcassets */,
 				1A16591423D84AC00039BA46 /* Mine_QA */,
 				1A30F38E23D0574F00FBBD83 /* IntegralStore */,
-				1A31062E23770C7300A56468 /* Mine.xcassets */,
 				1AFD152C23819505004D9CEA /* CustomTransition */,
 				1ABE801F238D01A600E88C4E /* CheckIn */,
 				1AFD1513237D8166004D9CEA /* EditMyInformation */,
@@ -846,26 +852,11 @@
 			isa = PBXGroup;
 			children = (
 				1A16593023D984840039BA46 /* Assets.xcassets */,
-				1A16591523D84AD50039BA46 /* MyQuestions */,
+				1A59CA0723E15E27007953A5 /* Model */,
+				1A59CA0823E15E27007953A5 /* Presenter */,
+				1A16591923D84B290039BA46 /* View */,
 			);
 			path = Mine_QA;
-			sourceTree = "<group>";
-		};
-		1A16591523D84AD50039BA46 /* MyQuestions */ = {
-			isa = PBXGroup;
-			children = (
-				1A16591A23D84B2D0039BA46 /* Presenter */,
-				1A16591923D84B290039BA46 /* View */,
-				1A16591823D84B200039BA46 /* Model */,
-			);
-			path = MyQuestions;
-			sourceTree = "<group>";
-		};
-		1A16591823D84B200039BA46 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1A16591923D84B290039BA46 /* View */ = {
@@ -880,13 +871,6 @@
 				1A16592223D87E460039BA46 /* MineQATableViewController.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1A16591A23D84B2D0039BA46 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		1A16592423D880290039BA46 /* Cells */ = {
@@ -1004,6 +988,20 @@
 				1A30F3F723D4330E00FBBD83 /* WaterFallLayout.m */,
 			);
 			path = CollectionViewLayout;
+			sourceTree = "<group>";
+		};
+		1A59CA0723E15E27007953A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A59CA0823E15E27007953A5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		1A5A5ED423600BA300543BAE /* Login */ = {
@@ -1176,9 +1174,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1AC2550C23C9E2B800DF0475 /* Model */ = {
+		1AD6D1BC23E161050099A7E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1AD6D1BD23E161100099A7E2 /* MineModel.h */,
+				1AD6D1BE23E161100099A7E2 /* MineModel.m */,
+				1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */,
+				1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1186,9 +1188,9 @@
 		1AFD1512237D814D004D9CEA /* Mine_MainPage */ = {
 			isa = PBXGroup;
 			children = (
+				1AD6D1BC23E161050099A7E2 /* Model */,
 				1A7BAC632369AB9500CA512D /* Protocol */,
 				1A14132B235F523B0001417E /* Presenter */,
-				1AC2550C23C9E2B800DF0475 /* Model */,
 				1A14132D235F523B0001417E /* View */,
 			);
 			path = Mine_MainPage;
@@ -2181,6 +2183,7 @@
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				EEF3121E23D8A6DC001ED02E /* FinderToolViewItem.m in Sources */,
+				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
@@ -2254,6 +2257,7 @@
 				EEF3121123D8A6DC001ED02E /* EnterButton.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
+				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,

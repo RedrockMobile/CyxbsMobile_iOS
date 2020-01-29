@@ -167,8 +167,11 @@
 #define CHECKININFOAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/User/getScoreStatus"
 /// 签到
 #define CHECKINAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/Integral/checkIn"
-
+/// 积分商城
 #define INTEGRALSTORELISTAPI @"https://getman.cn/mock/integralStore"
+/// “我的”邮问数据
+#define MINEQADATAAPI @"https://getman.cn/mock/MineQAData"
+
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
