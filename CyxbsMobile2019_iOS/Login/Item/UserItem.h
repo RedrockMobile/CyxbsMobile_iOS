@@ -71,7 +71,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 房间号：例如413
 @property (nonatomic, copy) NSString *room;
-
+/// 志愿服务账号
+@property (nonatomic, copy) NSString *volunteerUserName;
+/// 志愿服务密码
+@property (nonatomic, copy) NSString *volunteerPassword ;
 /// 获得单例对象
 + (UserItem *)defaultItem;
 

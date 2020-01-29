@@ -129,4 +129,12 @@ static UserItem *item = nil;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
+- (void)setVolunteerUserName:(NSString *)volunteerUserName {
+    _volunteerUserName = volunteerUserName;
+    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
+- (void)setVolunteerPassword:(NSString *)volunteerPassword {
+    _volunteerPassword = volunteerPassword;
+    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
 @end
