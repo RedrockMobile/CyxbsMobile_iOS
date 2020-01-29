@@ -9,7 +9,7 @@
 #import "QAAnswerModel.h"
 
 @implementation QAAnswerModel
--(void)commitAnswer:(NSNumber *)questionId content:(NSString *)content{
+-(void)commitAnswer:(NSNumber *)questionId content:(NSString *)content imageArray:(NSArray *)imageArray{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":questionId,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum],@"content":content};
     //测试数据
@@ -17,7 +17,14 @@
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
 //            self.dataDic = [responseObject objectForKey:@"data"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitSuccess" object:nil];
+            self.answerId = [responseObject objectForKey:@"data"];
+            if (imageArray.count == 0) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitSuccess" object:nil];
+            }else{
+               [self uploadPhoto:imageArray];
+            }
+            
+            
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitError" object:nil];
         }
@@ -26,5 +33,29 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitFailure" object:nil];
     }];
 }
-
+-(void)uploadPhoto:(NSArray *)photoArray{
+    HttpClient *client = [HttpClient defaultClient];
+    NSMutableDictionary *parameters = [@{@"answer_id":self.answerId,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum]} mutableCopy];
+//    for (int i = 0; i < photoArray.count; i++) {
+//        UIImage *image = photoArray[i];
+//        NSData *imageData = UIImagePNGRepresentation(image);
+//        NSString *imageName = [NSString stringWithFormat:@"photo_url%d",i];
+//        [parameters setObject:imageData forKey:imageName];
+//    }
+    [client uploadImageWithJson:QA_ANSWER_ANSWERIMAGE_UPLOAD method:HttpRequestPost parameters:parameters imageArray:photoArray prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
+        NSString *info = [responseObject objectForKey:@"info"];
+        if ([info isEqualToString:@"success"]) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitSuccess" object:nil];
+            
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitError" object:nil];
+        }
+        
+    }  failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSDictionary *dic = [operation.responseObject objectForKey:@"info"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitFailure" object:nil];
+    }];
+    
+}
 @end

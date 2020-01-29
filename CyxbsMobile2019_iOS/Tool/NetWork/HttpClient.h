@@ -48,4 +48,11 @@ typedef void (^PrepareExecuteBlock)(void);
                    parameters:(NSDictionary *)parameters
                       success:(void (^)(NSURLSessionDataTask *task))success
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (void)uploadImageWithJson:(NSString *)url
+                     method:(NSInteger)method
+                 parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray
+             prepareExecute:(PrepareExecuteBlock) prepare
+                   progress:(void (^)(NSProgress * progress))progress
+                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end
