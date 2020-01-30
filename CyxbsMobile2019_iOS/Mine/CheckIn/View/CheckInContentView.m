@@ -249,6 +249,8 @@
     self.checkInRankLabel.text = [NSString stringWithFormat:@"今日第%@位打卡", [UserItemTool defaultItem].rank];
     self.checkInRankPercentLabel.hidden = NO;
     self.checkInRankPercentLabel.text = [NSString stringWithFormat:@"超过%d%%的邮子", [UserItemTool defaultItem].rank_Persent.intValue];
+    self.daysLabel.text = [NSString stringWithFormat:@"已连续打卡%@天", [UserItemTool defaultItem].checkInDay];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
 }
 
 #pragma mark - 按钮

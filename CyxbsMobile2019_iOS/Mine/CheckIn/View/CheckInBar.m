@@ -140,9 +140,9 @@
     NSInteger integral = 0;
     // 签到天数大于星期数
     if (checkInDays > today) {
-        integral = 10 + today * 5 - self.isCheckedInToday * 5;
+        integral = 10 + today * 5 - 5;
     } else {
-        integral = 10 + checkInDays * 5 - self.isCheckedInToday * 5;
+        integral = 10 + checkInDays * 5 - 5;
     }
     if (integral > 30) {
         integral = 30;

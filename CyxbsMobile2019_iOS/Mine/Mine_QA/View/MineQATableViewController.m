@@ -32,6 +32,7 @@
     [super viewDidLoad];
     
     self.tableView.separatorColor = [UIColor clearColor];
+    self.tableView.allowsSelection = NO;
 }
 
 #pragma mark - Table view data source
