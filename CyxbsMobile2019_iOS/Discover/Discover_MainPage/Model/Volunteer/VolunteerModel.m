@@ -18,7 +18,7 @@
     return self;
 }
 - (void)getData {
-
+    
     
 }
 @end

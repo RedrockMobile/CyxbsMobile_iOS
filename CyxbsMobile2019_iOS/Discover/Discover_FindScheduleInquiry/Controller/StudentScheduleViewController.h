@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol StudentScheduleDelegate <NSObject>
 
+-(void) pushToController:(UIViewController*) studentListVC;
+
+@end
 @interface StudentScheduleViewController : UIViewController
+@property (nonatomic, weak)id<StudentScheduleDelegate> delegate;
 
 @end
 

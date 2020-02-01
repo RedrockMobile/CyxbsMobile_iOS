@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 请设置好这个Label的字体大小，字体颜色,圆角等一切想要自己定制的属性，创造出来的Item样式将取决于此exampleLabel
 @property (nonatomic, weak) UIButton *exampleButton;
+@property (nonatomic, strong)NSMutableArray <UIButton*>*buttonArray;//每一个button
 - (instancetype) initWithFrame:(CGRect)frame button:(UIButton *)exampleButton dataArray: (NSMutableArray*) dataArray;
 @end
 

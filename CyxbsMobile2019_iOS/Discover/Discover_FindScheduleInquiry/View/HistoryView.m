@@ -10,7 +10,6 @@
 #define SPLIT 7//item间距
 #define LINESPLIT 10//行间距
 @interface HistoryView()
-@property (nonatomic, strong)NSMutableArray <UIButton*>*buttonArray;
 @end
 @implementation HistoryView
 - (instancetype)initWithFrame:(CGRect)frame button:(UIButton *)exampleButton dataArray:(NSMutableArray *)dataArray {
@@ -39,43 +38,51 @@
         [self addSubview:button];
         [self.buttonArray addObject:button];
     }
-    //约束每一个Item的位置
-    for (int i = 0; i < buttonArray.count; i++) {
-        if(i == 0){
-                [buttonArray[0] mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.top.equalTo(self);
-                }];
-//                NSLog(@"正在约束第一个");
-        } else if(i == 1){
-             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                   [buttonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
-                   make.top.equalTo(buttonArray[0]);
-                   make.left.equalTo(buttonArray[0].mas_right).offset(SPLIT);
-                   }];
-                 
-             });
-        } else {//除了前两个以外，剩下的先用上一个估计能否放得下，不能就换行
-//                NSLog(@"正在约束第%d个",i);
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self layoutIfNeeded];
-                    NSLog(@"数据是%f",buttonArray[i-1].frame.origin.x + buttonArray[i-1].frame.size.width*3);
-                    if(buttonArray[i-1].frame.origin.x + buttonArray[i-1].frame.size.width*3 > self.width) {
-                        [buttonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
-                            make.top.equalTo(buttonArray[i-1].mas_bottom).offset(LINESPLIT);
-                            make.left.equalTo(buttonArray[0]);
-                        }];
-                    }else {
-                        [buttonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
-                            make.left.equalTo(buttonArray[i-1].mas_right).offset(SPLIT);
-                            make.top.equalTo(buttonArray[i-1]);
-                        }];
-                    }
-                });
-                
-            }
-    }
-}
 
+}
+- (void)layoutSubviews {
+    
+    //MARK: - 所有按钮的约束部分
+    for (int i = 0; i < _buttonArray.count; i++) {
+        [self.buttonArray[i].titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.buttonArray[i]).offset(15);
+            make.right.equalTo(self.buttonArray[i]).offset(-15);
+            make.centerY.equalTo(self.buttonArray[i]);
+        }];
+            if(i == 0){
+                [_buttonArray[0] mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.left.top.equalTo(self);
+                    }];
+    //                NSLog(@"正在约束第一个");
+            } else if(i == 1){
+                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                     [self.buttonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                         make.top.equalTo(self.buttonArray[0]);
+                         make.left.equalTo(self.buttonArray[0].mas_right).offset(SPLIT);
+                       }];
+                     
+                 });
+            } else {//除了前两个以外，剩下的先用上一个估计能否放得下，不能就换行
+    //                NSLog(@"正在约束第%d个",i);
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self layoutIfNeeded];
+//                        NSLog(@"数据是%f",self.buttonArray[i-1].frame.origin.x + self.buttonArray[i-1].frame.size.width*2);
+                        if(self.buttonArray[i-1].frame.origin.x + self.buttonArray[i-1].frame.size.width*2 > self.width) {
+                            [self.buttonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                                make.top.equalTo(self.buttonArray[i-1].mas_bottom).offset(LINESPLIT);
+                                make.left.equalTo(self.buttonArray[0]);
+                            }];
+                        }else {
+                            [self.buttonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                                make.left.equalTo(self.buttonArray[i-1].mas_right).offset(SPLIT);
+                                make.top.equalTo(self.buttonArray[i-1]);
+                            }];
+                        }
+                    });
+                    
+                }
+        }
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

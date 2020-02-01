@@ -8,27 +8,38 @@
 
 #import "StudentScheduleViewController.h"
 #import "HistoryView.h"
+#import "ChooseStudentListViewController.h"
+#import "ClassmatesList.h"
+
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface StudentScheduleViewController ()
 @property (nonatomic, weak)UITextField *textField;
+@property (nonatomic, weak)UIView *searchBackView;//搜索栏背景框
 @property (nonatomic, strong)NSMutableArray *historyArray;
+@property (nonatomic, weak)UILabel *historyLabel;//"历史记录"四个字
+@property (nonatomic, copy)NSString *searchName;
+@property (nonatomic, strong)UINavigationController *nav;
+
 @end
 
 @implementation StudentScheduleViewController
-
+//MARK: - ViewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSMutableArray *historyArray = [NSMutableArray array];
     self.historyArray = historyArray;
     self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     [self addSearchField];
+    [self addHistoryLabel];
     [self addHistoryItem];
     // Do any additional setup after loading the view.
 }
+//MARK: - 添加搜索栏
 - (void)addSearchField {
     //add background cornerRadius view
     UIView *backView = [[UIView alloc]init];
+    self.searchBackView = backView;
     [self.view addSubview:backView];
     backView.backgroundColor = [UIColor colorWithRed:232/255.0 green:241/255.0 blue:252/255.0 alpha:1];
     backView.layer.cornerRadius = 23;
@@ -72,6 +83,20 @@
     }];
     
 }
+//MARK: - 添加历史记录的文字
+- (void)addHistoryLabel {
+    UILabel *label = [[UILabel alloc]init];
+    self.historyLabel = label;
+    label.text = @"历史记录";
+    label.textColor = Color21_49_91_F0F0F2;
+    label.font = [UIFont fontWithName:PingFangSCBold size:15];
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.searchBackView);
+        make.top.equalTo(self.searchBackView.mas_bottom).offset(21);
+    }];
+}
+//MARK: - 点击搜索按钮
 - (void)touchSearchButton {
     //记录数据，用作展示历史记录
     [self.historyArray addObject:self.textField.text];
@@ -85,11 +110,12 @@
         [defaults setObject:array forKey:@"FindStudentSchedule_historyArray"];
     }
     NSLog(@"当前缓存的数组是%@",[defaults objectForKey:@"FindStudentSchedule_historyArray"]);
-    
-    //跳转到同学的查询结果选择页面
-//    ChooseStudentList *vc = [[ChooseStudentList alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    self.searchName = self.textField.text;
+    //搜索输入框的内容，如果有返回则跳转t如选择同学页面
+    [self requestStudentNameData];
 }
+//MARK: - 添加历史记录的人名
+
 - (void)addHistoryItem {
     UIButton *exampleButton = [[UIButton alloc]init];
     exampleButton.backgroundColor = [UIColor colorWithRed:221/255.0 green:229/255.0 blue:241/255.0 alpha:1];
@@ -98,10 +124,61 @@
         [exampleButton setTitleColor:Color21_49_91_F0F0F2 forState:normal];
     }
     [exampleButton.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:12]];
-    exampleButton.layer.cornerRadius = 15;
+    exampleButton.layer.cornerRadius = 14;
     HistoryView *view = [[HistoryView alloc]initWithFrame:CGRectMake(0, 200, self.view.width, 200) button:exampleButton dataArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"FindStudentSchedule_historyArray"]];
     [self.view addSubview:view];
-    view.backgroundColor = UIColor.yellowColor;
+    for (UIButton *button in view.buttonArray) {
+        [button addTarget:self action:@selector(touchHistoryButton:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.historyLabel.mas_bottom).offset(9);
+        make.left.equalTo(self.searchBackView);
+        make.right.equalTo(self.searchBackView);
+        make.height.equalTo(@400);
+    }];
+}
+- (void)touchHistoryButton:(UIButton *)sender {
+    self.searchName = sender.titleLabel.text;
+    [self requestStudentNameData];
+}
+//MARK: - 请求同学名称数据
+- (void)requestStudentNameData {
+    [self.view endEditing:YES];
+       
+       if ([self.searchName isEqualToString:@""]) {
+           MBProgressHUD *noInput = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+           noInput.mode = MBProgressHUDModeText;
+           noInput.labelText = @"输入为空";
+           [noInput hide:YES afterDelay:1];
+           return;
+       }
+       
+       __block MBProgressHUD *loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+       loading.mode = MBProgressHUDModeIndeterminate;
+       loading.labelText = @"加载中";
+       
+       ClassmatesList *classmates = [[ClassmatesList alloc] init];
+       [classmates getListWithName:self.searchName success:^(ClassmatesList * _Nonnull classmatesList) {
+           [loading hide:YES];
+           if (classmatesList.classmatesArray.count == 0) {
+               MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+               hud.mode = MBProgressHUDModeText;
+               hud.labelText = @"无结果";
+               [hud hide:YES afterDelay:1];
+               return;
+           }
+//#error 跳转到搜索结果页面
+
+           ChooseStudentListViewController *studentListVC = [[ChooseStudentListViewController alloc]initWithClassmatesList:classmatesList];
+           [self.delegate pushToController: studentListVC];
+
+       } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+           [loading hide:YES];
+           MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+           hud.mode = MBProgressHUDModeText;
+           hud.labelText = @"加载失败";
+           [hud hide:YES afterDelay:1];
+       }];
 }
 /*
 #pragma mark - Navigation

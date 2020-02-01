@@ -187,12 +187,27 @@
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
 /// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
+
+
 #define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
+
+
 #define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
+
+
 #define EDITREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
+
+
 #define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
-//空教室接口
+
+/// 空教室接口
 #define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
+
+/// 同学课表之查找同学
+#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peoplelist"
+
+/// 考试安排接口
+#define EXAMARRANGEAPI @"https://cyxbsmobile.redrock.team/api/examSchedule"
 
 /************************************************/
 /*                   邮问接口                     */

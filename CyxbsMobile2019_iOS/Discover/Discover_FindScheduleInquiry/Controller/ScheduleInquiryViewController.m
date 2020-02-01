@@ -7,12 +7,12 @@
 //
 
 #import "ScheduleInquiryViewController.h"
-#import "SYCSegmentView.h"
+#import "QAListSegmentView.h"
 #import "StudentScheduleViewController.h"
 #import "TeacherScheduleViewController.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-@interface ScheduleInquiryViewController ()
+@interface ScheduleInquiryViewController () <StudentScheduleDelegate>
 @property (nonatomic, weak)UIView *backgroundView;
 @property (nonatomic, weak)UILabel *titleLabel;
 @end
@@ -70,23 +70,20 @@
 - (void)addSegmentView {
     StudentScheduleViewController *stuVC = [[StudentScheduleViewController alloc]init];
     stuVC.title = @"学生课表";
+    stuVC.delegate = self;
     TeacherScheduleViewController *teacherVC = [[TeacherScheduleViewController alloc]init];
     teacherVC.title = @"老师课表";
-    SYCSegmentView *segmentView = [[SYCSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-120) controllers:@[stuVC, teacherVC] type:SYCSegmentViewTypeNormal];
-    segmentView.titleFont = [UIFont fontWithName:PingFangSCRegular size:18];
-    segmentView.titleColor = [UIColor colorWithRed:174/255.0 green:183/255.0 blue:198/255.0 alpha:1];
-    segmentView.titleHeight = 35.0f;
-    if (@available(iOS 11.0, *)) {
-        segmentView.selectedTitleColor = Color21_49_91_F0F0F2;
-    } else {
-        // Fallback on earlier versions
-    }
+    QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-120) controllers:@[stuVC, teacherVC]];
+
     [self.view addSubview:segmentView];
     [segmentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.backgroundView.mas_bottom);
         make.left.right.width.equalTo(self.backgroundView);
         make.bottom.equalTo(self.view);
     }];
+}
+- (void)pushToController:(UIViewController *)studentListVC {
+    [self.navigationController pushViewController:studentListVC animated:YES];
 }
 /*
 #pragma mark - Navigation

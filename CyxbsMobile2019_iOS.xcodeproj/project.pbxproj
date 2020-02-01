@@ -75,6 +75,47 @@
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
+		1AD6D2B423E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25423E5C9DC0099A7E2 /* electricity_header_setting.gif */; };
+		1AD6D2B523E5C9DC0099A7E2 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */; };
+		1AD6D2B623E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25723E5C9DC0099A7E2 /* electricity_header_setting.gif */; };
+		1AD6D2B723E5C9DC0099A7E2 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25823E5C9DC0099A7E2 /* InstallBuildTableViewCell.m */; };
+		1AD6D2B823E5C9DC0099A7E2 /* buildCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25923E5C9DC0099A7E2 /* buildCircleView.m */; };
+		1AD6D2B923E5C9DC0099A7E2 /* SetBuilding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25A23E5C9DC0099A7E2 /* SetBuilding.xcassets */; };
+		1AD6D2BA23E5C9DC0099A7E2 /* InstallRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25B23E5C9DC0099A7E2 /* InstallRoomViewController.m */; };
+		1AD6D2BB23E5C9DC0099A7E2 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25C23E5C9DC0099A7E2 /* README */; };
+		1AD6D2BC23E5C9DC0099A7E2 /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26223E5C9DC0099A7E2 /* ElectricFeeItem.m */; };
+		1AD6D2BD23E5C9DC0099A7E2 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26323E5C9DC0099A7E2 /* ElectricFeeModel.m */; };
+		1AD6D2BE23E5C9DC0099A7E2 /* OneNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26923E5C9DC0099A7E2 /* OneNewsModel.m */; };
+		1AD6D2BF23E5C9DC0099A7E2 /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26A23E5C9DC0099A7E2 /* OneNewsItem.m */; };
+		1AD6D2C023E5C9DC0099A7E2 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26C23E5C9DC0099A7E2 /* VolunteerModel.m */; };
+		1AD6D2C123E5C9DC0099A7E2 /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27023E5C9DC0099A7E2 /* EnterButton.m */; };
+		1AD6D2C223E5C9DC0099A7E2 /* LQQFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27123E5C9DC0099A7E2 /* LQQFinderView.m */; };
+		1AD6D2C323E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27223E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m */; };
+		1AD6D2C423E5C9DC0099A7E2 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27323E5C9DC0099A7E2 /* NotSetVolunteerButton.m */; };
+		1AD6D2C523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m */; };
+		1AD6D2C623E5C9DC0099A7E2 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27623E5C9DC0099A7E2 /* VolunteerGlanceView.m */; };
+		1AD6D2C723E5C9DC0099A7E2 /* ElectricFeeGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27C23E5C9DC0099A7E2 /* ElectricFeeGlanceView.m */; };
+		1AD6D2C823E5C9DC0099A7E2 /* ExamArrangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28023E5C9DC0099A7E2 /* ExamArrangeModel.m */; };
+		1AD6D2C923E5C9DC0099A7E2 /* ExamArrangeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28123E5C9DC0099A7E2 /* ExamArrangeData.m */; };
+		1AD6D2CA23E5C9DC0099A7E2 /* ExamArrangeDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28323E5C9DC0099A7E2 /* ExamArrangeDataItem.m */; };
+		1AD6D2CB23E5C9DC0099A7E2 /* TestCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28823E5C9DC0099A7E2 /* TestCardTableViewCell.m */; };
+		1AD6D2CC23E5C9DC0099A7E2 /* PointAndDottedLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28923E5C9DC0099A7E2 /* PointAndDottedLineView.m */; };
+		1AD6D2CD23E5C9DC0099A7E2 /* TestArrangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28B23E5C9DC0099A7E2 /* TestArrangeViewController.m */; };
+		1AD6D2CE23E5C9DC0099A7E2 /* StudentScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28F23E5C9DC0099A7E2 /* StudentScheduleViewController.m */; };
+		1AD6D2CF23E5C9DC0099A7E2 /* ChooseStudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29123E5C9DC0099A7E2 /* ChooseStudentListViewController.m */; };
+		1AD6D2D023E5C9DC0099A7E2 /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29523E5C9DC0099A7E2 /* ScheduleInquiryViewController.m */; };
+		1AD6D2D123E5C9DC0099A7E2 /* TeacherScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29623E5C9DC0099A7E2 /* TeacherScheduleViewController.m */; };
+		1AD6D2D223E5C9DC0099A7E2 /* ClassmateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29923E5C9DC0099A7E2 /* ClassmateItem.m */; };
+		1AD6D2D323E5C9DC0099A7E2 /* ClassmatesList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29A23E5C9DC0099A7E2 /* ClassmatesList.m */; };
+		1AD6D2D423E5C9DC0099A7E2 /* HistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29D23E5C9DC0099A7E2 /* HistoryView.m */; };
+		1AD6D2D523E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D29F23E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets */; };
+		1AD6D2D623E5C9DC0099A7E2 /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2A323E5C9DC0099A7E2 /* EmptyClassViewController.m */; };
+		1AD6D2D723E5C9DC0099A7E2 /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2A523E5C9DC0099A7E2 /* EmptyClassModel.m */; };
+		1AD6D2D823E5C9DC0099A7E2 /* StoreyResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2AA23E5C9DC0099A7E2 /* StoreyResultView.m */; };
+		1AD6D2D923E5C9DC0099A7E2 /* LQButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2AB23E5C9DC0099A7E2 /* LQButton.m */; };
+		1AD6D2DA23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D2AC23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets */; };
+		1AD6D2DB23E5C9DC0099A7E2 /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2B023E5C9DC0099A7E2 /* LQQFinderToolViewController.m */; };
+		1AD6D2DC23E5C9DC0099A7E2 /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2B323E5C9DC0099A7E2 /* FinderToolViewItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
 		1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */; };
@@ -214,37 +255,7 @@
 		DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC9239BD4550052B65E /* DayLabel.m */; };
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
 		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
-		EE85033A23E0A485008120D1 /* buildCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE85030823E0A484008120D1 /* buildCircleView.m */; };
-		EE85034C23E0A485008120D1 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE85032423E0A484008120D1 /* InstallBuildTableViewCell.m */; };
-		EE85034E23E0A485008120D1 /* InstallRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE85032723E0A484008120D1 /* InstallRoomViewController.m */; };
-		EE85035623E0A4B9008120D1 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE85035523E0A4B9008120D1 /* electricity_header_setting.gif */; };
-		EE85035923E0A80C008120D1 /* SetBuilding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE85035823E0A80C008120D1 /* SetBuilding.xcassets */; };
-		EE85035B23E0AF28008120D1 /* README in Resources */ = {isa = PBXBuildFile; fileRef = EE85035A23E0AF28008120D1 /* README */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
-		EE8BD94323E014E5003E7241 /* ElectricFeeGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94223E014E5003E7241 /* ElectricFeeGlanceView.m */; };
-		EE8BD94623E018C9003E7241 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94523E018C9003E7241 /* VolunteerGlanceView.m */; };
-		EE8BD94923E01F68003E7241 /* NotSetElectriceFeeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94823E01F68003E7241 /* NotSetElectriceFeeButton.m */; };
-		EE8BD94C23E024A5003E7241 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8BD94B23E024A5003E7241 /* NotSetVolunteerButton.m */; };
-		EEF3120B23D8A6DC001ED02E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */; };
-		EEF3120C23D8A6DC001ED02E /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */; };
-		EEF3120D23D8A6DC001ED02E /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311DA23D8A6DC001ED02E /* ElectricFeeModel.m */; };
-		EEF3120E23D8A6DC001ED02E /* OneNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E023D8A6DC001ED02E /* OneNewsModel.m */; };
-		EEF3120F23D8A6DC001ED02E /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E123D8A6DC001ED02E /* OneNewsItem.m */; };
-		EEF3121023D8A6DC001ED02E /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E323D8A6DC001ED02E /* VolunteerModel.m */; };
-		EEF3121123D8A6DC001ED02E /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E623D8A6DC001ED02E /* EnterButton.m */; };
-		EEF3121223D8A6DC001ED02E /* LQQFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E723D8A6DC001ED02E /* LQQFinderView.m */; };
-		EEF3121323D8A6DC001ED02E /* LQQGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311E823D8A6DC001ED02E /* LQQGlanceView.m */; };
-		EEF3121423D8A6DC001ED02E /* StudentScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311EE23D8A6DC001ED02E /* StudentScheduleViewController.m */; };
-		EEF3121523D8A6DC001ED02E /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311F223D8A6DC001ED02E /* ScheduleInquiryViewController.m */; };
-		EEF3121623D8A6DC001ED02E /* TeacherScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311F323D8A6DC001ED02E /* TeacherScheduleViewController.m */; };
-		EEF3121723D8A6DC001ED02E /* HistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311F523D8A6DC001ED02E /* HistoryView.m */; };
-		EEF3121823D8A6DC001ED02E /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311FA23D8A6DC001ED02E /* EmptyClassViewController.m */; };
-		EEF3121923D8A6DC001ED02E /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF311FC23D8A6DC001ED02E /* EmptyClassModel.m */; };
-		EEF3121A23D8A6DC001ED02E /* StoreyResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF3120123D8A6DC001ED02E /* StoreyResultView.m */; };
-		EEF3121B23D8A6DC001ED02E /* LQButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF3120223D8A6DC001ED02E /* LQButton.m */; };
-		EEF3121C23D8A6DC001ED02E /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF3120323D8A6DC001ED02E /* NewDiscover6.0Media.xcassets */; };
-		EEF3121D23D8A6DC001ED02E /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF3120723D8A6DC001ED02E /* LQQFinderToolViewController.m */; };
-		EEF3121E23D8A6DC001ED02E /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEF3120A23D8A6DC001ED02E /* FinderToolViewItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -403,6 +414,82 @@
 		1AD6D1BE23E161100099A7E2 /* MineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineModel.m; sourceTree = "<group>"; };
 		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
 		1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQADataItem.m; sourceTree = "<group>"; };
+		1AD6D25323E5C9DC0099A7E2 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		1AD6D25423E5C9DC0099A7E2 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
+		1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		1AD6D25723E5C9DC0099A7E2 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
+		1AD6D25823E5C9DC0099A7E2 /* InstallBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallBuildTableViewCell.m; sourceTree = "<group>"; };
+		1AD6D25923E5C9DC0099A7E2 /* buildCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildCircleView.m; sourceTree = "<group>"; };
+		1AD6D25A23E5C9DC0099A7E2 /* SetBuilding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SetBuilding.xcassets; sourceTree = "<group>"; };
+		1AD6D25B23E5C9DC0099A7E2 /* InstallRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallRoomViewController.m; sourceTree = "<group>"; };
+		1AD6D25C23E5C9DC0099A7E2 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		1AD6D25D23E5C9DC0099A7E2 /* buildCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildCircleView.h; sourceTree = "<group>"; };
+		1AD6D25E23E5C9DC0099A7E2 /* InstallBuildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallBuildTableViewCell.h; sourceTree = "<group>"; };
+		1AD6D25F23E5C9DC0099A7E2 /* InstallRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallRoomViewController.h; sourceTree = "<group>"; };
+		1AD6D26223E5C9DC0099A7E2 /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
+		1AD6D26323E5C9DC0099A7E2 /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
+		1AD6D26423E5C9DC0099A7E2 /* ElectricFeeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
+		1AD6D26523E5C9DC0099A7E2 /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
+		1AD6D26723E5C9DC0099A7E2 /* OneNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsModel.h; sourceTree = "<group>"; };
+		1AD6D26823E5C9DC0099A7E2 /* OneNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
+		1AD6D26923E5C9DC0099A7E2 /* OneNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsModel.m; sourceTree = "<group>"; };
+		1AD6D26A23E5C9DC0099A7E2 /* OneNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
+		1AD6D26C23E5C9DC0099A7E2 /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
+		1AD6D26D23E5C9DC0099A7E2 /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
+		1AD6D26F23E5C9DC0099A7E2 /* VolunteerGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerGlanceView.h; sourceTree = "<group>"; };
+		1AD6D27023E5C9DC0099A7E2 /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
+		1AD6D27123E5C9DC0099A7E2 /* LQQFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderView.m; sourceTree = "<group>"; };
+		1AD6D27223E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleListCellTableViewCell.m; sourceTree = "<group>"; };
+		1AD6D27323E5C9DC0099A7E2 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
+		1AD6D27423E5C9DC0099A7E2 /* ElectricFeeGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceView.h; sourceTree = "<group>"; };
+		1AD6D27523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetElectriceFeeButton.m; sourceTree = "<group>"; };
+		1AD6D27623E5C9DC0099A7E2 /* VolunteerGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerGlanceView.m; sourceTree = "<group>"; };
+		1AD6D27723E5C9DC0099A7E2 /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
+		1AD6D27823E5C9DC0099A7E2 /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
+		1AD6D27923E5C9DC0099A7E2 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
+		1AD6D27A23E5C9DC0099A7E2 /* PeopleListCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleListCellTableViewCell.h; sourceTree = "<group>"; };
+		1AD6D27B23E5C9DC0099A7E2 /* NotSetElectriceFeeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetElectriceFeeButton.h; sourceTree = "<group>"; };
+		1AD6D27C23E5C9DC0099A7E2 /* ElectricFeeGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeGlanceView.m; sourceTree = "<group>"; };
+		1AD6D27F23E5C9DC0099A7E2 /* ExamArrangeDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeDataItem.h; sourceTree = "<group>"; };
+		1AD6D28023E5C9DC0099A7E2 /* ExamArrangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeModel.m; sourceTree = "<group>"; };
+		1AD6D28123E5C9DC0099A7E2 /* ExamArrangeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeData.m; sourceTree = "<group>"; };
+		1AD6D28223E5C9DC0099A7E2 /* ExamArrangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeModel.h; sourceTree = "<group>"; };
+		1AD6D28323E5C9DC0099A7E2 /* ExamArrangeDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeDataItem.m; sourceTree = "<group>"; };
+		1AD6D28423E5C9DC0099A7E2 /* ExamArrangeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeData.h; sourceTree = "<group>"; };
+		1AD6D28623E5C9DC0099A7E2 /* TestCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCardTableViewCell.h; sourceTree = "<group>"; };
+		1AD6D28723E5C9DC0099A7E2 /* PointAndDottedLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointAndDottedLineView.h; sourceTree = "<group>"; };
+		1AD6D28823E5C9DC0099A7E2 /* TestCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCardTableViewCell.m; sourceTree = "<group>"; };
+		1AD6D28923E5C9DC0099A7E2 /* PointAndDottedLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointAndDottedLineView.m; sourceTree = "<group>"; };
+		1AD6D28B23E5C9DC0099A7E2 /* TestArrangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestArrangeViewController.m; sourceTree = "<group>"; };
+		1AD6D28C23E5C9DC0099A7E2 /* TestArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestArrangeViewController.h; sourceTree = "<group>"; };
+		1AD6D28F23E5C9DC0099A7E2 /* StudentScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentScheduleViewController.m; sourceTree = "<group>"; };
+		1AD6D29023E5C9DC0099A7E2 /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
+		1AD6D29123E5C9DC0099A7E2 /* ChooseStudentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStudentListViewController.m; sourceTree = "<group>"; };
+		1AD6D29223E5C9DC0099A7E2 /* TeacherScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherScheduleViewController.h; sourceTree = "<group>"; };
+		1AD6D29323E5C9DC0099A7E2 /* StudentScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentScheduleViewController.h; sourceTree = "<group>"; };
+		1AD6D29423E5C9DC0099A7E2 /* ChooseStudentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseStudentListViewController.h; sourceTree = "<group>"; };
+		1AD6D29523E5C9DC0099A7E2 /* ScheduleInquiryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleInquiryViewController.m; sourceTree = "<group>"; };
+		1AD6D29623E5C9DC0099A7E2 /* TeacherScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherScheduleViewController.m; sourceTree = "<group>"; };
+		1AD6D29823E5C9DC0099A7E2 /* ClassmatesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassmatesList.h; sourceTree = "<group>"; };
+		1AD6D29923E5C9DC0099A7E2 /* ClassmateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassmateItem.m; sourceTree = "<group>"; };
+		1AD6D29A23E5C9DC0099A7E2 /* ClassmatesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassmatesList.m; sourceTree = "<group>"; };
+		1AD6D29B23E5C9DC0099A7E2 /* ClassmateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassmateItem.h; sourceTree = "<group>"; };
+		1AD6D29D23E5C9DC0099A7E2 /* HistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryView.m; sourceTree = "<group>"; };
+		1AD6D29E23E5C9DC0099A7E2 /* HistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryView.h; sourceTree = "<group>"; };
+		1AD6D29F23E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FindScheduleInquiry.xcassets; sourceTree = "<group>"; };
+		1AD6D2A223E5C9DC0099A7E2 /* EmptyClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
+		1AD6D2A323E5C9DC0099A7E2 /* EmptyClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
+		1AD6D2A523E5C9DC0099A7E2 /* EmptyClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassModel.m; sourceTree = "<group>"; };
+		1AD6D2A623E5C9DC0099A7E2 /* EmptyClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassModel.h; sourceTree = "<group>"; };
+		1AD6D2A823E5C9DC0099A7E2 /* StoreyResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreyResultView.h; sourceTree = "<group>"; };
+		1AD6D2A923E5C9DC0099A7E2 /* LQButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQButton.h; sourceTree = "<group>"; };
+		1AD6D2AA23E5C9DC0099A7E2 /* StoreyResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreyResultView.m; sourceTree = "<group>"; };
+		1AD6D2AB23E5C9DC0099A7E2 /* LQButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQButton.m; sourceTree = "<group>"; };
+		1AD6D2AC23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
+		1AD6D2AF23E5C9DC0099A7E2 /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
+		1AD6D2B023E5C9DC0099A7E2 /* LQQFinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderToolViewController.m; sourceTree = "<group>"; };
+		1AD6D2B223E5C9DC0099A7E2 /* FinderToolViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
+		1AD6D2B323E5C9DC0099A7E2 /* FinderToolViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
 		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
@@ -602,63 +689,7 @@
 		DB34EACB239BD4550052B65E /* ORWInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORWInputTextView.h; sourceTree = "<group>"; };
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
 		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		EE85030823E0A484008120D1 /* buildCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildCircleView.m; sourceTree = "<group>"; };
-		EE85030A23E0A484008120D1 /* buildCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildCircleView.h; sourceTree = "<group>"; };
-		EE85032423E0A484008120D1 /* InstallBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallBuildTableViewCell.m; sourceTree = "<group>"; };
-		EE85032723E0A484008120D1 /* InstallRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallRoomViewController.m; sourceTree = "<group>"; };
-		EE85032B23E0A484008120D1 /* InstallBuildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallBuildTableViewCell.h; sourceTree = "<group>"; };
-		EE85032E23E0A485008120D1 /* InstallRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallRoomViewController.h; sourceTree = "<group>"; };
-		EE85035523E0A4B9008120D1 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
-		EE85035823E0A80C008120D1 /* SetBuilding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SetBuilding.xcassets; sourceTree = "<group>"; };
-		EE85035A23E0AF28008120D1 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
-		EE8BD94123E014E5003E7241 /* ElectricFeeGlanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceView.h; sourceTree = "<group>"; };
-		EE8BD94223E014E5003E7241 /* ElectricFeeGlanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeGlanceView.m; sourceTree = "<group>"; };
-		EE8BD94423E018C9003E7241 /* VolunteerGlanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerGlanceView.h; sourceTree = "<group>"; };
-		EE8BD94523E018C9003E7241 /* VolunteerGlanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VolunteerGlanceView.m; sourceTree = "<group>"; };
-		EE8BD94723E01F68003E7241 /* NotSetElectriceFeeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotSetElectriceFeeButton.h; sourceTree = "<group>"; };
-		EE8BD94823E01F68003E7241 /* NotSetElectriceFeeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotSetElectriceFeeButton.m; sourceTree = "<group>"; };
-		EE8BD94A23E024A5003E7241 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
-		EE8BD94B23E024A5003E7241 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
-		EEF311D523D8A6DC001ED02E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
-		EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
-		EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
-		EEF311DA23D8A6DC001ED02E /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
-		EEF311DB23D8A6DC001ED02E /* ElectricFeeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
-		EEF311DC23D8A6DC001ED02E /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
-		EEF311DE23D8A6DC001ED02E /* OneNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsModel.h; sourceTree = "<group>"; };
-		EEF311DF23D8A6DC001ED02E /* OneNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
-		EEF311E023D8A6DC001ED02E /* OneNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsModel.m; sourceTree = "<group>"; };
-		EEF311E123D8A6DC001ED02E /* OneNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
-		EEF311E323D8A6DC001ED02E /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
-		EEF311E423D8A6DC001ED02E /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
-		EEF311E623D8A6DC001ED02E /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
-		EEF311E723D8A6DC001ED02E /* LQQFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderView.m; sourceTree = "<group>"; };
-		EEF311E823D8A6DC001ED02E /* LQQGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQGlanceView.m; sourceTree = "<group>"; };
-		EEF311E923D8A6DC001ED02E /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
-		EEF311EA23D8A6DC001ED02E /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
-		EEF311EB23D8A6DC001ED02E /* LQQGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQGlanceView.h; sourceTree = "<group>"; };
-		EEF311EE23D8A6DC001ED02E /* StudentScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentScheduleViewController.m; sourceTree = "<group>"; };
-		EEF311EF23D8A6DC001ED02E /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
-		EEF311F023D8A6DC001ED02E /* TeacherScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherScheduleViewController.h; sourceTree = "<group>"; };
-		EEF311F123D8A6DC001ED02E /* StudentScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentScheduleViewController.h; sourceTree = "<group>"; };
-		EEF311F223D8A6DC001ED02E /* ScheduleInquiryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleInquiryViewController.m; sourceTree = "<group>"; };
-		EEF311F323D8A6DC001ED02E /* TeacherScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherScheduleViewController.m; sourceTree = "<group>"; };
-		EEF311F523D8A6DC001ED02E /* HistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryView.m; sourceTree = "<group>"; };
-		EEF311F623D8A6DC001ED02E /* HistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryView.h; sourceTree = "<group>"; };
-		EEF311F923D8A6DC001ED02E /* EmptyClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
-		EEF311FA23D8A6DC001ED02E /* EmptyClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
-		EEF311FC23D8A6DC001ED02E /* EmptyClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassModel.m; sourceTree = "<group>"; };
-		EEF311FD23D8A6DC001ED02E /* EmptyClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassModel.h; sourceTree = "<group>"; };
-		EEF311FF23D8A6DC001ED02E /* StoreyResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreyResultView.h; sourceTree = "<group>"; };
-		EEF3120023D8A6DC001ED02E /* LQButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQButton.h; sourceTree = "<group>"; };
-		EEF3120123D8A6DC001ED02E /* StoreyResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreyResultView.m; sourceTree = "<group>"; };
-		EEF3120223D8A6DC001ED02E /* LQButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQButton.m; sourceTree = "<group>"; };
-		EEF3120323D8A6DC001ED02E /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
-		EEF3120623D8A6DC001ED02E /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
-		EEF3120723D8A6DC001ED02E /* LQQFinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderToolViewController.m; sourceTree = "<group>"; };
-		EEF3120923D8A6DC001ED02E /* FinderToolViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
-		EEF3120A23D8A6DC001ED02E /* FinderToolViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1097,10 +1128,10 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1AD6D25023E5C9DC0099A7E2 /* Discover */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
 				1AAFAD41236DC96300E854A3 /* Fonts */,
 				1A14132A235F523B0001417E /* Mine */,
-				EEF311D223D8A6DC001ED02E /* Discover */,
 				1A141331235F52440001417E /* QA */,
 				1A5A5ED423600BA300543BAE /* Login */,
 				1A141319235F521C0001417E /* Base */,
@@ -1183,6 +1214,273 @@
 				1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1AD6D25023E5C9DC0099A7E2 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D25123E5C9DC0099A7E2 /* Discover_MainPage */,
+				1AD6D27D23E5C9DC0099A7E2 /* Discover_TestArrange */,
+				1AD6D28D23E5C9DC0099A7E2 /* Discover_FindScheduleInquiry */,
+				1AD6D2A023E5C9DC0099A7E2 /* Discover_EmptyClass */,
+				1AD6D2AC23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets */,
+				1AD6D2AD23E5C9DC0099A7E2 /* Disconver_ToolPage */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		1AD6D25123E5C9DC0099A7E2 /* Discover_MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D25223E5C9DC0099A7E2 /* Controller */,
+				1AD6D25623E5C9DC0099A7E2 /* ChooseBuildingFile */,
+				1AD6D26023E5C9DC0099A7E2 /* Model */,
+				1AD6D26E23E5C9DC0099A7E2 /* View */,
+			);
+			path = Discover_MainPage;
+			sourceTree = "<group>";
+		};
+		1AD6D25223E5C9DC0099A7E2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D25323E5C9DC0099A7E2 /* DiscoverViewController.h */,
+				1AD6D25423E5C9DC0099A7E2 /* electricity_header_setting.gif */,
+				1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1AD6D25623E5C9DC0099A7E2 /* ChooseBuildingFile */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D25723E5C9DC0099A7E2 /* electricity_header_setting.gif */,
+				1AD6D25823E5C9DC0099A7E2 /* InstallBuildTableViewCell.m */,
+				1AD6D25923E5C9DC0099A7E2 /* buildCircleView.m */,
+				1AD6D25A23E5C9DC0099A7E2 /* SetBuilding.xcassets */,
+				1AD6D25B23E5C9DC0099A7E2 /* InstallRoomViewController.m */,
+				1AD6D25C23E5C9DC0099A7E2 /* README */,
+				1AD6D25D23E5C9DC0099A7E2 /* buildCircleView.h */,
+				1AD6D25E23E5C9DC0099A7E2 /* InstallBuildTableViewCell.h */,
+				1AD6D25F23E5C9DC0099A7E2 /* InstallRoomViewController.h */,
+			);
+			path = ChooseBuildingFile;
+			sourceTree = "<group>";
+		};
+		1AD6D26023E5C9DC0099A7E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D26123E5C9DC0099A7E2 /* ElectricBill */,
+				1AD6D26623E5C9DC0099A7E2 /* News */,
+				1AD6D26B23E5C9DC0099A7E2 /* Volunteer */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1AD6D26123E5C9DC0099A7E2 /* ElectricBill */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D26223E5C9DC0099A7E2 /* ElectricFeeItem.m */,
+				1AD6D26323E5C9DC0099A7E2 /* ElectricFeeModel.m */,
+				1AD6D26423E5C9DC0099A7E2 /* ElectricFeeItem.h */,
+				1AD6D26523E5C9DC0099A7E2 /* ElectricFeeModel.h */,
+			);
+			path = ElectricBill;
+			sourceTree = "<group>";
+		};
+		1AD6D26623E5C9DC0099A7E2 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D26723E5C9DC0099A7E2 /* OneNewsModel.h */,
+				1AD6D26823E5C9DC0099A7E2 /* OneNewsItem.h */,
+				1AD6D26923E5C9DC0099A7E2 /* OneNewsModel.m */,
+				1AD6D26A23E5C9DC0099A7E2 /* OneNewsItem.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		1AD6D26B23E5C9DC0099A7E2 /* Volunteer */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D26C23E5C9DC0099A7E2 /* VolunteerModel.m */,
+				1AD6D26D23E5C9DC0099A7E2 /* VolunteerModel.h */,
+			);
+			path = Volunteer;
+			sourceTree = "<group>";
+		};
+		1AD6D26E23E5C9DC0099A7E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D26F23E5C9DC0099A7E2 /* VolunteerGlanceView.h */,
+				1AD6D27023E5C9DC0099A7E2 /* EnterButton.m */,
+				1AD6D27123E5C9DC0099A7E2 /* LQQFinderView.m */,
+				1AD6D27223E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m */,
+				1AD6D27323E5C9DC0099A7E2 /* NotSetVolunteerButton.m */,
+				1AD6D27423E5C9DC0099A7E2 /* ElectricFeeGlanceView.h */,
+				1AD6D27523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m */,
+				1AD6D27623E5C9DC0099A7E2 /* VolunteerGlanceView.m */,
+				1AD6D27723E5C9DC0099A7E2 /* LQQFinderView.h */,
+				1AD6D27823E5C9DC0099A7E2 /* EnterButton.h */,
+				1AD6D27923E5C9DC0099A7E2 /* NotSetVolunteerButton.h */,
+				1AD6D27A23E5C9DC0099A7E2 /* PeopleListCellTableViewCell.h */,
+				1AD6D27B23E5C9DC0099A7E2 /* NotSetElectriceFeeButton.h */,
+				1AD6D27C23E5C9DC0099A7E2 /* ElectricFeeGlanceView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1AD6D27D23E5C9DC0099A7E2 /* Discover_TestArrange */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D27E23E5C9DC0099A7E2 /* Model */,
+				1AD6D28523E5C9DC0099A7E2 /* View */,
+				1AD6D28A23E5C9DC0099A7E2 /* ViewController */,
+			);
+			path = Discover_TestArrange;
+			sourceTree = "<group>";
+		};
+		1AD6D27E23E5C9DC0099A7E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D27F23E5C9DC0099A7E2 /* ExamArrangeDataItem.h */,
+				1AD6D28023E5C9DC0099A7E2 /* ExamArrangeModel.m */,
+				1AD6D28123E5C9DC0099A7E2 /* ExamArrangeData.m */,
+				1AD6D28223E5C9DC0099A7E2 /* ExamArrangeModel.h */,
+				1AD6D28323E5C9DC0099A7E2 /* ExamArrangeDataItem.m */,
+				1AD6D28423E5C9DC0099A7E2 /* ExamArrangeData.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1AD6D28523E5C9DC0099A7E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D28623E5C9DC0099A7E2 /* TestCardTableViewCell.h */,
+				1AD6D28723E5C9DC0099A7E2 /* PointAndDottedLineView.h */,
+				1AD6D28823E5C9DC0099A7E2 /* TestCardTableViewCell.m */,
+				1AD6D28923E5C9DC0099A7E2 /* PointAndDottedLineView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1AD6D28A23E5C9DC0099A7E2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D28B23E5C9DC0099A7E2 /* TestArrangeViewController.m */,
+				1AD6D28C23E5C9DC0099A7E2 /* TestArrangeViewController.h */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1AD6D28D23E5C9DC0099A7E2 /* Discover_FindScheduleInquiry */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D28E23E5C9DC0099A7E2 /* Controller */,
+				1AD6D29723E5C9DC0099A7E2 /* model */,
+				1AD6D29C23E5C9DC0099A7E2 /* View */,
+				1AD6D29F23E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets */,
+			);
+			path = Discover_FindScheduleInquiry;
+			sourceTree = "<group>";
+		};
+		1AD6D28E23E5C9DC0099A7E2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D28F23E5C9DC0099A7E2 /* StudentScheduleViewController.m */,
+				1AD6D29023E5C9DC0099A7E2 /* ScheduleInquiryViewController.h */,
+				1AD6D29123E5C9DC0099A7E2 /* ChooseStudentListViewController.m */,
+				1AD6D29223E5C9DC0099A7E2 /* TeacherScheduleViewController.h */,
+				1AD6D29323E5C9DC0099A7E2 /* StudentScheduleViewController.h */,
+				1AD6D29423E5C9DC0099A7E2 /* ChooseStudentListViewController.h */,
+				1AD6D29523E5C9DC0099A7E2 /* ScheduleInquiryViewController.m */,
+				1AD6D29623E5C9DC0099A7E2 /* TeacherScheduleViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1AD6D29723E5C9DC0099A7E2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D29823E5C9DC0099A7E2 /* ClassmatesList.h */,
+				1AD6D29923E5C9DC0099A7E2 /* ClassmateItem.m */,
+				1AD6D29A23E5C9DC0099A7E2 /* ClassmatesList.m */,
+				1AD6D29B23E5C9DC0099A7E2 /* ClassmateItem.h */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		1AD6D29C23E5C9DC0099A7E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D29D23E5C9DC0099A7E2 /* HistoryView.m */,
+				1AD6D29E23E5C9DC0099A7E2 /* HistoryView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1AD6D2A023E5C9DC0099A7E2 /* Discover_EmptyClass */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D2A123E5C9DC0099A7E2 /* Controller */,
+				1AD6D2A423E5C9DC0099A7E2 /* Model */,
+				1AD6D2A723E5C9DC0099A7E2 /* View */,
+			);
+			path = Discover_EmptyClass;
+			sourceTree = "<group>";
+		};
+		1AD6D2A123E5C9DC0099A7E2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D2A223E5C9DC0099A7E2 /* EmptyClassViewController.h */,
+				1AD6D2A323E5C9DC0099A7E2 /* EmptyClassViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1AD6D2A423E5C9DC0099A7E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D2A523E5C9DC0099A7E2 /* EmptyClassModel.m */,
+				1AD6D2A623E5C9DC0099A7E2 /* EmptyClassModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1AD6D2A723E5C9DC0099A7E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D2A823E5C9DC0099A7E2 /* StoreyResultView.h */,
+				1AD6D2A923E5C9DC0099A7E2 /* LQButton.h */,
+				1AD6D2AA23E5C9DC0099A7E2 /* StoreyResultView.m */,
+				1AD6D2AB23E5C9DC0099A7E2 /* LQButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1AD6D2AD23E5C9DC0099A7E2 /* Disconver_ToolPage */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D2AE23E5C9DC0099A7E2 /* Controller */,
+				1AD6D2B123E5C9DC0099A7E2 /* View */,
+			);
+			path = Disconver_ToolPage;
+			sourceTree = "<group>";
+		};
+		1AD6D2AE23E5C9DC0099A7E2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D2AF23E5C9DC0099A7E2 /* LQQFinderToolViewController.h */,
+				1AD6D2B023E5C9DC0099A7E2 /* LQQFinderToolViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1AD6D2B123E5C9DC0099A7E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AD6D2B223E5C9DC0099A7E2 /* FinderToolViewItem.h */,
+				1AD6D2B323E5C9DC0099A7E2 /* FinderToolViewItem.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1AFD1512237D814D004D9CEA /* Mine_MainPage */ = {
@@ -1658,213 +1956,6 @@
 			path = InputTextView;
 			sourceTree = "<group>";
 		};
-		EE8502FE23E0A484008120D1 /* ChooseBuildingFile */ = {
-			isa = PBXGroup;
-			children = (
-				EE85035A23E0AF28008120D1 /* README */,
-				EE85030823E0A484008120D1 /* buildCircleView.m */,
-				EE85030A23E0A484008120D1 /* buildCircleView.h */,
-				EE85032E23E0A485008120D1 /* InstallRoomViewController.h */,
-				EE85032723E0A484008120D1 /* InstallRoomViewController.m */,
-				EE85032423E0A484008120D1 /* InstallBuildTableViewCell.m */,
-				EE85032B23E0A484008120D1 /* InstallBuildTableViewCell.h */,
-				EE85035823E0A80C008120D1 /* SetBuilding.xcassets */,
-				EE85035523E0A4B9008120D1 /* electricity_header_setting.gif */,
-			);
-			path = ChooseBuildingFile;
-			sourceTree = "<group>";
-		};
-		EEF311D223D8A6DC001ED02E /* Discover */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311D323D8A6DC001ED02E /* Discover_MainPage */,
-				EEF311EC23D8A6DC001ED02E /* Discover_FindScheduleInquiry */,
-				EEF311F723D8A6DC001ED02E /* Discover_EmptyClass */,
-				EEF3120323D8A6DC001ED02E /* NewDiscover6.0Media.xcassets */,
-				EEF3120423D8A6DC001ED02E /* Disconver_ToolPage */,
-			);
-			path = Discover;
-			sourceTree = "<group>";
-		};
-		EEF311D323D8A6DC001ED02E /* Discover_MainPage */ = {
-			isa = PBXGroup;
-			children = (
-				EE8502FE23E0A484008120D1 /* ChooseBuildingFile */,
-				EEF311D423D8A6DC001ED02E /* Controller */,
-				EEF311D723D8A6DC001ED02E /* Model */,
-				EEF311E523D8A6DC001ED02E /* View */,
-			);
-			path = Discover_MainPage;
-			sourceTree = "<group>";
-		};
-		EEF311D423D8A6DC001ED02E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311D523D8A6DC001ED02E /* DiscoverViewController.h */,
-				EEF311D623D8A6DC001ED02E /* DiscoverViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		EEF311D723D8A6DC001ED02E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311D823D8A6DC001ED02E /* ElectricBill */,
-				EEF311DD23D8A6DC001ED02E /* News */,
-				EEF311E223D8A6DC001ED02E /* Volunteer */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EEF311D823D8A6DC001ED02E /* ElectricBill */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311D923D8A6DC001ED02E /* ElectricFeeItem.m */,
-				EEF311DA23D8A6DC001ED02E /* ElectricFeeModel.m */,
-				EEF311DB23D8A6DC001ED02E /* ElectricFeeItem.h */,
-				EEF311DC23D8A6DC001ED02E /* ElectricFeeModel.h */,
-			);
-			path = ElectricBill;
-			sourceTree = "<group>";
-		};
-		EEF311DD23D8A6DC001ED02E /* News */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311DE23D8A6DC001ED02E /* OneNewsModel.h */,
-				EEF311DF23D8A6DC001ED02E /* OneNewsItem.h */,
-				EEF311E023D8A6DC001ED02E /* OneNewsModel.m */,
-				EEF311E123D8A6DC001ED02E /* OneNewsItem.m */,
-			);
-			path = News;
-			sourceTree = "<group>";
-		};
-		EEF311E223D8A6DC001ED02E /* Volunteer */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311E323D8A6DC001ED02E /* VolunteerModel.m */,
-				EEF311E423D8A6DC001ED02E /* VolunteerModel.h */,
-			);
-			path = Volunteer;
-			sourceTree = "<group>";
-		};
-		EEF311E523D8A6DC001ED02E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311E623D8A6DC001ED02E /* EnterButton.m */,
-				EEF311E923D8A6DC001ED02E /* LQQFinderView.h */,
-				EEF311E723D8A6DC001ED02E /* LQQFinderView.m */,
-				EEF311EB23D8A6DC001ED02E /* LQQGlanceView.h */,
-				EEF311E823D8A6DC001ED02E /* LQQGlanceView.m */,
-				EEF311EA23D8A6DC001ED02E /* EnterButton.h */,
-				EE8BD94123E014E5003E7241 /* ElectricFeeGlanceView.h */,
-				EE8BD94223E014E5003E7241 /* ElectricFeeGlanceView.m */,
-				EE8BD94723E01F68003E7241 /* NotSetElectriceFeeButton.h */,
-				EE8BD94823E01F68003E7241 /* NotSetElectriceFeeButton.m */,
-				EE8BD94423E018C9003E7241 /* VolunteerGlanceView.h */,
-				EE8BD94523E018C9003E7241 /* VolunteerGlanceView.m */,
-				EE8BD94A23E024A5003E7241 /* NotSetVolunteerButton.h */,
-				EE8BD94B23E024A5003E7241 /* NotSetVolunteerButton.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		EEF311EC23D8A6DC001ED02E /* Discover_FindScheduleInquiry */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311ED23D8A6DC001ED02E /* Controller */,
-				EEF311F423D8A6DC001ED02E /* View */,
-			);
-			path = Discover_FindScheduleInquiry;
-			sourceTree = "<group>";
-		};
-		EEF311ED23D8A6DC001ED02E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311EE23D8A6DC001ED02E /* StudentScheduleViewController.m */,
-				EEF311EF23D8A6DC001ED02E /* ScheduleInquiryViewController.h */,
-				EEF311F023D8A6DC001ED02E /* TeacherScheduleViewController.h */,
-				EEF311F123D8A6DC001ED02E /* StudentScheduleViewController.h */,
-				EEF311F223D8A6DC001ED02E /* ScheduleInquiryViewController.m */,
-				EEF311F323D8A6DC001ED02E /* TeacherScheduleViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		EEF311F423D8A6DC001ED02E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311F523D8A6DC001ED02E /* HistoryView.m */,
-				EEF311F623D8A6DC001ED02E /* HistoryView.h */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		EEF311F723D8A6DC001ED02E /* Discover_EmptyClass */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311F823D8A6DC001ED02E /* Controller */,
-				EEF311FB23D8A6DC001ED02E /* Model */,
-				EEF311FE23D8A6DC001ED02E /* View */,
-			);
-			path = Discover_EmptyClass;
-			sourceTree = "<group>";
-		};
-		EEF311F823D8A6DC001ED02E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311F923D8A6DC001ED02E /* EmptyClassViewController.h */,
-				EEF311FA23D8A6DC001ED02E /* EmptyClassViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		EEF311FB23D8A6DC001ED02E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311FC23D8A6DC001ED02E /* EmptyClassModel.m */,
-				EEF311FD23D8A6DC001ED02E /* EmptyClassModel.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EEF311FE23D8A6DC001ED02E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EEF311FF23D8A6DC001ED02E /* StoreyResultView.h */,
-				EEF3120023D8A6DC001ED02E /* LQButton.h */,
-				EEF3120123D8A6DC001ED02E /* StoreyResultView.m */,
-				EEF3120223D8A6DC001ED02E /* LQButton.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		EEF3120423D8A6DC001ED02E /* Disconver_ToolPage */ = {
-			isa = PBXGroup;
-			children = (
-				EEF3120523D8A6DC001ED02E /* Controller */,
-				EEF3120823D8A6DC001ED02E /* View */,
-			);
-			path = Disconver_ToolPage;
-			sourceTree = "<group>";
-		};
-		EEF3120523D8A6DC001ED02E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				EEF3120623D8A6DC001ED02E /* LQQFinderToolViewController.h */,
-				EEF3120723D8A6DC001ED02E /* LQQFinderToolViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		EEF3120823D8A6DC001ED02E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EEF3120923D8A6DC001ED02E /* FinderToolViewItem.h */,
-				EEF3120A23D8A6DC001ED02E /* FinderToolViewItem.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1973,12 +2064,12 @@
 				DB34EADD239BD4550052B65E /* 多课1@3x.png in Resources */,
 				D03E59B023D9C4C700E0F34D /* QADetailImageView.xib in Resources */,
 				DB34EAFD239BD4550052B65E /* remind_image_title@2x.png in Resources */,
-				EE85035923E0A80C008120D1 /* SetBuilding.xcassets in Resources */,
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
 				DB34EB15239BD4550052B65E /* 无事项@3x.png in Resources */,
 				DB34EAF4239BD4550052B65E /* 地点@3x.png in Resources */,
 				DB34EAE6239BD4550052B65E /* remind0@2x.png in Resources */,
 				DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */,
+				1AD6D2B623E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */,
 				DB34EB00239BD4550052B65E /* 多课2@2x.png in Resources */,
 				DB34EAF6239BD4550052B65E /* 类型@2x.png in Resources */,
 				DB34EAE0239BD4550052B65E /* 老师@3x.png in Resources */,
@@ -1990,11 +2081,12 @@
 				DB34EAEA239BD4550052B65E /* 无课@3x.png in Resources */,
 				DB34EAFC239BD4550052B65E /* 时间@2x.png in Resources */,
 				DB34EB03239BD4550052B65E /* 不提醒@3x.png in Resources */,
-				EE85035B23E0AF28008120D1 /* README in Resources */,
+				1AD6D2BB23E5C9DC0099A7E2 /* README in Resources */,
 				DB34EB06239BD4550052B65E /* 左三角@2x.png in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
 				1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */,
 				DB34EB12239BD4550052B65E /* remind_image_confirm@2x.png in Resources */,
+				1AD6D2B923E5C9DC0099A7E2 /* SetBuilding.xcassets in Resources */,
 				DB34EAF0239BD4550052B65E /* 类型@3x.png in Resources */,
 				DB34EB20239BD4550052B65E /* DetailPageController.xib in Resources */,
 				DB34EAF8239BD4550052B65E /* remind_image_editing@2x.png in Resources */,
@@ -2024,20 +2116,20 @@
 				DB34EB13239BD4550052B65E /* 提醒@2x.png in Resources */,
 				DB34EAF2239BD4550052B65E /* 地点@2x.png in Resources */,
 				1A9B7674235F50A800725937 /* Assets.xcassets in Resources */,
+				1AD6D2DA23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets in Resources */,
 				DB34EB1D239BD4550052B65E /* remind@3x.png in Resources */,
 				DB34EAE5239BD4550052B65E /* 老师@2x.png in Resources */,
+				1AD6D2B423E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */,
 				D026A81023D4F7D0001A4774 /* QAListTableViewCell.xib in Resources */,
 				DB34EB1C239BD4550052B65E /* 选择@2x.png in Resources */,
 				DB34EB09239BD4550052B65E /* remind1@2x.png in Resources */,
 				DB34EADE239BD4550052B65E /* timeTable_image_pull@2x.png in Resources */,
 				DB34EB18239BD4550052B65E /* remind_image_week@2x.png in Resources */,
-				EE85035623E0A4B9008120D1 /* electricity_header_setting.gif in Resources */,
 				DB34EB0C239BD4550052B65E /* 选择@3x.png in Resources */,
 				DB34EB0E239BD4550052B65E /* 删除@2x.png in Resources */,
 				DB34EAED239BD4550052B65E /* remind_image_remind@2x.png in Resources */,
 				DB34EB0D239BD4550052B65E /* remind@2x.png in Resources */,
 				DB34EADF239BD4550052B65E /* remind0@3x.png in Resources */,
-				EEF3121C23D8A6DC001ED02E /* NewDiscover6.0Media.xcassets in Resources */,
 				DB34EB0B239BD4550052B65E /* timeTable_image_add@2x.png in Resources */,
 				DB34EAD3239BD4550052B65E /* WYCNoteDetailView.xib in Resources */,
 				D026A80623D4E054001A4774 /* QA.xcassets in Resources */,
@@ -2057,6 +2149,7 @@
 				DB34EB1A239BD4550052B65E /* 编辑箭头@2x.png in Resources */,
 				DB34EAF5239BD4550052B65E /* 椭圆@2x.png in Resources */,
 				DB34EB1E239BD4550052B65E /* timeTable_image_add@3x.png in Resources */,
+				1AD6D2D523E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets in Resources */,
 				DB34EB0F239BD4550052B65E /* 编辑箭头@3x.png in Resources */,
 				DB34EAF7239BD4550052B65E /* remind_image_content@3x.png in Resources */,
 				DB34EB17239BD4550052B65E /* 提醒@3x.png in Resources */,
@@ -2129,60 +2222,66 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
+				1AD6D2C823E5C9DC0099A7E2 /* ExamArrangeModel.m in Sources */,
+				1AD6D2B823E5C9DC0099A7E2 /* buildCircleView.m in Sources */,
 				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
-				EEF3121523D8A6DC001ED02E /* ScheduleInquiryViewController.m in Sources */,
-				EEF3120D23D8A6DC001ED02E /* ElectricFeeModel.m in Sources */,
+				1AD6D2B723E5C9DC0099A7E2 /* InstallBuildTableViewCell.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
+				1AD6D2C023E5C9DC0099A7E2 /* VolunteerModel.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
-				EEF3121923D8A6DC001ED02E /* EmptyClassModel.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
+				1AD6D2CF23E5C9DC0099A7E2 /* ChooseStudentListViewController.m in Sources */,
+				1AD6D2D323E5C9DC0099A7E2 /* ClassmatesList.m in Sources */,
+				1AD6D2C223E5C9DC0099A7E2 /* LQQFinderView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
+				1AD6D2D623E5C9DC0099A7E2 /* EmptyClassViewController.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
-				EE85034C23E0A485008120D1 /* InstallBuildTableViewCell.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
-				EEF3121323D8A6DC001ED02E /* LQQGlanceView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
+				1AD6D2C923E5C9DC0099A7E2 /* ExamArrangeData.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
+				1AD6D2DC23E5C9DC0099A7E2 /* FinderToolViewItem.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
-				EE8BD94623E018C9003E7241 /* VolunteerGlanceView.m in Sources */,
+				1AD6D2D923E5C9DC0099A7E2 /* LQButton.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
+				1AD6D2BA23E5C9DC0099A7E2 /* InstallRoomViewController.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
+				1AD6D2CE23E5C9DC0099A7E2 /* StudentScheduleViewController.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
-				EEF3121A23D8A6DC001ED02E /* StoreyResultView.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
+				1AD6D2C123E5C9DC0099A7E2 /* EnterButton.m in Sources */,
 				1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
-				EEF3120E23D8A6DC001ED02E /* OneNewsModel.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
-				EE85033A23E0A485008120D1 /* buildCircleView.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
+				1AD6D2D123E5C9DC0099A7E2 /* TeacherScheduleViewController.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
-				EEF3120C23D8A6DC001ED02E /* ElectricFeeItem.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
+				1AD6D2BD23E5C9DC0099A7E2 /* ElectricFeeModel.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
+				1AD6D2C723E5C9DC0099A7E2 /* ElectricFeeGlanceView.m in Sources */,
+				1AD6D2D723E5C9DC0099A7E2 /* EmptyClassModel.m in Sources */,
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */,
-				EEF3121823D8A6DC001ED02E /* EmptyClassViewController.m in Sources */,
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
-				EEF3121E23D8A6DC001ED02E /* FinderToolViewItem.m in Sources */,
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
@@ -2190,8 +2289,6 @@
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
-				EEF3120F23D8A6DC001ED02E /* OneNewsItem.m in Sources */,
-				EEF3121623D8A6DC001ED02E /* TeacherScheduleViewController.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
@@ -2199,23 +2296,28 @@
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
-				EEF3121023D8A6DC001ED02E /* VolunteerModel.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
+				1AD6D2B523E5C9DC0099A7E2 /* DiscoverViewController.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
+				1AD6D2DB23E5C9DC0099A7E2 /* LQQFinderToolViewController.m in Sources */,
 				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
-				EE85034E23E0A485008120D1 /* InstallRoomViewController.m in Sources */,
 				D069799023D737800007E479 /* QADetailModel.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
+				1AD6D2CD23E5C9DC0099A7E2 /* TestArrangeViewController.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
+				1AD6D2BC23E5C9DC0099A7E2 /* ElectricFeeItem.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
+				1AD6D2D223E5C9DC0099A7E2 /* ClassmateItem.m in Sources */,
+				1AD6D2C523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
+				1AD6D2C323E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m in Sources */,
 				1A16592023D85CD60039BA46 /* MineQAController.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
@@ -2227,7 +2329,6 @@
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				D03C6B2323DF4CAA0093EF09 /* QAAskNextStepViewController.m in Sources */,
-				EEF3121B23D8A6DC001ED02E /* LQButton.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
@@ -2235,39 +2336,40 @@
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
-				EE8BD94923E01F68003E7241 /* NotSetElectriceFeeButton.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
-				EE8BD94C23E024A5003E7241 /* NotSetVolunteerButton.m in Sources */,
-				EEF3121423D8A6DC001ED02E /* StudentScheduleViewController.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
+				1AD6D2D423E5C9DC0099A7E2 /* HistoryView.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
+				1AD6D2CB23E5C9DC0099A7E2 /* TestCardTableViewCell.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
+				1AD6D2D023E5C9DC0099A7E2 /* ScheduleInquiryViewController.m in Sources */,
+				1AD6D2C423E5C9DC0099A7E2 /* NotSetVolunteerButton.m in Sources */,
+				1AD6D2BF23E5C9DC0099A7E2 /* OneNewsItem.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
-				EEF3121223D8A6DC001ED02E /* LQQFinderView.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
-				EEF3121723D8A6DC001ED02E /* HistoryView.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
+				1AD6D2D823E5C9DC0099A7E2 /* StoreyResultView.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
-				EEF3121D23D8A6DC001ED02E /* LQQFinderToolViewController.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
-				EEF3121123D8A6DC001ED02E /* EnterButton.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
+				1AD6D2CC23E5C9DC0099A7E2 /* PointAndDottedLineView.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
+				1AD6D2C623E5C9DC0099A7E2 /* VolunteerGlanceView.m in Sources */,
 				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */,
+				1AD6D2BE23E5C9DC0099A7E2 /* OneNewsModel.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,
-				EEF3120B23D8A6DC001ED02E /* DiscoverViewController.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
-				EE8BD94323E014E5003E7241 /* ElectricFeeGlanceView.m in Sources */,
+				1AD6D2CA23E5C9DC0099A7E2 /* ExamArrangeDataItem.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
 				1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */,
