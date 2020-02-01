@@ -139,6 +139,9 @@
 		D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59CE23DB30A900E0F34D /* QAAskNextStepView.m */; };
 		D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59D023DB30A900E0F34D /* QAAskViewController.m */; };
 		D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59D623DB30D100E0F34D /* QAAnswerModel.m */; };
+		D05C04CE23E5E047009A2E63 /* QAAskIntegralPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C04CA23E5E047009A2E63 /* QAAskIntegralPickerView.xib */; };
+		D05C04CF23E5E047009A2E63 /* QAAskNextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C04CB23E5E047009A2E63 /* QAAskNextStepView.xib */; };
+		D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D05C04CC23E5E047009A2E63 /* QAAskIntegralPickerView.m */; };
 		D069799023D737800007E479 /* QADetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D069798F23D737800007E479 /* QADetailModel.m */; };
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
 		DB34EACE239BD4550052B65E /* DateModle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2D239BD4540052B65E /* DateModle.m */; };
@@ -533,6 +536,10 @@
 		D03E59D023DB30A900E0F34D /* QAAskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAskViewController.m; sourceTree = "<group>"; };
 		D03E59D523DB30D100E0F34D /* QAAnswerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAnswerModel.h; sourceTree = "<group>"; };
 		D03E59D623DB30D100E0F34D /* QAAnswerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerModel.m; sourceTree = "<group>"; };
+		D05C04CA23E5E047009A2E63 /* QAAskIntegralPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAAskIntegralPickerView.xib; sourceTree = "<group>"; };
+		D05C04CB23E5E047009A2E63 /* QAAskNextStepView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QAAskNextStepView.xib; sourceTree = "<group>"; };
+		D05C04CC23E5E047009A2E63 /* QAAskIntegralPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAskIntegralPickerView.m; sourceTree = "<group>"; };
+		D05C04CD23E5E047009A2E63 /* QAAskIntegralPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAskIntegralPickerView.h; sourceTree = "<group>"; };
 		D069798E23D737800007E479 /* QADetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailModel.h; sourceTree = "<group>"; };
 		D069798F23D737800007E479 /* QADetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailModel.m; sourceTree = "<group>"; };
 		DB34EA2A239BD4540052B65E /* WYCClassBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassBookViewController.h; sourceTree = "<group>"; };
@@ -1667,6 +1674,10 @@
 		D03E59CD23DB30A900E0F34D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D05C04CD23E5E047009A2E63 /* QAAskIntegralPickerView.h */,
+				D05C04CC23E5E047009A2E63 /* QAAskIntegralPickerView.m */,
+				D05C04CA23E5E047009A2E63 /* QAAskIntegralPickerView.xib */,
+				D05C04CB23E5E047009A2E63 /* QAAskNextStepView.xib */,
 				D03E59CE23DB30A900E0F34D /* QAAskNextStepView.m */,
 				D03E59CF23DB30A900E0F34D /* QAAskNextStepView.h */,
 			);
@@ -2116,6 +2127,7 @@
 				1AD6D2DA23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets in Resources */,
 				DB34EB1D239BD4550052B65E /* remind@3x.png in Resources */,
 				DB34EAE5239BD4550052B65E /* 老师@2x.png in Resources */,
+				D05C04CE23E5E047009A2E63 /* QAAskIntegralPickerView.xib in Resources */,
 				D026A81023D4F7D0001A4774 /* QAListTableViewCell.xib in Resources */,
 				DB34EB1C239BD4550052B65E /* 选择@2x.png in Resources */,
 				DB34EB09239BD4550052B65E /* remind1@2x.png in Resources */,
@@ -2138,6 +2150,7 @@
 				DB34EB02239BD4550052B65E /* 多课0@3x.png in Resources */,
 				DB34EAEF239BD4550052B65E /* remind_image_editing@3x.png in Resources */,
 				DB34EAE1239BD4550052B65E /* 箭头@3x.png in Resources */,
+				D05C04CF23E5E047009A2E63 /* QAAskNextStepView.xib in Resources */,
 				DB34EAFE239BD4550052B65E /* remind1@3x.png in Resources */,
 				DB34EB08239BD4550052B65E /* remind_image_edit@2x.png in Resources */,
 				DB34EB05239BD4550052B65E /* 不提醒@2x.png in Resources */,
@@ -2333,6 +2346,7 @@
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
+				D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				1AD6D2D423E5C9DC0099A7E2 /* HistoryView.m in Sources */,
