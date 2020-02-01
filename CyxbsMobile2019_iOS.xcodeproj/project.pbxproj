@@ -75,7 +75,6 @@
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
-		1AD6D2B423E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25423E5C9DC0099A7E2 /* electricity_header_setting.gif */; };
 		1AD6D2B523E5C9DC0099A7E2 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */; };
 		1AD6D2B623E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25723E5C9DC0099A7E2 /* electricity_header_setting.gif */; };
 		1AD6D2B723E5C9DC0099A7E2 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25823E5C9DC0099A7E2 /* InstallBuildTableViewCell.m */; };
@@ -415,7 +414,6 @@
 		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
 		1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQADataItem.m; sourceTree = "<group>"; };
 		1AD6D25323E5C9DC0099A7E2 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
-		1AD6D25423E5C9DC0099A7E2 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
 		1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		1AD6D25723E5C9DC0099A7E2 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
 		1AD6D25823E5C9DC0099A7E2 /* InstallBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallBuildTableViewCell.m; sourceTree = "<group>"; };
@@ -1244,7 +1242,6 @@
 			isa = PBXGroup;
 			children = (
 				1AD6D25323E5C9DC0099A7E2 /* DiscoverViewController.h */,
-				1AD6D25423E5C9DC0099A7E2 /* electricity_header_setting.gif */,
 				1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */,
 			);
 			path = Controller;
@@ -2119,7 +2116,6 @@
 				1AD6D2DA23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets in Resources */,
 				DB34EB1D239BD4550052B65E /* remind@3x.png in Resources */,
 				DB34EAE5239BD4550052B65E /* 老师@2x.png in Resources */,
-				1AD6D2B423E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */,
 				D026A81023D4F7D0001A4774 /* QAListTableViewCell.xib in Resources */,
 				DB34EB1C239BD4550052B65E /* 选择@2x.png in Resources */,
 				DB34EB09239BD4550052B65E /* remind1@2x.png in Resources */,
