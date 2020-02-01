@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QAAskModel : NSObject
--(void)commitAsk:(NSString *)title content:(NSString *)content kind:(NSString *)kind reward:(NSNumber *)reward disappearTime:(NSString *)disappearTime;
+@property(strong,nonatomic)NSString *questionId;
+-(void)commitAsk:(NSString *)title content:(NSString *)content kind:(NSString *)kind reward:(NSString *)reward disappearTime:(NSString *)disappearTime imageArray:(NSArray *)imageArray;
 @end
 
 NS_ASSUME_NONNULL_END
