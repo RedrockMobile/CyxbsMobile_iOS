@@ -28,6 +28,7 @@
     self.navigationController.navigationBar.topItem.title = @"";
     self.view.backgroundColor = color242_243_248toFFFFFF;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:self.view.backgroundColor}];
+    [self addHideView];//添加一个隐藏View防止滑动tableView的时候出现字体重叠的问题
     [self addTitleLabel];
     // Do any additional setup after loading the view.
     [self getExamArrangeData];
@@ -43,17 +44,22 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
 }
+- (void)addHideView {
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 112 - 25)];//112是字体顶部到手机屏幕顶部的距离，25是字体高度
+    view.backgroundColor = self.view.backgroundColor;
+    [self.view addSubview:view];
+}
 - (void)addTitleLabel {
-    UILabel *label = [[UILabel alloc]init];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(-34, -48, 250, 40)];
     self.titleLabel = label;
     label.text = @"考试安排";
     [label setFont:[UIFont fontWithName:PingFangSCBold size:22]];
     label.textColor = Color21_49_91_F0F0F2;
-    [self.view addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(19);
-        make.top.equalTo(self.view).offset(112);
-    }];
+    [self.tableView addSubview:label];
+//    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.view).offset(19);
+//        make.top.equalTo(self.view).offset(112);
+//    }];
 }
 - (void)getExamArrangeData {
     ExamArrangeModel *model = [[ExamArrangeModel alloc]init];
@@ -67,15 +73,14 @@
     NSLog(@"%@",self.examArrangeModel.examArrangeData);
     [self.tableView reloadData];
     //展示左边的小球和点点
-//    int pointCount = (int)self.examArrangeModel.examArrangeData.data.count;
-//    CGFloat spacing = 166.13;
-//    PointAndDottedLineView *pointAndDottedLineView = [[PointAndDottedLineView alloc]initWithPointCount:pointCount Spacing:spacing];
-//    [pointAndDottedLineView setFrame:CGRectMake(-30, 167, 11, pointAndDottedLineView.bigCircle.width + spacing * (pointCount - 1))];
-//    self.tableView.clipsToBounds = NO;
-//    [self.tableView.layer setFrame:CGRectMake(53,self.titleLabel.origin.y + self.titleLabel.height + 18, self.tableView.layer.frame.size.width, self.tableView.layer.frame.size.height)];
-//    NSLog(@"%f",self.titleLabel.origin.y + self.titleLabel.height + 18);
-//    pointAndDottedLineView.backgroundColor = [UIColor yellowColor];
-//    [self.tableView addSubview:pointAndDottedLineView];
+    int pointCount = (int)self.examArrangeModel.examArrangeData.data.count;
+    CGFloat spacing = 166.13;
+    PointAndDottedLineView *pointAndDottedLineView = [[PointAndDottedLineView alloc]initWithPointCount:pointCount Spacing:spacing];
+    [pointAndDottedLineView setFrame:CGRectMake(-30, 7, 11, pointAndDottedLineView.bigCircle.width + spacing * (pointCount - 1))];
+    self.tableView.clipsToBounds = NO;
+
+    NSLog(@"%f",self.titleLabel.origin.y + self.titleLabel.height + 18);
+    [self.tableView addSubview:pointAndDottedLineView];
     
 }
 - (void)popController {
@@ -87,7 +92,8 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TestCardTableViewCell *cell = [[TestCardTableViewCell alloc]init];
-    cell.weekTimeLabel.text = [NSString stringWithFormat:@"%@周周%@",self.examArrangeModel.examArrangeData.data[indexPath.row].week,self.examArrangeModel.examArrangeData.data[indexPath.row].weekday];
+    cell.selectionStyle  = UITableViewCellSelectionStyleNone;
+    cell.weekTimeLabel.text = [NSString stringWithFormat:@"%@周周%@",[self translationArabicNum:self.examArrangeModel.examArrangeData.data[indexPath.row].week.intValue], [self translationArabicNum: self.examArrangeModel.examArrangeData.data[indexPath.row].weekday.intValue]];
     cell.leftDayLabel.text = [NSString stringWithFormat:@"还剩_天考试"];
     cell.subjectLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].course;
     cell.testNatureLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].type;
@@ -98,7 +104,58 @@
     [self.view addSubview:cell];
     return cell;
 }
-
+-(NSString *)translationArabicNum:(NSInteger)arabicNum
+{
+    NSString *arabicNumStr = [NSString stringWithFormat:@"%ld",(long)arabicNum];
+    NSArray *arabicNumeralsArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"0"];
+    NSArray *chineseNumeralsArray = @[@"一",@"二",@"三",@"四",@"五",@"六",@"七",@"八",@"九",@"零"];
+    NSArray *digits = @[@"个",@"十",@"百",@"千",@"万",@"十",@"百",@"千",@"亿",@"十",@"百",@"千",@"兆"];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:chineseNumeralsArray forKeys:arabicNumeralsArray];
+    
+    if (arabicNum < 20 && arabicNum > 9) {
+        if (arabicNum == 10) {
+            return @"十";
+        }else{
+            NSString *subStr1 = [arabicNumStr substringWithRange:NSMakeRange(1, 1)];
+            NSString *a1 = [dictionary objectForKey:subStr1];
+            NSString *chinese1 = [NSString stringWithFormat:@"十%@",a1];
+            return chinese1;
+        }
+    }else{
+        NSMutableArray *sums = [NSMutableArray array];
+        for (int i = 0; i < arabicNumStr.length; i ++)
+        {
+            NSString *substr = [arabicNumStr substringWithRange:NSMakeRange(i, 1)];
+            NSString *a = [dictionary objectForKey:substr];
+            NSString *b = digits[arabicNumStr.length -i-1];
+            NSString *sum = [a stringByAppendingString:b];
+            if ([a isEqualToString:chineseNumeralsArray[9]])
+            {
+                if([b isEqualToString:digits[4]] || [b isEqualToString:digits[8]])
+                {
+                    sum = b;
+                    if ([[sums lastObject] isEqualToString:chineseNumeralsArray[9]])
+                    {
+                        [sums removeLastObject];
+                    }
+                }else
+                {
+                    sum = chineseNumeralsArray[9];
+                }
+                
+                if ([[sums lastObject] isEqualToString:sum])
+                {
+                    continue;
+                }
+            }
+            
+            [sums addObject:sum];
+        }
+        NSString *sumStr = [sums  componentsJoinedByString:@""];
+        NSString *chinese = [sumStr substringToIndex:sumStr.length-1];
+        return chinese;
+    }
+}
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.examArrangeModel.examArrangeData.data.count;
 }

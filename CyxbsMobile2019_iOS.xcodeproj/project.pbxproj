@@ -1352,8 +1352,8 @@
 			isa = PBXGroup;
 			children = (
 				1AD6D28623E5C9DC0099A7E2 /* TestCardTableViewCell.h */,
-				1AD6D28723E5C9DC0099A7E2 /* PointAndDottedLineView.h */,
 				1AD6D28823E5C9DC0099A7E2 /* TestCardTableViewCell.m */,
+				1AD6D28723E5C9DC0099A7E2 /* PointAndDottedLineView.h */,
 				1AD6D28923E5C9DC0099A7E2 /* PointAndDottedLineView.m */,
 			);
 			path = View;
@@ -1362,8 +1362,8 @@
 		1AD6D28A23E5C9DC0099A7E2 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1AD6D28B23E5C9DC0099A7E2 /* TestArrangeViewController.m */,
 				1AD6D28C23E5C9DC0099A7E2 /* TestArrangeViewController.h */,
+				1AD6D28B23E5C9DC0099A7E2 /* TestArrangeViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
