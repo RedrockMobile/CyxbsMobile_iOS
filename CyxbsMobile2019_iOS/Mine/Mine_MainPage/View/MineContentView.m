@@ -22,7 +22,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+//        self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+        
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"Mine_Main_BackgroundColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         
         // NSArray<NSDictionary<NSString *, id> *> *settingsArray;
         self.settingsArray = @[
@@ -71,7 +77,7 @@
         classScheduleSettingsTable.layer.cornerRadius = 16;
         classScheduleSettingsTable.delegate = self;
         classScheduleSettingsTable.dataSource = self;
-        classScheduleSettingsTable.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+        classScheduleSettingsTable.backgroundColor = self.backgroundColor;
         classScheduleSettingsTable.rowHeight = 55;
         classScheduleSettingsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
         classScheduleSettingsTable.showsVerticalScrollIndicator = NO;
@@ -99,7 +105,7 @@
         UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 138) style:UITableViewStyleGrouped];
         appSettingTabelView.delegate = self;
         appSettingTabelView.dataSource = self;
-        appSettingTabelView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+        appSettingTabelView.backgroundColor = self.backgroundColor;
         appSettingTabelView.rowHeight = 55;
         appSettingTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
         appSettingTabelView.showsVerticalScrollIndicator = NO;
@@ -114,7 +120,6 @@
         appSettingTabelView.tableFooterView = appSettingTableViewFooter;
         
         UIButton *quitButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        quitButton.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1];
         [quitButton setTitle:@"退 出 登 录" forState:UIControlStateNormal];
         [quitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         quitButton.titleLabel.font = [UIFont systemFontOfSize:18];
@@ -127,6 +132,12 @@
             make.height.equalTo(@40);
         }];
         quitButton.layer.cornerRadius = 20;
+        
+        if (@available(iOS 11.0, *)) {
+            quitButton.backgroundColor = [UIColor colorNamed:@"Mine_Main_ButtonColor"];
+        } else {
+            // Fallback on earlier versions
+        }
     }
     return self;
 }
@@ -154,8 +165,12 @@
     
     cell.backgroundColor = tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.textColor = [UIColor colorWithRed:25/255.0 green:56/255.0 blue:102/255.0 alpha:1.0];
     cell.textLabel.font = [UIFont systemFontOfSize:15];
+    if (@available(iOS 11.0, *)) {
+        cell.textLabel.textColor = [UIColor colorNamed:@"Mine_Main_LabelColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     
     if (tableView == self.classScheduleTableView) {
         cell.textLabel.text = ((NSArray *)(self.settingsArray[0][@"settings"]))[indexPath.row][@"title"];
@@ -164,8 +179,16 @@
         if ([((NSArray *)(self.settingsArray[0][@"settings"]))[indexPath.row][@"hasSwitch"] boolValue]) {
             UISwitch *settingSwitch = [[UISwitch alloc] init];
             settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);
-            settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
-            settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
+            if (@available(iOS 11.0, *)) {
+                settingSwitch.onTintColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_On"];
+            } else {
+                settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
+            }
+            if (@available(iOS 11.0, *)) {
+                settingSwitch.backgroundColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_Off"];
+            } else {
+                settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
+            }
             settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
             [cell.contentView addSubview:settingSwitch];
             
@@ -196,8 +219,17 @@
         if ([((NSArray *)(self.settingsArray[1][@"settings"]))[indexPath.row][@"hasSwitch"] boolValue]) {
             UISwitch *settingSwitch = [[UISwitch alloc] init];
             settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);
-            settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
-            settingSwitch.backgroundColor = [UIColor colorWithRed:200/255.0 green:217/255.0 blue:243/255.0 alpha:1.0];
+            if (@available(iOS 11.0, *)) {
+                settingSwitch.onTintColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_On"];
+            } else {
+                settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
+            }
+            if (@available(iOS 11.0, *)) {
+                settingSwitch.backgroundColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_Off"];
+            } else {
+                settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
+                
+            }
             settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
             [cell.contentView addSubview:settingSwitch];
             if ([cell.textLabel.text hasPrefix:@"启动"]) {
@@ -218,11 +250,15 @@
     if (tableView == self.classScheduleTableView) {
         tableView.sectionHeaderHeight = 54;
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 32)];
-        headerView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+        headerView.backgroundColor = self.backgroundColor;
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 16, 70, 21)];
         titleLabel.text = self.settingsArray[section][@"sectionTitle"];
         titleLabel.font = [UIFont systemFontOfSize:15];
-        titleLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            titleLabel.textColor = [UIColor colorNamed:@"Mine_Main_TitleColor"];
+        } else {
+            titleLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1.0];
+        }
         [headerView addSubview:titleLabel];
         
         UIButton *foldButton = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 27 - 19, 15, 22, 22)];
@@ -239,8 +275,12 @@
         tableView.sectionHeaderHeight = 24;
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 22)];
         headerView.backgroundColor = tableView.backgroundColor;
-        UIView *separateLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 1)];
-        separateLine.backgroundColor = [UIColor colorWithRed:228/255.0 green:232/255.0 blue:238/255.0 alpha:1.0];
+        UIView *separateLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 1.5)];
+        if (@available(iOS 11.0, *)) {
+            separateLine.backgroundColor = [UIColor colorNamed:@"Mine_Main_SeparateLineColor"];
+        } else {
+            separateLine.backgroundColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:0.1];
+        }
         [headerView addSubview:separateLine];
         return headerView;
     }

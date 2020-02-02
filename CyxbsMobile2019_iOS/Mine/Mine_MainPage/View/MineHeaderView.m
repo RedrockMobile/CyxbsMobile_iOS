@@ -35,12 +35,20 @@
         UILabel *nicknameLabel = [[UILabel alloc] init];
         [self addSubview:nicknameLabel];
         nicknameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
-        nicknameLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            nicknameLabel.textColor = [UIColor colorNamed:@"Mine_Main_TitleColor"];
+        } else {
+            nicknameLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
+        }
         self.nicknameLabel = nicknameLabel;
         
         UILabel *introductionLabel = [[UILabel alloc] init];
         introductionLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
-        introductionLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            introductionLabel.textColor = [UIColor colorNamed:@"Mine_Main_TitleColor"];
+        } else {
+            introductionLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
+        }
         [self addSubview:introductionLabel];
         self.introductionLabel = introductionLabel;
         
@@ -50,19 +58,31 @@
         self.editButton = editButton;
         
         UIView *whiteBoard = [[UIView alloc] init];
-        whiteBoard.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            whiteBoard.backgroundColor = [UIColor colorNamed:@"Mine_Main_HeaderColor"];
+        } else {
+            whiteBoard.backgroundColor = [UIColor whiteColor];
+        }
         whiteBoard.layer.cornerRadius = 16;
         [self addSubview:whiteBoard];
         self.whiteBoard = whiteBoard;
         
         UILabel *signinDaysLabel = [[UILabel alloc] init];
         signinDaysLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
-        signinDaysLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            signinDaysLabel.textColor = [UIColor colorNamed:@"Mine_Main_TitleColor"];
+        } else {
+            signinDaysLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
+        }
         [self addSubview:signinDaysLabel];
         self.signinDaysLabel = signinDaysLabel;
         
         UIButton *signinButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        signinButton.backgroundColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:209/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            signinButton.backgroundColor = [UIColor colorNamed:@"Mine_Main_SignInButtonColor"];
+        } else {
+            signinButton.backgroundColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:209/255.0 alpha:1.0];
+        }
         signinButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [signinButton setTitle:@"签到" forState:UIControlStateNormal];
         [signinButton setTintColor:[UIColor whiteColor]];
@@ -78,7 +98,11 @@
         } else {
             questionNumberLabel.font = [UIFont fontWithName:@"Impact" size:35];
         }
-        questionNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            questionNumberLabel.textColor = [UIColor colorNamed:@"Mine_Main_QANumberLabelColor"];
+        } else {
+            questionNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }
         questionNumberLabel.textAlignment = NSTextAlignmentCenter;
         questionNumberLabel.userInteractionEnabled = YES;
         questionNumberLabel.text = item.askNum;
@@ -91,7 +115,11 @@
         } else {
             answerNumberLabel.font = [UIFont fontWithName:@"Impact" size:35];
         }
-        answerNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            answerNumberLabel.textColor = [UIColor colorNamed:@"Mine_Main_QANumberLabelColor"];
+        } else {
+            answerNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }
         answerNumberLabel.textAlignment = NSTextAlignmentCenter;
         answerNumberLabel.userInteractionEnabled = YES;
         answerNumberLabel.text = item.answerNum;
@@ -104,7 +132,11 @@
         } else {
             responseNumberLabel.font = [UIFont fontWithName:@"Impact" size:35];
         }
-        responseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            responseNumberLabel.textColor = [UIColor colorNamed:@"Mine_Main_QANumberLabelColor"];
+        } else {
+            responseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }
         responseNumberLabel.textAlignment = NSTextAlignmentCenter;
         responseNumberLabel.userInteractionEnabled = YES;
         responseNumberLabel.text = item.commentNum;
@@ -117,7 +149,11 @@
         } else {
             praiseNumberLabel.font = [UIFont fontWithName:@"Impact" size:35];
         }
-        praiseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            praiseNumberLabel.textColor = [UIColor colorNamed:@"Mine_Main_QANumberLabelColor"];
+        } else {
+            praiseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }
         praiseNumberLabel.textAlignment = NSTextAlignmentCenter;
         praiseNumberLabel.text = item.praiseNum;
         [self addSubview:praiseNumberLabel];
@@ -125,28 +161,42 @@
         
         UILabel *questionLabel = [[UILabel alloc] init];
         questionLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
-        questionLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            questionLabel.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
+        } else {
+            questionLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }
         questionLabel.text = @"提问";
         [self addSubview:questionLabel];
         self.questionLabel = questionLabel;
         
         UILabel *answerLabel = [[UILabel alloc] init];
         answerLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
-        answerLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
-        answerLabel.text = @"回答";
+        if (@available(iOS 11.0, *)) {
+            answerLabel.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
+        } else {
+            answerLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }        answerLabel.text = @"回答";
         [self addSubview:answerLabel];
         self.answerLabel = answerLabel;
         
         UILabel *responseLabel = [[UILabel alloc] init];
         responseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
-        responseLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
-        responseLabel.text = @"评论";
+        if (@available(iOS 11.0, *)) {
+            responseLabel.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
+        } else {
+            responseLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }        responseLabel.text = @"评论";
         [self addSubview:responseLabel];
         self.responseLabel = responseLabel;
         
         UILabel *praiseLabel = [[UILabel alloc] init];
         praiseLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
-        praiseLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            praiseLabel.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
+        } else {
+            praiseLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }
         praiseLabel.text = @"获赞";
         [self addSubview:praiseLabel];
         self.praiseLabel = praiseLabel;
