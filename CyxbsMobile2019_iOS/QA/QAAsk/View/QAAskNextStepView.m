@@ -36,6 +36,11 @@
     [self.timeLabel setTextColor:[UIColor colorWithHexString:@"#29D1F1"]];
     
     self.commitBtn.layer.cornerRadius = 20;
+    self.questionmarkBtn.layer.borderColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0].CGColor;
+    self.questionmarkBtn.layer.borderWidth = 1;
+    self.questionmarkBtn.layer.cornerRadius = self.questionmarkBtn.bounds.size.width / 2;
+    [self.questionmarkBtn addTarget:self action:@selector(displayIntegralInstructions) forControlEvents:UIControlEventTouchUpInside];
+//    [self displayIntegralInstructions];
     
     QAAskIntegralPickerView *view = [[QAAskIntegralPickerView alloc]initWithFrame:CGRectMake(0, 0, self.integralPickBackgroundView.frame.size.width, self.integralPickBackgroundView.frame.size.height)];
     self.integralPickView = view;
@@ -46,20 +51,18 @@
 //如果没有规定formatter的时区，那么formatter默认的就是当前时区
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
-//    [formatter setDateFormat:@"YYYY年"];
-//    NSString *nowYear = [formatter stringFromDate:date];
-//    [formatter setDateFormat:@"MM月"];
-//    NSString *nowMonth = [formatter stringFromDate:date];
+
     [formatter setDateFormat:@"dd日"];
     self.day = [formatter stringFromDate:date];
     [formatter setDateFormat:@"HH时"];
     self.hour = [formatter stringFromDate:date];
     [formatter setDateFormat:@"mm分"];
     self.minutes = [formatter stringFromDate:date];
-//    NSString *nowDateString = [NSString stringWithFormat:@"%@%@%@日%@时%@分",nowYear,nowMonth,self.day,self.hour,self.minutes];
+    
+    NSDate *displayDefultDate = [NSDate dateWithTimeInterval:86400 sinceDate:date];
     [formatter setDateFormat:@"YYYY年MM月dd日HH时mm分"];
-    NSString *nowDateString = [formatter stringFromDate:date];
-    [self.timeLabel setText:nowDateString];
+    NSString *defultDateString = [formatter stringFromDate:displayDefultDate];
+    [self.timeLabel setText:defultDateString];
     
     self.timePickViewContent = [NSMutableArray array];
     NSMutableArray *dayArray = [NSMutableArray array];
@@ -92,6 +95,11 @@
     }
     [self.timePickViewContent addObject:minutesArray];
 }
+-(void)displayIntegralInstructions{
+    
+    
+}
+
 #pragma mark - UIPickerViewDelegate
 #pragma mark 列
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{

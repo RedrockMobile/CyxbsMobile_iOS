@@ -61,11 +61,6 @@
     
 }
 - (void)configNavagationBar {
-    //    if (@available(iOS 11.0, *)) {
-    //        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-    //    } else {
-    //        // Fallback on earlier versions
-    //    }
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
     //隐藏导航栏的分割线
@@ -380,5 +375,13 @@
     self.model = [[QAAskModel alloc]init];
     [self.model commitAsk:title content:content kind:self.kind reward:reward disappearTime:disappearTime imageArray:self.askImageArray];
     
+}
+-(BOOL)navigationShouldPopOnBackButton{
+//    if (1) {
+//        // 在这里创建UIAlertController等方法
+//        [self QAQuestionCommitFailure];
+//        return NO;
+//    }
+    return YES;
 }
 @end
