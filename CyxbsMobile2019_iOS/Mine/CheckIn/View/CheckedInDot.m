@@ -27,7 +27,11 @@
         self.background = background;
         
         UIView *foreground = [[UIView alloc] init];
-        foreground.backgroundColor = [UIColor colorWithRed:58/255.0 green:53/255.0 blue:210/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            foreground.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_CheckedBarColor"];
+        } else {
+            foreground.backgroundColor = [UIColor colorWithRed:58/255.0 green:53/255.0 blue:210/255.0 alpha:1];
+        }
         [self addSubview:foreground];
         self.foreground = foreground;
     }

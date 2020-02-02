@@ -58,14 +58,31 @@
         [self.backgroundImageView addSubview:daysLabel];
         self.daysLabel = daysLabel;
         
+        UIView *boardView = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            boardView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_BaordColor"];
+        } else {
+            boardView.backgroundColor = [UIColor clearColor];
+        }
+        boardView.frame = [UIScreen mainScreen].bounds;
+        [self addSubview:boardView];
+        
         UIView *checkInView = [[UIView alloc] init];
-        checkInView.backgroundColor = [UIColor colorWithRed:244/255.0 green:245/255.0 blue:248/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            checkInView.backgroundColor = [UIColor colorNamed:@"Mine_Main_BackgroundColor"];
+        } else {
+            checkInView.backgroundColor = [UIColor colorWithRed:244/255.0 green:245/255.0 blue:248/255.0 alpha:1.0];
+        }
         checkInView.layer.cornerRadius = 16;
         [self addSubview:checkInView];
         self.checkInView = checkInView;
         
         UILabel *checkInRankLabel = [[UILabel alloc] init];
-        checkInRankLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            checkInRankLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+        } else {
+            checkInRankLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        }
         checkInRankLabel.text = [NSString stringWithFormat:@"今日第%@位打卡", [UserItemTool defaultItem].rank];
         checkInRankLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
         [checkInView addSubview:checkInRankLabel];
@@ -84,7 +101,11 @@
         }
         
         UIButton *checkInButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        checkInButton.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            checkInButton.backgroundColor = [UIColor colorNamed:@"Mine_Main_ButtonColor"];
+        } else {
+            checkInButton.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1];
+        }
         [checkInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         checkInButton.titleLabel.font = [UIFont systemFontOfSize:18];
         [checkInButton setTitle:@"签 到" forState:UIControlStateNormal];
@@ -93,7 +114,11 @@
         self.checkInButton = checkInButton;
         
         UIView *storeView = [[UIView alloc] init];
-        storeView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            storeView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_StoreViewColor"];
+        } else {
+            storeView.backgroundColor = [UIColor whiteColor];
+        }
         storeView.layer.cornerRadius = 16;
         [self.checkInView addSubview:storeView];
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(presentIntegralStore:)];
@@ -103,7 +128,11 @@
         UILabel *storeTitlelabel = [[UILabel alloc] init];
         storeTitlelabel.text = @"积分商城";
         storeTitlelabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
-        storeTitlelabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            storeTitlelabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+        } else {
+            storeTitlelabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        }
         [self.storeView addSubview:storeTitlelabel];
         self.storeTitlelabel = storeTitlelabel;
         
@@ -115,13 +144,21 @@
         UILabel *scoreLabel = [[UILabel alloc] init];
         scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
         scoreLabel.font = [UIFont systemFontOfSize:18];
-        scoreLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        [self.storeView addSubview:scoreLabel];
+        if (@available(iOS 11.0, *)) {
+            scoreLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+        } else {
+            scoreLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        }        [self.storeView addSubview:scoreLabel];
         self.scoreLabel = scoreLabel;
         
         // 提醒用户该view可拖拽
         UIView *dragHintView = [[UIView alloc] init];
-        dragHintView.backgroundColor = [UIColor colorWithRed:226/255.0 green:237/255.0 blue:251/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            dragHintView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_DragHintViewColor"];
+        } else {
+            dragHintView.backgroundColor = [UIColor colorWithRed:226/255.0 green:237/255.0 blue:251/255.0 alpha:1.0];
+        }
+
         [self.storeView addSubview:dragHintView];
         self.dragHintView = dragHintView;
         

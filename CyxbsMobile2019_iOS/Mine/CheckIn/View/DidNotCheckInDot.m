@@ -21,7 +21,11 @@
     self = [super init];
     if (self) {
         UIView *dot = [[UIView alloc] init];
-        dot.backgroundColor = [UIColor colorWithRed:225/255.0 green:230/255.0 blue:240/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            dot.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_DidntCheckedBarColor"];
+        } else {
+            dot.backgroundColor = [UIColor colorWithRed:225/255.0 green:230/255.0 blue:240/255.0 alpha:1];
+        }
         [self addSubview:dot];
         self.dot = dot;
     }

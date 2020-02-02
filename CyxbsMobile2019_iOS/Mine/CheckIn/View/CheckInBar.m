@@ -63,13 +63,21 @@
         
         if (flag == 1) {
             UIView *bar = [[UIView alloc] init];
-            bar.backgroundColor = [UIColor colorWithRed:58/255.0 green:53/255.0 blue:210/255.0 alpha:1];
+            if (@available(iOS 11.0, *)) {
+                bar.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_CheckedBarColor"];
+            } else {
+                bar.backgroundColor = [UIColor colorWithRed:58/255.0 green:53/255.0 blue:210/255.0 alpha:1];
+            }
             bar.frame = CGRectMake(16 + (i - 2) * 52.5, 13.5, 52.5, 5);
             [self addSubview:bar];
             [self.barArray addObject:bar];
         } else {
             UIView *bar = [[UIView alloc] init];
-            bar.backgroundColor = [UIColor colorWithRed:225/255.0 green:230/255.0 blue:240/255.0 alpha:1];
+            if (@available(iOS 11.0, *)) {
+                bar.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_DidntCheckedBarColor"];
+            } else {
+                bar.backgroundColor = [UIColor colorWithRed:225/255.0 green:230/255.0 blue:240/255.0 alpha:1];
+            }
             bar.frame = CGRectMake(16 + (i - 2) * 52.5, 13.5, 52.5, 5);
             [self addSubview:bar];
             [self.barArray addObject:bar];
@@ -126,7 +134,11 @@
         UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(5 + (i - 1) * 52.5, 32, 23, 16)];
         weekdayLabel.text = weekdays[i];
         weekdayLabel.font = [UIFont systemFontOfSize:11];
-        weekdayLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.35];
+        if (@available(iOS 11.0, *)) {
+            weekdayLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+        } else {
+            weekdayLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.35];
+        }
         [self addSubview:weekdayLabel];
     }
     
@@ -150,7 +162,11 @@
     
     UILabel *integralLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 38, 16)];
     integralLabel.text = [NSString stringWithFormat:@"%ld积分", integral];
-    integralLabel.textColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:0.73];
+    if (@available(iOS 11.0, *)) {
+        integralLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_IntegralLabelColor"];
+    } else {
+        integralLabel.textColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:0.73];
+    }
     integralLabel.font = [UIFont systemFontOfSize:11];
     [integralImageView addSubview:integralLabel];
 }
