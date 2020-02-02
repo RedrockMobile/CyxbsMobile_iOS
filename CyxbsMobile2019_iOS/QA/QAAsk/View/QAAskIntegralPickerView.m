@@ -18,15 +18,18 @@
         [self addSubview:self.contentView];
     }
     [self setupView];
+    [self.integralPickView selectRow:3 inComponent:0 animated:YES];
     return self;
 }
 -(void)setupView{
     self.integralPickView.transform = CGAffineTransformMakeRotation(M_PI*3/2);
     [self.integralPickView setFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+    
     self.integralNum = @"0";
     self.integralPickViewContent = [NSMutableArray array];
+    NSArray *num = @[@1,@2,@3,@5,@10,@15];
     for (int i = 0; i < 5; i++) {
-        NSString *numString = [NSString stringWithFormat:@"%d",i];
+        NSString *numString = [NSString stringWithFormat:@"%@",num[i]];
         [self.integralPickViewContent addObject:numString];
     }
 }
@@ -39,6 +42,9 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return self.integralPickViewContent.count;
 }
+//- (void)selectRow:(NSInteger)row inComponent:(NSInteger)component animated:(BOOL)animated{
+//
+//}
 
 #pragma mark pickerView内容
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{

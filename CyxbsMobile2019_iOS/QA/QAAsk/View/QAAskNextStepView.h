@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)setupView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
+@property (weak, nonatomic) IBOutlet UIButton *questionmarkBtn;
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerVIew;
 @property (weak, nonatomic) IBOutlet UIView *integralPickBackgroundView;
 @property (strong, nonatomic) QAAskIntegralPickerView *integralPickView;

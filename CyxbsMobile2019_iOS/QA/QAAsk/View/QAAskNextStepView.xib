@@ -17,6 +17,7 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="ENh-nV-fzW"/>
                 <outlet property="integralNumLabel" destination="gch-oB-gzT" id="4FT-4Q-SpY"/>
                 <outlet property="integralPickBackgroundView" destination="480-MO-JwV" id="kmS-Oz-p5H"/>
+                <outlet property="questionmarkBtn" destination="on1-pA-E1G" id="Wqe-e0-3mg"/>
                 <outlet property="timeLabel" destination="GrK-tz-Seo" id="KD2-1Z-sXh"/>
                 <outlet property="timePickerVIew" destination="Ycm-aI-jpc" id="hij-R7-evj"/>
             </connections>
@@ -100,6 +101,17 @@
                     <rect key="frame" x="0.0" y="355" width="414" height="105"/>
                     <color key="backgroundColor" red="1" green="0.38790915929999997" blue="0.27881152770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="on1-pA-E1G">
+                    <rect key="frame" x="20" y="66.5" width="23" height="23"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="23" id="Ae1-3J-DSk"/>
+                        <constraint firstAttribute="height" constant="23" id="xqh-7C-71e"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="17"/>
+                    <state key="normal" title="?">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -109,12 +121,14 @@
                 <constraint firstItem="P1i-Mh-Ia9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="80" id="9av-cr-gfJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="480-MO-JwV" secondAttribute="trailing" id="CI0-8l-uv0"/>
                 <constraint firstItem="P1i-Mh-Ia9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Gzb-v0-5QZ"/>
+                <constraint firstItem="on1-pA-E1G" firstAttribute="leading" secondItem="P1i-Mh-Ia9" secondAttribute="leading" id="HJt-Tv-z8o"/>
                 <constraint firstItem="1Gi-Y0-zV2" firstAttribute="centerY" secondItem="FC4-qa-0HO" secondAttribute="centerY" id="I0k-e5-4qE"/>
                 <constraint firstItem="YXF-Fq-RG3" firstAttribute="top" secondItem="P1i-Mh-Ia9" secondAttribute="bottom" constant="170" id="MOe-Mx-XlH"/>
                 <constraint firstItem="Ycm-aI-jpc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="120" id="S6N-V5-OFO"/>
                 <constraint firstItem="1Gi-Y0-zV2" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Vfe-aa-whM"/>
                 <constraint firstItem="Ycm-aI-jpc" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="chi-Uu-fBC"/>
                 <constraint firstItem="BtE-2l-T9X" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="dCZ-9e-th9"/>
+                <constraint firstItem="on1-pA-E1G" firstAttribute="centerY" secondItem="1Gi-Y0-zV2" secondAttribute="centerY" id="fHu-ds-sAS"/>
                 <constraint firstItem="1Gi-Y0-zV2" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="fuu-V3-IEc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FC4-qa-0HO" secondAttribute="trailing" constant="16" id="ge0-zq-BKO"/>
                 <constraint firstItem="480-MO-JwV" firstAttribute="top" secondItem="YXF-Fq-RG3" secondAttribute="bottom" constant="10" id="iBz-OK-3Vm"/>
