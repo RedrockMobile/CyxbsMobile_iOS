@@ -26,8 +26,12 @@
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
             to.view.frame = CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H);
-            to.contentView.storeView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
-            to.contentView.storeCollectionView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
+            if (@available(iOS 11.0, *)) {
+                to.contentView.storeView.backgroundColor = [UIColor colorNamed:@"Mine_Store_BackgroundColor"];
+            } else {
+                to.contentView.storeView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
+            }
+            to.contentView.storeCollectionView.backgroundColor = to.contentView.storeView.backgroundColor;
             from.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.9, 0.9);
             from.contentView.layer.cornerRadius = 16;
             from.contentView.clipsToBounds = YES;
@@ -46,8 +50,12 @@
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
             from.view.frame = CGRectMake(0, MAIN_SCREEN_H - 89 - 30 + 16, MAIN_SCREEN_W, MAIN_SCREEN_H);
-            from.contentView.storeView.backgroundColor = [UIColor whiteColor];
-            from.contentView.storeCollectionView.backgroundColor = [UIColor whiteColor];
+            if (@available(iOS 11.0, *)) {
+                from.contentView.storeView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_StoreViewColor"];
+            } else {
+                from.contentView.storeView.backgroundColor = [UIColor whiteColor];
+            }
+            from.contentView.storeCollectionView.backgroundColor = from.contentView.storeView.backgroundColor;
             to.contentView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
             to.contentView.layer.cornerRadius = 0;
         } completion:^(BOOL finished) {

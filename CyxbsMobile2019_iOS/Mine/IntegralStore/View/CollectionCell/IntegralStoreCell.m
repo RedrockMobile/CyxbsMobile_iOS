@@ -30,7 +30,11 @@
 }
 
 - (void)setItem:(IntegralStoreDataItem *)item {
-    self.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:251/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        self.backgroundColor = [UIColor colorNamed:@"Mine_Store_CellBackgroundColor"];
+    } else {
+        self.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:251/255.0 alpha:1.0];
+    }
     self.layer.cornerRadius = 8;
     
     UIImageView *photoImageView = [[UIImageView alloc] init];
@@ -46,14 +50,23 @@
     UILabel *nameLabel = [[UILabel alloc] init];
     nameLabel.text = item.name;
     nameLabel.font = [UIFont systemFontOfSize:13];
-    nameLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        nameLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        nameLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    }
     [self addSubview:nameLabel];
     self.nameLabel = nameLabel;
     
     UILabel *numLabel = [[UILabel alloc] init];
     numLabel.text = [NSString stringWithFormat:@"仅剩%@件", item.num];
     numLabel.font = [UIFont systemFontOfSize:10];
-    numLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.58];
+    if (@available(iOS 11.0, *)) {
+        numLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        numLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    }
+    numLabel.alpha = 0.58;
     [self addSubview:numLabel];
     self.numberLabel = numLabel;
     
@@ -65,12 +78,20 @@
     UILabel *priceLabel = [[UILabel alloc] init];
     priceLabel.text = item.value;
     priceLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 18];
-    priceLabel.textColor = [UIColor colorWithRed:58/255.0 green:52/255.0 blue:210/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        priceLabel.textColor = [UIColor colorNamed:@"Mine_Store_IntegralColor"];
+    } else {
+        priceLabel.textColor = [UIColor colorWithRed:58/255.0 green:52/255.0 blue:210/255.0 alpha:1.0];
+    }
     [self addSubview:priceLabel];
     self.priceLabel = priceLabel;
     
     UIButton *buyButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    buyButton.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        buyButton.backgroundColor = [UIColor colorNamed:@"Mine_Store_ButtonColor"];
+    } else {
+        buyButton.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1.0];
+    }
     [buyButton setTitle:@"兑换" forState:UIControlStateNormal];
     [buyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     buyButton.titleLabel.font = [UIFont systemFontOfSize:12];

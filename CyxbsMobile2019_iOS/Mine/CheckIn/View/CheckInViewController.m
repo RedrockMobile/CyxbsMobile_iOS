@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"Mine_Main_BackgroundColor"];
+        self.view.backgroundColor = [UIColor colorNamed:@"Mine_Store_ContainerColor"];
     } else {
         self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:247/255.0 alpha:1];
     }

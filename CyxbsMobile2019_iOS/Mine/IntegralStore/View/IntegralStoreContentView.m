@@ -25,7 +25,11 @@
     self = [super init];
     if (self) {
         UIView *storeView = [[UIView alloc] init];
-        storeView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            storeView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_StoreViewColor"];
+        } else {
+            storeView.backgroundColor = [UIColor whiteColor];
+        }
         storeView.layer.cornerRadius = 16;
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dismissWithGesture:)];
         [storeView addGestureRecognizer:panGesture];
@@ -35,7 +39,11 @@
         UILabel *storeTitlelabel = [[UILabel alloc] init];
         storeTitlelabel.text = @"积分商城";
         storeTitlelabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
-        storeTitlelabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            storeTitlelabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+        } else {
+            storeTitlelabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        }
         [self.storeView addSubview:storeTitlelabel];
         self.storeTitlelabel = storeTitlelabel;
         
@@ -47,19 +55,29 @@
         UILabel *scoreLabel = [[UILabel alloc] init];
         scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
         scoreLabel.font = [UIFont systemFontOfSize:18];
-        scoreLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        [self.storeView addSubview:scoreLabel];
+        if (@available(iOS 11.0, *)) {
+            scoreLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+        } else {
+            scoreLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        }        [self.storeView addSubview:scoreLabel];
         self.scoreLabel = scoreLabel;
         
         // 提醒用户该view可拖拽
         UIView *dragHintView = [[UIView alloc] init];
-        dragHintView.backgroundColor = [UIColor colorWithRed:226/255.0 green:237/255.0 blue:251/255.0 alpha:1.0];
-        [self.storeView addSubview:dragHintView];
+        if (@available(iOS 11.0, *)) {
+            dragHintView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_DragHintViewColor"];
+        } else {
+            dragHintView.backgroundColor = [UIColor colorWithRed:226/255.0 green:237/255.0 blue:251/255.0 alpha:1.0];
+        }        [self.storeView addSubview:dragHintView];
         self.dragHintView = dragHintView;
         
         WaterFallLayout *layout = [[WaterFallLayout alloc] init];
         UICollectionView *storeCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 73, MAIN_SCREEN_W, MAIN_SCREEN_H - 73 - 30) collectionViewLayout:layout];
-        storeCollectionView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            storeCollectionView.backgroundColor = [UIColor colorNamed:@"Mine_Store_BackgroundColor"];
+        } else {
+            storeCollectionView.backgroundColor = [UIColor whiteColor];
+        }
         self.storeCollectionView = storeCollectionView;
         [self addSubview:storeCollectionView];
     }
