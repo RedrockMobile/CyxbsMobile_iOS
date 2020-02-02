@@ -18,12 +18,15 @@
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak)UILabel *titleLabel;
 @property (nonatomic, strong)ExamArrangeModel *examArrangeModel;
+@property (nonatomic, weak)UIView *seperateLine;//分割线
 @end
 
 @implementation TestArrangeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self addBackButtonTitle];
+    [self addSeperateLine];
     [self addTableView];
     self.navigationController.navigationBar.topItem.title = @"";
     self.view.backgroundColor = color242_243_248toFFFFFF;
@@ -34,6 +37,17 @@
     [self getExamArrangeData];
     [self updateUI];
 }
+-(void)addBackButtonTitle {
+    UILabel *label = [[UILabel alloc]init];
+    label.text = @"考试成绩";
+    [label setFont:[UIFont fontWithName:PingFangSCBold size:21]];
+    label.textColor = Color21_49_91_F0F0F2;
+    [self.navigationController.navigationBar addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@37);
+        make.bottom.equalTo(self.navigationController.navigationBar).offset(-5);
+    }];
+}
 
 - (void)addTableView {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, 160, self.view.width - 53 - 19, self.view.height - 87 -  [[UIApplication sharedApplication] statusBarFrame].size.height) style:UITableViewStylePlain];
@@ -43,6 +57,12 @@
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
+}
+- (void)addSeperateLine {
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.origin.y + self.navigationController.navigationBar.height, self.view.width, 1)];
+    line.backgroundColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:0.1];
+    [self.view addSubview:line];
+    self.seperateLine = line;
 }
 - (void)addHideView {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 112 - 25)];//112是字体顶部到手机屏幕顶部的距离，25是字体高度
@@ -56,10 +76,7 @@
     [label setFont:[UIFont fontWithName:PingFangSCBold size:22]];
     label.textColor = Color21_49_91_F0F0F2;
     [self.tableView addSubview:label];
-//    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view).offset(19);
-//        make.top.equalTo(self.view).offset(112);
-//    }];
+
 }
 - (void)getExamArrangeData {
     ExamArrangeModel *model = [[ExamArrangeModel alloc]init];
@@ -88,23 +105,49 @@
 }
 
 
-
+//MARK: - tableView代理
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TestCardTableViewCell *cell = [[TestCardTableViewCell alloc]init];
     cell.selectionStyle  = UITableViewCellSelectionStyleNone;
+    
     cell.weekTimeLabel.text = [NSString stringWithFormat:@"%@周周%@",[self translationArabicNum:self.examArrangeModel.examArrangeData.data[indexPath.row].week.intValue], [self translationArabicNum: self.examArrangeModel.examArrangeData.data[indexPath.row].weekday.intValue]];
     cell.leftDayLabel.text = [NSString stringWithFormat:@"还剩_天考试"];
     cell.subjectLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].course;
     cell.testNatureLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].type;
-    cell.dayLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].date;
+    cell.dayLabel.text = [NSString stringWithFormat:@"%@月%@日", [self getArrayWithString: self.examArrangeModel.examArrangeData.data[indexPath.row].date][1], [self getArrayWithString: self.examArrangeModel.examArrangeData.data[indexPath.row].date][2]];
     cell.timeLabel.text = [NSString stringWithFormat:@"%@ - %@",self.examArrangeModel.examArrangeData.data[indexPath.row].begin_time, self.examArrangeModel.examArrangeData.data[indexPath.row].end_time];
     cell.classLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].classroom;
     cell.seatNumLabel.text = [NSString stringWithFormat:@"%@号", self.examArrangeModel.examArrangeData.data[indexPath.row].seat];
     [self.view addSubview:cell];
     return cell;
 }
--(NSString *)translationArabicNum:(NSInteger)arabicNum
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.examArrangeModel.examArrangeData.data.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 166;
+}
+
+/// 获得一个字符串例如:2019-12-28，返回一个两个元素的数组@[2019, 12, 28]，元素为年，月，日
+/// @param string 字符串
+- (NSArray *)getArrayWithString:(NSString*)string {
+    NSMutableArray<NSString*> *array = [NSMutableArray arrayWithArray:[string componentsSeparatedByString:@"-"]];
+    if([array[1] hasPrefix:@"0"]) {
+        NSString *month = [array[1] substringFromIndex:1];
+        array[1] = month;
+    }
+    if([array[2] hasPrefix:@"0"]) {
+        NSString *day = [array[2] substringFromIndex:1];
+        array[2] = day;
+    }
+    return array;
+    
+}
+//MARK: - 阿拉伯数字转汉字
+- (NSString *)translationArabicNum:(NSInteger)arabicNum
 {
     NSString *arabicNumStr = [NSString stringWithFormat:@"%ld",(long)arabicNum];
     NSArray *arabicNumeralsArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"0"];
@@ -156,12 +199,4 @@
         return chinese;
     }
 }
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.examArrangeModel.examArrangeData.data.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 166;
-}
-
 @end
