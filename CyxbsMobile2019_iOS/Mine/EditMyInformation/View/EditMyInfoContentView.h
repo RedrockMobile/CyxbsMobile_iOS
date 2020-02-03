@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) MineEditTextField *introductionTextField;
 @property (nonatomic, weak) MineEditTextField *QQTextField;
 @property (nonatomic, weak) MineEditTextField *phoneNumberTextField;
-@property (nonatomic, weak) UIButton *academyButton;
+@property (nonatomic, weak) UILabel *myAcademyLabel;
 @property (nonatomic, weak) UIButton *saveButton;
 
 @end

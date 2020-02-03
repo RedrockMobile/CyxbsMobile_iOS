@@ -43,6 +43,7 @@
     [self.view addSubview:contentView];
     self.contentView = contentView;
     contentView.delegate = self;
+    contentView.contentScrollView.delegate = self;
     [contentView.gestureView addGestureRecognizer:self.panGesture];
     contentView.contentScrollView.delegate = self;
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,22 +58,9 @@
 
 
 #pragma mark - scrollView代理回调
-//- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    CGPoint translatedPoint = [scrollView.panGestureRecognizer translationInView:self.view];
-//    if (scrollView.contentOffset.y == 0 && translatedPoint.y > 0) {
-//        ((MineViewController *)self.transitioningDelegate).panGesture = scrollView.panGestureRecognizer;
-//
-//        [scrollView scrollToTop];
-////        scrollView.scrollEnabled = NO;
-//
-//        [self dismissViewControllerAnimated:YES completion:nil];
-////        NSLog(@"%@", NSStringFromCGPoint(translatedPoint));
-//    }
-//}
-
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    scrollView.scrollEnabled = YES;
-//}
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.view endEditing:YES];
+}
 
 
 #pragma mark - contentView代理回调

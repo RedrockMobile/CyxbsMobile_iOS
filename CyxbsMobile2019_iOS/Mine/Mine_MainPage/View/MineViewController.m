@@ -31,6 +31,12 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceded) name:@"Login_LoginSuceeded" object:nil];
     
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"Mine_Store_ContainerColor"];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:250/255.0 alpha:1];
+    }
+    
     // 绑定Presenter
     self.presenter = [[MinePresenter alloc] init];
     [self.presenter attachView:self];

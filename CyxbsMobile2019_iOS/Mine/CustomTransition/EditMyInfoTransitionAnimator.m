@@ -60,7 +60,6 @@
             } else {
                 mineVC.contentView.layer.anchorPoint = CGPointMake(0.5, 0.47);
             }
-            mineVC.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:250/255.0 alpha:1];
             mineVC.view.userInteractionEnabled = NO;
             
             to.view.frame = CGRectMake(25, 100, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
