@@ -11,6 +11,9 @@
 #import "DidNotCheckInDot.h"
 #import "TodaysDot.h"
 
+#define BARWIDTH (MAIN_SCREEN_W * 0.14)
+#define BARX (MAIN_SCREEN_W * 0.04267)
+
 @interface CheckInBar ()
 
 @property (nonatomic, copy) NSArray *weekInfo;
@@ -68,7 +71,7 @@
             } else {
                 bar.backgroundColor = [UIColor colorWithRed:58/255.0 green:53/255.0 blue:210/255.0 alpha:1];
             }
-            bar.frame = CGRectMake(16 + (i - 2) * 52.5, 13.5, 52.5, 5);
+            bar.frame = CGRectMake(16 + (i - 2) * BARWIDTH, 13.5, BARWIDTH, 5);
             [self addSubview:bar];
             [self.barArray addObject:bar];
         } else {
@@ -78,7 +81,7 @@
             } else {
                 bar.backgroundColor = [UIColor colorWithRed:225/255.0 green:230/255.0 blue:240/255.0 alpha:1];
             }
-            bar.frame = CGRectMake(16 + (i - 2) * 52.5, 13.5, 52.5, 5);
+            bar.frame = CGRectMake(16 + (i - 2) * BARWIDTH, 13.5, BARWIDTH, 5);
             [self addSubview:bar];
             [self.barArray addObject:bar];
         }
@@ -95,12 +98,13 @@
     } else {
         today = [NSDate date].weekday - 1;
     }
+    today = 7;
     
     for (int i = 1; i <= 7; i++) {
         
         if (i == today) {
             TodaysDot *dot = [[TodaysDot alloc] init];
-            dot.center = CGPointMake(6 + (i - 1) * 52.5, 6);
+            dot.center = CGPointMake(6 + (i - 1) * BARWIDTH, 6);
              [self addSubview:dot];
             [self.dotArray addObject:dot];
             continue;
@@ -115,12 +119,12 @@
         
         if (flag == 1) {
             CheckedInDot *dot = [[CheckedInDot alloc] init];
-            dot.center = CGPointMake(8 + (i - 1) * 52.5, 8);
+            dot.center = CGPointMake(8 + (i - 1) * BARWIDTH, 8);
             [self addSubview:dot];
             [self.dotArray addObject:dot];
         } else {
             DidNotCheckInDot *dot = [[DidNotCheckInDot alloc] init];
-            dot.center = CGPointMake(8 + (i - 1) * 52.5, 8);
+            dot.center = CGPointMake(8 + (i - 1) * BARWIDTH, 8);
             [self addSubview:dot];
             [self.dotArray addObject:dot];
         }
@@ -131,7 +135,7 @@
     // 第0个空字符串是为了对齐下标和星期几，占位用的
     NSArray *weekdays = @[@"", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日"];
     for (int i = 1; i <= 7; i++) {
-        UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(5 + (i - 1) * 52.5, 32, 23, 16)];
+        UILabel *weekdayLabel = [[UILabel alloc] initWithFrame:CGRectMake(5 + (i - 1) * BARWIDTH, 32, 23, 16)];
         weekdayLabel.text = weekdays[i];
         weekdayLabel.font = [UIFont systemFontOfSize:11];
         if (@available(iOS 11.0, *)) {
@@ -143,7 +147,10 @@
     }
     
     UIImageView *integralImageView = [[UIImageView alloc] init];
-    integralImageView.frame = CGRectMake(-11 + (today - 1) * 52, -39, 53, 29);
+    integralImageView.frame = CGRectMake(-11 + (today - 1) * BARWIDTH, -39, 53, 29);
+    if (IS_IPHONESE) {
+        integralImageView.frame = CGRectMake(-8 + (today - 1) * BARWIDTH, -39, 47, 26);
+    }
     integralImageView.backgroundColor = [UIColor colorWithRed:212/255.0 green:218/255.0 blue:255/255.0 alpha:1];
     [self addSubview:integralImageView];
     
@@ -160,8 +167,9 @@
         integral = 30;
     }
     
-    UILabel *integralLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 5, 38, 16)];
+    UILabel *integralLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 38, 16)];
     integralLabel.text = [NSString stringWithFormat:@"%ld积分", integral];
+    integralLabel.textAlignment = NSTextAlignmentCenter;
     if (@available(iOS 11.0, *)) {
         integralLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_IntegralLabelColor"];
     } else {
@@ -169,6 +177,7 @@
     }
     integralLabel.font = [UIFont systemFontOfSize:11];
     [integralImageView addSubview:integralLabel];
+    integralLabel.center = CGPointMake(integralImageView.width / 2.0, integralImageView.height / 2.0);
 }
 
 @end

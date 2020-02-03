@@ -73,6 +73,9 @@
         
         WaterFallLayout *layout = [[WaterFallLayout alloc] init];
         UICollectionView *storeCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 73, MAIN_SCREEN_W, MAIN_SCREEN_H - 73 - 30) collectionViewLayout:layout];
+        if (IS_IPHONEX) {
+            storeView.frame = CGRectMake(0, 88, MAIN_SCREEN_W, MAIN_SCREEN_H - 88 - 50);
+        }
         if (@available(iOS 11.0, *)) {
             storeCollectionView.backgroundColor = [UIColor colorNamed:@"Mine_Store_BackgroundColor"];
         } else {
@@ -86,10 +89,17 @@
 
 
 - (void)layoutSubviews {
-    [self mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.superview).offset(30);
-        make.leading.bottom.trailing.equalTo(self.superview);
-    }];
+    if (IS_IPHONEX) {
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.superview).offset(50);
+            make.leading.bottom.trailing.equalTo(self.superview);
+        }];
+    } else {
+        [self mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.superview).offset(30);
+            make.leading.bottom.trailing.equalTo(self.superview);
+        }];
+    }
     
     if (IS_IPHONEX) {
         [self.storeView mas_makeConstraints:^(MASConstraintMaker *make) {

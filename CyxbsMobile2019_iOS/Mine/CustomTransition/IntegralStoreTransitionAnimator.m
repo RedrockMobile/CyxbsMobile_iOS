@@ -21,7 +21,11 @@
         IntegralStoreViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         CheckInViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 
-        to.view.frame = CGRectMake(0, MAIN_SCREEN_H - 89 - 30 + 16, MAIN_SCREEN_W, MAIN_SCREEN_H);
+        if (IS_IPHONEX) {
+            to.view.frame = CGRectMake(0, MAIN_SCREEN_H - 104 - 50 + 16, MAIN_SCREEN_W, MAIN_SCREEN_H);
+        } else {
+            to.view.frame = CGRectMake(0, MAIN_SCREEN_H - 89 - 30 + 16, MAIN_SCREEN_W, MAIN_SCREEN_H);
+        }
         [transitionContext.containerView addSubview:to.view];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -32,7 +36,7 @@
                 to.contentView.storeView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
             }
             to.contentView.storeCollectionView.backgroundColor = to.contentView.storeView.backgroundColor;
-            from.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.9, 0.9);
+            from.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.88, 0.88);
             from.contentView.layer.cornerRadius = 16;
             from.contentView.clipsToBounds = YES;
         } completion:^(BOOL finished) {
@@ -49,7 +53,11 @@
         IntegralStoreViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            from.view.frame = CGRectMake(0, MAIN_SCREEN_H - 89 - 30 + 16, MAIN_SCREEN_W, MAIN_SCREEN_H);
+            if (IS_IPHONEX) {
+                from.view.frame = CGRectMake(0, MAIN_SCREEN_H - 104 - 50 + 16, MAIN_SCREEN_W, MAIN_SCREEN_H);
+            } else {
+                from.view.frame = CGRectMake(0, MAIN_SCREEN_H - 89 - 30 + 16, MAIN_SCREEN_W, MAIN_SCREEN_H);
+            }
             if (@available(iOS 11.0, *)) {
                 from.contentView.storeView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_StoreViewColor"];
             } else {

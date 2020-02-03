@@ -40,6 +40,9 @@
         UILabel *yearsLabel = [[UILabel alloc] init];
         yearsLabel.text = @"2019-2020";
         yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
+        if (IS_IPHONESE) {
+            yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
+        }
         yearsLabel.textColor = [UIColor whiteColor];
         [self.backgroundImageView addSubview:yearsLabel];
         self.yearsLabel = yearsLabel;
@@ -47,6 +50,9 @@
         UILabel *weekLabel = [[UILabel alloc] init];
         weekLabel.text = @"上学期第十三周";
         weekLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
+        if (IS_IPHONESE) {
+            weekLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
+        }
         weekLabel.textColor = [UIColor whiteColor];
         [self.backgroundImageView addSubview:weekLabel];
         self.weekLabel = weekLabel;
@@ -54,6 +60,9 @@
         UILabel *daysLabel = [[UILabel alloc] init];
         daysLabel.text = [NSString stringWithFormat:@"已连续打卡%@天", [UserItemTool defaultItem].checkInDay];
         daysLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
+        if (IS_IPHONESE) {
+            daysLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+        }
         daysLabel.textColor = [UIColor whiteColor];
         [self.backgroundImageView addSubview:daysLabel];
         self.daysLabel = daysLabel;
@@ -85,6 +94,9 @@
         }
         checkInRankLabel.text = [NSString stringWithFormat:@"今日第%@位打卡", [UserItemTool defaultItem].rank];
         checkInRankLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
+        if (IS_IPHONESE) {
+            checkInRankLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+        }
         [checkInView addSubview:checkInRankLabel];
         self.checkInRankLabel = checkInRankLabel;
         
@@ -92,6 +104,9 @@
         checkInRankPercentLabel.textColor = [UIColor colorWithWhite:1 alpha:0.64];
         checkInRankPercentLabel.text = [NSString stringWithFormat:@"超过%d%%的邮子", [UserItemTool defaultItem].rank_Persent.intValue];
         checkInRankPercentLabel.font = [UIFont systemFontOfSize:15];
+        if (IS_IPHONESE) {
+            checkInRankPercentLabel.font = [UIFont systemFontOfSize:9];
+        }
         [self.backgroundImageView addSubview:checkInRankPercentLabel];
         self.checkInRankPercentLabel = checkInRankPercentLabel;
         
@@ -176,20 +191,34 @@
         make.edges.equalTo(self);
     }];
     
-    [self.yearsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.backgroundImageView).offset(57);
-        make.leading.equalTo(self).offset(15);
-    }];
+    if (IS_IPHONEX) {
+        [self.yearsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.backgroundImageView).offset(101);
+            make.leading.equalTo(self).offset(15);
+        }];
+    } else {
+        [self.yearsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.backgroundImageView).offset(57);
+            make.leading.equalTo(self).offset(15);
+        }];
+    }
     
     [self.weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.yearsLabel);
         make.top.equalTo(self.yearsLabel.mas_bottom);
     }];
     
-    [self.daysLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.yearsLabel);
-        make.top.equalTo(self.weekLabel.mas_bottom).offset(8);
-    }];
+    if (IS_IPHONEX) {
+        [self.daysLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.equalTo(self.yearsLabel);
+            make.top.equalTo(self.weekLabel.mas_bottom).offset(12);
+        }];
+    } else {
+        [self.daysLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.equalTo(self.yearsLabel);
+            make.top.equalTo(self.weekLabel.mas_bottom).offset(8);
+        }];
+    }
     
     [self.checkInRankPercentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.yearsLabel);
@@ -208,10 +237,18 @@
         }];
     }
 
-    [self.checkInRankLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.checkInView).offset(13);
-        make.top.equalTo(self.checkInView).offset(31);
-    }];
+    if (IS_IPHONESE) {
+        [self.checkInRankLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.equalTo(self.checkInView).offset(13);
+            make.top.equalTo(self.checkInView).offset(21);
+        }];
+    } else {
+        [self.checkInRankLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.equalTo(self.checkInView).offset(13);
+            make.top.equalTo(self.checkInView).offset(31);
+        }];
+    }
+    
 
     if (IS_IPHONEX) {
         [self.checkInButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -220,6 +257,15 @@
             make.width.equalTo(@120);
             make.bottom.equalTo(self.storeView.mas_top).offset(-28);
         }];
+        self.checkInButton.layer.cornerRadius = 20;
+    } else if (IS_IPHONESE)  {
+        [self.checkInButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.height.equalTo(@35);
+            make.width.equalTo(@105);
+            make.bottom.equalTo(self.storeView.mas_top).offset(-20);
+            self.checkInButton.layer.cornerRadius = 17.5;
+        }];
     } else {
         [self.checkInButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
@@ -227,8 +273,8 @@
             make.width.equalTo(@120);
             make.bottom.equalTo(self.storeView.mas_top).offset(-20);
         }];
+        self.checkInButton.layer.cornerRadius = 20;
     }
-    self.checkInButton.layer.cornerRadius = 20;
 
     if (IS_IPHONEX) {
         [self.storeView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -268,12 +314,22 @@
         make.height.width.equalTo(@21);
     }];
     
-    [self.bar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.checkInView).offset(126);
-        make.leading.equalTo(self.checkInView).offset(16);
-        make.height.equalTo(@21);
-        make.trailing.equalTo(self.checkInView).offset(-16);
-    }];
+    if (IS_IPHONESE) {
+        [self.bar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.checkInView).offset(90);
+            make.leading.equalTo(self.checkInView).offset(10);
+            make.height.equalTo(@21);
+            make.trailing.equalTo(self.checkInView).offset(-16);
+        }];
+    } else {
+        [self.bar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.checkInView).offset(126);
+            make.leading.equalTo(self.checkInView).offset(MAIN_SCREEN_W * 0.04267);
+            make.height.equalTo(@21);
+            make.trailing.equalTo(self.checkInView).offset(-16);
+        }];
+    }
+    
 }
 
 - (void)CheckInSucceded {
