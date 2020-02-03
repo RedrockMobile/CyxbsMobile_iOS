@@ -9,6 +9,7 @@
 #import "EditMyInfoTransitionAnimator.h"
 #import "EditMyInfoViewController.h"
 #import "MineViewController.h"
+#import "EditMyInfoContentView.h"
 
 @interface EditMyInfoTransitionAnimator ()
 
@@ -31,9 +32,7 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
     
-    // present的时候获取到的from是UITabBarController
     UIViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    // dismiss的时候获取到的to是UITabBarController
     UIViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     if ([from isMemberOfClass:[UITabBarController class]]) {
@@ -49,6 +48,9 @@
             }
         }
         
+        ((EditMyInfoViewController *)to).contentView.titleLabel.alpha = 0;
+        ((EditMyInfoViewController *)to).contentView.backButton.alpha = 0;
+        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseOut animations:^{
             ((UITabBarController *)from).tabBar.alpha = 0;
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.8, 0.8);
@@ -63,8 +65,9 @@
             mineVC.view.userInteractionEnabled = NO;
             
             to.view.frame = CGRectMake(25, 100, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
-            
-            
+            ((EditMyInfoViewController *)to).contentView.titleLabel.alpha = 1;
+            ((EditMyInfoViewController *)to).contentView.backButton.alpha = 1;
+
             [transitionContext.containerView layoutIfNeeded];
         } completion:^(BOOL finished) {
             BOOL wasCanceled = [transitionContext transitionWasCancelled];
@@ -92,7 +95,9 @@
             mineVC.contentView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
             mineVC.contentView.layer.cornerRadius = 0;
             mineVC.view.userInteractionEnabled = YES;
-            
+            ((EditMyInfoViewController *)from).contentView.titleLabel.alpha = 0;
+            ((EditMyInfoViewController *)from).contentView.backButton.alpha = 0;
+
             [transitionContext.containerView layoutIfNeeded];
         } completion:^(BOOL finished) {
             BOOL wasCanceled = [transitionContext transitionWasCancelled];

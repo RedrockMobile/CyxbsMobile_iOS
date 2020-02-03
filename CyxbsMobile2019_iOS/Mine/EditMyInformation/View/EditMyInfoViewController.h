@@ -11,7 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class EditMyInfoContentView;
 @interface EditMyInfoViewController : UIViewController <EditMyInfoViewProtocol>
+
+@property (nonatomic, weak) EditMyInfoContentView *contentView;
 
 @end
 

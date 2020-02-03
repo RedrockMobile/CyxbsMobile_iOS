@@ -15,8 +15,6 @@
 
 @property (nonatomic, strong) EditMyInfoPresenter *presenter;
 
-@property (nonatomic, weak) EditMyInfoContentView *contentView;
-
 @property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 
 @end
@@ -69,6 +67,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)backButtonClicked:(UIButton *)sender {
+    ((MineViewController *)self.transitioningDelegate).panGesture = nil;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - 手势调用
 - (void)slideToDismiss:(UIPanGestureRecognizer *)sender {

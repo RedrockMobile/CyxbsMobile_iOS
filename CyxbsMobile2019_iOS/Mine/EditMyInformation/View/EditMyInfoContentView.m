@@ -50,6 +50,24 @@
         
         self.layer.cornerRadius = 16;
         
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.text = @"资料编辑";
+        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 21];
+        if (@available(iOS 11.0, *)) {
+            titleLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+        } else {
+            titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        }
+        [self addSubview:titleLabel];
+        self.titleLabel = titleLabel;
+        
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        backButton.backgroundColor = [UIColor purpleColor];
+        backButton.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 17);
+        [backButton addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:backButton];
+        self.backButton = backButton;
+        
         UIScrollView *scrollView = [[UIScrollView alloc] init];
         [self addSubview:scrollView];
         scrollView.showsVerticalScrollIndicator = NO;
@@ -268,6 +286,18 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 
+    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self).offset(-14);
+        make.centerY.equalTo(self.titleLabel);
+        make.height.equalTo(@24);
+        make.width.equalTo(@24);
+    }];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self).offset(13);
+        make.top.equalTo(self).offset(-48);
+    }];
+    
     [self.gestureView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentScrollView);
         make.leading.equalTo(self.headerImageView.mas_trailing);
@@ -373,6 +403,25 @@
     if ([self.delegate respondsToSelector:@selector(saveButtonClicked:)]) {
         [self.delegate saveButtonClicked:sender];
     }
+}
+
+- (void)backButtonClicked:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(backButtonClicked:)]) {
+        [self.delegate backButtonClicked:sender];
+    }
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    UIView *view = [super hitTest:point withEvent:event];
+    
+    if (view == nil) {
+        CGPoint hitPoint = [self.backButton convertPoint:point fromView:self];
+        if (CGRectContainsPoint(self.backButton.bounds, hitPoint)) {
+            view = self.backButton;
+        }
+    }
+    
+    return view;
 }
 
 @end
