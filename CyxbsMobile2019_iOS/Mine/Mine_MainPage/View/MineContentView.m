@@ -67,6 +67,10 @@
                     @{
                         @"title": @"红岩网校",
                         @"hasSwitch": @NO
+                    },
+                    @{
+                        @"title": @"关于",
+                        @"hasSwitch": @NO
                     }
                 ]
             }
@@ -233,17 +237,28 @@
             settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
             [cell.contentView addSubview:settingSwitch];
             if ([cell.textLabel.text hasPrefix:@"启动"]) {
-               [settingSwitch addTarget:self action:@selector(switchedLaunchingWithClassScheduleView:) forControlEvents:UIControlEventValueChanged];
-               if ([UserDefaultTool valueWithKey:@"Mine_LaunchingWithClassScheduleView"]) {
-                   settingSwitch.on = YES;
-                   // 在这里读取缓存，设置cell的text
-               }
-           }
+                [settingSwitch addTarget:self action:@selector(switchedLaunchingWithClassScheduleView:) forControlEvents:UIControlEventValueChanged];
+                if ([UserDefaultTool valueWithKey:@"Mine_LaunchingWithClassScheduleView"]) {
+                    settingSwitch.on = YES;
+                    // 在这里读取缓存，设置cell的text
+                }
+            }
         }
     }
     
     return  cell;
 }
+
+# pragma mark - TableView代理
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([selectedCell.textLabel.text isEqualToString:@"关于"]) {
+        if ([self.delegate respondsToSelector:@selector(selectedAboutCell)]) {
+            [self.delegate selectedAboutCell];
+        }
+    }
+}
+
 
 // Section的header
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

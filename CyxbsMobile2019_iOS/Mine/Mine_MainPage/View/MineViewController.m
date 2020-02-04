@@ -16,6 +16,7 @@
 #import "CheckInViewController.h"
 #import "MineQAController.h"
 #import "MineQADataItem.h"
+#import "MineAboutController.h"
 
 @interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol, UIViewControllerTransitioningDelegate>
 
@@ -56,7 +57,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // 隐藏导航栏
-    self.navigationController.navigationBarHidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
     
     UserItem *user = [UserItemTool defaultItem];
     self.contentView.headerView.nicknameLabel.text = user.nickname;
@@ -74,7 +75,6 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    self.navigationController.navigationBarHidden = NO;
     [self.presenter detachView];
 }
 
@@ -167,6 +167,12 @@
 - (void)responseLabelClicked {
     MineQAController *vc = [[MineQAController alloc] init];
     vc.title = @"评论回复";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)selectedAboutCell {
+    MineAboutController *vc = [[MineAboutController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

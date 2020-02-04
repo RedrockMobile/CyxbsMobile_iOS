@@ -16,9 +16,6 @@
 
 @implementation MineQAController
 
-- (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.navigationBar.hidden = YES;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

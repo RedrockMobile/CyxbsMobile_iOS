@@ -50,6 +50,8 @@
 		1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */; };
 		1A31062F23770C7300A56468 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A31062E23770C7300A56468 /* Mine.xcassets */; };
 		1A3106312377173B00A56468 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A310630237711A800A56468 /* Impact.ttf */; };
+		1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A344BB623E96AD80014A3B4 /* MineAboutController.m */; };
+		1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */; };
 		1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C33E23DC65C2005DC1F3 /* MyAnswerReleasedCell.m */; };
 		1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34123DC6CE2005DC1F3 /* MyAnswerDraftCell.m */; };
 		1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34423DC6F14005DC1F3 /* MyResponseSentCell.m */; };
@@ -364,6 +366,10 @@
 		1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreCell.m; sourceTree = "<group>"; };
 		1A31062E23770C7300A56468 /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		1A310630237711A800A56468 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
+		1A344BB523E96AD80014A3B4 /* MineAboutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineAboutController.h; sourceTree = "<group>"; };
+		1A344BB623E96AD80014A3B4 /* MineAboutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineAboutController.m; sourceTree = "<group>"; };
+		1A344BB823E96BF50014A3B4 /* MineAboutContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineAboutContentView.h; sourceTree = "<group>"; };
+		1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineAboutContentView.m; sourceTree = "<group>"; };
 		1A46C33D23DC65C2005DC1F3 /* MyAnswerReleasedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAnswerReleasedCell.h; sourceTree = "<group>"; };
 		1A46C33E23DC65C2005DC1F3 /* MyAnswerReleasedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyAnswerReleasedCell.m; sourceTree = "<group>"; };
 		1A46C34023DC6CE2005DC1F3 /* MyAnswerDraftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyAnswerDraftCell.h; sourceTree = "<group>"; };
@@ -741,6 +747,7 @@
 			isa = PBXGroup;
 			children = (
 				1A31062E23770C7300A56468 /* Mine.xcassets */,
+				1A344BB123E96AB80014A3B4 /* About */,
 				1A16591423D84AC00039BA46 /* Mine_QA */,
 				1A30F38E23D0574F00FBBD83 /* IntegralStore */,
 				1AFD152C23819505004D9CEA /* CustomTransition */,
@@ -1024,6 +1031,41 @@
 				1A30F3F723D4330E00FBBD83 /* WaterFallLayout.m */,
 			);
 			path = CollectionViewLayout;
+			sourceTree = "<group>";
+		};
+		1A344BB123E96AB80014A3B4 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				1A344BB223E96AB80014A3B4 /* Presenter */,
+				1A344BB323E96AB80014A3B4 /* Model */,
+				1A344BB423E96AB80014A3B4 /* View */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		1A344BB223E96AB80014A3B4 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1A344BB323E96AB80014A3B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A344BB423E96AB80014A3B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A344BB523E96AD80014A3B4 /* MineAboutController.h */,
+				1A344BB623E96AD80014A3B4 /* MineAboutController.m */,
+				1A344BB823E96BF50014A3B4 /* MineAboutContentView.h */,
+				1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1A59CA0723E15E27007953A5 /* Model */ = {
@@ -2261,6 +2303,7 @@
 				1AD6D2BA23E5C9DC0099A7E2 /* InstallRoomViewController.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
 				1AD6D2CE23E5C9DC0099A7E2 /* StudentScheduleViewController.m in Sources */,
+				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
 				1AD6D2C123E5C9DC0099A7E2 /* EnterButton.m in Sources */,
@@ -2362,6 +2405,7 @@
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
 				1AD6D2D823E5C9DC0099A7E2 /* StoreyResultView.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
+				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,

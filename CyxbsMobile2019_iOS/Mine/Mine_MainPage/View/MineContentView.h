@@ -17,13 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)checkInButtonClicked:(UIButton *)sender;
 - (void)foldButtonClicked:(UIButton *)foldButton foldState:(BOOL)isFold;
 - (void)quitButtonClicked:(UIButton *)sender;
+
 - (void)switchedRemindBeforeClass:(UISwitch *)sender;
 - (void)switchedRemindEveryDay:(UISwitch *)sender;
 - (void)switchedDisplayMemoPad:(UISwitch *)sender;
 - (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender;
+
 - (void)answerLabelClicked;
 - (void)questionLabelClicked;
 - (void)responseLabelClicked;
+
+- (void)selectedAboutCell;
 
 @end
 
