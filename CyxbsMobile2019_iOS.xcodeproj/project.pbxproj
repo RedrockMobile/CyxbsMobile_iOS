@@ -895,8 +895,6 @@
 			isa = PBXGroup;
 			children = (
 				1A16593023D984840039BA46 /* Assets.xcassets */,
-				1A59CA0723E15E27007953A5 /* Model */,
-				1A59CA0823E15E27007953A5 /* Presenter */,
 				1A16591923D84B290039BA46 /* View */,
 			);
 			path = Mine_QA;
@@ -1066,20 +1064,6 @@
 				1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1A59CA0723E15E27007953A5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1A59CA0823E15E27007953A5 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		1A5A5ED423600BA300543BAE /* Login */ = {
