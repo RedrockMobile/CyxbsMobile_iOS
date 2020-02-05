@@ -63,7 +63,7 @@
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void) back {
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
     [self.navigationController popViewControllerAnimated:YES];
     
 }
