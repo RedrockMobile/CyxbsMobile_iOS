@@ -18,15 +18,19 @@
 @property (nonatomic, weak) UIScrollView *contentView;
 @property (nonatomic)NSArray<FinderToolViewItem *> *toolViewItems;
 @property (nonatomic, weak)UILabel *toolTitle;
+@property (nonatomic, weak)UIButton *backButton;//返回按钮
+
 @end
 
 @implementation LQQFinderToolViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     [self addContentView];//添加底层的ScrollView
-    [self configNavigationBar];
     [self addToolTitle];
+    [self addBackButton];
+    [self configNavigationBar];
     [self addSettingButton];
     [self addToolViewItems];//将每个工具添加到当前页面
     if (@available(iOS 11.0, *)) {
@@ -37,6 +41,25 @@
     [self layoutItems];
 
 }
+- (void)addBackButton {
+    UIButton *button = [[UIButton alloc]init];
+    [self.view addSubview:button];
+    self.backButton = button;
+    [button setImage:[UIImage imageNamed:@"LQQBackButton"] forState:normal];
+    [button setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@7);
+        make.height.equalTo(@14);
+        make.bottom.equalTo(self.contentView.mas_top).offset(-5);
+        make.left.equalTo(self.toolTitle);
+    }];
+    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)popController {
+    [self.navigationController popViewControllerAnimated:YES];
+//    self.navigationController.navigationBar.hidden = NO;
+}
+
 
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
@@ -49,16 +72,18 @@
     if (@available(iOS 11.0, *)) {
         contentView.backgroundColor = color242_243_248to000000;
     } else {
-        // Fallback on earlier versions
+        contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
 
     contentView.contentSize = CGSizeMake(self.view.width, 1.5 * self.view.height);
     [self.view addSubview:contentView];
 }
 - (void)configNavigationBar {
-    self.navigationController.navigationBar.topItem.title = @"";
-    self.title = @"工具";
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:176/255.0 green:189/255.0 blue:215/255.0 alpha:1];
+//    self.navigationController.navigationBar.topItem.title = @"";
+//    self.title = @"工具";
+//    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:176/255.0 green:189/255.0 blue:215/255.0 alpha:1];
+    self.navigationController.navigationBar.hidden = YES;
+
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.toolTitle.height){

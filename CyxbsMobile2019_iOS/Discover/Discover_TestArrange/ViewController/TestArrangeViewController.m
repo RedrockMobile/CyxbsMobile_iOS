@@ -19,12 +19,16 @@
 @property (nonatomic, weak)UILabel *titleLabel;
 @property (nonatomic, strong)ExamArrangeModel *examArrangeModel;
 @property (nonatomic, weak)UIView *seperateLine;//分割线
+@property (nonatomic, weak)UILabel *backButtonTitle;//“考试成绩”
+@property (nonatomic, weak)UIButton *backButton;//返回按钮
+@property (nonatomic, weak)UIView *hideView;
 @end
 
 @implementation TestArrangeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = YES;
     [self addBackButtonTitle];
     [self addSeperateLine];
     [self addTableView];
@@ -32,6 +36,7 @@
     self.view.backgroundColor = color242_243_248toFFFFFF;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:self.view.backgroundColor}];
     [self addHideView];//添加一个隐藏View防止滑动tableView的时候出现字体重叠的问题
+    [self addBackButton];
     [self addTitleLabel];
     // Do any additional setup after loading the view.
     [self getExamArrangeData];
@@ -39,18 +44,36 @@
 }
 -(void)addBackButtonTitle {
     UILabel *label = [[UILabel alloc]init];
+    self.backButtonTitle = label;
     label.text = @"考试成绩";
     [label setFont:[UIFont fontWithName:PingFangSCBold size:21]];
     label.textColor = Color21_49_91_F0F0F2;
-    [self.navigationController.navigationBar addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@37);
-        make.bottom.equalTo(self.navigationController.navigationBar).offset(-5);
+    [self.view addSubview:label];
+//    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(@37);
+//        make.bottom.equalTo(self.navigationController.navigationBar).offset(-5);
+//    }];
+}
+- (void)addBackButton {
+    UIButton *button = [[UIButton alloc]init];
+    [self.hideView addSubview:button];
+    self.backButton = button;
+    [button setImage:[UIImage imageNamed:@"LQQBackButton"] forState:normal];
+    [button setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(17);
+        make.top.equalTo(self.view).offset(53);
+        make.width.equalTo(@7);
+        make.height.equalTo(@14);
     }];
+    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)removeBackButtonTitle {
+    [self.backButtonTitle removeFromSuperview];
 }
 
 - (void)addTableView {
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, 160, self.view.width - 53 - 19, self.view.height - 87 -  [[UIApplication sharedApplication] statusBarFrame].size.height) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, [[UIApplication sharedApplication] statusBarFrame].size.height + 120, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT) style:UITableViewStylePlain];
     self.tableView = tableView;
     tableView.backgroundColor = self.view.backgroundColor;
     tableView.delegate = self;
@@ -66,6 +89,7 @@
 }
 - (void)addHideView {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 112 - 25)];//112是字体顶部到手机屏幕顶部的距离，25是字体高度
+    self.hideView = view;
     view.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:view];
 }
@@ -102,6 +126,8 @@
 }
 - (void)popController {
     [self.navigationController popViewControllerAnimated:YES];
+//    self.navigationController.navigationBar.hidden = NO;
+    [self removeBackButtonTitle];
 }
 
 

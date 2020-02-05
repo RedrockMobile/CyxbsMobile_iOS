@@ -14,6 +14,7 @@
 #define ImpactRegular @"Impact"
 //颜色部分
 #define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
@@ -39,7 +40,12 @@
 }
 - (void)addSeperateLine {
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, 1)];
-    line.backgroundColor = [UIColor colorWithRed:232/255.0 green:223/255.0 blue:241/255.0 alpha:1];
+
+    if (@available(iOS 11.0, *)) {
+        line.backgroundColor = Color42_78_132to2D2D2D;
+    } else {
+        line.backgroundColor = [UIColor colorWithRed:232/255.0 green:223/255.0 blue:241/255.0 alpha:1];
+    }
     [self addSubview:line];
 }
 //MARK: - 志愿服务部分

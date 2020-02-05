@@ -76,6 +76,7 @@
     }];
     [self.myDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconView);
+        make.width.equalTo(@88);
         make.top.equalTo(self.mas_bottom).offset(-73);
     }];
 }
