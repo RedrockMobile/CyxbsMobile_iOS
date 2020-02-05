@@ -14,6 +14,7 @@
 @property (nonatomic, weak) UILabel *contentLabel;
 @property (nonatomic, weak) UILabel *timeLabel;
 @property (nonatomic, weak) UIButton *deleteButton;
+@property (nonatomic, weak) UIView *separateLine;
 
 @end
 
@@ -72,6 +73,16 @@
         deleteButton.backgroundColor = [UIColor grayColor];
         [self.contentView addSubview:deleteButton];
         self.deleteButton = deleteButton;
+        
+        
+        UIView *separateLine = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            separateLine.backgroundColor = [UIColor colorNamed:@"Mine_QA_SeparateLineColor"];
+        } else {
+            separateLine.backgroundColor = [UIColor colorWithRed:192/255.0 green:204/255.0 blue:227/255.0 alpha:1];
+        }
+        [self addSubview:separateLine];
+        self.separateLine = separateLine;
     }
     return self;
 }
@@ -98,6 +109,11 @@
         make.trailing.equalTo(self).offset(-19);
         make.height.width.equalTo(@19);
         make.centerY.equalTo(self.timeLabel);
+    }];
+    
+    [self.separateLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.equalTo(self);
+        make.height.equalTo(@1);
     }];
 }
 

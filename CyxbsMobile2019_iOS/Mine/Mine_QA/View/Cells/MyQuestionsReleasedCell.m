@@ -17,6 +17,7 @@
 @property (nonatomic, weak) UILabel *integralLabel;
 @property (nonatomic, weak) UILabel *isSolvedLabel;
 @property (nonatomic, assign) BOOL isSolved;
+@property (nonatomic, weak) UIView *separateLine;
 
 @end
 
@@ -113,6 +114,15 @@
         }
         [self.contentView addSubview:isSolvedLabel];
         self.isSolvedLabel = isSolvedLabel;
+        
+        UIView *separateLine = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            separateLine.backgroundColor = [UIColor colorNamed:@"Mine_QA_SeparateLineColor"];
+        } else {
+            separateLine.backgroundColor = [UIColor colorWithRed:192/255.0 green:204/255.0 blue:227/255.0 alpha:1];
+        }
+        [self addSubview:separateLine];
+        self.separateLine = separateLine;
     }
     return self;
 }
@@ -154,6 +164,11 @@
     }];
     self.isSolvedLabel.layer.cornerRadius = 11;
     self.isSolvedLabel.clipsToBounds = YES;
+    
+    [self.separateLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.equalTo(self);
+        make.height.equalTo(@1);
+    }];
 }
 
 @end

@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) UILabel *sendToNameLabel;
 @property (nonatomic, weak) UILabel *contentLabel;
+@property (nonatomic, weak) UIView *separateLine;
 
 @end
 
@@ -50,6 +51,15 @@
         }
         [self.contentView addSubview:contentLabel];
         self.contentLabel = contentLabel;
+        
+        UIView *separateLine = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            separateLine.backgroundColor = [UIColor colorNamed:@"Mine_QA_SeparateLineColor"];
+        } else {
+            separateLine.backgroundColor = [UIColor colorWithRed:192/255.0 green:204/255.0 blue:227/255.0 alpha:1];
+        }
+        [self addSubview:separateLine];
+        self.separateLine = separateLine;
     }
     return self;
 }
@@ -64,6 +74,11 @@
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.sendToNameLabel);
         make.top.equalTo(self.sendToNameLabel.mas_bottom).offset(11);
+    }];
+    
+    [self.separateLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.equalTo(self);
+        make.height.equalTo(@1);
     }];
 }
 
