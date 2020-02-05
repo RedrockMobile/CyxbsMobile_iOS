@@ -98,8 +98,7 @@
     } else {
         today = [NSDate date].weekday - 1;
     }
-    today = 7;
-    
+
     for (int i = 1; i <= 7; i++) {
         
         if (i == today) {
