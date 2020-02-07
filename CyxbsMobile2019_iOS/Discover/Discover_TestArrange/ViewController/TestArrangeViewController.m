@@ -12,8 +12,10 @@
 #import "ExamArrangeModel.h"
 #import "ExamArrangeData.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
+#define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define tableViewColor [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 @interface TestArrangeViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak)UILabel *titleLabel;
@@ -33,7 +35,11 @@
     [self addSeperateLine];
     [self addTableView];
     self.navigationController.navigationBar.topItem.title = @"";
-    self.view.backgroundColor = color242_243_248toFFFFFF;
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = tableViewColor;
+    } else {
+        self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
+    }
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:self.view.backgroundColor}];
     [self addHideView];//添加一个隐藏View防止滑动tableView的时候出现字体重叠的问题
     [self addBackButton];
@@ -47,7 +53,11 @@
     self.backButtonTitle = label;
     label.text = @"考试成绩";
     [label setFont:[UIFont fontWithName:PingFangSCBold size:21]];
-    label.textColor = Color21_49_91_F0F0F2;
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2;
+    } else {
+        label.textColor = [UIColor colorWithHexString:@"#15315B"];
+    }
     [self.view addSubview:label];
 //    [label mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.equalTo(@37);
@@ -98,7 +108,11 @@
     self.titleLabel = label;
     label.text = @"考试安排";
     [label setFont:[UIFont fontWithName:PingFangSCBold size:22]];
-    label.textColor = Color21_49_91_F0F0F2;
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2;
+    } else {
+        label.textColor = [UIColor colorWithHexString:@"#15315B"];
+    }
     [self.tableView addSubview:label];
 
 }
@@ -136,15 +150,27 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TestCardTableViewCell *cell = [[TestCardTableViewCell alloc]init];
     cell.selectionStyle  = UITableViewCellSelectionStyleNone;
-    
+    //数据分配
     cell.weekTimeLabel.text = [NSString stringWithFormat:@"%@周周%@",[self translationArabicNum:self.examArrangeModel.examArrangeData.data[indexPath.row].week.intValue], [self translationArabicNum: self.examArrangeModel.examArrangeData.data[indexPath.row].weekday.intValue]];
-    cell.leftDayLabel.text = [NSString stringWithFormat:@"还剩_天考试"];
+    NSString *lastDay =[self calcDaysFromBegin:[self dateFromString:[self getCurrentTime]] end:[self dateFromString:self.examArrangeModel.examArrangeData.data[indexPath.row].date]];
+    cell.leftDayLabel.text = [NSString stringWithFormat:@"还剩%@天考试",lastDay];
     cell.subjectLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].course;
     cell.testNatureLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].type;
     cell.dayLabel.text = [NSString stringWithFormat:@"%@月%@日", [self getArrayWithString: self.examArrangeModel.examArrangeData.data[indexPath.row].date][1], [self getArrayWithString: self.examArrangeModel.examArrangeData.data[indexPath.row].date][2]];
     cell.timeLabel.text = [NSString stringWithFormat:@"%@ - %@",self.examArrangeModel.examArrangeData.data[indexPath.row].begin_time, self.examArrangeModel.examArrangeData.data[indexPath.row].end_time];
     cell.classLabel.text = self.examArrangeModel.examArrangeData.data[indexPath.row].classroom;
     cell.seatNumLabel.text = [NSString stringWithFormat:@"%@号", self.examArrangeModel.examArrangeData.data[indexPath.row].seat];
+    //当某科考试剩余天数小于0天时更换label为考试已结束样式
+    if(lastDay.intValue < 0) {
+        cell.leftDayLabel.text = [NSString stringWithFormat:@"考试已结束"];
+        if (@available(iOS 11.0, *)) {
+            cell.leftDayLabel.textColor =[UIColor colorNamed:@"Color#2A4E84&#858585" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        } else {
+            cell.leftDayLabel.textColor = [UIColor colorWithHexString:@"#2A4E84"];
+        }
+        
+        [cell.leftDayLabel setAlpha:0.56];
+    }
     [self.view addSubview:cell];
     return cell;
 }
@@ -225,4 +251,64 @@
         return chinese;
     }
 }
+//MARK: - 获取今天日期
+- (NSString *)getCurrentTime {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+    NSLog(@"%@",dateTime);
+    return dateTime;
+}
+//MARK: - 将字符串转成NSDate类型
+- (NSDate *)dateFromString:(NSString *)dateString {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat: @"yyyy-MM-dd"];
+    NSDate *destDate= [dateFormatter dateFromString:dateString];
+    return destDate;
+}
+
+- (NSString *)pleaseInsertStarTimeo:(NSString *)time1 andInsertEndTime:(NSString *)time2{
+// 1.将时间转换为date
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+formatter.dateFormat = @"yyyy-MM-dd";
+NSDate *date1 = [formatter dateFromString:time1];
+NSDate *date2 = [formatter dateFromString:time2];
+// 2.创建日历
+NSCalendar *calendar = [NSCalendar currentCalendar];
+NSCalendarUnit type = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+// 3.利用日历对象比较两个时间的差值
+NSDateComponents *cmps = [calendar components:type fromDate:date1 toDate:date2 options:0];
+// 4.输出结果
+    return [NSString stringWithFormat:@"%ld", cmps.day];
+}
+
+- (NSString*)calcDaysFromBegin:(NSDate *)beginDate end:(NSDate *)endDate {
+
+//创建日期格式化对象
+
+NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+
+[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+
+
+
+//取两个日期对象的时间间隔：
+
+//这里的NSTimeInterval 并不是对象，是基本型，其实是double类型，是由c定义的:typedef double NSTimeInterval;
+
+NSTimeInterval time=[endDate timeIntervalSinceDate:beginDate];
+
+
+
+int days=((int)time)/(3600*24);
+
+//int hours=((int)time)%(3600*24)/3600;
+
+//NSString *dateContent=[[NSString alloc] initWithFormat:@"%i天%i小时",days,hours];
+
+    return [NSString stringWithFormat:@"%d",days];
+
+}
+
 @end
