@@ -12,6 +12,10 @@
 #import "ClassmatesList.h"
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define BACKGROUNDCOLOR  [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define SEARCHBARCOLOR  [UIColor colorNamed:@"Color#E8F1FC&2C2C2C" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
+
 
 @interface StudentScheduleViewController ()
 @property (nonatomic, weak)UITextField *textField;
@@ -29,7 +33,11 @@
     [super viewDidLoad];
     NSMutableArray *historyArray = [NSMutableArray array];
     self.historyArray = historyArray;
-    self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = BACKGROUNDCOLOR;
+    } else {
+        self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
+    }
     [self addSearchField];
     [self addHistoryLabel];
     [self addHistoryItem];
@@ -41,7 +49,11 @@
     UIView *backView = [[UIView alloc]init];
     self.searchBackView = backView;
     [self.view addSubview:backView];
-    backView.backgroundColor = [UIColor colorWithRed:232/255.0 green:241/255.0 blue:252/255.0 alpha:1];
+    if (@available(iOS 11.0, *)) {
+        backView.backgroundColor = SEARCHBARCOLOR;
+    } else {
+        backView.backgroundColor = [UIColor colorWithHexString:@"#E8F1FC"];
+    }
     backView.layer.cornerRadius = 23;
     [backView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(18);
@@ -66,11 +78,11 @@
            textField.textColor = Color21_49_91_F0F0F2;
            textField.tintColor = Color21_49_91_F0F0F2;
 //           [textField setValue:Color21_49_91_F0F0F2 forKeyPath:@"_placeholderLabel.textColor"];
+           textField.backgroundColor = UIColor.clearColor;
 
        } else {
            // Fallback on earlier versions
        }
-       textField.backgroundColor = [UIColor colorWithRed:232/255.0 green:241/255.0 blue:252/255.0 alpha:1];
     //addSearchButton
     UIButton *searchButton = [[UIButton alloc]init];
     searchButton.backgroundColor = [UIColor blueColor];
@@ -118,7 +130,11 @@
 
 - (void)addHistoryItem {
     UIButton *exampleButton = [[UIButton alloc]init];
-    exampleButton.backgroundColor = [UIColor colorWithRed:221/255.0 green:229/255.0 blue:241/255.0 alpha:1];
+    if (@available(iOS 11.0, *)) {
+        exampleButton.backgroundColor = SEARCHBARCOLOR;
+    } else {
+        // Fallback on earlier versions
+    }
     if (@available(iOS 11.0, *)) {
         exampleButton.titleLabel.textColor = Color21_49_91_F0F0F2;
         [exampleButton setTitleColor:Color21_49_91_F0F0F2 forState:normal];

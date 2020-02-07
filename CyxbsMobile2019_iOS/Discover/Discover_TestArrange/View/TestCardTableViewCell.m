@@ -9,7 +9,8 @@
 #import "TestCardTableViewCell.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
+#define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define ColorbackgroundColor [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 @implementation TestCardTableViewCell
 
 - (void)awakeFromNib {
@@ -20,7 +21,11 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = color242_243_248toFFFFFF;
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = ColorbackgroundColor;
+        } else {
+            self.backgroundColor = [UIColor colorWithHexString:@"F8F9FC"];
+        }
         [self addWeekTimeLabel];
         [self addLeftDayLabel];
         [self addBottomView];
@@ -39,7 +44,11 @@
     UILabel *label = [[UILabel alloc]init];
     label.text = @"十一周周一";
     label.font = [UIFont fontWithName:PingFangSCBold size:15];
-    label.textColor = Color21_49_91_F0F0F2;
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2;
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     self.weekTimeLabel = label;
     [self.contentView addSubview:label];
 }
@@ -47,14 +56,23 @@
     UILabel *label = [[UILabel alloc]init];
     label.text = @"还剩5天考试";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
-    label.textColor = [UIColor colorWithRed:58/255.0 green:57/255.0 blue:211/255.0 alpha:1];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor colorNamed:@"Color#3A39D3&#0BCCF0" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    } else {
+        label.textColor = [UIColor colorWithHexString:@"Color#3A39D3&#0BCCF0"];
+    }
     self.leftDayLabel = label;
     [self.contentView addSubview:label];
 }
 - (void) addBottomView {
     UIView *backgroundView = [[UIView alloc]init];
     self.bottomView = backgroundView;
-    backgroundView.backgroundColor = [UIColor colorWithRed:232/255.0 green:241/255.0 blue:252/255.0 alpha:1.0];
+
+    if (@available(iOS 11.0, *)) {
+        backgroundView.backgroundColor =  [UIColor colorNamed:@"TestCardCellBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    } else {
+        backgroundView.backgroundColor = [UIColor colorWithRed:232/255.0 green:241/255.0 blue:252/255.0 alpha:0.7];
+    }
     backgroundView.layer.cornerRadius = 8;
     backgroundView.clipsToBounds = YES;
     [self.contentView addSubview:backgroundView];
@@ -63,7 +81,11 @@
     UILabel *label = [[UILabel alloc]init];
     label.text = @"大学物理";
     label.font = [UIFont fontWithName:PingFangSCBold size:18];
-    label.textColor = Color21_49_91_F0F0F2;
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2;
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     self.subjectLabel = label;
     [self.contentView addSubview:label];
 }
@@ -83,7 +105,11 @@
     UILabel *label = [[UILabel alloc]init];
     label.text = @"半期";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
-    label.textColor = Color21_49_91_F0F0F2;
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2;
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     self.testNatureLabel = label;
     [self.contentView addSubview:label];
 }
@@ -91,7 +117,12 @@
     UILabel *label = [[UILabel alloc]init];
     label.text = @"11月8号";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
+
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2_alpha59;
+    } else {
     label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.59];
+    }
     self.dayLabel = label;
     [self.contentView addSubview:label];
 }
@@ -100,7 +131,11 @@
     UILabel *label = [[UILabel alloc]init];
     label.text = @"14:00 - 16:00";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2_alpha59;
+    } else {
     label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.59];
+    }
     self.timeLabel = label;
     [self.contentView addSubview:label];
 }
@@ -108,7 +143,11 @@
     UILabel *label = [[UILabel alloc]init];
     label.text = @"3402";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2_alpha59;
+    } else {
     label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.59];
+    }
     self.classLabel = label;
     [self.contentView addSubview:label];
 }
@@ -116,7 +155,11 @@
     UILabel *label = [[UILabel alloc]init];
     label.text = @"58号";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2_alpha59;
+    } else {
     label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.59];
+    }
     self.seatNumLabel = label;
     [self.contentView addSubview:label];
 }

@@ -11,6 +11,8 @@
 #import "StudentScheduleViewController.h"
 #import "TeacherScheduleViewController.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define navigationbarColor  [UIColor colorNamed:@"Color#FFFFFF&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
 
 @interface ScheduleInquiryViewController () <StudentScheduleDelegate>
 @property (nonatomic, weak)UIView *backgroundView;
@@ -21,7 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.whiteColor;
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = navigationbarColor;
+    } else {
+        // Fallback on earlier versions
+    }
     self.navigationController.navigationBar.hidden = YES;
     [self addCustomTabbarView];
     [self addSegmentView];
@@ -32,7 +38,11 @@
 - (void)addCustomTabbarView {
     UIView *backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 100)];
     self.backgroundView = backgroundView;
-    backgroundView.backgroundColor = UIColor.whiteColor;
+    if (@available(iOS 11.0, *)) {
+        backgroundView.backgroundColor = navigationbarColor;
+    } else {
+        backgroundView.backgroundColor = UIColor.whiteColor;
+    }
     [self.view addSubview:backgroundView];
     //addTitleView
     UILabel *titleLabel = [[UILabel alloc]init];
@@ -47,7 +57,7 @@
     if (@available(iOS 11.0, *)) {
         titleLabel.textColor = Color21_49_91_F0F0F2;
     } else {
-        // Fallback on earlier versions
+        titleLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     }
 }
 - (void)addBackButton {
@@ -74,8 +84,14 @@
     TeacherScheduleViewController *teacherVC = [[TeacherScheduleViewController alloc]init];
     teacherVC.title = @"老师课表";
     QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-120) controllers:@[stuVC, teacherVC]];
-
     [self.view addSubview:segmentView];
+
+    if (@available(iOS 11.0, *)) {
+        [segmentView setValue:Color21_49_91_F0F0F2 forKey:@"titleColor"];
+    } else {
+        [segmentView setValue:[UIColor colorWithHexString:@"#15315B"] forKey:@"titleColor"];
+    }
+    
     [segmentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.backgroundView.mas_bottom);
         make.left.right.width.equalTo(self.backgroundView);

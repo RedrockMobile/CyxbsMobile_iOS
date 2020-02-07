@@ -9,6 +9,7 @@
 #import "HistoryView.h"
 #define SPLIT 7//item间距
 #define LINESPLIT 10//行间距
+
 @interface HistoryView()
 @end
 @implementation HistoryView
