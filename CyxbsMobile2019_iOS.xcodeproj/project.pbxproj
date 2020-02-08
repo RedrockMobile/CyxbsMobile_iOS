@@ -259,6 +259,11 @@
 		DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC9239BD4550052B65E /* DayLabel.m */; };
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
 		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
+		EE806EFF23EE9A48004F8A3E /* OneNewsItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806EFE23EE9A48004F8A3E /* OneNewsItemData.m */; };
+		EE806F0323EEA4D3004F8A3E /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806F0223EEA4D3004F8A3E /* NewsViewController.m */; };
+		EE806F0823EEAB8A004F8A3E /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806F0723EEAB8A004F8A3E /* NewsCell.m */; };
+		EE806F0A23EEB4EA004F8A3E /* News.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE806F0923EEB4EA004F8A3E /* News.xcassets */; };
+		EE806F1023EEC920004F8A3E /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
 /* End PBXBuildFile section */
 
@@ -700,6 +705,15 @@
 		DB34EACB239BD4550052B65E /* ORWInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORWInputTextView.h; sourceTree = "<group>"; };
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
 		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		EE806EFD23EE9A48004F8A3E /* OneNewsItemData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneNewsItemData.h; sourceTree = "<group>"; };
+		EE806EFE23EE9A48004F8A3E /* OneNewsItemData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsItemData.m; sourceTree = "<group>"; };
+		EE806F0123EEA4D3004F8A3E /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		EE806F0223EEA4D3004F8A3E /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		EE806F0623EEAB8A004F8A3E /* NewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		EE806F0723EEAB8A004F8A3E /* NewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		EE806F0923EEB4EA004F8A3E /* News.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = News.xcassets; sourceTree = "<group>"; };
+		EE806F0E23EEC920004F8A3E /* NewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewDetailViewController.h; sourceTree = "<group>"; };
+		EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewDetailViewController.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1250,6 +1264,7 @@
 		1AD6D25023E5C9DC0099A7E2 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				EE806F0023EEA2D8004F8A3E /* DIscover_NewsPage */,
 				1AD6D25123E5C9DC0099A7E2 /* Discover_MainPage */,
 				1AD6D27D23E5C9DC0099A7E2 /* Discover_TestArrange */,
 				1AD6D28D23E5C9DC0099A7E2 /* Discover_FindScheduleInquiry */,
@@ -1321,9 +1336,11 @@
 			isa = PBXGroup;
 			children = (
 				1AD6D26723E5C9DC0099A7E2 /* OneNewsModel.h */,
-				1AD6D26823E5C9DC0099A7E2 /* OneNewsItem.h */,
 				1AD6D26923E5C9DC0099A7E2 /* OneNewsModel.m */,
+				1AD6D26823E5C9DC0099A7E2 /* OneNewsItem.h */,
 				1AD6D26A23E5C9DC0099A7E2 /* OneNewsItem.m */,
+				EE806EFD23EE9A48004F8A3E /* OneNewsItemData.h */,
+				EE806EFE23EE9A48004F8A3E /* OneNewsItemData.m */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -1340,18 +1357,16 @@
 		1AD6D26E23E5C9DC0099A7E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1AD6D27723E5C9DC0099A7E2 /* LQQFinderView.h */,
+				1AD6D27123E5C9DC0099A7E2 /* LQQFinderView.m */,
 				1AD6D26F23E5C9DC0099A7E2 /* VolunteerGlanceView.h */,
 				1AD6D27023E5C9DC0099A7E2 /* EnterButton.m */,
-				1AD6D27123E5C9DC0099A7E2 /* LQQFinderView.m */,
-				1AD6D27223E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m */,
 				1AD6D27323E5C9DC0099A7E2 /* NotSetVolunteerButton.m */,
 				1AD6D27423E5C9DC0099A7E2 /* ElectricFeeGlanceView.h */,
 				1AD6D27523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m */,
 				1AD6D27623E5C9DC0099A7E2 /* VolunteerGlanceView.m */,
-				1AD6D27723E5C9DC0099A7E2 /* LQQFinderView.h */,
 				1AD6D27823E5C9DC0099A7E2 /* EnterButton.h */,
 				1AD6D27923E5C9DC0099A7E2 /* NotSetVolunteerButton.h */,
-				1AD6D27A23E5C9DC0099A7E2 /* PeopleListCellTableViewCell.h */,
 				1AD6D27B23E5C9DC0099A7E2 /* NotSetElectriceFeeButton.h */,
 				1AD6D27C23E5C9DC0099A7E2 /* ElectricFeeGlanceView.m */,
 			);
@@ -1415,13 +1430,13 @@
 		1AD6D28E23E5C9DC0099A7E2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1AD6D28F23E5C9DC0099A7E2 /* StudentScheduleViewController.m */,
 				1AD6D29023E5C9DC0099A7E2 /* ScheduleInquiryViewController.h */,
-				1AD6D29123E5C9DC0099A7E2 /* ChooseStudentListViewController.m */,
+				1AD6D29523E5C9DC0099A7E2 /* ScheduleInquiryViewController.m */,
+				1AD6D28F23E5C9DC0099A7E2 /* StudentScheduleViewController.m */,
 				1AD6D29223E5C9DC0099A7E2 /* TeacherScheduleViewController.h */,
 				1AD6D29323E5C9DC0099A7E2 /* StudentScheduleViewController.h */,
 				1AD6D29423E5C9DC0099A7E2 /* ChooseStudentListViewController.h */,
-				1AD6D29523E5C9DC0099A7E2 /* ScheduleInquiryViewController.m */,
+				1AD6D29123E5C9DC0099A7E2 /* ChooseStudentListViewController.m */,
 				1AD6D29623E5C9DC0099A7E2 /* TeacherScheduleViewController.m */,
 			);
 			path = Controller;
@@ -1441,6 +1456,8 @@
 		1AD6D29C23E5C9DC0099A7E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1AD6D27A23E5C9DC0099A7E2 /* PeopleListCellTableViewCell.h */,
+				1AD6D27223E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m */,
 				1AD6D29D23E5C9DC0099A7E2 /* HistoryView.m */,
 				1AD6D29E23E5C9DC0099A7E2 /* HistoryView.h */,
 			);
@@ -1990,6 +2007,44 @@
 			path = InputTextView;
 			sourceTree = "<group>";
 		};
+		EE806F0023EEA2D8004F8A3E /* DIscover_NewsPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE806F1123EEE299004F8A3E /* Model */,
+				EE806F0523EEAB6E004F8A3E /* View */,
+				EE806F0423EEAB64004F8A3E /* Controller */,
+				EE806F0923EEB4EA004F8A3E /* News.xcassets */,
+			);
+			path = DIscover_NewsPage;
+			sourceTree = "<group>";
+		};
+		EE806F0423EEAB64004F8A3E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE806F0123EEA4D3004F8A3E /* NewsViewController.h */,
+				EE806F0223EEA4D3004F8A3E /* NewsViewController.m */,
+				EE806F0E23EEC920004F8A3E /* NewDetailViewController.h */,
+				EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE806F0523EEAB6E004F8A3E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE806F0623EEAB8A004F8A3E /* NewsCell.h */,
+				EE806F0723EEAB8A004F8A3E /* NewsCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE806F1123EEE299004F8A3E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2165,6 +2220,7 @@
 				DB34EB0D239BD4550052B65E /* remind@2x.png in Resources */,
 				DB34EADF239BD4550052B65E /* remind0@3x.png in Resources */,
 				DB34EB0B239BD4550052B65E /* timeTable_image_add@2x.png in Resources */,
+				EE806F0A23EEB4EA004F8A3E /* News.xcassets in Resources */,
 				DB34EAD3239BD4550052B65E /* WYCNoteDetailView.xib in Resources */,
 				D026A80623D4E054001A4774 /* QA.xcassets in Resources */,
 				DB34EB07239BD4550052B65E /* 多课2@3x.png in Resources */,
@@ -2262,6 +2318,7 @@
 				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				1AD6D2B723E5C9DC0099A7E2 /* InstallBuildTableViewCell.m in Sources */,
+				EE806F0823EEAB8A004F8A3E /* NewsCell.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
 				1AD6D2C023E5C9DC0099A7E2 /* VolunteerModel.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
@@ -2304,6 +2361,7 @@
 				1AD6D2BD23E5C9DC0099A7E2 /* ElectricFeeModel.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
+				EE806F0323EEA4D3004F8A3E /* NewsViewController.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
@@ -2320,6 +2378,7 @@
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
+				EE806EFF23EE9A48004F8A3E /* OneNewsItemData.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
@@ -2392,6 +2451,7 @@
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
+				EE806F1023EEC920004F8A3E /* NewDetailViewController.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1AD6D2CC23E5C9DC0099A7E2 /* PointAndDottedLineView.m in Sources */,

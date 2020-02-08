@@ -185,6 +185,8 @@
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
+//教务新闻详情
+#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
 /// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
 
