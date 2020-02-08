@@ -96,6 +96,7 @@
     NewsCell *cell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NewsCell"];
     cell.textLabel.text = self.model.oneNewsItem.dataArray[indexPath.row].date;
     cell.detailTextLabel.text = self.model.oneNewsItem.dataArray[indexPath.row].title;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //    cell.haveFileLabel.text = @"有附件";
     return cell;
 }

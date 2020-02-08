@@ -265,6 +265,7 @@
 		EE806F0A23EEB4EA004F8A3E /* News.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE806F0923EEB4EA004F8A3E /* News.xcassets */; };
 		EE806F1023EEC920004F8A3E /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
+		EE90D54D23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE90D54C23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -715,6 +716,8 @@
 		EE806F0E23EEC920004F8A3E /* NewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewDetailViewController.h; sourceTree = "<group>"; };
 		EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewDetailViewController.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
+		EE90D54B23EF1DCF00293567 /* DownFileDetailCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownFileDetailCellTableViewCell.h; sourceTree = "<group>"; };
+		EE90D54C23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownFileDetailCellTableViewCell.m; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2034,6 +2037,8 @@
 			children = (
 				EE806F0623EEAB8A004F8A3E /* NewsCell.h */,
 				EE806F0723EEAB8A004F8A3E /* NewsCell.m */,
+				EE90D54B23EF1DCF00293567 /* DownFileDetailCellTableViewCell.h */,
+				EE90D54C23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2395,6 +2400,7 @@
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
 				1AD6D2B523E5C9DC0099A7E2 /* DiscoverViewController.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
+				EE90D54D23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m in Sources */,
 				1AD6D2DB23E5C9DC0099A7E2 /* LQQFinderToolViewController.m in Sources */,
 				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
 				D069799023D737800007E479 /* QADetailModel.m in Sources */,
