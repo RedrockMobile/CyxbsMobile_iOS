@@ -9,6 +9,7 @@
 #import "QADetailViewController.h"
 #import "QAAnswerViewController.h"
 #import "QADetailModel.h"
+#import "QADetailView.h"
 @interface QADetailViewController ()
 @property(strong,nonatomic)UIScrollView *scrollView;
 @property(strong,nonatomic)NSNumber *id;
@@ -94,129 +95,152 @@
 -(void)setupUI{
     //    NSLog(@"%@",self.model.dataDic);
     NSDictionary *dic = self.model.dataDic;
+    QADetailView *detailView = [[QADetailView alloc]initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT, SCREEN_WIDTH, self.view.height - TOTAL_TOP_HEIGHT)];
     
-    UIView *userInfoView = [[UIView alloc]init];
-    userInfoView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:userInfoView];
-    
-    UIImageView *userIcon = [[UIImageView alloc]init];
-    NSString *userIconUrl = [dic objectForKey:@"questioner_photo_thumbnail_src"];
-    [userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"userIcon"]];
-    [userInfoView addSubview:userIcon];
-    
-    UILabel *userNameLabel = [[UILabel alloc]init];
-    userNameLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
-    [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    [userNameLabel setText:[dic objectForKey:@"questioner_nickname"]];
-    [userInfoView addSubview:userNameLabel];
-    
-    UILabel *dateLabel = [[UILabel alloc]init];
-    dateLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    [dateLabel setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
-    NSString *date = [dic objectForKey:@"disappear_at"];
-    [dateLabel setText:[date substringWithRange:NSMakeRange(0, 10)]];
-    [userInfoView addSubview:dateLabel];
-    
-    UIImageView *integralIcon = [[UIImageView alloc]init];
-    [integralIcon setImage:[UIImage imageNamed:@"integralIcon2"]];
-    [userInfoView addSubview:integralIcon];
-    
-    UILabel *integralNumLabel = [[UILabel alloc]init];
-    NSString *integralNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"reward"]];
-    [integralNumLabel setText:integralNum];
-    integralNumLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    [userInfoView addSubview:integralNumLabel];
-    
-    [userInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(userInfoView.superview).mas_offset(0);
-        make.top.equalTo(userInfoView.superview).mas_offset(TOTAL_TOP_HEIGHT);
-        make.height.equalTo(@57);
-    }];
-    [userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(userInfoView).mas_offset(16);
-        make.top.equalTo(userInfoView).mas_offset(16);
-        make.height.width.equalTo(@40);
-    }];
-    [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(userIcon.mas_right).mas_offset(14);
-        make.top.mas_equalTo(userIcon.mas_top);
-    }];
-    [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(userNameLabel);
-        make.bottom.equalTo(userIcon);
-        //        make.height.equalTo(@57);
-    }];
-    [integralIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(userInfoView.mas_right).mas_offset(-33);
-        make.top.mas_equalTo(userInfoView.mas_top).mas_offset(33);
-        make.height.width.mas_equalTo(17);
-        //        make.height.equalTo(@57);
-    }];
-    [integralNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(integralIcon.mas_right).mas_offset(3);
-        make.centerY.equalTo(integralIcon);
-    }];
-    //    UILabel *contentLabel = [[UILabel alloc]init];
-    
-    UILabel *contentLabel = [[UILabel alloc] init];
-    contentLabel.numberOfLines = 0;
-    NSString *content = [dic objectForKey:@"description"];
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"雪莉曾与宋茜、刘逸云(Amber)、朴善怜(Luna)和郑秀晶（Krysal）组成女子流行演唱组合f(x)，因为靓丽的外形与甜美的歌曲，到很多歌迷的喜欢，虽然五人之后因不同的职业规划各自单飞，但依然保持着良好的关系。当听到雪组成女子流行演唱组合f(x)，因为靓丽的外形与甜美的歌曲，到很多歌迷的喜欢，虽然五人之后因不同的职业规划各自单飞，但依然保持着良好的关系。当听到雪组成女子流行演唱组合f(x)，因为靓丽的外形与甜美的歌曲，到很多歌迷的喜欢，虽然五人之后因不同的职业规划各自单飞，但依然保持着良好的关系。当听到雪"  attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCRegular size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
-    
-    contentLabel.attributedText = string;
-    contentLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    contentLabel.alpha = 1.0;
-    
-    [self.view addSubview:contentLabel];
-    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.top.mas_equalTo(userInfoView.mas_bottom).mas_offset(5);
-    }];
-    
-    
+    [detailView setupUIwithDic:dic];
+    [detailView.answerButton setTarget:self action:@selector(answer:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:detailView];
+//    UIView *userInfoView = [[UIView alloc]init];
+//    userInfoView.backgroundColor = [UIColor clearColor];
+//    [self.view addSubview:userInfoView];
+//
+//    UIImageView *userIcon = [[UIImageView alloc]init];
+//    NSString *userIconUrl = [dic objectForKey:@"questioner_photo_thumbnail_src"];
+//    [userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"userIcon"]];
+//    [userInfoView addSubview:userIcon];
+//
+//    UILabel *userNameLabel = [[UILabel alloc]init];
+//    userNameLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
+//    [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+//    [userNameLabel setText:[dic objectForKey:@"questioner_nickname"]];
+//    [userInfoView addSubview:userNameLabel];
+//
+//    UILabel *dateLabel = [[UILabel alloc]init];
+//    dateLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
+//    [dateLabel setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
+//    NSString *date = [dic objectForKey:@"disappear_at"];
+//    [dateLabel setText:[date substringWithRange:NSMakeRange(0, 10)]];
+//    [userInfoView addSubview:dateLabel];
+//
+//    UIImageView *integralIcon = [[UIImageView alloc]init];
+//    [integralIcon setImage:[UIImage imageNamed:@"integralIcon2"]];
+//    [userInfoView addSubview:integralIcon];
+//
+//    UILabel *integralNumLabel = [[UILabel alloc]init];
+//    NSString *integralNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"reward"]];
+//    [integralNumLabel setText:integralNum];
+//    integralNumLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
+//    [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+//    [userInfoView addSubview:integralNumLabel];
+//
+//    [userInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(userInfoView.superview).mas_offset(0);
+//        make.top.equalTo(userInfoView.superview).mas_offset(TOTAL_TOP_HEIGHT);
+//        make.height.equalTo(@57);
+//    }];
+//    [userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(userInfoView).mas_offset(16);
+//        make.top.equalTo(userInfoView).mas_offset(16);
+//        make.height.width.equalTo(@40);
+//    }];
+//    [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(userIcon.mas_right).mas_offset(14);
+//        make.top.mas_equalTo(userIcon.mas_top);
+//    }];
+//    [dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(userNameLabel);
+//        make.bottom.equalTo(userIcon);
+//        //        make.height.equalTo(@57);
+//    }];
+//    [integralIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(userInfoView.mas_right).mas_offset(-33);
+//        make.top.mas_equalTo(userInfoView.mas_top).mas_offset(33);
+//        make.height.width.mas_equalTo(17);
+//        //        make.height.equalTo(@57);
+//    }];
+//    [integralNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(integralIcon.mas_right).mas_offset(3);
+//        make.centerY.equalTo(integralIcon);
+//    }];
+//    //    UILabel *contentLabel = [[UILabel alloc]init];
+//
+//    UILabel *contentLabel = [[UILabel alloc] init];
+//    contentLabel.numberOfLines = 0;
+//    NSString *content = [dic objectForKey:@"description"];
+//    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[dic objectForKey:@"description"] attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCRegular size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
+//
+//    contentLabel.attributedText = string;
+//    contentLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+//    contentLabel.alpha = 1.0;
+//
+//    [self.view addSubview:contentLabel];
+//    [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
+//        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
+//        make.top.mas_equalTo(userInfoView.mas_bottom).mas_offset(5);
+//    }];
+//
+//
+//    UIView *separateView = [[UIView alloc]init];
+//    separateView.backgroundColor = [UIColor colorWithHexString:@"#2A4E84"];
+//    separateView.alpha = 0.1;
+//    [self.view addSubview:separateView];
+//
+//
 //    NSArray *imgUrlArray = [dic objectForKey:@"photo_urls"];
-    NSArray *imgUrlArray = @[@"http://img.wenjiwu.com/life/201704/9-1F422105602357.png"];
-    UIImageView *imgView = [[UIImageView alloc]init];
-    NSString *urlString = [NSString stringWithFormat:@"%@",imgUrlArray[0]];
-    NSURL *url = [NSURL URLWithString:urlString];
-    [imgView setImageWithURL:url placeholder:[UIImage imageNamed:@"userIcon"]];
-    [self.view addSubview:imgView];
-    
-    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(14);
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.height.mas_equalTo(@200);
-    }];
-//    for (NSString *url in imgUrlArray) {
+//    if (imgUrlArray.count != 0) {
+//
+//        //    NSArray *imgUrlArray = @[@"http://img.wenjiwu.com/life/201704/9-1F422105602357.png"];
+//        UIImageView *imgView = [[UIImageView alloc]init];
+//        NSString *urlString = [NSString stringWithFormat:@"%@",imgUrlArray[0]];
+//        NSURL *url = [NSURL URLWithString:urlString];
+//        [imgView setImageWithURL:url placeholder:[UIImage imageNamed:@"userIcon"]];
+//        [self.view addSubview:imgView];
+//
+//        [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(14);
+//            make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
+//            make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
+//            make.height.mas_equalTo(@200);
+//        }];
+//        [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
+//            make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
+//            make.top.mas_equalTo(imgView.mas_bottom).mas_offset(20);
+//            make.height.mas_equalTo(1);
+//        }];
+//    }else{
+//       [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
+//            make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
+//            make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(20);
+//            make.height.mas_equalTo(1);
+//        }];
 //    }
-    UIView *separateView = [[UIView alloc]init];
-    separateView.backgroundColor = [UIColor colorWithHexString:@"#2A4E84"];
-    separateView.alpha = 0.1;
-    [self.view addSubview:separateView];
-    
-    [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
-        make.top.mas_equalTo(imgView.mas_bottom).mas_offset(20);
-        make.height.mas_equalTo(1);
-    }];
-    
-    UIButton *askButton = [[UIButton alloc]init];
-    askButton.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
-    [askButton setTitle:@"回答" forState:UIControlStateNormal];
-    [askButton.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:18]];
-    askButton.layer.cornerRadius = 20;
-    [askButton setTarget:self action:@selector(answer:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:askButton];
-    [askButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-60);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(120);
-    }];
+//    UILabel *answerLabel = [[UILabel alloc]init];
+//    answerLabel.text = @"回复";
+//    [answerLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+//    answerLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
+//    [self.view addSubview:answerLabel];
+//    [answerLabel mas_makeConstraints:^(MASConstraintMaker *make){
+//        make.top.mas_equalTo(separateView.mas_bottom).mas_offset(14);
+//        make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
+//        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
+//    }];
+//
+//    UIButton *askButton = [[UIButton alloc]init];
+//    askButton.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
+//    [askButton setTitle:@"回答" forState:UIControlStateNormal];
+//    [askButton.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:18]];
+//    askButton.layer.cornerRadius = 20;
+//    [askButton setTarget:self action:@selector(answer:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:askButton];
+//    [askButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.view);
+//        make.bottom.mas_equalTo(self.view.mas_bottom).mas_offset(-60);
+//        make.height.mas_equalTo(40);
+//        make.width.mas_equalTo(120);
+//    }];
 }
 -(void)loadData{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];

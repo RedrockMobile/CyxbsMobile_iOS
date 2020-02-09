@@ -8,6 +8,7 @@
 
 #import "QAAnswerViewController.h"
 #import "QAAnswerModel.h"
+#import "QAAnswerExitView.h"
 @interface QAAnswerViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(strong,nonatomic)NSNumber *questionId;
 @property(copy,nonatomic)NSString *content;
@@ -285,5 +286,56 @@
     [self presentViewController:controller animated:YES completion:^{
         
     }];
+}
+    
+-(BOOL)navigationShouldPopOnBackButton{
+    if (1) {
+        // 在这里创建UIAlertController等方法
+        [self saveAskContent];
+        return NO;
+    }
+    return YES;
+}
+-(void)saveAskContent{
+    if ([[UIApplication sharedApplication].keyWindow viewWithTag:997]) {
+        [[[UIApplication sharedApplication].keyWindow viewWithTag:997] removeFromSuperview];
+    }
+    //初始化全屏view
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    view.backgroundColor = [UIColor colorWithHexString:@"#DCDDE3"];
+    //设置view的tag
+    view.tag = 997;
+    QAAnswerExitView *exitView = [[QAAnswerExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];
+    [exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
+    [exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:exitView];
+    
+    //显示全屏view
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window addSubview:view];
+    //    CGRect frame = CGRectMake(0, SCREEN_HEIGHT - 530, SCREEN_WIDTH, 550);
+    //    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
+    //
+    //        [backView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 530)];
+    //    } completion:nil];
+    
+    
+}
+-(void)continueEdit{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIView *view = [window viewWithTag:997];
+    [view removeFromSuperview];
+    
+    //    [UIView animateWithDuration:0.4f animations:^{
+    //        //        CGRect frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500);
+    //    } completion:^(BOOL finished) {
+    //        [view removeFromSuperview];
+    //    }];
+}
+-(void)saveAndExit{
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIView *view = [window viewWithTag:997];
+    [view removeFromSuperview];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
