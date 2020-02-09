@@ -11,7 +11,15 @@
 @implementation OneNewsItem
 -(instancetype)initWithDict: (NSDictionary *)dict {
     if (self = [super init]) {
-//       self.oneNews = dict[@"data"][0][@"title"];
+        self.page = dict[@"page"];
+        self.status = dict[@"status"];
+        self.info = dict[@"info"];
+        NSMutableArray *dataArray = [NSMutableArray array];
+        for (NSDictionary *dic in dict[@"data"]) {
+            OneNewsItemData *data = [[OneNewsItemData alloc]initWithDict:dic];
+            [dataArray addObject:data];
+        }
+        self.dataArray = dataArray;
     }
     return self;
     

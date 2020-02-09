@@ -19,7 +19,7 @@
 #import "NotSetVolunteerButton.h"
 #import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
-
+#import "NewsViewController.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak) NotSetVolunteerButton *volButton;//未绑定账号时电费button页面
 //Model
 @property ElectricFeeModel *elecModel;
-@property OneNewsModel *oneNewsModel;
+@property (nonatomic, strong)OneNewsModel *oneNewsModel;
 @property NSUserDefaults *defaults;
 @end
 
@@ -248,7 +248,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
     self.elecModel = elecModel;
-    OneNewsModel *oneNewsModel = [[OneNewsModel alloc]init];
+    OneNewsModel *oneNewsModel = [[OneNewsModel alloc]initWithPage:@1];
     self.oneNewsModel = oneNewsModel;
     
 }
@@ -265,10 +265,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)updateNewsUI {
-    [self.finderView.news setTitle:self.oneNewsModel.oneNewsItem.oneNews forState:normal];
+    [self.finderView.news setTitle:self.oneNewsModel.oneNewsItem.dataArray[0].title forState:normal];
     
     //同时写入缓存
-    [self.defaults setObject:self.oneNewsModel.oneNewsItem.oneNews forKey:@"OneNews_oneNews"];
+    [self.defaults setObject:self.oneNewsModel.oneNewsItem.dataArray[0].title forKey:@"OneNews_oneNews"];
 }
 - (void) bundlingBuildingAndRoom {
     NSLog(@"点击了绑定宿舍房间号");
@@ -282,10 +282,14 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)touchNewsSender {
     NSLog(@"点击了“教务在线”");
+    NewsViewController *vc = [[NewsViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchNews {
     NSLog(@"点击了新闻");
+    NewsViewController *vc = [[NewsViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchFindClass {

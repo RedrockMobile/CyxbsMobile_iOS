@@ -9,10 +9,11 @@
 #import "OneNewsModel.h"
 
 @implementation OneNewsModel
-- (instancetype)init
+- (instancetype)initWithPage:(NSNumber *)pageNum
 {
     self = [super init];
     if (self) {
+        self.pageNum = pageNum;
         [self getData];
     }
     return self;
@@ -20,7 +21,7 @@
 - (void)getData {
     HttpClient *client = [HttpClient defaultClient];
 
-    NSDictionary *parameters = @{@"page":@1};
+    NSDictionary *parameters = @{@"page":self.pageNum};
     [client requestWithPath:NEWSLIST method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         OneNewsItem *item = [[OneNewsItem alloc]initWithDict:responseObject];
         self.oneNewsItem = item;

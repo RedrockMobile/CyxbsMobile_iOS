@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "OneNewsItemData.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OneNewsItem : NSObject
-@property(nonatomic, copy)NSString *oneNews;
+@property (nonatomic, strong)NSNumber *page;
+@property (nonatomic, strong)NSNumber *status;
+@property (nonatomic, copy)NSString *success;
+@property (nonatomic, copy)NSString *info;
+@property (nonatomic, strong)NSArray<OneNewsItemData*> *dataArray;
 -(instancetype)initWithDict: (NSDictionary *)dict;
 @end
 

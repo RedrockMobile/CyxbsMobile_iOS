@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OneNewsModel : NSObject
 @property OneNewsItem *oneNewsItem;
+@property NSNumber *pageNum;//请求的page
+-(instancetype)initWithPage:(NSNumber *)pageNum;
 @end
 
 NS_ASSUME_NONNULL_END
