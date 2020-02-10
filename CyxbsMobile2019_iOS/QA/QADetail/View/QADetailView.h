@@ -9,12 +9,18 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol QADetailDelegate <NSObject>
 
+-(void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(NSNumber *)answerId;
+-(void)tapAdoptBtn:(NSNumber *)answerId;
+-(void)tapCommentBtn:(NSNumber *)answerId;
+-(void)replyComment:(NSNumber *)answerId;
+@end
 @interface QADetailView : UIView
 @property(strong,nonatomic)UIButton *answerButton;
 @property(strong,nonatomic)UIScrollView *scrollView;
-    
 -(void)setupUIwithDic:(NSDictionary *)dic;
-    @end
+@property(nonatomic,weak)id<QADetailDelegate>delegate;
+@end
 
 NS_ASSUME_NONNULL_END

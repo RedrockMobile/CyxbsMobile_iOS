@@ -7,7 +7,7 @@
 //
 
 #import "QADetailView.h"
-
+#import "QADetailAnswerListView.h"
 @implementation QADetailView
 
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -15,11 +15,12 @@
     self.scrollView = [[UIScrollView alloc]init];
     self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
     
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1000);
-    self.scrollView.backgroundColor = [UIColor redColor];
     [self addSubview:self.scrollView];
     return self;
     
+}
+-(void)layoutSubviews{
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1000);
 }
 -(void)setupUIwithDic:(NSDictionary *)dic{
     UIView *userInfoView = [[UIView alloc]init];
@@ -97,8 +98,8 @@
     
     [self.scrollView addSubview:contentLabel];
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(-20);
-        make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20);
+        make.right.mas_equalTo(self.mas_right).mas_offset(-20);
+        make.left.mas_equalTo(self.mas_left).mas_offset(20);
         make.top.mas_equalTo(userInfoView.mas_bottom).mas_offset(5);
     }];
     
@@ -126,15 +127,15 @@
             make.height.mas_equalTo(@200);
         }];
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(0);
-            make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(0);
+            make.right.mas_equalTo(self.mas_right).mas_offset(0);
+            make.left.mas_equalTo(self.mas_left).mas_offset(0);
             make.top.mas_equalTo(imgView.mas_bottom).mas_offset(20);
             make.height.mas_equalTo(1);
         }];
     }else{
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(0);
-            make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(0);
+            make.right.mas_equalTo(self.mas_right).mas_offset(0);
+            make.left.mas_equalTo(self.mas_left).mas_offset(0);
             make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(20);
             make.height.mas_equalTo(1);
         }];
@@ -144,13 +145,9 @@
     [answerLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     answerLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
     [self.scrollView addSubview:answerLabel];
-//    [answerLabel mas_makeConstraints:^(MASConstraintMaker *make){
-//        make.top.mas_equalTo(separateView.mas_bottom).mas_offset(14);
-//        make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(-20);
-//        make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20);
-//    }];
+
     [answerLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.mas_equalTo(separateView.mas_bottom).mas_offset(900);
+        make.top.mas_equalTo(separateView.mas_bottom).mas_offset(14);
         make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(-20);
         make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20);
     }];
@@ -167,5 +164,54 @@
         make.height.mas_equalTo(40);
         make.width.mas_equalTo(120);
     }];
+    
+    
+    NSArray *answerList = [dic objectForKey:@"answers"];
+    UIView *view = [[UIView alloc]init];
+    [self.scrollView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(5);
+        make.right.mas_equalTo(self.mas_right).mas_offset(0);
+        make.left.mas_equalTo(self.mas_left).mas_offset(0);
+        make.height.mas_equalTo(answerList.count*190);
+    }];
+    for (int i=0;i<answerList.count; i++) {
+        NSDictionary *dic = answerList[i];
+        QADetailAnswerListView *answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 190*i, SCREEN_WIDTH, 190)];
+        [answerView setupView:dic];
+        [view addSubview:answerView];
+    }
+//    [self addAnswerList:answerList];
+    
+}
+-(void)addAnswerList:(NSArray *)answerList{
+    UIView *view = [[UIView alloc]init];
+    [self.scrollView addSubview:view];
+    for (int i=0;i<answerList.count; i++) {
+        NSDictionary *dic = answerList[i];
+        QADetailAnswerListView *answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 190*i, SCREEN_WIDTH, 190)];
+        [answerView setupView:dic];
+        
+//        [answerView.praiseBtn addTarget:self action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        [answerView.commentBtn addTarget:self action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        
+        [view addSubview:answerView];
+    }
+}
+- (void)replyComment:(UIButton *)sender{
+    [self.delegate replyComment:[NSNumber numberWithInteger:sender.tag]];
+}
+
+- (void)tapCommentBtn:(UIButton *)sender{
+    [self.delegate tapCommentBtn:[NSNumber numberWithInteger:sender.tag]];
+}
+
+-(void)tapPraiseBtn:(UIButton *)sender{
+    [self.delegate tapPraiseBtn:sender answerId:[NSNumber numberWithInteger:sender.tag]];
+    sender.selected = !sender.selected;
+}
+-(void)tapAdoptBtn:(UIButton *)sender{
+    [self.delegate tapAdoptBtn:[NSNumber numberWithInteger:sender.tag]];
+    sender.selected = !sender.selected;
 }
 @end

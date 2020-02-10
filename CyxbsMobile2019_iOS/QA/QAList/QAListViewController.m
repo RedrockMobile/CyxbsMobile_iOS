@@ -29,14 +29,18 @@
 //    NSLog(@"%d",array.count);
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - TOTAL_TOP_HEIGHT - 50)];
+    self.tableView = [[UITableView alloc]init];
+    
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.bottom.left.right.equalTo(self.view);
+    }];
 //    self.tableView.estimatedRowHeight = 145;
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"QAListTableViewCell" bundle:nil] forCellReuseIdentifier:@"QAListTableViewCell"];
     
-    [self.view addSubview:self.tableView];
    
     return self;
 }

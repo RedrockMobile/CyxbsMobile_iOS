@@ -150,6 +150,8 @@
 		D05C04CF23E5E047009A2E63 /* QAAskNextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C04CB23E5E047009A2E63 /* QAAskNextStepView.xib */; };
 		D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D05C04CC23E5E047009A2E63 /* QAAskIntegralPickerView.m */; };
 		D069799023D737800007E479 /* QADetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D069798F23D737800007E479 /* QADetailModel.m */; };
+		D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5BC4423F14CF90022CC34 /* QADetailAnswerListView.m */; };
+		D0C5BC4723F14D110022CC34 /* QADetailAnswerListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0C5BC4623F14D110022CC34 /* QADetailAnswerListView.xib */; };
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
 		DB34EACE239BD4550052B65E /* DateModle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2D239BD4540052B65E /* DateModle.m */; };
 		DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */; };
@@ -567,6 +569,9 @@
 		D05C04CD23E5E047009A2E63 /* QAAskIntegralPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAskIntegralPickerView.h; sourceTree = "<group>"; };
 		D069798E23D737800007E479 /* QADetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailModel.h; sourceTree = "<group>"; };
 		D069798F23D737800007E479 /* QADetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailModel.m; sourceTree = "<group>"; };
+		D0C5BC4323F14CF90022CC34 /* QADetailAnswerListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailAnswerListView.h; sourceTree = "<group>"; };
+		D0C5BC4423F14CF90022CC34 /* QADetailAnswerListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailAnswerListView.m; sourceTree = "<group>"; };
+		D0C5BC4623F14D110022CC34 /* QADetailAnswerListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QADetailAnswerListView.xib; sourceTree = "<group>"; };
 		DB34EA2A239BD4540052B65E /* WYCClassBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassBookViewController.h; sourceTree = "<group>"; };
 		DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCClassBookViewController.m; sourceTree = "<group>"; };
 		DB34EA2D239BD4540052B65E /* DateModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateModle.m; sourceTree = "<group>"; };
@@ -1706,6 +1711,9 @@
 				D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */,
 				D0011A7723F09422009A242C /* QADetailView.h */,
 				D0011A7823F09422009A242C /* QADetailView.m */,
+				D0C5BC4323F14CF90022CC34 /* QADetailAnswerListView.h */,
+				D0C5BC4423F14CF90022CC34 /* QADetailAnswerListView.m */,
+				D0C5BC4623F14D110022CC34 /* QADetailAnswerListView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2202,6 +2210,7 @@
 				1A31062F23770C7300A56468 /* Mine.xcassets in Resources */,
 				DB34EAE4239BD4550052B65E /* 箭头@2x.png in Resources */,
 				DB34EAEA239BD4550052B65E /* 无课@3x.png in Resources */,
+				D0C5BC4723F14D110022CC34 /* QADetailAnswerListView.xib in Resources */,
 				DB34EAFC239BD4550052B65E /* 时间@2x.png in Resources */,
 				DB34EB03239BD4550052B65E /* 不提醒@3x.png in Resources */,
 				1AD6D2BB23E5C9DC0099A7E2 /* README in Resources */,
@@ -2359,6 +2368,7 @@
 				1AD6D2C023E5C9DC0099A7E2 /* VolunteerModel.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
+				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				1AD6D2CF23E5C9DC0099A7E2 /* ChooseStudentListViewController.m in Sources */,
