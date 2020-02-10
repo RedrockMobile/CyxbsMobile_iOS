@@ -10,7 +10,7 @@
 #import "QAAnswerViewController.h"
 #import "QADetailModel.h"
 #import "QADetailView.h"
-@interface QADetailViewController ()
+@interface QADetailViewController ()<QADetailDelegate>
 @property(strong,nonatomic)UIScrollView *scrollView;
 @property(strong,nonatomic)NSNumber *id;
 @property(strong,nonatomic)QADetailModel *model;
@@ -58,11 +58,6 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
 }
--(void)setScrollView{
-    //添加问题详情信息界面
-    UIView *view = [[UIView alloc]init];
-    
-}
 -(instancetype)initViewWithId:(NSNumber *)id title:(NSString *)title{
     self = [super init];
     [self setNavigationBar:title];
@@ -99,6 +94,7 @@
     
     [detailView setupUIwithDic:dic];
     [detailView.answerButton setTarget:self action:@selector(answer:) forControlEvents:UIControlEventTouchUpInside];
+    detailView.delegate = self;
     [self.view addSubview:detailView];
 //    UIView *userInfoView = [[UIView alloc]init];
 //    userInfoView.backgroundColor = [UIColor clearColor];
@@ -305,5 +301,22 @@
 -(void)answer:(UIButton *)sender{
     QAAnswerViewController *vc = [[QAAnswerViewController alloc]initWithQuestionId:self.id content:[self.model.dataDic objectForKey:@"description"]];
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)replyComment:(nonnull NSNumber *)answerId {
+}
+
+- (void)tapCommentBtn:(nonnull NSNumber *)answerId {
+    [self.model getCommentData:answerId];
+}
+
+-(void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(nonnull NSNumber *)answerId{
+    if ([pariseBtn isSelected]) {
+        [self.model cancelPraise:answerId];
+    }else{
+        [self.model praise:answerId];
+    }
+}
+-(void)tapAdoptBtn:(nonnull NSNumber *)answerId{
+    [self.model adoptAnswer:self.id answerId:answerId];
 }
 @end

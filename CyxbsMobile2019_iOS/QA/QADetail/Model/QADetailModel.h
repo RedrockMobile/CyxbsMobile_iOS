@@ -13,7 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface QADetailModel : NSObject
 @property(strong,nonatomic)NSDictionary *dataDic;
 -(void)getDataWithId:(NSNumber *)questionId;
+- (void)replyComment:(nonnull NSNumber *)answerId content:(NSString *)content;
 
+- (void)getCommentData:(nonnull NSNumber *)answerId;
+- (void)adoptAnswer:(NSNumber *)questionId answerId:(NSNumber *)answerId;
+- (void)praise:(nonnull NSNumber *)answerId;
+- (void)cancelPraise:(nonnull NSNumber *)answerId;
 @end
 
 NS_ASSUME_NONNULL_END
