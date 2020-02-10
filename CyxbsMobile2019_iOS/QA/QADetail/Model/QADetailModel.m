@@ -11,9 +11,9 @@
 @implementation QADetailModel
 -(void)getDataWithId:(NSNumber *)questionId{
     HttpClient *client = [HttpClient defaultClient];
-//    NSDictionary *parameters = @{@"question_id":questionId,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum]};
+    NSDictionary *parameters = @{@"question_id":questionId,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum]};
     //测试数据
-    NSDictionary *parameters = @{@"question_id":@1088,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum]};
+//    NSDictionary *parameters = @{@"question_id":@1088,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum]};
     [client requestWithPath:QA_QUESTION_DETAIL_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
