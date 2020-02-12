@@ -25,7 +25,6 @@ PODS:
   - AMapFoundation (1.5.7)
   - AMapLocation (2.6.3):
     - AMapFoundation (~> 1.4)
-  - Bugly (2.5.0)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -40,12 +39,26 @@ PODS:
   - SDWebImage (5.2.3):
     - SDWebImage/Core (= 5.2.3)
   - SDWebImage/Core (5.2.3)
-  - UMengAnalytics-NO-IDFA (4.2.5)
-  - UMengUShare/Core (6.4.8.2):
-    - UMengUShare/Network
-  - UMengUShare/Network (6.4.8.2)
-  - UMengUShare/UI (6.4.8.2):
-    - UMengUShare/Core
+  - UMCAnalytics (6.0.5):
+    - UMCCommon
+  - UMCCommon (2.1.1)
+  - UMCCommonLog (1.0.0)
+  - UMCErrorCatch (1.0.0):
+    - UMCCommon
+  - UMCPush (3.2.4):
+    - UMCCommon
+  - UMCSecurityPlugins (1.0.6)
+  - UMCShare/Core (6.9.6):
+    - UMCCommon
+  - UMCShare/Social/ReducedQQ (6.9.6):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/Social/ReducedWeChat (6.9.6):
+    - UMCCommon
+    - UMCShare/Core
+  - UMCShare/UI (6.9.6):
+    - UMCCommon
+    - UMCShare/Core
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -54,7 +67,6 @@ DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
   - AMap2DMap
   - AMapLocation
-  - Bugly
   - FMDB
   - GMImagePicker
   - Masonry
@@ -64,17 +76,23 @@ DEPENDENCIES:
   - pop
   - SDCycleScrollView
   - SDWebImage
-  - UMengAnalytics-NO-IDFA
-  - UMengUShare/UI
+  - UMCAnalytics
+  - UMCCommon
+  - UMCCommonLog
+  - UMCErrorCatch
+  - UMCPush
+  - UMCSecurityPlugins
+  - UMCShare/Social/ReducedQQ
+  - UMCShare/Social/ReducedWeChat
+  - UMCShare/UI
   - YYKit
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - AMap2DMap
     - AMapFoundation
     - AMapLocation
-    - Bugly
     - FMDB
     - GMImagePicker
     - Masonry
@@ -84,8 +102,13 @@ SPEC REPOS:
     - pop
     - SDCycleScrollView
     - SDWebImage
-    - UMengAnalytics-NO-IDFA
-    - UMengUShare
+    - UMCAnalytics
+    - UMCCommon
+    - UMCCommonLog
+    - UMCErrorCatch
+    - UMCPush
+    - UMCSecurityPlugins
+    - UMCShare
     - YYKit
 
 SPEC CHECKSUMS:
@@ -93,7 +116,6 @@ SPEC CHECKSUMS:
   AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
   AMapFoundation: 216d58448c80356434ac4332250a8fdb2f5c4d1e
   AMapLocation: dc2c4fde95d72087d73934338160fadc72104bb7
-  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GMImagePicker: 6438a6764d6280b1dbf19b59140313f5a73daeeb
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -103,10 +125,15 @@ SPEC CHECKSUMS:
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: 46a7f73228f84ce80990c786e4372cf4db5875ce
-  UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
-  UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
+  UMCAnalytics: 045be2cd1ec05aa95ad62405a850757f932e2d59
+  UMCCommon: 971f324a5a99c9d662ae040a815e7e3d7ef8b2a8
+  UMCCommonLog: 05a2d5de21858e3d870551562cff405c1366d244
+  UMCErrorCatch: 51f1b68f920233e90a3fa6d51f0456174507ec78
+  UMCPush: 1edd856027dcf905333effb4040ace5d236a7316
+  UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
+  UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 81bb7dd44fcfe815e474ef8066daedf5962f8ace
+PODFILE CHECKSUM: 7c12e364726773a00ce500d1461aa9ad853af2ec
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
