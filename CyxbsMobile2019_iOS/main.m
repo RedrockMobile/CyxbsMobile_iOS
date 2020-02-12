@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-
+CFAbsoluteTime StartTime;
 int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
+    StartTime = CFAbsoluteTimeGetCurrent();
     @autoreleasepool {
         NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         NSLog(@"App home path: %@", documentPath);
