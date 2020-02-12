@@ -39,11 +39,6 @@ Copyright © 2014 AutoNavi. All Rights Reserved.
 Copyright © 2014 AutoNavi. All Rights Reserved.
 
 
-## Bugly
-
-Copyright (C) 2017 Tencent Bugly, Inc. All rights reserved.
-
-
 ## FMDB
 
 If you are using FMDB in your project, I'd love to hear about it.  Let Gus know
@@ -241,14 +236,39 @@ THE SOFTWARE.
 
 
 
-## UMengAnalytics-NO-IDFA
+## UMCAnalytics
 
-Copyright 2011 - 2015 UMeng.com. All rights reserved.
+Copyright 2011 - 2019 umeng.com. All rights reserved.
 
 
-## UMengUShare
+## UMCCommon
 
-Copyright 2011 - 2018 UMeng.com. All rights reserved.
+Copyright 2011 - 2019 umeng.com. All rights reserved.
+
+
+## UMCCommonLog
+
+Copyright 2011 - 2018 umeng.com. All rights reserved.
+
+
+## UMCErrorCatch
+
+Copyright 2011 - 2018 umeng.com. All rights reserved.
+
+
+## UMCPush
+
+Copyright 2011 - 2018 umeng.com. All rights reserved.
+
+
+## UMCSecurityPlugins
+
+Copyright 2011 - 2018 umeng.com. All rights reserved.
+
+
+## UMCShare
+
+Copyright 2011 - 2018 umeng.com. All rights reserved.
 
 
 ## YYKit
