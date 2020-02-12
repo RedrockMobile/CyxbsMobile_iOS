@@ -58,6 +58,8 @@
         NSError *err;
         [fileManager removeItemAtPath:filePath error:&err];
     }
+    //退出后停止umeng统计发送数据
+    [MobClick profileSignOff];
 }
 
 + (void)refresh {

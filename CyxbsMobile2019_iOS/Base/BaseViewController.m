@@ -24,11 +24,11 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    self.extendedLayoutIncludesOpaqueBars = YES; //配合导航栏不透光属性 防止向下偏移
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor = [UIColor whiteColor];
-    // Do any additional setup after loading the view.
+//    [super viewDidLoad];
+//    self.extendedLayoutIncludesOpaqueBars = YES; //配合导航栏不透光属性 防止向下偏移
+////    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

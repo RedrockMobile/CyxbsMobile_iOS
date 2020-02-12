@@ -83,6 +83,8 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
 - (void)loginSucceeded:(UserItem *)item {
     [UserDefaultTool saveStuNum:self.stuNumTextField.text];
     [UserDefaultTool saveIdNum:self.idNumTextField.text];
+    //设置umeng统计，用户id设为学号
+    [MobClick profileSignInWithPUID:self.stuNumTextField.text];
     [self.loginHUD hide:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
     ((UITabBarController *)([UIApplication sharedApplication].delegate.window.rootViewController)).selectedIndex = 1;

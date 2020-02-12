@@ -150,6 +150,7 @@
 		D05C04CF23E5E047009A2E63 /* QAAskNextStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C04CB23E5E047009A2E63 /* QAAskNextStepView.xib */; };
 		D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D05C04CC23E5E047009A2E63 /* QAAskIntegralPickerView.m */; };
 		D069799023D737800007E479 /* QADetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D069798F23D737800007E479 /* QADetailModel.m */; };
+		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
 		D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C5BC4423F14CF90022CC34 /* QADetailAnswerListView.m */; };
 		D0C5BC4723F14D110022CC34 /* QADetailAnswerListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0C5BC4623F14D110022CC34 /* QADetailAnswerListView.xib */; };
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
@@ -569,6 +570,8 @@
 		D05C04CD23E5E047009A2E63 /* QAAskIntegralPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAskIntegralPickerView.h; sourceTree = "<group>"; };
 		D069798E23D737800007E479 /* QADetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailModel.h; sourceTree = "<group>"; };
 		D069798F23D737800007E479 /* QADetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailModel.m; sourceTree = "<group>"; };
+		D09081D923F4571B00D5342D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "掌上重邮.entitlements"; sourceTree = "<group>"; };
 		D0C5BC4323F14CF90022CC34 /* QADetailAnswerListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailAnswerListView.h; sourceTree = "<group>"; };
 		D0C5BC4423F14CF90022CC34 /* QADetailAnswerListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailAnswerListView.m; sourceTree = "<group>"; };
 		D0C5BC4623F14D110022CC34 /* QADetailAnswerListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QADetailAnswerListView.xib; sourceTree = "<group>"; };
@@ -744,6 +747,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */,
 				2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1194,6 +1198,7 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1AD6D25023E5C9DC0099A7E2 /* Discover */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
 				1AAFAD41236DC96300E854A3 /* Fonts */,
@@ -1630,6 +1635,7 @@
 		2CDC888D97D2E7657DB18FB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D09081D923F4571B00D5342D /* UserNotifications.framework */,
 				0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */,
 			);
 			name = Frameworks;
@@ -2156,6 +2162,14 @@
 				TargetAttributes = {
 					1A9B7666235F50A600725937 = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					1A9B767E235F50A900725937 = {
 						CreatedOnToolsVersion = 10.3;
@@ -2684,8 +2698,9 @@
 			baseConfigurationReference = 6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = HPM8HVK7C6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -2705,8 +2720,9 @@
 			baseConfigurationReference = F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = HPM8HVK7C6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
