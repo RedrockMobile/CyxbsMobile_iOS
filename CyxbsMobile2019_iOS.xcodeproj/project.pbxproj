@@ -274,6 +274,20 @@
 		EE806F1023EEC920004F8A3E /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
 		EE90D54D23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE90D54C23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m */; };
+		EEE0B80523F4517000267C36 /* SCLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7EC23F4517000267C36 /* SCLineChart.m */; };
+		EEE0B80623F4517000267C36 /* SCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7EE23F4517000267C36 /* SCTool.m */; };
+		EEE0B80723F4517000267C36 /* SCCircleChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F023F4517000267C36 /* SCCircleChart.m */; };
+		EEE0B80823F4517000267C36 /* SCChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F323F4517000267C36 /* SCChart.m */; };
+		EEE0B80923F4517000267C36 /* SCGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F423F4517000267C36 /* SCGenericChart.m */; };
+		EEE0B80A23F4517000267C36 /* SCChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F523F4517000267C36 /* SCChartLabel.m */; };
+		EEE0B80B23F4517000267C36 /* SCPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F723F4517000267C36 /* SCPieChart.m */; };
+		EEE0B80C23F4517000267C36 /* SCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F823F4517000267C36 /* SCColor.m */; };
+		EEE0B80D23F4517000267C36 /* SCBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7FC23F4517000267C36 /* SCBarChart.m */; };
+		EEE0B80E23F4517000267C36 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7FF23F4517000267C36 /* UICountingLabel.m */; };
+		EEE0B80F23F4517000267C36 /* SCBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B80023F4517000267C36 /* SCBar.m */; };
+		EEE0B81023F4517000267C36 /* SCPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B80323F4517000267C36 /* SCPieChartDataItem.m */; };
+		EEE0B81423F451A400267C36 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B81323F451A400267C36 /* ScoreViewController.m */; };
+		EEE0B81823F4529A00267C36 /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B81723F4529A00267C36 /* UserInfoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -739,6 +753,35 @@
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		EE90D54B23EF1DCF00293567 /* DownFileDetailCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownFileDetailCellTableViewCell.h; sourceTree = "<group>"; };
 		EE90D54C23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownFileDetailCellTableViewCell.m; sourceTree = "<group>"; };
+		EEE0B7EC23F4517000267C36 /* SCLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLineChart.m; sourceTree = "<group>"; };
+		EEE0B7ED23F4517000267C36 /* SCChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartDelegate.h; sourceTree = "<group>"; };
+		EEE0B7EE23F4517000267C36 /* SCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTool.m; sourceTree = "<group>"; };
+		EEE0B7EF23F4517000267C36 /* SCBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBarChart.h; sourceTree = "<group>"; };
+		EEE0B7F023F4517000267C36 /* SCCircleChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCircleChart.m; sourceTree = "<group>"; };
+		EEE0B7F123F4517000267C36 /* SCBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBar.h; sourceTree = "<group>"; };
+		EEE0B7F223F4517000267C36 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		EEE0B7F323F4517000267C36 /* SCChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChart.m; sourceTree = "<group>"; };
+		EEE0B7F423F4517000267C36 /* SCGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGenericChart.m; sourceTree = "<group>"; };
+		EEE0B7F523F4517000267C36 /* SCChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChartLabel.m; sourceTree = "<group>"; };
+		EEE0B7F623F4517000267C36 /* SCPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPieChartDataItem.h; sourceTree = "<group>"; };
+		EEE0B7F723F4517000267C36 /* SCPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPieChart.m; sourceTree = "<group>"; };
+		EEE0B7F823F4517000267C36 /* SCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCColor.m; sourceTree = "<group>"; };
+		EEE0B7F923F4517000267C36 /* SCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTool.h; sourceTree = "<group>"; };
+		EEE0B7FA23F4517000267C36 /* SCLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLineChart.h; sourceTree = "<group>"; };
+		EEE0B7FB23F4517000267C36 /* SCCircleChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCircleChart.h; sourceTree = "<group>"; };
+		EEE0B7FC23F4517000267C36 /* SCBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBarChart.m; sourceTree = "<group>"; };
+		EEE0B7FD23F4517000267C36 /* SCGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGenericChart.h; sourceTree = "<group>"; };
+		EEE0B7FE23F4517000267C36 /* SCChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChart.h; sourceTree = "<group>"; };
+		EEE0B7FF23F4517000267C36 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		EEE0B80023F4517000267C36 /* SCBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBar.m; sourceTree = "<group>"; };
+		EEE0B80123F4517000267C36 /* SCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCColor.h; sourceTree = "<group>"; };
+		EEE0B80223F4517000267C36 /* SCPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPieChart.h; sourceTree = "<group>"; };
+		EEE0B80323F4517000267C36 /* SCPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPieChartDataItem.m; sourceTree = "<group>"; };
+		EEE0B80423F4517000267C36 /* SCChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartLabel.h; sourceTree = "<group>"; };
+		EEE0B81223F451A400267C36 /* ScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
+		EEE0B81323F451A400267C36 /* ScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
+		EEE0B81623F4529A00267C36 /* UserInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoView.h; sourceTree = "<group>"; };
+		EEE0B81723F4529A00267C36 /* UserInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoView.m; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1290,6 +1333,8 @@
 		1AD6D25023E5C9DC0099A7E2 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				EEE0B81123F4517B00267C36 /* Discover_scorePage */,
+				EEE0B7EB23F4517000267C36 /* SCChart */,
 				EE806F0023EEA2D8004F8A3E /* DIscover_NewsPage */,
 				1AD6D25123E5C9DC0099A7E2 /* Discover_MainPage */,
 				1AD6D27D23E5C9DC0099A7E2 /* Discover_TestArrange */,
@@ -2093,6 +2138,57 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		EEE0B7EB23F4517000267C36 /* SCChart */ = {
+			isa = PBXGroup;
+			children = (
+				EEE0B7EC23F4517000267C36 /* SCLineChart.m */,
+				EEE0B7ED23F4517000267C36 /* SCChartDelegate.h */,
+				EEE0B7EE23F4517000267C36 /* SCTool.m */,
+				EEE0B7EF23F4517000267C36 /* SCBarChart.h */,
+				EEE0B7F023F4517000267C36 /* SCCircleChart.m */,
+				EEE0B7F123F4517000267C36 /* SCBar.h */,
+				EEE0B7F223F4517000267C36 /* UICountingLabel.h */,
+				EEE0B7F323F4517000267C36 /* SCChart.m */,
+				EEE0B7F423F4517000267C36 /* SCGenericChart.m */,
+				EEE0B7F523F4517000267C36 /* SCChartLabel.m */,
+				EEE0B7F623F4517000267C36 /* SCPieChartDataItem.h */,
+				EEE0B7F723F4517000267C36 /* SCPieChart.m */,
+				EEE0B7F823F4517000267C36 /* SCColor.m */,
+				EEE0B7F923F4517000267C36 /* SCTool.h */,
+				EEE0B7FA23F4517000267C36 /* SCLineChart.h */,
+				EEE0B7FB23F4517000267C36 /* SCCircleChart.h */,
+				EEE0B7FC23F4517000267C36 /* SCBarChart.m */,
+				EEE0B7FD23F4517000267C36 /* SCGenericChart.h */,
+				EEE0B7FE23F4517000267C36 /* SCChart.h */,
+				EEE0B7FF23F4517000267C36 /* UICountingLabel.m */,
+				EEE0B80023F4517000267C36 /* SCBar.m */,
+				EEE0B80123F4517000267C36 /* SCColor.h */,
+				EEE0B80223F4517000267C36 /* SCPieChart.h */,
+				EEE0B80323F4517000267C36 /* SCPieChartDataItem.m */,
+				EEE0B80423F4517000267C36 /* SCChartLabel.h */,
+			);
+			path = SCChart;
+			sourceTree = "<group>";
+		};
+		EEE0B81123F4517B00267C36 /* Discover_scorePage */ = {
+			isa = PBXGroup;
+			children = (
+				EEE0B81523F4528A00267C36 /* View */,
+				EEE0B81223F451A400267C36 /* ScoreViewController.h */,
+				EEE0B81323F451A400267C36 /* ScoreViewController.m */,
+			);
+			path = Discover_scorePage;
+			sourceTree = "<group>";
+		};
+		EEE0B81523F4528A00267C36 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EEE0B81623F4529A00267C36 /* UserInfoView.h */,
+				EEE0B81723F4529A00267C36 /* UserInfoView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2375,11 +2471,13 @@
 				1AD6D2C823E5C9DC0099A7E2 /* ExamArrangeModel.m in Sources */,
 				1AD6D2B823E5C9DC0099A7E2 /* buildCircleView.m in Sources */,
 				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
+				EEE0B80823F4517000267C36 /* SCChart.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				1AD6D2B723E5C9DC0099A7E2 /* InstallBuildTableViewCell.m in Sources */,
 				EE806F0823EEAB8A004F8A3E /* NewsCell.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
 				1AD6D2C023E5C9DC0099A7E2 /* VolunteerModel.m in Sources */,
+				EEE0B80623F4517000267C36 /* SCTool.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
@@ -2396,9 +2494,11 @@
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				1AD6D2C923E5C9DC0099A7E2 /* ExamArrangeData.m in Sources */,
+				EEE0B80723F4517000267C36 /* SCCircleChart.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				1AD6D2DC23E5C9DC0099A7E2 /* FinderToolViewItem.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
+				EEE0B81823F4529A00267C36 /* UserInfoView.m in Sources */,
 				1AD6D2D923E5C9DC0099A7E2 /* LQButton.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
@@ -2407,16 +2507,19 @@
 				1AD6D2CE23E5C9DC0099A7E2 /* StudentScheduleViewController.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
+				EEE0B80D23F4517000267C36 /* SCBarChart.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
 				1AD6D2C123E5C9DC0099A7E2 /* EnterButton.m in Sources */,
 				1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
+				EEE0B81023F4517000267C36 /* SCPieChartDataItem.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				1AD6D2D123E5C9DC0099A7E2 /* TeacherScheduleViewController.m in Sources */,
+				EEE0B80C23F4517000267C36 /* SCColor.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
 				1AD6D2BD23E5C9DC0099A7E2 /* ElectricFeeModel.m in Sources */,
@@ -2425,6 +2528,7 @@
 				EE806F0323EEA4D3004F8A3E /* NewsViewController.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
+				EEE0B80E23F4517000267C36 /* UICountingLabel.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1AD6D2C723E5C9DC0099A7E2 /* ElectricFeeGlanceView.m in Sources */,
@@ -2445,11 +2549,13 @@
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
+				EEE0B80F23F4517000267C36 /* SCBar.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
+				EEE0B81423F451A400267C36 /* ScoreViewController.m in Sources */,
 				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
@@ -2467,6 +2573,7 @@
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
 				1AD6D2BC23E5C9DC0099A7E2 /* ElectricFeeItem.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
+				EEE0B80A23F4517000267C36 /* SCChartLabel.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
@@ -2487,6 +2594,7 @@
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				D03C6B2323DF4CAA0093EF09 /* QAAskNextStepViewController.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
+				EEE0B80923F4517000267C36 /* SCGenericChart.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
 				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
@@ -2504,6 +2612,7 @@
 				1AD6D2D023E5C9DC0099A7E2 /* ScheduleInquiryViewController.m in Sources */,
 				1AD6D2C423E5C9DC0099A7E2 /* NotSetVolunteerButton.m in Sources */,
 				1AD6D2BF23E5C9DC0099A7E2 /* OneNewsItem.m in Sources */,
+				EEE0B80B23F4517000267C36 /* SCPieChart.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
@@ -2517,6 +2626,7 @@
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1AD6D2CC23E5C9DC0099A7E2 /* PointAndDottedLineView.m in Sources */,
+				EEE0B80523F4517000267C36 /* SCLineChart.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
 				D0011A7923F09422009A242C /* QADetailView.m in Sources */,

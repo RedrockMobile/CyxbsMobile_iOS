@@ -7,10 +7,12 @@
 //
 
 #import "TestArrangeViewController.h"
+#import "ScoreViewController.h"
 #import "TestCardTableViewCell.h"
 #import "PointAndDottedLineView.h"
 #import "ExamArrangeModel.h"
 #import "ExamArrangeData.h"
+
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
@@ -23,6 +25,7 @@
 @property (nonatomic, weak)UIView *seperateLine;//分割线
 @property (nonatomic, weak)UILabel *backButtonTitle;//“考试成绩”
 @property (nonatomic, weak)UIButton *backButton;//返回按钮
+@property (nonatomic, weak)UIButton *scoreEnterButton;//学分成绩入口按钮
 @property (nonatomic, weak)UIView *hideView;
 @end
 
@@ -44,6 +47,7 @@
     [self addHideView];//添加一个隐藏View防止滑动tableView的时候出现字体重叠的问题
     [self addBackButton];
     [self addTitleLabel];
+    [self addScoreEnterButton];//添加下方学分成绩入口的按钮
     // Do any additional setup after loading the view.
     [self getExamArrangeData];
     [self updateUI];
@@ -83,7 +87,7 @@
 }
 
 - (void)addTableView {
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, [[UIApplication sharedApplication] statusBarFrame].size.height + 120, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, [[UIApplication sharedApplication] statusBarFrame].size.height + 120, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];//130是底部学分成绩入口按钮
     self.tableView = tableView;
     tableView.backgroundColor = self.view.backgroundColor;
     tableView.delegate = self;
@@ -115,6 +119,27 @@
     }
     [self.tableView addSubview:label];
 
+}
+- (void) addScoreEnterButton {
+    UIButton *scoreEnterButton = [[UIButton alloc]init];
+    self.scoreEnterButton = scoreEnterButton;
+    scoreEnterButton.backgroundColor = UIColor.redColor;
+    [self.view addSubview:scoreEnterButton];
+    [scoreEnterButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT + 10);//10个像素是为了挡住下面的圆角
+        make.width.equalTo(self.view);
+        make.centerX.equalTo(self.view);
+        make.height.equalTo(@80);
+    }];
+    scoreEnterButton.layer.cornerRadius = 16;
+    scoreEnterButton.clipsToBounds = YES;
+    [scoreEnterButton addTarget:self action:@selector(pushToScoreVC) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void) pushToScoreVC {
+    ScoreViewController *vc = [[ScoreViewController alloc]init];
+    [self presentViewController:vc animated:YES completion:^{
+        NSLog(@"跳转至学分成绩vc");
+    }];
 }
 - (void)getExamArrangeData {
     ExamArrangeModel *model = [[ExamArrangeModel alloc]init];

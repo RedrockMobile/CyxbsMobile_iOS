@@ -265,10 +265,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)updateNewsUI {
-    [self.finderView.news setTitle:self.oneNewsModel.oneNewsItem.dataArray[0].title forState:normal];
-    
-    //同时写入缓存
-    [self.defaults setObject:self.oneNewsModel.oneNewsItem.dataArray[0].title forKey:@"OneNews_oneNews"];
+    if(self.oneNewsModel.oneNewsItem.dataArray != nil){
+        [self.finderView.news setTitle:self.oneNewsModel.oneNewsItem.dataArray.firstObject.title forState:normal];
+        //同时写入缓存
+        [self.defaults setObject:self.oneNewsModel.oneNewsItem.dataArray.firstObject.title forKey:@"OneNews_oneNews"];
+    }
 }
 - (void) bundlingBuildingAndRoom {
     NSLog(@"点击了绑定宿舍房间号");
