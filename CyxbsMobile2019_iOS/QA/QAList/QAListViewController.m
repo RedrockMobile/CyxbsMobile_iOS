@@ -9,10 +9,14 @@
 #import "QAListViewController.h"
 #import "QAListTableViewCell.h"
 #import "QADetailViewController.h"
+#import "QAListModel.h"
 
 @interface QAListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(strong,nonatomic)UITableView *tableView;
 @property(strong,nonatomic)NSMutableArray *dataArray;
+@property(strong,nonatomic)QAListModel *model;
+@property(assign,nonatomic)NSInteger page;
+@property(assign,nonatomic)NSInteger newRowCount;
 @end
 
 @implementation QAListViewController
@@ -22,12 +26,14 @@
 
     // Do any additional setup after loading the view.
 }
-- (instancetype)initViewStyle:(NSString *)style dataArray:(NSArray *)array{
+- (instancetype)initViewStyle:(NSString *)style{
     self = [super init];
     self.title = style;
-    self.dataArray = [array mutableCopy];
-//    NSLog(@"%d",array.count);
-    
+    [self setNotification];
+    self.dataArray = [NSMutableArray array];
+    self.page = 0;
+    self.newRowCount = 0;
+
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc]init];
     
@@ -40,10 +46,48 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"QAListTableViewCell" bundle:nil] forCellReuseIdentifier:@"QAListTableViewCell"];
-    
-   
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
+    self.model = [[QAListModel alloc]init];
+    [self loadData];
     return self;
 }
+-(void)setNotification{
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QAListDataLoadSuccess)
+                                                 name:[NSString stringWithFormat:@"QAList%@DataLoadSuccess",self.title] object:nil];
+  
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QAListMoreDataLoadError)
+                                                 name:[NSString stringWithFormat:@"QAList%@MoreDataLoadError",self.title]object:nil];
+    
+  
+
+}
+-(void)loadData{
+    self.page += 1;
+    [self.model loadData:self.title page:self.page];
+}
+-(void)reloadData{
+    self.page = 1;
+    [self.model loadData:self.title page:self.page];
+}
+-(void)QAListDataLoadSuccess{
+    self.dataArray = [self.model.dataDictionary valueForKey:self.title];
+    self.newRowCount = self.dataArray.count - self.newRowCount;
+    if (self.page == 1) {
+        [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+    }else{
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+    }
+}
+-(void)QAListMoreDataLoadError{
+    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -86,7 +130,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"y:%f",self.scrollView.contentOffset.y);
     if (self.tableView.contentOffset.y <= -100) {
-       [[NSNotificationCenter defaultCenter] postNotificationName:@"QAListDataReLoad" object:nil];
+//       [[NSNotificationCenter defaultCenter] postNotificationName:@"QAListDataReLoad" object:nil];
     }
     
 }
