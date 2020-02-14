@@ -23,10 +23,10 @@ MJExtensionCodingImplementation
 - (instancetype)initWithDict:(NSDictionary *)dict {
     self = [super init];
     if (self) {
-        self.askNum = dict[@"ask_posted_number"];
-        self.answerNum = dict[@"answer_posted_number"];
-        self.commentNum = dict[@"commnet_number"];
-        self.praiseNum = dict[@"praise_number"];
+        self.askNum = dict[@"data"][@"ask_posted_number"];
+        self.answerNum = dict[@"data"][@"answer_posted_number"];
+        self.commentNum = dict[@"data"][@"comment_number"];
+        self.praiseNum = dict[@"data"][@"praise_number"];
     }
     return self;
 }

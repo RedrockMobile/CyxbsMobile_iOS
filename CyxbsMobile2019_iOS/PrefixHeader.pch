@@ -154,7 +154,7 @@
 
 
 /*----------------------------------------------------------------
- ｜                            各种接口                            |
+ ｜                            我的接口                            |
  -----------------------------------------------------------------*/
 
 /// 登录接口
@@ -170,8 +170,12 @@
 /// 积分商城
 #define INTEGRALSTORELISTAPI @"https://getman.cn/mock/integralStore"
 /// “我的”邮问数据
-#define MINEQADATAAPI @"https://getman.cn/mock/MineQAData"
+#define MINEQADATAAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/mine"
 
+
+/*----------------------------------------------------------------
+｜                            发现接口                            |
+-----------------------------------------------------------------*/
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get

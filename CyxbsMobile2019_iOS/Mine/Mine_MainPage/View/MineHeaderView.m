@@ -105,7 +105,7 @@
         }
         questionNumberLabel.textAlignment = NSTextAlignmentCenter;
         questionNumberLabel.userInteractionEnabled = YES;
-        questionNumberLabel.text = item.askNum;
+        questionNumberLabel.text = [NSString stringWithFormat:@"%@", item.askNum];
         [self addSubview:questionNumberLabel];
         self.questionsNumberLabel = questionNumberLabel;
         
@@ -122,7 +122,7 @@
         }
         answerNumberLabel.textAlignment = NSTextAlignmentCenter;
         answerNumberLabel.userInteractionEnabled = YES;
-        answerNumberLabel.text = item.answerNum;
+        answerNumberLabel.text = [NSString stringWithFormat:@"%@", item.answerNum];
         [self addSubview:answerNumberLabel];
         self.answerNumberLabel = answerNumberLabel;
         
@@ -139,7 +139,7 @@
         }
         responseNumberLabel.textAlignment = NSTextAlignmentCenter;
         responseNumberLabel.userInteractionEnabled = YES;
-        responseNumberLabel.text = item.commentNum;
+        responseNumberLabel.text = [NSString stringWithFormat:@"%@", item.commentNum];
         [self addSubview:responseNumberLabel];
         self.responseNumberLabel = responseNumberLabel;
         
@@ -155,7 +155,7 @@
             praiseNumberLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         }
         praiseNumberLabel.textAlignment = NSTextAlignmentCenter;
-        praiseNumberLabel.text = item.praiseNum;
+        praiseNumberLabel.text = [NSString stringWithFormat:@"%@", item.praiseNum];;
         [self addSubview:praiseNumberLabel];
         self.praiseNumberLabel = praiseNumberLabel;
         

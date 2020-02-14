@@ -12,13 +12,13 @@
 @implementation MineModel
 
 + (void)requestQADataSucceeded:(void (^)(MineQADataItem * _Nonnull))succeeded failed:(void (^)(NSError * _Nonnull))failed {
-//    NSDictionary *params = @{
-//        @"stunum": [UserDefaultTool getStuNum],
-//        @"idNum": [UserDefaultTool getIdNum]
-//    };
+    NSDictionary *params = @{
+        @"stunum": [UserDefaultTool getStuNum],
+        @"idnum": [UserDefaultTool getIdNum]
+    };
     
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:MINEQADATAAPI method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:MINEQADATAAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         MineQADataItem *item = [[MineQADataItem alloc] initWithDict:responseObject];
         succeeded(item);
         
