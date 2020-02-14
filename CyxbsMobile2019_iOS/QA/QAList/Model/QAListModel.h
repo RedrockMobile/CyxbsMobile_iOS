@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QAListModel : NSObject
-@property(strong,nonatomic)NSMutableArray *dataArray;
--(void)getData;
+@property(strong,nonatomic)NSDictionary *dataDictionary;
+-(void)loadData:(NSString *)kind page:(NSInteger)page;
 @end
 
 NS_ASSUME_NONNULL_END
