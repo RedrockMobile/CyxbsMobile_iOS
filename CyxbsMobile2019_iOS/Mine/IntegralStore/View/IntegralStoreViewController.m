@@ -14,8 +14,6 @@
 #import "IntegralStoreCell.h"
 
 
-static NSString *const ItemID = @"ItemID";
-
 
 @interface IntegralStoreViewController () <IntegralStoreContentViewDelegate, IntegralStorePresenterProtocol, UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -42,7 +40,6 @@ static NSString *const ItemID = @"ItemID";
 
     self.contentView.storeCollectionView.dataSource = self;
     self.contentView.storeCollectionView.delegate = self;
-    [self.contentView.storeCollectionView registerClass:[IntegralStoreCell class] forCellWithReuseIdentifier:ItemID];
 
     // 加载数据
     [self.presenter loadStoreData];
@@ -93,6 +90,11 @@ static NSString *const ItemID = @"ItemID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    // 为了防止因复用cell而导致数据错乱的情况出现，将每个cell的cellID都设置成不一样的
+    NSString *ItemID = [NSString stringWithFormat:@"itemCount:%ld", indexPath.item];
+    
+    [self.contentView.storeCollectionView registerClass:[IntegralStoreCell class] forCellWithReuseIdentifier:ItemID];
+    
     IntegralStoreCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ItemID forIndexPath:indexPath];
     
     cell.item = self.dataItemArray[indexPath.item];

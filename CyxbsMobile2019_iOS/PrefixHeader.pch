@@ -168,7 +168,7 @@
 /// 签到
 #define CHECKINAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/Integral/checkIn"
 /// 积分商城
-#define INTEGRALSTORELISTAPI @"https://getman.cn/mock/integralStore"
+#define INTEGRALSTORELISTAPI @"http://api-234.redrock.team/magipoke-intergral/QA/Integral/getItemList"
 /// “我的”邮问数据
 #define MINEQADATAAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/mine"
 

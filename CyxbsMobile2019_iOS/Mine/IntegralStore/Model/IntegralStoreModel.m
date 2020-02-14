@@ -13,13 +13,13 @@
 
 
 - (void)loadStoreDataSucceeded:(void (^)(NSDictionary * _Nonnull))succeeded failed:(nonnull void (^)(void))failed {
-//    NSDictionary *params = @{
-//        @"stuNum": [UserDefaultTool getStuNum],
-//        @"idNum": [UserDefaultTool getIdNum]
-//    };
+    NSDictionary *params = @{
+        @"stunum": [UserDefaultTool getStuNum],
+        @"idnum": [UserDefaultTool getIdNum]
+    };
     
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:INTEGRALSTORELISTAPI method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:INTEGRALSTORELISTAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             succeeded(responseObject[@"data"]);
         } else {

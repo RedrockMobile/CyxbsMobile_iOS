@@ -16,6 +16,7 @@
         self.value = dict[@"value"];
         self.num = dict[@"num"];
         self.photo_src = dict[@"photo_src"];
+        self.isVirtual = dict[@"isVirtual"];
     }
     return self;
 }

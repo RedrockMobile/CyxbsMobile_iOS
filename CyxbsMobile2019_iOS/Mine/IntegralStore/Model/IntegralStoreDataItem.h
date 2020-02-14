@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 商品图片地址
 @property (nonatomic, copy) NSString *photo_src;
 
+/// 是否为虚拟商品
+@property (nonatomic, copy) NSString *isVirtual;
+
 - (instancetype)initWithDict:(NSDictionary *)dict;
 
 @end
