@@ -9,8 +9,9 @@
 #import "MineQAController.h"
 #import "MineSegmentedView.h"
 #import "MineQATableViewController.h"
+#import "MineQAPresenter.h"
 
-@interface MineQAController ()
+@interface MineQAController ()<MineQAProtocol>
 
 @end
 
@@ -19,7 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    
+    self.presenter = [[MineQAPresenter alloc] init];
+    [self.presenter attachView:self];
     
     self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     
@@ -87,6 +90,11 @@
 
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)dealloc
+{
+    [self.presenter dettachView];
 }
 
 @end

@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MineQAPresenter;
 @interface MineQAController : UIViewController
+
+@property (nonatomic, strong) MineQAPresenter *presenter;
 
 @property (nonatomic, copy) NSArray<NSString *> *subTitles;
 

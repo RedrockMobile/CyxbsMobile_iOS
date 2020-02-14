@@ -76,6 +76,7 @@
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
 		1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038BF23F6BF6B00D5C90E /* EditMyInfoView.m */; };
+		1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038C323F6C7FF00D5C90E /* MineQAPresenter.m */; };
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
@@ -452,6 +453,9 @@
 		1AC2550923C9B23200DF0475 /* TodaysDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodaysDot.h; sourceTree = "<group>"; };
 		1AD038BE23F6BF6B00D5C90E /* EditMyInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoView.h; sourceTree = "<group>"; };
 		1AD038BF23F6BF6B00D5C90E /* EditMyInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoView.m; sourceTree = "<group>"; };
+		1AD038C223F6C7FF00D5C90E /* MineQAPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAPresenter.h; sourceTree = "<group>"; };
+		1AD038C323F6C7FF00D5C90E /* MineQAPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAPresenter.m; sourceTree = "<group>"; };
+		1AD038C623F6C87E00D5C90E /* MineQAProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAProtocol.h; sourceTree = "<group>"; };
 		1AD6D1BD23E161100099A7E2 /* MineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineModel.h; sourceTree = "<group>"; };
 		1AD6D1BE23E161100099A7E2 /* MineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineModel.m; sourceTree = "<group>"; };
 		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
@@ -989,6 +993,8 @@
 			isa = PBXGroup;
 			children = (
 				1A16593023D984840039BA46 /* Assets.xcassets */,
+				1AD038C523F6C86900D5C90E /* Protocol */,
+				1AD038C123F6C7C600D5C90E /* Presenter */,
 				1A16591923D84B290039BA46 /* View */,
 			);
 			path = Mine_QA;
@@ -1329,6 +1335,23 @@
 				1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1AD038C123F6C7C600D5C90E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1AD038C223F6C7FF00D5C90E /* MineQAPresenter.h */,
+				1AD038C323F6C7FF00D5C90E /* MineQAPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1AD038C523F6C86900D5C90E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				1AD038C623F6C87E00D5C90E /* MineQAProtocol.h */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		1AD6D1BC23E161050099A7E2 /* Model */ = {
@@ -2591,6 +2614,7 @@
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
+				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */,
