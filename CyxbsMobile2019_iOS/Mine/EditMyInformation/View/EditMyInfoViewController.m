@@ -10,6 +10,7 @@
 #import "EditMyInfoContentView.h"
 #import "EditMyInfoPresenter.h"
 #import "MineViewController.h"
+#import "EditMyInfoView.h"
 
 @interface EditMyInfoViewController () <EditMyInfoContentViewDelegate, UIScrollViewDelegate>
 
@@ -37,6 +38,9 @@
     self.presenter = [[EditMyInfoPresenter alloc] init];
     [self.presenter attachView:self];
     
+    EditMyInfoView *editMyInfoView = [[EditMyInfoView alloc] init];
+    self.view = editMyInfoView;
+    
     EditMyInfoContentView *contentView = [[EditMyInfoContentView alloc] init];
     [self.view addSubview:contentView];
     self.contentView = contentView;
@@ -47,6 +51,8 @@
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.leading.trailing.equalTo(self.view);
     }];
+    
+    editMyInfoView.backButton = contentView.backButton;
 }
 
 - (void)dealloc

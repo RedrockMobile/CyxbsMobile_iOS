@@ -75,6 +75,7 @@
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
+		1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038BF23F6BF6B00D5C90E /* EditMyInfoView.m */; };
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
@@ -449,6 +450,8 @@
 		1AC2550623C9B14F00DF0475 /* DidNotCheckInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DidNotCheckInDot.h; sourceTree = "<group>"; };
 		1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DidNotCheckInDot.m; sourceTree = "<group>"; };
 		1AC2550923C9B23200DF0475 /* TodaysDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodaysDot.h; sourceTree = "<group>"; };
+		1AD038BE23F6BF6B00D5C90E /* EditMyInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoView.h; sourceTree = "<group>"; };
+		1AD038BF23F6BF6B00D5C90E /* EditMyInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoView.m; sourceTree = "<group>"; };
 		1AD6D1BD23E161100099A7E2 /* MineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineModel.h; sourceTree = "<group>"; };
 		1AD6D1BE23E161100099A7E2 /* MineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineModel.m; sourceTree = "<group>"; };
 		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
@@ -1379,6 +1382,8 @@
 				1AFD1523237D826A004D9CEA /* EditMyInfoContentView.m */,
 				1AFD1525237D9A7E004D9CEA /* MineEditTextField.h */,
 				1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */,
+				1AD038BE23F6BF6B00D5C90E /* EditMyInfoView.h */,
+				1AD038BF23F6BF6B00D5C90E /* EditMyInfoView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2588,6 +2593,7 @@
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
+				1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				EE75BFCC23F5884100208039 /* LQQFinderToolViewController.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
