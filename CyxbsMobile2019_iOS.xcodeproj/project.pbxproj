@@ -77,46 +77,6 @@
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
-		1AD6D2B523E5C9DC0099A7E2 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */; };
-		1AD6D2B623E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25723E5C9DC0099A7E2 /* electricity_header_setting.gif */; };
-		1AD6D2B723E5C9DC0099A7E2 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25823E5C9DC0099A7E2 /* InstallBuildTableViewCell.m */; };
-		1AD6D2B823E5C9DC0099A7E2 /* buildCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25923E5C9DC0099A7E2 /* buildCircleView.m */; };
-		1AD6D2B923E5C9DC0099A7E2 /* SetBuilding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25A23E5C9DC0099A7E2 /* SetBuilding.xcassets */; };
-		1AD6D2BA23E5C9DC0099A7E2 /* InstallRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D25B23E5C9DC0099A7E2 /* InstallRoomViewController.m */; };
-		1AD6D2BB23E5C9DC0099A7E2 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D25C23E5C9DC0099A7E2 /* README */; };
-		1AD6D2BC23E5C9DC0099A7E2 /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26223E5C9DC0099A7E2 /* ElectricFeeItem.m */; };
-		1AD6D2BD23E5C9DC0099A7E2 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26323E5C9DC0099A7E2 /* ElectricFeeModel.m */; };
-		1AD6D2BE23E5C9DC0099A7E2 /* OneNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26923E5C9DC0099A7E2 /* OneNewsModel.m */; };
-		1AD6D2BF23E5C9DC0099A7E2 /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26A23E5C9DC0099A7E2 /* OneNewsItem.m */; };
-		1AD6D2C023E5C9DC0099A7E2 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D26C23E5C9DC0099A7E2 /* VolunteerModel.m */; };
-		1AD6D2C123E5C9DC0099A7E2 /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27023E5C9DC0099A7E2 /* EnterButton.m */; };
-		1AD6D2C223E5C9DC0099A7E2 /* LQQFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27123E5C9DC0099A7E2 /* LQQFinderView.m */; };
-		1AD6D2C323E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27223E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m */; };
-		1AD6D2C423E5C9DC0099A7E2 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27323E5C9DC0099A7E2 /* NotSetVolunteerButton.m */; };
-		1AD6D2C523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m */; };
-		1AD6D2C623E5C9DC0099A7E2 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27623E5C9DC0099A7E2 /* VolunteerGlanceView.m */; };
-		1AD6D2C723E5C9DC0099A7E2 /* ElectricFeeGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D27C23E5C9DC0099A7E2 /* ElectricFeeGlanceView.m */; };
-		1AD6D2C823E5C9DC0099A7E2 /* ExamArrangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28023E5C9DC0099A7E2 /* ExamArrangeModel.m */; };
-		1AD6D2C923E5C9DC0099A7E2 /* ExamArrangeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28123E5C9DC0099A7E2 /* ExamArrangeData.m */; };
-		1AD6D2CA23E5C9DC0099A7E2 /* ExamArrangeDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28323E5C9DC0099A7E2 /* ExamArrangeDataItem.m */; };
-		1AD6D2CB23E5C9DC0099A7E2 /* TestCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28823E5C9DC0099A7E2 /* TestCardTableViewCell.m */; };
-		1AD6D2CC23E5C9DC0099A7E2 /* PointAndDottedLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28923E5C9DC0099A7E2 /* PointAndDottedLineView.m */; };
-		1AD6D2CD23E5C9DC0099A7E2 /* TestArrangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28B23E5C9DC0099A7E2 /* TestArrangeViewController.m */; };
-		1AD6D2CE23E5C9DC0099A7E2 /* StudentScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D28F23E5C9DC0099A7E2 /* StudentScheduleViewController.m */; };
-		1AD6D2CF23E5C9DC0099A7E2 /* ChooseStudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29123E5C9DC0099A7E2 /* ChooseStudentListViewController.m */; };
-		1AD6D2D023E5C9DC0099A7E2 /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29523E5C9DC0099A7E2 /* ScheduleInquiryViewController.m */; };
-		1AD6D2D123E5C9DC0099A7E2 /* TeacherScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29623E5C9DC0099A7E2 /* TeacherScheduleViewController.m */; };
-		1AD6D2D223E5C9DC0099A7E2 /* ClassmateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29923E5C9DC0099A7E2 /* ClassmateItem.m */; };
-		1AD6D2D323E5C9DC0099A7E2 /* ClassmatesList.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29A23E5C9DC0099A7E2 /* ClassmatesList.m */; };
-		1AD6D2D423E5C9DC0099A7E2 /* HistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D29D23E5C9DC0099A7E2 /* HistoryView.m */; };
-		1AD6D2D523E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D29F23E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets */; };
-		1AD6D2D623E5C9DC0099A7E2 /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2A323E5C9DC0099A7E2 /* EmptyClassViewController.m */; };
-		1AD6D2D723E5C9DC0099A7E2 /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2A523E5C9DC0099A7E2 /* EmptyClassModel.m */; };
-		1AD6D2D823E5C9DC0099A7E2 /* StoreyResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2AA23E5C9DC0099A7E2 /* StoreyResultView.m */; };
-		1AD6D2D923E5C9DC0099A7E2 /* LQButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2AB23E5C9DC0099A7E2 /* LQButton.m */; };
-		1AD6D2DA23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AD6D2AC23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets */; };
-		1AD6D2DB23E5C9DC0099A7E2 /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2B023E5C9DC0099A7E2 /* LQQFinderToolViewController.m */; };
-		1AD6D2DC23E5C9DC0099A7E2 /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D2B323E5C9DC0099A7E2 /* FinderToolViewItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
 		1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */; };
@@ -267,27 +227,70 @@
 		DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC9239BD4550052B65E /* DayLabel.m */; };
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
 		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
-		EE806EFF23EE9A48004F8A3E /* OneNewsItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806EFE23EE9A48004F8A3E /* OneNewsItemData.m */; };
-		EE806F0323EEA4D3004F8A3E /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806F0223EEA4D3004F8A3E /* NewsViewController.m */; };
-		EE806F0823EEAB8A004F8A3E /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806F0723EEAB8A004F8A3E /* NewsCell.m */; };
-		EE806F0A23EEB4EA004F8A3E /* News.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE806F0923EEB4EA004F8A3E /* News.xcassets */; };
-		EE806F1023EEC920004F8A3E /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */; };
+		EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFB23F5884100208039 /* DiscoverViewController.m */; };
+		EE75BF9023F5884100208039 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE75BEFD23F5884100208039 /* electricity_header_setting.gif */; };
+		EE75BF9123F5884100208039 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFE23F5884100208039 /* InstallBuildTableViewCell.m */; };
+		EE75BF9223F5884100208039 /* buildCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFF23F5884100208039 /* buildCircleView.m */; };
+		EE75BF9323F5884100208039 /* SetBuilding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE75BF0023F5884100208039 /* SetBuilding.xcassets */; };
+		EE75BF9423F5884100208039 /* InstallRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF0123F5884100208039 /* InstallRoomViewController.m */; };
+		EE75BF9523F5884100208039 /* README in Resources */ = {isa = PBXBuildFile; fileRef = EE75BF0223F5884100208039 /* README */; };
+		EE75BF9623F5884100208039 /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF0823F5884100208039 /* ElectricFeeItem.m */; };
+		EE75BF9723F5884100208039 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF0923F5884100208039 /* ElectricFeeModel.m */; };
+		EE75BF9823F5884100208039 /* OneNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1023F5884100208039 /* OneNewsModel.m */; };
+		EE75BF9923F5884100208039 /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1123F5884100208039 /* OneNewsItem.m */; };
+		EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1223F5884100208039 /* OneNewsItemData.m */; };
+		EE75BF9B23F5884100208039 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1423F5884100208039 /* VolunteerModel.m */; };
+		EE75BF9C23F5884100208039 /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1823F5884100208039 /* EnterButton.m */; };
+		EE75BF9D23F5884100208039 /* LQQFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1923F5884100208039 /* LQQFinderView.m */; };
+		EE75BF9E23F5884100208039 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */; };
+		EE75BF9F23F5884100208039 /* NotSetElectriceFeeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1C23F5884100208039 /* NotSetElectriceFeeButton.m */; };
+		EE75BFA023F5884100208039 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */; };
+		EE75BFA123F5884100208039 /* ElectricFeeGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2223F5884100208039 /* ElectricFeeGlanceView.m */; };
+		EE75BFA223F5884100208039 /* ExamArrangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2623F5884100208039 /* ExamArrangeModel.m */; };
+		EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2723F5884100208039 /* ExamArrangeData.m */; };
+		EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2923F5884100208039 /* ExamArrangeDataItem.m */; };
+		EE75BFA523F5884100208039 /* TestCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2E23F5884100208039 /* TestCardTableViewCell.m */; };
+		EE75BFA623F5884100208039 /* PointAndDottedLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2F23F5884100208039 /* PointAndDottedLineView.m */; };
+		EE75BFA723F5884100208039 /* TestArrangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3123F5884100208039 /* TestArrangeViewController.m */; };
+		EE75BFA823F5884100208039 /* StudentScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3523F5884100208039 /* StudentScheduleViewController.m */; };
+		EE75BFA923F5884100208039 /* ChooseStudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */; };
+		EE75BFAA23F5884100208039 /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */; };
+		EE75BFAB23F5884100208039 /* TeacherScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3C23F5884100208039 /* TeacherScheduleViewController.m */; };
+		EE75BFAC23F5884100208039 /* ClassmateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3F23F5884100208039 /* ClassmateItem.m */; };
+		EE75BFAD23F5884100208039 /* ClassmatesList.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF4023F5884100208039 /* ClassmatesList.m */; };
+		EE75BFAE23F5884100208039 /* PeopleListCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF4323F5884100208039 /* PeopleListCellTableViewCell.m */; };
+		EE75BFAF23F5884100208039 /* HistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF4423F5884100208039 /* HistoryView.m */; };
+		EE75BFB023F5884100208039 /* FindScheduleInquiry.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE75BF4723F5884100208039 /* FindScheduleInquiry.xcassets */; };
+		EE75BFB123F5884100208039 /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF4B23F5884100208039 /* EmptyClassViewController.m */; };
+		EE75BFB223F5884100208039 /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF4D23F5884100208039 /* EmptyClassModel.m */; };
+		EE75BFB323F5884100208039 /* StoreyResultView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF5223F5884100208039 /* StoreyResultView.m */; };
+		EE75BFB423F5884100208039 /* LQButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF5323F5884100208039 /* LQButton.m */; };
+		EE75BFB523F5884100208039 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF5623F5884100208039 /* NewsViewController.m */; };
+		EE75BFB623F5884100208039 /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF5923F5884100208039 /* NewDetailViewController.m */; };
+		EE75BFB723F5884100208039 /* News.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE75BF5A23F5884100208039 /* News.xcassets */; };
+		EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF5D23F5884100208039 /* DownFileDetailCellTableViewCell.m */; };
+		EE75BFB923F5884100208039 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF5E23F5884100208039 /* NewsCell.m */; };
+		EE75BFBA23F5884100208039 /* SCLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF6223F5884100208039 /* SCLineChart.m */; };
+		EE75BFBB23F5884100208039 /* SCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF6423F5884100208039 /* SCTool.m */; };
+		EE75BFBC23F5884100208039 /* SCCircleChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF6623F5884100208039 /* SCCircleChart.m */; };
+		EE75BFBD23F5884100208039 /* SCChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF6923F5884100208039 /* SCChart.m */; };
+		EE75BFBE23F5884100208039 /* SCGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF6A23F5884100208039 /* SCGenericChart.m */; };
+		EE75BFBF23F5884100208039 /* SCChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF6B23F5884100208039 /* SCChartLabel.m */; };
+		EE75BFC023F5884100208039 /* SCPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF6D23F5884100208039 /* SCPieChart.m */; };
+		EE75BFC123F5884100208039 /* SCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF6E23F5884100208039 /* SCColor.m */; };
+		EE75BFC223F5884100208039 /* SCBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF7223F5884100208039 /* SCBarChart.m */; };
+		EE75BFC323F5884100208039 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF7523F5884100208039 /* UICountingLabel.m */; };
+		EE75BFC423F5884100208039 /* SCBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF7623F5884100208039 /* SCBar.m */; };
+		EE75BFC523F5884100208039 /* SCPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF7923F5884100208039 /* SCPieChartDataItem.m */; };
+		EE75BFC623F5884100208039 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF7D23F5884100208039 /* ScoreViewController.m */; };
+		EE75BFC723F5884100208039 /* ABScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8123F5884100208039 /* ABScoreView.m */; };
+		EE75BFC823F5884100208039 /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8323F5884100208039 /* UserInfoView.m */; };
+		EE75BFC923F5884100208039 /* DetailScorePerYearCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8423F5884100208039 /* DetailScorePerYearCell.m */; };
+		EE75BFCA23F5884100208039 /* ScoreTwoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8523F5884100208039 /* ScoreTwoTitleView.m */; };
+		EE75BFCB23F5884100208039 /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE75BF8723F5884100208039 /* NewDiscover6.0Media.xcassets */; };
+		EE75BFCC23F5884100208039 /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8B23F5884100208039 /* LQQFinderToolViewController.m */; };
+		EE75BFCD23F5884100208039 /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8E23F5884100208039 /* FinderToolViewItem.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
-		EE90D54D23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE90D54C23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m */; };
-		EEE0B80523F4517000267C36 /* SCLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7EC23F4517000267C36 /* SCLineChart.m */; };
-		EEE0B80623F4517000267C36 /* SCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7EE23F4517000267C36 /* SCTool.m */; };
-		EEE0B80723F4517000267C36 /* SCCircleChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F023F4517000267C36 /* SCCircleChart.m */; };
-		EEE0B80823F4517000267C36 /* SCChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F323F4517000267C36 /* SCChart.m */; };
-		EEE0B80923F4517000267C36 /* SCGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F423F4517000267C36 /* SCGenericChart.m */; };
-		EEE0B80A23F4517000267C36 /* SCChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F523F4517000267C36 /* SCChartLabel.m */; };
-		EEE0B80B23F4517000267C36 /* SCPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F723F4517000267C36 /* SCPieChart.m */; };
-		EEE0B80C23F4517000267C36 /* SCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7F823F4517000267C36 /* SCColor.m */; };
-		EEE0B80D23F4517000267C36 /* SCBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7FC23F4517000267C36 /* SCBarChart.m */; };
-		EEE0B80E23F4517000267C36 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B7FF23F4517000267C36 /* UICountingLabel.m */; };
-		EEE0B80F23F4517000267C36 /* SCBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B80023F4517000267C36 /* SCBar.m */; };
-		EEE0B81023F4517000267C36 /* SCPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B80323F4517000267C36 /* SCPieChartDataItem.m */; };
-		EEE0B81423F451A400267C36 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B81323F451A400267C36 /* ScoreViewController.m */; };
-		EEE0B81823F4529A00267C36 /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE0B81723F4529A00267C36 /* UserInfoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -450,81 +453,6 @@
 		1AD6D1BE23E161100099A7E2 /* MineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineModel.m; sourceTree = "<group>"; };
 		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
 		1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQADataItem.m; sourceTree = "<group>"; };
-		1AD6D25323E5C9DC0099A7E2 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
-		1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
-		1AD6D25723E5C9DC0099A7E2 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
-		1AD6D25823E5C9DC0099A7E2 /* InstallBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallBuildTableViewCell.m; sourceTree = "<group>"; };
-		1AD6D25923E5C9DC0099A7E2 /* buildCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildCircleView.m; sourceTree = "<group>"; };
-		1AD6D25A23E5C9DC0099A7E2 /* SetBuilding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SetBuilding.xcassets; sourceTree = "<group>"; };
-		1AD6D25B23E5C9DC0099A7E2 /* InstallRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallRoomViewController.m; sourceTree = "<group>"; };
-		1AD6D25C23E5C9DC0099A7E2 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		1AD6D25D23E5C9DC0099A7E2 /* buildCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildCircleView.h; sourceTree = "<group>"; };
-		1AD6D25E23E5C9DC0099A7E2 /* InstallBuildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallBuildTableViewCell.h; sourceTree = "<group>"; };
-		1AD6D25F23E5C9DC0099A7E2 /* InstallRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallRoomViewController.h; sourceTree = "<group>"; };
-		1AD6D26223E5C9DC0099A7E2 /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
-		1AD6D26323E5C9DC0099A7E2 /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
-		1AD6D26423E5C9DC0099A7E2 /* ElectricFeeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
-		1AD6D26523E5C9DC0099A7E2 /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
-		1AD6D26723E5C9DC0099A7E2 /* OneNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsModel.h; sourceTree = "<group>"; };
-		1AD6D26823E5C9DC0099A7E2 /* OneNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
-		1AD6D26923E5C9DC0099A7E2 /* OneNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsModel.m; sourceTree = "<group>"; };
-		1AD6D26A23E5C9DC0099A7E2 /* OneNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
-		1AD6D26C23E5C9DC0099A7E2 /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
-		1AD6D26D23E5C9DC0099A7E2 /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
-		1AD6D26F23E5C9DC0099A7E2 /* VolunteerGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerGlanceView.h; sourceTree = "<group>"; };
-		1AD6D27023E5C9DC0099A7E2 /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
-		1AD6D27123E5C9DC0099A7E2 /* LQQFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderView.m; sourceTree = "<group>"; };
-		1AD6D27223E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleListCellTableViewCell.m; sourceTree = "<group>"; };
-		1AD6D27323E5C9DC0099A7E2 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
-		1AD6D27423E5C9DC0099A7E2 /* ElectricFeeGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceView.h; sourceTree = "<group>"; };
-		1AD6D27523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetElectriceFeeButton.m; sourceTree = "<group>"; };
-		1AD6D27623E5C9DC0099A7E2 /* VolunteerGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerGlanceView.m; sourceTree = "<group>"; };
-		1AD6D27723E5C9DC0099A7E2 /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
-		1AD6D27823E5C9DC0099A7E2 /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
-		1AD6D27923E5C9DC0099A7E2 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
-		1AD6D27A23E5C9DC0099A7E2 /* PeopleListCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleListCellTableViewCell.h; sourceTree = "<group>"; };
-		1AD6D27B23E5C9DC0099A7E2 /* NotSetElectriceFeeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetElectriceFeeButton.h; sourceTree = "<group>"; };
-		1AD6D27C23E5C9DC0099A7E2 /* ElectricFeeGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeGlanceView.m; sourceTree = "<group>"; };
-		1AD6D27F23E5C9DC0099A7E2 /* ExamArrangeDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeDataItem.h; sourceTree = "<group>"; };
-		1AD6D28023E5C9DC0099A7E2 /* ExamArrangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeModel.m; sourceTree = "<group>"; };
-		1AD6D28123E5C9DC0099A7E2 /* ExamArrangeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeData.m; sourceTree = "<group>"; };
-		1AD6D28223E5C9DC0099A7E2 /* ExamArrangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeModel.h; sourceTree = "<group>"; };
-		1AD6D28323E5C9DC0099A7E2 /* ExamArrangeDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeDataItem.m; sourceTree = "<group>"; };
-		1AD6D28423E5C9DC0099A7E2 /* ExamArrangeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeData.h; sourceTree = "<group>"; };
-		1AD6D28623E5C9DC0099A7E2 /* TestCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCardTableViewCell.h; sourceTree = "<group>"; };
-		1AD6D28723E5C9DC0099A7E2 /* PointAndDottedLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointAndDottedLineView.h; sourceTree = "<group>"; };
-		1AD6D28823E5C9DC0099A7E2 /* TestCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCardTableViewCell.m; sourceTree = "<group>"; };
-		1AD6D28923E5C9DC0099A7E2 /* PointAndDottedLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointAndDottedLineView.m; sourceTree = "<group>"; };
-		1AD6D28B23E5C9DC0099A7E2 /* TestArrangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestArrangeViewController.m; sourceTree = "<group>"; };
-		1AD6D28C23E5C9DC0099A7E2 /* TestArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestArrangeViewController.h; sourceTree = "<group>"; };
-		1AD6D28F23E5C9DC0099A7E2 /* StudentScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentScheduleViewController.m; sourceTree = "<group>"; };
-		1AD6D29023E5C9DC0099A7E2 /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
-		1AD6D29123E5C9DC0099A7E2 /* ChooseStudentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStudentListViewController.m; sourceTree = "<group>"; };
-		1AD6D29223E5C9DC0099A7E2 /* TeacherScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherScheduleViewController.h; sourceTree = "<group>"; };
-		1AD6D29323E5C9DC0099A7E2 /* StudentScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentScheduleViewController.h; sourceTree = "<group>"; };
-		1AD6D29423E5C9DC0099A7E2 /* ChooseStudentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseStudentListViewController.h; sourceTree = "<group>"; };
-		1AD6D29523E5C9DC0099A7E2 /* ScheduleInquiryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleInquiryViewController.m; sourceTree = "<group>"; };
-		1AD6D29623E5C9DC0099A7E2 /* TeacherScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherScheduleViewController.m; sourceTree = "<group>"; };
-		1AD6D29823E5C9DC0099A7E2 /* ClassmatesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassmatesList.h; sourceTree = "<group>"; };
-		1AD6D29923E5C9DC0099A7E2 /* ClassmateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassmateItem.m; sourceTree = "<group>"; };
-		1AD6D29A23E5C9DC0099A7E2 /* ClassmatesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassmatesList.m; sourceTree = "<group>"; };
-		1AD6D29B23E5C9DC0099A7E2 /* ClassmateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassmateItem.h; sourceTree = "<group>"; };
-		1AD6D29D23E5C9DC0099A7E2 /* HistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryView.m; sourceTree = "<group>"; };
-		1AD6D29E23E5C9DC0099A7E2 /* HistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryView.h; sourceTree = "<group>"; };
-		1AD6D29F23E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FindScheduleInquiry.xcassets; sourceTree = "<group>"; };
-		1AD6D2A223E5C9DC0099A7E2 /* EmptyClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
-		1AD6D2A323E5C9DC0099A7E2 /* EmptyClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
-		1AD6D2A523E5C9DC0099A7E2 /* EmptyClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassModel.m; sourceTree = "<group>"; };
-		1AD6D2A623E5C9DC0099A7E2 /* EmptyClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassModel.h; sourceTree = "<group>"; };
-		1AD6D2A823E5C9DC0099A7E2 /* StoreyResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreyResultView.h; sourceTree = "<group>"; };
-		1AD6D2A923E5C9DC0099A7E2 /* LQButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQButton.h; sourceTree = "<group>"; };
-		1AD6D2AA23E5C9DC0099A7E2 /* StoreyResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreyResultView.m; sourceTree = "<group>"; };
-		1AD6D2AB23E5C9DC0099A7E2 /* LQButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQButton.m; sourceTree = "<group>"; };
-		1AD6D2AC23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
-		1AD6D2AF23E5C9DC0099A7E2 /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
-		1AD6D2B023E5C9DC0099A7E2 /* LQQFinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderToolViewController.m; sourceTree = "<group>"; };
-		1AD6D2B223E5C9DC0099A7E2 /* FinderToolViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
-		1AD6D2B323E5C9DC0099A7E2 /* FinderToolViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
 		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
@@ -741,47 +669,128 @@
 		DB34EACB239BD4550052B65E /* ORWInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORWInputTextView.h; sourceTree = "<group>"; };
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
 		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		EE806EFD23EE9A48004F8A3E /* OneNewsItemData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneNewsItemData.h; sourceTree = "<group>"; };
-		EE806EFE23EE9A48004F8A3E /* OneNewsItemData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneNewsItemData.m; sourceTree = "<group>"; };
-		EE806F0123EEA4D3004F8A3E /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
-		EE806F0223EEA4D3004F8A3E /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
-		EE806F0623EEAB8A004F8A3E /* NewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
-		EE806F0723EEAB8A004F8A3E /* NewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
-		EE806F0923EEB4EA004F8A3E /* News.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = News.xcassets; sourceTree = "<group>"; };
-		EE806F0E23EEC920004F8A3E /* NewDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewDetailViewController.h; sourceTree = "<group>"; };
-		EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewDetailViewController.m; sourceTree = "<group>"; };
+		EE75BEFA23F5884100208039 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		EE75BEFB23F5884100208039 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		EE75BEFD23F5884100208039 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
+		EE75BEFE23F5884100208039 /* InstallBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallBuildTableViewCell.m; sourceTree = "<group>"; };
+		EE75BEFF23F5884100208039 /* buildCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buildCircleView.m; sourceTree = "<group>"; };
+		EE75BF0023F5884100208039 /* SetBuilding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SetBuilding.xcassets; sourceTree = "<group>"; };
+		EE75BF0123F5884100208039 /* InstallRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallRoomViewController.m; sourceTree = "<group>"; };
+		EE75BF0223F5884100208039 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		EE75BF0323F5884100208039 /* buildCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buildCircleView.h; sourceTree = "<group>"; };
+		EE75BF0423F5884100208039 /* InstallBuildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallBuildTableViewCell.h; sourceTree = "<group>"; };
+		EE75BF0523F5884100208039 /* InstallRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallRoomViewController.h; sourceTree = "<group>"; };
+		EE75BF0823F5884100208039 /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
+		EE75BF0923F5884100208039 /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
+		EE75BF0A23F5884100208039 /* ElectricFeeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
+		EE75BF0B23F5884100208039 /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
+		EE75BF0D23F5884100208039 /* OneNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsModel.h; sourceTree = "<group>"; };
+		EE75BF0E23F5884100208039 /* OneNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsItem.h; sourceTree = "<group>"; };
+		EE75BF0F23F5884100208039 /* OneNewsItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneNewsItemData.h; sourceTree = "<group>"; };
+		EE75BF1023F5884100208039 /* OneNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsModel.m; sourceTree = "<group>"; };
+		EE75BF1123F5884100208039 /* OneNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsItem.m; sourceTree = "<group>"; };
+		EE75BF1223F5884100208039 /* OneNewsItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsItemData.m; sourceTree = "<group>"; };
+		EE75BF1423F5884100208039 /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
+		EE75BF1523F5884100208039 /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
+		EE75BF1723F5884100208039 /* VolunteerGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerGlanceView.h; sourceTree = "<group>"; };
+		EE75BF1823F5884100208039 /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
+		EE75BF1923F5884100208039 /* LQQFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderView.m; sourceTree = "<group>"; };
+		EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
+		EE75BF1B23F5884100208039 /* ElectricFeeGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceView.h; sourceTree = "<group>"; };
+		EE75BF1C23F5884100208039 /* NotSetElectriceFeeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetElectriceFeeButton.m; sourceTree = "<group>"; };
+		EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerGlanceView.m; sourceTree = "<group>"; };
+		EE75BF1E23F5884100208039 /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
+		EE75BF1F23F5884100208039 /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
+		EE75BF2023F5884100208039 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
+		EE75BF2123F5884100208039 /* NotSetElectriceFeeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetElectriceFeeButton.h; sourceTree = "<group>"; };
+		EE75BF2223F5884100208039 /* ElectricFeeGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeGlanceView.m; sourceTree = "<group>"; };
+		EE75BF2523F5884100208039 /* ExamArrangeDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeDataItem.h; sourceTree = "<group>"; };
+		EE75BF2623F5884100208039 /* ExamArrangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeModel.m; sourceTree = "<group>"; };
+		EE75BF2723F5884100208039 /* ExamArrangeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeData.m; sourceTree = "<group>"; };
+		EE75BF2823F5884100208039 /* ExamArrangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeModel.h; sourceTree = "<group>"; };
+		EE75BF2923F5884100208039 /* ExamArrangeDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeDataItem.m; sourceTree = "<group>"; };
+		EE75BF2A23F5884100208039 /* ExamArrangeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeData.h; sourceTree = "<group>"; };
+		EE75BF2C23F5884100208039 /* TestCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCardTableViewCell.h; sourceTree = "<group>"; };
+		EE75BF2D23F5884100208039 /* PointAndDottedLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointAndDottedLineView.h; sourceTree = "<group>"; };
+		EE75BF2E23F5884100208039 /* TestCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCardTableViewCell.m; sourceTree = "<group>"; };
+		EE75BF2F23F5884100208039 /* PointAndDottedLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointAndDottedLineView.m; sourceTree = "<group>"; };
+		EE75BF3123F5884100208039 /* TestArrangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestArrangeViewController.m; sourceTree = "<group>"; };
+		EE75BF3223F5884100208039 /* TestArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestArrangeViewController.h; sourceTree = "<group>"; };
+		EE75BF3523F5884100208039 /* StudentScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentScheduleViewController.m; sourceTree = "<group>"; };
+		EE75BF3623F5884100208039 /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
+		EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStudentListViewController.m; sourceTree = "<group>"; };
+		EE75BF3823F5884100208039 /* TeacherScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherScheduleViewController.h; sourceTree = "<group>"; };
+		EE75BF3923F5884100208039 /* StudentScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentScheduleViewController.h; sourceTree = "<group>"; };
+		EE75BF3A23F5884100208039 /* ChooseStudentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseStudentListViewController.h; sourceTree = "<group>"; };
+		EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleInquiryViewController.m; sourceTree = "<group>"; };
+		EE75BF3C23F5884100208039 /* TeacherScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherScheduleViewController.m; sourceTree = "<group>"; };
+		EE75BF3E23F5884100208039 /* ClassmatesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassmatesList.h; sourceTree = "<group>"; };
+		EE75BF3F23F5884100208039 /* ClassmateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassmateItem.m; sourceTree = "<group>"; };
+		EE75BF4023F5884100208039 /* ClassmatesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassmatesList.m; sourceTree = "<group>"; };
+		EE75BF4123F5884100208039 /* ClassmateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassmateItem.h; sourceTree = "<group>"; };
+		EE75BF4323F5884100208039 /* PeopleListCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleListCellTableViewCell.m; sourceTree = "<group>"; };
+		EE75BF4423F5884100208039 /* HistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryView.m; sourceTree = "<group>"; };
+		EE75BF4523F5884100208039 /* HistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryView.h; sourceTree = "<group>"; };
+		EE75BF4623F5884100208039 /* PeopleListCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleListCellTableViewCell.h; sourceTree = "<group>"; };
+		EE75BF4723F5884100208039 /* FindScheduleInquiry.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FindScheduleInquiry.xcassets; sourceTree = "<group>"; };
+		EE75BF4A23F5884100208039 /* EmptyClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
+		EE75BF4B23F5884100208039 /* EmptyClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
+		EE75BF4D23F5884100208039 /* EmptyClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassModel.m; sourceTree = "<group>"; };
+		EE75BF4E23F5884100208039 /* EmptyClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassModel.h; sourceTree = "<group>"; };
+		EE75BF5023F5884100208039 /* StoreyResultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreyResultView.h; sourceTree = "<group>"; };
+		EE75BF5123F5884100208039 /* LQButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQButton.h; sourceTree = "<group>"; };
+		EE75BF5223F5884100208039 /* StoreyResultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreyResultView.m; sourceTree = "<group>"; };
+		EE75BF5323F5884100208039 /* LQButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQButton.m; sourceTree = "<group>"; };
+		EE75BF5623F5884100208039 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		EE75BF5723F5884100208039 /* NewDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewDetailViewController.h; sourceTree = "<group>"; };
+		EE75BF5823F5884100208039 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		EE75BF5923F5884100208039 /* NewDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewDetailViewController.m; sourceTree = "<group>"; };
+		EE75BF5A23F5884100208039 /* News.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = News.xcassets; sourceTree = "<group>"; };
+		EE75BF5D23F5884100208039 /* DownFileDetailCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownFileDetailCellTableViewCell.m; sourceTree = "<group>"; };
+		EE75BF5E23F5884100208039 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		EE75BF5F23F5884100208039 /* DownFileDetailCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownFileDetailCellTableViewCell.h; sourceTree = "<group>"; };
+		EE75BF6023F5884100208039 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		EE75BF6223F5884100208039 /* SCLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLineChart.m; sourceTree = "<group>"; };
+		EE75BF6323F5884100208039 /* SCChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartDelegate.h; sourceTree = "<group>"; };
+		EE75BF6423F5884100208039 /* SCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTool.m; sourceTree = "<group>"; };
+		EE75BF6523F5884100208039 /* SCBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBarChart.h; sourceTree = "<group>"; };
+		EE75BF6623F5884100208039 /* SCCircleChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCircleChart.m; sourceTree = "<group>"; };
+		EE75BF6723F5884100208039 /* SCBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBar.h; sourceTree = "<group>"; };
+		EE75BF6823F5884100208039 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		EE75BF6923F5884100208039 /* SCChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChart.m; sourceTree = "<group>"; };
+		EE75BF6A23F5884100208039 /* SCGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGenericChart.m; sourceTree = "<group>"; };
+		EE75BF6B23F5884100208039 /* SCChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChartLabel.m; sourceTree = "<group>"; };
+		EE75BF6C23F5884100208039 /* SCPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPieChartDataItem.h; sourceTree = "<group>"; };
+		EE75BF6D23F5884100208039 /* SCPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPieChart.m; sourceTree = "<group>"; };
+		EE75BF6E23F5884100208039 /* SCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCColor.m; sourceTree = "<group>"; };
+		EE75BF6F23F5884100208039 /* SCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTool.h; sourceTree = "<group>"; };
+		EE75BF7023F5884100208039 /* SCLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLineChart.h; sourceTree = "<group>"; };
+		EE75BF7123F5884100208039 /* SCCircleChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCircleChart.h; sourceTree = "<group>"; };
+		EE75BF7223F5884100208039 /* SCBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBarChart.m; sourceTree = "<group>"; };
+		EE75BF7323F5884100208039 /* SCGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGenericChart.h; sourceTree = "<group>"; };
+		EE75BF7423F5884100208039 /* SCChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChart.h; sourceTree = "<group>"; };
+		EE75BF7523F5884100208039 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		EE75BF7623F5884100208039 /* SCBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBar.m; sourceTree = "<group>"; };
+		EE75BF7723F5884100208039 /* SCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCColor.h; sourceTree = "<group>"; };
+		EE75BF7823F5884100208039 /* SCPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPieChart.h; sourceTree = "<group>"; };
+		EE75BF7923F5884100208039 /* SCPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPieChartDataItem.m; sourceTree = "<group>"; };
+		EE75BF7A23F5884100208039 /* SCChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartLabel.h; sourceTree = "<group>"; };
+		EE75BF7C23F5884100208039 /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
+		EE75BF7D23F5884100208039 /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
+		EE75BF7F23F5884100208039 /* DetailScorePerYearCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailScorePerYearCell.h; sourceTree = "<group>"; };
+		EE75BF8023F5884100208039 /* UserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoView.h; sourceTree = "<group>"; };
+		EE75BF8123F5884100208039 /* ABScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABScoreView.m; sourceTree = "<group>"; };
+		EE75BF8223F5884100208039 /* ScoreTwoTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTwoTitleView.h; sourceTree = "<group>"; };
+		EE75BF8323F5884100208039 /* UserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoView.m; sourceTree = "<group>"; };
+		EE75BF8423F5884100208039 /* DetailScorePerYearCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailScorePerYearCell.m; sourceTree = "<group>"; };
+		EE75BF8523F5884100208039 /* ScoreTwoTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTwoTitleView.m; sourceTree = "<group>"; };
+		EE75BF8623F5884100208039 /* ABScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABScoreView.h; sourceTree = "<group>"; };
+		EE75BF8723F5884100208039 /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
+		EE75BF8A23F5884100208039 /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
+		EE75BF8B23F5884100208039 /* LQQFinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderToolViewController.m; sourceTree = "<group>"; };
+		EE75BF8D23F5884100208039 /* FinderToolViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
+		EE75BF8E23F5884100208039 /* FinderToolViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
-		EE90D54B23EF1DCF00293567 /* DownFileDetailCellTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownFileDetailCellTableViewCell.h; sourceTree = "<group>"; };
-		EE90D54C23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownFileDetailCellTableViewCell.m; sourceTree = "<group>"; };
-		EEE0B7EC23F4517000267C36 /* SCLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLineChart.m; sourceTree = "<group>"; };
-		EEE0B7ED23F4517000267C36 /* SCChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartDelegate.h; sourceTree = "<group>"; };
-		EEE0B7EE23F4517000267C36 /* SCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTool.m; sourceTree = "<group>"; };
-		EEE0B7EF23F4517000267C36 /* SCBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBarChart.h; sourceTree = "<group>"; };
-		EEE0B7F023F4517000267C36 /* SCCircleChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCircleChart.m; sourceTree = "<group>"; };
-		EEE0B7F123F4517000267C36 /* SCBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBar.h; sourceTree = "<group>"; };
-		EEE0B7F223F4517000267C36 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
-		EEE0B7F323F4517000267C36 /* SCChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChart.m; sourceTree = "<group>"; };
-		EEE0B7F423F4517000267C36 /* SCGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGenericChart.m; sourceTree = "<group>"; };
-		EEE0B7F523F4517000267C36 /* SCChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChartLabel.m; sourceTree = "<group>"; };
-		EEE0B7F623F4517000267C36 /* SCPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPieChartDataItem.h; sourceTree = "<group>"; };
-		EEE0B7F723F4517000267C36 /* SCPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPieChart.m; sourceTree = "<group>"; };
-		EEE0B7F823F4517000267C36 /* SCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCColor.m; sourceTree = "<group>"; };
-		EEE0B7F923F4517000267C36 /* SCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTool.h; sourceTree = "<group>"; };
-		EEE0B7FA23F4517000267C36 /* SCLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLineChart.h; sourceTree = "<group>"; };
-		EEE0B7FB23F4517000267C36 /* SCCircleChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCircleChart.h; sourceTree = "<group>"; };
-		EEE0B7FC23F4517000267C36 /* SCBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBarChart.m; sourceTree = "<group>"; };
-		EEE0B7FD23F4517000267C36 /* SCGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGenericChart.h; sourceTree = "<group>"; };
-		EEE0B7FE23F4517000267C36 /* SCChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChart.h; sourceTree = "<group>"; };
-		EEE0B7FF23F4517000267C36 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
-		EEE0B80023F4517000267C36 /* SCBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBar.m; sourceTree = "<group>"; };
-		EEE0B80123F4517000267C36 /* SCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCColor.h; sourceTree = "<group>"; };
-		EEE0B80223F4517000267C36 /* SCPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPieChart.h; sourceTree = "<group>"; };
-		EEE0B80323F4517000267C36 /* SCPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPieChartDataItem.m; sourceTree = "<group>"; };
-		EEE0B80423F4517000267C36 /* SCChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartLabel.h; sourceTree = "<group>"; };
-		EEE0B81223F451A400267C36 /* ScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
-		EEE0B81323F451A400267C36 /* ScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
-		EEE0B81623F4529A00267C36 /* UserInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoView.h; sourceTree = "<group>"; };
-		EEE0B81723F4529A00267C36 /* UserInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoView.m; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1242,7 +1251,7 @@
 			isa = PBXGroup;
 			children = (
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
-				1AD6D25023E5C9DC0099A7E2 /* Discover */,
+				EE75BEF723F5884100208039 /* Discover */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
 				1AAFAD41236DC96300E854A3 /* Fonts */,
 				1A14132A235F523B0001417E /* Mine */,
@@ -1328,277 +1337,6 @@
 				1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		1AD6D25023E5C9DC0099A7E2 /* Discover */ = {
-			isa = PBXGroup;
-			children = (
-				EEE0B81123F4517B00267C36 /* Discover_scorePage */,
-				EEE0B7EB23F4517000267C36 /* SCChart */,
-				EE806F0023EEA2D8004F8A3E /* DIscover_NewsPage */,
-				1AD6D25123E5C9DC0099A7E2 /* Discover_MainPage */,
-				1AD6D27D23E5C9DC0099A7E2 /* Discover_TestArrange */,
-				1AD6D28D23E5C9DC0099A7E2 /* Discover_FindScheduleInquiry */,
-				1AD6D2A023E5C9DC0099A7E2 /* Discover_EmptyClass */,
-				1AD6D2AC23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets */,
-				1AD6D2AD23E5C9DC0099A7E2 /* Disconver_ToolPage */,
-			);
-			path = Discover;
-			sourceTree = "<group>";
-		};
-		1AD6D25123E5C9DC0099A7E2 /* Discover_MainPage */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D25223E5C9DC0099A7E2 /* Controller */,
-				1AD6D25623E5C9DC0099A7E2 /* ChooseBuildingFile */,
-				1AD6D26023E5C9DC0099A7E2 /* Model */,
-				1AD6D26E23E5C9DC0099A7E2 /* View */,
-			);
-			path = Discover_MainPage;
-			sourceTree = "<group>";
-		};
-		1AD6D25223E5C9DC0099A7E2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D25323E5C9DC0099A7E2 /* DiscoverViewController.h */,
-				1AD6D25523E5C9DC0099A7E2 /* DiscoverViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1AD6D25623E5C9DC0099A7E2 /* ChooseBuildingFile */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D25723E5C9DC0099A7E2 /* electricity_header_setting.gif */,
-				1AD6D25823E5C9DC0099A7E2 /* InstallBuildTableViewCell.m */,
-				1AD6D25923E5C9DC0099A7E2 /* buildCircleView.m */,
-				1AD6D25A23E5C9DC0099A7E2 /* SetBuilding.xcassets */,
-				1AD6D25B23E5C9DC0099A7E2 /* InstallRoomViewController.m */,
-				1AD6D25C23E5C9DC0099A7E2 /* README */,
-				1AD6D25D23E5C9DC0099A7E2 /* buildCircleView.h */,
-				1AD6D25E23E5C9DC0099A7E2 /* InstallBuildTableViewCell.h */,
-				1AD6D25F23E5C9DC0099A7E2 /* InstallRoomViewController.h */,
-			);
-			path = ChooseBuildingFile;
-			sourceTree = "<group>";
-		};
-		1AD6D26023E5C9DC0099A7E2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D26123E5C9DC0099A7E2 /* ElectricBill */,
-				1AD6D26623E5C9DC0099A7E2 /* News */,
-				1AD6D26B23E5C9DC0099A7E2 /* Volunteer */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1AD6D26123E5C9DC0099A7E2 /* ElectricBill */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D26223E5C9DC0099A7E2 /* ElectricFeeItem.m */,
-				1AD6D26323E5C9DC0099A7E2 /* ElectricFeeModel.m */,
-				1AD6D26423E5C9DC0099A7E2 /* ElectricFeeItem.h */,
-				1AD6D26523E5C9DC0099A7E2 /* ElectricFeeModel.h */,
-			);
-			path = ElectricBill;
-			sourceTree = "<group>";
-		};
-		1AD6D26623E5C9DC0099A7E2 /* News */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D26723E5C9DC0099A7E2 /* OneNewsModel.h */,
-				1AD6D26923E5C9DC0099A7E2 /* OneNewsModel.m */,
-				1AD6D26823E5C9DC0099A7E2 /* OneNewsItem.h */,
-				1AD6D26A23E5C9DC0099A7E2 /* OneNewsItem.m */,
-				EE806EFD23EE9A48004F8A3E /* OneNewsItemData.h */,
-				EE806EFE23EE9A48004F8A3E /* OneNewsItemData.m */,
-			);
-			path = News;
-			sourceTree = "<group>";
-		};
-		1AD6D26B23E5C9DC0099A7E2 /* Volunteer */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D26C23E5C9DC0099A7E2 /* VolunteerModel.m */,
-				1AD6D26D23E5C9DC0099A7E2 /* VolunteerModel.h */,
-			);
-			path = Volunteer;
-			sourceTree = "<group>";
-		};
-		1AD6D26E23E5C9DC0099A7E2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D27723E5C9DC0099A7E2 /* LQQFinderView.h */,
-				1AD6D27123E5C9DC0099A7E2 /* LQQFinderView.m */,
-				1AD6D26F23E5C9DC0099A7E2 /* VolunteerGlanceView.h */,
-				1AD6D27023E5C9DC0099A7E2 /* EnterButton.m */,
-				1AD6D27323E5C9DC0099A7E2 /* NotSetVolunteerButton.m */,
-				1AD6D27423E5C9DC0099A7E2 /* ElectricFeeGlanceView.h */,
-				1AD6D27523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m */,
-				1AD6D27623E5C9DC0099A7E2 /* VolunteerGlanceView.m */,
-				1AD6D27823E5C9DC0099A7E2 /* EnterButton.h */,
-				1AD6D27923E5C9DC0099A7E2 /* NotSetVolunteerButton.h */,
-				1AD6D27B23E5C9DC0099A7E2 /* NotSetElectriceFeeButton.h */,
-				1AD6D27C23E5C9DC0099A7E2 /* ElectricFeeGlanceView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1AD6D27D23E5C9DC0099A7E2 /* Discover_TestArrange */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D27E23E5C9DC0099A7E2 /* Model */,
-				1AD6D28523E5C9DC0099A7E2 /* View */,
-				1AD6D28A23E5C9DC0099A7E2 /* ViewController */,
-			);
-			path = Discover_TestArrange;
-			sourceTree = "<group>";
-		};
-		1AD6D27E23E5C9DC0099A7E2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D27F23E5C9DC0099A7E2 /* ExamArrangeDataItem.h */,
-				1AD6D28023E5C9DC0099A7E2 /* ExamArrangeModel.m */,
-				1AD6D28123E5C9DC0099A7E2 /* ExamArrangeData.m */,
-				1AD6D28223E5C9DC0099A7E2 /* ExamArrangeModel.h */,
-				1AD6D28323E5C9DC0099A7E2 /* ExamArrangeDataItem.m */,
-				1AD6D28423E5C9DC0099A7E2 /* ExamArrangeData.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1AD6D28523E5C9DC0099A7E2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D28623E5C9DC0099A7E2 /* TestCardTableViewCell.h */,
-				1AD6D28823E5C9DC0099A7E2 /* TestCardTableViewCell.m */,
-				1AD6D28723E5C9DC0099A7E2 /* PointAndDottedLineView.h */,
-				1AD6D28923E5C9DC0099A7E2 /* PointAndDottedLineView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1AD6D28A23E5C9DC0099A7E2 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D28C23E5C9DC0099A7E2 /* TestArrangeViewController.h */,
-				1AD6D28B23E5C9DC0099A7E2 /* TestArrangeViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		1AD6D28D23E5C9DC0099A7E2 /* Discover_FindScheduleInquiry */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D28E23E5C9DC0099A7E2 /* Controller */,
-				1AD6D29723E5C9DC0099A7E2 /* model */,
-				1AD6D29C23E5C9DC0099A7E2 /* View */,
-				1AD6D29F23E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets */,
-			);
-			path = Discover_FindScheduleInquiry;
-			sourceTree = "<group>";
-		};
-		1AD6D28E23E5C9DC0099A7E2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D29023E5C9DC0099A7E2 /* ScheduleInquiryViewController.h */,
-				1AD6D29523E5C9DC0099A7E2 /* ScheduleInquiryViewController.m */,
-				1AD6D28F23E5C9DC0099A7E2 /* StudentScheduleViewController.m */,
-				1AD6D29223E5C9DC0099A7E2 /* TeacherScheduleViewController.h */,
-				1AD6D29323E5C9DC0099A7E2 /* StudentScheduleViewController.h */,
-				1AD6D29423E5C9DC0099A7E2 /* ChooseStudentListViewController.h */,
-				1AD6D29123E5C9DC0099A7E2 /* ChooseStudentListViewController.m */,
-				1AD6D29623E5C9DC0099A7E2 /* TeacherScheduleViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1AD6D29723E5C9DC0099A7E2 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D29823E5C9DC0099A7E2 /* ClassmatesList.h */,
-				1AD6D29923E5C9DC0099A7E2 /* ClassmateItem.m */,
-				1AD6D29A23E5C9DC0099A7E2 /* ClassmatesList.m */,
-				1AD6D29B23E5C9DC0099A7E2 /* ClassmateItem.h */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		1AD6D29C23E5C9DC0099A7E2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D27A23E5C9DC0099A7E2 /* PeopleListCellTableViewCell.h */,
-				1AD6D27223E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m */,
-				1AD6D29D23E5C9DC0099A7E2 /* HistoryView.m */,
-				1AD6D29E23E5C9DC0099A7E2 /* HistoryView.h */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1AD6D2A023E5C9DC0099A7E2 /* Discover_EmptyClass */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D2A123E5C9DC0099A7E2 /* Controller */,
-				1AD6D2A423E5C9DC0099A7E2 /* Model */,
-				1AD6D2A723E5C9DC0099A7E2 /* View */,
-			);
-			path = Discover_EmptyClass;
-			sourceTree = "<group>";
-		};
-		1AD6D2A123E5C9DC0099A7E2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D2A223E5C9DC0099A7E2 /* EmptyClassViewController.h */,
-				1AD6D2A323E5C9DC0099A7E2 /* EmptyClassViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1AD6D2A423E5C9DC0099A7E2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D2A523E5C9DC0099A7E2 /* EmptyClassModel.m */,
-				1AD6D2A623E5C9DC0099A7E2 /* EmptyClassModel.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1AD6D2A723E5C9DC0099A7E2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D2A823E5C9DC0099A7E2 /* StoreyResultView.h */,
-				1AD6D2A923E5C9DC0099A7E2 /* LQButton.h */,
-				1AD6D2AA23E5C9DC0099A7E2 /* StoreyResultView.m */,
-				1AD6D2AB23E5C9DC0099A7E2 /* LQButton.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1AD6D2AD23E5C9DC0099A7E2 /* Disconver_ToolPage */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D2AE23E5C9DC0099A7E2 /* Controller */,
-				1AD6D2B123E5C9DC0099A7E2 /* View */,
-			);
-			path = Disconver_ToolPage;
-			sourceTree = "<group>";
-		};
-		1AD6D2AE23E5C9DC0099A7E2 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D2AF23E5C9DC0099A7E2 /* LQQFinderToolViewController.h */,
-				1AD6D2B023E5C9DC0099A7E2 /* LQQFinderToolViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1AD6D2B123E5C9DC0099A7E2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1AD6D2B223E5C9DC0099A7E2 /* FinderToolViewItem.h */,
-				1AD6D2B323E5C9DC0099A7E2 /* FinderToolViewItem.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		1AFD1512237D814D004D9CEA /* Mine_MainPage */ = {
@@ -2098,93 +1836,370 @@
 			path = InputTextView;
 			sourceTree = "<group>";
 		};
-		EE806F0023EEA2D8004F8A3E /* DIscover_NewsPage */ = {
+		EE75BEF723F5884100208039 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				EE806F1123EEE299004F8A3E /* Model */,
-				EE806F0523EEAB6E004F8A3E /* View */,
-				EE806F0423EEAB64004F8A3E /* Controller */,
-				EE806F0923EEB4EA004F8A3E /* News.xcassets */,
+				EE75BEF823F5884100208039 /* Discover_MainPage */,
+				EE75BF2323F5884100208039 /* Discover_TestArrange */,
+				EE75BF3323F5884100208039 /* Discover_FindScheduleInquiry */,
+				EE75BF4823F5884100208039 /* Discover_emptyClass */,
+				EE75BF5423F5884100208039 /* DIscover_NewsPage */,
+				EE75BF6123F5884100208039 /* SCChart */,
+				EE75BF7B23F5884100208039 /* Discover_scorePage */,
+				EE75BF8723F5884100208039 /* NewDiscover6.0Media.xcassets */,
+				EE75BF8823F5884100208039 /* Disconver_ToolPage */,
 			);
-			path = DIscover_NewsPage;
+			path = Discover;
 			sourceTree = "<group>";
 		};
-		EE806F0423EEAB64004F8A3E /* Controller */ = {
+		EE75BEF823F5884100208039 /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				EE806F0123EEA4D3004F8A3E /* NewsViewController.h */,
-				EE806F0223EEA4D3004F8A3E /* NewsViewController.m */,
-				EE806F0E23EEC920004F8A3E /* NewDetailViewController.h */,
-				EE806F0F23EEC920004F8A3E /* NewDetailViewController.m */,
+				EE75BEF923F5884100208039 /* Controller */,
+				EE75BEFC23F5884100208039 /* ChooseBuildingFile */,
+				EE75BF0623F5884100208039 /* Model */,
+				EE75BF1623F5884100208039 /* View */,
+			);
+			path = Discover_MainPage;
+			sourceTree = "<group>";
+		};
+		EE75BEF923F5884100208039 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BEFA23F5884100208039 /* DiscoverViewController.h */,
+				EE75BEFB23F5884100208039 /* DiscoverViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		EE806F0523EEAB6E004F8A3E /* View */ = {
+		EE75BEFC23F5884100208039 /* ChooseBuildingFile */ = {
 			isa = PBXGroup;
 			children = (
-				EE806F0623EEAB8A004F8A3E /* NewsCell.h */,
-				EE806F0723EEAB8A004F8A3E /* NewsCell.m */,
-				EE90D54B23EF1DCF00293567 /* DownFileDetailCellTableViewCell.h */,
-				EE90D54C23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m */,
+				EE75BEFD23F5884100208039 /* electricity_header_setting.gif */,
+				EE75BEFE23F5884100208039 /* InstallBuildTableViewCell.m */,
+				EE75BEFF23F5884100208039 /* buildCircleView.m */,
+				EE75BF0023F5884100208039 /* SetBuilding.xcassets */,
+				EE75BF0123F5884100208039 /* InstallRoomViewController.m */,
+				EE75BF0223F5884100208039 /* README */,
+				EE75BF0323F5884100208039 /* buildCircleView.h */,
+				EE75BF0423F5884100208039 /* InstallBuildTableViewCell.h */,
+				EE75BF0523F5884100208039 /* InstallRoomViewController.h */,
+			);
+			path = ChooseBuildingFile;
+			sourceTree = "<group>";
+		};
+		EE75BF0623F5884100208039 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF0723F5884100208039 /* ElectricBill */,
+				EE75BF0C23F5884100208039 /* News */,
+				EE75BF1323F5884100208039 /* Volunteer */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE75BF0723F5884100208039 /* ElectricBill */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF0823F5884100208039 /* ElectricFeeItem.m */,
+				EE75BF0923F5884100208039 /* ElectricFeeModel.m */,
+				EE75BF0A23F5884100208039 /* ElectricFeeItem.h */,
+				EE75BF0B23F5884100208039 /* ElectricFeeModel.h */,
+			);
+			path = ElectricBill;
+			sourceTree = "<group>";
+		};
+		EE75BF0C23F5884100208039 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF0D23F5884100208039 /* OneNewsModel.h */,
+				EE75BF0E23F5884100208039 /* OneNewsItem.h */,
+				EE75BF0F23F5884100208039 /* OneNewsItemData.h */,
+				EE75BF1023F5884100208039 /* OneNewsModel.m */,
+				EE75BF1123F5884100208039 /* OneNewsItem.m */,
+				EE75BF1223F5884100208039 /* OneNewsItemData.m */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		EE75BF1323F5884100208039 /* Volunteer */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF1423F5884100208039 /* VolunteerModel.m */,
+				EE75BF1523F5884100208039 /* VolunteerModel.h */,
+			);
+			path = Volunteer;
+			sourceTree = "<group>";
+		};
+		EE75BF1623F5884100208039 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF1723F5884100208039 /* VolunteerGlanceView.h */,
+				EE75BF1823F5884100208039 /* EnterButton.m */,
+				EE75BF1923F5884100208039 /* LQQFinderView.m */,
+				EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */,
+				EE75BF1B23F5884100208039 /* ElectricFeeGlanceView.h */,
+				EE75BF1C23F5884100208039 /* NotSetElectriceFeeButton.m */,
+				EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */,
+				EE75BF1E23F5884100208039 /* LQQFinderView.h */,
+				EE75BF1F23F5884100208039 /* EnterButton.h */,
+				EE75BF2023F5884100208039 /* NotSetVolunteerButton.h */,
+				EE75BF2123F5884100208039 /* NotSetElectriceFeeButton.h */,
+				EE75BF2223F5884100208039 /* ElectricFeeGlanceView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		EE806F1123EEE299004F8A3E /* Model */ = {
+		EE75BF2323F5884100208039 /* Discover_TestArrange */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF2423F5884100208039 /* Model */,
+				EE75BF2B23F5884100208039 /* View */,
+				EE75BF3023F5884100208039 /* ViewController */,
+			);
+			path = Discover_TestArrange;
+			sourceTree = "<group>";
+		};
+		EE75BF2423F5884100208039 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF2523F5884100208039 /* ExamArrangeDataItem.h */,
+				EE75BF2623F5884100208039 /* ExamArrangeModel.m */,
+				EE75BF2723F5884100208039 /* ExamArrangeData.m */,
+				EE75BF2823F5884100208039 /* ExamArrangeModel.h */,
+				EE75BF2923F5884100208039 /* ExamArrangeDataItem.m */,
+				EE75BF2A23F5884100208039 /* ExamArrangeData.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE75BF2B23F5884100208039 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF2C23F5884100208039 /* TestCardTableViewCell.h */,
+				EE75BF2D23F5884100208039 /* PointAndDottedLineView.h */,
+				EE75BF2E23F5884100208039 /* TestCardTableViewCell.m */,
+				EE75BF2F23F5884100208039 /* PointAndDottedLineView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE75BF3023F5884100208039 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF3123F5884100208039 /* TestArrangeViewController.m */,
+				EE75BF3223F5884100208039 /* TestArrangeViewController.h */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EE75BF3323F5884100208039 /* Discover_FindScheduleInquiry */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF3423F5884100208039 /* Controller */,
+				EE75BF3D23F5884100208039 /* model */,
+				EE75BF4223F5884100208039 /* View */,
+				EE75BF4723F5884100208039 /* FindScheduleInquiry.xcassets */,
+			);
+			path = Discover_FindScheduleInquiry;
+			sourceTree = "<group>";
+		};
+		EE75BF3423F5884100208039 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF3523F5884100208039 /* StudentScheduleViewController.m */,
+				EE75BF3623F5884100208039 /* ScheduleInquiryViewController.h */,
+				EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */,
+				EE75BF3823F5884100208039 /* TeacherScheduleViewController.h */,
+				EE75BF3923F5884100208039 /* StudentScheduleViewController.h */,
+				EE75BF3A23F5884100208039 /* ChooseStudentListViewController.h */,
+				EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */,
+				EE75BF3C23F5884100208039 /* TeacherScheduleViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE75BF3D23F5884100208039 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF3E23F5884100208039 /* ClassmatesList.h */,
+				EE75BF3F23F5884100208039 /* ClassmateItem.m */,
+				EE75BF4023F5884100208039 /* ClassmatesList.m */,
+				EE75BF4123F5884100208039 /* ClassmateItem.h */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		EE75BF4223F5884100208039 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF4323F5884100208039 /* PeopleListCellTableViewCell.m */,
+				EE75BF4423F5884100208039 /* HistoryView.m */,
+				EE75BF4523F5884100208039 /* HistoryView.h */,
+				EE75BF4623F5884100208039 /* PeopleListCellTableViewCell.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE75BF4823F5884100208039 /* Discover_emptyClass */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF4923F5884100208039 /* Controller */,
+				EE75BF4C23F5884100208039 /* Model */,
+				EE75BF4F23F5884100208039 /* View */,
+			);
+			path = Discover_emptyClass;
+			sourceTree = "<group>";
+		};
+		EE75BF4923F5884100208039 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF4A23F5884100208039 /* EmptyClassViewController.h */,
+				EE75BF4B23F5884100208039 /* EmptyClassViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE75BF4C23F5884100208039 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF4D23F5884100208039 /* EmptyClassModel.m */,
+				EE75BF4E23F5884100208039 /* EmptyClassModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE75BF4F23F5884100208039 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF5023F5884100208039 /* StoreyResultView.h */,
+				EE75BF5123F5884100208039 /* LQButton.h */,
+				EE75BF5223F5884100208039 /* StoreyResultView.m */,
+				EE75BF5323F5884100208039 /* LQButton.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE75BF5423F5884100208039 /* DIscover_NewsPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF5523F5884100208039 /* Controller */,
+				EE75BF5A23F5884100208039 /* News.xcassets */,
+				EE75BF5B23F5884100208039 /* Model */,
+				EE75BF5C23F5884100208039 /* View */,
+			);
+			path = DIscover_NewsPage;
+			sourceTree = "<group>";
+		};
+		EE75BF5523F5884100208039 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF5623F5884100208039 /* NewsViewController.m */,
+				EE75BF5723F5884100208039 /* NewDetailViewController.h */,
+				EE75BF5823F5884100208039 /* NewsViewController.h */,
+				EE75BF5923F5884100208039 /* NewDetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE75BF5B23F5884100208039 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		EEE0B7EB23F4517000267C36 /* SCChart */ = {
+		EE75BF5C23F5884100208039 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EEE0B7EC23F4517000267C36 /* SCLineChart.m */,
-				EEE0B7ED23F4517000267C36 /* SCChartDelegate.h */,
-				EEE0B7EE23F4517000267C36 /* SCTool.m */,
-				EEE0B7EF23F4517000267C36 /* SCBarChart.h */,
-				EEE0B7F023F4517000267C36 /* SCCircleChart.m */,
-				EEE0B7F123F4517000267C36 /* SCBar.h */,
-				EEE0B7F223F4517000267C36 /* UICountingLabel.h */,
-				EEE0B7F323F4517000267C36 /* SCChart.m */,
-				EEE0B7F423F4517000267C36 /* SCGenericChart.m */,
-				EEE0B7F523F4517000267C36 /* SCChartLabel.m */,
-				EEE0B7F623F4517000267C36 /* SCPieChartDataItem.h */,
-				EEE0B7F723F4517000267C36 /* SCPieChart.m */,
-				EEE0B7F823F4517000267C36 /* SCColor.m */,
-				EEE0B7F923F4517000267C36 /* SCTool.h */,
-				EEE0B7FA23F4517000267C36 /* SCLineChart.h */,
-				EEE0B7FB23F4517000267C36 /* SCCircleChart.h */,
-				EEE0B7FC23F4517000267C36 /* SCBarChart.m */,
-				EEE0B7FD23F4517000267C36 /* SCGenericChart.h */,
-				EEE0B7FE23F4517000267C36 /* SCChart.h */,
-				EEE0B7FF23F4517000267C36 /* UICountingLabel.m */,
-				EEE0B80023F4517000267C36 /* SCBar.m */,
-				EEE0B80123F4517000267C36 /* SCColor.h */,
-				EEE0B80223F4517000267C36 /* SCPieChart.h */,
-				EEE0B80323F4517000267C36 /* SCPieChartDataItem.m */,
-				EEE0B80423F4517000267C36 /* SCChartLabel.h */,
+				EE75BF5D23F5884100208039 /* DownFileDetailCellTableViewCell.m */,
+				EE75BF5E23F5884100208039 /* NewsCell.m */,
+				EE75BF5F23F5884100208039 /* DownFileDetailCellTableViewCell.h */,
+				EE75BF6023F5884100208039 /* NewsCell.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE75BF6123F5884100208039 /* SCChart */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF6223F5884100208039 /* SCLineChart.m */,
+				EE75BF6323F5884100208039 /* SCChartDelegate.h */,
+				EE75BF6423F5884100208039 /* SCTool.m */,
+				EE75BF6523F5884100208039 /* SCBarChart.h */,
+				EE75BF6623F5884100208039 /* SCCircleChart.m */,
+				EE75BF6723F5884100208039 /* SCBar.h */,
+				EE75BF6823F5884100208039 /* UICountingLabel.h */,
+				EE75BF6923F5884100208039 /* SCChart.m */,
+				EE75BF6A23F5884100208039 /* SCGenericChart.m */,
+				EE75BF6B23F5884100208039 /* SCChartLabel.m */,
+				EE75BF6C23F5884100208039 /* SCPieChartDataItem.h */,
+				EE75BF6D23F5884100208039 /* SCPieChart.m */,
+				EE75BF6E23F5884100208039 /* SCColor.m */,
+				EE75BF6F23F5884100208039 /* SCTool.h */,
+				EE75BF7023F5884100208039 /* SCLineChart.h */,
+				EE75BF7123F5884100208039 /* SCCircleChart.h */,
+				EE75BF7223F5884100208039 /* SCBarChart.m */,
+				EE75BF7323F5884100208039 /* SCGenericChart.h */,
+				EE75BF7423F5884100208039 /* SCChart.h */,
+				EE75BF7523F5884100208039 /* UICountingLabel.m */,
+				EE75BF7623F5884100208039 /* SCBar.m */,
+				EE75BF7723F5884100208039 /* SCColor.h */,
+				EE75BF7823F5884100208039 /* SCPieChart.h */,
+				EE75BF7923F5884100208039 /* SCPieChartDataItem.m */,
+				EE75BF7A23F5884100208039 /* SCChartLabel.h */,
 			);
 			path = SCChart;
 			sourceTree = "<group>";
 		};
-		EEE0B81123F4517B00267C36 /* Discover_scorePage */ = {
+		EE75BF7B23F5884100208039 /* Discover_scorePage */ = {
 			isa = PBXGroup;
 			children = (
-				EEE0B81523F4528A00267C36 /* View */,
-				EEE0B81223F451A400267C36 /* ScoreViewController.h */,
-				EEE0B81323F451A400267C36 /* ScoreViewController.m */,
+				EE75BF7C23F5884100208039 /* ScoreViewController.h */,
+				EE75BF7D23F5884100208039 /* ScoreViewController.m */,
+				EE75BF7E23F5884100208039 /* View */,
 			);
 			path = Discover_scorePage;
 			sourceTree = "<group>";
 		};
-		EEE0B81523F4528A00267C36 /* View */ = {
+		EE75BF7E23F5884100208039 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EEE0B81623F4529A00267C36 /* UserInfoView.h */,
-				EEE0B81723F4529A00267C36 /* UserInfoView.m */,
+				EE75BF7F23F5884100208039 /* DetailScorePerYearCell.h */,
+				EE75BF8023F5884100208039 /* UserInfoView.h */,
+				EE75BF8123F5884100208039 /* ABScoreView.m */,
+				EE75BF8223F5884100208039 /* ScoreTwoTitleView.h */,
+				EE75BF8323F5884100208039 /* UserInfoView.m */,
+				EE75BF8423F5884100208039 /* DetailScorePerYearCell.m */,
+				EE75BF8523F5884100208039 /* ScoreTwoTitleView.m */,
+				EE75BF8623F5884100208039 /* ABScoreView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EE75BF8823F5884100208039 /* Disconver_ToolPage */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF8923F5884100208039 /* Controller */,
+				EE75BF8C23F5884100208039 /* View */,
+			);
+			path = Disconver_ToolPage;
+			sourceTree = "<group>";
+		};
+		EE75BF8923F5884100208039 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF8A23F5884100208039 /* LQQFinderToolViewController.h */,
+				EE75BF8B23F5884100208039 /* LQQFinderToolViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EE75BF8C23F5884100208039 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE75BF8D23F5884100208039 /* FinderToolViewItem.h */,
+				EE75BF8E23F5884100208039 /* FinderToolViewItem.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2305,12 +2320,13 @@
 				DB34EADD239BD4550052B65E /* 多课1@3x.png in Resources */,
 				D03E59B023D9C4C700E0F34D /* QADetailImageView.xib in Resources */,
 				DB34EAFD239BD4550052B65E /* remind_image_title@2x.png in Resources */,
+				EE75BF9323F5884100208039 /* SetBuilding.xcassets in Resources */,
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
 				DB34EB15239BD4550052B65E /* 无事项@3x.png in Resources */,
 				DB34EAF4239BD4550052B65E /* 地点@3x.png in Resources */,
 				DB34EAE6239BD4550052B65E /* remind0@2x.png in Resources */,
+				EE75BFCB23F5884100208039 /* NewDiscover6.0Media.xcassets in Resources */,
 				DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */,
-				1AD6D2B623E5C9DC0099A7E2 /* electricity_header_setting.gif in Resources */,
 				DB34EB00239BD4550052B65E /* 多课2@2x.png in Resources */,
 				DB34EAF6239BD4550052B65E /* 类型@2x.png in Resources */,
 				DB34EAE0239BD4550052B65E /* 老师@3x.png in Resources */,
@@ -2323,13 +2339,11 @@
 				D0C5BC4723F14D110022CC34 /* QADetailAnswerListView.xib in Resources */,
 				DB34EAFC239BD4550052B65E /* 时间@2x.png in Resources */,
 				DB34EB03239BD4550052B65E /* 不提醒@3x.png in Resources */,
-				1AD6D2BB23E5C9DC0099A7E2 /* README in Resources */,
 				DB34EB06239BD4550052B65E /* 左三角@2x.png in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
 				1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */,
 				D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */,
 				DB34EB12239BD4550052B65E /* remind_image_confirm@2x.png in Resources */,
-				1AD6D2B923E5C9DC0099A7E2 /* SetBuilding.xcassets in Resources */,
 				DB34EAF0239BD4550052B65E /* 类型@3x.png in Resources */,
 				DB34EB20239BD4550052B65E /* DetailPageController.xib in Resources */,
 				DB34EAF8239BD4550052B65E /* remind_image_editing@2x.png in Resources */,
@@ -2350,7 +2364,9 @@
 				DB34EAE8239BD4550052B65E /* 多课1@2x.png in Resources */,
 				DB34EAE3239BD4550052B65E /* 书@2x.png in Resources */,
 				DB34EAF3239BD4550052B65E /* courseMengbi.jpg in Resources */,
+				EE75BFB723F5884100208039 /* News.xcassets in Resources */,
 				DB34EB14239BD4550052B65E /* 无事项@2x.png in Resources */,
+				EE75BF9023F5884100208039 /* electricity_header_setting.gif in Resources */,
 				DB34EAFA239BD4550052B65E /* remind_image_time@3x.png in Resources */,
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				DB34EAEE239BD4550052B65E /* remind_image_content@2x.png in Resources */,
@@ -2359,7 +2375,6 @@
 				DB34EB13239BD4550052B65E /* 提醒@2x.png in Resources */,
 				DB34EAF2239BD4550052B65E /* 地点@2x.png in Resources */,
 				1A9B7674235F50A800725937 /* Assets.xcassets in Resources */,
-				1AD6D2DA23E5C9DC0099A7E2 /* NewDiscover6.0Media.xcassets in Resources */,
 				DB34EB1D239BD4550052B65E /* remind@3x.png in Resources */,
 				DB34EAE5239BD4550052B65E /* 老师@2x.png in Resources */,
 				D05C04CE23E5E047009A2E63 /* QAAskIntegralPickerView.xib in Resources */,
@@ -2374,7 +2389,6 @@
 				DB34EB0D239BD4550052B65E /* remind@2x.png in Resources */,
 				DB34EADF239BD4550052B65E /* remind0@3x.png in Resources */,
 				DB34EB0B239BD4550052B65E /* timeTable_image_add@2x.png in Resources */,
-				EE806F0A23EEB4EA004F8A3E /* News.xcassets in Resources */,
 				DB34EAD3239BD4550052B65E /* WYCNoteDetailView.xib in Resources */,
 				D026A80623D4E054001A4774 /* QA.xcassets in Resources */,
 				DB34EB07239BD4550052B65E /* 多课2@3x.png in Resources */,
@@ -2389,15 +2403,16 @@
 				DB34EAE1239BD4550052B65E /* 箭头@3x.png in Resources */,
 				D05C04CF23E5E047009A2E63 /* QAAskNextStepView.xib in Resources */,
 				DB34EAFE239BD4550052B65E /* remind1@3x.png in Resources */,
+				EE75BF9523F5884100208039 /* README in Resources */,
 				DB34EB08239BD4550052B65E /* remind_image_edit@2x.png in Resources */,
 				DB34EB05239BD4550052B65E /* 不提醒@2x.png in Resources */,
 				DB34EAFF239BD4550052B65E /* remind_image_edit@3x.png in Resources */,
 				DB34EB1A239BD4550052B65E /* 编辑箭头@2x.png in Resources */,
 				DB34EAF5239BD4550052B65E /* 椭圆@2x.png in Resources */,
 				DB34EB1E239BD4550052B65E /* timeTable_image_add@3x.png in Resources */,
-				1AD6D2D523E5C9DC0099A7E2 /* FindScheduleInquiry.xcassets in Resources */,
 				DB34EB0F239BD4550052B65E /* 编辑箭头@3x.png in Resources */,
 				DB34EAF7239BD4550052B65E /* remind_image_content@3x.png in Resources */,
+				EE75BFB023F5884100208039 /* FindScheduleInquiry.xcassets in Resources */,
 				DB34EB17239BD4550052B65E /* 提醒@3x.png in Resources */,
 				DB34EB04239BD4550052B65E /* 多课0@2x.png in Resources */,
 				DB34EB16239BD4550052B65E /* remind_image_confirm@3x.png in Resources */,
@@ -2468,121 +2483,105 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
-				1AD6D2C823E5C9DC0099A7E2 /* ExamArrangeModel.m in Sources */,
-				1AD6D2B823E5C9DC0099A7E2 /* buildCircleView.m in Sources */,
+				EE75BFCA23F5884100208039 /* ScoreTwoTitleView.m in Sources */,
+				EE75BFBE23F5884100208039 /* SCGenericChart.m in Sources */,
 				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
-				EEE0B80823F4517000267C36 /* SCChart.m in Sources */,
+				EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
-				1AD6D2B723E5C9DC0099A7E2 /* InstallBuildTableViewCell.m in Sources */,
-				EE806F0823EEAB8A004F8A3E /* NewsCell.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
-				1AD6D2C023E5C9DC0099A7E2 /* VolunteerModel.m in Sources */,
-				EEE0B80623F4517000267C36 /* SCTool.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
-				1AD6D2CF23E5C9DC0099A7E2 /* ChooseStudentListViewController.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
-				1AD6D2D323E5C9DC0099A7E2 /* ClassmatesList.m in Sources */,
-				1AD6D2C223E5C9DC0099A7E2 /* LQQFinderView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
-				1AD6D2D623E5C9DC0099A7E2 /* EmptyClassViewController.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
+				EE75BFAD23F5884100208039 /* ClassmatesList.m in Sources */,
+				EE75BFA123F5884100208039 /* ElectricFeeGlanceView.m in Sources */,
+				EE75BFC723F5884100208039 /* ABScoreView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
-				1AD6D2C923E5C9DC0099A7E2 /* ExamArrangeData.m in Sources */,
-				EEE0B80723F4517000267C36 /* SCCircleChart.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
-				1AD6D2DC23E5C9DC0099A7E2 /* FinderToolViewItem.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
-				EEE0B81823F4529A00267C36 /* UserInfoView.m in Sources */,
-				1AD6D2D923E5C9DC0099A7E2 /* LQButton.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
-				1AD6D2BA23E5C9DC0099A7E2 /* InstallRoomViewController.m in Sources */,
+				EE75BFC823F5884100208039 /* UserInfoView.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
-				1AD6D2CE23E5C9DC0099A7E2 /* StudentScheduleViewController.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
-				EEE0B80D23F4517000267C36 /* SCBarChart.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
-				1AD6D2C123E5C9DC0099A7E2 /* EnterButton.m in Sources */,
 				1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */,
+				EE75BFC223F5884100208039 /* SCBarChart.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
-				EEE0B81023F4517000267C36 /* SCPieChartDataItem.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
-				1AD6D2D123E5C9DC0099A7E2 /* TeacherScheduleViewController.m in Sources */,
-				EEE0B80C23F4517000267C36 /* SCColor.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
-				1AD6D2BD23E5C9DC0099A7E2 /* ElectricFeeModel.m in Sources */,
+				EE75BFAA23F5884100208039 /* ScheduleInquiryViewController.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
-				EE806F0323EEA4D3004F8A3E /* NewsViewController.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
-				EEE0B80E23F4517000267C36 /* UICountingLabel.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
+				EE75BFA823F5884100208039 /* StudentScheduleViewController.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
-				1AD6D2C723E5C9DC0099A7E2 /* ElectricFeeGlanceView.m in Sources */,
-				1AD6D2D723E5C9DC0099A7E2 /* EmptyClassModel.m in Sources */,
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
+				EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */,
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
+				EE75BFB623F5884100208039 /* NewDetailViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */,
+				EE75BFA523F5884100208039 /* TestCardTableViewCell.m in Sources */,
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
-				EE806EFF23EE9A48004F8A3E /* OneNewsItemData.m in Sources */,
+				EE75BFBD23F5884100208039 /* SCChart.m in Sources */,
+				EE75BFB923F5884100208039 /* NewsCell.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
+				EE75BF9D23F5884100208039 /* LQQFinderView.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
-				EEE0B80F23F4517000267C36 /* SCBar.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
+				EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
-				EEE0B81423F451A400267C36 /* ScoreViewController.m in Sources */,
 				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
-				1AD6D2B523E5C9DC0099A7E2 /* DiscoverViewController.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
-				EE90D54D23EF1DCF00293567 /* DownFileDetailCellTableViewCell.m in Sources */,
-				1AD6D2DB23E5C9DC0099A7E2 /* LQQFinderToolViewController.m in Sources */,
 				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
 				D069799023D737800007E479 /* QADetailModel.m in Sources */,
+				EE75BFB423F5884100208039 /* LQButton.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
-				1AD6D2CD23E5C9DC0099A7E2 /* TestArrangeViewController.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
-				1AD6D2BC23E5C9DC0099A7E2 /* ElectricFeeItem.m in Sources */,
+				EE75BFBA23F5884100208039 /* SCLineChart.m in Sources */,
+				EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */,
+				EE75BF9623F5884100208039 /* ElectricFeeItem.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
-				EEE0B80A23F4517000267C36 /* SCChartLabel.m in Sources */,
+				EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
-				1AD6D2D223E5C9DC0099A7E2 /* ClassmateItem.m in Sources */,
-				1AD6D2C523E5C9DC0099A7E2 /* NotSetElectriceFeeButton.m in Sources */,
+				EE75BFAE23F5884100208039 /* PeopleListCellTableViewCell.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
-				1AD6D2C323E5C9DC0099A7E2 /* PeopleListCellTableViewCell.m in Sources */,
 				1A16592023D85CD60039BA46 /* MineQAController.m in Sources */,
+				EE75BF9223F5884100208039 /* buildCircleView.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
@@ -2590,60 +2589,79 @@
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
+				EE75BFCC23F5884100208039 /* LQQFinderToolViewController.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
+				EE75BFC123F5884100208039 /* SCColor.m in Sources */,
+				EE75BFAB23F5884100208039 /* TeacherScheduleViewController.m in Sources */,
 				D03C6B2323DF4CAA0093EF09 /* QAAskNextStepViewController.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
-				EEE0B80923F4517000267C36 /* SCGenericChart.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
+				EE75BFC523F5884100208039 /* SCPieChartDataItem.m in Sources */,
 				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
+				EE75BFA723F5884100208039 /* TestArrangeViewController.m in Sources */,
+				EE75BFBC23F5884100208039 /* SCCircleChart.m in Sources */,
+				EE75BFB123F5884100208039 /* EmptyClassViewController.m in Sources */,
+				EE75BFAF23F5884100208039 /* HistoryView.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
+				EE75BF9923F5884100208039 /* OneNewsItem.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
+				EE75BFB323F5884100208039 /* StoreyResultView.m in Sources */,
+				EE75BFA023F5884100208039 /* VolunteerGlanceView.m in Sources */,
 				D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
-				1AD6D2D423E5C9DC0099A7E2 /* HistoryView.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
-				1AD6D2CB23E5C9DC0099A7E2 /* TestCardTableViewCell.m in Sources */,
+				EE75BF9E23F5884100208039 /* NotSetVolunteerButton.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
-				1AD6D2D023E5C9DC0099A7E2 /* ScheduleInquiryViewController.m in Sources */,
-				1AD6D2C423E5C9DC0099A7E2 /* NotSetVolunteerButton.m in Sources */,
-				1AD6D2BF23E5C9DC0099A7E2 /* OneNewsItem.m in Sources */,
-				EEE0B80B23F4517000267C36 /* SCPieChart.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
-				1AD6D2D823E5C9DC0099A7E2 /* StoreyResultView.m in Sources */,
+				EE75BFA223F5884100208039 /* ExamArrangeModel.m in Sources */,
+				EE75BF9423F5884100208039 /* InstallRoomViewController.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
+				EE75BFB223F5884100208039 /* EmptyClassModel.m in Sources */,
+				EE75BF9F23F5884100208039 /* NotSetElectriceFeeButton.m in Sources */,
+				EE75BF9823F5884100208039 /* OneNewsModel.m in Sources */,
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
+				EE75BFC423F5884100208039 /* SCBar.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
-				EE806F1023EEC920004F8A3E /* NewDetailViewController.m in Sources */,
+				EE75BF9723F5884100208039 /* ElectricFeeModel.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
+				EE75BFCD23F5884100208039 /* FinderToolViewItem.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
-				1AD6D2CC23E5C9DC0099A7E2 /* PointAndDottedLineView.m in Sources */,
-				EEE0B80523F4517000267C36 /* SCLineChart.m in Sources */,
+				EE75BFC923F5884100208039 /* DetailScorePerYearCell.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
+				EE75BFA623F5884100208039 /* PointAndDottedLineView.m in Sources */,
+				EE75BFBB23F5884100208039 /* SCTool.m in Sources */,
+				EE75BFC323F5884100208039 /* UICountingLabel.m in Sources */,
+				EE75BF9C23F5884100208039 /* EnterButton.m in Sources */,
+				EE75BFAC23F5884100208039 /* ClassmateItem.m in Sources */,
 				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
+				EE75BFC623F5884100208039 /* ScoreViewController.m in Sources */,
 				D0011A7923F09422009A242C /* QADetailView.m in Sources */,
+				EE75BFA923F5884100208039 /* ChooseStudentListViewController.m in Sources */,
+				EE75BFC023F5884100208039 /* SCPieChart.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
-				1AD6D2C623E5C9DC0099A7E2 /* VolunteerGlanceView.m in Sources */,
 				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,
+				EE75BFB523F5884100208039 /* NewsViewController.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */,
-				1AD6D2BE23E5C9DC0099A7E2 /* OneNewsModel.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
-				1AD6D2CA23E5C9DC0099A7E2 /* ExamArrangeDataItem.m in Sources */,
+				EE75BFBF23F5884100208039 /* SCChartLabel.m in Sources */,
 				D0011A6E23F082FD009A242C /* QAAskExitView.m in Sources */,
+				EE75BF9123F5884100208039 /* InstallBuildTableViewCell.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
+				EE75BF9B23F5884100208039 /* VolunteerModel.m in Sources */,
 				1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
