@@ -22,8 +22,10 @@
 
 - (instancetype)initWithTitle:(NSString *)title andSubTitle:(nonnull NSString *)subTitle {
     if (self = [super init]) {
+        self.pageNum = 1;
         self.title = title;
         self.subTittle = subTitle;
+        self.itemsArray = [NSMutableArray array];
     }
     return self;
 }
@@ -42,17 +44,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.itemsArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.title isEqualToString:@"我的提问"]) {
         if ([self.subTittle isEqualToString:@"已发布"]) {
+            MyQuestionsReleasedCell *cell = [[MyQuestionsReleasedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
             self.tableView.rowHeight = 135;
-            return [[MyQuestionsReleasedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            [cell layoutSubviews];
+            cell.item = self.itemsArray[indexPath.row];
+            return cell;
         } else {
             self.tableView.rowHeight = 139;
-            return [[MyQuestionsDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            MyQuestionsDraftCell *cell = [[MyQuestionsDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            cell.item = self.itemsArray[indexPath.row];
+            return cell;
         }
     } else if ([self.title isEqualToString:@"我的回答"]) {
         if ([self.subTittle isEqualToString:@"已发布"]) {

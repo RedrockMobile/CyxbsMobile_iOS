@@ -7,6 +7,7 @@
 //
 
 #import "MyQuestionsReleasedCell.h"
+#import "MineQAMyQuestionItem.h"
 
 @interface MyQuestionsReleasedCell ()
 
@@ -17,7 +18,6 @@
 @property (nonatomic, weak) UILabel *integralLabel;
 @property (nonatomic, weak) UILabel *isSolvedLabel;
 @property (nonatomic, assign) BOOL isSolved;
-@property (nonatomic, weak) UIView *separateLine;
 
 @end
 
@@ -168,7 +168,16 @@
     [self.separateLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.equalTo(self);
         make.height.equalTo(@1);
+        make.bottom.equalTo(self.separateLine.superview.mas_bottom);
     }];
+}
+
+#pragma mark - setter
+- (void)setItem:(MineQAMyQuestionItem *)item {
+    self.titleLabel.text = item.title;
+    self.contentLabel.text = item.questionContent;
+    self.timeLabel.text = item.disappearTime;
+//    self.integralLabel
 }
 
 @end

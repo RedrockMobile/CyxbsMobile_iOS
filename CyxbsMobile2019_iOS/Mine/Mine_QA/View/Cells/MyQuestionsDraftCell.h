@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MineQAMyQuestionDraftItem;
 @interface MyQuestionsDraftCell : UITableViewCell
+
+@property (nonatomic, strong) MineQAMyQuestionDraftItem *item;
 
 @end
 

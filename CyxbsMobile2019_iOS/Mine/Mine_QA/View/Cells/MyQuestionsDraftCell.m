@@ -7,6 +7,7 @@
 //
 
 #import "MyQuestionsDraftCell.h"
+#import "MineQAMyQuestionDraftItem.h"
 
 @interface MyQuestionsDraftCell ()
 
@@ -115,6 +116,13 @@
         make.leading.trailing.bottom.equalTo(self);
         make.height.equalTo(@1);
     }];
+}
+
+#pragma mark - setter
+- (void)setItem:(MineQAMyQuestionDraftItem *)item {
+    self.titleLabel.text = item.title;
+    self.contentLabel.text = item.questionDraftContent;
+    self.timeLabel.text = item.lastEditTime;
 }
 
 @end

@@ -171,6 +171,18 @@
 #define INTEGRALSTORELISTAPI @"http://api-234.redrock.team/magipoke-intergral/QA/Integral/getItemList"
 /// “我的”邮问数据
 #define MINEQADATAAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/mine"
+/// 我的提问
+#define MYQUESTIONSAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/question"
+/// 提问草稿箱
+#define MYQUESTIONDRAFTAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/getDraftQuestionList"
+/// 我的回答
+#define MYANSWERSAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/answer"
+/// 回答草稿箱
+#define MYANSWERSDRAFTAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/getDraftAnswerList"
+/// 发出的评论
+#define MYCOMMENTAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/comment"
+/// 收到的评论
+#define MYRECOMMENTAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/reComment"
 
 
 /*----------------------------------------------------------------

@@ -10,9 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MineQAController;
 @interface MineQATableViewController : UITableViewController
 
+@property (nonatomic, weak) MineQAController *superController;
 @property (nonatomic, copy) NSString *subTittle;
+@property (nonatomic, assign) NSInteger pageNum;
+@property (nonatomic, strong) NSMutableArray *itemsArray;
 
 - (instancetype)initWithTitle:(NSString *)title andSubTitle:(NSString *)subTitle;
 

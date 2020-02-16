@@ -13,6 +13,9 @@
 
 @interface MineQAController ()<MineQAProtocol>
 
+@property (nonatomic, weak) MineQATableViewController *vc1;
+@property (nonatomic, weak) MineQATableViewController *vc2;
+
 @end
 
 @implementation MineQAController
@@ -27,7 +30,6 @@
     self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     
     MineQATableViewController *vc1 = [[MineQATableViewController alloc] initWithTitle:self.title andSubTitle:@"已发布"];
-    
     if ([self.title isEqualToString:@"评论回复"]) {
         vc1.subTittle = @"发出评论";
     }
@@ -37,9 +39,11 @@
     } else {
         // Fallback on earlier versions
     }
+    vc1.superController = self;
+    self.vc1 = vc1;
+    
     
     MineQATableViewController *vc2 = [[MineQATableViewController alloc] initWithTitle:self.title andSubTitle:@"草稿箱"];
-    
     if ([self.title isEqualToString:@"评论回复"]) {
         vc2.subTittle = @"收到回复";
     }
@@ -49,8 +53,10 @@
     } else {
         // Fallback on earlier versions
     }
-    NSArray *arr = @[vc1, vc2];
+    vc2.superController = self;
+    self.vc2 = vc2;
     
+    NSArray *arr = @[vc1, vc2];
     
     
     MineSegmentedView *segmentedView = [[MineSegmentedView alloc] initWithChildViewControllers:arr];
@@ -86,6 +92,19 @@
     backButton.backgroundColor = [UIColor blueColor];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [navigationBar addSubview:backButton];
+    
+    
+    // 请求数据
+    if ([self.title isEqualToString:@"我的提问"]) {
+        [self.presenter requestQuestionsListWithPageNum:@(self.vc1.pageNum) andSize:@6];
+        [self.presenter requestQuestionsDraftListWithPageNum:@(self.vc2.pageNum) andSize:@6];
+    } else if ([self.title isEqualToString:@"我的回答"]) {
+        [self.presenter requestAnswerListWithPageNum:@(self.vc1.pageNum) andSize:@6];
+        [self.presenter requestAnswerDraftListWithPageNum:@(self.vc2.pageNum) andSize:@6];
+    } else if ([self.title isEqualToString:@"评论回复"]) {
+        [self.presenter requestCommentListWithPageNum:@(self.vc1.pageNum) andSize:@6];
+        [self.presenter requestReCommentListWithPageNum:@(self.vc2.pageNum) andSize:@6];
+    }
 }
 
 - (void)back {
@@ -95,6 +114,17 @@
 - (void)dealloc
 {
     [self.presenter dettachView];
+}
+
+#pragma mark - presenter回调
+- (void)questionListRequestSucceeded:(NSArray<MineQAMyQuestionItem *> *)itemsArray {
+    self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+    [self.vc1.tableView reloadData];
+}
+
+- (void)questionDraftListRequestSucceeded:(NSArray<MineQAMyQuestionDraftItem *> *)itemsArray {
+    self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+    [self.vc2.tableView reloadData];
 }
 
 @end

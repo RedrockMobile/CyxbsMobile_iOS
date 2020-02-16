@@ -77,6 +77,9 @@
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
 		1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038BF23F6BF6B00D5C90E /* EditMyInfoView.m */; };
 		1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038C323F6C7FF00D5C90E /* MineQAPresenter.m */; };
+		1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038C923F8301B00D5C90E /* MineQAModel.m */; };
+		1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038CD23F91C3D00D5C90E /* MineQAMyQuestionItem.m */; };
+		1AD038D123F92F6700D5C90E /* MineQAMyQuestionDraftItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038D023F92F6700D5C90E /* MineQAMyQuestionDraftItem.m */; };
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
@@ -456,6 +459,12 @@
 		1AD038C223F6C7FF00D5C90E /* MineQAPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAPresenter.h; sourceTree = "<group>"; };
 		1AD038C323F6C7FF00D5C90E /* MineQAPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAPresenter.m; sourceTree = "<group>"; };
 		1AD038C623F6C87E00D5C90E /* MineQAProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAProtocol.h; sourceTree = "<group>"; };
+		1AD038C823F8301B00D5C90E /* MineQAModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAModel.h; sourceTree = "<group>"; };
+		1AD038C923F8301B00D5C90E /* MineQAModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAModel.m; sourceTree = "<group>"; };
+		1AD038CC23F91C3D00D5C90E /* MineQAMyQuestionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAMyQuestionItem.h; sourceTree = "<group>"; };
+		1AD038CD23F91C3D00D5C90E /* MineQAMyQuestionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAMyQuestionItem.m; sourceTree = "<group>"; };
+		1AD038CF23F92F6700D5C90E /* MineQAMyQuestionDraftItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAMyQuestionDraftItem.h; sourceTree = "<group>"; };
+		1AD038D023F92F6700D5C90E /* MineQAMyQuestionDraftItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAMyQuestionDraftItem.m; sourceTree = "<group>"; };
 		1AD6D1BD23E161100099A7E2 /* MineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineModel.h; sourceTree = "<group>"; };
 		1AD6D1BE23E161100099A7E2 /* MineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineModel.m; sourceTree = "<group>"; };
 		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
@@ -993,6 +1002,7 @@
 			isa = PBXGroup;
 			children = (
 				1A16593023D984840039BA46 /* Assets.xcassets */,
+				1AD038C723F82FFF00D5C90E /* Model */,
 				1AD038C523F6C86900D5C90E /* Protocol */,
 				1AD038C123F6C7C600D5C90E /* Presenter */,
 				1A16591923D84B290039BA46 /* View */,
@@ -1352,6 +1362,27 @@
 				1AD038C623F6C87E00D5C90E /* MineQAProtocol.h */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		1AD038C723F82FFF00D5C90E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1AD038CB23F91C0E00D5C90E /* Items */,
+				1AD038C823F8301B00D5C90E /* MineQAModel.h */,
+				1AD038C923F8301B00D5C90E /* MineQAModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1AD038CB23F91C0E00D5C90E /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				1AD038CC23F91C3D00D5C90E /* MineQAMyQuestionItem.h */,
+				1AD038CD23F91C3D00D5C90E /* MineQAMyQuestionItem.m */,
+				1AD038CF23F92F6700D5C90E /* MineQAMyQuestionDraftItem.h */,
+				1AD038D023F92F6700D5C90E /* MineQAMyQuestionDraftItem.m */,
+			);
+			path = Items;
 			sourceTree = "<group>";
 		};
 		1AD6D1BC23E161050099A7E2 /* Model */ = {
@@ -2522,6 +2553,7 @@
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
+				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
@@ -2554,6 +2586,7 @@
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
+				1AD038D123F92F6700D5C90E /* MineQAMyQuestionDraftItem.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				EE75BFA823F5884100208039 /* StudentScheduleViewController.m in Sources */,
@@ -2582,6 +2615,7 @@
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
+				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
 				EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
