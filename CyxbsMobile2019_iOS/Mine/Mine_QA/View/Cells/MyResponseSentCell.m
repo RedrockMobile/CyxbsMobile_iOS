@@ -7,6 +7,7 @@
 //
 
 #import "MyResponseSentCell.h"
+#import "MineQACommentItem.h"
 
 @interface MyResponseSentCell ()
 
@@ -80,6 +81,11 @@
         make.leading.trailing.bottom.equalTo(self);
         make.height.equalTo(@1);
     }];
+}
+
+- (void)setItem:(MineQACommentItem *)item {
+    self.sendToNameLabel.text = item.answerer;
+    self.contentLabel.text = item.commentContent;
 }
 
 @end

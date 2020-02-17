@@ -12,6 +12,7 @@
 #import "MineQAMyQuestionDraftItem.h"
 #import "MineQAMyAnswerItem.h"
 #import "MineQAMyAnswerDraftItem.h"
+#import "MineQACommentItem.h"
 
 @implementation MineQAPresenter
 
@@ -77,7 +78,16 @@
 }
 
 - (void)requestCommentListWithPageNum:(NSNumber *)pageNum andSize:(NSNumber *)size {
-    
+    [self.model requestCommentListWithPageNum:pageNum andPageSize:size succeeded:^(NSDictionary * _Nonnull responseObject) {
+        NSMutableArray *itemsArray = [NSMutableArray arrayWithCapacity:6];
+        for (NSDictionary *dict in responseObject[@"data"]) {
+            MineQACommentItem *item = [[MineQACommentItem alloc] initWithDict:dict];
+            [itemsArray addObject:item];
+        }
+        [self.view commentListRequestSucceeded:itemsArray];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)requestReCommentListWithPageNum:(NSNumber *)pageNum andSize:(NSNumber *)size {

@@ -76,7 +76,9 @@
     } else if ([self.title isEqualToString:@"评论回复"]) {
         if ([self.subTittle isEqualToString:@"发出评论"]) {
             self.tableView.rowHeight = 81;
-            return [[MyResponseSentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            MyResponseSentCell *cell = [[MyResponseSentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            cell.item = self.itemsArray[indexPath.row];
+            return cell;
         } else {
             self.tableView.rowHeight = 71;
             return [[MyResponseRecievedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
