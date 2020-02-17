@@ -46,7 +46,7 @@
         // 内容
         UILabel *contentLabel = [[UILabel alloc] init];
         contentLabel.text = @"我在沈阳房子一直在涨，亲弟弟在日照房价也一直在涨，沈阳二手房城建北尚";
-        contentLabel.numberOfLines = 2;
+        contentLabel.numberOfLines = 1;
         contentLabel.font = [UIFont systemFontOfSize:15];
         if (@available(iOS 11.0, *)) {
             contentLabel.textColor = [UIColor colorNamed:@"Mine_QA_ContentLabelColor"];

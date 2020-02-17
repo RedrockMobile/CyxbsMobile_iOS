@@ -44,7 +44,7 @@
         UILabel *contentLabel = [[UILabel alloc] init];
         contentLabel.text = @"啦啦啦啦啦";
         contentLabel.font = [UIFont systemFontOfSize:16];
-        contentLabel.numberOfLines = 2;
+        contentLabel.numberOfLines = 1;
         if (@available(iOS 11.0, *)) {
             contentLabel.textColor = [UIColor colorNamed:@"Mine_QA_ContentLabelColor"];
         } else {

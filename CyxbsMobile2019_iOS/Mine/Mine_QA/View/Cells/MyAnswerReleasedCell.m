@@ -36,7 +36,7 @@
         // 内容
         UILabel *contentLabel = [[UILabel alloc] init];
         contentLabel.text = @"楼主从乡下考学出来，自力更生，白手起家，过上了有车有房伪中产生活。你们攻击楼主就是嫉妒。";
-        contentLabel.numberOfLines = 2;
+        contentLabel.numberOfLines = 1;
         contentLabel.font = [UIFont systemFontOfSize:15];
         if (@available(iOS 11.0, *)) {
             contentLabel.textColor = [UIColor colorNamed:@"Mine_QA_ContentLabelColor"];

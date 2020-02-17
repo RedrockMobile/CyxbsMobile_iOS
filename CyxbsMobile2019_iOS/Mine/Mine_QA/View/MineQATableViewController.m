@@ -51,24 +51,24 @@
     if ([self.title isEqualToString:@"我的提问"]) {
         if ([self.subTittle isEqualToString:@"已发布"]) {
             MyQuestionsReleasedCell *cell = [[MyQuestionsReleasedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
-            self.tableView.rowHeight = 135;
+            self.tableView.rowHeight = 110;
             [cell layoutSubviews];
             cell.item = self.itemsArray[indexPath.row];
             return cell;
         } else {
-            self.tableView.rowHeight = 139;
+            self.tableView.rowHeight = 114;
             MyQuestionsDraftCell *cell = [[MyQuestionsDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
             cell.item = self.itemsArray[indexPath.row];
             return cell;
         }
     } else if ([self.title isEqualToString:@"我的回答"]) {
         if ([self.subTittle isEqualToString:@"已发布"]) {
-            self.tableView.rowHeight = 112;
+            self.tableView.rowHeight = 87;
             MyAnswerReleasedCell *cell = [[MyAnswerReleasedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
             cell.item = self.itemsArray[indexPath.row];
             return cell;
         } else {
-            self.tableView.rowHeight = 106;
+            self.tableView.rowHeight = 81;
             MyAnswerDraftCell *cell = [[MyAnswerDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
             cell.item = self.itemsArray[indexPath.row];
             return cell;
@@ -80,7 +80,7 @@
             cell.item = self.itemsArray[indexPath.row];
             return cell;
         } else {
-            self.tableView.rowHeight = 71;
+            self.tableView.rowHeight = 81;
             MyResponseRecievedCell *cell = [[MyResponseRecievedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
             cell.item = self.itemsArray[indexPath.row];
             return cell;
