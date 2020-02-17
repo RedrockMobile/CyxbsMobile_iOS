@@ -36,7 +36,7 @@
         NSInteger controllersCount = childViewControllers.count;
         NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:controllersCount];
         for (int i = 0; i < controllersCount; i++) {
-            UIButton *segmentedButton = [UIButton buttonWithType:UIButtonTypeSystem];
+            UIButton *segmentedButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [segmentedButton setTitle:self.childViewControllers[i].subTittle forState:UIControlStateNormal];
             if (@available(iOS 11.0, *)) {
                 [segmentedButton setTitleColor:[UIColor colorNamed:@"Mine_QA_TitleLabelColor"] forState:UIControlStateNormal];
@@ -113,7 +113,7 @@
         [self.childViewControllers[i].view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.equalTo(@(i * MAIN_SCREEN_W));
             make.width.equalTo(@(MAIN_SCREEN_W));
-            make.bottom.equalTo(self).offset(- TABBARHEIGHT);
+            make.bottom.equalTo(self);
             make.top.equalTo(self.segmentedBar.mas_bottom);
         }];
     }
@@ -139,8 +139,12 @@
 
 - (void)segmentedButtonClicked:(UIButton *)sender {
     if ([sender isEqual:self.segmentedButtons[0]]) {
+        self.segmentedButtons[0].alpha = 1;
+        self.segmentedButtons[1].alpha = 0.5;
         [self.scrollView scrollToLeft];
     } else {
+        self.segmentedButtons[1].alpha = 1;
+        self.segmentedButtons[0].alpha = 0.5;
         [self.scrollView scrollToRight];
     }
 }

@@ -155,23 +155,27 @@
 - (void)questionLabelClicked {
     MineQAController *vc = [[MineQAController alloc] init];
     vc.title = @"我的提问";
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)answerLabelClicked {
     MineQAController *vc = [[MineQAController alloc] init];
     vc.title = @"我的回答";
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)responseLabelClicked {
     MineQAController *vc = [[MineQAController alloc] init];
     vc.title = @"评论回复";
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)selectedAboutCell {
     MineAboutController *vc = [[MineAboutController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -28,6 +28,7 @@
     [self.presenter attachView:self];
     
     self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+    self.navigationController.navigationBar.hidden = NO;
     
     MineQATableViewController *vc1 = [[MineQATableViewController alloc] initWithTitle:self.title andSubTitle:@"已发布"];
     if ([self.title isEqualToString:@"评论回复"]) {
@@ -105,6 +106,14 @@
         [self.presenter requestCommentListWithPageNum:@(self.vc1.pageNum) andSize:@6];
         [self.presenter requestReCommentListWithPageNum:@(self.vc2.pageNum) andSize:@6];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)back {

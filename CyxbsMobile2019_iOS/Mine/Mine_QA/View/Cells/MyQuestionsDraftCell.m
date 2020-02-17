@@ -24,6 +24,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         // 背景颜色
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"Mine_QA_BackgroundColor"];
