@@ -15,6 +15,9 @@
 #import "MyResponseRecievedCell.h"
 #import "MineQAController.h"
 #import <MJRefresh.h>
+#import "QADetailViewController.h"
+#import "MineQAMyQuestionItem.h"
+#import "MineQAMyAnswerItem.h"
 
 @interface MineQATableViewController ()
 
@@ -37,7 +40,7 @@
     [super viewDidLoad];
     
     self.tableView.separatorColor = [UIColor clearColor];
-    self.tableView.allowsSelection = NO;
+    self.tableView.allowsSelection = YES;
 }
 
 #pragma mark - Table view data source
@@ -92,6 +95,25 @@
         return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     }
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.title isEqualToString:@"我的提问"]) {
+        if ([self.subTittle isEqualToString:@"已发布"]) {
+            NSNumber *questionID = [((MineQAMyQuestionItem *)(self.itemsArray[indexPath.row])).questionID numberValue];
+            NSString *title = ((MineQAMyQuestionItem *)(self.itemsArray[indexPath.row])).title;
+            QADetailViewController *questionDetailVC = [[QADetailViewController alloc] initViewWithId:questionID title:title];
+            [self.superController.navigationController pushViewController:questionDetailVC animated:YES];
+        }
+    } else if ([self.title isEqualToString:@"我的回答"]) {
+        if ([self.subTittle isEqualToString:@"已发布"]) {
+//            NSNumber *questionID = [((MineQAMyAnswerItem *)(self.itemsArray[indexPath.row])).questionID numberValue];
+////            NSString *title = ((MineQAMyAnswerItem *)(self.itemsArray[indexPath.row])).;
+//            QADetailViewController *questionDetailVC = [[QADetailViewController alloc] initViewWithId:questionID title:title];
+//            [self.superController.navigationController pushViewController:questionDetailVC animated:YES];
+        }
+    }
+}
+
 
 - (void)lodaMoreData {
     [self.superController pullUpToLoadWithTitle:self.title andSubTitle:self.subTittle];
