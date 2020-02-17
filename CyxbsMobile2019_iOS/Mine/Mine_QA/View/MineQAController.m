@@ -142,4 +142,9 @@
     [self.vc1.tableView reloadData];
 }
 
+- (void)reCommentListRequestSucceeded:(NSArray<MineQARecommentItem *> *)itemsArray {
+    self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+    [self.vc2.tableView reloadData];
+}
+
 @end

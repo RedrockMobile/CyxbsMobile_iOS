@@ -81,7 +81,9 @@
             return cell;
         } else {
             self.tableView.rowHeight = 71;
-            return [[MyResponseRecievedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            MyResponseRecievedCell *cell = [[MyResponseRecievedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            cell.item = self.itemsArray[indexPath.row];
+            return cell;
         }
     } else {
         return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];

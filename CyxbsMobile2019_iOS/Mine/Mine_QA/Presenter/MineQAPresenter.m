@@ -13,6 +13,7 @@
 #import "MineQAMyAnswerItem.h"
 #import "MineQAMyAnswerDraftItem.h"
 #import "MineQACommentItem.h"
+#import "MineQARecommentItem.h"
 
 @implementation MineQAPresenter
 
@@ -91,7 +92,16 @@
 }
 
 - (void)requestReCommentListWithPageNum:(NSNumber *)pageNum andSize:(NSNumber *)size {
-    
+    [self.model requestReCommentListWithPageNum:pageNum andPageSize:size succeeded:^(NSDictionary * _Nonnull responseObject) {
+        NSMutableArray *itemsArray = [NSMutableArray arrayWithCapacity:6];
+        for (NSDictionary *dict in responseObject[@"data"]) {
+            MineQARecommentItem *item = [[MineQARecommentItem alloc] initWithDict:dict];
+            [itemsArray addObject:item];
+        }
+        [self.view reCommentListRequestSucceeded:itemsArray];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 @end

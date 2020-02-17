@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class MineQAMyQuestionItem, MineQAMyQuestionDraftItem, MineQAMyAnswerItem, MineQAMyAnswerDraftItem, MineQACommentItem;
+@class MineQAMyQuestionItem, MineQAMyQuestionDraftItem, MineQAMyAnswerItem, MineQAMyAnswerDraftItem, MineQACommentItem, MineQARecommentItem;
 @protocol MineQAProtocol <NSObject>
 
 - (void)questionListRequestSucceeded:(NSArray<MineQAMyQuestionItem *> *)itemsArray;
@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)answerListRequestSucceeded:(NSArray<MineQAMyAnswerItem *> *)itemsArray;
 - (void)answerDraftListRequestSucceeded:(NSArray<MineQAMyAnswerDraftItem *> *)itemsArray;
 - (void)commentListRequestSucceeded:(NSArray<MineQACommentItem *> *)itemsArray;
+- (void)reCommentListRequestSucceeded:(NSArray<MineQARecommentItem *> *)itemsArray;
 
 @end
 

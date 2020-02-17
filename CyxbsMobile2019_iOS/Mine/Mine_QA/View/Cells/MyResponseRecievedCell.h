@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MineQARecommentItem;
 @interface MyResponseRecievedCell : UITableViewCell
+
+@property (nonatomic, strong) MineQARecommentItem *item;
 
 @end
 
