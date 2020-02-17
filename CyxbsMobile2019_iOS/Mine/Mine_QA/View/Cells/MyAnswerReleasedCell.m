@@ -7,6 +7,7 @@
 //
 
 #import "MyAnswerReleasedCell.h"
+#import "MineQAMyAnswerItem.h"
 
 @interface MyAnswerReleasedCell ()
 
@@ -152,6 +153,15 @@
         make.leading.trailing.bottom.equalTo(self);
         make.height.equalTo(@1);
     }];
+}
+
+#pragma mark - setter {
+- (void)setItem:(MineQAMyAnswerItem *)item {
+    self.contentLabel.text = item.answerContent;
+    self.timeLabel.text = item.answerTime;
+    self.integralLabel.text = item.integral;
+    self.isSolvedLabel.text = item.type;
+    self.isSolved = [item.type isEqualToString:@"已采纳"] ? YES : NO;
 }
 
 @end

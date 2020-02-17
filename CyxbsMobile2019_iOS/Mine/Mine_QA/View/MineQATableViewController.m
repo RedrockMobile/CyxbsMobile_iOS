@@ -64,10 +64,14 @@
     } else if ([self.title isEqualToString:@"我的回答"]) {
         if ([self.subTittle isEqualToString:@"已发布"]) {
             self.tableView.rowHeight = 112;
-            return [[MyAnswerReleasedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            MyAnswerReleasedCell *cell = [[MyAnswerReleasedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            cell.item = self.itemsArray[indexPath.row];
+            return cell;
         } else {
             self.tableView.rowHeight = 106;
-            return [[MyAnswerDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            MyAnswerDraftCell *cell = [[MyAnswerDraftCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+            cell.item = self.itemsArray[indexPath.row];
+            return cell;
         }
     } else if ([self.title isEqualToString:@"评论回复"]) {
         if ([self.subTittle isEqualToString:@"发出评论"]) {

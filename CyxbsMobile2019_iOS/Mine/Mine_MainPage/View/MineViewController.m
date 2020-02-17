@@ -180,9 +180,9 @@
 #pragma mark - Presenter回调
 - (void)QAInfoRequestsSucceededWithItem:(MineQADataItem *)item {
     self.contentView.headerView.questionsNumberLabel.text = [NSString stringWithFormat:@"%@", item.askNum];
-    self.contentView.headerView.answerNumberLabel.text = [NSString stringWithFormat:@"%@", item.askNum];
-    self.contentView.headerView.responseNumberLabel.text = [NSString stringWithFormat:@"%@", item.askNum];
-    self.contentView.headerView.praiseNumberLabel.text = [NSString stringWithFormat:@"%@", item.askNum];
+    self.contentView.headerView.answerNumberLabel.text = [NSString stringWithFormat:@"%@", item.answerNum];
+    self.contentView.headerView.responseNumberLabel.text = [NSString stringWithFormat:@"%@", item.commentNum];
+    self.contentView.headerView.praiseNumberLabel.text = [NSString stringWithFormat:@"%@", item.praiseNum];
 }
 
 

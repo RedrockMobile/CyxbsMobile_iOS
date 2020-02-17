@@ -80,6 +80,8 @@
 		1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038C923F8301B00D5C90E /* MineQAModel.m */; };
 		1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038CD23F91C3D00D5C90E /* MineQAMyQuestionItem.m */; };
 		1AD038D123F92F6700D5C90E /* MineQAMyQuestionDraftItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038D023F92F6700D5C90E /* MineQAMyQuestionDraftItem.m */; };
+		1AD038D423F9471A00D5C90E /* MineQAMyAnswerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038D323F9471A00D5C90E /* MineQAMyAnswerItem.m */; };
+		1AD038D723FA691100D5C90E /* MineQAMyAnswerDraftItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038D623FA691100D5C90E /* MineQAMyAnswerDraftItem.m */; };
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
@@ -465,6 +467,10 @@
 		1AD038CD23F91C3D00D5C90E /* MineQAMyQuestionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAMyQuestionItem.m; sourceTree = "<group>"; };
 		1AD038CF23F92F6700D5C90E /* MineQAMyQuestionDraftItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAMyQuestionDraftItem.h; sourceTree = "<group>"; };
 		1AD038D023F92F6700D5C90E /* MineQAMyQuestionDraftItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAMyQuestionDraftItem.m; sourceTree = "<group>"; };
+		1AD038D223F9471A00D5C90E /* MineQAMyAnswerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAMyAnswerItem.h; sourceTree = "<group>"; };
+		1AD038D323F9471A00D5C90E /* MineQAMyAnswerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAMyAnswerItem.m; sourceTree = "<group>"; };
+		1AD038D523FA691100D5C90E /* MineQAMyAnswerDraftItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQAMyAnswerDraftItem.h; sourceTree = "<group>"; };
+		1AD038D623FA691100D5C90E /* MineQAMyAnswerDraftItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQAMyAnswerDraftItem.m; sourceTree = "<group>"; };
 		1AD6D1BD23E161100099A7E2 /* MineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineModel.h; sourceTree = "<group>"; };
 		1AD6D1BE23E161100099A7E2 /* MineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineModel.m; sourceTree = "<group>"; };
 		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
@@ -1381,6 +1387,10 @@
 				1AD038CD23F91C3D00D5C90E /* MineQAMyQuestionItem.m */,
 				1AD038CF23F92F6700D5C90E /* MineQAMyQuestionDraftItem.h */,
 				1AD038D023F92F6700D5C90E /* MineQAMyQuestionDraftItem.m */,
+				1AD038D223F9471A00D5C90E /* MineQAMyAnswerItem.h */,
+				1AD038D323F9471A00D5C90E /* MineQAMyAnswerItem.m */,
+				1AD038D523FA691100D5C90E /* MineQAMyAnswerDraftItem.h */,
+				1AD038D623FA691100D5C90E /* MineQAMyAnswerDraftItem.m */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -2548,6 +2558,7 @@
 				EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
+				1AD038D423F9471A00D5C90E /* MineQAMyAnswerItem.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
@@ -2705,6 +2716,7 @@
 				EE75BFBB23F5884100208039 /* SCTool.m in Sources */,
 				EE75BFC323F5884100208039 /* UICountingLabel.m in Sources */,
 				EE75BF9C23F5884100208039 /* EnterButton.m in Sources */,
+				1AD038D723FA691100D5C90E /* MineQAMyAnswerDraftItem.m in Sources */,
 				EE75BFAC23F5884100208039 /* ClassmateItem.m in Sources */,
 				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
 				EE75BFC623F5884100208039 /* ScoreViewController.m in Sources */,

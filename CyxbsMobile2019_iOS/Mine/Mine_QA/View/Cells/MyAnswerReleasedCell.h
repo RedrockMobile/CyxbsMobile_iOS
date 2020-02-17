@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class MineQAMyAnswerItem;
 @interface MyAnswerReleasedCell : UITableViewCell
+
+@property (nonatomic, strong) MineQAMyAnswerItem *item;
 
 @end
 

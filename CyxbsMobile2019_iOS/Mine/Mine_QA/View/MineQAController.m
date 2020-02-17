@@ -127,4 +127,14 @@
     [self.vc2.tableView reloadData];
 }
 
+- (void)answerListRequestSucceeded:(NSArray<MineQAMyAnswerItem *> *)itemsArray {
+    self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+    [self.vc1.tableView reloadData];
+}
+
+- (void)answerDraftListRequestSucceeded:(NSArray<MineQAMyAnswerDraftItem *> *)itemsArray {
+    self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+    [self.vc2.tableView reloadData];
+}
+
 @end

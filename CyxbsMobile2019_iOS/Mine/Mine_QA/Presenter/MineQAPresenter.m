@@ -10,6 +10,8 @@
 #import "MineQAModel.h"
 #import "MineQAMyQuestionItem.h"
 #import "MineQAMyQuestionDraftItem.h"
+#import "MineQAMyAnswerItem.h"
+#import "MineQAMyAnswerDraftItem.h"
 
 @implementation MineQAPresenter
 
@@ -49,11 +51,29 @@
 }
 
 - (void)requestAnswerListWithPageNum:(NSNumber *)pageNum andSize:(NSNumber *)size {
-    
+    [self.model requestAnswerListWithPageNum:pageNum andPageSize:size succeeded:^(NSDictionary * _Nonnull responseObject) {
+        NSMutableArray *itemsArray = [NSMutableArray arrayWithCapacity:6];
+        for (NSDictionary *dict in responseObject[@"data"]) {
+            MineQAMyAnswerItem *item = [[MineQAMyAnswerItem alloc] initWithDict:dict];
+            [itemsArray addObject:item];
+        }
+        [self.view answerListRequestSucceeded:itemsArray];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)requestAnswerDraftListWithPageNum:(NSNumber *)pageNum andSize:(NSNumber *)size {
-    
+    [self.model requestAnswerDraftListWithPageNum:pageNum andPageSize:size succeeded:^(NSDictionary * _Nonnull responseObject) {
+        NSMutableArray *itemsArray = [NSMutableArray arrayWithCapacity:6];
+        for (NSDictionary *dict in responseObject[@"data"]) {
+            MineQAMyAnswerDraftItem *item = [[MineQAMyAnswerDraftItem alloc] initWithDict:dict];
+            [itemsArray addObject:item];
+        }
+        [self.view answerDraftListRequestSucceeded:itemsArray];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)requestCommentListWithPageNum:(NSNumber *)pageNum andSize:(NSNumber *)size {

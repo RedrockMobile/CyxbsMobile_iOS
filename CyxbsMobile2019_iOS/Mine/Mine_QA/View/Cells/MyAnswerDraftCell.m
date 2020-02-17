@@ -7,6 +7,7 @@
 //
 
 #import "MyAnswerDraftCell.h"
+#import "MineQAMyAnswerDraftItem.h"
 
 @interface MyAnswerDraftCell ()
 
@@ -97,6 +98,11 @@
         make.leading.trailing.bottom.equalTo(self);
         make.height.equalTo(@1);
     }];
+}
+
+- (void)setItem:(MineQAMyAnswerDraftItem *)item {
+    self.contentLabel.text = item.answerDraftContent;
+    self.timeLabel.text = item.lastEditTime;
 }
 
 @end
