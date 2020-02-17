@@ -128,10 +128,10 @@
 #pragma mark - presenter回调
 - (void)questionListRequestSucceeded:(NSArray<MineQAMyQuestionItem *> *)itemsArray {
     if (itemsArray.count < 6) {
-        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
         self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
         self.vc1.pageNum++;
         [self.vc1.tableView reloadData];
+        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
     } else {
         [self.vc1.tableView.mj_footer endRefreshing];
         self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
@@ -142,10 +142,10 @@
 
 - (void)questionDraftListRequestSucceeded:(NSArray<MineQAMyQuestionDraftItem *> *)itemsArray {
     if (itemsArray.count < 6) {
-        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
         self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
         self.vc2.pageNum++;
         [self.vc2.tableView reloadData];
+        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
     } else {
         [self.vc2.tableView.mj_footer endRefreshing];
         self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
@@ -156,10 +156,10 @@
 
 - (void)answerListRequestSucceeded:(NSArray<MineQAMyAnswerItem *> *)itemsArray {
     if (itemsArray.count < 6) {
-        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
         self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
         self.vc1.pageNum++;
         [self.vc1.tableView reloadData];
+        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
     } else {
         [self.vc1.tableView.mj_footer endRefreshing];
         self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
@@ -170,10 +170,10 @@
 
 - (void)answerDraftListRequestSucceeded:(NSArray<MineQAMyAnswerDraftItem *> *)itemsArray {
     if (itemsArray.count < 6) {
-        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
         self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
         self.vc2.pageNum++;
         [self.vc2.tableView reloadData];
+        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
     } else {
         [self.vc2.tableView.mj_footer endRefreshing];
         self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
@@ -184,10 +184,10 @@
 
 - (void)commentListRequestSucceeded:(NSArray<MineQACommentItem *> *)itemsArray {
     if (itemsArray.count < 6) {
-        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
         self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
         self.vc1.pageNum++;
         [self.vc1.tableView reloadData];
+        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
     } else {
         [self.vc1.tableView.mj_footer endRefreshing];
         self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
@@ -198,10 +198,10 @@
 
 - (void)reCommentListRequestSucceeded:(NSArray<MineQARecommentItem *> *)itemsArray {
     if (itemsArray.count < 6) {
-        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
         self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
         self.vc2.pageNum++;
         [self.vc2.tableView reloadData];
+        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
     } else {
         [self.vc2.tableView.mj_footer endRefreshing];
         self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];

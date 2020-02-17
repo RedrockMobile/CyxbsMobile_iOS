@@ -31,7 +31,6 @@
         self.title = title;
         self.subTittle = subTitle;
         self.itemsArray = [NSMutableArray array];
-        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(lodaMoreData)];
     }
     return self;
 }
@@ -46,6 +45,9 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (self.itemsArray.count != 0 && !self.tableView.mj_footer) {
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(lodaMoreData)];
+    }
     return 1;
 }
 
