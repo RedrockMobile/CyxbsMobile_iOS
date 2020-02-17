@@ -61,10 +61,6 @@
                         @"hasSwitch": @NO
                     },
                     @{
-                        @"title": @"意见与反馈",
-                        @"hasSwitch": @NO
-                    },
-                    @{
                         @"title": @"红岩网校",
                         @"hasSwitch": @NO
                     },
