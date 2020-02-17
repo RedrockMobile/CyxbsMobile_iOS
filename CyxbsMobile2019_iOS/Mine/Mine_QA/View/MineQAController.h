@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSArray<NSString *> *subTitles;
 
+- (void)pullUpToLoadWithTitle:(NSString *)title andSubTitle:(NSString *)subTitle;
+
 @end
 
 NS_ASSUME_NONNULL_END

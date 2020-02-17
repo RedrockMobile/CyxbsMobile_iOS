@@ -118,33 +118,111 @@
 
 #pragma mark - presenter回调
 - (void)questionListRequestSucceeded:(NSArray<MineQAMyQuestionItem *> *)itemsArray {
-    self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
-    [self.vc1.tableView reloadData];
+    if (itemsArray.count < 6) {
+        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
+        self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc1.pageNum++;
+        [self.vc1.tableView reloadData];
+    } else {
+        [self.vc1.tableView.mj_footer endRefreshing];
+        self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc1.pageNum++;
+        [self.vc1.tableView reloadData];
+    }
 }
 
 - (void)questionDraftListRequestSucceeded:(NSArray<MineQAMyQuestionDraftItem *> *)itemsArray {
-    self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
-    [self.vc2.tableView reloadData];
+    if (itemsArray.count < 6) {
+        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
+        self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc2.pageNum++;
+        [self.vc2.tableView reloadData];
+    } else {
+        [self.vc2.tableView.mj_footer endRefreshing];
+        self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc2.pageNum++;
+        [self.vc2.tableView reloadData];
+    }
 }
 
 - (void)answerListRequestSucceeded:(NSArray<MineQAMyAnswerItem *> *)itemsArray {
-    self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
-    [self.vc1.tableView reloadData];
+    if (itemsArray.count < 6) {
+        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
+        self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc1.pageNum++;
+        [self.vc1.tableView reloadData];
+    } else {
+        [self.vc1.tableView.mj_footer endRefreshing];
+        self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc1.pageNum++;
+        [self.vc1.tableView reloadData];
+    }
 }
 
 - (void)answerDraftListRequestSucceeded:(NSArray<MineQAMyAnswerDraftItem *> *)itemsArray {
-    self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
-    [self.vc2.tableView reloadData];
+    if (itemsArray.count < 6) {
+        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
+        self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc2.pageNum++;
+        [self.vc2.tableView reloadData];
+    } else {
+        [self.vc2.tableView.mj_footer endRefreshing];
+        self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc2.pageNum++;
+        [self.vc2.tableView reloadData];
+    }
 }
 
 - (void)commentListRequestSucceeded:(NSArray<MineQACommentItem *> *)itemsArray {
-    self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
-    [self.vc1.tableView reloadData];
+    if (itemsArray.count < 6) {
+        [self.vc1.tableView.mj_footer endRefreshingWithNoMoreData];
+        self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc1.pageNum++;
+        [self.vc1.tableView reloadData];
+    } else {
+        [self.vc1.tableView.mj_footer endRefreshing];
+        self.vc1.itemsArray = [[self.vc1.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc1.pageNum++;
+        [self.vc1.tableView reloadData];
+    }
 }
 
 - (void)reCommentListRequestSucceeded:(NSArray<MineQARecommentItem *> *)itemsArray {
-    self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
-    [self.vc2.tableView reloadData];
+    if (itemsArray.count < 6) {
+        [self.vc2.tableView.mj_footer endRefreshingWithNoMoreData];
+        self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc2.pageNum++;
+        [self.vc2.tableView reloadData];
+    } else {
+        [self.vc2.tableView.mj_footer endRefreshing];
+        self.vc2.itemsArray = [[self.vc2.itemsArray arrayByAddingObjectsFromArray:itemsArray] mutableCopy];
+        self.vc2.pageNum++;
+        [self.vc2.tableView reloadData];
+    }
+}
+
+// 上拉加载
+- (void)pullUpToLoadWithTitle:(NSString *)title andSubTitle:(NSString *)subTitle {
+    if ([self.title isEqualToString:@"我的提问"]) {
+        if ([subTitle isEqualToString:@"已发布"]) {
+            [self.presenter requestQuestionsListWithPageNum:@(self.vc1.pageNum) andSize:@6];
+        } else {
+            [self.presenter requestQuestionsDraftListWithPageNum:@(self.vc2.pageNum) andSize:@6];
+        }
+    } else if ([self.title isEqualToString:@"我的回答"]) {
+        if ([subTitle isEqualToString:@"已发布"]) {
+            [self.presenter requestAnswerListWithPageNum:@(self.vc1.pageNum) andSize:@6];
+        } else {
+            [self.presenter requestAnswerDraftListWithPageNum:@(self.vc2.pageNum) andSize:@6];
+        }
+    } else if ([self.title isEqualToString:@"评论回复"]) {
+        if ([subTitle isEqualToString:@"发出评论"]) {
+            [self.presenter requestCommentListWithPageNum:@(self.vc1.pageNum) andSize:@6];
+        } else {
+            [self.presenter requestReCommentListWithPageNum:@(self.vc2.pageNum) andSize:@6];
+        }
+    }
+
 }
 
 @end

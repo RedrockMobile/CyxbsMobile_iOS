@@ -13,6 +13,8 @@
 #import "MyAnswerDraftCell.h"
 #import "MyResponseSentCell.h"
 #import "MyResponseRecievedCell.h"
+#import "MineQAController.h"
+#import <MJRefresh.h>
 
 @interface MineQATableViewController ()
 
@@ -26,6 +28,7 @@
         self.title = title;
         self.subTittle = subTitle;
         self.itemsArray = [NSMutableArray array];
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(lodaMoreData)];
     }
     return self;
 }
@@ -90,5 +93,8 @@
     }
 }
 
+- (void)lodaMoreData {
+    [self.superController pullUpToLoadWithTitle:self.title andSubTitle:self.subTittle];
+}
 
 @end
