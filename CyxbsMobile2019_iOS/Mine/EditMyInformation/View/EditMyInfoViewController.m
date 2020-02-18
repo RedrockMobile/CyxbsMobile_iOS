@@ -12,7 +12,7 @@
 #import "MineViewController.h"
 #import "EditMyInfoView.h"
 
-@interface EditMyInfoViewController () <EditMyInfoContentViewDelegate, UIScrollViewDelegate>
+@interface EditMyInfoViewController () <EditMyInfoContentViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) EditMyInfoPresenter *presenter;
 
@@ -77,6 +77,20 @@
     ((MineViewController *)self.transitioningDelegate).panGesture = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)headerImageTapped:(UIImageView *)sender {
+    UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+    controller.allowsEditing = YES;
+    controller.delegate = self;
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    self.contentView.headerImageView.image = image;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma mark - 手势调用
 - (void)slideToDismiss:(UIPanGestureRecognizer *)sender {

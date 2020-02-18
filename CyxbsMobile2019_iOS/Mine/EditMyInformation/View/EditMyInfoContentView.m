@@ -84,6 +84,9 @@
         NSString *headImgUrl_str = [UserItemTool defaultItem].headImgUrl;
         NSURL *headImageUrl = [NSURL URLWithString:headImgUrl_str];
         [headerImageView sd_setImageWithURL:headImageUrl placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageFromCacheOnly context:nil progress:nil completed:nil];
+        headerImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerImageTapped:)];
+        [headerImageView addGestureRecognizer:tap];
         
         UIButton *whatsThisButton = [[UIButton alloc] init];
         if (@available(iOS 11.0, *)) {
@@ -411,6 +414,14 @@
     }
 }
 
+- (void)headerImageTapped:(UIImageView *)sender {
+    if ([self.delegate respondsToSelector:@selector(headerImageTapped:)]) {
+        [self.delegate headerImageTapped:sender];
+    }
+}
+
+
+#pragma mark - Hit test
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
     
@@ -423,7 +434,6 @@
     
     return view;
 }
-
 
 
 @end
