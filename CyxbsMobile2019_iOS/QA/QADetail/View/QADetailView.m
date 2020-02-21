@@ -164,8 +164,12 @@
         make.height.mas_equalTo(40);
         make.width.mas_equalTo(120);
     }];
-    
-    
+    NSNumber *isSelf = [dic objectForKey:@"is_self"];
+    if (isSelf.integerValue == 0) {
+        self.isSelf = NO;
+    }else{
+        self.isSelf = YES;
+    }
     NSArray *answerList = [dic objectForKey:@"answers"];
     UIView *view = [[UIView alloc]init];
     [self.scrollView addSubview:view];
@@ -178,26 +182,12 @@
     for (int i=0;i<answerList.count; i++) {
         NSDictionary *dic = answerList[i];
         QADetailAnswerListView *answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 190*i, SCREEN_WIDTH, 190)];
-        [answerView setupView:dic];
+        [answerView setupView:dic isSelf:self.isSelf];
         [view addSubview:answerView];
     }
-//    [self addAnswerList:answerList];
     
 }
--(void)addAnswerList:(NSArray *)answerList{
-    UIView *view = [[UIView alloc]init];
-    [self.scrollView addSubview:view];
-    for (int i=0;i<answerList.count; i++) {
-        NSDictionary *dic = answerList[i];
-        QADetailAnswerListView *answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 190*i, SCREEN_WIDTH, 190)];
-        [answerView setupView:dic];
-        
-//        [answerView.praiseBtn addTarget:self action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
-//        [answerView.commentBtn addTarget:self action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
-//        
-        [view addSubview:answerView];
-    }
-}
+
 - (void)replyComment:(UIButton *)sender{
     [self.delegate replyComment:[NSNumber numberWithInteger:sender.tag]];
 }

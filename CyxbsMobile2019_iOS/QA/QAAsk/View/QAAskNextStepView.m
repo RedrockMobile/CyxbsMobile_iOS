@@ -138,6 +138,16 @@
     }
     NSString *year = [self.timeLabel.text substringWithRange:NSMakeRange(0, 5)];
     NSString *nowDateString = [NSString stringWithFormat:@"%@%@%@%@",year,self.day,self.hour,self.minutes];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
+    
+    [formatter setDateFormat:@"yyyy年MM月dd日HH时mm分"];
+    NSDate *date = [formatter dateFromString:nowDateString];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    self.time = [formatter stringFromDate:date];
+    
+    self.day = [formatter stringFromDate:date];
     [self.timeLabel setText:nowDateString];
 
 }

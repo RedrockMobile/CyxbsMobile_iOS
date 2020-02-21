@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(copy,nonatomic)NSString *day;
 @property(copy,nonatomic)NSString *hour;
 @property(copy,nonatomic)NSString *minutes;
+@property (copy,nonatomic)NSString *time;
 @property (copy,nonatomic)NSString *integralNum;
 @end
 

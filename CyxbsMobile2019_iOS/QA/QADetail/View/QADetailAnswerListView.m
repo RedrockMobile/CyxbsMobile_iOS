@@ -20,7 +20,7 @@
     }
     return self;
 }
--(void)setupView:(NSDictionary *)dic{
+-(void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf{
     self.answerId = [dic objectForKey:@"id"];
     
     self.adoptBtn.layer.cornerRadius = 10;
@@ -46,11 +46,15 @@
     }
     self.praiseBtn.tag = self.answerId.integerValue;
     
-    NSNumber *is_adopt = [dic objectForKey:@"is_adopt"];
-    if (is_adopt.integerValue == 1) {
+    NSNumber *is_adopt = [dic objectForKey:@"is_adopted"];
+    if (is_adopt.integerValue == 1 && isSelf) {
         [self.adoptBtn setSelected:YES];
         self.adoptBtn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
         [self.adoptBtn.titleLabel setTextColor:[UIColor colorWithHexString:@"#94A6C4"]];
+    }else if(is_adopt.integerValue == 0 && isSelf){
+        [self.adoptBtn setSelected:NO];
+    }else{
+        self.adoptBtn.hidden = YES;
     }
     [self.contentLabel setText:[dic objectForKey:@"content"]];
     [self.praiseBtn addTarget:self.superview action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];

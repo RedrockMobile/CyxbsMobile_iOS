@@ -852,12 +852,12 @@
 		1A141319235F521C0001417E /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				1A14131A235F521C0001417E /* BaseTableViewController.m */,
-				1A14131B235F521C0001417E /* BaseViewController.m */,
+				1A14131E235F521C0001417E /* BaseNavigationController.h */,
 				1A14131C235F521C0001417E /* BaseNavigationController.m */,
 				1A14131D235F521C0001417E /* BaseTableViewController.h */,
-				1A14131E235F521C0001417E /* BaseNavigationController.h */,
+				1A14131A235F521C0001417E /* BaseTableViewController.m */,
 				1A14131F235F521C0001417E /* BaseViewController.h */,
+				1A14131B235F521C0001417E /* BaseViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
