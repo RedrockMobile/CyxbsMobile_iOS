@@ -120,10 +120,10 @@
             }
         } else {
             if (@available(iOS 11.0, *)) {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
                 nicknameTextField.attributedPlaceholder = string;
             } else {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
                 nicknameTextField.attributedPlaceholder = string;
             }
         }
@@ -145,18 +145,18 @@
         NSString *oldIntroduction = [UserItemTool defaultItem].introduction;
         if (!oldIntroduction || ![oldIntroduction isEqualToString:@""]) {
             if (@available(iOS 11.0, *)) {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldIntroduction attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
                 introductionField.attributedPlaceholder = string;
             } else {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldIntroduction attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
                 introductionField.attributedPlaceholder = string;
             }
         } else {
             if (@available(iOS 11.0, *)) {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
                 introductionField.attributedPlaceholder = string;
             } else {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
                 introductionField.attributedPlaceholder = string;
             }
         }
@@ -178,18 +178,18 @@
         NSString *oldQQ = [UserItemTool defaultItem].qq;
         if (!oldQQ || ![oldQQ isEqualToString:@""]) {
             if (@available(iOS 11.0, *)) {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
                 QQTextField.attributedPlaceholder = string;
             } else {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
                 QQTextField.attributedPlaceholder = string;
             }
         } else {
             if (@available(iOS 11.0, *)) {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
                 QQTextField.attributedPlaceholder = string;
             } else {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
                 QQTextField.attributedPlaceholder = string;
             }
         }
@@ -211,18 +211,18 @@
         NSString *oldPhoneNumber = [UserItemTool defaultItem].phone;
         if (!oldPhoneNumber || ![oldPhoneNumber isEqualToString:@""]) {
             if (@available(iOS 11.0, *)) {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
                 phoneNumberTextField.attributedPlaceholder = string;
             } else {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
                 phoneNumberTextField.attributedPlaceholder = string;
             }
         } else {
             if (@available(iOS 11.0, *)) {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
                 phoneNumberTextField.attributedPlaceholder = string;
             } else {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1]}];
                 phoneNumberTextField.attributedPlaceholder = string;
             }
         }
