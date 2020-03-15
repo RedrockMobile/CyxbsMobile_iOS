@@ -372,7 +372,7 @@
     NSString *content = self.askTextView.text;
     QAAskIntegralPickerView *integralPickerView =  self.nextStepView.integralPickView;
     NSString *reward = integralPickerView.integralNum;
-    NSString *disappearTime = self.nextStepView.timeLabel.text;
+    NSString *disappearTime = self.nextStepView.time;
     self.model = [[QAAskModel alloc]init];
     [self.model commitAsk:title content:content kind:self.kind reward:reward disappearTime:disappearTime imageArray:self.askImageArray];
     

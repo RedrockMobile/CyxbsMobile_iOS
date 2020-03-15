@@ -19,8 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface QADetailView : UIView
 @property(strong,nonatomic)UIButton *answerButton;
 @property(strong,nonatomic)UIScrollView *scrollView;
--(void)setupUIwithDic:(NSDictionary *)dic;
 @property(nonatomic,weak)id<QADetailDelegate>delegate;
+@property(nonatomic,assign)BOOL isSelf;
+
+-(void)setupUIwithDic:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

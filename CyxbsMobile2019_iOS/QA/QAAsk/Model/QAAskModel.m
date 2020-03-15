@@ -12,12 +12,12 @@
 -(void)commitAsk:(NSString *)title content:(NSString *)content kind:(NSString *)kind reward:(NSString *)reward disappearTime:(NSString *)disappearTime imageArray:(NSArray *)imageArray{
     NSLog(@"s");
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum],@"content":content,@"title":title,@"kind":kind,@"reward":reward,@"disappearTime":disappearTime};
+    NSDictionary *parameters = @{@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum],@"description":content,@"title":title,@"kind":kind,@"reward":reward,@"disappear_time":disappearTime};
     [client requestWithPath:QA_ADD_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
-            self.questionId = [dic objectForKey:@"Id"];
+            self.questionId = [dic objectForKey:@"id"];
             if (imageArray.count == 0) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitSuccess" object:nil];
             }else{
