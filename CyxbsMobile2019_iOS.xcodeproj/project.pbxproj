@@ -88,6 +88,7 @@
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
+		1AF81336241FB208006AE58D /* SchoolBusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF81335241FB208006AE58D /* SchoolBusViewController.m */; };
 		1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */; };
 		1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD151B237D81DD004D9CEA /* EditMyInfoPresenter.m */; };
 		1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD151E237D81F1004D9CEA /* EditMyInfoModel.m */; };
@@ -485,6 +486,8 @@
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
 		1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Timestamp.m"; sourceTree = "<group>"; };
+		1AF81334241FB208006AE58D /* SchoolBusViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusViewController.h; sourceTree = "<group>"; };
+		1AF81335241FB208006AE58D /* SchoolBusViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusViewController.m; sourceTree = "<group>"; };
 		1AFD1517237D81AF004D9CEA /* EditMyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoViewController.h; sourceTree = "<group>"; };
 		1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoViewController.m; sourceTree = "<group>"; };
 		1AFD151A237D81DD004D9CEA /* EditMyInfoPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPresenter.h; sourceTree = "<group>"; };
@@ -1416,6 +1419,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1AF81332241FB1A4006AE58D /* Discover_SchoolBus */ = {
+			isa = PBXGroup;
+			children = (
+				1AF81333241FB1BF006AE58D /* Countrollers */,
+			);
+			path = Discover_SchoolBus;
+			sourceTree = "<group>";
+		};
+		1AF81333241FB1BF006AE58D /* Countrollers */ = {
+			isa = PBXGroup;
+			children = (
+				1AF81334241FB208006AE58D /* SchoolBusViewController.h */,
+				1AF81335241FB208006AE58D /* SchoolBusViewController.m */,
+			);
+			path = Countrollers;
+			sourceTree = "<group>";
+		};
 		1AFD1512237D814D004D9CEA /* Mine_MainPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1918,6 +1938,7 @@
 		EE75BEF723F5884100208039 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				1AF81332241FB1A4006AE58D /* Discover_SchoolBus */,
 				EE75BEF823F5884100208039 /* Discover_MainPage */,
 				EE75BF2323F5884100208039 /* Discover_TestArrange */,
 				EE75BF3323F5884100208039 /* Discover_FindScheduleInquiry */,
@@ -2622,6 +2643,7 @@
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */,
 				EE75BFA523F5884100208039 /* TestCardTableViewCell.m in Sources */,
+				1AF81336241FB208006AE58D /* SchoolBusViewController.m in Sources */,
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,

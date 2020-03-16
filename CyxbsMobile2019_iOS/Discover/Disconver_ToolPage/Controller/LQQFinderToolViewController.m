@@ -10,9 +10,12 @@
 #import "FinderToolViewItem.h"
 #import "ScheduleInquiryViewController.h"
 #import "TestArrangeViewController.h"
+#import "SchoolBusViewController.h"
+
 #define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
 
 @interface LQQFinderToolViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *contentView;
@@ -136,8 +139,10 @@
     FinderToolViewItem *item7 = [[FinderToolViewItem alloc]initWithIconView:@"重邮地图" Title:@"重邮地图" Detail:@"帮助同学们找到当前校车"];
     FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"帮助同学们找到当前校车"];
 
-    [item5 addTarget:self action:@selector(chooseScheduleInquiry) forControlEvents:UIControlEventTouchUpInside];
+    [item2 addTarget:self action:@selector(chooseSchoolBus) forControlEvents:UIControlEventTouchUpInside];
     [item4 addTarget:self action:@selector(chooseTestArrange) forControlEvents:UIControlEventTouchUpInside];
+    [item5 addTarget:self action:@selector(chooseScheduleInquiry) forControlEvents:UIControlEventTouchUpInside];
+    
     NSMutableArray *itemsArray = [NSMutableArray array];
     [itemsArray addObject:item1];
     [itemsArray addObject:item2];
@@ -183,15 +188,25 @@
 
 }
 
+
 //MARK: - 空课表
 - (void) chooseScheduleInquiry {
     //点击了空课表
-    ScheduleInquiryViewController *vc = [[ScheduleInquiryViewController alloc]init];
+    ScheduleInquiryViewController *vc = [[ScheduleInquiryViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 //MARK: - 考试查询
 - (void)chooseTestArrange {
-    TestArrangeViewController *vc = [[TestArrangeViewController alloc]init];
+    TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+//MARK: - 校车定位
+- (void)chooseSchoolBus {
+    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end
