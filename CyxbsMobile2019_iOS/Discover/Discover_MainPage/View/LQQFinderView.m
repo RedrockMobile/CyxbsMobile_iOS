@@ -91,6 +91,8 @@
     cycleScrollView.layer.shadowColor = [UIColor blackColor].CGColor;
     cycleScrollView.layer.shadowOpacity = 0.33f;
     cycleScrollView.layer.shadowColor = [UIColor colorWithRed:140/255.0 green:150/255.0 blue:217/255.0 alpha:1].CGColor;
+    cycleScrollView.autoScrollTimeInterval = 3;
+
     cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
     [self addSubview:cycleScrollView];
     
@@ -159,7 +161,7 @@
         make.left.equalTo(self).offset(15);
     }];
     [self.finderTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.weekTime.mas_bottom).offset(15);
+        make.top.equalTo(self.weekTime.mas_bottom).offset(5);
         make.left.equalTo(self.weekTime);
     }];
     [self.writeButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,7 +175,7 @@
     }];
     [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(16);
-        make.top.equalTo(self.finderTitle.mas_bottom).offset(10);
+        make.top.equalTo(self.finderTitle.mas_bottom).offset(5);
         make.right.equalTo(self).offset(-16);
         make.height.equalTo(@134);
     }];
@@ -200,7 +202,7 @@
             if (button == self.enterButtonArray[0]) {
                 [button mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.equalTo(self).offset(Gap);
-                    make.top.equalTo(self.newsSender.mas_bottom).offset(25);
+                    make.top.equalTo(self.newsSender.mas_bottom).offset(15);
                     make.width.height.equalTo(@EnterButtonWidth);
                 }];
             } else if (button == self.enterButtonArray[self.enterButtonArray.count - 1]) {
