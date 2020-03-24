@@ -35,6 +35,10 @@
 		1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592C23D880BE0039BA46 /* MyQuestionsReleasedCell.m */; };
 		1A16593123D984840039BA46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A16593023D984840039BA46 /* Assets.xcassets */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
+		1A21CD5224288BEC008B2EA7 /* SchoolBusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21CD5124288BEC008B2EA7 /* SchoolBusModel.m */; };
+		1A21CD562428941F008B2EA7 /* SchoolBusPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21CD552428941F008B2EA7 /* SchoolBusPresenter.m */; };
+		1A21CD5B242A48F6008B2EA7 /* SchoolBusContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21CD5A242A48F6008B2EA7 /* SchoolBusContentView.m */; };
+		1A21CD5E242A4D82008B2EA7 /* SchoolBusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21CD5D242A4D82008B2EA7 /* SchoolBusItem.m */; };
 		1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */; };
 		1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */; };
 		1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */; };
@@ -378,6 +382,15 @@
 		1A16593023D984840039BA46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A1E869523C8D1DE00321367 /* CheckInBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInBar.h; sourceTree = "<group>"; };
 		1A1E869623C8D1DE00321367 /* CheckInBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInBar.m; sourceTree = "<group>"; };
+		1A21CD5024288BEC008B2EA7 /* SchoolBusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusModel.h; sourceTree = "<group>"; };
+		1A21CD5124288BEC008B2EA7 /* SchoolBusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusModel.m; sourceTree = "<group>"; };
+		1A21CD542428941F008B2EA7 /* SchoolBusPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusPresenter.h; sourceTree = "<group>"; };
+		1A21CD552428941F008B2EA7 /* SchoolBusPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusPresenter.m; sourceTree = "<group>"; };
+		1A21CD58242894F1008B2EA7 /* SchoolBusProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusProtocol.h; sourceTree = "<group>"; };
+		1A21CD59242A48F6008B2EA7 /* SchoolBusContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusContentView.h; sourceTree = "<group>"; };
+		1A21CD5A242A48F6008B2EA7 /* SchoolBusContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusContentView.m; sourceTree = "<group>"; };
+		1A21CD5C242A4D82008B2EA7 /* SchoolBusItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusItem.h; sourceTree = "<group>"; };
+		1A21CD5D242A4D82008B2EA7 /* SchoolBusItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusItem.m; sourceTree = "<group>"; };
 		1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreViewController.h; sourceTree = "<group>"; };
 		1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreViewController.m; sourceTree = "<group>"; };
 		1A30F39523D05AB200FBBD83 /* IntegralStoreTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreTransitionAnimator.h; sourceTree = "<group>"; };
@@ -1058,6 +1071,34 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		1A21CD4F24288BCA008B2EA7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1A21CD5024288BEC008B2EA7 /* SchoolBusModel.h */,
+				1A21CD5124288BEC008B2EA7 /* SchoolBusModel.m */,
+				1A21CD5C242A4D82008B2EA7 /* SchoolBusItem.h */,
+				1A21CD5D242A4D82008B2EA7 /* SchoolBusItem.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1A21CD5324289400008B2EA7 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				1A21CD542428941F008B2EA7 /* SchoolBusPresenter.h */,
+				1A21CD552428941F008B2EA7 /* SchoolBusPresenter.m */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		1A21CD57242894D0008B2EA7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1A21CD58242894F1008B2EA7 /* SchoolBusProtocol.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		1A30F38E23D0574F00FBBD83 /* IntegralStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -1422,18 +1463,23 @@
 		1AF81332241FB1A4006AE58D /* Discover_SchoolBus */ = {
 			isa = PBXGroup;
 			children = (
-				1AF81333241FB1BF006AE58D /* Countrollers */,
+				1A21CD57242894D0008B2EA7 /* Protocols */,
+				1A21CD5324289400008B2EA7 /* Presenters */,
+				1A21CD4F24288BCA008B2EA7 /* Models */,
+				1AF81333241FB1BF006AE58D /* Views */,
 			);
 			path = Discover_SchoolBus;
 			sourceTree = "<group>";
 		};
-		1AF81333241FB1BF006AE58D /* Countrollers */ = {
+		1AF81333241FB1BF006AE58D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				1AF81334241FB208006AE58D /* SchoolBusViewController.h */,
 				1AF81335241FB208006AE58D /* SchoolBusViewController.m */,
+				1A21CD59242A48F6008B2EA7 /* SchoolBusContentView.h */,
+				1A21CD5A242A48F6008B2EA7 /* SchoolBusContentView.m */,
 			);
-			path = Countrollers;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1AFD1512237D814D004D9CEA /* Mine_MainPage */ = {
@@ -2600,6 +2646,7 @@
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
+				1A21CD562428941F008B2EA7 /* SchoolBusPresenter.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				EE75BFAD23F5884100208039 /* ClassmatesList.m in Sources */,
@@ -2622,6 +2669,7 @@
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
+				1A21CD5B242A48F6008B2EA7 /* SchoolBusContentView.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
@@ -2649,6 +2697,7 @@
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				EE75BFBD23F5884100208039 /* SCChart.m in Sources */,
+				1A21CD5E242A4D82008B2EA7 /* SchoolBusItem.m in Sources */,
 				EE75BFB923F5884100208039 /* NewsCell.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
@@ -2692,6 +2741,7 @@
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
+				1A21CD5224288BEC008B2EA7 /* SchoolBusModel.m in Sources */,
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
