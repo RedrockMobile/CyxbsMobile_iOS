@@ -38,6 +38,7 @@
     [client requestWithPath:url method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(error);
         NSLog(@"%@", error);
     }];
 }

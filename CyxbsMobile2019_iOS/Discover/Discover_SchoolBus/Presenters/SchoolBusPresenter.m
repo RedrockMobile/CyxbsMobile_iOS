@@ -21,7 +21,7 @@
         }
         [self.view schoolBusLocationRequestsSuccess:[arr copy]];
     } failure:^(NSError * _Nonnull error) {
-
+        [self.view schoolBusLocationRequestsFailure];
     }];
 }
 

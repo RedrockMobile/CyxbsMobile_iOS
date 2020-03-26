@@ -50,6 +50,13 @@
 #pragma mark - presenter回调
 - (void)schoolBusLocationRequestsSuccess:(NSArray<SchoolBusItem *> *)busArray {
     [self.contentView updateSchoolBusLocation:busArray];
+    
+    // 校车位置加载成功后，隔2秒再加载下一个位置。
+    [self.presenter performSelector:@selector(requestSchoolBusLocation) afterDelay:2];
+}
+
+- (void)schoolBusLocationRequestsFailure {
+    NSLog(@"校车加载失败");
 }
 
 @end

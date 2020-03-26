@@ -69,21 +69,25 @@
 }
 
 - (void)updateSchoolBusLocation:(NSArray<SchoolBusItem *> *)busArray {
-    // 更新缓存的校车位置
+    // 更新校车位置
     self.lastItemArray = self.latestItemArray;
     self.latestItemArray = busArray;
     
-    MAPointAnnotation *pinA = [[MAPointAnnotation alloc] init];
-    pinA.coordinate = CLLocationCoordinate2DMake(self.latestItemArray[0].lat, self.latestItemArray[1].lon);
-    pinA.title = @"校车A";
-    [self.mapView addAnnotation:pinA];
-    self.schoolBusPinA = pinA;
+    if (self.schoolBusPinA == nil) {
+        MAPointAnnotation *pinA = [[MAPointAnnotation alloc] init];
+        [self.mapView addAnnotation:pinA];
+        self.schoolBusPinA = pinA;
+    }
+    self.schoolBusPinA.coordinate = CLLocationCoordinate2DMake(self.latestItemArray[0].lat, self.latestItemArray[1].lon);
+    self.schoolBusPinA.title = @"校车A";
     
-    MAPointAnnotation *pinB = [[MAPointAnnotation alloc] init];
-    pinB.coordinate = CLLocationCoordinate2DMake(self.latestItemArray[0].lat, self.latestItemArray[1].lon);
-    pinB.title = @"校车B";
-    [self.mapView addAnnotation:pinB];
-    self.schoolBusPinB = pinB;
+    if (self.schoolBusPinB == nil) {
+        MAPointAnnotation *pinB = [[MAPointAnnotation alloc] init];
+        [self.mapView addAnnotation:pinB];
+        self.schoolBusPinB = pinB;
+    }
+    self.schoolBusPinB.coordinate = CLLocationCoordinate2DMake(self.latestItemArray[0].lat, self.latestItemArray[1].lon);
+    self.schoolBusPinB.title = @"校车B";
 }
 
 
