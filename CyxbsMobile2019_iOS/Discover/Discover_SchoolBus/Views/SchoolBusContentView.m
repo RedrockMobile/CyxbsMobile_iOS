@@ -35,6 +35,7 @@
         MAMapView *map = [[MAMapView alloc] initWithFrame:self.bounds];
         map.showsUserLocation = YES;
         map.userTrackingMode = MAUserTrackingModeFollow;
+//        map.color
         map.zoomLevel = 15.4;
         map.centerCoordinate = CLLocationCoordinate2DMake(29.529332, 106.607517);
         map.scaleOrigin = CGPointMake(20, 35);      // 比例尺位置
@@ -59,21 +60,6 @@
             [locationManager startUpdatingLocation];
             
         }
-        
-        //        NSDate *today = [NSDate date];
-        //        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        //        // 时间格式,此处遇到过坑,建议时间HH大写,手机24小时进制和12小时禁止都可以完美格式化
-        //        [dateFormat setDateFormat:@"HH:mm"];
-        //        NSString * todayStr = [dateFormat stringFromDate:today];//将日期转换成字符串
-        //        today = [dateFormat dateFromString:todayStr];//转换成NSDate类型。日期置为方法默认日期
-        //        //startTime格式为 02:22   expireTime格式为 12:44
-        //        NSDate *start = [dateFormat dateFromString:@"11:00"];
-        //        NSDate *expire = [dateFormat dateFromString:@"14:00"];
-        //
-        //        if ([today compare:start] == NSOrderedDescending && [today compare:expire] == NSOrderedAscending) {
-        ////            return YES;
-        //        }
-        ////        return NO;
         
         UIView *darkBoard = [[UIView alloc] initWithFrame:frame];
         if (@available(iOS 13.0, *)) {
@@ -104,7 +90,6 @@
         self.bottomView = bottomView;
         
         UILabel *statusLabel = [[UILabel alloc] init];
-        statusLabel.text = @"校车运行中";
         statusLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18];
         if (@available(iOS 13.0, *)) {
             statusLabel.textColor = [UIColor colorNamed:@"SchoolBusLabelColor"];
@@ -115,7 +100,7 @@
         self.statusLabel = statusLabel;
         
         UILabel *timeLabel = [[UILabel alloc] init];
-        timeLabel.text = @"校车营运时间：11：00-14：00、17：00-22：00";
+        timeLabel.text = @"校车营运时间：11:00 - 14:00、17:00 - 22:00";
         timeLabel.font = [UIFont systemFontOfSize:13];
         if (@available(iOS 11.0, *)) {
             timeLabel.textColor = [UIColor colorNamed:@"SchoolBusLabelColor"];
@@ -125,6 +110,25 @@
         [self addSubview:timeLabel];
         self.timeLabel = timeLabel;
         
+        
+        NSDate *today = [NSDate date];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        // 时间格式,此处遇到过坑,建议时间HH大写,手机24小时进制和12小时禁止都可以完美格式化
+        [dateFormat setDateFormat:@"HH:mm"];
+        NSString * todayStr = [dateFormat stringFromDate:today];//将日期转换成字符串
+        today = [dateFormat dateFromString:todayStr];//转换成NSDate类型。日期置为方法默认日期
+
+        NSDate *start = [dateFormat dateFromString:@"11:00"];
+        NSDate *expire = [dateFormat dateFromString:@"14:00"];
+        
+        NSDate *start2 = [dateFormat dateFromString:@"17:00"];
+        NSDate *expire2 = [dateFormat dateFromString:@"22:00"];
+
+        if (([today compare:start] == NSOrderedDescending && [today compare:expire] == NSOrderedAscending) || (([today compare:start2] == NSOrderedDescending && [today compare:expire2] == NSOrderedAscending))) {
+            statusLabel.text = @"校车运行中";
+        } else {
+            statusLabel.text = @"校车司机下班了";
+        }
     }
     return self;
 }
