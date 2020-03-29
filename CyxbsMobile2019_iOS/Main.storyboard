@@ -21,6 +21,7 @@
                         <segue destination="csH-T6-l3r" kind="relationship" relationship="viewControllers" id="iB0-0P-iZF"/>
                         <segue destination="J1I-im-Hff" kind="relationship" relationship="viewControllers" id="R2z-eg-Vse"/>
                         <segue destination="ljy-HH-ei3" kind="relationship" relationship="viewControllers" id="qFb-OD-rzg"/>
+                        <segue destination="4db-qy-Dko" kind="relationship" relationship="viewControllers" id="gYu-dy-PQi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -43,6 +44,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHy-3a-Fhs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-704" y="555"/>
+        </scene>
+        <!--Class Book View Controller-->
+        <scene sceneID="mTE-un-9R5">
+            <objects>
+                <viewController id="34x-6y-pIg" customClass="WYCClassBookViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bPD-i5-flf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="a3Z-WI-fjF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YRA-gF-Sul"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sl7-j5-H3e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1523" y="1284"/>
         </scene>
         <!--发现-->
         <scene sceneID="Qwi-p1-FIi">
@@ -126,6 +143,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPi-Cn-8gQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="954" y="554"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="wnP-uc-9gz">
+            <objects>
+                <navigationController id="4db-qy-Dko" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="JYe-1G-u0L"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PoG-cs-cuL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="34x-6y-pIg" kind="relationship" relationship="rootViewController" id="iDp-Ne-2K0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K0D-la-XLf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1522" y="554"/>
         </scene>
     </scenes>
 </document>
