@@ -8,17 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Class Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" customClass="ClassTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Cdw-Za-eBY" kind="relationship" relationship="viewControllers" id="lNE-B6-zMW"/>
                         <segue destination="csH-T6-l3r" kind="relationship" relationship="viewControllers" id="iB0-0P-iZF"/>
                         <segue destination="J1I-im-Hff" kind="relationship" relationship="viewControllers" id="R2z-eg-Vse"/>
                         <segue destination="ljy-HH-ei3" kind="relationship" relationship="viewControllers" id="qFb-OD-rzg"/>
@@ -110,39 +109,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yw6-Pg-WDF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="954" y="1284"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="eEM-25-2u9">
-            <objects>
-                <navigationController id="Cdw-Za-eBY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Xxr-oI-9Ir"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cam-cl-tw8">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="8R9-cj-BM3" kind="relationship" relationship="rootViewController" id="6CX-g5-m0L"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DUw-zJ-Ip7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1526" y="554"/>
-        </scene>
-        <!--Class Book View Controller-->
-        <scene sceneID="ZvR-k5-7gm">
-            <objects>
-                <viewController id="8R9-cj-BM3" customClass="WYCClassBookViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="c6N-V3-yFF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="nME-xd-oiK"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="aFF-7V-FvI"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AuX-x6-IYM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1526" y="1284"/>
         </scene>
         <!--我的-->
         <scene sceneID="AGL-bw-WRV">

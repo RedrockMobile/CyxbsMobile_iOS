@@ -20,6 +20,9 @@
 #import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
 #import "NewsViewController.h"
+#import "ClassScheduleTabBarView.h"
+#import "ClassTabBar.h"
+
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
@@ -69,6 +72,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
      self.navigationController.navigationBar.translucent = NO;
     [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
+    
+    ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -58, MAIN_SCREEN_W, 58)];
+    classTabBarView.layer.cornerRadius = 16;
+    [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
+    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
 }
 
 - (void)viewDidLoad {

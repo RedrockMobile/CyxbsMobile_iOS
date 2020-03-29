@@ -35,6 +35,9 @@
 		1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592C23D880BE0039BA46 /* MyQuestionsReleasedCell.m */; };
 		1A16593123D984840039BA46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A16593023D984840039BA46 /* Assets.xcassets */; };
 		1A1691F5243073850076EDC7 /* SchoolBus.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A1691F4243073850076EDC7 /* SchoolBus.xcassets */; };
+		1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1691F72430DEE70076EDC7 /* ClassScheduleTabBarView.m */; };
+		1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1691FA2430ECA60076EDC7 /* ClassTabBarController.m */; };
+		1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1691FD2430ECFE0076EDC7 /* ClassTabBar.m */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
 		1A21CD5224288BEC008B2EA7 /* SchoolBusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21CD5124288BEC008B2EA7 /* SchoolBusModel.m */; };
 		1A21CD562428941F008B2EA7 /* SchoolBusPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21CD552428941F008B2EA7 /* SchoolBusPresenter.m */; };
@@ -382,6 +385,12 @@
 		1A16592C23D880BE0039BA46 /* MyQuestionsReleasedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsReleasedCell.m; sourceTree = "<group>"; };
 		1A16593023D984840039BA46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A1691F4243073850076EDC7 /* SchoolBus.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SchoolBus.xcassets; sourceTree = "<group>"; };
+		1A1691F62430DEE70076EDC7 /* ClassScheduleTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleTabBarView.h; sourceTree = "<group>"; };
+		1A1691F72430DEE70076EDC7 /* ClassScheduleTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassScheduleTabBarView.m; sourceTree = "<group>"; };
+		1A1691F92430ECA60076EDC7 /* ClassTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassTabBarController.h; sourceTree = "<group>"; };
+		1A1691FA2430ECA60076EDC7 /* ClassTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassTabBarController.m; sourceTree = "<group>"; };
+		1A1691FC2430ECFD0076EDC7 /* ClassTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassTabBar.h; sourceTree = "<group>"; };
+		1A1691FD2430ECFE0076EDC7 /* ClassTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassTabBar.m; sourceTree = "<group>"; };
 		1A1E869523C8D1DE00321367 /* CheckInBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInBar.h; sourceTree = "<group>"; };
 		1A1E869623C8D1DE00321367 /* CheckInBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInBar.m; sourceTree = "<group>"; };
 		1A21CD5024288BEC008B2EA7 /* SchoolBusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusModel.h; sourceTree = "<group>"; };
@@ -1725,6 +1734,10 @@
 		DB34EA28239BD4540052B65E /* ClassSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				1A1691F92430ECA60076EDC7 /* ClassTabBarController.h */,
+				1A1691FA2430ECA60076EDC7 /* ClassTabBarController.m */,
+				1A1691FC2430ECFD0076EDC7 /* ClassTabBar.h */,
+				1A1691FD2430ECFE0076EDC7 /* ClassTabBar.m */,
 				DB34EA29239BD4540052B65E /* Controller */,
 				DB34EA2C239BD4540052B65E /* Model */,
 				DB34EA31239BD4540052B65E /* View */,
@@ -1771,6 +1784,8 @@
 				DB34EA3C239BD4540052B65E /* WYCClassDetailView.m */,
 				DB34EA3D239BD4540052B65E /* WMTWeekChooseBar.m */,
 				DB34EA3E239BD4540052B65E /* WYCClassBookView.m */,
+				1A1691F62430DEE70076EDC7 /* ClassScheduleTabBarView.h */,
+				1A1691F72430DEE70076EDC7 /* ClassScheduleTabBarView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2662,6 +2677,7 @@
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				EE75BFC823F5884100208039 /* UserInfoView.m in Sources */,
+				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
@@ -2690,6 +2706,7 @@
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */,
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
+				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
 				EE75BFB623F5884100208039 /* NewDetailViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
@@ -2726,6 +2743,7 @@
 				EE75BFB423F5884100208039 /* LQButton.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
+				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
 				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
 				EE75BFBA23F5884100208039 /* SCLineChart.m in Sources */,
