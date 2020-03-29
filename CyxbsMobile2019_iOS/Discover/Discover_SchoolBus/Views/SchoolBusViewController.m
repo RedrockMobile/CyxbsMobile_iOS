@@ -56,7 +56,7 @@
 }
 
 - (void)schoolBusLocationRequestsFailure {
-    NSLog(@"校车加载失败");
+    self.contentView.statusLabel.text = @"校车失联了";
 }
 
 @end

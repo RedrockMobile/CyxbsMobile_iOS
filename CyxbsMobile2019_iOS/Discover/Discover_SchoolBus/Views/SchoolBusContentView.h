@@ -33,6 +33,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) MAPointAnnotation *schoolBusPinB;
 
 
+@property (nonatomic, weak) UIView *bottomView;
+
+/// 校车运行状态
+@property (nonatomic, weak) UILabel *statusLabel;
+
+/// 校车运行时间
+@property (nonatomic, weak) UILabel *timeLabel;
+
 - (void)updateSchoolBusLocation:(NSArray<SchoolBusItem *> *)busArray;
 
 @end

@@ -34,6 +34,7 @@
 		1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592923D880900039BA46 /* MyQuestionsDraftCell.m */; };
 		1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A16592C23D880BE0039BA46 /* MyQuestionsReleasedCell.m */; };
 		1A16593123D984840039BA46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A16593023D984840039BA46 /* Assets.xcassets */; };
+		1A1691F5243073850076EDC7 /* SchoolBus.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A1691F4243073850076EDC7 /* SchoolBus.xcassets */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
 		1A21CD5224288BEC008B2EA7 /* SchoolBusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21CD5124288BEC008B2EA7 /* SchoolBusModel.m */; };
 		1A21CD562428941F008B2EA7 /* SchoolBusPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21CD552428941F008B2EA7 /* SchoolBusPresenter.m */; };
@@ -380,6 +381,7 @@
 		1A16592B23D880BE0039BA46 /* MyQuestionsReleasedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyQuestionsReleasedCell.h; sourceTree = "<group>"; };
 		1A16592C23D880BE0039BA46 /* MyQuestionsReleasedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyQuestionsReleasedCell.m; sourceTree = "<group>"; };
 		1A16593023D984840039BA46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1A1691F4243073850076EDC7 /* SchoolBus.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SchoolBus.xcassets; sourceTree = "<group>"; };
 		1A1E869523C8D1DE00321367 /* CheckInBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInBar.h; sourceTree = "<group>"; };
 		1A1E869623C8D1DE00321367 /* CheckInBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInBar.m; sourceTree = "<group>"; };
 		1A21CD5024288BEC008B2EA7 /* SchoolBusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusModel.h; sourceTree = "<group>"; };
@@ -1463,6 +1465,7 @@
 		1AF81332241FB1A4006AE58D /* Discover_SchoolBus */ = {
 			isa = PBXGroup;
 			children = (
+				1A1691F4243073850076EDC7 /* SchoolBus.xcassets */,
 				1A21CD57242894D0008B2EA7 /* Protocols */,
 				1A21CD5324289400008B2EA7 /* Presenters */,
 				1A21CD4F24288BCA008B2EA7 /* Models */,
@@ -2547,6 +2550,7 @@
 				DB34EB02239BD4550052B65E /* 多课0@3x.png in Resources */,
 				DB34EAEF239BD4550052B65E /* remind_image_editing@3x.png in Resources */,
 				DB34EAE1239BD4550052B65E /* 箭头@3x.png in Resources */,
+				1A1691F5243073850076EDC7 /* SchoolBus.xcassets in Resources */,
 				D05C04CF23E5E047009A2E63 /* QAAskNextStepView.xib in Resources */,
 				DB34EAFE239BD4550052B65E /* remind1@3x.png in Resources */,
 				EE75BF9523F5884100208039 /* README in Resources */,

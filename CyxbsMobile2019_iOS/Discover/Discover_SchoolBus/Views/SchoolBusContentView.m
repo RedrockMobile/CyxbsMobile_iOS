@@ -22,6 +22,7 @@
 
 @end
 
+
 @implementation SchoolBusContentView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -34,8 +35,10 @@
         MAMapView *map = [[MAMapView alloc] initWithFrame:self.bounds];
         map.showsUserLocation = YES;
         map.userTrackingMode = MAUserTrackingModeFollow;
-        map.zoomLevel = 15.5;
-        map.centerCoordinate = CLLocationCoordinate2DMake(29.530332, 106.607517);
+        map.zoomLevel = 15.4;
+        map.centerCoordinate = CLLocationCoordinate2DMake(29.529332, 106.607517);
+        map.scaleOrigin = CGPointMake(20, 35);      // 比例尺位置
+        map.showsCompass = NO;                      // 不显示指南针
         [self addSubview:map];
         self.mapView = map;
         
@@ -57,16 +60,100 @@
             
         }
         
-            
+        //        NSDate *today = [NSDate date];
+        //        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        //        // 时间格式,此处遇到过坑,建议时间HH大写,手机24小时进制和12小时禁止都可以完美格式化
+        //        [dateFormat setDateFormat:@"HH:mm"];
+        //        NSString * todayStr = [dateFormat stringFromDate:today];//将日期转换成字符串
+        //        today = [dateFormat dateFromString:todayStr];//转换成NSDate类型。日期置为方法默认日期
+        //        //startTime格式为 02:22   expireTime格式为 12:44
+        //        NSDate *start = [dateFormat dateFromString:@"11:00"];
+        //        NSDate *expire = [dateFormat dateFromString:@"14:00"];
+        //
+        //        if ([today compare:start] == NSOrderedDescending && [today compare:expire] == NSOrderedAscending) {
+        ////            return YES;
+        //        }
+        ////        return NO;
+        
+        UIView *darkBoard = [[UIView alloc] initWithFrame:frame];
+        if (@available(iOS 13.0, *)) {
+            darkBoard.backgroundColor = [UIColor systemBackgroundColor];
+        } else {
+            darkBoard.backgroundColor = [UIColor clearColor];
+        }
+        darkBoard.alpha = 0.2;
+        darkBoard.userInteractionEnabled = NO;
+        [self addSubview:darkBoard];
+        
+        // 返回按钮
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
         backButton.frame = CGRectMake(20, 60, 50, 30);
         [backButton setTitle:@"back" forState:UIControlStateNormal];
         [backButton setTintColor:[UIColor grayColor]];
         [backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backButton];
+        
+        UIView *bottomView = [[UIView alloc] init];
+        if (@available(iOS 13.0, *)) {
+            bottomView.backgroundColor = [UIColor colorNamed:@"SchoolBusBottomColor"];
+        } else {
+            bottomView.backgroundColor = [UIColor blackColor];
+        }
+        bottomView.layer.cornerRadius = 16;
+        [self addSubview:bottomView];
+        self.bottomView = bottomView;
+        
+        UILabel *statusLabel = [[UILabel alloc] init];
+        statusLabel.text = @"校车运行中";
+        statusLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18];
+        if (@available(iOS 13.0, *)) {
+            statusLabel.textColor = [UIColor colorNamed:@"SchoolBusLabelColor"];
+        } else {
+            statusLabel.textColor = [UIColor blackColor];
+        }
+        [self addSubview:statusLabel];
+        self.statusLabel = statusLabel;
+        
+        UILabel *timeLabel = [[UILabel alloc] init];
+        timeLabel.text = @"校车营运时间：11：00-14：00、17：00-22：00";
+        timeLabel.font = [UIFont systemFontOfSize:13];
+        if (@available(iOS 11.0, *)) {
+            timeLabel.textColor = [UIColor colorNamed:@"SchoolBusLabelColor"];
+        } else {
+            timeLabel.textColor = [UIColor blackColor];
+        }
+        [self addSubview:timeLabel];
+        self.timeLabel = timeLabel;
+        
     }
     return self;
 }
+
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.equalTo(self);
+        make.bottom.equalTo(self).offset(16);
+        if (IS_IPHONEX) {
+            make.height.equalTo(@103);
+        } else {
+            make.height.equalTo(@88);
+        }
+    }];
+    
+    [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.bottomView).offset(16);
+        make.top.equalTo(self.bottomView).offset(12);
+    }];
+    
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.statusLabel);
+        make.top.equalTo(self.statusLabel.mas_bottom).offset(6);
+    }];
+}
+
 
 - (void)updateSchoolBusLocation:(NSArray<SchoolBusItem *> *)busArray {
     // 更新校车位置
