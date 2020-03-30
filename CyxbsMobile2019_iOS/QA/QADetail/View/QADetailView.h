@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,weak)id<QADetailDelegate>delegate;
 @property(nonatomic,assign)BOOL isSelf;
 
--(void)setupUIwithDic:(NSDictionary *)dic;
+-(void)setupUIwithDic:(NSDictionary *)dic answersData:(NSArray *)answersData;
 @end
 
 NS_ASSUME_NONNULL_END

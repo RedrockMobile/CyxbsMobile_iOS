@@ -7,6 +7,7 @@
 //
 
 #import "HttpClient.h"
+#import "UIImage+Helper.h"
 @implementation HttpClient
 
 + (HttpClient *)defaultClient
@@ -30,6 +31,45 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     //    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     //    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    // 以json格式向服务器发送请求
+    AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
+    [serializer setRemovesKeysWithNullValues:YES];
+    // 处理服务器返回null
+    //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [manager setResponseSerializer:serializer];
+    manager.responseSerializer.acceptableContentTypes =  [manager.responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
+    switch (method) {
+        case HttpRequestGet:
+            //            [manager GET:url parameters:parameters progress:progress success:success failure:failure];
+            [manager GET:url parameters:parameters success:success failure:failure];
+            break;
+        case HttpRequestPost:
+            [manager POST:url parameters:parameters success:success failure:failure];
+            //            [manager POST:url parameters:parameters progress:progress success:success failure:failure];
+            break;
+        case HttpRequestPut:
+            [manager PUT:url parameters:parameters success:success failure:failure];
+            break;
+        case HttpRequestDelete:
+            [manager DELETE:url parameters:parameters success:success failure:failure];
+            break;
+        default:
+            break;
+    }
+    //超时时间30s
+    manager.requestSerializer.timeoutInterval = 30.0;
+}
+
+- (void)requestWithToken:(NSString *)url
+                 method:(NSInteger)method
+             parameters:(id)parameters
+         prepareExecute:(PrepareExecuteBlock) prepare
+               progress:(void (^)(NSProgress * progress))progress
+                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    NSString *token = [UserItem defaultItem].token;
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     // 以json格式向服务器发送请求
     AFJSONResponseSerializer *serializer = [AFJSONResponseSerializer serializer];
     [serializer setRemovesKeysWithNullValues:YES];
@@ -154,12 +194,15 @@
     [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         for (int i = 0; i < imageArray.count; i++) {
             UIImage *image = imageArray[i];
-            NSData *data = UIImagePNGRepresentation(image);
-//            [formData appendPartWithFileData:data name:[NSString stringWithFormat:@"photo[%d]",i] fileName:[NSString stringWithFormat:@"image%d.png",i] mimeType:@"image/png"]; }
-         [formData appendPartWithFileData:data name:[NSString stringWithFormat:@"photo%d",i] fileName:@"tmp.png" mimeType:@"image/png"]; }
+            UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+            NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+         [formData appendPartWithFileData:data name:[NSString stringWithFormat:@"photo%d",i+1] fileName:@"tmp.png" mimeType:@"image/png"]; }
         
     } success:success failure:failure];
 }
+
+
+
 //- (BOOL)isReachability{
 //    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
 //    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {

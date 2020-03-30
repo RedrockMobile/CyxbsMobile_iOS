@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
     self.scrollView = [[UIScrollView alloc]init];
     self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
-    
+//    NSLog(@"%@",NSStringFromCGRect(frame));
     [self addSubview:self.scrollView];
     return self;
     
@@ -22,20 +22,20 @@
 -(void)layoutSubviews{
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1000);
 }
--(void)setupUIwithDic:(NSDictionary *)dic{
+-(void)setupUIwithDic:(NSDictionary *)dic answersData:(nonnull NSArray *)answersData{
     UIView *userInfoView = [[UIView alloc]init];
     userInfoView.backgroundColor = [UIColor clearColor];
     [self.scrollView addSubview:userInfoView];
     
     UIImageView *userIcon = [[UIImageView alloc]init];
-    NSString *userIconUrl = [dic objectForKey:@"questioner_photo_thumbnail_src"];
+    NSString *userIconUrl = [dic objectForKey:@"photo_thumbnail_src"];
     [userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"userIcon"]];
     [userInfoView addSubview:userIcon];
     
     UILabel *userNameLabel = [[UILabel alloc]init];
     userNameLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
     [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    [userNameLabel setText:[dic objectForKey:@"questioner_nickname"]];
+    [userNameLabel setText:[dic objectForKey:@"nickname"]];
     [userInfoView addSubview:userNameLabel];
     
     UILabel *dateLabel = [[UILabel alloc]init];
@@ -57,8 +57,9 @@
     [userInfoView addSubview:integralNumLabel];
     
     [userInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.scrollView).mas_offset(0);
-        make.top.equalTo(self.scrollView);
+        make.left.mas_equalTo(self.scrollView.mas_left);
+        make.top.mas_equalTo(self.scrollView.mas_top);
+        make.width.equalTo(@SCREEN_WIDTH);
         make.height.equalTo(@57);
     }];
     [userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -110,7 +111,7 @@
     [self.scrollView addSubview:separateView];
     
     
-    NSArray *imgUrlArray = [dic objectForKey:@"photo_urls"];
+    NSArray *imgUrlArray = [dic objectForKey:@"photo_url"];
     if (imgUrlArray.count != 0) {
         
         //    NSArray *imgUrlArray = @[@"http://img.wenjiwu.com/life/201704/9-1F422105602357.png"];
@@ -170,7 +171,8 @@
     }else{
         self.isSelf = YES;
     }
-    NSArray *answerList = [dic objectForKey:@"answers"];
+    //加载回答列表
+    NSArray *answerList = answersData;
     UIView *view = [[UIView alloc]init];
     [self.scrollView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make){

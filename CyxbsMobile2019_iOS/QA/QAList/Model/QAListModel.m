@@ -12,7 +12,7 @@
 -(void)loadData:(NSString *)kind page:(NSInteger)page{
     if (!self.dataDictionary) {
         self.dataDictionary = [NSMutableDictionary dictionary];
-        NSArray *titleArray = @[@"最新",@"学习",@"匿名",@"生活",@"更多"];
+        NSArray *titleArray = @[@"最新",@"学习",@"匿名",@"生活",@"其他"];
         for (int i = 0; i < titleArray.count; i++) {
             NSMutableArray *arr = [NSMutableArray array];
             [self.dataDictionary setValue:arr forKey:titleArray[i]];
@@ -20,8 +20,8 @@
     }
     
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"kind":kind,@"stunum":[UserDefaultTool getStuNum],@"idnum":[UserDefaultTool getIdNum],@"page":@(page)};
-    [client requestWithPath:QA_ALL_QUESTIONS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSDictionary *parameters = @{@"kind":kind,@"page":@(page)};
+    [client requestWithToken:QA_ALL_QUESTIONS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             

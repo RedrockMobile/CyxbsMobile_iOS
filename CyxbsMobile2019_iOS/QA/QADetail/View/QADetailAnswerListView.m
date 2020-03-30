@@ -38,7 +38,7 @@
     [self.commentBtn setTitle:[NSString stringWithFormat:@"%@条回复",[dic objectForKey:@"comment_num"]] forState:UIControlStateNormal];
     self.commentBtn.tag = self.answerId.integerValue;
     
-    self.praiseNumLabel.text = [dic objectForKey:@"praise_num"];
+    self.praiseNumLabel.text = [NSString stringWithFormat:@"%@积分",[dic objectForKey:@"praise_num"]];
     
     NSNumber *is_praised = [dic objectForKey:@"is_praised"];
     if (is_praised.integerValue == 1) {
@@ -57,10 +57,18 @@
         self.adoptBtn.hidden = YES;
     }
     [self.contentLabel setText:[dic objectForKey:@"content"]];
-    [self.praiseBtn addTarget:self.superview action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.adoptBtn addTarget:self.superview action:@selector(tapAdoptBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.commentBtn addTarget:self.superview action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
     
+    NSArray *imageUrls = [dic objectForKey:@"photo_url"];
+    if (imageUrls.count != 0) {
+        self.tapToViewImages.hidden = NO;
+        [self.tapToViewImages setTitle:[NSString stringWithFormat:@"查看%lu张照片",(unsigned long)imageUrls.count] forState:UIControlStateNormal];
+    }else{
+        self.tapToViewImages.hidden = YES;
+    }
+//    [self.praiseBtn addTarget:self.superview action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.adoptBtn addTarget:self.superview action:@selector(tapAdoptBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.commentBtn addTarget:self.superview action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
+//
     
 }
 
