@@ -14,6 +14,7 @@
 #import "DetailScorePerYearCell.h"
 #define ColorWhite  [UIColor colorNamed:@"colorWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, weak)UserInfoView *userInfoView;
@@ -47,7 +48,9 @@
 - (void) addContentView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     self.contentView = scrollView;
-    scrollView.backgroundColor = UIColor.purpleColor;
+    if (@available(iOS 11.0, *)) {
+        scrollView.backgroundColor = Color42_78_132to2D2D2D;
+    }
     [self.view addSubview:scrollView];
 }
 - (void)addUserInfoView {

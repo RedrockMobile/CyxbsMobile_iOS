@@ -23,7 +23,7 @@
 #import "RemindNotification.h"
 
 
-#define DateStart @"2019-09-02"
+#define DateStart @"2020-02-17"
 
 @interface WYCClassBookViewController ()<UIScrollViewDelegate,WYCClassBookViewDelegate,WYCShowDetailDelegate>
 @property (nonatomic, strong) UIView *titleView;
@@ -423,6 +423,8 @@
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     //设置view的tag
     view.tag = 999;
+    
+    // 汪明天要改的东西
     UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *blurBackgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
     blurBackgroundView.frame = view.frame;

@@ -12,7 +12,7 @@
 #import "PointAndDottedLineView.h"
 #import "ExamArrangeModel.h"
 #import "ExamArrangeData.h"
-
+#import "UserInfoView.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
@@ -89,6 +89,7 @@
 - (void)addTableView {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, [[UIApplication sharedApplication] statusBarFrame].size.height + 120, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];//130是底部学分成绩入口按钮
     self.tableView = tableView;
+    tableView.showsVerticalScrollIndicator = NO;
     tableView.backgroundColor = self.view.backgroundColor;
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -121,18 +122,27 @@
 
 }
 - (void) addScoreEnterButton {
+    
+    UserInfoView *view = [[UserInfoView alloc]init];
+    [self.view addSubview:view];
+    //加一个透明的button用来接受点击事件
     UIButton *scoreEnterButton = [[UIButton alloc]init];
     self.scoreEnterButton = scoreEnterButton;
-    scoreEnterButton.backgroundColor = UIColor.redColor;
-    [self.view addSubview:scoreEnterButton];
+    scoreEnterButton.backgroundColor = UIColor.clearColor;
+    [view addSubview:scoreEnterButton];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(scoreEnterButton).offset(-10);//十个像素缓冲了scoreEnterButton的10个像素
+        make.left.right.bottom.equalTo(scoreEnterButton);
+    }];
+    
     [scoreEnterButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view).offset(-TABBARHEIGHT + 10);//10个像素是为了挡住下面的圆角
         make.width.equalTo(self.view);
         make.centerX.equalTo(self.view);
         make.height.equalTo(@80);
     }];
-    scoreEnterButton.layer.cornerRadius = 16;
-    scoreEnterButton.clipsToBounds = YES;
+    view.layer.cornerRadius = 16;
+    view.clipsToBounds = YES;
     [scoreEnterButton addTarget:self action:@selector(pushToScoreVC) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void) pushToScoreVC {
@@ -321,18 +331,9 @@ NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
 //取两个日期对象的时间间隔：
 
 //这里的NSTimeInterval 并不是对象，是基本型，其实是double类型，是由c定义的:typedef double NSTimeInterval;
-
 NSTimeInterval time=[endDate timeIntervalSinceDate:beginDate];
-
-
-
 int days=((int)time)/(3600*24);
-
-//int hours=((int)time)%(3600*24)/3600;
-
-//NSString *dateContent=[[NSString alloc] initWithFormat:@"%i天%i小时",days,hours];
-
-    return [NSString stringWithFormat:@"%d",days];
+return [NSString stringWithFormat:@"%d",days];
 
 }
 

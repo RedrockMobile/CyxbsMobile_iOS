@@ -20,6 +20,9 @@
 #import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
 #import "NewsViewController.h"
+#import "ClassScheduleTabBarView.h"
+#import "ClassTabBar.h"
+
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
@@ -67,7 +70,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     } else {
         [self RequestCheckinInfo];
     }
-     [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
+     self.navigationController.navigationBar.translucent = NO;
+    [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
+    
+    ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -58, MAIN_SCREEN_W, 58)];
+    classTabBarView.layer.cornerRadius = 16;
+    [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
+    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
 }
 
 - (void)viewDidLoad {
@@ -119,23 +128,17 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)configNavagationBar {
+    self.navigationController.navigationBar.translucent = NO;
+
     if (@available(iOS 11.0, *)) {
         self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-    } else {
-        // Fallback on earlier versions
     }
-    
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
     //隐藏导航栏的分割线
     if (@available(iOS 11.0, *)) {
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    } else {
-        // Fallback on earlier versions
     }
-    
-    
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -158,8 +161,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
 //    if(@available(iOS 11.0, *)){
         CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-        self.contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + [[UIApplication sharedApplication] statusBarFrame].size.height, self.view.width,self.view.height);
-
 
 //    }
     self.contentView = contentView;
@@ -168,8 +169,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     } else {
         contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
-    contentView.contentSize = CGSizeMake(self.view.width, self.view.height);
+
+    contentView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:contentView];
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(0);
+    }];
     
 }
 
@@ -181,7 +187,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
             self.contentView.contentSize = CGSizeMake(self.view.width,1.10*self.view.height);
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 667.0) {//6,6s,7,8
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.53)];
-            self.contentView.contentSize = CGSizeMake(self.view.width,1.05*self.view.height);
+            self.contentView.contentSize = CGSizeMake(self.view.width,1.01*self.view.height);
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 736.0) {//plus
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.49)];
             self.contentView.contentSize = CGSizeMake(self.view.width,0.96*self.view.height);

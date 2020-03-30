@@ -229,6 +229,11 @@
 /// 考试安排接口
 #define EXAMARRANGEAPI @"https://cyxbsmobile.redrock.team/api/examSchedule"
 
+/// 校车位置
+#define SCHOOLBUSAPI @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
+
+
+
 /*----------------------------------------------------------------
 ｜                            邮问接口                            |
 -----------------------------------------------------------------*/
