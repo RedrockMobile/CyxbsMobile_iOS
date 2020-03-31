@@ -116,11 +116,13 @@
     UIButton *newsButton = [[UIButton alloc]init];
     self.news = newsButton;
     NSString *title = [self.defaults objectForKey:@"OneNews_oneNews"];
+
     [newsButton setTitle: title forState:normal];
     if (@available(iOS 11.0, *)) {
         [newsButton setTitleColor:color21_49_91_F2F4FF forState:normal];
     }
     newsButton.titleLabel.font = [UIFont fontWithName:PingFangSC size: 15];
+    newsButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [newsButton addTarget:self action:@selector(touchNews) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:newsButton];
 }

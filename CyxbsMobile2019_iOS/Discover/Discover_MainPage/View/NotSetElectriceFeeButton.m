@@ -27,7 +27,7 @@
     if (self) {
         [self loadUserDefaults];//加载缓存用作视图的初始化
          if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"colorWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+            self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
         } else {
             // Fallback on earlier versions
         }

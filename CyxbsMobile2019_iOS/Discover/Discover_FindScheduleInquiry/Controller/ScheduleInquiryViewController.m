@@ -73,8 +73,8 @@
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void) back {
-//    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController popViewControllerAnimated:YES];
+[self.navigationController popViewControllerAnimated:YES];
+self.navigationController.navigationBar.hidden = NO;
     
 }
 - (void)addSegmentView {

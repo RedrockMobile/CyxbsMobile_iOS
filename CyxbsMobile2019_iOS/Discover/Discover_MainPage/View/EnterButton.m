@@ -38,7 +38,7 @@
         make.height.equalTo(self.imageButton.mas_width);
     }];
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.imageButton.mas_bottom);
+        make.top.equalTo(self.imageButton.mas_bottom).offset(2);
         make.centerX.equalTo(self.imageButton);
     }];
     [self.imageButton.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
