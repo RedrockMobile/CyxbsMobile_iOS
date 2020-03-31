@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol EditMyInfoViewProtocol <NSObject>
 
+- (void)userInfoUploadSuccess;
+
 @end
 
 NS_ASSUME_NONNULL_END
