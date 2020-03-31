@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QAListModel : NSObject
+//字典存储获取的数据，key为类型，value为对应数据
 @property(strong,nonatomic)NSDictionary *dataDictionary;
 -(void)loadData:(NSString *)kind page:(NSInteger)page;
 @end

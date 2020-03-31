@@ -30,7 +30,7 @@
     self.content = content;
     self.view.backgroundColor = [UIColor whiteColor];
     [self setNotification];
-    [self setNavigationBar:@"回答"];
+    [self setNavigationBar:@"提供帮助"];
     [self setupUI];
     return self;
 }
@@ -49,7 +49,7 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0 , 0, 60, 60);
-    [button setTitle:@"提交" forState:UIControlStateNormal];
+    [button setTitle:@"回答" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:23]];
     [button addTarget:self action:@selector(commitAnswer) forControlEvents:UIControlEventTouchUpInside];
@@ -138,7 +138,7 @@
     [self.answerTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     //自适应高度
     self.answerTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.answerTextView.text = @"回复。。";
+    self.answerTextView.text = @"请输入回复内容";
     [self.answerTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
     self.answerTextView.delegate = self;
     [self.view addSubview:self.answerTextView];
@@ -169,7 +169,6 @@
    
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
     if([text isEqualToString:@"\n"]) {
         
         [textView resignFirstResponder];
@@ -181,7 +180,11 @@
     return YES;
     
 }
-
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    if ([textView.text isEqualToString:@"请输入回复内容"]) {
+        textView.text = @"";
+    }
+}
 
 -(void)setAddImageView{
    

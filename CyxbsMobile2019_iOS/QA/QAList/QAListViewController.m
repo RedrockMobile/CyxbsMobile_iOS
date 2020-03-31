@@ -35,19 +35,7 @@
     self.newRowCount = 0;
 
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc]init];
-    
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.bottom.left.right.equalTo(self.view);
-    }];
-//    self.tableView.estimatedRowHeight = 145;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"QAListTableViewCell" bundle:nil] forCellReuseIdentifier:@"QAListTableViewCell"];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
+
     self.model = [[QAListModel alloc]init];
     [self loadData];
     return self;
@@ -73,16 +61,64 @@
     self.page = 1;
     [self.model loadData:self.title page:self.page];
 }
+-(void)setupTableView{
+    self.tableView = [[UITableView alloc]init];
+    
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.top.bottom.left.right.equalTo(self.view);
+    }];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"QAListTableViewCell" bundle:nil] forCellReuseIdentifier:@"QAListTableViewCell"];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
+}
+-(void)setupNoDataView{
+    UIImageView *imgView = [[UIImageView alloc]init];
+    [imgView setImage:[UIImage imageNamed:@"QANoDataImg"]];
+    [self.view addSubview:imgView];
+    [imgView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.centerX.equalTo(self.view);
+        make.centerY.equalTo(self.view).offset(-100);
+        make.height.equalTo(@127);
+        make.width.equalTo(@167);
+    }];
+    
+    UILabel *label = [[UILabel alloc]init];
+    label.text = @"邮问 问你想问~";
+    label.font = [UIFont fontWithName:PingFangSCRegular size:12];
+    label.textColor = [UIColor colorWithHexString:@"#15315B"];
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make){
+        make.centerX.equalTo(self.view);
+        make.top.mas_equalTo(imgView.mas_bottom).mas_offset(20);
+        
+    }];
+    
+}
 -(void)QAListDataLoadSuccess{
+    //根据title获取对应数据
     self.dataArray = [self.model.dataDictionary valueForKey:self.title];
     self.newRowCount = self.dataArray.count - self.newRowCount;
-    if (self.page == 1) {
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
+    //判断是否有数据
+    if (self.dataArray.count == 0) {
+        [self setupNoDataView];
     }else{
-        [self.tableView reloadData];
-        [self.tableView.mj_footer endRefreshing];
+        if(!self.tableView){
+        [self setupTableView];
+        }
+        //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+        if (self.page == 1) {
+            [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
+        }else{
+            [self.tableView reloadData];
+            [self.tableView.mj_footer endRefreshing];
+        }
     }
+    
 }
 -(void)QAListMoreDataLoadError{
     [self.tableView.mj_footer endRefreshingWithNoMoreData];
@@ -105,17 +141,15 @@
     QAListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"QAListTableViewCell" forIndexPath:indexPath];
     NSDictionary *dic = _dataArray[indexPath.row];
     [cell.name setText:[dic objectForKey:@"nickname"]];
-    NSString *date = [dic objectForKey:@"disappear_at"];
+    NSString *date = [dic objectForKey:@"created_at"];
     [cell.date setText:[date substringWithRange:NSMakeRange(0, 10)]];
-    [cell.content setText:[dic objectForKey:@"description"]];
+    [cell.content setText:[dic objectForKey:@"title"]];
     [cell.answerNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"answer_num"]]];
-    //后端数据还没有点赞数和浏览数，先用回答数
-    [cell.integralNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"answer_num"]]];
-    [cell.viewNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"answer_num"]]];
+    [cell.integralNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"reward"]]];
+    [cell.viewNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"views_num"]]];
     NSString *userIconUrl = [dic objectForKey:@"photo_thumbnail_src"];
     [cell.userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"userIcon"]];
     
-//    NSLog(@"%@",dic);
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -127,11 +161,5 @@
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.superController.navigationController pushViewController:detailVC animated:YES];
 }
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSLog(@"y:%f",self.scrollView.contentOffset.y);
-    if (self.tableView.contentOffset.y <= -100) {
-//       [[NSNotificationCenter defaultCenter] postNotificationName:@"QAListDataReLoad" object:nil];
-    }
-    
-}
+
 @end

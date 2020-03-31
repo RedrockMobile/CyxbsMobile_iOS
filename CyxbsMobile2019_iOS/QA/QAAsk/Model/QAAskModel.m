@@ -12,8 +12,8 @@
 -(void)commitAsk:(NSString *)title content:(NSString *)content kind:(NSString *)kind reward:(NSString *)reward disappearTime:(NSString *)disappearTime imageArray:(NSArray *)imageArray{
     NSLog(@"s");
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum],@"description":content,@"title":title,@"kind":kind,@"reward":reward,@"disappear_time":disappearTime};
-    [client requestWithPath:QA_ADD_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSDictionary *parameters = @{@"description":content,@"title":title,@"kind":kind,@"reward":reward,@"disappear_time":disappearTime};
+    [client requestWithToken:QA_ADD_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
@@ -36,13 +36,7 @@
 
 -(void)uploadPhoto:(NSArray *)photoArray{
     HttpClient *client = [HttpClient defaultClient];
-    NSMutableDictionary *parameters = [@{@"question_id":self.questionId,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum]} mutableCopy];
-    //    for (int i = 0; i < photoArray.count; i++) {
-    //        UIImage *image = photoArray[i];
-    //        NSData *imageData = UIImagePNGRepresentation(image);
-    //        NSString *imageName = [NSString stringWithFormat:@"photo_url%d",i];
-    //        [parameters setObject:imageData forKey:imageName];
-    //    }
+    NSDictionary *parameters = @{@"question_id":self.questionId};
     [client uploadImageWithJson:QA_UPLOAD_PIC_API method:HttpRequestPost parameters:parameters imageArray:photoArray prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {

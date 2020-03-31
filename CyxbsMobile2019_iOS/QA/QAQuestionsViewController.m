@@ -28,7 +28,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QAListDataLoadError)
                                                  name:[NSString stringWithFormat:@"QAListDataLoadError"] object:nil];
-    self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
+     if (@available(iOS 11.0, *)) {
+               self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+           } else {
+               self.view.backgroundColor = [UIColor colorWithHexString:@"F8F9FC"];
+           }
     self.isShowAlert = NO;
     [self configNavagationBar];
     [self addContentView];
@@ -93,7 +97,7 @@
 -(void)setupUI{
     //加载4个分类板块，并添加进SegmentView
     //    self.edgesForExtendedLayout = UIRectEdgeNone;
-    NSArray *titleArray = @[@"最新",@"学习",@"匿名",@"生活",@"更多"];
+    NSArray *titleArray = @[@"最新",@"学习",@"匿名",@"生活",@"其他"];
     NSMutableArray *views = [NSMutableArray arrayWithCapacity:5];
     for (int i = 0;i < 5; i++) {
         QAListViewController *vc = [[QAListViewController alloc] initViewStyle:titleArray[i]];

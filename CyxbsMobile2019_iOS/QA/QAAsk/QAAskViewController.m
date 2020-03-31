@@ -50,7 +50,7 @@
     button.frame = CGRectMake(0 , 0, 60, 60);
     [button setTitle:@"下一步" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:23]];
+    [button.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:20]];
     [button addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
     // 设置rightBarButtonItem
     UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
@@ -129,14 +129,17 @@
         UIButton *titleBtn = [[UIButton alloc]init];
         [titleBtn setTitle:titleArray[i] forState:UIControlStateNormal];
         [titleBtn setTitleColor:[UIColor colorWithHexString:@"#94A6C4"] forState:UIControlStateNormal];
-        titleBtn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+        [titleBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:13]];
+
         titleBtn.layer.cornerRadius = 12;
         titleBtn.tag = i;
         [titleBtn addTarget:self action:@selector(tapTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
         if (i == 0) {
             [titleBtn setFrame:CGRectMake(20, 5, 45, 23)];
+            titleBtn.backgroundColor = [UIColor colorWithHexString:@"#F7DAD7"];
         }else{
             [titleBtn setFrame:CGRectMake(20+i*65, 5, 45, 23)];
+            titleBtn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
         }
         
         [self.kindBtnArray addObject:titleBtn];
@@ -145,6 +148,7 @@
     }
     self.titleTextField = [[UITextField alloc]init];
     self.titleTextField.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+    self.titleTextField.placeholder = @"  输入标题";
     [self.view addSubview:self.titleTextField];
     
     [self.titleTextField mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -11,15 +11,16 @@
 @implementation QAAnswerModel
 -(void)commitAnswer:(NSNumber *)questionId content:(NSString *)content imageArray:(NSArray *)imageArray{
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"question_id":questionId,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum],@"content":content};
+    NSDictionary *parameters = @{@"question_id":questionId,@"content":content};
     //测试数据
-    [client requestWithPath:QA_ANSWER_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithToken:QA_ANSWER_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
 //            self.dataDic = [responseObject objectForKey:@"data"];
             self.answerId = [responseObject objectForKey:@"data"];
             if (imageArray.count == 0) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitSuccess" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataReLoad" object:nil];
             }else{
                [self uploadPhoto:imageArray];
             }
@@ -35,7 +36,7 @@
 }
 -(void)uploadPhoto:(NSArray *)photoArray{
     HttpClient *client = [HttpClient defaultClient];
-    NSMutableDictionary *parameters = [@{@"answer_id":self.answerId,@"stuNum":[UserDefaultTool getStuNum],@"idNum":[UserDefaultTool getIdNum]} mutableCopy];
+    NSDictionary *parameters = @{@"answer_id":self.answerId};
 //    for (int i = 0; i < photoArray.count; i++) {
 //        UIImage *image = photoArray[i];
 //        NSData *imageData = UIImagePNGRepresentation(image);
@@ -47,6 +48,7 @@
         if ([info isEqualToString:@"success"]) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitSuccess" object:nil];
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataReLoad" object:nil];
             
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitError" object:nil];

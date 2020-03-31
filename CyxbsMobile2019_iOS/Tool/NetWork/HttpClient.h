@@ -36,6 +36,14 @@ typedef void (^PrepareExecuteBlock)(void);
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+- (void)requestWithToken:(NSString *)url
+        method:(NSInteger)method
+    parameters:(id)parameters
+prepareExecute:(PrepareExecuteBlock) prepare
+      progress:(void (^)(NSProgress * progress))progress
+       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 - (void)requestWithJson:(NSString *)url
                  method:(NSInteger)method
              parameters:(id)parameters

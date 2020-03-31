@@ -278,7 +278,7 @@
 #define QA_ANSWER_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
 
 //上传答案图片
-#define QA_ANSWER_ANSWERIMAGE_UPLOAD @"https://cyxbsmobile.redrock.team/index.php/QA/Answer/uploadPicture"
+#define QA_ANSWER_ANSWERIMAGE_UPLOAD @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/uploadPicture"
 //某个问题下的回答列表
 #define QA_QUESTION_ANSWER_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
 
