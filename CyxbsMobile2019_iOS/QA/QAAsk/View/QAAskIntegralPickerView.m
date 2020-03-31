@@ -21,7 +21,7 @@
     [self.integralPickView selectRow:3 inComponent:0 animated:YES];
     return self;
 }
--(void)setupView{
+- (void)setupView{
     self.integralPickView.transform = CGAffineTransformMakeRotation(M_PI*3/2);
     [self.integralPickView setFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
     
@@ -64,7 +64,7 @@
     return 100;
 }
 #pragma mark pickerView滚动方法
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     self.integralNum = self.integralPickViewContent[row];
     NSLog(@"%@",self.integralNum);
     

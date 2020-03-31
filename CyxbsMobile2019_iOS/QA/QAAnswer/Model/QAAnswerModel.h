@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QAAnswerModel : NSObject
 @property(strong,nonatomic)NSString *answerId;
--(void)commitAnswer:(NSNumber *)questionId content:(NSString *)content imageArray:(NSArray *)imageArray;
--(void)uploadPhoto:(NSArray *)photoArray;
+- (void)commitAnswer:(NSNumber *)questionId content:(NSString *)content imageArray:(NSArray *)imageArray;
+- (void)uploadPhoto:(NSArray *)photoArray;
 
 @end
 

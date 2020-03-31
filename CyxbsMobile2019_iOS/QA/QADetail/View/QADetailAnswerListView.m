@@ -20,7 +20,7 @@
     }
     return self;
 }
--(void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf{
+- (void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf{
     self.answerId = [dic objectForKey:@"id"];
     
     self.adoptBtn.layer.cornerRadius = 10;

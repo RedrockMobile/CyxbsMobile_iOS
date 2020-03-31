@@ -9,7 +9,7 @@
 #import "QAAnswerModel.h"
 
 @implementation QAAnswerModel
--(void)commitAnswer:(NSNumber *)questionId content:(NSString *)content imageArray:(NSArray *)imageArray{
+- (void)commitAnswer:(NSNumber *)questionId content:(NSString *)content imageArray:(NSArray *)imageArray{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":questionId,@"content":content};
     //测试数据
@@ -34,7 +34,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitFailure" object:nil];
     }];
 }
--(void)uploadPhoto:(NSArray *)photoArray{
+- (void)uploadPhoto:(NSArray *)photoArray{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":self.answerId};
 //    for (int i = 0; i < photoArray.count; i++) {
@@ -43,7 +43,13 @@
 //        NSString *imageName = [NSString stringWithFormat:@"photo_url%d",i];
 //        [parameters setObject:imageData forKey:imageName];
 //    }
-    [client uploadImageWithJson:QA_ANSWER_ANSWERIMAGE_UPLOAD method:HttpRequestPost parameters:parameters imageArray:photoArray prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
+    NSMutableArray *imageNamesx = [NSMutableArray array];
+    for (int i = 0; i < photoArray.count; i++) {
+        [imageNamesx addObject:[NSString stringWithFormat:@"photo%d",i+1]];
+        
+    }
+    NSArray *imageNames =  [NSArray arrayWithArray:imageNamesx];
+    [client uploadImageWithJson:QA_ANSWER_ANSWERIMAGE_UPLOAD method:HttpRequestPost parameters:parameters imageArray:photoArray imageNames:imageNames prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];

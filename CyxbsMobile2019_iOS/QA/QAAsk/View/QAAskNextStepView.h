@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @class QAAskIntegralPickerView;
 @interface QAAskNextStepView : UIView<UIPickerViewDelegate,UIPickerViewDataSource>
--(void)setupView;
+- (void)setupView;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (weak, nonatomic) IBOutlet UIButton *questionmarkBtn;

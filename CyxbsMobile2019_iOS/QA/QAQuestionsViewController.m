@@ -28,30 +28,40 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QAListDataLoadError)
                                                  name:[NSString stringWithFormat:@"QAListDataLoadError"] object:nil];
-     if (@available(iOS 11.0, *)) {
-               self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-           } else {
-               self.view.backgroundColor = [UIColor colorWithHexString:@"F8F9FC"];
-           }
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithHexString:@"F8F9FC"];
+    }
     self.isShowAlert = NO;
-    [self configNavagationBar];
-    [self addContentView];
+    
     [self setupUI];
     
 }
--(void)addContentView{
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT, SCREEN_WIDTH,50)];
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = NO;
+}
+- (void)customNavigationBar{
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, STATUSBARHEIGHT, SCREEN_WIDTH,70)];
     view.backgroundColor = [UIColor clearColor];
-    UILabel *label = [[UILabel alloc] init];
-    label.numberOfLines = 0;
-    [self.view addSubview:label];
     
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"邮问" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 35], NSForegroundColorAttributeName: [UIColor blackColor]}];
+    UILabel *weekLabel = [[UILabel alloc]init];
+    weekLabel.text = [self calculateDate];
+    [weekLabel setFont:[UIFont fontWithName:PingFangSCLight size:10]];
+    [weekLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+    [view addSubview:weekLabel];
     
-    label.attributedText = string;
-    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    //    label.alpha = 1.0;
-    [view addSubview:label];
+    
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.numberOfLines = 0;
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"邮问" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCMedium size: 35], NSForegroundColorAttributeName: [UIColor blackColor]}];
+    titleLabel.attributedText = string;
+    titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    [view addSubview:titleLabel];
+    
     UIButton *btn = [[UIButton alloc]init];
     btn.backgroundColor = [UIColor colorWithHexString:@"#2921D1"];
     [btn setTitle:@"提问" forState:UIControlStateNormal];
@@ -60,43 +70,60 @@
     btn.layer.cornerRadius = 16;
     [view addSubview:btn];
     
+    [weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(view).mas_offset(1);
+        make.left.equalTo(view).mas_offset(17);
+        make.height.equalTo(@15);
+        make.width.equalTo(@100);
+    }];
+    
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(weekLabel).mas_offset(5);
+        make.left.equalTo(view).mas_offset(17);
+        make.bottom.equalTo(view).mas_offset(-1);
+        make.width.equalTo(@75);
+    }];
+    
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
         make.right.equalTo(view).mas_offset(-17);
         make.height.equalTo(@32);
         make.centerY.equalTo(view);
         make.width.equalTo(@58);
     }];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view).mas_offset(1);
-        make.left.equalTo(view).mas_offset(17);
-        make.bottom.equalTo(view).mas_offset(-1);
-        //        make.height.equalTo(@48);
-        make.width.equalTo(@75);
-    }];
+    
+    
     [self.view addSubview:view];
 }
-- (void)configNavagationBar {
-    if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-    } else {
-        // Fallback on earlier versions
-    }
+-(NSString *)calculateDate{
+    //计算星期几
+    NSArray *weekday = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
+    NSString *weekDayStr = weekday[components.weekday - 1];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
-    //隐藏导航栏的分割线
-    if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    } else {
-        // Fallback on earlier versions
-    }
+    //从字符串转换日期
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy.MM.d"];
+    NSDate *resDate = [formatter dateFromString:DateStart];
     
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    //计算当前是第几周
+    NSInteger beginTime=[resDate timeIntervalSince1970];
+    NSDate *now = [NSDate date];
+    NSInteger nowTime = [now timeIntervalSince1970];
+    double day = (float)(nowTime - beginTime)/(float)86400/(float)7;
+    NSInteger nowWeek = (int)ceil(day) - 1;
+    if(nowWeek < 0){
+        nowWeek = 0;
+    }
+    NSArray *weekNumArray = @[@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"第十一周",@"第十二周",@"第十三周",@"第十四周",@"第十五周",@"第十六周",@"第十七周",@"第十八周",@"第十九周",@"第二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
+    NSString *weekNum = weekNumArray[nowWeek];
+    NSString *weekStr = [NSString stringWithFormat:@"%@ %@",weekNum,weekDayStr];
+    return weekStr;
     
 }
--(void)setupUI{
-    //加载4个分类板块，并添加进SegmentView
-    //    self.edgesForExtendedLayout = UIRectEdgeNone;
+- (void)setupUI{
+    //加载5个分类板块，并添加进SegmentView
     NSArray *titleArray = @[@"最新",@"学习",@"匿名",@"生活",@"其他"];
     NSMutableArray *views = [NSMutableArray arrayWithCapacity:5];
     for (int i = 0;i < 5; i++) {
@@ -107,20 +134,11 @@
     for (QAListViewController *view in views) {
         view.superController = self;
     }
-    QAListSegmentView *segView = [[QAListSegmentView alloc] initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT + 50, SCREEN_WIDTH, SCREEN_HEIGHT - TOTAL_TOP_HEIGHT - TABBARHEIGHT - 50) controllers:views];
+    QAListSegmentView *segView = [[QAListSegmentView alloc] initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT + 20, SCREEN_WIDTH, SCREEN_HEIGHT - TOTAL_TOP_HEIGHT - TABBARHEIGHT - 20) controllers:views];
     [self.view addSubview:segView];
 }
 
-//-(void)loadData{
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.mode = MBProgressHUDModeIndeterminate;
-//    hud.labelText = @"加载数据中...";
-//    hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
-//    self.model = [[QAListModel alloc]init];
-//    [self.model getData];
-//}
-
--(void)QAListDataLoadError{
+- (void)QAListDataLoadError{
     if (self.isShowAlert == NO) {
         
         UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"数据加载错误" message:@"网络数据解析错误" preferredStyle:UIAlertControllerStyleAlert];
@@ -136,7 +154,7 @@
     }
 }
 
--(void)QAListDataLoadFailure{
+- (void)QAListDataLoadFailure{
     if(self.isShowAlert == NO){
         UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"数据加载失败" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -151,7 +169,7 @@
     }
 }
 
--(void)tapAskBtn{
+- (void)tapAskBtn{
     QAAskViewController *vc = [[QAAskViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }

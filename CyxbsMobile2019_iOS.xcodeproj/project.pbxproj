@@ -109,6 +109,7 @@
 		D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A7223F08CB5009A242C /* QAAnswerExitView.xib */; };
 		D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A7423F08CB5009A242C /* QAAnswerExitView.m */; };
 		D0011A7923F09422009A242C /* QADetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A7823F09422009A242C /* QADetailView.m */; };
+		D0101D38243387ED004337ED /* QABaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D37243387ED004337ED /* QABaseViewController.m */; };
 		D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A7FE23D4E054001A4774 /* QAListSegmentView.m */; };
 		D026A80523D4E054001A4774 /* QAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A80023D4E054001A4774 /* QAListViewController.m */; };
 		D026A80623D4E054001A4774 /* QA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D026A80223D4E054001A4774 /* QA.xcassets */; };
@@ -534,6 +535,8 @@
 		D0011A7423F08CB5009A242C /* QAAnswerExitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAAnswerExitView.m; sourceTree = "<group>"; };
 		D0011A7723F09422009A242C /* QADetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailView.h; sourceTree = "<group>"; };
 		D0011A7823F09422009A242C /* QADetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailView.m; sourceTree = "<group>"; };
+		D0101D36243387ED004337ED /* QABaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QABaseViewController.h; sourceTree = "<group>"; };
+		D0101D37243387ED004337ED /* QABaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QABaseViewController.m; sourceTree = "<group>"; };
 		D026A7FC23D4E054001A4774 /* QAListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListViewController.h; sourceTree = "<group>"; };
 		D026A7FE23D4E054001A4774 /* QAListSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListSegmentView.m; sourceTree = "<group>"; };
 		D026A7FF23D4E054001A4774 /* QAListSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListSegmentView.h; sourceTree = "<group>"; };
@@ -929,14 +932,15 @@
 		1A141331235F52440001417E /* QA */ = {
 			isa = PBXGroup;
 			children = (
-				D03E59C823DB30A900E0F34D /* QAAsk */,
-				D03E59B123D9D8A400E0F34D /* QAAnswer */,
-				D026A81123D502F8001A4774 /* QADetail */,
 				D026A80223D4E054001A4774 /* QA.xcassets */,
+				D03E59B123D9D8A400E0F34D /* QAAnswer */,
+				D03E59C823DB30A900E0F34D /* QAAsk */,
+				D0101D35243387CA004337ED /* QABase */,
+				D026A81123D502F8001A4774 /* QADetail */,
 				D026A7FB23D4E054001A4774 /* QAList */,
+				1A141332235F52440001417E /* QAQuestions */,
 				D026A80123D4E054001A4774 /* QAQuestionsViewController.h */,
 				D026A80323D4E054001A4774 /* QAQuestionsViewController.m */,
-				1A141332235F52440001417E /* QAQuestions */,
 			);
 			path = QA;
 			sourceTree = "<group>";
@@ -1600,6 +1604,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D0101D35243387CA004337ED /* QABase */ = {
+			isa = PBXGroup;
+			children = (
+				D0101D36243387ED004337ED /* QABaseViewController.h */,
+				D0101D37243387ED004337ED /* QABaseViewController.m */,
+			);
+			path = QABase;
+			sourceTree = "<group>";
+		};
 		D026A7FB23D4E054001A4774 /* QAList */ = {
 			isa = PBXGroup;
 			children = (
@@ -2171,13 +2184,13 @@
 		EE75BF3423F5884100208039 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EE75BF3523F5884100208039 /* StudentScheduleViewController.m */,
-				EE75BF3623F5884100208039 /* ScheduleInquiryViewController.h */,
-				EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */,
-				EE75BF3823F5884100208039 /* TeacherScheduleViewController.h */,
-				EE75BF3923F5884100208039 /* StudentScheduleViewController.h */,
 				EE75BF3A23F5884100208039 /* ChooseStudentListViewController.h */,
+				EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */,
+				EE75BF3623F5884100208039 /* ScheduleInquiryViewController.h */,
 				EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */,
+				EE75BF3923F5884100208039 /* StudentScheduleViewController.h */,
+				EE75BF3523F5884100208039 /* StudentScheduleViewController.m */,
+				EE75BF3823F5884100208039 /* TeacherScheduleViewController.h */,
 				EE75BF3C23F5884100208039 /* TeacherScheduleViewController.m */,
 			);
 			path = Controller;
@@ -2750,6 +2763,7 @@
 				EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */,
 				EE75BF9623F5884100208039 /* ElectricFeeItem.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
+				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
 				EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,

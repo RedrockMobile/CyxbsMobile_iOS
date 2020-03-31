@@ -19,10 +19,10 @@
     return self;
     
 }
--(void)layoutSubviews{
+- (void)layoutSubviews{
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1000);
 }
--(void)setupUIwithDic:(NSDictionary *)dic answersData:(nonnull NSArray *)answersData{
+- (void)setupUIwithDic:(NSDictionary *)dic answersData:(nonnull NSArray *)answersData{
     UIView *userInfoView = [[UIView alloc]init];
     userInfoView.backgroundColor = [UIColor clearColor];
     [self.scrollView addSubview:userInfoView];
@@ -198,11 +198,11 @@
     [self.delegate tapCommentBtn:[NSNumber numberWithInteger:sender.tag]];
 }
 
--(void)tapPraiseBtn:(UIButton *)sender{
+- (void)tapPraiseBtn:(UIButton *)sender{
     [self.delegate tapPraiseBtn:sender answerId:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }
--(void)tapAdoptBtn:(UIButton *)sender{
+- (void)tapAdoptBtn:(UIButton *)sender{
     [self.delegate tapAdoptBtn:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }

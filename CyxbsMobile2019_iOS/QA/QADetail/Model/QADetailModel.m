@@ -9,7 +9,7 @@
 #import "QADetailModel.h"
 
 @implementation QADetailModel
--(void)getDataWithId:(NSNumber *)questionId{
+- (void)getDataWithId:(NSNumber *)questionId{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":questionId};
 
@@ -28,7 +28,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadFailure" object:nil];
     }];
 }
--(void)getAnswersWithId:(NSNumber *)questionId{
+- (void)getAnswersWithId:(NSNumber *)questionId{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":questionId};
 

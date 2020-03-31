@@ -40,7 +40,7 @@
     [self loadData];
     return self;
 }
--(void)setNotification{
+- (void)setNotification{
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QAListDataLoadSuccess)
@@ -53,15 +53,15 @@
   
 
 }
--(void)loadData{
+- (void)loadData{
     self.page += 1;
     [self.model loadData:self.title page:self.page];
 }
--(void)reloadData{
+- (void)reloadData{
     self.page = 1;
     [self.model loadData:self.title page:self.page];
 }
--(void)setupTableView{
+- (void)setupTableView{
     self.tableView = [[UITableView alloc]init];
     
     [self.view addSubview:self.tableView];
@@ -75,7 +75,7 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
 }
--(void)setupNoDataView{
+- (void)setupNoDataView{
     UIImageView *imgView = [[UIImageView alloc]init];
     [imgView setImage:[UIImage imageNamed:@"QANoDataImg"]];
     [self.view addSubview:imgView];
@@ -98,7 +98,7 @@
     }];
     
 }
--(void)QAListDataLoadSuccess{
+- (void)QAListDataLoadSuccess{
     //根据title获取对应数据
     self.dataArray = [self.model.dataDictionary valueForKey:self.title];
     self.newRowCount = self.dataArray.count - self.newRowCount;
@@ -120,7 +120,7 @@
     }
     
 }
--(void)QAListMoreDataLoadError{
+- (void)QAListMoreDataLoadError{
     [self.tableView.mj_footer endRefreshingWithNoMoreData];
 }
 

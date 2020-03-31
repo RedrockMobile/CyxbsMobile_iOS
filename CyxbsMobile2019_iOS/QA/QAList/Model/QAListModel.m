@@ -9,7 +9,7 @@
 #import "QAListModel.h"
 
 @implementation QAListModel
--(void)loadData:(NSString *)kind page:(NSInteger)page{
+- (void)loadData:(NSString *)kind page:(NSInteger)page{
     if (!self.dataDictionary) {
         self.dataDictionary = [NSMutableDictionary dictionary];
         NSArray *titleArray = @[@"最新",@"学习",@"匿名",@"生活",@"其他"];

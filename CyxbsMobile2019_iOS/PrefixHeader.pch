@@ -40,27 +40,6 @@
 #define COLOR_NEED [UIColor colorWithRed:101/255.0 green:178/255.0 blue:255/255.0 alpha:1]
 #define COLOR_NONEED [UIColor colorWithRed:148/255.0 green:148/255.0 blue:148/255.0 alpha:0.6]
 
-#define COLOR_GREEN1 [UIColor colorWithRed:111/255.0 green:234/255.0 blue:214/255.0 alpha:1]
-#define COLOR_GREEN2 [UIColor colorWithRed:158/255.0 green:252/255.0 blue:238/255.0 alpha:1]
-#define COLOR_GREEN3 [UIColor colorWithRed:215/255.0 green:255/255.0 blue:249/255.0 alpha:1]
-#define COLOR_GREEN4 [UIColor colorWithRed:248/255.0 green:255/255.0 blue:254/255.0 alpha:1]
-
-
-#define COLOR_BULE1 [UIColor colorWithRed:122/255.0 green:200/255.0 blue:239/255.0 alpha:1]
-#define COLOR_BULE2 [UIColor colorWithRed:185/255.0 green:229/255.0 blue:254/255.0 alpha:1]
-#define COLOR_BULE3 [UIColor colorWithRed:225/255.0 green:248/255.0 blue:255/255.0 alpha:1]
-#define COLOR_BULE4 [UIColor colorWithRed:248/255.0 green:252/255.0 blue:255/255.0 alpha:1]
-
-
-#define COLOR_PINK1 [UIColor colorWithRed:255/255.0 green:173/255.0 blue:203/255.0 alpha:1]
-#define COLOR_PINK2 [UIColor colorWithRed:255/255.0 green:210/255.0 blue:227/255.0 alpha:1]
-#define COLOR_PINK3 [UIColor colorWithRed:255/255.0 green:246/255.0 blue:248/255.0 alpha:1]
-#define COLOR_PINK4 [UIColor colorWithRed:255/255.0 green:253/255.0 blue:255/255.0 alpha:1]
-
-#define COLOR_YELLOW1 [UIColor colorWithRed:236/255.0 green:216/255.0 blue:111/255.0 alpha:1]
-#define COLOR_YELLOW2 [UIColor colorWithRed:251/255.0 green:254/255.0 blue:185/255.0 alpha:1]
-#define COLOR_YELLOW3 [UIColor colorWithRed:253/255.0 green:250/255.0 blue:235/255.0 alpha:1]
-#define COLOR_YELLOW4 [UIColor colorWithRed:255/255.0 green:255/255.0 blue:251/255.0 alpha:1]
 
 #import <AFNetworking.h>
 #import <MJRefresh.h>
@@ -74,6 +53,7 @@
 #import "UserDefaultTool.h"
 #import "UserItemTool.h"
 #import "BaseViewController.h"
+#import "QABaseViewController.h"
 #import "NSDate+Timestamp.h"
 #import <UMAnalytics/MobClick.h>
 //#import "AESCipher.h"         // 加密用的，暂时没什么用，有用的时候再打开注释吧
@@ -124,6 +104,8 @@
 
 #define kSegmentViewTitleHeight (SCREEN_HEIGHT * 50 / 667)
 
+//学期开始时间
+#define DateStart @"2020-02-17"
 
 /*----------------------------------------------------------------
 ｜                              字体                              |

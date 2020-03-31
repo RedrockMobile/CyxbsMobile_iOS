@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// 邮问问题列表页面（邮问主页）
-@interface QAQuestionsViewController : UIViewController
+@interface QAQuestionsViewController : QABaseViewController
 
 @end
 

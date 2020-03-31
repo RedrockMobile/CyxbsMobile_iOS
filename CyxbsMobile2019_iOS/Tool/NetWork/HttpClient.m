@@ -183,12 +183,14 @@
 
 - (void)uploadImageWithJson:(NSString *)url
                  method:(NSInteger)method
-                 parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray 
+                 parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
          prepareExecute:(PrepareExecuteBlock) prepare
                progress:(void (^)(NSProgress * progress))progress
                 success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                 failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    NSString *token = [UserItem defaultItem].token;
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     manager.requestSerializer.timeoutInterval = 15.0;
     //发送网络请求
     [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -196,7 +198,7 @@
             UIImage *image = imageArray[i];
             UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
             NSData *data = UIImageJPEGRepresentation(image1, 0.8);
-         [formData appendPartWithFileData:data name:[NSString stringWithFormat:@"photo%d",i+1] fileName:@"tmp.png" mimeType:@"image/png"]; }
+         [formData appendPartWithFileData:data name:imageNames[i] fileName:@"tmp.png" mimeType:@"image/png"]; }
         
     } success:success failure:failure];
 }

@@ -58,7 +58,7 @@ prepareExecute:(PrepareExecuteBlock) prepare
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (void)uploadImageWithJson:(NSString *)url
                      method:(NSInteger)method
-                 parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray
+                 parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
              prepareExecute:(PrepareExecuteBlock) prepare
                    progress:(void (^)(NSProgress * progress))progress
                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
