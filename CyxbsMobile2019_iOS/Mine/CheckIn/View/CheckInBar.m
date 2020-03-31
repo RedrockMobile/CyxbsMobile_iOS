@@ -150,7 +150,7 @@
     if (IS_IPHONESE) {
         integralImageView.frame = CGRectMake(-8 + (today - 1) * BARWIDTH, -39, 47, 26);
     }
-    integralImageView.backgroundColor = [UIColor colorWithRed:212/255.0 green:218/255.0 blue:255/255.0 alpha:1];
+    integralImageView.image = [UIImage imageNamed:@"签到气泡"];
     [self addSubview:integralImageView];
     
     // 计算签到可获得积分
@@ -176,7 +176,7 @@
     }
     integralLabel.font = [UIFont systemFontOfSize:11];
     [integralImageView addSubview:integralLabel];
-    integralLabel.center = CGPointMake(integralImageView.width / 2.0, integralImageView.height / 2.0);
+    integralLabel.center = CGPointMake(integralImageView.width / 2.0, integralImageView.height / 2.0 - 2);
 }
 
 @end

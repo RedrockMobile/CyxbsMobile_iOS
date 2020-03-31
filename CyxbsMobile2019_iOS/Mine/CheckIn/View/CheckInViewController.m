@@ -45,13 +45,6 @@
     }];
     contentView.delegate = self;
     self.contentView = contentView;
-    
-    // 临时返回
-    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [backBtn setTitle:@"back" forState:UIControlStateNormal];
-    backBtn.frame = CGRectMake(200, 100, 100, 40);
-    [self.view addSubview:backBtn];
-    [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,13 +72,11 @@
 }
 
 
-#pragma mark - 按钮回调
-- (void)back {
+#pragma mark - 代理回调
+- (void)backButtonClicked {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-#pragma mark - 代理回调
 - (void)CheckInButtonClicked:(UIButton *)sender {
     if ([UserItemTool defaultItem].rank.intValue != 0) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];

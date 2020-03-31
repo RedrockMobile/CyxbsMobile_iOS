@@ -61,9 +61,9 @@
         [self addSubview:titleLabel];
         self.titleLabel = titleLabel;
         
-        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        backButton.backgroundColor = [UIColor purpleColor];
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 17);
+        [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [backButton addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backButton];
         self.backButton = backButton;
@@ -89,11 +89,7 @@
         [headerImageView addGestureRecognizer:tap];
         
         UIButton *whatsThisButton = [[UIButton alloc] init];
-        if (@available(iOS 11.0, *)) {
-            whatsThisButton.backgroundColor = PLACEHOLDERCOLOR;
-        } else {
-            whatsThisButton.backgroundColor = [UIColor colorWithRed:154/255.0 green:165/255.0 blue:181/255.0 alpha:1];
-        }
+        [whatsThisButton setImage:[UIImage imageNamed:@"编辑资料问号"] forState:UIControlStateNormal];
         [self.contentScrollView addSubview:whatsThisButton];
         self.whatsThisButton = whatsThisButton;
         
@@ -241,7 +237,7 @@
         self.academyLabel = academyLabel;
         
         UILabel *myAcademyLabel = [[UILabel alloc] init];
-        myAcademyLabel.text = @"通信学院";
+        myAcademyLabel.text = [UserItemTool defaultItem].college;
         if (@available(iOS 11.0, *)) {
             myAcademyLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
         } else {
@@ -290,7 +286,7 @@
     [super layoutSubviews];
 
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self).offset(-14);
+        make.leading.equalTo(self).offset(-10);
         make.centerY.equalTo(self.titleLabel);
         make.height.equalTo(@24);
         make.width.equalTo(@24);
@@ -378,7 +374,6 @@
         make.centerY.equalTo(self.academyLabel);
         make.trailing.equalTo(self).offset(-18);
         make.height.equalTo(@22);
-        make.width.equalTo(@65);
     }];
 
     [self.explainLabel mas_makeConstraints:^(MASConstraintMaker *make) {

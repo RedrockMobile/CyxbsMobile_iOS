@@ -71,9 +71,8 @@
         self.timeLabel = timeLabel;
         
         // 删除
-        UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//        deleteButton setImage:<#(nullable UIImage *)#> forState:<#(UIControlState)#>
-        deleteButton.backgroundColor = [UIColor grayColor];
+        UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [deleteButton setImage:[UIImage imageNamed:@"我的草稿箱垃圾桶"] forState:UIControlStateNormal];
         [self.contentView addSubview:deleteButton];
         self.deleteButton = deleteButton;
         

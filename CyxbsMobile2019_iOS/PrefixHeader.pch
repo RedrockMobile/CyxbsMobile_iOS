@@ -145,12 +145,20 @@
 #define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/app/token/refresh"
 
 
+/// 上传头像
+#define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/app/index.php/Home/Photo/uploadArticle"
+/// 上传用户信息
+#define UPLOADUSERINFOAPI @"http://api-234.redrock.team/magipoke/Person/SetInfo"
+
+
 /// 获取签到信息
 #define CHECKININFOAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/User/getScoreStatus"
 /// 签到
 #define CHECKINAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/Integral/checkIn"
 /// 积分商城
 #define INTEGRALSTORELISTAPI @"http://api-234.redrock.team/magipoke-intergral/QA/Integral/getItemList"
+
+
 /// “我的”邮问数据
 #define MINEQADATAAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/mine"
 /// 我的提问

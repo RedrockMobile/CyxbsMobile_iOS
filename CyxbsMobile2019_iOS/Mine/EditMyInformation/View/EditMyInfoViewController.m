@@ -71,6 +71,11 @@
 - (void)saveButtonClicked:(UIButton *)sender {
     ((MineViewController *)self.transitioningDelegate).panGesture = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.presenter uploadProfile:self.contentView.headerImageView.image success:^(NSDictionary * _Nonnull responseObject) {
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)backButtonClicked:(UIButton *)sender {
