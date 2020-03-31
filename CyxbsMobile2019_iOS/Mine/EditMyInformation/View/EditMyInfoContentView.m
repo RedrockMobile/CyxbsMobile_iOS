@@ -237,7 +237,7 @@
         self.academyLabel = academyLabel;
         
         UILabel *myAcademyLabel = [[UILabel alloc] init];
-        myAcademyLabel.text = @"通信学院";
+        myAcademyLabel.text = [UserItemTool defaultItem].college;
         if (@available(iOS 11.0, *)) {
             myAcademyLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
         } else {
@@ -374,7 +374,6 @@
         make.centerY.equalTo(self.academyLabel);
         make.trailing.equalTo(self).offset(-18);
         make.height.equalTo(@22);
-        make.width.equalTo(@65);
     }];
 
     [self.explainLabel mas_makeConstraints:^(MASConstraintMaker *make) {

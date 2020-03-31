@@ -30,6 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 性别
 @property (nonatomic, copy) NSString *gender;
 
+/// 所属学院
+@property (nonatomic, copy) NSString *college;
+
 /// 用户的唯一识别码
 @property (nonatomic, copy) NSString *redid;
 

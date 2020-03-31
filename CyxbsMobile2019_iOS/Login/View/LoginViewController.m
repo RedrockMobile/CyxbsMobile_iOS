@@ -113,7 +113,7 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
     [MobClick profileSignInWithPUID:self.stuNumTextField.text];
     [self.loginHUD hide:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
-    ((UITabBarController *)([UIApplication sharedApplication].delegate.window.rootViewController)).selectedIndex = 1;
+    ((UITabBarController *)([UIApplication sharedApplication].delegate.window.rootViewController)).selectedIndex = 0;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Login_LoginSuceeded" object:nil userInfo:@{@"userItem": [UserItemTool defaultItem]}];
 }
 
