@@ -38,7 +38,7 @@
         UIButton *backButton = [[UIButton alloc] init];
         [backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         backButton.imageEdgeInsets = UIEdgeInsetsMake(5.5, 10, 5.5, 11);
-        [backButton setImage:[UIImage imageNamed:@"appIcon"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [self addSubview:backButton];
         self.backButton = backButton;
         

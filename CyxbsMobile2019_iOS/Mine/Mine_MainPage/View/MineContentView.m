@@ -102,7 +102,7 @@
         
         
         // 添加FooterView（APP设置TableView）
-        UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 138) style:UITableViewStyleGrouped];
+        UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 168) style:UITableViewStyleGrouped];
         appSettingTabelView.delegate = self;
         appSettingTabelView.dataSource = self;
         appSettingTabelView.backgroundColor = self.backgroundColor;
@@ -274,7 +274,7 @@
         
         UIButton *foldButton = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 27 - 19, 15, 22, 22)];
         foldButton.imageEdgeInsets = UIEdgeInsetsMake(7, 3, 7, 3);
-        foldButton.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
+        [foldButton setImage:[UIImage imageNamed:@"我的主页箭头"] forState:UIControlStateNormal];
         if (self.isFold) {
             foldButton.transform = CGAffineTransformMakeRotation(-M_PI_2);
         }

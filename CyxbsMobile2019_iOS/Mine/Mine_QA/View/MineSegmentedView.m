@@ -56,7 +56,8 @@
         self.segmentedButtons = tmp;
         
         UIImageView *sliderView = [[UIImageView alloc] init];
-        sliderView.backgroundColor = [UIColor blueColor];
+        sliderView.image = [UIImage imageNamed:@"分页滑条"];
+        sliderView.contentMode = UIViewContentModeScaleToFill;
         [self.segmentedBar addSubview:sliderView];
         self.sliderView = sliderView;
         
@@ -98,9 +99,9 @@
     }
     
     [self.sliderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.segmentedBar.mas_bottom).offset(-3);
+        make.top.equalTo(self.segmentedBar.mas_bottom).offset(-4);
         make.centerX.equalTo(self.segmentedButtons[0]);
-        make.height.equalTo(@3);
+        make.height.equalTo(@4);
         make.width.equalTo(@57);
     }];
     

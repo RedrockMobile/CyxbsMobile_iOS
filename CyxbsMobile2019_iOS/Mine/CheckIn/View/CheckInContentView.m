@@ -11,6 +11,7 @@
 @interface CheckInContentView ()
 
 @property (nonatomic, weak) UIImageView *backgroundImageView;
+@property (nonatomic, weak) UIButton *backBtn;
 @property (nonatomic, weak) UILabel *yearsLabel;
 @property (nonatomic, weak) UILabel *weekLabel;
 @property (nonatomic, weak) UILabel *daysLabel;
@@ -37,6 +38,14 @@
         [self addSubview:backgroundImageView];
         self.backgroundImageView = backgroundImageView;
         
+        // 临时返回
+        UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+        [backBtn setImage:[UIImage imageNamed:@"我的返回-白色"] forState:UIControlStateNormal];
+        [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:backBtn];
+        self.backBtn = backBtn;
+
         UILabel *yearsLabel = [[UILabel alloc] init];
         yearsLabel.text = @"2019-2020";
         yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
@@ -68,6 +77,7 @@
         self.daysLabel = daysLabel;
         
         UIView *boardView = [[UIView alloc] init];
+        boardView.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
             boardView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_BaordColor"];
         } else {
@@ -189,6 +199,12 @@
     
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
+    }];
+    
+    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.yearsLabel);
+        make.bottom.equalTo(self.yearsLabel.mas_top).offset(-5);
+        make.height.width.equalTo(@19);
     }];
     
     if (IS_IPHONEX) {
@@ -347,6 +363,12 @@
 }
 
 #pragma mark - 按钮
+- (void)backButtonClicked {
+    if ([self.delegate respondsToSelector:@selector(backButtonClicked)]) {
+        [self.delegate backButtonClicked];
+    }
+}
+
 - (void)CheckInButtonClicked:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(CheckInButtonClicked:)]) {
         [self.delegate CheckInButtonClicked:sender];

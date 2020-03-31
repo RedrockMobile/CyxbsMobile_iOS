@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol CheckInContentViewDelegate <NSObject>
 
+- (void)backButtonClicked;
 - (void)CheckInButtonClicked:(UIButton *)sender;
 - (void)presentIntegralStore:(UIPanGestureRecognizer *)pan;
 

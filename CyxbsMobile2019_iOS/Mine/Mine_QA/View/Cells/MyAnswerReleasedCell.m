@@ -66,7 +66,7 @@
         
         // 积分
         UIImageView *integralImageView = [[UIImageView alloc] init];
-        integralImageView.backgroundColor = [UIColor grayColor];
+        integralImageView.image = [UIImage imageNamed:@"邮问积分"];
         [self.contentView addSubview:integralImageView];
         self.integralImageView = integralImageView;
         

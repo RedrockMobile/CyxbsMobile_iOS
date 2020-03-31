@@ -87,10 +87,10 @@
     }
     [navigationBar addSubview:titleLabel];
     
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(17, 12.5 + STATUSBARHEIGHT, 19, 19);
     backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-    backButton.backgroundColor = [UIColor blueColor];
+    [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [navigationBar addSubview:backButton];
     

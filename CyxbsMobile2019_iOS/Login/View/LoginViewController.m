@@ -23,6 +23,11 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
 
 @property (weak, nonatomic) IBOutlet UITextField *stuNumTextField;
 @property (weak, nonatomic) IBOutlet UITextField *idNumTextField;
+@property (weak, nonatomic) IBOutlet UIButton *protocolCheckButton;
+@property (weak, nonatomic) IBOutlet UILabel *loginTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *loginSubTitleLabel;
+
+
 @property (weak, nonatomic) MBProgressHUD *loginHUD;
 
 @end
@@ -45,6 +50,27 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
     _presenter = [[LoginPresenter alloc] init];
     [_presenter attachView:self];
     
+    self.protocolCheckButton.backgroundColor = [UIColor clearColor];
+    self.protocolCheckButton.layer.cornerRadius = 8;
+    self.protocolCheckButton.clipsToBounds = YES;
+    self.protocolCheckButton.layer.borderWidth = 1;
+    self.protocolCheckButton.layer.borderColor = [UIColor colorWithRed:75/255.0 green:69/255.0 blue:228/255.0 alpha:1].CGColor;
+    
+    if (@available(iOS 11.0, *)) {
+        self.loginTitleLabel.textColor = [UIColor colorNamed:@"LoginTitleColor"];
+        self.loginSubTitleLabel.textColor = [UIColor colorNamed:@"LoginTitleColor"];
+        self.loginSubTitleLabel.alpha = 0.6;
+        self.view.backgroundColor = [UIColor colorNamed:@"LoginBackgroundColor"];
+        self.stuNumTextField.textColor = [UIColor colorNamed:@"LoginTextFieldColor"];
+        self.idNumTextField.textColor = [UIColor colorNamed:@"LoginTextFieldColor"];
+    } else {
+        self.loginTitleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+        self.loginSubTitleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+        self.loginSubTitleLabel.alpha = 0.6;
+        self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+        self.stuNumTextField.textColor = [UIColor colorWithRed:28/255.0 green:48/255.0 blue:88/255.0 alpha:1];
+        self.idNumTextField.textColor = [UIColor colorWithRed:28/255.0 green:48/255.0 blue:88/255.0 alpha:1];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

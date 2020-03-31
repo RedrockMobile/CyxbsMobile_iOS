@@ -35,7 +35,7 @@
     UIViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    if ([from isMemberOfClass:[UITabBarController class]]) {
+    if ([from isKindOfClass:[UITabBarController class]]) {
         [transitionContext.containerView addSubview:to.view];
         
         to.view.frame = CGRectMake(25, MAIN_SCREEN_H, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
