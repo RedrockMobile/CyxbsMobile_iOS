@@ -41,7 +41,7 @@
     UILabel *dateLabel = [[UILabel alloc]init];
     dateLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
     [dateLabel setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
-    NSString *date = [dic objectForKey:@"disappear_at"];
+    NSString *date = [dic objectForKey:@"created_at"];
     [dateLabel setText:[date substringWithRange:NSMakeRange(0, 10)]];
     [userInfoView addSubview:dateLabel];
     
@@ -50,7 +50,7 @@
     [userInfoView addSubview:integralIcon];
     
     UILabel *integralNumLabel = [[UILabel alloc]init];
-    NSString *integralNum = [NSString stringWithFormat:@"%@",[dic objectForKey:@"reward"]];
+    NSString *integralNum = [NSString stringWithFormat:@"%@积分",[dic objectForKey:@"reward"]];
     [integralNumLabel setText:integralNum];
     integralNumLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
     [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
@@ -77,7 +77,7 @@
         //        make.height.equalTo(@57);
     }];
     [integralIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(userInfoView.mas_right).mas_offset(-33);
+        make.right.mas_equalTo(userInfoView.mas_right).mas_offset(-40);
         make.top.mas_equalTo(userInfoView.mas_top).mas_offset(33);
         make.height.width.mas_equalTo(17);
         //        make.height.equalTo(@57);
@@ -181,11 +181,38 @@
         make.left.mas_equalTo(self.mas_left).mas_offset(0);
         make.height.mas_equalTo(answerList.count*190);
     }];
-    for (int i=0;i<answerList.count; i++) {
-        NSDictionary *dic = answerList[i];
-        QADetailAnswerListView *answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 190*i, SCREEN_WIDTH, 190)];
-        [answerView setupView:dic isSelf:self.isSelf];
-        [view addSubview:answerView];
+    if (answerList.count != 0) {
+        
+        for (int i=0;i<answerList.count; i++) {
+            NSDictionary *dic = answerList[i];
+            QADetailAnswerListView *answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 190*i, SCREEN_WIDTH, 190)];
+            [answerView setupView:dic isSelf:self.isSelf];
+            [view addSubview:answerView];
+        }
+        
+    }else{
+        UIImageView *imageView = [[UIImageView alloc]init];
+        [imageView setImage:[UIImage imageNamed:@"QADetailNoAnswer"]];
+        [view addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make){
+            make.width.equalTo(@170);
+            make.height.equalTo(@130);
+            make.centerX.equalTo(view);
+            make.top.equalTo(view).offset(80);
+        }];
+        
+        UILabel *label = [[UILabel alloc]init];
+        label.text = @"还没有回答哦~";
+        label.font = [UIFont fontWithName:PingFangSCLight size:12];
+        [label setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        label.textAlignment = NSTextAlignmentCenter;
+        [view addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make){
+            make.width.equalTo(@170);
+            make.height.equalTo(@20);
+            make.centerX.equalTo(view);
+            make.top.mas_equalTo(imageView.mas_bottom).offset(15);
+        }];
     }
     
 }

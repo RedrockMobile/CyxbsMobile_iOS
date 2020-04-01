@@ -10,9 +10,10 @@
 #import "QAAnswerViewController.h"
 #import "QADetailModel.h"
 #import "QADetailView.h"
+#import "QADetailReportView.h"
 @interface QADetailViewController ()<QADetailDelegate>
 @property(strong,nonatomic)UIScrollView *scrollView;
-@property(strong,nonatomic)NSNumber *id;
+@property(strong,nonatomic)NSNumber *question_id;
 @property(strong,nonatomic)QADetailModel *model;
 @end
 
@@ -21,14 +22,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
+    
 }
 
+- (void)customNavigationRightButton{
+    [self.rightButton setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
+    [self.rightButton addTarget:self action:@selector(showReportView) forControlEvents:UIControlEventTouchUpInside];
+}
 
--(instancetype)initViewWithId:(NSNumber *)id title:(NSString *)title{
+-(instancetype)initViewWithId:(NSNumber *)question_id title:(NSString *)title{
     self = [super init];
     self.title = title;
 //    [self setNavigationBar:title];
-    self.id = id;
+    self.question_id = question_id;
     self.model = [[QADetailModel alloc]init];
     [self setNotification];
     
@@ -52,7 +58,7 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
-    [self.model getDataWithId:self.id];
+    [self.model getDataWithId:self.question_id];
 }
 - (void)setNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -103,51 +109,35 @@
 }
 - (void)reloadView{
     [self.view removeAllSubviews];
+    [self customNavigationBar];
+    [self customNavigationRightButton];
     [self loadData];
 }
-- (void)report{
-    /*
-     先创建UIAlertController，preferredStyle：选择UIAlertControllerStyleActionSheet，这个就是相当于创建8.0版本之前的UIActionSheet；
-     
-     typedef NS_ENUM(NSInteger, UIAlertControllerStyle) {
-     UIAlertControllerStyleActionSheet = 0,
-     UIAlertControllerStyleAlert
-     } NS_ENUM_AVAILABLE_IOS(8_0);
-     */
-    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"选择对象" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+- (void)showReportView{
+    QADetailReportView *reportView = [[QADetailReportView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 530)];
+    [reportView setBackgroundColor:UIColor.clearColor];
+    [reportView setupView];
+    for (UIButton *btn in reportView.reportBtnCollection) {
+        if (btn.tag == 5){
+             [btn addTarget:self action:@selector(ignore:) forControlEvents:UIControlEventTouchUpInside];
+        }else{
+        [btn addTarget:self action:@selector(report:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
     
-    /*
-     typedef NS_ENUM(NSInteger, UIAlertActionStyle) {
-     UIAlertActionStyleDefault = 0,
-     UIAlertActionStyleCancel,         取消按钮
-     UIAlertActionStyleDestructive     破坏性按钮，比如：“删除”，字体颜色是红色的
-     } NS_ENUM_AVAILABLE_IOS(8_0);
-     
-     */
-    // 创建action，这里action1只是方便编写，以后再编程的过程中还是以命名规范为主
-    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"A类" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"选择了A类" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-    }];
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"B类" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"选择了B类" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-        [alertView show];
-    }];
-    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"取消");
-    }];
-    
-    //把action添加到actionSheet里
-    [actionSheet addAction:action1];
-    [actionSheet addAction:action2];
-    [actionSheet addAction:action3];
-    
-    //相当于之前的[actionSheet show];
-    [self presentViewController:actionSheet animated:YES completion:nil];
+    [[reportView sdm_showActionSheetIn:self.view usingBlock:nil] usingAutoDismiss];
+}
+- (void)report:(UIButton *)sender{
+    [self.model report:sender.titleLabel.text question_id:self.question_id];
+//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
+}
+- (void)ignore:(UIButton *)sender{
+    [self.model ignore:self.question_id];
+//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 
 - (void)answer:(UIButton *)sender{
-    QAAnswerViewController *vc = [[QAAnswerViewController alloc]initWithQuestionId:self.id content:[self.model.detailData objectForKey:@"title"]];
+    QAAnswerViewController *vc = [[QAAnswerViewController alloc]initWithQuestionId:self.question_id content:[self.model.detailData objectForKey:@"title"]];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)replyComment:(nonnull NSNumber *)answerId {
@@ -165,6 +155,6 @@
     }
 }
 - (void)tapAdoptBtn:(nonnull NSNumber *)answerId{
-    [self.model adoptAnswer:self.id answerId:answerId];
+    [self.model adoptAnswer:self.question_id answerId:answerId];
 }
 @end

@@ -138,7 +138,7 @@
     [self.answerTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     //自适应高度
     self.answerTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.answerTextView.text = @"请输入回复内容";
+    self.answerTextView.text = @"请尽可能给出明确的解决思路哦！";
     [self.answerTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
     self.answerTextView.delegate = self;
     [self.view addSubview:self.answerTextView];
@@ -153,7 +153,7 @@
     self.answerImageArray = [NSMutableArray array];
     self.answerImageViewArray = [NSMutableArray array];
     [self.answerImageViewArray addObject:addImageView];
-    [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
+    [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
     //    [addImageView setImage:self.answerImageViewArray[0]];
     addImageView.userInteractionEnabled = YES;
     //添加点击手势
@@ -181,7 +181,7 @@
     
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView{
-    if ([textView.text isEqualToString:@"请输入回复内容"]) {
+    if ([textView.text isEqualToString:@"请尽可能给出明确的解决思路哦！"]) {
         textView.text = @"";
     }
 }
@@ -193,7 +193,7 @@
         
         UIImageView *addImageView = [[UIImageView alloc]init];
         
-        [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
+        [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
         addImageView.userInteractionEnabled = YES;
         //添加点击手势
         UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
@@ -294,12 +294,13 @@
 -(BOOL)navigationShouldPopOnBackButton{
     if (1) {
         // 在这里创建UIAlertController等方法
-        [self saveAskContent];
+        [self saveAnswerContent];
         return NO;
     }
     return YES;
 }
-- (void)saveAskContent{
+
+- (void)saveAnswerContent{
     if ([[UIApplication sharedApplication].keyWindow viewWithTag:997]) {
         [[[UIApplication sharedApplication].keyWindow viewWithTag:997] removeFromSuperview];
     }

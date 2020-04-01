@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QABaseViewController : UIViewController
-
+@property(nonatomic,strong)UIButton *rightButton;
+- (void)customNavigationBar;
+- (void)customNavigationRightButton;
 @end
 
 NS_ASSUME_NONNULL_END

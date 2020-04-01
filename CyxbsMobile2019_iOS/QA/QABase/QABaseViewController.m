@@ -9,14 +9,15 @@
 #import "QABaseViewController.h"
 
 @interface QABaseViewController ()
-
 @end
 
 @implementation QABaseViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.view.backgroundColor = [UIColor colorWithHexString:@""];
     [self customNavigationBar];
+    [self customNavigationRightButton];
     // Do any additional setup after loading the view.
 }
 
@@ -45,34 +46,59 @@
     }
     [backgroundView addSubview:titleLabel];
     
-    
+    UIView *backButtonView = [[UIView alloc]init];
+    backButtonView.backgroundColor = UIColor.clearColor;
+    [backgroundView addSubview:backButtonView];
     
     UIButton *backButton = [[UIButton alloc]init];
     [backButton setImage:[UIImage imageNamed:@"QANavigationBackButton"] forState:UIControlStateNormal];
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIGestureRecognizer *tapToBack = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(back)];
+    [backButtonView addGestureRecognizer:tapToBack];
     [backgroundView addSubview:backButton];
     
+    self.rightButton = [[UIButton alloc]init];
+//    [self.rightButton setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
+    [backgroundView addSubview:self.rightButton];
+    
     [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(STATUSBARHEIGHT);
+        make.top.equalTo(self.view);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
-        make.height.equalTo(@44);
+        make.height.equalTo(@TOTAL_TOP_HEIGHT);
     }];
     
+    [backButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(backgroundView).offset(17);
+        make.top.equalTo(backgroundView).offset(STATUSBARHEIGHT);
+        make.width.equalTo(@30);
+        make.height.equalTo(@44);
+    }];
+       
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backgroundView).offset(17);
-        make.top.equalTo(backgroundView).offset(11);
+        make.top.equalTo(backgroundView).offset(STATUSBARHEIGHT + 11);
         make.width.equalTo(@9);
+        make.height.equalTo(@20);
+    }];
+    
+    [self.rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(backgroundView).offset(-17);
+        make.top.equalTo(backgroundView).offset(STATUSBARHEIGHT + 11);
+        make.width.equalTo(@15);
         make.height.equalTo(@20);
     }];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         //        make.centerX.equalTo(self.view);
         //        make.bottom.equalTo(backgroundView).offset(-20);
-        make.left.equalTo(backButton).offset(15);
+        make.left.equalTo(backButton).offset(20);
         make.centerY.equalTo(backButton);
     }];
     
+}
+- (void)customNavigationRightButton{
+    [self.rightButton setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
 }
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];

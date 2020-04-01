@@ -110,6 +110,17 @@
 		D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A7423F08CB5009A242C /* QAAnswerExitView.m */; };
 		D0011A7923F09422009A242C /* QADetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A7823F09422009A242C /* QADetailView.m */; };
 		D0101D38243387ED004337ED /* QABaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D37243387ED004337ED /* QABaseViewController.m */; };
+		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
+		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
+		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
+		D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D462433C885004337ED /* SDMaskNotificationName.m */; };
+		D0101D5B2433C885004337ED /* SDMaskGuidBGView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D4C2433C885004337ED /* SDMaskGuidBGView.m */; };
+		D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D4D2433C885004337ED /* SDMaskGuidController.m */; };
+		D0101D5D2433C885004337ED /* SDMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D502433C885004337ED /* SDMaskView.m */; };
+		D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D532433C885004337ED /* SDMaskModel.m */; };
+		D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D542433C885004337ED /* SDMaskBindingEvent.m */; };
+		D0101D622433CE7B004337ED /* QADetailReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D612433CE7B004337ED /* QADetailReportView.m */; };
+		D0101D642433CE91004337ED /* QADetailReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0101D632433CE91004337ED /* QADetailReportView.xib */; };
 		D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A7FE23D4E054001A4774 /* QAListSegmentView.m */; };
 		D026A80523D4E054001A4774 /* QAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A80023D4E054001A4774 /* QAListViewController.m */; };
 		D026A80623D4E054001A4774 /* QA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D026A80223D4E054001A4774 /* QA.xcassets */; };
@@ -119,7 +130,6 @@
 		D026A81723D50421001A4774 /* QADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81623D50421001A4774 /* QADetailViewController.m */; };
 		D026A81B23D5C119001A4774 /* QAListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81A23D5C119001A4774 /* QAListModel.m */; };
 		D03C6B2323DF4CAA0093EF09 /* QAAskNextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C6B2223DF4CAA0093EF09 /* QAAskNextStepViewController.m */; };
-		D03E59B023D9C4C700E0F34D /* QADetailImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */; };
 		D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */; };
 		D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59CB23DB30A900E0F34D /* QAAskModel.m */; };
 		D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59CE23DB30A900E0F34D /* QAAskNextStepView.m */; };
@@ -537,6 +547,30 @@
 		D0011A7823F09422009A242C /* QADetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailView.m; sourceTree = "<group>"; };
 		D0101D36243387ED004337ED /* QABaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QABaseViewController.h; sourceTree = "<group>"; };
 		D0101D37243387ED004337ED /* QABaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QABaseViewController.m; sourceTree = "<group>"; };
+		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
+		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
+		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
+		D0101D422433C885004337ED /* UIResponder+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+SDMask.m"; sourceTree = "<group>"; };
+		D0101D432433C885004337ED /* SDMaskProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskProtocol.h; sourceTree = "<group>"; };
+		D0101D452433C885004337ED /* SDMaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMaskController.m; sourceTree = "<group>"; };
+		D0101D462433C885004337ED /* SDMaskNotificationName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMaskNotificationName.m; sourceTree = "<group>"; };
+		D0101D472433C885004337ED /* SDMaskInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskInterface.h; sourceTree = "<group>"; };
+		D0101D482433C885004337ED /* SDMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskView.h; sourceTree = "<group>"; };
+		D0101D492433C885004337ED /* SDMaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskController.h; sourceTree = "<group>"; };
+		D0101D4A2433C885004337ED /* SDMaskNotificationName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskNotificationName.h; sourceTree = "<group>"; };
+		D0101D4C2433C885004337ED /* SDMaskGuidBGView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMaskGuidBGView.m; sourceTree = "<group>"; };
+		D0101D4D2433C885004337ED /* SDMaskGuidController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMaskGuidController.m; sourceTree = "<group>"; };
+		D0101D4E2433C885004337ED /* SDMaskGuidBGView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskGuidBGView.h; sourceTree = "<group>"; };
+		D0101D4F2433C885004337ED /* SDMaskGuidController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskGuidController.h; sourceTree = "<group>"; };
+		D0101D502433C885004337ED /* SDMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMaskView.m; sourceTree = "<group>"; };
+		D0101D522433C885004337ED /* SDMaskBindingEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskBindingEvent.h; sourceTree = "<group>"; };
+		D0101D532433C885004337ED /* SDMaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMaskModel.m; sourceTree = "<group>"; };
+		D0101D542433C885004337ED /* SDMaskBindingEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMaskBindingEvent.m; sourceTree = "<group>"; };
+		D0101D552433C885004337ED /* SDMaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMaskModel.h; sourceTree = "<group>"; };
+		D0101D562433C885004337ED /* UIResponder+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+SDMask.h"; sourceTree = "<group>"; };
+		D0101D602433CE7B004337ED /* QADetailReportView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QADetailReportView.h; sourceTree = "<group>"; };
+		D0101D612433CE7B004337ED /* QADetailReportView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailReportView.m; sourceTree = "<group>"; };
+		D0101D632433CE91004337ED /* QADetailReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QADetailReportView.xib; sourceTree = "<group>"; };
 		D026A7FC23D4E054001A4774 /* QAListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListViewController.h; sourceTree = "<group>"; };
 		D026A7FE23D4E054001A4774 /* QAListSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListSegmentView.m; sourceTree = "<group>"; };
 		D026A7FF23D4E054001A4774 /* QAListSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListSegmentView.h; sourceTree = "<group>"; };
@@ -553,7 +587,6 @@
 		D026A81A23D5C119001A4774 /* QAListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAListModel.m; sourceTree = "<group>"; };
 		D03C6B2123DF4CAA0093EF09 /* QAAskNextStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAAskNextStepViewController.h; sourceTree = "<group>"; };
 		D03C6B2223DF4CAA0093EF09 /* QAAskNextStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAAskNextStepViewController.m; sourceTree = "<group>"; };
-		D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QADetailImageView.xib; sourceTree = "<group>"; };
 		D03E59B223D9D8BE00E0F34D /* QAAnswerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAAnswerViewController.h; sourceTree = "<group>"; };
 		D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAAnswerViewController.m; sourceTree = "<group>"; };
 		D03E59C923DB30A900E0F34D /* QAAskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAskViewController.h; sourceTree = "<group>"; };
@@ -979,6 +1012,7 @@
 		1A141339235F524B0001417E /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D0101D3D2433C885004337ED /* SDMask */,
 				1A141345235F524B0001417E /* NetWork */,
 				1A14133D235F524B0001417E /* AESCipher */,
 				1A14133A235F524B0001417E /* UILabel+Adapter.h */,
@@ -1613,6 +1647,66 @@
 			path = QABase;
 			sourceTree = "<group>";
 		};
+		D0101D3D2433C885004337ED /* SDMask */ = {
+			isa = PBXGroup;
+			children = (
+				D0101D3E2433C885004337ED /* Category */,
+				D0101D412433C885004337ED /* SDMask.h */,
+				D0101D422433C885004337ED /* UIResponder+SDMask.m */,
+				D0101D432433C885004337ED /* SDMaskProtocol.h */,
+				D0101D442433C885004337ED /* Mask */,
+				D0101D512433C885004337ED /* Object */,
+				D0101D562433C885004337ED /* UIResponder+SDMask.h */,
+			);
+			path = SDMask;
+			sourceTree = "<group>";
+		};
+		D0101D3E2433C885004337ED /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */,
+				D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		D0101D442433C885004337ED /* Mask */ = {
+			isa = PBXGroup;
+			children = (
+				D0101D452433C885004337ED /* SDMaskController.m */,
+				D0101D462433C885004337ED /* SDMaskNotificationName.m */,
+				D0101D472433C885004337ED /* SDMaskInterface.h */,
+				D0101D482433C885004337ED /* SDMaskView.h */,
+				D0101D492433C885004337ED /* SDMaskController.h */,
+				D0101D4A2433C885004337ED /* SDMaskNotificationName.h */,
+				D0101D4B2433C885004337ED /* Guid */,
+				D0101D502433C885004337ED /* SDMaskView.m */,
+			);
+			path = Mask;
+			sourceTree = "<group>";
+		};
+		D0101D4B2433C885004337ED /* Guid */ = {
+			isa = PBXGroup;
+			children = (
+				D0101D4C2433C885004337ED /* SDMaskGuidBGView.m */,
+				D0101D4D2433C885004337ED /* SDMaskGuidController.m */,
+				D0101D4E2433C885004337ED /* SDMaskGuidBGView.h */,
+				D0101D4F2433C885004337ED /* SDMaskGuidController.h */,
+			);
+			path = Guid;
+			sourceTree = "<group>";
+		};
+		D0101D512433C885004337ED /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				D0101D522433C885004337ED /* SDMaskBindingEvent.h */,
+				D0101D532433C885004337ED /* SDMaskModel.m */,
+				D0101D542433C885004337ED /* SDMaskBindingEvent.m */,
+				D0101D552433C885004337ED /* SDMaskModel.h */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
 		D026A7FB23D4E054001A4774 /* QAList */ = {
 			isa = PBXGroup;
 			children = (
@@ -1667,12 +1761,14 @@
 		D03E59AE23D9C44D00E0F34D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D03E59AF23D9C4C700E0F34D /* QADetailImageView.xib */,
 				D0011A7723F09422009A242C /* QADetailView.h */,
 				D0011A7823F09422009A242C /* QADetailView.m */,
 				D0C5BC4323F14CF90022CC34 /* QADetailAnswerListView.h */,
 				D0C5BC4423F14CF90022CC34 /* QADetailAnswerListView.m */,
 				D0C5BC4623F14D110022CC34 /* QADetailAnswerListView.xib */,
+				D0101D602433CE7B004337ED /* QADetailReportView.h */,
+				D0101D612433CE7B004337ED /* QADetailReportView.m */,
+				D0101D632433CE91004337ED /* QADetailReportView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2495,7 +2591,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB34EADD239BD4550052B65E /* 多课1@3x.png in Resources */,
-				D03E59B023D9C4C700E0F34D /* QADetailImageView.xib in Resources */,
 				DB34EAFD239BD4550052B65E /* remind_image_title@2x.png in Resources */,
 				EE75BF9323F5884100208039 /* SetBuilding.xcassets in Resources */,
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
@@ -2518,6 +2613,7 @@
 				DB34EB03239BD4550052B65E /* 不提醒@3x.png in Resources */,
 				DB34EB06239BD4550052B65E /* 左三角@2x.png in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
+				D0101D642433CE91004337ED /* QADetailReportView.xib in Resources */,
 				1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */,
 				D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */,
 				DB34EB12239BD4550052B65E /* remind_image_confirm@2x.png in Resources */,
@@ -2669,6 +2765,7 @@
 				1AD038DA23FA775600D5C90E /* MineQACommentItem.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
 				1AD038D423F9471A00D5C90E /* MineQAMyAnswerItem.m in Sources */,
+				D0101D5B2433C885004337ED /* SDMaskGuidBGView.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
@@ -2694,6 +2791,7 @@
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
+				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
 				1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */,
 				EE75BFC223F5884100208039 /* SCBarChart.m in Sources */,
@@ -2702,6 +2800,7 @@
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
+				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				1A21CD5B242A48F6008B2EA7 /* SchoolBusContentView.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
@@ -2743,6 +2842,7 @@
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
+				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
@@ -2783,6 +2883,7 @@
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
+				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
 				EE75BFCC23F5884100208039 /* LQQFinderToolViewController.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
@@ -2813,10 +2914,12 @@
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
+				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
 				EE75BFA223F5884100208039 /* ExamArrangeModel.m in Sources */,
 				EE75BF9423F5884100208039 /* InstallRoomViewController.m in Sources */,
+				D0101D622433CE7B004337ED /* QADetailReportView.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				EE75BFB223F5884100208039 /* EmptyClassModel.m in Sources */,
 				EE75BF9F23F5884100208039 /* NotSetElectriceFeeButton.m in Sources */,
@@ -2836,12 +2939,14 @@
 				EE75BFC323F5884100208039 /* UICountingLabel.m in Sources */,
 				EE75BF9C23F5884100208039 /* EnterButton.m in Sources */,
 				1AD038D723FA691100D5C90E /* MineQAMyAnswerDraftItem.m in Sources */,
+				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
 				EE75BFAC23F5884100208039 /* ClassmateItem.m in Sources */,
 				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
 				EE75BFC623F5884100208039 /* ScoreViewController.m in Sources */,
 				D0011A7923F09422009A242C /* QADetailView.m in Sources */,
 				EE75BFA923F5884100208039 /* ChooseStudentListViewController.m in Sources */,
 				EE75BFC023F5884100208039 /* SCPieChart.m in Sources */,
+				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,
@@ -2852,6 +2957,7 @@
 				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
 				1AD038DD23FA7B0E00D5C90E /* MineQARecommentItem.m in Sources */,
+				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
 				EE75BFBF23F5884100208039 /* SCChartLabel.m in Sources */,
 				D0011A6E23F082FD009A242C /* QAAskExitView.m in Sources */,
 				EE75BF9123F5884100208039 /* InstallBuildTableViewCell.m in Sources */,

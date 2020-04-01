@@ -74,12 +74,12 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dp0-wt-lnr">
-                    <rect key="frame" x="368" y="165" width="30" height="5"/>
+                    <rect key="frame" x="378" y="162.5" width="20" height="10"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="5" id="Noq-nQ-bdc"/>
-                        <constraint firstAttribute="width" constant="30" id="UPD-fp-vTL"/>
+                        <constraint firstAttribute="height" constant="10" id="Noq-nQ-bdc"/>
+                        <constraint firstAttribute="width" constant="20" id="UPD-fp-vTL"/>
                     </constraints>
-                    <state key="normal" title="Button" backgroundImage="moreIcon"/>
+                    <state key="normal" title="Button" image="QAMoreButton"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFe-ld-JY2">
                     <rect key="frame" x="61" y="60" width="33" height="18.5"/>
@@ -88,7 +88,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVC-Np-ZtD">
-                    <rect key="frame" x="298" y="157.5" width="20" height="20"/>
+                    <rect key="frame" x="308" y="157.5" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="NkM-BQ-bjb"/>
                         <constraint firstAttribute="width" constant="20" id="sHo-FA-e3z"/>
@@ -97,7 +97,7 @@
                     <state key="selected" backgroundImage="selectedLikeIcon"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gR6-V5-vKO">
-                    <rect key="frame" x="323" y="162" width="13" height="11"/>
+                    <rect key="frame" x="333" y="162" width="13" height="11"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="13" id="4cI-ix-jzD"/>
                         <constraint firstAttribute="height" constant="11" id="FAZ-rH-JpO"/>
@@ -155,8 +155,8 @@
         </view>
     </objects>
     <resources>
+        <image name="QAMoreButton" width="29" height="29"/>
         <image name="likeIcon" width="10" height="10"/>
-        <image name="moreIcon" width="8" height="2"/>
         <image name="selectedLikeIcon" width="10" height="13"/>
     </resources>
 </document>

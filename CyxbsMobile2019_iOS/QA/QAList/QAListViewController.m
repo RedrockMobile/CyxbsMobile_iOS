@@ -155,9 +155,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *dic = _dataArray[indexPath.row];
-    NSNumber *id = [dic objectForKey:@"id"];
+    NSNumber *question_id = [dic objectForKey:@"id"];
     NSString *title = [dic objectForKey:@"title"];
-    QADetailViewController *detailVC = [[QADetailViewController alloc] initViewWithId:id title:title];
+    QADetailViewController *detailVC = [[QADetailViewController alloc] initViewWithId:question_id title:title];
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.superController.navigationController pushViewController:detailVC animated:YES];
 }
