@@ -42,6 +42,7 @@ CHANGE_CGRectMake(CGFloat x, CGFloat y,CGFloat width,CGFloat height){
 @property(nonatomic,strong)UIImageView *buildView;
 @property(nonatomic,strong)UIImageView *roomView;
 @property (nonatomic, assign) NSInteger building;//几栋：例如15栋
+@property (nonatomic, weak)UIButton *backButton;//返回按钮
 
 @end
 
@@ -56,16 +57,41 @@ CHANGE_CGRectMake(CGFloat x, CGFloat y,CGFloat width,CGFloat height){
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard)];
     tapGesture.delegate = self;
     [self.view addGestureRecognizer:tapGesture];
-    
+    [self configureNavigationBar];
+    [self addBackButton];
     [self addTitleView];
-
     [self addBuildIcon];
     [self addRoomIcon];
     [self addbuildLabel];
     [self addRoomTextField];
     [self addachieveBtn];
 }
-
+- (void)configureNavigationBar {
+    self.navigationController.navigationBar.hidden = YES;
+}
+- (void)addBackButton {
+    UIButton *button = [[UIButton alloc]init];
+    [self.view addSubview:button];
+    self.backButton = button;
+    [button setImage:[UIImage imageNamed:@"LQQBackButton"] forState:normal];
+    [button setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@30);
+        make.height.equalTo(@30);
+        if (IS_IPHONEX) {
+            make.top.equalTo(self.view).offset(65);
+        }else {
+            make.top.equalTo(self.view).offset(40);
+        }
+        make.left.equalTo(self.view).offset(8.6);
+    }];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(6, 10, 6, 10)];//增大点击范围
+    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)popController {
+    [self.navigationController popViewControllerAnimated:YES];
+    self.navigationController.navigationBar.hidden = NO;
+}
 - (void)hideKeyBoard{
     [[[UIApplication sharedApplication]keyWindow]endEditing:YES];
 }
@@ -75,7 +101,12 @@ CHANGE_CGRectMake(CGFloat x, CGFloat y,CGFloat width,CGFloat height){
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"electricity_header_setting" ofType:@"gif"];
     NSData *gifData = [NSData dataWithContentsOfFile:path];
-    _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    if (IS_IPHONEX) {
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,100, self.view.width, self.view.height)];
+    }else {
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,80, self.view.width, self.view.height)];
+    }
+
     _webView.scalesPageToFit = YES;
     [_webView loadData:gifData MIMEType:@"image/gif" textEncodingName:nil baseURL:nil];
     _webView.backgroundColor = [UIColor clearColor];
