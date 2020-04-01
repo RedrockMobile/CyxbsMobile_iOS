@@ -56,6 +56,7 @@
 #import "QABaseViewController.h"
 #import "NSDate+Timestamp.h"
 #import <UMAnalytics/MobClick.h>
+#import "SDMask.h"
 //#import "AESCipher.h"         // 加密用的，暂时没什么用，有用的时候再打开注释吧
 
 
@@ -278,5 +279,10 @@
 
 //在回答下添加评论
 #define QA_ADD_DISCUSS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/remark"
+
+/*
+举报部分
+*/
+#define QA_ADD_REPORT_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
 
 #endif

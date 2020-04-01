@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QADetailViewController : UIViewController
--(instancetype)initViewWithId:(NSNumber *)id title:(NSString *)title;
+@interface QADetailViewController : QABaseViewController
+-(instancetype)initViewWithId:(NSNumber *)question_id title:(NSString *)title;
 @end
 
 NS_ASSUME_NONNULL_END

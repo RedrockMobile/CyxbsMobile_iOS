@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)adoptAnswer:(NSNumber *)questionId answerId:(NSNumber *)answerId;
 - (void)praise:(nonnull NSNumber *)answerId;
 - (void)cancelPraise:(nonnull NSNumber *)answerId;
+
+- (void)report:(NSString *)type question_id:(NSNumber *)question_id;
+- (void)ignore:(NSNumber *)question_id;
 @end
 
 NS_ASSUME_NONNULL_END

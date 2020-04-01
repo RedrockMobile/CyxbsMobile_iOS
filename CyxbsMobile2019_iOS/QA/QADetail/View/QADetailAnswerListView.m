@@ -38,7 +38,7 @@
     [self.commentBtn setTitle:[NSString stringWithFormat:@"%@条回复",[dic objectForKey:@"comment_num"]] forState:UIControlStateNormal];
     self.commentBtn.tag = self.answerId.integerValue;
     
-    self.praiseNumLabel.text = [NSString stringWithFormat:@"%@积分",[dic objectForKey:@"praise_num"]];
+    self.praiseNumLabel.text = [dic objectForKey:@"praise_num"];
     
     NSNumber *is_praised = [dic objectForKey:@"is_praised"];
     if (is_praised.integerValue == 1) {

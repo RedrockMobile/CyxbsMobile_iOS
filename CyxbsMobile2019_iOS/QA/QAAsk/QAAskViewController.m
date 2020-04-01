@@ -18,62 +18,40 @@
 @property(strong,nonatomic)QAAskModel *model;
 @property(strong,nonatomic)UITextField *titleTextField;
 @property(strong,nonatomic)QAAskNextStepView *nextStepView;
+@property(strong,nonatomic)SDMask *nextStepViewMask;
 @property(copy,nonatomic)NSString *kind;
 @property(strong,nonatomic)NSMutableArray *kindBtnArray;
+@property(strong,nonatomic)QAAskExitView *exitView;
+@property(strong,nonatomic)SDMask *exitViewMask;
 @end
 
 @implementation QAAskViewController
 
 - (void)viewDidLoad {
+    
+    self.title = @"提供帮助";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self configNavagationBar];
-    [self setNavigationBar:@"提问"];
     [self setNotification];
     [self setupUI];
 }
 
-- (void)setNavigationBar:(NSString *)title{
-    //设置标题
-    UILabel *label = [[UILabel alloc]init];
-    label.numberOfLines = 0;
-    [label setFrame:CGRectMake(0, 0, SCREEN_WIDTH, NVGBARHEIGHT)];
-    label.textAlignment = NSTextAlignmentLeft;
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 23], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
-    label.attributedText = string;
-    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    label.alpha = 1.0;
-    self.navigationItem.titleView = label;
-    
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0 , 0, 60, 60);
-    [button setTitle:@"下一步" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:20]];
-    [button addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
-    // 设置rightBarButtonItem
-    UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    
-    //设置返回按钮样子
-    self.navigationController.navigationBar.topItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:@"#122D55"];
-    
-}
-- (void)configNavagationBar {
-    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
-    //隐藏导航栏的分割线
+- (void)customNavigationRightButton{
+    [self.rightButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.rightButton.superview).offset(STATUSBARHEIGHT);
+        make.width.equalTo(@60);
+        make.height.equalTo(@44);
+    }];
     if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    } else {
-        // Fallback on earlier versions
-    }
-    
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    
+           [self.rightButton setTitleColor:[UIColor colorNamed:@"QANavigationTitleColor"] forState:UIControlStateNormal];;
+       } else {
+           [self.rightButton setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
+       }
+    [self.rightButton setTitle:@"下一步" forState:UIControlStateNormal];
+    [self.rightButton addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
 }
+
+
 - (void)setNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QAQuestionCommitSuccess)
@@ -135,10 +113,10 @@
         titleBtn.tag = i;
         [titleBtn addTarget:self action:@selector(tapTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
         if (i == 0) {
-            [titleBtn setFrame:CGRectMake(20, 5, 45, 23)];
+            [titleBtn setFrame:CGRectMake(20, 5, 50, 25)];
             titleBtn.backgroundColor = [UIColor colorWithHexString:@"#F7DAD7"];
         }else{
-            [titleBtn setFrame:CGRectMake(20+i*65, 5, 45, 23)];
+            [titleBtn setFrame:CGRectMake(20+i*65, 5, 50, 25)];
             titleBtn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
         }
         
@@ -154,7 +132,7 @@
     [self.titleTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
-        make.top.mas_equalTo(titleView.mas_bottom).mas_offset(10);
+        make.top.mas_equalTo(titleView.mas_bottom).mas_offset(15);
         make.height.mas_equalTo(40);
     }];
     
@@ -163,7 +141,7 @@
     [self.askTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     //自适应高度
     self.askTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.askTextView.text = @"提问内容";
+    self.askTextView.text = @"详细描述你的问题和需求，表达越清楚，越容易获得帮助哦！";
     [self.askTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
     self.askTextView.delegate = self;
     [self.view addSubview:self.askTextView];
@@ -177,7 +155,7 @@
     UIImageView *addImageView = [[UIImageView alloc]init];
     self.askImageArray = [NSMutableArray array];
 //    [self.askImageArray addObject:addImageView];
-    [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
+    [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
     //    [addImageView setImage:self.askImageArray[0]];
     addImageView.userInteractionEnabled = YES;
     //添加点击手势
@@ -205,6 +183,12 @@
     return YES;
     
 }
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if ([textView.text isEqualToString:@"详细描述你的问题和需求，表达越清楚，越容易获得帮助哦！"]) {
+        textView.text = @"";
+    }
+}
+
 - (void)tapTitleBtn:(UIButton *)sender{
     
     for (int i = 0;i < self.kindBtnArray.count;i++) {
@@ -226,7 +210,7 @@
         
         UIImageView *addImageView = [[UIImageView alloc]init];
         
-        [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
+        [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
         addImageView.userInteractionEnabled = YES;
         //添加点击手势
         UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
@@ -246,7 +230,7 @@
         
         UIImageView *addImageView = [[UIImageView alloc]init];
         
-        [addImageView setImage:[UIImage imageNamed:@"userIcon"]];
+        [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
         addImageView.userInteractionEnabled = YES;
         //添加点击手势
         UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
@@ -315,10 +299,7 @@
     UIImageView *imgView = [self.askImageArray lastObject];
     [imgView setImage:image];
     [self setAddImageView];
-    //    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    //    [self calulateImageFileSize:image];
-    //当选择的类型是图片
-    
+
 }
 // 取消图片选择调用此方法
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -326,49 +307,18 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)nextStep{
-    if ([[UIApplication sharedApplication].keyWindow viewWithTag:999]) {
-        [[[UIApplication sharedApplication].keyWindow viewWithTag:999] removeFromSuperview];
-    }
-    //初始化全屏view
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    view.backgroundColor = [UIColor colorWithHexString:@"#DCDDE3"];
-    //设置view的tag
-    view.tag = 999;
-    UIView *backView = [[UIView alloc]init];
-    [backView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    //        backView.alpha = 0;
-    //添加点击手势
-    UIGestureRecognizer *hiddenNextStepView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenNextStepView)];
-    [backView addGestureRecognizer:hiddenNextStepView];
-    [view addSubview:backView];
-    
+
     self.nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 550)];
     [self.nextStepView.cancelBtn addTarget:self action:@selector(hiddenNextStepView) forControlEvents:UIControlEventTouchUpInside];
     [self.nextStepView.commitBtn addTarget:self action:@selector(commitAsk) forControlEvents:UIControlEventTouchUpInside];
     self.nextStepView.userInteractionEnabled = YES;
     self.nextStepView.alpha = 1;
-    [view addSubview:self.nextStepView];
-    
-    //显示全屏view
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:view];
-    CGRect frame = CGRectMake(0, SCREEN_HEIGHT - 530, SCREEN_WIDTH, 550);
-    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
-        self->_nextStepView.frame = frame;
-        [backView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 530)];
-    } completion:nil];
-    
-    
+    self.nextStepViewMask = [[SDMaskUserView(self.nextStepView) sdm_showActionSheetIn:self.view usingBlock:nil] usingAutoDismiss];
+    [self.nextStepViewMask show];
     
 }
 - (void)hiddenNextStepView{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UIView *view = [window viewWithTag:999];
-    [UIView animateWithDuration:0.4f animations:^{
-        //        CGRect frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500);
-    } completion:^(BOOL finished) {
-        [view removeFromSuperview];
-    }];
+    [self.nextStepViewMask dismiss];
 }
 
 - (void)commitAsk{
@@ -389,46 +339,28 @@
     }
     return YES;
 }
+- (void)back {
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self saveAskContent];
+}
 - (void)saveAskContent{
-    if ([[UIApplication sharedApplication].keyWindow viewWithTag:997]) {
-        [[[UIApplication sharedApplication].keyWindow viewWithTag:997] removeFromSuperview];
-    }
-    //初始化全屏view
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    view.backgroundColor = [UIColor colorWithHexString:@"#DCDDE3"];
-    //设置view的tag
-    view.tag = 997;
-    QAAskExitView *exitView = [[QAAskExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];
-    [exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
-    [exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:exitView];
-   
-    //显示全屏view
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:view];
-//    CGRect frame = CGRectMake(0, SCREEN_HEIGHT - 530, SCREEN_WIDTH, 550);
-//    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
-//
-//        [backView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 530)];
-//    } completion:nil];
-    
+
+    self.exitView = [[QAAskExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];
+    [self.exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
+    [self.exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
+    self.exitViewMask = [[SDMaskUserView(self.exitView) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
+    [self.exitViewMask show];
+
     
 }
 - (void)continueEdit{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UIView *view = [window viewWithTag:997];
-    [view removeFromSuperview];
-    
-//    [UIView animateWithDuration:0.4f animations:^{
-//        //        CGRect frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500);
-//    } completion:^(BOOL finished) {
-//        [view removeFromSuperview];
-//    }];
+    [self.exitViewMask dismiss];
 }
 - (void)saveAndExit{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UIView *view = [window viewWithTag:997];
-    [view removeFromSuperview];
+
+    [self.exitView removeFromSuperview];
+    [self.exitViewMask dismiss];
     [self.navigationController popViewControllerAnimated:YES];
+    
 }
 @end

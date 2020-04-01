@@ -15,8 +15,8 @@
             timestampString = "604016397.030369"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-tapCommentBtn:"
             landmarkType = "7">
          </BreakpointContent>
@@ -147,22 +147,6 @@
             startingLineNumber = "109"
             endingLineNumber = "109"
             landmarkName = "-cancelPraise:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D6FF2163-5CBA-4A18-BB14-E6DC981D985A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/QA/QAAnswer/QAAnswerViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "-commitAnswer"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -15,6 +15,8 @@
         NSString *name = NSStringFromClass(self.class);
         [[NSBundle mainBundle] loadNibNamed:name owner:self options:nil];
         self.contentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        
+        self.contentView.layer.cornerRadius = 16;
         [self addSubview:self.contentView];
     }
     [self setupView];

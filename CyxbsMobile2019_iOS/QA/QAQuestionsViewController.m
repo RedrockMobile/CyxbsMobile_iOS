@@ -171,6 +171,7 @@
 
 - (void)tapAskBtn{
     QAAskViewController *vc = [[QAAskViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end

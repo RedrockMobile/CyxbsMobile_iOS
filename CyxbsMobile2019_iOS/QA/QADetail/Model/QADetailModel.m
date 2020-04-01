@@ -115,4 +115,33 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
+
+- (void)report:(NSString *)type question_id:(NSNumber *)question_id{
+    NSDictionary *parameters = @{@"question_id":question_id,@"type":type};
+    [[HttpClient defaultClient] requestWithToken:QA_ADD_REPORT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSString *info = [responseObject objectForKey:@"info"];
+        if ([info isEqualToString:@"success"]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailReportSuccess" object:nil];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailReportError" object:nil];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailReportFailure" object:nil];
+    }];
+}
+- (void)ignore:(NSNumber *)question_id{
+    NSDictionary *parameters = @{@"question_id":question_id};
+    [[HttpClient defaultClient] requestWithToken:QA_IGNORE_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSString *info = [responseObject objectForKey:@"info"];
+        if ([info isEqualToString:@"success"]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailIgnoreSuccess" object:nil];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailIgnoreError" object:nil];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailIgnoreFailure" object:nil];
+    }];
+}
 @end
