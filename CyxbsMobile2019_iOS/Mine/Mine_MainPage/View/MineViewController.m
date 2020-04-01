@@ -58,7 +58,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     // 隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
-    
+    [self loadUserData];
+}
+
+- (void)loadUserData {
     UserItem *user = [UserItemTool defaultItem];
     self.contentView.headerView.nicknameLabel.text = user.nickname;
     

@@ -12,6 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EditMyInfoModel : NSObject
 
++ (void)uploadProfile:(UIImage *)profile
+              success:(void (^)(NSDictionary *responseObject))success
+              failure:(void (^)(NSError *error))failure;
+
++ (void)uploadUserInfo:(NSDictionary *)userInfo
+               success:(void (^)(NSDictionary *responseObject))success
+               failure:(void (^)(NSError *error))failure;
+
 @end
 
 NS_ASSUME_NONNULL_END
