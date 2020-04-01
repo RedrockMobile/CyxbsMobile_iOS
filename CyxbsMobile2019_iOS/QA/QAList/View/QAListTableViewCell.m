@@ -28,7 +28,7 @@
     
     // Initialization code
 }
--(void)layoutSubviews{
+- (void)layoutSubviews{
     [self.name setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     [self.content setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     [self.answerNum setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];

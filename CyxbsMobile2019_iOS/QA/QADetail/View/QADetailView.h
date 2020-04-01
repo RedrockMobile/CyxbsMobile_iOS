@@ -11,10 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol QADetailDelegate <NSObject>
 
--(void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(NSNumber *)answerId;
--(void)tapAdoptBtn:(NSNumber *)answerId;
--(void)tapCommentBtn:(NSNumber *)answerId;
--(void)replyComment:(NSNumber *)answerId;
+- (void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(NSNumber *)answerId;
+- (void)tapAdoptBtn:(NSNumber *)answerId;
+- (void)tapCommentBtn:(NSNumber *)answerId;
+- (void)replyComment:(NSNumber *)answerId;
 @end
 @interface QADetailView : UIView
 @property(strong,nonatomic)UIButton *answerButton;
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,weak)id<QADetailDelegate>delegate;
 @property(nonatomic,assign)BOOL isSelf;
 
--(void)setupUIwithDic:(NSDictionary *)dic answersData:(NSArray *)answersData;
+- (void)setupUIwithDic:(NSDictionary *)dic answersData:(NSArray *)answersData;
 @end
 
 NS_ASSUME_NONNULL_END

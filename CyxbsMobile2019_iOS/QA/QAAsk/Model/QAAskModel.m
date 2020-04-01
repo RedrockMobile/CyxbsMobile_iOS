@@ -9,7 +9,7 @@
 #import "QAAskModel.h"
 
 @implementation QAAskModel
--(void)commitAsk:(NSString *)title content:(NSString *)content kind:(NSString *)kind reward:(NSString *)reward disappearTime:(NSString *)disappearTime imageArray:(NSArray *)imageArray{
+- (void)commitAsk:(NSString *)title content:(NSString *)content kind:(NSString *)kind reward:(NSString *)reward disappearTime:(NSString *)disappearTime imageArray:(NSArray *)imageArray{
     NSLog(@"s");
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"description":content,@"title":title,@"kind":kind,@"reward":reward,@"disappear_time":disappearTime};
@@ -34,10 +34,16 @@
     }];
 }
 
--(void)uploadPhoto:(NSArray *)photoArray{
+- (void)uploadPhoto:(NSArray *)photoArray{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":self.questionId};
-    [client uploadImageWithJson:QA_UPLOAD_PIC_API method:HttpRequestPost parameters:parameters imageArray:photoArray prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
+    NSMutableArray *imageNamesx = [NSMutableArray array];
+    for (int i = 0; i < photoArray.count; i++) {
+        [imageNamesx addObject:[NSString stringWithFormat:@"photo%d",i+1]];
+        
+    }
+    NSArray *imageNames = [NSArray arrayWithObject:imageNamesx];
+    [client uploadImageWithJson:QA_UPLOAD_PIC_API method:HttpRequestPost parameters:parameters imageArray:photoArray imageNames:imageNames prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];

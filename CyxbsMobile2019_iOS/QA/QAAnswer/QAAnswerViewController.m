@@ -34,7 +34,7 @@
     [self setupUI];
     return self;
 }
--(void)setNavigationBar:(NSString *)title{
+- (void)setNavigationBar:(NSString *)title{
     //设置标题
     UILabel *label = [[UILabel alloc]init];
     label.numberOfLines = 0;
@@ -80,7 +80,7 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
 }
--(void)setNotification{
+- (void)setNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QAAnswerCommitSuccess)
                                                  name:@"QAAnswerCommitSuccess" object:nil];
@@ -89,7 +89,7 @@
                                                  name:@"QAAnswerCommitFailure" object:nil];
 }
 
--(void)setupUI{
+- (void)setupUI{
    
     
     UIView *separateView = [[UIView alloc]init];
@@ -180,13 +180,13 @@
     return YES;
     
 }
--(void)textViewDidBeginEditing:(UITextView *)textView{
+- (void)textViewDidBeginEditing:(UITextView *)textView{
     if ([textView.text isEqualToString:@"请输入回复内容"]) {
         textView.text = @"";
     }
 }
 
--(void)setAddImageView{
+- (void)setAddImageView{
    
 
     if (self.answerImageViewArray.count<3&&self.answerImageViewArray.count>0) {
@@ -211,7 +211,7 @@
         
     }
 }
--(void)addImage{
+- (void)addImage{
     
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
@@ -269,15 +269,15 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
--(void)commitAnswer{
+- (void)commitAnswer{
     self.model = [[QAAnswerModel alloc]init];
     [self.model commitAnswer:self.questionId content:self.answerTextView.text imageArray:self.answerImageArray];
 
 }
--(void)QAAnswerCommitSuccess{
+- (void)QAAnswerCommitSuccess{
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)QAAnswerCommitFailure{
+- (void)QAAnswerCommitFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"答案提交失败" preferredStyle:UIAlertControllerStyleAlert];
@@ -299,7 +299,7 @@
     }
     return YES;
 }
--(void)saveAskContent{
+- (void)saveAskContent{
     if ([[UIApplication sharedApplication].keyWindow viewWithTag:997]) {
         [[[UIApplication sharedApplication].keyWindow viewWithTag:997] removeFromSuperview];
     }
@@ -324,7 +324,7 @@
     
     
 }
--(void)continueEdit{
+- (void)continueEdit{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIView *view = [window viewWithTag:997];
     [view removeFromSuperview];
@@ -335,7 +335,7 @@
     //        [view removeFromSuperview];
     //    }];
 }
--(void)saveAndExit{
+- (void)saveAndExit{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIView *view = [window viewWithTag:997];
     [view removeFromSuperview];

@@ -33,7 +33,7 @@
     [self setupUI];
 }
 
--(void)setNavigationBar:(NSString *)title{
+- (void)setNavigationBar:(NSString *)title{
     //设置标题
     UILabel *label = [[UILabel alloc]init];
     label.numberOfLines = 0;
@@ -74,7 +74,7 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
 }
--(void)setNotification{
+- (void)setNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QAQuestionCommitSuccess)
                                                  name:@"QAQuestionCommitSuccess" object:nil];
@@ -82,11 +82,11 @@
                                              selector:@selector(QAQuestionCommitFailure)
                                                  name:@"QAQuestionCommitFailure" object:nil];
 }
--(void)QAQuestionCommitSuccess{
+- (void)QAQuestionCommitSuccess{
     [self hiddenNextStepView];
     [self.navigationController popViewControllerAnimated:YES];
 }
--(void)QAQuestionCommitFailure{
+- (void)QAQuestionCommitFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"答案提交失败" preferredStyle:UIAlertControllerStyleAlert];
@@ -99,7 +99,7 @@
         
     }];
 }
--(void)setupUI{
+- (void)setupUI{
     
     
     UIView *separateView = [[UIView alloc]init];
@@ -205,7 +205,7 @@
     return YES;
     
 }
--(void)tapTitleBtn:(UIButton *)sender{
+- (void)tapTitleBtn:(UIButton *)sender{
     
     for (int i = 0;i < self.kindBtnArray.count;i++) {
         UIButton *btn = self.kindBtnArray[i];
@@ -219,7 +219,7 @@
     self.kind = titleArray[sender.tag];
 }
 
--(void)setAddImageView{
+- (void)setAddImageView{
     
     
     if (self.askImageArray.count<3&&self.askImageArray.count>0) {
@@ -266,7 +266,7 @@
     }
     
 }
--(void)addImage{
+- (void)addImage{
     
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
@@ -325,7 +325,7 @@
     
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
--(void)nextStep{
+- (void)nextStep{
     if ([[UIApplication sharedApplication].keyWindow viewWithTag:999]) {
         [[[UIApplication sharedApplication].keyWindow viewWithTag:999] removeFromSuperview];
     }
@@ -361,7 +361,7 @@
     
     
 }
--(void)hiddenNextStepView{
+- (void)hiddenNextStepView{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIView *view = [window viewWithTag:999];
     [UIView animateWithDuration:0.4f animations:^{
@@ -371,7 +371,7 @@
     }];
 }
 
--(void)commitAsk{
+- (void)commitAsk{
     NSString *title = self.titleTextField.text;
     NSString *content = self.askTextView.text;
     QAAskIntegralPickerView *integralPickerView =  self.nextStepView.integralPickView;
@@ -389,7 +389,7 @@
     }
     return YES;
 }
--(void)saveAskContent{
+- (void)saveAskContent{
     if ([[UIApplication sharedApplication].keyWindow viewWithTag:997]) {
         [[[UIApplication sharedApplication].keyWindow viewWithTag:997] removeFromSuperview];
     }
@@ -414,7 +414,7 @@
     
     
 }
--(void)continueEdit{
+- (void)continueEdit{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIView *view = [window viewWithTag:997];
     [view removeFromSuperview];
@@ -425,7 +425,7 @@
 //        [view removeFromSuperview];
 //    }];
 }
--(void)saveAndExit{
+- (void)saveAndExit{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIView *view = [window viewWithTag:997];
     [view removeFromSuperview];

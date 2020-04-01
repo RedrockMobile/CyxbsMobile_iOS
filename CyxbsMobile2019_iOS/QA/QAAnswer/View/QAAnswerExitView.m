@@ -21,7 +21,7 @@
     [self setupView];
     return self;
 }
--(void)setupView{
+- (void)setupView{
     self.backgroundView.layer.cornerRadius = 10;
     self.saveAndExitBtn.layer.cornerRadius = 17;
     self.continueEditBtn.layer.cornerRadius = 25;

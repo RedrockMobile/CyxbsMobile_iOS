@@ -22,7 +22,7 @@
 }
 
 
--(void)setupView{
+- (void)setupView{
     self.alpha = 1.0;
     self.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     self.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.27].CGColor;
@@ -95,7 +95,7 @@
     }
     [self.timePickViewContent addObject:minutesArray];
 }
--(void)displayIntegralInstructions{
+- (void)displayIntegralInstructions{
     
     
 }
@@ -128,7 +128,7 @@
     }
 }
 #pragma mark pickerView滚动方法
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if (component == 0) {
         self.day = self.timePickViewContent[component][row];
     }else if(component == 1){

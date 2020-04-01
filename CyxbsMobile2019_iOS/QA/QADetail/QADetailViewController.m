@@ -20,48 +20,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
-    [self configNavagationBar];
-    //    self.scrollView = [[UIScrollView alloc]init];
-    //    [self.view addSubview:self.scrollView];
-    //    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.top.bottom.left.right.equalTo(self.view).mas_offset(0);
-    //    }];
-    //    [self setNavigationBar:@"期末考试高数应该如何复习"];
-    
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
 }
 
--(void)setNavigationBar:(NSString *)title{
-    //设置标题
-    UILabel *label = [[UILabel alloc]init];
-    label.numberOfLines = 0;
-    [label setFrame:CGRectMake(0, 0, SCREEN_WIDTH, NVGBARHEIGHT)];
-    label.textAlignment = NSTextAlignmentLeft;
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 23], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
-    label.attributedText = string;
-    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    label.alpha = 1.0;
-    self.navigationItem.titleView = label;
-    
-    //设置返回按钮样子
-    self.navigationController.navigationBar.topItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:@"#122D55"];
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0 , 0, 60, 60);
-    [button addTarget:self action:@selector(report) forControlEvents:UIControlEventTouchUpInside];
-    [button setImage:[UIImage imageNamed:@"moreIcon"] forState:UIControlStateNormal];
-    //    [self.view addSubview:button];
-    
-    // 设置rightBarButtonItem
-    UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    
-}
+
 -(instancetype)initViewWithId:(NSNumber *)id title:(NSString *)title{
     self = [super init];
-    [self setNavigationBar:title];
+    self.title = title;
+//    [self setNavigationBar:title];
     self.id = id;
     self.model = [[QADetailModel alloc]init];
     [self setNotification];
@@ -69,26 +35,8 @@
     [self loadData];
     return self;
 }
-- (void)configNavagationBar {
-    if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-    } else {
-        // Fallback on earlier versions
-    }
-    
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
-    //隐藏导航栏的分割线
-    if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    } else {
-        // Fallback on earlier versions
-    }
-    
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    
-    
-}
--(void)setupUI{
+
+- (void)setupUI{
     //    NSLog(@"%@",self.model.dataDic);
     NSDictionary *detailData = self.model.detailData;
     NSArray *answersData = self.model.answersData;
@@ -99,14 +47,14 @@
     detailView.delegate = self;
     [self.view addSubview:detailView];
 }
--(void)loadData{
+- (void)loadData{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
     [self.model getDataWithId:self.id];
 }
--(void)setNotification{
+- (void)setNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QADetailDataLoadSuccess)
                                                  name:@"QADetailDataLoadSuccess" object:nil];
@@ -121,12 +69,12 @@
                                                  name:@"QADetailDataReLoad" object:nil];
 }
 
--(void)QADetailDataLoadSuccess{
+- (void)QADetailDataLoadSuccess{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self setupUI];
     //    NSLog(@"%D,%@",self.model.dataArray.count, self.model.dataArray[0]);
 }
--(void)QADetailDataLoadError{
+- (void)QADetailDataLoadError{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"数据加载错误" message:@"网络数据解析错误" preferredStyle:UIAlertControllerStyleAlert];
@@ -140,7 +88,7 @@
     }];
 }
 
--(void)QADetailDataLoadFailure{
+- (void)QADetailDataLoadFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"数据加载失败" preferredStyle:UIAlertControllerStyleAlert];
@@ -153,11 +101,11 @@
         
     }];
 }
--(void)reloadView{
+- (void)reloadView{
     [self.view removeAllSubviews];
     [self loadData];
 }
--(void)report{
+- (void)report{
     /*
      先创建UIAlertController，preferredStyle：选择UIAlertControllerStyleActionSheet，这个就是相当于创建8.0版本之前的UIActionSheet；
      
@@ -198,7 +146,7 @@
     [self presentViewController:actionSheet animated:YES completion:nil];
 }
 
--(void)answer:(UIButton *)sender{
+- (void)answer:(UIButton *)sender{
     QAAnswerViewController *vc = [[QAAnswerViewController alloc]initWithQuestionId:self.id content:[self.model.detailData objectForKey:@"title"]];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -209,14 +157,14 @@
     [self.model getCommentData:answerId];
 }
 
--(void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(nonnull NSNumber *)answerId{
+- (void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(nonnull NSNumber *)answerId{
     if ([pariseBtn isSelected]) {
         [self.model cancelPraise:answerId];
     }else{
         [self.model praise:answerId];
     }
 }
--(void)tapAdoptBtn:(nonnull NSNumber *)answerId{
+- (void)tapAdoptBtn:(nonnull NSNumber *)answerId{
     [self.model adoptAnswer:self.id answerId:answerId];
 }
 @end

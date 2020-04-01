@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *praiseNumLabel;
 @property (weak, nonatomic) IBOutlet UIView *separateView;
 @property(strong,nonatomic)NSNumber *answerId;
--(void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf;
+- (void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf;
 
 @end
 
