@@ -10,4 +10,24 @@
 
 @implementation EditMyInfoModel
 
++ (void)uploadProfile:(UIImage *)profile success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
+    NSDictionary *params = @{
+        @"stunum": @"2018212415"
+    };
+    
+    [[HttpClient defaultClient] uploadImageWithJson:UPLOADPROFILEAPI method:HttpRequestPost parameters:params imageArray:@[profile] imageNames:@[@"fold"] prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        success(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error);
+    }];
+}
+
++ (void)uploadUserInfo:(NSDictionary *)userInfo success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
+    [[HttpClient defaultClient] requestWithPath:UPLOADUSERINFOAPI method:HttpRequestPost parameters:userInfo prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(error);
+    }];
+}
+
 @end

@@ -18,15 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 上传用户信息
 /// @param userInfo 用户信息
-- (void)uploadUserInfo:(NSDictionary *)userInfo
-               success:(void (^)(NSDictionary *responseObject))success
-               failure:(void (^)(NSError *error))failure;;
+- (void)uploadUserInfo:(NSDictionary *)userInfo;
 
 /// 上传用户头像
 /// @param profile 头像
-- (void)uploadProfile:(UIImage *)profile
-              success:(void (^)(NSDictionary *responseObject))success
-              failure:(void (^)(NSError *error))failure;
+- (void)uploadProfile:(UIImage *)profile;
 
 - (void)attachView: (EditMyInfoViewController *)view;
 - (void)dettatchView;

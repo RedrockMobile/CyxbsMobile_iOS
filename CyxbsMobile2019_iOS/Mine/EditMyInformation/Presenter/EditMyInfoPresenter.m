@@ -7,18 +7,41 @@
 //
 
 #import "EditMyInfoPresenter.h"
+#import "EditMyInfoModel.h"
 
 @implementation EditMyInfoPresenter
 
-- (void)uploadProfile:(UIImage *)profile success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
+- (void)uploadProfile:(UIImage *)profile {
     
-    NSDictionary *params = @{
-        @"stunum": [UserDefaultTool getStuNum]
-    };
+    [EditMyInfoModel uploadProfile:profile success:^(NSDictionary * _Nonnull responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            [UserItemTool defaultItem].headImgUrl = responseObject[@"data"][@"photosrc"];
+            [self.attachedViwe profileUploadedSuccess];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
     
-    [[HttpClient defaultClient] uploadImageWithJson:UPLOADPROFILEAPI method:HttpRequestPost parameters:params imageArray:@[profile] prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+}
+
+- (void)uploadUserInfo:(NSDictionary *)userInfo {
+//    @"stuNum": [UserDefaultTool getStuNum],
+//    @"idNum": [UserDefaultTool getIdNum],
+//    @"nickname": self.contentView.nicknameTextField.text ? self.contentView.nicknameTextField.text : self.contentView.nicknameTextField.placeholder,
+//    @"introduction": self.contentView.introductionTextField.text ? self.contentView.introductionTextField.text : self.contentView.introductionTextField.placeholder,
+//    @"qq": self.contentView.QQTextField.text ? self.contentView.QQTextField.text : self.contentView.QQTextField.placeholder,
+//    @"phone": self.contentView.phoneNumberTextField.text ? self.contentView.phoneNumberTextField.text : self.contentView.phoneNumberTextField.placeholder,
+//    @"photo_src": [UserItemTool defaultItem].headImgUrl ? [UserItemTool defaultItem].headImgUrl : @""
+    
+    [UserItemTool defaultItem].nickname = userInfo[@"nickname"];
+    [UserItemTool defaultItem].introduction = userInfo[@"introduction"];
+    [UserItemTool defaultItem].qq = userInfo[@"qq"];
+    [UserItemTool defaultItem].phone = userInfo[@"phone"];
+    [UserItemTool defaultItem].headImgUrl = userInfo[@"photo_src"];
+
+    [EditMyInfoModel uploadUserInfo:userInfo success:^(NSDictionary * _Nonnull responseObject) {
+        [self.attachedViwe userInfoUploadedSuccess];
+    } failure:^(NSError * _Nonnull error) {
         
     }];
 }

@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用于编辑界面的返回
 @property (nullable, nonatomic, strong) UIPanGestureRecognizer *panGesture;
 
+- (void)loadUserData;
+
 @end
 
 NS_ASSUME_NONNULL_END

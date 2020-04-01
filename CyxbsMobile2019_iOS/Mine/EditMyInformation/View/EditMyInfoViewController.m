@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 
+@property (nonatomic, assign) BOOL profileChanged;
+
 @end
 
 @implementation EditMyInfoViewController
@@ -69,16 +71,20 @@
 
 #pragma mark - contentView代理回调
 - (void)saveButtonClicked:(UIButton *)sender {
-    ((MineViewController *)self.transitioningDelegate).panGesture = nil;
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.presenter uploadProfile:self.contentView.headerImageView.image success:^(NSDictionary * _Nonnull responseObject) {
-        
-    } failure:^(NSError * _Nonnull error) {
-        
-    }];
+    [sender setTitle:@"上传中" forState:UIControlStateNormal];
+    sender.userInteractionEnabled = NO;
+    
+    // 头像改变了才上传头像
+    if (self.profileChanged) {
+        [self.presenter uploadProfile:self.contentView.headerImageView.image];
+    } else {
+        // 头像没有改变，直接上传其他信息
+        [self profileUploadedSuccess];  // 这个方法是头像上传成功的回调，里面的内容就是上传个人信息
+    }
 }
 
 - (void)backButtonClicked:(UIButton *)sender {
+    [((MineViewController *)self.transitioningDelegate) loadUserData];
     ((MineViewController *)self.transitioningDelegate).panGesture = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -93,6 +99,28 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *image = info[UIImagePickerControllerEditedImage];
     self.contentView.headerImageView.image = image;
+    self.profileChanged = YES;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark - Presenter回调
+- (void)profileUploadedSuccess {
+    NSDictionary *uploadData = @{
+        @"stuNum": [UserDefaultTool getStuNum],
+        @"idNum": [UserDefaultTool getIdNum],
+        @"nickname": self.contentView.nicknameTextField.text.length != 0 ? self.contentView.nicknameTextField.text : self.contentView.nicknameTextField.placeholder,
+        @"introduction": self.contentView.introductionTextField.text.length != 0 ? self.contentView.introductionTextField.text : self.contentView.introductionTextField.placeholder,
+        @"qq": self.contentView.QQTextField.text.length != 0 ? self.contentView.QQTextField.text : self.contentView.QQTextField.placeholder,
+        @"phone": self.contentView.phoneNumberTextField.text.length != 0 ? self.contentView.phoneNumberTextField.text : self.contentView.phoneNumberTextField.placeholder,
+        @"photo_src": [UserItemTool defaultItem].headImgUrl ? [UserItemTool defaultItem].headImgUrl : @""
+    };
+    [self.presenter uploadUserInfo:uploadData];
+}
+
+- (void)userInfoUploadedSuccess {
+    [((MineViewController *)self.transitioningDelegate) loadUserData];
+    ((MineViewController *)self.transitioningDelegate).panGesture = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -101,6 +129,7 @@
 - (void)slideToDismiss:(UIPanGestureRecognizer *)sender {
     CGPoint translatedPoint = [self.contentView.contentScrollView.panGestureRecognizer locationInView:self.view];
     if (translatedPoint.y > 0) {
+        [((MineViewController *)self.transitioningDelegate) loadUserData];
         ((MineViewController *)self.transitioningDelegate).panGesture = sender;
         [self dismissViewControllerAnimated:YES completion:nil];
     }
