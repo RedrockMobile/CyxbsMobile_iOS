@@ -63,11 +63,6 @@
         make.left.equalTo(self.view).offset(8.6);
     }];
     [button setImageEdgeInsets:UIEdgeInsetsMake(6, 10, 6, 10)];//增大点击范围
-//    [button.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.equalTo(@7);
-//        make.height.equalTo(@14);
-//        make.top.left.equalTo(button).offset(0);
-//    }];
     [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)popController {

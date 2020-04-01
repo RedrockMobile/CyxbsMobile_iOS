@@ -53,7 +53,7 @@
     UIButton *button = [[UIButton alloc]init];
     self.volunteer = button;
     if (@available(iOS 11.0, *)) {
-        button.backgroundColor = [UIColor colorNamed:@"colorWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        button.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
     } else {
         // Fallback on earlier versions
     }

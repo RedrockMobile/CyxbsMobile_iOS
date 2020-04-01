@@ -186,7 +186,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
             self.contentView.contentSize = CGSizeMake(self.view.width,1.10*self.view.height);
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 667.0) {//6,6s,7,8
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.53)];
+        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.50)];
             self.contentView.contentSize = CGSizeMake(self.view.width,1.01*self.view.height);
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 736.0) {//plus
         finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.49)];
@@ -208,6 +208,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)addGlanceView {
+    int adjustToCorner = 18;
     UserItem *userItem = [UserItem defaultItem];
     NSLog(@"当前的building是%@,当前的room是%@",userItem.building,userItem.room);
     if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword != nil) {//用户已经绑定电费和志愿
@@ -215,7 +216,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
             ElectricFeeGlanceView *eleGlanceView = [[ElectricFeeGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
             self.eleGlanceView = eleGlanceView;
             [self.contentView addSubview:eleGlanceView];
-            VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - 12, self.view.width, 152)];
+            VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - adjustToCorner, self.view.width, 152)];
             self.volGlanceView = volGlanceView;
             [self.contentView addSubview:volGlanceView];
     }else if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword == nil) {//用户仅绑定宿舍
@@ -224,7 +225,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         self.eleGlanceView = eleGlanceView;
         [self.contentView addSubview:eleGlanceView];
         
-        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - 22, self.view.width, 152 + 12)];
+        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - adjustToCorner, self.view.width, 152 + 12)];
         self.volButton = volButton;
         [self.contentView addSubview:volButton];
     }else if(userItem.building == nil && userItem.room == nil && userItem.volunteerPassword != nil) {//用户仅绑定了志愿服务账号
@@ -232,7 +233,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         NotSetElectriceFeeButton *eleButton = [[NotSetElectriceFeeButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172 + 12)];
         self.eleButton = eleButton;
         [self.contentView addSubview:eleButton];
-        VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - 12, self.view.width, 152)];
+        VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - adjustToCorner, self.view.width, 152)];
         self.volGlanceView = volGlanceView;
         [self.contentView addSubview:volGlanceView];
     }else {//用户什么都没绑定
@@ -241,7 +242,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         self.eleButton = eleButton;
         [self.contentView addSubview:eleButton];
         
-        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - 12, self.view.width, 152 + 12)];
+        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - adjustToCorner, self.view.width, 152 + 12)];
         self.volButton = volButton;
         [self.contentView addSubview:volButton];
     }
