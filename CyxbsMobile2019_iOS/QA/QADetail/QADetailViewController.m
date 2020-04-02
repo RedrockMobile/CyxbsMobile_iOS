@@ -11,6 +11,7 @@
 #import "QADetailModel.h"
 #import "QADetailView.h"
 #import "QADetailReportView.h"
+#import "GKPhotoBrowser.h"
 @interface QADetailViewController ()<QADetailDelegate>
 @property(strong,nonatomic)UIScrollView *scrollView;
 @property(strong,nonatomic)NSNumber *question_id;
@@ -156,5 +157,18 @@
 }
 - (void)tapAdoptBtn:(nonnull NSNumber *)answerId{
     [self.model adoptAnswer:self.question_id answerId:answerId];
+}
+- (void)tapToViewBigImage:(NSInteger)imageIndex{
+    NSDictionary *detailData = self.model.detailData;
+    NSArray *imageUrls = [detailData objectForKey:@"photo_url"];
+    NSMutableArray *photos = [NSMutableArray array];
+    for (int i = 0; i < imageUrls.count; i++) {
+        GKPhoto *photo = [GKPhoto new];
+        photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrls[i]]];
+        [photos addObject:photo];
+    }
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:imageIndex];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:self];
 }
 @end

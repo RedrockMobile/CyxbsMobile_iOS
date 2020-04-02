@@ -11,16 +11,6 @@
 @implementation QAListTableViewCell
 -(instancetype)initWithDic:(NSDictionary *)dic{
     self = [super init];
-//    self.userIcon = [[UIImageView alloc]init];
-//    self.answerIcon = [[UIImageView alloc]init];
-//    self.integralIcon = [[UIImageView alloc]init];
-//    self.viewIcon = [[UIImageView alloc]init];
-//    self.name = [[UILabel alloc]init];
-//    self.content = [[UILabel alloc]init];
-//    self.date = [[UILabel alloc]init];
-//    self.answerNum = [[UILabel alloc]init];
-//    self.integralNum = [[UILabel alloc]init];
-//    self.viewNum = [[UILabel alloc]init];
     return self;
 }
 - (void)awakeFromNib {
@@ -36,6 +26,7 @@
     [self.viewNum setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
     [self.date setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
     self.separatorView.backgroundColor = [UIColor colorWithHexString:@"#BDCCE5"];
+    self.userIcon.layer.cornerRadius = 16;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

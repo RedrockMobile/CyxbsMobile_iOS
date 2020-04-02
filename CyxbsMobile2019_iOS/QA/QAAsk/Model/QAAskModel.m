@@ -13,7 +13,7 @@
     NSLog(@"s");
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"description":content,@"title":title,@"kind":kind,@"reward":reward,@"disappear_time":disappearTime};
-    [client requestWithToken:QA_ADD_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_ADD_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];

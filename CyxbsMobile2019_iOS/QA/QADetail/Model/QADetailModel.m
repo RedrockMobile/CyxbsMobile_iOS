@@ -13,7 +13,7 @@
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":questionId};
 
-    [client requestWithToken:QA_QUESTION_DETAIL_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_QUESTION_DETAIL_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             self.detailData = [responseObject objectForKey:@"data"];
@@ -32,7 +32,7 @@
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":questionId};
 
-    [client requestWithToken:QA_QUESTION_ANSWERLIST method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_QUESTION_ANSWERLIST method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             self.answersData = [responseObject objectForKey:@"data"];
@@ -49,7 +49,7 @@
 - (void)replyComment:(nonnull NSNumber *)answerId content:(NSString *)content{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":answerId,@"content":content};
-    [client requestWithToken:QA_ADD_DISCUSS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_ADD_DISCUSS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
 //            self.dataDic = [responseObject objectForKey:@"data"];
@@ -66,7 +66,7 @@
 - (void)getCommentData:(nonnull NSNumber *)answerId{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":answerId};
-    [client requestWithToken:QA_QUESTION_DISUCESS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_QUESTION_DISUCESS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
 //            self.dataDic = [responseObject objectForKey:@"data"];
@@ -79,7 +79,7 @@
 - (void)adoptAnswer:(NSNumber *)questionId answerId:(NSNumber *)answerId{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":questionId,@"answer_id":answerId};
-    [client requestWithToken:QA_ADOPT_ANSWER_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_ADOPT_ANSWER_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
 //            self.dataDic = [responseObject objectForKey:@"data"];
@@ -92,7 +92,7 @@
 - (void)praise:(nonnull NSNumber *)answerId{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":answerId};
-    [client requestWithToken:QA_ADD_LIKE_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_ADD_LIKE_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
 //            self.dataDic = [responseObject objectForKey:@"data"];
@@ -105,7 +105,7 @@
 - (void)cancelPraise:(nonnull NSNumber *)answerId{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":answerId};
-    [client requestWithToken:QA_CANCEL_LIKE_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_CANCEL_LIKE_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
 //            self.dataDic = [responseObject objectForKey:@"data"];
@@ -117,8 +117,9 @@
 }
 
 - (void)report:(NSString *)type question_id:(NSNumber *)question_id{
+    HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":question_id,@"type":type};
-    [[HttpClient defaultClient] requestWithToken:QA_ADD_REPORT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_ADD_REPORT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailReportSuccess" object:nil];
@@ -131,8 +132,9 @@
     }];
 }
 - (void)ignore:(NSNumber *)question_id{
+    HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":question_id};
-    [[HttpClient defaultClient] requestWithToken:QA_IGNORE_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_IGNORE_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailIgnoreSuccess" object:nil];

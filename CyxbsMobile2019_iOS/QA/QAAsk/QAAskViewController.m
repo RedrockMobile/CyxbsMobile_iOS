@@ -13,14 +13,24 @@
 #import "QAAskIntegralPickerView.h"
 #import "QAAskExitView.h"
 @interface QAAskViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-@property(strong,nonatomic)UITextView *askTextView;
-@property(strong,nonatomic)NSMutableArray *askImageArray;
+
 @property(strong,nonatomic)QAAskModel *model;
+//提问标题
 @property(strong,nonatomic)UITextField *titleTextField;
-@property(strong,nonatomic)QAAskNextStepView *nextStepView;
-@property(strong,nonatomic)SDMask *nextStepViewMask;
+//提问内容
+@property(strong,nonatomic)UITextView *askTextView;
+//选择提问类型
 @property(copy,nonatomic)NSString *kind;
 @property(strong,nonatomic)NSMutableArray *kindBtnArray;
+//添加图片
+@property(strong,nonatomic)NSMutableArray *askImageArray;
+@property(strong,nonatomic)NSMutableArray *askImageViewArray;
+
+//下一步提示界面
+@property(strong,nonatomic)QAAskNextStepView *nextStepView;
+@property(strong,nonatomic)SDMask *nextStepViewMask;
+
+//退出提示界面
 @property(strong,nonatomic)QAAskExitView *exitView;
 @property(strong,nonatomic)SDMask *exitViewMask;
 @end
@@ -28,14 +38,18 @@
 @implementation QAAskViewController
 
 - (void)viewDidLoad {
-    
-    self.title = @"提供帮助";
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self setNotification];
-    [self setupUI];
+        [super viewDidLoad];
 }
-
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.title = @"提问";
+        self.view.backgroundColor = UIColor.whiteColor;
+        [self setNotification];
+        [self setupUI];
+    }
+    return self;
+}
 - (void)customNavigationRightButton{
     [self.rightButton mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.rightButton.superview).offset(STATUSBARHEIGHT);
@@ -50,7 +64,9 @@
     [self.rightButton setTitle:@"下一步" forState:UIControlStateNormal];
     [self.rightButton addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
 }
-
+- (void)back {
+    [self saveAskContent];
+}
 
 - (void)setNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -60,44 +76,13 @@
                                              selector:@selector(QAQuestionCommitFailure)
                                                  name:@"QAQuestionCommitFailure" object:nil];
 }
-- (void)QAQuestionCommitSuccess{
-    [self hiddenNextStepView];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-- (void)QAQuestionCommitFailure{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
-    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"答案提交失败" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [controller addAction:act1];
-    
-    [self presentViewController:controller animated:YES completion:^{
-        
-    }];
-}
 - (void)setupUI{
-    
-    
-    UIView *separateView = [[UIView alloc]init];
-    separateView.backgroundColor = [UIColor colorWithHexString:@"#2A4E84"];
-    separateView.alpha = 0.1;
-    [self.view addSubview:separateView];
-    
-    [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT);
-        make.height.mas_equalTo(1);
-    }];
-    
     UIView *titleView = [[UIView alloc]init];
     [self.view addSubview:titleView];
     [titleView  mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
-        make.top.mas_equalTo(separateView.mas_bottom).mas_offset(20);
+        make.top.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT + 20);
         make.height.mas_equalTo(25);
     }];
     NSArray *titleArray = @[@"学习",@"匿名",@"生活",@"其他"];
@@ -126,7 +111,20 @@
     }
     self.titleTextField = [[UITextField alloc]init];
     self.titleTextField.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
-    self.titleTextField.placeholder = @"  输入标题";
+    //设置placeholder字体大小颜色
+    NSString *placeholderString = @"输入标题";
+    NSMutableAttributedString *placeholder = [[NSMutableAttributedString alloc] initWithString:placeholderString];
+    [placeholder addAttribute:NSFontAttributeName
+                        value:[UIFont fontWithName:PingFangSCBold size:16]
+                        range:NSMakeRange(0, placeholderString.length)];
+    [placeholder addAttribute:NSForegroundColorAttributeName
+    value:[UIColor blackColor]
+    range:NSMakeRange(0, placeholderString.length)];
+    self.titleTextField.attributedPlaceholder = placeholder;
+    //设置光标起始位置偏移
+    self.titleTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
+    self.titleTextField.leftView.userInteractionEnabled = NO;
+    self.titleTextField.leftViewMode = UITextFieldViewModeAlways;
     [self.view addSubview:self.titleTextField];
     
     [self.titleTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -141,7 +139,9 @@
     [self.askTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     //自适应高度
     self.askTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.askTextView.text = @"详细描述你的问题和需求，表达越清楚，越容易获得帮助哦！";
+    self.askTextView.placeholder = @"详细描述你的问题和需求，表达越清楚，越容易获得帮助哦！";
+    self.askTextView.placeholderColor = UIColor.blackColor;
+    self.askTextView.textContainerInset = UIEdgeInsetsMake(10, 12, 10, 12);
     [self.askTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
     self.askTextView.delegate = self;
     [self.view addSubview:self.askTextView];
@@ -154,9 +154,9 @@
     
     UIImageView *addImageView = [[UIImageView alloc]init];
     self.askImageArray = [NSMutableArray array];
-//    [self.askImageArray addObject:addImageView];
+    self.askImageViewArray = [NSMutableArray array];
+    [self.askImageViewArray addObject:addImageView];
     [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
-    //    [addImageView setImage:self.askImageArray[0]];
     addImageView.userInteractionEnabled = YES;
     //添加点击手势
     UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
@@ -170,6 +170,24 @@
     }];
     //
 }
+- (void)QAQuestionCommitSuccess{
+    [self hiddenNextStepView];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)QAQuestionCommitFailure{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"答案提交失败" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [controller addAction:act1];
+    
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
+}
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
     if([text isEqualToString:@"\n"]) {
@@ -182,11 +200,6 @@
     
     return YES;
     
-}
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if ([textView.text isEqualToString:@"详细描述你的问题和需求，表达越清楚，越容易获得帮助哦！"]) {
-        textView.text = @"";
-    }
 }
 
 - (void)tapTitleBtn:(UIButton *)sender{
@@ -296,7 +309,8 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     //    self.askImageArray[0] = image;
-    UIImageView *imgView = [self.askImageArray lastObject];
+    [self.askImageArray addObject:image];
+    UIImageView *imgView = [self.askImageViewArray lastObject];
     [imgView setImage:image];
     [self setAddImageView];
 
@@ -331,18 +345,8 @@
     [self.model commitAsk:title content:content kind:self.kind reward:reward disappearTime:disappearTime imageArray:self.askImageArray];
     
 }
--(BOOL)navigationShouldPopOnBackButton{
-    if (1) {
-        // 在这里创建UIAlertController等方法
-        [self saveAskContent];
-        return NO;
-    }
-    return YES;
-}
-- (void)back {
-//    [self.navigationController popViewControllerAnimated:YES];
-    [self saveAskContent];
-}
+
+
 - (void)saveAskContent{
 
     self.exitView = [[QAAskExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];

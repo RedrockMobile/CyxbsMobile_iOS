@@ -10,17 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol QADetailDelegate <NSObject>
-
 - (void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(NSNumber *)answerId;
 - (void)tapAdoptBtn:(NSNumber *)answerId;
 - (void)tapCommentBtn:(NSNumber *)answerId;
 - (void)replyComment:(NSNumber *)answerId;
+- (void)tapToViewBigImage:(NSInteger)imageIndex;
 @end
 @interface QADetailView : UIView
 @property(strong,nonatomic)UIButton *answerButton;
 @property(strong,nonatomic)UIScrollView *scrollView;
 @property(nonatomic,weak)id<QADetailDelegate>delegate;
 @property(nonatomic,assign)BOOL isSelf;
+@property(strong,nonatomic)NSMutableArray *imageUrlArray;
 
 - (void)setupUIwithDic:(NSDictionary *)dic answersData:(NSArray *)answersData;
 @end
