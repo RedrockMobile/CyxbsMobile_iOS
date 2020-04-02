@@ -68,7 +68,8 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.bottom.left.right.equalTo(self.view);
     }];
-    
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"QAListTableViewCell" bundle:nil] forCellReuseIdentifier:@"QAListTableViewCell"];

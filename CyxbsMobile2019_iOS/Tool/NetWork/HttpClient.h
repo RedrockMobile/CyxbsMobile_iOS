@@ -17,16 +17,19 @@ typedef NS_ENUM(NSInteger, HttpRequestType) {
 typedef void (^PrepareExecuteBlock)(void);
 
 @interface HttpClient : NSObject
+@property(strong,nonatomic)AFHTTPSessionManager *httpSessionManager;
+@property(strong,nonatomic)AFHTTPRequestOperationManager *httpRequestOperationManager;
+
 + (HttpClient *)defaultClient;
 
-- (void)requestWithHead:(NSString *)url
-                 method:(NSInteger)method
-             parameters:(id)parameters
-                   head:(NSDictionary *)head
-         prepareExecute:(PrepareExecuteBlock) prepare
-               progress:(void (^)(NSProgress * progress))progress
-                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+//- (void)requestWithHead:(NSString *)url
+//                 method:(NSInteger)method
+//             parameters:(id)parameters
+//                   head:(NSDictionary *)head
+//         prepareExecute:(PrepareExecuteBlock) prepare
+//               progress:(void (^)(NSProgress * progress))progress
+//                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+//                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 - (void)requestWithPath:(NSString *)url
                  method:(NSInteger)method
@@ -36,13 +39,7 @@ typedef void (^PrepareExecuteBlock)(void);
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-- (void)requestWithToken:(NSString *)url
-        method:(NSInteger)method
-    parameters:(id)parameters
-prepareExecute:(PrepareExecuteBlock) prepare
-      progress:(void (^)(NSProgress * progress))progress
-       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 
 - (void)requestWithJson:(NSString *)url
                  method:(NSInteger)method
@@ -52,10 +49,6 @@ prepareExecute:(PrepareExecuteBlock) prepare
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-- (void)requestWithPathInHEAD:(NSString *)url
-                   parameters:(NSDictionary *)parameters
-                      success:(void (^)(NSURLSessionDataTask *task))success
-                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (void)uploadImageWithJson:(NSString *)url
                      method:(NSInteger)method
                  parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
@@ -63,4 +56,6 @@ prepareExecute:(PrepareExecuteBlock) prepare
                    progress:(void (^)(NSProgress * progress))progress
                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (void)cancelRequest;
 @end

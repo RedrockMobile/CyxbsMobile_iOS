@@ -61,13 +61,23 @@
 //    [self.rightButton setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
     [backgroundView addSubview:self.rightButton];
     
+    UIView *separateView = [[UIView alloc]init];
+    separateView.backgroundColor = [UIColor colorWithHexString:@"#2A4E84"];
+    separateView.alpha = 0.1;
+    [backgroundView addSubview:separateView];
+    
     [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
         make.height.equalTo(@TOTAL_TOP_HEIGHT);
     }];
-    
+    [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
+        make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
+        make.bottom.mas_equalTo(backgroundView.mas_bottom).mas_offset(0);
+        make.height.mas_equalTo(1);
+    }];
     [backButtonView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backgroundView).offset(17);
         make.top.equalTo(backgroundView).offset(STATUSBARHEIGHT);

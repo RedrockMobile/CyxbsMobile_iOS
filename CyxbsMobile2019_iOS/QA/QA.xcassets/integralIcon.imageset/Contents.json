@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "integralIcon.png",
+      "filename" : "integralIcon@1x.png",
       "scale" : "1x"
     },
     {

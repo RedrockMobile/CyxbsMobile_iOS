@@ -13,7 +13,7 @@
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":questionId,@"content":content};
     //测试数据
-    [client requestWithToken:QA_ANSWER_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_ANSWER_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
 //            self.dataDic = [responseObject objectForKey:@"data"];

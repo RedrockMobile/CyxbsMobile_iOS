@@ -14,7 +14,7 @@
     self = [super initWithFrame:frame];
     self.scrollView = [[UIScrollView alloc]init];
     self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
-//    NSLog(@"%@",NSStringFromCGRect(frame));
+    //    NSLog(@"%@",NSStringFromCGRect(frame));
     [self addSubview:self.scrollView];
     return self;
     
@@ -28,6 +28,8 @@
     [self.scrollView addSubview:userInfoView];
     
     UIImageView *userIcon = [[UIImageView alloc]init];
+    userIcon.layer.cornerRadius = 20;
+    userIcon.layer.masksToBounds = YES;
     NSString *userIconUrl = [dic objectForKey:@"photo_thumbnail_src"];
     [userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"userIcon"]];
     [userInfoView addSubview:userIcon];
@@ -46,7 +48,12 @@
     [userInfoView addSubview:dateLabel];
     
     UIImageView *integralIcon = [[UIImageView alloc]init];
-    [integralIcon setImage:[UIImage imageNamed:@"integralIcon2"]];
+    NSInteger hasAdoptedAnswer = [[dic objectForKey:@"hasAdoptedAnswer"] intValue];
+    if (hasAdoptedAnswer > 0) {
+        [integralIcon setImage:[UIImage imageNamed:@"integralIcon2"]];
+    }else{
+        [integralIcon setImage:[UIImage imageNamed:@"integralIcon"]];
+    }
     [userInfoView addSubview:integralIcon];
     
     UILabel *integralNumLabel = [[UILabel alloc]init];
@@ -110,29 +117,75 @@
     separateView.alpha = 0.1;
     [self.scrollView addSubview:separateView];
     
-    
-    NSArray *imgUrlArray = [dic objectForKey:@"photo_url"];
-    if (imgUrlArray.count != 0) {
+    self.imageUrlArray = [dic objectForKey:@"photo_url"];
+    NSInteger count = self.imageUrlArray.count;
+    NSInteger width;
+    NSInteger height;
+    if (count <= 3) {
+        width = (SCREEN_WIDTH - 40)/count;
+        height = width * 0.6;
+    }else{
+        width = (SCREEN_WIDTH - 70)/3;
+        height = width;
+    }
+    if (self.imageUrlArray.count != 0) {
         
-        //    NSArray *imgUrlArray = @[@"http://img.wenjiwu.com/life/201704/9-1F422105602357.png"];
-        UIImageView *imgView = [[UIImageView alloc]init];
-        NSString *urlString = [NSString stringWithFormat:@"%@",imgUrlArray[0]];
-        NSURL *url = [NSURL URLWithString:urlString];
-        [imgView setImageWithURL:url placeholder:[UIImage imageNamed:@"userIcon"]];
-        [self addSubview:imgView];
-        
-        [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(14);
-            make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(-20);
-            make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20);
-            make.height.mas_equalTo(@200);
-        }];
+        for (int i = 0; i < self.imageUrlArray.count; i++) {
+
+            UIImageView *imgView = [[UIImageView alloc]init];
+            NSString *urlString = [NSString stringWithFormat:@"%@",self.imageUrlArray[i]];
+            NSURL *url = [NSURL URLWithString:urlString];
+            [imgView setImageURL:url];
+            imgView.userInteractionEnabled = YES;
+            //添加点击手势
+//            UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToViewBigImage:)];
+//            [imgView addGestureRecognizer:tapGesture];
+            [self.scrollView addSubview:imgView];
+            UIButton *imageBtn = [[UIButton alloc]init];
+            imageBtn.tag = i;
+            imageBtn.backgroundColor = UIColor.clearColor;
+            [imageBtn addTarget:self action:@selector(tapToViewBigImage:) forControlEvents:UIControlEventTouchUpInside];
+            [self.scrollView addSubview:imageBtn];
+            
+//            [self.imageViewArray addObject:imgView];
+            if (i<=2&&i>=0) {
+
+                [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20+(width+10)*i);
+                    make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(10);
+                    make.width.mas_equalTo(width);
+                    make.height.mas_equalTo(height);
+
+                }];
+                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.left.right.equalTo(imgView);
+
+                }];
+
+            }else if (i>=3&&i<=5){
+
+                [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20+(width+10)*(i-3));
+                    make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(width + 20);
+                    make.width.mas_equalTo(width);
+                    make.height.mas_equalTo(height);
+
+                }];
+                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.bottom.left.right.equalTo(imgView);
+
+                }];
+
+            }else{
+
+            }
+        }
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(self.mas_right).mas_offset(0);
-            make.left.mas_equalTo(self.mas_left).mas_offset(0);
-            make.top.mas_equalTo(imgView.mas_bottom).mas_offset(20);
-            make.height.mas_equalTo(1);
-        }];
+                           make.right.mas_equalTo(self.mas_right).mas_offset(0);
+                           make.left.mas_equalTo(self.mas_left).mas_offset(0);
+                           make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(250);
+                           make.height.mas_equalTo(1);
+                       }];
     }else{
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).mas_offset(0);
@@ -141,12 +194,13 @@
             make.height.mas_equalTo(1);
         }];
     }
+    
     UILabel *answerLabel = [[UILabel alloc]init];
     answerLabel.text = @"回复";
     [answerLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     answerLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
     [self.scrollView addSubview:answerLabel];
-
+    
     [answerLabel mas_makeConstraints:^(MASConstraintMaker *make){
         make.top.mas_equalTo(separateView.mas_bottom).mas_offset(14);
         make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(-20);
@@ -157,7 +211,7 @@
     [self.answerButton setTitle:@"回答" forState:UIControlStateNormal];
     [self.answerButton.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:18]];
     self.answerButton.layer.cornerRadius = 20;
- 
+    
     [self addSubview:self.answerButton];
     [self.answerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
@@ -215,6 +269,10 @@
         }];
     }
     
+}
+
+- (void)tapToViewBigImage:(UIButton *)sender{
+    [self.delegate tapToViewBigImage:sender.tag];
 }
 
 - (void)replyComment:(UIButton *)sender{
