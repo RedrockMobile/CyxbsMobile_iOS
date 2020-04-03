@@ -17,6 +17,8 @@
 @property (nonatomic, strong) SchoolBusPresenter *presenter;
 @property (nonatomic, weak) SchoolBusContentView *contentView;
 
+@property (nonatomic, assign) BOOL dismissed;
+
 @end
 
 @implementation SchoolBusViewController
@@ -33,6 +35,10 @@
     [self.view addSubview:contentView];
     self.contentView = contentView;
     contentView.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.dismissed = YES;
 }
 
 - (void)dealloc
@@ -52,7 +58,9 @@
     [self.contentView updateSchoolBusLocation:busArray];
     
     // 校车位置加载成功后，隔2秒再加载下一个位置。
-    [self.presenter performSelector:@selector(requestSchoolBusLocation) afterDelay:2];
+    if (!self.dismissed) {
+        [self.presenter performSelector:@selector(requestSchoolBusLocation) afterDelay:2];
+    }
 }
 
 - (void)schoolBusLocationRequestsFailure {
