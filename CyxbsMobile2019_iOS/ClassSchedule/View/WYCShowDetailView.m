@@ -27,10 +27,13 @@
     [self layoutIfNeeded];
     
     self.rootView = [[UIView alloc]init];
-    self.rootView = [[UIView alloc]initWithFrame:CGRectMake(self.frame.size.width/2 - 135, self.frame.size.height/2 - 170, 270, 360)];
+    self.rootView = [[UIView alloc]initWithFrame:CGRectMake(0, 570, 875, 300)];
     self.rootView.backgroundColor = [UIColor whiteColor];
     self.rootView.layer.masksToBounds = YES;
-    self.rootView.layer.cornerRadius = 10;
+    self.rootView.layer.cornerRadius = 8;
+    self.rootView.layer.shadowOffset = CGSizeMake(0, 2.5);
+    self.rootView.layer.shadowRadius = 15;
+    self.rootView.layer.shadowOpacity = 1;
     [self.rootView layoutIfNeeded];
     
     

@@ -10,75 +10,52 @@
 #import "QAAnswerModel.h"
 #import "QAAnswerExitView.h"
 @interface QAAnswerViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@property(strong,nonatomic)QAAnswerModel *model;
+//问题id
 @property(strong,nonatomic)NSNumber *questionId;
+//问题描述
 @property(copy,nonatomic)NSString *content;
+//添加图片
 @property(strong,nonatomic)NSMutableArray *answerImageArray;
 @property(strong,nonatomic)NSMutableArray *answerImageViewArray;
+//回答内容
 @property(strong,nonatomic)UITextView *answerTextView;
-@property(strong,nonatomic)QAAnswerModel *model;
+//退出提示界面
+@property(strong,nonatomic)QAAnswerExitView *exitView;
+@property(strong,nonatomic)SDMask *exitViewMask;
 @end
 
 @implementation QAAnswerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 -(instancetype)initWithQuestionId:(NSNumber *)questionId content:(NSString *)content{
     self = [super init];
+    self.title = @"提供帮助";
     self.questionId = questionId;
     self.content = content;
     self.view.backgroundColor = [UIColor whiteColor];
     [self setNotification];
-    [self setNavigationBar:@"提供帮助"];
     [self setupUI];
     return self;
 }
-- (void)setNavigationBar:(NSString *)title{
-    //设置标题
-    UILabel *label = [[UILabel alloc]init];
-    label.numberOfLines = 0;
-    [label setFrame:CGRectMake(0, 0, SCREEN_WIDTH, NVGBARHEIGHT)];
-    label.textAlignment = NSTextAlignmentLeft;
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 23], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
-    label.attributedText = string;
-    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    label.alpha = 1.0;
-    self.navigationItem.titleView = label;
-    
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0 , 0, 60, 60);
-    [button setTitle:@"回答" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:23]];
-    [button addTarget:self action:@selector(commitAnswer) forControlEvents:UIControlEventTouchUpInside];
-    // 设置rightBarButtonItem
-    UIBarButtonItem *rightItem =[[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    
-    //设置返回按钮样子
-    self.navigationController.navigationBar.topItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithHexString:@"#122D55"];
-    
+- (void)customNavigationRightButton{
+    [self.rightButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.rightButton.superview).offset(STATUSBARHEIGHT);
+        make.width.equalTo(@60);
+        make.height.equalTo(@44);
+    }];
+    if (@available(iOS 11.0, *)) {
+           [self.rightButton setTitleColor:[UIColor colorNamed:@"QANavigationTitleColor"] forState:UIControlStateNormal];;
+       } else {
+           [self.rightButton setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
+       }
+    [self.rightButton setTitle:@"回答" forState:UIControlStateNormal];
+    [self.rightButton addTarget:self action:@selector(commitAnswer) forControlEvents:UIControlEventTouchUpInside];
 }
-- (void)configNavagationBar {
-    if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-    } else {
-        // Fallback on earlier versions
-    }
-    
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
-    //隐藏导航栏的分割线
-    if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    } else {
-        // Fallback on earlier versions
-    }
-    
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    
+- (void)back {
+    [self saveAnswerContent];
 }
 - (void)setNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -90,20 +67,6 @@
 }
 
 - (void)setupUI{
-   
-    
-    UIView *separateView = [[UIView alloc]init];
-    separateView.backgroundColor = [UIColor colorWithHexString:@"#2A4E84"];
-    separateView.alpha = 0.1;
-    [self.view addSubview:separateView];
-    
-    [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(0);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(0);
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT);
-        make.height.mas_equalTo(1);
-    }];
-    
     UILabel *titleLabel = [[UILabel alloc]init];
     [titleLabel setText:@"问题描述"];
     [titleLabel setAlpha:0.64];
@@ -114,7 +77,7 @@
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
-        make.top.mas_equalTo(separateView.mas_bottom).mas_offset(20);
+        make.top.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT + 20);
         make.height.mas_equalTo(25);
     }];
     
@@ -138,7 +101,9 @@
     [self.answerTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     //自适应高度
     self.answerTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.answerTextView.text = @"请尽可能给出明确的解决思路哦！";
+    self.answerTextView.placeholder = @"请尽可能给出明确的解决思路哦！";
+    self.answerTextView.placeholderColor = UIColor.blackColor;
+    self.answerTextView.textContainerInset = UIEdgeInsetsMake(10, 12, 10, 12);
     [self.answerTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
     self.answerTextView.delegate = self;
     [self.view addSubview:self.answerTextView];
@@ -154,7 +119,6 @@
     self.answerImageViewArray = [NSMutableArray array];
     [self.answerImageViewArray addObject:addImageView];
     [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
-    //    [addImageView setImage:self.answerImageViewArray[0]];
     addImageView.userInteractionEnabled = YES;
     //添加点击手势
     UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
@@ -167,23 +131,6 @@
         
     }];
    
-}
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if([text isEqualToString:@"\n"]) {
-        
-        [textView resignFirstResponder];
-        
-        return NO;
-        
-    }
-    
-    return YES;
-    
-}
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if ([textView.text isEqualToString:@"请尽可能给出明确的解决思路哦！"]) {
-        textView.text = @"";
-    }
 }
 
 - (void)setAddImageView{
@@ -290,56 +237,35 @@
         
     }];
 }
-    
--(BOOL)navigationShouldPopOnBackButton{
-    if (1) {
-        // 在这里创建UIAlertController等方法
-        [self saveAnswerContent];
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if([text isEqualToString:@"\n"]) {
+        
+        [textView resignFirstResponder];
+        
         return NO;
+        
     }
+    
     return YES;
+    
 }
 
 - (void)saveAnswerContent{
-    if ([[UIApplication sharedApplication].keyWindow viewWithTag:997]) {
-        [[[UIApplication sharedApplication].keyWindow viewWithTag:997] removeFromSuperview];
-    }
-    //初始化全屏view
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    view.backgroundColor = [UIColor colorWithHexString:@"#DCDDE3"];
-    //设置view的tag
-    view.tag = 997;
-    QAAnswerExitView *exitView = [[QAAnswerExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];
-    [exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
-    [exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:exitView];
-    
-    //显示全屏view
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [window addSubview:view];
-    //    CGRect frame = CGRectMake(0, SCREEN_HEIGHT - 530, SCREEN_WIDTH, 550);
-    //    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
-    //
-    //        [backView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 530)];
-    //    } completion:nil];
+
+    self.exitView = [[QAAnswerExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];
+    [self.exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
+    [self.exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
+    self.exitViewMask = [[SDMaskUserView(self.exitView) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
+    [self.exitViewMask show];
     
     
 }
 - (void)continueEdit{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UIView *view = [window viewWithTag:997];
-    [view removeFromSuperview];
-    
-    //    [UIView animateWithDuration:0.4f animations:^{
-    //        //        CGRect frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 500);
-    //    } completion:^(BOOL finished) {
-    //        [view removeFromSuperview];
-    //    }];
+    [self.exitViewMask dismiss];
 }
 - (void)saveAndExit{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UIView *view = [window viewWithTag:997];
-    [view removeFromSuperview];
+    [self.exitView removeFromSuperview];
+    [self.exitViewMask dismiss];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

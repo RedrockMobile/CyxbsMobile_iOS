@@ -55,6 +55,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+//    self.navigationController.navigationBar.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(ModelDataLoadSuccess)
@@ -83,20 +84,8 @@
     //默认星期选择条不显示
     self.hiddenWeekChooseBar = YES;
     self.isLogin = NO;
-//    if (![UserDefaultTool getStuNum]) {
-//        LoginViewController *LVC = [[LoginViewController alloc] init];
-//        [self presentViewController:LVC animated:YES completion:nil];
-//        LVC.loginSuccessHandler = ^(BOOL success){
-//            if (success) {
-//                [self initModel];
-//                self.isLogin = YES;
-//            }
-//        };
-//    }else{
-//
-//        [self initModel];
-//        self.isLogin = YES;
-//    }
+    [self initModel];
+
 }
 -(void)loginSucceeded{
     [self initModel];
@@ -104,10 +93,6 @@
 }
 
 -(void)reloadView{
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    hud.mode = MBProgressHUDModeIndeterminate;
-//    hud.labelText = @"加载数据中...";
-//    hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
     [self.view removeAllSubviews];
     [self initModel];
     
@@ -218,7 +203,7 @@
                 }
             }
             
-            WYCClassBookView *view = [[WYCClassBookView alloc]initWithFrame:CGRectMake(dateNum*_scrollView.frame.size.width, 0, _scrollView.frame.size.width, _scrollView.frame.size.height)];
+            WYCClassBookView *view = [[WYCClassBookView alloc]initWithFrame:CGRectMake(dateNum*_scrollView.frame.size.width, 60, _scrollView.frame.size.width, _scrollView.frame.size.height)];
             view.detailDelegate = self;
             if (dateNum == 0) {
                 [view initView:YES];
@@ -422,14 +407,18 @@
     //初始化全屏view
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     //设置view的tag
+    view.layer.shadowOffset = CGSizeMake(0,1.5);
+    view.layer.shadowRadius = 5;
+    view.layer.shadowOpacity = 0.5;
+    view.layer.cornerRadius = 8;
     view.tag = 999;
     
     // 汪明天要改的东西
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    UIVisualEffectView *blurBackgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    blurBackgroundView.frame = view.frame;
-    [view addSubview:blurBackgroundView];
-    
+//    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+//    UIVisualEffectView *blurBackgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+//    blurBackgroundView.frame = view.frame;
+//    [view addSubview:blurBackgroundView];
+//    
     
     //往全屏view上添加内容
     WYCShowDetailView *detailClassBookView  = [[WYCShowDetailView alloc]initWithFrame:CGRectMake(0, 2 * SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -458,7 +447,7 @@
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIView *view = [window viewWithTag:999];
     [UIView animateWithDuration:0.4f animations:^{
-        [view.subviews[1] setFrame: CGRectMake(0, 2 * SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//        [view.subviews[1] setFrame: CGRectMake(0, 2 * SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
         view.layer.opacity = 0.0f;
     } completion:^(BOOL finished) {
         [view removeFromSuperview];

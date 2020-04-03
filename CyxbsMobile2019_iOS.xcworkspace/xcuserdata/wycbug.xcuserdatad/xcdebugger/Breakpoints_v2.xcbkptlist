@@ -7,40 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "52ED0FFA-509B-457F-8F89-D391AAA51892"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
-            timestampString = "604016397.030369"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "-tapCommentBtn:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F146CEE1-4DD5-4AF6-A0C1-122F5465C1B4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/QA/QAAsk/Model/QAAskModel.m"
-            timestampString = "604016397.030429"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "-commitAsk:content:kind:reward:disappearTime:imageArray:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7F01DBDF-BCBA-4120-ACE2-9473A376CBC9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -153,16 +119,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A4E0C988-3F96-4E7F-8750-E1A04BF34B1C"
-            shouldBeEnabled = "Yes"
+            uuid = "EB2A5EEE-44DD-4975-9F15-CE18000809C9"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/Tool/NetWork/HttpClient.m"
+            filePath = "CyxbsMobile2019_iOS/QA/QAAsk/QAAskViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "-uploadImageWithJson:method:parameters:imageArray:imageNames:prepareExecute:progress:success:failure:"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-setAddImageView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

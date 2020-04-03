@@ -21,7 +21,7 @@
     
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"kind":kind,@"page":@(page)};
-    [client requestWithToken:QA_ALL_QUESTIONS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_ALL_QUESTIONS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             
