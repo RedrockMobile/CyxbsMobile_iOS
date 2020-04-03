@@ -25,6 +25,7 @@
 @property (nonatomic, assign) CGFloat btnWidth;
 @property (nonatomic, assign) CGFloat btnHeight;
 @property (nonatomic, assign) NSInteger classNum;
+@property (nonatomic, strong) UIButton *backButton;
 
 
 
@@ -63,10 +64,16 @@
     [self addSubview:_rootView];
     
     _leftBar = [[UIView alloc]init];
+    _backButton.frame = CGRectMake(20, 60, 50, 30);
+    [_backButton setTitle:@"back" forState:UIControlStateNormal];
+    [_backButton setTintColor:[UIColor blueColor]];
+    [_backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [_topBar addSubview:_backButton];
     
     _leftBar.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
     
     [_scrollView addSubview: _leftBar];
+   
     
     [_month mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_topBar.mas_top).offset(0);
@@ -117,6 +124,9 @@
         
     }];
     
+}
+-(void)backButtonClicked{
+    NSLog(@"The Button is clicked");
 }
 -(void)addBar:(NSArray *)date isFirst:(BOOL)isFirst{
     [_dayBar layoutIfNeeded];
@@ -253,7 +263,13 @@
     backgroundView.backgroundColor = viewColor;
     backgroundView.layer.cornerRadius = 6.0 ;
     [backgroundView layoutIfNeeded];
-    //如果同一个位置有多个课，添加小三角
+    if (tmp.count<1) {
+        UIView *blankBtnView = [[UIView alloc]init];
+        [blankBtnView setFrame:CGRectMake(_leftBar.frame.size.width +  hash_day.integerValue*_btnWidth, hash_lesson.integerValue*101*autoSizeScaleY, _btnWidth, _btnHeight)];
+        [blankBtnView layoutIfNeeded];
+        [blankBtnView addSubview:backgroundView];
+    }
+     //如果同一个位置有多个课，添加小三角
     if (tmp.count>1) {
         UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake(backgroundView.width - 10, 2, 8, 8)];
         img.image = [UIImage imageNamed:@"triangle"];
@@ -390,6 +406,7 @@
     if ([self.detailDelegate respondsToSelector:@selector(showDetail:)]) {
         [self.detailDelegate showDetail:self.detailDataArray[sender.tag]];
     }
+    NSLog(@"dayin");
 }
 
 - (void)hiddenDetailView{

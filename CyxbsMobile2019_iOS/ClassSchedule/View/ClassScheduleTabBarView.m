@@ -43,7 +43,8 @@
         self.classLabel = classLabel;
         
         UIImageView *clockImageView = [[UIImageView alloc] init];
-        clockImageView.backgroundColor = [UIColor blueColor];
+//        clockImageView.backgroundColor = [UIColor blueColor];
+        [clockImageView setImage:[UIImage imageNamed:@"nowClassTime"]];
         [self addSubview:clockImageView];
         self.clockImageView = clockImageView;
         
@@ -54,7 +55,8 @@
         self.classTimeLabel = classTimeLabel;
         
         UIImageView *locationImageView = [[UIImageView alloc] init];
-        locationImageView.backgroundColor = [UIColor blueColor];
+//        locationImageView.backgroundColor = [UIColor blueColor];
+        [locationImageView setImage:[UIImage imageNamed:@"nowLocation"]];
         [self addSubview:locationImageView];
         self.locationImageView = locationImageView;
         
