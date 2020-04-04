@@ -657,7 +657,7 @@
 		DB34EA3B239BD4540052B65E /* WYCClassDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYCClassDetailView.xib; sourceTree = "<group>"; };
 		DB34EA3C239BD4540052B65E /* WYCClassDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCClassDetailView.m; sourceTree = "<group>"; };
 		DB34EA3D239BD4540052B65E /* WMTWeekChooseBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTWeekChooseBar.m; sourceTree = "<group>"; };
-		DB34EA3E239BD4540052B65E /* WYCClassBookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCClassBookView.m; sourceTree = "<group>"; };
+		DB34EA3E239BD4540052B65E /* WYCClassBookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WYCClassBookView.m; sourceTree = "<group>"; };
 		DB34EA3F239BD4540052B65E /* ClassBookImg.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ClassBookImg.xcassets; sourceTree = "<group>"; };
 		DB34EA42239BD4540052B65E /* TimeHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeHandle.m; sourceTree = "<group>"; };
 		DB34EA43239BD4540052B65E /* TimeHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHandle.h; sourceTree = "<group>"; };
