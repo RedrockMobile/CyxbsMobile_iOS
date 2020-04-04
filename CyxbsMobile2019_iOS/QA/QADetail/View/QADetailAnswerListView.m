@@ -57,6 +57,7 @@
         self.adoptBtn.hidden = YES;
     }
     [self.contentLabel setText:[dic objectForKey:@"content"]];
+    [self.contentLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     
     NSArray *imageUrls = [dic objectForKey:@"photo_url"];
     if (imageUrls.count != 0) {
@@ -65,8 +66,8 @@
     }else{
         self.tapToViewImages.hidden = YES;
     }
-//    [self.praiseBtn addTarget:self.superview action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.adoptBtn addTarget:self.superview action:@selector(tapAdoptBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.praiseBtn addTarget:self.superview action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.adoptBtn addTarget:self.superview action:@selector(tapAdoptBtn:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.commentBtn addTarget:self.superview action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
 //
     

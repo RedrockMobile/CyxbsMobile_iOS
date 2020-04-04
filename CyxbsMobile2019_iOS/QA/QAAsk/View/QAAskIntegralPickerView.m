@@ -17,21 +17,23 @@
         self.contentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         [self addSubview:self.contentView];
     }
+    self.integralPickViewContent = [NSMutableArray array];
+    NSArray *num = @[@1,@2,@3,@5,@10,@15];
+    for (int i = 0; i < 6; i++) {
+        NSString *numString = [NSString stringWithFormat:@"%@",num[i]];
+        [self.integralPickViewContent addObject:numString];
+    }
     [self setupView];
-    [self.integralPickView selectRow:3 inComponent:0 animated:YES];
     return self;
 }
 - (void)setupView{
     self.integralPickView.transform = CGAffineTransformMakeRotation(M_PI*3/2);
     [self.integralPickView setFrame:CGRectMake(0,0,self.frame.size.width, self.frame.size.height)];
+    self.integralPickView.showsSelectionIndicator = NO;
+    //设置默认选中积分
+    [self.integralPickView selectRow:0 inComponent:0 animated:YES];
+    self.integralNum = @"1";
     
-    self.integralNum = @"0";
-    self.integralPickViewContent = [NSMutableArray array];
-    NSArray *num = @[@1,@2,@3,@5,@10,@15];
-    for (int i = 0; i < 5; i++) {
-        NSString *numString = [NSString stringWithFormat:@"%@",num[i]];
-        [self.integralPickViewContent addObject:numString];
-    }
 }
 #pragma mark - UIPickerViewDelegate
 #pragma mark 列
@@ -66,7 +68,7 @@
 #pragma mark pickerView滚动方法
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     self.integralNum = self.integralPickViewContent[row];
-    NSLog(@"%@",self.integralNum);
+//    NSLog(@"%@",self.integralNum);
     
 }
 

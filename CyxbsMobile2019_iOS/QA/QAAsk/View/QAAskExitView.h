@@ -11,11 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QAAskExitView : UIView
-    @property (strong, nonatomic) IBOutlet UIView *contentView;
-    @property (weak, nonatomic) IBOutlet UIView *backgroundView;
-    @property (weak, nonatomic) IBOutlet UIButton *saveAndExitBtn;
-    @property (weak, nonatomic) IBOutlet UIButton *continueEditBtn;
-    
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (weak, nonatomic) IBOutlet UIButton *saveAndExitBtn;
+@property (weak, nonatomic) IBOutlet UIButton *continueEditBtn;
+
 @end
 
 NS_ASSUME_NONNULL_END

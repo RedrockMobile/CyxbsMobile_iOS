@@ -9,7 +9,6 @@
 #import "QAAskViewController.h"
 #import "QAAskModel.h"
 #import "QAAskNextStepView.h"
-#import "QAAskNextStepViewController.h"
 #import "QAAskIntegralPickerView.h"
 #import "QAAskExitView.h"
 @interface QAAskViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
@@ -38,7 +37,7 @@
 @implementation QAAskViewController
 
 - (void)viewDidLoad {
-        [super viewDidLoad];
+    [super viewDidLoad];
 }
 - (instancetype)init{
     self = [super init];
@@ -57,10 +56,10 @@
         make.height.equalTo(@44);
     }];
     if (@available(iOS 11.0, *)) {
-           [self.rightButton setTitleColor:[UIColor colorNamed:@"QANavigationTitleColor"] forState:UIControlStateNormal];;
-       } else {
-           [self.rightButton setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
-       }
+        [self.rightButton setTitleColor:[UIColor colorNamed:@"QANavigationTitleColor"] forState:UIControlStateNormal];;
+    } else {
+        [self.rightButton setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
+    }
     [self.rightButton setTitle:@"下一步" forState:UIControlStateNormal];
     [self.rightButton addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -86,6 +85,8 @@
         make.height.mas_equalTo(25);
     }];
     NSArray *titleArray = @[@"学习",@"匿名",@"生活",@"其他"];
+    //默认是选中学习类型
+    self.kind = titleArray[0];
     self.kindBtnArray = [NSMutableArray array];
     for (int i = 0; i < titleArray.count; i++) {
         
@@ -93,7 +94,7 @@
         [titleBtn setTitle:titleArray[i] forState:UIControlStateNormal];
         [titleBtn setTitleColor:[UIColor colorWithHexString:@"#94A6C4"] forState:UIControlStateNormal];
         [titleBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:13]];
-
+        
         titleBtn.layer.cornerRadius = 12;
         titleBtn.tag = i;
         [titleBtn addTarget:self action:@selector(tapTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -118,8 +119,8 @@
                         value:[UIFont fontWithName:PingFangSCBold size:16]
                         range:NSMakeRange(0, placeholderString.length)];
     [placeholder addAttribute:NSForegroundColorAttributeName
-    value:[UIColor blackColor]
-    range:NSMakeRange(0, placeholderString.length)];
+                        value:[UIColor blackColor]
+                        range:NSMakeRange(0, placeholderString.length)];
     self.titleTextField.attributedPlaceholder = placeholder;
     //设置光标起始位置偏移
     self.titleTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
@@ -152,23 +153,11 @@
         make.height.mas_equalTo(215);
     }];
     
-    UIImageView *addImageView = [[UIImageView alloc]init];
+    //    UIImageView *addImageView = [[UIImageView alloc]init];
     self.askImageArray = [NSMutableArray array];
     self.askImageViewArray = [NSMutableArray array];
-    [self.askImageViewArray addObject:addImageView];
-    [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
-    addImageView.userInteractionEnabled = YES;
-    //添加点击手势
-    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
-    [addImageView addGestureRecognizer:tapGesture];
-    [self.view addSubview:addImageView];
-    [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.top.mas_equalTo(self.askTextView.mas_bottom).mas_offset(10);
-        make.height.width.mas_equalTo(110);
-        
-    }];
-    //
+    [self setAddImageView];
+
 }
 - (void)QAQuestionCommitSuccess{
     [self hiddenNextStepView];
@@ -176,30 +165,18 @@
 }
 - (void)QAQuestionCommitFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
     UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"答案提交失败" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
+    UIAlertAction *act1 = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [controller addAction:act1];
-    
-    [self presentViewController:controller animated:YES completion:^{
-        
-    }];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
     if([text isEqualToString:@"\n"]) {
-        
         [textView resignFirstResponder];
-        
         return NO;
-        
     }
-    
     return YES;
-    
 }
 
 - (void)tapTitleBtn:(UIButton *)sender{
@@ -218,48 +195,34 @@
 
 - (void)setAddImageView{
     
-    
-    if (self.askImageArray.count<3&&self.askImageArray.count>0) {
-        
+    NSInteger count = self.askImageArray.count;
+    if (count + 1 <= 6){
         UIImageView *addImageView = [[UIImageView alloc]init];
-        
         [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
         addImageView.userInteractionEnabled = YES;
-        //添加点击手势
+        //    //添加点击手势
         UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
         [addImageView addGestureRecognizer:tapGesture];
         [self.view addSubview:addImageView];
-        NSInteger count = self.askImageArray.count;
         
-        [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.view.mas_left).mas_offset(20+110*count);
-            make.top.mas_equalTo(self.askTextView.mas_bottom).mas_offset(10);
-            make.height.width.mas_equalTo(100);
-            
-        }];
-        [self.askImageArray addObject:addImageView];
         
-    }else if (self.askImageArray.count>2&&self.askImageArray.count<6){
-        
-        UIImageView *addImageView = [[UIImageView alloc]init];
-        
-        [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
-        addImageView.userInteractionEnabled = YES;
-        //添加点击手势
-        UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
-        [addImageView addGestureRecognizer:tapGesture];
-        [self.view addSubview:addImageView];
-        NSInteger count = self.askImageArray.count;
-        
-        [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.view.mas_left).mas_offset(20+110*(count-3));
-            make.top.mas_equalTo(self.askTextView.mas_bottom).mas_offset(120);
-            make.height.width.mas_equalTo(100);
-            
-        }];
-        [self.askImageArray addObject:addImageView];
-    }else{
-        
+        NSInteger widthAndHeight = (SCREEN_WIDTH - 60)/3;
+        if (count < 3){
+            [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.view.mas_left).mas_offset(20 + (widthAndHeight + 10) * count);
+                make.top.mas_equalTo(self.askTextView.mas_bottom).mas_offset(10);
+                make.height.width.mas_equalTo(widthAndHeight);
+                
+            }];
+        }else{
+            [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.view.mas_left).mas_offset(20 + (widthAndHeight + 10) * (count - 3));
+                make.top.mas_equalTo(self.askTextView.mas_bottom).mas_offset(widthAndHeight + 20);
+                make.height.width.mas_equalTo(widthAndHeight);
+                
+            }];
+        }
+        [self.askImageViewArray addObject:addImageView];
     }
     
 }
@@ -267,9 +230,10 @@
     
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate = self;
-    imagePicker.allowsEditing = YES;//编辑模式  但是编辑框是正方形的
+    imagePicker.modalPresentationStyle = UIModalPresentationFullScreen;
+//    imagePicker.allowsEditing = YES;//编辑模式  但是编辑框是正方形的
     
-#// 设置可用的媒体类型、默认只包含kUTTypeImage
+    // 设置可用的媒体类型、默认只包含kUTTypeImage
     imagePicker.mediaTypes = @[(NSString *)kUTTypeMovie, (NSString *)kUTTypeImage];
     
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -301,6 +265,7 @@
     
     [self presentViewController:actionSheet animated:YES completion:nil];
     
+    
 }
 #pragma mark - =======UIImagePickerControllerDelegate=========
 
@@ -313,7 +278,7 @@
     UIImageView *imgView = [self.askImageViewArray lastObject];
     [imgView setImage:image];
     [self setAddImageView];
-
+    
 }
 // 取消图片选择调用此方法
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -321,12 +286,12 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)nextStep{
-
-    self.nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 550)];
+    
+    self.nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 300)];
+    self.nextStepView.backgroundColor = UIColor.redColor;
     [self.nextStepView.cancelBtn addTarget:self action:@selector(hiddenNextStepView) forControlEvents:UIControlEventTouchUpInside];
     [self.nextStepView.commitBtn addTarget:self action:@selector(commitAsk) forControlEvents:UIControlEventTouchUpInside];
-    self.nextStepView.userInteractionEnabled = YES;
-    self.nextStepView.alpha = 1;
+    //    self.nextStepView.userInteractionEnabled = YES;
     self.nextStepViewMask = [[SDMaskUserView(self.nextStepView) sdm_showActionSheetIn:self.view usingBlock:nil] usingAutoDismiss];
     [self.nextStepViewMask show];
     
@@ -343,25 +308,26 @@
     NSString *disappearTime = self.nextStepView.time;
     self.model = [[QAAskModel alloc]init];
     [self.model commitAsk:title content:content kind:self.kind reward:reward disappearTime:disappearTime imageArray:self.askImageArray];
+    [self.nextStepViewMask dismiss];
     
 }
 
 
 - (void)saveAskContent{
-
+    
     self.exitView = [[QAAskExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];
     [self.exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
     [self.exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
     self.exitViewMask = [[SDMaskUserView(self.exitView) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
     [self.exitViewMask show];
-
+    
     
 }
 - (void)continueEdit{
     [self.exitViewMask dismiss];
 }
 - (void)saveAndExit{
-
+    
     [self.exitView removeFromSuperview];
     [self.exitViewMask dismiss];
     [self.navigationController popViewControllerAnimated:YES];

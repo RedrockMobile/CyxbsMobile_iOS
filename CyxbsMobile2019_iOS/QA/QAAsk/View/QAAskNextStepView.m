@@ -42,60 +42,76 @@
     self.questionmarkBtn.layer.borderWidth = 1;
     self.questionmarkBtn.layer.cornerRadius = self.questionmarkBtn.bounds.size.width / 2;
     [self.questionmarkBtn addTarget:self action:@selector(displayIntegralInstructions) forControlEvents:UIControlEventTouchUpInside];
-//    [self displayIntegralInstructions];
+    //    [self displayIntegralInstructions];
     
-    QAAskIntegralPickerView *view = [[QAAskIntegralPickerView alloc]initWithFrame:CGRectMake(0, 0, self.integralPickBackgroundView.frame.size.width, self.integralPickBackgroundView.frame.size.height)];
-    self.integralPickView = view;
+    self.integralPickView = [[QAAskIntegralPickerView alloc]initWithFrame:CGRectMake(0, 0, self.integralPickBackgroundView.frame.size.width, self.integralPickBackgroundView.frame.size.height)];
     [self.integralPickBackgroundView addSubview:self.integralPickView];
     
     
-   NSDate *date = [NSDate date];
-//如果没有规定formatter的时区，那么formatter默认的就是当前时区
+    NSDate *date = [NSDate date];
+    //如果没有规定formatter的时区，那么formatter默认的就是当前时区
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
-
-    [formatter setDateFormat:@"dd日"];
-    self.day = [formatter stringFromDate:date];
-    [formatter setDateFormat:@"HH时"];
-    self.hour = [formatter stringFromDate:date];
-    [formatter setDateFormat:@"mm分"];
-    self.minutes = [formatter stringFromDate:date];
-    
-    NSDate *displayDefultDate = [NSDate dateWithTimeInterval:86400 sinceDate:date];
-    [formatter setDateFormat:@"YYYY年MM月dd日HH时mm分"];
-    NSString *defultDateString = [formatter stringFromDate:displayDefultDate];
-    [self.timeLabel setText:defultDateString];
-    
+    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800s
+    //准备数据源
     self.timePickViewContent = [NSMutableArray array];
     NSMutableArray *dayArray = [NSMutableArray array];
-    [formatter setDateFormat:@"MM-dd"];
+    [formatter setDateFormat:@"YYYY-MM-dd"];
     // 使用formatter转换后的date字符串变成了当前时区的时间
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 30; i++) {
         
         NSDate *tmpDate = [NSDate dateWithTimeInterval:86400*i sinceDate:date];
-        NSString *tmpDateStr = [formatter stringFromDate:tmpDate];
-        NSString *month = [tmpDateStr substringWithRange:NSMakeRange(0, 2)];
-        NSString *day = [tmpDateStr substringWithRange:NSMakeRange(3, 2)];
-        NSString *dateString = [NSString stringWithFormat:@"%@月%@日",month,day];
-//        NSLog(@"%@",dateString);
+        NSString *dateString = [formatter stringFromDate:tmpDate];
+        //        NSLog(@"%@",dateString);
         [dayArray addObject:dateString];
-
+        
     }
     [self.timePickViewContent addObject:dayArray];
     
     NSMutableArray *hourArray = [NSMutableArray array];
+    
     for (int i = 0; i < 24; i++) {
-        NSString *hourString = [NSString stringWithFormat:@"%d时",i];
+        NSString *hourString;
+        if(i < 10){
+            hourString = [NSString stringWithFormat:@"0%d时",i];
+        }else{
+            hourString = [NSString stringWithFormat:@"%d时",i];
+        }
         [hourArray addObject:hourString];
     }
     [self.timePickViewContent addObject:hourArray];
     
     NSMutableArray *minutesArray = [NSMutableArray array];
     for (int i = 0; i < 60; i++) {
-        NSString *minutesString = [NSString stringWithFormat:@"%d分",i];
+        NSString *minutesString;
+        if (i < 10) {
+            minutesString = [NSString stringWithFormat:@"0%d分",i];
+        }else{
+            minutesString = [NSString stringWithFormat:@"%d分",i];
+        }
         [minutesArray addObject:minutesString];
     }
     [self.timePickViewContent addObject:minutesArray];
+    
+    //默认显示当前时间往后一小时
+    NSDate *defultDate = [NSDate dateWithTimeInterval:3600 sinceDate:date];
+    [formatter setDateFormat:@"今天 HH时 mm分"];
+    NSString *defultDateString = [formatter stringFromDate:defultDate];
+    [self.timeLabel setText:defultDateString];
+    //默认选中当前时间
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    self.time = [formatter stringFromDate:defultDate];
+    //设置默认选中时间
+    [formatter setDateFormat:@"HH"];
+    NSInteger hour = [formatter stringFromDate:defultDate].integerValue;
+    [self.timePickerVIew selectRow:hour inComponent:1 animated:NO];
+    if (hour == 0) {
+        [self.timePickerVIew selectRow:1 inComponent:0 animated:NO];
+    }
+    [formatter setDateFormat:@"mm"];
+    NSInteger minute = [formatter stringFromDate:defultDate].integerValue;
+    [self.timePickerVIew selectRow:minute inComponent:2 animated:NO];
+    
+
 }
 - (void)displayIntegralInstructions{
     
@@ -131,26 +147,18 @@
 }
 #pragma mark pickerView滚动方法
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    if (component == 0) {
-        self.day = self.timePickViewContent[component][row];
-    }else if(component == 1){
-        self.hour = self.timePickViewContent[component][row];
-    }else{
-        self.minutes = self.timePickViewContent[component][row];
-    }
-    NSString *year = [self.timeLabel.text substringWithRange:NSMakeRange(0, 5)];
-    NSString *nowDateString = [NSString stringWithFormat:@"%@%@%@%@",year,self.day,self.hour,self.minutes];
+
+    NSInteger day = [self.timePickerVIew selectedRowInComponent:0];
+    NSInteger hour = [self.timePickerVIew selectedRowInComponent:1];
+    NSInteger minute = [self.timePickerVIew selectedRowInComponent:2];
+    NSString *selectedDateString = [NSString stringWithFormat:@"%@ %@%@",self.timePickViewContent[0][day],self.timePickViewContent[1][hour],self.timePickViewContent[2][minute]];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    //最结尾的Z表示的是时区，零时区表示+0000，东八区表示+0800
-    
-    [formatter setDateFormat:@"yyyy年MM月dd日HH时mm分"];
-    NSDate *date = [formatter dateFromString:nowDateString];
+    [formatter setDateFormat:@"yyyy-MM-ddHH时mm分"];
+    NSDate *date = [formatter dateFromString:selectedDateString];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     self.time = [formatter stringFromDate:date];
+    [self.timeLabel setText:selectedDateString];
     
-    self.day = [formatter stringFromDate:date];
-    [self.timeLabel setText:nowDateString];
-
 }
 @end
