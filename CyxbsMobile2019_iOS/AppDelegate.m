@@ -12,6 +12,7 @@
 #import <UMShare/UMShare.h>
 #import <UMAnalytics/MobClick.h>
 #import <UMCommonLog/UMCommonLogHeaders.h>
+
 extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
@@ -22,6 +23,9 @@ extern CFAbsoluteTime StartTime;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // 打开应用时刷新token
+    [UserItemTool refresh];
  
     //开发者需要显式的调用此函数，日志系统才能工作
     [UMCommonLogManager setUpUMCommonLogManager];

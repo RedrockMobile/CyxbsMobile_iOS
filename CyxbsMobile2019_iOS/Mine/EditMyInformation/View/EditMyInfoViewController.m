@@ -119,6 +119,7 @@
 }
 
 - (void)userInfoUploadedSuccess {
+    [UserItemTool refresh];         // 上传数据后刷新token
     [((MineViewController *)self.transitioningDelegate) loadUserData];
     ((MineViewController *)self.transitioningDelegate).panGesture = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
