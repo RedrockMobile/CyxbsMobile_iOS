@@ -13,9 +13,15 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     self.scrollView = [[UIScrollView alloc]init];
-    self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
+//    self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
+    
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
     //    NSLog(@"%@",NSStringFromCGRect(frame));
     [self addSubview:self.scrollView];
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.left.right.top.bottom.equalTo(self);
+    }];
     return self;
     
 }
@@ -98,10 +104,9 @@
     UILabel *contentLabel = [[UILabel alloc] init];
     contentLabel.numberOfLines = 0;
     NSString *content = [dic objectForKey:@"description"];
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:content attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCRegular size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
-    
-    contentLabel.attributedText = string;
-    contentLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+contentLabel.text = content;
+    [contentLabel setFont:[UIFont fontWithName:PingFangSCRegular size:15]];
+    contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     contentLabel.alpha = 1.0;
     
     [self.scrollView addSubview:contentLabel];
@@ -125,7 +130,7 @@
         width = (SCREEN_WIDTH - 40)/count;
         height = width * 0.6;
     }else{
-        width = (SCREEN_WIDTH - 70)/3;
+        width = (SCREEN_WIDTH - 60)/3;
         height = width;
     }
     if (self.imageUrlArray.count != 0) {
@@ -227,32 +232,61 @@
     }
     //加载回答列表
     NSArray *answerList = answersData;
-    UIView *view = [[UIView alloc]init];
-    [self.scrollView addSubview:view];
-    [view mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(5);
-        make.right.mas_equalTo(self.mas_right).mas_offset(0);
-        make.left.mas_equalTo(self.mas_left).mas_offset(0);
-        make.height.mas_equalTo(answerList.count*190);
-    }];
+//    UIView *view = [[UIView alloc]init];
+//    [self.scrollView addSubview:view];
+//    [view mas_makeConstraints:^(MASConstraintMaker *make){
+//        make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(5);
+//        make.right.mas_equalTo(self.mas_right).mas_offset(0);
+//        make.left.mas_equalTo(self.mas_left).mas_offset(0);
+//        make.height.mas_equalTo(answerList.count*190);
+//    }];
     if (answerList.count != 0) {
-        
+        CGFloat answerViewY = 0;
         for (int i=0;i<answerList.count; i++) {
             NSDictionary *dic = answerList[i];
-            QADetailAnswerListView *answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 190*i, SCREEN_WIDTH, 190)];
+            NSString *content = [dic objectForKey:@"content"];
+            CGFloat fontsize = 17;
+            CGFloat labelWidth = SCREEN_WIDTH - 90 - 1;
+            CGFloat labelHeight = [self calculateLabelHeight:content width:labelWidth fontsize:fontsize];
+            CGFloat answerViewHeight = labelHeight + 135;
+            QADetailAnswerListView *answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, answerViewHeight)];
             [answerView setupView:dic isSelf:self.isSelf];
-            [view addSubview:answerView];
+//            NSLog(@"%lD",(long)[answerView getViewHeight]);
+            [self.scrollView addSubview:answerView];
+            
+        
+            if (i == 0) {
+
+                [answerView mas_makeConstraints:^(MASConstraintMaker *make){
+                    make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(5);
+                    make.height.mas_equalTo(answerViewHeight);
+//                    make.height.mas_lessThanOrEqualTo(250);
+                    make.left.right.equalTo(self);
+                }];
+                answerViewY += (answerViewHeight + 5);
+            }else{
+                    
+                [answerView mas_makeConstraints:^(MASConstraintMaker *make){
+                    make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(answerViewY + 5);
+                    make.height.mas_equalTo(answerViewHeight);
+//                    make.height.mas_lessThanOrEqualTo(250);
+                    make.left.right.equalTo(self);
+                }];
+                answerViewY += (answerViewHeight + 5);
+            }
+//            NSLog(@"%lD",(long)[answerView getViewHeight]);
+
         }
         
     }else{
         UIImageView *imageView = [[UIImageView alloc]init];
         [imageView setImage:[UIImage imageNamed:@"QADetailNoAnswer"]];
-        [view addSubview:imageView];
+        [self.scrollView addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make){
             make.width.equalTo(@170);
             make.height.equalTo(@130);
-            make.centerX.equalTo(view);
-            make.top.equalTo(view).offset(80);
+            make.centerX.equalTo(self);
+            make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(70);
         }];
         
         UILabel *label = [[UILabel alloc]init];
@@ -260,17 +294,27 @@
         label.font = [UIFont fontWithName:PingFangSCLight size:12];
         [label setTextColor:[UIColor colorWithHexString:@"#15315B"]];
         label.textAlignment = NSTextAlignmentCenter;
-        [view addSubview:label];
+        [self.scrollView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make){
             make.width.equalTo(@170);
             make.height.equalTo(@20);
-            make.centerX.equalTo(view);
+            make.centerX.equalTo(self);
             make.top.mas_equalTo(imageView.mas_bottom).offset(15);
         }];
     }
     
 }
-
+- (CGFloat)calculateLabelHeight:(NSString *)text width:(CGFloat)width fontsize:(CGFloat)fontsize{
+    CGSize labelSize = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontsize]} context:nil].size;
+    return labelSize.height;
+}
+//根据宽度求高度  content 计算的内容  width 计算的宽度 font字体大小
++ (CGFloat)getLabelHeightWithText:(NSString *)text width:(CGFloat)width font: (CGFloat)font
+{
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil];
+ 
+    return rect.size.height;
+}
 - (void)tapToViewBigImage:(UIButton *)sender{
     [self.delegate tapToViewBigImage:sender.tag];
 }
@@ -291,4 +335,8 @@
     [self.delegate tapAdoptBtn:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }
+//查看评论
+//- (void)tapToViewComment{
+//    self.delegate
+//}
 @end

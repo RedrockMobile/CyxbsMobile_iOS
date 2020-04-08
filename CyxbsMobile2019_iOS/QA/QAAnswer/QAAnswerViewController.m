@@ -114,48 +114,42 @@
         make.height.mas_equalTo(215);
     }];
     
-    UIImageView *addImageView = [[UIImageView alloc]init];
     self.answerImageArray = [NSMutableArray array];
     self.answerImageViewArray = [NSMutableArray array];
-    [self.answerImageViewArray addObject:addImageView];
-    [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
-    addImageView.userInteractionEnabled = YES;
-    //添加点击手势
-    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
-    [addImageView addGestureRecognizer:tapGesture];
-    [self.view addSubview:addImageView];
-    [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
-        make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
-        make.height.width.mas_equalTo(110);
-        
-    }];
-   
+    [self setAddImageView];
+
 }
 
 - (void)setAddImageView{
    
-
-    if (self.answerImageViewArray.count<3&&self.answerImageViewArray.count>0) {
-        
+    NSInteger count = self.answerImageArray.count;
+    if (count + 1 <= 6){
         UIImageView *addImageView = [[UIImageView alloc]init];
-        
         [addImageView setImage:[UIImage imageNamed:@"addImageButton"]];
         addImageView.userInteractionEnabled = YES;
-        //添加点击手势
+        //    //添加点击手势
         UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
         [addImageView addGestureRecognizer:tapGesture];
         [self.view addSubview:addImageView];
-        NSInteger count = self.answerImageViewArray.count;
-       
-        [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.view.mas_left).mas_offset(20+110*count);
-            make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
-            make.height.width.mas_equalTo(110);
-            
-        }];
-        [self.answerImageViewArray addObject:addImageView];
         
+        
+        NSInteger widthAndHeight = (SCREEN_WIDTH - 60)/3;
+        if (count < 3){
+            [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.view.mas_left).mas_offset(20 + (widthAndHeight + 10) * count);
+                make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
+                make.height.width.mas_equalTo(widthAndHeight);
+                
+            }];
+        }else{
+            [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(self.view.mas_left).mas_offset(20 + (widthAndHeight + 10) * (count - 3));
+                make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(widthAndHeight + 20);
+                make.height.width.mas_equalTo(widthAndHeight);
+                
+            }];
+        }
+        [self.answerImageViewArray addObject:addImageView];
     }
 }
 - (void)addImage{

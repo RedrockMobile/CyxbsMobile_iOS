@@ -140,7 +140,6 @@
 		D026A81023D4F7D0001A4774 /* QAListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D026A80E23D4F7D0001A4774 /* QAListTableViewCell.xib */; };
 		D026A81723D50421001A4774 /* QADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81623D50421001A4774 /* QADetailViewController.m */; };
 		D026A81B23D5C119001A4774 /* QAListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A81A23D5C119001A4774 /* QAListModel.m */; };
-		D03C6B2323DF4CAA0093EF09 /* QAAskNextStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03C6B2223DF4CAA0093EF09 /* QAAskNextStepViewController.m */; };
 		D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */; };
 		D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59CB23DB30A900E0F34D /* QAAskModel.m */; };
 		D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */ = {isa = PBXBuildFile; fileRef = D03E59CE23DB30A900E0F34D /* QAAskNextStepView.m */; };
@@ -619,8 +618,6 @@
 		D026A81623D50421001A4774 /* QADetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QADetailViewController.m; sourceTree = "<group>"; };
 		D026A81923D5C119001A4774 /* QAListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAListModel.h; sourceTree = "<group>"; };
 		D026A81A23D5C119001A4774 /* QAListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAListModel.m; sourceTree = "<group>"; };
-		D03C6B2123DF4CAA0093EF09 /* QAAskNextStepViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAAskNextStepViewController.h; sourceTree = "<group>"; };
-		D03C6B2223DF4CAA0093EF09 /* QAAskNextStepViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAAskNextStepViewController.m; sourceTree = "<group>"; };
 		D03E59B223D9D8BE00E0F34D /* QAAnswerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAAnswerViewController.h; sourceTree = "<group>"; };
 		D03E59B323D9D8BE00E0F34D /* QAAnswerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAAnswerViewController.m; sourceTree = "<group>"; };
 		D03E59C923DB30A900E0F34D /* QAAskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAAskViewController.h; sourceTree = "<group>"; };
@@ -1864,8 +1861,6 @@
 				D03E59C923DB30A900E0F34D /* QAAskViewController.h */,
 				D03E59D023DB30A900E0F34D /* QAAskViewController.m */,
 				D03E59CD23DB30A900E0F34D /* View */,
-				D03C6B2123DF4CAA0093EF09 /* QAAskNextStepViewController.h */,
-				D03C6B2223DF4CAA0093EF09 /* QAAskNextStepViewController.m */,
 			);
 			path = QAAsk;
 			sourceTree = "<group>";
@@ -2971,7 +2966,6 @@
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				EE75BFC123F5884100208039 /* SCColor.m in Sources */,
 				EE75BFAB23F5884100208039 /* TeacherScheduleViewController.m in Sources */,
-				D03C6B2323DF4CAA0093EF09 /* QAAskNextStepViewController.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
