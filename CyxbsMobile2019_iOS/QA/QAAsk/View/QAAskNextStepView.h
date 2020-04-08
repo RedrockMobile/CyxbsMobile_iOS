@@ -22,11 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *commitBtn;
 @property(strong,nonatomic)NSMutableArray *timePickViewContent;
-@property(copy,nonatomic)NSString *day;
-@property(copy,nonatomic)NSString *hour;
-@property(copy,nonatomic)NSString *minutes;
+//选中的时间
 @property (copy,nonatomic)NSString *time;
-@property (copy,nonatomic)NSString *integralNum;
+//@property (copy,nonatomic)NSString *integralNum;
 @end
 
 NS_ASSUME_NONNULL_END

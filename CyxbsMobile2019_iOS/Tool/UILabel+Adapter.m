@@ -10,18 +10,18 @@
 #import <objc/runtime.h>
 #import "UIFont+AdaptiveFont.h"
 @implementation UILabel (Adapter)
--  (instancetype)adapterInitWithCoder:(NSCoder *)aDecoder{
-    [self adapterInitWithCoder:aDecoder];
-    if(self){
-        self.font = [UIFont adaptFontSize:self.font.pointSize];
-    }
-    return self;
-}
+//-  (instancetype)adapterInitWithCoder:(NSCoder *)aDecoder{
+//    [self adapterInitWithCoder:aDecoder];
+//    if(self){
+//        self.font = [UIFont adaptFontSize:self.font.pointSize];
+//    }
+//    return self;
+//}
 
 
-+ (void)load{
-    Method method1 = class_getInstanceMethod([self class], @selector(initWithCoder:));
-    Method method2 = class_getInstanceMethod([self class], @selector(adapterInitWithCoder:));
-    method_exchangeImplementations(method1, method2);
-}
+//+ (void)load{
+//    Method method1 = class_getInstanceMethod([self class], @selector(initWithCoder:));
+//    Method method2 = class_getInstanceMethod([self class], @selector(adapterInitWithCoder:));
+//    method_exchangeImplementations(method1, method2);
+//}
 @end

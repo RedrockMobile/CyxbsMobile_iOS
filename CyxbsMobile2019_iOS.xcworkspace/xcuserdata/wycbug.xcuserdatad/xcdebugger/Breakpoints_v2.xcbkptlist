@@ -119,17 +119,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EB2A5EEE-44DD-4975-9F15-CE18000809C9"
+            uuid = "7C56870D-A5DF-49C4-8811-BD3AE225EE0D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/QA/QAAsk/QAAskViewController.m"
+            filePath = "CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "-setAddImageView"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "-setupUIwithDic:answersData:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7C7959FB-13FB-4771-A85B-6D02FCEABEA6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "-setupUIwithDic:answersData:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7C7959FB-13FB-4771-A85B-6D02FCEABEA6 - d4f8e0bca3cedbbd"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[QADetailView setupUIwithDic:answersData:]"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wycbug/Desktop/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "270"
+                  endingLineNumber = "270"
+                  offsetFromSymbolStart = "10602">
+               </Location>
+               <Location
+                  uuid = "7C7959FB-13FB-4771-A85B-6D02FCEABEA6 - 1523b5e976b248a3"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[QADetailView setupUIwithDic:answersData:]_block_invoke.206"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wycbug/Desktop/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "270"
+                  endingLineNumber = "270"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
