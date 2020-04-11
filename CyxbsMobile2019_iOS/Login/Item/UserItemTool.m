@@ -65,6 +65,10 @@
 + (void)refresh {
     __block UserItem *item = [UserItemTool defaultItem];
     
+    if (!item) {
+        return;
+    }
+    
     NSDictionary *params = @{
         @"refreshToken": item.refreshToken
     };
