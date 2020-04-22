@@ -97,11 +97,16 @@
     }
     
     // 获取当前是星期几
-    NSInteger today = [NSDate date].weekday;
-    
+    NSInteger today;
+    if ([NSDate date].weekday == 1) {
+        today = 7;
+    } else {
+        today = [NSDate date].weekday - 1;
+    }
+
     // 自动选择当前日期
     [self weekButtonChoosed:self.contentView.weekButtonArray[nowWeek]];
-    [self weekdayButtonChoosed:self.contentView.weekDayButtonArray[today]];
+    [self weekdayButtonChoosed:self.contentView.weekDayButtonArray[today - 1]];
 }
 
 - (void)dealloc
