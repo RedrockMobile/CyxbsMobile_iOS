@@ -261,7 +261,7 @@
     for (int i = 0; i < self.buildingButtonArray.count; i++) {
         [self.buildingButtonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
             if (i == 0) {
-                make.leading.equalTo(self.bottomView).offset(11 + 20);
+                make.leading.equalTo(self.bottomView).offset(11 + 15);
             } else {
                 make.leading.equalTo(self.buildingButtonArray[i - 1].mas_trailing).offset(20);
             }
