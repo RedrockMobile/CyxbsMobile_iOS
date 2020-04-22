@@ -11,6 +11,7 @@
 #import "ScheduleInquiryViewController.h"
 #import "TestArrangeViewController.h"
 #import "SchoolBusViewController.h"
+#import "EmptyClassViewController.h"
 
 #define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -149,7 +150,7 @@
     FinderToolViewItem *item1 = [[FinderToolViewItem alloc]initWithIconView:@"同学课表" Title:@"同学课表" Detail:@"帮助同学们更快的查找到课表"];    
     
     FinderToolViewItem *item2 = [[FinderToolViewItem alloc]initWithIconView:@"校车轨迹" Title:@"校车轨迹" Detail:@"帮助同学们找到当前校车"];
-    FinderToolViewItem *item3 = [[FinderToolViewItem alloc]initWithIconView:@"教室查询" Title:@"课表查询" Detail:@"帮助同学们知道应该上什么课"];
+    FinderToolViewItem *item3 = [[FinderToolViewItem alloc]initWithIconView:@"教室查询" Title:@"教室查询" Detail:@"帮助同学们知道应该上什么课"];
     FinderToolViewItem *item4 = [[FinderToolViewItem alloc]initWithIconView:@"考试成绩" Title:@"考试成绩" Detail:@"帮助同学们知道应该上什么课"];
     FinderToolViewItem *item5 = [[FinderToolViewItem alloc]initWithIconView:@"空课表" Title:@"空课表" Detail:@"帮助同学们找到当前校车"];
     FinderToolViewItem *item6 = [[FinderToolViewItem alloc]initWithIconView:@"校历" Title:@"校历" Detail:@"帮助同学们找到当前校车"];
@@ -159,6 +160,7 @@
     [item2 addTarget:self action:@selector(chooseSchoolBus) forControlEvents:UIControlEventTouchUpInside];
     [item4 addTarget:self action:@selector(chooseTestArrange) forControlEvents:UIControlEventTouchUpInside];
     [item5 addTarget:self action:@selector(chooseScheduleInquiry) forControlEvents:UIControlEventTouchUpInside];
+    [item3 addTarget:self action:@selector(chooseEmptyClassRoom) forControlEvents:UIControlEventTouchUpInside];
     
     NSMutableArray *itemsArray = [NSMutableArray array];
     [itemsArray addObject:item1];
@@ -228,6 +230,13 @@
 //MARK: - 校车定位
 - (void)chooseSchoolBus {
     SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//MARK: - 空教室
+- (void)chooseEmptyClassRoom {
+    EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

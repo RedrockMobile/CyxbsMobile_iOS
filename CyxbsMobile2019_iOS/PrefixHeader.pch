@@ -154,9 +154,9 @@
 
 
 /// 获取签到信息
-#define CHECKININFOAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/User/getScoreStatus"
+#define CHECKININFOAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getScoreStatus"
 /// 签到
-#define CHECKINAPI @"https://hongyan.cqupt.edu.cn/app/index.php/QA/Integral/checkIn"
+#define CHECKINAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/Integral/checkIn"
 /// 积分商城
 #define INTEGRALSTORELISTAPI @"http://api-234.redrock.team/magipoke-intergral/QA/Integral/getItemList"
 
@@ -193,9 +193,9 @@
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
-///教务新闻详情
+/// 教务新闻详情
 #define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
-///教务新闻附件下载
+/// 教务新闻附件下载
 #define NEWSDOWNLOAD @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 /// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"

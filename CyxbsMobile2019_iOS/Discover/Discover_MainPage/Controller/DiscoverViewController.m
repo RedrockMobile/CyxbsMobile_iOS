@@ -77,6 +77,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     classTabBarView.layer.cornerRadius = 16;
     [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
     ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
+    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
 }
 
 - (void)viewDidLoad {
@@ -303,6 +304,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchFindClass {
     NSLog(@"点击了教室查询");
     EmptyClassViewController *vc = [[EmptyClassViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
