@@ -177,7 +177,8 @@
                 sender.backgroundColor = [UIColor colorNamed:@"Discover_EmptyClass_ButtonBackground"];
             } else {
                 sender.backgroundColor = [UIColor colorWithRed:221/255.0 green:227/255.0 blue:248/255.0 alpha:1.0];
-            }        } else {
+            }
+        } else {
             sender.backgroundColor = [UIColor clearColor];
         }
     }];
