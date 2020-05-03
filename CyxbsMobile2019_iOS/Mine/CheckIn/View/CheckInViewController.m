@@ -12,6 +12,7 @@
 #import "IntegralStoreViewController.h"
 #import "IntegralStoreTransitionAnimator.h"
 #import "IntegralStorePercentDrivenController.h"
+#import "MyGoodsViewController.h"
 
 @interface CheckInViewController () <CheckInProtocol, CheckInContentViewDelegate, UIViewControllerTransitioningDelegate>
 
@@ -93,6 +94,13 @@
     [self.presenter checkIn];
 }
 
+- (void)myGoodsButtonTouched {
+    MyGoodsViewController *vc = [[MyGoodsViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+
+// 手势
 - (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
         self.presentPanGesture = pan;

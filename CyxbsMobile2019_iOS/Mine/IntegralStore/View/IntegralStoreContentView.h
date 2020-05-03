@@ -12,7 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol IntegralStoreContentViewDelegate <NSObject>
 
+/// dismiss手势
 - (void)dismissWithGesture:(UIPanGestureRecognizer *)gesture;
+
+/// 按钮
+- (void)myGoodsButtonTouched;
 
 @end
 

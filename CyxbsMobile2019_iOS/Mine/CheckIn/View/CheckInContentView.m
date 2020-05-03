@@ -20,6 +20,7 @@
 @property (nonatomic, weak) UIButton *checkInButton;
 @property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, weak) UILabel *storeTitlelabel;
+@property (nonatomic, weak) UIButton *myGoodsButton;
 @property (nonatomic, weak) UIImageView *scoreImageView;
 @property (nonatomic, weak) UILabel *scoreLabel;
 
@@ -38,7 +39,7 @@
         [self addSubview:backgroundImageView];
         self.backgroundImageView = backgroundImageView;
         
-        // 临时返回
+        // 返回
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
         [backBtn setImage:[UIImage imageNamed:@"我的返回-白色"] forState:UIControlStateNormal];
@@ -160,6 +161,15 @@
         }
         [self.storeView addSubview:storeTitlelabel];
         self.storeTitlelabel = storeTitlelabel;
+        
+        UIButton *myGoodsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [myGoodsButton setTitle:@"我的商品" forState:UIControlStateNormal];
+        myGoodsButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:13];
+        [myGoodsButton setTitleColor:[UIColor colorWithRed:255/255.0 green:161/255.0 blue:146/255.0 alpha:1] forState:UIControlStateNormal];
+        myGoodsButton.backgroundColor = [UIColor colorWithRed:248/255.0 green:226/255.0 blue:223/255.0 alpha:1];
+        [myGoodsButton addTarget:self action:@selector(myGoodsButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+        [self.storeView addSubview:myGoodsButton];
+        self.myGoodsButton = myGoodsButton;
         
         UIImageView *scoreImageView = [[UIImageView alloc] init];
         scoreImageView.image = [UIImage imageNamed:@"积分"];
@@ -319,6 +329,14 @@
         make.leading.equalTo(self.storeView).offset(13);
     }];
     
+    [self.myGoodsButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.storeTitlelabel);
+        make.leading.equalTo(self.storeTitlelabel.mas_trailing).offset(16);
+        make.height.equalTo(@26);
+        make.width.equalTo(@75);
+    }];
+    self.myGoodsButton.layer.cornerRadius = 13;
+    
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.storeTitlelabel);
         make.trailing.equalTo(self.storeView).offset(-16);
@@ -375,6 +393,14 @@
     }
 }
 
+- (void)myGoodsButtonTouched {
+    if ([self.delegate respondsToSelector:@selector(myGoodsButtonTouched)]) {
+        [self.delegate myGoodsButtonTouched];
+    }
+}
+
+
+#pragma mark - 手势
 - (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
     if ([self.delegate respondsToSelector:@selector(presentIntegralStore:)]) {
         [self.delegate presentIntegralStore:pan];

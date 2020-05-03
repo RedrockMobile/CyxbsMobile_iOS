@@ -12,7 +12,7 @@
 #import "IntegralStorePresenterProtocol.h"
 #import "IntegralStoreDataItem.h"
 #import "IntegralStoreCell.h"
-
+#import "MyGoodsViewController.h"
 
 
 @interface IntegralStoreViewController () <IntegralStoreContentViewDelegate, IntegralStorePresenterProtocol, UICollectionViewDataSource, UICollectionViewDelegate>
@@ -100,6 +100,13 @@
     cell.item = self.dataItemArray[indexPath.item];
     
     return cell;
+}
+
+
+#pragma mark - contentView代理回调
+- (void)myGoodsButtonTouched {
+    MyGoodsViewController *vc = [[MyGoodsViewController alloc] init];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 

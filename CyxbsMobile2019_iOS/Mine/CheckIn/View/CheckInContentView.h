@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)backButtonClicked;
 - (void)CheckInButtonClicked:(UIButton *)sender;
+- (void)myGoodsButtonTouched;
 - (void)presentIntegralStore:(UIPanGestureRecognizer *)pan;
 
 @end

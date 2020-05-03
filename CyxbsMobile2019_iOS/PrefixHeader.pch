@@ -158,7 +158,9 @@
 /// 签到
 #define CHECKINAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/Integral/checkIn"
 /// 积分商城
-#define INTEGRALSTORELISTAPI @"http://api-234.redrock.team/magipoke-intergral/QA/Integral/getItemList"
+#define INTEGRALSTORELISTAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-intergral/QA/Integral/getItemList"
+/// 我的商品
+#define MYGOODSLISTAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-intergral/QA/Integral/myRepertory"
 
 
 /// “我的”邮问数据
