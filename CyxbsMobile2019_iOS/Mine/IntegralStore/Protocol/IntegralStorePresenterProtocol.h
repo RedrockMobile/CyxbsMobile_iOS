@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)storeDataLoadSucceeded:(id)responseObject;
 - (void)storeDataLoadFailed;
 
+- (void)goodsOrderSuccess;
+- (void)goodsOrderFailuer;
+
+- (void)integralFreshSuccess;
+
 @end
 
 NS_ASSUME_NONNULL_END

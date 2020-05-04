@@ -62,22 +62,6 @@
     }
 }
 
-- (void)storeDataLoadSucceeded:(id)responseObject {
-    [self.loadingHUD hide:YES];
-    
-    self.dataItemArray = responseObject;
-    [self.contentView.storeCollectionView reloadData];
-}
-
-- (void)storeDataLoadFailed {
-    [self.loadingHUD hide:YES];
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"Σ（ﾟдﾟlll）加载失败了...";
-    [hud hide:YES afterDelay:1];
-}
-
 
 #pragma mark - CollectionView数据源
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -99,15 +83,77 @@
     
     cell.item = self.dataItemArray[indexPath.item];
     
+    cell.buyButton.tag = indexPath.item;
+    [cell.buyButton addTarget:self action:@selector(buy:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
 
-#pragma mark - contentView代理回调
+#pragma mark - 按钮
 - (void)myGoodsButtonTouched {
     MyGoodsViewController *vc = [[MyGoodsViewController alloc] init];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+- (void)buy:(UIButton *)sender {
+    if ([[UserItemTool defaultItem].integral intValue] < [self.dataItemArray[sender.tag].value intValue]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"Σ（ﾟдﾟlll）积分不足...";
+        [hud hide:YES afterDelay:0.7];
+        
+        return;
+    }
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"兑换中(´▽｀)";
+    self.loadingHUD = hud;
+    
+    [self.presenter buyWithName:self.dataItemArray[sender.tag].name andValue:self.dataItemArray[sender.tag].value];
+}
+
+
+#pragma mark - Presenter回调
+- (void)storeDataLoadSucceeded:(id)responseObject {
+    [self.loadingHUD hide:YES];
+    
+    self.dataItemArray = responseObject;
+    [self.contentView.storeCollectionView reloadData];
+}
+
+- (void)storeDataLoadFailed {
+    [self.loadingHUD hide:YES];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"Σ（ﾟдﾟlll）加载失败了...";
+    [hud hide:YES afterDelay:1];
+}
+
+- (void)goodsOrderSuccess {
+    [self.loadingHUD hide:YES];
+    
+    [self.presenter refreshIntegralNum];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"兑换成功 O(∩_∩)O~~";
+    [hud hide:YES afterDelay:0.7];
+}
+
+- (void)goodsOrderFailuer {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"Σ（ﾟдﾟlll）兑换失败了...";
+    [hud hide:YES afterDelay:0.7];
+}
+
+- (void)integralFreshSuccess {
+    self.contentView.scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IntegralRefreshSuccess" object:nil];
+}
 
 @end

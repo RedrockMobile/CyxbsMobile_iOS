@@ -34,6 +34,8 @@
         self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:247/255.0 alpha:1];
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(integralRefreshSuccess) name:@"IntegralRefreshSuccess" object:nil];
+    
     // 绑定Presenter
     self.presenter = [[CheckInPresenter alloc] init];
     [self.presenter attachView:self];
@@ -158,6 +160,12 @@
     } else {
         return nil;
     }
+}
+
+
+#pragma mark - 通知中心
+- (void)integralRefreshSuccess {
+    self.contentView.scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
 }
 
 @end

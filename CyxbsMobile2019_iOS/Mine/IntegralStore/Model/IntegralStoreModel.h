@@ -15,6 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)loadStoreDataSucceeded:(void (^)(NSDictionary *responseObject))succeeded
                         failed:(void (^)(void))failed;
 
+- (void)buyWithName:(NSString *)name
+           andValue:(NSString *)value
+          Succeeded:(void (^)(void))succeeded
+             failed:(void (^)(void))failed;
+
+- (void)refreshIntegralSucceeded:(void (^)(void))succeeded
+                          failed:(void (^)(void))failed;
+
 @end
 
 NS_ASSUME_NONNULL_END

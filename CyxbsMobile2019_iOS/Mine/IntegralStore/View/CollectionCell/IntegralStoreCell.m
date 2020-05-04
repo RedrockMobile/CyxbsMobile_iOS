@@ -16,7 +16,6 @@
 @property (nonatomic, weak) UILabel *numberLabel;
 @property (nonatomic, weak) UIImageView *integralImageView;
 @property (nonatomic, weak) UILabel *priceLabel;
-@property (nonatomic, weak) UIButton *buyButton;
 
 @end
 

@@ -20,12 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
 @interface IntegralStoreContentView : UIView
 
 @property (nonatomic, weak) id<IntegralStoreContentViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate> delegate;
 
 @property (nonatomic, weak) UIView *storeView;
 @property (nonatomic, weak) UICollectionView *storeCollectionView;
+@property (nonatomic, weak) UILabel *scoreLabel;
 
 @end
 
