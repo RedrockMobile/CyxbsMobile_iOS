@@ -65,6 +65,15 @@
         [self.contentView addSubview:integralLabel];
         self.integralLabel = integralLabel;
         
+        
+        UILabel *numLabel = [[UILabel alloc] init];
+        numLabel.textColor = self.timeLabel.textColor;
+        numLabel.font = self.timeLabel.font;
+        numLabel.alpha = 0.6;
+        [self.contentView addSubview:numLabel];
+        self.numLabel = numLabel;
+        
+        
         UIView *separatorLine = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
             separatorLine.backgroundColor = [UIColor colorNamed:@"Mine_EditInfo_SeparatorColor"];
@@ -99,13 +108,18 @@
     
     [self.integralImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.nameLabel);
-        make.top.equalTo(self.timeLabel.mas_bottom).offset(13);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(10);
         make.height.width.equalTo(@14);
     }];
     
     [self.integralLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.integralImageView.mas_trailing).offset(3);
         make.centerY.equalTo(self.integralImageView);
+    }];
+    
+    [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.nameLabel);
+        make.top.equalTo(self.integralImageView.mas_bottom).offset(10);
     }];
     
     [self.separatorLine mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) UILabel *integralLabel;
 
+@property (nonatomic, weak) UILabel *numLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

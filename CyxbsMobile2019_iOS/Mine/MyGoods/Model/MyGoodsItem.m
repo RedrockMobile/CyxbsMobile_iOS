@@ -16,6 +16,7 @@
         self.photo_src = dict[@"photo_src"];
         self.time = dict[@"time"];
         self.value = [dict[@"value"] stringValue];
+        self.num = [dict[@"num"] stringValue];
     }
     return self;
 }
