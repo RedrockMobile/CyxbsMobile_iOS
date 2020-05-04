@@ -51,6 +51,26 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // 从字符串转换日期
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy.MM.d"];
+    NSDate *resDate = [formatter dateFromString:DateStart];
+    
+    // 计算当前是第几周
+    NSInteger beginTime=[resDate timeIntervalSince1970];
+    NSDate *now = [NSDate date];
+    NSInteger nowTime = [now timeIntervalSince1970];
+    double day = (float)(nowTime - beginTime)/(float)86400/(float)7;
+    NSInteger nowWeek = (int)ceil(day) - 1;
+    if(nowWeek < 0){
+        nowWeek = 0;
+    }
+    
+    NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
+    
+    self.contentView.weekLabel.text = [NSString stringWithFormat:@"下学期%@", weekArray[nowWeek]];
+    
+    // 过场动画
     [self animationForViewWillAppear];
 }
 
