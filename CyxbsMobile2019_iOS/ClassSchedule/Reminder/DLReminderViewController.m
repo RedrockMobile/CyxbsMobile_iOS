@@ -83,6 +83,7 @@
 - (void)back{
     [self.user setObject:[self.buttonTitleArray copy] forKey:@"buttonTitleArray"];
     [self.user synchronize];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)loadHistoryButtons{
