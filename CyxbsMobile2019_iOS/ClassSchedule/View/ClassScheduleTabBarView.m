@@ -34,7 +34,13 @@
         self.bottomCoverView = bottomCoverView;
         
         UIView *dragHintView = [[UIView alloc] init];
-        dragHintView.backgroundColor = [UIColor blackColor];
+        
+        if (@available(iOS 11.0, *)) {
+            dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
+        } else {
+            // Fallback on earlier versions
+            dragHintView.backgroundColor = [UIColor whiteColor];
+        }
         dragHintView.layer.cornerRadius = 2.5;
         [self addSubview:dragHintView];
         self.dragHintView = dragHintView;

@@ -38,13 +38,28 @@
     
     
     _month = [[UIView alloc]init];
-    _month.backgroundColor = [UIColor clearColor];
+    if (@available(iOS 11.0, *)) {
+               _month.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+           } else {
+               _month.backgroundColor = [UIColor clearColor];
+           }
+   
     
     _dayBar = [[UIView alloc]init];
-    _dayBar.backgroundColor = [UIColor clearColor];
+    if (@available(iOS 11.0, *)) {
+        _dayBar.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+    } else {
+        _dayBar.backgroundColor = [UIColor clearColor];
+    }
+   
     
     _topBar = [[UIView alloc]init];
-    _topBar.backgroundColor = [UIColor colorWithHexString:@"FFFFFF"];
+    if (@available(iOS 11.0, *)) {
+           _topBar.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+       } else {
+           _topBar.backgroundColor = [UIColor clearColor];
+       }
+  
     
     [_topBar addSubview:_month];
     [_topBar addSubview:_dayBar];
@@ -54,7 +69,11 @@
     _rootView = [[UIView alloc]init];
     
     _scrollView = [[UIScrollView alloc]init];
-    _scrollView.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 11.0, *)) {
+             _scrollView.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+         } else {
+            _scrollView.backgroundColor = [UIColor whiteColor];
+         }
     _scrollView.scrollEnabled = YES;
     
     _scrollView.contentSize = CGSizeMake(0,606*autoSizeScaleY);
@@ -69,8 +88,11 @@
     [_backButton setTintColor:[UIColor blueColor]];
     [_backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [_topBar addSubview:_backButton];
-    
-    _leftBar.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
+    if (@available(iOS 11.0, *)) {
+        _leftBar.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+    } else {
+       _leftBar.backgroundColor = [UIColor whiteColor];
+    }
     
     [_scrollView addSubview: _leftBar];
    
@@ -146,7 +168,13 @@
                 UILabel *weekLabel = [[UILabel alloc]init];
                 weekLabel.text = day[i];
                 weekLabel.font = [UIFont systemFontOfSize:12];
-                weekLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+                if (@available(iOS 11.0, *)) {
+                    weekLabel.textColor = [UIColor colorNamed:@"labelColor"];
+                } else {
+                     weekLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+                    // Fallback on earlier versions
+                }
+               
                 weekLabel.textAlignment = NSTextAlignmentCenter;
                 [weekLabel setFrame:CGRectMake(0, 0, dayItem.frame.size.width, dayItem.frame.size.height)];
                 [dayItem addSubview:weekLabel];
@@ -165,7 +193,12 @@
                 UILabel *weekLabel = [[UILabel alloc]init];
                 weekLabel.text = day[i];
                 weekLabel.font = [UIFont systemFontOfSize:12];
-                weekLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+                if (@available(iOS 11.0, *)) {
+                                   weekLabel.textColor = [UIColor colorNamed:@"labelColor"];
+                               } else {
+                                    weekLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+                                   // Fallback on earlier versions
+                               }
                 weekLabel.textAlignment = NSTextAlignmentCenter;
                 [weekLabel setFrame:CGRectMake(0, dayItem.frame.size.height/2-11, dayItem.frame.size.width, 11)];
                 [dayItem addSubview:weekLabel];
@@ -174,7 +207,12 @@
                 NSString *dayNum = [NSString stringWithFormat:@"%@日",[date[i] objectForKey:@"day"]];
                 dayLabel.text = dayNum;
                 dayLabel.font = [UIFont systemFontOfSize:11];
-                dayLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+                if (@available(iOS 11.0, *)) {
+                                   dayLabel.textColor = [UIColor colorNamed:@"labelColor"];
+                               } else {
+                                    dayLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+                                   // Fallback on earlier versions
+                               }
                 dayLabel.alpha = 0.64;
                 dayLabel.textAlignment = NSTextAlignmentCenter;
                 [dayLabel setFrame:CGRectMake(0, dayItem.frame.size.height/2, dayItem.frame.size.width, dayItem.frame.size.height/2)];
@@ -189,7 +227,12 @@
             NSString *monthNum = [NSString stringWithFormat:@"%@月",[date[0] objectForKey:@"month"]];
             monthLabel.text = monthNum;
             monthLabel.font = [UIFont systemFontOfSize:11];
-            monthLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+            if (@available(iOS 11.0, *)) {
+                                              monthLabel.textColor = [UIColor colorNamed:@"labelColor"];
+                                          } else {
+                                               monthLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+                                              // Fallback on earlier versions
+                                          }
             monthLabel.textAlignment = NSTextAlignmentCenter;
             [_month addSubview:monthLabel];
             [_month layoutSubviews];
@@ -204,7 +247,12 @@
             [numLabel setFrame:CGRectMake(0, i*numLabelHeight, numLabelWidth, numLabelHeight)];
             numLabel.text = [NSString stringWithFormat:@"%d",i+1];
             numLabel.textAlignment = NSTextAlignmentCenter;
-            numLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+            if (@available(iOS 11.0, *)) {
+                                              numLabel.textColor = [UIColor colorNamed:@"labelColor"];
+                                          } else {
+                                               numLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
+                                              // Fallback on earlier versions
+                                          }
             numLabel.font = [UIFont systemFontOfSize:13];
             [_leftBar addSubview:numLabel];
             
@@ -247,11 +295,27 @@
     NSNumber *period = [tmp[0] objectForKey:@"period"];
     UIColor *viewColor = [[UIColor alloc]init];
     if (hash_lesson.integerValue<2) {
-        viewColor = [UIColor colorWithRed:249/255.0 green:231/255.0 blue:216/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            viewColor = [UIColor colorNamed:@"hash_lesson.integerValue<2"];
+        } else {
+            // Fallback on earlier versions
+             viewColor = [UIColor colorWithRed:249/255.0 green:231/255.0 blue:216/255.0 alpha:1.0];
+        }
+       
     }else if(hash_lesson.integerValue>=2&&hash_lesson.integerValue<4){
-        viewColor = [UIColor colorWithRed:249/255.0 green:227/255.0 blue:228/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+                   viewColor = [UIColor colorNamed:@"hash_lesson.integerValue>=2&&hash_lesson.integerValue<4"];
+               } else {
+                   // Fallback on earlier versions
+                    viewColor = [UIColor colorWithRed:249/255.0 green:227/255.0 blue:228/255.0 alpha:1.0];
+               }
     }else{
-        viewColor = [UIColor colorWithRed:221/255.0 green:227/255.0 blue:248/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            viewColor = [UIColor colorNamed:@"hash_lesson.integerValue>4"];
+        } else {
+            // Fallback on earlier versions
+              viewColor = [UIColor colorWithRed:221/255.0 green:227/255.0 blue:248/255.0 alpha:1.0];
+        }
     }
     _btnWidth = _dayBar.frame.size.width/7;
     _btnHeight =  50.5*autoSizeScaleY*period.integerValue;
@@ -290,15 +354,34 @@
     
     classRoomNumLabel.textAlignment = NSTextAlignmentCenter;
     if (hash_lesson.integerValue<2) {
-        classRoomNumLabel.textColor = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
-        classRoomNumLabel.alpha = 1.0;
+        if (@available(iOS 11.0, *)) {
+            classRoomNumLabel.textColor = [UIColor colorNamed:@"ClassLabelColor1"];
+            classRoomNumLabel.alpha = 1.0;
+        } else {
+            // Fallback on earlier versions
+            classRoomNumLabel.textColor = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
+                   classRoomNumLabel.alpha = 1.0;
+        }
+       
     }else if(hash_lesson.integerValue>=2&&hash_lesson.integerValue<4)
     {
-        classRoomNumLabel.textColor = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
-        classRoomNumLabel.alpha = 1.0;
+        if (@available(iOS 11.0, *)) {
+            classRoomNumLabel.textColor = [UIColor colorNamed:@"ClassLabelColor2"];
+            classRoomNumLabel.alpha = 1.0;
+        } else {
+            // Fallback on earlier versions
+             classRoomNumLabel.textColor = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
+                   classRoomNumLabel.alpha = 1.0;
+        }
     }else{
-        classRoomNumLabel.textColor =[UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
-        classRoomNumLabel.alpha = 1.0;
+        if (@available(iOS 11.0, *)) {
+                   classRoomNumLabel.textColor = [UIColor colorNamed:@"ClassLabelColor3"];
+                   classRoomNumLabel.alpha = 1.0;
+               } else {
+                   // Fallback on earlier versions
+                      classRoomNumLabel.textColor =[UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
+                          classRoomNumLabel.alpha = 1.0;
+               }
     }
     classRoomNumLabel.font = [UIFont systemFontOfSize:12];
     
@@ -312,14 +395,32 @@
     classNameLabel.text = [NSString stringWithFormat:@"%@", [tmp[0] objectForKey:@"course"]];
     classNameLabel.textAlignment = NSTextAlignmentCenter;
     if (hash_lesson.integerValue<2) {
-        classNameLabel.textColor = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
-        classNameLabel.alpha = 1.0;
+        if (@available(iOS 11.0, *)) {
+            classNameLabel.textColor = [UIColor colorNamed:@"ClassLabelColor1"];
+            classNameLabel.alpha = 1.0;
+        } else {
+            // Fallback on earlier versions
+           classNameLabel.textColor = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
+            classNameLabel.alpha = 1.0;
+        }
     }else if (hash_lesson.integerValue>=2&&hash_lesson.integerValue<4){
-        classNameLabel.textColor = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
-        classNameLabel.alpha = 1.0;
+        if (@available(iOS 11.0, *)) {
+            classNameLabel.textColor = [UIColor colorNamed:@"ClassLabelColor2"];
+            classNameLabel.alpha = 1.0;
+        } else {
+            // Fallback on earlier versions
+             classNameLabel.textColor = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
+             classNameLabel.alpha = 1.0;
+        }
     }else{
-        classNameLabel.textColor =[UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
-        classNameLabel.alpha = 1.0;
+        if (@available(iOS 11.0, *)) {
+            classNameLabel.textColor = [UIColor colorNamed:@"ClassLabelColor3"];
+            classNameLabel.alpha = 1.0;
+        } else {
+            // Fallback on earlier versions
+              classNameLabel.textColor =[UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
+               classNameLabel.alpha = 1.0;
+        }
     }
     classNameLabel.font = [UIFont systemFontOfSize:12];
     [classNameLabel setNumberOfLines:0];
