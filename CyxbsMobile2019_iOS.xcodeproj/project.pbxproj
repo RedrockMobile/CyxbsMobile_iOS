@@ -281,6 +281,20 @@
 		DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC9239BD4550052B65E /* DayLabel.m */; };
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
 		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
+		DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DC2466D888006CE5BC /* DLReminderViewController.m */; };
+		DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */; };
+		DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DE2466D888006CE5BC /* DLWeekButton.m */; };
+		DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DF2466D888006CE5BC /* DLTimeSelectView.m */; };
+		DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064E32466D888006CE5BC /* DLTextFiled.m */; };
+		DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064E42466D888006CE5BC /* DLWeeklSelectView.m */; };
+		DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064E62466D888006CE5BC /* DLReminderModel.m */; };
+		DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064E92466D888006CE5BC /* DLReminderSetTimeVC.m */; };
+		DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064ED2466D888006CE5BC /* DLNextButton.m */; };
+		DB4064FF2466D889006CE5BC /* Reminder.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB4064EE2466D888006CE5BC /* Reminder.xcassets */; };
+		DB4065002466D889006CE5BC /* DLHistodyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064EF2466D888006CE5BC /* DLHistodyButton.m */; };
+		DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F02466D888006CE5BC /* DLTimeSelectedButton.m */; };
+		DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F32466D888006CE5BC /* DLReminderView+Reset.m */; };
+		DB4065032466D889006CE5BC /* DLReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F42466D888006CE5BC /* DLReminderView.m */; };
 		EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFB23F5884100208039 /* DiscoverViewController.m */; };
 		EE75BF9023F5884100208039 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE75BEFD23F5884100208039 /* electricity_header_setting.gif */; };
 		EE75BF9123F5884100208039 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFE23F5884100208039 /* InstallBuildTableViewCell.m */; };
@@ -832,6 +846,33 @@
 		DB34EACB239BD4550052B65E /* ORWInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORWInputTextView.h; sourceTree = "<group>"; };
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
 		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DB4064DB2466D888006CE5BC /* DLReminderSetTimeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLReminderSetTimeVC.h; sourceTree = "<group>"; };
+		DB4064DC2466D888006CE5BC /* DLReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderViewController.m; sourceTree = "<group>"; };
+		DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderSetDetailVC.m; sourceTree = "<group>"; };
+		DB4064DE2466D888006CE5BC /* DLWeekButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLWeekButton.m; sourceTree = "<group>"; };
+		DB4064DF2466D888006CE5BC /* DLTimeSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTimeSelectView.m; sourceTree = "<group>"; };
+		DB4064E02466D888006CE5BC /* DLHistodyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLHistodyButton.h; sourceTree = "<group>"; };
+		DB4064E12466D888006CE5BC /* DLNextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLNextButton.h; sourceTree = "<group>"; };
+		DB4064E22466D888006CE5BC /* DLReminderView+Reset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DLReminderView+Reset.h"; sourceTree = "<group>"; };
+		DB4064E32466D888006CE5BC /* DLTextFiled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTextFiled.m; sourceTree = "<group>"; };
+		DB4064E42466D888006CE5BC /* DLWeeklSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLWeeklSelectView.m; sourceTree = "<group>"; };
+		DB4064E52466D888006CE5BC /* DLTimeSelectedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTimeSelectedButton.h; sourceTree = "<group>"; };
+		DB4064E62466D888006CE5BC /* DLReminderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderModel.m; sourceTree = "<group>"; };
+		DB4064E72466D888006CE5BC /* DLReminderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLReminderView.h; sourceTree = "<group>"; };
+		DB4064E82466D888006CE5BC /* DLTimeSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTimeSelectView.h; sourceTree = "<group>"; };
+		DB4064E92466D888006CE5BC /* DLReminderSetTimeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderSetTimeVC.m; sourceTree = "<group>"; };
+		DB4064EA2466D888006CE5BC /* DLReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLReminderViewController.h; sourceTree = "<group>"; };
+		DB4064EB2466D888006CE5BC /* DLReminderSetDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLReminderSetDetailVC.h; sourceTree = "<group>"; };
+		DB4064EC2466D888006CE5BC /* DLWeekButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLWeekButton.h; sourceTree = "<group>"; };
+		DB4064ED2466D888006CE5BC /* DLNextButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLNextButton.m; sourceTree = "<group>"; };
+		DB4064EE2466D888006CE5BC /* Reminder.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Reminder.xcassets; sourceTree = "<group>"; };
+		DB4064EF2466D888006CE5BC /* DLHistodyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLHistodyButton.m; sourceTree = "<group>"; };
+		DB4064F02466D888006CE5BC /* DLTimeSelectedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLTimeSelectedButton.m; sourceTree = "<group>"; };
+		DB4064F12466D888006CE5BC /* DLWeeklSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLWeeklSelectView.h; sourceTree = "<group>"; };
+		DB4064F22466D888006CE5BC /* DLTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLTextFiled.h; sourceTree = "<group>"; };
+		DB4064F32466D888006CE5BC /* DLReminderView+Reset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DLReminderView+Reset.m"; sourceTree = "<group>"; };
+		DB4064F42466D888006CE5BC /* DLReminderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderView.m; sourceTree = "<group>"; };
+		DB4064F52466D888006CE5BC /* DLReminderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLReminderModel.h; sourceTree = "<group>"; };
 		EE75BEFA23F5884100208039 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		EE75BEFB23F5884100208039 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		EE75BEFD23F5884100208039 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
@@ -2053,6 +2094,7 @@
 		DB34EA28239BD4540052B65E /* ClassSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				DB4064DA2466D888006CE5BC /* Reminder */,
 				1A1691F92430ECA60076EDC7 /* ClassTabBarController.h */,
 				1A1691FA2430ECA60076EDC7 /* ClassTabBarController.m */,
 				1A1691FC2430ECFD0076EDC7 /* ClassTabBar.h */,
@@ -2316,6 +2358,40 @@
 				DB34EACC239BD4550052B65E /* ORWInputTextView.m */,
 			);
 			path = InputTextView;
+			sourceTree = "<group>";
+		};
+		DB4064DA2466D888006CE5BC /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				DB4064DB2466D888006CE5BC /* DLReminderSetTimeVC.h */,
+				DB4064DC2466D888006CE5BC /* DLReminderViewController.m */,
+				DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */,
+				DB4064DE2466D888006CE5BC /* DLWeekButton.m */,
+				DB4064DF2466D888006CE5BC /* DLTimeSelectView.m */,
+				DB4064E02466D888006CE5BC /* DLHistodyButton.h */,
+				DB4064E12466D888006CE5BC /* DLNextButton.h */,
+				DB4064E22466D888006CE5BC /* DLReminderView+Reset.h */,
+				DB4064E32466D888006CE5BC /* DLTextFiled.m */,
+				DB4064E42466D888006CE5BC /* DLWeeklSelectView.m */,
+				DB4064E52466D888006CE5BC /* DLTimeSelectedButton.h */,
+				DB4064E62466D888006CE5BC /* DLReminderModel.m */,
+				DB4064E72466D888006CE5BC /* DLReminderView.h */,
+				DB4064E82466D888006CE5BC /* DLTimeSelectView.h */,
+				DB4064E92466D888006CE5BC /* DLReminderSetTimeVC.m */,
+				DB4064EA2466D888006CE5BC /* DLReminderViewController.h */,
+				DB4064EB2466D888006CE5BC /* DLReminderSetDetailVC.h */,
+				DB4064EC2466D888006CE5BC /* DLWeekButton.h */,
+				DB4064ED2466D888006CE5BC /* DLNextButton.m */,
+				DB4064EE2466D888006CE5BC /* Reminder.xcassets */,
+				DB4064EF2466D888006CE5BC /* DLHistodyButton.m */,
+				DB4064F02466D888006CE5BC /* DLTimeSelectedButton.m */,
+				DB4064F12466D888006CE5BC /* DLWeeklSelectView.h */,
+				DB4064F22466D888006CE5BC /* DLTextFiled.h */,
+				DB4064F32466D888006CE5BC /* DLReminderView+Reset.m */,
+				DB4064F42466D888006CE5BC /* DLReminderView.m */,
+				DB4064F52466D888006CE5BC /* DLReminderModel.h */,
+			);
+			path = Reminder;
 			sourceTree = "<group>";
 		};
 		EE75BEF723F5884100208039 /* Discover */ = {
@@ -2804,6 +2880,7 @@
 				DB34EB27239BD4550052B65E /* AddRemindViewController.xib in Resources */,
 				DB34EAD8239BD4550052B65E /* ClassBookImg.xcassets in Resources */,
 				DB34EB1B239BD4550052B65E /* 删除@3x.png in Resources */,
+				DB4064FF2466D889006CE5BC /* Reminder.xcassets in Resources */,
 				DB34EAF1239BD4550052B65E /* 椭圆@3x.png in Resources */,
 				DB34EAE8239BD4550052B65E /* 多课1@2x.png in Resources */,
 				DB34EAE3239BD4550052B65E /* 书@2x.png in Resources */,
@@ -2937,6 +3014,7 @@
 				EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				1AD038DA23FA775600D5C90E /* MineQACommentItem.m in Sources */,
+				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
 				1AD038D423F9471A00D5C90E /* MineQAMyAnswerItem.m in Sources */,
 				D0101F62243587A1004337ED /* UIScrollView+GKGestureHandle.m in Sources */,
@@ -2977,16 +3055,19 @@
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
+				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				1A21CD5B242A48F6008B2EA7 /* SchoolBusContentView.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				1A22DDCC244FF61600FBB51E /* EmptyClassTableViewCell.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
+				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				EE75BFAA23F5884100208039 /* ScheduleInquiryViewController.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
+				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
 				1AD038D123F92F6700D5C90E /* MineQAMyQuestionDraftItem.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
@@ -3002,7 +3083,10 @@
 				EE75BFB623F5884100208039 /* NewDetailViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
+				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */,
+				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
+				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
 				EE75BFA523F5884100208039 /* TestCardTableViewCell.m in Sources */,
 				1AF81336241FB208006AE58D /* SchoolBusViewController.m in Sources */,
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
@@ -3026,6 +3110,7 @@
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */,
+				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
@@ -3043,6 +3128,7 @@
 				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
 				1A4022FE244C9FD0000F8524 /* EmptyClassContentView.m in Sources */,
+				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				1A22DDD1244FF89E00FBB51E /* EmptyClassModel.m in Sources */,
 				EE75BFBA23F5884100208039 /* SCLineChart.m in Sources */,
 				EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */,
@@ -3056,6 +3142,7 @@
 				EE75BFAE23F5884100208039 /* PeopleListCellTableViewCell.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				1A4022FB244C9F6B000F8524 /* EmptyClassViewController.m in Sources */,
+				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
 				1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */,
 				1A16592023D85CD60039BA46 /* MineQAController.m in Sources */,
@@ -3105,6 +3192,7 @@
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
+				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
@@ -3135,7 +3223,9 @@
 				EE75BFAC23F5884100208039 /* ClassmateItem.m in Sources */,
 				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
 				EE75BFC623F5884100208039 /* ScoreViewController.m in Sources */,
+				DB4065002466D889006CE5BC /* DLHistodyButton.m in Sources */,
 				D0011A7923F09422009A242C /* QADetailView.m in Sources */,
+				DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */,
 				EE75BFA923F5884100208039 /* ChooseStudentListViewController.m in Sources */,
 				EE75BFC023F5884100208039 /* SCPieChart.m in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,

@@ -11,7 +11,7 @@
 @interface ClassScheduleTabBarView ()
 
 @property (nonatomic, weak) UIView *bottomCoverView;
-
+@property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, weak) UIView *dragHintView;
 
 @end
@@ -22,8 +22,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-        
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+               } else {
+                  self.backgroundColor = [UIColor whiteColor];
+               }
         // 遮住下面两个圆角
         UIView *bottomCoverView = [[UIView alloc] init];
         bottomCoverView.backgroundColor = self.backgroundColor;
@@ -38,6 +41,7 @@
         
         UILabel *classLabel = [[UILabel alloc] init];
         classLabel.text = @"数据结构";
+//        self.classLabel.text = [dic objectForKey:@"course"];
         classLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
         [self addSubview:classLabel];
         self.classLabel = classLabel;
