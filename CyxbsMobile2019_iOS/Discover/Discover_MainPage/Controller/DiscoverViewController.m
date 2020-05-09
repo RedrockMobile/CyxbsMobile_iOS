@@ -22,7 +22,7 @@
 #import "NewsViewController.h"
 #import "ClassScheduleTabBarView.h"
 #import "ClassTabBar.h"
-
+#import "QueryLoginViewController.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
@@ -213,6 +213,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         
         NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - adjustToCorner, self.view.width, 152 + 12)];
         self.volButton = volButton;
+        [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:volButton];
     }else if(userItem.building == nil && userItem.room == nil && userItem.volunteerPassword != nil) {//用户仅绑定了志愿服务账号
         NSLog(@"用户仅绑定了志愿服务账号");
@@ -230,12 +231,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         
         NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - adjustToCorner, self.view.width, 152 + 12)];
         self.volButton = volButton;
+        [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:volButton];
     }
      [self.eleButton addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
 
 
     
+}
+- (void)bindingVolunteerButton {
+    QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
+    [self.navigationController hidesBottomBarWhenPushed];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)requestData {
