@@ -35,7 +35,7 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
     [self addBackButtonTitle];
-    [self addSeperateLine];
+//    [self addSeperateLine];
     [self addTableView];
     self.navigationController.navigationBar.topItem.title = @"";
     if (@available(iOS 11.0, *)) {
@@ -103,7 +103,7 @@
     self.seperateLine = line;
 }
 - (void)addHideView {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 112 - 25)];//112是字体顶部到手机屏幕顶部的距离，25是字体高度
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
     self.hideView = view;
     view.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:view];

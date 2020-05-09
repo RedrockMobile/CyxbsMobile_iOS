@@ -147,15 +147,15 @@
     }];
 }
 - (void)addToolViewItems {
-    FinderToolViewItem *item1 = [[FinderToolViewItem alloc]initWithIconView:@"同学课表" Title:@"同学课表" Detail:@"帮助同学们更快的查找到课表"];    
+    FinderToolViewItem *item1 = [[FinderToolViewItem alloc]initWithIconView:@"没课约" Title:@"没课约" Detail:@"多人空课表同步查询"];
     
-    FinderToolViewItem *item2 = [[FinderToolViewItem alloc]initWithIconView:@"校车轨迹" Title:@"校车轨迹" Detail:@"帮助同学们找到当前校车"];
-    FinderToolViewItem *item3 = [[FinderToolViewItem alloc]initWithIconView:@"教室查询" Title:@"教室查询" Detail:@"帮助同学们知道应该上什么课"];
-    FinderToolViewItem *item4 = [[FinderToolViewItem alloc]initWithIconView:@"考试成绩" Title:@"考试成绩" Detail:@"帮助同学们知道应该上什么课"];
-    FinderToolViewItem *item5 = [[FinderToolViewItem alloc]initWithIconView:@"空课表" Title:@"空课表" Detail:@"帮助同学们找到当前校车"];
-    FinderToolViewItem *item6 = [[FinderToolViewItem alloc]initWithIconView:@"校历" Title:@"校历" Detail:@"帮助同学们找到当前校车"];
-    FinderToolViewItem *item7 = [[FinderToolViewItem alloc]initWithIconView:@"重邮地图" Title:@"重邮地图" Detail:@"帮助同学们找到当前校车"];
-    FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"帮助同学们找到当前校车"];
+    FinderToolViewItem *item2 = [[FinderToolViewItem alloc]initWithIconView:@"校车轨迹" Title:@"校车轨迹" Detail:@"校园观光车轨迹路线实时查看"];
+    FinderToolViewItem *item3 = [[FinderToolViewItem alloc]initWithIconView:@"教室查询" Title:@"空教室" Detail:@"空余教室及时查询"];
+    FinderToolViewItem *item4 = [[FinderToolViewItem alloc]initWithIconView:@"考试成绩" Title:@"我的考试" Detail:@"考试安排、成绩学分轻松查询"];
+    FinderToolViewItem *item5 = [[FinderToolViewItem alloc]initWithIconView:@"空课表" Title:@"空课表" Detail:@"同学、老师课表快捷查询"];
+    FinderToolViewItem *item6 = [[FinderToolViewItem alloc]initWithIconView:@"校历" Title:@"校历" Detail:@"学期安排一目了然"];
+    FinderToolViewItem *item7 = [[FinderToolViewItem alloc]initWithIconView:@"重邮地图" Title:@"重邮地图" Detail:@"校园地图，尽收重邮风光"];
+    FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"敬请期待"];
 
     [item2 addTarget:self action:@selector(chooseSchoolBus) forControlEvents:UIControlEventTouchUpInside];
     [item4 addTarget:self action:@selector(chooseTestArrange) forControlEvents:UIControlEventTouchUpInside];
