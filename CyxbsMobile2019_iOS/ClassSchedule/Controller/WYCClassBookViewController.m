@@ -7,7 +7,7 @@
 //
 
 #import "WYCClassBookViewController.h"
-
+#import "DLReminderViewController.h"
 #import "WYCClassAndRemindDataModel.h"
 
 #import "DateModle.h"
@@ -326,7 +326,7 @@
 //添加备忘
 - (void)addNote{
     
-    AddRemindViewController *vc = [[AddRemindViewController alloc]init];
+    DLReminderViewController *vc = [[DLReminderViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
