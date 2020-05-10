@@ -12,6 +12,7 @@
 #import "ScoreTwoTitleView.h"
 #import "ABScoreView.h"
 #import "DetailScorePerYearCell.h"
+#import "IdsBinding.h"
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -27,6 +28,8 @@
 @property (nonatomic, weak)UIView *termBackView;
 @property (nonatomic, weak)UILabel *termLabel;//"学期成绩"
 @property (nonatomic, weak)UITableView *tableView;//每学年的成绩
+
+@property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
 @end
 
 @implementation ScoreViewController
@@ -38,6 +41,7 @@
     } else {
         // Fallback on earlier versions
     }
+    [self idsBindingTest];
     [self addContentView];//scrollView
     [self addUserInfoView];
     [self addTwoTitleView];
@@ -45,7 +49,12 @@
     [self addABScoreView];//AB学分
     [self addTermScoreView];//“学期成绩”
     [self addTableView];
+    
     // Do any additional setup after loading the view.
+}
+-(void)idsBindingTest {
+    IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:@"1659873" isPassword:@"313517"];
+    [binding fetchData];
 }
 - (void) addContentView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
