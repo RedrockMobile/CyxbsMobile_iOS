@@ -16,6 +16,8 @@
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
+#define Color_chartLine [UIColor colorNamed:@"Color_chartLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
 @interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, weak)UserInfoView *userInfoView;
 @property (nonatomic, weak)UIScrollView *contentView;
@@ -66,6 +68,12 @@
 }
 - (void)addChartView {
     SCChart *chartView = [[SCChart alloc]initwithSCChartDataFrame:CGRectMake(0, self.twoTitleView.origin.y + self.twoTitleView.height + 2, self.view.width, 180) withSource:self withStyle:SCChartLineStyle];
+    
+    if (@available(iOS 11.0, *)) {
+        chartView.backgroundColor = Color42_78_132to2D2D2D;
+    } else {
+        // Fallback on earlier versions
+    }
     [chartView showInView:self.contentView];
     self.chartView = chartView;
 }
@@ -124,7 +132,12 @@
             return @[ary];
 }
 - (NSArray *)SCChart_ColorArray:(SCChart *)chart {
-    return @[[UIColor colorWithHexString:@"#2921D1"]];
+    if (@available(iOS 11.0, *)) {
+        return @[Color_chartLine];
+    } else {
+        // Fallback on earlier versions
+        return @[[UIColor colorWithHexString:@"#2921D1"]];
+    }
 }
 - (BOOL)SCChart:(SCChart *)chart ShowHorizonLineAtIndex:(NSInteger)index {
     return YES;

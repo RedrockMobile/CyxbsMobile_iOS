@@ -22,7 +22,7 @@
 #import "NewsViewController.h"
 #import "ClassScheduleTabBarView.h"
 #import "ClassTabBar.h"
-
+#import "QueryLoginViewController.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
@@ -65,6 +65,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
     } else {
@@ -86,7 +87,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.contentView.delegate = self;
     [self configDefaults];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self configNavagationBar];
     [self addFinderView];
     [self requestData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
@@ -134,7 +134,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (@available(iOS 11.0, *)) {
         self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
     }
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
     //隐藏导航栏的分割线
     if (@available(iOS 11.0, *)) {
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
@@ -142,21 +141,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.finderView.finderTitle.height){
-        if (@available(iOS 11.0, *)) {
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]}];
-        } else {
-            // Fallback on earlier versions
-        }
-    }else{
-        if (@available(iOS 11.0, *)) {
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]}];
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-}
+
 
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
@@ -228,6 +213,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         
         NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - adjustToCorner, self.view.width, 152 + 12)];
         self.volButton = volButton;
+        [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:volButton];
     }else if(userItem.building == nil && userItem.room == nil && userItem.volunteerPassword != nil) {//用户仅绑定了志愿服务账号
         NSLog(@"用户仅绑定了志愿服务账号");
@@ -245,12 +231,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         
         NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - adjustToCorner, self.view.width, 152 + 12)];
         self.volButton = volButton;
+        [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:volButton];
     }
      [self.eleButton addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
 
 
     
+}
+- (void)bindingVolunteerButton {
+    QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
+    [self.navigationController hidesBottomBarWhenPushed];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)requestData {
@@ -292,12 +284,14 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchNewsSender {
     NSLog(@"点击了“教务在线”");
     NewsViewController *vc = [[NewsViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchNews {
     NSLog(@"点击了新闻");
     NewsViewController *vc = [[NewsViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -316,12 +310,15 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchSchedule {
     NSLog(@"点击了空课表");
     ScheduleInquiryViewController *vc = [[ScheduleInquiryViewController alloc]init];
+    vc.title = @"查课表";
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchMore {
     NSLog(@"点击了更多功能");
     LQQFinderToolViewController *vc = [[LQQFinderToolViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

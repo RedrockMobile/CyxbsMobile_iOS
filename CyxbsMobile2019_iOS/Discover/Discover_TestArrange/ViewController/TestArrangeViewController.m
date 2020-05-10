@@ -35,7 +35,7 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
     [self addBackButtonTitle];
-    [self addSeperateLine];
+//    [self addSeperateLine];
     [self addTableView];
     self.navigationController.navigationBar.topItem.title = @"";
     if (@available(iOS 11.0, *)) {
@@ -103,7 +103,7 @@
     self.seperateLine = line;
 }
 - (void)addHideView {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 112 - 25)];//112是字体顶部到手机屏幕顶部的距离，25是字体高度
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
     self.hideView = view;
     view.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:view];
@@ -154,7 +154,16 @@
 - (void)getExamArrangeData {
     ExamArrangeModel *model = [[ExamArrangeModel alloc]init];
     self.examArrangeModel = model;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testArrangeFailed) name:@"getExamArrangeFailed" object:nil];
+}
+-(void)testArrangeFailed {
+    //当数据加载失败时alert弹窗此服务不可用，并pop
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"通知" message:@"此服务目前不可用: (" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self popController];
+    }];
+    [controller addAction:okAction];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 - (void)updateUI {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getExamArrangeDataSucceed) name:@"getExamArrangeSucceed" object:nil];
