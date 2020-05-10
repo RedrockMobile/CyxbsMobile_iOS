@@ -418,6 +418,7 @@
 		EE8234E224673FE800F6B4AE /* VolunteerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8234A024673FE700F6B4AE /* VolunteerItem.m */; };
 		EE8234E324673FE800F6B4AE /* YearChooseBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8234A224673FE700F6B4AE /* YearChooseBar.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
+		EEA301B5246800D200A8DB26 /* ScorePageMeida.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEA301B4246800D200A8DB26 /* ScorePageMeida.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1125,6 +1126,7 @@
 		EE8234A224673FE700F6B4AE /* YearChooseBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearChooseBar.m; sourceTree = "<group>"; };
 		EE8234A324673FE700F6B4AE /* YearChooseBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearChooseBar.h; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
+		EEA301B4246800D200A8DB26 /* ScorePageMeida.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ScorePageMeida.xcassets; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2817,6 +2819,7 @@
 				EE75BF7C23F5884100208039 /* ScoreViewController.h */,
 				EE75BF7D23F5884100208039 /* ScoreViewController.m */,
 				EE75BF7E23F5884100208039 /* View */,
+				EEA301B4246800D200A8DB26 /* ScorePageMeida.xcassets */,
 			);
 			path = Discover_scorePage;
 			sourceTree = "<group>";
@@ -3269,6 +3272,7 @@
 				EE8234BE24673FE700F6B4AE /* 展开后@2x.png in Resources */,
 				DB34EB04239BD4550052B65E /* 多课0@2x.png in Resources */,
 				EE8234D724673FE700F6B4AE /* 背景板@3x.png in Resources */,
+				EEA301B5246800D200A8DB26 /* ScorePageMeida.xcassets in Resources */,
 				DB34EB16239BD4550052B65E /* remind_image_confirm@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
