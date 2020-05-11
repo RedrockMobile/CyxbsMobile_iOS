@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIButton *news;//教务在线具体新闻标题
 @property (nonatomic, copy)NSMutableArray <EnterButton*>*enterButtonArray;//四个入口按钮
 @property (nonatomic, weak)id<LQQFinderViewDelegate> delegate;
+@property (nonatomic)NSMutableArray * bannerURLStrings;//轮播图urlString
 @end
 
 NS_ASSUME_NONNULL_END

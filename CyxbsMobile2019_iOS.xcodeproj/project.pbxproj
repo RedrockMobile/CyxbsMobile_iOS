@@ -419,6 +419,17 @@
 		EE8234E324673FE800F6B4AE /* YearChooseBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8234A224673FE700F6B4AE /* YearChooseBar.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
 		EEA301B5246800D200A8DB26 /* ScorePageMeida.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEA301B4246800D200A8DB26 /* ScorePageMeida.xcassets */; };
+		EEA301B92468079200A8DB26 /* IdsBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301B82468079200A8DB26 /* IdsBinding.m */; };
+		EEA301BD2468579400A8DB26 /* GPA.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301BC2468579400A8DB26 /* GPA.m */; };
+		EEA301C32468593F00A8DB26 /* SingleGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301C22468593F00A8DB26 /* SingleGrade.m */; };
+		EEA301C624685C8E00A8DB26 /* TermGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301C524685C8E00A8DB26 /* TermGrade.m */; };
+		EEA301C924685EBF00A8DB26 /* GPAItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301C824685EBF00A8DB26 /* GPAItem.m */; };
+		EEA301CC24685FD900A8DB26 /* Credit.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301CB24685FD900A8DB26 /* Credit.m */; };
+		EEA301CF2468608000A8DB26 /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301CE2468608000A8DB26 /* Credits.m */; };
+		EEA301D2246862E000A8DB26 /* TermGrades.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301D1246862E000A8DB26 /* TermGrades.m */; };
+		EEA301D7246866E400A8DB26 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301D6246866E400A8DB26 /* BannerModel.m */; };
+		EEA301DA2468670B00A8DB26 /* BannerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301D92468670B00A8DB26 /* BannerItem.m */; };
+		EEA301DD2468680800A8DB26 /* BannerData.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301DC2468680800A8DB26 /* BannerData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1127,6 +1138,28 @@
 		EE8234A324673FE700F6B4AE /* YearChooseBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearChooseBar.h; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		EEA301B4246800D200A8DB26 /* ScorePageMeida.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ScorePageMeida.xcassets; sourceTree = "<group>"; };
+		EEA301B72468079200A8DB26 /* IdsBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdsBinding.h; sourceTree = "<group>"; };
+		EEA301B82468079200A8DB26 /* IdsBinding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IdsBinding.m; sourceTree = "<group>"; };
+		EEA301BB2468579400A8DB26 /* GPA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPA.h; sourceTree = "<group>"; };
+		EEA301BC2468579400A8DB26 /* GPA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPA.m; sourceTree = "<group>"; };
+		EEA301C12468593F00A8DB26 /* SingleGrade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleGrade.h; sourceTree = "<group>"; };
+		EEA301C22468593F00A8DB26 /* SingleGrade.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleGrade.m; sourceTree = "<group>"; };
+		EEA301C424685C8E00A8DB26 /* TermGrade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermGrade.h; sourceTree = "<group>"; };
+		EEA301C524685C8E00A8DB26 /* TermGrade.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TermGrade.m; sourceTree = "<group>"; };
+		EEA301C724685EBF00A8DB26 /* GPAItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAItem.h; sourceTree = "<group>"; };
+		EEA301C824685EBF00A8DB26 /* GPAItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAItem.m; sourceTree = "<group>"; };
+		EEA301CA24685FD900A8DB26 /* Credit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Credit.h; sourceTree = "<group>"; };
+		EEA301CB24685FD900A8DB26 /* Credit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Credit.m; sourceTree = "<group>"; };
+		EEA301CD2468608000A8DB26 /* Credits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Credits.h; sourceTree = "<group>"; };
+		EEA301CE2468608000A8DB26 /* Credits.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Credits.m; sourceTree = "<group>"; };
+		EEA301D0246862E000A8DB26 /* TermGrades.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermGrades.h; sourceTree = "<group>"; };
+		EEA301D1246862E000A8DB26 /* TermGrades.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TermGrades.m; sourceTree = "<group>"; };
+		EEA301D5246866E400A8DB26 /* BannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
+		EEA301D6246866E400A8DB26 /* BannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
+		EEA301D82468670B00A8DB26 /* BannerItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerItem.h; sourceTree = "<group>"; };
+		EEA301D92468670B00A8DB26 /* BannerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerItem.m; sourceTree = "<group>"; };
+		EEA301DB2468680800A8DB26 /* BannerData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerData.h; sourceTree = "<group>"; };
+		EEA301DC2468680800A8DB26 /* BannerData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerData.m; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2591,6 +2624,7 @@
 		EE75BF0623F5884100208039 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EEA301D4246866D700A8DB26 /* Banner */,
 				EE75BF0723F5884100208039 /* ElectricBill */,
 				EE75BF0C23F5884100208039 /* News */,
 				EE75BF1323F5884100208039 /* Volunteer */,
@@ -2816,6 +2850,7 @@
 		EE75BF7B23F5884100208039 /* Discover_scorePage */ = {
 			isa = PBXGroup;
 			children = (
+				EEA301B62468075200A8DB26 /* Model */,
 				EE75BF7C23F5884100208039 /* ScoreViewController.h */,
 				EE75BF7D23F5884100208039 /* ScoreViewController.m */,
 				EE75BF7E23F5884100208039 /* View */,
@@ -3002,6 +3037,50 @@
 				EE8234A324673FE700F6B4AE /* YearChooseBar.h */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		EEA301B62468075200A8DB26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EEA301D3246864B000A8DB26 /* Item */,
+				EEA301BB2468579400A8DB26 /* GPA.h */,
+				EEA301BC2468579400A8DB26 /* GPA.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EEA301D3246864B000A8DB26 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				EEA301B72468079200A8DB26 /* IdsBinding.h */,
+				EEA301B82468079200A8DB26 /* IdsBinding.m */,
+				EEA301C12468593F00A8DB26 /* SingleGrade.h */,
+				EEA301C22468593F00A8DB26 /* SingleGrade.m */,
+				EEA301C424685C8E00A8DB26 /* TermGrade.h */,
+				EEA301C524685C8E00A8DB26 /* TermGrade.m */,
+				EEA301D0246862E000A8DB26 /* TermGrades.h */,
+				EEA301D1246862E000A8DB26 /* TermGrades.m */,
+				EEA301CA24685FD900A8DB26 /* Credit.h */,
+				EEA301CB24685FD900A8DB26 /* Credit.m */,
+				EEA301CD2468608000A8DB26 /* Credits.h */,
+				EEA301CE2468608000A8DB26 /* Credits.m */,
+				EEA301C724685EBF00A8DB26 /* GPAItem.h */,
+				EEA301C824685EBF00A8DB26 /* GPAItem.m */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
+		EEA301D4246866D700A8DB26 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				EEA301D5246866E400A8DB26 /* BannerModel.h */,
+				EEA301D6246866E400A8DB26 /* BannerModel.m */,
+				EEA301D82468670B00A8DB26 /* BannerItem.h */,
+				EEA301D92468670B00A8DB26 /* BannerItem.m */,
+				EEA301DB2468680800A8DB26 /* BannerData.h */,
+				EEA301DC2468680800A8DB26 /* BannerData.m */,
+			);
+			path = Banner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3340,6 +3419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEA301BD2468579400A8DB26 /* GPA.m in Sources */,
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				EE75BFCA23F5884100208039 /* ScoreTwoTitleView.m in Sources */,
 				EE75BFBE23F5884100208039 /* SCGenericChart.m in Sources */,
@@ -3350,6 +3430,7 @@
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
 				1AD038D423F9471A00D5C90E /* MineQAMyAnswerItem.m in Sources */,
+				EEA301C924685EBF00A8DB26 /* GPAItem.m in Sources */,
 				D0101F62243587A1004337ED /* UIScrollView+GKGestureHandle.m in Sources */,
 				D0101D5B2433C885004337ED /* SDMaskGuidBGView.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
@@ -3372,6 +3453,7 @@
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
+				EEA301CF2468608000A8DB26 /* Credits.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				EE75BFC823F5884100208039 /* UserInfoView.m in Sources */,
@@ -3396,9 +3478,11 @@
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				1A22DDCC244FF61600FBB51E /* EmptyClassTableViewCell.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
+				EEA301D7246866E400A8DB26 /* BannerModel.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
 				EE8234E224673FE800F6B4AE /* VolunteerItem.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
+				EEA301C624685C8E00A8DB26 /* TermGrade.m in Sources */,
 				EE75BFAA23F5884100208039 /* ScheduleInquiryViewController.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
@@ -3411,6 +3495,7 @@
 				EE75BFA823F5884100208039 /* StudentScheduleViewController.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
+				EEA301CC24685FD900A8DB26 /* Credit.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */,
 				EE8234E124673FE800F6B4AE /* VolunteeringEventItem.m in Sources */,
@@ -3418,6 +3503,7 @@
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
+				EEA301B92468079200A8DB26 /* IdsBinding.m in Sources */,
 				EE75BFB623F5884100208039 /* NewDetailViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
@@ -3456,6 +3542,7 @@
 				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
+				EEA301DA2468670B00A8DB26 /* BannerItem.m in Sources */,
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
 				1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */,
@@ -3473,6 +3560,7 @@
 				1A22DDD1244FF89E00FBB51E /* EmptyClassModel.m in Sources */,
 				EE75BFBA23F5884100208039 /* SCLineChart.m in Sources */,
 				EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */,
+				EEA301C32468593F00A8DB26 /* SingleGrade.m in Sources */,
 				EE75BF9623F5884100208039 /* ElectricFeeItem.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
@@ -3522,6 +3610,7 @@
 				EE75BF9923F5884100208039 /* OneNewsItem.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
+				EEA301D2246862E000A8DB26 /* TermGrades.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
 				EE75BFA023F5884100208039 /* VolunteerGlanceView.m in Sources */,
 				D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */,
@@ -3555,6 +3644,7 @@
 				EE75BFCD23F5884100208039 /* FinderToolViewItem.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				EE75BFC923F5884100208039 /* DetailScorePerYearCell.m in Sources */,
+				EEA301DD2468680800A8DB26 /* BannerData.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				EE75BFA623F5884100208039 /* PointAndDottedLineView.m in Sources */,
 				EE75BFBB23F5884100208039 /* SCTool.m in Sources */,
@@ -3756,7 +3846,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -3765,7 +3855,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.redrock.CyxbsiOS2019;
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3778,7 +3868,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -3787,7 +3877,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.redrock.CyxbsiOS2019;
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

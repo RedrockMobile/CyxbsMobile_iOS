@@ -23,6 +23,7 @@
 #import "ClassScheduleTabBarView.h"
 #import "ClassTabBar.h"
 #import "QueryLoginViewController.h"
+#import "BannerModel.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
@@ -46,6 +47,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
 @property NSUserDefaults *defaults;
+@property BannerModel *bannerModel;
 @end
 
 @implementation DiscoverViewController
@@ -82,13 +84,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)viewDidLoad {
+    [self requestData];
     [super viewDidLoad];
     [self addContentView];
     self.contentView.delegate = self;
     [self configDefaults];
     self.view.backgroundColor = [UIColor whiteColor];
     [self addFinderView];
-    [self requestData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
 
@@ -191,8 +193,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.finderView = finderView;
     self.finderView.delegate = self;
     [self.contentView addSubview:finderView];
+    [self refreshBannerViewIfNeeded];
 }
-
+-(void) refreshBannerViewIfNeeded {
+    //更新bannerView
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//    center addObserver:self selector:@selector(UpdateBannerViewUI) name:@"" object:<#(nullable id)#>
+}
 - (void)addGlanceView {
     int adjustToCorner = 18;
     UserItem *userItem = [UserItem defaultItem];
@@ -250,7 +257,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.elecModel = elecModel;
     OneNewsModel *oneNewsModel = [[OneNewsModel alloc]initWithPage:@1];
     self.oneNewsModel = oneNewsModel;
-    
+    BannerModel * bannerModel = [[BannerModel alloc]init];
+    [bannerModel fetchData];
+    self.bannerModel = bannerModel;
 }
 
 - (void)updateElectricFeeUI {

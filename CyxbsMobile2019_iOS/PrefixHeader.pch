@@ -232,6 +232,8 @@
 /// 校车位置
 #define SCHOOLBUSAPI @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
 
+/// banner
+#define BANNERVIEWAPI @"http://api-234.redrock.team/magipoke-text/banner/get"
 
 
 /*----------------------------------------------------------------
