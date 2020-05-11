@@ -16,7 +16,12 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
+        } else {
+            self.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
+            // Fallback on earlier versions
+        }
         [self initBackButton];
         [self initTitleLabel];
         [self initNoticeLabel];
@@ -54,7 +59,14 @@
     self.titleLab.textAlignment = NSTextAlignmentLeft;
     self.titleLab.numberOfLines = 0;
     self.titleLab.font = [UIFont fontWithName:@".PingFang SC-Semibold" size: 34*kRateX];
-    self.titleLab.textColor = [UIColor colorWithHexString:@"#122D55"];
+    if (@available(iOS 11.0, *)) {
+        self.titleLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
+    } else {
+        self.titleLab.textColor = [UIColor colorWithHexString:@"#122D55"];
+        
+        // Fallback on earlier versions
+    }
+    
     [self addSubview:self.titleLab];
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).mas_offset(168*kRateY);
@@ -68,7 +80,12 @@
     self.notoiceLab.textAlignment = NSTextAlignmentLeft;
     self.notoiceLab.numberOfLines = 1;
     self.notoiceLab.font = [UIFont fontWithName:@".PingFang SC-Semibold" size: 15*kRateX];
-    self.notoiceLab.textColor = [UIColor colorWithHexString:@"#122D55"];
+    if (@available(iOS 11.0, *)) {
+        self.notoiceLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
+    } else {
+        self.notoiceLab.textColor = [UIColor colorWithHexString:@"#122D55"];
+        // Fallback on earlier versions
+    }
     [self addSubview:self.notoiceLab];
     [self.notoiceLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.titleLab.mas_top).mas_offset(-6*kRateY);

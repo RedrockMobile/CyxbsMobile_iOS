@@ -163,20 +163,25 @@
 }
 //重写此方法自定义picker的外观
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
-    for(UIView *singleLine in pickerView.subviews)
-    {
-        if (singleLine.frame.size.height < 1)
-        {
-            singleLine.backgroundColor = [UIColor colorWithHexString:@"#E9EDF2"];
-        }
-    }
+//    for(UIView *singleLine in pickerView.subviews)
+//    {
+//        if (singleLine.frame.size.height < 1)
+//        {
+//            singleLine.backgroundColor = [UIColor colorWithHexString:@"#E9EDF2"];
+//        }
+//    }
     UILabel* pickerLabel = (UILabel*)view;
         if (!pickerLabel){
             pickerLabel = [[UILabel alloc] init];
             pickerLabel.adjustsFontSizeToFitWidth = YES;
             [pickerLabel setTextAlignment:NSTextAlignmentCenter];
             [pickerLabel setBackgroundColor:[UIColor clearColor]];
-            pickerLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+            if (@available(iOS 11.0, *)) {
+                pickerLabel.textColor = [UIColor colorNamed:@"titleLabelColor"];
+            } else {
+                 pickerLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+                // Fallback on earlier versions
+            }
             [pickerLabel setFont: [UIFont fontWithName:@".PingFang SC-Semibold" size: 16*kRateX]];
         }
         // Fill the label text here
