@@ -56,7 +56,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.navigationController.navigationBar.hidden = YES;
+    //self.navigationController.navigationBar.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(ModelDataLoadSuccess)

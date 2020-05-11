@@ -15,7 +15,12 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor colorWithHexString:@"#F2F3F7"];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"HistodayButtonBackGroundColor"];
+        } else {
+             self.backgroundColor = [UIColor colorWithHexString:@"#F2F3F7"];
+            // Fallback on earlier versions
+        }
 //        self.alpha = 0.5;
         self.layer.cornerRadius = 15*kRateX;
         self.layer.masksToBounds = YES;
@@ -23,7 +28,12 @@
         self.titleLabel.frame = self.frame;
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.font = [UIFont fontWithName:@".PingFang SC-Regular" size:12*kRateX];
-        [self setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
+        if (@available(iOS 11.0, *)) {
+            [self setTitleColor:[UIColor colorNamed:@"titleLabelColor"] forState:UIControlStateNormal];
+        } else {
+             [self setTitleColor:[UIColor colorWithHexString:@"#15315B"] forState:UIControlStateNormal];
+            // Fallback on earlier versions
+        }
         [self setTitleColor:[UIColor colorWithHexString:@"#FFA192"] forState:UIControlStateSelected];
         [self setTitleColor:[UIColor colorWithHexString:@"#FFA192"] forState:UIControlStateSelected | UIControlStateHighlighted];
     }
