@@ -1,12 +1,12 @@
 //
-//  LQQFinderToolViewController.m
+//  FinderToolViewController.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by 千千 on 2019/11/15.
 //  Copyright © 2019 Redrock. All rights reserved.
 //
 
-#import "LQQFinderToolViewController.h"
+#import "FinderToolViewController.h"
 #import "FinderToolViewItem.h"
 #import "ScheduleInquiryViewController.h"
 #import "TestArrangeViewController.h"
@@ -18,7 +18,7 @@
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
-@interface LQQFinderToolViewController ()<UIScrollViewDelegate>
+@interface FinderToolViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIView *viewContainer;
 @property (nonatomic)NSArray<FinderToolViewItem *> *toolViewItems;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation LQQFinderToolViewController
+@implementation FinderToolViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

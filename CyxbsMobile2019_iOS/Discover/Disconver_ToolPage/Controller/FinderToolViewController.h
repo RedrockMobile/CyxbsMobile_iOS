@@ -1,5 +1,5 @@
 //
-//  LQQFinderToolViewController.h
+//  FinderToolViewController.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 千千 on 2019/11/15.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LQQFinderToolViewController : UIViewController
+@interface FinderToolViewController : UIViewController
 
 @end
 NS_ASSUME_NONNULL_END

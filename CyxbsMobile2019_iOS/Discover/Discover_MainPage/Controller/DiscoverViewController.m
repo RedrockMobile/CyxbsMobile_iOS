@@ -8,7 +8,7 @@
 
 #import "DiscoverViewController.h"
 #import "LoginViewController.h"
-#import "LQQFinderToolViewController.h"
+#import "FinderToolViewController.h"
 #import "LQQFinderView.h"
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
@@ -326,7 +326,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)touchMore {
     NSLog(@"点击了更多功能");
-    LQQFinderToolViewController *vc = [[LQQFinderToolViewController alloc]init];
+    FinderToolViewController *vc = [[FinderToolViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

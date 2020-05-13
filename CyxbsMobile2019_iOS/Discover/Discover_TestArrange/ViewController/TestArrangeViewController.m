@@ -136,7 +136,7 @@
     }];
     
     [scoreEnterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT + 10);//10个像素是为了挡住下面的圆角
+        make.bottom.equalTo(self.view).offset(10);//10个像素是为了挡住下面的圆角
         make.width.equalTo(self.view);
         make.centerX.equalTo(self.view);
         make.height.equalTo(@80);

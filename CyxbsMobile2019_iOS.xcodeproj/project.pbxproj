@@ -352,7 +352,7 @@
 		EE75BFC923F5884100208039 /* DetailScorePerYearCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8423F5884100208039 /* DetailScorePerYearCell.m */; };
 		EE75BFCA23F5884100208039 /* ScoreTwoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8523F5884100208039 /* ScoreTwoTitleView.m */; };
 		EE75BFCB23F5884100208039 /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE75BF8723F5884100208039 /* NewDiscover6.0Media.xcassets */; };
-		EE75BFCC23F5884100208039 /* LQQFinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8B23F5884100208039 /* LQQFinderToolViewController.m */; };
+		EE75BFCC23F5884100208039 /* FinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8B23F5884100208039 /* FinderToolViewController.m */; };
 		EE75BFCD23F5884100208039 /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF8E23F5884100208039 /* FinderToolViewItem.m */; };
 		EE8234A424673FE700F6B4AE /* Volunteer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE82344F24673FE700F6B4AE /* Volunteer.xcassets */; };
 		EE8234A624673FE700F6B4AE /* HeaderGifRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = EE82345524673FE700F6B4AE /* HeaderGifRefresh.m */; };
@@ -1057,8 +1057,8 @@
 		EE75BF8523F5884100208039 /* ScoreTwoTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTwoTitleView.m; sourceTree = "<group>"; };
 		EE75BF8623F5884100208039 /* ABScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABScoreView.h; sourceTree = "<group>"; };
 		EE75BF8723F5884100208039 /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
-		EE75BF8A23F5884100208039 /* LQQFinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderToolViewController.h; sourceTree = "<group>"; };
-		EE75BF8B23F5884100208039 /* LQQFinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderToolViewController.m; sourceTree = "<group>"; };
+		EE75BF8A23F5884100208039 /* FinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewController.h; sourceTree = "<group>"; };
+		EE75BF8B23F5884100208039 /* FinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewController.m; sourceTree = "<group>"; };
 		EE75BF8D23F5884100208039 /* FinderToolViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
 		EE75BF8E23F5884100208039 /* FinderToolViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
 		EE82344F24673FE700F6B4AE /* Volunteer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Volunteer.xcassets; sourceTree = "<group>"; };
@@ -2886,8 +2886,8 @@
 		EE75BF8923F5884100208039 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EE75BF8A23F5884100208039 /* LQQFinderToolViewController.h */,
-				EE75BF8B23F5884100208039 /* LQQFinderToolViewController.m */,
+				EE75BF8A23F5884100208039 /* FinderToolViewController.h */,
+				EE75BF8B23F5884100208039 /* FinderToolViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3591,7 +3591,7 @@
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				1AEF311F245E927B00487D40 /* MyGoodsTableViewCell.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
-				EE75BFCC23F5884100208039 /* LQQFinderToolViewController.m in Sources */,
+				EE75BFCC23F5884100208039 /* FinderToolViewController.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A22DDD724502A6E00FBB51E /* EmptyClassCollectionViewCell.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
