@@ -23,7 +23,7 @@
 @property (nonatomic, weak)UILabel *titleLabel;
 @property (nonatomic, strong)ExamArrangeModel *examArrangeModel;
 @property (nonatomic, weak)UIView *seperateLine;//分割线
-@property (nonatomic, weak)UILabel *backButtonTitle;//“考试成绩”
+@property (nonatomic, weak)UILabel *backButtonTitle;//“我的考试”
 @property (nonatomic, weak)UIButton *backButton;//返回按钮
 @property (nonatomic, weak)UIButton *scoreEnterButton;//学分成绩入口按钮
 @property (nonatomic, weak)UIView *hideView;
@@ -55,7 +55,7 @@
 -(void)addBackButtonTitle {
     UILabel *label = [[UILabel alloc]init];
     self.backButtonTitle = label;
-    label.text = @"考试成绩";
+    label.text = @"我的考试";
     [label setFont:[UIFont fontWithName:PingFangSCBold size:21]];
     if (@available(iOS 11.0, *)) {
         label.textColor = Color21_49_91_F0F0F2;

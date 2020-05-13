@@ -9,6 +9,7 @@
 #import "FinderToolViewItem.h"
 
 #define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#DFDFE3" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+#define Color_isFavoriteTool [UIColor colorNamed:@"Color_isFavoriteTool" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
 
 @interface FinderToolViewItem()
 @property (nonatomic, weak)UIImageView *iconView;
@@ -30,8 +31,12 @@
         [self addTitleLabel];
         [self addDetailLabel];
         self.iconView.image = [UIImage imageNamed:iconViewName];
+        self.title = title;
+        self.detail = detail;
         self.myTitleLabel.text = title;
         self.myDetailLabel.text = detail;
+        self.isFavorite = NO;
+        self.isChooingNow = NO;
     }
     return self;
 }
@@ -79,5 +84,24 @@
         make.width.equalTo(@88);
         make.top.equalTo(self.mas_bottom).offset(-73);
     }];
+}
+- (void)changeBackgroundColorIfNeeded {
+    if (self.isFavorite == YES) {
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = Color_isFavoriteTool;
+        }
+    }else {
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        }
+    }
+}
+- (void)toggleFavoriteStates {
+    if (self.isFavorite == YES) {
+        self.isFavorite = NO;
+    }else {
+        self.isFavorite = YES;
+    }
+    [self changeBackgroundColorIfNeeded];
 }
 @end

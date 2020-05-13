@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) touchSchoolCar;
 - (void) touchSchedule;
 - (void) touchMore;
+-(void) touchNoClassAppointment;
+-(void) touchMyTest;
+-(void) touchSchoolCalender;
+-(void) touchMap;
+-(void) touchEmptyClass;
 
 @end
 
@@ -32,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSMutableArray <EnterButton*>*enterButtonArray;//四个入口按钮
 @property (nonatomic, weak)id<LQQFinderViewDelegate> delegate;
 @property (nonatomic)NSMutableArray * bannerURLStrings;//轮播图urlString
+-(void)remoreAllEnters;//移除四个入口
+-(void)addSomeEnters;//添加四个入口
 @end
 
 NS_ASSUME_NONNULL_END

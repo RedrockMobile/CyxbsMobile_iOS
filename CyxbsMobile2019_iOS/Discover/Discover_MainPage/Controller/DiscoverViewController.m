@@ -9,7 +9,7 @@
 #import "DiscoverViewController.h"
 #import "LoginViewController.h"
 #import "FinderToolViewController.h"
-#import "LQQFinderView.h"
+#import "FinderView.h"
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
 //View
-@property(nonatomic, weak) LQQFinderView *finderView;//上方发现页面
+@property(nonatomic, weak) FinderView *finderView;//上方发现页面
 @property (nonatomic, weak) UIScrollView *contentView;
 @property (nonatomic, weak) ElectricFeeGlanceView *eleGlanceView;//电费button页面
 @property (nonatomic, weak) VolunteerGlanceView *volGlanceView;//志愿服务button页面
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addFinderView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
 }
 
 - (void)presentToLogin {
@@ -169,25 +169,25 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)addFinderView {
     //下策
-    LQQFinderView *finderView;
+    FinderView *finderView;
     if(MAIN_SCREEN_W / MAIN_SCREEN_H == 320 / 568.0){
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
             self.contentView.contentSize = CGSizeMake(self.view.width,1.10*self.view.height);
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 667.0) {//6,6s,7,8
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.50)];
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.50)];
             self.contentView.contentSize = CGSizeMake(self.view.width,1.01*self.view.height);
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 736.0) {//plus
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.49)];
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.49)];
             self.contentView.contentSize = CGSizeMake(self.view.width,0.96*self.view.height);
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 812.0) {//11pro,x,xs
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.44)];
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.44)];
             self.contentView.contentSize = CGSizeMake(self.view.width,0.88*self.view.height);
     }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 896.0) {//11,11promax,xr,xsmax
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
             self.contentView.contentSize = CGSizeZero;
 
     }else {//以防万一
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
             self.contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + [[UIApplication sharedApplication] statusBarFrame].size.height, self.view.width,0.8*self.view.height);
     }
     self.finderView = finderView;
@@ -285,6 +285,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+-(void)updateFinderViewUI {
+    [self.finderView remoreAllEnters];
+    [self.finderView addSomeEnters];
+}
 //MARK: FinderView代理
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
@@ -305,7 +310,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)touchFindClass {
-    NSLog(@"点击了教室查询");
+    NSLog(@"点击了空教室");
     EmptyClassViewController *vc = [[EmptyClassViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -330,5 +335,19 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+-(void)touchNoClassAppointment {
+    NSLog(@"点击了没课约");
+}
+-(void)touchMyTest {
+    NSLog(@"点击了我的考试");
+}
+-(void)touchSchoolCalender {
+    NSLog(@"点击了校历");
+}
+-(void)touchMap {
+    NSLog(@"点击了重邮地图");
+}
+-(void)touchEmptyClass {
+    NSLog(@"点击了空教室");
+}
 @end

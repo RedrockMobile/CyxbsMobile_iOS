@@ -309,7 +309,7 @@
 		EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1223F5884100208039 /* OneNewsItemData.m */; };
 		EE75BF9B23F5884100208039 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1423F5884100208039 /* VolunteerModel.m */; };
 		EE75BF9C23F5884100208039 /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1823F5884100208039 /* EnterButton.m */; };
-		EE75BF9D23F5884100208039 /* LQQFinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1923F5884100208039 /* LQQFinderView.m */; };
+		EE75BF9D23F5884100208039 /* FinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1923F5884100208039 /* FinderView.m */; };
 		EE75BF9E23F5884100208039 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */; };
 		EE75BF9F23F5884100208039 /* NotSetElectriceFeeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1C23F5884100208039 /* NotSetElectriceFeeButton.m */; };
 		EE75BFA023F5884100208039 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */; };
@@ -973,12 +973,12 @@
 		EE75BF1523F5884100208039 /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
 		EE75BF1723F5884100208039 /* VolunteerGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerGlanceView.h; sourceTree = "<group>"; };
 		EE75BF1823F5884100208039 /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
-		EE75BF1923F5884100208039 /* LQQFinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQQFinderView.m; sourceTree = "<group>"; };
+		EE75BF1923F5884100208039 /* FinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderView.m; sourceTree = "<group>"; };
 		EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
 		EE75BF1B23F5884100208039 /* ElectricFeeGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceView.h; sourceTree = "<group>"; };
 		EE75BF1C23F5884100208039 /* NotSetElectriceFeeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetElectriceFeeButton.m; sourceTree = "<group>"; };
 		EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerGlanceView.m; sourceTree = "<group>"; };
-		EE75BF1E23F5884100208039 /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
+		EE75BF1E23F5884100208039 /* FinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderView.h; sourceTree = "<group>"; };
 		EE75BF1F23F5884100208039 /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
 		EE75BF2023F5884100208039 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
 		EE75BF2123F5884100208039 /* NotSetElectriceFeeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetElectriceFeeButton.h; sourceTree = "<group>"; };
@@ -2668,8 +2668,8 @@
 		EE75BF1623F5884100208039 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE75BF1E23F5884100208039 /* LQQFinderView.h */,
-				EE75BF1923F5884100208039 /* LQQFinderView.m */,
+				EE75BF1E23F5884100208039 /* FinderView.h */,
+				EE75BF1923F5884100208039 /* FinderView.m */,
 				EE75BF1F23F5884100208039 /* EnterButton.h */,
 				EE75BF1823F5884100208039 /* EnterButton.m */,
 				EE75BF1723F5884100208039 /* VolunteerGlanceView.h */,
@@ -3524,7 +3524,7 @@
 				EE75BFB923F5884100208039 /* NewsCell.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
-				EE75BF9D23F5884100208039 /* LQQFinderView.m in Sources */,
+				EE75BF9D23F5884100208039 /* FinderView.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
