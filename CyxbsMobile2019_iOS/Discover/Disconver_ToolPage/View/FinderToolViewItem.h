@@ -15,7 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *iconViewName;
 @property (nonatomic, copy)NSString *title;
 @property (nonatomic, copy)NSString *detail;
+@property (nonatomic,assign)BOOL isFavorite;
+@property (nonatomic,assign)BOOL isChooingNow;//用来与平常状态的按钮触发事件进行区分
 - (instancetype)initWithIconView: (NSString*)iconViewName Title: (NSString*)title Detail: (NSString*)detail;
+- (void)changeBackgroundColorIfNeeded;
+- (void)toggleFavoriteStates;
 @end
 
 NS_ASSUME_NONNULL_END

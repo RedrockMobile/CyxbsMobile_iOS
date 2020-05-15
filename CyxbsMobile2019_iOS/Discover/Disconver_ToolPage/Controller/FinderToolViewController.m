@@ -1,12 +1,12 @@
 //
-//  LQQFinderToolViewController.m
+//  FinderToolViewController.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by 千千 on 2019/11/15.
 //  Copyright © 2019 Redrock. All rights reserved.
 //
 
-#import "LQQFinderToolViewController.h"
+#import "FinderToolViewController.h"
 #import "FinderToolViewItem.h"
 #import "ScheduleInquiryViewController.h"
 #import "TestArrangeViewController.h"
@@ -18,16 +18,19 @@
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
-@interface LQQFinderToolViewController ()<UIScrollViewDelegate>
+@interface FinderToolViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, weak) UIView *viewContainer;
 @property (nonatomic)NSArray<FinderToolViewItem *> *toolViewItems;
 @property (nonatomic, weak)UILabel *toolTitle;
+@property (nonatomic, weak)UIButton *settingButton;
+@property (nonatomic, weak)UIButton *OKButton;//选择结束
 @property (nonatomic, weak)UIButton *backButton;//返回按钮
+
 
 @end
 
-@implementation LQQFinderToolViewController
+@implementation FinderToolViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -138,7 +141,9 @@
 }
 - (void)addSettingButton {
     UIButton *button = [[UIButton alloc]init];
+    self.settingButton = button;
     [self.viewContainer addSubview:button];
+    [button addTarget:self action:@selector(customizeMainPageUI) forControlEvents:UIControlEventTouchUpInside];
     [button setImage:[UIImage imageNamed:@"LQQsetting"] forState:normal];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.toolTitle);
@@ -146,21 +151,80 @@
         make.width.height.equalTo(@30);
     }];
 }
+- (void) customizeMainPageUI {
+    [self.settingButton setHidden:YES];
+    UIButton *OKButton = [[UIButton alloc]init];
+    self.OKButton = OKButton;
+    [OKButton setImage:[UIImage imageNamed:@"toolPageRight"] forState:normal];
+    [self.viewContainer addSubview:OKButton];
+    [OKButton addTarget:self action:@selector(chooseCompleted) forControlEvents:UIControlEventTouchUpInside];
+    [OKButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.right.centerX.centerY.equalTo(self.settingButton);
+    }];
+    
+    for (FinderToolViewItem*item in self.toolViewItems) {
+        item.isChooingNow = YES;
+        item.isFavorite = NO;
+    }
+    
+}
+-(void) chooseCompleted {
+    int fav = 0;//标记是否选择了三个
+    for (FinderToolViewItem*item in self.toolViewItems) {
+        if (item.isFavorite == YES) {
+            fav++;
+        }
+    }
+    if (fav != 3) {
+        NSLog(@"只能选择3个哦,%d",fav);//弹窗
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"只能选择三个哦";
+        [hud hide:YES afterDelay:1];
+
+    }else {
+        [self.OKButton removeFromSuperview];
+        [self.settingButton setHidden:NO];
+        for (FinderToolViewItem*item in self.toolViewItems) {
+            item.isChooingNow = NO;
+        }
+        [self writeUserFavoriteToolToPropertylist];//将用户喜欢的三个控件写入本地缓存文件
+        for (FinderToolViewItem*item in self.toolViewItems) {
+            item.isFavorite = NO;
+            [item changeBackgroundColorIfNeeded];
+        }
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"自定义主页控件成功";
+        [hud hide:YES afterDelay:1];
+        //发送消息给DiscoverMainView更新finderView视图
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"customizeMainPageViewSuccess" object:nil];
+//        NSLog(@"目前选择的是%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"ToolPage_UserFavoriteToolsName"]);
+    }
+}
+-(void) writeUserFavoriteToolToPropertylist {
+    NSMutableArray<NSString*>*array = [NSMutableArray array];
+    for (FinderToolViewItem*item in self.toolViewItems) {
+        if (item.isFavorite == YES){
+            [array addObject:item.title];
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"ToolPage_UserFavoriteToolsName"];
+}
 - (void)addToolViewItems {
     FinderToolViewItem *item1 = [[FinderToolViewItem alloc]initWithIconView:@"没课约" Title:@"没课约" Detail:@"多人空课表同步查询"];
-    
     FinderToolViewItem *item2 = [[FinderToolViewItem alloc]initWithIconView:@"校车轨迹" Title:@"校车轨迹" Detail:@"校园观光车轨迹路线实时查看"];
-    FinderToolViewItem *item3 = [[FinderToolViewItem alloc]initWithIconView:@"教室查询" Title:@"空教室" Detail:@"空余教室及时查询"];
-    FinderToolViewItem *item4 = [[FinderToolViewItem alloc]initWithIconView:@"考试成绩" Title:@"我的考试" Detail:@"考试安排、成绩学分轻松查询"];
+    FinderToolViewItem *item3 = [[FinderToolViewItem alloc]initWithIconView:@"空教室" Title:@"空教室" Detail:@"空余教室及时查询"];
+    FinderToolViewItem *item4 = [[FinderToolViewItem alloc]initWithIconView:@"我的考试" Title:@"我的考试" Detail:@"考试安排、成绩学分轻松查询"];
     FinderToolViewItem *item5 = [[FinderToolViewItem alloc]initWithIconView:@"空课表" Title:@"空课表" Detail:@"同学、老师课表快捷查询"];
     FinderToolViewItem *item6 = [[FinderToolViewItem alloc]initWithIconView:@"校历" Title:@"校历" Detail:@"学期安排一目了然"];
     FinderToolViewItem *item7 = [[FinderToolViewItem alloc]initWithIconView:@"重邮地图" Title:@"重邮地图" Detail:@"校园地图，尽收重邮风光"];
     FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"敬请期待"];
 
-    [item2 addTarget:self action:@selector(chooseSchoolBus) forControlEvents:UIControlEventTouchUpInside];
-    [item4 addTarget:self action:@selector(chooseTestArrange) forControlEvents:UIControlEventTouchUpInside];
-    [item5 addTarget:self action:@selector(chooseScheduleInquiry) forControlEvents:UIControlEventTouchUpInside];
-    [item3 addTarget:self action:@selector(chooseEmptyClassRoom) forControlEvents:UIControlEventTouchUpInside];
+    [item2 addTarget:self action:@selector(chooseSchoolBus:) forControlEvents:UIControlEventTouchUpInside];
+    [item4 addTarget:self action:@selector(chooseTestArrange:) forControlEvents:UIControlEventTouchUpInside];
+    [item5 addTarget:self action:@selector(chooseScheduleInquiry:) forControlEvents:UIControlEventTouchUpInside];
+    [item3 addTarget:self action:@selector(chooseEmptyClassRoom:) forControlEvents:UIControlEventTouchUpInside];
     
     NSMutableArray *itemsArray = [NSMutableArray array];
     [itemsArray addObject:item1];
@@ -215,30 +279,48 @@
 
 
 //MARK: - 空课表
-- (void) chooseScheduleInquiry {
-    //点击了空课表
-    ScheduleInquiryViewController *vc = [[ScheduleInquiryViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+- (void) chooseScheduleInquiry:(FinderToolViewItem*)sender {
+    if (sender.isChooingNow == YES) {
+        [sender toggleFavoriteStates];
+    }else {
+        //点击了空课表
+        ScheduleInquiryViewController *vc = [[ScheduleInquiryViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
-//MARK: - 考试查询
-- (void)chooseTestArrange {
-    TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//MARK: - 我的考试
+- (void)chooseTestArrange:(FinderToolViewItem*)sender  {
+    if (sender.isChooingNow == YES) {
+        [sender toggleFavoriteStates];
+    }else {
+        TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 //MARK: - 校车定位
-- (void)chooseSchoolBus {
-    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)chooseSchoolBus:(FinderToolViewItem*)sender  {
+    if (sender.isChooingNow == YES) {
+        [sender toggleFavoriteStates];
+    }else {
+        SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 //MARK: - 空教室
-- (void)chooseEmptyClassRoom {
-    EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)chooseEmptyClassRoom:(FinderToolViewItem*)sender  {
+    if (sender.isChooingNow == YES) {
+        [sender toggleFavoriteStates];
+    }else {
+        EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 @end

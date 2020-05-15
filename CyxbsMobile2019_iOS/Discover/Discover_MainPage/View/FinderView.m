@@ -1,12 +1,12 @@
 //
-//  LQQFinderView.m
+//  FinderView.m
 //  testForLargeTitle
 //
 //  Created by 千千 on 2019/10/22.
 //  Copyright © 2019 千千. All rights reserved.
 //
 
-#import "LQQFinderView.h"
+#import "FinderView.h"
 #import <SDCycleScrollView.h>
 #define PingFangSC @".PingFang SC"
 #define Gap 17                   //控件距离两边的距离
@@ -14,11 +14,11 @@
 
 #define color21_49_91_F2F4FF [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-@interface LQQFinderView()<SDCycleScrollViewDelegate>
+@interface FinderView()<SDCycleScrollViewDelegate>
 @property NSUserDefaults *defaults;
 
 @end
-@implementation LQQFinderView
+@implementation FinderView
 //MARK: - 初始化部分
 - (instancetype) initWithFrame:(CGRect)frame
 {
@@ -41,6 +41,7 @@
     }
     return self;
 }
+
 - (void)configUserDefaults {
     self.defaults = [NSUserDefaults standardUserDefaults];
 }
@@ -123,9 +124,24 @@
     [newsButton addTarget:self action:@selector(touchNews) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:newsButton];
 }
+-(void) remoreAllEnters {
+    for (EnterButton *enterButton in self.enterButtonArray) {
+        [enterButton removeFromSuperview];
+    }
+}
 - (void) addSomeEnters {
     //循环将四个按钮添加到数组self.enterButtonArray
-    NSArray *nameArray = @[@"教室查询", @"校车轨迹", @"空课表", @"更多功能"];//用来保存图片和名称
+    NSArray <NSString*>*favToolArray =[[NSUserDefaults standardUserDefaults] objectForKey:@"ToolPage_UserFavoriteToolsName"];
+    NSMutableArray <NSString*>*nameArray = [NSMutableArray array];
+    if(favToolArray) {
+        for(NSString *str in favToolArray) {
+             [nameArray addObject:str];
+        }
+        [nameArray addObject:@"更多功能"];
+    }else {
+        nameArray = @[@"空教室", @"校车轨迹", @"空课表", @"更多功能"];//用来保存图片和名称
+    }
+        
     NSMutableArray *array = [NSMutableArray array];
     for (NSString *name in nameArray){
         UIButton *imageButton= [[UIButton alloc]init];
@@ -138,15 +154,21 @@
     }
     self.enterButtonArray = array;
     
-    //点击教室查询
-    [self.enterButtonArray[0].imageButton addTarget:self action:@selector(touchFindClass) forControlEvents:UIControlEventTouchUpInside];
-    //点击校车轨迹
-    [self.enterButtonArray[1].imageButton addTarget:self action:@selector(touchSchoolCar) forControlEvents:UIControlEventTouchUpInside];
-    //点击课表查询
-    [self.enterButtonArray[2].imageButton addTarget:self action:@selector(touchSchedule) forControlEvents:UIControlEventTouchUpInside];
-    //点击更多功能
-    [self.enterButtonArray[3].imageButton addTarget:self action:@selector(touchMore) forControlEvents:UIControlEventTouchUpInside];
+
     for (EnterButton *enterButton in self.enterButtonArray) {
+        if ([enterButton.label.text isEqual: @"空教室"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchFindClass) forControlEvents:UIControlEventTouchUpInside];
+        }else if([enterButton.label.text isEqual: @"空课表"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchSchedule) forControlEvents:UIControlEventTouchUpInside];
+        }else if([enterButton.label.text isEqual: @"校车轨迹"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchSchoolCar) forControlEvents:UIControlEventTouchUpInside];
+        }else if([enterButton.label.text isEqual: @"更多功能"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchMore) forControlEvents:UIControlEventTouchUpInside];
+        }else if ([enterButton.label.text isEqual: @"没课约"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchNoClassAppointment) forControlEvents:UIControlEventTouchUpInside];
+        }else if ([enterButton.label.text isEqual: @"我的考试"]) {
+        [enterButton.imageButton addTarget:self action:@selector(touchMyTest) forControlEvents:UIControlEventTouchUpInside];
+        }
         [self addSubview:enterButton];
     }
 
