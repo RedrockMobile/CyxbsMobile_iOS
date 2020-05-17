@@ -295,6 +295,10 @@
 		DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F02466D888006CE5BC /* DLTimeSelectedButton.m */; };
 		DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F32466D888006CE5BC /* DLReminderView+Reset.m */; };
 		DB4065032466D889006CE5BC /* DLReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F42466D888006CE5BC /* DLReminderView.m */; };
+		EE131C212471362E00B6ED97 /* URLController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C202471362E00B6ED97 /* URLController.m */; };
+		EE131C2724713BE100B6ED97 /* schoolschedule_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EE131C2424713BE100B6ED97 /* schoolschedule_2.png */; };
+		EE131C2824713BE100B6ED97 /* schoolschedule_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EE131C2524713BE100B6ED97 /* schoolschedule_1.png */; };
+		EE131C2924713BE100B6ED97 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C2624713BE100B6ED97 /* CalendarViewController.m */; };
 		EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFB23F5884100208039 /* DiscoverViewController.m */; };
 		EE75BF9023F5884100208039 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE75BEFD23F5884100208039 /* electricity_header_setting.gif */; };
 		EE75BF9123F5884100208039 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFE23F5884100208039 /* InstallBuildTableViewCell.m */; };
@@ -948,6 +952,12 @@
 		DB4064F32466D888006CE5BC /* DLReminderView+Reset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DLReminderView+Reset.m"; sourceTree = "<group>"; };
 		DB4064F42466D888006CE5BC /* DLReminderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderView.m; sourceTree = "<group>"; };
 		DB4064F52466D888006CE5BC /* DLReminderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLReminderModel.h; sourceTree = "<group>"; };
+		EE131C1F2471362E00B6ED97 /* URLController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLController.h; sourceTree = "<group>"; };
+		EE131C202471362E00B6ED97 /* URLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLController.m; sourceTree = "<group>"; };
+		EE131C2324713BE100B6ED97 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		EE131C2424713BE100B6ED97 /* schoolschedule_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schoolschedule_2.png; sourceTree = "<group>"; };
+		EE131C2524713BE100B6ED97 /* schoolschedule_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schoolschedule_1.png; sourceTree = "<group>"; };
+		EE131C2624713BE100B6ED97 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		EE75BEFA23F5884100208039 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		EE75BEFB23F5884100208039 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		EE75BEFD23F5884100208039 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
@@ -2567,9 +2577,21 @@
 			path = Reminder;
 			sourceTree = "<group>";
 		};
+		EE131C2224713BE100B6ED97 /* Discover_SchoolCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				EE131C2324713BE100B6ED97 /* CalendarViewController.h */,
+				EE131C2424713BE100B6ED97 /* schoolschedule_2.png */,
+				EE131C2524713BE100B6ED97 /* schoolschedule_1.png */,
+				EE131C2624713BE100B6ED97 /* CalendarViewController.m */,
+			);
+			path = Discover_SchoolCalendar;
+			sourceTree = "<group>";
+		};
 		EE75BEF723F5884100208039 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				EE131C2224713BE100B6ED97 /* Discover_SchoolCalendar */,
 				EE82344E24673FE700F6B4AE /* Volunteer */,
 				1A4022F7244C9D54000F8524 /* Discover_EmptyClass */,
 				1AF81332241FB1A4006AE58D /* Discover_SchoolBus */,
@@ -2601,6 +2623,8 @@
 			children = (
 				EE75BEFA23F5884100208039 /* DiscoverViewController.h */,
 				EE75BEFB23F5884100208039 /* DiscoverViewController.m */,
+				EE131C1F2471362E00B6ED97 /* URLController.h */,
+				EE131C202471362E00B6ED97 /* URLController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2767,10 +2791,10 @@
 		EE75BF4223F5884100208039 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE75BF4323F5884100208039 /* PeopleListCellTableViewCell.m */,
-				EE75BF4423F5884100208039 /* HistoryView.m */,
-				EE75BF4523F5884100208039 /* HistoryView.h */,
 				EE75BF4623F5884100208039 /* PeopleListCellTableViewCell.h */,
+				EE75BF4323F5884100208039 /* PeopleListCellTableViewCell.m */,
+				EE75BF4523F5884100208039 /* HistoryView.h */,
+				EE75BF4423F5884100208039 /* HistoryView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3204,6 +3228,7 @@
 				DB34EAFD239BD4550052B65E /* remind_image_title@2x.png in Resources */,
 				EE75BF9323F5884100208039 /* SetBuilding.xcassets in Resources */,
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
+				EE131C2824713BE100B6ED97 /* schoolschedule_1.png in Resources */,
 				EE8234C124673FE700F6B4AE /* scroll@3x.png in Resources */,
 				DB34EB15239BD4550052B65E /* 无事项@3x.png in Resources */,
 				DB34EAF4239BD4550052B65E /* 地点@3x.png in Resources */,
@@ -3317,6 +3342,7 @@
 				D0011A7023F0830B009A242C /* QAAskExitView.xib in Resources */,
 				DB34EAF9239BD4550052B65E /* remind_image_remind@3x.png in Resources */,
 				DB34EAEC239BD4550052B65E /* remind_image_time@2x.png in Resources */,
+				EE131C2724713BE100B6ED97 /* schoolschedule_2.png in Resources */,
 				EE8234C824673FE700F6B4AE /* login_icon.png in Resources */,
 				EE8234AB24673FE700F6B4AE /* 时长加号.png in Resources */,
 				DB34EB01239BD4550052B65E /* 左三角@3x.png in Resources */,
@@ -3495,6 +3521,7 @@
 				EE75BFA823F5884100208039 /* StudentScheduleViewController.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
+				EE131C2924713BE100B6ED97 /* CalendarViewController.m in Sources */,
 				EEA301CC24685FD900A8DB26 /* Credit.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */,
@@ -3518,6 +3545,7 @@
 				D0101F61243587A1004337ED /* GKLoadingView.m in Sources */,
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
+				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				EE75BFBD23F5884100208039 /* SCChart.m in Sources */,
 				1A21CD5E242A4D82008B2EA7 /* SchoolBusItem.m in Sources */,
 				EE8234DF24673FE800F6B4AE /* QueryLoginViewController.m in Sources */,

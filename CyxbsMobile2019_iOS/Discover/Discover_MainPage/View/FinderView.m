@@ -8,6 +8,7 @@
 
 #import "FinderView.h"
 #import <SDCycleScrollView.h>
+#import "URLController.h"
 #define PingFangSC @".PingFang SC"
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
@@ -16,7 +17,7 @@
 
 @interface FinderView()<SDCycleScrollViewDelegate>
 @property NSUserDefaults *defaults;
-
+@property (nonatomic, weak)SDCycleScrollView *cycleScrollView;
 @end
 @implementation FinderView
 //MARK: - 初始化部分
@@ -92,8 +93,13 @@
     cycleScrollView.autoScrollTimeInterval = 3;
 
     cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
+    self.cycleScrollView = cycleScrollView;
     [self addSubview:cycleScrollView];
     
+}
+-(void)updateBannerViewIfNeeded {
+    [self.cycleScrollView removeFromSuperview];
+    [self addBannerView];
 }
 - (void) addNewsSender {
     UIButton *button = [[UIButton alloc]init];
@@ -168,6 +174,8 @@
             [enterButton.imageButton addTarget:self action:@selector(touchNoClassAppointment) forControlEvents:UIControlEventTouchUpInside];
         }else if ([enterButton.label.text isEqual: @"我的考试"]) {
         [enterButton.imageButton addTarget:self action:@selector(touchMyTest) forControlEvents:UIControlEventTouchUpInside];
+        }else if([enterButton.label.text isEqual: @"校历"]) {
+        [enterButton.imageButton addTarget:self action:@selector(touchSchoolCalender) forControlEvents:UIControlEventTouchUpInside];
         }
         [self addSubview:enterButton];
     }
@@ -250,9 +258,18 @@
 }
 //MARK: - bannerView按钮触发事件
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    URLController * controller = [[URLController alloc]init];
+    controller.toUrl = self.bannerGoToURL[index];
+    [self.viewController.navigationController pushViewController:controller animated:YES];
+//    self.viewController.hidesBottomBarWhenPushed = YES;
     NSLog(@"点击了第%ld个bannerView", (long)index);
 }
 //MARK: - 按钮触发事件部分实现
+-(void) touchMyTest {
+    if([self.delegate respondsToSelector:@selector(touchMyTest)]) {
+        [self.delegate touchMyTest];
+    }
+}
 - (void) touchNewsSender {
     if([self.delegate respondsToSelector:@selector(touchNewsSender)]) {
         [self.delegate touchNewsSender];
@@ -287,6 +304,11 @@
 - (void) touchMore {
     if([self.delegate respondsToSelector:@selector(touchMore)]) {
         [self.delegate touchMore];
+    }
+}
+-(void) touchSchoolCalender {
+    if ([self.delegate respondsToSelector:@selector(touchSchoolCalender)]) {
+        [self.delegate touchSchoolCalender];
     }
 }
 @end
