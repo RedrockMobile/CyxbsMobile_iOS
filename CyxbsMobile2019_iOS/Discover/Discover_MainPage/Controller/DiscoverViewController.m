@@ -78,6 +78,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
      self.navigationController.navigationBar.translucent = NO;
     [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
+//    [self addClearView];//一个透明的View，用来保证边栏不会遮挡住部分志愿服务入口按钮
     
     ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -58, MAIN_SCREEN_W, 58)];
     classTabBarView.layer.cornerRadius = 16;
@@ -150,10 +151,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-//    if(@available(iOS 11.0, *)){
-        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-
-//    }
     self.contentView = contentView;
     if (@available(iOS 11.0, *)) {
         contentView.backgroundColor = Color242_243_248to000000;
@@ -165,33 +162,22 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.view addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(-70);
     }];
     
 }
 
 - (void)addFinderView {
-    //下策
     FinderView *finderView;
-    if(MAIN_SCREEN_W / MAIN_SCREEN_H == 320 / 568.0){
+    if(IS_IPHONESE){//SE
         finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
             self.contentView.contentSize = CGSizeMake(self.view.width,1.10*self.view.height);
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 667.0) {//6,6s,7,8
-        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.50)];
-            self.contentView.contentSize = CGSizeMake(self.view.width,1.01*self.view.height);
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 736.0) {//plus
-        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.49)];
-            self.contentView.contentSize = CGSizeMake(self.view.width,0.96*self.view.height);
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 812.0) {//11pro,x,xs
-        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.44)];
-            self.contentView.contentSize = CGSizeMake(self.view.width,0.88*self.view.height);
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 896.0) {//11,11promax,xr,xsmax
-        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
-            self.contentView.contentSize = CGSizeZero;
-
-    }else {//以防万一
-        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
-            self.contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + [[UIApplication sharedApplication] statusBarFrame].size.height, self.view.width,0.8*self.view.height);
+    }else if(IS_IPHONEX) {
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.36)];
+        self.contentView.contentSize = CGSizeZero;
+    }else {
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, 320)];
+       self.contentView.contentSize = CGSizeMake(self.view.width,self.view.height);
     }
     self.finderView = finderView;
     self.finderView.delegate = self;
@@ -265,7 +251,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController hidesBottomBarWhenPushed];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
     self.elecModel = elecModel;

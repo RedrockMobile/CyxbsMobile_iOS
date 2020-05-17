@@ -7,6 +7,7 @@
 //
 
 #import "TeacherScheduleViewController.h"
+#define BACKGROUNDCOLOR  [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface TeacherScheduleViewController ()
 
@@ -16,7 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.blueColor;
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = BACKGROUNDCOLOR;
+    } else {
+        // Fallback on earlier versions
+    }
     // Do any additional setup after loading the view.
 }
 
