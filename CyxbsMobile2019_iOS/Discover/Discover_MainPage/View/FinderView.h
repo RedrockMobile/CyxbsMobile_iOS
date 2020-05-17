@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) touchSchoolCalender;
 -(void) touchMap;
 -(void) touchEmptyClass;
-
 @end
 
 @interface FinderView : UIView
@@ -37,8 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSMutableArray <EnterButton*>*enterButtonArray;//四个入口按钮
 @property (nonatomic, weak)id<LQQFinderViewDelegate> delegate;
 @property (nonatomic)NSMutableArray * bannerURLStrings;//轮播图urlString
+@property (nonatomic)NSMutableArray * bannerGoToURL;//轮播图目标网页url
 -(void)remoreAllEnters;//移除四个入口
 -(void)addSomeEnters;//添加四个入口
+-(void)updateBannerViewIfNeeded;//在需要的时候更新bannerView
 @end
 
 NS_ASSUME_NONNULL_END

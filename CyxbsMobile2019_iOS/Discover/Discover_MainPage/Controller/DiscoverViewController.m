@@ -23,7 +23,10 @@
 #import "ClassScheduleTabBarView.h"
 #import "ClassTabBar.h"
 #import "QueryLoginViewController.h"
+#import "CalendarViewController.h"
 #import "BannerModel.h"
+#import "TestArrangeViewController.h"
+#import "SchoolBusViewController.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
@@ -198,7 +201,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 -(void) refreshBannerViewIfNeeded {
     //更新bannerView
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//    center addObserver:self selector:@selector(UpdateBannerViewUI) name:@"" object:<#(nullable id)#>
+    [center addObserver:self selector:@selector(UpdateBannerViewUI) name:@"BannerModel_Success" object:nil];
+}
+-(void)UpdateBannerViewUI {
+    NSMutableArray *urlStrings = [NSMutableArray array];
+    NSMutableArray *bannerGoToURL = [NSMutableArray array];
+    for(BannerItem *item in self.bannerModel.bannerData.bannerItems) {
+        [urlStrings addObject:item.pictureUrl];
+        [bannerGoToURL addObject:item.pictureGoToUrl];
+    }
+    self.finderView.bannerGoToURL = bannerGoToURL;
+    self.finderView.bannerURLStrings = urlStrings;
+    [self.finderView updateBannerViewIfNeeded];
 }
 - (void)addGlanceView {
     int adjustToCorner = 18;
@@ -318,6 +332,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)touchSchoolCar {
     NSLog(@"点击了校车查询");
+    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -337,17 +354,26 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 -(void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
+    
 }
 -(void)touchMyTest {
     NSLog(@"点击了我的考试");
+    TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchSchoolCalender {
     NSLog(@"点击了校历");
+    CalendarViewController *vc = [[CalendarViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchMap {
     NSLog(@"点击了重邮地图");
 }
 -(void)touchEmptyClass {
     NSLog(@"点击了空教室");
+    EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

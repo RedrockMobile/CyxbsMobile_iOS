@@ -12,7 +12,7 @@
 #import "TestArrangeViewController.h"
 #import "SchoolBusViewController.h"
 #import "EmptyClassViewController.h"
-
+#import "CalendarViewController.h"
 #define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -225,6 +225,7 @@
     [item4 addTarget:self action:@selector(chooseTestArrange:) forControlEvents:UIControlEventTouchUpInside];
     [item5 addTarget:self action:@selector(chooseScheduleInquiry:) forControlEvents:UIControlEventTouchUpInside];
     [item3 addTarget:self action:@selector(chooseEmptyClassRoom:) forControlEvents:UIControlEventTouchUpInside];
+    [item6 addTarget:self action:@selector(chooseSchoolSchedule:) forControlEvents:UIControlEventTouchUpInside];
     
     NSMutableArray *itemsArray = [NSMutableArray array];
     [itemsArray addObject:item1];
@@ -322,5 +323,15 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
+//MARK: - 校历
+-(void)chooseSchoolSchedule:(FinderToolViewItem*)sender   {
+    if (sender.isChooingNow == YES) {
+           [sender toggleFavoriteStates];
+       }else {
+           CalendarViewController *vc = [[CalendarViewController alloc]init];
+           vc.hidesBottomBarWhenPushed = YES;
+           [self.navigationController pushViewController:vc animated:YES];
+       }
+    
+}
 @end

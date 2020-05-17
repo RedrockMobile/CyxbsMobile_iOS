@@ -13,7 +13,10 @@
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:BANNERVIEWAPI method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         BannerData *data = [[BannerData alloc]initWithDictionary:responseObject];
+        NSLog(@"%@",responseObject);
         self.bannerData = data;
+        NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+        [center postNotificationName:@"BannerModel_Success" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"bannerView请求错误");
     }];
