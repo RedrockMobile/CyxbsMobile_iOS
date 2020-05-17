@@ -2577,7 +2577,7 @@
 			path = Reminder;
 			sourceTree = "<group>";
 		};
-		EE131C2224713BE100B6ED97 /* SchoolCalendar */ = {
+		EE131C2224713BE100B6ED97 /* Discover_SchoolCalendar */ = {
 			isa = PBXGroup;
 			children = (
 				EE131C2324713BE100B6ED97 /* CalendarViewController.h */,
@@ -2585,13 +2585,13 @@
 				EE131C2524713BE100B6ED97 /* schoolschedule_1.png */,
 				EE131C2624713BE100B6ED97 /* CalendarViewController.m */,
 			);
-			path = SchoolCalendar;
+			path = Discover_SchoolCalendar;
 			sourceTree = "<group>";
 		};
 		EE75BEF723F5884100208039 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				EE131C2224713BE100B6ED97 /* SchoolCalendar */,
+				EE131C2224713BE100B6ED97 /* Discover_SchoolCalendar */,
 				EE82344E24673FE700F6B4AE /* Volunteer */,
 				1A4022F7244C9D54000F8524 /* Discover_EmptyClass */,
 				1AF81332241FB1A4006AE58D /* Discover_SchoolBus */,
