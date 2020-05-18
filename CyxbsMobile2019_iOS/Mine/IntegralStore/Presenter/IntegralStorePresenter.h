@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)dettachView;
 
 - (void)loadStoreData;
+- (void)buyWithName:(NSString *)name andValue:(NSString *)value;
+
+- (void)refreshIntegralNum;
 
 @end
 

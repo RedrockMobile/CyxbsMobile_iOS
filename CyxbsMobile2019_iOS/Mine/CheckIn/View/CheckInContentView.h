@@ -25,9 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<CheckInContentViewDelegate> delegate;
 
 // views
+@property (nonatomic, weak) UILabel *weekLabel;
+
 @property (nonatomic, weak) CheckInBar *bar;
 @property (nonatomic, weak) UIView *checkInView;
 @property (nonatomic, weak) UIView *storeView;
+@property (nonatomic, weak) UILabel *scoreLabel;
+
 
 - (void)CheckInSucceded;
 

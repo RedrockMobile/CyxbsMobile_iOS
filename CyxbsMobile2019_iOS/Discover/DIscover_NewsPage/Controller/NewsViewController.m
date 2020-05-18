@@ -49,7 +49,11 @@
     [button setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(17);
-        make.top.equalTo(self.view).offset(53);
+        if IS_IPHONEX {
+            make.top.equalTo(self.view).offset(53);
+        }else {
+            make.top.equalTo(self.view).offset(35);
+        }
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
@@ -86,6 +90,12 @@
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
+    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
+        make.width.equalTo(@(self.view.width));
+        make.height.equalTo(@(self.self.view.height - 87));
+    }];
 }
 - (void)updateNewsUI {
     [self.tableView reloadData];

@@ -7,7 +7,7 @@
 //
 
 #import "WYCClassBookViewController.h"
-
+#import "DLReminderViewController.h"
 #import "WYCClassAndRemindDataModel.h"
 
 #import "DateModle.h"
@@ -26,6 +26,7 @@
 #define DateStart @"2020-02-17"
 
 @interface WYCClassBookViewController ()<UIScrollViewDelegate,WYCClassBookViewDelegate,WYCShowDetailDelegate>
+@property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, strong) UIView *titleView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) NSString *titleText;
@@ -55,7 +56,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-//    self.navigationController.navigationBar.hidden = YES;
+    //self.navigationController.navigationBar.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(ModelDataLoadSuccess)
@@ -203,7 +204,7 @@
                 }
             }
             
-            WYCClassBookView *view = [[WYCClassBookView alloc]initWithFrame:CGRectMake(dateNum*_scrollView.frame.size.width, 60, _scrollView.frame.size.width, _scrollView.frame.size.height)];
+            WYCClassBookView *view = [[WYCClassBookView alloc]initWithFrame:CGRectMake(dateNum*_scrollView.frame.size.width,70, _scrollView.frame.size.width, _scrollView.frame.size.height)];
             view.detailDelegate = self;
             if (dateNum == 0) {
                 [view initView:YES];
@@ -213,7 +214,44 @@
                 [view initView:NO];
                 [view addBar:self.dateModel.dateArray[dateNum-1] isFirst:NO];
             }
+            UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(view.frame.size.width/15-10,-20,60,30)];
+            if (@available(iOS 11.0, *)) {
+                titleView.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+                       } else {
+                            titleView.backgroundColor = [UIColor whiteColor];
+                       }
+          
+            CGFloat titleLabelWidth = SCREEN_WIDTH * 0.3;
+           UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((_titleView.width - titleLabelWidth)/ 2-35, -10, titleLabelWidth, _titleView.height)];
+//            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.titleView.width - titleLabel)/ 2, 0, titleLabel, titleView.height)];
+            NSMutableArray *titleArray = [@[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"第十一周",@"第十二周",@"第十三周",@"第十四周",@"第十五周",@"第十六周",@"第十七周",@"第十八周",@"第十九周",@"第二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"] mutableCopy];
+               if(self.dateModel.nowWeek.integerValue != 0){
+                   titleArray[self.dateModel.nowWeek.integerValue] = @"本 周";
+               }
+//
+            _titleText = titleArray[_index];
+            titleLabel.text = _titleText;
+              titleLabel.textAlignment = NSTextAlignmentCenter;
+            if (@available(iOS 11.0, *)) {
+                titleLabel.textColor = [UIColor colorNamed:@"titleLabelColor"];
+            } else {
+                titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+                // Fallback on earlier versions
+            }
+              titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+//               self.titleLabel.userInteractionEnabled = YES;
+            UIView *dragHintView = [[UIView alloc]initWithFrame:CGRectMake(view.frame.size.width/2-13.5,-28,27,5)];
+            if (@available(iOS 11.0, *)) {
+                dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
+            } else {
+                // Fallback on earlier versions
+                dragHintView.backgroundColor = [UIColor whiteColor];
+            }
             
+            dragHintView.layer.cornerRadius = 2.5;
+            [view addSubview:titleView];
+            [titleView addSubview:titleLabel];
+            [view addSubview:dragHintView];
             [view addBtn:day];
             [_scrollView addSubview:view];
         }
@@ -264,12 +302,13 @@
     [self initTitleView];
     [self initRightButton];
 }
+
 - (void)initTitleView{
     
     //自定义titleView
     self.titleView = [[UIView alloc]init];
-    self.titleView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-40, 0, 120, 40)];
-    self.titleView.backgroundColor = [UIColor clearColor];
+    self.titleView = [[UIView alloc]initWithFrame:CGRectMake(_scrollView.frame.size.width/2-13.5, 0, 120, 40)];
+    self.titleView.backgroundColor = [UIColor blueColor];
     [self initTitleLabel];
     [self initTitleBtn];
 }
@@ -326,7 +365,7 @@
 //添加备忘
 - (void)addNote{
     
-    AddRemindViewController *vc = [[AddRemindViewController alloc]init];
+    DLReminderViewController *vc = [[DLReminderViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

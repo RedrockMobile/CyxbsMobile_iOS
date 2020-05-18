@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 商品价格
 @property (nonatomic, copy) NSString *value;
 
+/// 商品数量
+@property (nonatomic, copy) NSString *num;
+
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

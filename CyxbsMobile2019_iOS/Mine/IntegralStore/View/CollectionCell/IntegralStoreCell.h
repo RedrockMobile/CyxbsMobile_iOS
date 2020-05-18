@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) IntegralStoreDataItem *item;
 
+@property (nonatomic, weak) UIButton *buyButton;
+
 @end
 
 NS_ASSUME_NONNULL_END

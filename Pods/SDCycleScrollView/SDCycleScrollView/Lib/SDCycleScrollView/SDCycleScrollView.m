@@ -176,6 +176,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
     }
     
     self.backgroundImageView.image = placeholderImage;
+    [self.backgroundImageView setContentMode:UIViewContentModeScaleToFill];
 }
 
 - (void)setPageControlDotSize:(CGSize)pageControlDotSize

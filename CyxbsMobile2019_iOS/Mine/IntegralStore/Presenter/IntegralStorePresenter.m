@@ -34,4 +34,20 @@
     }];
 }
 
+- (void)buyWithName:(NSString *)name andValue:(NSString *)value {
+    [self.model buyWithName:name andValue:value Succeeded:^{
+        [self.view goodsOrderSuccess];
+    } failed:^{
+        [self.view goodsOrderFailuer];
+    }];
+}
+
+- (void)refreshIntegralNum {
+    [self.model refreshIntegralSucceeded:^{
+        [self.view integralFreshSuccess];
+    } failed:^{
+        
+    }];
+}
+
 @end

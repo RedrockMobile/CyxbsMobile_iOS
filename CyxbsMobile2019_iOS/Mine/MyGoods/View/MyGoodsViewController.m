@@ -108,12 +108,14 @@
         cell.nameLabel.text = self.recievedItemsArray[indexPath.row].name;
         cell.timeLabel.text = [NSString stringWithFormat:@"兑换时间：%@", self.recievedItemsArray[indexPath.row].time];
         cell.integralLabel.text = self.recievedItemsArray[indexPath.row].value;
+        cell.numLabel.text = [NSString stringWithFormat:@"数量：%@", self.recievedItemsArray[indexPath.row].num];
     } else {
         NSURL *imgURL = [NSURL URLWithString:self.didNotRecievedItemsArray[indexPath.row].photo_src];
         [cell.photoImageView sd_setImageWithURL:imgURL placeholderImage:nil options:SDWebImageRefreshCached];
         cell.nameLabel.text = self.didNotRecievedItemsArray[indexPath.row].name;
         cell.timeLabel.text = [NSString stringWithFormat:@"兑换时间：%@", self.didNotRecievedItemsArray[indexPath.row].time];
         cell.integralLabel.text = self.didNotRecievedItemsArray[indexPath.row].value;
+        cell.numLabel.text = [NSString stringWithFormat:@"数量：%@", self.didNotRecievedItemsArray[indexPath.row].num];
     }
     
     return cell;

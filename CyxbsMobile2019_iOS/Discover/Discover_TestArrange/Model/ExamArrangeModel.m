@@ -26,6 +26,8 @@
                 [center postNotificationName:@"getExamArrangeSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"我的考试网络请求失败,%@",error);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getExamArrangeFailed" object:nil];
+
     }];
 }
 @end

@@ -8,8 +8,8 @@
 
 #import "DiscoverViewController.h"
 #import "LoginViewController.h"
-#import "LQQFinderToolViewController.h"
-#import "LQQFinderView.h"
+#import "FinderToolViewController.h"
+#import "FinderView.h"
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
@@ -22,7 +22,11 @@
 #import "NewsViewController.h"
 #import "ClassScheduleTabBarView.h"
 #import "ClassTabBar.h"
-
+#import "QueryLoginViewController.h"
+#import "CalendarViewController.h"
+#import "BannerModel.h"
+#import "TestArrangeViewController.h"
+#import "SchoolBusViewController.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
@@ -36,7 +40,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
 //View
-@property(nonatomic, weak) LQQFinderView *finderView;//上方发现页面
+@property(nonatomic, weak) FinderView *finderView;//上方发现页面
 @property (nonatomic, weak) UIScrollView *contentView;
 @property (nonatomic, weak) ElectricFeeGlanceView *eleGlanceView;//电费button页面
 @property (nonatomic, weak) VolunteerGlanceView *volGlanceView;//志愿服务button页面
@@ -46,6 +50,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
 @property NSUserDefaults *defaults;
+@property BannerModel *bannerModel;
 @end
 
 @implementation DiscoverViewController
@@ -65,6 +70,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
     } else {
@@ -72,6 +78,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
      self.navigationController.navigationBar.translucent = NO;
     [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
+//    [self addClearView];//一个透明的View，用来保证边栏不会遮挡住部分志愿服务入口按钮
     
     ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -58, MAIN_SCREEN_W, 58)];
     classTabBarView.layer.cornerRadius = 16;
@@ -81,17 +88,16 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)viewDidLoad {
+    [self requestData];
     [super viewDidLoad];
     [self addContentView];
     self.contentView.delegate = self;
     [self configDefaults];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self configNavagationBar];
     [self addFinderView];
-    [self requestData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
 }
 
 - (void)presentToLogin {
@@ -134,7 +140,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (@available(iOS 11.0, *)) {
         self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
     }
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
     //隐藏导航栏的分割线
     if (@available(iOS 11.0, *)) {
         [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
@@ -142,28 +147,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.finderView.finderTitle.height){
-        if (@available(iOS 11.0, *)) {
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]}];
-        } else {
-            // Fallback on earlier versions
-        }
-    }else{
-        if (@available(iOS 11.0, *)) {
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]}];
-        } else {
-            // Fallback on earlier versions
-        }
-    }
-}
+
 
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-//    if(@available(iOS 11.0, *)){
-        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-
-//    }
     self.contentView = contentView;
     if (@available(iOS 11.0, *)) {
         contentView.backgroundColor = Color242_243_248to000000;
@@ -175,39 +162,44 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.view addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(-70);
     }];
     
 }
 
 - (void)addFinderView {
-    //下策
-    LQQFinderView *finderView;
-    if(MAIN_SCREEN_W / MAIN_SCREEN_H == 320 / 568.0){
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
+    FinderView *finderView;
+    if(IS_IPHONESE){//SE
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
             self.contentView.contentSize = CGSizeMake(self.view.width,1.10*self.view.height);
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 667.0) {//6,6s,7,8
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.50)];
-            self.contentView.contentSize = CGSizeMake(self.view.width,1.01*self.view.height);
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 736.0) {//plus
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.49)];
-            self.contentView.contentSize = CGSizeMake(self.view.width,0.96*self.view.height);
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 375 / 812.0) {//11pro,x,xs
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.44)];
-            self.contentView.contentSize = CGSizeMake(self.view.width,0.88*self.view.height);
-    }else if(MAIN_SCREEN_W / MAIN_SCREEN_H == 414 / 896.0) {//11,11promax,xr,xsmax
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
-            self.contentView.contentSize = CGSizeZero;
-
-    }else {//以防万一
-        finderView = [[LQQFinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.40)];
-            self.contentView.frame = CGRectMake(0,self.navigationController.navigationBar.height + [[UIApplication sharedApplication] statusBarFrame].size.height, self.view.width,0.8*self.view.height);
+    }else if(IS_IPHONEX) {
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.36)];
+        self.contentView.contentSize = CGSizeZero;
+    }else {
+        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, 320)];
+       self.contentView.contentSize = CGSizeMake(self.view.width,self.view.height);
     }
     self.finderView = finderView;
     self.finderView.delegate = self;
     [self.contentView addSubview:finderView];
+    [self refreshBannerViewIfNeeded];
 }
-
+-(void) refreshBannerViewIfNeeded {
+    //更新bannerView
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(UpdateBannerViewUI) name:@"BannerModel_Success" object:nil];
+}
+-(void)UpdateBannerViewUI {
+    NSMutableArray *urlStrings = [NSMutableArray array];
+    NSMutableArray *bannerGoToURL = [NSMutableArray array];
+    for(BannerItem *item in self.bannerModel.bannerData.bannerItems) {
+        [urlStrings addObject:item.pictureUrl];
+        [bannerGoToURL addObject:item.pictureGoToUrl];
+    }
+    self.finderView.bannerGoToURL = bannerGoToURL;
+    self.finderView.bannerURLStrings = urlStrings;
+    [self.finderView updateBannerViewIfNeeded];
+}
 - (void)addGlanceView {
     int adjustToCorner = 18;
     UserItem *userItem = [UserItem defaultItem];
@@ -228,6 +220,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         
         NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - adjustToCorner, self.view.width, 152 + 12)];
         self.volButton = volButton;
+        [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:volButton];
     }else if(userItem.building == nil && userItem.room == nil && userItem.volunteerPassword != nil) {//用户仅绑定了志愿服务账号
         NSLog(@"用户仅绑定了志愿服务账号");
@@ -245,6 +238,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         
         NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - adjustToCorner, self.view.width, 152 + 12)];
         self.volButton = volButton;
+        [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:volButton];
     }
      [self.eleButton addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
@@ -252,13 +246,19 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
     
 }
-
+- (void)bindingVolunteerButton {
+    QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
+    [self.navigationController hidesBottomBarWhenPushed];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
     self.elecModel = elecModel;
     OneNewsModel *oneNewsModel = [[OneNewsModel alloc]initWithPage:@1];
     self.oneNewsModel = oneNewsModel;
-    
+    BannerModel * bannerModel = [[BannerModel alloc]init];
+    [bannerModel fetchData];
+    self.bannerModel = bannerModel;
 }
 
 - (void)updateElectricFeeUI {
@@ -284,6 +284,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+-(void)updateFinderViewUI {
+    [self.finderView remoreAllEnters];
+    [self.finderView addSomeEnters];
+}
 //MARK: FinderView代理
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
@@ -292,17 +297,19 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchNewsSender {
     NSLog(@"点击了“教务在线”");
     NewsViewController *vc = [[NewsViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchNews {
     NSLog(@"点击了新闻");
     NewsViewController *vc = [[NewsViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchFindClass {
-    NSLog(@"点击了教室查询");
+    NSLog(@"点击了空教室");
     EmptyClassViewController *vc = [[EmptyClassViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -310,19 +317,48 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)touchSchoolCar {
     NSLog(@"点击了校车查询");
+    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
 - (void)touchSchedule {
     NSLog(@"点击了空课表");
     ScheduleInquiryViewController *vc = [[ScheduleInquiryViewController alloc]init];
+    vc.title = @"查课表";
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchMore {
     NSLog(@"点击了更多功能");
-    LQQFinderToolViewController *vc = [[LQQFinderToolViewController alloc]init];
+    FinderToolViewController *vc = [[FinderToolViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+-(void)touchNoClassAppointment {
+    NSLog(@"点击了没课约");
+    
+}
+-(void)touchMyTest {
+    NSLog(@"点击了我的考试");
+    TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)touchSchoolCalender {
+    NSLog(@"点击了校历");
+    CalendarViewController *vc = [[CalendarViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)touchMap {
+    NSLog(@"点击了重邮地图");
+}
+-(void)touchEmptyClass {
+    NSLog(@"点击了空教室");
+    EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end

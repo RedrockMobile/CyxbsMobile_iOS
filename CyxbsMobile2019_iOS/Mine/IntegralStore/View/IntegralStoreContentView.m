@@ -14,7 +14,6 @@
 @property (nonatomic, weak) UILabel *storeTitlelabel;
 @property (nonatomic, weak) UIButton *myGoodsButton;
 @property (nonatomic, weak) UIImageView *scoreImageView;
-@property (nonatomic, weak) UILabel *scoreLabel;
 @property (nonatomic, weak) UIView *dragHintView;
 
 @end

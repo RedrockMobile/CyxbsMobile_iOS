@@ -23,7 +23,7 @@
 @property (nonatomic, weak)UILabel *titleLabel;
 @property (nonatomic, strong)ExamArrangeModel *examArrangeModel;
 @property (nonatomic, weak)UIView *seperateLine;//分割线
-@property (nonatomic, weak)UILabel *backButtonTitle;//“考试成绩”
+@property (nonatomic, weak)UILabel *backButtonTitle;//“我的考试”
 @property (nonatomic, weak)UIButton *backButton;//返回按钮
 @property (nonatomic, weak)UIButton *scoreEnterButton;//学分成绩入口按钮
 @property (nonatomic, weak)UIView *hideView;
@@ -35,7 +35,7 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = YES;
     [self addBackButtonTitle];
-    [self addSeperateLine];
+//    [self addSeperateLine];
     [self addTableView];
     self.navigationController.navigationBar.topItem.title = @"";
     if (@available(iOS 11.0, *)) {
@@ -55,7 +55,7 @@
 -(void)addBackButtonTitle {
     UILabel *label = [[UILabel alloc]init];
     self.backButtonTitle = label;
-    label.text = @"考试成绩";
+    label.text = @"我的考试";
     [label setFont:[UIFont fontWithName:PingFangSCBold size:21]];
     if (@available(iOS 11.0, *)) {
         label.textColor = Color21_49_91_F0F0F2;
@@ -103,7 +103,7 @@
     self.seperateLine = line;
 }
 - (void)addHideView {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 112 - 25)];//112是字体顶部到手机屏幕顶部的距离，25是字体高度
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 80)];
     self.hideView = view;
     view.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:view];
@@ -136,7 +136,7 @@
     }];
     
     [scoreEnterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT + 10);//10个像素是为了挡住下面的圆角
+        make.bottom.equalTo(self.view).offset(10);//10个像素是为了挡住下面的圆角
         make.width.equalTo(self.view);
         make.centerX.equalTo(self.view);
         make.height.equalTo(@80);
@@ -154,7 +154,16 @@
 - (void)getExamArrangeData {
     ExamArrangeModel *model = [[ExamArrangeModel alloc]init];
     self.examArrangeModel = model;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testArrangeFailed) name:@"getExamArrangeFailed" object:nil];
+}
+-(void)testArrangeFailed {
+    //当数据加载失败时alert弹窗此服务不可用，并pop
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"通知" message:@"此服务目前不可用: (" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self popController];
+    }];
+    [controller addAction:okAction];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 - (void)updateUI {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getExamArrangeDataSucceed) name:@"getExamArrangeSucceed" object:nil];

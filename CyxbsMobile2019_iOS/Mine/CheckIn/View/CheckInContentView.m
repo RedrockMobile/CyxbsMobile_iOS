@@ -13,7 +13,6 @@
 @property (nonatomic, weak) UIImageView *backgroundImageView;
 @property (nonatomic, weak) UIButton *backBtn;
 @property (nonatomic, weak) UILabel *yearsLabel;
-@property (nonatomic, weak) UILabel *weekLabel;
 @property (nonatomic, weak) UILabel *daysLabel;
 @property (nonatomic, weak) UILabel *checkInRankLabel;
 @property (nonatomic, weak) UILabel *checkInRankPercentLabel;
@@ -22,7 +21,6 @@
 @property (nonatomic, weak) UILabel *storeTitlelabel;
 @property (nonatomic, weak) UIButton *myGoodsButton;
 @property (nonatomic, weak) UIImageView *scoreImageView;
-@property (nonatomic, weak) UILabel *scoreLabel;
 
 @end
 
@@ -58,7 +56,6 @@
         self.yearsLabel = yearsLabel;
         
         UILabel *weekLabel = [[UILabel alloc] init];
-        weekLabel.text = @"上学期第十三周";
         weekLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
         if (IS_IPHONESE) {
             weekLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];

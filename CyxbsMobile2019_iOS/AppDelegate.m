@@ -23,10 +23,10 @@ extern CFAbsoluteTime StartTime;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    
-//    // 打开应用时刷新token
-//    [UserItemTool refresh];
-// 
+    
+    // 打开应用时刷新token
+    [UserItemTool refresh];
+ 
 //    //开发者需要显式的调用此函数，日志系统才能工作
 //    [UMCommonLogManager setUpUMCommonLogManager];
 //    //初始化umenge功能
@@ -69,10 +69,10 @@ extern CFAbsoluteTime StartTime;
 ////    // Share's setting
 ////    [self setupUSharePlatforms];   // required: setting platforms on demand
 ////    [self setupUShareSettings];
+////
 //
-
-    double launchTime = (CFAbsoluteTimeGetCurrent() - StartTime);
-    NSLog(@"double======%f",launchTime);
+//    double launchTime = (CFAbsoluteTimeGetCurrent() - StartTime);
+//    NSLog(@"double======%f",launchTime);
     return YES;
 }
 
@@ -106,36 +106,36 @@ extern CFAbsoluteTime StartTime;
 //iOS10以下使用这两个方法接收通知
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    [UMessage setAutoAlert:NO];
-    if([[[UIDevice currentDevice] systemVersion]intValue] < 10){
-        [UMessage didReceiveRemoteNotification:userInfo];
-    }
-    completionHandler(UIBackgroundFetchResultNewData);
+//    [UMessage setAutoAlert:NO];
+//    if([[[UIDevice currentDevice] systemVersion]intValue] < 10){
+//        [UMessage didReceiveRemoteNotification:userInfo];
+//    }
+//    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 //iOS10新增：处理前台收到通知的代理方法
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
-    NSDictionary * userInfo = notification.request.content.userInfo;
-    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        [UMessage setAutoAlert:NO];
-        //应用处于前台时的远程推送接受
-        //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-    }else{
-        //应用处于前台时的本地推送接受
-    }
-    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
+//    NSDictionary * userInfo = notification.request.content.userInfo;
+//    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+//        [UMessage setAutoAlert:NO];
+//        //应用处于前台时的远程推送接受
+//        //必须加这句代码
+//        [UMessage didReceiveRemoteNotification:userInfo];
+//    }else{
+//        //应用处于前台时的本地推送接受
+//    }
+//    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
 }
 
 //iOS10新增：处理后台点击通知的代理方法
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
-    NSDictionary * userInfo = response.notification.request.content.userInfo;
-    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        //应用处于后台时的远程推送接受
-        //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-    }else{
-        //应用处于后台时的本地推送接受
-    }
+//    NSDictionary * userInfo = response.notification.request.content.userInfo;
+//    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+//        //应用处于后台时的远程推送接受
+//        //必须加这句代码
+//        [UMessage didReceiveRemoteNotification:userInfo];
+//    }else{
+//        //应用处于后台时的本地推送接受
+//    }
 }
 @end

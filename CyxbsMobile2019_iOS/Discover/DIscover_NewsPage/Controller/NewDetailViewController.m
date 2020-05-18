@@ -70,7 +70,12 @@
     [button setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(17);
-        make.top.equalTo(self.view).offset(53);
+        if IS_IPHONEX {
+            make.top.equalTo(self.view).offset(53);
+        }else {
+            make.top.equalTo(self.view).offset(35);
+        }
+        
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
