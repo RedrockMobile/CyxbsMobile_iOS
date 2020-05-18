@@ -51,11 +51,13 @@
     UILabel *weekTimeLabel = [[UILabel alloc]init];
     self.weekTime = weekTimeLabel;
     weekTimeLabel.text = @"第666周，周666";
+    weekTimeLabel.text = @"";
     if (@available(iOS 11.0, *)) {
         weekTimeLabel.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
     }
     weekTimeLabel.font = [UIFont fontWithName:PingFangSCBold size: 10];
     [self addSubview:weekTimeLabel];
+    
 
 }
 - (void) addFinderTitle {
