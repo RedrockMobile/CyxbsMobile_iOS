@@ -23,52 +23,52 @@ extern CFAbsoluteTime StartTime;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    // 打开应用时刷新token
-    [UserItemTool refresh];
- 
-    //开发者需要显式的调用此函数，日志系统才能工作
-    [UMCommonLogManager setUpUMCommonLogManager];
-    //初始化umenge功能
-    [UMConfigure setLogEnabled:YES];
-    [UMConfigure initWithAppkey:@"573183a5e0f55a59c9000694" channel:nil];
-    
-    //开发者需要显式的调用此函数，日志系统才能工作
-    [UMCommonLogManager setUpUMCommonLogManager];
-    
-    //配置统计场景，E_UM_NORMAL为普通场景
-    [MobClick setScenarioType:E_UM_NORMAL];//支持普通场景
-    
-    //umeng推送设置
-    UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
-    //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标
-    entity.types = UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionSound|UMessageAuthorizationOptionAlert;
-    [UNUserNotificationCenter currentNotificationCenter].delegate=self;
-    [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-        }else
-        {
-        }
-    }];
-    
-    [UMessage openDebugMode:YES];
-    [UMessage setWebViewClassString:@"UMWebViewController"];
-    [UMessage addLaunchMessage];
-    //请求获取通知权限
-    if (@available(iOS 10.0, *)) {
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            //获取用户是否同意开启通知
-            if (granted) {
-                NSLog(@"request authorization successed!");
-            }
-        }];
-    } else {
-        // Fallback on earlier versions
-    }
-//    // Share's setting
-//    [self setupUSharePlatforms];   // required: setting platforms on demand
-//    [self setupUShareSettings];
+//    
+//    // 打开应用时刷新token
+//    [UserItemTool refresh];
+// 
+//    //开发者需要显式的调用此函数，日志系统才能工作
+//    [UMCommonLogManager setUpUMCommonLogManager];
+//    //初始化umenge功能
+//    [UMConfigure setLogEnabled:YES];
+//    [UMConfigure initWithAppkey:@"573183a5e0f55a59c9000694" channel:nil];
+//    
+//    //开发者需要显式的调用此函数，日志系统才能工作
+//    [UMCommonLogManager setUpUMCommonLogManager];
+//    
+//    //配置统计场景，E_UM_NORMAL为普通场景
+//    [MobClick setScenarioType:E_UM_NORMAL];//支持普通场景
+//    
+//    //umeng推送设置
+//    UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
+//    //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标
+//    entity.types = UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionSound|UMessageAuthorizationOptionAlert;
+//    [UNUserNotificationCenter currentNotificationCenter].delegate=self;
+//    [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//        if (granted) {
+//        }else
+//        {
+//        }
+//    }];
+//    
+//    [UMessage openDebugMode:YES];
+//    [UMessage setWebViewClassString:@"UMWebViewController"];
+//    [UMessage addLaunchMessage];
+//    //请求获取通知权限
+//    if (@available(iOS 10.0, *)) {
+//        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+//        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//            //获取用户是否同意开启通知
+//            if (granted) {
+//                NSLog(@"request authorization successed!");
+//            }
+//        }];
+//    } else {
+//        // Fallback on earlier versions
+//    }
+////    // Share's setting
+////    [self setupUSharePlatforms];   // required: setting platforms on demand
+////    [self setupUShareSettings];
 //
 
     double launchTime = (CFAbsoluteTimeGetCurrent() - StartTime);

@@ -10,7 +10,7 @@
 #import "QAAskModel.h"
 #import "QAAskNextStepView.h"
 #import "QAAskIntegralPickerView.h"
-#import "QAAskExitView.h"
+#import "QAExitView.h"
 @interface QAAskViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property(strong,nonatomic)QAAskModel *model;
@@ -30,7 +30,7 @@
 @property(strong,nonatomic)SDMask *nextStepViewMask;
 
 //退出提示界面
-@property(strong,nonatomic)QAAskExitView *exitView;
+@property(strong,nonatomic)QAExitView *exitView;
 @property(strong,nonatomic)SDMask *exitViewMask;
 @end
 
@@ -342,9 +342,9 @@
         [self.navigationController popViewControllerAnimated:YES];
     }else{
         if (IS_IPHONEX) {
-            self.exitView = [[QAAskExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, 406)];
+            self.exitView = [[QAExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, 396)];
         }else{
-            self.exitView = [[QAAskExitView alloc]initWithFrame:CGRectMake(60,120, SCREEN_WIDTH - 120, 406)];
+            self.exitView = [[QAExitView alloc]initWithFrame:CGRectMake(60,120, SCREEN_WIDTH - 120, 396)];
         }
         
         [self.exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];

@@ -6,9 +6,9 @@
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "QAAskExitView.h"
+#import "QAExitView.h"
 
-@implementation QAAskExitView
+@implementation QAExitView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];

@@ -247,6 +247,7 @@ contentLabel.text = content;
 //        make.left.mas_equalTo(self.mas_left).mas_offset(0);
 //        make.height.mas_equalTo(answerList.count*190);
 //    }];
+    //判断h是否有回答
     if (answerList.count != 0) {
         CGFloat answerViewY = 0;
         for (int i=0;i<answerList.count; i++) {
@@ -322,6 +323,7 @@ contentLabel.text = content;
 //
 //    return rect.size.height;
 //}
+//查看大图
 - (void)tapToViewBigImage:(UIButton *)sender{
     [self.delegate tapToViewBigImage:sender.tag];
 }
@@ -333,17 +335,19 @@ contentLabel.text = content;
 - (void)tapCommentBtn:(UIButton *)sender{
     [self.delegate tapCommentBtn:[NSNumber numberWithInteger:sender.tag]];
 }
-
+//点赞
 - (void)tapPraiseBtn:(UIButton *)sender{
     [self.delegate tapPraiseBtn:sender answerId:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }
+//采纳
 - (void)tapAdoptBtn:(UIButton *)sender{
     [self.delegate tapAdoptBtn:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }
 //查看评论
-//- (void)tapToViewComment{
+- (void)tapToViewComment:(UIView *)sender{
+//    NSLog(@"%D",sender.superview.tag);
 //    self.delegate
-//}
+}
 @end

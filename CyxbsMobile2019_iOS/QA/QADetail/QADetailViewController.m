@@ -16,6 +16,9 @@
 @property(strong,nonatomic)UIScrollView *scrollView;
 @property(strong,nonatomic)NSNumber *question_id;
 @property(strong,nonatomic)QADetailModel *model;
+//举报界面
+@property(strong,nonatomic)SDMask *reportViewMask;
+@property(strong,nonatomic)QADetailReportView *reportView;
 @end
 
 @implementation QADetailViewController
@@ -115,25 +118,33 @@
     [self loadData];
 }
 - (void)showReportView{
-    QADetailReportView *reportView = [[QADetailReportView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 530)];
-    [reportView setBackgroundColor:UIColor.clearColor];
-    [reportView setupView];
-    for (UIButton *btn in reportView.reportBtnCollection) {
+    
+    self.reportView = [[QADetailReportView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 530)];
+    [self.reportView setBackgroundColor:UIColor.clearColor];
+    [self.reportView setupView];
+    for (UIButton *btn in self.reportView.reportBtnCollection) {
         if (btn.tag == 5){
              [btn addTarget:self action:@selector(ignore:) forControlEvents:UIControlEventTouchUpInside];
         }else{
         [btn addTarget:self action:@selector(report:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
-    
-    [[reportView sdm_showActionSheetIn:self.view usingBlock:nil] usingAutoDismiss];
+    [self.reportView.cancelButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+    self.reportViewMask = [[SDMaskUserView(self.reportViewMask) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
+    [self.reportViewMask show];
 }
+//举报问题
 - (void)report:(UIButton *)sender{
     [self.model report:sender.titleLabel.text question_id:self.question_id];
 //    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
+//忽略问题
 - (void)ignore:(UIButton *)sender{
     [self.model ignore:self.question_id];
+//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
+}
+- (void)cancel:(UIButton *)sender{
+    [self.reportViewMask dismiss];
 //    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 
