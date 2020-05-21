@@ -105,13 +105,25 @@
         
         return;
     }
-
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"兑换中(´▽｀)";
-    self.loadingHUD = hud;
     
-    [self.presenter buyWithName:self.dataItemArray[sender.tag].name andValue:self.dataItemArray[sender.tag].value];
+    NSString *alertTitle = @"你想好要买这个了吗？";
+    NSString *alertMessage = [NSString stringWithFormat:@"兑换将花费%d点积分，此操作不可撤销。兑换的商品需到红岩网校工作站线下领取。", [self.dataItemArray[sender.tag].value intValue]];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle message:alertMessage preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"我想好了" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"兑换中(´▽｀)";
+        self.loadingHUD = hud;
+        
+        [self.presenter buyWithName:self.dataItemArray[sender.tag].name andValue:self.dataItemArray[sender.tag].value];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"算了吧" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:certainAction];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 
