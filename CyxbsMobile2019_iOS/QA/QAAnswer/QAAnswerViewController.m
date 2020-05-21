@@ -8,7 +8,7 @@
 
 #import "QAAnswerViewController.h"
 #import "QAAnswerModel.h"
-#import "QAAnswerExitView.h"
+#import "QAExitView.h"
 @interface QAAnswerViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(strong,nonatomic)QAAnswerModel *model;
 //问题id
@@ -21,7 +21,7 @@
 //回答内容
 @property(strong,nonatomic)UITextView *answerTextView;
 //退出提示界面
-@property(strong,nonatomic)QAAnswerExitView *exitView;
+@property(strong,nonatomic)QAExitView *exitView;
 @property(strong,nonatomic)SDMask *exitViewMask;
 @end
 
@@ -245,12 +245,23 @@
 }
 
 - (void)saveAnswerContent{
-
-    self.exitView = [[QAAnswerExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];
-    [self.exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
-    [self.exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
-    self.exitViewMask = [[SDMaskUserView(self.exitView) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
-    [self.exitViewMask show];
+    [self.answerTextView resignFirstResponder];
+    if ([self.answerTextView.text isEqualToString:@""]) {
+        [self.exitView removeFromSuperview];
+        [self.exitViewMask dismiss];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        if (IS_IPHONEX) {
+            self.exitView = [[QAExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, 396)];
+        }else{
+            self.exitView = [[QAExitView alloc]initWithFrame:CGRectMake(60,120, SCREEN_WIDTH - 120, 396)];
+        }
+        
+        [self.exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
+        [self.exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
+        self.exitViewMask = [[SDMaskUserView(self.exitView) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
+        [self.exitViewMask show];
+    }
     
     
 }

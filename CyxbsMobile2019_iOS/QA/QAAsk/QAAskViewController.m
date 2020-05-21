@@ -10,7 +10,7 @@
 #import "QAAskModel.h"
 #import "QAAskNextStepView.h"
 #import "QAAskIntegralPickerView.h"
-#import "QAAskExitView.h"
+#import "QAExitView.h"
 @interface QAAskViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property(strong,nonatomic)QAAskModel *model;
@@ -30,7 +30,7 @@
 @property(strong,nonatomic)SDMask *nextStepViewMask;
 
 //退出提示界面
-@property(strong,nonatomic)QAAskExitView *exitView;
+@property(strong,nonatomic)QAExitView *exitView;
 @property(strong,nonatomic)SDMask *exitViewMask;
 @end
 
@@ -126,6 +126,7 @@
     self.titleTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
     self.titleTextField.leftView.userInteractionEnabled = NO;
     self.titleTextField.leftViewMode = UITextFieldViewModeAlways;
+    [self.titleTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self.view addSubview:self.titleTextField];
     
     [self.titleTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -170,7 +171,20 @@
     [controller addAction:act1];
     [self presentViewController:controller animated:YES completion:nil];
 }
-
+//标题字数限制
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == self.titleTextField) {
+        if (textField.text.length > 12) {
+            textField.text = [textField.text substringToIndex:12];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"已达最多字数";
+            [hud hide:YES afterDelay:0.5];
+            
+        }
+    }
+}
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
@@ -286,8 +300,14 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)nextStep{
+    [self.titleTextField resignFirstResponder];
+    [self.askTextView resignFirstResponder];
+    if (IS_IPHONEX) {
+        self.nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 300)];
+    }else{
+        self.nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 160)];
+    }
     
-    self.nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 300)];
     self.nextStepView.backgroundColor = UIColor.redColor;
     [self.nextStepView.cancelBtn addTarget:self action:@selector(hiddenNextStepView) forControlEvents:UIControlEventTouchUpInside];
     [self.nextStepView.commitBtn addTarget:self action:@selector(commitAsk) forControlEvents:UIControlEventTouchUpInside];
@@ -314,12 +334,24 @@
 
 
 - (void)saveAskContent{
-    
-    self.exitView = [[QAAskExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, SCREEN_HEIGHT - 400)];
-    [self.exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
-    [self.exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
-    self.exitViewMask = [[SDMaskUserView(self.exitView) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
-    [self.exitViewMask show];
+    [self.titleTextField resignFirstResponder];
+    [self.askTextView resignFirstResponder];
+    if ([self.askTextView.text isEqualToString:@""]&&[self.titleTextField.text isEqualToString:@""]) {
+        [self.exitView removeFromSuperview];
+        [self.exitViewMask dismiss];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        if (IS_IPHONEX) {
+            self.exitView = [[QAExitView alloc]initWithFrame:CGRectMake(60,200, SCREEN_WIDTH - 120, 396)];
+        }else{
+            self.exitView = [[QAExitView alloc]initWithFrame:CGRectMake(60,120, SCREEN_WIDTH - 120, 396)];
+        }
+        
+        [self.exitView.saveAndExitBtn addTarget:self action:@selector(saveAndExit) forControlEvents:UIControlEventTouchUpInside];
+        [self.exitView.continueEditBtn addTarget:self action:@selector(continueEdit) forControlEvents:UIControlEventTouchUpInside];
+        self.exitViewMask = [[SDMaskUserView(self.exitView) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
+        [self.exitViewMask show];
+    }
     
     
 }

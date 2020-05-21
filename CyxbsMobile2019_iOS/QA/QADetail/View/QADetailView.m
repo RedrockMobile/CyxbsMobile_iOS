@@ -211,24 +211,31 @@ contentLabel.text = content;
         make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(-20);
         make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20);
     }];
-    self.answerButton = [[UIButton alloc]init];
-    self.answerButton.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
-    [self.answerButton setTitle:@"回答" forState:UIControlStateNormal];
-    [self.answerButton.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:18]];
-    self.answerButton.layer.cornerRadius = 20;
-    
-    [self addSubview:self.answerButton];
-    [self.answerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-60);
-        make.height.mas_equalTo(40);
-        make.width.mas_equalTo(120);
-    }];
+
+
+  
     NSNumber *isSelf = [dic objectForKey:@"is_self"];
     if (isSelf.integerValue == 0) {
         self.isSelf = NO;
     }else{
         self.isSelf = YES;
+    }
+    //如果不是自己提的问题，显示回答按钮
+    if (!self.isSelf) {
+        
+    self.answerButton = [[UIButton alloc]init];
+      self.answerButton.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
+      [self.answerButton setTitle:@"回答" forState:UIControlStateNormal];
+      [self.answerButton.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:18]];
+      self.answerButton.layer.cornerRadius = 20;
+      
+      [self addSubview:self.answerButton];
+      [self.answerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+          make.centerX.equalTo(self);
+          make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-60);
+          make.height.mas_equalTo(40);
+          make.width.mas_equalTo(120);
+      }];
     }
     //加载回答列表
     NSArray *answerList = answersData;
@@ -240,6 +247,7 @@ contentLabel.text = content;
 //        make.left.mas_equalTo(self.mas_left).mas_offset(0);
 //        make.height.mas_equalTo(answerList.count*190);
 //    }];
+    //判断h是否有回答
     if (answerList.count != 0) {
         CGFloat answerViewY = 0;
         for (int i=0;i<answerList.count; i++) {
@@ -308,13 +316,14 @@ contentLabel.text = content;
     CGSize labelSize = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontsize]} context:nil].size;
     return labelSize.height;
 }
-//根据宽度求高度  content 计算的内容  width 计算的宽度 font字体大小
-+ (CGFloat)getLabelHeightWithText:(NSString *)text width:(CGFloat)width font: (CGFloat)font
-{
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil];
- 
-    return rect.size.height;
-}
+////根据宽度求高度  content 计算的内容  width 计算的宽度 font字体大小
+//+ (CGFloat)getLabelHeightWithText:(NSString *)text width:(CGFloat)width font: (CGFloat)font
+//{
+//    CGRect rect = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil];
+//
+//    return rect.size.height;
+//}
+//查看大图
 - (void)tapToViewBigImage:(UIButton *)sender{
     [self.delegate tapToViewBigImage:sender.tag];
 }
@@ -326,17 +335,19 @@ contentLabel.text = content;
 - (void)tapCommentBtn:(UIButton *)sender{
     [self.delegate tapCommentBtn:[NSNumber numberWithInteger:sender.tag]];
 }
-
+//点赞
 - (void)tapPraiseBtn:(UIButton *)sender{
     [self.delegate tapPraiseBtn:sender answerId:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }
+//采纳
 - (void)tapAdoptBtn:(UIButton *)sender{
     [self.delegate tapAdoptBtn:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }
 //查看评论
-//- (void)tapToViewComment{
+- (void)tapToViewComment:(UIView *)sender{
+//    NSLog(@"%D",sender.superview.tag);
 //    self.delegate
-//}
+}
 @end
