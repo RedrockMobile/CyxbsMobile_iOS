@@ -8,6 +8,7 @@
 
 #import "MineAboutController.h"
 #import "MineAboutContentView.h"
+#import "ProductWebsiteViewController.h"
 
 @interface MineAboutController () <MineAboutContentViewDelegate>
 
@@ -29,8 +30,16 @@
     [self.view addSubview:contentView];
 }
 
+
+#pragma mark - contentView代理
 - (void)backButtonClicked {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)selectedProductWebsite {
+    ProductWebsiteViewController *vc = [[ProductWebsiteViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 @end

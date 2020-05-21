@@ -207,6 +207,7 @@
     cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
     cell.textLabel.textColor = self.appNameLabel.textColor;
     cell.backgroundColor = self.tableView.backgroundColor;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     switch (indexPath.row) {
         case 0:
@@ -230,6 +231,28 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0:
+            break;
+            
+        case 1:
+            if ([self.delegate respondsToSelector:@selector(selectedProductWebsite)]) {
+                [self.delegate selectedProductWebsite];
+            }
+            break;
+            
+        case 2:
+            break;
+            
+        case 3:
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

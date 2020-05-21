@@ -57,14 +57,6 @@
                         @"hasSwitch": @YES
                     },
                     @{
-                        @"title": @"自定义桌面小图标",
-                        @"hasSwitch": @NO
-                    },
-                    @{
-                        @"title": @"红岩网校",
-                        @"hasSwitch": @NO
-                    },
-                    @{
                         @"title": @"关于",
                         @"hasSwitch": @NO
                     }
