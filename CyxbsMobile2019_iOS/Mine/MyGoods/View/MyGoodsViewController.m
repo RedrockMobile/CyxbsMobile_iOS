@@ -196,6 +196,14 @@
 #pragma mark - Presenter回调
 - (void)myGoodsDataRequestsSuccessWithRecievedArray:(NSArray<MyGoodsItem *> *)recievd andDidNotRecievedArray:(NSMutableArray<MyGoodsItem *> *)didNotRicieved {
     
+    if (recievd.count < 6) {
+        [self.contentView.recievedTableView.mj_footer endRefreshingWithNoMoreData];
+        [self.contentView.didNotRecievedTableView.mj_footer endRefreshingWithNoMoreData];
+    } else {
+        [self.contentView.recievedTableView.mj_footer endRefreshing];
+        [self.contentView.didNotRecievedTableView.mj_footer endRefreshing];
+    }
+    
     self.recievedItemsArray = [[self.recievedItemsArray arrayByAddingObjectsFromArray:recievd] mutableCopy];
     self.didNotRecievedItemsArray = [[self.didNotRecievedItemsArray arrayByAddingObjectsFromArray:didNotRicieved] mutableCopy];
     
@@ -203,9 +211,6 @@
     
     [self.contentView.recievedTableView reloadData];
     [self.contentView.didNotRecievedTableView reloadData];
-    
-    [self.contentView.recievedTableView.mj_footer endRefreshing];
-    [self.contentView.recievedTableView.mj_footer endRefreshing];
 }
 
 - (void)myGoodsDataRequestsFailure:(NSError *)error {

@@ -108,7 +108,7 @@
     
     [self.integralImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.nameLabel);
-        make.top.equalTo(self.timeLabel.mas_bottom).offset(10);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(14);
         make.height.width.equalTo(@14);
     }];
     
@@ -118,8 +118,8 @@
     }];
     
     [self.numLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.nameLabel);
-        make.top.equalTo(self.integralImageView.mas_bottom).offset(10);
+        make.trailing.equalTo(self.contentView).offset(-18);
+        make.centerY.equalTo(self.integralImageView);
     }];
     
     [self.separatorLine mas_makeConstraints:^(MASConstraintMaker *make) {
