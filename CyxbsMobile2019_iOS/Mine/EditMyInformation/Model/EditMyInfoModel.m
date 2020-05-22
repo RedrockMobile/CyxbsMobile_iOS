@@ -11,8 +11,10 @@
 @implementation EditMyInfoModel
 
 + (void)uploadProfile:(UIImage *)profile success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
+    // 这个接口炸掉了
     NSDictionary *params = @{
-        @"stunum": @"2018212415"
+        @"stunum": [UserDefaultTool getStuNum],
+        @"idnum": [UserDefaultTool getIdNum]
     };
     
     [[HttpClient defaultClient] uploadImageWithJson:UPLOADPROFILEAPI method:HttpRequestPost parameters:params imageArray:@[profile] imageNames:@[@"fold"] prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
