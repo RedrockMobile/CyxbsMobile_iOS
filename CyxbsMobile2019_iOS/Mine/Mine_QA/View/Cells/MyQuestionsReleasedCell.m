@@ -97,23 +97,7 @@
         UILabel *isSolvedLabel = [[UILabel alloc] init];
         isSolvedLabel.font = [UIFont systemFontOfSize:11];
         isSolvedLabel.textAlignment = NSTextAlignmentCenter;
-        if (self.isSolved) {
-            isSolvedLabel.text = @"已解决";
-            if (@available(iOS 11.0, *)) {
-                isSolvedLabel.textColor = [UIColor colorNamed:@"Mine_QA_SolvedLabelColor"];
-                isSolvedLabel.backgroundColor = [UIColor colorNamed:@"Mine_QA_SolvedBackgroundColor"];
-            } else {
-                // Fallback on earlier versions
-            }
-        } else {
-            isSolvedLabel.text = @"未解决";
-            if (@available(iOS 11.0, *)) {
-                isSolvedLabel.textColor = [UIColor colorNamed:@"Mine_QA_DidntSolvedLabelColor"];
-                isSolvedLabel.backgroundColor = [UIColor colorNamed:@"Mine_QA_DidntSolvedBackgroundColor"];
-            } else {
-                // Fallback on earlier versions
-            }
-        }
+        
         [self.contentView addSubview:isSolvedLabel];
         self.isSolvedLabel = isSolvedLabel;
         
@@ -179,7 +163,24 @@
     self.titleLabel.text = item.title;
     self.contentLabel.text = item.questionContent;
     self.timeLabel.text = item.disappearTime;
-//    self.integralLabel
+    self.isSolved = [item.type isEqualToString:@"已解决"] ? YES : NO;
+    
+    self.isSolvedLabel.text = item.type;
+    if (self.isSolved) {
+        if (@available(iOS 11.0, *)) {
+            self.isSolvedLabel.textColor = [UIColor colorNamed:@"Mine_QA_SolvedLabelColor"];
+            self.isSolvedLabel.backgroundColor = [UIColor colorNamed:@"Mine_QA_SolvedBackgroundColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+    } else {
+        if (@available(iOS 11.0, *)) {
+            self.isSolvedLabel.textColor = [UIColor colorNamed:@"Mine_QA_DidntSolvedLabelColor"];
+            self.isSolvedLabel.backgroundColor = [UIColor colorNamed:@"Mine_QA_DidntSolvedBackgroundColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }
 
 @end
