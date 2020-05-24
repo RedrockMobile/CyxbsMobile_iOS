@@ -16,23 +16,15 @@
     [EditMyInfoModel uploadProfile:profile success:^(NSDictionary * _Nonnull responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             [UserItemTool defaultItem].headImgUrl = responseObject[@"data"][@"photosrc"];
-            [self.attachedViwe profileUploadedSuccess];
+            [self.attachedView profileUploadSuccess];
         }
     } failure:^(NSError * _Nonnull error) {
-        
+        [self.attachedView userInfoOrProfileUploadFailure];
     }];
     
 }
 
 - (void)uploadUserInfo:(NSDictionary *)userInfo {
-//    @"stuNum": [UserDefaultTool getStuNum],
-//    @"idNum": [UserDefaultTool getIdNum],
-//    @"nickname": self.contentView.nicknameTextField.text ? self.contentView.nicknameTextField.text : self.contentView.nicknameTextField.placeholder,
-//    @"introduction": self.contentView.introductionTextField.text ? self.contentView.introductionTextField.text : self.contentView.introductionTextField.placeholder,
-//    @"qq": self.contentView.QQTextField.text ? self.contentView.QQTextField.text : self.contentView.QQTextField.placeholder,
-//    @"phone": self.contentView.phoneNumberTextField.text ? self.contentView.phoneNumberTextField.text : self.contentView.phoneNumberTextField.placeholder,
-//    @"photo_src": [UserItemTool defaultItem].headImgUrl ? [UserItemTool defaultItem].headImgUrl : @""
-    
     [UserItemTool defaultItem].nickname = userInfo[@"nickname"];
     [UserItemTool defaultItem].introduction = userInfo[@"introduction"];
     [UserItemTool defaultItem].qq = userInfo[@"qq"];
@@ -40,18 +32,18 @@
     [UserItemTool defaultItem].headImgUrl = userInfo[@"photo_src"];
 
     [EditMyInfoModel uploadUserInfo:userInfo success:^(NSDictionary * _Nonnull responseObject) {
-        [self.attachedViwe userInfoUploadedSuccess];
+        [self.attachedView userInfoUploadSuccess];
     } failure:^(NSError * _Nonnull error) {
-        
+        [self.attachedView userInfoOrProfileUploadFailure];
     }];
 }
 
 - (void)attachView:(EditMyInfoViewController *)view {
-    _attachedViwe = view;
+    _attachedView = view;
 }
 
 - (void)dettatchView {
-    _attachedViwe = nil;
+    _attachedView = nil;
 }
 
 @end

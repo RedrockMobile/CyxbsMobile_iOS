@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EditMyInfoPresenter : NSObject
 
-@property (nonatomic, strong) EditMyInfoViewController *attachedViwe;
+@property (nonatomic, strong) EditMyInfoViewController *attachedView;
 
 
 /// 上传用户信息

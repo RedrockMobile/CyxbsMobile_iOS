@@ -11,7 +11,6 @@
 @implementation EditMyInfoModel
 
 + (void)uploadProfile:(UIImage *)profile success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
-    // 这个接口炸掉了
     NSDictionary *params = @{
         @"stunum": [UserDefaultTool getStuNum],
         @"idnum": [UserDefaultTool getIdNum]

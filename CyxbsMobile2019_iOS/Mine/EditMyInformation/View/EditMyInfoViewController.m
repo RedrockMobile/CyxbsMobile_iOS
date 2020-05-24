@@ -79,7 +79,7 @@
         [self.presenter uploadProfile:self.contentView.headerImageView.image];
     } else {
         // 头像没有改变，直接上传其他信息
-        [self profileUploadedSuccess];  // 这个方法是头像上传成功的回调，里面的内容就是上传个人信息
+        [self profileUploadSuccess];  // 这个方法是头像上传成功的回调，里面的内容就是上传个人信息
     }
 }
 
@@ -105,7 +105,7 @@
 
 
 #pragma mark - Presenter回调
-- (void)profileUploadedSuccess {
+- (void)profileUploadSuccess {
     NSDictionary *uploadData = @{
         @"stuNum": [UserDefaultTool getStuNum],
         @"idNum": [UserDefaultTool getIdNum],
@@ -118,7 +118,18 @@
     [self.presenter uploadUserInfo:uploadData];
 }
 
-- (void)userInfoUploadedSuccess {
+- (void)userInfoOrProfileUploadFailure {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"上传失败了...";
+    [hud hide:YES afterDelay:1];
+    
+    self.contentView.saveButton.titleLabel.text = @"保 存";
+    self.contentView.saveButton.userInteractionEnabled = YES;
+}
+
+
+- (void)userInfoUploadSuccess {
     [UserItemTool refresh];         // 上传数据后刷新token
     [((MineViewController *)self.transitioningDelegate) loadUserData];
     ((MineViewController *)self.transitioningDelegate).panGesture = nil;
