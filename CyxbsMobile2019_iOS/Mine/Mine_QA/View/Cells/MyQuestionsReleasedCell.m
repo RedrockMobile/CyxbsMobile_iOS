@@ -64,15 +64,6 @@
         UILabel *timeLabel = [[UILabel alloc] init];
         timeLabel.text = @"2019.8.22";
         timeLabel.font = [UIFont systemFontOfSize:11];
-        if (self.isSolved) {
-            timeLabel.textColor = [UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0];
-        } else {
-            if (@available(iOS 11.0, *)) {
-                timeLabel.textColor = [UIColor colorNamed:@"Mine_QA_TimeLabelColor"];
-            } else {
-                // Fallback on earlier versions
-            }
-        }
         [self.contentView addSubview:timeLabel];
         self.timeLabel = timeLabel;
         
@@ -167,16 +158,29 @@
     
     self.isSolvedLabel.text = item.type;
     if (self.isSolved) {
+        // 是否解决标签
         if (@available(iOS 11.0, *)) {
             self.isSolvedLabel.textColor = [UIColor colorNamed:@"Mine_QA_SolvedLabelColor"];
             self.isSolvedLabel.backgroundColor = [UIColor colorNamed:@"Mine_QA_SolvedBackgroundColor"];
+            
         } else {
             // Fallback on earlier versions
         }
+        
+        // 时间label
+        self.timeLabel.textColor = [UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0];
     } else {
+        // 是否解决标签
         if (@available(iOS 11.0, *)) {
             self.isSolvedLabel.textColor = [UIColor colorNamed:@"Mine_QA_DidntSolvedLabelColor"];
             self.isSolvedLabel.backgroundColor = [UIColor colorNamed:@"Mine_QA_DidntSolvedBackgroundColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        // 时间label
+        if (@available(iOS 11.0, *)) {
+            self.timeLabel.textColor = [UIColor colorNamed:@"Mine_QA_TimeLabelColor"];
         } else {
             // Fallback on earlier versions
         }
