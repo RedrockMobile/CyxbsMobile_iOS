@@ -32,7 +32,6 @@
         }
         
         UILabel *sendToNameLabel = [[UILabel alloc] init];
-        sendToNameLabel.text = @"@fyhNB!";
         sendToNameLabel.font = [UIFont systemFontOfSize:13];
         sendToNameLabel.alpha = 0.7;
         if (@available(iOS 11.0, *)) {
@@ -44,7 +43,6 @@
         self.sendToNameLabel = sendToNameLabel;
         
         UILabel *contentLabel = [[UILabel alloc] init];
-        contentLabel.text = @"啦啦啦啦啦";
         contentLabel.font = [UIFont systemFontOfSize:16];
         contentLabel.numberOfLines = 1;
         if (@available(iOS 11.0, *)) {

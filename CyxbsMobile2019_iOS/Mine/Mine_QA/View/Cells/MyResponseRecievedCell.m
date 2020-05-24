@@ -41,7 +41,6 @@
         
         // 评论者用户名
         UILabel *sendingUserNameLabel = [[UILabel alloc] init];
-        sendingUserNameLabel.text = @"@wmtSB!";
         sendingUserNameLabel.font = [UIFont systemFontOfSize:13];
         if (@available(iOS 11.0, *)) {
             sendingUserNameLabel.textColor = [UIColor colorNamed:@"Mine_QA_ContentLabelColor"];
@@ -53,7 +52,6 @@
         
         // 评论内容
         UILabel *contentLabel = [[UILabel alloc] init];
-        contentLabel.text = @"lalalallalalalallaa";
         contentLabel.font = [UIFont systemFontOfSize:15];
         contentLabel.numberOfLines = 1;
         if (@available(iOS 11.0, *)) {

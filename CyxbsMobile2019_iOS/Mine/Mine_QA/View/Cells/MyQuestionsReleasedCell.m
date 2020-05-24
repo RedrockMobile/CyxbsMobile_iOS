@@ -37,7 +37,6 @@
         
         // 标题
         UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.text = @"标题";
         titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 15];
         if (@available(iOS 11.0, *)) {
             titleLabel.textColor = [UIColor colorNamed:@"Mine_QA_TitleLabelColor"];
@@ -49,7 +48,6 @@
         
         // 内容
         UILabel *contentLabel = [[UILabel alloc] init];
-        contentLabel.text = @"楼主从乡下考学出来，自力更生，白手起家，过上了有车有房伪中产生活。你们攻击楼主就是嫉妒。";
         contentLabel.numberOfLines = 1;
         contentLabel.font = [UIFont systemFontOfSize:15];
         if (@available(iOS 11.0, *)) {
@@ -119,7 +117,7 @@
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.titleLabel);
-        make.top.equalTo(self.contentLabel.mas_bottom).offset(9);
+        make.bottom.equalTo(self.contentView).offset(-17);
     }];
     
     [self.integralImageView mas_makeConstraints:^(MASConstraintMaker *make) {
