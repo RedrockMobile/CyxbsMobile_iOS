@@ -13,7 +13,7 @@
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
-#import "ElectricFeeGlanceView.h"
+#import "ElectricFeeGlanceButton.h"
 #import "VolunteerGlanceView.h"
 #import "NotSetElectriceFeeButton.h"
 #import "NotSetVolunteerButton.h"
@@ -27,8 +27,14 @@
 #import "BannerModel.h"
 #import "TestArrangeViewController.h"
 #import "SchoolBusViewController.h"
+#import "PickerModel.h"
+#import <MBProgressHUD.h>
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
+#define ColorWhite  [UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define TextColor [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define TextColor [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define TextColorShallow [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
@@ -36,21 +42,27 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     AlreadyLogin,
 };
 
-@interface DiscoverViewController ()<UIScrollViewDelegate, LQQFinderViewDelegate>
+@interface DiscoverViewController ()<UIScrollViewDelegate, LQQFinderViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
 //View
 @property(nonatomic, weak) FinderView *finderView;//上方发现页面
 @property (nonatomic, weak) UIScrollView *contentView;
-@property (nonatomic, weak) ElectricFeeGlanceView *eleGlanceView;//电费button页面
+@property (nonatomic, weak) ElectricFeeGlanceButton *eleGlanceButton;//电费button页面
 @property (nonatomic, weak) VolunteerGlanceView *volGlanceView;//志愿服务button页面
 @property (nonatomic, weak) NotSetElectriceFeeButton *eleButton;//未绑定账号时电费button页面
 @property (nonatomic, weak) NotSetVolunteerButton *volButton;//未绑定账号时电费button页面
+@property (nonatomic, weak) UIView * bindingDormitoryContentView;//绑定宿舍页面的contentView
+@property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
+@property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
 //Model
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
 @property NSUserDefaults *defaults;
 @property BannerModel *bannerModel;
+@property PickerModel *pickerModel;
+//pickerView
+@property (nonatomic)NSInteger selectedArrays;
 @end
 
 @implementation DiscoverViewController
@@ -98,6 +110,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
 }
 
 - (void)presentToLogin {
@@ -206,19 +220,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     NSLog(@"当前的building是%@,当前的room是%@",userItem.building,userItem.room);
     if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword != nil) {//用户已经绑定电费和志愿
         NSLog(@"用户已经绑定电费和志愿");
-            ElectricFeeGlanceView *eleGlanceView = [[ElectricFeeGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
-            self.eleGlanceView = eleGlanceView;
-            [self.contentView addSubview:eleGlanceView];
-            VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - adjustToCorner, self.view.width, 182)];
+            ElectricFeeGlanceButton *eleGlanceButton = [[ElectricFeeGlanceButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
+            self.eleGlanceButton = eleGlanceButton;
+            [self.contentView addSubview:eleGlanceButton];
+            VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceButton.height - adjustToCorner, self.view.width, 182)];
             self.volGlanceView = volGlanceView;
             [self.contentView addSubview:volGlanceView];
     }else if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword == nil) {//用户仅绑定宿舍
         NSLog(@"用户仅绑定电费");
-        ElectricFeeGlanceView *eleGlanceView = [[ElectricFeeGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
-        self.eleGlanceView = eleGlanceView;
-        [self.contentView addSubview:eleGlanceView];
-        
-        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceView.height - adjustToCorner, self.view.width, 182 + 12)];
+        ElectricFeeGlanceButton *eleGlanceButton = [[ElectricFeeGlanceButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
+        self.eleGlanceButton = eleGlanceButton;
+        [self.contentView addSubview:eleGlanceButton];
+        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceButton.height - adjustToCorner, self.view.width, 182 + 12)];
         self.volButton = volButton;
         [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:volButton];
@@ -242,7 +255,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [self.contentView addSubview:volButton];
     }
      [self.eleButton addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
-
+    [self.eleGlanceButton addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
 
     
 }
@@ -251,6 +264,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController hidesBottomBarWhenPushed];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
     self.elecModel = elecModel;
@@ -263,9 +277,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)updateElectricFeeUI {
     
-    self.eleGlanceView.electricFeeMoney.text = self.elecModel.electricFeeItem.money;
-    self.eleGlanceView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
-    self.eleGlanceView.electricFeeTime.text = self.elecModel.electricFeeItem.time;
+    self.eleGlanceButton.electricFeeMoney.text = self.elecModel.electricFeeItem.money;
+    self.eleGlanceButton.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
+    self.eleGlanceButton.electricFeeTime.text = self.elecModel.electricFeeItem.time;
     //同时写入缓存
     [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
     [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
@@ -280,14 +294,213 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 - (void) bundlingBuildingAndRoom {
-    NSLog(@"点击了绑定宿舍房间号");
-    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    NSLog(@"点击了绑定宿舍房间号");
+//    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    [self getPickerViewData];
+    UIView * contentView = [[UIView alloc]initWithFrame:self.view.frame];
+    self.bindingDormitoryContentView = contentView;
+    [self.view addSubview:contentView];
+    contentView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    
+    
+    UIView *bindingView = [[UIView alloc]init];
+    bindingView.layer.cornerRadius = 8;
+    if (@available(iOS 11.0, *)) {
+        bindingView.backgroundColor = ColorWhite;
+    } else {
+        bindingView.backgroundColor = UIColor.whiteColor;
+    }
+    [contentView addSubview:bindingView];
+    [bindingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+        make.height.equalTo(@339);
+    }];
+    UIPickerView * pickerView = [[UIPickerView alloc]init];
+    [bindingView addSubview:pickerView];
+    [pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(bindingView).offset(97);
+        make.left.right.equalTo(bindingView);
+        make.height.equalTo(@152);
+    }];
+    pickerView.delegate = self;
+    pickerView.dataSource = self;
+    pickerView.showsSelectionIndicator = YES;
+    UILabel * roomNumberLabel = [[UILabel alloc]init];
+    roomNumberLabel.font = [UIFont fontWithName:PingFangSCBold size: 24];
+    roomNumberLabel.text = @"宿舍号：";
+    if (@available(iOS 11.0, *)) {
+        roomNumberLabel.textColor = TextColor;
+    } else {
+    }
+    [bindingView addSubview:roomNumberLabel];
+    [roomNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bindingView).offset(14);
+        make.top.equalTo(bindingView).offset(23);
+    }];
+    UITextField * textField = [[UITextField alloc]init];
+    [bindingView addSubview:textField];
+    textField.keyboardType = UIKeyboardTypeNumberPad;
+    textField.returnKeyType =UIReturnKeyDone;
+    [textField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(roomNumberLabel).offset(85);
+        make.centerY.equalTo(roomNumberLabel);
+        make.width.equalTo(@170);
+    }];
+    textField.placeholder = @"输入宿舍号";
+    textField.inputAccessoryView = [self addToolbar];
+    textField.font = roomNumberLabel.font;
+    self.roomTextField = textField;
+    if (@available(iOS 11.0, *)) {
+        textField.textColor = roomNumberLabel.textColor;
+    } else {
+        // Fallback on earlier versions
+    }
+    UILabel *buildingNumberLabel = [[UILabel alloc]init];
+    buildingNumberLabel.text = @"01栋";
+    if (@available(iOS 11.0, *)) {
+        buildingNumberLabel.textColor = TextColorShallow;
+    } else {
+        // Fallback on earlier versions
+    }
+    buildingNumberLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
+    self.buildingNumberLabel = buildingNumberLabel;
+    [bindingView addSubview:buildingNumberLabel];
+    [buildingNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(roomNumberLabel);
+        make.top.equalTo(roomNumberLabel.mas_bottom).offset(3);
+    }];
+    UIButton * button = [[UIButton alloc]init];
+    [bindingView addSubview:button];
+    button.backgroundColor = UIColor.blueColor;
+    [button setTitle:@"确定" forState:normal];
+    button.layer.cornerRadius = 20;
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(bindingView);
+        make.bottom.equalTo(bindingView).offset(-29);
+        make.width.equalTo(@120);
+        make.height.equalTo(@40);
+    }];
+    [button addTarget:self action:@selector(bindingDormitory) forControlEvents:UIControlEventTouchUpInside];
+}
+- (UIToolbar *)addToolbar
+{
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 35)];
+    toolbar.tintColor = [UIColor blueColor];
+//    toolbar.backgroundColor = [UIColor sy_grayColor];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *bar = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(textFieldDone)];
+    toolbar.items = @[space, bar];
+    return toolbar;
+}
+-(void)textFieldDone {
+    [self.view endEditing:YES];
+}
+- (void)bindingDormitory {
+    UserItem *item = [UserItem defaultItem];
+    if (self.buildingNumberLabel.text != nil) {
+        item.building = self.buildingNumberLabel.text;
+    }
+    if(self.roomTextField.text != nil) {
+        item.room = self.roomTextField.text;
+    }
+    
+    [self.bindingDormitoryContentView removeAllSubviews];
+    [self.bindingDormitoryContentView removeFromSuperview];
+    [self reloadElectricViewIfNeeded];
+
+}
+-(void)getPickerViewData {
+    PickerModel *pickerModel = [[PickerModel alloc]init];
+    self.pickerModel = pickerModel;
+}
+//MARK: - PickerViewDataSourse
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView
+{
+    return 2; // 返回2表明该控件只包含2列
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    if (component == 0) {
+        return self.pickerModel.allArray.count;
+    }else {
+        return [self.pickerModel.allArray objectAtIndex:self.selectedArrays].count;
+    }
+}
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (component == 0) {
+        return self.pickerModel.placeArray[row];
+    }else {
+//        self.placeArray = @[@"宁静苑",@"明理苑",@"知行苑",@"兴业苑",@"四海苑"];
+        NSInteger selectedRow = [pickerView selectedRowInComponent:0];
+        NSArray *arr = [self.pickerModel.allArray objectAtIndex:selectedRow];
+         return [arr objectAtIndex:row];
+    }
+}
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+       if (component == 0) {
+        //如果滑动的是第 0 列, 刷新第 1 列
+        //在执行完这句代码之后, 会重新计算第 1 列的行数, 重新加载第 1 列的标题内容
+        [pickerView reloadComponent:1];//重新加载指定列的数据
+       self.selectedArrays = row;
+        [pickerView selectRow:0 inComponent:1 animated:YES];
+        //
+        //重新加载数据
+        [pickerView reloadAllComponents];
+       }else {
+           //如果滑动的是右侧列，刷新上方label
+
+//           [PickerModel getNumberOfDormitoryWith:self.pickerModel.placeArray[row] andPlace:self.pickerModel.allArray[row][row]];
+       }
+    NSInteger row0 = [pickerView selectedRowInComponent:0];
+    NSInteger row1 = [pickerView selectedRowInComponent:1];
+    NSLog(@"%@",self.buildingNumberLabel.text = [self.pickerModel getNumberOfDormitoryWith:self.pickerModel.placeArray[row0] andPlace:self.pickerModel.allArray[row0][row1]]);
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+    if (component == 0) {
+        return 100;
+    }else{
+        return 100;
+    }
+    
+}
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    if (component == 0) {
+        return 45;
+    }else{
+        return 45;
+    }
 }
 
 -(void)updateFinderViewUI {
     [self.finderView remoreAllEnters];
     [self.finderView addSomeEnters];
+}
+-(void)reloadElectricViewIfNeeded {
+//    NSLog(@"%@",[UserItem defaultItem].room);
+//    NSLog(@"%@",[UserItem defaultItem].building);
+    [self reloadViewController:self];
+}
+- (void)reloadViewController:(UIViewController *)viewController {
+    NSArray *subviews = [viewController.view subviews];
+    if (subviews.count > 0) {
+        for (UIView *sub in subviews) {
+            [sub removeFromSuperview];
+        }
+    }
+    
+    [viewController viewWillDisappear:YES];
+    [viewController viewDidDisappear:YES];
+    [viewController viewDidLoad];
+    [viewController viewWillAppear:YES];
+    [viewController viewDidAppear:YES];
+    [viewController viewWillLayoutSubviews];
 }
 //MARK: FinderView代理
 - (void)touchWriteButton {
@@ -361,4 +574,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+//MARK: - 监听键盘事件
+ //当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)aNotification
+{
+    //获取键盘的高度
+    NSDictionary *userInfo = [aNotification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height;
+    
+}
+
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)aNotification{}
 @end

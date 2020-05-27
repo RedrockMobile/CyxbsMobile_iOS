@@ -15,12 +15,12 @@
 #define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#import "ElectricFeeGlanceView.h"
-@interface ElectricFeeGlanceView()
+#import "ElectricFeeGlanceButton.h"
+@interface ElectricFeeGlanceButton()
 @property NSUserDefaults *defaults;
 
 @end
-@implementation ElectricFeeGlanceView
+@implementation ElectricFeeGlanceButton
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -81,7 +81,11 @@
 - (void)addTime {
     UILabel *time = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = time;
-    time.text = [self.defaults objectForKey:@"ElectricFee_time"];
+    if ([self.defaults objectForKey:@"ElectricFee_time"]!= NULL) {
+        time.text = [self.defaults objectForKey:@"ElectricFee_time"];
+    }else {
+        time.text = @"加载失败";
+    }
     if (@available(iOS 11.0, *)) {
         time.textColor = Color21_49_91_F0F0F2;
     } else {
@@ -94,7 +98,12 @@
 - (void)addMoney {
     UILabel *money = [[UILabel alloc]init];//左边数字
     self.electricFeeMoney = money;
-    money.text = [self.defaults objectForKey:@"ElectricFee_money"];
+    if ([self.defaults objectForKey:@"ElectricFee_money"] != NULL) {
+        money.text = [self.defaults objectForKey:@"ElectricFee_money"];
+    }else {
+        money.text = @"0";
+    }
+//    money.text = @"0";
     if (@available(iOS 11.0, *)) {
         money.textColor = Color42_78_132;
     } else {
@@ -106,7 +115,13 @@
 - (void)addDegree {
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
-    degree.text = [self.defaults objectForKey:@"ElectricFee_degree"];
+    NSLog(@"%@",[self.defaults objectForKey:@"ElectricFee_degree"]);
+    if ([self.defaults objectForKey:@"ElectricFee_degree"] != NULL){
+        degree.text = [self.defaults objectForKey:@"ElectricFee_degree"];
+    }else {
+        degree.text = @"0";
+    }
+    
     if (@available(iOS 11.0, *)) {
         degree.textColor = Color42_78_132;
     } else {

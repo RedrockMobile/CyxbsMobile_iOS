@@ -10,6 +10,6 @@
 
 @interface DiscoverViewController: UIViewController
 
-
+- (void)reloadViewController:(UIViewController *)viewController;
 @end
 
