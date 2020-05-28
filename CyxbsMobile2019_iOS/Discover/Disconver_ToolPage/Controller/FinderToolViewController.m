@@ -176,7 +176,6 @@
         }
     }
     if (fav != 3) {
-        NSLog(@"只能选择3个哦,%d",fav);//弹窗
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"只能选择三个哦";

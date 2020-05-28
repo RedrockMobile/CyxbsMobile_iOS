@@ -1,5 +1,5 @@
 //
-//  ElectricFeeGlanceView.h
+//  ElectricFeeGlanceButton.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 千千 on 2020/1/28.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ElectricFeeGlanceView : UIView
+@interface ElectricFeeGlanceButton : UIButton
 @property (nonatomic, weak)UIButton *electricFee;//电费二级页面按钮
 /// 电费查询部分
 @property (nonatomic, weak)UILabel *electricFeeTitle;//”电费查询“

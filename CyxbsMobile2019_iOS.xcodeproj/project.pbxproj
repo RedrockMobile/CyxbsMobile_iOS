@@ -319,7 +319,7 @@
 		EE75BF9E23F5884100208039 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */; };
 		EE75BF9F23F5884100208039 /* NotSetElectriceFeeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1C23F5884100208039 /* NotSetElectriceFeeButton.m */; };
 		EE75BFA023F5884100208039 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */; };
-		EE75BFA123F5884100208039 /* ElectricFeeGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2223F5884100208039 /* ElectricFeeGlanceView.m */; };
+		EE75BFA123F5884100208039 /* ElectricFeeGlanceButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2223F5884100208039 /* ElectricFeeGlanceButton.m */; };
 		EE75BFA223F5884100208039 /* ExamArrangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2623F5884100208039 /* ExamArrangeModel.m */; };
 		EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2723F5884100208039 /* ExamArrangeData.m */; };
 		EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2923F5884100208039 /* ExamArrangeDataItem.m */; };
@@ -436,6 +436,7 @@
 		EEA301D7246866E400A8DB26 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301D6246866E400A8DB26 /* BannerModel.m */; };
 		EEA301DA2468670B00A8DB26 /* BannerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301D92468670B00A8DB26 /* BannerItem.m */; };
 		EEA301DD2468680800A8DB26 /* BannerData.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301DC2468680800A8DB26 /* BannerData.m */; };
+		EED03014247E9F1E009DD181 /* PickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EED03013247E9F1E009DD181 /* PickerModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -991,14 +992,14 @@
 		EE75BF1823F5884100208039 /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
 		EE75BF1923F5884100208039 /* FinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderView.m; sourceTree = "<group>"; };
 		EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
-		EE75BF1B23F5884100208039 /* ElectricFeeGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceView.h; sourceTree = "<group>"; };
+		EE75BF1B23F5884100208039 /* ElectricFeeGlanceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeGlanceButton.h; sourceTree = "<group>"; };
 		EE75BF1C23F5884100208039 /* NotSetElectriceFeeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetElectriceFeeButton.m; sourceTree = "<group>"; };
 		EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerGlanceView.m; sourceTree = "<group>"; };
 		EE75BF1E23F5884100208039 /* FinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderView.h; sourceTree = "<group>"; };
 		EE75BF1F23F5884100208039 /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
 		EE75BF2023F5884100208039 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
 		EE75BF2123F5884100208039 /* NotSetElectriceFeeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetElectriceFeeButton.h; sourceTree = "<group>"; };
-		EE75BF2223F5884100208039 /* ElectricFeeGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeGlanceView.m; sourceTree = "<group>"; };
+		EE75BF2223F5884100208039 /* ElectricFeeGlanceButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeGlanceButton.m; sourceTree = "<group>"; };
 		EE75BF2523F5884100208039 /* ExamArrangeDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeDataItem.h; sourceTree = "<group>"; };
 		EE75BF2623F5884100208039 /* ExamArrangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeModel.m; sourceTree = "<group>"; };
 		EE75BF2723F5884100208039 /* ExamArrangeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeData.m; sourceTree = "<group>"; };
@@ -1176,6 +1177,8 @@
 		EEA301D92468670B00A8DB26 /* BannerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerItem.m; sourceTree = "<group>"; };
 		EEA301DB2468680800A8DB26 /* BannerData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerData.h; sourceTree = "<group>"; };
 		EEA301DC2468680800A8DB26 /* BannerData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerData.m; sourceTree = "<group>"; };
+		EED03012247E9F1E009DD181 /* PickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerModel.h; sourceTree = "<group>"; };
+		EED03013247E9F1E009DD181 /* PickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickerModel.m; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2658,6 +2661,7 @@
 		EE75BF0623F5884100208039 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EED03011247E9EFC009DD181 /* PickerView */,
 				EEA301D4246866D700A8DB26 /* Banner */,
 				EE75BF0723F5884100208039 /* ElectricBill */,
 				EE75BF0C23F5884100208039 /* News */,
@@ -2710,10 +2714,10 @@
 				EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */,
 				EE75BF2023F5884100208039 /* NotSetVolunteerButton.h */,
 				EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */,
-				EE75BF1B23F5884100208039 /* ElectricFeeGlanceView.h */,
+				EE75BF1B23F5884100208039 /* ElectricFeeGlanceButton.h */,
 				EE75BF1C23F5884100208039 /* NotSetElectriceFeeButton.m */,
 				EE75BF2123F5884100208039 /* NotSetElectriceFeeButton.h */,
-				EE75BF2223F5884100208039 /* ElectricFeeGlanceView.m */,
+				EE75BF2223F5884100208039 /* ElectricFeeGlanceButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3117,6 +3121,15 @@
 			path = Banner;
 			sourceTree = "<group>";
 		};
+		EED03011247E9EFC009DD181 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				EED03012247E9F1E009DD181 /* PickerModel.h */,
+				EED03013247E9F1E009DD181 /* PickerModel.m */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3484,7 +3497,7 @@
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				EE75BFAD23F5884100208039 /* ClassmatesList.m in Sources */,
-				EE75BFA123F5884100208039 /* ElectricFeeGlanceView.m in Sources */,
+				EE75BFA123F5884100208039 /* ElectricFeeGlanceButton.m in Sources */,
 				EE75BFC723F5884100208039 /* ABScoreView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
@@ -3602,6 +3615,7 @@
 				EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */,
 				EEA301C32468593F00A8DB26 /* SingleGrade.m in Sources */,
 				EE75BF9623F5884100208039 /* ElectricFeeItem.m in Sources */,
+				EED03014247E9F1E009DD181 /* PickerModel.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
 				EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */,
