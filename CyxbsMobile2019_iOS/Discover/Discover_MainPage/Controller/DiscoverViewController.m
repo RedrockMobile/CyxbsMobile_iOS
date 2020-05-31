@@ -223,6 +223,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
             ElectricFeeGlanceButton *eleGlanceButton = [[ElectricFeeGlanceButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
             self.eleGlanceButton = eleGlanceButton;
             [self.contentView addSubview:eleGlanceButton];
+        [eleGlanceButton.electricFee addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
+        
             VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceButton.height - adjustToCorner, self.view.width, 182)];
             self.volGlanceView = volGlanceView;
             [self.contentView addSubview:volGlanceView];
@@ -231,6 +233,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         ElectricFeeGlanceButton *eleGlanceButton = [[ElectricFeeGlanceButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
         self.eleGlanceButton = eleGlanceButton;
         [self.contentView addSubview:eleGlanceButton];
+        [eleGlanceButton.electricFee addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
+
+        
         NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceButton.height - adjustToCorner, self.view.width, 182 + 12)];
         self.volButton = volButton;
         [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
@@ -277,7 +282,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)updateElectricFeeUI {
     
-    self.eleGlanceButton.electricFeeMoney.text = self.elecModel.electricFeeItem.money;
+    [self.eleGlanceButton.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     self.eleGlanceButton.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     self.eleGlanceButton.electricFeeTime.text = self.elecModel.electricFeeItem.time;
     //同时写入缓存
@@ -293,6 +298,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [self.defaults setObject:self.oneNewsModel.oneNewsItem.dataArray.firstObject.title forKey:@"OneNews_oneNews"];
     }
 }
+
 - (void) bundlingBuildingAndRoom {
 //    NSLog(@"点击了绑定宿舍房间号");
 //    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
@@ -302,6 +308,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.bindingDormitoryContentView = contentView;
     [self.view addSubview:contentView];
     contentView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    contentView.alpha = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+        contentView.alpha = 1;
+    }];
     
     
     UIView *bindingView = [[UIView alloc]init];

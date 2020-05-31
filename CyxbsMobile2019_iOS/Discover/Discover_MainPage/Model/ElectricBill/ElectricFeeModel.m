@@ -9,6 +9,7 @@
 #import "ElectricFeeModel.h"
 
 @implementation ElectricFeeModel
+
 - (instancetype)init
 {
     self = [super init];
@@ -17,6 +18,7 @@
     }
     return self;
 }
+
 - (void)getData {
     HttpClient *client = [HttpClient defaultClient];
     NSString *building = @"26";
@@ -32,4 +34,5 @@
     }];
     
 }
+
 @end

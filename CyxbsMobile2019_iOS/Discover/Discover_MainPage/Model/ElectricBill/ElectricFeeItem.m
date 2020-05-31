@@ -12,7 +12,7 @@
 -(instancetype)initWithDict: (NSDictionary *)dict {
     if (self = [super init]) {
         self.money = [NSString stringWithFormat:@"%@.%@",dict[@"elec_inf"][@"elec_cost"][0],dict[@"elec_inf"][@"elec_cost"][1]];
-        self.degree = dict[@"elec_inf"][@"elec_spend"];
+        self.degree = [dict[@"elec_inf"][@"elec_spend"] stringValue];
         NSString *returnTime = (NSString*)dict[@"elec_inf"][@"record_time"];
         int month = [returnTime substringToIndex:2].intValue;
         int day = [returnTime substringWithRange:NSMakeRange(3, 2)].intValue;

@@ -16,10 +16,15 @@
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #import "ElectricFeeGlanceButton.h"
+
+
 @interface ElectricFeeGlanceButton()
+
 @property NSUserDefaults *defaults;
 
 @end
+
+
 @implementation ElectricFeeGlanceButton
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -37,7 +42,9 @@
     NSUserDefaults *defualts = [NSUserDefaults standardUserDefaults];
     self.defaults = defualts;
 }
-//MARK: 电费查询部分
+
+
+//MARK: - 电费查询部分
 - (void) addElectricFeeButton {
     UIButton *button = [[UIButton alloc]init];
     self.electricFee = button;
@@ -55,6 +62,7 @@
     
     [self addSubview:self.electricFee];
 }
+
 - (void)addChildViewToElectricFeeButton {
     //其中涉及网络请求的有time,money,degree
     [self addTitle];
@@ -66,6 +74,7 @@
     [self addHintLeft];
     [self addHintRight];
 }
+
 - (void)addTitle {
     UILabel *title = [[UILabel alloc]init];//左上角标题
     self.electricFeeTitle = title;
@@ -78,6 +87,7 @@
     }
     [self.electricFee addSubview:title];
 }
+
 - (void)addTime {
     UILabel *time = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = time;
@@ -95,29 +105,31 @@
     time.font = [UIFont fontWithName:PingFangSCLight size: 10];
     [self.electricFee addSubview:time];
 }
+
 - (void)addMoney {
-    UILabel *money = [[UILabel alloc]init];//左边数字
+    UIButton *money = [[UIButton alloc]init];//左边数字
     self.electricFeeMoney = money;
     if ([self.defaults objectForKey:@"ElectricFee_money"] != NULL) {
-        money.text = [self.defaults objectForKey:@"ElectricFee_money"];
+        [money setTitle:[self.defaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
     }else {
-        money.text = @"0";
+        [money setTitle:@"0" forState:UIControlStateNormal];
     }
 //    money.text = @"0";
     if (@available(iOS 11.0, *)) {
-        money.textColor = Color42_78_132;
+        [money setTitleColor:Color42_78_132 forState:UIControlStateNormal];
     } else {
         // Fallback on earlier versions
     }
-    money.font = [UIFont fontWithName:ImpactMedium size: 36];
+    money.titleLabel.font = [UIFont fontWithName:ImpactMedium size: 36];
     [self.electricFee addSubview:money];
 }
+
 - (void)addDegree {
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
     NSLog(@"%@",[self.defaults objectForKey:@"ElectricFee_degree"]);
-    if ([self.defaults objectForKey:@"ElectricFee_degree"] != NULL){
-        degree.text = [self.defaults objectForKey:@"ElectricFee_degree"];
+    if ([self.defaults objectForKey:@"ElectricFee_degree"]){
+        degree.text = [NSString stringWithFormat:@"%@", [self.defaults objectForKey:@"ElectricFee_degree"]];
     }else {
         degree.text = @"0";
     }
@@ -130,6 +142,7 @@
     degree.font = [UIFont fontWithName: ImpactMedium size: 36];
     [self.electricFee addSubview:degree];
 }
+
 - (void)addYuan {
     UILabel *yuan = [[UILabel alloc]init];//汉字“元”
     self.electricFeeYuan = yuan;
@@ -142,6 +155,7 @@
     yuan.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self.electricFee addSubview:yuan];
 }
+
 - (void)addDu {
     UILabel *du = [[UILabel alloc]init];//汉字“度”
     self.electricFeeDu = du;
@@ -154,6 +168,7 @@
     du.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self.electricFee addSubview:du];
 }
+
 - (void)addHintLeft {
     UILabel *hintLeft = [[UILabel alloc]init];//汉字“费用、本月”
     self.electricFeeHintLeft = hintLeft;
@@ -167,6 +182,7 @@
     hintLeft.alpha = 0.6;
     [self.electricFee addSubview:hintLeft];
 }
+
 - (void)addHintRight {
     UILabel *hintRight = [[UILabel alloc] init];//汉字“使用度数，本月”
     self.electricFeeHintRight = hintRight;
@@ -181,8 +197,9 @@
     [self.electricFee addSubview:hintRight];
 }
 
+
+//MARK: - 电费部分的约束
 - (void)layoutSubviews {
-    //MARK: - 电费部分的约束
     [self.electricFee mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top);
         make.height.equalTo(@151.5);

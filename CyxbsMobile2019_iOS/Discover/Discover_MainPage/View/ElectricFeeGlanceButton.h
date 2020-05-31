@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 电费查询部分
 @property (nonatomic, weak)UILabel *electricFeeTitle;//”电费查询“
 @property (nonatomic, weak)UILabel *electricFeeTime;//右上角时间
-@property (nonatomic, weak)UILabel *electricFeeMoney;//钱的数字
+@property (nonatomic, weak)UIButton *electricFeeMoney;//钱的数字       可点击修改寝室
 @property (nonatomic, weak)UILabel *electricFeeDegree;//度的数字
 @property (nonatomic, weak)UILabel *electricFeeYuan;//“元”
 @property (nonatomic, weak)UILabel *electricFeeDu;//“度”
