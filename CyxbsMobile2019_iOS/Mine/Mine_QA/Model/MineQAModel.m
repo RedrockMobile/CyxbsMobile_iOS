@@ -130,4 +130,21 @@
     }];
 }
 
+#pragma mark - 删除草稿
+- (void)deleteDraftWithDraftID:(NSString *)draftID
+                     succeeded:(nonnull void (^)(void))succeeded
+                        failed:(nonnull void (^)(NSError * _Nonnull))failed {
+    NSDictionary *params = @{
+        @"stuNum": [UserDefaultTool getStuNum],
+        @"idNum": [UserDefaultTool getIdNum],
+        @"id": draftID
+    };
+    
+    [[HttpClient defaultClient] requestWithPath:DELETEDRAFT method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        succeeded();
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failed(error);
+    }];
+}
+
 @end

@@ -104,4 +104,12 @@
     }];
 }
 
+- (void)deleteDraftWithDraftID:(NSString *)draftID {
+    [self.model deleteDraftWithDraftID:draftID succeeded:^{
+        [self.view draftDeleteSuccess];
+    } failed:^(NSError * _Nonnull error) {
+        [self.view draftDeleteFailure];
+    }];
+}
+
 @end

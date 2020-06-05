@@ -99,7 +99,11 @@
     }];
 }
 
+
+#pragma mark - Setter
 - (void)setItem:(MineQARecommentItem *)item {
+    _item = item;
+    
     NSURL *imageURL = [NSURL URLWithString:item.commenterImageURL];
     [self.sendingUserImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageRefreshCached context:nil progress:nil completed:nil];
     self.sendingUserNameLabel.text = item.commenterNicname;

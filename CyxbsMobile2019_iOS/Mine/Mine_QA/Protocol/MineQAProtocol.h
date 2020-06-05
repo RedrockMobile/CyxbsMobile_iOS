@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)answerDraftListRequestSucceeded:(NSArray<MineQAMyAnswerDraftItem *> *)itemsArray;
 - (void)commentListRequestSucceeded:(NSArray<MineQACommentItem *> *)itemsArray;
 - (void)reCommentListRequestSucceeded:(NSArray<MineQARecommentItem *> *)itemsArray;
+- (void)draftDeleteSuccess;
+- (void)draftDeleteFailure;
 
 @end
 

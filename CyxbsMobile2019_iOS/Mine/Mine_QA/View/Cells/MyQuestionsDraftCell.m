@@ -71,6 +71,7 @@
         // 删除
         UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [deleteButton setImage:[UIImage imageNamed:@"我的草稿箱垃圾桶"] forState:UIControlStateNormal];
+        [deleteButton addTarget:self action:@selector(deleteQuestion) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:deleteButton];
         self.deleteButton = deleteButton;
         
@@ -117,11 +118,24 @@
     }];
 }
 
+
 #pragma mark - setter
 - (void)setItem:(MineQAMyQuestionDraftItem *)item {
+    _item = item;
+    
     self.titleLabel.text = item.title;
     self.contentLabel.text = item.questionDraftContent;
     self.timeLabel.text = item.lastEditTime;
+}
+
+
+- (void)deleteQuestion {
+    NSDictionary *postData = @{
+        @"id": self.item.questionDraftID
+    };
+    
+    // 通知接收在“MineQAController”
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MyQuestionsDraftDelete" object:nil userInfo:postData];
 }
 
 @end

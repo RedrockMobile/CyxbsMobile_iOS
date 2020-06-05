@@ -59,9 +59,11 @@
         // 删除
         UIButton *deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [deleteButton setImage:[UIImage imageNamed:@"我的草稿箱垃圾桶"] forState:UIControlStateNormal];
+        [deleteButton addTarget:self action:@selector(deleteAnswerDraft) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:deleteButton];
         self.deleteButton = deleteButton;
         
+        // 分割线
         UIView *separateLine = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
             separateLine.backgroundColor = [UIColor colorNamed:@"Mine_QA_SeparateLineColor"];
@@ -100,9 +102,22 @@
     }];
 }
 
+
+# pragma mark - Setter
 - (void)setItem:(MineQAMyAnswerDraftItem *)item {
+    _item = item;
+    
     self.contentLabel.text = item.answerDraftContent;
     self.timeLabel.text = item.lastEditTime;
+}
+
+- (void)deleteAnswerDraft {
+    NSDictionary *postData = @{
+        @"id": self.item.answerDraftID
+    };
+    
+    // 通知接收在“MineQAController”
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"MyQuestionsDraftDelete" object:nil userInfo:postData];
 }
 
 @end

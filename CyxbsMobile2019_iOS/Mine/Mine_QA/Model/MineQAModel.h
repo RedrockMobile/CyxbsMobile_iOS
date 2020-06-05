@@ -42,6 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
                               succeeded:(void (^)(NSDictionary *responseObject))succeeded
                                  failed:(void (^)(NSError *error))failed;
 
+- (void)deleteDraftWithDraftID:(NSString *)draftID
+                     succeeded:(void (^)(void))succeeded
+                        failed:(void (^)(NSError *error))failed;
 
 @end
 

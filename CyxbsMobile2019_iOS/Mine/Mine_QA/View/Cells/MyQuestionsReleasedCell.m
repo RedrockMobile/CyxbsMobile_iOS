@@ -149,6 +149,8 @@
 
 #pragma mark - setter
 - (void)setItem:(MineQAMyQuestionItem *)item {
+    _item = item;
+    
     self.titleLabel.text = item.title;
     self.contentLabel.text = item.questionContent;
     self.timeLabel.text = item.disappearTime;

@@ -83,7 +83,11 @@
     }];
 }
 
+
+#pragma mark - Setter
 - (void)setItem:(MineQACommentItem *)item {
+    _item = item;
+    
     self.sendToNameLabel.text = item.answerer;
     self.contentLabel.text = item.commentContent;
 }

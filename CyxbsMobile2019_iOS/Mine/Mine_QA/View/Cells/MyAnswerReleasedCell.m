@@ -131,8 +131,10 @@
     }];
 }
 
-#pragma mark - setter {
+#pragma mark - setter
 - (void)setItem:(MineQAMyAnswerItem *)item {
+    _item = item;
+    
     self.contentLabel.text = item.answerContent;
     self.timeLabel.text = item.answerTime;
     self.integralLabel.text = item.integral;

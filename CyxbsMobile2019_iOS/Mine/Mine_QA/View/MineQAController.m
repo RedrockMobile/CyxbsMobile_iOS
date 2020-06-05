@@ -16,6 +16,8 @@
 @property (nonatomic, weak) MineQATableViewController *vc1;
 @property (nonatomic, weak) MineQATableViewController *vc2;
 
+@property (nonatomic, weak) MBProgressHUD *hud;
+
 @end
 
 @implementation MineQAController
@@ -23,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteDraft:) name:@"MyQuestionsDraftDelete" object:nil];
     
     self.presenter = [[MineQAPresenter alloc] init];
     [self.presenter attachView:self];
@@ -114,6 +118,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = NO;
+    [self.presenter dettachView];
 }
 
 - (void)back {
@@ -124,6 +129,7 @@
 {
     [self.presenter dettachView];
 }
+
 
 #pragma mark - presenter回调
 - (void)questionListRequestSucceeded:(NSArray<MineQAMyQuestionItem *> *)itemsArray {
@@ -234,4 +240,44 @@
 
 }
 
+- (void)draftDeleteSuccess {
+    self.vc2.pageNum = 1;
+    [self.vc2.itemsArray removeAllObjects];
+    if ([self.title isEqualToString:@"我的提问"]) {
+        [self.presenter requestQuestionsDraftListWithPageNum:@(self.vc2.pageNum) andSize:@6];
+    } else if ([self.title isEqualToString:@"我的回答"]) {
+        [self.presenter requestAnswerDraftListWithPageNum:@(self.vc2.pageNum) andSize:@6];
+    }
+    [self.hud hide:YES];
+}
+
+- (void)draftDeleteFailure {
+    
+}
+
+
+#pragma mark - 通知中心
+- (void)deleteDraft:(NSNotification *)notifacation {
+    NSLog(@"%@", notifacation.userInfo[@"id"]);
+    NSString *alertTitle = @"确定要删除这条草稿吗？";
+    NSString *message = @"删除后将无法恢复";
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:alertTitle message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"删除中...";
+        self.hud = hud;
+        
+        [self.presenter deleteDraftWithDraftID:notifacation.userInfo[@"id"]];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"手滑了" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alertController addAction:cancel];
+    [alertController addAction:confirm];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 @end

@@ -38,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 请求我收到的评论列表
 - (void)requestReCommentListWithPageNum:(NSNumber *)pageNum andSize:(NSNumber *)size;
 
+/// 删除草稿
+- (void)deleteDraftWithDraftID:(NSString *)draftID;
+
 @end
 
 NS_ASSUME_NONNULL_END

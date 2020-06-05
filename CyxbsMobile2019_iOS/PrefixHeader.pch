@@ -179,6 +179,8 @@
 #define MYCOMMENTAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/comment"
 /// 收到的评论
 #define MYRECOMMENTAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/reComment"
+/// 删除草稿
+#define DELETEDRAFT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/deleteItemInDraft"
 
 
 /*----------------------------------------------------------------
