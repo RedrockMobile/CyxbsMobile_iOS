@@ -13,10 +13,7 @@
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
-#import "ElectricFeeGlanceButton.h"
-#import "VolunteerGlanceView.h"
-#import "NotSetElectriceFeeButton.h"
-#import "NotSetVolunteerButton.h"
+
 #import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
 #import "NewsViewController.h"
@@ -29,7 +26,14 @@
 #import "SchoolBusViewController.h"
 #import "PickerModel.h"
 #import <MBProgressHUD.h>
+#import "ElectricityView.h"
+#import "VolunteerView.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
+#define LIKE_IPHONEXSMAX (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 896.f)
+
+#define LIKE_IPHONEX (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 812.f)
+#define LIKE_IPHONE6plus (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 736.f)
 
 #define ColorWhite  [UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define TextColor [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -42,16 +46,16 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     AlreadyLogin,
 };
 
-@interface DiscoverViewController ()<UIScrollViewDelegate, LQQFinderViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface DiscoverViewController ()<UIScrollViewDelegate, LQQFinderViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,ElectricityViewDelegate,VolunteerViewDelegate>
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
 //View
-@property(nonatomic, weak) FinderView *finderView;//上方发现页面
+@property (nonatomic, weak) UIScrollView * backView;
 @property (nonatomic, weak) UIScrollView *contentView;
-@property (nonatomic, weak) ElectricFeeGlanceButton *eleGlanceButton;//电费button页面
-@property (nonatomic, weak) VolunteerGlanceView *volGlanceView;//志愿服务button页面
-@property (nonatomic, weak) NotSetElectriceFeeButton *eleButton;//未绑定账号时电费button页面
-@property (nonatomic, weak) NotSetVolunteerButton *volButton;//未绑定账号时电费button页面
+@property(nonatomic, weak) FinderView *finderView;//上方发现页面
+@property (nonatomic, weak) ElectricityView *eleView;//电费相关View
+@property (nonatomic, weak)VolunteerView *volView;//志愿服务View
+
 @property (nonatomic, weak) UIView * bindingDormitoryContentView;//绑定宿舍页面的contentView
 @property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
 @property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
@@ -89,9 +93,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [self RequestCheckinInfo];
     }
      self.navigationController.navigationBar.translucent = NO;
-    [self addGlanceView];//根据用户是否录入过宿舍信息和志愿服务账号显示电费查询和志愿服务
-//    [self addClearView];//一个透明的View，用来保证边栏不会遮挡住部分志愿服务入口按钮
-    
+  
     ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -58, MAIN_SCREEN_W, 58)];
     classTabBarView.layer.cornerRadius = 16;
     [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
@@ -100,20 +102,55 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)viewDidLoad {
-    [self requestData];
     [super viewDidLoad];
+    [self configDefaults];
+    [self requestData];
+    [self addBackContentView];
     [self addContentView];
     self.contentView.delegate = self;
-    [self configDefaults];
-    self.view.backgroundColor = [UIColor whiteColor];
     [self addFinderView];
+    [self addEleView];
+    [self addVolView];
+    [self layoutSubviews];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
 }
-
+-(void)layoutSubviews {
+    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
+    }];
+    [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(20);
+//        make.top.equalTo(self.contentView).offset(-20);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
+    }];
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.bottom.equalTo(self.volView.mas_bottom).offset(15);
+        make.height.equalTo(@750);
+        make.top.equalTo(self.view);
+//        make.edges.equalTo(self.backView);
+    }];
+    [self.eleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.finderView.mas_bottom).offset(20);
+        make.width.equalTo(self.view);
+        make.height.equalTo(@152);
+//        make.left.right.equalTo(self.contentView);
+    }];
+    [self.volView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.eleView.mas_bottom).offset(-15);
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@152);
+//        make.bottom.equalTo(self.contentView);
+    }];
+}
 - (void)presentToLogin {
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     [self presentViewController:loginVC animated:NO completion:nil];
@@ -161,42 +198,32 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
-
-
+-(void)addBackContentView {
+    UIScrollView * backView = [[UIScrollView alloc]init];
+    self.backView = backView;
+    [self.view addSubview:backView];
+}
 - (void)addContentView {
-    UIScrollView *contentView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+    UIScrollView *contentView = [[UIScrollView alloc]init];
     self.contentView = contentView;
     if (@available(iOS 11.0, *)) {
-        contentView.backgroundColor = Color242_243_248to000000;
+        self.contentView.backgroundColor = Color242_243_248to000000;
     } else {
-        contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
+        self.contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
+    self.contentView.showsVerticalScrollIndicator = NO;
+    self.contentView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0);
+    [self.backView addSubview:self.contentView];
 
-    contentView.showsVerticalScrollIndicator = NO;
-    [self.view addSubview:contentView];
-    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.view);
-    }];
-    contentView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0);
 }
 
 - (void)addFinderView {
-    FinderView *finderView;
-    if(IS_IPHONESE){//SE
-        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.62)];
-            self.contentView.contentSize = CGSizeMake(self.view.width,1.10*self.view.height);
-    }else if(IS_IPHONEX) {
-        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, self.view.height * 0.36)];
-        self.contentView.contentSize = CGSizeZero;
-    }else {
-        finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0,self.view.width, 320)];
-       self.contentView.contentSize = CGSizeMake(self.view.width,self.view.height);
-    }
+    FinderView *finderView = [[FinderView alloc]init];
     self.finderView = finderView;
     self.finderView.delegate = self;
     [self.contentView addSubview:finderView];
     [self refreshBannerViewIfNeeded];
+
 }
 -(void) refreshBannerViewIfNeeded {
     //更新bannerView
@@ -214,55 +241,19 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.finderView.bannerURLStrings = urlStrings;
     [self.finderView updateBannerViewIfNeeded];
 }
-- (void)addGlanceView {
-    int adjustToCorner = 18;
-    UserItem *userItem = [UserItem defaultItem];
-    NSLog(@"当前的building是%@,当前的room是%@",userItem.building,userItem.room);
-    if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword != nil) {//用户已经绑定电费和志愿
-        NSLog(@"用户已经绑定电费和志愿");
-            ElectricFeeGlanceButton *eleGlanceButton = [[ElectricFeeGlanceButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
-            self.eleGlanceButton = eleGlanceButton;
-            [self.contentView addSubview:eleGlanceButton];
-        [eleGlanceButton.electricFee addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
-        
-            VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceButton.height - adjustToCorner, self.view.width, 182)];
-            self.volGlanceView = volGlanceView;
-            [self.contentView addSubview:volGlanceView];
-    }else if(userItem.building != nil && userItem.room != nil && userItem.volunteerPassword == nil) {//用户仅绑定宿舍
-        NSLog(@"用户仅绑定电费");
-        ElectricFeeGlanceButton *eleGlanceButton = [[ElectricFeeGlanceButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172)];
-        self.eleGlanceButton = eleGlanceButton;
-        [self.contentView addSubview:eleGlanceButton];
-        [eleGlanceButton.electricFee addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
+-(void)addEleView {
+    ElectricityView *eleView = [[ElectricityView alloc]init];
+    self.eleView = eleView;
+    eleView.delegate = self;
+    [self.contentView addSubview:eleView];
 
-        
-        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleGlanceButton.height - adjustToCorner, self.view.width, 182 + 12)];
-        self.volButton = volButton;
-        [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:volButton];
-    }else if(userItem.building == nil && userItem.room == nil && userItem.volunteerPassword != nil) {//用户仅绑定了志愿服务账号
-        NSLog(@"用户仅绑定了志愿服务账号");
-        NotSetElectriceFeeButton *eleButton = [[NotSetElectriceFeeButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172 + 12)];
-        self.eleButton = eleButton;
-        [self.contentView addSubview:eleButton];
-        VolunteerGlanceView *volGlanceView = [[VolunteerGlanceView alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - adjustToCorner, self.view.width, 182)];
-        self.volGlanceView = volGlanceView;
-        [self.contentView addSubview:volGlanceView];
-    }else {//用户什么都没绑定
-        NSLog(@"用户什么都没绑定");
-        NotSetElectriceFeeButton *eleButton = [[NotSetElectriceFeeButton alloc]initWithFrame:CGRectMake(0, self.finderView.height, self.view.width,172 + 12)];
-        self.eleButton = eleButton;
-        [self.contentView addSubview:eleButton];
-        
-        NotSetVolunteerButton *volButton = [[NotSetVolunteerButton alloc]initWithFrame:CGRectMake(0, self.finderView.height + self.eleButton.height - adjustToCorner, self.view.width, 182 + 12)];
-        self.volButton = volButton;
-        [volButton addTarget:self action:@selector(bindingVolunteerButton) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:volButton];
-    }
-     [self.eleButton addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
-    [self.eleGlanceButton addTarget:self action:@selector(bundlingBuildingAndRoom) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)addVolView {
+    VolunteerView *volView = [[VolunteerView alloc]init];
+    self.volView = volView;
+    volView.delegate = self;
+    [self.contentView addSubview:volView];
 
-    
 }
 - (void)bindingVolunteerButton {
     QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
@@ -282,9 +273,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)updateElectricFeeUI {
     
-    [self.eleGlanceButton.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
-    self.eleGlanceButton.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
-    self.eleGlanceButton.electricFeeTime.text = self.elecModel.electricFeeItem.time;
+    [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
+    self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
+    self.eleView.electricFeeTime.text = self.elecModel.electricFeeItem.time;
     //同时写入缓存
     [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
     [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
@@ -598,4 +589,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 //当键退出时调用
 - (void)keyboardWillHide:(NSNotification *)aNotification{}
+- (void)touchElectrictyView {
+    [self bundlingBuildingAndRoom];
+}
+
 @end
