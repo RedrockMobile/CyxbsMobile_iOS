@@ -482,6 +482,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 -(void)updateFinderViewUI {
     [self.finderView remoreAllEnters];
     [self.finderView addSomeEnters];
+    [self layoutSubviews];
 }
 -(void)reloadElectricViewIfNeeded {
 //    NSLog(@"%@",[UserItem defaultItem].room);
@@ -592,5 +593,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchElectrictyView {
     [self bundlingBuildingAndRoom];
 }
-
+-(void)touchVolunteerView {
+    [self bindingVolunteerButton];
+}
 @end
