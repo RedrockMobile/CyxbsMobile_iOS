@@ -105,7 +105,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [super viewDidLoad];
     [self configDefaults];
     [self requestData];
-    [self addBackContentView];
+//    [self addBackContentView];
     [self addContentView];
     self.contentView.delegate = self;
     [self addFinderView];
@@ -121,10 +121,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
 }
 -(void)layoutSubviews {
-    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
-    }];
+//    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.top.height.equalTo(self.view);
+//        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
+//    }];
     [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(20);
 //        make.top.equalTo(self.contentView).offset(-20);
@@ -133,9 +133,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }];
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
+        make.height.equalTo(self.view).offset(-TABBARHEIGHT-50);
         make.bottom.equalTo(self.volView.mas_bottom).offset(15);
-        make.height.equalTo(@750);
-        make.top.equalTo(self.view);
+//        make.height.equalTo(@750);
+//        make.top.equalTo(self.view);
 //        make.edges.equalTo(self.backView);
     }];
     [self.eleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,7 +147,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }];
     [self.volView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.eleView.mas_bottom).offset(-15);
-        make.left.right.equalTo(self.view);
+        make.left.right.width.equalTo(self.view);
         make.height.equalTo(@152);
 //        make.bottom.equalTo(self.contentView);
     }];
@@ -198,11 +199,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
--(void)addBackContentView {
-    UIScrollView * backView = [[UIScrollView alloc]init];
-    self.backView = backView;
-    [self.view addSubview:backView];
-}
+//-(void)addBackContentView {
+//    UIScrollView * backView = [[UIScrollView alloc]init];
+//    self.backView = backView;
+//    [self.view addSubview:backView];
+//}
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]init];
     self.contentView = contentView;
@@ -213,7 +214,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
     self.contentView.showsVerticalScrollIndicator = NO;
     self.contentView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0);
-    [self.backView addSubview:self.contentView];
+    [self.view addSubview:self.contentView];
 
 }
 

@@ -34,7 +34,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"电费信息请求失败");
-    }];
+    }]; 
     
 }
 
