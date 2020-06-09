@@ -290,7 +290,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 
-- (void) bundlingBuildingAndRoom {
+- (void) bindingBuildingAndRoom {
 //    NSLog(@"点击了绑定宿舍房间号");
 //    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
 //    [self.navigationController pushViewController:vc animated:YES];
@@ -407,7 +407,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if(self.roomTextField.text != nil) {
         item.room = self.roomTextField.text;
     }
-    
     [self.bindingDormitoryContentView removeAllSubviews];
     [self.bindingDormitoryContentView removeFromSuperview];
     [self reloadElectricViewIfNeeded];
@@ -591,7 +590,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //当键退出时调用
 - (void)keyboardWillHide:(NSNotification *)aNotification{}
 - (void)touchElectrictyView {
-    [self bundlingBuildingAndRoom];
+    [self bindingBuildingAndRoom];
 }
 -(void)touchVolunteerView {
     [self bindingVolunteerButton];
