@@ -316,8 +316,6 @@
 		EE75BF9B23F5884100208039 /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1423F5884100208039 /* VolunteerModel.m */; };
 		EE75BF9C23F5884100208039 /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1823F5884100208039 /* EnterButton.m */; };
 		EE75BF9D23F5884100208039 /* FinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1923F5884100208039 /* FinderView.m */; };
-		EE75BF9E23F5884100208039 /* NotSetVolunteerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */; };
-		EE75BFA023F5884100208039 /* VolunteerGlanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */; };
 		EE75BFA223F5884100208039 /* ExamArrangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2623F5884100208039 /* ExamArrangeModel.m */; };
 		EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2723F5884100208039 /* ExamArrangeData.m */; };
 		EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2923F5884100208039 /* ExamArrangeDataItem.m */; };
@@ -988,14 +986,10 @@
 		EE75BF1223F5884100208039 /* OneNewsItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsItemData.m; sourceTree = "<group>"; };
 		EE75BF1423F5884100208039 /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
 		EE75BF1523F5884100208039 /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
-		EE75BF1723F5884100208039 /* VolunteerGlanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerGlanceView.h; sourceTree = "<group>"; };
 		EE75BF1823F5884100208039 /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
 		EE75BF1923F5884100208039 /* FinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderView.m; sourceTree = "<group>"; };
-		EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotSetVolunteerButton.m; sourceTree = "<group>"; };
-		EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerGlanceView.m; sourceTree = "<group>"; };
 		EE75BF1E23F5884100208039 /* FinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderView.h; sourceTree = "<group>"; };
 		EE75BF1F23F5884100208039 /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
-		EE75BF2023F5884100208039 /* NotSetVolunteerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotSetVolunteerButton.h; sourceTree = "<group>"; };
 		EE75BF2523F5884100208039 /* ExamArrangeDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeDataItem.h; sourceTree = "<group>"; };
 		EE75BF2623F5884100208039 /* ExamArrangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeModel.m; sourceTree = "<group>"; };
 		EE75BF2723F5884100208039 /* ExamArrangeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeData.m; sourceTree = "<group>"; };
@@ -2714,10 +2708,6 @@
 				EEEBD286248E504D00A2DDB1 /* ElectricityView.m */,
 				EEEBD288248E5D8000A2DDB1 /* VolunteerView.h */,
 				EEEBD289248E5D8000A2DDB1 /* VolunteerView.m */,
-				EE75BF2023F5884100208039 /* NotSetVolunteerButton.h */,
-				EE75BF1A23F5884100208039 /* NotSetVolunteerButton.m */,
-				EE75BF1723F5884100208039 /* VolunteerGlanceView.h */,
-				EE75BF1D23F5884100208039 /* VolunteerGlanceView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3666,14 +3656,12 @@
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				EEA301D2246862E000A8DB26 /* TermGrades.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
-				EE75BFA023F5884100208039 /* VolunteerGlanceView.m in Sources */,
 				D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				1AEF3122245E9D5300487D40 /* MyGoodsItem.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
-				EE75BF9E23F5884100208039 /* NotSetVolunteerButton.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
