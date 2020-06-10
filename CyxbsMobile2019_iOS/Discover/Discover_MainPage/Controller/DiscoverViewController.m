@@ -273,7 +273,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)updateElectricFeeUI {
-    
+    [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     self.eleView.electricFeeTime.text = self.elecModel.electricFeeItem.time;
@@ -352,6 +352,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.width.equalTo(@170);
     }];
     textField.placeholder = @"输入宿舍号";
+    if([UserItem defaultItem].room) {
+        textField.text = [UserItem defaultItem].room;
+    }
+
     textField.inputAccessoryView = [self addToolbar];
     textField.font = roomNumberLabel.font;
     self.roomTextField = textField;
@@ -362,6 +366,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
     UILabel *buildingNumberLabel = [[UILabel alloc]init];
     buildingNumberLabel.text = @"01栋";
+
     if (@available(iOS 11.0, *)) {
         buildingNumberLabel.textColor = TextColorShallow;
     } else {
@@ -369,11 +374,19 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
     buildingNumberLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
     self.buildingNumberLabel = buildingNumberLabel;
+    NSString * building = [UserItem defaultItem].building;
+    if(building) {//如果用户曾经选择过，那么就显示曾见选择的那个
+        self.buildingNumberLabel.text = building;
+        NSArray<NSNumber*>*chooseIndex = [self.pickerModel getBuildingNameIndexAndBuildingNumberIndexByNumberOfDormitory:building];
+        [pickerView selectRow:chooseIndex.lastObject.intValue inComponent:1 animated:NO];
+        [pickerView selectRow:chooseIndex.firstObject.intValue inComponent:0 animated:NO];
+    }
     [bindingView addSubview:buildingNumberLabel];
     [buildingNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(roomNumberLabel);
         make.top.equalTo(roomNumberLabel.mas_bottom).offset(3);
     }];
+    
     UIButton * button = [[UIButton alloc]init];
     [bindingView addSubview:button];
     button.backgroundColor = UIColor.blueColor;

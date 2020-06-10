@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic, weak)id<ElectricityViewDelegate> delegate;
-@property (nonatomic, weak)UIButton *electricFee;//电费二级页面按钮
+//@property (nonatomic, weak)UIButton *electricFee;//电费二级页面按钮
 /// 电费查询部分
 @property (nonatomic, weak)UILabel *electricFeeTitle;//”电费查询“
 @property (nonatomic, weak)UILabel *electricFeeTime;//右上角时间

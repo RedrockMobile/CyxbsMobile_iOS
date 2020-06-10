@@ -46,7 +46,7 @@
     [self addHintLabel];
 }
 -(void)removeUnbindingView {
-    [self.electricFeeTitle removeFromSuperview];
+//    [self.electricFeeTitle removeFromSuperview];
     [self.hintLabel removeFromSuperview];
 }
 -(void) addClearButton {
@@ -116,6 +116,7 @@
 
 //MARK: 绑定部分
 - (void) addBindingView {
+//    [self addSubview:self.electricFee];
 
     [self addChildViewToElectricFeeButton];//给按钮添加子视图
     
@@ -124,12 +125,11 @@
     self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
     self.layer.shadowOffset = CGSizeMake(0, 5);
     
-    [self addSubview:self.electricFee];
 }
 
 - (void)addChildViewToElectricFeeButton {
     //其中涉及网络请求的有time,money,degree
-    [self addTitle];
+//    [self addTitle];
     [self addTime];
     [self addMoney];
     [self addDegree];
@@ -156,7 +156,7 @@
     }
     time.alpha = 0.54;
     time.font = [UIFont fontWithName:PingFangSCLight size: 10];
-    [self.electricFee addSubview:time];
+    [self addSubview:time];
     [self.electricFeeTime mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.electricFeeTitle);
         make.right.equalTo(self).offset(-15);
@@ -178,10 +178,11 @@
         // Fallback on earlier versions
     }
     money.titleLabel.font = [UIFont fontWithName:ImpactMedium size: 36];
-    [self.electricFee addSubview:money];
+    [self addSubview:money];
     [self.electricFeeMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.electricFeeTitle.mas_bottom).offset(17);
         make.centerX.equalTo(self).offset(-self.width / 4.0);
+        make.height.equalTo(@44);
     }];
 }
 
@@ -201,10 +202,11 @@
         // Fallback on earlier versions
     }
     degree.font = [UIFont fontWithName: ImpactMedium size: 36];
-    [self.electricFee addSubview:degree];
+    [self addSubview:degree];
     [self.electricFeeDegree mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.electricFeeMoney);
         make.centerX.equalTo(self).offset(self.width / 4.0);
+        make.height.equalTo(@44);
     }];
 }
 
@@ -218,7 +220,7 @@
         // Fallback on earlier versions
     }
     yuan.font = [UIFont fontWithName:PingFangSCMedium size: 13];
-    [self.electricFee addSubview:yuan];
+    [self addSubview:yuan];
     [self.electricFeeYuan mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.electricFeeMoney.mas_right).offset(9);
         make.bottom.equalTo(self.electricFeeMoney).offset(-6);
@@ -235,7 +237,7 @@
         // Fallback on earlier versions
     }
     du.font = [UIFont fontWithName:PingFangSCMedium size: 13];
-    [self.electricFee addSubview:du];
+    [self addSubview:du];
     [self.electricFeeDu mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.electricFeeDegree.mas_right).offset(9);
         make.bottom.equalTo(self.electricFeeDegree).offset(-6);
@@ -253,9 +255,9 @@
         // Fallback on earlier versions
     }
     hintLeft.alpha = 0.6;
-    [self.electricFee addSubview:hintLeft];
+    [self addSubview:hintLeft];
     [self.electricFeeHintLeft mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.electricFeeMoney.mas_bottom).offset(-5);
+        make.top.equalTo(self.electricFeeMoney.mas_bottom);
         make.centerX.equalTo(self.electricFeeMoney);
     }];
 }
@@ -271,9 +273,9 @@
         // Fallback on earlier versions
     }
     hintRight.alpha = 0.6;
-    [self.electricFee addSubview:hintRight];
+    [self addSubview:hintRight];
     [self.electricFeeHintRight mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.electricFeeDegree.mas_bottom).offset(-5);
+        make.top.equalTo(self.electricFeeDegree.mas_bottom);
         make.centerX.equalTo(self.electricFeeDegree);
     }];
 }

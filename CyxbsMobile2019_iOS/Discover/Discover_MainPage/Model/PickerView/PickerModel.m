@@ -24,8 +24,6 @@
     return self;
 }
 - (NSString *)getNumberOfDormitoryWith:(NSString *)building andPlace:(NSString *)place {
-    NSLog(@"%@",[place substringToIndex:1]);
-    NSLog(@"%@",place);
     int num = [place substringToIndex:1].intValue;
     if ([building isEqual: @"宁静苑"]) {
         if (num >= 1 && num <= 5) {
@@ -63,5 +61,31 @@
         num += 35;
     }
     return [NSString stringWithFormat:@"%2d栋",num];
+}
+- (NSArray *)getBuildingNameIndexAndBuildingNumberIndexByNumberOfDormitory:(NSString *)dormitoryNumber {
+    if ([dormitoryNumber isEqual:@"23A"]) {
+        return @[@3,@6];
+    }else if ([dormitoryNumber isEqual:@"23B"]) {
+        return @[@3,@7];
+    }
+    int num = dormitoryNumber.intValue;
+    if (num>=1 && num <= 6) {//知行苑1-6舍
+        return @[@2,@(num-1)];
+    }else if (num>=8 && num <=12) {//宁静苑1-5舍
+        return @[@0,@(num-8)];
+    }else if (num >= 15 && num <= 16) {//知行苑7，8舍
+        return @[@2,@(num-9)];
+    }else if (num >= 17 && num <=22) {//兴业苑1-6舍
+        return @[@3,@(num-17)];
+    }else if (num >= 24 && num <=31) {//明理苑1-8舍
+        return @[@1,@(num-24)];
+    }else if (num >=32 && num <=35){//宁静苑6-9舍
+        return @[@0,@(num-27)];
+    }else if(num >= 36 && num <=37){//四海1-2舍
+        return @[@4,@(num-36)];
+    }else if (num == 39) {//明理苑9舍
+        return @[@1,@8];
+    }
+    return @[@0,@0];
 }
 @end
