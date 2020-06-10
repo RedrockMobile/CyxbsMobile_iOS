@@ -23,6 +23,9 @@
     HttpClient *client = [HttpClient defaultClient];
     NSString *building = @"26";
     NSString *room = @"412";
+//    UserItem *item = [UserItem defaultItem];
+//    building = item.building;
+//    room = item.room;
     NSDictionary *parameters = @{@"building":building, @"room":room};
     [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
@@ -31,7 +34,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"电费信息请求失败");
-    }];
+    }]; 
     
 }
 

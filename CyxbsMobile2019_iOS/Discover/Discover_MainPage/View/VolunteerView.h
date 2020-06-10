@@ -1,8 +1,8 @@
 //
-//  VolunteerGlanceView.h
+//  VolunteerView.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 千千 on 2020/1/28.
+//  Created by 千千 on 2020/6/8.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
@@ -10,7 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface VolunteerGlanceView : UIView
+
+@protocol VolunteerViewDelegate <NSObject>
+-(void)touchVolunteerView;
+@end
+
+@interface VolunteerView : UIView
+@property (nonatomic, weak)id<VolunteerViewDelegate> delegate;
+
+
 @property (nonatomic, weak)UIButton *volunteer;//志愿服务二级按钮
 ///志愿时长部分
 @property (nonatomic, weak) UILabel *volunteerTitle;
@@ -21,6 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UILabel *recentTitle;//最近一次服务的标题
 @property (nonatomic, weak) UILabel *recentTime;//最近一次服务时长
 @property (nonatomic, weak) UILabel *recentTeam;//最近一次志愿时长跟随的组织
+
+
+
+@property (nonatomic, weak) UILabel *hintLabel;//"还没有绑定志愿者账号哦～"
+-(void) refreshViewIfNeeded;
 
 @end
 

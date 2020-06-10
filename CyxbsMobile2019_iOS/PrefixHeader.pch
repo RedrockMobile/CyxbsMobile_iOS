@@ -196,6 +196,7 @@
 
 /// 电费
 #define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
+//#define ELECREICFEE @"https://cyxbsmobile.redrock.team/wxapi/magipoke-elecquery/getElectric"，这好像也是电费接口
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"

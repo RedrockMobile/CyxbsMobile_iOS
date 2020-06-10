@@ -221,9 +221,9 @@
     FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"敬请期待"];
 
     [item2 addTarget:self action:@selector(chooseSchoolBus:) forControlEvents:UIControlEventTouchUpInside];
+    [item3 addTarget:self action:@selector(chooseEmptyClassRoom:) forControlEvents:UIControlEventTouchUpInside];
     [item4 addTarget:self action:@selector(chooseTestArrange:) forControlEvents:UIControlEventTouchUpInside];
     [item5 addTarget:self action:@selector(chooseScheduleInquiry:) forControlEvents:UIControlEventTouchUpInside];
-    [item3 addTarget:self action:@selector(chooseEmptyClassRoom:) forControlEvents:UIControlEventTouchUpInside];
     [item6 addTarget:self action:@selector(chooseSchoolSchedule:) forControlEvents:UIControlEventTouchUpInside];
     
     NSMutableArray *itemsArray = [NSMutableArray array];
