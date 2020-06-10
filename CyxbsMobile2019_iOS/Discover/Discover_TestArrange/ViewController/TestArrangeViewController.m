@@ -87,7 +87,14 @@
 }
 
 - (void)addTableView {
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, [[UIApplication sharedApplication] statusBarFrame].size.height + 120, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];//130是底部学分成绩入口按钮
+//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, [[UIApplication sharedApplication] statusBarFrame].size.height + 120, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];//130是底部学分成绩入口按钮
+//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+    UITableView *tableView;
+    if (IS_IPHONEX) {
+        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+40, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+    }else {
+        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+    }
     self.tableView = tableView;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.backgroundColor = self.view.backgroundColor;
@@ -178,7 +185,7 @@
     [pointAndDottedLineView setFrame:CGRectMake(-30, 7, 11, pointAndDottedLineView.bigCircle.width + spacing * (pointCount - 1))];
     self.tableView.clipsToBounds = NO;
 
-    NSLog(@"%f",self.titleLabel.origin.y + self.titleLabel.height + 18);
+//    NSLog(@"%f",self.titleLabel.origin.y + self.titleLabel.height + 18);
     [self.tableView addSubview:pointAndDottedLineView];
     
 }
