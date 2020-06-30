@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)tapAdoptBtn:(NSNumber *)answerId;
 - (void)tapCommentBtn:(NSNumber *)answerId;
 - (void)replyComment:(NSNumber *)answerId;
-- (void)tapToViewBigImage:(NSInteger)imageIndex;
+- (void)tapToViewBigImage:(NSInteger)answerIndex;
 //查看评论
 - (void)tapToViewComment;
 @end

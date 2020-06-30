@@ -63,12 +63,15 @@
     NSArray *imageUrls = [dic objectForKey:@"photo_url"];
     if (imageUrls.count != 0) {
         self.tapToViewImages.hidden = NO;
+        self.tapToViewImages.tag = [[dic objectForKey:@"id"] integerValue];
         [self.tapToViewImages setTitle:[NSString stringWithFormat:@"查看%lu张照片",(unsigned long)imageUrls.count] forState:UIControlStateNormal];
+        
     }else{
         self.tapToViewImages.hidden = YES;
     }
     [self.praiseBtn addTarget:self.superview action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.adoptBtn addTarget:self.superview action:@selector(tapAdoptBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tapToViewImages addTarget:self.superview action:@selector(tapToViewBigImage:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.commentBtn addTarget:self.superview action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
 //
     

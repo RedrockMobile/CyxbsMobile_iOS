@@ -169,17 +169,22 @@
 - (void)tapAdoptBtn:(nonnull NSNumber *)answerId{
     [self.model adoptAnswer:self.question_id answerId:answerId];
 }
-- (void)tapToViewBigImage:(NSInteger)imageIndex{
-    NSDictionary *detailData = self.model.detailData;
-    NSArray *imageUrls = [detailData objectForKey:@"photo_url"];
-    NSMutableArray *photos = [NSMutableArray array];
-    for (int i = 0; i < imageUrls.count; i++) {
-        GKPhoto *photo = [GKPhoto new];
-        photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrls[i]]];
-        [photos addObject:photo];
+- (void)tapToViewBigImage:(NSInteger)answerIndex{
+    for (NSDictionary *answerData in self.model.answersData) {
+        if ([[answerData objectForKey:@"id"] integerValue] == answerIndex){
+            
+            NSArray *imageUrls = [answerData objectForKey:@"photo_url"];
+            NSMutableArray *photos = [NSMutableArray array];
+            for (int i = 0; i < imageUrls.count; i++) {
+                GKPhoto *photo = [GKPhoto new];
+                photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrls[i]]];
+                [photos addObject:photo];
+            }
+            GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:0];
+            browser.showStyle = GKPhotoBrowserShowStyleNone;
+            [browser showFromVC:self];
+            
+        }
     }
-    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:imageIndex];
-    browser.showStyle = GKPhotoBrowserShowStyleNone;
-    [browser showFromVC:self];
 }
 @end
