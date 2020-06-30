@@ -130,8 +130,8 @@
         }
     }
     [self.reportView.cancelButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
-    self.reportViewMask = [[SDMaskUserView(self.reportViewMask) sdm_showAlertIn:self.view usingBlock:nil] usingAutoDismiss];
-    [self.reportViewMask show];
+    self.reportViewMask = [[SDMaskUserView(self.reportView) sdm_showActionSheetIn:self.view usingBlock:nil] usingAutoDismiss];
+        [self.reportViewMask show];
 }
 //举报问题
 - (void)report:(UIButton *)sender{
