@@ -223,7 +223,7 @@
 #define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
 
 /// 同学课表之查找同学
-#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peoplelist"
+#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
 ///查询绩点需要先绑定ids
 #define IDSBINDINGAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
 ///绩点查询
