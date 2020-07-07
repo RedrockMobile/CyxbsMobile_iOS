@@ -2291,10 +2291,10 @@
 		D06AAECC24AC00BA00EE0892 /* QAReview */ = {
 			isa = PBXGroup;
 			children = (
-				D06AAECD24AC00BA00EE0892 /* QAReviewViewController.h */,
 				D06AAECE24AC00BA00EE0892 /* Model */,
-				D06AAED124AC00BA00EE0892 /* View */,
+				D06AAECD24AC00BA00EE0892 /* QAReviewViewController.h */,
 				D06AAEDA24AC00BA00EE0892 /* QAReviewViewController.m */,
+				D06AAED124AC00BA00EE0892 /* View */,
 			);
 			path = QAReview;
 			sourceTree = "<group>";
@@ -2311,14 +2311,14 @@
 		D06AAED124AC00BA00EE0892 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D06AAED224AC00BA00EE0892 /* QAReviewView.h */,
-				D06AAED324AC00BA00EE0892 /* QAReviewReportView.xib */,
-				D06AAED424AC00BA00EE0892 /* QAReviewAnswerListView.xib */,
-				D06AAED524AC00BA00EE0892 /* QAReviewReportView.m */,
 				D06AAED624AC00BA00EE0892 /* QAReviewAnswerListView.h */,
-				D06AAED724AC00BA00EE0892 /* QAReviewView.m */,
-				D06AAED824AC00BA00EE0892 /* QAReviewReportView.h */,
 				D06AAED924AC00BA00EE0892 /* QAReviewAnswerListView.m */,
+				D06AAED424AC00BA00EE0892 /* QAReviewAnswerListView.xib */,
+				D06AAED824AC00BA00EE0892 /* QAReviewReportView.h */,
+				D06AAED524AC00BA00EE0892 /* QAReviewReportView.m */,
+				D06AAED324AC00BA00EE0892 /* QAReviewReportView.xib */,
+				D06AAED224AC00BA00EE0892 /* QAReviewView.h */,
+				D06AAED724AC00BA00EE0892 /* QAReviewView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

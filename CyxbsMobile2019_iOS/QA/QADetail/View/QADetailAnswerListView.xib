@@ -17,6 +17,7 @@
                 <outlet property="praiseBtn" destination="yVC-Np-ZtD" id="WIU-7W-vjw"/>
                 <outlet property="praiseNumLabel" destination="gR6-V5-vKO" id="Ajv-rQ-81z"/>
                 <outlet property="separateView" destination="cXC-JQ-IiM" id="VQ5-7w-w8A"/>
+                <outlet property="tapToViewComment" destination="NyH-U4-Skw" id="g8Q-O0-mSR"/>
                 <outlet property="tapToViewImages" destination="cXF-iL-PzF" id="WNx-6d-Uwh"/>
                 <outlet property="timeLabel" destination="GfA-Z6-Fui" id="ymT-dD-LBF"/>
                 <outlet property="userIcon" destination="ykr-ri-iY3" id="yz5-ce-7cR"/>
@@ -28,6 +29,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyH-U4-Skw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="146.5"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ykr-ri-iY3">
                     <rect key="frame" x="16" y="16" width="30" height="30"/>
                     <constraints>
@@ -132,6 +137,7 @@
                 <constraint firstItem="ykr-ri-iY3" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="CVL-1f-QbI"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cXC-JQ-IiM" secondAttribute="trailing" id="CZo-W2-Cbe"/>
                 <constraint firstItem="cXF-iL-PzF" firstAttribute="leading" secondItem="xFe-ld-JY2" secondAttribute="leading" id="EHT-8L-K7S"/>
+                <constraint firstItem="NyH-U4-Skw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="EJ6-ID-ns0"/>
                 <constraint firstItem="ykr-ri-iY3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="ERI-Si-hQS"/>
                 <constraint firstItem="dp0-wt-lnr" firstAttribute="leading" secondItem="yVC-Np-ZtD" secondAttribute="trailing" constant="50" id="F4H-jr-TjM"/>
                 <constraint firstItem="yVC-Np-ZtD" firstAttribute="centerY" secondItem="scC-aq-7aK" secondAttribute="centerY" id="FS4-dt-Ktx"/>
@@ -143,15 +149,18 @@
                 <constraint firstItem="Ujt-6E-fnj" firstAttribute="top" secondItem="ykr-ri-iY3" secondAttribute="top" id="day-yf-atw"/>
                 <constraint firstItem="cXC-JQ-IiM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fKA-aV-Y9t"/>
                 <constraint firstItem="scC-aq-7aK" firstAttribute="leading" secondItem="xFe-ld-JY2" secondAttribute="leading" id="gFY-rK-sSs"/>
+                <constraint firstItem="NyH-U4-Skw" firstAttribute="bottom" secondItem="cXC-JQ-IiM" secondAttribute="bottom" id="hce-Z3-Zlv"/>
                 <constraint firstItem="scC-aq-7aK" firstAttribute="top" secondItem="cXF-iL-PzF" secondAttribute="bottom" constant="5" id="jrP-N1-crV"/>
                 <constraint firstItem="dp0-wt-lnr" firstAttribute="centerY" secondItem="scC-aq-7aK" secondAttribute="centerY" id="qwd-WS-ass"/>
                 <constraint firstItem="xFe-ld-JY2" firstAttribute="leading" secondItem="ykr-ri-iY3" secondAttribute="trailing" constant="15" id="rpW-Ko-1a1"/>
                 <constraint firstItem="gR6-V5-vKO" firstAttribute="leading" secondItem="yVC-Np-ZtD" secondAttribute="trailing" constant="5" id="soL-HE-aWW"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Ujt-6E-fnj" secondAttribute="trailing" constant="15" id="tZF-OW-wF7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NyH-U4-Skw" secondAttribute="trailing" id="xBo-Fz-Jy8"/>
+                <constraint firstItem="NyH-U4-Skw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yXy-uY-Wr0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="C5Q-lC-3P1" secondAttribute="trailing" constant="30" id="yeZ-ps-BPT"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-833.33333333333337" y="99.776785714285708"/>
+            <point key="canvasLocation" x="-834.39999999999998" y="99.400299850074973"/>
         </view>
     </objects>
     <resources>

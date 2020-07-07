@@ -72,6 +72,10 @@
     [self.praiseBtn addTarget:self.superview action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.adoptBtn addTarget:self.superview action:@selector(tapAdoptBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.tapToViewImages addTarget:self.superview action:@selector(tapToViewBigImage:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.tapToViewComment.tag = [self.answerId integerValue];
+    //点击进入评论界面
+    [self.tapToViewComment addTarget:self.superview action:@selector(tapToViewComment:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.commentBtn addTarget:self.superview action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
 //
     

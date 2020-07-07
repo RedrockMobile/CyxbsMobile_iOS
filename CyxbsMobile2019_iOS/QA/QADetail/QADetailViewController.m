@@ -12,6 +12,7 @@
 #import "QADetailView.h"
 #import "QADetailReportView.h"
 #import "GKPhotoBrowser.h"
+#import "QAReviewViewController.h"
 @interface QADetailViewController ()<QADetailDelegate>
 @property(strong,nonatomic)UIScrollView *scrollView;
 @property(strong,nonatomic)NSNumber *question_id;
@@ -186,5 +187,18 @@
             
         }
     }
+}
+
+- (void)tapToViewComment:(NSNumber *)answerId{
+    for(int i = 0; i < self.model.answersData.count; i++){
+        NSDictionary *dic = self.model.answersData[i];
+        if ([answerId integerValue] == [[dic objectForKey:@"id"] integerValue]) {
+            QAReviewViewController *vc = [[QAReviewViewController alloc]initViewWithId:answerId answerData:dic];
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+    }
+    
+    
 }
 @end

@@ -13,7 +13,7 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     self.scrollView = [[UIScrollView alloc]init];
-//    self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
+    //    self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
     
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -28,7 +28,7 @@
 - (void)layoutSubviews{
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1000);
 }
-- (void)setupUIwithDic:(NSDictionary *)dic answersData:(nonnull NSArray *)answersData{
+- (void)setupUIwithDic:(NSDictionary *)dic reviewData:(nonnull NSArray *)reviewData{
     UIView *userInfoView = [[UIView alloc]init];
     userInfoView.backgroundColor = [UIColor clearColor];
     [self.scrollView addSubview:userInfoView];
@@ -53,21 +53,6 @@
     [dateLabel setText:[date substringWithRange:NSMakeRange(0, 10)]];
     [userInfoView addSubview:dateLabel];
     
-    UIImageView *integralIcon = [[UIImageView alloc]init];
-    NSInteger hasAdoptedAnswer = [[dic objectForKey:@"hasAdoptedAnswer"] intValue];
-    if (hasAdoptedAnswer > 0) {
-        [integralIcon setImage:[UIImage imageNamed:@"integralIcon2"]];
-    }else{
-        [integralIcon setImage:[UIImage imageNamed:@"integralIcon"]];
-    }
-    [userInfoView addSubview:integralIcon];
-    
-    UILabel *integralNumLabel = [[UILabel alloc]init];
-    NSString *integralNum = [NSString stringWithFormat:@"%@积分",[dic objectForKey:@"reward"]];
-    [integralNumLabel setText:integralNum];
-    integralNumLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    [userInfoView addSubview:integralNumLabel];
     
     [userInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.scrollView.mas_left);
@@ -89,22 +74,11 @@
         make.bottom.equalTo(userIcon);
         //        make.height.equalTo(@57);
     }];
-    [integralIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(userInfoView.mas_right).mas_offset(-40);
-        make.top.mas_equalTo(userInfoView.mas_top).mas_offset(33);
-        make.height.width.mas_equalTo(17);
-        //        make.height.equalTo(@57);
-    }];
-    [integralNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(integralIcon.mas_right).mas_offset(3);
-        make.centerY.equalTo(integralIcon);
-    }];
-    //    UILabel *contentLabel = [[UILabel alloc]init];
     
     UILabel *contentLabel = [[UILabel alloc] init];
     contentLabel.numberOfLines = 0;
-    NSString *content = [dic objectForKey:@"description"];
-contentLabel.text = content;
+    NSString *content = [dic objectForKey:@"content"];
+    contentLabel.text = content;
     [contentLabel setFont:[UIFont fontWithName:PingFangSCRegular size:15]];
     contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     contentLabel.alpha = 1.0;
@@ -136,15 +110,15 @@ contentLabel.text = content;
     if (self.imageUrlArray.count != 0) {
         
         for (int i = 0; i < self.imageUrlArray.count; i++) {
-
+            
             UIImageView *imgView = [[UIImageView alloc]init];
             NSString *urlString = [NSString stringWithFormat:@"%@",self.imageUrlArray[i]];
             NSURL *url = [NSURL URLWithString:urlString];
             [imgView setImageURL:url];
             imgView.userInteractionEnabled = YES;
             //添加点击手势
-//            UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToViewBigImage:)];
-//            [imgView addGestureRecognizer:tapGesture];
+            //            UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToViewBigImage:)];
+            //            [imgView addGestureRecognizer:tapGesture];
             [self.scrollView addSubview:imgView];
             UIButton *imageBtn = [[UIButton alloc]init];
             imageBtn.tag = i;
@@ -152,45 +126,45 @@ contentLabel.text = content;
             [imageBtn addTarget:self action:@selector(tapToViewBigImage:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:imageBtn];
             
-//            [self.imageViewArray addObject:imgView];
+            //            [self.imageViewArray addObject:imgView];
             if (i<=2&&i>=0) {
-
+                
                 [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20+(width+10)*i);
                     make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(10);
                     make.width.mas_equalTo(width);
                     make.height.mas_equalTo(height);
-
+                    
                 }];
                 [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.bottom.left.right.equalTo(imgView);
-
+                    
                 }];
-
+                
             }else if (i>=3&&i<=5){
-
+                
                 [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20+(width+10)*(i-3));
                     make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(width + 20);
                     make.width.mas_equalTo(width);
                     make.height.mas_equalTo(height);
-
+                    
                 }];
                 [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.top.bottom.left.right.equalTo(imgView);
-
+                    
                 }];
-
+                
             }else{
-
+                
             }
         }
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-                           make.right.mas_equalTo(self.mas_right).mas_offset(0);
-                           make.left.mas_equalTo(self.mas_left).mas_offset(0);
-                           make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(250);
-                           make.height.mas_equalTo(1);
-                       }];
+            make.right.mas_equalTo(self.mas_right).mas_offset(0);
+            make.left.mas_equalTo(self.mas_left).mas_offset(0);
+            make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(250);
+            make.height.mas_equalTo(1);
+        }];
     }else{
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).mas_offset(0);
@@ -200,53 +174,58 @@ contentLabel.text = content;
         }];
     }
     
-    UILabel *answerLabel = [[UILabel alloc]init];
-    answerLabel.text = @"回复";
-    [answerLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    answerLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
-    [self.scrollView addSubview:answerLabel];
-    
-    [answerLabel mas_makeConstraints:^(MASConstraintMaker *make){
-        make.top.mas_equalTo(separateView.mas_bottom).mas_offset(14);
-        make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(-20);
-        make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20);
+    //底下的评论条
+    self.reviewBar = [[UIButton alloc]init];
+    [self addSubview:self.reviewBar];
+    [self.reviewBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(0);
+        make.left.mas_equalTo(self.mas_left).mas_offset(0);
+        make.right.mas_equalTo(self.mas_right).mas_offset(0);
+        make.height.mas_equalTo(60);
     }];
-
-
-  
-    NSNumber *isSelf = [dic objectForKey:@"is_self"];
-    if (isSelf.integerValue == 0) {
-        self.isSelf = NO;
-    }else{
-        self.isSelf = YES;
-    }
-    //如果不是自己提的问题，显示回答按钮
-    if (!self.isSelf) {
+    //点赞数量
+    UILabel *praiseNum = [[UILabel alloc]init];
+    praiseNum.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"praise_num"]];
+    [self.reviewBar addSubview:praiseNum];
+    [praiseNum mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.reviewBar);
+        make.right.mas_equalTo(self.reviewBar.mas_right).mas_offset(-25);
+        make.height.mas_equalTo(12);
+        make.width.mas_equalTo(10);
         
-    self.answerButton = [[UIButton alloc]init];
-      self.answerButton.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
-      [self.answerButton setTitle:@"回答" forState:UIControlStateNormal];
-      [self.answerButton.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:18]];
-      self.answerButton.layer.cornerRadius = 20;
-      
-      [self addSubview:self.answerButton];
-      [self.answerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-          make.centerX.equalTo(self);
-          make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-60);
-          make.height.mas_equalTo(40);
-          make.width.mas_equalTo(120);
-      }];
+    }];
+    //点赞按钮
+    self.praiseBtn = [[UIButton alloc]init];
+    [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"likeIcon"] forState:UIControlStateNormal];
+    [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"selectedLikeIcon"] forState:UIControlStateSelected];
+    NSNumber *is_praised = [dic objectForKey:@"is_praised"];
+    if (is_praised.integerValue == 1) {
+        [self.praiseBtn setSelected:YES];
     }
+    self.praiseBtn.tag = [[dic objectForKey:@"id"] integerValue];
+    [self.reviewBar addSubview:self.praiseBtn];
+    [self.praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.reviewBar);
+        make.right.mas_equalTo(praiseNum).mas_offset(-15);
+        make.height.mas_equalTo(18);
+        make.width.mas_equalTo(18);
+    }];
+    //评论输入栏
+    UITextField *replyTextField = [[UITextField alloc]init];
+    replyTextField.layer.cornerRadius = 15;
+    replyTextField.placeholder = @"发布评论";
+    replyTextField.backgroundColor = [UIColor colorWithHexString:@"#EFF4FD"];
+    [self.reviewBar addSubview:replyTextField];
+    [replyTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.reviewBar);
+        make.right.mas_equalTo(self.praiseBtn).mas_offset(-30);
+        make.left.mas_equalTo(self).mas_equalTo(30);
+        make.height.mas_equalTo(30);
+    }];
+    
     //加载回答列表
-    NSArray *answerList = answersData;
-//    UIView *view = [[UIView alloc]init];
-//    [self.scrollView addSubview:view];
-//    [view mas_makeConstraints:^(MASConstraintMaker *make){
-//        make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(5);
-//        make.right.mas_equalTo(self.mas_right).mas_offset(0);
-//        make.left.mas_equalTo(self.mas_left).mas_offset(0);
-//        make.height.mas_equalTo(answerList.count*190);
-//    }];
+    NSArray *answerList = reviewData;
     //判断h是否有回答
     if (answerList.count != 0) {
         CGFloat answerViewY = 0;
@@ -256,34 +235,49 @@ contentLabel.text = content;
             CGFloat fontsize = 17;
             CGFloat labelWidth = SCREEN_WIDTH - 90 - 1;
             CGFloat labelHeight = [self calculateLabelHeight:content width:labelWidth fontsize:fontsize];
-            CGFloat answerViewHeight = labelHeight + 135;
+            CGFloat answerViewHeight = labelHeight + 80;
             QAReviewAnswerListView *answerView = [[QAReviewAnswerListView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, answerViewHeight)];
+            switch (i%3) {
+                case 0:
+                    answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F9F3F0"];
+                    break;
+                case 1:
+                    answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F0F2FB"];
+                    break;
+                case 2:
+                    answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F9EFF2"];
+                    break;
+                    
+                default:
+                    break;
+            }
+            
             [answerView setupView:dic isSelf:self.isSelf];
-//            NSLog(@"%lD",(long)[answerView getViewHeight]);
+            //            NSLog(@"%lD",(long)[answerView getViewHeight]);
             [self.scrollView addSubview:answerView];
             
-        
+            
             if (i == 0) {
-
+                
                 [answerView mas_makeConstraints:^(MASConstraintMaker *make){
-                    make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(5);
+                    make.top.mas_equalTo(separateView.mas_bottom).mas_offset(5);
                     make.height.mas_equalTo(answerViewHeight);
-//                    make.height.mas_lessThanOrEqualTo(250);
+                    //                    make.height.mas_lessThanOrEqualTo(250);
                     make.left.right.equalTo(self);
                 }];
                 answerViewY += (answerViewHeight + 5);
             }else{
-                    
+                
                 [answerView mas_makeConstraints:^(MASConstraintMaker *make){
-                    make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(answerViewY + 5);
+                    make.top.mas_equalTo(separateView.mas_bottom).mas_offset(answerViewY + 5);
                     make.height.mas_equalTo(answerViewHeight);
-//                    make.height.mas_lessThanOrEqualTo(250);
+                    //                    make.height.mas_lessThanOrEqualTo(250);
                     make.left.right.equalTo(self);
                 }];
                 answerViewY += (answerViewHeight + 5);
             }
-//            NSLog(@"%lD",(long)[answerView getViewHeight]);
-
+            //            NSLog(@"%lD",(long)[answerView getViewHeight]);
+            
         }
         
     }else{
@@ -294,7 +288,7 @@ contentLabel.text = content;
             make.width.equalTo(@170);
             make.height.equalTo(@130);
             make.centerX.equalTo(self);
-            make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(70);
+            make.top.mas_equalTo(separateView.mas_bottom).mas_offset(70);
         }];
         
         UILabel *label = [[UILabel alloc]init];
@@ -323,31 +317,16 @@ contentLabel.text = content;
 //
 //    return rect.size.height;
 //}
-//查看大图
-- (void)tapToViewBigImage:(UIButton *)sender{
-    [self.delegate tapToViewBigImage:sender.tag];
-}
+
 
 - (void)replyComment:(UIButton *)sender{
     [self.delegate replyComment:[NSNumber numberWithInteger:sender.tag]];
 }
 
-- (void)tapCommentBtn:(UIButton *)sender{
-    [self.delegate tapCommentBtn:[NSNumber numberWithInteger:sender.tag]];
-}
 //点赞
 - (void)tapPraiseBtn:(UIButton *)sender{
     [self.delegate tapPraiseBtn:sender answerId:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }
-//采纳
-- (void)tapAdoptBtn:(UIButton *)sender{
-    [self.delegate tapAdoptBtn:[NSNumber numberWithInteger:sender.tag]];
-    sender.selected = !sender.selected;
-}
-//查看评论
-- (void)tapToViewComment:(UIView *)sender{
-//    NSLog(@"%D",sender.superview.tag);
-//    self.delegate
-}
+
 @end

@@ -16,7 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)replyComment:(NSNumber *)answerId;
 - (void)tapToViewBigImage:(NSInteger)answerIndex;
 //查看评论
-- (void)tapToViewComment;
+- (void)tapToViewComment:(NSNumber *)answerId;
+
 @end
 @interface QADetailView : UIView
 @property(strong,nonatomic)UIButton *answerButton;

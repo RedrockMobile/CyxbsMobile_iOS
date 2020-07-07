@@ -11,21 +11,17 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol QAReviewDelegate <NSObject>
 - (void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(NSNumber *)answerId;
-- (void)tapAdoptBtn:(NSNumber *)answerId;
-- (void)tapCommentBtn:(NSNumber *)answerId;
 - (void)replyComment:(NSNumber *)answerId;
-- (void)tapToViewBigImage:(NSInteger)answerIndex;
-//查看评论
-- (void)tapToViewComment;
 @end
 @interface QAReviewView : UIView
-@property(strong,nonatomic)UIButton *answerButton;
 @property(strong,nonatomic)UIScrollView *scrollView;
 @property(nonatomic,weak)id<QAReviewDelegate>delegate;
 @property(nonatomic,assign)BOOL isSelf;
 @property(strong,nonatomic)NSMutableArray *imageUrlArray;
-
-- (void)setupUIwithDic:(NSDictionary *)dic answersData:(NSArray *)answersData;
+//底下的评论条
+@property(strong,nonatomic)UIView *reviewBar;
+@property(strong,nonatomic)UIButton *praiseBtn;
+- (void)setupUIwithDic:(NSDictionary *)dic reviewData:(NSArray *)reviewData;
 @end
 
 NS_ASSUME_NONNULL_END

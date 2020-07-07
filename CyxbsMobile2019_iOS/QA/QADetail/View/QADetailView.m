@@ -26,7 +26,7 @@
     
 }
 - (void)layoutSubviews{
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1000);
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1500);
 }
 - (void)setupUIwithDic:(NSDictionary *)dic answersData:(nonnull NSArray *)answersData{
     UIView *userInfoView = [[UIView alloc]init];
@@ -347,7 +347,6 @@ contentLabel.text = content;
 }
 //查看评论
 - (void)tapToViewComment:(UIView *)sender{
-//    NSLog(@"%D",sender.superview.tag);
-//    self.delegate
+    [self.delegate tapToViewComment:[NSNumber numberWithInteger:sender.tag]];
 }
 @end
