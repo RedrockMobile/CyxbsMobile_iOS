@@ -1,14 +1,14 @@
 //
-//  QADetailAnswerListView.m
+//  QAReviewAnswerListView.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by 王一成 on 2020/2/10.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "QADetailAnswerListView.h"
+#import "QAReviewAnswerListView.h"
 
-@implementation QADetailAnswerListView
+@implementation QAReviewAnswerListView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];

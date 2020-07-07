@@ -2,7 +2,7 @@
 //  QAReviewViewController.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 王一成 on 2020/5/4.
+//  Created by 王一成 on 2020/1/20.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
@@ -10,8 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QAReviewViewController : UIViewController
-
+@interface QAReviewViewController : QABaseViewController
+-(instancetype)initViewWithId:(NSNumber *)question_id title:(NSString *)title;
 @end
 
 NS_ASSUME_NONNULL_END
