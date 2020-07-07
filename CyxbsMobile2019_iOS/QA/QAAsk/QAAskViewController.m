@@ -179,16 +179,6 @@
 //标题字数限制
 - (void)textFieldDidChange:(UITextField *)textField
 {
-//    if (textField == self.titleTextField) {
-//        if (textField.text.length > 12) {
-//            textField.text = [textField.text substringToIndex:12];
-//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//            hud.mode = MBProgressHUDModeText;
-//            hud.labelText = @"已达最多字数";
-//            [hud hide:YES afterDelay:0.5];
-//
-//        }
-//    }
     NSString *toBeString = textField.text;
     NSString *lang = [textField.textInputMode primaryLanguage]; // 键盘输入模式
     if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
