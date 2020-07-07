@@ -12,19 +12,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QAReviewModel : NSObject
 
-@property(strong,nonatomic)NSArray *answersData;
-@property(strong,nonatomic)NSDictionary *reviewData;
 
-- (void)getDataWithId:(NSNumber *)questionId;
+@property(strong,nonatomic)NSArray *reviewData;
+
+- (void)getDataWithId:(NSNumber *)answerId;
 - (void)replyComment:(nonnull NSNumber *)answerId content:(NSString *)content;
 
-- (void)getCommentData:(nonnull NSNumber *)answerId;
-- (void)adoptAnswer:(NSNumber *)questionId answerId:(NSNumber *)answerId;
+
 - (void)praise:(nonnull NSNumber *)answerId;
 - (void)cancelPraise:(nonnull NSNumber *)answerId;
 
-- (void)report:(NSString *)type question_id:(NSNumber *)question_id;
-- (void)ignore:(NSNumber *)question_id;
+- (void)report:(NSString *)type answer_id:(NSNumber *)answer_id;
+- (void)ignore:(NSNumber *)answer_id;
 @end
 
 NS_ASSUME_NONNULL_END

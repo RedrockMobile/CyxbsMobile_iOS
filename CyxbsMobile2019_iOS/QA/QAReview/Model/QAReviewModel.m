@@ -9,34 +9,16 @@
 #import "QAReviewModel.h"
 
 @implementation QAReviewModel
-- (void)getDataWithId:(NSNumber *)questionId{
+- (void)getDataWithId:(NSNumber *)answerId{
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"question_id":questionId};
+    NSDictionary *parameters = @{@"answer_id":answerId};
 
-    [client requestWithPath:QA_QUESTION_DETAIL_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:QA_QUESTION_DISUCESS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             self.reviewData = [responseObject objectForKey:@"data"];
 
-            [self getAnswersWithId:questionId];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadSuccess" object:nil];
-        }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadError" object:nil];
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadFailure" object:nil];
-    }];
-}
-- (void)getAnswersWithId:(NSNumber *)questionId{
-    HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"question_id":questionId};
-
-    [client requestWithPath:QA_QUESTION_ANSWERLIST method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSString *info = [responseObject objectForKey:@"info"];
-        if ([info isEqualToString:@"success"]) {
-            self.answersData = [responseObject objectForKey:@"data"];
-
+      
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadSuccess" object:nil];
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadError" object:nil];
@@ -46,6 +28,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadFailure" object:nil];
     }];
 }
+
 - (void)replyComment:(nonnull NSNumber *)answerId content:(NSString *)content{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":answerId,@"content":content};
@@ -63,32 +46,6 @@
     }];
 }
 
-- (void)getCommentData:(nonnull NSNumber *)answerId{
-    HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"answer_id":answerId};
-    [client requestWithPath:QA_QUESTION_DISUCESS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSString *info = [responseObject objectForKey:@"info"];
-        if ([info isEqualToString:@"success"]) {
-//            self.dataDic = [responseObject objectForKey:@"data"];
-        }else{
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    }];
-}
-- (void)adoptAnswer:(NSNumber *)questionId answerId:(NSNumber *)answerId{
-    HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"question_id":questionId,@"answer_id":answerId};
-    [client requestWithPath:QA_ADOPT_ANSWER_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSString *info = [responseObject objectForKey:@"info"];
-        if ([info isEqualToString:@"success"]) {
-//            self.dataDic = [responseObject objectForKey:@"data"];
-        }else{
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    }];
-}
 - (void)praise:(nonnull NSNumber *)answerId{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":answerId};
@@ -116,9 +73,9 @@
     }];
 }
 
-- (void)report:(NSString *)type question_id:(NSNumber *)question_id{
+- (void)report:(NSString *)type answer_id:(NSNumber *)answer_id{
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"question_id":question_id,@"type":type};
+    NSDictionary *parameters = @{@"answer_id":answer_id,@"type":type};
     [client requestWithPath:QA_ADD_REPORT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
@@ -131,9 +88,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewReportFailure" object:nil];
     }];
 }
-- (void)ignore:(NSNumber *)question_id{
+- (void)ignore:(NSNumber *)answer_id{
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"question_id":question_id};
+    NSDictionary *parameters = @{@"answer_id":answer_id};
     [client requestWithPath:QA_IGNORE_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {

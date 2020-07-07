@@ -7,15 +7,15 @@
 //
 
 #import "QAReviewViewController.h"
-#import "QAAnswerViewController.h"
 #import "QAReviewModel.h"
 #import "QAReviewView.h"
 #import "QAReviewReportView.h"
 #import "GKPhotoBrowser.h"
 @interface QAReviewViewController ()<QAReviewDelegate>
 @property(strong,nonatomic)UIScrollView *scrollView;
-@property(strong,nonatomic)NSNumber *question_id;
+@property(strong,nonatomic)NSNumber *answer_id;
 @property(strong,nonatomic)QAReviewModel *model;
+@property(strong,nonatomic)NSDictionary *answerData;
 //举报界面
 @property(strong,nonatomic)SDMask *reportViewMask;
 @property(strong,nonatomic)QAReviewReportView *reportView;
@@ -34,11 +34,10 @@
     [self.rightButton addTarget:self action:@selector(showReportView) forControlEvents:UIControlEventTouchUpInside];
 }
 
--(instancetype)initViewWithId:(NSNumber *)question_id title:(NSString *)title{
+-(instancetype)initViewWithId:(NSNumber *)answer_id answerData:(NSDictionary *)answerData{
     self = [super init];
-    self.title = title;
-//    [self setNavigationBar:title];
-    self.question_id = question_id;
+    self.answer_id = answer_id;
+    self.answerData = answerData;
     self.model = [[QAReviewModel alloc]init];
     [self setNotification];
     
@@ -48,12 +47,15 @@
 
 - (void)setupUI{
     //    NSLog(@"%@",self.model.dataDic);
-    NSDictionary *reviewData = self.model.reviewData;
-    NSArray *answersData = self.model.answersData;
+    NSString *title = [NSString stringWithFormat:@"评论（%lu）",(unsigned long)self.model.reviewData.count];
+    self.title = title;
+    [self customNavigationBar];
+    [self customNavigationRightButton];
+    NSArray *reviewData = self.model.reviewData;
+    NSDictionary *answerData = self.answerData;
     QAReviewView *reviewView = [[QAReviewView alloc]initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT, SCREEN_WIDTH, self.view.height - TOTAL_TOP_HEIGHT)];
     
-    [reviewView setupUIwithDic:reviewData answersData:answersData];
-    [reviewView.answerButton setTarget:self action:@selector(answer:) forControlEvents:UIControlEventTouchUpInside];
+    [reviewView setupUIwithDic:answerData reviewData:reviewData];
     reviewView.delegate = self;
     [self.view addSubview:reviewView];
 }
@@ -62,7 +64,7 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
-    [self.model getDataWithId:self.question_id];
+    [self.model getDataWithId:self.answer_id];
 }
 - (void)setNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -119,7 +121,7 @@
 }
 - (void)showReportView{
     
-    self.reportView = [[QAReviewReportView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 530)];
+    self.reportView = [[QAReviewReportView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 470)];
     [self.reportView setBackgroundColor:UIColor.clearColor];
     [self.reportView setupView];
     for (UIButton *btn in self.reportView.reportBtnCollection) {
@@ -135,12 +137,12 @@
 }
 //举报问题
 - (void)report:(UIButton *)sender{
-    [self.model report:sender.titleLabel.text question_id:self.question_id];
+    [self.model report:sender.titleLabel.text answer_id:self.answer_id];
 //    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 //忽略问题
 - (void)ignore:(UIButton *)sender{
-    [self.model ignore:self.question_id];
+    [self.model ignore:self.answer_id];
 //    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 - (void)cancel:(UIButton *)sender{
@@ -148,16 +150,10 @@
 //    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 
-- (void)answer:(UIButton *)sender{
-    QAAnswerViewController *vc = [[QAAnswerViewController alloc]initWithQuestionId:self.question_id content:[self.model.reviewData objectForKey:@"title"]];
-    [self.navigationController pushViewController:vc animated:YES];
-}
+
 - (void)replyComment:(nonnull NSNumber *)answerId {
 }
 
-- (void)tapCommentBtn:(nonnull NSNumber *)answerId {
-    [self.model getCommentData:answerId];
-}
 
 - (void)tapPraiseBtn:(UIButton *)pariseBtn answerId:(nonnull NSNumber *)answerId{
     if ([pariseBtn isSelected]) {
@@ -166,11 +162,9 @@
         [self.model praise:answerId];
     }
 }
-- (void)tapAdoptBtn:(nonnull NSNumber *)answerId{
-    [self.model adoptAnswer:self.question_id answerId:answerId];
-}
+
 - (void)tapToViewBigImage:(NSInteger)answerIndex{
-    for (NSDictionary *answerData in self.model.answersData) {
+    for (NSDictionary *answerData in self.model.reviewData) {
         if ([[answerData objectForKey:@"id"] integerValue] == answerIndex){
             
             NSArray *imageUrls = [answerData objectForKey:@"photo_url"];

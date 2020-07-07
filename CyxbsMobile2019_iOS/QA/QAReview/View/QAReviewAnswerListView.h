@@ -12,16 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QAReviewAnswerListView : UIView
 @property (strong, nonatomic) IBOutlet UIView *contentView;
-@property (weak, nonatomic) IBOutlet UIButton *adoptBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *userIcon;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *commentBtn;
-@property (weak, nonatomic) IBOutlet UIButton *tapToViewImages;
-@property (weak, nonatomic) IBOutlet UIButton *praiseBtn;
-@property (weak, nonatomic) IBOutlet UILabel *praiseNumLabel;
-@property (weak, nonatomic) IBOutlet UIView *separateView;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property(strong,nonatomic)NSNumber *answerId;
 - (void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf;
 

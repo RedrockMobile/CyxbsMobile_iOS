@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *praiseBtn;
 @property (weak, nonatomic) IBOutlet UILabel *praiseNumLabel;
 @property (weak, nonatomic) IBOutlet UIView *separateView;
+@property (weak, nonatomic) IBOutlet UIButton *tapToViewComment;
 @property(strong,nonatomic)NSNumber *answerId;
 - (void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf;
 

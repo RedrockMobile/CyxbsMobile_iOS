@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QAReviewViewController : QABaseViewController
--(instancetype)initViewWithId:(NSNumber *)question_id title:(NSString *)title;
+-(instancetype)initViewWithId:(NSNumber *)answer_id answerData:(NSDictionary *)answerData;
 @end
 
 NS_ASSUME_NONNULL_END
