@@ -124,7 +124,7 @@
                         value:[UIFont fontWithName:PingFangSCBold size:16]
                         range:NSMakeRange(0, placeholderString.length)];
     [placeholder addAttribute:NSForegroundColorAttributeName
-                        value:[UIColor blackColor]
+                        value:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.39]
                         range:NSMakeRange(0, placeholderString.length)];
     self.titleTextField.attributedPlaceholder = placeholder;
     //设置光标起始位置偏移
@@ -147,7 +147,7 @@
     //自适应高度
     self.askTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.askTextView.placeholder = @"详细描述你的问题和需求，表达越清楚，越容易获得帮助哦！";
-    self.askTextView.placeholderColor = UIColor.blackColor;
+    self.askTextView.placeholderColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.39];
     self.askTextView.textContainerInset = UIEdgeInsetsMake(10, 12, 10, 12);
     [self.askTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
     self.askTextView.delegate = self;
@@ -180,27 +180,18 @@
 - (void)textFieldDidChange:(UITextField *)textField
 {
     NSString *toBeString = textField.text;
-    NSString *lang = [textField.textInputMode primaryLanguage]; // 键盘输入模式
-    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
-        UITextRange *selectedRange = [textField markedTextRange];
-        //获取高亮部分
-        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
-        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
-        if (!position) {
-            if (toBeString.length > 12) {
-                textField.text = [toBeString substringToIndex:12];
-            }
-        }
-        // 有高亮选择的字符串，则暂不对文字进行统计和限制
-        else{
-          
-        }
-    }
-    // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
-    else{
+    UITextRange *selectedRange = [textField markedTextRange];
+    //获取高亮部分
+    UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+    // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+    if (!position) {
         if (toBeString.length > 12) {
             textField.text = [toBeString substringToIndex:12];
         }
+    }
+    // 有高亮选择的字符串，则暂不对文字进行统计和限制
+    else{
+      
     }
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
