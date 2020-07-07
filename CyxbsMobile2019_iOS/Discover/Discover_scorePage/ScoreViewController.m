@@ -53,7 +53,7 @@
     // Do any additional setup after loading the view.
 }
 -(void)idsBindingTest {
-    IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:@"1659873" isPassword:@"313517"];
+    IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:@"1659843" isPassword:@"313416"];
     [binding fetchData];
 }
 - (void) addContentView {
