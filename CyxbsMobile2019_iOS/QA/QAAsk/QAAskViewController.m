@@ -39,6 +39,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (instancetype)init{
     self = [super init];
     if (self) {
@@ -174,14 +179,37 @@
 //标题字数限制
 - (void)textFieldDidChange:(UITextField *)textField
 {
-    if (textField == self.titleTextField) {
-        if (textField.text.length > 12) {
-            textField.text = [textField.text substringToIndex:12];
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.mode = MBProgressHUDModeText;
-            hud.labelText = @"已达最多字数";
-            [hud hide:YES afterDelay:0.5];
-            
+//    if (textField == self.titleTextField) {
+//        if (textField.text.length > 12) {
+//            textField.text = [textField.text substringToIndex:12];
+//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            hud.mode = MBProgressHUDModeText;
+//            hud.labelText = @"已达最多字数";
+//            [hud hide:YES afterDelay:0.5];
+//
+//        }
+//    }
+    NSString *toBeString = textField.text;
+    NSString *lang = [textField.textInputMode primaryLanguage]; // 键盘输入模式
+    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
+        UITextRange *selectedRange = [textField markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+        if (!position) {
+            if (toBeString.length > 12) {
+                textField.text = [toBeString substringToIndex:12];
+            }
+        }
+        // 有高亮选择的字符串，则暂不对文字进行统计和限制
+        else{
+          
+        }
+    }
+    // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
+    else{
+        if (toBeString.length > 12) {
+            textField.text = [toBeString substringToIndex:12];
         }
     }
 }
