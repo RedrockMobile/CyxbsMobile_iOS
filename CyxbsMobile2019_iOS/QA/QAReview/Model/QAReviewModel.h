@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(strong,nonatomic)NSArray *reviewData;
 
 - (void)getDataWithId:(NSNumber *)answerId;
-- (void)replyComment:(nonnull NSNumber *)answerId content:(NSString *)content;
+- (void)replyComment:(NSString *)content answerId:(NSNumber *)answerId;
 
 
 - (void)praise:(nonnull NSNumber *)answerId;

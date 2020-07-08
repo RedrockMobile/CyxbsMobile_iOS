@@ -181,4 +181,8 @@
         }
     }
 }
+- (void)replyComment:(NSString *)content answerId:(NSNumber *)answerId{
+//    NSLog(@"%@,%@",content,answerId);
+    [self.model replyComment:content answerId:answerId];
+}
 @end

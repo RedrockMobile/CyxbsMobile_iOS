@@ -15,6 +15,7 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'AMap2DMap'
 	pod 'MJExtension'
 	pod 'SDCycleScrollView'
+	pod 'IQKeyboardManager'
 	#umeng
 	pod 'UMCCommon'
     	pod 'UMCSecurityPlugins'

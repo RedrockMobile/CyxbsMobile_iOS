@@ -29,20 +29,19 @@
     }];
 }
 
-- (void)replyComment:(nonnull NSNumber *)answerId content:(NSString *)content{
+- (void)replyComment:(NSString *)content answerId:(NSNumber *)answerId{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":answerId,@"content":content};
     [client requestWithPath:QA_ADD_DISCUSS_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
-//            self.dataDic = [responseObject objectForKey:@"data"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadSuccess" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataReLoad" object:nil];
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadError" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewReplyCommentError" object:nil];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewDataLoadFailure" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewReplyCommentFailure" object:nil];
     }];
 }
 
