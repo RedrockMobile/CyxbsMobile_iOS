@@ -29,6 +29,8 @@
     self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1000);
 }
 - (void)setupUIwithDic:(NSDictionary *)dic reviewData:(nonnull NSArray *)reviewData{
+    self.answerId = [dic objectForKey:@"id"];
+    
     UIView *userInfoView = [[UIView alloc]init];
     userInfoView.backgroundColor = [UIColor clearColor];
     [self.scrollView addSubview:userInfoView];
@@ -96,83 +98,13 @@
     separateView.alpha = 0.1;
     [self.scrollView addSubview:separateView];
     
-    self.imageUrlArray = [dic objectForKey:@"photo_url"];
-    NSInteger count = self.imageUrlArray.count;
-    NSInteger width;
-    NSInteger height;
-    if (count <= 3) {
-        width = (SCREEN_WIDTH - 40)/count;
-        height = width * 0.6;
-    }else{
-        width = (SCREEN_WIDTH - 60)/3;
-        height = width;
-    }
-    if (self.imageUrlArray.count != 0) {
-        
-        for (int i = 0; i < self.imageUrlArray.count; i++) {
-            
-            UIImageView *imgView = [[UIImageView alloc]init];
-            NSString *urlString = [NSString stringWithFormat:@"%@",self.imageUrlArray[i]];
-            NSURL *url = [NSURL URLWithString:urlString];
-            [imgView setImageURL:url];
-            imgView.userInteractionEnabled = YES;
-            //添加点击手势
-            //            UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToViewBigImage:)];
-            //            [imgView addGestureRecognizer:tapGesture];
-            [self.scrollView addSubview:imgView];
-            UIButton *imageBtn = [[UIButton alloc]init];
-            imageBtn.tag = i;
-            imageBtn.backgroundColor = UIColor.clearColor;
-            [imageBtn addTarget:self action:@selector(tapToViewBigImage:) forControlEvents:UIControlEventTouchUpInside];
-            [self.scrollView addSubview:imageBtn];
-            
-            //            [self.imageViewArray addObject:imgView];
-            if (i<=2&&i>=0) {
-                
-                [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20+(width+10)*i);
-                    make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(10);
-                    make.width.mas_equalTo(width);
-                    make.height.mas_equalTo(height);
-                    
-                }];
-                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.bottom.left.right.equalTo(imgView);
-                    
-                }];
-                
-            }else if (i>=3&&i<=5){
-                
-                [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20+(width+10)*(i-3));
-                    make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(width + 20);
-                    make.width.mas_equalTo(width);
-                    make.height.mas_equalTo(height);
-                    
-                }];
-                [imageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.bottom.left.right.equalTo(imgView);
-                    
-                }];
-                
-            }else{
-                
-            }
-        }
-        [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(self.mas_right).mas_offset(0);
-            make.left.mas_equalTo(self.mas_left).mas_offset(0);
-            make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(250);
-            make.height.mas_equalTo(1);
-        }];
-    }else{
-        [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(self.mas_right).mas_offset(0);
-            make.left.mas_equalTo(self.mas_left).mas_offset(0);
-            make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(20);
-            make.height.mas_equalTo(1);
-        }];
-    }
+    [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.mas_right).mas_offset(0);
+        make.left.mas_equalTo(self.mas_left).mas_offset(0);
+        make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(20);
+        make.height.mas_equalTo(1);
+    }];
+    
     
     //底下的评论条
     self.reviewBar = [[UIButton alloc]init];
@@ -204,6 +136,7 @@
         [self.praiseBtn setSelected:YES];
     }
     self.praiseBtn.tag = [[dic objectForKey:@"id"] integerValue];
+    [self.praiseBtn addTarget:self action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.reviewBar addSubview:self.praiseBtn];
     [self.praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.reviewBar);
@@ -212,12 +145,15 @@
         make.width.mas_equalTo(18);
     }];
     //评论输入栏
-    UITextField *replyTextField = [[UITextField alloc]init];
-    replyTextField.layer.cornerRadius = 15;
-    replyTextField.placeholder = @"发布评论";
-    replyTextField.backgroundColor = [UIColor colorWithHexString:@"#EFF4FD"];
-    [self.reviewBar addSubview:replyTextField];
-    [replyTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.replyTextField = [[UITextField alloc]init];
+    self.replyTextField.layer.cornerRadius = 15;
+    self.replyTextField.placeholder = @"发布评论";
+    self.replyTextField.backgroundColor = [UIColor colorWithHexString:@"#EFF4FD"];
+    self.replyTextField.keyboardType = UIKeyboardTypeDefault;
+    self.replyTextField.returnKeyType = UIReturnKeySend;
+    self.replyTextField.delegate = self;
+    [self.reviewBar addSubview:self.replyTextField];
+    [self.replyTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.reviewBar);
         make.right.mas_equalTo(self.praiseBtn).mas_offset(-30);
         make.left.mas_equalTo(self).mas_equalTo(30);
@@ -282,7 +218,7 @@
         
     }else{
         UIImageView *imageView = [[UIImageView alloc]init];
-        [imageView setImage:[UIImage imageNamed:@"QAReviewNoAnswer"]];
+        [imageView setImage:[UIImage imageNamed:@"QADetailNoAnswer"]];
         [self.scrollView addSubview:imageView];
         [imageView mas_makeConstraints:^(MASConstraintMaker *make){
             make.width.equalTo(@170);
@@ -292,7 +228,7 @@
         }];
         
         UILabel *label = [[UILabel alloc]init];
-        label.text = @"还没有回答哦~";
+        label.text = @"还没有评论哦~";
         label.font = [UIFont fontWithName:PingFangSCLight size:12];
         [label setTextColor:[UIColor colorWithHexString:@"#15315B"]];
         label.textAlignment = NSTextAlignmentCenter;
@@ -319,9 +255,9 @@
 //}
 
 
-- (void)replyComment:(UIButton *)sender{
-    [self.delegate replyComment:[NSNumber numberWithInteger:sender.tag]];
-}
+//- (void)replyComment:(NSString *)content answerId:(NSNumber *)answerId{
+//    [self.delegate replyComment:[NSNumber numberWithInteger:sender.tag]];
+//}
 
 //点赞
 - (void)tapPraiseBtn:(UIButton *)sender{
@@ -329,4 +265,11 @@
     sender.selected = !sender.selected;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+//    NSLog(@"发送评论");
+    [self.delegate replyComment:textField.text answerId:self.answerId];
+    textField.text = @"";
+    [textField resignFirstResponder];
+    return YES;
+}
 @end
