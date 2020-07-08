@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)commitAnswer:(NSNumber *)questionId content:(NSString *)content imageArray:(NSArray *)imageArray;
 - (void)uploadPhoto:(NSArray *)photoArray;
 
+//保存到草稿箱
+- (void)addItemInDraft:(NSString *)title questionId:(NSNumber *)questionId;
 @end
 
 NS_ASSUME_NONNULL_END

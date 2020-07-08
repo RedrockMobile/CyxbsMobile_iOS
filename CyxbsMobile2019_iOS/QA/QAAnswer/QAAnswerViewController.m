@@ -37,6 +37,7 @@
     self.content = content;
     self.view.backgroundColor = [UIColor whiteColor];
     [self setNotification];
+    self.model = [[QAAnswerModel alloc]init];
     [self setupUI];
     return self;
 }
@@ -211,7 +212,6 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)commitAnswer{
-    self.model = [[QAAnswerModel alloc]init];
     [self.model commitAnswer:self.questionId content:self.answerTextView.text imageArray:self.answerImageArray];
 
 }
@@ -271,6 +271,8 @@
 - (void)saveAndExit{
     [self.exitView removeFromSuperview];
     [self.exitViewMask dismiss];
+    NSString *title = self.answerTextView.text;
+    [self.model addItemInDraft:title questionId:self.questionId];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

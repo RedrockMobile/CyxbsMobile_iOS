@@ -50,6 +50,7 @@
         self.title = @"提问";
         self.view.backgroundColor = UIColor.whiteColor;
         [self setNotification];
+        self.model = [[QAAskModel alloc]init];
         [self setupUI];
     }
     return self;
@@ -335,7 +336,6 @@
     QAAskIntegralPickerView *integralPickerView =  self.nextStepView.integralPickView;
     NSString *reward = integralPickerView.integralNum;
     NSString *disappearTime = self.nextStepView.time;
-    self.model = [[QAAskModel alloc]init];
     [self.model commitAsk:title content:content kind:self.kind reward:reward disappearTime:disappearTime imageArray:self.askImageArray];
     [self.nextStepViewMask dismiss];
     
@@ -371,6 +371,9 @@
     
     [self.exitView removeFromSuperview];
     [self.exitViewMask dismiss];
+    NSString *title = self.titleTextField.text;
+    NSString *content = self.askTextView.text;
+    [self.model addItemInDraft:title description:content kind:self.kind];
     [self.navigationController popViewControllerAnimated:YES];
     
 }

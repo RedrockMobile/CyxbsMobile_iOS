@@ -299,4 +299,12 @@
 */
 #define QA_ADD_REPORT_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
 
+/*
+ 草稿箱
+ */
+//添加到草稿箱
+#define QA_ADD_DRAFT_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/addItemInDraft"
+//更新草稿箱内容
+#define QA_UPDATE_DRAFT_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/updateItemInDraft"
+
 #endif

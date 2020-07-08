@@ -59,4 +59,25 @@
     }];
     
 }
+- (void)addItemInDraft:(NSString *)title description:(NSString *)description kind:(NSString *)kind{
+    NSDictionary *contentDic = @{@"title":title,@"description":description,@"kind":kind};
+    NSData *contentData = [NSJSONSerialization dataWithJSONObject:contentDic options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *content = [contentData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSDictionary *parameters = @{@"type":@"question",@"content":content,@"id":@""};
+    
+    [[HttpClient defaultClient] requestWithPath:QA_ADD_DRAFT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSString *info = [responseObject objectForKey:@"info"];
+        if ([info isEqualToString:@"success"]) {
+            NSDictionary *dic = [responseObject objectForKey:@"data"];
+           
+            
+            
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitError" object:nil];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitFailure" object:nil];
+    }];
+}
 @end
