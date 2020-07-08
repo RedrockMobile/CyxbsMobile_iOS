@@ -35,11 +35,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addBackButton];
+    [self addToolTitle];
+    [self addSettingButton];
     [self addContentView];//添加底层的ScrollView
     [self addViewContainer];
-    [self addToolTitle];
     [self configNavigationBar];
-    [self addSettingButton];
     [self addToolViewItems];//将每个工具添加到当前页面
 
     if (@available(iOS 11.0, *)) {
@@ -59,11 +59,11 @@
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@30);
         make.height.equalTo(@30);
-        if (IS_IPHONEX) {
-            make.top.equalTo(self.view).offset(65);
-        }else {
+//        if (IS_IPHONEX) {
+//            make.top.equalTo(self.view).offset(40);
+//        }else {
             make.top.equalTo(self.view).offset(40);
-        }
+//        }
         make.left.equalTo(self.view).offset(8.6);
     }];
     [button setImageEdgeInsets:UIEdgeInsetsMake(6, 10, 6, 10)];//增大点击范围
@@ -87,7 +87,7 @@
 
     [self.view addSubview:contentView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.backButton.mas_bottom).offset(6.5);
+        make.top.equalTo(self.toolTitle.mas_bottom).offset(6.5);
         make.left.right.bottom.equalTo(self.view);
     }];
 }
@@ -133,16 +133,16 @@
     } else {
         // Fallback on earlier versions
     }
-    [self.viewContainer addSubview:toolTitle];
+    [self.view addSubview:toolTitle];
     [toolTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.viewContainer).offset(14);
-        make.top.equalTo(self.viewContainer).offset(0);
+        make.left.equalTo(self.backButton).offset(-1.5);
+        make.top.equalTo(self.backButton.mas_bottom).offset(6.5);
     }];
 }
 - (void)addSettingButton {
     UIButton *button = [[UIButton alloc]init];
     self.settingButton = button;
-    [self.viewContainer addSubview:button];
+    [self.view addSubview:button];
     [button addTarget:self action:@selector(customizeMainPageUI) forControlEvents:UIControlEventTouchUpInside];
     [button setImage:[UIImage imageNamed:@"LQQsetting"] forState:normal];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -156,7 +156,7 @@
     UIButton *OKButton = [[UIButton alloc]init];
     self.OKButton = OKButton;
     [OKButton setImage:[UIImage imageNamed:@"toolPageRight"] forState:normal];
-    [self.viewContainer addSubview:OKButton];
+    [self.view addSubview:OKButton];
     [OKButton addTarget:self action:@selector(chooseCompleted) forControlEvents:UIControlEventTouchUpInside];
     [OKButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.right.centerX.centerY.equalTo(self.settingButton);
@@ -248,7 +248,7 @@
         [self.viewContainer addSubview:item];
         if(item == self.toolViewItems[0]) {
             [item mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.equalTo(self.toolTitle.mas_bottom).offset(6.5);
+                make.top.equalTo(self.viewContainer).offset(6.5);
                 make.left.equalTo(self.viewContainer).offset(16);
                 make.height.equalTo(@224);
                 make.width.equalTo(self.view).multipliedBy(168/375.0);
