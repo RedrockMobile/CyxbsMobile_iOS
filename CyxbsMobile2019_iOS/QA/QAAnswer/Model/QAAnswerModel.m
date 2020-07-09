@@ -66,4 +66,25 @@
     }];
     
 }
+
+- (void)addItemInDraft:(NSString *)title questionId:(NSNumber *)questionId{
+    NSDictionary *contentDic = @{@"title":title};
+       NSData *contentData = [NSJSONSerialization dataWithJSONObject:contentDic options:NSJSONWritingPrettyPrinted error:nil];
+       NSString *content = [contentData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+       NSDictionary *parameters = @{@"type":@"answer",@"content":content,@"target_id":questionId};
+       
+       [[HttpClient defaultClient] requestWithPath:QA_ADD_DRAFT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+           NSString *info = [responseObject objectForKey:@"info"];
+           if ([info isEqualToString:@"success"]) {
+               
+               
+           }else{
+               [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitError" object:nil];
+           }
+           
+       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+           [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitFailure" object:nil];
+       }];
+    
+}
 @end
