@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //保存到草稿箱
 - (void)addItemInDraft:(NSString *)title questionId:(NSNumber *)questionId;
+//更新草稿箱
+- (void)updateItemInDraft:(NSString *)title draftId:(NSNumber *)draftId;
 @end
 
 NS_ASSUME_NONNULL_END

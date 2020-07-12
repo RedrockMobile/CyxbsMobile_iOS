@@ -13,6 +13,7 @@
 #import "QAExitView.h"
 @interface QAAskViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
+@property(assign,nonatomic)BOOL isFromDraft;
 @property(strong,nonatomic)QAAskModel *model;
 //提问标题
 @property(strong,nonatomic)UITextField *titleTextField;
@@ -49,11 +50,24 @@
     if (self) {
         self.title = @"提问";
         self.view.backgroundColor = UIColor.whiteColor;
+        self.isFromDraft = NO;
         [self setNotification];
         self.model = [[QAAskModel alloc]init];
         [self setupUI];
     }
     return self;
+}
+- (void)initFromDraft:(NSDictionary *)dic{
+    self.titleTextField.text = [dic objectForKey:@"title"];
+    self.askTextView.text = [dic objectForKey:@"description"];
+    self.kind = [dic objectForKey:@"kind"];
+    self.isFromDraft = YES;
+    for (int i = 0; i < self.kindBtnArray.count; i++) {
+        UIButton *btn = self.kindBtnArray[i];
+        if ([btn.currentTitle isEqualToString:self.kind]) {
+            [self tapTitleBtn:btn];
+        }
+    }
 }
 - (void)customNavigationRightButton{
     [self.rightButton mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -373,7 +387,11 @@
     [self.exitViewMask dismiss];
     NSString *title = self.titleTextField.text;
     NSString *content = self.askTextView.text;
-    [self.model addItemInDraft:title description:content kind:self.kind];
+    if (self.isFromDraft == NO) {
+         [self.model addItemInDraft:title description:content kind:self.kind];
+    }else{
+         [self.model updateItemInDraft:title description:content kind:self.kind];
+    }
     [self.navigationController popViewControllerAnimated:YES];
     
 }

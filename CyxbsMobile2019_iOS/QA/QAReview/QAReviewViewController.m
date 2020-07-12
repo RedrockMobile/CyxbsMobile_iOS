@@ -79,6 +79,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadView)
                                                  name:@"QAReviewDataReLoad" object:nil];
+    //举报回答
+       [[NSNotificationCenter defaultCenter] addObserver:self
+                                                selector:@selector(QAReviewReportSuccess)
+                                                    name:@"QAReviewReportSuccess" object:nil];
+       [[NSNotificationCenter defaultCenter] addObserver:self
+                                                   selector:@selector(QAReviewReportError)
+                                                       name:@"QAReviewReportError" object:nil];
+       [[NSNotificationCenter defaultCenter] addObserver:self
+                                                selector:@selector(QAReviewReportFailure)
+                                                    name:@"QAReviewReportFailure" object:nil];
 }
 
 - (void)QAReviewDataLoadSuccess{
@@ -113,6 +123,39 @@
         
     }];
 }
+
+- (void)QAReviewReportSuccess{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"举报成功" message:@"会尽快为您处理" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [controller addAction:act1];
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
+}
+- (void)QAReviewReportError{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"举报失败" message:@"服务器错误或您已举报过该回答。" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [controller addAction:act1];
+    
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
+}
+- (void)QAReviewReportFailure{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"举报失败" message:@"举报请求提交失败" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+    [controller addAction:act1];
+    [self presentViewController:controller animated:YES completion:^{}];
+}
 - (void)reloadView{
     [self.view removeAllSubviews];
     [self customNavigationBar];
@@ -125,29 +168,20 @@
     [self.reportView setBackgroundColor:UIColor.clearColor];
     [self.reportView setupView];
     for (UIButton *btn in self.reportView.reportBtnCollection) {
-        if (btn.tag == 5){
-             [btn addTarget:self action:@selector(ignore:) forControlEvents:UIControlEventTouchUpInside];
-        }else{
         [btn addTarget:self action:@selector(report:) forControlEvents:UIControlEventTouchUpInside];
-        }
     }
     [self.reportView.cancelButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
     self.reportViewMask = [[SDMaskUserView(self.reportView) sdm_showActionSheetIn:self.view usingBlock:nil] usingAutoDismiss];
         [self.reportViewMask show];
 }
-//举报问题
+//举报回答
 - (void)report:(UIButton *)sender{
+    [self.reportViewMask dismiss];
     [self.model report:sender.titleLabel.text answer_id:self.answer_id];
-//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
-//忽略问题
-- (void)ignore:(UIButton *)sender{
-    [self.model ignore:self.answer_id];
-//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
-}
+
 - (void)cancel:(UIButton *)sender{
     [self.reportViewMask dismiss];
-//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 
 
