@@ -10,6 +10,8 @@
 #import "QAAnswerModel.h"
 #import "QAExitView.h"
 @interface QAAnswerViewController ()<UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@property(assign,nonatomic)BOOL isFromDraft;
+@property(strong,nonatomic)NSNumber *draftId;
 @property(strong,nonatomic)QAAnswerModel *model;
 //问题id
 @property(strong,nonatomic)NSNumber *questionId;
@@ -33,6 +35,7 @@
 -(instancetype)initWithQuestionId:(NSNumber *)questionId content:(NSString *)content{
     self = [super init];
     self.title = @"提供帮助";
+    self.isFromDraft = NO;
     self.questionId = questionId;
     self.content = content;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -40,6 +43,10 @@
     self.model = [[QAAnswerModel alloc]init];
     [self setupUI];
     return self;
+}
+-(void)initFrpmDraft:(NSNumber *)draft_id{
+    self.isFromDraft = YES;
+    self.draftId = draft_id;
 }
 - (void)customNavigationRightButton{
     [self.rightButton mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -272,7 +279,12 @@
     [self.exitView removeFromSuperview];
     [self.exitViewMask dismiss];
     NSString *title = self.answerTextView.text;
-    [self.model addItemInDraft:title questionId:self.questionId];
+    if (self.isFromDraft == NO) {
+        [self.model addItemInDraft:title questionId:self.questionId];
+    }else{
+        [self.model updateItemInDraft:title draftId:self.draftId];
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

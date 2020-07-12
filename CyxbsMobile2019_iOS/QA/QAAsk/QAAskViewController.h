@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QAAskViewController : QABaseViewController
-
+- (void)initFromDraft:(NSDictionary *)dic;
 @end
 
 NS_ASSUME_NONNULL_END

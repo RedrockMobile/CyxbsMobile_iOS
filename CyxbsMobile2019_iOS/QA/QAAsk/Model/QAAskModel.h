@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)commitAsk:(NSString *)title content:(NSString *)content kind:(NSString *)kind reward:(NSString *)reward disappearTime:(NSString *)disappearTime imageArray:(NSArray *)imageArray;
 //保存到草稿箱
 - (void)addItemInDraft:(NSString *)title description:(NSString *)description kind:(NSString *)kind;
+//更新草稿箱
+- (void)updateItemInDraft:(NSString *)title description:(NSString *)description kind:(NSString *)kind;
 @end
 
 NS_ASSUME_NONNULL_END

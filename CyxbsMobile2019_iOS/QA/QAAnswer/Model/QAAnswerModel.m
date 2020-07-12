@@ -16,13 +16,13 @@
     [client requestWithPath:QA_ANSWER_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
-//            self.dataDic = [responseObject objectForKey:@"data"];
+            //            self.dataDic = [responseObject objectForKey:@"data"];
             self.answerId = [responseObject objectForKey:@"data"];
             if (imageArray.count == 0) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitSuccess" object:nil];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataReLoad" object:nil];
             }else{
-               [self uploadPhoto:imageArray];
+                [self uploadPhoto:imageArray];
             }
             
             
@@ -37,12 +37,12 @@
 - (void)uploadPhoto:(NSArray *)photoArray{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"answer_id":self.answerId};
-//    for (int i = 0; i < photoArray.count; i++) {
-//        UIImage *image = photoArray[i];
-//        NSData *imageData = UIImagePNGRepresentation(image);
-//        NSString *imageName = [NSString stringWithFormat:@"photo_url%d",i];
-//        [parameters setObject:imageData forKey:imageName];
-//    }
+    //    for (int i = 0; i < photoArray.count; i++) {
+    //        UIImage *image = photoArray[i];
+    //        NSData *imageData = UIImagePNGRepresentation(image);
+    //        NSString *imageName = [NSString stringWithFormat:@"photo_url%d",i];
+    //        [parameters setObject:imageData forKey:imageName];
+    //    }
     NSMutableArray *imageNamesx = [NSMutableArray array];
     for (int i = 0; i < photoArray.count; i++) {
         [imageNamesx addObject:[NSString stringWithFormat:@"photo%d",i+1]];
@@ -54,7 +54,7 @@
         if ([info isEqualToString:@"success"]) {
             NSDictionary *dic = [responseObject objectForKey:@"data"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitSuccess" object:nil];
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataReLoad" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataReLoad" object:nil];
             
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitError" object:nil];
@@ -69,11 +69,31 @@
 
 - (void)addItemInDraft:(NSString *)title questionId:(NSNumber *)questionId{
     NSDictionary *contentDic = @{@"title":title};
+    NSData *contentData = [NSJSONSerialization dataWithJSONObject:contentDic options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *content = [contentData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    NSDictionary *parameters = @{@"type":@"answer",@"content":content,@"target_id":questionId};
+    
+    [[HttpClient defaultClient] requestWithPath:QA_ADD_DRAFT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSString *info = [responseObject objectForKey:@"info"];
+        if ([info isEqualToString:@"success"]) {
+            
+            
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitError" object:nil];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitFailure" object:nil];
+    }];
+    
+}
+- (void)updateItemInDraft:(NSString *)title draftId:(NSNumber *)draftId{
+    NSDictionary *contentDic = @{@"title":title};
        NSData *contentData = [NSJSONSerialization dataWithJSONObject:contentDic options:NSJSONWritingPrettyPrinted error:nil];
        NSString *content = [contentData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-       NSDictionary *parameters = @{@"type":@"answer",@"content":content,@"target_id":questionId};
+       NSDictionary *parameters = @{@"content":content,@"id":draftId};
        
-       [[HttpClient defaultClient] requestWithPath:QA_ADD_DRAFT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+       [[HttpClient defaultClient] requestWithPath:QA_UPDATE_DRAFT_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
            NSString *info = [responseObject objectForKey:@"info"];
            if ([info isEqualToString:@"success"]) {
                
@@ -85,6 +105,5 @@
        } failure:^(NSURLSessionDataTask *task, NSError *error) {
            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitFailure" object:nil];
        }];
-    
 }
 @end
