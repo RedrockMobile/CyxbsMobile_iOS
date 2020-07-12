@@ -87,19 +87,5 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewReportFailure" object:nil];
     }];
 }
-- (void)ignore:(NSNumber *)answer_id{
-    HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"answer_id":answer_id};
-    [client requestWithPath:QA_IGNORE_QUESTION_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSString *info = [responseObject objectForKey:@"info"];
-        if ([info isEqualToString:@"success"]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewIgnoreSuccess" object:nil];
-        }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewIgnoreError" object:nil];
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"QAReviewIgnoreFailure" object:nil];
-    }];
-}
+
 @end
