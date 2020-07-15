@@ -34,6 +34,7 @@
     self.view.backgroundColor = UIColor.whiteColor;
     // Do any additional setup after loading the view.
 }
+
 - (void)addTableView {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 87, self.view.width, self.view.height - 87) style:UITableViewStylePlain];
     self.tableView = tableView;
@@ -42,6 +43,7 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
 }
+
 - (void)addBackButton {
     UIButton *button = [[UIButton alloc]init];
     [self.view addSubview:button];
@@ -56,9 +58,11 @@
     }];
     [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
 }
+
 - (void)popController {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)addTitleLabel {
     UILabel *label = [[UILabel alloc]init];
     self.titleLabel = label;
