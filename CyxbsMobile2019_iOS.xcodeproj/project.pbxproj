@@ -120,6 +120,7 @@
 		1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */; };
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
+		AA33F23D24BDF0DE00ECB09E /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */; };
 		D0011A6E23F082FD009A242C /* QAExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A6D23F082FD009A242C /* QAExitView.m */; };
 		D0011A7023F0830B009A242C /* QAExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A6F23F0830B009A242C /* QAExitView.xib */; };
 		D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A7223F08CB5009A242C /* QAAnswerExitView.xib */; };
@@ -328,10 +329,8 @@
 		EE75BFA523F5884100208039 /* TestCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2E23F5884100208039 /* TestCardTableViewCell.m */; };
 		EE75BFA623F5884100208039 /* PointAndDottedLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF2F23F5884100208039 /* PointAndDottedLineView.m */; };
 		EE75BFA723F5884100208039 /* TestArrangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3123F5884100208039 /* TestArrangeViewController.m */; };
-		EE75BFA823F5884100208039 /* StudentScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3523F5884100208039 /* StudentScheduleViewController.m */; };
 		EE75BFA923F5884100208039 /* ChooseStudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */; };
 		EE75BFAA23F5884100208039 /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */; };
-		EE75BFAB23F5884100208039 /* TeacherScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3C23F5884100208039 /* TeacherScheduleViewController.m */; };
 		EE75BFAC23F5884100208039 /* ClassmateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF3F23F5884100208039 /* ClassmateItem.m */; };
 		EE75BFAD23F5884100208039 /* ClassmatesList.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF4023F5884100208039 /* ClassmatesList.m */; };
 		EE75BFAE23F5884100208039 /* PeopleListCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BF4323F5884100208039 /* PeopleListCellTableViewCell.m */; };
@@ -690,6 +689,8 @@
 		1AFD153023819FBD004D9CEA /* EditMyInfoTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoTransitionAnimator.h; sourceTree = "<group>"; };
 		1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoTransitionAnimator.m; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		AA33F23B24BDF0DE00ECB09E /* ScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		D0011A6C23F082FD009A242C /* QAExitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAExitView.h; sourceTree = "<group>"; };
 		D0011A6D23F082FD009A242C /* QAExitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAExitView.m; sourceTree = "<group>"; };
 		D0011A6F23F0830B009A242C /* QAExitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QAExitView.xib; sourceTree = "<group>"; };
@@ -1018,14 +1019,10 @@
 		EE75BF2F23F5884100208039 /* PointAndDottedLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointAndDottedLineView.m; sourceTree = "<group>"; };
 		EE75BF3123F5884100208039 /* TestArrangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestArrangeViewController.m; sourceTree = "<group>"; };
 		EE75BF3223F5884100208039 /* TestArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestArrangeViewController.h; sourceTree = "<group>"; };
-		EE75BF3523F5884100208039 /* StudentScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentScheduleViewController.m; sourceTree = "<group>"; };
 		EE75BF3623F5884100208039 /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
 		EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStudentListViewController.m; sourceTree = "<group>"; };
-		EE75BF3823F5884100208039 /* TeacherScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherScheduleViewController.h; sourceTree = "<group>"; };
-		EE75BF3923F5884100208039 /* StudentScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentScheduleViewController.h; sourceTree = "<group>"; };
 		EE75BF3A23F5884100208039 /* ChooseStudentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseStudentListViewController.h; sourceTree = "<group>"; };
 		EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleInquiryViewController.m; sourceTree = "<group>"; };
-		EE75BF3C23F5884100208039 /* TeacherScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherScheduleViewController.m; sourceTree = "<group>"; };
 		EE75BF3E23F5884100208039 /* ClassmatesList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassmatesList.h; sourceTree = "<group>"; };
 		EE75BF3F23F5884100208039 /* ClassmateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassmateItem.m; sourceTree = "<group>"; };
 		EE75BF4023F5884100208039 /* ClassmatesList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassmatesList.m; sourceTree = "<group>"; };
@@ -2815,10 +2812,8 @@
 				EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */,
 				EE75BF3623F5884100208039 /* ScheduleInquiryViewController.h */,
 				EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */,
-				EE75BF3923F5884100208039 /* StudentScheduleViewController.h */,
-				EE75BF3523F5884100208039 /* StudentScheduleViewController.m */,
-				EE75BF3823F5884100208039 /* TeacherScheduleViewController.h */,
-				EE75BF3C23F5884100208039 /* TeacherScheduleViewController.m */,
+				AA33F23B24BDF0DE00ECB09E /* ScheduleViewController.h */,
+				AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2827,9 +2822,9 @@
 			isa = PBXGroup;
 			children = (
 				EE75BF3E23F5884100208039 /* ClassmatesList.h */,
-				EE75BF3F23F5884100208039 /* ClassmateItem.m */,
 				EE75BF4023F5884100208039 /* ClassmatesList.m */,
 				EE75BF4123F5884100208039 /* ClassmateItem.h */,
+				EE75BF3F23F5884100208039 /* ClassmateItem.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3509,6 +3504,7 @@
 				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
 				EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
+				AA33F23D24BDF0DE00ECB09E /* ScheduleViewController.m in Sources */,
 				1AD038DA23FA775600D5C90E /* MineQACommentItem.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
@@ -3577,7 +3573,6 @@
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				EE8234DC24673FE800F6B4AE /* HeaderTableViewCell.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
-				EE75BFA823F5884100208039 /* StudentScheduleViewController.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
 				EE131C2924713BE100B6ED97 /* CalendarViewController.m in Sources */,
@@ -3686,7 +3681,6 @@
 				1A22DDD724502A6E00FBB51E /* EmptyClassCollectionViewCell.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				EE75BFC123F5884100208039 /* SCColor.m in Sources */,
-				EE75BFAB23F5884100208039 /* TeacherScheduleViewController.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,

@@ -4,17 +4,20 @@
 //
 //  Created by 千千 on 2020/1/20.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//这个控制器是查课表页的总控制器
 
 #import "ScheduleInquiryViewController.h"
 #import "QAListSegmentView.h"
-#import "StudentScheduleViewController.h"
-#import "TeacherScheduleViewController.h"
+//#import "StudentScheduleViewController.h"
+//#import "TeacherScheduleViewController.h"
+#import "ScheduleViewController.h"
+#define STU_FIND_HISTORY @"FindStudentSchedule_historyArray"
+#define TEA_FIND_HISTORY @"FindTeacherSchedule_historyArray"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define navigationbarColor  [UIColor colorNamed:@"Color#FFFFFF&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
-@interface ScheduleInquiryViewController () <StudentScheduleDelegate>
+@interface ScheduleInquiryViewController () <ScheduleViewControllerDelegate>
 @property (nonatomic, weak)UIView *backgroundView;
 @property (nonatomic, weak)UILabel *titleLabel;
 @end
@@ -34,6 +37,7 @@
     // Do any additional setup after loading the view.
 }
 
+//自定义的Tabbar（显示“查课表”的那块）
 - (void)addCustomTabbarView {
     UIView *backgroundView;
     if IS_IPHONEX {
@@ -64,6 +68,8 @@
         titleLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     }
 }
+
+//添加推出查课表页的按钮
 - (void)addBackButton {
     UIButton *backButton = [[UIButton alloc]init];
     [self.view addSubview:backButton];
@@ -76,16 +82,22 @@
     }];
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
+
+//跳出查课表页的方法
 - (void) back {
      [self.navigationController popViewControllerAnimated:YES];
 }
+
+//添加带标签栏的一个分页的一个scrollView（即QAListSegmentView）
 - (void)addSegmentView {
-    StudentScheduleViewController *stuVC = [[StudentScheduleViewController alloc]init];
-    stuVC.title = @"学生课表";
-    stuVC.delegate = self;
-    TeacherScheduleViewController *teacherVC = [[TeacherScheduleViewController alloc]init];
-    teacherVC.title = @"老师课表";
-    QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-120) controllers:@[stuVC, teacherVC]];
+    ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:STU_FIND_HISTORY];
+    stu.title = @"学生课表";
+    stu.delegate = self;
+    ScheduleViewController *tea = [[ScheduleViewController alloc] initWithUserDefaultKey:TEA_FIND_HISTORY];
+    tea.title = @"老师课表";
+    tea.delegate = self;
+    
+    QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-120) controllers:@[stu, tea]];
     [self.view addSubview:segmentView];
 
     if (@available(iOS 11.0, *)) {
@@ -100,18 +112,10 @@
         make.bottom.equalTo(self.view);
     }];
 }
+
+//这个是<ScheduleViewControllerDelegate>协议里需要实现的方法，起到跳转到符合条件的人员名单页的功能
 - (void)pushToController:(UIViewController *)studentListVC {
     [self.navigationController pushViewController:studentListVC animated:YES];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 @end
