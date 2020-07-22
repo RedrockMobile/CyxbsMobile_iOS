@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "ClassmatesList.h"
+#import "SchedulForOneWeekController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChooseStudentListViewController : UIViewController
 
 - (instancetype)initWithClassmatesList:(ClassmatesList *)classmatesList;
 
+@property (nonatomic,assign)PeopleType peopleType;
 @end
 
 NS_ASSUME_NONNULL_END

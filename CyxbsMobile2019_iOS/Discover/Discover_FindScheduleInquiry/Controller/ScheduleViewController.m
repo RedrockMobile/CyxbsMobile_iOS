@@ -18,7 +18,7 @@
 
 
 
-@interface ScheduleViewController ()
+@interface ScheduleViewController ()<UITextFieldDelegate>
 /**搜索栏里的UITextField*/
 @property (nonatomic, weak)UITextField *textField;
 
@@ -84,6 +84,12 @@
        }];
        [textField setFont:[UIFont fontWithName:PingFangSCRegular size:15]];
        textField.placeholder = @"输入内容";
+    
+    //设置return类型为search，这样键盘上就会有一个搜索按钮
+    [textField setReturnKeyType:(UIReturnKeySearch)];
+    
+    textField.delegate = self;
+    
        if (@available(iOS 11.0, *)) {
            textField.textColor = Color21_49_91_F0F0F2;
            textField.tintColor = Color21_49_91_F0F0F2;
@@ -197,10 +203,29 @@
                //没有发生跳转，那就只改变显示历史记录的控件的内部数据，而不刷新历史记录控件布局
                [self.historyView addHistoryBtnWithString:string reLayout:NO];
                return;
+           }else if (classmatesList.classmatesArray.count == 1) {
+               //如果只有一个结果那么直接显示ta的课表就好了
+               SchedulForOneWeekController *schedul = [[SchedulForOneWeekController alloc] init];
+               
+               //判断课表是否加载成功，如果成功就present
+               if([schedul loadSchedulWithNum:classmatesList.classmatesArray[0].stuNum ForPeopleType:self.peopleType]==YES){
+                   
+                   [self presentViewController:schedul animated:YES completion:nil];
+                   
+               }else{
+                   MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                   hud.mode = MBProgressHUDModeText;
+                   hud.labelText = @"加载失败";
+                   [hud hide:YES afterDelay:1];
+               }
+               
+               return;
            }
            
-           //有结果就跳转到搜索结果页面
+           //有多个结果就跳转到搜索结果页面
+           
            ChooseStudentListViewController *studentListVC = [[ChooseStudentListViewController alloc]initWithClassmatesList:classmatesList];
+           studentListVC.peopleType = self.peopleType;
            [self.delegate pushToController: studentListVC];
            //跳转后刷新历史记录表
            [self.historyView addHistoryBtnWithString:string reLayout:YES];
@@ -211,6 +236,7 @@
            hud.mode = MBProgressHUDModeText;
            hud.labelText = @"加载失败";
            [hud hide:YES afterDelay:1];
+           
            //没有发生跳转，那就只改变显示历史记录的控件的内部数据，而不刷新历史记录控件布局
            [self.historyView addHistoryBtnWithString:string reLayout:NO];
        }];
@@ -272,5 +298,10 @@
         self.UserDefaultKey = key;
     }
     return self;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self touchSearchButton];
+    return YES;
 }
 @end

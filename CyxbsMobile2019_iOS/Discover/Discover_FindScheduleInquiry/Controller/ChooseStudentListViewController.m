@@ -100,5 +100,17 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    SchedulForOneWeekController *schedul = [[SchedulForOneWeekController alloc]init];
+    
+    //传入被查课表者的num（学生学号？老师工号？）
+    if([schedul loadSchedulWithNum:self.classmatesList.classmatesArray[indexPath.row].stuNum ForPeopleType:(self.peopleType)]==YES){
+        [self presentViewController:schedul animated:YES completion:nil];
+    }else{
+        MBProgressHUD *noInput = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        noInput.mode = MBProgressHUDModeText;
+        noInput.labelText = @"加载失败";
+        [noInput hide:YES afterDelay:1];
+    }
 }
 @end

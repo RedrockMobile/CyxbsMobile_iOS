@@ -7,6 +7,7 @@
 //对于这个控制器的说明：查询老师课表、查询学生课表是分别由两个控制器管理的，而这两个控制器的类型都是本控制器
 
 #import <UIKit/UIKit.h>
+#import "SchedulForOneWeekController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol ScheduleViewControllerDelegate <NSObject>
@@ -26,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /***/
 - (instancetype)initWithUserDefaultKesy:(NSString*)key;
+
+@property (nonatomic,assign)PeopleType peopleType;
+
 @end
 
 NS_ASSUME_NONNULL_END
