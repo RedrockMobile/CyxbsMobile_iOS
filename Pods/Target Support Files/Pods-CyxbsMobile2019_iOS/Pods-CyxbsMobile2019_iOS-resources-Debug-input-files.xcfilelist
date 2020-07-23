@@ -1,5 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-resources.sh
-${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle
+${PODS_ROOT}/AMap3DMap-NO-IDFA/MAMapKit.framework/AMap.bundle
 ${PODS_ROOT}/GMImagePicker/GMImagePicker/GMEmptyFolder@1x.png
 ${PODS_ROOT}/GMImagePicker/GMImagePicker/GMEmptyFolder@2x.png
 ${PODS_ROOT}/GMImagePicker/GMImagePicker/GMSelected.png

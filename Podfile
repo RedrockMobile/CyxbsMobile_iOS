@@ -1,4 +1,4 @@
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 platform :ios,'9.0'
 target 'CyxbsMobile2019_iOS' do
@@ -11,8 +11,8 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'Masonry'
 	pod 'MJRefresh'
 	pod 'pop'
-	pod 'AMapLocation'
-	pod 'AMap2DMap'
+	pod 'AMapLocation-NO-IDFA'
+	pod 'AMap3DMap-NO-IDFA'
 	pod 'MJExtension'
 	pod 'SDCycleScrollView'
 	pod 'IQKeyboardManager'

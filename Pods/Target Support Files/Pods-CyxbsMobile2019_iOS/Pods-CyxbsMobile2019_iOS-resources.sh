@@ -97,7 +97,7 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle"
+  install_resource "${PODS_ROOT}/AMap3DMap-NO-IDFA/MAMapKit.framework/AMap.bundle"
   install_resource "${PODS_ROOT}/GMImagePicker/GMImagePicker/GMEmptyFolder@1x.png"
   install_resource "${PODS_ROOT}/GMImagePicker/GMImagePicker/GMEmptyFolder@2x.png"
   install_resource "${PODS_ROOT}/GMImagePicker/GMImagePicker/GMSelected.png"
@@ -117,7 +117,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${PODS_ROOT}/AMap2DMap/MAMapKit.framework/AMap.bundle"
+  install_resource "${PODS_ROOT}/AMap3DMap-NO-IDFA/MAMapKit.framework/AMap.bundle"
   install_resource "${PODS_ROOT}/GMImagePicker/GMImagePicker/GMEmptyFolder@1x.png"
   install_resource "${PODS_ROOT}/GMImagePicker/GMImagePicker/GMEmptyFolder@2x.png"
   install_resource "${PODS_ROOT}/GMImagePicker/GMImagePicker/GMSelected.png"

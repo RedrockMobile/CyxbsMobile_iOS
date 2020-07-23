@@ -20,11 +20,11 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - AMap2DMap (5.6.1):
-    - AMapFoundation (~> 1.4)
-  - AMapFoundation (1.5.7)
-  - AMapLocation (2.6.3):
-    - AMapFoundation (~> 1.4)
+  - AMap3DMap-NO-IDFA (7.5.0):
+    - AMapFoundation-NO-IDFA (~> 1.6.3)
+  - AMapFoundation-NO-IDFA (1.6.3)
+  - AMapLocation-NO-IDFA (2.6.5):
+    - AMapFoundation-NO-IDFA (~> 1.6.3)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -66,8 +66,8 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
-  - AMap2DMap
-  - AMapLocation
+  - AMap3DMap-NO-IDFA
+  - AMapLocation-NO-IDFA
   - FMDB
   - GMImagePicker
   - IQKeyboardManager
@@ -90,11 +90,11 @@ DEPENDENCIES:
   - YYKit
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
-    - AMap2DMap
-    - AMapFoundation
-    - AMapLocation
+    - AMap3DMap-NO-IDFA
+    - AMapFoundation-NO-IDFA
+    - AMapLocation-NO-IDFA
     - FMDB
     - GMImagePicker
     - IQKeyboardManager
@@ -104,7 +104,6 @@ SPEC REPOS:
     - MJRefresh
     - pop
     - SDCycleScrollView
-    - SDWebImage
     - UMCAnalytics
     - UMCCommon
     - UMCCommonLog
@@ -113,12 +112,14 @@ SPEC REPOS:
     - UMCSecurityPlugins
     - UMCShare
     - YYKit
+  trunk:
+    - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AMap2DMap: cac76bc057de18a1641f34df6b50bf5bc6b23571
-  AMapFoundation: 216d58448c80356434ac4332250a8fdb2f5c4d1e
-  AMapLocation: dc2c4fde95d72087d73934338160fadc72104bb7
+  AMap3DMap-NO-IDFA: f0981f6f48ec192c45f6db140f5ab53c47d16424
+  AMapFoundation-NO-IDFA: cf241b2f4832fe6c9e121af381e34791be49ad0d
+  AMapLocation-NO-IDFA: 681a55b09638a0a5838c7c260f8825a1dbc7d98d
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GMImagePicker: 6438a6764d6280b1dbf19b59140313f5a73daeeb
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
@@ -138,6 +139,6 @@ SPEC CHECKSUMS:
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: f9d9650a3b2129ae0874f77c423b554e0593ecdb
+PODFILE CHECKSUM: 14118b509e0cdc13844870a67765c8792dc8d610
 
 COCOAPODS: 1.9.1
