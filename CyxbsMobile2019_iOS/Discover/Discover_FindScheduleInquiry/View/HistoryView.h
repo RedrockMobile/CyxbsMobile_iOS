@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIButton *exampleButton;
 @property (nonatomic, strong)NSMutableArray <UIButton*>*buttonArray;//每一个button
 - (instancetype) initWithFrame:(CGRect)frame button:(UIButton *)exampleButton dataArray: (NSMutableArray*) dataArray;
+- (void)addHistoryBtnWithString:(NSString*)string reLayout:(BOOL)is;
 @end
 
 NS_ASSUME_NONNULL_END

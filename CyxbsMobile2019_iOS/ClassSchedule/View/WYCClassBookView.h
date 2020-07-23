@@ -18,7 +18,11 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, weak) id<WYCClassBookViewDelegate> detailDelegate;
 -(void)initView:(BOOL)isFirst;
+
+/**参数date内部是7个字典，字典内部：day:某天的日期，month:某天的月份*/
 -(void)addBar:(NSArray *)date isFirst:(BOOL)isFirst;
+
+/**参数内部是存放7天的课程数据*/
 -(void)addBtn:(NSMutableArray *)day;
 
 

@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)cancelPraise:(nonnull NSNumber *)answerId;
 
 - (void)report:(NSString *)type answer_id:(NSNumber *)answer_id;
-- (void)ignore:(NSNumber *)answer_id;
 @end
 
 NS_ASSUME_NONNULL_END

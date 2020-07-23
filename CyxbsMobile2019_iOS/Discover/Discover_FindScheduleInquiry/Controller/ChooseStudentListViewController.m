@@ -34,6 +34,7 @@
     self.view.backgroundColor = UIColor.whiteColor;
     // Do any additional setup after loading the view.
 }
+
 - (void)addTableView {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 87, self.view.width, self.view.height - 87) style:UITableViewStylePlain];
     self.tableView = tableView;
@@ -42,6 +43,7 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
 }
+
 - (void)addBackButton {
     UIButton *button = [[UIButton alloc]init];
     [self.view addSubview:button];
@@ -56,9 +58,11 @@
     }];
     [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
 }
+
 - (void)popController {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (void)addTitleLabel {
     UILabel *label = [[UILabel alloc]init];
     self.titleLabel = label;
@@ -96,5 +100,17 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+    SchedulForOneWeekController *schedul = [[SchedulForOneWeekController alloc]init];
+    
+    //传入被查课表者的num（学生学号？老师工号？）
+    if([schedul loadSchedulWithNum:self.classmatesList.classmatesArray[indexPath.row].stuNum ForPeopleType:(self.peopleType)]==YES){
+        [self presentViewController:schedul animated:YES completion:nil];
+    }else{
+        MBProgressHUD *noInput = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        noInput.mode = MBProgressHUDModeText;
+        noInput.labelText = @"加载失败";
+        [noInput hide:YES afterDelay:1];
+    }
 }
 @end

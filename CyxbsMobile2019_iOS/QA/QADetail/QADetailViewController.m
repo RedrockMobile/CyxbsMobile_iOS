@@ -66,6 +66,7 @@
     [self.model getDataWithId:self.question_id];
 }
 - (void)setNotification{
+    //数据加载
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QADetailDataLoadSuccess)
                                                  name:@"QADetailDataLoadSuccess" object:nil];
@@ -78,6 +79,26 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadView)
                                                  name:@"QADetailDataReLoad" object:nil];
+    //举报问题
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QADetailReportSuccess)
+                                                 name:@"QADetailReportSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                                selector:@selector(QADetailReportError)
+                                                    name:@"QADetailReportError" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QADetailReportFailure)
+                                                 name:@"QADetailReportFailure" object:nil];
+    //忽略问题
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QADetailIgnoreSuccess)
+                                                 name:@"QADetailIgnoreSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QADetailIgnoreError)
+                                                 name:@"QADetailIgnoreError" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QADetailIgnoreFailure)
+                                                 name:@"QADetailIgnoreFailure" object:nil];
 }
 
 - (void)QADetailDataLoadSuccess{
@@ -112,6 +133,61 @@
         
     }];
 }
+- (void)QADetailReportSuccess{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"举报成功" message:@"会尽快为您处理" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [controller addAction:act1];
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
+}
+- (void)QADetailReportError{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"举报失败" message:@"服务器错误或您已举报过该问题。" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [controller addAction:act1];
+    
+    [self presentViewController:controller animated:YES completion:^{
+        
+    }];
+}
+- (void)QADetailReportFailure{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"举报失败" message:@"举报请求提交失败" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+    [controller addAction:act1];
+    [self presentViewController:controller animated:YES completion:^{}];
+}
+- (void)QADetailIgnoreSuccess{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"忽略问题" message:@"已忽略该问题" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [controller addAction:act1];
+    [self presentViewController:controller animated:YES completion:^{}];
+}
+- (void)QADetailIgnoreError{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"忽略问题" message:@"服务器错误或您已忽略过该问题。" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+    [controller addAction:act1];
+    [self presentViewController:controller animated:YES completion:^{}];
+}
+- (void)QADetailIgnoreFailure{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"忽略问题" message:@"忽略问题请求提交失败" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {}];
+    [controller addAction:act1];
+    [self presentViewController:controller animated:YES completion:^{}];
+}
 - (void)reloadView{
     [self.view removeAllSubviews];
     [self customNavigationBar];
@@ -136,17 +212,16 @@
 }
 //举报问题
 - (void)report:(UIButton *)sender{
+    [self.reportViewMask dismiss];
     [self.model report:sender.titleLabel.text question_id:self.question_id];
-//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 //忽略问题
 - (void)ignore:(UIButton *)sender{
+    [self.reportViewMask dismiss];
     [self.model ignore:self.question_id];
-//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 - (void)cancel:(UIButton *)sender{
     [self.reportViewMask dismiss];
-//    NSLog(@"%@,%lD",sender.titleLabel.text,(long)sender.tag);
 }
 
 - (void)answer:(UIButton *)sender{
