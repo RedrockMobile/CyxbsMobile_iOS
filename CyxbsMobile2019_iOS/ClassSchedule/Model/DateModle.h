@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface DateModle : NSObject
+
+/**这个数组内部有25个数组，每一个数组内部都是对应一周7天的七个字典，字典里day->某日，month->某月*/
 @property (nonatomic, strong) NSMutableArray *dateArray;
+
+/**当前是第几周*/
 @property (nonatomic, strong) NSNumber *nowWeek;
 +(instancetype)initWithStartDate:(NSString *)startDate;
 

@@ -121,6 +121,7 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		AA33F23D24BDF0DE00ECB09E /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */; };
+		AA7FAE4524C83D3D0018EAEB /* SchedulForOneWeekController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7FAE4424C83D3D0018EAEB /* SchedulForOneWeekController.m */; };
 		D0011A6E23F082FD009A242C /* QAExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A6D23F082FD009A242C /* QAExitView.m */; };
 		D0011A7023F0830B009A242C /* QAExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A6F23F0830B009A242C /* QAExitView.xib */; };
 		D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A7223F08CB5009A242C /* QAAnswerExitView.xib */; };
@@ -691,6 +692,8 @@
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AA33F23B24BDF0DE00ECB09E /* ScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		AA7FAE4324C83D3D0018EAEB /* SchedulForOneWeekController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulForOneWeekController.h; sourceTree = "<group>"; };
+		AA7FAE4424C83D3D0018EAEB /* SchedulForOneWeekController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulForOneWeekController.m; sourceTree = "<group>"; };
 		D0011A6C23F082FD009A242C /* QAExitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAExitView.h; sourceTree = "<group>"; };
 		D0011A6D23F082FD009A242C /* QAExitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAExitView.m; sourceTree = "<group>"; };
 		D0011A6F23F0830B009A242C /* QAExitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QAExitView.xib; sourceTree = "<group>"; };
@@ -2350,10 +2353,10 @@
 		DB34EA2C239BD4540052B65E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DB34EA2D239BD4540052B65E /* DateModle.m */,
-				DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */,
 				DB34EA2F239BD4540052B65E /* DateModle.h */,
+				DB34EA2D239BD4540052B65E /* DateModle.m */,
 				DB34EA30239BD4540052B65E /* WYCClassAndRemindDataModel.h */,
+				DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2814,6 +2817,8 @@
 				EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */,
 				AA33F23B24BDF0DE00ECB09E /* ScheduleViewController.h */,
 				AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */,
+				AA7FAE4324C83D3D0018EAEB /* SchedulForOneWeekController.h */,
+				AA7FAE4424C83D3D0018EAEB /* SchedulForOneWeekController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3731,6 +3736,7 @@
 				EEA301DD2468680800A8DB26 /* BannerData.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				EE75BFA623F5884100208039 /* PointAndDottedLineView.m in Sources */,
+				AA7FAE4524C83D3D0018EAEB /* SchedulForOneWeekController.m in Sources */,
 				EE75BFBB23F5884100208039 /* SCTool.m in Sources */,
 				EE75BFC323F5884100208039 /* UICountingLabel.m in Sources */,
 				EE75BF9C23F5884100208039 /* EnterButton.m in Sources */,
