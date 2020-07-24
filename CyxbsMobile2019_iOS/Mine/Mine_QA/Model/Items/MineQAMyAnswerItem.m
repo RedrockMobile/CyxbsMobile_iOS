@@ -21,7 +21,7 @@
 
 - (instancetype)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
-        self.questionID = dict[@"question_id"];
+        self.questionID = [NSString stringWithFormat:@"%@", dict[@"question_id"]];
         self.integral = [NSString stringWithFormat:@"%@", dict[@"integral"]];
         self.answerID = [NSString stringWithFormat:@"%@", dict[@"answer_id"]];
         self.answerContent = dict[@"answer_content"];

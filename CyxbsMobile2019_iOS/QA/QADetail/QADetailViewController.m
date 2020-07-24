@@ -225,7 +225,7 @@
 }
 
 - (void)answer:(UIButton *)sender{
-    QAAnswerViewController *vc = [[QAAnswerViewController alloc]initWithQuestionId:self.question_id content:[self.model.detailData objectForKey:@"title"]];
+    QAAnswerViewController *vc = [[QAAnswerViewController alloc]initWithQuestionId:self.question_id content:[self.model.detailData objectForKey:@"description"] answer:@""];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)replyComment:(nonnull NSNumber *)answerId {

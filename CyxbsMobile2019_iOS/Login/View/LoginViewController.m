@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "LoginPresenter.h"
 #import "LoginViewProtocol.h"
+#import "UserProtocolViewController.h"
 
 typedef NS_ENUM(NSInteger, LZLoginState) {
     LZLoginStateLackPassword,
@@ -124,5 +125,11 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
     [hud hide:YES afterDelay:1.5];
     [self.loginHUD hide:YES];
 }
+
+- (IBAction)protocolButtonClicked:(id)sender {
+    UserProtocolViewController *protocolVC = [[UserProtocolViewController alloc] init];
+    [self presentViewController:protocolVC animated:YES completion:nil];
+}
+
 
 @end

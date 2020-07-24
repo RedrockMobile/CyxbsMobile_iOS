@@ -73,6 +73,7 @@
 		1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34123DC6CE2005DC1F3 /* MyAnswerDraftCell.m */; };
 		1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34423DC6F14005DC1F3 /* MyResponseSentCell.m */; };
 		1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34723DC6F58005DC1F3 /* MyResponseRecievedCell.m */; };
+		1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
 		1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDA23600C9100543BAE /* LoginViewController.m */; };
 		1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDD23600CBE00543BAE /* Login.xcassets */; };
@@ -593,6 +594,8 @@
 		1A46C34423DC6F14005DC1F3 /* MyResponseSentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyResponseSentCell.m; sourceTree = "<group>"; };
 		1A46C34623DC6F58005DC1F3 /* MyResponseRecievedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyResponseRecievedCell.h; sourceTree = "<group>"; };
 		1A46C34723DC6F58005DC1F3 /* MyResponseRecievedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyResponseRecievedCell.m; sourceTree = "<group>"; };
+		1A4A466A24C97E2A0033734E /* UserProtocolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserProtocolViewController.h; sourceTree = "<group>"; };
+		1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserProtocolViewController.m; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1A5A5ED923600C9100543BAE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1A5A5EDA23600C9100543BAE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -1643,10 +1646,20 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		1A4A466924C97D610033734E /* UserProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				1A4A466A24C97E2A0033734E /* UserProtocolViewController.h */,
+				1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */,
+			);
+			path = UserProtocol;
+			sourceTree = "<group>";
+		};
 		1A5A5ED423600BA300543BAE /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				1A5A5EDD23600CBE00543BAE /* Login.xcassets */,
+				1A4A466924C97D610033734E /* UserProtocol */,
 				1A5A5EEC2360240000543BAE /* Protocol */,
 				1A5A5ED523600BD700543BAE /* View */,
 				1A5A5ED723600BE000543BAE /* Presenter */,
@@ -3615,6 +3628,7 @@
 				EE75BF9D23F5884100208039 /* FinderView.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
+				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
 				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,

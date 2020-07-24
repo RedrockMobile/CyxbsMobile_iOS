@@ -57,17 +57,20 @@
     }
     return self;
 }
-- (void)initFromDraft:(NSDictionary *)dic{
-    self.titleTextField.text = [dic objectForKey:@"title"];
-    self.askTextView.text = [dic objectForKey:@"description"];
-    self.kind = [dic objectForKey:@"kind"];
-    self.isFromDraft = YES;
-    for (int i = 0; i < self.kindBtnArray.count; i++) {
-        UIButton *btn = self.kindBtnArray[i];
-        if ([btn.currentTitle isEqualToString:self.kind]) {
-            [self tapTitleBtn:btn];
+- (instancetype)initFromDraft:(NSDictionary *)dic {
+    if (self = [self init]) {
+        self.titleTextField.text = [dic objectForKey:@"title"];
+        self.askTextView.text = [dic objectForKey:@"description"];
+        self.kind = [dic objectForKey:@"kind"];
+        self.isFromDraft = YES;
+        for (int i = 0; i < self.kindBtnArray.count; i++) {
+            UIButton *btn = self.kindBtnArray[i];
+            if ([btn.currentTitle isEqualToString:self.kind]) {
+                [self tapTitleBtn:btn];
+            }
         }
     }
+    return self;
 }
 - (void)customNavigationRightButton{
     [self.rightButton mas_updateConstraints:^(MASConstraintMaker *make) {

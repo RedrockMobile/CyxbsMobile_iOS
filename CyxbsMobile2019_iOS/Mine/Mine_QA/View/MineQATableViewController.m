@@ -16,8 +16,15 @@
 #import "MineQAController.h"
 #import <MJRefresh.h>
 #import "QADetailViewController.h"
+#import "QAAnswerViewController.h"
+#import "QAAnswerViewController.h"
+#import "QAAskViewController.h"
 #import "MineQAMyQuestionItem.h"
 #import "MineQAMyAnswerItem.h"
+#import "MineQAMyAnswerDraftItem.h"
+#import "MineQAMyQuestionDraftItem.h"
+#import "MineQAModel.h"
+
 
 @interface MineQATableViewController ()
 
@@ -105,13 +112,42 @@
             NSString *title = ((MineQAMyQuestionItem *)(self.itemsArray[indexPath.row])).title;
             QADetailViewController *questionDetailVC = [[QADetailViewController alloc] initViewWithId:questionID title:title];
             [self.superController.navigationController pushViewController:questionDetailVC animated:YES];
+        } else if ([self.subTittle isEqualToString:@"草稿箱"]) {
+            
+            NSDictionary *initData = @{
+                @"title": ((MineQAMyQuestionDraftItem *)(self.itemsArray[indexPath.row])).title,
+                @"description": ((MineQAMyQuestionDraftItem *)(self.itemsArray[indexPath.row])).questionDraftContent,
+                @"kind": @"学习"      // 后端返回的数据没有kind，，，给个默认值吧
+            };
+            QAAskViewController *askVC = [[QAAskViewController alloc] initFromDraft:initData];
+            [self.superController.navigationController pushViewController:askVC animated:YES];
         }
     } else if ([self.title isEqualToString:@"我的回答"]) {
         if ([self.subTittle isEqualToString:@"已发布"]) {
-//            NSNumber *questionID = [((MineQAMyAnswerItem *)(self.itemsArray[indexPath.row])).questionID numberValue];
-////            NSString *title = ((MineQAMyAnswerItem *)(self.itemsArray[indexPath.row])).;
-//            QADetailViewController *questionDetailVC = [[QADetailViewController alloc] initViewWithId:questionID title:title];
-//            [self.superController.navigationController pushViewController:questionDetailVC animated:YES];
+            NSString *questionID = ((MineQAMyAnswerItem *)(self.itemsArray[indexPath.row])).questionID;
+            
+            [MineQAModel requestQuestionDetailWithQuestionID:questionID succeeded:^(NSDictionary * _Nonnull responseObject) {
+                
+                NSString *title = responseObject[@"data"][@"title"];
+                QADetailViewController *questionDetailVC = [[QADetailViewController alloc] initViewWithId:[questionID numberValue] title:title];
+                [self.superController.navigationController pushViewController:questionDetailVC animated:YES];
+                
+            } failed:^(NSError * _Nonnull error) {
+                
+            }];
+        } else if ([self.subTittle isEqualToString:@"草稿箱"]) {
+            NSString *questionID = ((MineQAMyAnswerDraftItem *)(self.itemsArray[indexPath.row])).questionID;
+            NSString *answerDraftContent = ((MineQAMyAnswerDraftItem *)(self.itemsArray[indexPath.row])).answerDraftContent;
+            
+            [MineQAModel requestQuestionDetailWithQuestionID:questionID succeeded:^(NSDictionary * _Nonnull responseObject) {
+                
+                NSString *content = responseObject[@"data"][@"description"];
+                QAAnswerViewController *answerVC = [[QAAnswerViewController alloc] initWithQuestionId:[questionID numberValue] content:content answer:answerDraftContent];
+                [self.superController.navigationController pushViewController:answerVC animated:YES];
+                
+            } failed:^(NSError * _Nonnull error) {
+                
+            }];
         }
     }
 }

@@ -147,4 +147,28 @@
     }];
 }
 
+
+
+#pragma mark - 根据问题id获得问题标题，描述等数据
+/*
+    因为“问题详情”，“回答”等页面提供的init方法需要传入问题的标题。。所以这里要多做一次请求。。。
+*/
+
++ (void)requestQuestionDetailWithQuestionID:(NSString *)questionID
+                                      succeeded:(void (^)(NSDictionary * _Nonnull))succeeded
+                                         failed:(void (^)(NSError * _Nonnull))failed {
+    NSDictionary *params = @{
+        @"stuNum": [UserDefaultTool getStuNum],
+        @"idNum": [UserDefaultTool getIdNum],
+        @"question_id": questionID
+    };
+    
+    [[HttpClient defaultClient] requestWithPath:QA_QUESTION_DETAIL_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        succeeded(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failed(error);
+    }];
+}
+
+
 @end

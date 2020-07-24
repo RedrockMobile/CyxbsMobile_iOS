@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QAAnswerViewController : QABaseViewController
--(instancetype)initWithQuestionId:(NSNumber *)questionId content:(NSString *)content;
+-(instancetype)initWithQuestionId:(NSNumber *)questionId content:(NSString *)content answer:(NSString *)answer;
 -(void)initFrpmDraft:(NSNumber *)draft_id;
 @end
 

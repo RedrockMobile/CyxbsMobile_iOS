@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
--(instancetype)initWithQuestionId:(NSNumber *)questionId content:(NSString *)content{
+-(instancetype)initWithQuestionId:(NSNumber *)questionId content:(NSString *)content answer:(NSString *)answer {
     self = [super init];
     self.title = @"提供帮助";
     self.isFromDraft = NO;
@@ -42,6 +42,7 @@
     [self setNotification];
     self.model = [[QAAnswerModel alloc]init];
     [self setupUI];
+    self.answerTextView.text = answer;
     return self;
 }
 -(void)initFrpmDraft:(NSNumber *)draft_id{

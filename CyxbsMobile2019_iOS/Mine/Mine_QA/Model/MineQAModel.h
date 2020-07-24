@@ -46,6 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
                      succeeded:(void (^)(void))succeeded
                         failed:(void (^)(NSError *error))failed;
 
++ (void)requestQuestionDetailWithQuestionID:(NSString *)questionID
+                                      succeeded:(void (^)(NSDictionary *responseObject))succeeded
+                                         failed:(void (^)(NSError *error))failed;
+
 @end
 
 NS_ASSUME_NONNULL_END
