@@ -37,7 +37,7 @@
     userIcon.layer.cornerRadius = 20;
     userIcon.layer.masksToBounds = YES;
     NSString *userIconUrl = [dic objectForKey:@"photo_thumbnail_src"];
-    [userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"userIcon"]];
+    [userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"默认头像"]];
     [userInfoView addSubview:userIcon];
     
     UILabel *userNameLabel = [[UILabel alloc]init];

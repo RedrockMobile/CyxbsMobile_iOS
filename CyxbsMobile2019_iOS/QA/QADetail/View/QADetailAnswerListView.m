@@ -31,7 +31,7 @@
     [self.userNameLabel setText:[dic objectForKey:@"nickname"]];
     NSURL *userIconUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@",[dic objectForKey:@"photo_thumbnail_src"]]];
     
-    [self.userIcon setImageWithURL:userIconUrl placeholder:[UIImage imageNamed:@"userIcon"]];
+    [self.userIcon setImageWithURL:userIconUrl placeholder:[UIImage imageNamed:@"默认头像"]];
     self.userIcon.layer.cornerRadius = 15;
     
     [self.timeLabel setText:[dic objectForKey:@"created_at"]];

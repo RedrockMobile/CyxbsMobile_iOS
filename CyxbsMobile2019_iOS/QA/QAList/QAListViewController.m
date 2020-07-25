@@ -63,6 +63,7 @@
 }
 - (void)setupTableView{
     self.tableView = [[UITableView alloc]init];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make){
@@ -149,7 +150,7 @@
     [cell.integralNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"reward"]]];
     [cell.viewNum setText:[NSString stringWithFormat:@"%@",[dic objectForKey:@"views_num"]]];
     NSString *userIconUrl = [dic objectForKey:@"photo_thumbnail_src"];
-    [cell.userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"userIcon"]];
+    [cell.userIcon setImageWithURL:[NSURL URLWithString:userIconUrl] placeholder:[UIImage imageNamed:@"默认头像"]];
     
     return cell;
 }

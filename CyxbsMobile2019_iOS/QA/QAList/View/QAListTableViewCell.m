@@ -19,13 +19,25 @@
     // Initialization code
 }
 - (void)layoutSubviews{
-    [self.name setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    [self.content setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    [self.answerNum setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
-    [self.integralNum setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
-    [self.viewNum setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
-    [self.date setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
-    self.separatorView.backgroundColor = [UIColor colorWithHexString:@"#BDCCE5"];
+    if (@available(iOS 11.0, *)) {
+        self.backgroundColor = [UIColor colorNamed:@"QAListCellColor"];
+        self.name.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.content.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.date.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.answerNum.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.integralNum.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.viewNum.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+    } else {
+        self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
+        self.name.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        self.content.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        self.date.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        self.answerNum.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        self.integralNum.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        self.viewNum.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    }
+    
+    self.separatorView.backgroundColor = [UIColor colorWithHexString:@"#BBCAE3"];
     self.userIcon.layer.cornerRadius = 16;
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

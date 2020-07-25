@@ -52,8 +52,13 @@
         _titleBtnArray = [NSMutableArray array];
         _currentIndex = 0;
         _titleHeight = SCREEN_HEIGHT * 0.06;
-        _titleColor = [UIColor colorWithHexString:@"#15315B"];
-        _selectedTitleColor = [UIColor colorWithHexString:@"#15315B"];
+        if (@available(iOS 11.0, *)) {
+            _titleColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+            _selectedTitleColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        } else {
+            _titleColor = [UIColor colorWithHexString:@"#15315B"];
+            _selectedTitleColor = [UIColor colorWithHexString:@"#15315B"];
+        }
         
         _titleFont = [UIFont fontWithName:@"PingFangSC" size:16];
         _selectedTitleFont = [UIFont fontWithName:@"PingFangSC-Medium" size:18];

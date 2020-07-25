@@ -51,7 +51,6 @@
     UILabel *weekLabel = [[UILabel alloc]init];
     weekLabel.text = [self calculateDate];
     [weekLabel setFont:[UIFont fontWithName:PingFangSCLight size:10]];
-    [weekLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     [view addSubview:weekLabel];
     
     
@@ -59,16 +58,25 @@
     titleLabel.numberOfLines = 0;
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"邮问" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCMedium size: 35], NSForegroundColorAttributeName: [UIColor blackColor]}];
     titleLabel.attributedText = string;
-    titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
     [view addSubview:titleLabel];
     
     UIButton *btn = [[UIButton alloc]init];
-    btn.backgroundColor = [UIColor colorWithHexString:@"#2921D1"];
     [btn setTitle:@"提问" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(tapAskBtn) forControlEvents:UIControlEventTouchUpInside];
     btn.layer.cornerRadius = 16;
     [view addSubview:btn];
+    
+    // 下面这个 if-else 是对上面的 weekLabel 和 titleLabel 和 btn 的深色模式的适配
+    if (@available(iOS 11.0, *)) {
+        titleLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        [weekLabel setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
+        btn.backgroundColor = [UIColor colorNamed:@"QAAskButtonColor"];
+    } else {
+        titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        [weekLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        btn.backgroundColor = [UIColor colorWithHexString:@"#2921D1"];
+    }
     
     [weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(view).mas_offset(1);
