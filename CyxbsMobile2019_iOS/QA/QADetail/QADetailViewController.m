@@ -49,6 +49,12 @@
 
 - (void)setupUI{
     //    NSLog(@"%@",self.model.dataDic);
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"QAListCellColor"];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+    }
+    
     NSDictionary *detailData = self.model.detailData;
     NSArray *answersData = self.model.answersData;
     QADetailView *detailView = [[QADetailView alloc]initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT, SCREEN_WIDTH, self.view.height - TOTAL_TOP_HEIGHT)];
@@ -246,22 +252,22 @@
     [self.model adoptAnswer:self.question_id answerId:answerId];
 }
 - (void)tapToViewBigImage:(NSInteger)answerIndex{
-    for (NSDictionary *answerData in self.model.answersData) {
-        if ([[answerData objectForKey:@"id"] integerValue] == answerIndex){
+//    for (NSDictionary *answerData in self.model.detailData) {
+//        if ([[answerData objectForKey:@"id"] integerValue] == answerIndex){
             
-            NSArray *imageUrls = [answerData objectForKey:@"photo_url"];
+            NSArray *imageUrls = [self.model.detailData objectForKey:@"photo_url"];
             NSMutableArray *photos = [NSMutableArray array];
             for (int i = 0; i < imageUrls.count; i++) {
                 GKPhoto *photo = [GKPhoto new];
                 photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrls[i]]];
                 [photos addObject:photo];
             }
-            GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:0];
+            GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:answerIndex];
             browser.showStyle = GKPhotoBrowserShowStyleNone;
             [browser showFromVC:self];
             
-        }
-    }
+//        }
+//    }
 }
 
 - (void)tapToViewComment:(NSNumber *)answerId{

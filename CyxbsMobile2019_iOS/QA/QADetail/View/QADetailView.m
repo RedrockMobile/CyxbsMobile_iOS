@@ -15,7 +15,6 @@
     self.scrollView = [[UIScrollView alloc]init];
 //    self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
     
-    self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     //    NSLog(@"%@",NSStringFromCGRect(frame));
     [self addSubview:self.scrollView];
@@ -138,6 +137,9 @@ contentLabel.text = content;
         for (int i = 0; i < self.imageUrlArray.count; i++) {
 
             UIImageView *imgView = [[UIImageView alloc]init];
+            imgView.contentMode = UIViewContentModeScaleAspectFill;
+            imgView.layer.cornerRadius = 8;
+            imgView.clipsToBounds = YES;
             NSString *urlString = [NSString stringWithFormat:@"%@",self.imageUrlArray[i]];
             NSURL *url = [NSURL URLWithString:urlString];
             [imgView setImageURL:url];
@@ -150,6 +152,13 @@ contentLabel.text = content;
             imageBtn.tag = i;
             imageBtn.backgroundColor = UIColor.clearColor;
             [imageBtn addTarget:self action:@selector(tapToViewBigImage:) forControlEvents:UIControlEventTouchUpInside];
+            // 图片多余6个时，最后一个按钮显示“+n”
+            if (self.imageUrlArray.count > 6 && i == 5) {
+                imageBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.50];
+                [imageBtn setTitle:[NSString stringWithFormat:@"%lu+", (unsigned long)self.imageUrlArray.count - 5] forState:UIControlStateNormal];
+                imageBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:30];
+                imageBtn.layer.cornerRadius = 8;
+            }
             [self.scrollView addSubview:imageBtn];
             
 //            [self.imageViewArray addObject:imgView];

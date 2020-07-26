@@ -21,6 +21,12 @@
     return self;
 }
 - (void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf{
+    if (@available(iOS 11.0, *)) {
+        self.backgroundColor = [UIColor colorNamed:@"QAListCellColor"];
+    } else {
+        self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+    }
+    
     self.answerId = [dic objectForKey:@"id"];
     
     self.adoptBtn.layer.cornerRadius = 10;
