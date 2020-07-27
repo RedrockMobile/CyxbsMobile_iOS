@@ -92,14 +92,14 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVC-Np-ZtD">
-                    <rect key="frame" x="269" y="113.5" width="20" height="20"/>
+                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yVC-Np-ZtD">
+                    <rect key="frame" x="269" y="111" width="20" height="25"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="NkM-BQ-bjb"/>
+                        <constraint firstAttribute="height" constant="25" id="NkM-BQ-bjb"/>
                         <constraint firstAttribute="width" constant="20" id="sHo-FA-e3z"/>
                     </constraints>
-                    <state key="normal" backgroundImage="likeIcon"/>
-                    <state key="selected" backgroundImage="selectedLikeIcon"/>
+                    <state key="normal" image="likeIcon"/>
+                    <state key="selected" image="selectedLikeIcon"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gR6-V5-vKO">
                     <rect key="frame" x="294" y="118" width="13" height="11"/>
@@ -160,12 +160,12 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="C5Q-lC-3P1" secondAttribute="trailing" constant="30" id="yeZ-ps-BPT"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-175" y="211"/>
+            <point key="canvasLocation" x="-175.19999999999999" y="210.94452773613196"/>
         </view>
     </objects>
     <resources>
         <image name="QAMoreButton" width="29" height="29"/>
-        <image name="likeIcon" width="10" height="10"/>
-        <image name="selectedLikeIcon" width="10" height="13"/>
+        <image name="likeIcon" width="83" height="83"/>
+        <image name="selectedLikeIcon" width="83" height="106"/>
     </resources>
 </document>

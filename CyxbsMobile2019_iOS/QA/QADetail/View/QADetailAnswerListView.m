@@ -52,6 +52,7 @@
         [self.praiseBtn setSelected:YES];
     }
     self.praiseBtn.tag = self.answerId.integerValue;
+    self.praiseBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     NSNumber *is_adopt = [dic objectForKey:@"is_adopted"];
     if (is_adopt.integerValue == 1 && isSelf) {
@@ -84,6 +85,19 @@
     [self.tapToViewComment addTarget:self.superview action:@selector(tapToViewComment:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.commentBtn addTarget:self.superview action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
 //
+    
+    UIColor *labelColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        self.userNameLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.timeLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.contentLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.commentBtn.titleLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+    } else {
+        self.userNameLabel.textColor = labelColor;
+        self.timeLabel.textColor = labelColor;
+        self.contentLabel.textColor = labelColor;
+        self.commentBtn.titleLabel.textColor = labelColor;
+    }
     
 }
 

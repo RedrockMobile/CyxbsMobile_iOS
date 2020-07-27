@@ -41,13 +41,11 @@
     
     UILabel *userNameLabel = [[UILabel alloc]init];
     userNameLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
-    [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     [userNameLabel setText:[dic objectForKey:@"nickname"]];
     [userInfoView addSubview:userNameLabel];
     
     UILabel *dateLabel = [[UILabel alloc]init];
     dateLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    [dateLabel setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
     NSString *date = [dic objectForKey:@"created_at"];
     [dateLabel setText:[date substringWithRange:NSMakeRange(0, 10)]];
     [userInfoView addSubview:dateLabel];
@@ -65,7 +63,6 @@
     NSString *integralNum = [NSString stringWithFormat:@"%@积分",[dic objectForKey:@"reward"]];
     [integralNumLabel setText:integralNum];
     integralNumLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     [userInfoView addSubview:integralNumLabel];
     
     [userInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,7 +102,6 @@
     NSString *content = [dic objectForKey:@"description"];
 contentLabel.text = content;
     [contentLabel setFont:[UIFont fontWithName:PingFangSCRegular size:15]];
-    contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     contentLabel.alpha = 1.0;
     
     [self.scrollView addSubview:contentLabel];
@@ -114,6 +110,18 @@ contentLabel.text = content;
         make.left.mas_equalTo(self.mas_left).mas_offset(20);
         make.top.mas_equalTo(userInfoView.mas_bottom).mas_offset(5);
     }];
+    
+    if (@available(iOS 11.0, *)) {
+        userNameLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        dateLabel.textColor = [UIColor colorNamed:@"QAListAnswerLableColor"];
+        integralNumLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        contentLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+    } else {
+        [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        [dateLabel setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
+        [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+    }
     
     
     UIView *separateView = [[UIView alloc]init];
@@ -221,6 +229,11 @@ contentLabel.text = content;
         make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20);
     }];
 
+    if (@available(iOS 11.0, *)) {
+        answerLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+    } else {
+        answerLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    }
 
   
     NSNumber *isSelf = [dic objectForKey:@"is_self"];
