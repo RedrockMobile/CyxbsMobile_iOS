@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)saveButtonClicked:(UIButton *)sender;
 - (void)backButtonClicked:(UIButton *)sender;
 - (void)headerImageTapped:(UIImageView *)sender;
+- (void)showUserInformationIntroduction:(UIButton *)sender;
 
 @end
 

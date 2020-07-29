@@ -11,6 +11,7 @@
 #import "EditMyInfoPresenter.h"
 #import "MineViewController.h"
 #import "EditMyInfoView.h"
+#import "UserInformationIntorductionView.h"
 
 @interface EditMyInfoViewController () <EditMyInfoContentViewDelegate, UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -101,6 +102,11 @@
     self.contentView.headerImageView.image = image;
     self.profileChanged = YES;
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)showUserInformationIntroduction:(UIButton *)sender {
+    UserInformationIntorductionView *introductionView = [[UserInformationIntorductionView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, self.contentView.height)];
+    [self.view addSubview:introductionView];
 }
 
 

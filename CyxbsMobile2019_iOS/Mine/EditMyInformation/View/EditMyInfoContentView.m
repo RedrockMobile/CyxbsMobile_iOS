@@ -27,7 +27,7 @@
 
 @interface EditMyInfoContentView ()
 
-@property (nonatomic, weak) UIButton *whatsThisButton;
+@property (nonatomic, weak) UIButton *introductionButton;
 @property (nonatomic, weak) UILabel *nicknameLabel;
 @property (nonatomic, weak) UILabel *introductionLabel;
 @property (nonatomic, weak) UILabel *QQLabel;
@@ -88,10 +88,11 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerImageTapped:)];
         [headerImageView addGestureRecognizer:tap];
         
-        UIButton *whatsThisButton = [[UIButton alloc] init];
-        [whatsThisButton setImage:[UIImage imageNamed:@"编辑资料问号"] forState:UIControlStateNormal];
-        [self.contentScrollView addSubview:whatsThisButton];
-        self.whatsThisButton = whatsThisButton;
+        UIButton *introductionButton = [[UIButton alloc] init];
+        [introductionButton setImage:[UIImage imageNamed:@"编辑资料问号"] forState:UIControlStateNormal];
+        [introductionButton addTarget:self action:@selector(showUserInformationIntroduction:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentScrollView addSubview:introductionButton];
+        self.introductionButton = introductionButton;
         
         UILabel *nicknameLabel = [[UILabel alloc] init];
         nicknameLabel.text = @"昵称";
@@ -300,7 +301,7 @@
     [self.gestureView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentScrollView);
         make.leading.equalTo(self.headerImageView.mas_trailing);
-        make.trailing.equalTo(self.whatsThisButton.mas_leading);
+        make.trailing.equalTo(self.introductionButton.mas_leading);
         make.bottom.equalTo(self.nicknameTextField.mas_top);
     }];
     
@@ -311,7 +312,7 @@
     self.headerImageView.clipsToBounds = YES;
     self.headerImageView.layer.cornerRadius = self.width * 0.19 * 0.5;
 
-    [self.whatsThisButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.introductionButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.headerImageView);
         make.trailing.equalTo(self).offset(-18);
         make.height.width.equalTo(@20);
@@ -412,6 +413,12 @@
 - (void)headerImageTapped:(UIImageView *)sender {
     if ([self.delegate respondsToSelector:@selector(headerImageTapped:)]) {
         [self.delegate headerImageTapped:sender];
+    }
+}
+
+- (void)showUserInformationIntroduction:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(showUserInformationIntroduction:)]) {
+        [self.delegate showUserInformationIntroduction:sender];
     }
 }
 
