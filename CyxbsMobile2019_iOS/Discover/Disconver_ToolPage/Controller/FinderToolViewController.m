@@ -13,6 +13,7 @@
 #import "SchoolBusViewController.h"
 #import "EmptyClassViewController.h"
 #import "CalendarViewController.h"
+#import "WeDateViewController.h"
 #define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -219,7 +220,8 @@
     FinderToolViewItem *item6 = [[FinderToolViewItem alloc]initWithIconView:@"校历" Title:@"校历" Detail:@"学期安排一目了然"];
     FinderToolViewItem *item7 = [[FinderToolViewItem alloc]initWithIconView:@"重邮地图" Title:@"重邮地图" Detail:@"校园地图，尽收重邮风光"];
     FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"敬请期待"];
-
+    
+    [item1 addTarget:self action:@selector(chooseWeDate:) forControlEvents:UIControlEventTouchUpInside];
     [item2 addTarget:self action:@selector(chooseSchoolBus:) forControlEvents:UIControlEventTouchUpInside];
     [item3 addTarget:self action:@selector(chooseEmptyClassRoom:) forControlEvents:UIControlEventTouchUpInside];
     [item4 addTarget:self action:@selector(chooseTestArrange:) forControlEvents:UIControlEventTouchUpInside];
@@ -277,6 +279,17 @@
 
 }
 
+//MARK: - 没课约
+- (void) chooseWeDate:(FinderToolViewItem*)sender {
+    if (sender.isChooingNow == YES) {
+        [sender toggleFavoriteStates];
+    }else {
+        //点击了没课约
+        WeDateViewController *vc = [[WeDateViewController alloc] init];
+        vc.dataArray = [@{@"name":@"张树洞",@"stuNum":@"20192578798"} mutableCopy];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 //MARK: - 空课表
 - (void) chooseScheduleInquiry:(FinderToolViewItem*)sender {
