@@ -49,7 +49,7 @@
         <!--Class Book View Controller-->
         <scene sceneID="mTE-un-9R5">
             <objects>
-                <viewController id="34x-6y-pIg" customClass="WYCClassBookViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="xxx" id="34x-6y-pIg" customClass="WYCClassBookViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bPD-i5-flf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

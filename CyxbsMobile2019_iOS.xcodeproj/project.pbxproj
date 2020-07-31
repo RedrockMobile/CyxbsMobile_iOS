@@ -127,6 +127,7 @@
 		AA40B40B24D2AE400037071A /* WeDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B40A24D2AE400037071A /* WeDateViewController.m */; };
 		AA40B40E24D2BB7C0037071A /* PeopleListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B40D24D2BB7C0037071A /* PeopleListTableViewCell.m */; };
 		AA40B41124D2C9710037071A /* ChoosePeopleListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B41024D2C9710037071A /* ChoosePeopleListView.m */; };
+		AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */; };
 		AA7FAE4524C83D3D0018EAEB /* SchedulForOneWeekController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7FAE4424C83D3D0018EAEB /* SchedulForOneWeekController.m */; };
 		D0011A6E23F082FD009A242C /* QAExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A6D23F082FD009A242C /* QAExitView.m */; };
 		D0011A7023F0830B009A242C /* QAExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A6F23F0830B009A242C /* QAExitView.xib */; };
@@ -709,6 +710,8 @@
 		AA40B40D24D2BB7C0037071A /* PeopleListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeopleListTableViewCell.m; sourceTree = "<group>"; };
 		AA40B40F24D2C9710037071A /* ChoosePeopleListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleListView.h; sourceTree = "<group>"; };
 		AA40B41024D2C9710037071A /* ChoosePeopleListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleListView.m; sourceTree = "<group>"; };
+		AA4B0FB124D3E09B00221B5A /* TopBarScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopBarScrollView.h; sourceTree = "<group>"; };
+		AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopBarScrollView.m; sourceTree = "<group>"; };
 		AA7FAE4324C83D3D0018EAEB /* SchedulForOneWeekController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulForOneWeekController.h; sourceTree = "<group>"; };
 		AA7FAE4424C83D3D0018EAEB /* SchedulForOneWeekController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulForOneWeekController.m; sourceTree = "<group>"; };
 		D0011A6C23F082FD009A242C /* QAExitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAExitView.h; sourceTree = "<group>"; };
@@ -2390,6 +2393,8 @@
 				DB34EA36239BD4540052B65E /* WYCClassBookView.xib */,
 				1A1691F62430DEE70076EDC7 /* ClassScheduleTabBarView.h */,
 				1A1691F72430DEE70076EDC7 /* ClassScheduleTabBarView.m */,
+				AA4B0FB124D3E09B00221B5A /* TopBarScrollView.h */,
+				AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3704,6 +3709,7 @@
 				EE75BFC123F5884100208039 /* SCColor.m in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
+				AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
 				EE75BFC523F5884100208039 /* SCPieChartDataItem.m in Sources */,
 				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
