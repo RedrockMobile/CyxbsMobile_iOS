@@ -46,15 +46,16 @@
 @property (nonatomic, copy) NSString *idNum;
 @property (nonatomic, assign) BOOL isLogin;
 @property (nonatomic, assign) BOOL weekChooseBarLock;
-
-
+@property (nonatomic, strong)NSMutableArray *currentWeekBars;
+@property (nonatomic, strong)UIView *chooseWeekBar;
+@property (nonatomic, strong)UIButton *currenChooseWeektBtn;
 @end
 
 @implementation WYCClassBookViewController
 
 
 - (void)viewDidLoad {
-    
+    self.navigationController.navigationBar.hidden = YES;
     [super viewDidLoad];
     //self.navigationController.navigationBar.hidden = YES;
     
@@ -166,6 +167,8 @@
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     self.weekChooseBarLock = NO;
     @autoreleasepool {
+        NSMutableArray *viewArray = [NSMutableArray array];
+        self.currentWeekBars = viewArray;
         for (int dateNum = 0; dateNum < self.dateModel.dateArray.count + 1; dateNum++) {
             
             NSMutableArray *day = [[NSMutableArray alloc]initWithCapacity:7];
@@ -214,24 +217,83 @@
                 [view initView:NO];
                 [view addBar:self.dateModel.dateArray[dateNum-1] isFirst:NO];
             }
-            UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(view.frame.size.width/15-10,-20,60,30)];
+//            UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(view.frame.size.width/15-10,-20,60,30)];
+            UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0,-20,MAIN_SCREEN_W,30)];
+            
             if (@available(iOS 11.0, *)) {
                 titleView.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
                        } else {
                             titleView.backgroundColor = [UIColor whiteColor];
                        }
           
-            CGFloat titleLabelWidth = SCREEN_WIDTH * 0.3;
-           UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((_titleView.width - titleLabelWidth)/ 2-35, -10, titleLabelWidth, _titleView.height)];
+//            CGFloat titleLabelWidth = SCREEN_WIDTH * 0.3;
+            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W*0.0427, 0, MAIN_SCREEN_W*0.22, MAIN_SCREEN_H*0.0391)];
+            titleLabel.backgroundColor = UIColor.whiteColor;
 //            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.titleView.width - titleLabel)/ 2, 0, titleLabel, titleView.height)];
             NSMutableArray *titleArray = [@[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"第十一周",@"第十二周",@"第十三周",@"第十四周",@"第十五周",@"第十六周",@"第十七周",@"第十八周",@"第十九周",@"第二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"] mutableCopy];
-               if(self.dateModel.nowWeek.integerValue != 0){
-                   titleArray[self.dateModel.nowWeek.integerValue] = @"本 周";
-               }
-//
-            _titleText = titleArray[_index];
+            
+            //____________________________________________________
+            
+//            titleLabel:第x周 titleView：titleLabel的背景条
+//            CGRectMake(MAIN_SCREEN_W*0.0427, 0, MAIN_SCREEN_W*0.22, MAIN_SCREEN_H*0.0391)
+            
+//            titleView.backgroundColor = UIColor.redColor;
+            if(self.dateModel.nowWeek.integerValue==dateNum){
+                //显示本周的那个label
+                UILabel *nowWeekLabel = [[UILabel alloc] init];
+                [titleView addSubview: nowWeekLabel];
+                nowWeekLabel.text = @"(本周)";
+//                nowWeekLabel.backgroundColor = UIColor.redColor;
+                nowWeekLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+                nowWeekLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+                nowWeekLabel.frame = CGRectMake(MAIN_SCREEN_W*0.2627, 0.009*MAIN_SCREEN_H, 0.12*MAIN_SCREEN_W, 0.0259*MAIN_SCREEN_H);
+                
+                
+                UIButton *rightArrayBtn = [[UIButton alloc] init];
+                [titleView addSubview:rightArrayBtn];
+                [rightArrayBtn setTitle:@">" forState:(UIControlStateNormal)];
+                rightArrayBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+                [rightArrayBtn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
+
+                [rightArrayBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.3827, 3, 7, MAIN_SCREEN_H*0.0391))];
+                
+                
+                [rightArrayBtn addTarget:self action:@selector(rightArrayBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+                NSArray *a = @[nowWeekLabel,rightArrayBtn,titleLabel];
+                [viewArray addObject:a];
+            }else{
+                //(MAIN_SCREEN_W*0.0427, 0, MAIN_SCREEN_W*0.22, MAIN_SCREEN_H*0.0391)
+                UIButton *rightArrayBtn = [[UIButton alloc] init];
+                [titleView addSubview:rightArrayBtn];
+                [rightArrayBtn setTitle:@">" forState:(UIControlStateNormal)];
+                rightArrayBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+                [rightArrayBtn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
+                [rightArrayBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.2627, 3, 7, MAIN_SCREEN_H*0.0391))];
+                [rightArrayBtn addTarget:self action:@selector(rightArrayBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+                
+                
+                UIButton *backBtn = [[UIButton alloc] init];
+                [titleView addSubview:backBtn];
+                [backBtn setTitle:@"回到本周" forState:(UIControlStateNormal)];
+                [backBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+                [backBtn setBackgroundColor:[UIColor colorWithRed:41/255.0 green:33/255.0 blue:209/255.0 alpha:1.0]];
+                backBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 13];
+                backBtn.layer.cornerRadius = MAIN_SCREEN_H*0.0197;
+                [backBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.728, 0, 0.2293*MAIN_SCREEN_W, 0.0394*MAIN_SCREEN_H))];
+
+                [backBtn addTarget:self action:@selector(backNowWeekBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+                NSArray *a = @[rightArrayBtn,backBtn,titleLabel];
+                [viewArray addObject:a];
+            }
+//            ___________________________________________________
+            
+            
+            
+            
+            //____________________________________________________
+            _titleText = titleArray[dateNum];
             titleLabel.text = _titleText;
-              titleLabel.textAlignment = NSTextAlignmentCenter;
+              titleLabel.textAlignment = NSTextAlignmentLeft;
             if (@available(iOS 11.0, *)) {
                 titleLabel.textColor = [UIColor colorNamed:@"titleLabelColor"];
             } else {
@@ -247,6 +309,7 @@
                 // Fallback on earlier versions
                 dragHintView.backgroundColor = [UIColor whiteColor];
             }
+            
             
             dragHintView.layer.cornerRadius = 2.5;
             [view addSubview:titleView];
@@ -512,8 +575,175 @@
     [model deleteRemind:stuNum idNum:idNum remindId:noteId];
     [self reloadView];
 }
+/**
+- (NSMutableArray *)currentWeekBars{
+    if(_currentWeekBars==nil){
+        NSMutableArray *array = [NSMutableArray array];
+        NSMutableArray *labelArray = [NSMutableArray array];
+        NSMutableArray *titleArray =  [@[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"第十一周",@"第十二周",@"第十三周",@"第十四周",@"第十五周",@"第十六周",@"第十七周",@"第十八周",@"第十九周",@"第二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"] mutableCopy];
+        
+        for (int i=0; i<26; i++) {
+            UILabel *label = [[UILabel alloc] init];
+            [self.scrollView addSubview:label];
+            label.text = titleArray[i];
+            label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+            label.font = [UIFont fontWithName:@".PingFang SC" size: 11];
+            label.frame = CGRectMake(i*MAIN_SCREEN_W, -10, MAIN_SCREEN_W*0.176, _titleView.height);
+            [self.scrollView addSubview:label];
+            [labelArray addObject:label];
+            
+            if(self.dateModel.nowWeek.integerValue != 0){
+                UILabel *label2 = [[UILabel alloc] init];
+                label2.text = @"(本周)";
+                [self.scrollView addSubview:label2];
+                [label2 mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(labelArray[self.dateModel.nowWeek.integerValue]).offset(0.176*MAIN_SCREEN_W);
+                    make.bottom.equalTo(labelArray[self.dateModel.nowWeek.integerValue]);
+                    make.width.mas_equalTo(0.16*MAIN_SCREEN_W);
+                    make.height.mas_equalTo(0.0259*MAIN_SCREEN_H);
+                }];
+                label2.font = [UIFont fontWithName:@".PingFang SC" size: 7.5];
+                label2.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+                
+                UIButton *btn = [[UIButton alloc] init];
+                [self.scrollView addSubview:btn];
+                [btn setTitle:@">" forState:(UIControlStateNormal)];
+                btn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 7.5];
+                [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
 
+                [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(label2);
+                    make.left.equalTo(label2.mas_right);
+                    make.width.mas_equalTo(7);
+                    make.bottom.equalTo(label2);
+                }];
+                [btn addTarget:self action:@selector(rightArrayBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+            }else{
+                UIButton *btn = [[UIButton alloc] init];
+                [self.scrollView addSubview:btn];
+                [btn setTitle:@">" forState:(UIControlStateNormal)];
+                btn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 7.5];
+                [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
+                
+                [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(label.mas_left).offset(MAIN_SCREEN_W*0.176);
+                    make.width.mas_equalTo(7);
+                    make.bottom.equalTo(label);
+                    make.height.mas_equalTo(MAIN_SCREEN_H*0.0259);
+                }];
+                
+                [btn addTarget:self action:@selector(rightArrayBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+                
+                UIButton *backBtn = [[UIButton alloc] init];
+                [self.scrollView addSubview:backBtn];
+                [backBtn setTitle:@"回到本周" forState:(UIControlStateNormal)];
+                [backBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+                [backBtn setBackgroundColor:[UIColor colorWithRed:41/255.0 green:33/255.0 blue:209/255.0 alpha:1.0]];
+                backBtn.layer.cornerRadius = MAIN_SCREEN_H*0.0197;
+                [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.left.equalTo(label.mas_right).offset(MAIN_SCREEN_W*0.5093);
+                    make.centerY.equalTo(label);
+                    make.width.mas_equalTo(0.2293*MAIN_SCREEN_W);
+                    make.height.mas_equalTo(0.0394*MAIN_SCREEN_H);
+                }];
+                
+                [backBtn addTarget:self action:@selector(backNowWeekBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+            }
+            
+        }
+        
+        
+        
+        
+        _currentWeekBars = array;
+    }
+    return _currentWeekBars;
+}
+*/
 
+- (UIView *)chooseWeekBar{
+    if(_chooseWeekBar==nil){
+        UIView *chooseWeekBar = [[UIView alloc] initWithFrame:(CGRectMake(0, 50, MAIN_SCREEN_W, 30))];
+        [self.view addSubview: chooseWeekBar];
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, 0, MAIN_SCREEN_W-20, 30))];
+        scrollView.backgroundColor = UIColor.whiteColor;
+        scrollView.contentSize = CGSizeMake(5*MAIN_SCREEN_W, 30);
+        [chooseWeekBar addSubview:scrollView];
+        scrollView.showsVerticalScrollIndicator = NO;
+        scrollView.showsHorizontalScrollIndicator = NO;
+        
+        NSMutableArray *titleArray = [@[@"整学期",@"一周",@"二周",@"三周",@"四周",@"五周",@"六周",@"七周",@"八周",@"九周",@"十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"] mutableCopy];
+        
+//        UIButton *first = [[UIButton alloc] init];
+//        [chooseWeekBar addSubview:first];
+//        [first setFrame:(CGRectMake(0.0427*MAIN_SCREEN_W, 0.0247*MAIN_SCREEN_H, 0.12*MAIN_SCREEN_W, 0.0273*MAIN_SCREEN_H))];
+//        [first setTitle:@"整学期" forState:UIControlStateNormal];
+//
+        for (int i=0; i<26; i++) {
+            UIButton *btn = [[UIButton alloc] init];
+            [scrollView addSubview:btn];
+            [btn setFrame:(CGRectMake(0.17*MAIN_SCREEN_W*i+0.0427*MAIN_SCREEN_W,0.0062*MAIN_SCREEN_H,MAIN_SCREEN_W*0.17,MAIN_SCREEN_H*0.0259))];
+            
+            [btn setTitle:titleArray[i] forState:UIControlStateNormal];
+            btn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+            [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:UIControlStateNormal];
+            btn.backgroundColor = UIColor.whiteColor;
+            btn.tag = i;
+            [btn addTarget:self action:@selector(goToAWeek:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        
+        UIButton *leftArrowBtn = [[UIButton alloc] init];
+        [chooseWeekBar addSubview:leftArrowBtn];
+        [leftArrowBtn setTitle:@"<" forState:(UIControlStateNormal)];
+        leftArrowBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+        [leftArrowBtn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
+        [leftArrowBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.9387, 0, 20, 30))];
+        [leftArrowBtn addTarget:self action:@selector(leftArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        
+        _chooseWeekBar = chooseWeekBar;
+    }
+    return _chooseWeekBar;
+}
+
+- (void)rightArrayBtnClicked{
+    NSMutableArray *viewArray =  self.currentWeekBars;
+    for (NSArray *a in viewArray) {
+        for (UIView *v in a) {
+            v.alpha = 0;
+            v.userInteractionEnabled = NO;
+        }
+    }
+    self.chooseWeekBar.userInteractionEnabled = YES;
+    self.chooseWeekBar.alpha = 1;
+}
+- (void)leftArrowBtnClicked{
+    NSMutableArray *viewArray =  self.currentWeekBars;
+    for (NSArray *a in viewArray) {
+        for (UIView *v in a) {
+            v.alpha = 1;
+            v.userInteractionEnabled = YES;
+        }
+    }
+    self.chooseWeekBar.alpha = 0;
+    self.chooseWeekBar.userInteractionEnabled = NO;
+}
+- (void)backNowWeekBtnClicked{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.scrollView.contentOffset = CGPointMake(self.dateModel.nowWeek.intValue*MAIN_SCREEN_W, 0);
+    }];
+    
+}
+- (void)goToAWeek:(UIButton*)btn{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.scrollView.contentOffset = CGPointMake(btn.tag*MAIN_SCREEN_W, 0);
+    }];
+}
+//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+//    if([scrollView isEqual:self.chooseWeekBar]){
+//
+//    }
+//}
 @end
 
 
