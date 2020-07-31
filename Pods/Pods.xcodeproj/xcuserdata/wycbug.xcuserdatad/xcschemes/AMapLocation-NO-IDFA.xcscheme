@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "39082CE2CA8065D786A75F5C09CFF2C0"
-               BuildableName = "AMapFoundation"
-               BlueprintName = "AMapFoundation"
+               BlueprintIdentifier = "4BD4E22D3419D68A85BDD6119CB37C6C"
+               BuildableName = "AMapLocation-NO-IDFA"
+               BlueprintName = "AMapLocation-NO-IDFA"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8628BC7F8FF0BA905278BC233A7C0362"
-               BuildableName = "AMap2DMap"
-               BlueprintName = "AMap2DMap"
+               BlueprintIdentifier = "9B182CB4E1716E9070813D3C59736001"
+               BuildableName = "AMapFoundation-NO-IDFA"
+               BlueprintName = "AMapFoundation-NO-IDFA"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

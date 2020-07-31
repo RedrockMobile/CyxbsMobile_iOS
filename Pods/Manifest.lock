@@ -104,6 +104,7 @@ SPEC REPOS:
     - MJRefresh
     - pop
     - SDCycleScrollView
+    - SDWebImage
     - UMCAnalytics
     - UMCCommon
     - UMCCommonLog
@@ -112,8 +113,6 @@ SPEC REPOS:
     - UMCSecurityPlugins
     - UMCShare
     - YYKit
-  trunk:
-    - SDWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -141,4 +140,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 14118b509e0cdc13844870a67765c8792dc8d610
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1
