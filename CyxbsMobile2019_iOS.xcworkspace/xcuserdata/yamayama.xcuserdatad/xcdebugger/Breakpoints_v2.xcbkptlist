@@ -18,38 +18,6 @@
             endingLineNumber = "69"
             landmarkName = "-loadSchedulWithSchedulArray:"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9B11AC1A-E793-4BC5-AEFA-11367AE0AF19 - 83b5e2287cbcc8a7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SchedulForOneWeekController loadSchedulWithSchedulArray:]"
-                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_FindScheduleInquiry/Controller/SchedulForOneWeekController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "665">
-               </Location>
-               <Location
-                  uuid = "9B11AC1A-E793-4BC5-AEFA-11367AE0AF19 - 83b5e2287cbcc8a7"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SchedulForOneWeekController loadSchedulWithSchedulArray:]"
-                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_FindScheduleInquiry/Controller/SchedulForOneWeekController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "685">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -110,8 +78,8 @@
             filePath = "CyxbsMobile2019_iOS/Discover/Discover_WeDate/ChoosePeopleListView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-addPeopleListView"
             landmarkType = "7">
             <Locations>
@@ -158,8 +126,8 @@
             filePath = "CyxbsMobile2019_iOS/Discover/Discover_WeDate/ChoosePeopleListView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "-addPeopleListView"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,8 +142,8 @@
             filePath = "CyxbsMobile2019_iOS/Discover/Discover_WeDate/ChoosePeopleListView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "ChoosePeopleListView"
             landmarkType = "3">
          </BreakpointContent>
@@ -190,8 +158,8 @@
             filePath = "CyxbsMobile2019_iOS/Discover/Discover_FindScheduleInquiry/Controller/ScheduleViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "-touchSearchButton"
             landmarkType = "7">
          </BreakpointContent>
@@ -391,16 +359,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8A785BFC-C5C9-4AF7-AB9B-E0033D79A775"
+            uuid = "3EB82A61-6D9A-4D50-9BD8-73E34C8AF6C1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/Discover/Discover_WeDate/ChoosePeopleListView.m"
+            filePath = "CyxbsMobile2019_iOS/Discover/Discover_FindScheduleInquiry/Controller/ScheduleViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-scrollViewDidEndDragging:willDecelerate:"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "-requestStudentNameDataWithNSString:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3EB82A61-6D9A-4D50-9BD8-73E34C8AF6C1 - 66f62eab0b1d4efb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ScheduleViewController requestStudentNameDataWithNSString:]"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_FindScheduleInquiry/Controller/ScheduleViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "995">
+               </Location>
+               <Location
+                  uuid = "3EB82A61-6D9A-4D50-9BD8-73E34C8AF6C1 - 4e4bd10d8ee2806e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__61-[ScheduleViewController requestStudentNameDataWithNSString:]_block_invoke"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_FindScheduleInquiry/Controller/ScheduleViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "3EB82A61-6D9A-4D50-9BD8-73E34C8AF6C1 - 3be0117936b2f700"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_e8_32s40s48r"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_FindScheduleInquiry/Controller/ScheduleViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EBDBDEE-6F5E-43AD-902A-578151A64CAA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/Discover/Discover_FindScheduleInquiry/Controller/ScheduleViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "-requestStudentNameDataWithNSString:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

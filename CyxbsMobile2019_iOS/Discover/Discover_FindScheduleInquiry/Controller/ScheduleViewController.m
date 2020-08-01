@@ -8,7 +8,6 @@
 
 #import "ScheduleViewController.h"
 #import "HistoryView.h"
-#import "ChooseStudentListViewController.h"
 #import "ClassmatesList.h"
 #import "WYCClassBookViewController.h"
 /**最大的搜索历史记录个数*/
@@ -100,17 +99,7 @@
        } else {
            // Fallback on earlier versions
        }
-    //addSearchButton
-        UIButton *searchButton = [[UIButton alloc]init];
-    //    searchButton.backgroundColor = [UIColor blueColor];
-        [searchButton setBackgroundImage:[UIImage imageNamed:@"组 206"] forState:(UIControlStateNormal)];
-        [searchButton addTarget: self action:@selector(touchSearchButton) forControlEvents:UIControlEventTouchUpInside];
-        [backView addSubview:searchButton];
-        [searchButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(backView).offset(-20.16);
-            make.centerY.equalTo(textField);
-            make.height.width.equalTo(@17.83);
-        }];
+    
     
 }
 
@@ -160,7 +149,18 @@
 
 //MARK: - 点击搜索按钮
 - (void)touchSearchButton {
+    /**调试颜色用
+    UIView *v = [[UIView alloc] initWithFrame:(CGRectMake(100, 100, 100, 100))];
+    v.backgroundColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     
+    [self.view addSubview:v];
+    UIView *v1 = [[UIView alloc] initWithFrame:(CGRectMake(100, 200, 100, 100))];
+    v1.backgroundColor = Color21_49_91_F0F0F2;
+    
+    [self.view addSubview:v1];
+    
+    return;
+    */
     //判断输入内容是否为空
     if ([self.textField.text isEqualToString:@""]) {
         MBProgressHUD *noInput = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -193,8 +193,11 @@
        loading.mode = MBProgressHUDModeIndeterminate;
        loading.labelText = @"加载中";
        
-       ClassmatesList *classmates = [[ClassmatesList alloc] init];
-       [classmates getListWithName:string success:^(ClassmatesList * _Nonnull classmatesList) {
+    ClassmatesList *classmates = [[ClassmatesList alloc] initWithPeopleType:self.peopleType];
+    
+    NSLog(@"type=%ld",(long)self.peopleType);
+    
+       [classmates getPeopleListWithName:string success:^(ClassmatesList * _Nonnull classmatesList) {
            [loading hide:YES];
            if (classmatesList.classmatesArray.count == 0) {
                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -203,23 +206,6 @@
                [hud hide:YES afterDelay:1];
                //没有发生跳转，那就只改变显示历史记录的控件的内部数据，而不刷新历史记录控件布局
                [self.historyView addHistoryBtnWithString:string reLayout:NO];
-               return;
-           }else if (classmatesList.classmatesArray.count == 1) {
-               //如果只有一个结果那么直接显示ta的课表就好了
-               SchedulForOneWeekController *schedul = [[SchedulForOneWeekController alloc] init];
-               
-               //判断课表是否加载成功，如果成功就present
-               if([schedul loadSchedulWithNum:classmatesList.classmatesArray[0].stuNum ForPeopleType:self.peopleType]==YES){
-                   
-                   [self presentViewController:schedul animated:YES completion:nil];
-                   
-               }else{
-                   MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                   hud.mode = MBProgressHUDModeText;
-                   hud.labelText = @"加载失败";
-                   [hud hide:YES afterDelay:1];
-               }
-               
                return;
            }
            

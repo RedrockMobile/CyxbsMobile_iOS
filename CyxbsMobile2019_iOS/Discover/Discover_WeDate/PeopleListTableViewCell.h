@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ClassmatesList.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, PeopleListTableViewCellRightBtnType) {
     PeopleListTableViewCellRightBtnTypeAdd,

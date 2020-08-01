@@ -39,6 +39,7 @@
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.bounces = NO;
+    scrollView.backgroundColor = UIColor.redColor;
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
@@ -106,7 +107,7 @@
 //MARK:点击某按钮后调用的方法：
 //取消按钮
 - (void)cancelBtnClicked{
-    [UIView animateWithDuration:0.7 animations:^{
+    [UIView animateWithDuration:0.6 animations:^{
         self.scrollView.contentOffset = CGPointMake(0, 0);
         self.alpha = 0;
     } completion:^(BOOL finished) {

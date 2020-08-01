@@ -10,7 +10,7 @@
 #import "PeopleListTableViewCell.h"
 #import "ChoosePeopleListView.h"
 
-
+#define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 @interface WeDateViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateDelete,PeopleListTableViewCellDelegateAdd>
 /**推出没课约的按钮*/
@@ -197,7 +197,34 @@
 }
 
 - (void)enquiry{
-    
+    HttpClient *client = [HttpClient defaultClient];
+    dispatch_group_t group = dispatch_group_create();
+    for (int i=0; i<10; i++) {
+        
+        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            NSLog(@"1111m%dm",i);
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            
+            [client requestWithPath:URL method:HttpRequestPost parameters:@{@"stuNum":@"2019211534"} prepareExecute:^{
+                
+            } progress:^(NSProgress *progress) {
+                
+            } success:^(NSURLSessionDataTask *task, id responseObject) {
+                NSLog(@"i=%d",i);
+            
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                
+                dispatch_semaphore_signal(semaphore);
+            }];
+            
+            NSLog(@"x%dx",i);
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//            NSLog(@"kkm%dm",i);
+        }
+);
+//        NSLog(@"m%dm",i);
+        
+    }
 }
 
 //MARK:需实现的代理方法：
