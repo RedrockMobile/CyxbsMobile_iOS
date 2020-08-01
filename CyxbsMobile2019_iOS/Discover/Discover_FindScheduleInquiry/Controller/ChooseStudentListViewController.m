@@ -8,7 +8,7 @@
 
 #import "ChooseStudentListViewController.h"
 #import "PeopleListCellTableViewCell.h"
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
 
 @interface ChooseStudentListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -68,7 +68,7 @@
     self.titleLabel = label;
     self.titleLabel.text = @"同学课表";
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
-    label.textColor = Color21_49_91_F0F0F2;
+    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];;
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backButton).offset(14);
@@ -100,17 +100,5 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    SchedulForOneWeekController *schedul = [[SchedulForOneWeekController alloc]init];
-    
-    //传入被查课表者的num（学生学号？老师工号？）
-    if([schedul loadSchedulWithNum:self.classmatesList.classmatesArray[indexPath.row].stuNum ForPeopleType:(self.peopleType)]==YES){
-        [self presentViewController:schedul animated:YES completion:nil];
-    }else{
-        MBProgressHUD *noInput = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        noInput.mode = MBProgressHUDModeText;
-        noInput.labelText = @"加载失败";
-        [noInput hide:YES afterDelay:1];
-    }
 }
 @end

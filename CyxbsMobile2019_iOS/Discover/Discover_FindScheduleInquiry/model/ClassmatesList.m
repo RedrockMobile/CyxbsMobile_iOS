@@ -7,8 +7,18 @@
 //
 
 #import "ClassmatesList.h"
-
+@interface ClassmatesList ()
+@property (nonatomic,assign)PeopleType peopleType;
+@end
 @implementation ClassmatesList
+
+- (instancetype)initWithPeopleType:(PeopleType)peoType{
+    self = [super init];
+    if (self) {
+        self.peopleType = peoType;
+    }
+    return self;
+}
 
 - (void)getListWithName:(NSString *)name success:(void (^)(ClassmatesList * _Nonnull))succeededCallBack failure:(nonnull void (^)(NSURLSessionDataTask * _Nonnull, NSError * _Nonnull))failedCallBack  {
     
@@ -27,6 +37,33 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failedCallBack(task, error);
     }];
+}
+- (void)getTeaListWithName:(NSString *)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack{
+    
+    NSDictionary *parameters = @{@"teaName": name};
+    HttpClient *client = [HttpClient defaultClient];
+    
+    [client requestWithPath:SEARCHTEACHERAPI method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSMutableArray *tmpArray = [NSMutableArray array];
+        for (NSDictionary *classmateInfo in responseObject[@"data"]) {
+            ClassmateItem *classmate = [ClassmateItem teaItemWithDictionary:classmateInfo];
+            [tmpArray addObject:classmate];
+        }
+        self.classmatesArray = tmpArray;
+        succeededCallBack(self);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failedCallBack(task, error);
+    }];
+}
+
+- (void)getPeopleListWithName:(NSString*)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack{
+//    NSDictionary *paramDict;
+    if(self.peopleType==PeopleTypeStudent){
+        [self getListWithName:name success:succeededCallBack failure:failedCallBack];
+    }else{
+        [self getTeaListWithName:name success:succeededCallBack failure:failedCallBack];
+    }
 }
 
 @end

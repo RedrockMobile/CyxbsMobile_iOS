@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *stuNum;
 
 + (ClassmateItem *)classmateWithDictionary:(NSDictionary *)dictionary;
-
++ (ClassmateItem *)teaItemWithDictionary:(NSDictionary *)dictionary;
 @end
 
 NS_ASSUME_NONNULL_END

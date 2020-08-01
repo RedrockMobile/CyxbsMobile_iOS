@@ -20,7 +20,15 @@
     self = [super init];
     if(self){
         self.infoDict = infoDict;
+        [self addNameLabel];
         
+        [self addStuNumLabel];
+        
+        if(type==PeopleListTableViewCellRightBtnTypeAdd){
+            [self addAddBtn];
+        }else{
+            [self addDeleteBtn];
+        }
     }
     return self;
 }
@@ -34,9 +42,9 @@
     label.font = [UIFont fontWithName:@".PingFang SC" size: 16];
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(MAIN_SCREEN_H*0.015);
+        make.top.equalTo(self.contentView).offset(MAIN_SCREEN_H*0.0062);
         make.left.equalTo(self.contentView).offset(MAIN_SCREEN_W*0.0427);
-        make.height.mas_equalTo(MAIN_SCREEN_H*2.71);
+        make.height.mas_equalTo(MAIN_SCREEN_H*0.0271);
         make.width.equalTo(self.contentView).multipliedBy(0.5);
     }];
 }
@@ -51,7 +59,7 @@
     
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.nameLabel).offset(MAIN_SCREEN_H*0.0062);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(MAIN_SCREEN_H*0.0062);
         make.left.equalTo(self.contentView).offset(MAIN_SCREEN_W*0.0427);
         make.height.mas_equalTo(MAIN_SCREEN_H*0.0197);
         make.width.equalTo(self.contentView).multipliedBy(0.5);

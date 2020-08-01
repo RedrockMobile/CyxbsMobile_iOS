@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ClassmatesList.h"
 #import "PeopleListTableViewCell.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ChoosePeopleListView : UIView
-- (instancetype)initWithClassmatesList:(ClassmatesList*)list;
+- (instancetype)initWithInfoDictArray:(NSArray*)infoDictArray;
+- (void)showPeopleListView;
 @property (nonatomic, weak)id<PeopleListTableViewCellDelegateAdd>delegate;
 @end
 

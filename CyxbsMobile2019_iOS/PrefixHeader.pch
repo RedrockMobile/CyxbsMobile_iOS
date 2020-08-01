@@ -224,6 +224,9 @@
 
 /// 同学课表之查找同学
 #define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
+/// 查找老师
+#define SEARCHTEACHERAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch"
+
 ///查询绩点需要先绑定ids
 #define IDSBINDINGAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
 ///绩点查询
@@ -307,4 +310,11 @@
 //更新草稿箱内容
 #define QA_UPDATE_DRAFT_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/updateItemInDraft"
 
+
+typedef NS_ENUM(NSInteger, PeopleType) {
+    /**代表传入的是学生相关*/
+    PeopleTypeStudent,
+    /**代表传入的是老师相关*/
+    PeopleTypeTeacher
+};
 #endif

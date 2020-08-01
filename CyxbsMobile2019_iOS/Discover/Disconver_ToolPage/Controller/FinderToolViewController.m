@@ -286,7 +286,8 @@
     }else {
         //点击了没课约
         WeDateViewController *vc = [[WeDateViewController alloc] init];
-        vc.dataArray = [@{@"name":@"张树洞",@"stuNum":@"20192578798"} mutableCopy];
+        vc.dataArray = [NSMutableArray array];
+        [vc.dataArray addObject:@{@"name":@"张树洞",@"stuNum":@"20192578798"}];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

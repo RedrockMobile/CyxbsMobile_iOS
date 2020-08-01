@@ -19,5 +19,13 @@
     
     return item;
 }
-
++ (ClassmateItem *)teaItemWithDictionary:(NSDictionary *)dictionary{
+    ClassmateItem *item = [[ClassmateItem alloc] init];
+    
+    item.name = dictionary[@"name"];
+    item.major = dictionary[@"teaMajor"];
+    item.stuNum = dictionary[@"teaNum"];
+    
+    return item;
+}
 @end
