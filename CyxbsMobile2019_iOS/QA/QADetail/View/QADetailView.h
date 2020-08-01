@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,weak)id<QADetailDelegate>delegate;
 @property(nonatomic,assign)BOOL isSelf;
 @property(strong,nonatomic)NSMutableArray *imageUrlArray;
+@property(assign,nonatomic)NSInteger scrollviewHeight;
 
 - (void)setupUIwithDic:(NSDictionary *)dic answersData:(NSArray *)answersData;
 @end
