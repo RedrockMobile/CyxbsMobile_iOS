@@ -9,6 +9,7 @@
 #import "WeDateViewController.h"
 #import "PeopleListTableViewCell.h"
 #import "ChoosePeopleListView.h"
+#import "ClassmatesList.h"
 
 #define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -72,7 +73,7 @@
     self.titleLabel = label;
     self.titleLabel.text = @"没课约";
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
-    label.textColor = Color21_49_91_F0F0F2;
+    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];;
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backButton).offset(14);
@@ -159,44 +160,52 @@
 
 
 //MARK:点击某按钮后调用的方法
-//点击键盘上的search键搜人时调用
 
+//点击键盘上的search键时调用
 - (void)search{
+    if([self.searchField.text isEqualToString:@""]){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"输入为空";
+        [hud hide:YES afterDelay:1];
+        return;
+    }
     [self.view endEditing:YES];
-    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:(MBProgressHUDModeText)];
     hud.labelText = @"加载中...";
     [hud hide:YES afterDelay:1];
     
-    NSMutableArray *infoDictArray = [NSMutableArray array];
-    for (int i=0; i<10; i++) {
-        [infoDictArray addObject:@{
-            @"name":[NSString stringWithFormat:@"树洞%d",i+1],
-            @"stuNum":[NSString stringWithFormat:@"201921797%d",i]
-        }];
-    }
-    ChoosePeopleListView *listView = [[ChoosePeopleListView alloc] initWithInfoDictArray:infoDictArray];
-    listView.frame = [UIScreen mainScreen].bounds;
-    listView.delegate = self;
-    [self.view addSubview:listView];
-    [listView showPeopleListView];
-}
-
-/**
-- (void)search{
-    ChoosePeopleListView *peopleList = [[ChoosePeopleListView alloc] init];
+    ClassmatesList *list = [[ClassmatesList alloc] initWithPeopleType:(PeopleTypeStudent)];
     
+    [list getPeopleListWithName:self.searchField.text success:^(ClassmatesList * _Nonnull classmatesList) {
+        
+        ChoosePeopleListView *listView = [[ChoosePeopleListView alloc] initWithInfoDictArray:classmatesList.infoDicts];
+        listView.frame = [UIScreen mainScreen].bounds;
+        listView.delegate = self;
+        [self.view addSubview:listView];
+        [listView showPeopleListView];
+        
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"加载失败";
+        [hud hide:YES afterDelay:1];
+    }];
+}
+/**
+NSMutableArray *infoDictArray = [NSMutableArray array];
+for (int i=0; i<10; i++) {
+    [infoDictArray addObject:@{
+        @"name":[NSString stringWithFormat:@"树洞%d",i+1],
+        @"stuNum":[NSString stringWithFormat:@"201921797%d",i]
+    }];
 }
 */
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if(textField==self.searchField){
-        [self search];
-    }
-    return YES;
-}
 
+//点击紫色的那个查询后调用
 - (void)enquiry{
+    return;
     HttpClient *client = [HttpClient defaultClient];
     dispatch_group_t group = dispatch_group_create();
     for (int i=0; i<10; i++) {
@@ -239,6 +248,7 @@
     cell.delegateDelete = self;
     return cell;
 }
+
 //代理方法，点击cell的addBtn时调用，参数infoDict里面是对应那行的数据@{@"name":@"张树洞",@"stuNum":@"20"}
 - (void)PeopleListTableViewCellAddBtnClickInfoDict:(NSDictionary *)infoDict{
     if(self.dataArray.count>5){
@@ -275,5 +285,13 @@
             break;
         }
     }
+}
+
+//textField的代理方法，实现点击键盘上的search按钮就搜索
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if(textField==self.searchField){
+        [self search];
+    }
+    return YES;
 }
 @end

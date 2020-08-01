@@ -65,5 +65,18 @@
         [self getTeaListWithName:name success:succeededCallBack failure:failedCallBack];
     }
 }
-
+- (NSArray<NSDictionary *> *)infoDicts{
+    if(_infoDicts==nil){
+        NSMutableArray *array = [NSMutableArray array];
+        for (ClassmateItem *item in self.classmatesArray) {
+            NSDictionary *infoDict = @{
+                @"name":item.name,
+                @"stuNum":item.stuNum
+            };
+            [array addObject:infoDict];
+        }
+        _infoDicts = [array copy];
+    }
+    return _infoDicts;
+}
 @end

@@ -39,7 +39,7 @@
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.bounces = NO;
-    scrollView.backgroundColor = UIColor.redColor;
+    scrollView.backgroundColor = UIColor.clearColor;
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
@@ -94,6 +94,7 @@
     tableView.dataSource = self;
     tableView.showsHorizontalScrollIndicator = NO;
     tableView.showsVerticalScrollIndicator = NO;
+    tableView.allowsSelection = NO;
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backgroundView);
@@ -107,7 +108,7 @@
 //MARK:点击某按钮后调用的方法：
 //取消按钮
 - (void)cancelBtnClicked{
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         self.scrollView.contentOffset = CGPointMake(0, 0);
         self.alpha = 0;
     } completion:^(BOOL finished) {
@@ -147,20 +148,46 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if([scrollView isEqual:self.scrollView]){
-        if(scrollView.contentOffset.y>self.peopleListView.frame.size.height*0.7){
-            [UIView animateWithDuration:0.5 animations:^{
+        if(decelerate==YES)return;
+        if(scrollView.contentOffset.y>self.peopleListView.frame.size.height*0.6){
+            [UIView animateWithDuration:0.3 animations:^{
                 scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.5345);
             }];
-            
+
         }else{
-            [self cancelBtnClicked];
+            [UIView animateWithDuration:0.4 animations:^{
+                self.scrollView.contentOffset = CGPointMake(0, 0);
+                self.alpha = 0;
+            } completion:^(BOOL finished) {
+                [self removeFromSuperview];
+            }];
         }
     }
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if([scrollView isEqual:self.scrollView]){
+        if(scrollView.tracking==YES)return;
+        float height = self.peopleListView.frame.size.height;
+        if(scrollView.contentOffset.y<0.9*height){
+            
+            [UIView animateWithDuration:0.4 animations:^{
+                self.scrollView.contentOffset = CGPointMake(0, 0);
+                self.alpha = 0;
+            } completion:^(BOOL finished) {
+                [self removeFromSuperview];
+            }];
+        }else{
+            [UIView animateWithDuration:0.3 animations:^{
+                self.scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.5345);
+                self.alpha = 1;
+            }];
+        }
+    }
+}
 //MARK:其他：
 - (void)showPeopleListView{
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:0.7 animations:^{
         self.scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.5345);
         self.alpha = 1;
     }];

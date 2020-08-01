@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ClassmatesList : NSObject
 
 @property (nonatomic, copy) NSArray<ClassmateItem *> *classmatesArray;
+@property (nonatomic, copy) NSArray<NSDictionary *> *infoDicts;
 
 - (void)getPeopleListWithName:(NSString*)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack;
 - (instancetype)initWithPeopleType:(PeopleType)peoType;
