@@ -37,6 +37,8 @@
 /**参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey*/
 @property (nonatomic, copy)NSString *UserDefaultKey;
 
+@property (nonatomic, strong)UIButton *clearHistoryItemBtn;
+
 @end
 
 @implementation ScheduleViewController
@@ -51,6 +53,7 @@
     [self initExampleButton];
     [self addSearchField];
     [self addHistoryLabel];
+    [self addClearHistoryItemBtn];
     [self addHistoryItem];
 }
 //MARK: - 添加搜索栏
@@ -108,12 +111,34 @@
     UILabel *label = [[UILabel alloc]init];
     self.historyLabel = label;
     label.text = @"历史记录";
-    label.textColor = Color21_49_91_F0F0F2;
+    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     label.font = [UIFont fontWithName:PingFangSCBold size:15];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.searchBackView);
         make.top.equalTo(self.searchBackView.mas_bottom).offset(21);
+    }];
+}
+
+//添加清除历史记录的按钮
+- (void)addClearHistoryItemBtn{
+    UIButton *btn = [[UIButton alloc] init];
+    [self.view addSubview:btn];
+    self.clearHistoryItemBtn = btn;
+    
+    [btn setBackgroundImage:[UIImage imageNamed:@"草稿箱垃圾桶"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(clearHistoryItemBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [btn sizeToFit];
+    float scale = 0.0533*MAIN_SCREEN_W/btn.frame.size.width;
+    btn.transform = CGAffineTransformMakeScale(scale, scale);
+    //拿到存放历史记录的缓存数组
+    NSArray *array = [[NSUserDefaults standardUserDefaults] objectForKey:self.UserDefaultKey];
+    //如果没有历史记录，那就让按钮失效
+    if(array.count==0)btn.enabled = NO;
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.historyLabel);
+        make.centerX.equalTo(self.view).offset(0.4307*MAIN_SCREEN_W);
     }];
 }
 
@@ -216,6 +241,10 @@
            [self.delegate pushToController: studentListVC];
            //跳转后刷新历史记录表
            [self.historyView addHistoryBtnWithString:string reLayout:YES];
+           //如果有刷新历史记录view，就让清除历史记录的按钮可点击
+           if(self.clearHistoryItemBtn.enabled==NO){
+               self.clearHistoryItemBtn.enabled = YES;
+           }
            
        } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
            [loading hide:YES];
@@ -278,6 +307,28 @@
     }
 }
 
+- (void)clearHistoryItemBtnClicked{
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"删除搜索记录" message:@"是否确定删除记录" preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    UIAlertAction *cancelAC = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+    
+    UIAlertAction *deleteAC = [UIAlertAction actionWithTitle:@"删除" style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction * _Nonnull action) {
+        
+        //1.从缓存去除记录
+        [[NSUserDefaults standardUserDefaults] setObject:[@[] mutableCopy] forKey:self.UserDefaultKey];
+        //2.去除控件上的记录
+        
+        [self.historyView removeAllSubviews];
+        
+        //3.让按钮取消失效
+        self.clearHistoryItemBtn.enabled = NO;
+    }];
+    
+    [ac addAction:deleteAC];
+    [ac addAction:cancelAC];
+    
+    [self presentViewController:ac animated:YES completion:nil];
+}
 //MARK: - 参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey
 - (instancetype)initWithUserDefaultKey:(NSString*)key{
     self = [super init];
