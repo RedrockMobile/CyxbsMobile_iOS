@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/7/14.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//对于这个控制器的说明：查询老师课表、查询学生课表是分别由两个控制器管理的，而这两个控制器的类型都是本控制器
 
 #import "ScheduleViewController.h"
 #import "HistoryView.h"
@@ -37,12 +37,14 @@
 /**参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey*/
 @property (nonatomic, copy)NSString *UserDefaultKey;
 
+/**清除历史记录的按钮*/
 @property (nonatomic, strong)UIButton *clearHistoryItemBtn;
 
+/**被查的人的身份*/
+@property (nonatomic,assign)PeopleType peopleType;
 @end
 
 @implementation ScheduleViewController
-//MARK: - ViewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
@@ -56,7 +58,18 @@
     [self addClearHistoryItemBtn];
     [self addHistoryItem];
 }
-//MARK: - 添加搜索栏
+//参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey，PeopleType是被查的人的身份
+- (instancetype)initWithUserDefaultKey:(NSString*)key andPeopleType:(PeopleType)peopleType{
+    self = [super init];
+    if(self){
+        self.UserDefaultKey = key;
+        self.peopleType = peopleType;
+    }
+    return self;
+}
+
+//MARK: - 初始化子控件的方法：
+//添加搜索框
 - (void)addSearchField {
     //add background cornerRadius view
     UIView *backView = [[UIView alloc]init];
@@ -106,7 +119,7 @@
     
 }
 
-//MARK: - 添加显示“历史记录”四个字的label
+//添加显示“历史记录”四个字的label
 - (void)addHistoryLabel {
     UILabel *label = [[UILabel alloc]init];
     self.historyLabel = label;
@@ -142,7 +155,7 @@
     }];
 }
 
-//MARK: - 添加历史记录的人名
+//添加历史记录按钮
 - (void)addHistoryItem {
     NSMutableArray * array = [[[NSUserDefaults standardUserDefaults] objectForKey:self.UserDefaultKey] mutableCopy];
     
@@ -172,7 +185,8 @@
     }];
 }
 
-//MARK: - 点击搜索按钮
+//MARK: - 点击类某按钮后调用
+//点击键盘上的搜索按钮后调用
 - (void)touchSearchButton {
     /**调试颜色用
     UIView *v = [[UIView alloc] initWithFrame:(CGRectMake(100, 100, 100, 100))];
@@ -194,19 +208,48 @@
         [noInput hide:YES afterDelay:1];
         return;
     }
-    
-//    NSLog(@"当前缓存的数组是%@",[defa objectForKey:@"FindStudentSchedule_historyArray"]);
-    
     //搜索输入框的内容，如果有返回则跳转如选择同学页面
     [self requestStudentNameDataWithNSString:self.textField.text];
 }
 
-//MARK: - 点击了某一条历史记录
+//点击了某一条历史记录后调用
 - (void)touchHistoryButton:(UIButton *)sender {
     [self requestStudentNameDataWithNSString:sender.titleLabel.text];
 }
 
-//MARK: - 通过string来请求
+//点击清除历史记录按钮后调用
+- (void)clearHistoryItemBtnClicked{
+    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"删除搜索记录" message:@"是否确定删除记录" preferredStyle:(UIAlertControllerStyleAlert)];
+    
+    UIAlertAction *cancelAC = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+    
+    UIAlertAction *deleteAC = [UIAlertAction actionWithTitle:@"删除" style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction * _Nonnull action) {
+        
+        //1.从缓存去除记录
+        [[NSUserDefaults standardUserDefaults] setObject:[@[] mutableCopy] forKey:self.UserDefaultKey];
+        //2.去除控件上的记录
+        
+        [self.historyView removeAllSubviews];
+        
+        //3.让按钮取消失效
+        self.clearHistoryItemBtn.enabled = NO;
+    }];
+    
+    [ac addAction:deleteAC];
+    [ac addAction:cancelAC];
+    
+    [self presentViewController:ac animated:YES completion:nil];
+}
+
+//MARK: -需要实现的代理方法：
+//搜索框textfield的代理方法
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self touchSearchButton];
+    return YES;
+}
+
+//MARK: - 其他的方法
+//通过string来发送网络请求的方法
 - (void)requestStudentNameDataWithNSString:(NSString*)string {
     [self.view endEditing:YES];
     
@@ -258,7 +301,7 @@
        }];
 }
 
-//MARK: - 初始化标准的历史记录按钮
+//初始化历史记录按钮样本的方法
 - (void)initExampleButton{
     UIButton *btn = [[UIButton alloc]init];
     
@@ -280,7 +323,7 @@
     self.exampleButton = btn;
 }
 
-//MARK: - 把str写入key对应的那个数组，再把数组放回去
+//把str写入key对应的那个缓存数组，再把数组放回去，实现记录搜索记录的方法
 - (void)write:(NSString*)str intoDataArrayWithUserDefaultKey:(NSString*)key{
     
     //写入缓存
@@ -307,39 +350,5 @@
     }
 }
 
-- (void)clearHistoryItemBtnClicked{
-    UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"删除搜索记录" message:@"是否确定删除记录" preferredStyle:(UIAlertControllerStyleAlert)];
-    
-    UIAlertAction *cancelAC = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
-    
-    UIAlertAction *deleteAC = [UIAlertAction actionWithTitle:@"删除" style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction * _Nonnull action) {
-        
-        //1.从缓存去除记录
-        [[NSUserDefaults standardUserDefaults] setObject:[@[] mutableCopy] forKey:self.UserDefaultKey];
-        //2.去除控件上的记录
-        
-        [self.historyView removeAllSubviews];
-        
-        //3.让按钮取消失效
-        self.clearHistoryItemBtn.enabled = NO;
-    }];
-    
-    [ac addAction:deleteAC];
-    [ac addAction:cancelAC];
-    
-    [self presentViewController:ac animated:YES completion:nil];
-}
-//MARK: - 参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey
-- (instancetype)initWithUserDefaultKey:(NSString*)key{
-    self = [super init];
-    if(self){
-        self.UserDefaultKey = key;
-    }
-    return self;
-}
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [self touchSearchButton];
-    return YES;
-}
 @end

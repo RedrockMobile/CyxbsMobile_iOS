@@ -4,7 +4,7 @@
 //
 //  Created by 千千 on 2020/1/29.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//点击键盘上的搜索按钮后跳转的那个选择人的界面就是这个类
 
 #import "ChooseStudentListViewController.h"
 #import "PeopleListCellTableViewCell.h"
@@ -35,6 +35,8 @@
     // Do any additional setup after loading the view.
 }
 
+//MARK: - 初始化子控件的方法：
+//添加tableView
 - (void)addTableView {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 87, self.view.width, self.view.height - 87) style:UITableViewStylePlain];
     self.tableView = tableView;
@@ -43,7 +45,7 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
 }
-
+//添加返回按钮
 - (void)addBackButton {
     UIButton *button = [[UIButton alloc]init];
     [self.view addSubview:button];
@@ -59,10 +61,7 @@
     [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)popController {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
+//添加显示同学课表四个字的label
 - (void)addTitleLabel {
     UILabel *label = [[UILabel alloc]init];
     self.titleLabel = label;
@@ -75,16 +74,8 @@
         make.centerY.equalTo(self.backButton);
     }];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+//MARK: - 需要实现的代理方法：
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PeopleListCellTableViewCell *cell = [[PeopleListCellTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PeopleListCell"];
     cell.textLabel.text = self.classmatesList.classmatesArray[indexPath.row].name;
@@ -92,13 +83,23 @@
     cell.stuNumLabel.text = self.classmatesList.classmatesArray[indexPath.row].stuNum;
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 90;
 }
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.classmatesList.classmatesArray.count;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
+
+//MARK: - 点击某按钮后调用的方法：
+//点击返回按钮后调用的方法
+- (void)popController {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end

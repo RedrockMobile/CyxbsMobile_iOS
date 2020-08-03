@@ -2825,12 +2825,12 @@
 		EE75BF3423F5884100208039 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				EE75BF3A23F5884100208039 /* ChooseStudentListViewController.h */,
-				EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */,
 				EE75BF3623F5884100208039 /* ScheduleInquiryViewController.h */,
 				EE75BF3B23F5884100208039 /* ScheduleInquiryViewController.m */,
 				AA33F23B24BDF0DE00ECB09E /* ScheduleViewController.h */,
 				AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */,
+				EE75BF3A23F5884100208039 /* ChooseStudentListViewController.h */,
+				EE75BF3723F5884100208039 /* ChooseStudentListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/7/30.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//这个类是没课约最开始的那个页面的控制器
 
 #import "WeDateViewController.h"
 #import "PeopleListTableViewCell.h"
@@ -22,8 +22,10 @@
 @property (nonatomic ,strong)UITextField *searchField;
 /**显示已经被添加的人的tableView*/
 @property (nonatomic ,strong)UITableView *peoleAddedList;
-
+/**紫色的查询按钮*/
 @property (nonatomic, strong)UIButton *enquiryBtn;
+/**已添加的人的信息*/
+@property (nonatomic, copy)NSMutableArray *infoDictArray;
 @end
 
 @implementation WeDateViewController
@@ -42,13 +44,16 @@
     [self addEnquiryBtn];
     
 }
-- (NSMutableArray *)dataArray{
-    if(_dataArray==nil){
-        _dataArray = [NSMutableArray array];
+- (instancetype)initWithInfoDictArray:(NSMutableArray*)infoDictArray{
+    self = [super init];
+    if(self){
+        self.infoDictArray = infoDictArray;
     }
-    return _dataArray;
+    return self;
 }
 
+//MARK: - 初始化子控件的一些方法：
+//添加返回按钮
 - (void)addBackButton {
     UIButton *button = [[UIButton alloc]init];
     [self.view addSubview:button];
@@ -64,10 +69,7 @@
     [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)popController {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
+//添加显示没课约的那几个字的label
 - (void)addTitleLabel {
     UILabel *label = [[UILabel alloc]init];
     self.titleLabel = label;
@@ -81,6 +83,7 @@
     }];
 }
 
+//添加搜索框
 - (void)addSearchField {
     
     UIView *backgroundView = [[UIView alloc] init];
@@ -158,9 +161,7 @@
     [btn addTarget:self action:@selector(enquiry) forControlEvents:UIControlEventTouchUpInside];
 }
 
-
-//MARK:点击某按钮后调用的方法
-
+//MARK: - 点击某按钮后调用的方法:
 //点击键盘上的search键时调用
 - (void)search{
     if([self.searchField.text isEqualToString:@""]){
@@ -193,56 +194,62 @@
         [hud hide:YES afterDelay:1];
     }];
 }
-/**
-NSMutableArray *infoDictArray = [NSMutableArray array];
-for (int i=0; i<10; i++) {
-    [infoDictArray addObject:@{
-        @"name":[NSString stringWithFormat:@"树洞%d",i+1],
-        @"stuNum":[NSString stringWithFormat:@"201921797%d",i]
-    }];
+//点击退出按钮后调用
+- (void)popController {
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
 
 //点击紫色的那个查询后调用
 - (void)enquiry{
-    return;
+    if(self.infoDictArray.count==0){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"没有添加同学";
+        [hud hide:YES afterDelay:1];
+        return;
+    }
+    
     HttpClient *client = [HttpClient defaultClient];
+    __block NSMutableArray *array = [NSMutableArray array];
+
     dispatch_group_t group = dispatch_group_create();
-    for (int i=0; i<10; i++) {
-        
+    for (NSDictionary *infoDict in self.infoDictArray) {
         dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            NSLog(@"1111m%dm",i);
+         
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-            
-            [client requestWithPath:URL method:HttpRequestPost parameters:@{@"stuNum":@"2019211534"} prepareExecute:^{
-                
+            [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
+
             } progress:^(NSProgress *progress) {
-                
+
             } success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSLog(@"i=%d",i);
-            
+
+                for (NSDictionary *dict in [responseObject objectForKey:@"data"]) {
+                    [array addObject:dict];
+                }
+
+                dispatch_semaphore_signal(semaphore);
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                
                 dispatch_semaphore_signal(semaphore);
             }];
-            
-            NSLog(@"x%dx",i);
+
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//            NSLog(@"kkm%dm",i);
-        }
-);
-//        NSLog(@"m%dm",i);
-        
+     });
     }
+
+
+    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSLog(@"%@",array);
+     });
 }
 
-//MARK:需实现的代理方法：
+
+//MARK: - 需要实现的代理方法：
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return self.infoDictArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *infoDict = self.dataArray[indexPath.row];
+    NSDictionary *infoDict = self.infoDictArray[indexPath.row];
     
     PeopleListTableViewCell *cell = [[PeopleListTableViewCell alloc] initWithInfoDict:infoDict andRightBtnType:(PeopleListTableViewCellRightBtnTypeDelete)];
     cell.delegateDelete = self;
@@ -251,7 +258,7 @@ for (int i=0; i<10; i++) {
 
 //代理方法，点击cell的addBtn时调用，参数infoDict里面是对应那行的数据@{@"name":@"张树洞",@"stuNum":@"20"}
 - (void)PeopleListTableViewCellAddBtnClickInfoDict:(NSDictionary *)infoDict{
-    if(self.dataArray.count>5){
+    if(self.infoDictArray.count>5){
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:(MBProgressHUDModeText)];
         hud.labelText = @"最多添加六个";
@@ -259,7 +266,7 @@ for (int i=0; i<10; i++) {
     
     }else{
         int mark = 0;
-        for (NSDictionary *dict in self.dataArray) {
+        for (NSDictionary *dict in self.infoDictArray) {
             if([dict[@"stuNum"] isEqualToString:infoDict[@"stuNum"]]){
                 mark = 1;
                 MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -270,7 +277,7 @@ for (int i=0; i<10; i++) {
         }
         
         if(mark==0){
-            [self.dataArray addObject:infoDict];
+            [self.infoDictArray addObject:infoDict];
             [self.peoleAddedList reloadData];
         }
     }
@@ -278,9 +285,9 @@ for (int i=0; i<10; i++) {
 
 //代理方法，点击cell的deleteBtn时调用，参数infoDict里面是对应那行的数据@{@"name":@"张树洞",@"stuNum":@"20"}
 - (void)PeopleListTableViewCellDeleteBtnClickInfoDict:(NSDictionary *)infoDict{
-    for (NSDictionary *dict in self.dataArray) {
+    for (NSDictionary *dict in self.infoDictArray) {
         if([dict[@"stuNum"] isEqualToString:infoDict[@"stuNum"]]){
-            [self.dataArray removeObject:dict];
+            [self.infoDictArray removeObject:dict];
             [self.peoleAddedList reloadData];
             break;
         }
