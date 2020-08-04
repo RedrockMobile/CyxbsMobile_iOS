@@ -10,6 +10,7 @@
 #import "PeopleListTableViewCell.h"
 #import "ChoosePeopleListView.h"
 #import "ClassmatesList.h"
+#import "WYCClassBookViewController.h"
 
 #define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -25,7 +26,7 @@
 /**紫色的查询按钮*/
 @property (nonatomic, strong)UIButton *enquiryBtn;
 /**已添加的人的信息*/
-@property (nonatomic, copy)NSMutableArray *infoDictArray;
+@property (nonatomic, strong)NSMutableArray *infoDictArray;
 @end
 
 @implementation WeDateViewController
@@ -42,7 +43,7 @@
     [self addPeoleAddedList];
     
     [self addEnquiryBtn];
-    
+    self.infoDictArray = [@[@{@"stuNum":@"2019211000",@"name":@"刘"},@{@"stuNum":@"2019211001",@"name":@"范"}] mutableCopy];
 }
 - (instancetype)initWithInfoDictArray:(NSMutableArray*)infoDictArray{
     self = [super init];
@@ -200,6 +201,7 @@
 }
 
 //点击紫色的那个查询后调用
+
 - (void)enquiry{
     if(self.infoDictArray.count==0){
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -215,7 +217,6 @@
     dispatch_group_t group = dispatch_group_create();
     for (NSDictionary *infoDict in self.infoDictArray) {
         dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
 
@@ -226,22 +227,33 @@
                 for (NSDictionary *dict in [responseObject objectForKey:@"data"]) {
                     [array addObject:dict];
                 }
-
+                
                 dispatch_semaphore_signal(semaphore);
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
                 dispatch_semaphore_signal(semaphore);
             }];
-
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
      });
     }
-
-
+    
+    //完成group的任务后执行block里的内容
     dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSLog(@"%@",array);
+        WYCClassBookViewController *vc;
+        WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
+        model.weekArray = [@[array]mutableCopy];
+        [model parsingClassBookData:array];
+        [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
+        [model setValue:@"YES" forKey:@"classDataLoadFinish"];
+        vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+        [vc initStuNum:@"x" andIdNum:@"x"];
+        [vc initWYCClassAndRemindDataModel:model];
+        
+        //present这种刷新UI的操作得放主线程，不然会报错
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentViewController:vc animated:YES completion:nil];
+        });
      });
 }
-
 
 //MARK: - 需要实现的代理方法：
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

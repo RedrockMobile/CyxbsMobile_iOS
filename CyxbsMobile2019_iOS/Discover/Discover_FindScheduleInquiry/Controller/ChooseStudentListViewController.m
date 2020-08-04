@@ -8,7 +8,8 @@
 
 #import "ChooseStudentListViewController.h"
 #import "PeopleListCellTableViewCell.h"
-
+#import "WYCClassBookViewController.h"
+//#import "WYCClassAndRemindDataModel.h"
 
 @interface ChooseStudentListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -93,6 +94,21 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    WYCClassBookViewController *vc = [mainStoryBoard instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+    
+    ClassmateItem *item = self.classmatesList.classmatesArray[indexPath.row];
+    
+    WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc]init];
+    
+    [model getClassBookArrayFromNet:item.stuNum];
+    
+    [vc initStuNum:item.stuNum andIdNum:@"x"];
+    [vc initWYCClassAndRemindDataModel:model];
+    
+    [self presentViewController:vc animated:YES completion:nil];
     
 }
 

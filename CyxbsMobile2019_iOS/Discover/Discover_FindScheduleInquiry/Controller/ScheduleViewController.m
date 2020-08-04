@@ -9,7 +9,6 @@
 #import "ScheduleViewController.h"
 #import "HistoryView.h"
 #import "ClassmatesList.h"
-#import "WYCClassBookViewController.h"
 /**最大的搜索历史记录个数*/
 #define MAXLEN 9
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
