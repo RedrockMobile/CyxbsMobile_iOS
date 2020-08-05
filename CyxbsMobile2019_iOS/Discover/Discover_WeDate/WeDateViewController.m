@@ -212,10 +212,12 @@
     }
     
     HttpClient *client = [HttpClient defaultClient];
-    __block NSMutableArray *array = [NSMutableArray array];
+    __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
 
+    //用GCD实现多人的课表的请求,把请求到的课表数据都放入lessonOfAllPeople
     dispatch_group_t group = dispatch_group_create();
     for (NSDictionary *infoDict in self.infoDictArray) {
+        
         dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
             [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
@@ -223,13 +225,12 @@
             } progress:^(NSProgress *progress) {
 
             } success:^(NSURLSessionDataTask *task, id responseObject) {
-
-                for (NSDictionary *dict in [responseObject objectForKey:@"data"]) {
-                    [array addObject:dict];
-                }
+                //课表数据全部放入lessonOfAllPeople
+                [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
                 
                 dispatch_semaphore_signal(semaphore);
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                
                 dispatch_semaphore_signal(semaphore);
             }];
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
@@ -238,15 +239,19 @@
     
     //完成group的任务后执行block里的内容
     dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        WYCClassBookViewController *vc;
+        
         WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
-        model.weekArray = [@[array]mutableCopy];
-        [model parsingClassBookData:array];
+        
+        //模拟从storyBoard加载课表时对model的操作
+        model.weekArray = [@[lessonOfAllPeople]mutableCopy];
+        [model parsingClassBookData:lessonOfAllPeople];
         [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
         [model setValue:@"YES" forKey:@"classDataLoadFinish"];
-        vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
-        [vc initStuNum:@"x" andIdNum:@"x"];
-        [vc initWYCClassAndRemindDataModel:model];
+        
+       WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+        
+        //对model赋值
+        vc.model = model;
         
         //present这种刷新UI的操作得放主线程，不然会报错
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -275,8 +280,9 @@
         [hud setMode:(MBProgressHUDModeText)];
         hud.labelText = @"最多添加六个";
         [hud hide:YES afterDelay:1];
-    
+        return;
     }else{
+        //检验是否重复添加的标志
         int mark = 0;
         for (NSDictionary *dict in self.infoDictArray) {
             if([dict[@"stuNum"] isEqualToString:infoDict[@"stuNum"]]){
@@ -285,6 +291,7 @@
                 [hud setMode:(MBProgressHUDModeText)];
                 hud.labelText = @"请勿重复添加";
                 [hud hide:YES afterDelay:1];
+                break;
             }
         }
         

@@ -317,4 +317,10 @@ typedef NS_ENUM(NSInteger, PeopleType) {
     /**代表传入的是老师相关*/
     PeopleTypeTeacher
 };
+
+//data[i][j]代表（星期i+1）的（第j+1节课）是否有课，有课则为1，无课则为0
+typedef struct weekData{
+    int data[7][12];
+} weekData;
+
 #endif

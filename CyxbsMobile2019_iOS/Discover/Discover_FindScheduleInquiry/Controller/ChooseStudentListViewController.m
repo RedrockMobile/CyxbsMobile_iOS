@@ -105,8 +105,7 @@
     
     [model getClassBookArrayFromNet:item.stuNum];
     
-    [vc initStuNum:item.stuNum andIdNum:@"x"];
-    [vc initWYCClassAndRemindDataModel:model];
+    vc.model = model;
     
     [self presentViewController:vc animated:YES completion:nil];
     

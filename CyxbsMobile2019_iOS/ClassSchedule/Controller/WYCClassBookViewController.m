@@ -7,6 +7,9 @@
 //
 
 #import "WYCClassBookViewController.h"
+ typedef struct pWeekData {
+     weekData *w[29];
+ }pWeekData;
 
 @interface WYCClassBookViewController ()<UIScrollViewDelegate,WYCClassBookViewDelegate,WYCShowDetailDelegate>
 /**课表顶部的小拖拽条*/
@@ -24,28 +27,28 @@
 
 @property (nonatomic, strong) WMTWeekChooseBar *weekChooseBar;
 @property (nonatomic, strong) DateModle *dateModel;
-@property (nonatomic, strong) WYCClassAndRemindDataModel *model;
+
 
 @property (nonatomic, copy) NSString *stuNum;
 @property (nonatomic, copy) NSString *idNum;
 @property (nonatomic, assign) BOOL isLogin;
 @property (nonatomic, assign) BOOL weekChooseBarLock;
-//显示（七周、六周、本周的）那些条组成的数组
+//显示（第七周、第六周、本周的）那些条组成的数组
 @property (nonatomic, strong)NSMutableArray *currentWeekBars;
 //选择去哪一周的一个条
 @property (nonatomic, strong)UIView *chooseWeekBar;
-
-//@property (nonatomic, strong)UIButton *currenChooseWeektBtn;
+//用来储存被分配过空间的weekData结构体，在viewDidDisappear里free分配的空间
+@property (nonatomic, assign)pWeekData *pWeek;
 @end
 
 @implementation WYCClassBookViewController
-- (void)initStuNum:(NSString*)stuNum andIdNum:(NSString*)idnum{
-    self.stuNum = stuNum;
-    self.idNum = idnum;
+- (pWeekData *)pWeek{
+    if(_pWeek==nil){
+        _pWeek = malloc(sizeof(pWeekData));
+    }
+    return _pWeek;
 }
-- (void)initWYCClassAndRemindDataModel:(WYCClassAndRemindDataModel*)model{
-    self.model = model;
-}
+
 - (void)viewDidLoad {
     
     self.navigationController.navigationBar.hidden = YES;
@@ -151,36 +154,14 @@
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
     self.weekChooseBarLock = YES;
-//    self.stuNum = [UserDefaultTool getStuNum];
-//    self.idNum = [UserDefaultTool getIdNum];
-//    if (!self.model) {
-//        self.dateModel = [DateModle initWithStartDate:DateStart];
-//        self.index = self.dateModel.nowWeek.integerValue;
         [self initWeekChooseBar];
         [self initScrollView];
         [self initTitleLabel];
         [self initNavigationBar];
-        
-//        self.model = [[WYCClassAndRemindDataModel alloc]init];
-//        [self.model getClassBookArray:self.stuNum];
         [self.model getRemindFromNet:self.stuNum idNum:self.idNum];
-        
-
-//    }else{
-//        [self initWeekChooseBar];
-//        [self initScrollView];
-//        [self initTitleLabel];
-//        [self initNavigationBar];
-//
-////        [self.model getClassBookArrayFromNet:_stuNum];
-//        [self.model getRemindFromNet:_stuNum idNum:_idNum];
-//
-//
-//    }
-    
 }
 
-
+//WYCClassAndRemindDataModel模型价值数成功后调用
 - (void)ModelDataLoadSuccess{
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -228,6 +209,10 @@
             
             WYCClassBookView *view = [[WYCClassBookView alloc]initWithFrame:CGRectMake(dateNum*_scrollView.frame.size.width,70, _scrollView.frame.size.width, _scrollView.frame.size.height)];
             view.detailDelegate = self;
+            
+            view.mark = malloc(sizeof(weekData));
+            self.pWeek->w[dateNum] = view.mark;
+            
             if (dateNum == 0) {
                 [view initView:YES];
                 NSArray *dateArray = @[];
@@ -251,37 +236,38 @@
 //            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.titleView.width - titleLabel)/ 2, 0, titleLabel, titleView.height)];
             NSMutableArray *titleArray = [@[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"第十一周",@"第十二周",@"第十三周",@"第十四周",@"第十五周",@"第十六周",@"第十七周",@"第十八周",@"第十九周",@"第二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"] mutableCopy];
             
-            //____________________________________________________
             
+            
+            //_____________________为了添加“回到本周”的按钮而增加的改动_____________________________
 //            titleLabel:第x周 titleView：titleLabel的背景条
-//            CGRectMake(MAIN_SCREEN_W*0.0427, 0, MAIN_SCREEN_W*0.22, MAIN_SCREEN_H*0.0391)
-            
-//            titleView.backgroundColor = UIColor.redColor;
+                
             if(self.dateModel.nowWeek.integerValue==dateNum){
-                //显示本周的那个label
+                
+                //nowWeekLabel显示“本周”的那个label
                 UILabel *nowWeekLabel = [[UILabel alloc] init];
                 [titleView addSubview: nowWeekLabel];
                 nowWeekLabel.text = @"(本周)";
-//                nowWeekLabel.backgroundColor = UIColor.redColor;
                 nowWeekLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
                 nowWeekLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
                 nowWeekLabel.frame = CGRectMake(MAIN_SCREEN_W*0.2627, 0.009*MAIN_SCREEN_H, 0.12*MAIN_SCREEN_W, 0.0259*MAIN_SCREEN_H);
                 
                 
+                //rightArrayBtn是显示右箭头那个按钮
                 UIButton *rightArrayBtn = [[UIButton alloc] init];
                 [titleView addSubview:rightArrayBtn];
                 [rightArrayBtn setTitle:@">" forState:(UIControlStateNormal)];
                 rightArrayBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
                 [rightArrayBtn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
-
+                
                 [rightArrayBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.3827, 3, 7, MAIN_SCREEN_H*0.0391))];
+                
                 
                 
                 [rightArrayBtn addTarget:self action:@selector(rightArrayBtnClicked) forControlEvents:UIControlEventTouchUpInside];
                 NSArray *a = @[nowWeekLabel,rightArrayBtn,titleLabel];
                 [viewArray addObject:a];
             }else{
-                //(MAIN_SCREEN_W*0.0427, 0, MAIN_SCREEN_W*0.22, MAIN_SCREEN_H*0.0391)
+                //rightArrayBtn是显示右箭头那个按钮
                 UIButton *rightArrayBtn = [[UIButton alloc] init];
                 [titleView addSubview:rightArrayBtn];
                 [rightArrayBtn setTitle:@">" forState:(UIControlStateNormal)];
@@ -291,6 +277,7 @@
                 [rightArrayBtn addTarget:self action:@selector(rightArrayBtnClicked) forControlEvents:UIControlEventTouchUpInside];
                 
                 
+                //backBtn是“回到本周”的那个按钮
                 UIButton *backBtn = [[UIButton alloc] init];
                 [titleView addSubview:backBtn];
                 [backBtn setTitle:@"回到本周" forState:(UIControlStateNormal)];
@@ -304,12 +291,11 @@
                 NSArray *a = @[rightArrayBtn,backBtn,titleLabel];
                 [viewArray addObject:a];
             }
-//            ___________________________________________________
+//_____________________为了添加“回到本周”的按钮而增加的改动_____________________________
             
             
             
             
-            //____________________________________________________
             _titleText = titleArray[dateNum];
             titleLabel.text = _titleText;
               titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -583,10 +569,19 @@
     [model deleteRemind:stuNum idNum:idNum remindId:noteId];
     [self reloadView];
 }
+
+//周选择条的懒加载
 - (UIView *)chooseWeekBar{
+    //整学期、第一周、十七周等按钮宽高
+    float btnW = 0.17*MAIN_SCREEN_W;
+    float btnH = MAIN_SCREEN_H*0.0259;
     if(_chooseWeekBar==nil){
+        //chooseWeekBar上面有两个控件：scrollView、左箭头按钮
         UIView *chooseWeekBar = [[UIView alloc] initWithFrame:(CGRectMake(0, 50, MAIN_SCREEN_W, 30))];
         [self.view addSubview: chooseWeekBar];
+        _chooseWeekBar = chooseWeekBar;
+        
+        
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, 0, MAIN_SCREEN_W-20, 30))];
         scrollView.backgroundColor = UIColor.whiteColor;
         scrollView.contentSize = CGSizeMake(5*MAIN_SCREEN_W, 30);
@@ -594,27 +589,24 @@
         scrollView.showsVerticalScrollIndicator = NO;
         scrollView.showsHorizontalScrollIndicator = NO;
         
-        NSMutableArray *titleArray = [@[@"整学期",@"一周",@"二周",@"三周",@"四周",@"五周",@"六周",@"七周",@"八周",@"九周",@"十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"] mutableCopy];
+        NSMutableArray *titleArray = [@[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"] mutableCopy];
         
-//        UIButton *first = [[UIButton alloc] init];
-//        [chooseWeekBar addSubview:first];
-//        [first setFrame:(CGRectMake(0.0427*MAIN_SCREEN_W, 0.0247*MAIN_SCREEN_H, 0.12*MAIN_SCREEN_W, 0.0273*MAIN_SCREEN_H))];
-//        [first setTitle:@"整学期" forState:UIControlStateNormal];
-//
         for (int i=0; i<26; i++) {
+            //btn是整学期、第五周、十八周 按钮
             UIButton *btn = [[UIButton alloc] init];
             [scrollView addSubview:btn];
-            [btn setFrame:(CGRectMake(0.17*MAIN_SCREEN_W*i+0.0427*MAIN_SCREEN_W,0.0062*MAIN_SCREEN_H,MAIN_SCREEN_W*0.17,MAIN_SCREEN_H*0.0259))];
+            [btn setFrame:(CGRectMake(btnW*i+0.0427*MAIN_SCREEN_W,0.0062*MAIN_SCREEN_H,btnW,btnH))];
             
             [btn setTitle:titleArray[i] forState:UIControlStateNormal];
             btn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
             [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:UIControlStateNormal];
             btn.backgroundColor = UIColor.whiteColor;
             btn.tag = i;
+            //goToAWeek:用tag来知道点击了哪一个按钮
             [btn addTarget:self action:@selector(goToAWeek:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        
+        //添加左箭头按钮
         UIButton *leftArrowBtn = [[UIButton alloc] init];
         [chooseWeekBar addSubview:leftArrowBtn];
         [leftArrowBtn setTitle:@"<" forState:(UIControlStateNormal)];
@@ -622,43 +614,59 @@
         [leftArrowBtn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
         [leftArrowBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.9387, 0, 20, 30))];
         [leftArrowBtn addTarget:self action:@selector(leftArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-        
-        _chooseWeekBar = chooseWeekBar;
     }
     return _chooseWeekBar;
 }
+
+//右箭头点击后调用
 - (void)rightArrayBtnClicked{
     NSMutableArray *viewArray =  self.currentWeekBars;
     for (NSArray *a in viewArray) {
         for (UIView *v in a) {
+            //把currentWeekBars内部存的子控件全部隐形、不可点击
             v.alpha = 0;
             v.userInteractionEnabled = NO;
         }
     }
+    //再把周选择条显形、可点击
     self.chooseWeekBar.userInteractionEnabled = YES;
     self.chooseWeekBar.alpha = 1;
 }
+
+//左箭头点击后调用
 - (void)leftArrowBtnClicked{
     NSMutableArray *viewArray =  self.currentWeekBars;
     for (NSArray *a in viewArray) {
+        //把currentWeekBars内部存的子控件全部显形、可点击
         for (UIView *v in a) {
             v.alpha = 1;
             v.userInteractionEnabled = YES;
         }
     }
+    //再把周选择条隐形、不可点击
     self.chooseWeekBar.alpha = 0;
     self.chooseWeekBar.userInteractionEnabled = NO;
 }
+//回到本周按钮点击后调用
 - (void)backNowWeekBtnClicked{
     [UIView animateWithDuration:0.5 animations:^{
         self.scrollView.contentOffset = CGPointMake(self.dateModel.nowWeek.intValue*MAIN_SCREEN_W, 0);
     }];
     
 }
+//点击了周选择条上的某一周后调用，goToAWeek:用tag来知道点击了哪一个按钮
 - (void)goToAWeek:(UIButton*)btn{
     [UIView animateWithDuration:0.5 animations:^{
         self.scrollView.contentOffset = CGPointMake(btn.tag*MAIN_SCREEN_W, 0);
     }];
+}
+
+//在这里free WYCClassBookView的mark属性和self.pWeek分配到的空间
+-(void)viewDidDisappear:(BOOL)animated{
+    for (int i=0; i<self.dateModel.dateArray.count; i++) {
+        free(self.pWeek->w[i]);
+    }
+    free(self.pWeek);
 }
 @end
 
