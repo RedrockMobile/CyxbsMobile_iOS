@@ -122,6 +122,19 @@ contentLabel.text = content;
     }];
     self.scrollviewHeight += [self calculateLabelHeight:content width:(SCREEN_WIDTH - 40) fontsize:15];
     
+    // 深色模式
+    if (@available(iOS 11.0, *)) {
+        userNameLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        dateLabel.textColor = [UIColor colorNamed:@"QAListAnswerLableColor"];
+        integralNumLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        contentLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+    } else {
+        [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        [dateLabel setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
+        [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+    }
+    
     UIView *separateView = [[UIView alloc]init];
     separateView.backgroundColor = [UIColor colorWithHexString:@"#2A4E84"];
     separateView.alpha = 0.1;
@@ -147,6 +160,9 @@ contentLabel.text = content;
             NSURL *url = [NSURL URLWithString:urlString];
             [imgView setImageURL:url];
             imgView.userInteractionEnabled = YES;
+            imgView.layer.cornerRadius = 8;
+            imgView.clipsToBounds = YES;
+            imgView.contentMode = UIViewContentModeScaleAspectFill;
             //添加点击手势
 //            UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToViewBigImage:)];
 //            [imgView addGestureRecognizer:tapGesture];
@@ -155,6 +171,14 @@ contentLabel.text = content;
             imageBtn.tag = i;
             imageBtn.backgroundColor = UIColor.clearColor;
             [imageBtn addTarget:self action:@selector(tapToViewBigImage:) forControlEvents:UIControlEventTouchUpInside];
+            
+            // 图片多余6个时，最后一个按钮显示“+n”
+            if (self.imageUrlArray.count > 6 && i == 5) {
+                imageBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.50];
+                [imageBtn setTitle:[NSString stringWithFormat:@"%lu+", (unsigned long)self.imageUrlArray.count - 5] forState:UIControlStateNormal];
+                imageBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:30];
+                imageBtn.layer.cornerRadius = 8;
+            }
             [self.scrollView addSubview:imageBtn];
             self.scrollviewHeight += height;
 //            [self.imageViewArray addObject:imgView];
@@ -191,11 +215,11 @@ contentLabel.text = content;
             }
         }
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-                           make.right.mas_equalTo(self.mas_right).mas_offset(0);
-                           make.left.mas_equalTo(self.mas_left).mas_offset(0);
-                           make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(250);
-                           make.height.mas_equalTo(1);
-                       }];
+            make.right.mas_equalTo(self.mas_right).mas_offset(0);
+            make.left.mas_equalTo(self.mas_left).mas_offset(0);
+            make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(250);
+            make.height.mas_equalTo(1);
+        }];
     }else{
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).mas_offset(0);
@@ -207,7 +231,11 @@ contentLabel.text = content;
     
     UILabel *answerLabel = [[UILabel alloc]init];
     answerLabel.text = @"回复";
-    [answerLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+    if (@available(iOS 11.0, *)) {
+        [answerLabel setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
+    } else {
+        [answerLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+    }
     answerLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
     [self.scrollView addSubview:answerLabel];
     
@@ -344,6 +372,10 @@ contentLabel.text = content;
 //查看大图
 - (void)tapToViewBigImage:(UIButton *)sender{
     [self.delegate tapToViewBigImage:sender.tag];
+}
+
+- (void)tapToViewBigAnswerImage:(UIButton *)sender {
+    [self.delegate tapToViewBigAnswerImage:sender.tag];
 }
 
 - (void)replyComment:(UIButton *)sender{

@@ -251,24 +251,41 @@
 - (void)tapAdoptBtn:(nonnull NSNumber *)answerId{
     [self.model adoptAnswer:self.question_id answerId:answerId];
 }
+
+// 这个方法是查看问题大图，由于种种原因，这里的参数名称不太对，懒得改了，将就看吧
 - (void)tapToViewBigImage:(NSInteger)answerIndex{
-//    for (NSDictionary *answerData in self.model.detailData) {
-//        if ([[answerData objectForKey:@"id"] integerValue] == answerIndex){
+    NSArray *imageUrls = [self.model.detailData objectForKey:@"photo_url"];
+    NSMutableArray *photos = [NSMutableArray array];
+    for (int i = 0; i < imageUrls.count; i++) {
+        GKPhoto *photo = [GKPhoto new];
+        photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrls[i]]];
+        [photos addObject:photo];
+    }
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:answerIndex];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:self];
+}
+
+// 这个是查看回答的大图，由于种种原因，和上面那个方法基本上一样，也懒得改了了，将就看吧
+- (void)tapToViewBigAnswerImage:(NSInteger)answerIndex {
+    for (NSDictionary *answerData in self.model.answersData) {
+        if ([[answerData objectForKey:@"id"] integerValue] == answerIndex){
             
-            NSArray *imageUrls = [self.model.detailData objectForKey:@"photo_url"];
+            NSArray *imageUrls = [answerData objectForKey:@"photo_url"];
             NSMutableArray *photos = [NSMutableArray array];
             for (int i = 0; i < imageUrls.count; i++) {
                 GKPhoto *photo = [GKPhoto new];
                 photo.url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",imageUrls[i]]];
                 [photos addObject:photo];
             }
-            GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:answerIndex];
+            GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:0];
             browser.showStyle = GKPhotoBrowserShowStyleNone;
             [browser showFromVC:self];
             
-//        }
-//    }
+        }
+    }
 }
+
 
 - (void)tapToViewComment:(NSNumber *)answerId{
     for(int i = 0; i < self.model.answersData.count; i++){
