@@ -669,6 +669,7 @@
     }
     free(self.pWeek);
 }
+
 @end
 
 

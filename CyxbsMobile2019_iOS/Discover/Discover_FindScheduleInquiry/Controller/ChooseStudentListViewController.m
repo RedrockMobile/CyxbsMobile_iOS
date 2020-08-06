@@ -14,8 +14,11 @@
 @interface ChooseStudentListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) ClassmatesList *classmatesList;
+
 @property (nonatomic, weak)UITableView *tableView;
+/**返回按钮*/
 @property (nonatomic, weak)UIButton *backButton;
+/**显示“同学课表”四个字的label*/
 @property (nonatomic, weak)UILabel *titleLabel;
 @end
 
@@ -29,8 +32,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%@",self.classmatesList);
+    //添加tableView
     [self addTableView];
+    //添加返回按钮
     [self addBackButton];
+    //添加显示同学课表四个字的label
     [self addTitleLabel];
 //    self.view.backgroundColor = UIColor.whiteColor;
     // Do any additional setup after loading the view.
@@ -46,6 +52,7 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
 }
+
 //添加返回按钮
 - (void)addBackButton {
     UIButton *button = [[UIButton alloc]init];
@@ -62,19 +69,24 @@
     [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
 }
 
-//添加显示同学课表四个字的label
+//添加显示“同学课表”四个字的label
 - (void)addTitleLabel {
     UILabel *label = [[UILabel alloc]init];
     self.titleLabel = label;
     self.titleLabel.text = @"同学课表";
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
-    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backButton).offset(14);
         make.centerY.equalTo(self.backButton);
     }];
 }
+
 
 //MARK: - 需要实现的代理方法：
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -110,6 +122,7 @@
     [self presentViewController:vc animated:YES completion:nil];
     
 }
+
 
 //MARK: - 点击某按钮后调用的方法：
 //点击返回按钮后调用的方法

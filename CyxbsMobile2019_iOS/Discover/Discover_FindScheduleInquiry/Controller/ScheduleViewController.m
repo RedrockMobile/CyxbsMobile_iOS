@@ -51,10 +51,19 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
     }
+    //初始化历史记录按钮样本
     [self initExampleButton];
+    
+    //添加搜索框
     [self addSearchField];
+    
+    //添加显示“历史记录”四个字的label
     [self addHistoryLabel];
+    
+    //添加清除历史记录的按钮
     [self addClearHistoryItemBtn];
+    
+    //添加历史记录按钮
     [self addHistoryItem];
 }
 //参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey，PeopleType是被查的人的身份
@@ -108,13 +117,11 @@
        if (@available(iOS 11.0, *)) {
            textField.textColor = Color21_49_91_F0F0F2;
            textField.tintColor = Color21_49_91_F0F0F2;
-//           [textField setValue:Color21_49_91_F0F0F2 forKeyPath:@"_placeholderLabel.textColor"];
-           textField.backgroundColor = UIColor.clearColor;
-
        } else {
-           // Fallback on earlier versions
+           textField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+           textField.tintColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
        }
-    
+    textField.backgroundColor = UIColor.clearColor;
     
 }
 
@@ -123,7 +130,11 @@
     UILabel *label = [[UILabel alloc]init];
     self.historyLabel = label;
     label.text = @"历史记录";
-    label.textColor = Color21_49_91_F0F0F2;
+    if (@available(iOS 11.0, *)) {
+        label.textColor = Color21_49_91_F0F0F2;
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     label.font = [UIFont fontWithName:PingFangSCBold size:15];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -187,18 +198,6 @@
 //MARK: - 点击类某按钮后调用
 //点击键盘上的搜索按钮后调用
 - (void)touchSearchButton {
-    /**调试颜色用
-    UIView *v = [[UIView alloc] initWithFrame:(CGRectMake(100, 100, 100, 100))];
-    v.backgroundColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
-    
-    [self.view addSubview:v];
-    UIView *v1 = [[UIView alloc] initWithFrame:(CGRectMake(100, 200, 100, 100))];
-    v1.backgroundColor = Color21_49_91_F0F0F2;
-    
-    [self.view addSubview:v1];
-    
-    return;
-    */
     //判断输入内容是否为空
     if ([self.textField.text isEqualToString:@""]) {
         MBProgressHUD *noInput = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -262,7 +261,6 @@
        
     ClassmatesList *classmates = [[ClassmatesList alloc] initWithPeopleType:self.peopleType];
     
-    NSLog(@"type=%ld",(long)self.peopleType);
     
        [classmates getPeopleListWithName:string success:^(ClassmatesList * _Nonnull classmatesList) {
            [loading hide:YES];
@@ -322,7 +320,7 @@
     self.exampleButton = btn;
 }
 
-//把str写入key对应的那个缓存数组，再把数组放回去，实现记录搜索记录的方法
+//把str写入key对应的那个缓存数组，再把数组放回去（在原有缓存里加上str），实现记录搜索记录的方法
 - (void)write:(NSString*)str intoDataArrayWithUserDefaultKey:(NSString*)key{
     
     //写入缓存
@@ -348,6 +346,5 @@
         [defa setObject:array forKey:key];
     }
 }
-
 
 @end

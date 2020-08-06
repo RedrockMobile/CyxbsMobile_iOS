@@ -9,8 +9,18 @@
 #import "ChoosePeopleListView.h"
 
 @interface ChoosePeopleListView()<UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateAdd,UIScrollViewDelegate>
+/**有圆角的那个view，里面有一个tableView和取消按钮*/
 @property (nonatomic, strong)UIView *peopleListView;
+/**self.peopleListView的父控件，实现peopleListView的滚动*/
 @property (nonatomic, strong)UIScrollView *scrollView;
+/**
+ 所有cell的数据都是来自这个属性，内部结构：@[
+ @{@"name:@"xxx",@"stuNum":@"201921134"},
+ @{@"name:@"x",@"stuNum":@"23900423134"}
+  。。。
+  。。
+];
+*/
 @property (nonatomic, strong)NSArray *infoDictArray;
 @end
 @implementation ChoosePeopleListView
@@ -18,7 +28,11 @@
     self = [super init];
     if(self){
 //        self.frame = [UIScreen mainScreen].bounds;
-        self.backgroundColor = [UIColor colorNamed:@"ChoosePeopleListViewBackColor"];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"ChoosePeopleListViewBackColor"];
+        } else {
+            self.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.14];
+        }
         
         self.infoDictArray =infoDictArray;
         [self addScrollView];
@@ -28,7 +42,9 @@
     return self;
 }
 
-//MARK:初始、添加化控件的方法
+
+//MARK:-初始、添加化控件的方法
+//添加self.peopleListView的背景
 - (void)addScrollView{
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     [self addSubview:scrollView];
@@ -50,12 +66,18 @@
     }];
 }
 
+//添加弹窗
 -(void)addPeopleListView{
+    //______________________添加整体背景__________________________________
     UIView *backgroundView =  [[UIView alloc] init];
     self.peopleListView = backgroundView;
     [self.scrollView addSubview:backgroundView];
     
-    backgroundView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+    if (@available(iOS 11.0, *)) {
+        backgroundView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+    } else {
+        backgroundView.backgroundColor = [UIColor whiteColor];
+    }
     backgroundView.layer.cornerRadius = 16;
     
     [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -65,14 +87,18 @@
         make.height.mas_equalTo(MAIN_SCREEN_H*0.6);
     }];
     
-    //________________________________________________________
+    //_______________________添加取消按钮_________________________________
     
     
     UIButton *btn = [[UIButton alloc] init];
     [backgroundView addSubview:btn];
     
     [btn setTitle:@"取消" forState:(UIControlStateNormal)];
-    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:(UIControlStateNormal)];
+    if (@available(iOS 11.0, *)) {
+        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:(UIControlStateNormal)];
+    } else {
+        [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:(UIControlStateNormal)];
+    }
     btn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
     [btn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
     
@@ -84,7 +110,7 @@
         make.width.mas_equalTo(0.08*MAIN_SCREEN_W);
     }];
     
-    //________________________________________________________
+    //_______________________添加tableview_________________________________
     
     UITableView *tableView = [[UITableView alloc] init];
     [backgroundView addSubview:tableView];
@@ -107,8 +133,8 @@
 }
 
 
-//MARK:点击某按钮后调用的方法：
-//取消按钮
+//MARK:-点击某按钮后调用的方法：
+//取消按钮点击后调用
 - (void)cancelBtnClicked{
     [UIView animateWithDuration:0.5 animations:^{
         self.scrollView.contentOffset = CGPointMake(0, 0);
@@ -119,11 +145,11 @@
 }
 
 
-//MARK:需实现的代理方法：
-
+//MARK:-需实现的代理方法：
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.infoDictArray.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *infoDict = self.infoDictArray[indexPath.row];
     PeopleListTableViewCell *cell = [[PeopleListTableViewCell alloc] initWithInfoDict:@{
@@ -143,11 +169,12 @@
     }
 }
 
+//cell的add按钮点击后调用
 - (void)PeopleListTableViewCellAddBtnClickInfoDict:(NSDictionary *)infoDict{
     [self.delegate PeopleListTableViewCellAddBtnClickInfoDict:infoDict];
     [self cancelBtnClicked];
 }
-
+//下面两个方法实现当弹窗被拖移后的回弹或者消失
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if([scrollView isEqual:self.scrollView]){
         if(decelerate==YES)return;
@@ -166,7 +193,6 @@
         }
     }
 }
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if([scrollView isEqual:self.scrollView]){
         if(scrollView.tracking==YES)return;
@@ -187,7 +213,10 @@
         }
     }
 }
-//MARK:其他：
+
+
+//MARK:-其他：
+//调用这个方法会让这个类弹出来
 - (void)showPeopleListView{
     [UIView animateWithDuration:0.7 animations:^{
         self.scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.5345);
@@ -195,6 +224,7 @@
     }];
     
 }
+//用这个方法实现点击空白处弹窗就自弹回去再消失
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self cancelBtnClicked];
 }

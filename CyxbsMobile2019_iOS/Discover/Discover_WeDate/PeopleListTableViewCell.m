@@ -45,7 +45,11 @@
     [self.contentView addSubview:label];
     self.nameLabel = label;
     label.text =self.infoDict[@"name"];
-    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     label.font = [UIFont fontWithName:@".PingFang SC" size: 16];
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -55,13 +59,18 @@
         make.width.equalTo(self.contentView).multipliedBy(0.5);
     }];
 }
+
 //添加显示学号的小标题
 - (void)addStuNumLabel {
     UILabel *label = [[UILabel alloc] init];
     [self.contentView addSubview:label];
     self.stuNumLabel = label;
     label.text =self.infoDict[@"stuNum"];
-    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     label.font = [UIFont fontWithName:@".PingFang SC" size: 11];
     
     
@@ -73,6 +82,7 @@
     }];
     
 }
+
 //添加删除按钮
 - (void)addDeleteBtn{
     UIButton *btn = [[UIButton alloc] init];
@@ -102,11 +112,13 @@
     }];
 }
 
+
 //MARK: - 点击某按钮后调用的方法：
 //点击删除按钮后调用
 - (void)deleteBtnClicked{
     [self.delegateDelete PeopleListTableViewCellDeleteBtnClickInfoDict:self.infoDict];
 }
+
 //点击add按钮后调用
 - (void)addBtnClicked{
     [self.delegateAdd PeopleListTableViewCellAddBtnClickInfoDict:self.infoDict];

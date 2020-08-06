@@ -16,8 +16,10 @@
 
 
 @interface ScheduleInquiryViewController () <ScheduleViewControllerDelegate>
-@property (nonatomic, weak)UIView *backgroundView;
+/**显示"查课表"三个字delabel*/
 @property (nonatomic, weak)UILabel *titleLabel;
+/**self.titleLabel的背景*/
+@property (nonatomic, weak)UIView *backgroundView;
 @end
 
 @implementation ScheduleInquiryViewController
@@ -27,10 +29,15 @@
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = navigationbarColor;
     } else {
-        // Fallback on earlier versions
+        self.view.backgroundColor = UIColor.whiteColor;
     }
+    //自定义的Tabbar（显示“查课表”的那块）
     [self addCustomTabbarView];
+    
+    //两个页面，两个控制器
     [self addSegmentView];
+    
+    //添加返回按钮
     [self addBackButton];
     // Do any additional setup after loading the view.
 }

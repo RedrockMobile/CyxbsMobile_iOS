@@ -33,7 +33,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"没课约控制器的view背景色"];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"没课约控制器的view背景色"];
+    } else {
+        self.view.backgroundColor = UIColor.whiteColor;
+    }
     [self addBackButton];
     
     [self addTitleLabel];
@@ -77,7 +81,11 @@
     self.titleLabel.text = @"没课约";
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
     //蓝白
-    label.textColor = [UIColor colorNamed:@"ColorNewsCellTitle"];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    };
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backButton).offset(14);
@@ -116,8 +124,17 @@
     textField.delegate = self;
     textField.font = [UIFont fontWithName:@".PingFang SC" size: 15];
     
-    textField.textColor = Color21_49_91_F0F0F2;
-    textField.tintColor = Color21_49_91_F0F0F2;
+    if (@available(iOS 11.0, *)) {
+        textField.textColor = Color21_49_91_F0F0F2;
+    } else {
+        textField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
+    
+    if (@available(iOS 11.0, *)) {
+        textField.tintColor = Color21_49_91_F0F0F2;
+    } else {
+        textField.tintColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     textField.backgroundColor = UIColor.clearColor;
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(backgroundView).offset(12);
@@ -157,7 +174,11 @@
     self.enquiryBtn = btn;
     
     btn.layer.cornerRadius = MAIN_SCREEN_H*0.02465;
-    btn.backgroundColor = [UIColor colorNamed:@"enquiryBtnColor"];
+    if (@available(iOS 11.0, *)) {
+        btn.backgroundColor = [UIColor colorNamed:@"enquiryBtnColor"];
+    } else {
+        btn.backgroundColor = [UIColor colorWithRed:0.271 green:0.242 blue:0.850 alpha:1];
+    }
     [btn setTitle:@"查询" forState:UIControlStateNormal];
     
     
