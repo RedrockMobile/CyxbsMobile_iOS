@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/7/30.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//这个类是点击键盘上的搜索按钮后的底部弹窗
 
 #import "ChoosePeopleListView.h"
 

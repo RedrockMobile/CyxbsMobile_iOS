@@ -284,8 +284,27 @@
                 }
             }
         }
-        
+        //_________________________为了给空白处加按钮而增加的改动_____________________________
+        for(int i=0; i<7; i++){
+            for (int j=0; j<12; j++) {
+                if(self.mark->data[i][j]==0){
+                    UIButton *btn = [[UIButton alloc] init];
+                    btn.backgroundColor = [UIColor clearColor];
+                    [self addSubview:btn];
+                    [btn addTarget:self action:@selector(blankSpaceClicked) forControlEvents:UIControlEventTouchUpInside];
+                   float btnW = _dayBar.frame.size.width/7;
+                   float btnH =  50.5*autoSizeScaleY;
+                    [btn setFrame:(CGRectMake(self.leftBar.width+i*btnW,btnW+j*btnH , btnW, btnH))];
+                }
+            }
+        }
+        //_________________________为了给空白处加按钮而增加的改动_____________________________
     }
+}
+//点击了没有课的空白处后调用
+- (void)blankSpaceClicked{
+    int i=0;
+//    NSLog(@"%d",1/i);
 }
 
 - (void)addClassBtn:(NSArray *)tmp{
@@ -293,6 +312,11 @@
     NSNumber *hash_day = [tmp[0] objectForKey:@"hash_day"];
     NSNumber *hash_lesson = [tmp[0] objectForKey:@"hash_lesson"];
     NSNumber *period = [tmp[0] objectForKey:@"period"];
+//_________________________为了给空白处加按钮而增加的改动_____________________________
+    for (int i=0; i<period.intValue; i++) {
+        self.mark->data[hash_day.intValue][hash_lesson.intValue*2+i] = 1;
+    }
+//_________________________为了给空白处加按钮而增加的改动_____________________________
     UIColor *viewColor = [[UIColor alloc]init];
     if (hash_lesson.integerValue<2) {
         if (@available(iOS 11.0, *)) {
@@ -441,7 +465,12 @@
     
     NSNumber *hash_day = [tmp[0] objectForKey:@"hash_day"];
     NSNumber *hash_lesson = [tmp[0] objectForKey:@"hash_lesson"];
-    
+    //_________________________为了给空白处加按钮而增加的改动_____________________________
+    NSNumber *period = [tmp[0] objectForKey:@"period"];
+        for (int i=0; i<period.intValue; i++) {
+            self.mark->data[hash_day.intValue][hash_lesson.intValue*2+i] = 1;
+        }
+    //_________________________为了给空白处加按钮而增加的改动_____________________________
     UIColor *viewColor = [[UIColor alloc]init];
     viewColor = [UIColor colorWithHexString:@"#E8F0FC"];
    
@@ -533,5 +562,15 @@
          [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadView" object:nil];
     }
 }
-
+//_________________________为了给空白处加按钮而增加的改动_____________________________
+//初始化mark，因为这个空间时通过malloc申请的，所以里面是乱码
+- (void)setMark:(weekData *)mark{
+    _mark = mark;
+    for (int i=0; i<7; i++) {
+        for (int j=0; j<12; j++) {
+            mark->data[i][j] = 0;
+        }
+    }
+}
+//_________________________为了给空白处加按钮而增加的改动_____________________________
 @end

@@ -22,5 +22,6 @@
 - (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum;
 - (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum;
 - (void)deleteRemind:(NSString *)stuNum idNum:(NSString *)idNum remindId:(NSNumber *)remindId;
-
+- (void)getClassBooksArrayFromNetWithStuNumArray:(NSArray *)stuNumArray;
+-(void)parsingClassBookData:(NSArray*)array;
 @end
