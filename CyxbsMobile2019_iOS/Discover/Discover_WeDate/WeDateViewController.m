@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = [UIColor colorNamed:@"没课约控制器的view背景色"];
     [self addBackButton];
     
     [self addTitleLabel];
@@ -56,11 +56,11 @@
 //MARK: - 初始化子控件的一些方法：
 //添加返回按钮
 - (void)addBackButton {
-    UIButton *button = [[UIButton alloc]init];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];;
     [self.view addSubview:button];
     self.backButton = button;
-    [button setImage:[UIImage imageNamed:@"LQQBackButton"] forState:normal];
-    [button setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
+    
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(17);
         make.top.equalTo(self.view).offset(53);
@@ -76,7 +76,8 @@
     self.titleLabel = label;
     self.titleLabel.text = @"没课约";
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
-    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];;
+    //蓝白
+    label.textColor = [UIColor colorNamed:@"ColorNewsCellTitle"];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backButton).offset(14);
@@ -91,7 +92,12 @@
     [self.view addSubview:backgroundView];
     
     backgroundView.layer.cornerRadius = MAIN_SCREEN_H*0.0271;
-    backgroundView.backgroundColor = [UIColor colorWithRed:239/255.0 green:244/255.0 blue:253/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        backgroundView.backgroundColor = [UIColor colorNamed:@"Color#E8F1FC&2C2C2C"];
+    } else {
+        backgroundView.backgroundColor = [UIColor colorWithHexString:@"#E8F1FC"];
+    }
+    
     
     [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(MAIN_SCREEN_H*0.1441);
@@ -109,8 +115,10 @@
     textField.placeholder = @"添加同学";
     textField.delegate = self;
     textField.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-    textField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
     
+    textField.textColor = Color21_49_91_F0F0F2;
+    textField.tintColor = Color21_49_91_F0F0F2;
+    textField.backgroundColor = UIColor.clearColor;
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(backgroundView).offset(12);
         make.left.equalTo(backgroundView).offset(17);
@@ -129,6 +137,7 @@
     self.peoleAddedList = tableView;
     
     
+//    tableView.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
     tableView.showsVerticalScrollIndicator = NO;
     [tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     tableView.allowsSelection = NO;
@@ -148,7 +157,7 @@
     self.enquiryBtn = btn;
     
     btn.layer.cornerRadius = MAIN_SCREEN_H*0.02465;
-    btn.backgroundColor = [UIColor colorWithRed:73/255.0 green:66/255.0 blue:230/255.0 alpha:1.0];
+    btn.backgroundColor = [UIColor colorNamed:@"enquiryBtnColor"];
     [btn setTitle:@"查询" forState:UIControlStateNormal];
     
     

@@ -32,7 +32,7 @@
     [self addTableView];
     [self addBackButton];
     [self addTitleLabel];
-    self.view.backgroundColor = UIColor.whiteColor;
+//    self.view.backgroundColor = UIColor.whiteColor;
     // Do any additional setup after loading the view.
 }
 
@@ -68,7 +68,7 @@
     self.titleLabel = label;
     self.titleLabel.text = @"同学课表";
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
-    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];;
+    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backButton).offset(14);

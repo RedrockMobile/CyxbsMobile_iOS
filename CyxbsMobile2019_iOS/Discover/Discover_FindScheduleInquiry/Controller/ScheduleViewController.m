@@ -123,7 +123,7 @@
     UILabel *label = [[UILabel alloc]init];
     self.historyLabel = label;
     label.text = @"历史记录";
-    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    label.textColor = Color21_49_91_F0F0F2;
     label.font = [UIFont fontWithName:PingFangSCBold size:15];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -138,7 +138,7 @@
     [self.view addSubview:btn];
     self.clearHistoryItemBtn = btn;
     
-    [btn setBackgroundImage:[UIImage imageNamed:@"草稿箱垃圾桶"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"垃圾桶"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(clearHistoryItemBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [btn sizeToFit];
     float scale = 0.0533*MAIN_SCREEN_W/btn.frame.size.width;

@@ -69,9 +69,9 @@
 
 //添加推出查课表页的按钮
 - (void)addBackButton {
-    UIButton *backButton = [[UIButton alloc]init];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.view addSubview:backButton];
-    [backButton setImage:[UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(17);
         make.centerY.equalTo(self.titleLabel);
@@ -97,9 +97,11 @@
     tea.delegate = self;
     
     
-    QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-120) controllers:@[stu, tea]];
+    QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-60) controllers:@[stu, tea]];
     [self.view addSubview:segmentView];
 
+    NSString *width = [NSString stringWithFormat:@"%f",MAIN_SCREEN_W*0.1086];
+    [segmentView setValue:width forKey:@"sliderWidth"];
     if (@available(iOS 11.0, *)) {
         [segmentView setValue:Color21_49_91_F0F0F2 forKey:@"titleColor"];
     } else {

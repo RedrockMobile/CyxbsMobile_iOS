@@ -18,7 +18,8 @@
     self = [super init];
     if(self){
 //        self.frame = [UIScreen mainScreen].bounds;
-        self.backgroundColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.27];
+        self.backgroundColor = [UIColor colorNamed:@"ChoosePeopleListViewBackColor"];
+        
         self.infoDictArray =infoDictArray;
         [self addScrollView];
         [self addPeopleListView];
@@ -54,14 +55,14 @@
     self.peopleListView = backgroundView;
     [self.scrollView addSubview:backgroundView];
     
-    backgroundView.backgroundColor = [UIColor whiteColor];
-    backgroundView.layer.cornerRadius = 8;
+    backgroundView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+    backgroundView.layer.cornerRadius = 16;
     
     [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.right.equalTo(self);
         make.top.equalTo(self.scrollView.mas_bottom).offset(MAIN_SCREEN_H*0.55);
-        make.height.mas_equalTo(MAIN_SCREEN_H*0.5345);
+        make.height.mas_equalTo(MAIN_SCREEN_H*0.6);
     }];
     
     //________________________________________________________
@@ -71,7 +72,7 @@
     [backgroundView addSubview:btn];
     
     [btn setTitle:@"取消" forState:(UIControlStateNormal)];
-    [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
+    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:(UIControlStateNormal)];
     btn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
     [btn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
     
@@ -95,6 +96,7 @@
     tableView.showsHorizontalScrollIndicator = NO;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.allowsSelection = NO;
+    tableView.backgroundColor = [UIColor clearColor];
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backgroundView);

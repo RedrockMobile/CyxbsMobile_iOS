@@ -27,6 +27,8 @@
         
         [self addStuNumLabel];
         
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
         if(type==PeopleListTableViewCellRightBtnTypeAdd){
             [self addAddBtn];
         }else{
@@ -43,7 +45,7 @@
     [self.contentView addSubview:label];
     self.nameLabel = label;
     label.text =self.infoDict[@"name"];
-    label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     label.font = [UIFont fontWithName:@".PingFang SC" size: 16];
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -59,7 +61,7 @@
     [self.contentView addSubview:label];
     self.stuNumLabel = label;
     label.text =self.infoDict[@"stuNum"];
-    label.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
+    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     label.font = [UIFont fontWithName:@".PingFang SC" size: 11];
     
     
@@ -74,25 +76,30 @@
 //添加删除按钮
 - (void)addDeleteBtn{
     UIButton *btn = [[UIButton alloc] init];
-    [btn setBackgroundImage:[UIImage imageNamed:@"草稿箱垃圾桶"] forState:UIControlStateNormal];
-    [btn sizeToFit];
-    float scale = 0.0271*MAIN_SCREEN_H/btn.bounds.size.height;
-    btn.transform = CGAffineTransformMakeScale(scale, scale);
-    
+    [btn setBackgroundImage:[UIImage imageNamed:@"垃圾桶"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(deleteBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    self.accessoryView = btn;
+    
+    [self.contentView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(MAIN_SCREEN_W*0.904);
+        make.centerY.equalTo(self.contentView);
+        make.width.mas_equalTo(0.0533*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.033424*MAIN_SCREEN_H);
+    }];
 }
 
 //添加add按钮
 - (void)addAddBtn{
     UIButton *btn = [[UIButton alloc] init];
-    [btn setBackgroundImage:[UIImage imageNamed:@"组 207"] forState:UIControlStateNormal];
-    [btn sizeToFit];
-    float scale = 0.0271*MAIN_SCREEN_H/btn.bounds.size.height;
-    btn.transform = CGAffineTransformMakeScale(scale, scale);
-    
+    [btn setBackgroundImage:[UIImage imageNamed:@"加号"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    self.accessoryView = btn;
+    [self.contentView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView).offset(MAIN_SCREEN_W*0.904);
+        make.centerY.equalTo(self.contentView);
+        make.width.mas_equalTo(0.0587*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.0587*MAIN_SCREEN_W);
+    }];
 }
 
 //MARK: - 点击某按钮后调用的方法：
