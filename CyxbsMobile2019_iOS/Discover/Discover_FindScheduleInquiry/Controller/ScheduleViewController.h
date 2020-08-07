@@ -10,26 +10,27 @@
 #import "ChooseStudentListViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol ScheduleViewControllerDelegate <NSObject>
-
 /**需要跳转到符合条件的学生(或者老师)列表时调用*/
+@protocol ScheduleViewControllerDelegate <NSObject>
 -(void) pushToController:(UIViewController*) peopleListVC;
-
 @end
 
-@interface ScheduleViewController : UIViewController
 
+@interface ScheduleViewController : UIViewController
 /**实现符合条件的学生(或者老师)列表的代理*/
 @property (nonatomic, weak)id <ScheduleViewControllerDelegate> delegate;
-
-/**参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey */
-- (instancetype)initWithUserDefaultKey:(NSString*)key;
-
-/***/
-//- (instancetype)initWithUserDefaultKesy:(NSString*)key;
-
-@property (nonatomic,assign)PeopleType peopleType;
-
+//只能用这个方法初始化这个类
+/**参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey，peopleType代表是搜索学生还是搜索老师 */
+- (instancetype)initWithUserDefaultKey:(NSString*)key andPeopleType:(PeopleType)peopleType;
 @end
 
 NS_ASSUME_NONNULL_END
+
+//1.
+//ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:STU_FIND_HISTORY andPeopleType:PeopleTypeStudent];
+
+//2.
+//stu.title = @"学生课表";
+
+//3.
+//stu.delegate = self;

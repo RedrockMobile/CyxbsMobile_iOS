@@ -8,8 +8,6 @@
 
 #import "ScheduleInquiryViewController.h"
 #import "QAListSegmentView.h"
-//#import "StudentScheduleViewController.h"
-//#import "TeacherScheduleViewController.h"
 #import "ScheduleViewController.h"
 #define STU_FIND_HISTORY @"FindStudentSchedule_historyArray"
 #define TEA_FIND_HISTORY @"FindTeacherSchedule_historyArray"
@@ -90,15 +88,14 @@
 
 //添加带标签栏的一个分页的一个scrollView（即QAListSegmentView）
 - (void)addSegmentView {
-    ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:STU_FIND_HISTORY];
+    ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:STU_FIND_HISTORY andPeopleType:PeopleTypeStudent];
     stu.title = @"学生课表";
     stu.delegate = self;
-    stu.peopleType = PeopleTypeStudent;
     
-    ScheduleViewController *tea = [[ScheduleViewController alloc] initWithUserDefaultKey:TEA_FIND_HISTORY];
+    ScheduleViewController *tea = [[ScheduleViewController alloc] initWithUserDefaultKey:TEA_FIND_HISTORY andPeopleType:PeopleTypeTeacher];
     tea.title = @"老师课表";
     tea.delegate = self;
-    tea.peopleType = PeopleTypeTeacher;
+    
     
     QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-120) controllers:@[stu, tea]];
     [self.view addSubview:segmentView];
