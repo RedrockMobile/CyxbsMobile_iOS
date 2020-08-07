@@ -11,7 +11,24 @@
 #define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
 
 @interface WYCClassAndRemindDataModel : NSObject
-
+/**
+ weekArray的结构：
+        @[
+            //某周的课表信息数组
+            @[
+                //某节课的信息字典
+                @{
+                    @"begin_lesson":@"1",
+                        .....
+                    @"week":@[@2,@3,@5,......@17].
+                },
+                @{},
+                @{}
+            ],
+            @[@{}, @{}, @{} ],      
+            @[@{}, @{}, @{} ],
+        ]
+*/
 @property (nonatomic, strong) NSMutableArray *weekArray;
 @property (nonatomic, strong) NSMutableArray *remindArray;
 
@@ -22,6 +39,16 @@
 - (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum;
 - (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum;
 - (void)deleteRemind:(NSString *)stuNum idNum:(NSString *)idNum remindId:(NSNumber *)remindId;
-- (void)getClassBooksArrayFromNetWithStuNumArray:(NSArray *)stuNumArray;
+
 -(void)parsingClassBookData:(NSArray*)array;
 @end
+
+//1.
+//WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
+
+//2.
+//模拟从storyBoard加载课表时对model的操作
+//model.weekArray = [@[[responseObject objectForKey:@"data"]]mutableCopy];
+//[model parsingClassBookData:lessonOfAllPeople];
+//[model setValue:@"YES" forKey:@"remindDataLoadFinish"];
+//[model setValue:@"YES" forKey:@"classDataLoadFinish"];

@@ -16,12 +16,14 @@ typedef NS_ENUM(NSInteger, PeopleListTableViewCellRightBtnType) {
     PeopleListTableViewCellRightBtnTypeDelete
 };
 
-/**加号型cell的代理协议*/
+/**加号型cell的代理协议，点击add按钮后调用代理的方法，
+ 传入cell对应的数据：@{@"name":@"张树洞",@"stuNum":@"201928738"}*/
 @protocol PeopleListTableViewCellDelegateAdd <NSObject>
 - (void)PeopleListTableViewCellAddBtnClickInfoDict:(NSDictionary*)infoDict;
 @end
 
-/**删除型cell的代理协议*/
+/**删除型cell的代理协议，点击delete按钮后调用代理的方法，
+传入cell对应的数据：@{@"name":@"张树洞",@"stuNum":@"201928738"}*/
 @protocol PeopleListTableViewCellDelegateDelete <NSObject>
 - (void)PeopleListTableViewCellDeleteBtnClickInfoDict:(NSDictionary*)infoDict;
 @end
@@ -33,9 +35,9 @@ typedef NS_ENUM(NSInteger, PeopleListTableViewCellRightBtnType) {
 /**infoDict要求格式为：@{@"name":@"张树洞",@"stuNum":@"201928738"}*/
 - (instancetype)initWithInfoDict:(NSDictionary*)infoDict andRightBtnType:(PeopleListTableViewCellRightBtnType)type;
 
-/**添加的代理*/
+/**添加的代理，点击add按钮后调用代理的方法*/
 @property (nonatomic,weak)id<PeopleListTableViewCellDelegateAdd>delegateAdd;
-/**删除的代理*/
+/**删除的代理，点击delete按钮后调用代理方法*/
 @property (nonatomic,weak)id<PeopleListTableViewCellDelegateDelete>delegateDelete;
 @end
 

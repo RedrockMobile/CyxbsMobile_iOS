@@ -13,8 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ChooseStudentListViewController : UIViewController
 
+//传入ClassmatesList*型的数据对这个类进行初始化
 - (instancetype)initWithClassmatesList:(ClassmatesList *)classmatesList;
 
+//必须设置peopleType属性，以区别是查老师还是查学生
 @property (nonatomic,assign)PeopleType peopleType;
 @end
 

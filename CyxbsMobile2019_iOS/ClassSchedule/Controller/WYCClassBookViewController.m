@@ -248,7 +248,7 @@
                 [titleView addSubview: nowWeekLabel];
                 nowWeekLabel.text = @"(本周)";
                 nowWeekLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-                nowWeekLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+                nowWeekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
                 nowWeekLabel.frame = CGRectMake(MAIN_SCREEN_W*0.2627, 0.009*MAIN_SCREEN_H, 0.12*MAIN_SCREEN_W, 0.0259*MAIN_SCREEN_H);
                 
                 
@@ -257,9 +257,9 @@
                 [titleView addSubview:rightArrayBtn];
                 [rightArrayBtn setTitle:@">" forState:(UIControlStateNormal)];
                 rightArrayBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-                [rightArrayBtn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
+                [rightArrayBtn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:(UIControlStateNormal)];
                 
-                [rightArrayBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.3827, 3, 7, MAIN_SCREEN_H*0.0391))];
+                [rightArrayBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.3827, 0, 7, MAIN_SCREEN_H*0.05))];
                 
                 
                 
@@ -272,8 +272,9 @@
                 [titleView addSubview:rightArrayBtn];
                 [rightArrayBtn setTitle:@">" forState:(UIControlStateNormal)];
                 rightArrayBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-                [rightArrayBtn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
-                [rightArrayBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.2627, 3, 7, MAIN_SCREEN_H*0.0391))];
+                [rightArrayBtn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:(UIControlStateNormal)];
+                [rightArrayBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.2627, 0, 7, MAIN_SCREEN_H*0.05))];
+                //0.0391
                 [rightArrayBtn addTarget:self action:@selector(rightArrayBtnClicked) forControlEvents:UIControlEventTouchUpInside];
                 
                 
@@ -300,7 +301,7 @@
             titleLabel.text = _titleText;
               titleLabel.textAlignment = NSTextAlignmentLeft;
             if (@available(iOS 11.0, *)) {
-                titleLabel.textColor = [UIColor colorNamed:@"titleLabelColor"];
+                titleLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
             } else {
                 titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
                 // Fallback on earlier versions
@@ -314,7 +315,7 @@
                 // Fallback on earlier versions
                 dragHintView.backgroundColor = [UIColor whiteColor];
             }
-            
+            titleLabel.backgroundColor = [UIColor clearColor];
             
             dragHintView.layer.cornerRadius = 2.5;
             [view addSubview:titleView];
@@ -583,7 +584,7 @@
         
         
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, 0, MAIN_SCREEN_W-20, 30))];
-        scrollView.backgroundColor = UIColor.whiteColor;
+//        scrollView.backgroundColor = UIColor.whiteColor;
         scrollView.contentSize = CGSizeMake(5*MAIN_SCREEN_W, 30);
         [chooseWeekBar addSubview:scrollView];
         scrollView.showsVerticalScrollIndicator = NO;
@@ -599,8 +600,8 @@
             
             [btn setTitle:titleArray[i] forState:UIControlStateNormal];
             btn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-            [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:UIControlStateNormal];
-            btn.backgroundColor = UIColor.whiteColor;
+            [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+//            btn.backgroundColor = UIColor.whiteColor;
             btn.tag = i;
             //goToAWeek:用tag来知道点击了哪一个按钮
             [btn addTarget:self action:@selector(goToAWeek:) forControlEvents:UIControlEventTouchUpInside];
@@ -611,7 +612,7 @@
         [chooseWeekBar addSubview:leftArrowBtn];
         [leftArrowBtn setTitle:@"<" forState:(UIControlStateNormal)];
         leftArrowBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-        [leftArrowBtn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0] forState:(UIControlStateNormal)];
+        [leftArrowBtn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:(UIControlStateNormal)];
         [leftArrowBtn setFrame:(CGRectMake(MAIN_SCREEN_W*0.9387, 0, 20, 30))];
         [leftArrowBtn addTarget:self action:@selector(leftArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -668,6 +669,7 @@
     }
     free(self.pWeek);
 }
+
 @end
 
 

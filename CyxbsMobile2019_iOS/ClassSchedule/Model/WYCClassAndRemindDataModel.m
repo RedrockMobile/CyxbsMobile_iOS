@@ -76,6 +76,7 @@
     
 }
 /**
+ WYC学长的原版实现：
 -(void)parsingClassBookData1:(NSArray*)array{
     
     for (int weeknum = 1; weeknum <= 25; weeknum++) {
@@ -234,48 +235,6 @@
     }
     
 }
-- (void)getClassBooksArrayFromNetWithStuNumArray:(NSArray *)stuNumArray{
-    HttpClient *client = [HttpClient defaultClient];
-    __block NSMutableArray *array = [NSMutableArray array];
 
-    dispatch_group_t group = dispatch_group_create();
-    for (NSString *stuNum in stuNumArray) {
-        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-         
-            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-            [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":stuNum} prepareExecute:^{
-
-            } progress:^(NSProgress *progress) {
-
-            } success:^(NSURLSessionDataTask *task, id responseObject) {
-
-                for (NSDictionary *dict in [responseObject objectForKey:@"data"]) {
-                    [array addObject:dict];
-                }
-
-                dispatch_semaphore_signal(semaphore);
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                dispatch_semaphore_signal(semaphore);
-            }];
-
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            
-     });
-    }
-
-
-    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        
-        [self.weekArray addObject:array];
-        [self parsingClassBookData:array];
-        
-        NSLog(@"%@",self.weekArray);
-        
-        self.classDataLoadFinish = YES;
-        [self loadFinish];
-        
-     });
-}
 @end
 

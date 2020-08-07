@@ -9,6 +9,7 @@
 #import "WYCClassBookView.h"
 #import "Masonry.h"
 #import "WYCShowDetailView.h"
+#import "DLReminderViewController.h"
 @interface WYCClassBookView()<UIScrollViewDelegate,WYCShowDetailDelegate>
 
 @property (nonatomic, strong) UIView *topBar;    //顶栏日期月份
@@ -303,8 +304,11 @@
 }
 //点击了没有课的空白处后调用
 - (void)blankSpaceClicked{
-    int i=0;
-//    NSLog(@"%d",1/i);
+    DLReminderViewController *re = [[DLReminderViewController alloc] init];
+    
+    self.viewController.tabBarController.hidesBottomBarWhenPushed = YES;
+    
+    [self.viewController.navigationController pushViewController:re animated:YES];
 }
 
 - (void)addClassBtn:(NSArray *)tmp{
