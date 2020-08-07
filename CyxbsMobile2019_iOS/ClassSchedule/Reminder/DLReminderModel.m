@@ -12,7 +12,7 @@
 - (instancetype)initWithRemindDict:(NSDictionary *)remind{
     self = [self init];
     if (self) {
-        self.idNum = [remind objectForKey:@"id"];
+        self.idNum = [remind objectForKey:@"idNum"];
         self.content = [remind objectForKey:@"content"];
         self.title = [remind objectForKey:@"title"];
     }

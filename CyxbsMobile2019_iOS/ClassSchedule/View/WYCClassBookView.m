@@ -305,9 +305,7 @@
 //点击了没有课的空白处后调用
 - (void)blankSpaceClicked{
     DLReminderViewController *re = [[DLReminderViewController alloc] init];
-    
-    self.viewController.tabBarController.hidesBottomBarWhenPushed = YES;
-    
+    self.viewController.tabBarController.tabBar.hidden = YES;
     [self.viewController.navigationController pushViewController:re animated:YES];
 }
 

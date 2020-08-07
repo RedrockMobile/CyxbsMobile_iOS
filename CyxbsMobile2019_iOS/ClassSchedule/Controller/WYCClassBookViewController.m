@@ -663,13 +663,12 @@
 }
 
 //在这里free WYCClassBookView的mark属性和self.pWeek分配到的空间
--(void)viewDidDisappear:(BOOL)animated{
+- (void)dealloc{
     for (int i=0; i<self.dateModel.dateArray.count; i++) {
         free(self.pWeek->w[i]);
     }
     free(self.pWeek);
 }
-
 @end
 
 
