@@ -318,9 +318,17 @@ typedef NS_ENUM(NSInteger, PeopleType) {
     PeopleTypeTeacher
 };
 
-//data[i][j]代表（星期i+1）的（第j+1节课）是否有课，有课则为1，无课则为0
-typedef struct weekData{
-    int data[7][12];
-} weekData;
+////data[i][j]代表（星期i+1）的（第j+1节课）是否有课，有课则为1，无课则为0
+//typedef struct weekData{
+//    int data[7][12];
+//} weekData;
 
+typedef NS_ENUM(NSInteger, ScheduleType) {
+    /**代表是用户自己的课表*/
+    ScheduleTypePersonal,
+    /**代表是在查课表处显示的课表*/
+    ScheduleTypeClassmate,
+    /**代表是在没课约显示的课表*/
+    ScheduleTypeWeDate,
+};
 #endif

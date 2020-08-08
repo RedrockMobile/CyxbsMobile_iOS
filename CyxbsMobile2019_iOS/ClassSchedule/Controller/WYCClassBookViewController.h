@@ -30,9 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 //现状：输入WYCClassAndRemindDataModel，输出：显示整学期课表
 @interface WYCClassBookViewController : UIViewController
 
-//如果是用代码加载，必须调用这个方法，详细说明看底下注释
-
+//如果是用代码加载，必须对model赋值，详细说明看底下注释
 @property (nonatomic, strong) WYCClassAndRemindDataModel *model;
+//如果是用代码加载，必须对schedulType赋值
+@property (nonatomic, assign)ScheduleType schedulType;
 @end
 
 NS_ASSUME_NONNULL_END
