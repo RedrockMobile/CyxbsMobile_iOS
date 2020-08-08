@@ -47,7 +47,9 @@
     [self addPeoleAddedList];
     
     [self addEnquiryBtn];
-    self.infoDictArray = [@[@{@"stuNum":@"2019211000",@"name":@"刘"},@{@"stuNum":@"2019211001",@"name":@"范"}] mutableCopy];
+    /**调试用，可以在最开始就已经添加了两个人
+     self.infoDictArray = [@[@{@"stuNum":@"2019211000",@"name":@"刘"},@{@"stuNum":@"2019211001",@"name":@"范"}] mutableCopy];
+    */
 }
 - (instancetype)initWithInfoDictArray:(NSMutableArray*)infoDictArray{
     self = [super init];
@@ -203,15 +205,21 @@
         return;
     }
     [self.view endEditing:YES];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:(MBProgressHUDModeText)];
     hud.labelText = @"加载中...";
-    [hud hide:YES afterDelay:1];
+    
     
     ClassmatesList *list = [[ClassmatesList alloc] initWithPeopleType:(PeopleTypeStudent)];
     
     [list getPeopleListWithName:self.searchField.text success:^(ClassmatesList * _Nonnull classmatesList) {
-        
+        if(classmatesList.classmatesArray.count==0){
+            
+            hud.labelText = @"搜索无结果";
+            [hud hide:YES afterDelay:0.5];
+            return;
+        }
+        [hud hide:YES afterDelay:0.1];
         ChoosePeopleListView *listView = [[ChoosePeopleListView alloc] initWithInfoDictArray:classmatesList.infoDicts];
         listView.frame = [UIScreen mainScreen].bounds;
         listView.delegate = self;
@@ -281,7 +289,10 @@
        WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
         
         //对model赋值
+        
         vc.model = model;
+        
+        vc.schedulType = ScheduleTypeWeDate;
         
         //present这种刷新UI的操作得放主线程，不然会报错
         dispatch_async(dispatch_get_main_queue(), ^{

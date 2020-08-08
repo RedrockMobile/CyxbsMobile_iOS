@@ -38,7 +38,8 @@
     [self addBackButton];
     //添加显示同学课表四个字的label
     [self addTitleLabel];
-//    self.view.backgroundColor = UIColor.whiteColor;
+    
+    self.view.backgroundColor = [UIColor colorNamed:@"没课约控制器的view背景色"];
     // Do any additional setup after loading the view.
 }
 
@@ -118,6 +119,8 @@
     [model getClassBookArrayFromNet:item.stuNum];
     
     vc.model = model;
+    
+    vc.schedulType = ScheduleTypeClassmate;
     
     [self presentViewController:vc animated:YES completion:nil];
     

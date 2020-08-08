@@ -39,7 +39,7 @@
 @implementation DLReminderSetTimeVC
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = NO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,18 +59,22 @@
 - (void)didClickNextButton:(UIButton *)button{
 //    那个idnum不知道是啥，随便写了个
     NSDictionary *dic = @{@"idNum": @123,
-                          @"title": self.noticeString,
-                          @"content": self.detailString
+                          @"title": self.noticeString,//为你的行程添加标题时选择的标题
+                          @"content": self.detailString//为你的行程添加内容时输入的文字
     };
+    
+    NSLog(@"notice = %@,detail = %@",self.noticeString,self.detailString);
+    
+    //DLReminderModel只在这里使用过
     DLReminderModel *model = [[DLReminderModel alloc] initWithRemindDict:dic];
     model.week = self.weekSelectedArray;
-//    model.
+//    model.classNum、model.day、model.week还没有设置
 }
 
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+//点击周选择控件的紫色确定按钮后调用
 - (void)didClickWeekSelectViewConfirmButton{
     [self.weekselectView removeFromSuperview];
     [self.view addSubview: self.timeSelectView];
@@ -87,7 +91,7 @@
         make.height.mas_equalTo(300*kRateY);
     }];
 }
-
+//点击选择周的加号后调用
 - (void)didClickAddButton{
     [self.view addSubview: self.weekselectView];
     
@@ -96,7 +100,7 @@
 //- (void)didClickSelectedButton:(UIButton *)button{
 //
 //}
-
+//点时间选择器的加号后调用
 - (void)didClickTimeSelectViewAddButton{
     NSString *str1 = self.pickerSlectedItems[0];
     NSString *str2 = self.pickerSlectedItems[1];
@@ -121,6 +125,7 @@
 }
 
 #pragma mark - delegate
+//点击“每单周”、“第一周”后调用
 - (void)selectedWeekArrayAtIndex:(NSInteger)index{
     if (![self.weekSelectedArray containsObject: self.weekArray[index]]) {
         [self.weekSelectedArray addObject:self.weekArray[index]];
