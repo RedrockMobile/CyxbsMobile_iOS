@@ -108,6 +108,8 @@
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
+		1AE1374624DEE79F000F2C30 /* CQUPTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */; };
+		1AE1374924DEEA62000F2C30 /* CQUPTMapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */; };
 		1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF310E245C022400487D40 /* MyGoodsViewController.m */; };
 		1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3111245C023A00487D40 /* MyGoodsContentView.m */; };
 		1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3115245C701D00487D40 /* MyGoodsPresenter.m */; };
@@ -670,6 +672,10 @@
 		1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQADataItem.m; sourceTree = "<group>"; };
 		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
+		1AE1374424DEE79F000F2C30 /* CQUPTMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapViewController.h; sourceTree = "<group>"; };
+		1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapViewController.m; sourceTree = "<group>"; };
+		1AE1374724DEEA62000F2C30 /* CQUPTMapContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapContentView.h; sourceTree = "<group>"; };
+		1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapContentView.m; sourceTree = "<group>"; };
 		1AEF310D245C022400487D40 /* MyGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsViewController.h; sourceTree = "<group>"; };
 		1AEF310E245C022400487D40 /* MyGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsViewController.m; sourceTree = "<group>"; };
 		1AEF3110245C023A00487D40 /* MyGoodsContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsContentView.h; sourceTree = "<group>"; };
@@ -1867,6 +1873,25 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		1AE1374024DEE735000F2C30 /* Discover_Map */ = {
+			isa = PBXGroup;
+			children = (
+				1AE1374124DEE752000F2C30 /* View */,
+			);
+			path = Discover_Map;
+			sourceTree = "<group>";
+		};
+		1AE1374124DEE752000F2C30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AE1374424DEE79F000F2C30 /* CQUPTMapViewController.h */,
+				1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */,
+				1AE1374724DEEA62000F2C30 /* CQUPTMapContentView.h */,
+				1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1AEF3103245BFF3D00487D40 /* MyGoods */ = {
 			isa = PBXGroup;
 			children = (
@@ -2653,6 +2678,7 @@
 		EE75BEF723F5884100208039 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				1AE1374024DEE735000F2C30 /* Discover_Map */,
 				AA40B40824D2ADBC0037071A /* Discover_WeDate */,
 				EE131C2224713BE100B6ED97 /* Discover_SchoolCalendar */,
 				EE82344E24673FE700F6B4AE /* Volunteer */,
@@ -3626,6 +3652,7 @@
 				D06AAEE024AC00BB00EE0892 /* QAReviewAnswerListView.m in Sources */,
 				EE75BFB923F5884100208039 /* NewsCell.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
+				1AE1374624DEE79F000F2C30 /* CQUPTMapViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				EE75BF9D23F5884100208039 /* FinderView.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
@@ -3731,6 +3758,7 @@
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
 				AA40B41124D2C9710037071A /* ChoosePeopleListView.m in Sources */,
+				1AE1374924DEEA62000F2C30 /* CQUPTMapContentView.m in Sources */,
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				EEEBD28A248E5D8000A2DDB1 /* VolunteerView.m in Sources */,
