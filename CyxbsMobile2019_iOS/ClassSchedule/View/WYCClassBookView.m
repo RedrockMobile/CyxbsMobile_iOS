@@ -261,7 +261,7 @@
         }
     }
 }
-
+//用户课表和同学课表页面的课表显示，要调用这个方法
 - (void)addBtn:(NSMutableArray *)day{
     @autoreleasepool {
         [_dayBar layoutIfNeeded];
@@ -274,6 +274,8 @@
                 NSArray *tmp = day[dayNum][lessonNum];
                 if (tmp.count != 0) {
                     
+                    NSLog(@"%@",tmp);
+                    
                     [self.detailDataArray addObject:tmp];
                     
                     if ([tmp[0] objectForKey:@"id"]) {
@@ -282,24 +284,60 @@
                         [self addClassBtn:tmp];
                         
                     }
-                }
-            }
-        }
-        //_________________________为了给空白处加按钮而增加的改动_____________________________
-        for(int i=0; i<7; i++){
-            for (int j=0; j<12; j++) {
-                if(self.mark->data[i][j]==0){
+                }else{
                     UIButton *btn = [[UIButton alloc] init];
-                    btn.backgroundColor = [UIColor clearColor];
-                    [self addSubview:btn];
-                    [btn addTarget:self action:@selector(blankSpaceClicked) forControlEvents:UIControlEventTouchUpInside];
-                   float btnW = _dayBar.frame.size.width/7;
-                   float btnH =  50.5*autoSizeScaleY;
-                    [btn setFrame:(CGRectMake(self.leftBar.width+i*btnW,btnW+j*btnH , btnW, btnH))];
+                    [btn setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.14]];
+                    [self.scrollView addSubview:btn];
+                     [btn addTarget:self action:@selector(blankSpaceClicked) forControlEvents:UIControlEventTouchUpInside];
+                    float btnW = _dayBar.frame.size.width/7;
+                    float btnH =  50.5*autoSizeScaleY;
+                     [btn setFrame:(CGRectMake(self.leftBar.width+dayNum*btnW,btnW+2*lessonNum*btnH , btnW, 2*btnH))];
                 }
             }
         }
-        //_________________________为了给空白处加按钮而增加的改动_____________________________
+    }
+}
+
+//没课约页面的课表显示，要调用这个方法
+- (void)addBtnForWedate:(NSMutableArray *)day{
+    @autoreleasepool {
+        [_dayBar layoutIfNeeded];
+        [_leftBar layoutIfNeeded];
+        
+        _classNum = 0;
+        self.detailDataArray = [[NSMutableArray alloc]init];
+        for (int dayNum = 0; dayNum < 7; dayNum++) {
+            for (int lessonNum = 0; lessonNum < 6; lessonNum++) {
+                NSArray *tmp = day[dayNum][lessonNum];
+                if (tmp.count==0) {
+                    NSArray *array233 =  @[
+                            @{
+                                @"begin_lesson" : @1,
+                                @"classroom" : @"",
+                                @"course" : @"无课",
+                                @"course_num" : @"A1110020",
+                                @"day" : @"星期",
+                                @"hash_day" :[NSNumber numberWithInt:dayNum],
+                                @"hash_lesson" : [NSNumber numberWithInt:lessonNum],
+                                @"lesson" : @"lesson",
+                                @"period" : @2,
+                                @"rawWeek" : @"rawWeek",
+                                @"teacher" : @"teacher",
+                                @"type" : @"type",
+                                @"week" :  @[
+                                    @2,
+                                    @5,
+                                ],
+                                @"weekBegin" : @2,
+                                @"weekEnd" : @17,
+                                @"weekModel" : @"all",
+                        }
+                    ];
+                    [self addClassBtn:array233];
+                }
+            }
+        }
+        
     }
 }
 //点击了没有课的空白处后调用
@@ -314,11 +352,6 @@
     NSNumber *hash_day = [tmp[0] objectForKey:@"hash_day"];
     NSNumber *hash_lesson = [tmp[0] objectForKey:@"hash_lesson"];
     NSNumber *period = [tmp[0] objectForKey:@"period"];
-//_________________________为了给空白处加按钮而增加的改动_____________________________
-    for (int i=0; i<period.intValue; i++) {
-        self.mark->data[hash_day.intValue][hash_lesson.intValue*2+i] = 1;
-    }
-//_________________________为了给空白处加按钮而增加的改动_____________________________
     UIColor *viewColor = [[UIColor alloc]init];
     if (hash_lesson.integerValue<2) {
         if (@available(iOS 11.0, *)) {
@@ -469,10 +502,6 @@
     NSNumber *hash_lesson = [tmp[0] objectForKey:@"hash_lesson"];
     //_________________________为了给空白处加按钮而增加的改动_____________________________
     NSNumber *period = [tmp[0] objectForKey:@"period"];
-        for (int i=0; i<period.intValue; i++) {
-            self.mark->data[hash_day.intValue][hash_lesson.intValue*2+i] = 1;
-        }
-    //_________________________为了给空白处加按钮而增加的改动_____________________________
     UIColor *viewColor = [[UIColor alloc]init];
     viewColor = [UIColor colorWithHexString:@"#E8F0FC"];
    
@@ -564,15 +593,5 @@
          [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadView" object:nil];
     }
 }
-//_________________________为了给空白处加按钮而增加的改动_____________________________
-//初始化mark，因为这个空间时通过malloc申请的，所以里面是乱码
-- (void)setMark:(weekData *)mark{
-    _mark = mark;
-    for (int i=0; i<7; i++) {
-        for (int j=0; j<12; j++) {
-            mark->data[i][j] = 0;
-        }
-    }
-}
-//_________________________为了给空白处加按钮而增加的改动_____________________________
+
 @end

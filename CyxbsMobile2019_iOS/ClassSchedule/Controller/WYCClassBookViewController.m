@@ -7,10 +7,6 @@
 //
 
 #import "WYCClassBookViewController.h"
- typedef struct pWeekData {
-     weekData *w[29];
- }pWeekData;
-
 @interface WYCClassBookViewController ()<UIScrollViewDelegate,WYCClassBookViewDelegate,WYCShowDetailDelegate>
 /**课表顶部的小拖拽条*/
 @property (nonatomic, weak) UIView *dragHintView;
@@ -38,17 +34,9 @@
 //选择去哪一周的一个条
 @property (nonatomic, strong)UIView *chooseWeekBar;
 //用来储存被分配过空间的weekData结构体，在viewDidDisappear里free分配的空间
-@property (nonatomic, assign)pWeekData *pWeek;
 @end
 
 @implementation WYCClassBookViewController
-- (pWeekData *)pWeek{
-    if(_pWeek==nil){
-        _pWeek = malloc(sizeof(pWeekData));
-    }
-    return _pWeek;
-}
-
 - (void)viewDidLoad {
     
     self.navigationController.navigationBar.hidden = YES;
@@ -103,8 +91,19 @@
     }
     return _dateModel;
 }
+- (ScheduleType)schedulType{
+    //调用一下model的get方法，如果model是空的说明是从storyBoard加载的，所以初始化_schedulType为ScheduleTypePersonal
+    
+    NSLog(@"%@",self.model);
+    
+    NSLog(@"------%ld,%ld,%ld,%ld-------",_schedulType,ScheduleTypeWeDate,ScheduleTypePersonal,ScheduleTypeClassmate);
+    
+    return _schedulType;
+}
+//如果model是空的，那么说明课表是从storyBoard加载的
 - (WYCClassAndRemindDataModel *)model{
     if(_model==nil){
+        self.schedulType = ScheduleTypePersonal;
         _model = [[WYCClassAndRemindDataModel alloc] init];
         [_model getClassBookArray:self.stuNum];
         [_model getRemind:self.stuNum idNum:self.idNum];
@@ -209,9 +208,7 @@
             
             WYCClassBookView *view = [[WYCClassBookView alloc]initWithFrame:CGRectMake(dateNum*_scrollView.frame.size.width,70, _scrollView.frame.size.width, _scrollView.frame.size.height)];
             view.detailDelegate = self;
-            
-            view.mark = malloc(sizeof(weekData));
-            self.pWeek->w[dateNum] = view.mark;
+    
             
             if (dateNum == 0) {
                 [view initView:YES];
@@ -321,7 +318,41 @@
             [view addSubview:titleView];
             [titleView addSubview:titleLabel];
             [view addSubview:dragHintView];
-            [view addBtn:day];
+            
+            switch (self.schedulType) {
+                //代表是要显示自己的课表
+                case ScheduleTypePersonal:
+                    
+                    //不知道为什么底下有一个白色的条，挡住了一部分课表，不知道要不要改一下滚动范围，这里没改
+                    [view addBtn:day];
+                    break;
+                    
+                //代表是要在没课约页面显示课表
+                case ScheduleTypeWeDate:
+                    [view addBtnForWedate:day];
+                    //禁止交互以防止点击按钮后触发显示自己课表页才有的功能
+                    for (UIView *sub in view.scrollView.subviews) {
+                        sub.userInteractionEnabled = NO;
+                    }
+                    //不知道为什么底下有一个白色的条，挡住了一部分课表，所以在这里改一下滚动范围
+                    view.scrollView.contentSize = CGSizeMake(0, 675);
+                    break;
+                    
+                //代表是要在同学课表页面显示课表
+                case ScheduleTypeClassmate:
+                    [view addBtn:day];
+                    //禁止交互以防止点击按钮后触发显示自己课表页才有的功能
+                    for (UIView *sub in view.scrollView.subviews) {
+                        sub.userInteractionEnabled = NO;
+                    }
+                    //不知道为什么底下有一个白色的条，挡住了一部分课表，所以在这里改一下滚动范围
+                    view.scrollView.contentSize = CGSizeMake(0, 675);
+                    break;
+                default:
+                    
+                    break;
+            }
+            
             [_scrollView addSubview:view];
         }
     }
@@ -662,13 +693,7 @@
     }];
 }
 
-//在这里free WYCClassBookView的mark属性和self.pWeek分配到的空间
-- (void)dealloc{
-    for (int i=0; i<self.dateModel.dateArray.count; i++) {
-        free(self.pWeek->w[i]);
-    }
-    free(self.pWeek);
-}
+
 @end
 
 
