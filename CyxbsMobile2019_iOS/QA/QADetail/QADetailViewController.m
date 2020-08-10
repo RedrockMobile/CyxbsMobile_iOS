@@ -28,6 +28,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
     
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"QAListCellColor"];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+    }
 }
 
 - (void)customNavigationRightButton{
@@ -48,12 +53,6 @@
 }
 
 - (void)setupUI{
-    //    NSLog(@"%@",self.model.dataDic);
-    if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"QAListCellColor"];
-    } else {
-        self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
-    }
     
     NSDictionary *detailData = self.model.detailData;
     NSArray *answersData = self.model.answersData;
@@ -64,6 +63,7 @@
     detailView.delegate = self;
     [self.view addSubview:detailView];
 }
+
 - (void)loadData{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;

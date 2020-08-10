@@ -34,8 +34,12 @@
     self.page = 0;
     self.newRowCount = 0;
 
-    self.view.backgroundColor = [UIColor whiteColor];
-
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithHexString:@"F8F9FC"];
+    }
+    
     self.model = [[QAListModel alloc]init];
     [self loadData];
     return self;
