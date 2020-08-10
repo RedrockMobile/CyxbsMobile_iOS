@@ -51,7 +51,11 @@
     self = [super init];
     if (self) {
         self.title = @"提问";
-        self.view.backgroundColor = UIColor.whiteColor;
+        if (@available(iOS 11.0, *)) {
+            self.view.backgroundColor = [UIColor colorNamed:@"QABackgroundColor"];
+        } else {
+            self.view.backgroundColor = [UIColor whiteColor];
+        }
         self.isFromDraft = NO;
         [self setNotification];
         self.model = [[QAAskModel alloc]init];
@@ -117,7 +121,11 @@
         
         UIButton *titleBtn = [[UIButton alloc]init];
         [titleBtn setTitle:titleArray[i] forState:UIControlStateNormal];
-        [titleBtn setTitleColor:[UIColor colorWithHexString:@"#94A6C4"] forState:UIControlStateNormal];
+        if (@available(iOS 11.0, *)) {
+            [titleBtn setTitleColor:[UIColor colorNamed:@"QAAskTagTextColor_Off"] forState:UIControlStateNormal];
+        } else {
+            [titleBtn setTitleColor:[UIColor colorWithHexString:@"#94A6C4"] forState:UIControlStateNormal];
+        }
         [titleBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:13]];
         
         titleBtn.layer.cornerRadius = 12;
@@ -125,27 +133,43 @@
         [titleBtn addTarget:self action:@selector(tapTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
         if (i == 0) {
             [titleBtn setFrame:CGRectMake(20, 5, 50, 25)];
-            titleBtn.backgroundColor = [UIColor colorWithHexString:@"#F7DAD7"];
+            if (@available(iOS 11.0, *)) {
+                titleBtn.backgroundColor = [UIColor colorNamed:@"QAAskTagButtonColor_On"];
+            } else {
+                titleBtn.backgroundColor = [UIColor colorWithHexString:@"#F7DAD7"];
+            }
         }else{
             [titleBtn setFrame:CGRectMake(20+i*65, 5, 50, 25)];
-            titleBtn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+            if (@available(iOS 11.0, *)) {
+                titleBtn.backgroundColor = [UIColor colorNamed:@"QAAskTagButtonColor_Off"];
+            } else {
+                titleBtn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+            }
         }
         
         [self.kindBtnArray addObject:titleBtn];
         [titleView addSubview:titleBtn];
         
     }
+    
+    
     self.titleTextField = [[UITextField alloc]init];
-    self.titleTextField.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+    self.titleTextField.layer.cornerRadius = 8;
     //设置placeholder字体大小颜色
     NSString *placeholderString = @"输入标题";
     NSMutableAttributedString *placeholder = [[NSMutableAttributedString alloc] initWithString:placeholderString];
     [placeholder addAttribute:NSFontAttributeName
                         value:[UIFont fontWithName:PingFangSCBold size:16]
                         range:NSMakeRange(0, placeholderString.length)];
-    [placeholder addAttribute:NSForegroundColorAttributeName
-                        value:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.39]
-                        range:NSMakeRange(0, placeholderString.length)];
+    if (@available(iOS 11.0, *)) {
+        [placeholder addAttribute:NSForegroundColorAttributeName
+                            value:[UIColor colorNamed:@"QANavigationTitleColor"]
+                            range:NSMakeRange(0, placeholderString.length)];
+    } else {
+        [placeholder addAttribute:NSForegroundColorAttributeName
+                            value:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]
+                            range:NSMakeRange(0, placeholderString.length)];
+    }
     self.titleTextField.attributedPlaceholder = placeholder;
     //设置光标起始位置偏移
     self.titleTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 15, 0)];
@@ -161,13 +185,13 @@
         make.height.mas_equalTo(40);
     }];
     
+    
     self.askTextView = [[UITextView alloc]init];
-    self.askTextView.backgroundColor = [UIColor colorWithHexString:@"#e8edfd"];
+    self.askTextView.layer.cornerRadius = 8;
     [self.askTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     //自适应高度
     self.askTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.askTextView.placeholder = @"详细描述你的问题和需求，表达越清楚，越容易获得帮助哦！";
-    self.askTextView.placeholderColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.39];
     self.askTextView.textContainerInset = UIEdgeInsetsMake(10, 12, 10, 12);
     [self.askTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
     self.askTextView.delegate = self;
@@ -178,6 +202,20 @@
         make.top.mas_equalTo(self.titleTextField.mas_bottom).mas_offset(10);
         make.height.mas_equalTo(215);
     }];
+    
+    
+    // 深色模式适配
+    if (@available(iOS 11.0, *)) {
+        self.titleTextField.backgroundColor = [UIColor colorNamed:@"QATextViewColor"];
+        self.askTextView.backgroundColor = [UIColor colorNamed:@"QATextViewColor"];
+        self.askTextView.placeholderColor = [UIColor colorNamed:@"QATextViewPlaceholderColor"];
+//        QAAskTagTextColor
+    } else {
+        self.titleTextField.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+        self.askTextView.backgroundColor = [UIColor colorWithHexString:@"#e8edfd"];
+        self.askTextView.placeholderColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.39];
+    }
+    
     
     //    UIImageView *addImageView = [[UIImageView alloc]init];
     self.askImageArray = [NSMutableArray array];
@@ -227,9 +265,17 @@
     for (int i = 0;i < self.kindBtnArray.count;i++) {
         UIButton *btn = self.kindBtnArray[i];
         if (i == sender.tag) {
-            btn.backgroundColor = [UIColor colorWithHexString:@"#F7DAD7"];
+            if (@available(iOS 11.0, *)) {
+                btn.backgroundColor = [UIColor colorNamed:@"QAAskTagButtonColor_On"];
+            } else {
+                btn.backgroundColor = [UIColor colorWithHexString:@"#F7DAD7"];
+            }
         }else{
-            btn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+            if (@available(iOS 11.0, *)) {
+                btn.backgroundColor = [UIColor colorNamed:@"QAAskTagButtonColor_Off"];
+            } else {
+                btn.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
+            }
         }
     }
     NSArray *titleArray = @[@"学习",@"匿名",@"生活",@"其他"];
