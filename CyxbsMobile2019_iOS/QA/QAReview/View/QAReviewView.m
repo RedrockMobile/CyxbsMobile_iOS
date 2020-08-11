@@ -44,13 +44,11 @@
     
     UILabel *userNameLabel = [[UILabel alloc]init];
     userNameLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
-    [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     [userNameLabel setText:[dic objectForKey:@"nickname"]];
     [userInfoView addSubview:userNameLabel];
     
     UILabel *dateLabel = [[UILabel alloc]init];
     dateLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    [dateLabel setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
     NSString *date = [dic objectForKey:@"created_at"];
     [dateLabel setText:[date substringWithRange:NSMakeRange(0, 10)]];
     [userInfoView addSubview:dateLabel];
@@ -82,8 +80,6 @@
     NSString *content = [dic objectForKey:@"content"];
     contentLabel.text = content;
     [contentLabel setFont:[UIFont fontWithName:PingFangSCRegular size:15]];
-    contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
-    contentLabel.alpha = 1.0;
     
     [self.scrollView addSubview:contentLabel];
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -102,8 +98,21 @@
         make.right.mas_equalTo(self.mas_right).mas_offset(0);
         make.left.mas_equalTo(self.mas_left).mas_offset(0);
         make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(20);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(2);
     }];
+    
+    
+    // 深色模式
+    if (@available(iOS 11.0, *)) {
+        [userNameLabel setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
+        [dateLabel setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
+        contentLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+    } else {
+        [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        [dateLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+    }
+    dateLabel.alpha = 0.5;
     
     
     //底下的评论条
@@ -175,13 +184,25 @@
             QAReviewAnswerListView *answerView = [[QAReviewAnswerListView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, answerViewHeight)];
             switch (i%3) {
                 case 0:
-                    answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F9F3F0"];
+                    if (@available(iOS 11.0, *)) {
+                        answerView.backgroundView.backgroundColor = [UIColor colorNamed:@"QAReviewBackgroundColor1"];
+                    } else {
+                        answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F9F3F0"];
+                    }
                     break;
                 case 1:
-                    answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F0F2FB"];
+                    if (@available(iOS 11.0, *)) {
+                        answerView.backgroundView.backgroundColor = [UIColor colorNamed:@"QAReviewBackgroundColor2"];
+                    } else {
+                        answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F0F2FB"];
+                    }
                     break;
                 case 2:
-                    answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F9EFF2"];
+                    if (@available(iOS 11.0, *)) {
+                        answerView.backgroundView.backgroundColor = [UIColor colorNamed:@"QAReviewBackgroundColor3"];
+                    } else {
+                        answerView.backgroundView.backgroundColor = [UIColor colorWithHexString:@"#F9EFF2"];
+                    }
                     break;
                     
                 default:
@@ -196,7 +217,7 @@
             if (i == 0) {
                 
                 [answerView mas_makeConstraints:^(MASConstraintMaker *make){
-                    make.top.mas_equalTo(separateView.mas_bottom).mas_offset(5);
+                    make.top.mas_equalTo(separateView.mas_bottom).mas_offset(15);
                     make.height.mas_equalTo(answerViewHeight);
                     //                    make.height.mas_lessThanOrEqualTo(250);
                     make.left.right.equalTo(self);
@@ -205,7 +226,7 @@
             }else{
                 
                 [answerView mas_makeConstraints:^(MASConstraintMaker *make){
-                    make.top.mas_equalTo(separateView.mas_bottom).mas_offset(answerViewY + 5);
+                    make.top.mas_equalTo(separateView.mas_bottom).mas_offset(answerViewY + 15);
                     make.height.mas_equalTo(answerViewHeight);
                     //                    make.height.mas_lessThanOrEqualTo(250);
                     make.left.right.equalTo(self);

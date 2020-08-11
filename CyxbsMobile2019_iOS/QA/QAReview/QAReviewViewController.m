@@ -25,7 +25,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"QAListCellColor"];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
+    }
     
 }
 

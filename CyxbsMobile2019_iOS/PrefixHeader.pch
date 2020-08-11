@@ -264,11 +264,16 @@
 //问题详情
 #define QA_QUESTION_DETAIL_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getDetailedInfo"
 
+// 阅读量统计
+#define QA_BROWSENUMBER_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/addView"
+
 //问题回答列表
 #define QA_QUESTION_ANSWERLIST @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getAnswerlist"
 
 //忽略问题
 #define QA_IGNORE_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/ignore"
+
+
 
 /*
  回答部分

@@ -27,6 +27,12 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadFailure" object:nil];
     }];
+    
+    [client requestWithPath:QA_BROWSENUMBER_API method:HttpRequestPost parameters:@{@"id": questionId} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        // 统计阅读量，失败了就算了，懒得写
+    }];
 }
 - (void)getAnswersWithId:(NSNumber *)questionId{
     HttpClient *client = [HttpClient defaultClient];
