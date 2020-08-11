@@ -28,9 +28,11 @@
 }
 - (void)layoutSubviews{
     self.scrollviewHeight += 50;
-//    NSLog(@"scrollviewHeight%D",self.scrollviewHeight);
     
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.scrollviewHeight);
+    if (self.scrollviewHeight < MAIN_SCREEN_H) {
+        self.scrollviewHeight = MAIN_SCREEN_H;
+    }
+    self.scrollView.contentSize = CGSizeMake(0, self.scrollviewHeight);
 }
 - (void)setupUIwithDic:(NSDictionary *)dic answersData:(nonnull NSArray *)answersData{
     UIView *userInfoView = [[UIView alloc]init];
