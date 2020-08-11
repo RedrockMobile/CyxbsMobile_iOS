@@ -107,6 +107,11 @@
 - (void)showUserInformationIntroduction:(UIButton *)sender {
     UserInformationIntorductionView *introductionView = [[UserInformationIntorductionView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, self.contentView.height)];
     [self.view addSubview:introductionView];
+    
+    introductionView.alpha = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+        introductionView.alpha = 1;
+    }];
 }
 
 
