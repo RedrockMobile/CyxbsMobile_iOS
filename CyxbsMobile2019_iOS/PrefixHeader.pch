@@ -58,6 +58,7 @@
 #import "NSDate+Timestamp.h"
 #import <UMAnalytics/MobClick.h>
 #import "SDMask.h"
+#import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
 //#import "AESCipher.h"         // 加密用的，暂时没什么用，有用的时候再打开注释吧
 
 
@@ -116,6 +117,7 @@
 #define PingFangSCLight @"PingFangSC-Light"
 #define PingFangSCMedium @"PingFangSC-Medium"
 #define PingFangSCBold @"PingFangSC-Semibold"
+#define PingFangSCHeavy @"PingFangSC-Heavy"
 // Bahnschrift字体
 #define BahnschriftBold @"Bahnschrift_Bold"
 

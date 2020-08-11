@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class CQUPTMapDataItem, CQUPTMapHotPlaceItem;
 @interface CQUPTMapContentView : UIView
+
+- (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItem:(CQUPTMapHotPlaceItem *)hotPlaceItem;
 
 @end
 
