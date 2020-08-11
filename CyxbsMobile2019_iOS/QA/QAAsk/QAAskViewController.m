@@ -188,7 +188,6 @@
     
     self.askTextView = [[UITextView alloc]init];
     self.askTextView.layer.cornerRadius = 8;
-    [self.askTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     //自适应高度
     self.askTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.askTextView.placeholder = @"详细描述你的问题和需求，表达越清楚，越容易获得帮助哦！";
@@ -209,11 +208,13 @@
         self.titleTextField.backgroundColor = [UIColor colorNamed:@"QATextViewColor"];
         self.askTextView.backgroundColor = [UIColor colorNamed:@"QATextViewColor"];
         self.askTextView.placeholderColor = [UIColor colorNamed:@"QATextViewPlaceholderColor"];
-//        QAAskTagTextColor
+        [self.askTextView setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
     } else {
         self.titleTextField.backgroundColor = [UIColor colorWithHexString:@"#E8F0FC"];
         self.askTextView.backgroundColor = [UIColor colorWithHexString:@"#e8edfd"];
         self.askTextView.placeholderColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.39];
+        [self.askTextView setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+
     }
     
     
@@ -491,7 +492,6 @@
         self.nextStepView = [[QAAskNextStepView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 160)];
     }
     
-    self.nextStepView.backgroundColor = UIColor.redColor;
     [self.nextStepView.cancelBtn addTarget:self action:@selector(hiddenNextStepView) forControlEvents:UIControlEventTouchUpInside];
     [self.nextStepView.commitBtn addTarget:self action:@selector(commitAsk) forControlEvents:UIControlEventTouchUpInside];
     //    self.nextStepView.userInteractionEnabled = YES;
@@ -504,6 +504,16 @@
 }
 
 - (void)commitAsk{
+    if ([self.titleTextField.text isEqualToString:@""] || [self.askTextView.text isEqualToString:@""]) {
+        
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"标题或内容不能为空哦";
+        [hud hide:YES afterDelay:1];
+        
+        return;
+    }
+    
     NSString *title = self.titleTextField.text;
     NSString *content = self.askTextView.text;
     QAAskIntegralPickerView *integralPickerView =  self.nextStepView.integralPickView;

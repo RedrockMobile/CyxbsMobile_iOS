@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QAAskNextStepView">
             <connections>
+                <outlet property="DDLLabel" destination="P1i-Mh-Ia9" id="MWO-vA-wHj"/>
+                <outlet property="awardLabel" destination="YXF-Fq-RG3" id="uaQ-i7-cWJ"/>
                 <outlet property="cancelBtn" destination="FC4-qa-0HO" id="oQQ-zH-6oX"/>
                 <outlet property="commitBtn" destination="BtE-2l-T9X" id="uGy-7o-iLO"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="ENh-nV-fzW"/>
                 <outlet property="integralNumLabel" destination="gch-oB-gzT" id="4FT-4Q-SpY"/>
                 <outlet property="integralPickBackgroundView" destination="480-MO-JwV" id="kmS-Oz-p5H"/>
+                <outlet property="integralSettingTitleLabel" destination="1Gi-Y0-zV2" id="Kxq-1z-HI9"/>
                 <outlet property="questionmarkBtn" destination="on1-pA-E1G" id="Wqe-e0-3mg"/>
                 <outlet property="timeLabel" destination="GrK-tz-Seo" id="KD2-1Z-sXh"/>
                 <outlet property="timePickerVIew" destination="Ycm-aI-jpc" id="hij-R7-evj"/>
