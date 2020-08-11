@@ -75,7 +75,6 @@
 		1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34723DC6F58005DC1F3 /* MyResponseRecievedCell.m */; };
 		1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */; };
 		1A4A467724D16A810033734E /* UserInformationIntorductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A467624D16A800033734E /* UserInformationIntorductionView.m */; };
-		1A4A467C24D18F950033734E /* UserInformationIntroduction.html in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A467B24D18F950033734E /* UserInformationIntroduction.html */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
 		1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDA23600C9100543BAE /* LoginViewController.m */; };
 		1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDD23600CBE00543BAE /* Login.xcassets */; };
@@ -605,7 +604,6 @@
 		1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserProtocolViewController.m; sourceTree = "<group>"; };
 		1A4A467524D16A800033734E /* UserInformationIntorductionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInformationIntorductionView.h; sourceTree = "<group>"; };
 		1A4A467624D16A800033734E /* UserInformationIntorductionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInformationIntorductionView.m; sourceTree = "<group>"; };
-		1A4A467B24D18F950033734E /* UserInformationIntroduction.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UserInformationIntroduction.html; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1A5A5ED923600C9100543BAE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1A5A5EDA23600C9100543BAE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -1737,7 +1735,6 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1A4A467B24D18F950033734E /* UserInformationIntroduction.html */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				EE75BEF723F5884100208039 /* Discover */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
@@ -3352,7 +3349,6 @@
 				EE8234B624673FE700F6B4AE /* login_number@2x.png in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
 				D0101D642433CE91004337ED /* QADetailReportView.xib in Resources */,
-				1A4A467C24D18F950033734E /* UserInformationIntroduction.html in Resources */,
 				1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */,
 				D06AAEDD24AC00BB00EE0892 /* QAReviewAnswerListView.xib in Resources */,
 				D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */,
