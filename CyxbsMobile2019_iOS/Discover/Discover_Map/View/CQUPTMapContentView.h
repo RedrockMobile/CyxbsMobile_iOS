@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CQUPTMapContentViewDelegate <NSObject>
+
+- (void)backButtonClicked;
+
+@end
+
 NS_ASSUME_NONNULL_BEGIN
 
 @class CQUPTMapDataItem, CQUPTMapHotPlaceItem;
 @interface CQUPTMapContentView : UIView
 
-- (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItem:(CQUPTMapHotPlaceItem *)hotPlaceItem;
+@property (nonatomic, weak) id<CQUPTMapContentViewDelegate> delegate;
+
+- (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItemArray:(NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceItemArray;
 
 @end
 

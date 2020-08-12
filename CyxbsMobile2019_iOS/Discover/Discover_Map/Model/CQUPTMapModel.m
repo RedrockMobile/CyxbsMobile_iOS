@@ -11,18 +11,40 @@
 
 @implementation CQUPTMapModel
 
-+ (void)requestMapDataSuccess:(void (^)(CQUPTMapDataItem * _Nonnull, CQUPTMapHotPlaceItem * _Nonnull))success failed:(void (^)(NSError * _Nonnull))failed {
++ (void)requestMapDataSuccess:(void (^)(CQUPTMapDataItem * _Nonnull, NSArray<CQUPTMapHotPlaceItem *> * _Nonnull))success failed:(void (^)(NSError * _Nonnull))failed {
     
-    [[HttpClient defaultClient] requestWithPath:@"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/mapData" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        CQUPTMapDataItem *mapDataItem = [[CQUPTMapDataItem alloc] initWithDict:responseObject];
-        success(mapDataItem, [[CQUPTMapHotPlaceItem alloc] init]);
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPBASICDATA method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            
+            // 继续请求热词
+            [self requestHotPlaceSuccess:^(NSArray<CQUPTMapHotPlaceItem *> * _Nonnull hotPlaceItemArray) {
+                CQUPTMapDataItem *mapDataItem = [[CQUPTMapDataItem alloc] initWithDict:responseObject];
+                success(mapDataItem, hotPlaceItemArray);
+            }];
+            
+        } else {
+            failed([[NSError alloc] init]);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
     }];
     
 }
 
-+ (void)requestHotPlaceSuccess:(void (^)(CQUPTMapHotPlaceItem * _Nonnull))success {
++ (void)requestHotPlaceSuccess:(void (^)(NSArray<CQUPTMapHotPlaceItem *> * _Nonnull))success {
+    
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPHOTPLACE method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            NSMutableArray *tmpArray = [NSMutableArray array];
+            for (NSDictionary *dict in responseObject[@"data"][@"button_info"]) {
+                CQUPTMapHotPlaceItem *hotPlaceItem = [[CQUPTMapHotPlaceItem alloc] initWithDict:dict];
+                [tmpArray addObject:hotPlaceItem];
+            }
+            success(tmpArray);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@", error);
+    }];
     
 }
 

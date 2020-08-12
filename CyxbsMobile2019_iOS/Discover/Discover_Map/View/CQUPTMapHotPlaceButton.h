@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CQUPTMapHotPlaceButton : UIView
 
+@property (nonatomic, assign) CGFloat buttonWidth;
+
 - (instancetype)initWithTitle:(NSString *)title hotTag:(BOOL)isHot;
 
 @end

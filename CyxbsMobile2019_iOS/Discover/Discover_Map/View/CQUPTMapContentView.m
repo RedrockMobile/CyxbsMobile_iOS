@@ -7,6 +7,8 @@
 //
 
 #import "CQUPTMapContentView.h"
+#import "CQUPTMapHotPlaceButton.h"
+#import "CQUPTMapMyStarButton.h"
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapHotPlaceItem.h"
@@ -15,7 +17,7 @@
 
 // 数据
 @property (nonatomic, strong) CQUPTMapDataItem *mapDataItem;
-@property (nonatomic, strong) CQUPTMapHotPlaceItem *hotPlaceItem;
+@property (nonatomic, copy) NSArray<CQUPTMapHotPlaceItem *> *hotPlaceItemArray;
 
 // 控件
 @property (nonatomic, weak) UIButton *backButton;
@@ -24,6 +26,9 @@
 @property (nonatomic, weak) UIButton *cancelButton;
 
 @property (nonatomic, weak) UIScrollView *hotScrollView;
+@property (nonatomic, strong) NSMutableArray<CQUPTMapHotPlaceButton *> *hotButtonArray;
+@property (nonatomic, weak) CQUPTMapMyStarButton *starButton;
+
 @property (nonatomic, weak) UIImageView *mapView;
 
 @end
@@ -31,14 +36,14 @@
 
 @implementation CQUPTMapContentView
 
-- (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItem:(CQUPTMapHotPlaceItem *)hotPlaceItem
+- (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItemArray:(nonnull NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceItemArray
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         
         self.mapDataItem = mapDataItem;
-        self.hotPlaceItem = hotPlaceItem;
+        self.hotPlaceItemArray = hotPlaceItemArray;
         
         // 返回按钮
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -67,11 +72,26 @@
         [self.searchBar addSubview:cancelButton];
         self.cancelButton = cancelButton;
         
-        // 推荐地点
+        // 热词
         UIScrollView *scrollView = [[UIScrollView alloc] init];
-        scrollView.backgroundColor = [UIColor purpleColor];
+        scrollView.backgroundColor = [UIColor clearColor];
+        scrollView.showsHorizontalScrollIndicator = NO;
         [self addSubview:scrollView];
         self.hotScrollView = scrollView;
+        
+        self.hotButtonArray = [NSMutableArray array];
+        for (CQUPTMapHotPlaceItem *hotPlace in hotPlaceItemArray) {
+            CQUPTMapHotPlaceButton *hotButton = [[CQUPTMapHotPlaceButton alloc] initWithTitle:hotPlace.title hotTag:hotPlace.isHot];
+            [self.hotScrollView addSubview:hotButton];
+            [self.hotButtonArray addObject:hotButton];
+        }
+        
+        // 收藏
+        CQUPTMapMyStarButton *starButton = [[CQUPTMapMyStarButton alloc] init];
+        starButton.backgroundColor = [UIColor clearColor];
+        [self addSubview:starButton];
+        self.starButton = starButton;
+        
         
         // 地图
         UIImageView *mapView = [[UIImageView alloc] init];
@@ -124,8 +144,37 @@
         make.height.width.equalTo(@10);
     }];
     
+    [self.starButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.hotScrollView);
+        make.height.equalTo(@54);
+        make.width.equalTo(@75);
+        make.trailing.equalTo(self);
+    }];
+    
+    for (int i = 0; i < self.hotButtonArray.count; i++) {
+        if (i == 0) {
+            [self.hotButtonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.top.bottom.equalTo(self.hotScrollView);
+                make.width.equalTo(@(self.hotButtonArray[i].buttonWidth + 28));
+            }];
+        } else if (i == self.hotButtonArray.count - 1) {
+            [self.hotButtonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.equalTo(self.hotButtonArray[i - 1].mas_trailing);
+                make.top.bottom.trailing.equalTo(self.hotScrollView);
+                make.width.equalTo(@(self.hotButtonArray[i].buttonWidth + 28));
+            }];
+        } else {
+            [self.hotButtonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.equalTo(self.hotButtonArray[i - 1].mas_trailing);
+                make.top.bottom.equalTo(self.hotScrollView);
+                make.width.equalTo(@(self.hotButtonArray[i].buttonWidth + 28));
+            }];
+        }
+    }
+    
     [self.hotScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self);
+        make.leading.equalTo(self);
+        make.trailing.equalTo(self.starButton.mas_leading);
         make.top.equalTo(self.searchBar.mas_bottom).offset(6);
         make.height.equalTo(@54);
     }];
@@ -137,7 +186,9 @@
 }
 
 - (void)back {
-    
+    if ([self.delegate respondsToSelector:@selector(backButtonClicked)]) {
+        [self.delegate backButtonClicked];
+    }
 }
 
 

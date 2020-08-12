@@ -206,6 +206,13 @@
 #define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
 /// 教务新闻附件下载
 #define NEWSDOWNLOAD @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
+
+/// 重邮地图主页
+#define CQUPTMAPBASICDATA @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/mapData"
+/// 重邮地图热搜
+#define CQUPTMAPHOTPLACE @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/hotPlace"
+
+
 /// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
 

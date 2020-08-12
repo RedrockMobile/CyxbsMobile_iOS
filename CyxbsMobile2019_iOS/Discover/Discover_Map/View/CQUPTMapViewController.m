@@ -11,7 +11,7 @@
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapViewProtocol.h"
 
-@interface CQUPTMapViewController () <CQUPTMapViewProtocol>
+@interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
 
 @property (nonatomic, strong) CQUPTMapPresenter *presenter;
 @property (nonatomic, weak) CQUPTMapContentView *contentView;
@@ -43,10 +43,19 @@
 
 
 #pragma mark - Presenter 回调
-- (void)mapDataRequestSuccessWithMapData:(CQUPTMapDataItem *)mapData hotPlace:(CQUPTMapHotPlaceItem *)hotPlace {
-    CQUPTMapContentView *contentView = [[CQUPTMapContentView alloc] initWithFrame:self.view.bounds andMapData:mapData andHotPlaceItem:hotPlace];
+- (void)mapDataRequestSuccessWithMapData:(CQUPTMapDataItem *)mapData hotPlace:(nonnull NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceArray {
+    
+    CQUPTMapContentView *contentView = [[CQUPTMapContentView alloc] initWithFrame:self.view.bounds andMapData:mapData andHotPlaceItemArray:hotPlaceArray];
+    contentView.delegate = self;
+    
     [self.view addSubview:contentView];
     self.contentView = contentView;
+}
+
+
+#pragma mark - ContentView代理
+- (void)backButtonClicked {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

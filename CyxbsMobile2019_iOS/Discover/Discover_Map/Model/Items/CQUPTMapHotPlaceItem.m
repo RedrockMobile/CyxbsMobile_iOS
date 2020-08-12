@@ -10,4 +10,13 @@
 
 @implementation CQUPTMapHotPlaceItem
 
+- (instancetype)initWithDict:(NSDictionary *)dict {
+    if (self = [super init]) {
+        self.title = dict[@"title"];
+        self.code = dict[@"code"];
+        self.isHot = [dict[@"is_hot"] boolValue];
+    }
+    return self;
+}
+
 @end

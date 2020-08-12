@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CQUPTMapModel : NSObject
 
-+ (void)requestMapDataSuccess:(void (^)(CQUPTMapDataItem *mapDataItem, CQUPTMapHotPlaceItem *hotPlaceItem))success failed:(void (^)(NSError *error))failed;
++ (void)requestMapDataSuccess:(void (^)(CQUPTMapDataItem *mapDataItem, NSArray<CQUPTMapHotPlaceItem *> *hotPlaceItemArray))success failed:(void (^)(NSError *error))failed;
 
-+ (void)requestHotPlaceSuccess:(void (^)(CQUPTMapHotPlaceItem *hotPlaceItem))success;
++ (void)requestHotPlaceSuccess:(void (^)(NSArray<CQUPTMapHotPlaceItem *> *hotPlaceItemArray))success;
 
 @end
 

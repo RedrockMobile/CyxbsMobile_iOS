@@ -20,8 +20,8 @@
 }
 
 - (void)requestMapData {
-    [CQUPTMapModel requestMapDataSuccess:^(CQUPTMapDataItem * _Nonnull mapDataItem, CQUPTMapHotPlaceItem * _Nonnull hotPlaceItem) {
-        [self.view mapDataRequestSuccessWithMapData:mapDataItem hotPlace:hotPlaceItem];
+    [CQUPTMapModel requestMapDataSuccess:^(CQUPTMapDataItem * _Nonnull mapDataItem, NSArray<CQUPTMapHotPlaceItem *> * _Nonnull hotPlaceItemArray) {
+        [self.view mapDataRequestSuccessWithMapData:mapDataItem hotPlace:hotPlaceItemArray];
     } failed:^(NSError * _Nonnull error) {
         
     }];

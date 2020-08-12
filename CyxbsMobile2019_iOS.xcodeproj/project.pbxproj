@@ -100,6 +100,7 @@
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */; };
+		1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */; };
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
@@ -662,6 +663,8 @@
 		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
 		1AB2E58324E2D41A004B4067 /* CQUPTMapPlaceRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceRect.h; sourceTree = "<group>"; };
 		1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapPlaceRect.m; sourceTree = "<group>"; };
+		1AB2E58824E38F26004B4067 /* CQUPTMapMyStarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapMyStarButton.h; sourceTree = "<group>"; };
+		1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapMyStarButton.m; sourceTree = "<group>"; };
 		1ABE8024238D01EC00E88C4E /* CheckInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
 		1ABE8025238D01EC00E88C4E /* CheckInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInViewController.m; sourceTree = "<group>"; };
 		1AC2550323C9AB3700DF0475 /* CheckedInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckedInDot.h; sourceTree = "<group>"; };
@@ -1949,6 +1952,8 @@
 				1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */,
 				1A810BA724E299C100E79126 /* CQUPTMapHotPlaceButton.h */,
 				1A810BA824E299C100E79126 /* CQUPTMapHotPlaceButton.m */,
+				1AB2E58824E38F26004B4067 /* CQUPTMapMyStarButton.h */,
+				1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3638,6 +3643,7 @@
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				EEA301CF2468608000A8DB26 /* Credits.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
+				1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				EE75BFC823F5884100208039 /* UserInfoView.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
