@@ -13,6 +13,8 @@
 #import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapStarPlaceItem.h"
+#import "CQUPTMapBeforeSearchView.h"
+#import <IQKeyboardManager.h>
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -36,6 +38,8 @@
 
 @property (nonatomic, weak) UIScrollView *mapScrollView;
 @property (nonatomic, weak) UIImageView *mapView;
+
+@property (nonatomic, weak) CQUPTMapBeforeSearchView *beforeSearchView;
 
 @end
 
@@ -62,8 +66,10 @@
         UITextField *searchBar = [[UITextField alloc] init];
         searchBar.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 0)];
         searchBar.leftViewMode = UITextFieldViewModeAlways;
+        searchBar.returnKeyType = UIReturnKeySearch;
         searchBar.font = [UIFont fontWithName:PingFangSCMedium size:14];
         searchBar.placeholder = [NSString stringWithFormat:@"大家都在搜：%@", mapDataItem.hotWord];
+        [searchBar.keyboardToolbar.doneBarButton setTarget:self action:@selector(cancelSearch)];
         searchBar.delegate = self;
         [self addSubview:searchBar];
         self.searchBar = searchBar;
@@ -222,6 +228,21 @@
 # pragma mark - TextField代理
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     self.cancelButton.hidden = NO;
+    CGFloat beforeSearchViewY = CGRectGetMaxY(self.searchBar.frame);
+    
+    CQUPTMapBeforeSearchView *beforeSearchView = [[CQUPTMapBeforeSearchView alloc] initWithFrame:CGRectMake(0, beforeSearchViewY + 100, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY)];
+    beforeSearchView.alpha = 0;
+    [self addSubview:beforeSearchView];
+    self.beforeSearchView = beforeSearchView;
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        beforeSearchView.frame = CGRectMake(0, beforeSearchViewY, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY);
+        beforeSearchView.alpha = 1;
+        
+    } completion:nil];
+
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -369,6 +390,19 @@
     } completion:nil];
     
     [self.starTableView reloadData];
+}
+
+
+- (void)cancelSearch {
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGFloat beforeSearchViewY = CGRectGetMaxY(self.searchBar.frame);
+        self.beforeSearchView.frame = CGRectMake(0, beforeSearchViewY + 100, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY);
+        self.beforeSearchView.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        [self.beforeSearchView removeFromSuperview];
+    }];
 }
 
 @end

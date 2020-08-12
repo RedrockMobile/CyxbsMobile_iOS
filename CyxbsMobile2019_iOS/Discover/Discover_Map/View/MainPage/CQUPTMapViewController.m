@@ -10,6 +10,7 @@
 #import "CQUPTMapContentView.h"
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapViewProtocol.h"
+#import <IQKeyboardManager.h>
 
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
 
@@ -22,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [IQKeyboardManager sharedManager].toolbarDoneBarButtonItemText = @"取消";
     
     self.presenter = [[CQUPTMapPresenter alloc] init];
     [self.presenter attachView:self];
@@ -38,6 +41,8 @@
 
 - (void)dealloc
 {
+    [IQKeyboardManager sharedManager].toolbarDoneBarButtonItemText = @"完成";
+
     [self.presenter detachView];
 }
 
