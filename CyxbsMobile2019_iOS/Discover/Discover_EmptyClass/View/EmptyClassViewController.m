@@ -92,7 +92,7 @@
     NSInteger nowTime = [now timeIntervalSince1970];
     double day = (float)(nowTime - beginTime)/(float)86400/(float)7;
     NSInteger nowWeek = (int)ceil(day) - 1;
-    if(nowWeek < 0){
+    if(nowWeek < 0 || nowWeek >= (int)ceil(day) - 1){
         nowWeek = 0;
     }
     

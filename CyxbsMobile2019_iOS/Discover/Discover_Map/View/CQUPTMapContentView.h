@@ -12,16 +12,20 @@
 
 - (void)backButtonClicked;
 
+- (void)requestStarData;
+
 @end
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CQUPTMapDataItem, CQUPTMapHotPlaceItem;
+@class CQUPTMapDataItem, CQUPTMapHotPlaceItem, CQUPTMapStarPlaceItem;
 @interface CQUPTMapContentView : UIView
 
 @property (nonatomic, weak) id<CQUPTMapContentViewDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItemArray:(NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceItemArray;
+
+- (void)starPlaceListRequestSuccess:(NSArray <CQUPTMapStarPlaceItem *> *)starPlaceArray;
 
 @end
 

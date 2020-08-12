@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSArray<CQUPTMapPlaceItem *> *placeList;
 @property (nonatomic, copy) NSString *mapURL;
 @property (nonatomic, copy) NSString *mapColor;
+@property (nonatomic, assign) CGFloat mapWidth;
+@property (nonatomic, assign) CGFloat mapHeight;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

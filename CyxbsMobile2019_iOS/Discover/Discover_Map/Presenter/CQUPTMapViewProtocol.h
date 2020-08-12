@@ -10,10 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CQUPTMapDataItem, CQUPTMapHotPlaceItem;
+@class CQUPTMapDataItem, CQUPTMapHotPlaceItem, CQUPTMapStarPlaceItem;
 @protocol CQUPTMapViewProtocol <NSObject>
 
 - (void)mapDataRequestSuccessWithMapData:(CQUPTMapDataItem *)mapData hotPlace:(NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceArray;
+
+- (void)starPlaceRequestSuccessWithStarArray:(NSArray <CQUPTMapStarPlaceItem *> *)starPlaceArray;
 
 @end
 

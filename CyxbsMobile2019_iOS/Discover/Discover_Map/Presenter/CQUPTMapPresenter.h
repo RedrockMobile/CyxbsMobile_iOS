@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 加载地图信息，包含每一个地点的详细位置，id，Hot Place等
 - (void)requestMapData;
 
+/// 加载我的收藏列表
+- (void)requestStarData;
+
 @end
 
 NS_ASSUME_NONNULL_END

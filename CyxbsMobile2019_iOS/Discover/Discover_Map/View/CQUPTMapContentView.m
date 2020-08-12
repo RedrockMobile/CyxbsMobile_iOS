@@ -12,12 +12,14 @@
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapHotPlaceItem.h"
+#import "CQUPTMapStarPlaceItem.h"
 
-@interface CQUPTMapContentView () <UITextFieldDelegate>
+@interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 // 数据
 @property (nonatomic, strong) CQUPTMapDataItem *mapDataItem;
 @property (nonatomic, copy) NSArray<CQUPTMapHotPlaceItem *> *hotPlaceItemArray;
+@property (nonatomic, copy) NSArray<CQUPTMapStarPlaceItem *> *starPlaceArray;
 
 // 控件
 @property (nonatomic, weak) UIButton *backButton;
@@ -27,8 +29,12 @@
 
 @property (nonatomic, weak) UIScrollView *hotScrollView;
 @property (nonatomic, strong) NSMutableArray<CQUPTMapHotPlaceButton *> *hotButtonArray;
-@property (nonatomic, weak) CQUPTMapMyStarButton *starButton;
 
+@property (nonatomic, weak) CQUPTMapMyStarButton *starButton;
+@property (nonatomic, weak) UIImageView *starDialogueBoxImageView;
+@property (nonatomic, weak) UITableView *starTableView;
+
+@property (nonatomic, weak) UIScrollView *mapScrollView;
 @property (nonatomic, weak) UIImageView *mapView;
 
 @end
@@ -56,8 +62,8 @@
         UITextField *searchBar = [[UITextField alloc] init];
         searchBar.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 0)];
         searchBar.leftViewMode = UITextFieldViewModeAlways;
-        searchBar.font = [UIFont fontWithName:PingFangSCHeavy size:14];
-        searchBar.placeholder = @"搜索地点";
+        searchBar.font = [UIFont fontWithName:PingFangSCMedium size:14];
+        searchBar.placeholder = [NSString stringWithFormat:@"大家都在搜：%@", mapDataItem.hotWord];
         searchBar.delegate = self;
         [self addSubview:searchBar];
         self.searchBar = searchBar;
@@ -89,18 +95,32 @@
         // 收藏
         CQUPTMapMyStarButton *starButton = [[CQUPTMapMyStarButton alloc] init];
         starButton.backgroundColor = [UIColor clearColor];
+        [starButton addTarget:self action:@selector(starButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:starButton];
         self.starButton = starButton;
         
         
         // 地图
+        UIScrollView *mapScrollView = [[UIScrollView alloc] init];
+        mapScrollView.showsVerticalScrollIndicator = NO;
+        mapScrollView.showsHorizontalScrollIndicator = NO;
+        mapScrollView.delegate = self;
+        [self addSubview:mapScrollView];
+        self.mapScrollView = mapScrollView;
+        
         UIImageView *mapView = [[UIImageView alloc] init];
         mapView.backgroundColor = [UIColor grayColor];
+        mapView.image = [UIImage imageNamed:@"Map_map"];
+        mapView.contentMode = UIViewContentModeScaleAspectFill;
         mapView.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)];
         [mapView addGestureRecognizer:tap];
-        [self addSubview:mapView];
+        [self.mapScrollView addSubview:mapView];
         self.mapView = mapView;
+        
+        mapScrollView.contentSize = mapView.image.size;
+        mapScrollView.maximumZoomScale = 3.0;
+        mapScrollView.minimumZoomScale = 1.0;
         
         // 深色模式
         if (@available(iOS 11.0, *)) {
@@ -179,9 +199,15 @@
         make.height.equalTo(@54);
     }];
     
-    [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.mapScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.equalTo(self);
         make.top.equalTo(self.hotScrollView.mas_bottom);
+    }];
+    
+    [self.mapView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@(MAIN_SCREEN_W));
+        make.height.equalTo(@(self.mapDataItem.mapHeight / self.mapDataItem.mapWidth * MAIN_SCREEN_W));
+        make.top.leading.trailing.bottom.equalTo(self.mapScrollView);
     }];
 }
 
@@ -202,6 +228,42 @@
 }
 
 
+# pragma mark - ScrollView代理
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.mapView;
+}
+
+
+#pragma mark - TableView数据源
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.starPlaceArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"d"];
+    cell.textLabel.text = self.starPlaceArray[indexPath.row].placeNickname;
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    if (@available(iOS 11.0, *)) {
+        cell.textLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+    } else {
+        cell.textLabel.textColor = [UIColor colorWithHexString:@"#152F5B"];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+
+#pragma mark - TableView代理
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+
 # pragma mark - 手势
 - (void)mapTapped:(UITapGestureRecognizer *)sender {
     CGPoint tapPoint = [sender locationInView:sender.view];
@@ -215,5 +277,97 @@
     }
 }
 
+
+#pragma mark - Button
+- (void)starButtonClicked {
+    if (self.starDialogueBoxImageView) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.starDialogueBoxImageView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [self.starDialogueBoxImageView removeFromSuperview];
+        }];
+        
+        return;
+    }
+    
+    // 先请求数据
+    if ([self.delegate respondsToSelector:@selector(requestStarData)]) {
+        [self.delegate requestStarData];
+    }
+    
+    // 对话框图片
+    UIImage *dialogueImage = [UIImage imageNamed:@"Map_StarDialogueBox"];
+    UIEdgeInsets edge = UIEdgeInsetsMake(30, 0, 20, 0);
+    dialogueImage = [dialogueImage resizableImageWithCapInsets:edge resizingMode:UIImageResizingModeStretch];
+    
+    CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
+    UIImageView *dialogueImageView = [[UIImageView alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, 152)];
+    dialogueImageView.image = dialogueImage;
+    dialogueImageView.alpha = 0;
+    dialogueImageView.userInteractionEnabled = YES;
+    
+    // 展示列表的tableView
+    CGFloat tableWidth = dialogueImageView.bounds.size.width - 12;
+    CGFloat tableHeight = dialogueImageView.bounds.size.height - 30;
+    UITableView *starTableView = [[UITableView alloc] initWithFrame:CGRectMake(6, 10, tableWidth, tableHeight) style:UITableViewStylePlain];
+    starTableView.rowHeight = 39;
+    starTableView.dataSource = self;
+    starTableView.delegate = self;
+    starTableView.alpha = 0;        // 先隐藏tableView，数据加载完成后显示，加载完成回调就是后面一个方法
+    UIView * footer = [[UIView alloc] initWithFrame:CGRectZero];
+    starTableView.tableFooterView = footer;         // 用来隐藏多余的分割线
+    self.starTableView = starTableView;
+    [dialogueImageView addSubview:starTableView];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        dialogueImageView.alpha = 1;
+    }];
+    
+    [self addSubview:dialogueImageView];
+    self.starDialogueBoxImageView = dialogueImageView;
+}
+
+- (void)starPlaceListRequestSuccess:(NSArray<CQUPTMapStarPlaceItem *> *)starPlaceArray {
+    self.starPlaceArray = starPlaceArray;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        if (starPlaceArray.count <= 10) {
+            CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
+            self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, starPlaceArray.count * 39 + 20);
+        } else {
+            CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
+            self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, 10 * 39 + 20);
+        }
+        
+        CGFloat tableWidth = self.starDialogueBoxImageView.bounds.size.width - 12;
+        CGFloat tableHeight = self.starDialogueBoxImageView.bounds.size.height - 9;
+        self.starTableView.frame = CGRectMake(6, 9, tableWidth, tableHeight);
+        
+        self.starTableView.alpha = 1;
+        
+        if (starPlaceArray.count == 0) {
+            CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
+            self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, 52);
+            
+            UILabel *noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 135, 37)];
+            noDataLabel.center = CGPointMake(self.starDialogueBoxImageView.width * 0.5, self.starDialogueBoxImageView.height * 0.5 + 4.5);
+            noDataLabel.text = @"暂无收藏哦";
+            noDataLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+            noDataLabel.textAlignment = NSTextAlignmentCenter;
+            if (@available(iOS 11.0, *)) {
+                noDataLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+            } else {
+                noDataLabel.textColor = [UIColor colorWithHexString:@"#152F5B"];
+            }
+            
+            [self.starDialogueBoxImageView addSubview:noDataLabel];
+        }
+        
+    } completion:nil];
+    
+    [self.starTableView reloadData];
+}
 
 @end

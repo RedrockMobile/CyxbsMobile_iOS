@@ -101,6 +101,7 @@
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */; };
 		1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */; };
+		1AB2E59124E3CFB6004B4067 /* CQUPTMapStarPlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */; };
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
@@ -665,6 +666,8 @@
 		1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapPlaceRect.m; sourceTree = "<group>"; };
 		1AB2E58824E38F26004B4067 /* CQUPTMapMyStarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapMyStarButton.h; sourceTree = "<group>"; };
 		1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapMyStarButton.m; sourceTree = "<group>"; };
+		1AB2E58F24E3CFB5004B4067 /* CQUPTMapStarPlaceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapStarPlaceItem.h; sourceTree = "<group>"; };
+		1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapStarPlaceItem.m; sourceTree = "<group>"; };
 		1ABE8024238D01EC00E88C4E /* CheckInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
 		1ABE8025238D01EC00E88C4E /* CheckInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInViewController.m; sourceTree = "<group>"; };
 		1AC2550323C9AB3700DF0475 /* CheckedInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckedInDot.h; sourceTree = "<group>"; };
@@ -1768,6 +1771,8 @@
 				1A810BBB24E2CC0E00E79126 /* CQUPTMapPlaceItem.m */,
 				1AB2E58324E2D41A004B4067 /* CQUPTMapPlaceRect.h */,
 				1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */,
+				1AB2E58F24E3CFB5004B4067 /* CQUPTMapStarPlaceItem.h */,
+				1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -3818,6 +3823,7 @@
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				EEA301D2246862E000A8DB26 /* TermGrades.m in Sources */,
+				1AB2E59124E3CFB6004B4067 /* CQUPTMapStarPlaceItem.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
 				D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,

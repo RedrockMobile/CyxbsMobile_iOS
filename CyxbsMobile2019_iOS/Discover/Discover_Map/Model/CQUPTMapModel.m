@@ -48,4 +48,19 @@
     
 }
 
++ (void)requestStarListSuccess:(void (^)(NSArray<CQUPTMapStarPlaceItem *> * _Nonnull))success failed:(void (^)(NSError * _Nonnull))failed {
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPMYSTAR method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            NSMutableArray *tmpArray = [NSMutableArray array];
+            for (NSDictionary *dict in responseObject[@"data"]) {
+                CQUPTMapStarPlaceItem *item = [[CQUPTMapStarPlaceItem alloc] initWithDice:dict];
+                [tmpArray addObject:item];
+            }
+            success(tmpArray);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
 @end

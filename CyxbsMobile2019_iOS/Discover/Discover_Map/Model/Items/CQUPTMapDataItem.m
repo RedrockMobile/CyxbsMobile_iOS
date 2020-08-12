@@ -27,6 +27,8 @@
         
         self.mapURL = dict[@"data"][@"map_url"];
         self.mapColor = dict[@"data"][@"map_background_color"];
+        self.mapWidth = [dict[@"data"][@"map_width"] floatValue];
+        self.mapHeight = [dict[@"data"][@"map_height"] floatValue];
     }
     return self;
 }

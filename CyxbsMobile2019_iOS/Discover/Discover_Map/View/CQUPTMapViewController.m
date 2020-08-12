@@ -52,10 +52,18 @@
     self.contentView = contentView;
 }
 
+- (void)starPlaceRequestSuccessWithStarArray:(NSArray<CQUPTMapStarPlaceItem *> *)starPlaceArray {
+    [self.contentView starPlaceListRequestSuccess:starPlaceArray];
+}
+
 
 #pragma mark - ContentView代理
 - (void)backButtonClicked {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)requestStarData {
+    [self.presenter requestStarData];
 }
 
 @end
