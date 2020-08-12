@@ -121,6 +121,7 @@
         mapScrollView.contentSize = mapView.image.size;
         mapScrollView.maximumZoomScale = 3.0;
         mapScrollView.minimumZoomScale = 1.0;
+        [mapScrollView scrollToBottom];
         
         // 深色模式
         if (@available(iOS 11.0, *)) {
