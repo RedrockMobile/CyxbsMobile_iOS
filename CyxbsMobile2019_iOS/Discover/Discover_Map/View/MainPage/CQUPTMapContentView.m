@@ -13,7 +13,7 @@
 #import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapStarPlaceItem.h"
-#import "CQUPTMapBeforeSearchView.h"
+#import "CQUPTMapSearchView.h"
 #import <IQKeyboardManager.h>
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, CALayerDelegate>
@@ -39,7 +39,7 @@
 @property (nonatomic, weak) UIScrollView *mapScrollView;
 @property (nonatomic, weak) UIImageView *mapView;
 
-@property (nonatomic, weak) CQUPTMapBeforeSearchView *beforeSearchView;
+@property (nonatomic, weak) CQUPTMapSearchView *beforeSearchView;
 
 @end
 
@@ -236,7 +236,7 @@
     
     CGFloat beforeSearchViewY = CGRectGetMaxY(self.searchBar.frame);
     
-    CQUPTMapBeforeSearchView *beforeSearchView = [[CQUPTMapBeforeSearchView alloc] initWithFrame:CGRectMake(0, beforeSearchViewY + 100, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY)];
+    CQUPTMapSearchView *beforeSearchView = [[CQUPTMapSearchView alloc] initWithFrame:CGRectMake(0, beforeSearchViewY + 100, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY)];
     beforeSearchView.alpha = 0;
     [self addSubview:beforeSearchView];
     self.beforeSearchView = beforeSearchView;
@@ -257,6 +257,13 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (string.length == 0 && range.length == textField.text.length) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.beforeSearchView.resultTableView.alpha = 0;
+            self.beforeSearchView.historyTableView.alpha = 1;
+        }];
+    }
+    
     if ([string isEqualToString:@"\n"]) {
         if ([textField.text isEqualToString:@""]) {
             textField.text = self.mapDataItem.hotWord;

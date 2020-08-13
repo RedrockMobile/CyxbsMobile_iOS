@@ -10,6 +10,8 @@
 
 @implementation CQUPTMapPlaceItem
 
+MJExtensionCodingImplementation
+
 - (instancetype)initWithDict:(NSDictionary *)dict mapWidth:(CGFloat)width mapHeight:(CGFloat)height {
     if (self = [super init]) {
         self.placeName = dict[@"place_name"];

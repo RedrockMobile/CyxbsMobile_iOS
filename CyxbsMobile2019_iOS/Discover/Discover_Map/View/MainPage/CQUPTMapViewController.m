@@ -10,6 +10,8 @@
 #import "CQUPTMapContentView.h"
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapViewProtocol.h"
+#import "CQUPTMapDataItem.h"
+#import "CQUPTMapHotPlaceItem.h"
 #import <IQKeyboardManager.h>
 
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
@@ -47,6 +49,8 @@
 
 #pragma mark - Presenter 回调
 - (void)mapDataRequestSuccessWithMapData:(CQUPTMapDataItem *)mapData hotPlace:(nonnull NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceArray {
+    [mapData archiveItem];
+    
     
     CQUPTMapContentView *contentView = [[CQUPTMapContentView alloc] initWithFrame:self.view.bounds andMapData:mapData andHotPlaceItemArray:hotPlaceArray];
     contentView.delegate = self;
@@ -79,10 +83,9 @@
         history = [NSMutableArray array];
     }
     
-    [history addObject:string];
-    
-    NSSet *set = [NSSet setWithArray:history];
-    history = [[set allObjects] mutableCopy];
+    if (![history containsObject:string]) {
+        [history insertObject:string atIndex:0];
+    }
     
     [UserDefaultTool saveValue:history forKey:CQUPTMAPHISTORYKEY];
     

@@ -1,5 +1,5 @@
 //
-//  CQUPTMapBeforeSearchCell.h
+//  CQUPTMapSearchResultCell.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 方昱恒 on 2020/8/13.
@@ -10,10 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CQUPTMapBeforeSearchCell : UITableViewCell
+@interface CQUPTMapSearchResultCell : UITableViewCell
 
 @property (nonatomic, weak) UILabel *titleLabel;
-@property (nonatomic, weak) UIButton *deleteButton;
 
 @end
 

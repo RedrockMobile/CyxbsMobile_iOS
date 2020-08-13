@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class CQUPTMapPlaceItem;
-@interface CQUPTMapDataItem : NSObject
+@interface CQUPTMapDataItem : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *hotWord;
 @property (nonatomic, copy) NSArray<CQUPTMapPlaceItem *> *placeList;
@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat mapHeight;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
+
++ (NSString *)archivePath;
+
+- (void)archiveItem;
 
 @end
 

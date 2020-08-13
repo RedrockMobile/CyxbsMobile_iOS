@@ -104,7 +104,7 @@
 		1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */; };
 		1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */; };
 		1AB2E59124E3CFB6004B4067 /* CQUPTMapStarPlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */; };
-		1AB2E59F24E426CE004B4067 /* CQUPTMapBeforeSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E59E24E426CE004B4067 /* CQUPTMapBeforeSearchView.m */; };
+		1AB2E59F24E426CE004B4067 /* CQUPTMapSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E59E24E426CE004B4067 /* CQUPTMapSearchView.m */; };
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
@@ -122,6 +122,7 @@
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
 		1AE1374624DEE79F000F2C30 /* CQUPTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */; };
 		1AE1374924DEEA62000F2C30 /* CQUPTMapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */; };
+		1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE72A1024E5251000665176 /* CQUPTMapSearchResultCell.m */; };
 		1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF310E245C022400487D40 /* MyGoodsViewController.m */; };
 		1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3111245C023A00487D40 /* MyGoodsContentView.m */; };
 		1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3115245C701D00487D40 /* MyGoodsPresenter.m */; };
@@ -675,8 +676,8 @@
 		1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapMyStarButton.m; sourceTree = "<group>"; };
 		1AB2E58F24E3CFB5004B4067 /* CQUPTMapStarPlaceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapStarPlaceItem.h; sourceTree = "<group>"; };
 		1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapStarPlaceItem.m; sourceTree = "<group>"; };
-		1AB2E59D24E426CE004B4067 /* CQUPTMapBeforeSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapBeforeSearchView.h; sourceTree = "<group>"; };
-		1AB2E59E24E426CE004B4067 /* CQUPTMapBeforeSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapBeforeSearchView.m; sourceTree = "<group>"; };
+		1AB2E59D24E426CE004B4067 /* CQUPTMapSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchView.h; sourceTree = "<group>"; };
+		1AB2E59E24E426CE004B4067 /* CQUPTMapSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapSearchView.m; sourceTree = "<group>"; };
 		1ABE8024238D01EC00E88C4E /* CheckInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
 		1ABE8025238D01EC00E88C4E /* CheckInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInViewController.m; sourceTree = "<group>"; };
 		1AC2550323C9AB3700DF0475 /* CheckedInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckedInDot.h; sourceTree = "<group>"; };
@@ -713,6 +714,8 @@
 		1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapViewController.m; sourceTree = "<group>"; };
 		1AE1374724DEEA62000F2C30 /* CQUPTMapContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapContentView.h; sourceTree = "<group>"; };
 		1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapContentView.m; sourceTree = "<group>"; };
+		1AE72A0F24E5251000665176 /* CQUPTMapSearchResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchResultCell.h; sourceTree = "<group>"; };
+		1AE72A1024E5251000665176 /* CQUPTMapSearchResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapSearchResultCell.m; sourceTree = "<group>"; };
 		1AEF310D245C022400487D40 /* MyGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsViewController.h; sourceTree = "<group>"; };
 		1AEF310E245C022400487D40 /* MyGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsViewController.m; sourceTree = "<group>"; };
 		1AEF3110245C023A00487D40 /* MyGoodsContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsContentView.h; sourceTree = "<group>"; };
@@ -1879,10 +1882,12 @@
 		1AB2E5A124E427D7004B4067 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				1AB2E59D24E426CE004B4067 /* CQUPTMapBeforeSearchView.h */,
-				1AB2E59E24E426CE004B4067 /* CQUPTMapBeforeSearchView.m */,
+				1AB2E59D24E426CE004B4067 /* CQUPTMapSearchView.h */,
+				1AB2E59E24E426CE004B4067 /* CQUPTMapSearchView.m */,
 				1A0E15EB24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.h */,
 				1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */,
+				1AE72A0F24E5251000665176 /* CQUPTMapSearchResultCell.h */,
+				1AE72A1024E5251000665176 /* CQUPTMapSearchResultCell.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -3775,6 +3780,7 @@
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */,
+				1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
@@ -3916,7 +3922,7 @@
 				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,
 				EE75BFB523F5884100208039 /* NewsViewController.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
-				1AB2E59F24E426CE004B4067 /* CQUPTMapBeforeSearchView.m in Sources */,
+				1AB2E59F24E426CE004B4067 /* CQUPTMapSearchView.m in Sources */,
 				1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,

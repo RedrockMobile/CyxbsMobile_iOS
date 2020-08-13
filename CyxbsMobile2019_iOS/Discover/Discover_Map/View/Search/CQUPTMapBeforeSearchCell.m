@@ -10,8 +10,6 @@
 
 @interface CQUPTMapBeforeSearchCell ()
 
-@property (nonatomic, weak) UIButton *deleteButton;
-
 @end
 
 

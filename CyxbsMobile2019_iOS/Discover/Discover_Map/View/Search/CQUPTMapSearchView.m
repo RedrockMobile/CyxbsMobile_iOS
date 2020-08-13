@@ -6,16 +6,20 @@
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "CQUPTMapBeforeSearchView.h"
+#import "CQUPTMapSearchView.h"
 #import "CQUPTMapBeforeSearchCell.h"
+#import "CQUPTMapSearchResultCell.h"
+#import "CQUPTMapDataItem.h"
+#import "CQUPTMapPlaceItem.h"
+#import "CQUPTMapSearchItem.h"
 
-@interface CQUPTMapBeforeSearchView () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@interface CQUPTMapSearchView () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, weak) UILabel *historyLabel;
 @property (nonatomic, weak) UIButton *clearAllButton;
-@property (nonatomic, weak) UITableView *historyTableView;
+//@property (nonatomic, weak) UITableView *historyTableView;    // 声明在头文件中
 
-@property (nonatomic, weak) UITableView *resultTableView;
+//@property (nonatomic, weak) UITableView *resultTableView;     // 声明在头文件中
 
 @property (nonatomic, copy) NSArray *historyArray;
 @property (nonatomic, copy) NSArray *resultArray;
@@ -24,7 +28,7 @@
 
 
 
-@implementation CQUPTMapBeforeSearchView
+@implementation CQUPTMapSearchView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -102,7 +106,7 @@
     if (tableView == self.historyTableView) {
         return self.historyArray.count;
     } else {
-        return 3;
+        return self.resultArray.count;
     }
 }
 
@@ -111,9 +115,11 @@
     if (tableView == self.historyTableView) {
         CQUPTMapBeforeSearchCell *cell = [[CQUPTMapBeforeSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[@(indexPath.row) stringValue]];
         cell.titleLabel.text = self.historyArray[indexPath.row];
+        [cell.deleteButton addTarget:self action:@selector(deleteAHistory:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     } else {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"q"];
+        CQUPTMapSearchResultCell *cell = [[CQUPTMapSearchResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[@(indexPath.row) stringValue]];
+        cell.titleLabel.text = self.resultArray[indexPath.row];
         return cell;
     }
     
@@ -123,36 +129,69 @@
     [self.viewController.view endEditing:YES];
 }
 
+
+- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
+    CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
+    
+    NSMutableArray *tmpArray = [NSMutableArray array];
+    for (CQUPTMapSearchItem *placeID in placeIDArray) {
+        for (CQUPTMapPlaceItem *place in mapData.placeList) {
+            if (placeID.placeID == [place.placeId intValue]) {
+                [tmpArray addObject:place.placeName];
+            }
+        }
+    }
+    self.resultArray = [tmpArray copy];
+    
+    if (!self.resultTableView) {
+        UITableView *resultTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        resultTableView.rowHeight = 37;
+        resultTableView.dataSource = self;
+        resultTableView.delegate = self;
+        resultTableView.backgroundColor = [UIColor whiteColor];
+        resultTableView.tableFooterView = [[UIView alloc] init];
+        resultTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        resultTableView.alpha = 0;
+        [self addSubview:resultTableView];
+        self.resultTableView = resultTableView;
+        
+        
+        [resultTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.trailing.bottom.equalTo(self);
+            make.top.equalTo(self).offset(34);
+        }];
+    }
+    [self.resultTableView reloadData];
+    
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.historyTableView.alpha = 0;
+        self.resultTableView.alpha = 1;
+    } completion:^(BOOL finished) {
+        self.historyArray = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] copy];
+        [self.historyTableView reloadData];
+    }];
+}
+
+
+#pragma mark - 删除记录
 - (void)clearAllHistory {
     [UserDefaultTool saveValue:@[] forKey:CQUPTMAPHISTORYKEY];
     self.historyArray = @[];
     [self.historyTableView reloadData];
 }
 
-
-- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
-    self.resultArray = placeIDArray;
+- (void)deleteAHistory:(UIButton *)sender {
+    NSString *removeData = ((CQUPTMapBeforeSearchCell *)(sender.superview.superview)).titleLabel.text;
     
-    UITableView *resultTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    resultTableView.rowHeight = 37;
-    resultTableView.dataSource = self;
-    resultTableView.delegate = self;
-    resultTableView.backgroundColor = [UIColor whiteColor];
-    resultTableView.tableFooterView = [[UIView alloc] init];
-    resultTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    resultTableView.alpha = 0;
-    [self addSubview:resultTableView];
-    self.resultTableView = resultTableView;
+    NSMutableArray *historys = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] mutableCopy];
+    [historys removeObject:removeData];
     
-    [resultTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.bottom.equalTo(self);
-        make.top.equalTo(self).offset(34);
-    }];
+    [UserDefaultTool saveValue:historys forKey:CQUPTMAPHISTORYKEY];
     
-    [UIView animateWithDuration:0.3 animations:^{
-        self.historyTableView.alpha = 0;
-        self.resultTableView.alpha = 1;
-    }];
+    self.historyArray = historys;
+    
+    [self.historyTableView reloadSection:0 withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

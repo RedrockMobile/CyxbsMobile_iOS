@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class CQUPTMapSearchItem;
-@interface CQUPTMapBeforeSearchView : UIView
+@interface CQUPTMapSearchView : UIView
+
+@property (nonatomic, weak) UITableView *historyTableView;
+@property (nonatomic, weak) UITableView *resultTableView;
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray;
 

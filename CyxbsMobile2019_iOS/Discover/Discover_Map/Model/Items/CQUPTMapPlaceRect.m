@@ -10,6 +10,8 @@
 
 @implementation CQUPTMapPlaceRect
 
+MJExtensionCodingImplementation
+
 - (BOOL)isIncludePercentagePoint:(CGPoint)point {
     
     // 后端返回的数据单位均为 px ，在iOS中要转换为 pt ，此处需要转换后才能判断。由于图片比例为 16:9，所以我们指定宽度为屏幕宽度，全面屏iPhone适配另考虑。

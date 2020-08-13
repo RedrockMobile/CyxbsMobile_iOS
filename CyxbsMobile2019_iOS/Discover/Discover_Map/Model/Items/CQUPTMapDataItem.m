@@ -11,6 +11,16 @@
 
 @implementation CQUPTMapDataItem
 
+MJExtensionCodingImplementation
+
++ (NSString *)archivePath {
+    return [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), @"CQUPTMapDataItem.data"];
+}
+
+- (void)archiveItem {
+    [NSKeyedArchiver archiveRootObject:self toFile:[CQUPTMapDataItem archivePath]];
+}
+
 - (instancetype)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
         self.hotWord = dict[@"data"][@"hot_word"];

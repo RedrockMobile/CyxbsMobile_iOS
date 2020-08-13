@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CQUPTMapPlaceRect : NSObject
+@interface CQUPTMapPlaceRect : NSObject <NSCoding>
 
 @property (nonatomic, assign) CGFloat totalWidth;
 @property (nonatomic, assign) CGFloat totalHeight;

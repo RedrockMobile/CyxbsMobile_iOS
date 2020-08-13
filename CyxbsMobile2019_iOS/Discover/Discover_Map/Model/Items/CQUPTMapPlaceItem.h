@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CQUPTMapPlaceItem : NSObject
+@interface CQUPTMapPlaceItem : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *placeName;
 @property (nonatomic, copy) NSString *placeId;
