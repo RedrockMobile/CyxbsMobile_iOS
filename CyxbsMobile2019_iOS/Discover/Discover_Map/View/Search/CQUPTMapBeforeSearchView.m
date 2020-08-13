@@ -7,12 +7,18 @@
 //
 
 #import "CQUPTMapBeforeSearchView.h"
+#import "CQUPTMapBeforeSearchCell.h"
 
-@interface CQUPTMapBeforeSearchView () <UITableViewDelegate, UITableViewDataSource>
+@interface CQUPTMapBeforeSearchView () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, weak) UILabel *historyLabel;
 @property (nonatomic, weak) UIButton *clearAllButton;
 @property (nonatomic, weak) UITableView *historyTableView;
+
+@property (nonatomic, weak) UITableView *resultTableView;
+
+@property (nonatomic, copy) NSArray *historyArray;
+@property (nonatomic, copy) NSArray *resultArray;
 
 @end
 
@@ -24,6 +30,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.historyArray = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] copy];
+        
         self.backgroundColor = [UIColor whiteColor];
         
         UILabel *historyLabel = [[UILabel alloc] init];
@@ -47,6 +55,7 @@
         historyTableView.delegate = self;
         historyTableView.backgroundColor = [UIColor whiteColor];
         historyTableView.tableFooterView = [[UIView alloc] init];
+        historyTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:historyTableView];
         self.historyTableView = historyTableView;
         
@@ -90,24 +99,60 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    if (tableView == self.historyTableView) {
+        return self.historyArray.count;
+    } else {
+        return 3;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"1"];
-    cell.textLabel.text = @"历史记录";
-    if (@available(iOS 11.0, *)) {
-        cell.textLabel.textColor = [UIColor colorNamed:@""];
+    
+    if (tableView == self.historyTableView) {
+        CQUPTMapBeforeSearchCell *cell = [[CQUPTMapBeforeSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[@(indexPath.row) stringValue]];
+        cell.titleLabel.text = self.historyArray[indexPath.row];
+        return cell;
     } else {
-        cell.textLabel.textColor = [UIColor colorWithHexString:@"#234780"];
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"q"];
+        return cell;
     }
     
-    return cell;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.viewController.view endEditing:YES];
+}
+
+- (void)clearAllHistory {
+    [UserDefaultTool saveValue:@[] forKey:CQUPTMAPHISTORYKEY];
+    self.historyArray = @[];
+    [self.historyTableView reloadData];
 }
 
 
-- (void)clearAllHistory {
+- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
+    self.resultArray = placeIDArray;
     
+    UITableView *resultTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    resultTableView.rowHeight = 37;
+    resultTableView.dataSource = self;
+    resultTableView.delegate = self;
+    resultTableView.backgroundColor = [UIColor whiteColor];
+    resultTableView.tableFooterView = [[UIView alloc] init];
+    resultTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    resultTableView.alpha = 0;
+    [self addSubview:resultTableView];
+    self.resultTableView = resultTableView;
+    
+    [resultTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.trailing.bottom.equalTo(self);
+        make.top.equalTo(self).offset(34);
+    }];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.historyTableView.alpha = 0;
+        self.resultTableView.alpha = 1;
+    }];
 }
 
 @end

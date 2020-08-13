@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class CQUPTMapSearchItem;
 @interface CQUPTMapBeforeSearchView : UIView
+
+- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray;
 
 @end
 

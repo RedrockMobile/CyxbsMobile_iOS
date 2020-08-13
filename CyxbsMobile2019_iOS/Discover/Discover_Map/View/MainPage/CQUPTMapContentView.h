@@ -14,11 +14,13 @@
 
 - (void)requestStarData;
 
+- (void)searchPlaceWithString:(NSString *_Nullable)string;
+
 @end
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CQUPTMapDataItem, CQUPTMapHotPlaceItem, CQUPTMapStarPlaceItem;
+@class CQUPTMapDataItem, CQUPTMapHotPlaceItem, CQUPTMapStarPlaceItem, CQUPTMapSearchItem;
 @interface CQUPTMapContentView : UIView
 
 @property (nonatomic, weak) id<CQUPTMapContentViewDelegate> delegate;
@@ -26,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItemArray:(NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceItemArray;
 
 - (void)starPlaceListRequestSuccess:(NSArray <CQUPTMapStarPlaceItem *> *)starPlaceArray;
+
+- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray;
 
 @end
 

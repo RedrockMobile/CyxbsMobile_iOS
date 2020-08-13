@@ -10,6 +10,7 @@
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapStarPlaceItem.h"
+#import "CQUPTMapSearchItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestHotPlaceSuccess:(void (^)(NSArray<CQUPTMapHotPlaceItem *> *hotPlaceItemArray))success;
 
 + (void)requestStarListSuccess:(void (^)(NSArray<CQUPTMapStarPlaceItem *> *starPlaceArray))success
-                        failed:(void (^)(NSError *error))failed;;
+                        failed:(void (^)(NSError *error))failed;
+
++ (void)searchPlaceWithString:(NSString *)string
+                      success:(void (^)(NSArray<CQUPTMapSearchItem *> *placeIDArray))success
+                       failed:(void (^)(NSError *error))failed;;
 
 @end
 

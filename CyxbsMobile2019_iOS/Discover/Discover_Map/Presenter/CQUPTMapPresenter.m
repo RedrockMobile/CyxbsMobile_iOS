@@ -35,4 +35,12 @@
     }];
 }
 
+- (void)searchPlaceWithString:(NSString *)string {
+    [CQUPTMapModel searchPlaceWithString:string success:^(NSArray<CQUPTMapSearchItem *> * _Nonnull placeIDArray) {
+        [self.view searchPlaceSuccess:placeIDArray];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
 @end

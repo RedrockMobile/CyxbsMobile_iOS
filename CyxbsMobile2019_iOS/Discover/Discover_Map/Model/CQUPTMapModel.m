@@ -8,10 +8,12 @@
 
 #import "CQUPTMapModel.h"
 #import "CQUPTMapDataItem.h"
+#import "CQUPTMapSearchItem.h"
 
 @implementation CQUPTMapModel
 
-+ (void)requestMapDataSuccess:(void (^)(CQUPTMapDataItem * _Nonnull, NSArray<CQUPTMapHotPlaceItem *> * _Nonnull))success failed:(void (^)(NSError * _Nonnull))failed {
++ (void)requestMapDataSuccess:(void (^)(CQUPTMapDataItem * _Nonnull, NSArray<CQUPTMapHotPlaceItem *> * _Nonnull))success
+                       failed:(void (^)(NSError * _Nonnull))failed {
     
     [[HttpClient defaultClient] requestWithPath:CQUPTMAPBASICDATA method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
@@ -48,7 +50,8 @@
     
 }
 
-+ (void)requestStarListSuccess:(void (^)(NSArray<CQUPTMapStarPlaceItem *> * _Nonnull))success failed:(void (^)(NSError * _Nonnull))failed {
++ (void)requestStarListSuccess:(void (^)(NSArray<CQUPTMapStarPlaceItem *> * _Nonnull))success
+                        failed:(void (^)(NSError * _Nonnull))failed {
     [[HttpClient defaultClient] requestWithPath:CQUPTMAPMYSTAR method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             NSMutableArray *tmpArray = [NSMutableArray array];
@@ -58,6 +61,25 @@
             }
             success(tmpArray);
         }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
++ (void)searchPlaceWithString:(NSString *)string
+                      success:(nonnull void (^)(NSArray<CQUPTMapSearchItem *> * _Nonnull))success
+                       failed:(nonnull void (^)(NSError * _Nonnull))failed {
+    NSDictionary *params = @{
+        @"code": string
+    };
+    
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPSEARCH method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSMutableArray *tmpArray = [NSMutableArray array];
+        for (int i = 0; i < [responseObject[@"data"] count]; i++) {
+            CQUPTMapSearchItem *item = [[CQUPTMapSearchItem alloc] initWithID:[responseObject[@"data"][i] intValue]];
+            [tmpArray addObject:item];
+        }
+        success(tmpArray);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];

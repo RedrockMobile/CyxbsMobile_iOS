@@ -39,11 +39,9 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
-- (void)dealloc
-{
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.presenter detachView];    
     [IQKeyboardManager sharedManager].toolbarDoneBarButtonItemText = @"完成";
-
-    [self.presenter detachView];
 }
 
 
@@ -61,6 +59,10 @@
     [self.contentView starPlaceListRequestSuccess:starPlaceArray];
 }
 
+- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
+    [self.contentView searchPlaceSuccess:placeIDArray];
+}
+
 
 #pragma mark - ContentView代理
 - (void)backButtonClicked {
@@ -69,6 +71,22 @@
 
 - (void)requestStarData {
     [self.presenter requestStarData];
+}
+
+- (void)searchPlaceWithString:(NSString *)string {
+    NSMutableArray *history = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] mutableCopy];
+    if (!history) {
+        history = [NSMutableArray array];
+    }
+    
+    [history addObject:string];
+    
+    NSSet *set = [NSSet setWithArray:history];
+    history = [[set allObjects] mutableCopy];
+    
+    [UserDefaultTool saveValue:history forKey:CQUPTMAPHISTORYKEY];
+    
+    [self.presenter searchPlaceWithString:string];
 }
 
 @end

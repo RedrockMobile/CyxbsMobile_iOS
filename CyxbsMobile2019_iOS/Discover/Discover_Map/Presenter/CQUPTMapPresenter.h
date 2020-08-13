@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 加载我的收藏列表
 - (void)requestStarData;
 
+/// 搜索地点
+- (void)searchPlaceWithString:(NSString *)string;
+
 @end
 
 NS_ASSUME_NONNULL_END

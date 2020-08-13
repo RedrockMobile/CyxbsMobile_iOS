@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */; };
+		1A0E15F024E4EADF00C39B4D /* CQUPTMapSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */; };
 		1A141320235F521C0001417E /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131A235F521C0001417E /* BaseTableViewController.m */; };
 		1A141321235F521C0001417E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131B235F521C0001417E /* BaseViewController.m */; };
 		1A141322235F521C0001417E /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131C235F521C0001417E /* BaseNavigationController.m */; };
@@ -480,6 +482,10 @@
 
 /* Begin PBXFileReference section */
 		0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CyxbsMobile2019_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0E15EB24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapBeforeSearchCell.h; sourceTree = "<group>"; };
+		1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapBeforeSearchCell.m; sourceTree = "<group>"; };
+		1A0E15EE24E4EADF00C39B4D /* CQUPTMapSearchItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchItem.h; sourceTree = "<group>"; };
+		1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapSearchItem.m; sourceTree = "<group>"; };
 		1A14131A235F521C0001417E /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		1A14131B235F521C0001417E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		1A14131C235F521C0001417E /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
@@ -1776,6 +1782,8 @@
 				1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */,
 				1AB2E58F24E3CFB5004B4067 /* CQUPTMapStarPlaceItem.h */,
 				1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */,
+				1A0E15EE24E4EADF00C39B4D /* CQUPTMapSearchItem.h */,
+				1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -1873,6 +1881,8 @@
 			children = (
 				1AB2E59D24E426CE004B4067 /* CQUPTMapBeforeSearchView.h */,
 				1AB2E59E24E426CE004B4067 /* CQUPTMapBeforeSearchView.m */,
+				1A0E15EB24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.h */,
+				1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -3792,10 +3802,12 @@
 				EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */,
 				EEA301C32468593F00A8DB26 /* SingleGrade.m in Sources */,
 				EE75BF9623F5884100208039 /* ElectricFeeItem.m in Sources */,
+				1A0E15F024E4EADF00C39B4D /* CQUPTMapSearchItem.m in Sources */,
 				EED03014247E9F1E009DD181 /* PickerModel.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
 				EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */,
+				1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
@@ -4093,7 +4105,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOSa";
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4115,7 +4127,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOSa";
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

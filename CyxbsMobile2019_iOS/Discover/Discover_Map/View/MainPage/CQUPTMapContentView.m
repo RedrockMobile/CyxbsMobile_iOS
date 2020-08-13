@@ -16,7 +16,7 @@
 #import "CQUPTMapBeforeSearchView.h"
 #import <IQKeyboardManager.h>
 
-@interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, CALayerDelegate>
 
 // 数据
 @property (nonatomic, strong) CQUPTMapDataItem *mapDataItem;
@@ -125,7 +125,7 @@
         self.mapView = mapView;
         
         mapScrollView.contentSize = mapView.image.size;
-        mapScrollView.maximumZoomScale = 3.0;
+        mapScrollView.maximumZoomScale = 5.0;
         mapScrollView.minimumZoomScale = 1.0;
         [mapScrollView scrollToBottom];
         
@@ -227,7 +227,13 @@
 
 # pragma mark - TextField代理
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
     self.cancelButton.hidden = NO;
+    
+    if (self.beforeSearchView) {
+        return;
+    }
+    
     CGFloat beforeSearchViewY = CGRectGetMaxY(self.searchBar.frame);
     
     CQUPTMapBeforeSearchView *beforeSearchView = [[CQUPTMapBeforeSearchView alloc] initWithFrame:CGRectMake(0, beforeSearchViewY + 100, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY)];
@@ -236,7 +242,7 @@
     self.beforeSearchView = beforeSearchView;
     
     
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.32 animations:^{
         
         beforeSearchView.frame = CGRectMake(0, beforeSearchViewY, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY);
         beforeSearchView.alpha = 1;
@@ -246,7 +252,25 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    textField.text = @"";
     self.cancelButton.hidden = YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([string isEqualToString:@"\n"]) {
+        if ([textField.text isEqualToString:@""]) {
+            textField.text = self.mapDataItem.hotWord;
+        }
+        if ([self.delegate respondsToSelector:@selector(searchPlaceWithString:)]) {
+            [self.delegate searchPlaceWithString:textField.text];
+        }
+    }
+    
+    return YES;
+}
+
+- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
+    [self.beforeSearchView searchPlaceSuccess:placeIDArray];
 }
 
 
@@ -301,6 +325,10 @@
 
 
 #pragma mark - Button
+- (void)clearSearchBar {
+    
+}
+
 - (void)starButtonClicked {
     if (self.starDialogueBoxImageView) {
         
@@ -355,12 +383,12 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         
-        if (starPlaceArray.count <= 10) {
+        if (starPlaceArray.count <= 6) {
             CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
             self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, starPlaceArray.count * 39 + 20);
         } else {
             CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
-            self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, 10 * 39 + 20);
+            self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, 6 * 39 + 20);
         }
         
         CGFloat tableWidth = self.starDialogueBoxImageView.bounds.size.width - 12;
@@ -394,7 +422,7 @@
 
 
 - (void)cancelSearch {
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         
         CGFloat beforeSearchViewY = CGRectGetMaxY(self.searchBar.frame);
         self.beforeSearchView.frame = CGRectMake(0, beforeSearchViewY + 100, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY);

@@ -75,10 +75,14 @@
     [self animationForViewWillAppear];
 }
 
-- (void)dealloc
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [self.presenter dettachView];
     _presenter = nil;
+}
+
+- (void)dealloc
+{
+    NSLog(@"dealloc");
 }
 
 - (void)animationForViewWillAppear {
