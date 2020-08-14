@@ -286,7 +286,7 @@
     }
 }
 
-
+//点击某条回答后调用
 - (void)tapToViewComment:(NSNumber *)answerId{
     for(int i = 0; i < self.model.answersData.count; i++){
         NSDictionary *dic = self.model.answersData[i];

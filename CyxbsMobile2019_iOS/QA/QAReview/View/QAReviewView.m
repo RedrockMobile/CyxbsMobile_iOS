@@ -116,30 +116,51 @@
     
     
     //底下的评论条
-    self.reviewBar = [[UIButton alloc]init];
+    self.reviewBar = [[UIView alloc]init];
     [self addSubview:self.reviewBar];
+    float cornerRadius = 8;
+    if (@available(iOS 11.0, *)) {
+        self.reviewBar.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+    } else {
+        self.reviewBar.backgroundColor = UIColor.whiteColor;
+    }
+    self.reviewBar.layer.cornerRadius = cornerRadius;
     [self.reviewBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(0);
+        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(cornerRadius);
         make.left.mas_equalTo(self.mas_left).mas_offset(0);
         make.right.mas_equalTo(self.mas_right).mas_offset(0);
-        make.height.mas_equalTo(60);
+        make.height.mas_equalTo(0.1084*MAIN_SCREEN_H+cornerRadius);
     }];
+    
     //点赞数量
     UILabel *praiseNum = [[UILabel alloc]init];
     praiseNum.text = [NSString stringWithFormat:@"%@",[dic objectForKey:@"praise_num"]];
+    praiseNum.font = [UIFont fontWithName:@".PingFang SC" size: 11];
+    if (@available(iOS 11.0, *)) {
+        praiseNum.textColor = [UIColor colorNamed:@"邮问点赞数label文本色"];
+    } else {
+        praiseNum.textColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:26/255.0 alpha:1];
+    }
     [self.reviewBar addSubview:praiseNum];
     [praiseNum mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.reviewBar);
-        make.right.mas_equalTo(self.reviewBar.mas_right).mas_offset(-25);
-        make.height.mas_equalTo(12);
-        make.width.mas_equalTo(10);
+        make.top.equalTo(self.reviewBar).offset(MAIN_SCREEN_H*0.0284);
+        make.right.mas_equalTo(self.reviewBar).mas_offset(-MAIN_SCREEN_W*0.0427);
+//        make.height.mas_equalTo(12);
+//        make.width.mas_equalTo(10);
         
     }];
+    
+    
     //点赞按钮
     self.praiseBtn = [[UIButton alloc]init];
-    [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"likeIcon"] forState:UIControlStateNormal];
-    [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"selectedLikeIcon"] forState:UIControlStateSelected];
+    UIImage *normal = [UIImage imageNamed:@"likeIcon"];
+    [self.praiseBtn setBackgroundImage:normal forState:UIControlStateNormal];
+    
+    
+    UIImage *selected = [UIImage imageNamed:@"selectedLikeIcon"];
+    [self.praiseBtn setBackgroundImage:selected forState:UIControlStateSelected];
+    
     NSNumber *is_praised = [dic objectForKey:@"is_praised"];
     if (is_praised.integerValue == 1) {
         [self.praiseBtn setSelected:YES];
@@ -148,25 +169,46 @@
     [self.praiseBtn addTarget:self action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.reviewBar addSubview:self.praiseBtn];
     [self.praiseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.reviewBar);
+//        make.top.equalTo(self.reviewBar).offset(MAIN_SCREEN_H*0.0148);
+        make.centerY.equalTo(praiseNum);
         make.right.mas_equalTo(praiseNum).mas_offset(-15);
         make.height.mas_equalTo(18);
         make.width.mas_equalTo(18);
     }];
+    
+    
+    //评论输入栏的背景
+    UIView *backView = [[UIView alloc] init];
+    if (@available(iOS 11.0, *)) {
+        backView.backgroundColor = [UIColor colorNamed:@"邮问评论输入框颜色"];
+    } else {
+        backView.backgroundColor = [UIColor colorWithRed:239/255.0 green:243/255.0 blue:253/255.0 alpha:1];
+    }
+    backView.layer.cornerRadius = 15;
+    [self.reviewBar addSubview:backView];
+    [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.reviewBar).offset(MAIN_SCREEN_H*0.0148);
+        make.right.mas_equalTo(self.reviewBar).offset(-MAIN_SCREEN_W*0.2133);
+        make.left.mas_equalTo(self).mas_equalTo(MAIN_SCREEN_W*0.0427);
+        make.height.mas_equalTo(MAIN_SCREEN_H*0.0419);
+    }];
+    
+    
+    
     //评论输入栏
     self.replyTextField = [[UITextField alloc]init];
-    self.replyTextField.layer.cornerRadius = 15;
     self.replyTextField.placeholder = @"发布评论";
-    self.replyTextField.backgroundColor = [UIColor colorWithHexString:@"#EFF4FD"];
+    self.replyTextField.backgroundColor = [UIColor clearColor];
     self.replyTextField.keyboardType = UIKeyboardTypeDefault;
     self.replyTextField.returnKeyType = UIReturnKeySend;
     self.replyTextField.delegate = self;
-    [self.reviewBar addSubview:self.replyTextField];
+    self.replyTextField.font = [UIFont fontWithName:@".PingFang SC" size: 13];
+    [backView addSubview:self.replyTextField];
     [self.replyTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.reviewBar);
-        make.right.mas_equalTo(self.praiseBtn).mas_offset(-30);
-        make.left.mas_equalTo(self).mas_equalTo(30);
-        make.height.mas_equalTo(30);
+        make.top.equalTo(backView).offset(1);
+        make.right.equalTo(backView).offset(-18);
+        make.left.equalTo(backView).offset(18);
+        make.bottom.equalTo(backView).offset(-1);
     }];
     
     //加载回答列表
@@ -251,7 +293,11 @@
         UILabel *label = [[UILabel alloc]init];
         label.text = @"还没有评论哦~";
         label.font = [UIFont fontWithName:PingFangSCLight size:12];
-        [label setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        if (@available(iOS 11.0, *)) {
+            [label setTextColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"]];
+        } else {
+            [label setTextColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]];
+        }
         label.textAlignment = NSTextAlignmentCenter;
         [self.scrollView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make){
