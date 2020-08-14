@@ -24,6 +24,7 @@
 @property (nonatomic, copy) NSArray<CQUPTMapStarPlaceItem *> *starPlaceArray;
 
 // 控件
+@property (nonatomic, weak) UIView *topView;
 @property (nonatomic, weak) UIButton *backButton;
 @property (nonatomic, weak) UITextField *searchBar;
 @property (nonatomic, weak) UIImageView *searchScopeImageView;
@@ -36,10 +37,10 @@
 @property (nonatomic, weak) UIImageView *starDialogueBoxImageView;
 @property (nonatomic, weak) UITableView *starTableView;
 
-@property (nonatomic, weak) UIScrollView *mapScrollView;
-@property (nonatomic, weak) UIImageView *mapView;
-
 @property (nonatomic, weak) CQUPTMapSearchView *beforeSearchView;
+
+/// 选择地点后底部弹出的view
+@property (nonatomic, weak) UIView *selectedTrnasitionView;
 
 @end
 
@@ -54,6 +55,11 @@
         
         self.mapDataItem = mapDataItem;
         self.hotPlaceItemArray = hotPlaceItemArray;
+        
+        UIView *topView = [[UIView alloc] init];
+        topView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:topView];
+        self.topView = topView;
         
         // 返回按钮
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -125,7 +131,7 @@
         self.mapView = mapView;
         
         mapScrollView.contentSize = mapView.image.size;
-        mapScrollView.maximumZoomScale = 5.0;
+        mapScrollView.maximumZoomScale = 6.0;
         mapScrollView.minimumZoomScale = 1.0;
         [mapScrollView scrollToBottom];
         
@@ -143,6 +149,11 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.top.trailing.equalTo(self);
+        make.bottom.equalTo(self.hotScrollView);
+    }];
     
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(STATUSBARHEIGHT + 15);
@@ -323,10 +334,93 @@
     
     for (CQUPTMapPlaceItem *place in self.mapDataItem.placeList) {
         for (CQUPTMapPlaceRect *rect in place.buildingList) {
-            if ([rect isIncludePercentagePoint:tapPoint]) {
-                NSLog(@"yes");
+            if ([rect isIncludePercentagePoint:tapPoint] || [place.tagRect isIncludePercentagePoint:tapPoint]) {
+                NSLog(@"%@", place.placeName);
+                [self selectedAPlace:place];
             }
         }
+    }
+}
+
+/// 点击了地图上某个地点后。上面那个方法判断成功后调用的。
+- (void)selectedAPlace:(CQUPTMapPlaceItem *)placeItem {
+//    if (self.selectedTrnasitionView) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.selectedTrnasitionView.alpha = 0;
+            self.selectedTrnasitionView.layer.affineTransform = CGAffineTransformScale(self.selectedTrnasitionView.layer.affineTransform, 0.2, 0.2);
+        }];
+//    }
+    
+    UIView *transitionView = [[UIView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, 112 + 20)];
+    transitionView.backgroundColor = [UIColor whiteColor];
+    transitionView.layer.cornerRadius = 17;
+    [self addSubview:transitionView];
+    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(transitionViewDragged:)];
+    [transitionView addGestureRecognizer:pan];
+    
+    UIView *dragBar = [[UIView alloc] init];
+    dragBar.backgroundColor = [UIColor colorWithHexString:@"#E1EDFB"];
+    [transitionView addSubview:dragBar];
+    
+    UILabel *placeNameLabel = [[UILabel alloc] init];
+    placeNameLabel.text = placeItem.placeName;
+    placeNameLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
+    if (@available(iOS 11.0, *)) {
+        placeNameLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+    } else {
+        placeNameLabel.textColor = [UIColor colorWithHexString:@"#15305B"];
+    }
+    [transitionView addSubview:placeNameLabel];
+    
+    UIButton *starButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [starButton setImage:[UIImage imageNamed:@"Map_StarButton"] forState:UIControlStateNormal];
+    [transitionView addSubview:starButton];
+    
+    UIButton *staredButton = [[UIButton alloc] init];
+    if (@available(iOS 11.0, *)) {
+        [staredButton setTitleColor:[UIColor colorNamed:@"Map_StaredButtonColor"] forState:UIControlStateNormal];
+    } else {
+        [staredButton setTitleColor:[UIColor colorWithHexString:@"#47DAFA"] forState:UIControlStateNormal];
+    }
+    staredButton.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:13];
+    [transitionView addSubview:staredButton];
+    
+    [dragBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(transitionView).offset(11);
+        make.centerX.equalTo(self);
+        make.width.equalTo(@28);
+        make.height.equalTo(@7);
+    }];
+    dragBar.layer.cornerRadius = 3.5;
+    
+    [placeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(transitionView).offset(15);
+        make.top.equalTo(transitionView).offset(40);
+    }];
+    
+    [starButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(transitionView).offset(-14);
+        make.top.equalTo(transitionView).offset(54);
+        make.width.height.equalTo(@21);
+    }];
+    
+    [self layoutIfNeeded];
+    
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        transitionView.frame = CGRectMake(0, MAIN_SCREEN_H - 112, MAIN_SCREEN_W, 112 + 20);
+    } completion:^(BOOL finished) {
+        if (self.selectedTrnasitionView) {
+            [self.selectedTrnasitionView removeFromSuperview];
+        }
+        self.selectedTrnasitionView = transitionView;
+        [self layoutIfNeeded];
+    }];
+}
+
+- (void)transitionViewDragged:(UIPanGestureRecognizer *)sender {
+    if ([self.delegate respondsToSelector:@selector(transitionViewDragged:)]) {
+        [self.delegate transitionViewDragged:sender];
     }
 }
 

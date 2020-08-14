@@ -212,7 +212,7 @@
 #define CQUPTMAPHISTORYKEY @"MapSearchHistory"
 
 /// 重邮地图主页
-#define CQUPTMAPBASICDATA @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/mapData"
+#define CQUPTMAPBASICDATA @"http://118.31.20.31:8080/basic"
 /// 重邮地图热搜
 #define CQUPTMAPHOTPLACE @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/hotPlace"
 /// 重邮地图：我的收藏

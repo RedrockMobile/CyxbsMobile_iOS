@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CQUPTMapViewController : UIViewController
 
+@property (nonatomic, strong) UIPanGestureRecognizer *presentPanGesture;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -123,6 +123,10 @@
 		1AE1374624DEE79F000F2C30 /* CQUPTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */; };
 		1AE1374924DEEA62000F2C30 /* CQUPTMapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */; };
 		1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE72A1024E5251000665176 /* CQUPTMapSearchResultCell.m */; };
+		1AE72A1524E6617D00665176 /* CQUPTMapPlaceDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE72A1424E6617D00665176 /* CQUPTMapPlaceDetailController.m */; };
+		1AE72A1824E6634E00665176 /* CQUPTMapDetailTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE72A1724E6634E00665176 /* CQUPTMapDetailTransitionAnimator.m */; };
+		1AE72A1B24E6648E00665176 /* CQUPTMapDetailPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE72A1A24E6648E00665176 /* CQUPTMapDetailPercentDrivenController.m */; };
+		1AE72A1E24E6668600665176 /* CQUPTMapPlaceDetailContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE72A1D24E6668600665176 /* CQUPTMapPlaceDetailContentView.m */; };
 		1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF310E245C022400487D40 /* MyGoodsViewController.m */; };
 		1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3111245C023A00487D40 /* MyGoodsContentView.m */; };
 		1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3115245C701D00487D40 /* MyGoodsPresenter.m */; };
@@ -716,6 +720,14 @@
 		1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapContentView.m; sourceTree = "<group>"; };
 		1AE72A0F24E5251000665176 /* CQUPTMapSearchResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchResultCell.h; sourceTree = "<group>"; };
 		1AE72A1024E5251000665176 /* CQUPTMapSearchResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapSearchResultCell.m; sourceTree = "<group>"; };
+		1AE72A1324E6617D00665176 /* CQUPTMapPlaceDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceDetailController.h; sourceTree = "<group>"; };
+		1AE72A1424E6617D00665176 /* CQUPTMapPlaceDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapPlaceDetailController.m; sourceTree = "<group>"; };
+		1AE72A1624E6634E00665176 /* CQUPTMapDetailTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapDetailTransitionAnimator.h; sourceTree = "<group>"; };
+		1AE72A1724E6634E00665176 /* CQUPTMapDetailTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapDetailTransitionAnimator.m; sourceTree = "<group>"; };
+		1AE72A1924E6648E00665176 /* CQUPTMapDetailPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapDetailPercentDrivenController.h; sourceTree = "<group>"; };
+		1AE72A1A24E6648E00665176 /* CQUPTMapDetailPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapDetailPercentDrivenController.m; sourceTree = "<group>"; };
+		1AE72A1C24E6668600665176 /* CQUPTMapPlaceDetailContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceDetailContentView.h; sourceTree = "<group>"; };
+		1AE72A1D24E6668600665176 /* CQUPTMapPlaceDetailContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapPlaceDetailContentView.m; sourceTree = "<group>"; };
 		1AEF310D245C022400487D40 /* MyGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsViewController.h; sourceTree = "<group>"; };
 		1AEF310E245C022400487D40 /* MyGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsViewController.m; sourceTree = "<group>"; };
 		1AEF3110245C023A00487D40 /* MyGoodsContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsContentView.h; sourceTree = "<group>"; };
@@ -1993,10 +2005,26 @@
 		1AE1374124DEE752000F2C30 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1AE72A1624E6634E00665176 /* CQUPTMapDetailTransitionAnimator.h */,
+				1AE72A1724E6634E00665176 /* CQUPTMapDetailTransitionAnimator.m */,
+				1AE72A1924E6648E00665176 /* CQUPTMapDetailPercentDrivenController.h */,
+				1AE72A1A24E6648E00665176 /* CQUPTMapDetailPercentDrivenController.m */,
+				1AE72A1224E6614B00665176 /* PlaceDetail */,
 				1AB2E5A024E427C0004B4067 /* MainPage */,
 				1AB2E5A124E427D7004B4067 /* Search */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1AE72A1224E6614B00665176 /* PlaceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1AE72A1324E6617D00665176 /* CQUPTMapPlaceDetailController.h */,
+				1AE72A1424E6617D00665176 /* CQUPTMapPlaceDetailController.m */,
+				1AE72A1C24E6668600665176 /* CQUPTMapPlaceDetailContentView.h */,
+				1AE72A1D24E6668600665176 /* CQUPTMapPlaceDetailContentView.m */,
+			);
+			path = PlaceDetail;
 			sourceTree = "<group>";
 		};
 		1AEF3103245BFF3D00487D40 /* MyGoods */ = {
@@ -3701,6 +3729,7 @@
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
+				1AE72A1B24E6648E00665176 /* CQUPTMapDetailPercentDrivenController.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				D06AAEDF24AC00BB00EE0892 /* QAReviewView.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
@@ -3750,6 +3779,7 @@
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
 				EE75BFA523F5884100208039 /* TestCardTableViewCell.m in Sources */,
+				1AE72A1824E6634E00665176 /* CQUPTMapDetailTransitionAnimator.m in Sources */,
 				1AF81336241FB208006AE58D /* SchoolBusViewController.m in Sources */,
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
@@ -3835,6 +3865,7 @@
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				1A402302244CA03C000F8524 /* EmptyClassPresenter.m in Sources */,
+				1AE72A1524E6617D00665176 /* CQUPTMapPlaceDetailController.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
@@ -3930,6 +3961,7 @@
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
 				1AD038DD23FA7B0E00D5C90E /* MineQARecommentItem.m in Sources */,
 				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
+				1AE72A1E24E6668600665176 /* CQUPTMapPlaceDetailContentView.m in Sources */,
 				EE75BFBF23F5884100208039 /* SCChartLabel.m in Sources */,
 				D0011A6E23F082FD009A242C /* QAExitView.m in Sources */,
 				EE75BF9123F5884100208039 /* InstallBuildTableViewCell.m in Sources */,

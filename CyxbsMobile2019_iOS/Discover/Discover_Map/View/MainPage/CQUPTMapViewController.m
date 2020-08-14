@@ -13,8 +13,12 @@
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import <IQKeyboardManager.h>
+#import "CQUPTMapPlaceDetailController.h"
+#import "CQUPTMapDetailTransitionAnimator.h"
+#import "CQUPTMapDetailPercentDrivenController.h"
 
-@interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
+
+@interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) CQUPTMapPresenter *presenter;
 @property (nonatomic, weak) CQUPTMapContentView *contentView;
@@ -53,7 +57,13 @@
     
     
     CQUPTMapContentView *contentView = [[CQUPTMapContentView alloc] initWithFrame:self.view.bounds andMapData:mapData andHotPlaceItemArray:hotPlaceArray];
+    contentView.backgroundColor = [UIColor colorWithHexString:mapData.mapColor];
     contentView.delegate = self;
+
+    NSURL *mapURL = [NSURL URLWithString:mapData.mapURL];
+    [contentView.mapView sd_setImageWithURL:mapURL placeholderImage:[UIImage imageNamed:@"Map_map"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        contentView.mapView.contentMode = UIViewContentModeScaleAspectFill;
+    }];
     
     [self.view addSubview:contentView];
     self.contentView = contentView;
@@ -91,5 +101,43 @@
     
     [self.presenter searchPlaceWithString:string];
 }
+
+- (void)transitionViewDragged:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateBegan) {
+        self.presentPanGesture = sender;
+        
+        CQUPTMapPlaceDetailController *vc = [[CQUPTMapPlaceDetailController alloc] init];
+        vc.modalPresentationStyle = UIModalPresentationCustom;
+        vc.transitioningDelegate = self;
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+}
+
+
+#pragma mark - 转场动画
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return [[CQUPTMapDetailTransitionAnimator alloc] init];
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[CQUPTMapDetailTransitionAnimator alloc] init];
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
+    if (self.presentPanGesture) {
+        return [[CQUPTMapDetailPercentDrivenController alloc] initWithPanGesture:self.presentPanGesture];
+    } else {
+        return nil;
+    }
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    if (self.presentPanGesture) {
+        return [[CQUPTMapDetailPercentDrivenController alloc] initWithPanGesture:self.presentPanGesture];
+    } else {
+        return nil;
+    }
+}
+
 
 @end
