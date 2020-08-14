@@ -14,6 +14,7 @@
 #import "EmptyClassViewController.h"
 #import "CalendarViewController.h"
 #import "WeDateViewController.h"
+#import "CQUPTMapViewController.h"
 #define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -227,6 +228,7 @@
     [item4 addTarget:self action:@selector(chooseTestArrange:) forControlEvents:UIControlEventTouchUpInside];
     [item5 addTarget:self action:@selector(chooseScheduleInquiry:) forControlEvents:UIControlEventTouchUpInside];
     [item6 addTarget:self action:@selector(chooseSchoolSchedule:) forControlEvents:UIControlEventTouchUpInside];
+    [item7 addTarget:self action:@selector(chooseCQUPTMap:) forControlEvents:UIControlEventTouchUpInside];
     
     NSMutableArray *itemsArray = [NSMutableArray array];
     [itemsArray addObject:item1];
@@ -280,7 +282,7 @@
 }
 
 //MARK: - 没课约
-- (void) chooseWeDate:(FinderToolViewItem*)sender {
+- (void) chooseWeDate:(FinderToolViewItem *)sender {
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
@@ -292,7 +294,7 @@
 }
 
 //MARK: - 空课表
-- (void) chooseScheduleInquiry:(FinderToolViewItem*)sender {
+- (void) chooseScheduleInquiry:(FinderToolViewItem *)sender {
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
@@ -303,7 +305,7 @@
 }
 
 //MARK: - 我的考试
-- (void)chooseTestArrange:(FinderToolViewItem*)sender  {
+- (void)chooseTestArrange:(FinderToolViewItem *)sender  {
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
@@ -314,7 +316,7 @@
 }
 
 //MARK: - 校车定位
-- (void)chooseSchoolBus:(FinderToolViewItem*)sender  {
+- (void)chooseSchoolBus:(FinderToolViewItem *)sender  {
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
@@ -326,7 +328,7 @@
 }
 
 //MARK: - 空教室
-- (void)chooseEmptyClassRoom:(FinderToolViewItem*)sender  {
+- (void)chooseEmptyClassRoom:(FinderToolViewItem *)sender  {
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
@@ -335,8 +337,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
 //MARK: - 校历
--(void)chooseSchoolSchedule:(FinderToolViewItem*)sender   {
+- (void)chooseSchoolSchedule:(FinderToolViewItem *)sender {
     if (sender.isChooingNow == YES) {
            [sender toggleFavoriteStates];
        }else {
@@ -345,5 +348,16 @@
            [self.navigationController pushViewController:vc animated:YES];
        }
     
+}
+
+// MARK: - 重邮地图
+- (void)chooseCQUPTMap:(FinderToolViewItem *)sender {
+    if (sender.isChooingNow == YES) {
+        [sender toggleFavoriteStates];
+    } else {
+        CQUPTMapViewController *vc = [[CQUPTMapViewController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */; };
+		1A0E15F024E4EADF00C39B4D /* CQUPTMapSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */; };
 		1A141320235F521C0001417E /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131A235F521C0001417E /* BaseTableViewController.m */; };
 		1A141321235F521C0001417E /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131B235F521C0001417E /* BaseViewController.m */; };
 		1A141322235F521C0001417E /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131C235F521C0001417E /* BaseNavigationController.m */; };
@@ -75,7 +77,6 @@
 		1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34723DC6F58005DC1F3 /* MyResponseRecievedCell.m */; };
 		1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */; };
 		1A4A467724D16A810033734E /* UserInformationIntorductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A467624D16A800033734E /* UserInformationIntorductionView.m */; };
-		1A4A467C24D18F950033734E /* UserInformationIntroduction.html in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A467B24D18F950033734E /* UserInformationIntroduction.html */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
 		1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDA23600C9100543BAE /* LoginViewController.m */; };
 		1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDD23600CBE00543BAE /* Login.xcassets */; };
@@ -85,6 +86,13 @@
 		1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EF02361A82E00543BAE /* UserItemTool.m */; };
 		1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7BAC652369AC2900CA512D /* MineContentView.m */; };
 		1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7BAC682369B28400CA512D /* MineHeaderView.m */; };
+		1A810BA624E2930B00E79126 /* CQUPTMapMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A810BA524E2930A00E79126 /* CQUPTMapMedia.xcassets */; };
+		1A810BA924E299C100E79126 /* CQUPTMapHotPlaceButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A810BA824E299C100E79126 /* CQUPTMapHotPlaceButton.m */; };
+		1A810BAD24E2A17400E79126 /* CQUPTMapPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A810BAC24E2A17400E79126 /* CQUPTMapPresenter.m */; };
+		1A810BB224E2A1E400E79126 /* CQUPTMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A810BB124E2A1E400E79126 /* CQUPTMapModel.m */; };
+		1A810BB524E2A56F00E79126 /* CQUPTMapDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A810BB424E2A56F00E79126 /* CQUPTMapDataItem.m */; };
+		1A810BB924E2A5C800E79126 /* CQUPTMapHotPlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A810BB824E2A5C800E79126 /* CQUPTMapHotPlaceItem.m */; };
+		1A810BBC24E2CC0E00E79126 /* CQUPTMapPlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A810BBB24E2CC0E00E79126 /* CQUPTMapPlaceItem.m */; };
 		1A8C382E244CA7D7005693A3 /* EmptyClassResources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A8C382D244CA7D7005693A3 /* EmptyClassResources.xcassets */; };
 		1A9B766C235F50A600725937 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B766B235F50A600725937 /* AppDelegate.m */; };
 		1A9B7674235F50A800725937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B7673235F50A800725937 /* Assets.xcassets */; };
@@ -93,6 +101,10 @@
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
+		1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */; };
+		1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */; };
+		1AB2E59124E3CFB6004B4067 /* CQUPTMapStarPlaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */; };
+		1AB2E59F24E426CE004B4067 /* CQUPTMapSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E59E24E426CE004B4067 /* CQUPTMapSearchView.m */; };
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
@@ -108,6 +120,9 @@
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
+		1AE1374624DEE79F000F2C30 /* CQUPTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */; };
+		1AE1374924DEEA62000F2C30 /* CQUPTMapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */; };
+		1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE72A1024E5251000665176 /* CQUPTMapSearchResultCell.m */; };
 		1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF310E245C022400487D40 /* MyGoodsViewController.m */; };
 		1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3111245C023A00487D40 /* MyGoodsContentView.m */; };
 		1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3115245C701D00487D40 /* MyGoodsPresenter.m */; };
@@ -468,6 +483,10 @@
 
 /* Begin PBXFileReference section */
 		0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CyxbsMobile2019_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0E15EB24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapBeforeSearchCell.h; sourceTree = "<group>"; };
+		1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapBeforeSearchCell.m; sourceTree = "<group>"; };
+		1A0E15EE24E4EADF00C39B4D /* CQUPTMapSearchItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchItem.h; sourceTree = "<group>"; };
+		1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapSearchItem.m; sourceTree = "<group>"; };
 		1A14131A235F521C0001417E /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		1A14131B235F521C0001417E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		1A14131C235F521C0001417E /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
@@ -603,7 +622,6 @@
 		1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserProtocolViewController.m; sourceTree = "<group>"; };
 		1A4A467524D16A800033734E /* UserInformationIntorductionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInformationIntorductionView.h; sourceTree = "<group>"; };
 		1A4A467624D16A800033734E /* UserInformationIntorductionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInformationIntorductionView.m; sourceTree = "<group>"; };
-		1A4A467B24D18F950033734E /* UserInformationIntroduction.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = UserInformationIntroduction.html; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1A5A5ED923600C9100543BAE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1A5A5EDA23600C9100543BAE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -622,6 +640,20 @@
 		1A7BAC672369B28400CA512D /* MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
 		1A7BAC682369B28400CA512D /* MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
 		1A7BAC6A2369C93400CA512D /* MineContentViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineContentViewProtocol.h; sourceTree = "<group>"; };
+		1A810BA524E2930A00E79126 /* CQUPTMapMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CQUPTMapMedia.xcassets; sourceTree = "<group>"; };
+		1A810BA724E299C100E79126 /* CQUPTMapHotPlaceButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapHotPlaceButton.h; sourceTree = "<group>"; };
+		1A810BA824E299C100E79126 /* CQUPTMapHotPlaceButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapHotPlaceButton.m; sourceTree = "<group>"; };
+		1A810BAB24E2A17400E79126 /* CQUPTMapPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPresenter.h; sourceTree = "<group>"; };
+		1A810BAC24E2A17400E79126 /* CQUPTMapPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapPresenter.m; sourceTree = "<group>"; };
+		1A810BAE24E2A19C00E79126 /* CQUPTMapViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapViewProtocol.h; sourceTree = "<group>"; };
+		1A810BB024E2A1E400E79126 /* CQUPTMapModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapModel.h; sourceTree = "<group>"; };
+		1A810BB124E2A1E400E79126 /* CQUPTMapModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapModel.m; sourceTree = "<group>"; };
+		1A810BB324E2A56F00E79126 /* CQUPTMapDataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapDataItem.h; sourceTree = "<group>"; };
+		1A810BB424E2A56F00E79126 /* CQUPTMapDataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapDataItem.m; sourceTree = "<group>"; };
+		1A810BB724E2A5C800E79126 /* CQUPTMapHotPlaceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapHotPlaceItem.h; sourceTree = "<group>"; };
+		1A810BB824E2A5C800E79126 /* CQUPTMapHotPlaceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapHotPlaceItem.m; sourceTree = "<group>"; };
+		1A810BBA24E2CC0D00E79126 /* CQUPTMapPlaceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceItem.h; sourceTree = "<group>"; };
+		1A810BBB24E2CC0E00E79126 /* CQUPTMapPlaceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapPlaceItem.m; sourceTree = "<group>"; };
 		1A8C382D244CA7D7005693A3 /* EmptyClassResources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = EmptyClassResources.xcassets; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B766A235F50A600725937 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -638,6 +670,14 @@
 		1A9B7690235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AAFACF6236B360F00E854A3 /* MinePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePresenter.h; sourceTree = "<group>"; };
 		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
+		1AB2E58324E2D41A004B4067 /* CQUPTMapPlaceRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceRect.h; sourceTree = "<group>"; };
+		1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapPlaceRect.m; sourceTree = "<group>"; };
+		1AB2E58824E38F26004B4067 /* CQUPTMapMyStarButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapMyStarButton.h; sourceTree = "<group>"; };
+		1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapMyStarButton.m; sourceTree = "<group>"; };
+		1AB2E58F24E3CFB5004B4067 /* CQUPTMapStarPlaceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapStarPlaceItem.h; sourceTree = "<group>"; };
+		1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapStarPlaceItem.m; sourceTree = "<group>"; };
+		1AB2E59D24E426CE004B4067 /* CQUPTMapSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchView.h; sourceTree = "<group>"; };
+		1AB2E59E24E426CE004B4067 /* CQUPTMapSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapSearchView.m; sourceTree = "<group>"; };
 		1ABE8024238D01EC00E88C4E /* CheckInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
 		1ABE8025238D01EC00E88C4E /* CheckInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInViewController.m; sourceTree = "<group>"; };
 		1AC2550323C9AB3700DF0475 /* CheckedInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckedInDot.h; sourceTree = "<group>"; };
@@ -670,6 +710,12 @@
 		1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQADataItem.m; sourceTree = "<group>"; };
 		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
+		1AE1374424DEE79F000F2C30 /* CQUPTMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapViewController.h; sourceTree = "<group>"; };
+		1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapViewController.m; sourceTree = "<group>"; };
+		1AE1374724DEEA62000F2C30 /* CQUPTMapContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapContentView.h; sourceTree = "<group>"; };
+		1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapContentView.m; sourceTree = "<group>"; };
+		1AE72A0F24E5251000665176 /* CQUPTMapSearchResultCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchResultCell.h; sourceTree = "<group>"; };
+		1AE72A1024E5251000665176 /* CQUPTMapSearchResultCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapSearchResultCell.m; sourceTree = "<group>"; };
 		1AEF310D245C022400487D40 /* MyGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsViewController.h; sourceTree = "<group>"; };
 		1AEF310E245C022400487D40 /* MyGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsViewController.m; sourceTree = "<group>"; };
 		1AEF3110245C023A00487D40 /* MyGoodsContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsContentView.h; sourceTree = "<group>"; };
@@ -1706,6 +1752,45 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		1A810BAA24E2A14F00E79126 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1A810BAB24E2A17400E79126 /* CQUPTMapPresenter.h */,
+				1A810BAC24E2A17400E79126 /* CQUPTMapPresenter.m */,
+				1A810BAE24E2A19C00E79126 /* CQUPTMapViewProtocol.h */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1A810BAF24E2A1D000E79126 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A810BB024E2A1E400E79126 /* CQUPTMapModel.h */,
+				1A810BB124E2A1E400E79126 /* CQUPTMapModel.m */,
+				1A810BB624E2A5A400E79126 /* Items */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1A810BB624E2A5A400E79126 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				1A810BB324E2A56F00E79126 /* CQUPTMapDataItem.h */,
+				1A810BB424E2A56F00E79126 /* CQUPTMapDataItem.m */,
+				1A810BB724E2A5C800E79126 /* CQUPTMapHotPlaceItem.h */,
+				1A810BB824E2A5C800E79126 /* CQUPTMapHotPlaceItem.m */,
+				1A810BBA24E2CC0D00E79126 /* CQUPTMapPlaceItem.h */,
+				1A810BBB24E2CC0E00E79126 /* CQUPTMapPlaceItem.m */,
+				1AB2E58324E2D41A004B4067 /* CQUPTMapPlaceRect.h */,
+				1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */,
+				1AB2E58F24E3CFB5004B4067 /* CQUPTMapStarPlaceItem.h */,
+				1AB2E59024E3CFB5004B4067 /* CQUPTMapStarPlaceItem.m */,
+				1A0E15EE24E4EADF00C39B4D /* CQUPTMapSearchItem.h */,
+				1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
@@ -1731,7 +1816,6 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1A4A467B24D18F950033734E /* UserInformationIntroduction.html */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				EE75BEF723F5884100208039 /* Discover */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
@@ -1778,6 +1862,34 @@
 				EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		1AB2E5A024E427C0004B4067 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				1AE1374424DEE79F000F2C30 /* CQUPTMapViewController.h */,
+				1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */,
+				1AE1374724DEEA62000F2C30 /* CQUPTMapContentView.h */,
+				1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */,
+				1A810BA724E299C100E79126 /* CQUPTMapHotPlaceButton.h */,
+				1A810BA824E299C100E79126 /* CQUPTMapHotPlaceButton.m */,
+				1AB2E58824E38F26004B4067 /* CQUPTMapMyStarButton.h */,
+				1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */,
+			);
+			path = MainPage;
+			sourceTree = "<group>";
+		};
+		1AB2E5A124E427D7004B4067 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1AB2E59D24E426CE004B4067 /* CQUPTMapSearchView.h */,
+				1AB2E59E24E426CE004B4067 /* CQUPTMapSearchView.m */,
+				1A0E15EB24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.h */,
+				1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */,
+				1AE72A0F24E5251000665176 /* CQUPTMapSearchResultCell.h */,
+				1AE72A1024E5251000665176 /* CQUPTMapSearchResultCell.m */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		1ABE801F238D01A600E88C4E /* CheckIn */ = {
@@ -1865,6 +1977,26 @@
 				1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1AE1374024DEE735000F2C30 /* Discover_Map */ = {
+			isa = PBXGroup;
+			children = (
+				1A810BA524E2930A00E79126 /* CQUPTMapMedia.xcassets */,
+				1A810BAF24E2A1D000E79126 /* Model */,
+				1A810BAA24E2A14F00E79126 /* Presenter */,
+				1AE1374124DEE752000F2C30 /* View */,
+			);
+			path = Discover_Map;
+			sourceTree = "<group>";
+		};
+		1AE1374124DEE752000F2C30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1AB2E5A024E427C0004B4067 /* MainPage */,
+				1AB2E5A124E427D7004B4067 /* Search */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1AEF3103245BFF3D00487D40 /* MyGoods */ = {
@@ -2653,6 +2785,7 @@
 		EE75BEF723F5884100208039 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				1AE1374024DEE735000F2C30 /* Discover_Map */,
 				AA40B40824D2ADBC0037071A /* Discover_WeDate */,
 				EE131C2224713BE100B6ED97 /* Discover_SchoolCalendar */,
 				EE82344E24673FE700F6B4AE /* Volunteer */,
@@ -3326,7 +3459,6 @@
 				EE8234B624673FE700F6B4AE /* login_number@2x.png in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
 				D0101D642433CE91004337ED /* QADetailReportView.xib in Resources */,
-				1A4A467C24D18F950033734E /* UserInformationIntroduction.html in Resources */,
 				1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */,
 				D06AAEDD24AC00BB00EE0892 /* QAReviewAnswerListView.xib in Resources */,
 				D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */,
@@ -3433,6 +3565,7 @@
 				EE8234B224673FE700F6B4AE /* login_password.png in Resources */,
 				DB34EB08239BD4550052B65E /* remind_image_edit@2x.png in Resources */,
 				DB34EB05239BD4550052B65E /* 不提醒@2x.png in Resources */,
+				1A810BA624E2930B00E79126 /* CQUPTMapMedia.xcassets in Resources */,
 				DB34EAFF239BD4550052B65E /* remind_image_edit@3x.png in Resources */,
 				DB34EB1A239BD4550052B65E /* 编辑箭头@2x.png in Resources */,
 				EE8234D324673FE700F6B4AE /* 标签矩形@2x.png in Resources */,
@@ -3551,9 +3684,11 @@
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				EEA301CF2468608000A8DB26 /* Credits.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
+				1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				EE75BFC823F5884100208039 /* UserInfoView.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
+				1A810BBC24E2CC0E00E79126 /* CQUPTMapPlaceItem.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
@@ -3562,6 +3697,7 @@
 				1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */,
 				EE75BFC223F5884100208039 /* SCBarChart.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
+				1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
@@ -3608,6 +3744,7 @@
 				EE75BFB623F5884100208039 /* NewDetailViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
+				1A810BAD24E2A17400E79126 /* CQUPTMapPresenter.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
@@ -3626,20 +3763,24 @@
 				D06AAEE024AC00BB00EE0892 /* QAReviewAnswerListView.m in Sources */,
 				EE75BFB923F5884100208039 /* NewsCell.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
+				1AE1374624DEE79F000F2C30 /* CQUPTMapViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				EE75BF9D23F5884100208039 /* FinderView.m in Sources */,
+				1A810BB924E2A5C800E79126 /* CQUPTMapHotPlaceItem.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
 				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
+				1A810BB524E2A56F00E79126 /* CQUPTMapDataItem.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				EE8234DE24673FE800F6B4AE /* BackgroundTableViewCell.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */,
+				1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
@@ -3667,10 +3808,12 @@
 				EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */,
 				EEA301C32468593F00A8DB26 /* SingleGrade.m in Sources */,
 				EE75BF9623F5884100208039 /* ElectricFeeItem.m in Sources */,
+				1A0E15F024E4EADF00C39B4D /* CQUPTMapSearchItem.m in Sources */,
 				EED03014247E9F1E009DD181 /* PickerModel.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
 				EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */,
+				1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
@@ -3719,6 +3862,7 @@
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				EEA301D2246862E000A8DB26 /* TermGrades.m in Sources */,
+				1AB2E59124E3CFB6004B4067 /* CQUPTMapStarPlaceItem.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
 				D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
@@ -3731,6 +3875,7 @@
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
 				AA40B41124D2C9710037071A /* ChoosePeopleListView.m in Sources */,
+				1AE1374924DEEA62000F2C30 /* CQUPTMapContentView.m in Sources */,
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				EEEBD28A248E5D8000A2DDB1 /* VolunteerView.m in Sources */,
@@ -3744,6 +3889,7 @@
 				EE75BF9823F5884100208039 /* OneNewsModel.m in Sources */,
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
+				1A810BA924E299C100E79126 /* CQUPTMapHotPlaceButton.m in Sources */,
 				EE75BFC423F5884100208039 /* SCBar.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				EE75BF9723F5884100208039 /* ElectricFeeModel.m in Sources */,
@@ -3764,6 +3910,7 @@
 				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
 				EE75BFC623F5884100208039 /* ScoreViewController.m in Sources */,
 				DB4065002466D889006CE5BC /* DLHistodyButton.m in Sources */,
+				1A810BB224E2A1E400E79126 /* CQUPTMapModel.m in Sources */,
 				D0011A7923F09422009A242C /* QADetailView.m in Sources */,
 				DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */,
 				EE75BFA923F5884100208039 /* ChooseStudentListViewController.m in Sources */,
@@ -3775,6 +3922,7 @@
 				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,
 				EE75BFB523F5884100208039 /* NewsViewController.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
+				1AB2E59F24E426CE004B4067 /* CQUPTMapSearchView.m in Sources */,
 				1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,
@@ -3954,16 +4102,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PU7F26AM3C;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOSa";
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3976,16 +4124,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PU7F26AM3C;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOSa";
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

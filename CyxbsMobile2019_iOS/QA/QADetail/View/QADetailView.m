@@ -15,7 +15,9 @@
     self.scrollView = [[UIScrollView alloc]init];
 //    self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
     
+    self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollviewHeight = 0;
     //    NSLog(@"%@",NSStringFromCGRect(frame));
     [self addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make){
@@ -25,7 +27,12 @@
     
 }
 - (void)layoutSubviews{
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 1500);
+    self.scrollviewHeight += 50;
+    
+    if (self.scrollviewHeight < MAIN_SCREEN_H) {
+        self.scrollviewHeight = MAIN_SCREEN_H;
+    }
+    self.scrollView.contentSize = CGSizeMake(0, self.scrollviewHeight);
 }
 - (void)setupUIwithDic:(NSDictionary *)dic answersData:(nonnull NSArray *)answersData{
     UIView *userInfoView = [[UIView alloc]init];
@@ -41,11 +48,13 @@
     
     UILabel *userNameLabel = [[UILabel alloc]init];
     userNameLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
+    [userNameLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     [userNameLabel setText:[dic objectForKey:@"nickname"]];
     [userInfoView addSubview:userNameLabel];
     
     UILabel *dateLabel = [[UILabel alloc]init];
     dateLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    [dateLabel setTextColor:[UIColor colorWithHexString:@"#2A4E84"]];
     NSString *date = [dic objectForKey:@"created_at"];
     [dateLabel setText:[date substringWithRange:NSMakeRange(0, 10)]];
     [userInfoView addSubview:dateLabel];
@@ -63,6 +72,7 @@
     NSString *integralNum = [NSString stringWithFormat:@"%@积分",[dic objectForKey:@"reward"]];
     [integralNumLabel setText:integralNum];
     integralNumLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     [userInfoView addSubview:integralNumLabel];
     
     [userInfoView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -71,6 +81,7 @@
         make.width.equalTo(@SCREEN_WIDTH);
         make.height.equalTo(@57);
     }];
+    self.scrollviewHeight += 57;
     [userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(userInfoView).mas_offset(16);
         make.top.equalTo(userInfoView).mas_offset(16);
@@ -102,6 +113,7 @@
     NSString *content = [dic objectForKey:@"description"];
 contentLabel.text = content;
     [contentLabel setFont:[UIFont fontWithName:PingFangSCRegular size:15]];
+    contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     contentLabel.alpha = 1.0;
     
     [self.scrollView addSubview:contentLabel];
@@ -110,7 +122,9 @@ contentLabel.text = content;
         make.left.mas_equalTo(self.mas_left).mas_offset(20);
         make.top.mas_equalTo(userInfoView.mas_bottom).mas_offset(5);
     }];
+    self.scrollviewHeight += [self calculateLabelHeight:content width:(SCREEN_WIDTH - 40) fontsize:15];
     
+    // 深色模式
     if (@available(iOS 11.0, *)) {
         userNameLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
         dateLabel.textColor = [UIColor colorNamed:@"QAListAnswerLableColor"];
@@ -122,7 +136,6 @@ contentLabel.text = content;
         [integralNumLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
         contentLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     }
-    
     
     UIView *separateView = [[UIView alloc]init];
     separateView.backgroundColor = [UIColor colorWithHexString:@"#2A4E84"];
@@ -145,13 +158,13 @@ contentLabel.text = content;
         for (int i = 0; i < self.imageUrlArray.count; i++) {
 
             UIImageView *imgView = [[UIImageView alloc]init];
-            imgView.contentMode = UIViewContentModeScaleAspectFill;
-            imgView.layer.cornerRadius = 8;
-            imgView.clipsToBounds = YES;
             NSString *urlString = [NSString stringWithFormat:@"%@",self.imageUrlArray[i]];
             NSURL *url = [NSURL URLWithString:urlString];
             [imgView setImageURL:url];
             imgView.userInteractionEnabled = YES;
+            imgView.layer.cornerRadius = 8;
+            imgView.clipsToBounds = YES;
+            imgView.contentMode = UIViewContentModeScaleAspectFill;
             //添加点击手势
 //            UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapToViewBigImage:)];
 //            [imgView addGestureRecognizer:tapGesture];
@@ -160,6 +173,7 @@ contentLabel.text = content;
             imageBtn.tag = i;
             imageBtn.backgroundColor = UIColor.clearColor;
             [imageBtn addTarget:self action:@selector(tapToViewBigImage:) forControlEvents:UIControlEventTouchUpInside];
+            
             // 图片多余6个时，最后一个按钮显示“+n”
             if (self.imageUrlArray.count > 6 && i == 5) {
                 imageBtn.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.50];
@@ -168,7 +182,7 @@ contentLabel.text = content;
                 imageBtn.layer.cornerRadius = 8;
             }
             [self.scrollView addSubview:imageBtn];
-            
+            self.scrollviewHeight += height;
 //            [self.imageViewArray addObject:imgView];
             if (i<=2&&i>=0) {
 
@@ -203,11 +217,11 @@ contentLabel.text = content;
             }
         }
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
-                           make.right.mas_equalTo(self.mas_right).mas_offset(0);
-                           make.left.mas_equalTo(self.mas_left).mas_offset(0);
-                           make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(250);
-                           make.height.mas_equalTo(1);
-                       }];
+            make.right.mas_equalTo(self.mas_right).mas_offset(0);
+            make.left.mas_equalTo(self.mas_left).mas_offset(0);
+            make.top.mas_equalTo(contentLabel.mas_bottom).mas_offset(250);
+            make.height.mas_equalTo(1);
+        }];
     }else{
         [separateView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.mas_right).mas_offset(0);
@@ -219,7 +233,11 @@ contentLabel.text = content;
     
     UILabel *answerLabel = [[UILabel alloc]init];
     answerLabel.text = @"回复";
-    [answerLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+    if (@available(iOS 11.0, *)) {
+        [answerLabel setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
+    } else {
+        [answerLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+    }
     answerLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
     [self.scrollView addSubview:answerLabel];
     
@@ -228,12 +246,9 @@ contentLabel.text = content;
         make.right.mas_equalTo(self.scrollView.mas_right).mas_offset(-20);
         make.left.mas_equalTo(self.scrollView.mas_left).mas_offset(20);
     }];
-
-    if (@available(iOS 11.0, *)) {
-        answerLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
-    } else {
-        answerLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    }
+    self.scrollviewHeight += 14;
+    self.scrollviewHeight += [self calculateLabelHeight:@"回复" width:(SCREEN_WIDTH - 40) fontsize:18];
+    
 
   
     NSNumber *isSelf = [dic objectForKey:@"is_self"];
@@ -283,7 +298,7 @@ contentLabel.text = content;
             [answerView setupView:dic isSelf:self.isSelf];
 //            NSLog(@"%lD",(long)[answerView getViewHeight]);
             [self.scrollView addSubview:answerView];
-            
+            self.scrollviewHeight += answerViewHeight;
         
             if (i == 0) {
 
@@ -304,6 +319,17 @@ contentLabel.text = content;
                 }];
                 answerViewY += (answerViewHeight + 5);
             }
+           
+//            if(i == answerList.count - 1){
+//                UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+//
+//                CGRect startRact = [answerView convertRect:answerView.bounds toView:window];
+//
+//                NSLog(@"an::%@",NSStringFromCGRect(startRact));
+//                self.scrollviewHeight = answerView.bottom;
+//                NSLog(@"scrh%ld",(long)self.scrollviewHeight);
+//            }
+//            NSLog(@"%D",answerView.bottom);
 //            NSLog(@"%lD",(long)[answerView getViewHeight]);
 
         }
@@ -348,6 +374,10 @@ contentLabel.text = content;
 //查看大图
 - (void)tapToViewBigImage:(UIButton *)sender{
     [self.delegate tapToViewBigImage:sender.tag];
+}
+
+- (void)tapToViewBigAnswerImage:(UIButton *)sender {
+    [self.delegate tapToViewBigAnswerImage:sender.tag];
 }
 
 - (void)replyComment:(UIButton *)sender{

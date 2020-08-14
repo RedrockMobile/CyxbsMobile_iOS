@@ -58,6 +58,7 @@
 #import "NSDate+Timestamp.h"
 #import <UMAnalytics/MobClick.h>
 #import "SDMask.h"
+#import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
 //#import "AESCipher.h"         // 加密用的，暂时没什么用，有用的时候再打开注释吧
 
 
@@ -116,6 +117,7 @@
 #define PingFangSCLight @"PingFangSC-Light"
 #define PingFangSCMedium @"PingFangSC-Medium"
 #define PingFangSCBold @"PingFangSC-Semibold"
+#define PingFangSCHeavy @"PingFangSC-Heavy"
 // Bahnschrift字体
 #define BahnschriftBold @"Bahnschrift_Bold"
 
@@ -204,6 +206,20 @@
 #define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
 /// 教务新闻附件下载
 #define NEWSDOWNLOAD @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
+
+
+/// 重邮地图历史记录偏好设置Key
+#define CQUPTMAPHISTORYKEY @"MapSearchHistory"
+
+/// 重邮地图主页
+#define CQUPTMAPBASICDATA @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/mapData"
+/// 重邮地图热搜
+#define CQUPTMAPHOTPLACE @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/hotPlace"
+/// 重邮地图：我的收藏
+#define CQUPTMAPMYSTAR @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/star"
+/// 重邮地图：搜索地点
+#define CQUPTMAPSEARCH @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/search"
+
 /// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
 
@@ -264,11 +280,16 @@
 //问题详情
 #define QA_QUESTION_DETAIL_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getDetailedInfo"
 
+// 阅读量统计
+#define QA_BROWSENUMBER_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/addView"
+
 //问题回答列表
 #define QA_QUESTION_ANSWERLIST @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getAnswerlist"
 
 //忽略问题
 #define QA_IGNORE_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/ignore"
+
+
 
 /*
  回答部分

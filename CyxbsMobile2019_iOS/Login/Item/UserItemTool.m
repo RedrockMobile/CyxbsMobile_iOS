@@ -15,8 +15,8 @@
 
 @end
 
-@implementation UserItemTool
 
+@implementation UserItemTool
 
 #pragma mark - 工具类方法
 + (NSString *)userItemPath {
@@ -100,7 +100,27 @@
             NSLog(@"%@", error);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
         NSLog(@"%@", error);
+        
+        // token刷新失败，可能是用户token过期或者出了别的什么问题，提示用户重新登录
+        UIAlertController *loginAlertController = [UIAlertController alertControllerWithTitle:@"登录已过期" message:@"登录验证信息失效，请重新登录" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"重新登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // 直接退出登录
+            [self logout];
+        }];
+        
+        
+        [loginAlertController addAction:loginAction];
+        
+        UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+        if (tabBarVC.presentedViewController) {
+            [tabBarVC dismissViewControllerAnimated:YES completion:^{
+                [tabBarVC presentViewController:loginAlertController animated:YES completion:nil];
+            }];
+        } else {
+            [tabBarVC presentViewController:loginAlertController animated:YES completion:nil];
+        }
     }];
 }
 

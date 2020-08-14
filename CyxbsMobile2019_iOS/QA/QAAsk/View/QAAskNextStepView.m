@@ -8,6 +8,10 @@
 
 #import "QAAskNextStepView.h"
 #import "QAAskIntegralPickerView.h"
+
+#define NAVIGATIONTITLECOLOR [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]
+
+
 @implementation QAAskNextStepView
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -17,6 +21,7 @@
         self.contentView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         
         self.contentView.layer.cornerRadius = 16;
+        self.integralPickBackgroundView.frame = CGRectMake(0, 0, self.frame.size.width, 105);
         [self addSubview:self.contentView];
     }
     [self setupView];
@@ -26,7 +31,7 @@
 
 - (void)setupView{
     self.alpha = 1.0;
-    self.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+//    self.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     self.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.27].CGColor;
     self.layer.shadowOffset = CGSizeMake(0,5);
     self.layer.shadowRadius = 30;
@@ -38,7 +43,6 @@
     [self.timeLabel setTextColor:[UIColor colorWithHexString:@"#29D1F1"]];
     
     self.commitBtn.layer.cornerRadius = 20;
-    self.questionmarkBtn.layer.borderColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0].CGColor;
     self.questionmarkBtn.layer.borderWidth = 1;
     self.questionmarkBtn.layer.cornerRadius = self.questionmarkBtn.bounds.size.width / 2;
     [self.questionmarkBtn addTarget:self action:@selector(displayIntegralInstructions) forControlEvents:UIControlEventTouchUpInside];
@@ -111,7 +115,26 @@
     NSInteger minute = [formatter stringFromDate:defultDate].integerValue;
     [self.timePickerVIew selectRow:minute inComponent:2 animated:NO];
     
-
+    
+    if (@available(iOS 11.0, *)) {
+        self.contentView.backgroundColor = [UIColor colorNamed:@"QABackgroundColor"];
+        self.integralSettingTitleLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        [self.questionmarkBtn setTitleColor:[UIColor colorNamed:@"QANavigationTitleColor"] forState:UIControlStateNormal];
+        self.questionmarkBtn.layer.borderColor = [UIColor colorNamed:@"QANavigationTitleColor"].CGColor;
+        [self.cancelBtn setTitleColor:[UIColor colorNamed:@"QANavigationTitleColor"] forState:UIControlStateNormal];
+        self.DDLLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.awardLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.integralNumLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+    } else {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.integralSettingTitleLabel.textColor = NAVIGATIONTITLECOLOR;
+        [self.questionmarkBtn setTitleColor:NAVIGATIONTITLECOLOR forState:UIControlStateNormal];
+        self.questionmarkBtn.layer.borderColor = NAVIGATIONTITLECOLOR.CGColor;
+        [self.cancelBtn setTitleColor:NAVIGATIONTITLECOLOR forState:UIControlStateNormal];
+        self.DDLLabel.textColor = NAVIGATIONTITLECOLOR;
+        self.awardLabel.textColor = NAVIGATIONTITLECOLOR;
+        self.integralNumLabel.textColor = NAVIGATIONTITLECOLOR;
+    }
 }
 - (void)displayIntegralInstructions{
     
@@ -131,6 +154,8 @@
 
 #pragma mark pickerView内容
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    ((UILabel *)[pickerView.subviews objectAtIndex:1]).hidden = YES;    //隐藏分隔线
+    ((UILabel *)[pickerView.subviews objectAtIndex:2]).hidden = YES;    //隐藏分隔线
     if (component==0&&row==0) {
         return @"今天";
     }else{

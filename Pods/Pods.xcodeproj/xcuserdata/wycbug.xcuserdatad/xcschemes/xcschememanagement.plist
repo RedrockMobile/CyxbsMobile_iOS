@@ -9,17 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AMap2DMap.xcscheme</key>
+		<key>AMap3DMap-NO-IDFA.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AMapFoundation.xcscheme</key>
+		<key>AMapFoundation-NO-IDFA.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AMapLocation.xcscheme</key>
+		<key>AMapLocation-NO-IDFA.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

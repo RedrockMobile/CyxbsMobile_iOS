@@ -88,6 +88,9 @@
                         <constraint firstAttribute="width" constant="16" id="IMg-FW-iog"/>
                         <constraint firstAttribute="height" constant="16" id="Kca-P9-PVp"/>
                     </constraints>
+                    <connections>
+                        <action selector="protocolCheckButtonClicked:" destination="-1" eventType="touchUpInside" id="KAK-mP-PLq"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8B2-Yb-uY2">
                     <rect key="frame" x="143" y="667" width="22" height="16"/>

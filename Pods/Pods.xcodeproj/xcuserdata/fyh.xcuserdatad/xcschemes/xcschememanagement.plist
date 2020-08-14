@@ -59,6 +59,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>NudeIn.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CyxbsMobile2019_iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>

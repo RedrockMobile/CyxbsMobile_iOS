@@ -131,5 +131,8 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
     [self presentViewController:protocolVC animated:YES completion:nil];
 }
 
+- (IBAction)protocolCheckButtonClicked:(UIButton *)sender {
+    sender.selected = !sender.selected;
+}
 
 @end
