@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class ClassScheduleTabBarView;
 @interface ClassTabBar : UITabBar
 
-@property (nonatomic, weak) ClassScheduleTabBarView *classScheduleTabBarView;
+@property (nonatomic, weak) ClassScheduleTabBarView <updateSchedulTabBarViewProtocol>*classScheduleTabBarView;
 
 @end
 

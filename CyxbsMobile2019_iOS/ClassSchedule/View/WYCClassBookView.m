@@ -33,9 +33,9 @@
 @end
 @implementation WYCClassBookView
 
--(void)initView:(BOOL)isFirst{
+-(void)initViewIsFirst:(BOOL)isFirst{
     
-    self.backgroundColor = [UIColor whiteColor];
+//    self.backgroundColor = [UIColor whiteColor];
     
     
     _month = [[UIView alloc]init];
@@ -263,6 +263,7 @@
 }
 //用户课表和同学课表页面的课表显示，要调用这个方法
 - (void)addBtn:(NSMutableArray *)day{
+    self.schedulData = day;
     @autoreleasepool {
         [_dayBar layoutIfNeeded];
         [_leftBar layoutIfNeeded];
@@ -271,27 +272,25 @@
         self.detailDataArray = [[NSMutableArray alloc]init];
         for (int dayNum = 0; dayNum < 7; dayNum++) {
             for (int lessonNum = 0; lessonNum < 6; lessonNum++) {
+                //day[dayNum][lessonNum]代表（星期dayNum+1）的（第lessonNum+1节大课）有几节课。
                 NSArray *tmp = day[dayNum][lessonNum];
+                //课数不等于0，就添加
                 if (tmp.count != 0) {
-                    
-                    NSLog(@"%@",tmp);
-                    
                     [self.detailDataArray addObject:tmp];
-                    
+                    //@"id"用来区别是课表还是备忘
                     if ([tmp[0] objectForKey:@"id"]) {
                         [self addNoteBtn:tmp];
                     }else{
                         [self addClassBtn:tmp];
-                        
                     }
-                }else{
+                }else{//否则添加备忘按钮
                     UIButton *btn = [[UIButton alloc] init];
-                    [btn setBackgroundColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.14]];
+                    btn.backgroundColor = UIColor.clearColor;
                     [self.scrollView addSubview:btn];
                      [btn addTarget:self action:@selector(blankSpaceClicked) forControlEvents:UIControlEventTouchUpInside];
                     float btnW = _dayBar.frame.size.width/7;
                     float btnH =  50.5*autoSizeScaleY;
-                     [btn setFrame:(CGRectMake(self.leftBar.width+dayNum*btnW,btnW+2*lessonNum*btnH , btnW, 2*btnH))];
+                     [btn setFrame:(CGRectMake(self.leftBar.width+dayNum*btnW,2*lessonNum*btnH , btnW, 2*btnH))];
                 }
             }
         }
@@ -300,6 +299,7 @@
 
 //没课约页面的课表显示，要调用这个方法
 - (void)addBtnForWedate:(NSMutableArray *)day{
+    self.schedulData = day;
     @autoreleasepool {
         [_dayBar layoutIfNeeded];
         [_leftBar layoutIfNeeded];
@@ -310,6 +310,8 @@
             for (int lessonNum = 0; lessonNum < 6; lessonNum++) {
                 NSArray *tmp = day[dayNum][lessonNum];
                 if (tmp.count==0) {
+                    //array233是根据addClassBtn:里面需要的参数手动模拟出的
+                    //用array233作为参数，而不是直接用tmp作为参数可以避免同一位置出现多张课表
                     NSArray *array233 =  @[
                             @{
                                 @"begin_lesson" : @1,
@@ -500,8 +502,6 @@
     
     NSNumber *hash_day = [tmp[0] objectForKey:@"hash_day"];
     NSNumber *hash_lesson = [tmp[0] objectForKey:@"hash_lesson"];
-    //_________________________为了给空白处加按钮而增加的改动_____________________________
-    NSNumber *period = [tmp[0] objectForKey:@"period"];
     UIColor *viewColor = [[UIColor alloc]init];
     viewColor = [UIColor colorWithHexString:@"#E8F0FC"];
    
@@ -565,6 +565,7 @@
 
 - (void)clickBtn:(UIButton *)sender{
     if ([self.detailDelegate respondsToSelector:@selector(showDetail:)]) {
+        //调用代理的方法，把btn的详细信息传入
         [self.detailDelegate showDetail:self.detailDataArray[sender.tag]];
     }
     NSLog(@"dayin");

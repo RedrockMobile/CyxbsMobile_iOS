@@ -28,12 +28,20 @@
 NS_ASSUME_NONNULL_BEGIN
 //目标：输入[responseObject objectForKey:@"data"]，输出：显示整学期课表
 //现状：输入WYCClassAndRemindDataModel，输出：显示整学期课表
-@interface WYCClassBookViewController : UIViewController
+@interface WYCClassBookViewController : UIViewController<WYCClassAndRemindDataModelDelegate,UIApplicationDelegate>
 
 //如果是用代码加载，必须对model赋值，详细说明看底下注释
 @property (nonatomic, strong) WYCClassAndRemindDataModel *model;
 //如果是用代码加载，必须对schedulType赋值
 @property (nonatomic, assign)ScheduleType schedulType;
+
+@property (nonatomic, weak)id <updateSchedulTabBarViewProtocol>schedulTabBar;
+
+/// orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）,orderlySchedulArray[i][j][k]是一个数组
+@property (nonatomic, strong)NSMutableArray *orderlySchedulArray;
+
+@property (nonatomic, copy) NSString *stuNum;
+@property (nonatomic, copy) NSString *idNum;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,6 +13,7 @@
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
+#import "WeDateViewController.h"//没课约
 
 #import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
@@ -93,12 +94,15 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [self RequestCheckinInfo];
     }
      self.navigationController.navigationBar.translucent = NO;
-  
-    ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -58, MAIN_SCREEN_W, 58)];
-    classTabBarView.layer.cornerRadius = 16;
-    [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
-    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
-    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
+    
+    //发现每次切换页面都会调用这个方法，导致classTabBarView添加了多次，所以在这里加了个非空判断，以后要是哪里崩了，自己可以再改一改
+    if(((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView==nil){
+        ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -58, MAIN_SCREEN_W, 58)];
+        classTabBarView.layer.cornerRadius = 16;
+        [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
+        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
+        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
+        }
 }
 
 - (void)viewDidLoad {
@@ -567,7 +571,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 -(void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
-    
+    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":@"陈剑辉",@"stuNum":@"2019211534"}] mutableCopy]];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchMyTest {
     NSLog(@"点击了我的考试");

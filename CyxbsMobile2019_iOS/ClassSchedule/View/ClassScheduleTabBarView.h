@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ClassScheduleTabBarView : UIView
+@interface ClassScheduleTabBarView : UIView<updateSchedulTabBarViewProtocol>
 
 /// 当前课程名称
 @property (nonatomic, weak) UILabel *classLabel;
