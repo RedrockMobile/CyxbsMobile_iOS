@@ -352,7 +352,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.centerY.equalTo(roomNumberLabel);
         make.width.equalTo(@170);
     }];
-    textField.placeholder = @"输入宿舍号";
+    textField.placeholder = @"例如\"403\"";
     if([UserItem defaultItem].room) {
         textField.text = [UserItem defaultItem].room;
     }
@@ -422,6 +422,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (self.buildingNumberLabel.text != nil) {
         NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
         item.building = building;
+    }else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"输入为空";
+        [hud hide:YES afterDelay:1];
     }
     if(self.roomTextField.text != nil) {
         item.room = self.roomTextField.text;
