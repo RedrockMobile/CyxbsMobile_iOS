@@ -57,6 +57,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak)VolunteerView *volView;//志愿服务View
 
 @property (nonatomic, weak) UIButton * bindingDormitoryContentView;//绑定宿舍页面的contentView，他是一个button，用来保证点击空白处可以取消设置宿舍
+@property (nonatomic, weak)UIView *bindingView;//用来绑定宿舍的View
 @property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
 @property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
 //Model
@@ -315,6 +316,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         bindingView.backgroundColor = UIColor.whiteColor;
     }
     [contentView addSubview:bindingView];
+    self.bindingView = bindingView;
     [bindingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
         make.left.equalTo(self.view).offset(15);
@@ -422,14 +424,16 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (self.buildingNumberLabel.text != nil) {
         NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
         item.building = building;
-    }else {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [hud setMode:(MBProgressHUDModeText)];
-        hud.labelText = @"输入为空";
-        [hud hide:YES afterDelay:1];
     }
-    if(self.roomTextField.text != nil) {
+        NSLog(@"*%@*",self.roomTextField.text);
+    if(self.roomTextField.text != nil && ![self.roomTextField.text isEqual: @""]) {
         item.room = self.roomTextField.text;
+    }else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.bindingView animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"请输入宿舍号～";
+        [hud hide:YES afterDelay:1];
+        return;
     }
     [self.bindingDormitoryContentView removeAllSubviews];
     [self.bindingDormitoryContentView removeFromSuperview];

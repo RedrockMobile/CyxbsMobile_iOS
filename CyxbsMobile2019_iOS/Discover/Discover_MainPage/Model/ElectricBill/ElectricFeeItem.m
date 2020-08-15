@@ -19,6 +19,7 @@
             int day = [returnTime substringWithRange:NSMakeRange(3, 2)].intValue;
             self.time = [NSString stringWithFormat:@"2019.%d.%d",month,day];
         }
+        
     }
     return self;
     
