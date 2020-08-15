@@ -30,10 +30,17 @@
            room = item.room;
         NSDictionary *parameters = @{@"building":building, @"room":room};
         [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"%@",responseObject);
             ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
             self.electricFeeItem = item;
             //发消息告诉ViewController更新数据
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
+            if (![responseObject[@"elec_inf"][@"room"]  isEqual: @""]) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
+            }else {
+                NSLog(@"可能是房间号输入错误");//发送消息提醒用户重新绑定
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
+            }
+           
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"电费信息请求失败");
         }]; 
