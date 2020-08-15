@@ -272,7 +272,7 @@
             }];
             if(item == self.toolViewItems.lastObject) {
                 [item mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.bottom.equalTo(self.viewContainer);
+                    make.bottom.equalTo(self.viewContainer).offset(-20);
                 }];
             }
         }
