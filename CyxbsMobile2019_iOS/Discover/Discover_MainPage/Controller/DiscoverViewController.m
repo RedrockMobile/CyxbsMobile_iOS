@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak) ElectricityView *eleView;//电费相关View
 @property (nonatomic, weak)VolunteerView *volView;//志愿服务View
 
-@property (nonatomic, weak) UIView * bindingDormitoryContentView;//绑定宿舍页面的contentView
+@property (nonatomic, weak) UIButton * bindingDormitoryContentView;//绑定宿舍页面的contentView，他是一个button，用来保证点击空白处可以取消设置宿舍
 @property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
 @property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
 //Model
@@ -296,7 +296,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
 //    [self.navigationController pushViewController:vc animated:YES];
     [self getPickerViewData];
-    UIView * contentView = [[UIView alloc]initWithFrame:self.view.frame];
+    //添加灰色背景板
+    UIButton * contentView = [[UIButton alloc]initWithFrame:self.view.frame];
     self.bindingDormitoryContentView = contentView;
     [self.view addSubview:contentView];
     contentView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -304,7 +305,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [UIView animateWithDuration:0.3 animations:^{
         contentView.alpha = 1;
     }];
-    
+    [contentView addTarget:self action:@selector(cancelSettingDormitory) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *bindingView = [[UIView alloc]init];
     bindingView.layer.cornerRadius = 8;
@@ -399,6 +400,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.height.equalTo(@40);
     }];
     [button addTarget:self action:@selector(bindingDormitory) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)cancelSettingDormitory {
+    [self.bindingDormitoryContentView removeFromSuperview];
 }
 - (UIToolbar *)addToolbar
 {
