@@ -150,7 +150,8 @@
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.toolTitle);
         make.right.equalTo(self.view).offset(-15.32);
-        make.width.height.equalTo(@30);
+        make.width.equalTo(@23.4);
+        make.height.equalTo(@25.82);
     }];
 }
 - (void) customizeMainPageUI {
