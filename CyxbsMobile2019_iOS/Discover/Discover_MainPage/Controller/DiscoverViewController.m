@@ -376,7 +376,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.buildingNumberLabel = buildingNumberLabel;
     NSString * building = [UserItem defaultItem].building;
     if(building) {//如果用户曾经选择过，那么就显示曾见选择的那个
-        self.buildingNumberLabel.text = building;
+        self.buildingNumberLabel.text = [NSString stringWithFormat:@"%@栋",building];
         NSArray<NSNumber*>*chooseIndex = [self.pickerModel getBuildingNameIndexAndBuildingNumberIndexByNumberOfDormitory:building];
         [pickerView selectRow:chooseIndex.lastObject.intValue inComponent:1 animated:NO];
         [pickerView selectRow:chooseIndex.firstObject.intValue inComponent:0 animated:NO];
@@ -416,7 +416,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)bindingDormitory {
     UserItem *item = [UserItem defaultItem];
     if (self.buildingNumberLabel.text != nil) {
-        item.building = self.buildingNumberLabel.text;
+        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+        item.building = building;
     }
     if(self.roomTextField.text != nil) {
         item.room = self.roomTextField.text;
