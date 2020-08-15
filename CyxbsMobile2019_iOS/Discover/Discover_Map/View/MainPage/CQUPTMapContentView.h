@@ -16,13 +16,13 @@
 
 - (void)searchPlaceWithString:(NSString *_Nullable)string;
 
-- (void)transitionViewDragged:(UIPanGestureRecognizer *_Nonnull)sender;
+- (void)requestPlaceDataWithPlaceID:(NSString *_Nonnull)placeID;
 
 @end
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CQUPTMapDataItem, CQUPTMapHotPlaceItem, CQUPTMapStarPlaceItem, CQUPTMapSearchItem;
+@class CQUPTMapDataItem, CQUPTMapHotPlaceItem, CQUPTMapStarPlaceItem, CQUPTMapSearchItem, CQUPTMapPlaceDetailItem;
 @interface CQUPTMapContentView : UIView
 
 @property (nonatomic, weak) id<CQUPTMapContentViewDelegate> delegate;
@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)starPlaceListRequestSuccess:(NSArray <CQUPTMapStarPlaceItem *> *)starPlaceArray;
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray;
+
+- (void)placeDetailDataRequestSuccess:(CQUPTMapPlaceDetailItem *)placeDetailItem;
 
 @end
 

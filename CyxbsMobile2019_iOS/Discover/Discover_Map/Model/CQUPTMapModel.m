@@ -7,8 +7,7 @@
 //
 
 #import "CQUPTMapModel.h"
-#import "CQUPTMapDataItem.h"
-#import "CQUPTMapSearchItem.h"
+
 
 @implementation CQUPTMapModel
 
@@ -80,6 +79,20 @@
             [tmpArray addObject:item];
         }
         success(tmpArray);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
++ (void)requestPlaceDataWithPlaceID:(NSString *)placeID success:(nonnull void (^)(CQUPTMapPlaceDetailItem * _Nonnull))success failed:(nonnull void (^)(NSError * _Nonnull))failed {
+    NSDictionary *params = @{
+        @"place_id": placeID
+    };
+    
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPPLACEDETAIL method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            success([[CQUPTMapPlaceDetailItem alloc] initWithDict:responseObject[@"data"]]);
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];

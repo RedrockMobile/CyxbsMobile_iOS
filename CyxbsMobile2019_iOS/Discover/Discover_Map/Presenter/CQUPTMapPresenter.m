@@ -43,4 +43,12 @@
     }];
 }
 
+- (void)requestPlaceDataWithPlaceID:(NSString *)placeID {
+    [CQUPTMapModel requestPlaceDataWithPlaceID:placeID success:^(CQUPTMapPlaceDetailItem * _Nonnull placeDetailItem) {
+        [self.view placeDetailDataRequestSuccess:placeDetailItem];
+    } failed:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
 @end

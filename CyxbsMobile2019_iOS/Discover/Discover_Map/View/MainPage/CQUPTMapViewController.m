@@ -7,21 +7,16 @@
 //
 
 #import "CQUPTMapViewController.h"
-#import "CQUPTMapContentView.h"
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapViewProtocol.h"
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import <IQKeyboardManager.h>
-#import "CQUPTMapPlaceDetailController.h"
-#import "CQUPTMapDetailTransitionAnimator.h"
-#import "CQUPTMapDetailPercentDrivenController.h"
 
 
-@interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate, UIViewControllerTransitioningDelegate>
+@interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
 
 @property (nonatomic, strong) CQUPTMapPresenter *presenter;
-@property (nonatomic, weak) CQUPTMapContentView *contentView;
 
 @end
 
@@ -77,6 +72,10 @@
     [self.contentView searchPlaceSuccess:placeIDArray];
 }
 
+- (void)placeDetailDataRequestSuccess:(CQUPTMapPlaceDetailItem *)placeDetailItem {
+    [self.contentView placeDetailDataRequestSuccess:placeDetailItem];
+}
+
 
 #pragma mark - ContentView代理
 - (void)backButtonClicked {
@@ -102,42 +101,8 @@
     [self.presenter searchPlaceWithString:string];
 }
 
-- (void)transitionViewDragged:(UIPanGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        self.presentPanGesture = sender;
-        
-        CQUPTMapPlaceDetailController *vc = [[CQUPTMapPlaceDetailController alloc] init];
-        vc.modalPresentationStyle = UIModalPresentationCustom;
-        vc.transitioningDelegate = self;
-        [self presentViewController:vc animated:YES completion:nil];
-    }
+- (void)requestPlaceDataWithPlaceID:(NSString *)placeID {
+    [self.presenter requestPlaceDataWithPlaceID:placeID];
 }
-
-
-#pragma mark - 转场动画
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return [[CQUPTMapDetailTransitionAnimator alloc] init];
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [[CQUPTMapDetailTransitionAnimator alloc] init];
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
-    if (self.presentPanGesture) {
-        return [[CQUPTMapDetailPercentDrivenController alloc] initWithPanGesture:self.presentPanGesture];
-    } else {
-        return nil;
-    }
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    if (self.presentPanGesture) {
-        return [[CQUPTMapDetailPercentDrivenController alloc] initWithPanGesture:self.presentPanGesture];
-    } else {
-        return nil;
-    }
-}
-
 
 @end

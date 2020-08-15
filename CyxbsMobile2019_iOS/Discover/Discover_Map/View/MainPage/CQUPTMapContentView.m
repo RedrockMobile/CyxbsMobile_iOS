@@ -14,6 +14,7 @@
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapStarPlaceItem.h"
 #import "CQUPTMapSearchView.h"
+#import "CQUPTMapDetailView.h"
 #import <IQKeyboardManager.h>
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, CALayerDelegate>
@@ -40,7 +41,9 @@
 @property (nonatomic, weak) CQUPTMapSearchView *beforeSearchView;
 
 /// 选择地点后底部弹出的view
-@property (nonatomic, weak) UIView *selectedTrnasitionView;
+@property (nonatomic, weak) CQUPTMapDetailView *detailView;
+
+@property (nonatomic, assign) CGFloat lastY;
 
 @end
 
@@ -337,91 +340,99 @@
             if ([rect isIncludePercentagePoint:tapPoint] || [place.tagRect isIncludePercentagePoint:tapPoint]) {
                 NSLog(@"%@", place.placeName);
                 [self selectedAPlace:place];
+                // 请求详情数据
+                if ([self.delegate respondsToSelector:@selector(requestPlaceDataWithPlaceID:)]) {
+                    [self.delegate requestPlaceDataWithPlaceID:place.placeId];
+                }
+
             }
         }
     }
 }
 
+- (void)placeDetailDataRequestSuccess:(CQUPTMapPlaceDetailItem *)placeDetailItem {
+    [self.detailView loadDataWithPlaceDetailItem:placeDetailItem];
+}
+
+
 /// 点击了地图上某个地点后。上面那个方法判断成功后调用的。
 - (void)selectedAPlace:(CQUPTMapPlaceItem *)placeItem {
-//    if (self.selectedTrnasitionView) {
-        [UIView animateWithDuration:0.2 animations:^{
-            self.selectedTrnasitionView.alpha = 0;
-            self.selectedTrnasitionView.layer.affineTransform = CGAffineTransformScale(self.selectedTrnasitionView.layer.affineTransform, 0.2, 0.2);
-        }];
-//    }
+    [UIView animateWithDuration:0.2 animations:^{
+        self.detailView.alpha = 0;
+        self.detailView.layer.affineTransform = CGAffineTransformScale(self.detailView.layer.affineTransform, 0.2, 0.2);
+    }];
     
-    UIView *transitionView = [[UIView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, 112 + 20)];
-    transitionView.backgroundColor = [UIColor whiteColor];
-    transitionView.layer.cornerRadius = 17;
-    [self addSubview:transitionView];
+    CQUPTMapDetailView *detailView = [[CQUPTMapDetailView alloc] initWithPlaceItem:placeItem];
+    [self addSubview:detailView];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(transitionViewDragged:)];
-    [transitionView addGestureRecognizer:pan];
+    [detailView addGestureRecognizer:pan];
     
-    UIView *dragBar = [[UIView alloc] init];
-    dragBar.backgroundColor = [UIColor colorWithHexString:@"#E1EDFB"];
-    [transitionView addSubview:dragBar];
-    
-    UILabel *placeNameLabel = [[UILabel alloc] init];
-    placeNameLabel.text = placeItem.placeName;
-    placeNameLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
-    if (@available(iOS 11.0, *)) {
-        placeNameLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
-    } else {
-        placeNameLabel.textColor = [UIColor colorWithHexString:@"#15305B"];
-    }
-    [transitionView addSubview:placeNameLabel];
-    
-    UIButton *starButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [starButton setImage:[UIImage imageNamed:@"Map_StarButton"] forState:UIControlStateNormal];
-    [transitionView addSubview:starButton];
-    
-    UIButton *staredButton = [[UIButton alloc] init];
-    if (@available(iOS 11.0, *)) {
-        [staredButton setTitleColor:[UIColor colorNamed:@"Map_StaredButtonColor"] forState:UIControlStateNormal];
-    } else {
-        [staredButton setTitleColor:[UIColor colorWithHexString:@"#47DAFA"] forState:UIControlStateNormal];
-    }
-    staredButton.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:13];
-    [transitionView addSubview:staredButton];
-    
-    [dragBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(transitionView).offset(11);
-        make.centerX.equalTo(self);
-        make.width.equalTo(@28);
-        make.height.equalTo(@7);
-    }];
-    dragBar.layer.cornerRadius = 3.5;
-    
-    [placeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(transitionView).offset(15);
-        make.top.equalTo(transitionView).offset(40);
-    }];
-    
-    [starButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(transitionView).offset(-14);
-        make.top.equalTo(transitionView).offset(54);
-        make.width.height.equalTo(@21);
+    [detailView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_bottom);
+        make.leading.width.equalTo(self);
+        make.height.equalTo(@(2 * MAIN_SCREEN_H));      // 让detailView足够高，不然上滑会滑过头
     }];
     
     [self layoutIfNeeded];
     
     [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        transitionView.frame = CGRectMake(0, MAIN_SCREEN_H - 112, MAIN_SCREEN_W, 112 + 20);
+        detailView.layer.affineTransform = CGAffineTransformTranslate(detailView.layer.affineTransform, 0, -112);
     } completion:^(BOOL finished) {
-        if (self.selectedTrnasitionView) {
-            [self.selectedTrnasitionView removeFromSuperview];
+        if (self.detailView) {
+            [self.detailView removeFromSuperview];
         }
-        self.selectedTrnasitionView = transitionView;
+        self.detailView = detailView;
         [self layoutIfNeeded];
     }];
 }
 
 - (void)transitionViewDragged:(UIPanGestureRecognizer *)sender {
-    if ([self.delegate respondsToSelector:@selector(transitionViewDragged:)]) {
-        [self.delegate transitionViewDragged:sender];
+    CGPoint translation = [sender translationInView:self];
+    
+    if (sender.state == UIGestureRecognizerStateChanged) {
+        self.lastY = sender.view.mj_y;
+        sender.view.center = CGPointMake(sender.view.center.x, sender.view.center.y + translation.y);
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        
+        // 超出范围后回弹
+        if (sender.view.frame.origin.y < STATUSBARHEIGHT + 181) {       // 弹回到顶
+            [UIView animateWithDuration:0.2 animations:^{
+                sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
+            }];
+            return;
+        } else if (sender.view.frame.origin.y > MAIN_SCREEN_H - 112) {  // 弹回到底
+            [UIView animateWithDuration:0.2 animations:^{
+                sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+            }];
+            return;
+        }
+        
+        // 速度和距离判断，如果速度或距离大于某个值，完全弹出或归位
+        if (sender.view.mj_y - self.lastY < 0) {        // 往上拉
+            if ((MAIN_SCREEN_H - 112) - sender.view.mj_y > 50 || sender.view.mj_y - self.lastY < -10) {    // 移动距离 > 50 或者速度足够快
+                [UIView animateWithDuration:0.1 animations:^{
+                    sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
+                }];
+            } else {        // 移动距离太小，弹回到底
+                [UIView animateWithDuration:0.2 animations:^{
+                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                }];
+            }
+        } else {                        // 往下拉
+            if ((STATUSBARHEIGHT + 181) - sender.view.mj_y > 50 || sender.view.mj_y - self.lastY > 10) {    // 移动距离 > 50 或者速度足够快
+                [UIView animateWithDuration:0.1 animations:^{
+                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                }];
+            } else {
+                [UIView animateWithDuration:0.2 animations:^{
+                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                }];
+            }
+        }
     }
+    
+    [sender setTranslation:CGPointZero inView:self];
 }
 
 
