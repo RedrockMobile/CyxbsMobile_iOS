@@ -57,9 +57,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak) ElectricityView *eleView;//电费相关View
 @property (nonatomic, weak)VolunteerView *volView;//志愿服务View
 
-@property (nonatomic, weak) UIView * bindingDormitoryContentView;//绑定宿舍页面的contentView
+@property (nonatomic, weak) UIButton * bindingDormitoryContentView;//绑定宿舍页面的contentView，他是一个button，用来保证点击空白处可以取消设置宿舍
+@property (nonatomic, weak)UIView *bindingView;//用来绑定宿舍的View
 @property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
 @property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
+@property (nonatomic, weak)UIView *hideTabbarView;//用来遮挡tabbar的View
 //Model
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
@@ -68,6 +70,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property PickerModel *pickerModel;
 //pickerView
 @property (nonatomic)NSInteger selectedArrays;
+//Data
+@property (nonatomic, assign)int classTabbarHeight;
+@property(nonatomic, assign)int classTabbarCornerRadius;
+
 @end
 
 @implementation DiscoverViewController
@@ -94,15 +100,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [self RequestCheckinInfo];
     }
      self.navigationController.navigationBar.translucent = NO;
-    
-    //发现每次切换页面都会调用这个方法，导致classTabBarView添加了多次，所以在这里加了个非空判断，以后要是哪里崩了，自己可以再改一改
-    if(((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView==nil){
-        ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -58, MAIN_SCREEN_W, 58)];
-        classTabBarView.layer.cornerRadius = 16;
-        [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
-        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
-        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
-        }
+    self.classTabbarHeight = 58;
+    self.classTabbarCornerRadius = 16;
+    ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
+    classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
+    [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
+    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
+    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
 }
 
 - (void)viewDidLoad {
@@ -118,6 +122,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self layoutSubviews];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
@@ -275,8 +280,15 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [bannerModel fetchData];
     self.bannerModel = bannerModel;
 }
-
+- (void)bindingRoomFailed {
+      MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+      [hud setMode:(MBProgressHUDModeText)];
+      hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
+      [hud hide:YES afterDelay:1.5];
+      return;
+}
 - (void)updateElectricFeeUI {
+
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
@@ -300,15 +312,27 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
 //    [self.navigationController pushViewController:vc animated:YES];
     [self getPickerViewData];
-    UIView * contentView = [[UIView alloc]initWithFrame:self.view.frame];
+    //添加灰色背景板
+    UIButton * contentView = [[UIButton alloc]initWithFrame:self.view.frame];
     self.bindingDormitoryContentView = contentView;
     [self.view addSubview:contentView];
     contentView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     contentView.alpha = 0;
+    
+    UIView *hideTabbarView = [[UIView alloc]initWithFrame:CGRectMake(0,-self.classTabbarHeight, MAIN_SCREEN_W, 800)];
+    hideTabbarView.layer.cornerRadius = self.classTabbarCornerRadius;
+    self.hideTabbarView = hideTabbarView;
+    hideTabbarView.backgroundColor = contentView.backgroundColor;
+    hideTabbarView.alpha = 0;
     [UIView animateWithDuration:0.3 animations:^{
         contentView.alpha = 1;
+        hideTabbarView.alpha = 1;
+//        self.tabBarController.tabBar.hidden=YES;
+        [self.tabBarController.tabBar addSubview:hideTabbarView];
+        [UIApplication.sharedApplication.keyWindow bringSubviewToFront:hideTabbarView];
+        self.view.backgroundColor = self.finderView.backgroundColor;
     }];
-    
+    [contentView addTarget:self action:@selector(cancelSettingDormitory) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *bindingView = [[UIView alloc]init];
     bindingView.layer.cornerRadius = 8;
@@ -318,6 +342,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         bindingView.backgroundColor = UIColor.whiteColor;
     }
     [contentView addSubview:bindingView];
+    self.bindingView = bindingView;
     [bindingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
         make.left.equalTo(self.view).offset(15);
@@ -355,7 +380,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.centerY.equalTo(roomNumberLabel);
         make.width.equalTo(@170);
     }];
-    textField.placeholder = @"输入宿舍号";
+    textField.placeholder = @"例如\"403\"";
     if([UserItem defaultItem].room) {
         textField.text = [UserItem defaultItem].room;
     }
@@ -380,7 +405,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.buildingNumberLabel = buildingNumberLabel;
     NSString * building = [UserItem defaultItem].building;
     if(building) {//如果用户曾经选择过，那么就显示曾见选择的那个
-        self.buildingNumberLabel.text = building;
+        self.buildingNumberLabel.text = [NSString stringWithFormat:@"%@栋",building];
         NSArray<NSNumber*>*chooseIndex = [self.pickerModel getBuildingNameIndexAndBuildingNumberIndexByNumberOfDormitory:building];
         [pickerView selectRow:chooseIndex.lastObject.intValue inComponent:1 animated:NO];
         [pickerView selectRow:chooseIndex.firstObject.intValue inComponent:0 animated:NO];
@@ -404,6 +429,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }];
     [button addTarget:self action:@selector(bindingDormitory) forControlEvents:UIControlEventTouchUpInside];
 }
+-(void)cancelSettingDormitory {
+//    self.tabBarController.tabBar.hidden=NO;
+    [self.bindingDormitoryContentView removeFromSuperview];
+    [self.hideTabbarView removeFromSuperview];
+
+}
 - (UIToolbar *)addToolbar
 {
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 35)];
@@ -420,13 +451,23 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)bindingDormitory {
     UserItem *item = [UserItem defaultItem];
     if (self.buildingNumberLabel.text != nil) {
-        item.building = self.buildingNumberLabel.text;
+        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+        item.building = building;
     }
-    if(self.roomTextField.text != nil) {
+        NSLog(@"*%@*",self.roomTextField.text);
+    if(self.roomTextField.text != nil && ![self.roomTextField.text isEqual: @""]) {
         item.room = self.roomTextField.text;
+    }else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.bindingView animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"请输入宿舍号～";
+        [hud hide:YES afterDelay:1];
+        return;
     }
+//    self.tabBarController.tabBar.hidden=NO;
     [self.bindingDormitoryContentView removeAllSubviews];
     [self.bindingDormitoryContentView removeFromSuperview];
+    [self.hideTabbarView removeFromSuperview];
     [self reloadElectricViewIfNeeded];
 
 }

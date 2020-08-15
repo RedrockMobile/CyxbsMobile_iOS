@@ -22,7 +22,7 @@
 //@property (nonatomic, weak) UITableView *resultTableView;     // 声明在头文件中
 
 @property (nonatomic, copy) NSArray *historyArray;
-@property (nonatomic, copy) NSArray *resultArray;
+@property (nonatomic, copy) NSArray<CQUPTMapPlaceItem *> *resultArray;
 
 @end
 
@@ -119,7 +119,7 @@
         return cell;
     } else {
         CQUPTMapSearchResultCell *cell = [[CQUPTMapSearchResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[@(indexPath.row) stringValue]];
-        cell.titleLabel.text = self.resultArray[indexPath.row];
+        cell.titleLabel.text = self.resultArray[indexPath.row].placeName;
         return cell;
     }
     
@@ -137,7 +137,7 @@
     for (CQUPTMapSearchItem *placeID in placeIDArray) {
         for (CQUPTMapPlaceItem *place in mapData.placeList) {
             if (placeID.placeID == [place.placeId intValue]) {
-                [tmpArray addObject:place.placeName];
+                [tmpArray addObject:place];
             }
         }
     }

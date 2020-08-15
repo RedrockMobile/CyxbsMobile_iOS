@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 搜索地点
 - (void)searchPlaceWithString:(NSString *)string;
 
+- (void)requestPlaceDataWithPlaceID:(NSString *)placeID;
+
 @end
 
 NS_ASSUME_NONNULL_END

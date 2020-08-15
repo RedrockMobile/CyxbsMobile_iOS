@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CQUPTMapContentView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CQUPTMapViewController : UIViewController
+
+@property (nonatomic, strong) UIPanGestureRecognizer *presentPanGesture;
+
+@property (nonatomic, weak) CQUPTMapContentView *contentView;
 
 @end
 

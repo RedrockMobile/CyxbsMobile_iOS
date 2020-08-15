@@ -7,17 +7,16 @@
 //
 
 #import "CQUPTMapViewController.h"
-#import "CQUPTMapContentView.h"
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapViewProtocol.h"
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import <IQKeyboardManager.h>
 
+
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
 
 @property (nonatomic, strong) CQUPTMapPresenter *presenter;
-@property (nonatomic, weak) CQUPTMapContentView *contentView;
 
 @end
 
@@ -53,7 +52,13 @@
     
     
     CQUPTMapContentView *contentView = [[CQUPTMapContentView alloc] initWithFrame:self.view.bounds andMapData:mapData andHotPlaceItemArray:hotPlaceArray];
+    contentView.backgroundColor = [UIColor colorWithHexString:mapData.mapColor];
     contentView.delegate = self;
+
+    NSURL *mapURL = [NSURL URLWithString:mapData.mapURL];
+    [contentView.mapView sd_setImageWithURL:mapURL placeholderImage:[UIImage imageNamed:@"Map_map"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        contentView.mapView.contentMode = UIViewContentModeScaleAspectFill;
+    }];
     
     [self.view addSubview:contentView];
     self.contentView = contentView;
@@ -65,6 +70,10 @@
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
     [self.contentView searchPlaceSuccess:placeIDArray];
+}
+
+- (void)placeDetailDataRequestSuccess:(CQUPTMapPlaceDetailItem *)placeDetailItem {
+    [self.contentView placeDetailDataRequestSuccess:placeDetailItem];
 }
 
 
@@ -90,6 +99,10 @@
     [UserDefaultTool saveValue:history forKey:CQUPTMAPHISTORYKEY];
     
     [self.presenter searchPlaceWithString:string];
+}
+
+- (void)requestPlaceDataWithPlaceID:(NSString *)placeID {
+    [self.presenter requestPlaceDataWithPlaceID:placeID];
 }
 
 @end

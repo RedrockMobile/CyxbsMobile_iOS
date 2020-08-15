@@ -14,6 +14,7 @@
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapStarPlaceItem.h"
 #import "CQUPTMapSearchView.h"
+#import "CQUPTMapDetailView.h"
 #import <IQKeyboardManager.h>
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, CALayerDelegate>
@@ -24,6 +25,7 @@
 @property (nonatomic, copy) NSArray<CQUPTMapStarPlaceItem *> *starPlaceArray;
 
 // 控件
+@property (nonatomic, weak) UIView *topView;
 @property (nonatomic, weak) UIButton *backButton;
 @property (nonatomic, weak) UITextField *searchBar;
 @property (nonatomic, weak) UIImageView *searchScopeImageView;
@@ -36,10 +38,12 @@
 @property (nonatomic, weak) UIImageView *starDialogueBoxImageView;
 @property (nonatomic, weak) UITableView *starTableView;
 
-@property (nonatomic, weak) UIScrollView *mapScrollView;
-@property (nonatomic, weak) UIImageView *mapView;
-
 @property (nonatomic, weak) CQUPTMapSearchView *beforeSearchView;
+
+/// 选择地点后底部弹出的view
+@property (nonatomic, weak) CQUPTMapDetailView *detailView;
+
+@property (nonatomic, assign) CGFloat lastY;
 
 @end
 
@@ -54,6 +58,11 @@
         
         self.mapDataItem = mapDataItem;
         self.hotPlaceItemArray = hotPlaceItemArray;
+        
+        UIView *topView = [[UIView alloc] init];
+        topView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:topView];
+        self.topView = topView;
         
         // 返回按钮
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -125,7 +134,7 @@
         self.mapView = mapView;
         
         mapScrollView.contentSize = mapView.image.size;
-        mapScrollView.maximumZoomScale = 5.0;
+        mapScrollView.maximumZoomScale = 6.0;
         mapScrollView.minimumZoomScale = 1.0;
         [mapScrollView scrollToBottom];
         
@@ -143,6 +152,11 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.top.trailing.equalTo(self);
+        make.bottom.equalTo(self.hotScrollView);
+    }];
     
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(STATUSBARHEIGHT + 15);
@@ -323,11 +337,102 @@
     
     for (CQUPTMapPlaceItem *place in self.mapDataItem.placeList) {
         for (CQUPTMapPlaceRect *rect in place.buildingList) {
-            if ([rect isIncludePercentagePoint:tapPoint]) {
-                NSLog(@"yes");
+            if ([rect isIncludePercentagePoint:tapPoint] || [place.tagRect isIncludePercentagePoint:tapPoint]) {
+                NSLog(@"%@", place.placeName);
+                [self selectedAPlace:place];
+                // 请求详情数据
+                if ([self.delegate respondsToSelector:@selector(requestPlaceDataWithPlaceID:)]) {
+                    [self.delegate requestPlaceDataWithPlaceID:place.placeId];
+                }
+
             }
         }
     }
+}
+
+- (void)placeDetailDataRequestSuccess:(CQUPTMapPlaceDetailItem *)placeDetailItem {
+    [self.detailView loadDataWithPlaceDetailItem:placeDetailItem];
+}
+
+
+/// 点击了地图上某个地点后。上面那个方法判断成功后调用的。
+- (void)selectedAPlace:(CQUPTMapPlaceItem *)placeItem {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.detailView.alpha = 0;
+        self.detailView.layer.affineTransform = CGAffineTransformScale(self.detailView.layer.affineTransform, 0.2, 0.2);
+    }];
+    
+    CQUPTMapDetailView *detailView = [[CQUPTMapDetailView alloc] initWithPlaceItem:placeItem];
+    [self addSubview:detailView];
+    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(transitionViewDragged:)];
+    [detailView addGestureRecognizer:pan];
+    
+    [detailView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_bottom);
+        make.leading.width.equalTo(self);
+        make.height.equalTo(@(2 * MAIN_SCREEN_H));      // 让detailView足够高，不然上滑会滑过头
+    }];
+    
+    [self layoutIfNeeded];
+    
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        detailView.layer.affineTransform = CGAffineTransformTranslate(detailView.layer.affineTransform, 0, -112);
+    } completion:^(BOOL finished) {
+        if (self.detailView) {
+            [self.detailView removeFromSuperview];
+        }
+        self.detailView = detailView;
+        [self layoutIfNeeded];
+    }];
+}
+
+- (void)transitionViewDragged:(UIPanGestureRecognizer *)sender {
+    CGPoint translation = [sender translationInView:self];
+    
+    if (sender.state == UIGestureRecognizerStateChanged) {
+        self.lastY = sender.view.mj_y;
+        sender.view.center = CGPointMake(sender.view.center.x, sender.view.center.y + translation.y);
+    } else if (sender.state == UIGestureRecognizerStateEnded) {
+        
+        // 超出范围后回弹
+        if (sender.view.frame.origin.y < STATUSBARHEIGHT + 181) {       // 弹回到顶
+            [UIView animateWithDuration:0.2 animations:^{
+                sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
+            }];
+            return;
+        } else if (sender.view.frame.origin.y > MAIN_SCREEN_H - 112) {  // 弹回到底
+            [UIView animateWithDuration:0.2 animations:^{
+                sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+            }];
+            return;
+        }
+        
+        // 速度和距离判断，如果速度或距离大于某个值，完全弹出或归位
+        if (sender.view.mj_y - self.lastY < 0) {        // 往上拉
+            if ((MAIN_SCREEN_H - 112) - sender.view.mj_y > 50 || sender.view.mj_y - self.lastY < -10) {    // 移动距离 > 50 或者速度足够快
+                [UIView animateWithDuration:0.1 animations:^{
+                    sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
+                }];
+            } else {        // 移动距离太小，弹回到底
+                [UIView animateWithDuration:0.2 animations:^{
+                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                }];
+            }
+        } else {                        // 往下拉
+            if ((STATUSBARHEIGHT + 181) - sender.view.mj_y > 50 || sender.view.mj_y - self.lastY > 10) {    // 移动距离 > 50 或者速度足够快
+                [UIView animateWithDuration:0.1 animations:^{
+                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                }];
+            } else {
+                [UIView animateWithDuration:0.2 animations:^{
+                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                }];
+            }
+        }
+    }
+    
+    [sender setTranslation:CGPointZero inView:self];
 }
 
 

@@ -21,20 +21,31 @@
 
 - (void)getData {
     HttpClient *client = [HttpClient defaultClient];
-    NSString *building = @"26";
-    NSString *room = @"412";
-//    UserItem *item = [UserItem defaultItem];
-//    building = item.building;
-//    room = item.room;
-    NSDictionary *parameters = @{@"building":building, @"room":room};
-    [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
-        self.electricFeeItem = item;
-        //发消息告诉ViewController更新数据
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"电费信息请求失败");
-    }]; 
+    NSString *building;
+    NSString *room;
+    
+    UserItem *item = [UserItem defaultItem];
+    if (item.building && item.room) {
+        building = item.building;
+           room = item.room;
+        NSDictionary *parameters = @{@"building":building, @"room":room};
+        [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"%@",responseObject);
+            ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
+            self.electricFeeItem = item;
+            //发消息告诉ViewController更新数据
+            if (![responseObject[@"elec_inf"][@"room"]  isEqual: @""]) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
+            }else {
+                NSLog(@"可能是房间号输入错误");//发送消息提醒用户重新绑定
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
+            }
+           
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"电费信息请求失败");
+        }]; 
+    }
+
     
 }
 
