@@ -40,7 +40,7 @@
     
     _month = [[UIView alloc]init];
     if (@available(iOS 11.0, *)) {
-               _month.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+               _month.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
            } else {
                _month.backgroundColor = [UIColor clearColor];
            }
@@ -48,7 +48,7 @@
     
     _dayBar = [[UIView alloc]init];
     if (@available(iOS 11.0, *)) {
-        _dayBar.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+        _dayBar.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
         _dayBar.backgroundColor = [UIColor clearColor];
     }
@@ -56,7 +56,7 @@
     
     _topBar = [[UIView alloc]init];
     if (@available(iOS 11.0, *)) {
-           _topBar.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+           _topBar.backgroundColor = [UIColor redColor];
        } else {
            _topBar.backgroundColor = [UIColor clearColor];
        }
@@ -70,14 +70,15 @@
     _rootView = [[UIView alloc]init];
     
     _scrollView = [[UIScrollView alloc]init];
+    _scrollView.showsVerticalScrollIndicator = NO;
     if (@available(iOS 11.0, *)) {
-             _scrollView.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+             _scrollView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
          } else {
             _scrollView.backgroundColor = [UIColor whiteColor];
          }
     _scrollView.scrollEnabled = YES;
     
-    _scrollView.contentSize = CGSizeMake(0,606*autoSizeScaleY);
+    _scrollView.contentSize = CGSizeMake(0,680*autoSizeScaleY);
     _scrollView.delegate = self;
     
     [_rootView addSubview:_scrollView];
@@ -90,7 +91,7 @@
     [_backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [_topBar addSubview:_backButton];
     if (@available(iOS 11.0, *)) {
-        _leftBar.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+        _leftBar.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
        _leftBar.backgroundColor = [UIColor whiteColor];
     }
@@ -591,7 +592,8 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (_scrollView.contentOffset.y < -100) {
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadView" object:nil];
+        //下拉刷新
+//         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadView" object:nil];
     }
 }
 

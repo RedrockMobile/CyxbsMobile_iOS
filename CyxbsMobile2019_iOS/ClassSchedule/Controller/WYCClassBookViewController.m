@@ -205,7 +205,6 @@ const float distance=20;
             switch (self.schedulType) {
                 //代表是要显示自己的课表
                 case ScheduleTypePersonal:
-                    //不知道为什么底下有一个白色的条，挡住了一部分课表，不知道要不要改一下滚动范围，这里没改
                     [view addBtn:day];
                     break;
                 //代表是要在没课约页面显示课表
@@ -215,8 +214,6 @@ const float distance=20;
                     for (UIView *sub in view.scrollView.subviews) {
                         sub.userInteractionEnabled = NO;
                     }
-                    //不知道为什么底下有一个白色的条，挡住了一部分课表，所以在这里改一下滚动范围
-                    view.scrollView.contentSize = CGSizeMake(0, 675);
                     break;
                     
                 //代表是要在同学课表页面显示课表
@@ -226,8 +223,6 @@ const float distance=20;
                     for (UIView *sub in view.scrollView.subviews) {
                         sub.userInteractionEnabled = NO;
                     }
-                    //不知道为什么底下有一个白色的条，挡住了一部分课表，所以在这里改一下滚动范围
-                    view.scrollView.contentSize = CGSizeMake(0, 675);
                     break;
                 default:
                     
@@ -237,9 +232,9 @@ const float distance=20;
             [self.scrollView addSubview:view];
         }
     }
-    [self.scrollView layoutSubviews];
+//    [self.scrollView layoutSubviews];
     self.scrollView.contentOffset = CGPointMake(self.index.intValue*self.scrollView.frame.size.width,0);
-    [self.view layoutSubviews];
+//    [self.view layoutSubviews];
     
 }
 //WYCClassAndRemindDataModel模型加载失败后调用
@@ -258,16 +253,16 @@ const float distance=20;
     }];
     
     
-    UIView *view = [[UIView alloc]initWithFrame:self.scrollView.frame];
-    view.backgroundColor = [UIColor blackColor];
-    [self.scrollView addSubview:view];
+//    UIView *view = [[UIView alloc]initWithFrame:self.scrollView.frame];
+//    view.backgroundColor = [UIColor redColor];
+//    [self.scrollView addSubview:view];
     self.scrollView.contentSize = CGSizeMake(0, self.scrollView.height + 100);
 }
 
 //初始化self.scrollView，并把它加到self.view上面
 - (void)initScrollView{
     self.scrollView = [[UIScrollView alloc]init];
-    [self.scrollView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-HEADERHEIGHT-NVGBARHEIGHT)];
+    [self.scrollView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.scrollView.contentSize = CGSizeMake(self.dateModel.dateArray.count * self.scrollView.frame.size.width, 0);
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
@@ -369,6 +364,9 @@ const float distance=20;
 - (void)viewWillAppear:(BOOL)animated{
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+//        [UIView animateWithDuration:0.3 animations:^{
+            self.topBarView.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
+//        }];
     }
 }
 //程序回到前台时调用，在这里更新显示下节课信息的tabBar的信息

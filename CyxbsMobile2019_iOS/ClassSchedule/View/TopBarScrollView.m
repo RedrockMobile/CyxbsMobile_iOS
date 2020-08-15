@@ -312,5 +312,10 @@
     //调用代理方法，告诉代理点击了哪一周的按钮，0代表整学期，17代表第十七周
     [self.weekChooseDelegate gotoWeekAtIndex:self.correctIndex];
 }
-
+//- (void)layoutSubviews{
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
+//    });
+//}
 @end
