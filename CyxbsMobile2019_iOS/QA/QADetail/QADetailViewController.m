@@ -14,12 +14,14 @@
 #import "GKPhotoBrowser.h"
 #import "QAReviewViewController.h"
 @interface QADetailViewController ()<QADetailDelegate>
-@property(strong,nonatomic)UIScrollView *scrollView;
+///貌似这个属性没有用到，先注释掉
+//@property(strong,nonatomic)UIScrollView *scrollView;
 @property(strong,nonatomic)NSNumber *question_id;
 @property(strong,nonatomic)QADetailModel *model;
 //举报界面
 @property(strong,nonatomic)SDMask *reportViewMask;
 @property(strong,nonatomic)QADetailReportView *reportView;
+@property(strong,nonatomic)QADetailView *detailView;
 @end
 
 @implementation QADetailViewController
@@ -57,7 +59,7 @@
     NSDictionary *detailData = self.model.detailData;
     NSArray *answersData = self.model.answersData;
     QADetailView *detailView = [[QADetailView alloc]initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT, SCREEN_WIDTH, self.view.height - TOTAL_TOP_HEIGHT)];
-    
+    self.detailView = detailView;
     [detailView setupUIwithDic:detailData answersData:answersData];
     [detailView.answerButton setTarget:self action:@selector(answer:) forControlEvents:UIControlEventTouchUpInside];
     detailView.delegate = self;
@@ -69,6 +71,8 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
+    //getDataWithId会发送网络请求，请求后会发送通知，
+    //成功->调用控制器的QADetailDataLoadSuccess方法，失败->QADetailDataLoadError
     [self.model getDataWithId:self.question_id];
 }
 - (void)setNotification{
@@ -105,6 +109,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(QADetailIgnoreFailure)
                                                  name:@"QADetailIgnoreFailure" object:nil];
+    //上拉加载
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QADetailDataLoadMoreSuccess)
+                                                 name:@"QADetailDataLoadMoreSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QADetailDataLoadMoreError)
+                                                 name:@"QADetailDataLoadMoreError" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(QADetailDataLoadMoreFailure)
+                                                 name:@"QADetailDataLoadMoreFailure" object:nil];
 }
 
 - (void)QADetailDataLoadSuccess{
@@ -194,6 +208,16 @@
     [controller addAction:act1];
     [self presentViewController:controller animated:YES completion:^{}];
 }
+- (void)QADetailDataLoadMoreSuccess{
+    [self.detailView loadMoreWithArray:self.model.answersData ifSuccessful:YES];
+}
+- (void)QADetailDataLoadMoreError{
+    [self.detailView loadMoreWithArray:self.model.answersData ifSuccessful:NO];
+}
+- (void)QADetailDataLoadMoreFailure{
+    [self.detailView loadMoreWithArray:self.model.answersData ifSuccessful:NO];
+}
+
 - (void)reloadView{
     [self.view removeAllSubviews];
     [self customNavigationBar];
@@ -286,7 +310,7 @@
     }
 }
 
-//点击某条回答后调用
+//点击某条回答后调用，answerId是某条回答的tag
 - (void)tapToViewComment:(NSNumber *)answerId{
     for(int i = 0; i < self.model.answersData.count; i++){
         NSDictionary *dic = self.model.answersData[i];
@@ -298,5 +322,15 @@
     }
     
     
+}
+//QADetailView的代理方法，用来下拉刷新
+- (void)reloadData{
+    [self.detailView removeFromSuperview];
+    [self loadData];
+}
+//QADetailView的代理方法，用来上拉加载
+- (void)loadMoreAtPage:(NSNumber*)page{
+    //这个方法请求数据后会发送通知中心，调用self的几个方法
+    [self.model getAnswersWithId:self.question_id AndPage:page];
 }
 @end

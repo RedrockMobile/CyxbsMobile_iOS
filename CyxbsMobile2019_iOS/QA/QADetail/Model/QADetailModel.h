@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface QADetailModel : NSObject
 
+///回答的数据
 @property(strong,nonatomic)NSArray *answersData;
+///问题详情
 @property(strong,nonatomic)NSDictionary *detailData;
 
 - (void)getDataWithId:(NSNumber *)questionId;
@@ -25,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)report:(NSString *)type question_id:(NSNumber *)question_id;
 - (void)ignore:(NSNumber *)question_id;
+//参数：questionId：问题id，page：请求的页
+- (void)getAnswersWithId:(NSNumber *)questionId AndPage:(NSNumber*)page;
 @end
 
 NS_ASSUME_NONNULL_END

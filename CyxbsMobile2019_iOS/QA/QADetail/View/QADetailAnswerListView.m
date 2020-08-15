@@ -89,15 +89,16 @@
     UIColor *labelColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
     if (@available(iOS 11.0, *)) {
         self.userNameLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
-        self.timeLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+        self.timeLabel.textColor = [UIColor colorNamed:@"42_78_132&90_90_90"];
         self.contentLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
         self.commentBtn.titleLabel.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
     } else {
         self.userNameLabel.textColor = labelColor;
-        self.timeLabel.textColor = labelColor;
+        self.timeLabel.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         self.contentLabel.textColor = labelColor;
         self.commentBtn.titleLabel.textColor = labelColor;
     }
+    self.timeLabel.font = [UIFont fontWithName:@".PingFang SC" size: 11];
     
 }
 

@@ -4,7 +4,7 @@
 //
 //  Created by 王一成 on 2020/1/20.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//邮问主页的5大页面都是这个类
 
 #import "QAListViewController.h"
 #import "QAListTableViewCell.h"
@@ -157,8 +157,8 @@
     
     return cell;
 }
+//点击某一条问题后调用
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     NSDictionary *dic = _dataArray[indexPath.row];
     NSNumber *question_id = [dic objectForKey:@"id"];
     NSString *title = [dic objectForKey:@"title"];

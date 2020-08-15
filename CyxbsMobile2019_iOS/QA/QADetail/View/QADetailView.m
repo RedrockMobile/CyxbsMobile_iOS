@@ -8,13 +8,22 @@
 
 #import "QADetailView.h"
 #import "QADetailAnswerListView.h"
+@interface QADetailView()
+///用来作为添加回答view时进行约束的参照物
+@property (nonatomic,strong)UIView *anchorView;
+///下一次上拉刷新所要加载的参数page
+@property (nonatomic,strong)NSNumber *page;
+///是否在加载
+@property (nonatomic,assign)BOOL isLoadingData;
+@property (nonatomic,assign)BOOL isNoMoreAnswer;
+@end
 @implementation QADetailView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     self.scrollView = [[UIScrollView alloc]init];
 //    self.scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, frame.size.height);
-    
+    self.scrollView.delegate = self;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollviewHeight = 0;
@@ -23,11 +32,13 @@
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make){
         make.left.right.top.bottom.equalTo(self);
     }];
+    //设置为2，因为第一次加载就是请求第二页的数据
+    self.page = [NSNumber numberWithInt:2];
     return self;
     
 }
 - (void)layoutSubviews{
-    self.scrollviewHeight += 50;
+    self.scrollviewHeight += 40;
     
     if (self.scrollviewHeight < MAIN_SCREEN_H) {
         self.scrollviewHeight = MAIN_SCREEN_H;
@@ -274,19 +285,14 @@ contentLabel.text = content;
           make.width.mas_equalTo(120);
       }];
     }
+    
     //加载回答列表
-    NSArray *answerList = answersData;
-//    UIView *view = [[UIView alloc]init];
-//    [self.scrollView addSubview:view];
-//    [view mas_makeConstraints:^(MASConstraintMaker *make){
-//        make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(5);
-//        make.right.mas_equalTo(self.mas_right).mas_offset(0);
-//        make.left.mas_equalTo(self.mas_left).mas_offset(0);
-//        make.height.mas_equalTo(answerList.count*190);
-//    }];
-    //判断h是否有回答
-    if (answerList.count != 0) {
-        CGFloat answerViewY = 0;
+    //判断是否有回答
+    if (answersData.count != 0) {
+        //调用addAnswerListViewWithDataArray前，对self.anchorView进行赋值
+        self.anchorView = answerLabel;
+        [self addAnswerListViewWithDataArray:answersData];
+        /**        CGFloat answerViewY = 0;
         for (int i=0;i<answerList.count; i++) {
             NSDictionary *dic = answerList[i];
             NSString *content = [dic objectForKey:@"content"];
@@ -300,41 +306,17 @@ contentLabel.text = content;
             [self.scrollView addSubview:answerView];
             self.scrollviewHeight += answerViewHeight;
         
-            if (i == 0) {
-
-                [answerView mas_makeConstraints:^(MASConstraintMaker *make){
-                    make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(5);
-                    make.height.mas_equalTo(answerViewHeight);
-//                    make.height.mas_lessThanOrEqualTo(250);
-                    make.left.right.equalTo(self);
-                }];
-                answerViewY += (answerViewHeight + 5);
-            }else{
-                    
-                [answerView mas_makeConstraints:^(MASConstraintMaker *make){
-                    make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(answerViewY + 5);
-                    make.height.mas_equalTo(answerViewHeight);
-//                    make.height.mas_lessThanOrEqualTo(250);
-                    make.left.right.equalTo(self);
-                }];
-                answerViewY += (answerViewHeight + 5);
-            }
-           
-//            if(i == answerList.count - 1){
-//                UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
-//
-//                CGRect startRact = [answerView convertRect:answerView.bounds toView:window];
-//
-//                NSLog(@"an::%@",NSStringFromCGRect(startRact));
-//                self.scrollviewHeight = answerView.bottom;
-//                NSLog(@"scrh%ld",(long)self.scrollviewHeight);
-//            }
-//            NSLog(@"%D",answerView.bottom);
-//            NSLog(@"%lD",(long)[answerView getViewHeight]);
-
+            
+            [answerView mas_makeConstraints:^(MASConstraintMaker *make){
+                make.top.mas_equalTo(answerLabel.mas_bottom).mas_offset(answerViewY + 5);
+                make.height.mas_equalTo(answerViewHeight);
+                make.left.right.equalTo(self);
+            }];
+            answerViewY += (answerViewHeight + 5);
         }
-        
+        */
     }else{
+        self.isNoMoreAnswer = YES;
         UIImageView *imageView = [[UIImageView alloc]init];
         [imageView setImage:[UIImage imageNamed:@"QADetailNoAnswer"]];
         [self.scrollView addSubview:imageView];
@@ -348,7 +330,11 @@ contentLabel.text = content;
         UILabel *label = [[UILabel alloc]init];
         label.text = @"还没有回答哦~";
         label.font = [UIFont fontWithName:PingFangSCLight size:12];
-        [label setTextColor:[UIColor colorWithHexString:@"#15315B"]];
+        if (@available(iOS 11.0, *)) {
+            [label setTextColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"]];
+        } else {
+            [label setTextColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]];
+        }
         label.textAlignment = NSTextAlignmentCenter;
         [self.scrollView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make){
@@ -397,8 +383,79 @@ contentLabel.text = content;
     [self.delegate tapAdoptBtn:[NSNumber numberWithInteger:sender.tag]];
     sender.selected = !sender.selected;
 }
-//查看评论
+//点击某条回答后调用，answerId是某条回答的tag
 - (void)tapToViewComment:(UIView *)sender{
+//    QADetailViewController
     [self.delegate tapToViewComment:[NSNumber numberWithInteger:sender.tag]];
 }
+//通过scrollView的代理方法得知是要刷新还是加载。
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if([scrollView isEqual:self.scrollView]){
+        //下拉超100就刷新
+        if(scrollView.contentOffset.y<-100){
+            [self.delegate reloadData];
+        }
+        //上拉到一定距离时并且当前没有在加载数据，那么就调用代理的方法加载数据。
+        if(scrollView.contentOffset.y>scrollView.contentSize.height-MAIN_SCREEN_H&&self.isLoadingData==NO&&self.isNoMoreAnswer==NO){
+                self.isLoadingData=YES;
+                [self.delegate loadMoreAtPage:self.page];
+        }
+    }
+}
+
+
+//添加回答列表，调用这个函数前请确保已经对self.anchorView进行赋值，
+//第一次添加时的anchorView是显示回复2字的answerLabel
+- (void)addAnswerListViewWithDataArray:(NSArray*)answerList{
+    CGFloat answerViewY = 0;
+    QADetailAnswerListView *answerView;
+    for (int i=0;i<answerList.count; i++) {
+        NSDictionary *dic = answerList[i];
+        NSString *content = [dic objectForKey:@"content"];
+        CGFloat fontsize = 17;
+        CGFloat labelWidth = SCREEN_WIDTH - 90 - 1;
+        CGFloat labelHeight = [self calculateLabelHeight:content width:labelWidth fontsize:fontsize];
+        CGFloat answerViewHeight = labelHeight + 135;
+        answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, answerViewHeight)];
+        [answerView setupView:dic isSelf:self.isSelf];
+        [self.scrollView addSubview:answerView];
+        self.scrollviewHeight += answerViewHeight;
+    
+         
+        [answerView mas_makeConstraints:^(MASConstraintMaker *make){
+            make.top.mas_equalTo(self.anchorView.mas_bottom).mas_offset(answerViewY + 5);
+            make.height.mas_equalTo(answerViewHeight);
+            make.left.right.equalTo(self);
+        }];
+        answerViewY += (answerViewHeight + 5);
+    }
+    self.anchorView = answerView;
+}
+
+
+//调用代理的loadMoreAtPage方法加载更多后，由代理调用这个方法，入果请求成功isSuccessful==YES
+//这里answersData的结构和setupUIwithDic:里面的answersData结构一样
+- (void)loadMoreWithArray:(NSArray*) answersData ifSuccessful:(BOOL)isSuccessful{
+    if(isSuccessful==YES){
+        if(answersData.count!=0){
+            //回答数不等0那就是还有回答，那么page++
+            [self addAnswerListViewWithDataArray:answersData];
+            self.page = [NSNumber numberWithInt:self.page.intValue+1];
+            [self layoutSubviews];
+        }else{
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+            [hud setMode:(MBProgressHUDModeText)];
+            hud.labelText = @"没有更多回答了";
+            [hud hide:YES afterDelay:0.8];
+            self.isNoMoreAnswer = YES;
+        }
+    }else{
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"加载失败";
+        [hud hide:YES afterDelay:0.8];
+    }
+    self.isLoadingData = NO;
+}
+
 @end
