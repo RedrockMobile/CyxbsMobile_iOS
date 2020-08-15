@@ -121,6 +121,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self layoutSubviews];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
@@ -278,8 +279,15 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [bannerModel fetchData];
     self.bannerModel = bannerModel;
 }
-
+- (void)bindingRoomFailed {
+      MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+      [hud setMode:(MBProgressHUDModeText)];
+      hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
+      [hud hide:YES afterDelay:1.5];
+      return;
+}
 - (void)updateElectricFeeUI {
+
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
