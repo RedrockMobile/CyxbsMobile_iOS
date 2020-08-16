@@ -44,7 +44,6 @@
     self.dic = dic;
     self.Type.text = @"类型";
     self.Type.font =[UIFont fontWithName:@"PingFangSC-Regular" size:15];
-    self.Type.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.Type.textAlignment = NSTextAlignmentLeft;
     [self.Type setNumberOfLines:1];
     self.Type.lineBreakMode = NSLineBreakByWordWrapping;
@@ -52,14 +51,12 @@
     
     self.Time.text = @"时间";
     self.Time.font =[UIFont fontWithName:@"PingFangSC-Regular" size:15];
-    self.Time.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.Time.textAlignment = NSTextAlignmentLeft;
     [self.Time setNumberOfLines:1];
     self.Time.lineBreakMode = NSLineBreakByWordWrapping;
     
     self.Week.text = @"周数";
     self.Week.font =[UIFont fontWithName:@"PingFangSC-Regular" size:15];
-    self.Week.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.Week.textAlignment = NSTextAlignmentLeft;
     [self.Week setNumberOfLines:1];
     self.Week.lineBreakMode = NSLineBreakByWordWrapping;
@@ -67,7 +64,6 @@
     self.className.text = [dic objectForKey:@"course"];
     self.className.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18];
     self.className.alpha = 1.0;
-    self.className.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.className.textAlignment = NSTextAlignmentLeft;
     [self.className setNumberOfLines:1];
     self.className.lineBreakMode = NSLineBreakByWordWrapping;
@@ -75,7 +71,6 @@
     self.teacher.text = [dic objectForKey:@"teacher"];
     self.teacher.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     self.teacher.alpha = 1.0;
-    self.teacher.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.teacher.textAlignment = NSTextAlignmentLeft;
     [self.teacher setNumberOfLines:1];
     self.teacher.lineBreakMode = NSLineBreakByWordWrapping;
@@ -84,7 +79,6 @@
     self.classroom.text = [dic objectForKey:@"classroom"];
     self.classroom.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     self.classroom.alpha = 1.0;
-    self.classroom.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.classroom.textAlignment = NSTextAlignmentLeft;
     [self.classroom setNumberOfLines:1];
     self.classroom.lineBreakMode = NSLineBreakByWordWrapping;
@@ -93,7 +87,6 @@
     self.classTime.text = [self getClassTime];
     self.classTime.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
     self.classTime.alpha = 1.0;
-    self.classTime.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.classTime.textAlignment = NSTextAlignmentLeft;
     [self.classTime setNumberOfLines:1];
     self.classTime.lineBreakMode = NSLineBreakByWordWrapping;
@@ -101,17 +94,17 @@
     self.classType.text = [dic objectForKey:@"type"];
     self.classType.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
     self.classType.alpha = 1.0;
-    self.classType.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.classType.textAlignment = NSTextAlignmentLeft;
     
     self.classWeek.text = [dic objectForKey:@"rawWeek"];
     self.classWeek.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
-    self.classWeek.textColor = [UIColor colorWithHexString:@"#15315B"];
     self.classWeek.alpha = 1.0;
     self.classWeek.textAlignment = NSTextAlignmentLeft;
     [self.classWeek setNumberOfLines:1];
     self.classWeek.lineBreakMode = NSLineBreakByWordWrapping;
     
+    //给label的字上色
+    [self addColor];
 }
 
 
@@ -143,4 +136,22 @@
     return classTime;
 }
 
+//给label的字上色
+- (void)addColor{
+    UIColor *textColor;
+    if(@available(iOS 11.0, *)){
+        textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    }else{
+        textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
+    self.className.textColor = textColor;
+    self.teacher.textColor = textColor;
+    self.classroom.textColor = textColor;
+    self.classTime.textColor = textColor;
+    self.classType.textColor = textColor;
+    self.classWeek.textColor = textColor;
+    self.Week.textColor = textColor;
+    self.Time.textColor = textColor;
+    self.Type.textColor = textColor;
+}
 @end

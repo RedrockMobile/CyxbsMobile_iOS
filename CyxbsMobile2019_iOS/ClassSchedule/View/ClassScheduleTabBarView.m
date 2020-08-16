@@ -13,6 +13,7 @@
 @property (nonatomic, weak) UIView *bottomCoverView;
 @property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, weak) UIView *dragHintView;
+@property (nonatomic, assign)BOOL isPresenting;
 //用户的课表
 @property (nonatomic, strong)WYCClassBookViewController *mySchedul;
 @end
@@ -47,32 +48,26 @@
         self.dragHintView = dragHintView;
         
         UILabel *classLabel = [[UILabel alloc] init];
-//        classLabel.text = @"数据结构";
-//        self.classLabel.text = [dic objectForKey:@"course"];
         classLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
         [self addSubview:classLabel];
         self.classLabel = classLabel;
         
         UIImageView *clockImageView = [[UIImageView alloc] init];
-//        clockImageView.backgroundColor = [UIColor blueColor];
         [clockImageView setImage:[UIImage imageNamed:@"nowClassTime"]];
         [self addSubview:clockImageView];
         self.clockImageView = clockImageView;
         
         UILabel *classTimeLabel = [[UILabel alloc] init];
-//        classTimeLabel.text = @"8:00 - 9:40";
         classTimeLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classTimeLabel];
         self.classTimeLabel = classTimeLabel;
         
         UIImageView *locationImageView = [[UIImageView alloc] init];
-//        locationImageView.backgroundColor = [UIColor blueColor];
         [locationImageView setImage:[UIImage imageNamed:@"nowLocation"]];
         [self addSubview:locationImageView];
         self.locationImageView = locationImageView;
         
         UILabel *classroomLabel = [[UILabel alloc] init];
-//        classroomLabel.text = @"综合实验楼8452";
         classroomLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
@@ -125,12 +120,9 @@
         make.centerY.equalTo(self.classLabel);
     }];
 }
-//dataDict =  @{
-//        @"classroomLabel":time[hash_lesson],
-//        @"classTimeLabel":lessondata[@"classroom"],
-//        @"classLabel":lessondata[@"course"],
-//        @"is":@"1",
-//};
+
+/// 课表的一个代理方法，用来更新下节课信息
+/// @param paramDict 下节课的数据字典
 - (void)updateSchedulTabBarViewWithDic:(NSDictionary *)paramDict{
     if( [paramDict[@"is"] intValue]==1){//有下一节课
         self.classroomLabel.text = paramDict[@"classroomLabel"];
@@ -142,12 +134,21 @@
         self.classLabel.text = @"无课了";
     }
 }
+
+/// 添加一个上拉后显示弹窗的手势
 - (void)addGesture{
-    UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
+    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if(self.isPresenting==NO){
+            self.isPresenting = YES;
+            [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
+               self.isPresenting = NO;
+            }];
+        }
     }];
-    [self addGestureRecognizer:TGR];
+    [self addGestureRecognizer:PGR];
 }
+
+/// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
     
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
