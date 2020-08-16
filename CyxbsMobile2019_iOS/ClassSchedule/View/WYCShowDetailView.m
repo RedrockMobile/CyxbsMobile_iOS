@@ -35,7 +35,7 @@
     self.rootView.layer.shadowRadius = 15;
     self.rootView.layer.shadowOpacity = 1;
     [self.rootView layoutIfNeeded];
-    
+//    self.rootView.backgroundColor = UIColor.redColor;
     
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,0,self.rootView.width,self.rootView.height)];
     self.scrollView.delegate = self;
@@ -59,17 +59,19 @@
             view.deleteNote.tag = i;
             [view setFrame:CGRectMake(i*self.rootView.width, 0,self.rootView.width,self.rootView.height)];
             [self.scrollView addSubview:view];
+//            view.backgroundColor = UIColor.greenColor;
         }else{
             WYCClassDetailView *view = [WYCClassDetailView initViewFromXib];
             [view initWithDic:array[i]];
             [view setFrame:CGRectMake(i*self.rootView.width, 0,self.rootView.width,self.rootView.height)];
            
             [self.scrollView addSubview:view];
+//            view.backgroundColor = UIColor.greenColor;
         }
         
         
     }
-    
+//    self.backgroundColor = UIColor.blueColor;
     self.pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(0, self.rootView.height - 30, self.rootView.width, 30)];
     self.pageControl.currentPage = 0;
     self.pageControl.numberOfPages = array.count;

@@ -36,8 +36,11 @@
 }
 - (void)getAnswersWithId:(NSNumber *)questionId{
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{@"question_id":questionId};
-
+    NSDictionary *parameters = @{
+        @"question_id":questionId,
+    };
+    //@"question_id":@1473
+    
     [client requestWithPath:QA_QUESTION_ANSWERLIST method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
@@ -150,6 +153,28 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailIgnoreFailure" object:nil];
+    }];
+}
+- (void)getAnswersWithId:(NSNumber *)questionId AndPage:(NSNumber*)page{
+    HttpClient *client = [HttpClient defaultClient];
+    NSDictionary *parameters = @{
+        @"question_id":questionId,
+        @"page":page
+    };
+    //@"question_id":@1473
+    
+    [client requestWithPath:QA_QUESTION_ANSWERLIST method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSString *info = [responseObject objectForKey:@"info"];
+        if ([info isEqualToString:@"success"]) {
+            self.answersData = [responseObject objectForKey:@"data"];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreSuccess" object:nil];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreError" object:nil];
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreFailure" object:nil];
     }];
 }
 @end

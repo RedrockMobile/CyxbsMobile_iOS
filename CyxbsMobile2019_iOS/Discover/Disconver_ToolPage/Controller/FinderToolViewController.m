@@ -288,7 +288,7 @@
         [sender toggleFavoriteStates];
     }else {
         //点击了没课约
-        WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":@"张树洞",@"stuNum":@"20192578798"}] mutableCopy]];
+        WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":@"陈剑辉",@"stuNum":@"2019211534"}] mutableCopy]];
         
         [self.navigationController pushViewController:vc animated:YES];
     }

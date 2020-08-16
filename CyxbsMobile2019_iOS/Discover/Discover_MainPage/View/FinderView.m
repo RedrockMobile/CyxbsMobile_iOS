@@ -313,4 +313,9 @@
         [self.delegate touchSchoolCalender];
     }
 }
+- (void) touchNoClassAppointment{
+    if ([self.delegate respondsToSelector:@selector(touchNoClassAppointment)]) {
+        [self.delegate touchNoClassAppointment];
+    }
+}
 @end

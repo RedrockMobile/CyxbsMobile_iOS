@@ -12,7 +12,8 @@
 #import "QAReviewReportView.h"
 #import "GKPhotoBrowser.h"
 @interface QAReviewViewController ()<QAReviewDelegate>
-@property(strong,nonatomic)UIScrollView *scrollView;
+//这个属性貌似没用上，所以先注释掉
+//@property(strong,nonatomic)UIScrollView *scrollView;
 @property(strong,nonatomic)NSNumber *answer_id;
 @property(strong,nonatomic)QAReviewModel *model;
 @property(strong,nonatomic)NSDictionary *answerData;

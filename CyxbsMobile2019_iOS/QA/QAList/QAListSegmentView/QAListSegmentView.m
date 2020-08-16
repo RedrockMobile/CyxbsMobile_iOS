@@ -27,7 +27,7 @@
 @property (nonatomic, strong) UIColor *titleBackgroundColor;    //标签背景颜色
 
 @property (nonatomic, strong) UIView *sliderLinePart1;  //标题下小滑块第一部分
-@property (nonatomic, strong) UIView *sliderLinePart2;  //标题下小滑块第二部分
+//@property (nonatomic, strong) UIView *sliderLinePart2;  //标题下小滑块第二部分
 @property (nonatomic) CGFloat sliderWidth;  //标题下小滑块宽
 @property (nonatomic) CGFloat sliderHeight;  //标题下小滑块高
 @property (nonatomic) CGFloat currentX;
@@ -94,13 +94,14 @@
         
         if (i == 0) {
             //创建滑块
-            _sliderWidth = _titleBtnWidth * 0.7;
+            _sliderWidth = _titleBtnWidth * 0.3;
             _sliderHeight = _titleHeight * 0.08;
             
             _sliderLinePart1 = [[UIView alloc] initWithFrame:CGRectMake((_titleBtnWidth - _sliderWidth) / 2.0 , _titleHeight - _sliderHeight, _sliderWidth, _sliderHeight)];
             _sliderLinePart1.layer.cornerRadius = 2.0;
-            _sliderLinePart1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sliderLinePart"]];
-//            _sliderLinePart1.backgroundColor = _selectedTitleColor;
+            UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sliderLinePart"]];
+            [imgView setFrame:CGRectMake(0, 0, _sliderWidth, _sliderHeight)];
+            [_sliderLinePart1 addSubview:imgView];
             [_titleView addSubview:_sliderLinePart1];
             
         }
@@ -187,7 +188,7 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     _currentX = _mainScrollView.contentOffset.x;
     _sliderLinePart1.frame = CGRectMake(_currentIndex * _titleBtnWidth + (_titleBtnWidth - _sliderWidth) / 2.0, _titleHeight - _sliderHeight, _sliderWidth, _sliderHeight);
-    _sliderLinePart2.frame = CGRectMake(_currentIndex * _titleBtnWidth + (_titleBtnWidth - _sliderWidth) / 2.0, _titleHeight - _sliderHeight, _sliderWidth, _sliderHeight);
+//    _sliderLinePart2.frame = CGRectMake(_currentIndex * _titleBtnWidth + (_titleBtnWidth - _sliderWidth) / 2.0, _titleHeight - _sliderHeight, _sliderWidth, _sliderHeight);
 }
 
 @end

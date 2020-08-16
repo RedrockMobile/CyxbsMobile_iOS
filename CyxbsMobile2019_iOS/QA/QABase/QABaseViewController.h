@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface QABaseViewController : UIViewController
+/// 举报按钮
 @property(nonatomic,strong)UIButton *rightButton;
 - (void)customNavigationBar;
 - (void)customNavigationRightButton;

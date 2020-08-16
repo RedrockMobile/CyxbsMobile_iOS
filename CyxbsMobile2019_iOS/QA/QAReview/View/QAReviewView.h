@@ -4,7 +4,7 @@
 //
 //  Created by 王一成 on 2020/2/10.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//对回答进行评论那边整个的view
 
 #import <UIKit/UIKit.h>
 
@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL isSelf;
 @property(nonatomic,strong)NSNumber *answerId;
 //底下的评论条
+/// 容纳文本输入框和点赞按钮和点赞数label的背景view
 @property(strong,nonatomic)UIView *reviewBar;
 @property(strong,nonatomic)UIButton *praiseBtn;
 @property(strong,nonatomic)UITextField *replyTextField;

@@ -17,8 +17,10 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, weak) id<WYCClassBookViewDelegate> detailDelegate;
+//7天的课表数据，schedulData[i][j]是一个数组，代表（星期i+1）的（第j+1节大课）的课，count>1代表有多节课
+@property (nonatomic, strong)NSMutableArray *schedulData;
 
--(void)initView:(BOOL)isFirst;
+-(void)initViewIsFirst:(BOOL)isFirst;
 
 /**参数date内部是7个字典，字典内部：day:某天的日期，month:某天的月份*/
 -(void)addBar:(NSArray *)date isFirst:(BOOL)isFirst;
