@@ -96,7 +96,7 @@
 //添加带标签栏的一个分页的一个scrollView（即QAListSegmentView）
 - (void)addSegmentView {
     ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:STU_FIND_HISTORY andPeopleType:PeopleTypeStudent];
-    stu.title = @"学生课表";
+    stu.title = @"同学课表";
     stu.delegate = self;
     
     ScheduleViewController *tea = [[ScheduleViewController alloc] initWithUserDefaultKey:TEA_FIND_HISTORY andPeopleType:PeopleTypeTeacher];
@@ -106,9 +106,6 @@
     
     QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-60) controllers:@[stu, tea]];
     [self.view addSubview:segmentView];
-
-    NSString *width = [NSString stringWithFormat:@"%f",MAIN_SCREEN_W*0.1086];
-    [segmentView setValue:width forKey:@"sliderWidth"];
     if (@available(iOS 11.0, *)) {
         [segmentView setValue:Color21_49_91_F0F0F2 forKey:@"titleColor"];
     } else {

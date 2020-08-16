@@ -68,7 +68,22 @@
     //DLReminderModel只在这里使用过
     DLReminderModel *model = [[DLReminderModel alloc] initWithRemindDict:dic];
     model.week = self.weekSelectedArray;
-//    model.classNum、model.day、model.week还没有设置
+    //不知道classNum是不是指学号，这里假设就是学号
+    model.classNum = [NSNumber numberWithString:[UserDefaultTool getStuNum]];
+    //不知道model配置是否正确
+    model.week = self.weekArray;
+    //不知道model配置是否正确
+    model.day = [self.pickerSlectedItems firstObject];
+//    ADDREMINDAPI
+    //网络请求参数不知道怎么配置
+    NSDictionary *param = [@{
+        @"stuNum":model.classNum,
+        @"idNum":model.idNum,
+//    @"date":jsonString,
+//    @"time":model.time,
+    @"title":model.title,
+        @"content":model.content,
+    } mutableCopy];
 }
 
 - (void)back{

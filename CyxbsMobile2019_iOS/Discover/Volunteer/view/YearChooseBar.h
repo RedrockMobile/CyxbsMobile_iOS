@@ -4,7 +4,7 @@
 //
 //  Created by 王一成 on 2018/8/31.
 //  Copyright © 2018年 wyc. All rights reserved.
-//
+//这个类根本就没用到。。。。。。。
 
 #import <UIKit/UIKit.h>
 

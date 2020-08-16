@@ -95,8 +95,8 @@
     [self.rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(backgroundView).offset(-17);
         make.top.equalTo(backgroundView).offset(STATUSBARHEIGHT + 11);
-        make.width.equalTo(@15);
-        make.height.equalTo(@20);
+        make.width.mas_equalTo(0.0427*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.0427*MAIN_SCREEN_W);
     }];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

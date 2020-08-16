@@ -18,3 +18,6 @@
 +(instancetype)initWithStartDate:(NSString *)startDate;
 
 @end
+
+//dateArray[i][j][@"month"]：（第i+1周）的（星期j+1）的月份
+//dateArray[i][j][@"day"]：（第i+1周）的（星期j+1）的日

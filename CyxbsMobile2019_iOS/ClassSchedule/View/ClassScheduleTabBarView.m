@@ -7,13 +7,14 @@
 //
 
 #import "ClassScheduleTabBarView.h"
-
+#import "WYCClassBookViewController.h"
 @interface ClassScheduleTabBarView ()
 
 @property (nonatomic, weak) UIView *bottomCoverView;
 @property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, weak) UIView *dragHintView;
-
+//用户的课表
+@property (nonatomic, strong)WYCClassBookViewController *mySchedul;
 @end
 
 @implementation ClassScheduleTabBarView
@@ -23,7 +24,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ClassScedulelabelColor"];
+            self.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
                } else {
                   self.backgroundColor = [UIColor whiteColor];
                }
@@ -46,7 +47,7 @@
         self.dragHintView = dragHintView;
         
         UILabel *classLabel = [[UILabel alloc] init];
-        classLabel.text = @"数据结构";
+//        classLabel.text = @"数据结构";
 //        self.classLabel.text = [dic objectForKey:@"course"];
         classLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
         [self addSubview:classLabel];
@@ -59,7 +60,7 @@
         self.clockImageView = clockImageView;
         
         UILabel *classTimeLabel = [[UILabel alloc] init];
-        classTimeLabel.text = @"8:00 - 9:40";
+//        classTimeLabel.text = @"8:00 - 9:40";
         classTimeLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classTimeLabel];
         self.classTimeLabel = classTimeLabel;
@@ -71,10 +72,13 @@
         self.locationImageView = locationImageView;
         
         UILabel *classroomLabel = [[UILabel alloc] init];
-        classroomLabel.text = @"综合实验楼8452";
+//        classroomLabel.text = @"综合实验楼8452";
         classroomLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
+        [self addGesture];
+        
+        [self initMySchedul];
     }
     return self;
 }
@@ -121,5 +125,56 @@
         make.centerY.equalTo(self.classLabel);
     }];
 }
-
+//dataDict =  @{
+//        @"classroomLabel":time[hash_lesson],
+//        @"classTimeLabel":lessondata[@"classroom"],
+//        @"classLabel":lessondata[@"course"],
+//        @"is":@"1",
+//};
+- (void)updateSchedulTabBarViewWithDic:(NSDictionary *)paramDict{
+    if( [paramDict[@"is"] intValue]==1){//有下一节课
+        self.classroomLabel.text = paramDict[@"classroomLabel"];
+        self.classTimeLabel.text = paramDict[@"classTimeLabel"];
+        self.classLabel.text = paramDict[@"classLabel"];
+    }else{//无下一节课
+        self.classroomLabel.text = @"无课了";
+        self.classTimeLabel.text = @"无课了";
+        self.classLabel.text = @"无课了";
+    }
+}
+- (void)addGesture{
+    UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
+    }];
+    [self addGestureRecognizer:TGR];
+}
+- (void)initMySchedul{
+    
+    self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+    
+    self.mySchedul.idNum = [UserDefaultTool getIdNum];
+    
+    self.mySchedul.stuNum = [UserDefaultTool getStuNum];
+    
+    self.mySchedul.schedulType = ScheduleTypePersonal;
+    
+    WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc]init];
+    
+    self.mySchedul.model = model;
+    
+    model.delegate = self.mySchedul;
+    
+    model.writeToFile = YES;
+    
+    [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
+    
+    [model getClassBookArrayFromNet:self.mySchedul.stuNum];
+    
+    self.mySchedul.schedulTabBar = self;
+    
+    [self.mySchedul viewWillAppear:YES];
+}
+//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    
+//}
 @end

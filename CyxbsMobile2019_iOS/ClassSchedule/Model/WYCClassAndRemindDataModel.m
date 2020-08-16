@@ -49,18 +49,21 @@
         
         NSArray *lessonArray = [responseObject objectForKey:@"data"];
         
-        
-        [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
-        //保存获取的课表数据到文件
-        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
-        [lessonArray writeToFile:lessonPath atomically:YES];
-        
+        if(self.writeToFile==YES){
+            [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
+            //保存获取的课表数据到文件
+            NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+            NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
+            [lessonArray writeToFile:lessonPath atomically:YES];
+        }
         
         // 共享数据
         NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
         [shared setObject:responseObject forKey:@"lessonResponse"];
         [shared synchronize];
+        
+        
+        
         [self.weekArray addObject:lessonArray];
         [self parsingClassBookData:lessonArray];
         
@@ -75,35 +78,7 @@
     }];
     
 }
-/**
- WYC学长的原版实现：
--(void)parsingClassBookData1:(NSArray*)array{
-    
-    for (int weeknum = 1; weeknum <= 25; weeknum++) {
-        NSMutableArray *tmp = [[NSMutableArray alloc]init];
-        
-        for (int i = 0; i < array.count; i++) {
-            
-            NSArray *week = [array[i] objectForKey:@"week"];
-            
-            
-            for (int j = 0;j < week.count; j++) {
-                NSNumber *k = week[j];
-                
-                if (weeknum == k.intValue) {
-                    [tmp addObject:array[i]];
-                }
-            }
-        }
-        
-        [_weekArray addObject:tmp];
-        
-        
-    }
-    
-    
-}
-*/
+
 -(void)parsingClassBookData:(NSArray*)array{
     int i;
     for (i=0; i<25; i++) {
@@ -142,7 +117,7 @@
 }
 - (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum{
     self.remindArray = [[NSMutableArray alloc]init];
-    self.remindDataLoadFinish = nil;
+    self.remindDataLoadFinish = NO;
     
     NSDictionary *parameters = @{@"stuNum":stuNum,@"idNum":idNum};
     
@@ -154,10 +129,12 @@
         NSArray *dataArray = [responseObject objectForKey:@"data"];
   
         //保存获取的备忘数据到文件
-        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
-        NSMutableArray *reminds = [responseObject objectForKey:@"data"];
-        [reminds writeToFile:remindPath atomically:YES];
+        if(self.writeToFile==YES){
+            NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+            NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
+            NSMutableArray *reminds = [responseObject objectForKey:@"data"];
+            [reminds writeToFile:remindPath atomically:YES];
+        }
         //解析备忘数据
         [self parsingRemindData:dataArray];
         self.remindDataLoadFinish = YES;
@@ -228,10 +205,12 @@
 
 -(void)loadFinish{
     if (self.classDataLoadFinish == YES&&self.remindDataLoadFinish == YES) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ModelDataLoadSuccess" object:nil];
+        [self.delegate ModelDataLoadSuccess];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"ModelDataLoadSuccess" object:nil];
     }
     if (self.classDataLoadFinish == NO&&self.remindDataLoadFinish == NO) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ModelDataLoadFailure" object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"ModelDataLoadFailure" object:nil];
+        [self.delegate ModelDataLoadFailure];
     }
     
 }

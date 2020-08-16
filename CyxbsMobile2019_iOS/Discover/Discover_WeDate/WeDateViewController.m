@@ -277,25 +277,28 @@
     
     //完成group的任务后执行block里的内容
     dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
         
         WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
+        vc.model = model;
+        vc.schedulType = ScheduleTypeWeDate;
         
+        model.writeToFile = NO;
         //模拟从storyBoard加载课表时对model的操作
         model.weekArray = [@[lessonOfAllPeople]mutableCopy];
         [model parsingClassBookData:lessonOfAllPeople];
         [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
         [model setValue:@"YES" forKey:@"classDataLoadFinish"];
+        model.delegate = vc;
         
-       WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+        
         
         //对model赋值
         
-        vc.model = model;
-        
-        vc.schedulType = ScheduleTypeWeDate;
         
         //present这种刷新UI的操作得放主线程，不然会报错
         dispatch_async(dispatch_get_main_queue(), ^{
+            [model loadFinish];
             [self presentViewController:vc animated:YES completion:nil];
         });
      });

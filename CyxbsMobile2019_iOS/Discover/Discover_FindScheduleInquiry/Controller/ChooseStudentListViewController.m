@@ -116,11 +116,17 @@
     
     WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc]init];
     
-    [model getClassBookArrayFromNet:item.stuNum];
+    model.delegate = vc;
+    
+    vc.schedulType = ScheduleTypeClassmate;
     
     vc.model = model;
     
-    vc.schedulType = ScheduleTypeClassmate;
+    model.writeToFile = NO;
+    
+    [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
+    
+    [model getClassBookArrayFromNet:item.stuNum];
     
     [self presentViewController:vc animated:YES completion:nil];
     

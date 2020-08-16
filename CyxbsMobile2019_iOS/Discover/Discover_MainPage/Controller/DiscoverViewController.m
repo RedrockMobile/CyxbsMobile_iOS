@@ -13,6 +13,7 @@
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
+#import "WeDateViewController.h"//没课约
 
 #import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
@@ -611,7 +612,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 -(void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
-    
+    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":@"陈剑辉",@"stuNum":@"2019211534"}] mutableCopy]];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchMyTest {
     NSLog(@"点击了我的考试");
