@@ -15,10 +15,15 @@
 @property (nonatomic, weak) UIView *dragBar;
 @property (nonatomic, weak) UILabel *placeNameLabel;
 @property (nonatomic, weak) UIButton *starButton;
+@property (nonatomic, strong) NSMutableArray<UILabel *> *attributesLabelArray;
 @property (nonatomic, weak) UILabel *detailLabel;
 @property (nonatomic, weak) UIButton *showMoreButton;
 @property (nonatomic, weak) UIImageView *showMoreImageView;
 @property (nonatomic, weak) UIScrollView *imagesScrollView;
+@property (nonatomic, strong) NSMutableArray<UIImageView *> *imagesArray;
+@property (nonatomic, weak) UIImageView *shareImageView;
+@property (nonatomic, weak) UIButton *shareButton;
+@property (nonatomic, weak) UILabel *aboutHereLabel;
 
 @end
 
@@ -29,6 +34,9 @@
 {
     self = [super init];
     if (self) {
+        self.attributesLabelArray = [NSMutableArray array];
+        self.imagesArray = [NSMutableArray array];
+        
         self.layer.cornerRadius = 20;
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
@@ -88,7 +96,8 @@
         self.showMoreImageView = showMoreImageView;
         
         UIScrollView *scrollView = [[UIScrollView alloc] init];
-        scrollView.backgroundColor = [UIColor grayColor];
+        scrollView.showsHorizontalScrollIndicator = NO;
+        scrollView.contentInset = UIEdgeInsetsMake(0, 15, 0, 15);
         [self addSubview:scrollView];
         self.imagesScrollView = scrollView;
     }
@@ -117,6 +126,24 @@
         make.width.height.equalTo(@21);
     }];
     
+    for (int i = 0; i < self.attributesLabelArray.count; i++) {
+        if (i == 0) {
+            [self.attributesLabelArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.equalTo(self).offset(15);
+                make.top.equalTo(self.placeNameLabel.mas_bottom).offset(8);
+                make.width.equalTo(@([self attributeLabelWidthText:self.attributesLabelArray[i].text] + 15));
+                make.height.equalTo(@18);
+            }];
+        } else {
+            [self.attributesLabelArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.equalTo(self.attributesLabelArray[i - 1].mas_trailing).offset(12);
+                make.centerY.equalTo(self.attributesLabelArray[i - 1]);
+                make.width.equalTo(@([self attributeLabelWidthText:self.attributesLabelArray[i].text] + 15));
+                make.height.equalTo(@18);
+            }];
+        }
+    }
+    
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(15);
         make.top.equalTo(self.placeNameLabel.mas_bottom).offset(49);
@@ -137,14 +164,96 @@
     }];
     
     [self.imagesScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.equalTo(self).offset(15);
+        make.leading.trailing.equalTo(self);
         make.top.equalTo(self.detailLabel.mas_bottom).offset(15);
         make.height.equalTo(@157);
     }];
+    
+    for (int i = 0; i < self.imagesArray.count; i++) {
+        if (i == 0) {
+            [self.imagesArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.equalTo(self.imagesScrollView);
+                make.top.bottom.equalTo(self.imagesScrollView);
+                make.height.equalTo(@157);
+                make.width.equalTo(@280);
+            }];
+        } else if (i == self.imagesArray.count - 1) {
+            [self.imagesArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.equalTo(self.imagesArray[i - 1].mas_trailing).offset(14);
+                make.top.bottom.equalTo(self.imagesScrollView);
+                make.height.equalTo(@157);
+                make.width.equalTo(@280);
+                make.trailing.equalTo(self.imagesScrollView);
+            }];
+        } else {
+            [self.imagesArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.equalTo(self.imagesArray[i - 1].mas_trailing).offset(14);
+                make.top.bottom.equalTo(self.imagesScrollView);
+                make.height.equalTo(@157);
+                make.width.equalTo(@280);
+            }];
+        }
+    }
 }
 
-- (void)loadDataWithPlaceDetailItem:(CQUPTMapPlaceDetailItem *)detailItem {
+- (void)loadDataWithPlaceDetailItem:(CQUPTMapPlaceDetailItem *)detailItem {    
+    for (int i = 0; i < detailItem.placeAttributesArray.count; i++) {
+        
+        NSString *placeAttribute = detailItem.placeAttributesArray[i];
+                
+        UILabel *attributeLabel = [[UILabel alloc] init];
+        attributeLabel.text = placeAttribute;
+        attributeLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        attributeLabel.layer.cornerRadius = 9;
+        attributeLabel.layer.borderWidth = 1;
+        attributeLabel.textAlignment = NSTextAlignmentCenter;
+        attributeLabel.alpha = 0;
+        if (@available(iOS 11.0, *)) {
+            attributeLabel.textColor = [UIColor colorNamed:@"Map_StarLabelColor"];
+        } else {
+            attributeLabel.textColor = [UIColor colorWithHexString:@"778AA9"];
+        }
+        attributeLabel.layer.borderColor = attributeLabel.textColor.CGColor;
+        [self addSubview:attributeLabel];
+        [self.attributesLabelArray addObject:attributeLabel];
+        
+    }
     
+    if (detailItem.imagesArray.count == 0) {
+        UIImageView *placeImageView = [[UIImageView alloc] init];
+        placeImageView.layer.cornerRadius = 9;
+        placeImageView.clipsToBounds = YES;
+        placeImageView.backgroundColor = [UIColor grayColor];
+        [self.imagesScrollView addSubview:placeImageView];
+        [self.imagesArray addObject:placeImageView];
+    }
+    
+    for (int i = 0; i < detailItem.imagesArray.count; i++) {
+        UIImageView *placeImageView = [[UIImageView alloc] init];
+        [placeImageView sd_setImageWithURL:detailItem.imagesArray[i] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            placeImageView.contentMode = UIViewContentModeScaleAspectFill;
+        }];
+        placeImageView.layer.cornerRadius = 9;
+        placeImageView.clipsToBounds = YES;
+        [self.imagesScrollView addSubview:placeImageView];
+        [self.imagesArray addObject:placeImageView];
+    }
+    
+    [self layoutIfNeeded];
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        for (UILabel *attributeLabel in self.attributesLabelArray) {
+            attributeLabel.alpha = 1;
+        }
+    }];
+}
+
+- (CGFloat)attributeLabelWidthText:(NSString *)text {
+    NSDictionary *dic = @{NSFontAttributeName: [UIFont fontWithName:PingFangSCBold size:15]};
+
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(0, 10) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
+
+    return rect.size.width;
 }
 
 @end
