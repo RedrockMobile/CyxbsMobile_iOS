@@ -141,6 +141,11 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		AA33F23D24BDF0DE00ECB09E /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */; };
+		AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82D924E8E03C00B65042 /* ClassDetailView.m */; };
+		AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82DC24E9343A00B65042 /* DayBarView.m */; };
+		AA3F82E024E992C000B65042 /* LessonView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82DF24E992C000B65042 /* LessonView.m */; };
+		AA3F82E324EA05C000B65042 /* LessonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82E224EA05C000B65042 /* LessonViewController.m */; };
+		AA3F82E624EA4A8900B65042 /* LeftBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82E524EA4A8900B65042 /* LeftBar.m */; };
 		AA40B40B24D2AE400037071A /* WeDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B40A24D2AE400037071A /* WeDateViewController.m */; };
 		AA40B40E24D2BB7C0037071A /* PeopleListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B40D24D2BB7C0037071A /* PeopleListTableViewCell.m */; };
 		AA40B41124D2C9710037071A /* ChoosePeopleListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B41024D2C9710037071A /* ChoosePeopleListView.m */; };
@@ -755,6 +760,16 @@
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AA33F23B24BDF0DE00ECB09E /* ScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		AA3F82D824E8E03C00B65042 /* ClassDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassDetailView.h; sourceTree = "<group>"; };
+		AA3F82D924E8E03C00B65042 /* ClassDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassDetailView.m; sourceTree = "<group>"; };
+		AA3F82DB24E9343A00B65042 /* DayBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DayBarView.h; sourceTree = "<group>"; };
+		AA3F82DC24E9343A00B65042 /* DayBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayBarView.m; sourceTree = "<group>"; };
+		AA3F82DE24E992C000B65042 /* LessonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LessonView.h; sourceTree = "<group>"; };
+		AA3F82DF24E992C000B65042 /* LessonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LessonView.m; sourceTree = "<group>"; };
+		AA3F82E124EA05C000B65042 /* LessonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LessonViewController.h; sourceTree = "<group>"; };
+		AA3F82E224EA05C000B65042 /* LessonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LessonViewController.m; sourceTree = "<group>"; };
+		AA3F82E424EA4A8900B65042 /* LeftBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftBar.h; sourceTree = "<group>"; };
+		AA3F82E524EA4A8900B65042 /* LeftBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeftBar.m; sourceTree = "<group>"; };
 		AA40B40924D2AE400037071A /* WeDateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeDateViewController.h; sourceTree = "<group>"; };
 		AA40B40A24D2AE400037071A /* WeDateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeDateViewController.m; sourceTree = "<group>"; };
 		AA40B40C24D2BB7C0037071A /* PeopleListTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PeopleListTableViewCell.h; sourceTree = "<group>"; };
@@ -2525,6 +2540,18 @@
 		DB34EA31239BD4540052B65E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AA4B0FB124D3E09B00221B5A /* TopBarScrollView.h */,
+				AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */,
+				AA3F82D824E8E03C00B65042 /* ClassDetailView.h */,
+				AA3F82D924E8E03C00B65042 /* ClassDetailView.m */,
+				AA3F82DB24E9343A00B65042 /* DayBarView.h */,
+				AA3F82DC24E9343A00B65042 /* DayBarView.m */,
+				AA3F82E424EA4A8900B65042 /* LeftBar.h */,
+				AA3F82E524EA4A8900B65042 /* LeftBar.m */,
+				AA3F82DE24E992C000B65042 /* LessonView.h */,
+				AA3F82DF24E992C000B65042 /* LessonView.m */,
+				AA3F82E124EA05C000B65042 /* LessonViewController.h */,
+				AA3F82E224EA05C000B65042 /* LessonViewController.m */,
 				DB34EA32239BD4540052B65E /* WYCNoteDetailView.h */,
 				DB34EA38239BD4540052B65E /* WYCNoteDetailView.m */,
 				DB34EA3A239BD4540052B65E /* WYCNoteDetailView.xib */,
@@ -2540,8 +2567,6 @@
 				DB34EA36239BD4540052B65E /* WYCClassBookView.xib */,
 				1A1691F62430DEE70076EDC7 /* ClassScheduleTabBarView.h */,
 				1A1691F72430DEE70076EDC7 /* ClassScheduleTabBarView.m */,
-				AA4B0FB124D3E09B00221B5A /* TopBarScrollView.h */,
-				AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3726,6 +3751,7 @@
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				1A21CD5B242A48F6008B2EA7 /* SchoolBusContentView.m in Sources */,
+				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				AA40B40B24D2AE400037071A /* WeDateViewController.m in Sources */,
 				1A22DDCC244FF61600FBB51E /* EmptyClassTableViewCell.m in Sources */,
@@ -3737,6 +3763,7 @@
 				EEA301C624685C8E00A8DB26 /* TermGrade.m in Sources */,
 				EE75BFAA23F5884100208039 /* ScheduleInquiryViewController.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
+				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				1A3B6D522476D3C00028E8A6 /* ProductWebsiteViewController.m in Sources */,
@@ -3748,6 +3775,7 @@
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				EE8234DC24673FE800F6B4AE /* HeaderTableViewCell.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
+				AA3F82E624EA4A8900B65042 /* LeftBar.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
 				EE131C2924713BE100B6ED97 /* CalendarViewController.m in Sources */,
@@ -3904,6 +3932,8 @@
 				EE75BF9423F5884100208039 /* InstallRoomViewController.m in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
 				D0101D622433CE7B004337ED /* QADetailReportView.m in Sources */,
+				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
+				AA3F82E324EA05C000B65042 /* LessonViewController.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				EE75BF9823F5884100208039 /* OneNewsModel.m in Sources */,
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,

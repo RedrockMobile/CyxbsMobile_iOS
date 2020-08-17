@@ -9,6 +9,12 @@
 #import "WYCClassBookViewController.h"
 #import "ClassTabBar.h"
 #import "TopBarScrollView.h"
+#import "LessonViewController.h"
+#import "DayBarView.h"
+#import "LeftBar.h"
+#define LEFTBARW (MAIN_SCREEN_W*0.088)
+//某节课详情弹窗的高度
+
 @interface WYCClassBookViewController ()<UIScrollViewDelegate,WYCClassBookViewDelegate,WYCShowDetailDelegate,TopBarScrollViewDelegate>
 /**课表顶部的小拖拽条*/
 @property (nonatomic, weak) UIView *dragHintView;
@@ -16,13 +22,16 @@
 @property (nonatomic, strong)  UIScrollView *scrollView;
 @property (nonatomic, strong) DateModle *dateModel;
 @property (nonatomic, strong)TopBarScrollView *topBarView;
+@property (nonatomic, strong)NSMutableArray *lessonVCArray;
+/// 课的详情弹窗
 @property (nonatomic, strong)UIView *detailView;
+
 @end
 
 const float distance=20;
 @implementation WYCClassBookViewController
 - (void)viewDidLoad {
-//    [self initWeekTextArray];
+    self.lessonVCArray = [NSMutableArray array];
     self.navigationController.navigationBar.hidden = YES;
     [super viewDidLoad];
     
@@ -48,11 +57,15 @@ const float distance=20;
                                              selector:@selector(reloadView)
                                                  name:@"reloadView" object:nil];
     //登录成功后
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginSucceeded)
-                                                 name:@"Login_LoginSuceeded" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(loginSucceeded)
+//                                                 name:@"Login_LoginSuceeded" object:nil];
     
-    self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+    } else {
+        self.view.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
+    }
     [self initModel];
     self.index = self.dateModel.nowWeek;
     
@@ -68,6 +81,19 @@ const float distance=20;
        
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [self.detailView removeFromSuperview];
+}
+
+//view要出现时调用
+- (void)viewWillAppear:(BOOL)animated{
+    if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
+        [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+//        [UIView animateWithDuration:0.3 animations:^{
+            self.topBarView.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
+//        }];
+    }
+}
 //MARK:-懒加载
 
 - (DateModle *)dateModel{
@@ -88,14 +114,14 @@ const float distance=20;
 //MARK:-
 //添加周选择条、显示本周的条
 - (void)addTopBarView{
-    TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, 50-distance, MAIN_SCREEN_W, 30)];
+    TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_W*0.07867-15, MAIN_SCREEN_W, 30)];
     self.topBarView = topBarView;
     [self.view addSubview:topBarView];
     topBarView.weekChooseDelegate = self;
     topBarView.correctIndex = self.index;
 }
 - (void)addDragHintView{
-    UIView *dragHintView = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W*0.472,MAIN_SCREEN_H*0.0641-distance,27,5)];
+    UIView *dragHintView = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W*0.472,MAIN_SCREEN_W*0.024,27,5)];
     if (@available(iOS 11.0, *)) {
         dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
     } else {
@@ -124,15 +150,13 @@ const float distance=20;
 -(void)updateScrollViewOffSet{
     
 }
+
 //登录成功、viewDidLoad、reloadView，时会调用这个方法
 - (void)initModel{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
-//    self.model = [[WYCClassAndRemindDataModel alloc] init];
-//    [self.model getRemindFromNet:self.stuNum idNum:self.idNum];
-//    [self.model getClassBookArray:self.stuNum];
 }
 
 //WYCClassAndRemindDataModel模型加载成功后调用
@@ -149,6 +173,8 @@ const float distance=20;
         
         self.orderlySchedulArray = [NSMutableArray array];
         for (int dateNum = 0; dateNum < self.dateModel.dateArray.count + 1; dateNum++) {
+            
+            
 //------完成对orderlySchedulArray的初始化操作，初始化后里面就是有序的整学期课表和备忘----------
             //有序的课表数据，day[i][j]代表（星期i+1）的（第j+1节大课）
             NSMutableArray *day = [[NSMutableArray alloc]initWithCapacity:7];
@@ -187,56 +213,42 @@ const float distance=20;
             }
 //------完成对orderlySchedulArray的初始化操作，初始化后里面就是有序的整学期课表和备忘----------
             
+            //左侧课条
+            LeftBar *leftBar = [[LeftBar alloc] init];
+            leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
             
+            //课表
+            LessonViewController *lessonVC = [[LessonViewController alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
+            [self.lessonVCArray addObject:lessonVC];
             
-            WYCClassBookView *view = [[WYCClassBookView alloc]initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width,70-distance, self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
-            view.detailDelegate = self;
+            lessonVC.week = dateNum;
+            lessonVC.view.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonVC.view.frame.size.width, lessonVC.view.frame.size.height);
             
-            
-            if (dateNum == 0) {
-                [view initViewIsFirst:YES];
-                NSArray *dateArray = @[];
-                [view addBar:dateArray isFirst:YES];
+            DayBarView *dayBar;
+            if(dateNum==0){
+                dayBar = [[DayBarView alloc] initForWholeTerm];
             }else{
-                [view initViewIsFirst:NO];
-                [view addBar:self.dateModel.dateArray[dateNum-1] isFirst:NO];
-            }
-
-            switch (self.schedulType) {
-                //代表是要显示自己的课表
-                case ScheduleTypePersonal:
-                    [view addBtn:day];
-                    break;
-                //代表是要在没课约页面显示课表
-                case ScheduleTypeWeDate:
-                    [view addBtnForWedate:day];
-//                    //禁止交互以防止点击按钮后触发显示自己课表页才有的功能
-                    for (UIView *sub in view.scrollView.subviews) {
-                        sub.userInteractionEnabled = NO;
-                    }
-                    break;
-                    
-                //代表是要在同学课表页面显示课表
-                case ScheduleTypeClassmate:
-                    [view addBtn:day];
-//                    //禁止交互以防止点击按钮后触发显示自己课表页才有的功能
-                    for (UIView *sub in view.scrollView.subviews) {
-                        sub.userInteractionEnabled = NO;
-                    }
-                    break;
-                default:
-                    
-                    break;
+                //顶部日期条
+                dayBar = [[DayBarView alloc] initWithDataArray:self.dateModel.dateArray[dateNum-1]];
             }
             
-            [self.scrollView addSubview:view];
+            [self.scrollView addSubview:dayBar];
+            dayBar.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
+            
+            
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1547, MAIN_SCREEN_W, MAIN_SCREEN_W*1.4)];
+            [self.scrollView addSubview:scrollView];
+            scrollView.backgroundColor = [UIColor clearColor];
+            scrollView.showsVerticalScrollIndicator = NO;
+            [scrollView addSubview:lessonVC.view];
+            [scrollView addSubview:leftBar];
+            [scrollView setContentSize:CGSizeMake(0, lessonVC.view.frame.size.height+10)];
         }
     }
-//    [self.scrollView layoutSubviews];
-    self.scrollView.contentOffset = CGPointMake(self.index.intValue*self.scrollView.frame.size.width,0);
-//    [self.view layoutSubviews];
     
+    self.scrollView.contentOffset = CGPointMake(self.index.intValue*self.scrollView.frame.size.width,0);
 }
+
 //WYCClassAndRemindDataModel模型加载失败后调用
 - (void)ModelDataLoadFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -251,11 +263,6 @@ const float distance=20;
     [self presentViewController:controller animated:YES completion:^{
         
     }];
-    
-    
-//    UIView *view = [[UIView alloc]initWithFrame:self.scrollView.frame];
-//    view.backgroundColor = [UIColor redColor];
-//    [self.scrollView addSubview:view];
     self.scrollView.contentSize = CGSizeMake(0, self.scrollView.height + 100);
 }
 
@@ -279,6 +286,7 @@ const float distance=20;
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"plus"] style:UIBarButtonItemStylePlain target:self action:@selector(addNote)];
     self.navigationItem.rightBarButtonItem = right;
 }
+
 //添加备忘
 - (void)addNote{
     DLReminderViewController *vc = [[DLReminderViewController alloc]init];
@@ -289,57 +297,34 @@ const float distance=20;
 //WYCClassBookView的代理方法
 //点击某节课后调用，出现一个显示该节课信息的弹窗
 - (void)showDetail:(NSArray *)array{
-    if ([[UIApplication sharedApplication].keyWindow viewWithTag:999]) {
-        [[[UIApplication sharedApplication].keyWindow viewWithTag:999] removeFromSuperview];
-    }
-    //初始化全屏view
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    //设置view的tag
-    view.layer.shadowOffset = CGSizeMake(0,1.5);
-    view.layer.shadowRadius = 5;
-    view.layer.shadowOpacity = 0.5;
-    view.layer.cornerRadius = 8;
-    view.tag = 999;
-
-    // 汪明天要改的东西
-//    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-//    UIVisualEffectView *blurBackgroundView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-//    blurBackgroundView.frame = view.frame;
-//    [view addSubview:blurBackgroundView];
-//    
-    
-    //往全屏view上添加内容
-    WYCShowDetailView *detailClassBookView  = [[WYCShowDetailView alloc]initWithFrame:CGRectMake(0, 2 * SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [self.detailView removeFromSuperview];
+    WYCShowDetailView *detailClassBookView  = [[WYCShowDetailView alloc]init];
     detailClassBookView.chooseClassListDelegate = self;
     [detailClassBookView initViewWithArray:array];
-  
     
+    detailClassBookView.layer.shadowOffset = CGSizeMake(0, 1.5);
+    detailClassBookView.layer.shadowRadius = 5;
+    detailClassBookView.layer.shadowOpacity = 0.5;
+    detailClassBookView.layer.cornerRadius = 8;
+    
+    
+    [detailClassBookView setFrame:CGRectMake(0, DETAILVIEW_H, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+    [UIView animateWithDuration:0.5 animations:^{
+        [detailClassBookView setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+    }];
+    [self.view addSubview:detailClassBookView];
+    
+    self.detailView = detailClassBookView;
     //添加点击手势
     UIGestureRecognizer *hiddenDetailView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenDetailView)];
     [detailClassBookView addGestureRecognizer:hiddenDetailView];
-    
-    
-    //显示全屏view
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    view.layer.opacity = 0.0f;
-    [view addSubview:detailClassBookView];
-    [window addSubview:view];
-    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
-        view.layer.opacity = 1.0f;
-        detailClassBookView.layer.opacity = 1.0f;
-        detailClassBookView.frame = CGRectMake(0, -0.3*SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT);
-    } completion:nil];
-    
 }
 
 - (void)hiddenDetailView{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UIView *view = [window viewWithTag:999];
-    [UIView animateWithDuration:0.4f animations:^{
-//        [view.subviews[1] setFrame: CGRectMake(0, 2 * SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        view.layer.opacity = 0.0f;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.detailView setFrame:CGRectMake(0, DETAILVIEW_H, MAIN_SCREEN_W, MAIN_SCREEN_H)];
     } completion:^(BOOL finished) {
-        [view removeFromSuperview];
+        [self.detailView removeFromSuperview];
     }];
 }
 - (void)clickEditNoteBtn:(NSDictionary *)dic{
@@ -360,15 +345,7 @@ const float distance=20;
     [self reloadView];
 }
 
-//view要出现时调用
-- (void)viewWillAppear:(BOOL)animated{
-    if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
-        [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
-//        [UIView animateWithDuration:0.3 animations:^{
-            self.topBarView.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
-//        }];
-    }
-}
+
 //程序回到前台时调用，在这里更新显示下节课信息的tabBar的信息
 - (void)applicationWillEnterForeground:(UIApplication *)application{
     
@@ -428,7 +405,6 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
             @"is":@"0",
         };
     }
-    
     return dataDict;
 }
 
@@ -519,6 +495,7 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
     _index = [NSNumber numberWithInt:(int)(scrollView.contentOffset.x/MAIN_SCREEN_W)];
     self.topBarView.correctIndex = _index;
 }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"%f,%f",scrollView.contentOffset.x,scrollView.contentOffset.y);
     if([scrollView isEqual:self.scrollView]){
@@ -528,11 +505,8 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
             _index = [NSNumber numberWithInt:(int)(scrollView.contentOffset.x/MAIN_SCREEN_W)];
             self.topBarView.correctIndex = _index;
         }
-        //下拉刷新
-//        if (self.scrollView.contentOffset.y <= -100) {
-//            [self reloadView];
-//        }
     }
 }
+
 @end
 

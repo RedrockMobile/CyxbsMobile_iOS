@@ -287,8 +287,9 @@
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
+        UserItem *item = [UserItem defaultItem];
         //点击了没课约
-        WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":@"陈剑辉",@"stuNum":@"2019211534"}] mutableCopy]];
+        WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":item.realName,@"stuNum":item.stuNum}] mutableCopy]];
         
         [self.navigationController pushViewController:vc animated:YES];
     }
