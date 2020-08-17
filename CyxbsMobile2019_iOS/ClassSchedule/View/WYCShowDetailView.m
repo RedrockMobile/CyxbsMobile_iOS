@@ -67,7 +67,8 @@
             [self.scrollView addSubview:view];
             view.backgroundColor = UIColor.clearColor;
         }else{
-            ClassDetailView *view = [[ClassDetailView alloc] initWithLessonDataDict:array[i]];
+            ClassDetailView *view = [[ClassDetailView alloc] init];
+            view.dataDict = array[i];
             [view setFrame:CGRectMake(i*self.rootView.width, 0,self.rootView.width,self.rootView.height)];
             [self.scrollView addSubview:view];
             view.backgroundColor = UIColor.clearColor;

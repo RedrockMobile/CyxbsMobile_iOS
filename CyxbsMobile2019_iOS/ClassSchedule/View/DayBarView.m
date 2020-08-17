@@ -14,7 +14,7 @@
 @interface DayBarView ()
 @property (nonatomic,strong)NSMutableArray *weekLabelViewArray;
 @property (nonatomic,strong)UIView *monthView;
-
+@property (nonatomic,strong)NSArray *dataArray;
 @end
 
 @implementation DayBarView
@@ -22,6 +22,7 @@
 - (instancetype)initWithDataArray:(NSArray*)dataArray{
     self = [super init];
     if(self){
+        self.dataArray = dataArray;
         NSDictionary *firstDay =[dataArray firstObject];
         self.monthView = [self getMonthViewWithNum:firstDay[@"month"]];
         [self addSubview:self.monthView];
@@ -36,6 +37,7 @@
             [self addSubview:weekLabelView];
             [self.weekLabelViewArray addObject:weekLabelView];
         }
+//        [self updata];
         [self addConstraint];
     }
     return self;
@@ -45,7 +47,18 @@
 - (instancetype)initForWholeTerm{
     self = [super init];
     if(self){
-        
+        self.monthView = [self getMonthViewWithNum:nil];
+        [self addSubview:self.monthView];
+        self.weekLabelViewArray = [NSMutableArray array];
+        for (int i=0; i<7; i++) {
+            NSDictionary *dayData = [self transferData:@{
+                @"index":[NSNumber numberWithInt:i],
+            }];
+            UIView *weekLabelView = [self getLabelViewWithDict:dayData];
+            [self addSubview:weekLabelView];
+            [self.weekLabelViewArray addObject:weekLabelView];
+        }
+        [self addConstraint];
     }
     return self;
 }
@@ -75,7 +88,7 @@
     }
     
     [week mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(backView).offset(backView.frame.size.height*0.12);
+        make.top.equalTo(backView).offset(DAY_BAR_ITEM_H*0.12);
         make.centerX.equalTo(backView);
     }];
     
@@ -94,14 +107,15 @@
     day.alpha = 0.64;
     
     [day mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(backView).offset(-backView.frame.size.height*0.12);
+        make.bottom.equalTo(backView).offset(-DAY_BAR_ITEM_H*0.12);
         make.centerX.equalTo(backView);
     }];
-    backView.backgroundColor = [UIColor colorWithRed:90/255.0 green:90/255.0 blue:90/255.0 alpha:0.7];
+    //布局调试用
+//    backView.backgroundColor = [UIColor colorWithRed:90/255.0 green:90/255.0 blue:90/255.0 alpha:0.7];
     return backView;
 }
 
-//得到一个显示月份信息monthView
+//得到一个显示@“num月”的monthView,如果num==nil那么显示的文字为空
 - (UIView*)getMonthViewWithNum:(NSNumber*)num{
     UIView *backView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
@@ -115,7 +129,11 @@
     
     month.backgroundColor = UIColor.clearColor;
     month.font = [UIFont fontWithName:@".PingFang SC" size: 12];
-    month.text = [NSString stringWithFormat:@"%@月",num];
+    if(num==nil){
+        month.text = @"";
+    }else{
+        month.text = [NSString stringWithFormat:@"%@月",num];
+    }
     if (@available(iOS 11.0, *)) {
         month.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     } else {
@@ -125,7 +143,8 @@
     [month mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(backView);
     }];
-    
+    //布局调试用
+//    backView.backgroundColor = [UIColor colorWithRed:90/255.0 green:90/255.0 blue:90/255.0 alpha:0.7];
     return backView;
 }
 
@@ -160,11 +179,58 @@
     NSString *index = dict[@"index"];
     NSString *day = dict[@"day"];
     NSArray *transfer = @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
-    
+    NSString *dayStr;
+    if(day==nil){
+        dayStr = @"";
+    }else{
+        dayStr = [NSString stringWithFormat:@"%@日",day];
+    }
     return @{
         @"week":transfer[[index intValue]],
-        @"day":[NSString stringWithFormat:@"%@日",day],
+        @"day":dayStr,
     };
     
 }
+- (void)updata{
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formate = [[NSDateFormatter alloc] init];
+    [formate setDateFormat:@"y"];
+    NSString *year = [formate stringFromDate:[NSDate date]];
+    NSString *selfMonth = [self.dataArray firstObject][@"month"];
+    NSString *selfDay = [self.dataArray firstObject][@"day"];
+    NSString *dataStr = [NSString stringWithFormat:@"%@-%@-%@",year,selfMonth,selfDay];
+    
+    
+    
+    formate.dateFormat = @"yyyy-M-d";
+    NSString *today = [formate stringFromDate:[NSDate date]];
+        
+       // 2、拿现在的时间和过去时间或者将来时间对比，计算出相差多少天，多少年，多少秒等等；
+       NSDate *beforTime = [formate dateFromString:@"2020-08-15"];
+    
+    
+    
+       NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    
+       NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:beforTime toDate:now options:0];
+    
+    
+    NSLog(@"%@，%@相差天数 = %ld",dataStr,today,[compsday day]);
+    
+    return;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"M"];
+    NSString *month = [formatter stringFromDate:[NSDate date]];
+    [formatter setDateFormat:@"d"];
+    NSString *day =[formatter stringFromDate:[NSDate date]];
+    
+    
+    
+    if([month isEqualToString:selfMonth]&&[day isEqualToString:selfDay]){
+        
+    }
+    
+}
+
 @end

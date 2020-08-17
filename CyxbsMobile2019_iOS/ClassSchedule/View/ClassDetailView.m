@@ -40,16 +40,24 @@
 
 @implementation ClassDetailView
 
-/// 显示一节课详情的view
-/// @param dataDict 一节课的信息
-- (instancetype)initWithLessonDataDict:(NSDictionary*)dataDict{
+- (instancetype)init{
     self = [super init];
     if(self){
+        [self setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
         [self initLabel];
-        self.dataDict = dataDict;
+        self.layer.cornerRadius = 8;
+        self.layer.shadowOffset = CGSizeMake(0, 2.5);
+        self.layer.shadowRadius = 15;
+        self.layer.shadowOpacity = 1;
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+        } else {
+            self.backgroundColor = [UIColor whiteColor];
+        }
     }
     return self;
 }
+
 /// 重写了dataDict的set方法，这样给dataDict赋值就可以自动完成对文字的设置
 - (void)setDataDict:(NSDictionary *)dataDict{
     _dataDict = dataDict;

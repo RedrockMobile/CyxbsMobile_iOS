@@ -9,6 +9,10 @@
 #import "WYCClassBookViewController.h"
 #import "ClassTabBar.h"
 #import "TopBarScrollView.h"
+#import "LessonViewController.h"
+#import "DayBarView.h"
+#import "LeftBar.h"
+#define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 
 @interface WYCClassBookViewController ()<UIScrollViewDelegate,WYCClassBookViewDelegate,WYCShowDetailDelegate,TopBarScrollViewDelegate>
@@ -18,7 +22,7 @@
 @property (nonatomic, strong)  UIScrollView *scrollView;
 @property (nonatomic, strong) DateModle *dateModel;
 @property (nonatomic, strong)TopBarScrollView *topBarView;
-
+@property (nonatomic, strong)NSMutableArray *lessonVCArray;
 /// 课的详情弹窗
 @property (nonatomic, strong)UIView *detailView;
 
@@ -27,7 +31,7 @@
 const float distance=20;
 @implementation WYCClassBookViewController
 - (void)viewDidLoad {
-//    [self initWeekTextArray];
+    self.lessonVCArray = [NSMutableArray array];
     self.navigationController.navigationBar.hidden = YES;
     [super viewDidLoad];
     
@@ -53,9 +57,9 @@ const float distance=20;
                                              selector:@selector(reloadView)
                                                  name:@"reloadView" object:nil];
     //登录成功后
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginSucceeded)
-                                                 name:@"Login_LoginSuceeded" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(loginSucceeded)
+//                                                 name:@"Login_LoginSuceeded" object:nil];
     
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
@@ -110,14 +114,14 @@ const float distance=20;
 //MARK:-
 //添加周选择条、显示本周的条
 - (void)addTopBarView{
-    TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, 50-distance, MAIN_SCREEN_W, 30)];
+    TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_W*0.07867-15, MAIN_SCREEN_W, 30)];
     self.topBarView = topBarView;
     [self.view addSubview:topBarView];
     topBarView.weekChooseDelegate = self;
     topBarView.correctIndex = self.index;
 }
 - (void)addDragHintView{
-    UIView *dragHintView = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W*0.472,MAIN_SCREEN_H*0.0641-distance,27,5)];
+    UIView *dragHintView = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W*0.472,MAIN_SCREEN_W*0.024,27,5)];
     if (@available(iOS 11.0, *)) {
         dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
     } else {
@@ -209,55 +213,40 @@ const float distance=20;
             }
 //------完成对orderlySchedulArray的初始化操作，初始化后里面就是有序的整学期课表和备忘----------
             
+            //左侧课条
+            LeftBar *leftBar = [[LeftBar alloc] init];
+            leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
             
+            //课表
+            LessonViewController *lessonVC = [[LessonViewController alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
+            [self.lessonVCArray addObject:lessonVC];
             
-            WYCClassBookView *view = [[WYCClassBookView alloc]initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width,70-distance, self.scrollView.frame.size.width, self.scrollView.frame.size.height)];
-            view.detailDelegate = self;
+            lessonVC.week = dateNum;
+            lessonVC.view.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonVC.view.frame.size.width, lessonVC.view.frame.size.height);
             
-            
-            if (dateNum == 0) {
-                [view initViewIsFirst:YES];
-                NSArray *dateArray = @[];
-                [view addBar:dateArray isFirst:YES];
+            DayBarView *dayBar;
+            if(dateNum==0){
+                dayBar = [[DayBarView alloc] initForWholeTerm];
             }else{
-                [view initViewIsFirst:NO];
-                [view addBar:self.dateModel.dateArray[dateNum-1] isFirst:NO];
-            }
-
-            switch (self.schedulType) {
-                //代表是要显示自己的课表
-                case ScheduleTypePersonal:
-                    [view addBtn:day];
-                    break;
-                //代表是要在没课约页面显示课表
-                case ScheduleTypeWeDate:
-                    [view addBtnForWedate:day];
-//                    //禁止交互以防止点击按钮后触发显示自己课表页才有的功能
-                    for (UIView *sub in view.scrollView.subviews) {
-                        sub.userInteractionEnabled = NO;
-                    }
-                    break;
-                    
-                //代表是要在同学课表页面显示课表
-                case ScheduleTypeClassmate:
-                    [view addBtn:day];
-//                    //禁止交互以防止点击按钮后触发显示自己课表页才有的功能
-                    for (UIView *sub in view.scrollView.subviews) {
-                        sub.userInteractionEnabled = NO;
-                    }
-                    break;
-                default:
-                    
-                    break;
+                //顶部日期条
+                dayBar = [[DayBarView alloc] initWithDataArray:self.dateModel.dateArray[dateNum-1]];
             }
             
-            [self.scrollView addSubview:view];
+            [self.scrollView addSubview:dayBar];
+            dayBar.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
+            
+            
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1547, MAIN_SCREEN_W, MAIN_SCREEN_W*1.4)];
+            [self.scrollView addSubview:scrollView];
+            scrollView.backgroundColor = [UIColor clearColor];
+            scrollView.showsVerticalScrollIndicator = NO;
+            [scrollView addSubview:lessonVC.view];
+            [scrollView addSubview:leftBar];
+            [scrollView setContentSize:CGSizeMake(0, lessonVC.view.frame.size.height+10)];
         }
     }
-//    [self.scrollView layoutSubviews];
-    self.scrollView.contentOffset = CGPointMake(self.index.intValue*self.scrollView.frame.size.width,0);
-//    [self.view layoutSubviews];
     
+    self.scrollView.contentOffset = CGPointMake(self.index.intValue*self.scrollView.frame.size.width,0);
 }
 
 //WYCClassAndRemindDataModel模型加载失败后调用

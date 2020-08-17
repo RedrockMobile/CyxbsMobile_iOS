@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, assign)BOOL isPresenting;
+//@property (nonatomic,assign)BOOL isLoaded;
 //用户的课表
 @property (nonatomic, strong)WYCClassBookViewController *mySchedul;
 @end
@@ -71,9 +72,15 @@
         classroomLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
-        [self addGesture];
         
-        [self initMySchedul];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)
+            name:@"Login_LoginSuceeded" object:nil];
+        UserItem *item = [UserItem defaultItem];
+        if(item.realName!=nil){
+//            [self addGesture];
+            [self initMySchedul];
+            
+        }
     }
     return self;
 }
@@ -174,6 +181,8 @@
     self.mySchedul.schedulTabBar = self;
     
     [self.mySchedul viewWillAppear:YES];
+    
+    [self addGesture];
 }
 //- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 //    
