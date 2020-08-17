@@ -69,10 +69,14 @@
     UIButton *btn = [[UIButton alloc] init];
     [self addSubview:btn];
     self.leftArrowBtn = btn;
-    
     [btn addTarget:self action:@selector(leftArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"<" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+//    [btn setBackgroundImage:[UIImage imageNamed:@"左箭头"] forState:UIControlStateNormal];
+    if(@available(iOS 11.0, *)){
+        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    }else{
+        [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
+    }
     btn.titleLabel.font =  [UIFont fontWithName:@".PingFang SC" size: 15];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -130,7 +134,11 @@
     [btn setTitle:self.weekTextArray[tag] forState:UIControlStateNormal];
     btn.tag = tag;
     self.weekChooseBtnArray[tag] = btn;
-    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    if(@available(iOS 11.0, *)){
+        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    }else{
+        [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
+    }
     btn.titleLabel.font =  [UIFont fontWithName:@".PingFang SC" size: 15];
     [btn addTarget:self action:@selector(weekChooseBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     return btn;
@@ -169,7 +177,11 @@
     
     weekLabel.text = @"整学期";
 //    weekLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-    weekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    if (@available(iOS 11.0, *)) {
+        weekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    } else {
+        weekLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     weekLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     [weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nowWeekBar).offset(MAIN_SCREEN_W*0.0427);
@@ -185,7 +197,11 @@
     
     nowWeekLabel.text = @"（本周）";
     nowWeekLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-    nowWeekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    if (@available(iOS 11.0, *)) {
+        nowWeekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    } else {
+        nowWeekLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     nowWeekLabel.frame = CGRectMake(MAIN_SCREEN_W*0.2627, 0.009*MAIN_SCREEN_H, 0.12*MAIN_SCREEN_W, 0.0259*MAIN_SCREEN_H);
     
     [nowWeekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -200,10 +216,15 @@
     UIButton *btn = [[UIButton alloc] init];
     [self.nowWeekBar addSubview:btn];
     self.rightArrowBtn = btn;
-    
+//    UserDefaultTool
     [btn addTarget:self action:@selector(rightArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@">" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+//    [btn setBackgroundImage:[UIImage imageNamed:@"右箭头"] forState:UIControlStateNormal];
+    if (@available(iOS 11.0, *)) {
+        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    } else {
+        [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
+    }
     btn.titleLabel.font =  [UIFont fontWithName:@".PingFang SC" size: 15];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -220,7 +241,11 @@
     
     [backBtn setTitle:@"回到本周" forState:(UIControlStateNormal)];
     [backBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    [backBtn setBackgroundColor:[UIColor colorNamed:@"enquiryBtnColor"]];
+    if (@available(iOS 11.0, *)) {
+        [backBtn setBackgroundColor:[UIColor colorNamed:@"enquiryBtnColor"]];
+    } else {
+        [backBtn setBackgroundColor:[UIColor colorWithRed:69/255.0 green:62/255.0 blue:217/255.0 alpha:1]];
+    }
     backBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 13];
     backBtn.layer.cornerRadius = MAIN_SCREEN_H*0.0197;
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -312,10 +337,11 @@
     //调用代理方法，告诉代理点击了哪一周的按钮，0代表整学期，17代表第十七周
     [self.weekChooseDelegate gotoWeekAtIndex:self.correctIndex];
 }
-//- (void)layoutSubviews{
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
-//    });
-//}
+//解决第一次加载课表时TopBar显示的不是nowWeekBar
+- (void)layoutSubviews{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
+    });
+}
 @end

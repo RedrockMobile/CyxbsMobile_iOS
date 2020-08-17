@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//某课详情弹窗的高度
+#define DETAILVIEW_H (MAIN_SCREEN_H*0.38)
 NS_ASSUME_NONNULL_BEGIN
 @protocol WYCShowDetailDelegate <NSObject>
 @required

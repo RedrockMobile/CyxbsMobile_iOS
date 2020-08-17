@@ -10,6 +10,9 @@
 #import "Masonry.h"
 #import "WYCShowDetailView.h"
 #import "DLReminderViewController.h"
+#import "DayBarView.h"
+#define LESSON_W (MAIN_SCREEN_W*0.1253)
+#define LESSON_H (MAIN_SCREEN_H*0.06775)
 @interface WYCClassBookView()<UIScrollViewDelegate,WYCShowDetailDelegate>
 
 @property (nonatomic, strong) UIView *topBar;    //顶栏日期月份
@@ -152,115 +155,18 @@
 -(void)backButtonClicked{
     NSLog(@"The Button is clicked");
 }
+
 -(void)addBar:(NSArray *)date isFirst:(BOOL)isFirst{
-    [_dayBar layoutIfNeeded];
-    
-    NSArray *day = @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
-    @autoreleasepool {
-        if (isFirst) {
-            
-            for (int i = 0 ; i<7; i++) {
-                UIView *dayItem = [[UIView alloc]init];
-                CGFloat dayItemWidth = _dayBar.frame.size.width/7;
-                CGFloat dayItemHeight = _dayBar.frame.size.height;
-                [dayItem setFrame:CGRectMake(i*dayItemWidth, 0, dayItemWidth, dayItemHeight)];
-                
-                
-                //添加星期几
-                UILabel *weekLabel = [[UILabel alloc]init];
-                weekLabel.text = day[i];
-                weekLabel.font = [UIFont systemFontOfSize:12];
-                if (@available(iOS 11.0, *)) {
-                    weekLabel.textColor = [UIColor colorNamed:@"labelColor"];
-                } else {
-                     weekLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
-                    // Fallback on earlier versions
-                }
-               
-                weekLabel.textAlignment = NSTextAlignmentCenter;
-                [weekLabel setFrame:CGRectMake(0, 0, dayItem.frame.size.width, dayItem.frame.size.height)];
-                [dayItem addSubview:weekLabel];
-                [_dayBar addSubview:dayItem];
-            }
-        }else{
-            for (int i = 0 ; i<7; i++) {
-                
-                UIView *dayItem = [[UIView alloc]init];
-                CGFloat dayItemWidth = _dayBar.frame.size.width/7;
-                CGFloat dayItemHeight = _dayBar.frame.size.height;
-                
-                [dayItem setFrame:CGRectMake(i*dayItemWidth, 0, dayItemWidth, dayItemHeight)];
-                
-                //添加星期几
-                UILabel *weekLabel = [[UILabel alloc]init];
-                weekLabel.text = day[i];
-                weekLabel.font = [UIFont systemFontOfSize:12];
-                if (@available(iOS 11.0, *)) {
-                                   weekLabel.textColor = [UIColor colorNamed:@"labelColor"];
-                               } else {
-                                    weekLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
-                                   // Fallback on earlier versions
-                               }
-                weekLabel.textAlignment = NSTextAlignmentCenter;
-                [weekLabel setFrame:CGRectMake(0, dayItem.frame.size.height/2-11, dayItem.frame.size.width, 11)];
-                [dayItem addSubview:weekLabel];
-                //添加日期
-                UILabel *dayLabel = [[UILabel alloc]init];
-                NSString *dayNum = [NSString stringWithFormat:@"%@日",[date[i] objectForKey:@"day"]];
-                dayLabel.text = dayNum;
-                dayLabel.font = [UIFont systemFontOfSize:11];
-                if (@available(iOS 11.0, *)) {
-                                   dayLabel.textColor = [UIColor colorNamed:@"labelColor"];
-                               } else {
-                                    dayLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
-                                   // Fallback on earlier versions
-                               }
-                dayLabel.alpha = 0.64;
-                dayLabel.textAlignment = NSTextAlignmentCenter;
-                [dayLabel setFrame:CGRectMake(0, dayItem.frame.size.height/2, dayItem.frame.size.width, dayItem.frame.size.height/2)];
-                [dayItem addSubview:dayLabel];
-                
-                [_dayBar addSubview:dayItem];
-            }
-            [_dayBar layoutSubviews];
-            
-            [_month layoutIfNeeded];
-            UILabel *monthLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, _month.frame.size.width, _month.frame.size.height)];
-            NSString *monthNum = [NSString stringWithFormat:@"%@月",[date[0] objectForKey:@"month"]];
-            monthLabel.text = monthNum;
-            monthLabel.font = [UIFont systemFontOfSize:11];
-            if (@available(iOS 11.0, *)) {
-                                              monthLabel.textColor = [UIColor colorNamed:@"labelColor"];
-                                          } else {
-                                               monthLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
-                                              // Fallback on earlier versions
-                                          }
-            monthLabel.textAlignment = NSTextAlignmentCenter;
-            [_month addSubview:monthLabel];
-            [_month layoutSubviews];
-        }
-    }
-    [_leftBar layoutIfNeeded];
-    @autoreleasepool {
-        CGFloat numLabelWidth = _leftBar.frame.size.width;
-        CGFloat numLabelHeight = 101*autoSizeScaleY/2;
-        for (int i = 0; i < 12; i++) {
-            UILabel *numLabel = [[UILabel alloc]init];
-            [numLabel setFrame:CGRectMake(0, i*numLabelHeight, numLabelWidth, numLabelHeight)];
-            numLabel.text = [NSString stringWithFormat:@"%d",i+1];
-            numLabel.textAlignment = NSTextAlignmentCenter;
-            if (@available(iOS 11.0, *)) {
-                                              numLabel.textColor = [UIColor colorNamed:@"labelColor"];
-                                          } else {
-                                               numLabel.textColor = [UIColor colorWithHexString:@"#112C54"];
-                                              // Fallback on earlier versions
-                                          }
-            numLabel.font = [UIFont systemFontOfSize:13];
-            [_leftBar addSubview:numLabel];
-            
-            
-        }
-    }
+    if(isFirst==YES)return;
+    DayBarView *dayBarView = [[DayBarView alloc] initWithDataArray:date];
+    [self addSubview:dayBarView];
+    [dayBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_topBar);
+        make.top.equalTo(_topBar);
+        make.right.equalTo(_topBar);
+        make.bottom.equalTo(_topBar);
+    }];
+//    _topBar.backgroundColor = UIColor.redColor;
 }
 //用户课表和同学课表页面的课表显示，要调用这个方法
 - (void)addBtn:(NSMutableArray *)day{
