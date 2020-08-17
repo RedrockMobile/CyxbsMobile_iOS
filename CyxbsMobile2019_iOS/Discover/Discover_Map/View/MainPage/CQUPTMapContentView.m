@@ -338,13 +338,13 @@
     for (CQUPTMapPlaceItem *place in self.mapDataItem.placeList) {
         for (CQUPTMapPlaceRect *rect in place.buildingList) {
             if ([rect isIncludePercentagePoint:tapPoint] || [place.tagRect isIncludePercentagePoint:tapPoint]) {
-                NSLog(@"%@", place.placeName);
                 [self selectedAPlace:place];
                 // 请求详情数据
                 if ([self.delegate respondsToSelector:@selector(requestPlaceDataWithPlaceID:)]) {
                     [self.delegate requestPlaceDataWithPlaceID:place.placeId];
                 }
-
+                
+                return;
             }
         }
     }

@@ -220,7 +220,7 @@
 /// 重邮地图：搜索地点
 #define CQUPTMAPSEARCH @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/search"
 /// 重邮地图：地点详情
-#define CQUPTMAPPLACEDETAIL @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/detailsite"
+#define CQUPTMAPPLACEDETAIL @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/placeDetail"
 
 /// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"

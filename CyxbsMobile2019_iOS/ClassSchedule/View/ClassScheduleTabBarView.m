@@ -168,7 +168,10 @@
     
     [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
     
-    [model getClassBookArrayFromNet:self.mySchedul.stuNum];
+    if (self.mySchedul.stuNum) {
+        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
+    }
+    
     
     self.mySchedul.schedulTabBar = self;
     
