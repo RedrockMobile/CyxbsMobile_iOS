@@ -357,7 +357,7 @@
 
 /// 点击了地图上某个地点后。上面那个方法判断成功后调用的。
 - (void)selectedAPlace:(CQUPTMapPlaceItem *)placeItem {
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.detailView.alpha = 0;
         self.detailView.layer.affineTransform = CGAffineTransformScale(self.detailView.layer.affineTransform, 0.2, 0.2);
     }];
@@ -371,18 +371,18 @@
     [detailView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_bottom);
         make.leading.width.equalTo(self);
-        make.height.equalTo(@(2 * MAIN_SCREEN_H));      // 让detailView足够高，不然上滑会滑过头
+        make.height.equalTo(@(MAIN_SCREEN_H));      // 让detailView足够高，不然上滑会滑过头
     }];
     
     [self layoutIfNeeded];
     
-    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    CQUPTMapDetailView *lastDetailView = self.detailView;
+    self.detailView = detailView;
+    
+    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.9 initialSpringVelocity:15 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         detailView.layer.affineTransform = CGAffineTransformTranslate(detailView.layer.affineTransform, 0, -112);
     } completion:^(BOOL finished) {
-        if (self.detailView) {
-            [self.detailView removeFromSuperview];
-        }
-        self.detailView = detailView;
+        [lastDetailView removeFromSuperview];
         [self layoutIfNeeded];
     }];
 }
@@ -392,6 +392,11 @@
     
     if (sender.state == UIGestureRecognizerStateChanged) {
         self.lastY = sender.view.mj_y;
+        
+        if (sender.view.frame.origin.y < STATUSBARHEIGHT + 181 && translation.y < 0) { // 到顶后继续上拉要减速
+            translation.y = translation.y / (MAIN_SCREEN_H / sender.view.mj_y);
+        }
+                
         sender.view.center = CGPointMake(sender.view.center.x, sender.view.center.y + translation.y);
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         
@@ -402,31 +407,34 @@
             }];
             return;
         } else if (sender.view.frame.origin.y > MAIN_SCREEN_H - 112) {  // 弹回到底
-            [UIView animateWithDuration:0.2 animations:^{
-                sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+            [UIView animateWithDuration:0.1 animations:^{
+                sender.view.frame = CGRectMake(0, MAIN_SCREEN_H, sender.view.width, sender.view.height);
+            } completion:^(BOOL finished) {
+                [self.detailView removeFromSuperview];
+                self.detailView = nil;
             }];
             return;
         }
         
         // 速度和距离判断，如果速度或距离大于某个值，完全弹出或归位
         if (sender.view.mj_y - self.lastY < 0) {        // 往上拉
-            if ((MAIN_SCREEN_H - 112) - sender.view.mj_y > 50 || sender.view.mj_y - self.lastY < -10) {    // 移动距离 > 50 或者速度足够快
-                [UIView animateWithDuration:0.1 animations:^{
+            if ((MAIN_SCREEN_H - 112) - sender.view.mj_y > 100 || sender.view.mj_y - self.lastY < -10) {    // 移动距离 > 50 或者速度足够快
+                [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
-                }];
+                } completion:nil];
             } else {        // 移动距离太小，弹回到底
                 [UIView animateWithDuration:0.2 animations:^{
                     sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
                 }];
             }
         } else {                        // 往下拉
-            if ((STATUSBARHEIGHT + 181) - sender.view.mj_y > 50 || sender.view.mj_y - self.lastY > 10) {    // 移动距离 > 50 或者速度足够快
-                [UIView animateWithDuration:0.1 animations:^{
+            if ((STATUSBARHEIGHT + 181) - sender.view.mj_y < -100 || sender.view.mj_y - self.lastY > 10) {    // 移动距离 > 50 或者速度足够快
+                [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
-                }];
+                } completion:nil];
             } else {
                 [UIView animateWithDuration:0.2 animations:^{
-                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                    sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
                 }];
             }
         }
