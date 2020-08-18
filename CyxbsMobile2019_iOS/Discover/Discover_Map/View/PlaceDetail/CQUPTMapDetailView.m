@@ -12,8 +12,10 @@
 #import "CQUPTMapDetailTagsCollectionViewCell.h"
 #import "CollectionViewSpaceLayout.h"
 #import "CQUPTMapMoreImageViewController.h"
+#import <TZImagePickerController.h>
+#import "CQUPTMapDataItem.h"
 
-@interface CQUPTMapDetailView () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface CQUPTMapDetailView () <UICollectionViewDelegate, UICollectionViewDataSource, TZImagePickerControllerDelegate>
 
 @property (nonatomic, strong) CQUPTMapPlaceDetailItem *detailItem;
 
@@ -120,6 +122,7 @@
         } else {
             [shareButton setTitleColor:[UIColor colorWithHexString:@"234780"] forState:UIControlStateNormal];
         }
+        [shareButton addTarget:self action:@selector(shareImageButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:shareButton];
         self.shareButton = shareButton;
         
@@ -334,7 +337,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CQUPTMapDetailTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CQUPTMapDetailTagsCollectionViewCell" forIndexPath:indexPath];
-    if (self.detailItem.tagsArray.count) {
+    if (self.detailItem.tagsArray.count == 0) {
         cell.tagLabel.text = @"暂无信息";
     } else {
         cell.tagLabel.text = self.detailItem.tagsArray[indexPath.item];
@@ -359,6 +362,57 @@
 - (void)showMoreButtonTapped {
     CQUPTMapMoreImageViewController *vc = [[CQUPTMapMoreImageViewController alloc] initWithPlaceDetailItem:self.detailItem];
     [self.viewController.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)shareImageButtonTapped {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"共享照片" message:@"在这里，与邮子们共同分享你们所拍的校园风景。上传你的照片，优质照片有机会在此展示。" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:10 delegate:self];
+        [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+            [self.viewController dismissViewControllerAnimated:YES completion:^{
+                
+                UIAlertController *uploadAlertController = [UIAlertController alertControllerWithTitle:@"确认上传" message:@"确认后您选择的图片将被上传，审核通过后就可以展示啦。" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *uploadCancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                
+                UIAlertAction *uploadCertainAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    // 上传图片
+                    
+                    NSDictionary *params = @{
+                        @"place_id": self.detailItem.placeID
+                    };
+                    
+                    NSMutableArray *names = [@[] mutableCopy];
+                    for (int i = 0; i < photos.count; i++) {
+                        [names addObject:@"image"];
+                    }
+                    
+                    [[HttpClient defaultClient] uploadImageWithJson:CQUPTMAPUPLOADIMAGE method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        NSLog(@"%@", responseObject);
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        
+                    }];
+                }];
+                
+                [uploadAlertController addAction:uploadCancelAction];
+                [uploadAlertController addAction:uploadCertainAction];
+                
+                [self.viewController presentViewController:uploadAlertController animated:YES completion:nil];
+            }];
+            
+        }];
+        imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self.viewController presentViewController:imagePickerVc animated:YES completion:nil];
+        
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:certainAction];
+    
+    [self.viewController presentViewController:alertController animated:YES completion:nil];
 }
 
 @end
