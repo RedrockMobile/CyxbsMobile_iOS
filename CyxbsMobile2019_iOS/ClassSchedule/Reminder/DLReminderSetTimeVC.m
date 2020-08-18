@@ -4,7 +4,7 @@
 //
 //  Created by 丁磊 on 2020/4/10.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//最终编辑备忘时间的页面
 /*
  逻辑错误：
  1.
@@ -22,24 +22,41 @@
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
 @interface DLReminderSetTimeVC ()<UITextFieldDelegate, WeekSelectDelegate, UIPickerViewDelegate, UIPickerViewDataSource, DLTimeSelectedButtonDelegate>
+@property (nonatomic, strong) UIPickerView *timePiker;
 @property (nonatomic, strong) DLReminderView *reminderView;
+
+/// 周选择view，懒加载
 @property (nonatomic, strong) DLWeeklSelectView *weekselectView;
+
+/// 时间选择view，懒加载
 @property (nonatomic, strong) DLTimeSelectView *timeSelectView;
 
-@property (nonatomic, strong) NSMutableArray *pickerSlectedItems;//存储用户选择的时间，只有两个item，第一个是周几，第二个是那一个时间段
+///存储用户选择的时间，只有两个item，第一个是周几，第二个是那一个时间段
+@property (nonatomic, strong) NSMutableArray *pickerSlectedItems;
+
 @property (nonatomic, copy) NSArray *weekArray;
-@property (nonatomic, copy) NSArray *timeArrays;//pickerView选择数据
-@property (nonatomic, strong) NSMutableArray *weekSelectedArray; //存储已选择的周
-@property (nonatomic, strong) NSMutableArray *timeSelectedArray; //存储已选择的时间 内容为string
-@property (nonatomic, strong) NSMutableArray *timeButtonTitleArray;  //存选择的时间按钮的标题 存的是NSString 不是button
+
+///pickerView选择数据
+@property (nonatomic, copy) NSArray *timeArrays;
+
+///存储已选择的周
+@property (nonatomic, strong) NSMutableArray *weekSelectedArray;
+
+///存储已选择的时间 内容为string
+@property (nonatomic, strong) NSMutableArray *timeSelectedArray;
+
+///存选择的时间按钮的标题 存的是NSString 不是button
+@property (nonatomic, strong) NSMutableArray *timeButtonTitleArray;
+
 @property (nonatomic, strong) NSString *selectedTimeString;//可能会变所以没用copy
+
 @property (nonatomic, strong) NSMutableArray *timebuttonArray;
 @end
 
 @implementation DLReminderSetTimeVC
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,7 +68,7 @@
     [self loadweekArray];
     [self loadTimeArrays];
     [self.view addSubview: self.reminderView];
-    // Do any additional setup after loading the view.
+    
 }
 
 #pragma mark - 点击事件
@@ -89,27 +106,28 @@
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 //点击周选择控件的紫色确定按钮后调用
 - (void)didClickWeekSelectViewConfirmButton{
-    [self.weekselectView removeFromSuperview];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.weekselectView setFrame:CGRectMake(0, 360*kRateY, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+    }completion:^(BOOL finished) {
+        [self.weekselectView removeFromSuperview];
+    }];
+    self.timeSelectView.frame = CGRectMake(0, -300*kRateY, MAIN_SCREEN_W, 300*kRateY+MAIN_SCREEN_H);
     [self.view addSubview: self.timeSelectView];
-    [self.timeSelectView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left);
-        make.bottom.equalTo(self.view.mas_bottom);
-        make.width.equalTo(self.view.mas_width);
-        make.height.mas_equalTo(300*kRateY);
-    }];
-    [self.timeSelectView.timePiker mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.timeSelectView.mas_left);
-        make.bottom.equalTo(self.timeSelectView.mas_bottom);
-        make.width.equalTo(self.timeSelectView.mas_width).mas_offset(-85);
-        make.height.mas_equalTo(300*kRateY);
-    }];
 }
-//点击选择周的加号后调用
+
+//点击已选择周的加号后调用
 - (void)didClickAddButton{
+    
+    self.weekselectView.frame = CGRectMake(0, 360*kRateY, SCREEN_WIDTH, MAIN_SCREEN_H);
     [self.view addSubview: self.weekselectView];
     
+    [UIView animateWithDuration:0.5 animations:^{
+        self.weekselectView.frame = CGRectMake(0, 0, SCREEN_WIDTH, MAIN_SCREEN_H);
+    }];
+//    360*kRateY
 }
 
 //- (void)didClickSelectedButton:(UIButton *)button{
@@ -117,6 +135,7 @@
 //}
 //点时间选择器的加号后调用
 - (void)didClickTimeSelectViewAddButton{
+    
     NSString *str1 = self.pickerSlectedItems[0];
     NSString *str2 = self.pickerSlectedItems[1];
     if (![str1 isEqual: @""] && ![str2 isEqual: @""]) {
@@ -189,6 +208,8 @@
 //        {
 //            singleLine.backgroundColor = [UIColor colorWithHexString:@"#E9EDF2"];
 //        }
+    NSLog(@"%@",[view class]);
+    
 //    }
     UILabel* pickerLabel = (UILabel*)view;
         if (!pickerLabel){
@@ -227,17 +248,14 @@
     return _reminderView;
 }
 - (void)loadweekArray{
-    NSMutableArray *arr = [ @[@"整学期", @"每单周", @"每双周"] mutableCopy];
-    for (int i = 1; i <= 20; i++) {
-        [arr addObject: [NSString stringWithFormat:@"第%d周",i]];
-    }
-    _weekArray = [arr copy];
+//     @"每单周", @"每双周",
+    _weekArray = @[@"整学期", @"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周",];
 }
 
 - (DLWeeklSelectView *)weekselectView{
     if (!_weekselectView) {
         _weekselectView = [[DLWeeklSelectView alloc] init];
-        _weekselectView.frame = CGRectMake(0, SCREEN_HEIGHT-360*kRateY, SCREEN_WIDTH, 360*kRateY);
+        
         _weekselectView.weekArray = _weekArray;
         _weekselectView.delegate = self;
         [_weekselectView.confirmBtn addTarget:self action:@selector(didClickWeekSelectViewConfirmButton) forControlEvents:UIControlEventTouchUpInside];
@@ -251,11 +269,9 @@
 - (DLTimeSelectView *)timeSelectView{
     if (!_timeSelectView) {
         _timeSelectView = [[DLTimeSelectView alloc] init];
-        _timeSelectView.frame = CGRectMake(0, SCREEN_HEIGHT-300*kRateY, SCREEN_WIDTH, 300*kRateY);
         [_timeSelectView.addButton addTarget:self action:@selector(didClickTimeSelectViewAddButton) forControlEvents:UIControlEventTouchUpInside];
-        _timeSelectView.timePiker.dataSource = self;
-        _timeSelectView.timePiker.delegate = self;
-        [_timeSelectView initTimePickerView];
+//        _timeSelectView.timePiker.dataSource = self;
+//        _timeSelectView.timePiker.delegate = self;
     }
     return _timeSelectView;
 }

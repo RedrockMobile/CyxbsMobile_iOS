@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/// 三个页面的背景都有这个类
 @interface DLReminderView : UIView
 @property (nonatomic, strong) UILabel *notoiceLab; //大的提醒文字上面哪个小字
 @property (nonatomic, strong) UILabel *titleLab;

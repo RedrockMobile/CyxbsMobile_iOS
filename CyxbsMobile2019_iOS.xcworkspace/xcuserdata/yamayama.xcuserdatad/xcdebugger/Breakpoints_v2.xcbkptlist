@@ -46,8 +46,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderSetTimeVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "-didClickNextButton:"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderSetTimeVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-didClickNextButton:"
             landmarkType = "7">
          </BreakpointContent>
@@ -745,7 +745,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "8DDEC686-7987-4C16-866D-8FE3EAC9C338"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderViewController.m"
@@ -761,7 +761,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5D60C058-5EC3-4C8E-B8CF-EAFB55F1A332"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderViewController.m"
@@ -777,7 +777,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0AC05BEF-F27C-4724-82E5-EFFD5E71865D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderViewController.m"
@@ -786,6 +786,182 @@
             startingLineNumber = "86"
             endingLineNumber = "86"
             landmarkName = "-didClickHistoryButton:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40CAD5FD-9AED-4087-99FD-60B8F2AB014F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderSetDetailVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D080396A-84A7-4679-8B1A-83C5463E8A63"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderSetTimeVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "-pickerView:viewForRow:forComponent:reusingView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC192AAE-F17C-4EB5-9E54-33E28405CBDA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderSetTimeVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "-pickerView:viewForRow:forComponent:reusingView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5042DC6B-0688-423A-B1AD-43FAC73741AC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderSetTimeVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-didClickAddButton"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99D47146-AFCE-4C23-B199-476E8E5A40C2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderSetTimeVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "-reminderView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25547D89-E11B-4968-AB83-223C4D75DEC2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLWeeklSelectView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "-addGesture"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "25547D89-E11B-4968-AB83-223C4D75DEC2 - f7412797ca76b440"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__31-[DLWeeklSelectView addGesture]_block_invoke"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLWeeklSelectView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "25547D89-E11B-4968-AB83-223C4D75DEC2 - 963ec92f979f85bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__31-[DLWeeklSelectView addGesture]_block_invoke_2"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLWeeklSelectView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1A0500E0-3FFD-4DEA-8141-4CF99480A3F2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLReminderSetTimeVC.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "-didClickTimeSelectViewAddButton"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "78F982DA-3209-4361-8267-FD77341DB241"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLTimeSelectView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-numberOfComponentsInPickerView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BFF55A94-30BD-4F1F-AAD7-B8A8A3241072"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/DLTimeSelectView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-pickerView:numberOfRowsInComponent:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
