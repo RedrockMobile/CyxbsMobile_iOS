@@ -73,9 +73,13 @@
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
         
+        //加上登录成功通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)
             name:@"Login_LoginSuceeded" object:nil];
+        
         UserItem *item = [UserItem defaultItem];
+        
+        //如果真实姓名非空，那么已登录
         if(item.realName!=nil){
 //            [self addGesture];
             [self initMySchedul];
@@ -186,8 +190,16 @@
     [self.mySchedul viewWillAppear:YES];
     
     [self addGesture];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(disMissMySchedulAndPushReminderVC:)
+    name:@"disMissSchedul_pushReminderVC" object:nil];
 }
-//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    
-//}
+
+- (void)disMissMySchedulAndPushReminderVC:(NSNotification*)noti{
+    UIViewController *reminderVC = noti.object;
+    [self.viewController dismissViewControllerAnimated:YES completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"pushReminderVC" object:reminderVC];
+    }];
+}
 @end

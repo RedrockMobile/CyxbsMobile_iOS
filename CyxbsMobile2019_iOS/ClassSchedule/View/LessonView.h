@@ -20,23 +20,37 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol LessonViewDelegate <NSObject>
 - (void)showDetailWithCourseDataDict:(NSArray*)courseDataDictArray;
 - (void)hideDetail;
+@end
+
+@protocol LessonViewAddNoteDelegate <NSObject>
+
+/// 通过导入的空课信息添加备忘
+/// @param emptyLessonData dict = @{
+///    @"hash_day":0,
+///    @"hash_lesson":2,
+///    @"period":2,
+///    @"week":第week周的空课，week代表整学期
+/// };
 - (void)addNoteWithEmptyLessonData:(NSDictionary*)emptyLessonData;
 @end
 
 @interface LessonView : UIView
 
-/// 这节课的信息字典，空课的结构：dict = @{
-//    @"hash_day":0,
-//    @"hash_lesson":2,
-//    @"period":2,
-//    @"week":第week周的空课，week代表整学期
-//};
+/// 显示在课表上的课的信息字典，也就是courseDataDictArray[0]，空课的结构：
+/// dict = @{
+///    @"hash_day":0,
+///   @"hash_lesson":2,
+///    @"period":2,
+///    @"week":第week周的空课，week代表整学期
+/// };
 @property(nonatomic,strong)NSDictionary *courseDataDict;
+//全部课信息
 @property(nonatomic,strong)NSArray *courseDataDictArray;
 /// 是不是一节空课
 @property(nonatomic,assign)BOOL isEmptyLesson;
 
 @property(nonatomic,weak)id<LessonViewDelegate>delegate;
+@property(nonatomic,weak)id<LessonViewAddNoteDelegate>addNoteDelegate;
 
 /// 更新数据，调用前需确保已经对self.courseDataDict进行更新
 - (void)setUpData;
@@ -46,14 +60,14 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 //这个类的用法：
 
-//1.
+//1.只能用init初始化，initWithFrame也不能用
 //  LessonView *lessonView = [[LessonView alloc] init];
 
-//2.
+//2.是否是空课
 //  lessonView.isEmptyLesson = NO;
 
 
-//3.
+//3.设置信息字典，如果是空课就是下面这样的字典
 //NSArray *dictArray = @[@{
 //        @"hash_day":[NSNumber numberWithInt:i],
 //        @"hash_lesson":[NSNumber numberWithInt:j],
@@ -62,15 +76,22 @@ NS_ASSUME_NONNULL_END
 //    }];
 //}
 
-//4.
+//4.设置显示详情的代理和加备忘的代理
 //lessonView.delegate = self;
+//lessonView.addNoteDelegate = self;
 
-//5.
-//lessonView.courseDataDict = dictArray;
+//5.设置courseDataDictArray
+//lessonView.courseDataDictArray = lessonDateArray;
 
-//6.
+//6.更新内部数据
 //[lessonView setUpData];
 
-//7.
+//7.加入父控件
 //[self.view addSubview:lessonView];
+
+
+
+
+
+
 

@@ -37,7 +37,7 @@
             [self addSubview:weekLabelView];
             [self.weekLabelViewArray addObject:weekLabelView];
         }
-//        [self updata];
+        [self updata];
         [self addConstraint];
     }
     return self;
@@ -72,14 +72,16 @@
     } else {
         backView.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
     }
-    backView.layer.cornerRadius = 4;
+    backView.layer.cornerRadius = 8;
     
     
     UILabel *week = [[UILabel alloc] init];
     [backView addSubview:week];
     
+    week.tag = 1;
+    [week setTextAlignment:(NSTextAlignmentCenter)];
     week.backgroundColor = UIColor.clearColor;
-    week.font = [UIFont fontWithName:@".PingFang SC" size: 12];
+    week.font = [UIFont fontWithName:PingFangSCRegular size: 12];
     week.text = dict[@"week"];
     if (@available(iOS 11.0, *)) {
         week.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
@@ -96,15 +98,17 @@
     UILabel *day = [[UILabel alloc] init];
     [backView addSubview:day];
     
+    day.tag = 2;
+    [day setTextAlignment:(NSTextAlignmentCenter)];
     day.backgroundColor = UIColor.clearColor;
-    day.font = [UIFont fontWithName:@".PingFang SC" size: 12];
+    day.font = [UIFont fontWithName:PingFangSCRegular size: 12];
     day.text = dict[@"day"];
     if (@available(iOS 11.0, *)) {
         day.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     } else {
         day.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
-    day.alpha = 0.64;
+    day.alpha = 0.77;
     
     [day mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(backView).offset(-DAY_BAR_ITEM_H*0.12);
@@ -196,41 +200,55 @@
     NSDateFormatter *formate = [[NSDateFormatter alloc] init];
     [formate setDateFormat:@"y"];
     NSString *year = [formate stringFromDate:[NSDate date]];
-    NSString *selfMonth = [self.dataArray firstObject][@"month"];
-    NSString *selfDay = [self.dataArray firstObject][@"day"];
-    NSString *dataStr = [NSString stringWithFormat:@"%@-%@-%@",year,selfMonth,selfDay];
     
+    NSString *selfMonth = self.dataArray[3][@"month"];
+    NSString *selfDay = self.dataArray[3][@"day"];
+    NSString *dataStr = [NSString stringWithFormat:@"%@-%@-%@",year,selfMonth,selfDay];
+    //得到该周周4的日期
+    NSDate *Thurs = [formate dateFromString:dataStr];
     
     
     formate.dateFormat = @"yyyy-M-d";
-    NSString *today = [formate stringFromDate:[NSDate date]];
+//    NSString *today = [formate stringFromDate:[NSDate date]];
+    
+    NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+
+    NSDate *Thurs1 = [formate dateFromString:@"2020-8-16"];
+    
+    NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:Thurs1 toDate:now options:0];
+    
+    //得到周四和今日隔了几天
+    long interval = [compsday day];
+    if(interval<4){//时间间隔小于4，代表这个课表是本周课表
+        [formate setDateFormat:@"d"];
+        NSString *day = [formate stringFromDate:[NSDate date]];
         
-       // 2、拿现在的时间和过去时间或者将来时间对比，计算出相差多少天，多少年，多少秒等等；
-       NSDate *beforTime = [formate dateFromString:@"2020-08-15"];
-    
-    
-    
-       NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
-       NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:beforTime toDate:now options:0];
-    
-    
-    NSLog(@"%@，%@相差天数 = %ld",dataStr,today,[compsday day]);
-    
-    return;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    [formatter setDateFormat:@"M"];
-    NSString *month = [formatter stringFromDate:[NSDate date]];
-    [formatter setDateFormat:@"d"];
-    NSString *day =[formatter stringFromDate:[NSDate date]];
-    
-    
-    
-    if([month isEqualToString:selfMonth]&&[day isEqualToString:selfDay]){
+        UIView *view;
+        int num1 = [self.dataArray[3+interval][@"day"] intValue];
+        int num2 = day.intValue;
+        if(num1==num2){
+            view  =  self.weekLabelViewArray[3+interval];
+        }else{
+            view  =  self.weekLabelViewArray[3-interval];
+        }
+
+        if (@available(iOS 11.0, *)) {
+            view.backgroundColor = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
+        } else {
+            view.backgroundColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        }
         
+        for (UILabel *label in view.subviews) {
+            if (@available(iOS 11.0, *)) {
+                label.textColor = [UIColor colorNamed:@"white_51_46_72_dayBar_today_textColor"];
+            } else {
+                label.textColor = [UIColor whiteColor];
+            }
+            if(label.tag==2){
+                label.alpha = 0.64;
+            }
+        }
     }
-    
 }
 
 @end
