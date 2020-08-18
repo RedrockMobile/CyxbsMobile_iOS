@@ -15,53 +15,5 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B3BFC8E4-4C67-4FDF-919D-ADE4E19C1564"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/Discover/Discover_Map/View/MoreImage/CQUPTMapMoreImageViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-viewDidLayoutSubviews"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B3BFC8E4-4C67-4FDF-919D-ADE4E19C1564 - 3c7ad0a5c7a4e865"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CQUPTMapMoreImageViewController viewDidLayoutSubviews]"
-                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fyh/Documents/Xcode/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_Map/View/MoreImage/CQUPTMapMoreImageViewController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "19">
-               </Location>
-               <Location
-                  uuid = "B3BFC8E4-4C67-4FDF-919D-ADE4E19C1564 - cd4df32a62728494"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__56-[CQUPTMapMoreImageViewController viewDidLayoutSubviews]_block_invoke"
-                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/fyh/Documents/Xcode/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_Map/View/MoreImage/CQUPTMapMoreImageViewController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
