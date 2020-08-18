@@ -45,10 +45,6 @@
     if(self){
         [self setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
         [self initLabel];
-        self.layer.cornerRadius = 8;
-        self.layer.shadowOffset = CGSizeMake(0, 2.5);
-        self.layer.shadowRadius = 15;
-        self.layer.shadowOpacity = 1;
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
         } else {
@@ -70,6 +66,12 @@
     self.classTimeLabel.text =
     [NSString stringWithFormat:@"%@  %@",dataDict[@"day"],daytime];
     self.scoreLabel.text = dataDict[@"type"];
+//    self.classroomNameLabel.text = @"计算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406/C407)";
+    if(self.classroomNameLabel.text.length>25){
+        [self.classroomNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(MAIN_SCREEN_W*0.7);
+        }];
+    }
 }
 
 //文本框初始化
@@ -84,6 +86,19 @@
     self.week = [[UILabel alloc] init];
     self.time = [[UILabel alloc] init];
     self.score = [[UILabel alloc] init];
+    
+    //教室地点的行数
+    self.classroomNameLabel.numberOfLines = 0;
+    
+    
+    //alpha
+    float alpha1 = 0.61, alpha2 = 0.81;
+    self.classroomNameLabel.alpha = alpha1;
+    self.teacherNameLabel.alpha = alpha1;
+    self.week.alpha = alpha2;
+    self.time.alpha = alpha2;
+    self.score.alpha = alpha2;
+
     
     //上色
     UIColor *textColor;
@@ -102,20 +117,27 @@
     self.time.textColor = textColor;
     self.score.textColor = textColor;
     
+//    #define PingFangSCRegular @"PingFangSC-Regular"
+//    #define PingFangSCLight @"PingFangSC-Light"
+//    #define PingFangSCMedium @"PingFangSC-Medium"
+//    #define PingFangSCBold @"PingFangSC-Semibold"
+//    #define PingFangSCHeavy @"PingFangSC-Heavy"
     //字号
-    UIFont *font1 = [UIFont fontWithName:@".PingFang SC" size: 15];
-    UIFont *font2 = [UIFont fontWithName:@".PingFang SC" size: 13];
+    UIFont *regu13 = [UIFont fontWithName:PingFangSCRegular size: 13];
+    UIFont *regu15 = [UIFont fontWithName:PingFangSCRegular size: 15];
+    UIFont *semi15 = [UIFont fontWithName:PingFangSCBold size:15];
     
-    self.lessonNameLabel.font = [UIFont fontWithName:@".PingFang SC" size: 22];
-    self.weekRangeLabel.font = font1;
-    self.classTimeLabel.font = font1;
-    self.scoreLabel.font = font1;
+    self.lessonNameLabel.font = [UIFont fontWithName:PingFangSCBold size: 22];
+    self.weekRangeLabel.font = semi15;
+    self.classTimeLabel.font = semi15;
+    self.scoreLabel.font = semi15;
     
-    self.classroomNameLabel.font = font2;
-    self.teacherNameLabel.font = font2;
-    self.week.font = font2;
-    self.time.font = font2;
-    self.score.font = font2;
+    self.classroomNameLabel.font = regu13;
+    self.teacherNameLabel.font = regu13;
+    
+    self.week.font = regu15;
+    self.time.font = regu15;
+    self.score.font = regu15;
     
     //addsubView
     [self addSubview:self.lessonNameLabel];
@@ -136,54 +158,53 @@
 
 - (void)layoutSubviews{
     /// 加约束
-    float h = MAIN_SCREEN_H*0.3281;
     [self.lessonNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.0873*h);
+        make.top.equalTo(self).offset(0.05867*MAIN_SCREEN_W);
     }];
     
     [self.classroomNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.2341*h);
+        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
     }];
     
     [self.week mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-    make.top.equalTo(self).offset(0.4048*h);
+        make.top.equalTo(self).offset(0.272*MAIN_SCREEN_W);
     }];
     
     [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.5833*h);
+        make.top.equalTo(self).offset(0.392*MAIN_SCREEN_W);
     }];
     
     [self.score mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.7619*h);
+        make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
     }];
     
 //___________________________________________________
     
     [self.teacherNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.classroomNameLabel.mas_right).offset(0.0747*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.2341*h);
+        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
     }];
     
 //___________________________________________________
     
     [self.weekRangeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.4048*h);
+        make.top.equalTo(self).offset(0.272*MAIN_SCREEN_W);
     }];
     
     [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.5833*h);
+        make.top.equalTo(self).offset(0.392*MAIN_SCREEN_W);
     }];
     
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.7619*h);
+        make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
     }];
 }
 //把@"一二节"转换为@"1-2节"、如果period==3，那么@"九十节"->@"9-11节"

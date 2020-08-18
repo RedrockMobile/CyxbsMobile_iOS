@@ -102,11 +102,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
      self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
+    if(((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView==nil){
     ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
     classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
     [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
     ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
     ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
+    }
 }
 
 - (void)viewDidLoad {
@@ -128,7 +130,28 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
+    
+    //由ClassScheduleTabBarView发送的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                         selector:@selector(pushReminderVC:)
+    name:@"pushReminderVC" object:nil];//监听要push DLReminderViewController的通知
+    
+    //DLReminderViewController被销毁时会发送这个通知，让tabBar.hidden = no;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTabBar) name:@"reminderVCPoped" object:nil];
 }
+//push DLReminderViewController的方法，由@"pushReminderVC"通知调用
+- (void)pushReminderVC:(NSNotification *)noti{
+    UIViewController *vc = noti.object;
+//    vc.tabBarController.hidesBottomBarWhenPushed = YES;
+    self.tabBarController.tabBar.hidden = YES;
+    vc.tabBarController.tabBar.alpha = 0;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+//由@"reminderVCPoped"通知调用
+- (void)showTabBar{
+    self.tabBarController.tabBar.hidden = NO;
+}
+
 -(void)layoutSubviews {
 //    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.right.top.height.equalTo(self.view);

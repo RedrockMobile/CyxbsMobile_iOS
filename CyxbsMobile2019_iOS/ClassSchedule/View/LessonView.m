@@ -39,7 +39,7 @@
 
 /// 给两个label分配空间，同时，把定死的参数配好
 - (void)setUpUI{
-    self.layer.cornerRadius = 4;
+    self.layer.cornerRadius = 8;
     self.courseNameLabel = [[UILabel alloc] init];
     self.courseNameLabel.font = [UIFont fontWithName:@".PingFang SC" size: 11];
     self.courseNameLabel.numberOfLines = 4;
@@ -133,9 +133,8 @@
 
 //self被点击后调用
 - (void)viewTouched{
-    
     if(self.isEmptyLesson==YES){
-        [self.delegate addNoteWithEmptyLessonData:self.courseDataDict];
+        [self.addNoteDelegate addNoteWithEmptyLessonData:self.courseDataDict];
     }else{
         [self.delegate showDetailWithCourseDataDict:self.courseDataDictArray];
     }
