@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #define DAY_BAR_ITEM_W (MAIN_SCREEN_W*0.1227)
-#define DAY_BAR_ITEM_H (DAY_BAR_ITEM_W*25/23.0)
+#define DAY_BAR_ITEM_H (MAIN_SCREEN_W*0.1333)
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DayBarView : UIView

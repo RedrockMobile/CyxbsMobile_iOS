@@ -27,10 +27,13 @@
 @end
 
 @implementation DLReminderViewController
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reminderVCPoped" object:nil];
+}
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
 }
-- (instancetype)initWithReminDic:(NSDictionary *)remind{
+- (instancetype)initWithRemindDic:(NSDictionary *)remind{
     self = [self init];
     if (self) {
         self.remind = remind;
@@ -78,6 +81,9 @@
 
 - (void)didClickHistoryButton:(DLHistodyButton *)button{
     self.inputString = self.buttonTitleArray[button.tag];
+    
+    NSLog(@"%@",self.inputString);
+    
     self.reminderView.textFiled.text = self.buttonTitleArray[button.tag];
 }
 - (void)back{

@@ -9,9 +9,10 @@
 #import "WYCClassBookViewController.h"
 #import "ClassTabBar.h"
 #import "TopBarScrollView.h"
-#import "LessonViewController.h"
+//#import "LessonViewController.h"
 #import "DayBarView.h"
 #import "LeftBar.h"
+#import "LessonViewForAWeek.h"
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 
@@ -217,12 +218,15 @@ const float distance=20;
             LeftBar *leftBar = [[LeftBar alloc] init];
             leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
             
-            //课表
-            LessonViewController *lessonVC = [[LessonViewController alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
-            [self.lessonVCArray addObject:lessonVC];
             
-            lessonVC.week = dateNum;
-            lessonVC.view.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonVC.view.frame.size.width, lessonVC.view.frame.size.height);
+            //课表
+            LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
+            [self.lessonVCArray addObject:lessonViewForAWeek];
+            
+            
+            lessonViewForAWeek.week = dateNum;
+            lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
+            
             
             DayBarView *dayBar;
             if(dateNum==0){
@@ -231,18 +235,17 @@ const float distance=20;
                 //顶部日期条
                 dayBar = [[DayBarView alloc] initWithDataArray:self.dateModel.dateArray[dateNum-1]];
             }
-            
             [self.scrollView addSubview:dayBar];
             dayBar.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
             
             
-            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1547, MAIN_SCREEN_W, MAIN_SCREEN_W*1.4)];
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1787, MAIN_SCREEN_W, MAIN_SCREEN_W*1.4)];
             [self.scrollView addSubview:scrollView];
             scrollView.backgroundColor = [UIColor clearColor];
             scrollView.showsVerticalScrollIndicator = NO;
-            [scrollView addSubview:lessonVC.view];
+            [scrollView addSubview:lessonViewForAWeek];
             [scrollView addSubview:leftBar];
-            [scrollView setContentSize:CGSizeMake(0, lessonVC.view.frame.size.height+10)];
+            [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height+10)];
         }
     }
     

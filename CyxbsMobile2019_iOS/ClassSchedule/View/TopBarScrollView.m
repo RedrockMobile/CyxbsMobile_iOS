@@ -41,7 +41,10 @@
         self.scrollEnabled = NO;
         
         //初始化weekTextArray
+        self.weekTextArray = @[@"整学期",@"一周",@"二周",@"三周",@"四周",@"五周",@"六周",@"七周",@"八周",@"九周",@"十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
+        /**
         self.weekTextArray = @[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
+        */
         
         //初始化weekChooseBtnArray
         self.weekChooseBtnArray = [NSMutableArray arrayWithCapacity:self.weekTextArray.count];
@@ -116,7 +119,7 @@
         make.left.equalTo(self.weekChooseBar).offset(0.0427*MAIN_SCREEN_W);
     }];
     UIButton *lastBtn = firstBtn;
-    float distance = MAIN_SCREEN_W*0.048;
+    float distance = MAIN_SCREEN_W*0.064;
     for (int i=1; i<self.weekTextArray.count; i++) {
         UIButton *btn = [self getWeekChooseBtnWithTag:i];
         [self.weekChooseBar addSubview:btn];
@@ -139,7 +142,8 @@
     }else{
         [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
     }
-    btn.titleLabel.font =  [UIFont fontWithName:@".PingFang SC" size: 15];
+    btn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
+    btn.alpha = 0.81;
     [btn addTarget:self action:@selector(weekChooseBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     return btn;
 }
@@ -290,7 +294,8 @@
         //更改旧按钮的的字体
         NSNumber *oldIndex = change[@"old"];
         UIButton *oldBtn = self.weekChooseBtnArray[oldIndex.intValue];
-        oldBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+        oldBtn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
+        oldBtn.alpha = 0.81;
         
         //要先改旧按钮，因为如果是第一调用，那么change[@"old"]
         //就是nil，导致oldBtn==newBtn，先改新按钮会导致新按钮的修改被旧按钮的修改覆盖
@@ -298,7 +303,8 @@
         //更改新按钮的的字体
         NSNumber *newIndex = change[@"new"];
         UIButton *newBtn = self.weekChooseBtnArray[newIndex.intValue];
-        newBtn.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size: 18];
+        newBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
+        newBtn.alpha = 1;
         
         //动画时长
         float duration = abs(newIndex.intValue-oldIndex.intValue)*0.3;
@@ -343,5 +349,7 @@
     dispatch_once(&onceToken, ^{
         self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
     });
+    UIView *lastBtn = [self.weekChooseBtnArray lastObject];
+    [self.weekChooseBar setContentSize:CGSizeMake(lastBtn.frame.origin.x+lastBtn.frame.size.width, 0)];
 }
 @end

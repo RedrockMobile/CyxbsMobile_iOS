@@ -36,6 +36,7 @@
             self.titleLabel.textColor = [UIColor colorWithHexString:@"F0F0F2"];
             // Fallback on earlier versions
         }
+        self.titleLabel.textColor = UIColor.redColor;
     }
     return self;
 }
