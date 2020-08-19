@@ -13,6 +13,7 @@ typedef NS_ENUM(NSInteger, HttpRequestType) {
     HttpRequestPost,
     HttpRequestDelete,
     HttpRequestPut,
+    HttpRequestPatch
 };
 typedef void (^PrepareExecuteBlock)(void);
 

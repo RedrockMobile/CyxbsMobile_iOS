@@ -214,15 +214,19 @@
 /// 重邮地图主页
 #define CQUPTMAPBASICDATA @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/basic"
 /// 重邮地图热搜
-#define CQUPTMAPHOTPLACE @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/hotPlace"
+#define CQUPTMAPHOTPLACE @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/button"
 /// 重邮地图：我的收藏
-#define CQUPTMAPMYSTAR @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/star"
+#define CQUPTMAPMYSTAR @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/collect"
 /// 重邮地图：搜索地点
-#define CQUPTMAPSEARCH @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/search"
+#define CQUPTMAPSEARCH @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/searchtype"
 /// 重邮地图：地点详情
-#define CQUPTMAPPLACEDETAIL @"https://www.fastmock.site/mock/42a89553a15999d575ea56f4f9a84fd1/apiTest/api/placeDetail"
+#define CQUPTMAPPLACEDETAIL @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/detailsite"
 /// 重邮地图：上传图片
 #define CQUPTMAPUPLOADIMAGE @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/upload"
+/// 重邮地图：添加收藏
+#define CQUPTMAPADDCOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/addkeep"
+/// 重邮地图：删除收藏
+#define CQUPTMAPDELETECOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/deletekeep"
 
 /// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"

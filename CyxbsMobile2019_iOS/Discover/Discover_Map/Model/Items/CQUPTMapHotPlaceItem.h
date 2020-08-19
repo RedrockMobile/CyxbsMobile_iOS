@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CQUPTMapHotPlaceItem : NSObject
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *code;
+@property (nonatomic, copy) NSArray<NSString *> *placeIDArray;
 @property (nonatomic, assign) BOOL isHot;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;

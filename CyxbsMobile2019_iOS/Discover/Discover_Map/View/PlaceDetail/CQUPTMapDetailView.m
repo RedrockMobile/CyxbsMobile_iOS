@@ -14,6 +14,7 @@
 #import "CQUPTMapMoreImageViewController.h"
 #import <TZImagePickerController.h>
 #import "CQUPTMapDataItem.h"
+#import "CQUPTMapModel.h"
 
 @interface CQUPTMapDetailView () <UICollectionViewDelegate, UICollectionViewDataSource, TZImagePickerControllerDelegate>
 
@@ -72,8 +73,13 @@
         [self addSubview:placeNameLabel];
         self.placeNameLabel = placeNameLabel;
         
-        UIButton *starButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [starButton setImage:[UIImage imageNamed:@"Map_StarButton"] forState:UIControlStateNormal];
+        [starButton setImage:[UIImage imageNamed:@"Map_StarButtonOn"] forState:UIControlStateSelected];
+        if ([placeItem isCollected]) {
+            starButton.selected = YES;
+        }
+        [starButton addTarget:self action:@selector(starButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:starButton];
         self.starButton = starButton;
         
@@ -413,6 +419,19 @@
     [alertController addAction:certainAction];
     
     [self.viewController presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)starButtonTapped:(UIButton *)sender {
+    if (!self.detailItem) { return; }
+    
+    if (sender.selected) {
+        // 取消收藏
+        [CQUPTMapModel deleteStarPlaceWithPlaceID:self.detailItem.placeID];
+    } else {
+        // 收藏
+        [CQUPTMapModel starPlaceWithPlaceID:self.detailItem.placeID];
+    }
+    sender.selected = !sender.selected;
 }
 
 @end

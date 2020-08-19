@@ -12,6 +12,7 @@
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapSearchItem.h"
+#import "CQUPTMapContentView.h"
 
 @interface CQUPTMapSearchView () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
@@ -127,6 +128,17 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.viewController.view endEditing:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.historyTableView) {
+        CQUPTMapBeforeSearchCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        ((CQUPTMapContentView *)(self.superview)).searchBar.text = cell.titleLabel.text;
+    } else {
+        [((CQUPTMapContentView *)(self.superview)) selectedAPlace:self.resultArray[indexPath.row]];
+        [((CQUPTMapContentView *)(self.superview)) cancelSearch];
+        [((CQUPTMapContentView *)(self.superview)) endEditing:YES];
+    }
 }
 
 

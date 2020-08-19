@@ -64,8 +64,8 @@
     self.contentView = contentView;
 }
 
-- (void)starPlaceRequestSuccessWithStarArray:(NSArray<CQUPTMapStarPlaceItem *> *)starPlaceArray {
-    [self.contentView starPlaceListRequestSuccess:starPlaceArray];
+- (void)starPlaceRequestSuccessWithStarPlace:(CQUPTMapStarPlaceItem *)starPlace {
+    [self.contentView starPlaceListRequestSuccess:starPlace];
 }
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {

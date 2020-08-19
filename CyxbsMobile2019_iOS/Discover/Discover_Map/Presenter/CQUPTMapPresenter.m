@@ -28,8 +28,8 @@
 }
 
 - (void)requestStarData {
-    [CQUPTMapModel requestStarListSuccess:^(NSArray<CQUPTMapStarPlaceItem *> * _Nonnull starPlaceArray) {
-        [self.view starPlaceRequestSuccessWithStarArray:starPlaceArray];
+    [CQUPTMapModel requestStarListSuccess:^(CQUPTMapStarPlaceItem * _Nonnull starPlace) {
+        [self.view starPlaceRequestSuccessWithStarPlace:starPlace];
     } failed:^(NSError * _Nonnull error) {
         
     }];
