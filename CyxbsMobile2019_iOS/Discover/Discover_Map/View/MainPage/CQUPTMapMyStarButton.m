@@ -10,7 +10,6 @@
 
 @interface CQUPTMapMyStarButton ()
 
-@property (nonatomic, weak) UIImageView *starImageView;
 @property (nonatomic, weak) UILabel *starLabel;
 @property (nonatomic, weak) UIView *separateLine;
 
@@ -32,18 +31,13 @@
         [self addSubview:separateLine];
         self.separateLine = separateLine;
         
-        UIImageView *starImageView = [[UIImageView alloc] init];
-        starImageView.image = [UIImage imageNamed:@"Map_Star"];
-        [self addSubview:starImageView];
-        self.starImageView = starImageView;
-        
         UILabel *starLabel = [[UILabel alloc] init];
         starLabel.text = @"我的收藏";
-        starLabel.font = [UIFont fontWithName:PingFangSCMedium size:11];
+        starLabel.font = [UIFont fontWithName:PingFangSCBold size:14];
         if (@available(iOS 11.0, *)) {
-            starLabel.textColor = [UIColor colorNamed:@"Map_StarLabelColor"];
+            starLabel.textColor = [UIColor colorNamed:@"Map_HotWordColor"];
         } else {
-            starLabel.textColor = [UIColor colorWithHexString:@"#778AA9"];
+            starLabel.textColor = [UIColor colorWithHexString:@"#0E2A53"];
         }
         [self addSubview:starLabel];
         self.starLabel = starLabel;
@@ -59,16 +53,8 @@
         make.width.equalTo(@1);
     }];
     
-    [self.starImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(10);
-        make.centerX.equalTo(self);
-        make.width.equalTo(@23);
-        make.height.equalTo(@17);
-    }];
-    
     [self.starLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.top.equalTo(self.starImageView.mas_bottom).offset(5);
+        make.centerX.centerY.equalTo(self);
     }];
 }
 

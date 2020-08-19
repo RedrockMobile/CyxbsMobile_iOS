@@ -30,9 +30,9 @@
         [hotButton setTitle:title forState:UIControlStateNormal];
         hotButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
         if (@available(iOS 11.0, *)) {
-            [hotButton setTitleColor:[UIColor colorNamed:@"Map_TextColor"] forState:UIControlStateNormal];
+            [hotButton setTitleColor:[UIColor colorNamed:@"Map_HotWordColor"] forState:UIControlStateNormal];
         } else {
-            [hotButton setTitleColor:[UIColor colorWithHexString:@"#15305B"] forState:UIControlStateNormal];
+            [hotButton setTitleColor:[UIColor colorWithHexString:@"#0E2A53"] forState:UIControlStateNormal];
         }
         [self addSubview:hotButton];
         self.hotButton = hotButton;

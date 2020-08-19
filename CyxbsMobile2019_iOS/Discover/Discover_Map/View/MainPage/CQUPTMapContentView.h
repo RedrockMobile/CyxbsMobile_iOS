@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) UIScrollView *mapScrollView;
 @property (nonatomic, weak) UIImageView *mapView;
+@property (nonatomic, strong) NSMutableArray<UIImageView *> *pinsArray;
 
 
 - (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItemArray:(NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceItemArray;

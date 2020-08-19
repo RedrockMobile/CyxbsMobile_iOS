@@ -41,6 +41,7 @@ PODS:
   - SDWebImage (5.2.3):
     - SDWebImage/Core (= 5.2.3)
   - SDWebImage/Core (5.2.3)
+  - TZImagePickerController (3.3.2)
   - UMCAnalytics (6.0.5):
     - UMCCommon
   - UMCCommon (2.1.1)
@@ -80,6 +81,7 @@ DEPENDENCIES:
   - pop
   - SDCycleScrollView
   - SDWebImage
+  - TZImagePickerController
   - UMCAnalytics
   - UMCCommon
   - UMCCommonLog
@@ -108,6 +110,7 @@ SPEC REPOS:
     - pop
     - SDCycleScrollView
     - SDWebImage
+    - TZImagePickerController
     - UMCAnalytics
     - UMCCommon
     - UMCCommonLog
@@ -133,6 +136,7 @@ SPEC CHECKSUMS:
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
   SDWebImage: 46a7f73228f84ce80990c786e4372cf4db5875ce
+  TZImagePickerController: 36ca728ec681228918aa82e993aaab1962281b72
   UMCAnalytics: 045be2cd1ec05aa95ad62405a850757f932e2d59
   UMCCommon: 971f324a5a99c9d662ae040a815e7e3d7ef8b2a8
   UMCCommonLog: 05a2d5de21858e3d870551562cff405c1366d244
@@ -142,6 +146,6 @@ SPEC CHECKSUMS:
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 6792ec836b1f0c00c065e0928e2ab9e8d465c3e8
+PODFILE CHECKSUM: 8ecd5f0286b01a9dfdc6e8744c43236a9dafc784
 
 COCOAPODS: 1.9.1

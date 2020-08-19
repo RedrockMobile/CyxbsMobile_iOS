@@ -9,8 +9,15 @@
 #import "CQUPTMapDetailView.h"
 #import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapPlaceDetailItem.h"
+#import "CQUPTMapDetailTagsCollectionViewCell.h"
+#import "CollectionViewSpaceLayout.h"
+#import "CQUPTMapMoreImageViewController.h"
+#import <TZImagePickerController.h>
+#import "CQUPTMapDataItem.h"
 
-@interface CQUPTMapDetailView ()
+@interface CQUPTMapDetailView () <UICollectionViewDelegate, UICollectionViewDataSource, TZImagePickerControllerDelegate>
+
+@property (nonatomic, strong) CQUPTMapPlaceDetailItem *detailItem;
 
 @property (nonatomic, weak) UIView *dragBar;
 @property (nonatomic, weak) UILabel *placeNameLabel;
@@ -24,6 +31,7 @@
 @property (nonatomic, weak) UIImageView *shareImageView;
 @property (nonatomic, weak) UIButton *shareButton;
 @property (nonatomic, weak) UILabel *aboutHereLabel;
+@property (nonatomic, weak) UICollectionView *tagsCollectionView;
 
 @end
 
@@ -88,6 +96,7 @@
         } else {
             [showMoreButton setTitleColor:[UIColor colorWithHexString:@"ABBCD8"] forState:UIControlStateNormal];
         }
+        [showMoreButton addTarget:self action:@selector(showMoreButtonTapped) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:showMoreButton];
         self.showMoreButton = showMoreButton;
         
@@ -100,6 +109,37 @@
         scrollView.contentInset = UIEdgeInsetsMake(0, 15, 0, 15);
         [self addSubview:scrollView];
         self.imagesScrollView = scrollView;
+        
+        UIImageView *shareImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Map_ShareImage"]];
+        [self addSubview:shareImageView];
+        self.shareImageView = shareImageView;
+        
+        UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [shareButton setTitle:@"与大家分享你拍摄的此地点" forState:UIControlStateNormal];
+        shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
+        if (@available(iOS 11.0, *)) {
+            [shareButton setTitleColor:[UIColor colorNamed:@"Map_SearchCellColor"] forState:UIControlStateNormal];
+        } else {
+            [shareButton setTitleColor:[UIColor colorWithHexString:@"234780"] forState:UIControlStateNormal];
+        }
+        [shareButton addTarget:self action:@selector(shareImageButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:shareButton];
+        self.shareButton = shareButton;
+        
+        UILabel *aboutHereLabel = [[UILabel alloc] init];
+        aboutHereLabel.text = @"关于该地点";
+        aboutHereLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
+        aboutHereLabel.textColor = self.detailLabel.textColor;
+        [self addSubview:aboutHereLabel];
+        self.aboutHereLabel = aboutHereLabel;
+        
+        UICollectionView *tagsCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[CollectionViewSpaceLayout alloc] init]];
+        [tagsCollectionView registerClass:[CQUPTMapDetailTagsCollectionViewCell class] forCellWithReuseIdentifier:@"CQUPTMapDetailTagsCollectionViewCell"];
+        tagsCollectionView.backgroundColor = [UIColor clearColor];
+        tagsCollectionView.delegate = self;
+        tagsCollectionView.dataSource = self;
+        [self addSubview:tagsCollectionView];
+        self.tagsCollectionView = tagsCollectionView;
     }
     return self;
 }
@@ -130,7 +170,7 @@
         if (i == 0) {
             [self.attributesLabelArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.leading.equalTo(self).offset(15);
-                make.top.equalTo(self.placeNameLabel.mas_bottom).offset(8);
+                make.top.equalTo(self.placeNameLabel.mas_bottom);
                 make.width.equalTo(@([self attributeLabelWidthText:self.attributesLabelArray[i].text] + 15));
                 make.height.equalTo(@18);
             }];
@@ -146,7 +186,7 @@
     
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(15);
-        make.top.equalTo(self.placeNameLabel.mas_bottom).offset(49);
+        make.top.equalTo(self.placeNameLabel.mas_bottom).offset(40);
     }];
 
     [self.showMoreImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -194,9 +234,34 @@
             }];
         }
     }
+    
+    [self.shareImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.shareButton.mas_leading).offset(-5);
+        make.centerY.equalTo(self.shareButton);
+        make.width.height.equalTo(@16);
+    }];
+    
+    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.imagesScrollView.mas_bottom).offset(8);
+        make.trailing.equalTo(self).offset(-15);
+    }];
+    
+    [self.aboutHereLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self).offset(15);
+        make.top.equalTo(self.shareImageView.mas_bottom).offset(14);
+    }];
+    
+    [self.tagsCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self).offset(15);
+        make.top.equalTo(self.aboutHereLabel.mas_bottom).offset(15);
+        make.trailing.equalTo(self).offset(-15);
+        make.height.equalTo(@56);
+    }];
 }
 
-- (void)loadDataWithPlaceDetailItem:(CQUPTMapPlaceDetailItem *)detailItem {    
+- (void)loadDataWithPlaceDetailItem:(CQUPTMapPlaceDetailItem *)detailItem {
+    self.detailItem = detailItem;
+    
     for (int i = 0; i < detailItem.placeAttributesArray.count; i++) {
         
         NSString *placeAttribute = detailItem.placeAttributesArray[i];
@@ -239,6 +304,8 @@
         [self.imagesArray addObject:placeImageView];
     }
     
+    [self.tagsCollectionView reloadData];
+    
     [self layoutIfNeeded];
     
     [UIView animateWithDuration:0.25 animations:^{
@@ -254,6 +321,98 @@
     CGRect rect = [text boundingRectWithSize:CGSizeMake(0, 10) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
 
     return rect.size.width;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (self.detailItem.tagsArray.count) {
+        return self.detailItem.tagsArray.count;
+    } else {
+        return 1;
+    }
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CQUPTMapDetailTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CQUPTMapDetailTagsCollectionViewCell" forIndexPath:indexPath];
+    if (self.detailItem.tagsArray.count == 0) {
+        cell.tagLabel.text = @"暂无信息";
+    } else {
+        cell.tagLabel.text = self.detailItem.tagsArray[indexPath.item];
+    }
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    return CGSizeMake([self attributeLabelWidthText:self.detailItem.tagsArray[indexPath.item]] + 5, 22);
+}
+
+// 垂直间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 12;
+}
+
+// 水平间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 1;
+}
+
+- (void)showMoreButtonTapped {
+    CQUPTMapMoreImageViewController *vc = [[CQUPTMapMoreImageViewController alloc] initWithPlaceDetailItem:self.detailItem];
+    [self.viewController.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)shareImageButtonTapped {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"共享照片" message:@"在这里，与邮子们共同分享你们所拍的校园风景。上传你的照片，优质照片有机会在此展示。" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:10 delegate:self];
+        [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+            [self.viewController dismissViewControllerAnimated:YES completion:^{
+                
+                UIAlertController *uploadAlertController = [UIAlertController alertControllerWithTitle:@"确认上传" message:@"确认后您选择的图片将被上传，审核通过后就可以展示啦。" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *uploadCancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                
+                UIAlertAction *uploadCertainAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    // 上传图片
+                    
+                    NSDictionary *params = @{
+                        @"place_id": self.detailItem.placeID
+                    };
+                    
+                    NSMutableArray *names = [@[] mutableCopy];
+                    for (int i = 0; i < photos.count; i++) {
+                        [names addObject:@"image"];
+                    }
+                    
+                    [[HttpClient defaultClient] uploadImageWithJson:CQUPTMAPUPLOADIMAGE method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        NSLog(@"%@", responseObject);
+                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        
+                    }];
+                }];
+                
+                [uploadAlertController addAction:uploadCancelAction];
+                [uploadAlertController addAction:uploadCertainAction];
+                
+                [self.viewController presentViewController:uploadAlertController animated:YES completion:nil];
+            }];
+            
+        }];
+        imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self.viewController presentViewController:imagePickerVc animated:YES completion:nil];
+        
+    }];
+    
+    [alertController addAction:cancelAction];
+    [alertController addAction:certainAction];
+    
+    [self.viewController presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

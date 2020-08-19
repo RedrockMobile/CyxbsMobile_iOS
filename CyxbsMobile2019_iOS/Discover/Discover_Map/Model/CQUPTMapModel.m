@@ -91,7 +91,9 @@
     
     [[HttpClient defaultClient] requestWithPath:CQUPTMAPPLACEDETAIL method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
-            success([[CQUPTMapPlaceDetailItem alloc] initWithDict:responseObject[@"data"]]);
+            CQUPTMapPlaceDetailItem *item = [[CQUPTMapPlaceDetailItem alloc] initWithDict:responseObject[@"data"]];
+            item.placeID = placeID;
+            success(item);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         

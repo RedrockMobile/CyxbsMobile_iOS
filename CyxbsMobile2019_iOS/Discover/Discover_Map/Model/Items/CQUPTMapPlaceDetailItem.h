@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CQUPTMapPlaceDetailItem : NSObject
 
+@property (nonatomic, weak) NSString *placeID;
 @property (nonatomic, weak) NSString *placeName;
 @property (nonatomic, copy) NSArray *placeAttributesArray;
 @property (nonatomic, copy) NSArray *tagsArray;

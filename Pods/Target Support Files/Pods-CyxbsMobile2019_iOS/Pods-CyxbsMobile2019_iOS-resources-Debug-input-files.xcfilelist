@@ -15,5 +15,6 @@ ${PODS_ROOT}/GMImagePicker/GMImagePicker/fr.lproj
 ${PODS_ROOT}/GMImagePicker/GMImagePicker/it.lproj
 ${PODS_ROOT}/GMImagePicker/GMImagePicker/pt.lproj
 ${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle
+${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle
 ${PODS_ROOT}/UMCCommonLog/UMCommonLog/UMCommonLog.bundle
 ${PODS_ROOT}/UMCShare/UMShare/UMSocialUI/UMSocialSDKResources.bundle

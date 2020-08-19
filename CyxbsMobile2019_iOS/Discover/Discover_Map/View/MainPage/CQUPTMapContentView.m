@@ -45,6 +45,8 @@
 
 @property (nonatomic, assign) CGFloat lastY;
 
+@property (nonatomic, assign) CGFloat startScale;
+
 @end
 
 
@@ -58,6 +60,7 @@
         
         self.mapDataItem = mapDataItem;
         self.hotPlaceItemArray = hotPlaceItemArray;
+        self.pinsArray = [@[] mutableCopy];
         
         UIView *topView = [[UIView alloc] init];
         topView.backgroundColor = [UIColor whiteColor];
@@ -300,6 +303,13 @@
     return self.mapView;
 }
 
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    for (UIImageView *pin in self.pinsArray) {
+        
+        pin.layer.affineTransform = CGAffineTransformMakeScale(self.startScale / scrollView.zoomScale, self.startScale / scrollView.zoomScale);
+    }
+}
+
 
 #pragma mark - TableView数据源
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -338,13 +348,13 @@
     for (CQUPTMapPlaceItem *place in self.mapDataItem.placeList) {
         for (CQUPTMapPlaceRect *rect in place.buildingList) {
             if ([rect isIncludePercentagePoint:tapPoint] || [place.tagRect isIncludePercentagePoint:tapPoint]) {
-                NSLog(@"%@", place.placeName);
                 [self selectedAPlace:place];
                 // 请求详情数据
                 if ([self.delegate respondsToSelector:@selector(requestPlaceDataWithPlaceID:)]) {
                     [self.delegate requestPlaceDataWithPlaceID:place.placeId];
                 }
-
+                
+                return;
             }
         }
     }
@@ -357,6 +367,31 @@
 
 /// 点击了地图上某个地点后。上面那个方法判断成功后调用的。
 - (void)selectedAPlace:(CQUPTMapPlaceItem *)placeItem {
+    for (UIImageView *pin in self.pinsArray) {
+        [pin removeFromSuperview];
+    }
+    [self.pinsArray removeAllObjects];
+    
+    UIImageView *pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Map_Pin"]];
+    [self.mapView addSubview:pinImageView];
+    [self.pinsArray addObject:pinImageView];
+    
+    [pinImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.mapView).offset(placeItem.centerX * self.mapView.width / self.mapScrollView.zoomScale - 12.5 / self.mapScrollView.zoomScale);
+        make.top.equalTo(self.mapView).offset(placeItem.centerY * self.mapView.height / self.mapScrollView.zoomScale - 18 / self.mapScrollView.zoomScale);
+        make.width.equalTo(@(25 / self.mapScrollView.zoomScale));
+        make.height.equalTo(@(36 / self.mapScrollView.zoomScale));
+    }];
+    [self layoutIfNeeded];
+    pinImageView.layer.anchorPoint = CGPointMake(0.5, 1);
+    self.startScale = self.mapScrollView.zoomScale;
+    
+    pinImageView.layer.affineTransform = CGAffineTransformMakeScale(0, 0);
+    
+    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:10 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        pinImageView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
+    } completion:nil];
+    
     [UIView animateWithDuration:0.3 animations:^{
         self.detailView.alpha = 0;
         self.detailView.layer.affineTransform = CGAffineTransformScale(self.detailView.layer.affineTransform, 0.2, 0.2);
