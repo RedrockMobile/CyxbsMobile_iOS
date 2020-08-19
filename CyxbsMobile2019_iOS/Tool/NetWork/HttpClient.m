@@ -66,6 +66,8 @@
         case HttpRequestDelete:
             [self.httpSessionManager DELETE:url parameters:parameters success:success failure:failure];
             break;
+        case HttpRequestPatch:
+            [self.httpSessionManager PATCH:url parameters:parameters success:success failure:failure];
         default:
             break;
     }

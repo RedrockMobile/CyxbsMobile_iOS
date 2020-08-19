@@ -7,6 +7,7 @@
 //
 
 #import "CQUPTMapPlaceItem.h"
+#import "CQUPTMapStarPlaceItem.h"
 
 @implementation CQUPTMapPlaceItem
 
@@ -15,7 +16,7 @@ MJExtensionCodingImplementation
 - (instancetype)initWithDict:(NSDictionary *)dict mapWidth:(CGFloat)width mapHeight:(CGFloat)height {
     if (self = [super init]) {
         self.placeName = dict[@"place_name"];
-        self.placeId = dict[@"place_id"];
+        self.placeId = [dict[@"place_id"] stringValue];
         self.centerX = [dict[@"place_center_x"] floatValue] / width;
         self.centerY = [dict[@"place_center_y"] floatValue] / height;
         
@@ -42,6 +43,16 @@ MJExtensionCodingImplementation
         self.tagRect = rect;
     }
     return self;
+}
+
+- (BOOL)isCollected {
+    NSArray *starArray = [CQUPTMapStarPlaceItem starPlaceDetail];
+    for (CQUPTMapPlaceItem *place in starArray) {
+        if ([place.placeId isEqualToString:self.placeId]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

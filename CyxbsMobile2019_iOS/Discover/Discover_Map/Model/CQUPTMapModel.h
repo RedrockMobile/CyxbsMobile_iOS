@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)requestHotPlaceSuccess:(void (^)(NSArray<CQUPTMapHotPlaceItem *> *hotPlaceItemArray))success;
 
-+ (void)requestStarListSuccess:(void (^)(NSArray<CQUPTMapStarPlaceItem *> *starPlaceArray))success
++ (void)requestStarListSuccess:(void (^)(CQUPTMapStarPlaceItem *starPlace))success
                         failed:(void (^)(NSError *error))failed;
 
 + (void)searchPlaceWithString:(NSString *)string
@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestPlaceDataWithPlaceID:(NSString *)placeID
                             success:(void (^)(CQUPTMapPlaceDetailItem *placeDetailItem))success
                              failed:(void (^)(NSError *error))failed;
+
++ (void)starPlaceWithPlaceID:(NSString *)placeID;
+
++ (void)deleteStarPlaceWithPlaceID:(NSString *)placeID;
 
 @end
 

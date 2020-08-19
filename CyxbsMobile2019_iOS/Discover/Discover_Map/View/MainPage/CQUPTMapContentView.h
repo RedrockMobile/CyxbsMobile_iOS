@@ -22,11 +22,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CQUPTMapDataItem, CQUPTMapHotPlaceItem, CQUPTMapStarPlaceItem, CQUPTMapSearchItem, CQUPTMapPlaceDetailItem;
+@class CQUPTMapDataItem, CQUPTMapHotPlaceItem, CQUPTMapStarPlaceItem, CQUPTMapSearchItem, CQUPTMapPlaceDetailItem, CQUPTMapPlaceItem;
 @interface CQUPTMapContentView : UIView
 
 @property (nonatomic, weak) id<CQUPTMapContentViewDelegate> delegate;
 
+@property (nonatomic, weak) UITextField *searchBar;
 @property (nonatomic, weak) UIScrollView *mapScrollView;
 @property (nonatomic, weak) UIImageView *mapView;
 @property (nonatomic, strong) NSMutableArray<UIImageView *> *pinsArray;
@@ -34,7 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithFrame:(CGRect)frame andMapData:(CQUPTMapDataItem *)mapDataItem andHotPlaceItemArray:(NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceItemArray;
 
-- (void)starPlaceListRequestSuccess:(NSArray <CQUPTMapStarPlaceItem *> *)starPlaceArray;
+- (void)cancelSearch;
+
+- (void)selectedAPlace:(CQUPTMapPlaceItem *)placeItem;
+
+- (void)starPlaceListRequestSuccess:(CQUPTMapStarPlaceItem *)starPlaceArray;
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray;
 

@@ -7,7 +7,7 @@
 //
 
 #import "CQUPTMapModel.h"
-
+#import "CQUPTMapStarPlaceItem.h"
 
 @implementation CQUPTMapModel
 
@@ -49,16 +49,14 @@
     
 }
 
-+ (void)requestStarListSuccess:(void (^)(NSArray<CQUPTMapStarPlaceItem *> * _Nonnull))success
++ (void)requestStarListSuccess:(void (^)(CQUPTMapStarPlaceItem * _Nonnull))success
                         failed:(void (^)(NSError * _Nonnull))failed {
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPMYSTAR method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPMYSTAR method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
-            NSMutableArray *tmpArray = [NSMutableArray array];
-            for (NSDictionary *dict in responseObject[@"data"]) {
-                CQUPTMapStarPlaceItem *item = [[CQUPTMapStarPlaceItem alloc] initWithDice:dict];
-                [tmpArray addObject:item];
-            }
-            success(tmpArray);
+            
+            CQUPTMapStarPlaceItem *item = [[CQUPTMapStarPlaceItem alloc] initWithDice:responseObject];
+            
+            success(item);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -95,6 +93,36 @@
             item.placeID = placeID;
             success(item);
         }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
++ (void)starPlaceWithPlaceID:(NSString *)placeID {
+    NSDictionary *params = @{
+        @"place_id": placeID
+    };
+    
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPADDCOLLECT method:HttpRequestPatch parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
+        [item.starPlaceArray addObject:placeID];
+        [item archiveItem];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
++ (void)deleteStarPlaceWithPlaceID:(NSString *)placeID {
+    NSDictionary *params = @{
+        @"place_id": placeID
+    };
+    
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPDELETECOLLECT method:HttpRequestDelete parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
+        [item.starPlaceArray removeObject:placeID];
+        [item archiveItem];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];

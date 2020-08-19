@@ -17,17 +17,16 @@
 #import "CQUPTMapDetailView.h"
 #import <IQKeyboardManager.h>
 
-@interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, CALayerDelegate>
+@interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, CALayerDelegate>
 
 // 数据
 @property (nonatomic, strong) CQUPTMapDataItem *mapDataItem;
 @property (nonatomic, copy) NSArray<CQUPTMapHotPlaceItem *> *hotPlaceItemArray;
-@property (nonatomic, copy) NSArray<CQUPTMapStarPlaceItem *> *starPlaceArray;
+@property (nonatomic, strong) CQUPTMapStarPlaceItem *starPlace;
 
 // 控件
 @property (nonatomic, weak) UIView *topView;
 @property (nonatomic, weak) UIButton *backButton;
-@property (nonatomic, weak) UITextField *searchBar;
 @property (nonatomic, weak) UIImageView *searchScopeImageView;
 @property (nonatomic, weak) UIButton *cancelButton;
 
@@ -35,8 +34,6 @@
 @property (nonatomic, strong) NSMutableArray<CQUPTMapHotPlaceButton *> *hotButtonArray;
 
 @property (nonatomic, weak) CQUPTMapMyStarButton *starButton;
-@property (nonatomic, weak) UIImageView *starDialogueBoxImageView;
-@property (nonatomic, weak) UITableView *starTableView;
 
 @property (nonatomic, weak) CQUPTMapSearchView *beforeSearchView;
 
@@ -311,30 +308,6 @@
 }
 
 
-#pragma mark - TableView数据源
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.starPlaceArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"d"];
-    cell.textLabel.text = self.starPlaceArray[indexPath.row].placeNickname;
-    cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
-    if (@available(iOS 11.0, *)) {
-        cell.textLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
-    } else {
-        cell.textLabel.textColor = [UIColor colorWithHexString:@"#152F5B"];
-    }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell;
-}
-
-
 #pragma mark - TableView代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -367,30 +340,7 @@
 
 /// 点击了地图上某个地点后。上面那个方法判断成功后调用的。
 - (void)selectedAPlace:(CQUPTMapPlaceItem *)placeItem {
-    for (UIImageView *pin in self.pinsArray) {
-        [pin removeFromSuperview];
-    }
-    [self.pinsArray removeAllObjects];
-    
-    UIImageView *pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Map_Pin"]];
-    [self.mapView addSubview:pinImageView];
-    [self.pinsArray addObject:pinImageView];
-    
-    [pinImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.mapView).offset(placeItem.centerX * self.mapView.width / self.mapScrollView.zoomScale - 12.5 / self.mapScrollView.zoomScale);
-        make.top.equalTo(self.mapView).offset(placeItem.centerY * self.mapView.height / self.mapScrollView.zoomScale - 18 / self.mapScrollView.zoomScale);
-        make.width.equalTo(@(25 / self.mapScrollView.zoomScale));
-        make.height.equalTo(@(36 / self.mapScrollView.zoomScale));
-    }];
-    [self layoutIfNeeded];
-    pinImageView.layer.anchorPoint = CGPointMake(0.5, 1);
-    self.startScale = self.mapScrollView.zoomScale;
-    
-    pinImageView.layer.affineTransform = CGAffineTransformMakeScale(0, 0);
-    
-    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:10 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        pinImageView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
-    } completion:nil];
+    [self addPinsOnMapWithPlaceArray:@[placeItem]];
     
     [UIView animateWithDuration:0.3 animations:^{
         self.detailView.alpha = 0;
@@ -422,6 +372,39 @@
     }];
 }
 
+- (void)addPinsOnMapWithPlaceArray:(NSArray <CQUPTMapPlaceItem *> *)placeArray {
+    [self removeAllPinsOnMap];
+    
+    for (CQUPTMapPlaceItem *placeItem in placeArray) {
+        UIImageView *pinImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Map_Pin"]];
+        [self.mapView addSubview:pinImageView];
+        [self.pinsArray addObject:pinImageView];
+        
+        [pinImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.leading.equalTo(self.mapView).offset(placeItem.centerX * self.mapView.width / self.mapScrollView.zoomScale - 12.5 / self.mapScrollView.zoomScale);
+            make.top.equalTo(self.mapView).offset(placeItem.centerY * self.mapView.height / self.mapScrollView.zoomScale - 18 / self.mapScrollView.zoomScale);
+            make.width.equalTo(@(25 / self.mapScrollView.zoomScale));
+            make.height.equalTo(@(36 / self.mapScrollView.zoomScale));
+        }];
+        [self layoutIfNeeded];
+        pinImageView.layer.anchorPoint = CGPointMake(0.5, 1);
+        self.startScale = self.mapScrollView.zoomScale;
+        
+        pinImageView.layer.affineTransform = CGAffineTransformMakeScale(0, 0);
+        
+        [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:10 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            pinImageView.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
+        } completion:nil];
+    }
+}
+
+- (void)removeAllPinsOnMap {
+    for (UIImageView *pin in self.pinsArray) {
+        [pin removeFromSuperview];
+    }
+    [self.pinsArray removeAllObjects];
+}
+
 - (void)transitionViewDragged:(UIPanGestureRecognizer *)sender {
     CGPoint translation = [sender translationInView:self];
     
@@ -445,6 +428,7 @@
             [UIView animateWithDuration:0.1 animations:^{
                 sender.view.frame = CGRectMake(0, MAIN_SCREEN_H, sender.view.width, sender.view.height);
             } completion:^(BOOL finished) {
+                [self removeAllPinsOnMap];
                 [self.detailView removeFromSuperview];
                 self.detailView = nil;
             }];
@@ -485,94 +469,19 @@
 }
 
 - (void)starButtonClicked {
-    if (self.starDialogueBoxImageView) {
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            self.starDialogueBoxImageView.alpha = 0;
-        } completion:^(BOOL finished) {
-            [self.starDialogueBoxImageView removeFromSuperview];
-        }];
-        
-        return;
-    }
     
     // 先请求数据
     if ([self.delegate respondsToSelector:@selector(requestStarData)]) {
         [self.delegate requestStarData];
     }
-    
-    // 对话框图片
-    UIImage *dialogueImage = [UIImage imageNamed:@"Map_StarDialogueBox"];
-    UIEdgeInsets edge = UIEdgeInsetsMake(30, 0, 20, 0);
-    dialogueImage = [dialogueImage resizableImageWithCapInsets:edge resizingMode:UIImageResizingModeStretch];
-    
-    CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
-    UIImageView *dialogueImageView = [[UIImageView alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, 152)];
-    dialogueImageView.image = dialogueImage;
-    dialogueImageView.alpha = 0;
-    dialogueImageView.userInteractionEnabled = YES;
-    
-    // 展示列表的tableView
-    CGFloat tableWidth = dialogueImageView.bounds.size.width - 12;
-    CGFloat tableHeight = dialogueImageView.bounds.size.height - 30;
-    UITableView *starTableView = [[UITableView alloc] initWithFrame:CGRectMake(6, 10, tableWidth, tableHeight) style:UITableViewStylePlain];
-    starTableView.rowHeight = 39;
-    starTableView.dataSource = self;
-    starTableView.delegate = self;
-    starTableView.alpha = 0;        // 先隐藏tableView，数据加载完成后显示，加载完成回调就是后面一个方法
-    UIView * footer = [[UIView alloc] initWithFrame:CGRectZero];
-    starTableView.tableFooterView = footer;         // 用来隐藏多余的分割线
-    self.starTableView = starTableView;
-    [dialogueImageView addSubview:starTableView];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        dialogueImageView.alpha = 1;
-    }];
-    
-    [self addSubview:dialogueImageView];
-    self.starDialogueBoxImageView = dialogueImageView;
+
 }
 
-- (void)starPlaceListRequestSuccess:(NSArray<CQUPTMapStarPlaceItem *> *)starPlaceArray {
-    self.starPlaceArray = starPlaceArray;
+- (void)starPlaceListRequestSuccess:(CQUPTMapStarPlaceItem *)starPlace {
+    self.starPlace = starPlace;
+    [starPlace archiveItem];
     
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        if (starPlaceArray.count <= 6) {
-            CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
-            self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, starPlaceArray.count * 39 + 20);
-        } else {
-            CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
-            self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, 6 * 39 + 20);
-        }
-        
-        CGFloat tableWidth = self.starDialogueBoxImageView.bounds.size.width - 12;
-        CGFloat tableHeight = self.starDialogueBoxImageView.bounds.size.height - 9;
-        self.starTableView.frame = CGRectMake(6, 9, tableWidth, tableHeight);
-        
-        self.starTableView.alpha = 1;
-        
-        if (starPlaceArray.count == 0) {
-            CGFloat dialogueBoxY = CGRectGetMaxY(self.starButton.frame);
-            self.starDialogueBoxImageView.frame = CGRectMake(MAIN_SCREEN_W - 15 - 135, dialogueBoxY, 135, 52);
-            
-            UILabel *noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 135, 37)];
-            noDataLabel.center = CGPointMake(self.starDialogueBoxImageView.width * 0.5, self.starDialogueBoxImageView.height * 0.5 + 4.5);
-            noDataLabel.text = @"暂无收藏哦";
-            noDataLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
-            noDataLabel.textAlignment = NSTextAlignmentCenter;
-            if (@available(iOS 11.0, *)) {
-                noDataLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
-            } else {
-                noDataLabel.textColor = [UIColor colorWithHexString:@"#152F5B"];
-            }
-            
-            [self.starDialogueBoxImageView addSubview:noDataLabel];
-        }
-        
-    } completion:nil];
-    
-    [self.starTableView reloadData];
+    [self addPinsOnMapWithPlaceArray:[CQUPTMapStarPlaceItem starPlaceDetail]];
 }
 
 

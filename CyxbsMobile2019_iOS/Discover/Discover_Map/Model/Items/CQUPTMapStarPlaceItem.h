@@ -10,12 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CQUPTMapStarPlaceItem : NSObject
+@class CQUPTMapPlaceItem;
+@interface CQUPTMapStarPlaceItem : NSObject <NSCoding>
 
-@property (nonatomic, copy) NSString *placeNickname;
-@property (nonatomic, copy) NSString *placeId;
++ (NSString *)archivePath;
+
+- (void)archiveItem;
+
+@property (nonatomic, strong) NSMutableArray<NSString *> *starPlaceArray;
 
 - (instancetype)initWithDice:(NSDictionary *)dict;
+
++ (NSArray<CQUPTMapPlaceItem *> *)starPlaceDetail;
 
 @end
 

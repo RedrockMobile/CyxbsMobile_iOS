@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)mapDataRequestSuccessWithMapData:(CQUPTMapDataItem *)mapData hotPlace:(NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceArray;
 
-- (void)starPlaceRequestSuccessWithStarArray:(NSArray<CQUPTMapStarPlaceItem *> *)starPlaceArray;
+- (void)starPlaceRequestSuccessWithStarPlace:(CQUPTMapStarPlaceItem *)starPlace;
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray;
 

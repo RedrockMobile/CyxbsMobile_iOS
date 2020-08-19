@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class CQUPTMapStarPlaceItem;
 @interface CQUPTMapPlaceItem : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *placeName;
@@ -20,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) CQUPTMapPlaceRect *tagRect;
 
 - (instancetype)initWithDict:(NSDictionary *)dict mapWidth:(CGFloat)width mapHeight:(CGFloat)height;
+
+- (BOOL)isCollected;
 
 @end
 
