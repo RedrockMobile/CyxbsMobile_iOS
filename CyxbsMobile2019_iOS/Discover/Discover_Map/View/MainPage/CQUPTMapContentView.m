@@ -88,9 +88,15 @@
         self.searchScopeImageView = searchScopeImageView;
         
         UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [cancelButton setImage:[UIImage imageNamed:@"Map_CancelSearch"] forState:UIControlStateNormal];
-        cancelButton.hidden = YES;
-        [self.searchBar addSubview:cancelButton];
+        [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+        if (@available(iOS 11.0, *)) {
+            [cancelButton setTitleColor:[UIColor colorNamed:@"Map_SearchHistoryColor"] forState:UIControlStateNormal];
+        } else {
+            [cancelButton setTitleColor:[UIColor colorWithHexString:@"788AAA"] forState:UIControlStateNormal];
+        }
+        cancelButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+        [cancelButton addTarget:self action:@selector(cancelSearch) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:cancelButton];
         self.cancelButton = cancelButton;
         
         // 热词
@@ -102,7 +108,8 @@
         
         self.hotButtonArray = [NSMutableArray array];
         for (CQUPTMapHotPlaceItem *hotPlace in hotPlaceItemArray) {
-            CQUPTMapHotPlaceButton *hotButton = [[CQUPTMapHotPlaceButton alloc] initWithTitle:hotPlace.title hotTag:hotPlace.isHot];
+            CQUPTMapHotPlaceButton *hotButton = [[CQUPTMapHotPlaceButton alloc] initWithHotPlace:hotPlace];
+            [hotButton.button addTarget:self action:@selector(hotButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
             [self.hotScrollView addSubview:hotButton];
             [self.hotButtonArray addObject:hotButton];
         }
@@ -168,7 +175,7 @@
     [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.backButton.mas_trailing).offset(20);
         make.centerY.equalTo(self.backButton);
-        make.trailing.equalTo(self).offset(-15);
+        make.trailing.equalTo(self.cancelButton.mas_leading).offset(-15);
         make.height.equalTo(@32);
     }];
     self.searchBar.layer.cornerRadius = 16;
@@ -180,9 +187,8 @@
     }];
     
     [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.searchBar).offset(-16);
+        make.leading.equalTo(self.mas_trailing);
         make.centerY.equalTo(self.searchBar);
-        make.height.width.equalTo(@10);
     }];
     
     [self.starButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -195,19 +201,22 @@
     for (int i = 0; i < self.hotButtonArray.count; i++) {
         if (i == 0) {
             [self.hotButtonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.leading.top.bottom.equalTo(self.hotScrollView);
+                make.leading.top.equalTo(self.hotScrollView);
+                make.height.equalTo(@54);
                 make.width.equalTo(@(self.hotButtonArray[i].buttonWidth + 28));
             }];
         } else if (i == self.hotButtonArray.count - 1) {
             [self.hotButtonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.leading.equalTo(self.hotButtonArray[i - 1].mas_trailing);
-                make.top.bottom.trailing.equalTo(self.hotScrollView);
+                make.top.trailing.equalTo(self.hotScrollView);
+                make.height.equalTo(@54);
                 make.width.equalTo(@(self.hotButtonArray[i].buttonWidth + 28));
             }];
         } else {
             [self.hotButtonArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.leading.equalTo(self.hotButtonArray[i - 1].mas_trailing);
-                make.top.bottom.equalTo(self.hotScrollView);
+                make.top.equalTo(self.hotScrollView);
+                make.height.equalTo(@54);
                 make.width.equalTo(@(self.hotButtonArray[i].buttonWidth + 28));
             }];
         }
@@ -242,8 +251,6 @@
 # pragma mark - TextField代理
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
-    self.cancelButton.hidden = NO;
-    
     if (self.beforeSearchView) {
         return;
     }
@@ -255,11 +262,20 @@
     [self addSubview:beforeSearchView];
     self.beforeSearchView = beforeSearchView;
     
+    [self.cancelButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.mas_trailing).offset(-45);
+    }];
+    
+    [self.backButton mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self).offset(-9);
+    }];
     
     [UIView animateWithDuration:0.32 animations:^{
         
-        beforeSearchView.frame = CGRectMake(0, beforeSearchViewY, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY);
+        beforeSearchView.layer.affineTransform = CGAffineTransformTranslate(beforeSearchView.layer.affineTransform, 0, -100);
         beforeSearchView.alpha = 1;
+        
+        [self layoutIfNeeded];
         
     } completion:nil];
 
@@ -267,7 +283,6 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     textField.text = @"";
-    self.cancelButton.hidden = YES;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -464,9 +479,6 @@
 
 
 #pragma mark - Button
-- (void)clearSearchBar {
-    
-}
 
 - (void)starButtonClicked {
     
@@ -486,15 +498,45 @@
 
 
 - (void)cancelSearch {
+    [self endEditing:YES];
+    
+    [self.cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.mas_trailing);
+        make.centerY.equalTo(self.searchBar);
+    }];
+    
+    [self.backButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(STATUSBARHEIGHT + 15);
+        make.leading.equalTo(self).offset(15);
+        make.height.equalTo(@19);
+        make.width.equalTo(@9);
+    }];
+    
     [UIView animateWithDuration:0.3 animations:^{
         
         CGFloat beforeSearchViewY = CGRectGetMaxY(self.searchBar.frame);
         self.beforeSearchView.frame = CGRectMake(0, beforeSearchViewY + 100, MAIN_SCREEN_W, MAIN_SCREEN_H - beforeSearchViewY);
         self.beforeSearchView.alpha = 0;
         
+        [self layoutIfNeeded];
+        
     } completion:^(BOOL finished) {
         [self.beforeSearchView removeFromSuperview];
     }];
+}
+
+- (void)hotButtonTapped:(UIButton *)sender {
+    NSMutableArray *tmpArray = [@[] mutableCopy];
+    
+    for (NSString *placeID in ((CQUPTMapHotPlaceButton *)(sender.superview)).hotPlaceItem.placeIDArray) {
+        for (CQUPTMapPlaceItem *place in self.mapDataItem.placeList) {
+            if ([placeID isEqualToString:place.placeId]) {
+                [tmpArray addObject:place];
+            }
+        }
+    }
+    
+    [self addPinsOnMapWithPlaceArray:tmpArray];
 }
 
 @end

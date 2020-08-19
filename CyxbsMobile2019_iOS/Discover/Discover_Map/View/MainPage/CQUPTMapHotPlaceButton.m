@@ -7,10 +7,10 @@
 //
 
 #import "CQUPTMapHotPlaceButton.h"
+#import "CQUPTMapHotPlaceItem.h"
 
 @interface CQUPTMapHotPlaceButton ()
 
-@property (nonatomic, weak) UIButton *hotButton;
 @property (nonatomic, weak) UIImageView *hotTagImage;
 
 @end
@@ -18,16 +18,24 @@
 
 @implementation CQUPTMapHotPlaceButton
 
-- (instancetype)initWithTitle:(NSString *)title hotTag:(BOOL)isHot
+- (instancetype)initWithHotPlace:(CQUPTMapHotPlaceItem *)hotPlaceItem
 {
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         
-        self.buttonWidth = [self calculateTextWidth:title];
+        self.hotPlaceItem = hotPlaceItem;
         
+        self.buttonWidth = [self calculateTextWidth:hotPlaceItem.title];
+        
+        if (hotPlaceItem.isHot) {        // 后端返回字段判断为hot时才显示
+            UIImageView *hotTagImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Map_HotTag"]];
+            [self addSubview:hotTagImage];
+            self.hotTagImage = hotTagImage;
+        }
+
         UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [hotButton setTitle:title forState:UIControlStateNormal];
+        [hotButton setTitle:hotPlaceItem.title forState:UIControlStateNormal];
         hotButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
         if (@available(iOS 11.0, *)) {
             [hotButton setTitleColor:[UIColor colorNamed:@"Map_HotWordColor"] forState:UIControlStateNormal];
@@ -35,13 +43,7 @@
             [hotButton setTitleColor:[UIColor colorWithHexString:@"#0E2A53"] forState:UIControlStateNormal];
         }
         [self addSubview:hotButton];
-        self.hotButton = hotButton;
-        
-        if (isHot) {        // 后端返回字段判断为hot时才显示
-            UIImageView *hotTagImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Map_HotTag"]];
-            [self addSubview:hotTagImage];
-            self.hotTagImage = hotTagImage;
-        }
+        self.button = hotButton;        
     }
     return self;
 }
@@ -49,7 +51,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.hotButton.frame = CGRectMake(14, 0, self.buttonWidth, 54);
+    self.button.frame = CGRectMake(14, 0, self.buttonWidth, 54);
     self.hotTagImage.frame = CGRectMake(14 + self.buttonWidth - 11, 3, 22, 12);
 
 }
