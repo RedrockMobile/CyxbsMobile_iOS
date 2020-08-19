@@ -10,66 +10,163 @@
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
+
+@interface DLTimeSelectView()<UIPickerViewDataSource,UIPickerViewDelegate>
+
+@property(nonatomic,strong)UIView *backViewOfPickerView;
+
+@property(nonatomic,strong)NSArray *weekTextArray;
+
+@property(nonatomic,strong)NSArray *lessonTextArray;
+@end
+
 @implementation DLTimeSelectView
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
-        } else {
-             self.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
-            // Fallback on earlier versions
-        }
-        self.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.8].CGColor;
-        self.layer.shadowOffset = CGSizeMake(0,5);
-        self.layer.shadowRadius = 30*kRateY;
-        self.layer.shadowOpacity = 1;
-        self.layer.cornerRadius = 16*kRateX;
-        self.layer.masksToBounds = YES;
+        self.frame = CGRectMake(0, -300*kRateY, MAIN_SCREEN_W, 300*kRateY+MAIN_SCREEN_H);
+        [self initBackViewOfPickerView];
+        [self initLessonPickerAndWeekPicker];
         [self initAddButton];
-        self.timePiker = [[UIPickerView alloc] init];
-//        [self initTimePickerView];
+        [self addGesture];
+        self.weekTextArray =
+        @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
+        
+        self.lessonTextArray =
+        @[@"一二节课",@"三四节课",@"五六节课",@"七八节课",@"九十节课",@"十一十二节课"];
     }
     return self;
 }
 
-- (void)initTimePickerView{
-//    self.timePiker = [[UIPickerView alloc] init];
-    self.frame = CGRectMake(15*kRateX, 0, 285*kRateX, 300*kRateY);
-    self.timePiker.backgroundColor = [UIColor clearColor];
-    [self addSubview: self.timePiker];
-//    [self mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.mas_top).mas_offset(15*kRateY);
-//        make.left.equalTo(self.mas_left).mas_offset(10*kRateX);
-//        make.width.mas_equalTo(285*kRateX);
-//        make.height.equalTo(self.mas_height).mas_offset(-30*kRateY);
-//    }];
+- (void)initBackViewOfPickerView{
+    self.backViewOfPickerView = [[UIView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, 300*kRateY+30)];
+    
+    [self addSubview:self.backViewOfPickerView];
+    
+    if (@available(iOS 11.0, *)) {
+        self.backViewOfPickerView.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
+    } else {
+         self.backViewOfPickerView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    }
+    
+//    self.backViewOfPickerView.backgroundColor = [UIColor colorWithRGB:23 alpha:0.5];
+    
+    self.backViewOfPickerView.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.8].CGColor;
+    self.backViewOfPickerView.layer.shadowOffset = CGSizeMake(0,5);
+    self.backViewOfPickerView.layer.shadowRadius = 30*kRateY;
+    self.backViewOfPickerView.layer.shadowOpacity = 1;
+    self.backViewOfPickerView.layer.cornerRadius = 16*kRateX;
+    
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {}];
+    [self.backViewOfPickerView addGestureRecognizer:tgr];
+}
+
+
+- (void)initLessonPickerAndWeekPicker{
+    //先添加处于中间的lessonPicker
+    self.lessonPicker = [[UIPickerView alloc] init];
+    [self.backViewOfPickerView addSubview:self.lessonPicker];
+    self.lessonPicker.dataSource = self;
+    self.lessonPicker.delegate = self;
+    
+    [self.lessonPicker mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backViewOfPickerView);
+        make.top.equalTo(self.backViewOfPickerView);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.6);
+        make.width.mas_equalTo(MAIN_SCREEN_W*1.0346);
+    }];
+//    0.42373
+    //--------------------------
+    
+    //再来一个view盖在左侧，把lessonPicker的一部分区域盖住
+    UIView *view = [[UIView alloc] init];
+//    view.backgroundColor = [UIColor colorWithRGB:23 alpha:0.5];
+    [self.backViewOfPickerView addSubview: view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backViewOfPickerView);
+        make.top.equalTo(self.backViewOfPickerView);
+        make.bottom.equalTo(self.backViewOfPickerView);
+        make.width.mas_equalTo(MAIN_SCREEN_W*0.352);
+    }];
+    
+    //然后在view上面加weekPicker，这样两个picker就不会互相干扰，又能有设计图上的效果
+    self.weekPicker = [[UIPickerView alloc] init];
+    [view addSubview:self.weekPicker];
+    self.weekPicker.dataSource = self;
+    self.weekPicker.delegate = self;
+    
+    [self.weekPicker mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(view);
+        make.right.equalTo(view);
+        make.top.equalTo(view);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.6);
+    }];
+    
 }
 
 - (void)initAddButton{
-    UIImageView *addImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"timeAddImage"]];
-    addImage.layer.cornerRadius = 13*kRateX;
-    addImage.layer.masksToBounds = YES;
-    addImage.backgroundColor = [UIColor clearColor];
-    [self addSubview: addImage];
-    [addImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).mas_offset(114*kRateY);
-        make.right.equalTo(self.mas_right).mas_offset(-50*kRateX);
-        make.width.mas_equalTo(22*kRateX);
-        make.height.mas_equalTo(22*kRateX);
-    }];
     self.addButton = [[UIButton alloc] init];
-    self.addButton.layer.cornerRadius = 13*kRateX;
-    self.addButton.layer.masksToBounds = YES;
-    self.addButton.backgroundColor = [UIColor clearColor];
-    [self addSubview: self.addButton];
+    [self.addButton setImage:[UIImage imageNamed:@"timeAddImage"] forState:UIControlStateNormal];
+    [self.backViewOfPickerView addSubview: self.addButton];
     [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).mas_offset(114*kRateY);
-        make.right.equalTo(self.mas_right).mas_offset(-50*kRateX);
-        make.width.mas_equalTo(22*kRateX);
-        make.height.mas_equalTo(22*kRateX);
+        make.centerY.equalTo(self.weekPicker);
+        make.right.equalTo(self.backViewOfPickerView).mas_offset(-50*kRateX);
+        make.width.mas_equalTo(MAIN_SCREEN_W*0.05867);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.05867);
     }];
+}
+- (void)addGesture{
+    UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.frame = CGRectMake(0, 0, MAIN_SCREEN_W, 300*kRateY+MAIN_SCREEN_H);
+        } completion:^(BOOL finished) {
+            [self removeFromSuperview];
+        }];
+    }];
+    [self addGestureRecognizer:TGR];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+- (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    if([pickerView isEqual:self.weekPicker]){
+        return self.weekTextArray.count;
+    }else{
+        return self.lessonTextArray.count;
+    }
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if([pickerView isEqual:self.weekPicker]){
+        return self.weekTextArray[row];
+    }else{
+        return self.lessonTextArray[row];
+    }
+}
+
+//实现这个方法，可以自定义picker的外观
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        pickerLabel.adjustsFontSizeToFitWidth = YES;
+        [pickerLabel setTextAlignment:NSTextAlignmentCenter];
+        [pickerLabel setBackgroundColor:[UIColor clearColor]];
+        if (@available(iOS 11.0, *)) {
+            pickerLabel.textColor = [UIColor colorNamed:@"titleLabelColor"];
+        } else {
+             pickerLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+        }
+        [pickerLabel setFont: [UIFont fontWithName:@".PingFang SC-Semibold" size: 16*kRateX]];
+    }
+    
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    
+    return pickerLabel;
 }
 @end

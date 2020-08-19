@@ -4,7 +4,7 @@
 //
 //  Created by 丁磊 on 2020/4/9.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//添加备忘的初始界面
 
 #import "DLReminderViewController.h"
 #import "DLReminderView.h"

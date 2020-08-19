@@ -11,10 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DLTimeSelectView : UIView
-@property (nonatomic, strong) UIPickerView *timePiker;
-@property (nonatomic, strong) UIButton *addButton;
 
-- (void)initTimePickerView;
+@property (nonatomic, strong) UIButton *addButton;
+@property (nonatomic, strong) UIPickerView *weekPicker;
+@property (nonatomic, strong) UIPickerView *lessonPicker;
+//- (void)initTimePickerView;
 @end
 
 NS_ASSUME_NONNULL_END
