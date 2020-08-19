@@ -15,13 +15,14 @@
 #import <TZImagePickerController.h>
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapModel.h"
+#import "FYHCycleLabel.h"
 
 @interface CQUPTMapDetailView () <UICollectionViewDelegate, UICollectionViewDataSource, TZImagePickerControllerDelegate>
 
 @property (nonatomic, strong) CQUPTMapPlaceDetailItem *detailItem;
 
 @property (nonatomic, weak) UIView *dragBar;
-@property (nonatomic, weak) UILabel *placeNameLabel;
+@property (nonatomic, weak) FYHCycleLabel *placeNameLabel;
 @property (nonatomic, weak) UIButton *starButton;
 @property (nonatomic, strong) NSMutableArray<UILabel *> *attributesLabelArray;
 @property (nonatomic, weak) UILabel *detailLabel;
@@ -62,14 +63,14 @@
         [self addSubview:dragBar];
         self.dragBar = dragBar;
         
-        UILabel *placeNameLabel = [[UILabel alloc] init];
-        placeNameLabel.text = placeItem.placeName;
-        placeNameLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
+        FYHCycleLabel *placeNameLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(15, 40, 280, 30)];
         if (@available(iOS 11.0, *)) {
-            placeNameLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+            placeNameLabel.cycleLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
         } else {
-            placeNameLabel.textColor = [UIColor colorWithHexString:@"#15305B"];
+            placeNameLabel.cycleLabel.textColor = [UIColor colorWithHexString:@"#15305B"];
         }
+        placeNameLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
+        placeNameLabel.labelText = placeItem.placeName;
         [self addSubview:placeNameLabel];
         self.placeNameLabel = placeNameLabel;
         
@@ -161,10 +162,7 @@
     }];
     self.dragBar.layer.cornerRadius = 3.5;
     
-    [self.placeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self).offset(15);
-        make.top.equalTo(self).offset(40);
-    }];
+    // placeNameLabel用的frame
     
     [self.starButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self).offset(-14);
@@ -176,7 +174,7 @@
         if (i == 0) {
             [self.attributesLabelArray[i] mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.leading.equalTo(self).offset(15);
-                make.top.equalTo(self.placeNameLabel.mas_bottom);
+                make.top.equalTo(self.placeNameLabel.mas_bottom).offset(5);
                 make.width.equalTo(@([self attributeLabelWidthText:self.attributesLabelArray[i].text] + 15));
                 make.height.equalTo(@18);
             }];
