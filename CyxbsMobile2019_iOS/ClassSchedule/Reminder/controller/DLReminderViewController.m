@@ -45,7 +45,7 @@
     [super viewDidLoad];
     self.user = [NSUserDefaults standardUserDefaults];
     if (![self.user objectForKey:@"buttonTitleArray"]) {
-        self.buttonTitleArray = [@[@"自习", @"值班", @"会议"] mutableCopy];
+        self.buttonTitleArray = [@[@"自习", @"值班",@"会议",@"考试",@"作业",@"补课",@"实验",@"复习",@"学习",] mutableCopy];
     }else{
         self.buttonTitleArray = [self.user objectForKey:@"buttonTitleArray"];
     }
@@ -73,7 +73,7 @@
     if (self.inputString) {
         DLReminderSetDetailVC *vc = [[DLReminderSetDetailVC alloc] init];
         vc.noticeString = self.inputString;
-        [self.navigationController pushViewController:vc animated:NO];
+        [self.navigationController pushViewController:vc animated:YES];
     }else{
         NSLog(@"未输入");
     }

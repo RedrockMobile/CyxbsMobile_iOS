@@ -20,12 +20,10 @@
         } else {
              self.backgroundColor = [UIColor colorWithHexString:@"#5E5E5E"];
         }
-//        self.alpha = 0.5;
-//        self.layer.backgroundColor = [UIColor colorWithHexString:@"#F2F3F7"].CGColor;
         self.layer.cornerRadius = 15*kRateX;
         self.layer.masksToBounds = YES;
         
-        self.titleLabel.frame = self.frame;
+        
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         self.titleLabel.font = [UIFont fontWithName:@".PingFang SC-Regular" size:12*kRateX];
         
@@ -34,11 +32,7 @@
         } else {
             [self setTitleColor:[UIColor colorWithHexString:@"F0F0F2"] forState:UIControlStateNormal];
         }
-//        self.titleLabel.textColor = UIColor.redColor;
-//        self.backgroundColor = UIColor.redColor;
-        
     }
     return self;
 }
-
 @end

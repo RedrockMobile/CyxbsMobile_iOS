@@ -156,6 +156,7 @@
 		AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */; };
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
+		AA9ABE9A24ECEBF900D16BE0 /* TimeSelectedBtnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9924ECEBF900D16BE0 /* TimeSelectedBtnsView.m */; };
 		D0011A6E23F082FD009A242C /* QAExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A6D23F082FD009A242C /* QAExitView.m */; };
 		D0011A7023F0830B009A242C /* QAExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A6F23F0830B009A242C /* QAExitView.xib */; };
 		D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A7223F08CB5009A242C /* QAAnswerExitView.xib */; };
@@ -796,6 +797,8 @@
 		AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassDetailViewShower.m; sourceTree = "<group>"; };
 		AA9ABE9124EB8ADB00D16BE0 /* LessonViewForAWeek.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LessonViewForAWeek.h; sourceTree = "<group>"; };
 		AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LessonViewForAWeek.m; sourceTree = "<group>"; };
+		AA9ABE9824ECEBF900D16BE0 /* TimeSelectedBtnsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeSelectedBtnsView.h; sourceTree = "<group>"; };
+		AA9ABE9924ECEBF900D16BE0 /* TimeSelectedBtnsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeSelectedBtnsView.m; sourceTree = "<group>"; };
 		D0011A6C23F082FD009A242C /* QAExitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAExitView.h; sourceTree = "<group>"; };
 		D0011A6D23F082FD009A242C /* QAExitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAExitView.m; sourceTree = "<group>"; };
 		D0011A6F23F0830B009A242C /* QAExitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QAExitView.xib; sourceTree = "<group>"; };
@@ -2254,6 +2257,60 @@
 			path = Discover_WeDate;
 			sourceTree = "<group>";
 		};
+		AA9ABE9424ECC9E300D16BE0 /* btn */ = {
+			isa = PBXGroup;
+			children = (
+				DB4064E52466D888006CE5BC /* DLTimeSelectedButton.h */,
+				DB4064F02466D888006CE5BC /* DLTimeSelectedButton.m */,
+				DB4064EC2466D888006CE5BC /* DLWeekButton.h */,
+				DB4064DE2466D888006CE5BC /* DLWeekButton.m */,
+				DB4064E12466D888006CE5BC /* DLNextButton.h */,
+				DB4064ED2466D888006CE5BC /* DLNextButton.m */,
+				DB4064E02466D888006CE5BC /* DLHistodyButton.h */,
+				DB4064EF2466D888006CE5BC /* DLHistodyButton.m */,
+			);
+			path = btn;
+			sourceTree = "<group>";
+		};
+		AA9ABE9524ECCA3600D16BE0 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				DB4064EA2466D888006CE5BC /* DLReminderViewController.h */,
+				DB4064DC2466D888006CE5BC /* DLReminderViewController.m */,
+				DB4064EB2466D888006CE5BC /* DLReminderSetDetailVC.h */,
+				DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */,
+				DB4064DB2466D888006CE5BC /* DLReminderSetTimeVC.h */,
+				DB4064E92466D888006CE5BC /* DLReminderSetTimeVC.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		AA9ABE9624ECCA5B00D16BE0 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				DB4064F52466D888006CE5BC /* DLReminderModel.h */,
+				DB4064E62466D888006CE5BC /* DLReminderModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		AA9ABE9724ECCA8700D16BE0 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				DB4064F12466D888006CE5BC /* DLWeeklSelectView.h */,
+				DB4064E42466D888006CE5BC /* DLWeeklSelectView.m */,
+				DB4064E82466D888006CE5BC /* DLTimeSelectView.h */,
+				DB4064DF2466D888006CE5BC /* DLTimeSelectView.m */,
+				DB4064F22466D888006CE5BC /* DLTextFiled.h */,
+				DB4064E32466D888006CE5BC /* DLTextFiled.m */,
+				DB4064E72466D888006CE5BC /* DLReminderView.h */,
+				DB4064F42466D888006CE5BC /* DLReminderView.m */,
+				AA9ABE9824ECEBF900D16BE0 /* TimeSelectedBtnsView.h */,
+				AA9ABE9924ECEBF900D16BE0 /* TimeSelectedBtnsView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		D0011A7123F08C90009A242C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -2821,33 +2878,13 @@
 		DB4064DA2466D888006CE5BC /* Reminder */ = {
 			isa = PBXGroup;
 			children = (
-				DB4064EA2466D888006CE5BC /* DLReminderViewController.h */,
-				DB4064DC2466D888006CE5BC /* DLReminderViewController.m */,
-				DB4064EB2466D888006CE5BC /* DLReminderSetDetailVC.h */,
-				DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */,
-				DB4064DB2466D888006CE5BC /* DLReminderSetTimeVC.h */,
-				DB4064E92466D888006CE5BC /* DLReminderSetTimeVC.m */,
 				DB4064E22466D888006CE5BC /* DLReminderView+Reset.h */,
 				DB4064F32466D888006CE5BC /* DLReminderView+Reset.m */,
-				DB4064E52466D888006CE5BC /* DLTimeSelectedButton.h */,
-				DB4064F02466D888006CE5BC /* DLTimeSelectedButton.m */,
-				DB4064F12466D888006CE5BC /* DLWeeklSelectView.h */,
-				DB4064E42466D888006CE5BC /* DLWeeklSelectView.m */,
-				DB4064E82466D888006CE5BC /* DLTimeSelectView.h */,
-				DB4064DF2466D888006CE5BC /* DLTimeSelectView.m */,
-				DB4064F52466D888006CE5BC /* DLReminderModel.h */,
-				DB4064E62466D888006CE5BC /* DLReminderModel.m */,
-				DB4064EC2466D888006CE5BC /* DLWeekButton.h */,
-				DB4064DE2466D888006CE5BC /* DLWeekButton.m */,
-				DB4064F22466D888006CE5BC /* DLTextFiled.h */,
-				DB4064E32466D888006CE5BC /* DLTextFiled.m */,
-				DB4064E72466D888006CE5BC /* DLReminderView.h */,
-				DB4064E12466D888006CE5BC /* DLNextButton.h */,
-				DB4064ED2466D888006CE5BC /* DLNextButton.m */,
+				AA9ABE9524ECCA3600D16BE0 /* controller */,
+				AA9ABE9624ECCA5B00D16BE0 /* model */,
+				AA9ABE9724ECCA8700D16BE0 /* view */,
+				AA9ABE9424ECC9E300D16BE0 /* btn */,
 				DB4064EE2466D888006CE5BC /* Reminder.xcassets */,
-				DB4064E02466D888006CE5BC /* DLHistodyButton.h */,
-				DB4064EF2466D888006CE5BC /* DLHistodyButton.m */,
-				DB4064F42466D888006CE5BC /* DLReminderView.m */,
 			);
 			path = Reminder;
 			sourceTree = "<group>";
@@ -3867,6 +3904,7 @@
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */,
+				AA9ABE9A24ECEBF900D16BE0 /* TimeSelectedBtnsView.m in Sources */,
 				1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */,
 				1A79FCD324EAE81B00CBB124 /* CollectionViewSpaceLayout.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
