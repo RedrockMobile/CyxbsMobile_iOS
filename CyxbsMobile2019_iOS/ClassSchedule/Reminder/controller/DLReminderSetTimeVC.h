@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DLReminderSetTimeVC : UIViewController
 @property (nonatomic, strong) NSString *noticeString;
 @property (nonatomic, strong) NSString *detailString;
+@property(nonatomic,strong)NSMutableArray <NSDictionary*> *timeDictArray;
 @end
 
 NS_ASSUME_NONNULL_END
