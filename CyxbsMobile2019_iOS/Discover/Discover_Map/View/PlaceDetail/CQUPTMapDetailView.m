@@ -49,7 +49,7 @@
         
         self.layer.cornerRadius = 20;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+            self.backgroundColor = [UIColor colorNamed:@"Map_DetailViewColor"];
         } else {
             self.backgroundColor = [UIColor whiteColor];
         }

@@ -226,7 +226,7 @@
 /// 重邮地图：添加收藏
 #define CQUPTMAPADDCOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/addkeep"
 /// 重邮地图：删除收藏
-#define CQUPTMAPDELETECOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/deletekeep"
+#define CQUPTMAPDELETECOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/delete"
 
 /// 课表、备忘接口
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"

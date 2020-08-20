@@ -28,6 +28,8 @@
 @property (nonatomic, weak) UIButton *backButton;
 @property (nonatomic, weak) UIImageView *searchScopeImageView;
 @property (nonatomic, weak) UIButton *cancelButton;
+@property (nonatomic, weak) UIImageView *compassView;
+@property (nonatomic, weak) UIButton *vrButton;
 
 @property (nonatomic, weak) UIScrollView *hotScrollView;
 @property (nonatomic, strong) NSMutableArray<CQUPTMapHotPlaceButton *> *hotButtonArray;
@@ -145,6 +147,16 @@
         mapScrollView.minimumZoomScale = 1.0;
         [mapScrollView scrollToBottom];
         
+        UIImageView *compassView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Map_Compass"]];
+        [self addSubview:compassView];
+        self.compassView = compassView;
+        
+        UIButton *vrButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [vrButton setImage:[UIImage imageNamed:@"Map_VRMap"] forState:UIControlStateNormal];
+        [vrButton addTarget:self action:@selector(vrButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:vrButton];
+        self.vrButton = vrButton;
+        
         // 深色模式
         if (@available(iOS 11.0, *)) {
             searchBar.backgroundColor = [UIColor colorNamed:@"Map_SearchBarColor"];
@@ -227,6 +239,18 @@
         make.trailing.equalTo(self.starButton.mas_leading);
         make.top.equalTo(self.searchBar.mas_bottom).offset(6);
         make.height.equalTo(@54);
+    }];
+    
+    [self.compassView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.hotScrollView.mas_bottom).offset(15);
+        make.trailing.equalTo(self).offset(-15);
+        make.width.height.equalTo(@65);
+    }];
+    
+    [self.vrButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.compassView);
+        make.leading.equalTo(self).offset(15);
+        make.width.height.equalTo(@36);
     }];
     
     [self.mapScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -502,6 +526,13 @@
     self.starPlace = starPlace;
     [starPlace archiveItem];
     
+    if (starPlace.starPlaceArray.count == 0) {
+        MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"暂无收藏";
+        [hud hide:YES afterDelay:1.2];
+    }
+    
     [self addPinsOnMapWithPlaceArray:[CQUPTMapStarPlaceItem starPlaceDetail]];
 }
 
@@ -546,6 +577,12 @@
     }
     
     [self addPinsOnMapWithPlaceArray:tmpArray];
+}
+
+- (void)vrButtonTapped {
+    if ([self.delegate respondsToSelector:@selector(vrButtonTapped)]) {
+        [self.delegate vrButtonTapped];
+    }
 }
 
 @end

@@ -117,4 +117,8 @@
     [self.presenter requestPlaceDataWithPlaceID:placeID];
 }
 
+- (void)vrButtonTapped {
+    NSLog(@"VRMap");
+}
+
 @end
