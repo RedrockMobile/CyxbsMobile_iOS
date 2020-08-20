@@ -1,28 +1,26 @@
 //
-//  TimeSelectedBtnsView.h
+//  TimeBtnSelectedBackView.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by Stove on 2020/8/19.
+//  Created by Stove on 2020/8/20.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-@protocol TimeSelectedBtnsViewDeleget <NSObject>
+@protocol TimeBtnSelectedBackViewDeleget <NSObject>
 @property(nonatomic,strong)NSMutableArray <NSDictionary*> *timeDictArray;
-
 @end
-
-/// 显示已经选择过的那些时间段的view
-@interface TimeSelectedBtnsView : UIView
+@interface TimeBtnSelectedBackView : UIScrollView
 
 /// 添加已选时间的按钮
 - (void)loadSelectedButtonsWithTimeDict:(NSDictionary*)timeDict;
-@property(nonatomic,weak)id<TimeSelectedBtnsViewDeleget>delegate;
+@property(nonatomic,weak)id<TimeBtnSelectedBackViewDeleget>timeDateDelegate;
 /// 加号按钮
 @property(nonatomic,strong)UIButton *addBtn;
+
+@property(nonatomic,strong)UIView *backView;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -20,7 +20,6 @@
             self.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
         } else {
             self.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
-            // Fallback on earlier versions
         }
         [self initBackButton];
         [self initTitleLabel];
@@ -44,7 +43,6 @@
     
     self.backBtn = [[UIButton alloc]init];
     self.backBtn.backgroundColor = [UIColor clearColor];
-//    [self.backBtn setImage:[UIImage imageNamed:@"reminderBack"] forState:UIControlStateNormal];
     [self addSubview: self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).mas_offset(45*kRateY);
@@ -54,6 +52,7 @@
     }];
 }
 
+/// @”为你的行程加标题“、@”为你的行程加具体内容“
 - (void)initTitleLabel{
     self.titleLab = [[UILabel alloc] init];
     self.titleLab.textAlignment = NSTextAlignmentLeft;
@@ -63,8 +62,6 @@
         self.titleLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
     } else {
         self.titleLab.textColor = [UIColor colorWithHexString:@"#122D55"];
-        
-        // Fallback on earlier versions
     }
     
     [self addSubview:self.titleLab];
@@ -75,6 +72,7 @@
         make.height.mas_equalTo(100*kRateY);
     }];
 }
+/// 标题
 - (void)initNoticeLabel{
     self.notoiceLab = [[UILabel alloc] init];
     self.notoiceLab.textAlignment = NSTextAlignmentLeft;
@@ -113,6 +111,11 @@
         make.centerX.equalTo(self.mas_centerX);
         make.width.mas_equalTo(66*kRateX);
         make.height.mas_equalTo(66*kRateX);
+    }];
+}
+- (void)layoutSubviews{
+    [self.titleLab mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(240*kRateX);
     }];
 }
 @end

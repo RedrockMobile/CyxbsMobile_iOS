@@ -18,11 +18,11 @@
 #import "DLReminderModel.h"
 #import "DLTimeSelectedButton.h"
 #import "DLHistodyButton.h"
-#import "TimeSelectedBtnsView.h"
+#import "TimeBtnSelectedBackView.h"
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
-@interface DLReminderSetTimeVC ()<UITextFieldDelegate, WeekSelectDelegate,DLTimeSelectViewDelegate,TimeSelectedBtnsViewDeleget>
+@interface DLReminderSetTimeVC ()<UITextFieldDelegate, WeekSelectDelegate,DLTimeSelectViewDelegate,TimeBtnSelectedBackViewDeleget>
 @property (nonatomic, strong) UIPickerView *timePiker;
 @property (nonatomic, strong) DLReminderView *reminderView;
 
@@ -42,7 +42,10 @@
 @property (nonatomic, strong) NSMutableArray *timeSelectedArray;
 
 /// 显示已经添加时间的按钮的背景view
-@property (nonatomic,strong)TimeSelectedBtnsView *backViewOfTimeSelectedBtn;
+@property (nonatomic,strong)TimeBtnSelectedBackView *backViewOfTimeSelectedBtn;
+
+@property (nonatomic,strong)UIButton *ifNotiBtn;
+
 @end
 
 @implementation DLReminderSetTimeVC
@@ -53,9 +56,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.weekSelectedArray = [@[] mutableCopy];
-    [self.view addSubview: self.reminderView];
     self.timeDictArray = [NSMutableArray array];
-    [self addWeekChooseBtn];
+    [self addReminderView];
+    [self addBackViewOfTimeSelectedBtn];
+//    [self loadAddButton];
+    
+    UIButton *weekChooseBtn =  [self getBtnWithTitileStr:@"备忘周"];
+    [self.reminderView addSubview:weekChooseBtn];
+    [weekChooseBtn addTarget:self action:@selector(showWeekselectView) forControlEvents:UIControlEventTouchUpInside];
+
+    [weekChooseBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.reminderView).offset(MAIN_SCREEN_W*0.0534);
+        make.top.equalTo(self.reminderView).offset(MAIN_SCREEN_H*0.3789);
+    }];
+//
+    UIButton *ifNotiBtn = [self getBtnWithTitileStr:@"不提醒"];
+    [self.reminderView addSubview:ifNotiBtn];
+    self.ifNotiBtn = ifNotiBtn;
+
+    [ifNotiBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.reminderView).offset(MAIN_SCREEN_W*0.0534);
+        make.top.equalTo(self.backViewOfTimeSelectedBtn.mas_bottom).offset(10);
+    }];
+    
+    [self.reminderView.nextBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.ifNotiBtn.mas_bottom).offset(10);
+        make.centerX.equalTo(self.reminderView);
+        make.width.mas_equalTo(66*kRateX);
+        make.height.mas_equalTo(66*kRateX);
+    }];
 }
 
 #pragma mark - 点击事件
@@ -75,7 +104,7 @@
     //不知道classNum是不是指学号，这里假设就是学号
     model.classNum = [NSNumber numberWithString:[UserDefaultTool getStuNum]];
     //不知道model配置是否正确
-    model.week = self.weekArray;
+//    model.week = self.weekArray;
     //不知道model配置是否正确
 //    model.day = [self.pickerSlectedItems firstObject];
 //    ADDREMINDAPI
@@ -90,19 +119,21 @@
     } mutableCopy];
 }
 
-- (void)addWeekChooseBtn{
+/// 添加弹出选择周view的按钮，显示@“备忘周”3字
+- (UIButton*)getBtnWithTitileStr:(NSString*)titleStr{
     UIButton *weekChooseBtn = [[UIButton alloc] init];
-    [self.reminderView addSubview:weekChooseBtn];
     
-    [weekChooseBtn setTitle:@"备忘周" forState:UIControlStateNormal];
-//    [weekChooseBtn setBackgroundColor:[UIColor colorWithRGB:23 alpha:0.5]];
-    [weekChooseBtn addTarget:self action:@selector(showWeekselectView) forControlEvents:UIControlEventTouchUpInside];
+    [weekChooseBtn setTitle:titleStr forState:UIControlStateNormal];
+    weekChooseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
     
     [weekChooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.reminderView).offset(MAIN_SCREEN_W*0.0534);
-        make.width.mas_equalTo(MAIN_SCREEN_W*0.2267);
         make.height.mas_equalTo(MAIN_SCREEN_W*0.104);
-        make.top.equalTo(self.reminderView).offset(MAIN_SCREEN_H*0.3789);
+
+    }];
+    
+    [weekChooseBtn.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weekChooseBtn).offset(0.03429*MAIN_SCREEN_W);
+        make.right.equalTo(weekChooseBtn).offset(-0.03429*MAIN_SCREEN_W);
     }];
     if (@available(iOS 11.0, *)) {
         [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistodayButtonLabelColor"] forState:UIControlStateNormal];
@@ -115,13 +146,16 @@
     } else {
          weekChooseBtn.backgroundColor = [UIColor colorWithHexString:@"#5E5E5E"];
     }
-//    DLHistodyButton
     weekChooseBtn.layer.cornerRadius = 20;
+    
+    return weekChooseBtn;
 }
+
 - (void)back{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+/// 弹出选择周的view
 - (void)showWeekselectView{
     self.weekselectView.frame = CGRectMake(0, 0, SCREEN_WIDTH, MAIN_SCREEN_H+360*kRateY);
     [self.reminderView addSubview: self.weekselectView];
@@ -131,8 +165,8 @@
     }];
 }
 
+/// 弹出选择时间的view
 - (void)showTimeSelectView{
-
     self.timeSelectView.frame = CGRectMake(0, 0, MAIN_SCREEN_W, 300*kRateY+MAIN_SCREEN_H);
     [self.reminderView addSubview:self.timeSelectView];
     
@@ -141,8 +175,14 @@
     }];
 }
 
+
+
+- (void)addNotiBtn{
+    
+}
 #pragma mark - delegate
-//点击周选择view的确定按钮后调用
+/// 点击周选择view的确定按钮后调用
+/// @param stringArray 在WeekSelect里面选择的周的标题组成的数组
 - (void)selectedTimeStringArray:(NSArray *)stringArray{
     self.weekSelectedArray = stringArray;
 }
@@ -158,37 +198,7 @@
 }
 
 #pragma mark - 懒加载&加载
-- (DLReminderView *)reminderView{
-    if (!_reminderView) {
-        _reminderView = [[DLReminderView alloc] init];
-        _reminderView.frame = self.view.frame;
-        [_reminderView resetConstrains];
-        [self addBackViewOfTimeSelectedBtn];
-        [_reminderView loadAddButton];
-        _reminderView.titleLab.text = _noticeString;
-        _reminderView.textFiled.delegate = self;
-        _reminderView.textFiled.text = _detailString;
-        [_reminderView.textFiled mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(_reminderView).offset(MAIN_SCREEN_H*0.2916);
-        }];
-        
-        [_reminderView.addButton addTarget:self action:@selector(showTimeSelectView) forControlEvents:UIControlEventTouchUpInside];
-        [_reminderView.nextBtn addTarget:self action:@selector(didClickNextButton:) forControlEvents:UIControlEventTouchUpInside];
-        _reminderView.nextBtn.tag = 1;
-        [_reminderView.backBtn addTarget: self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _reminderView;
-}
-- (void)addBackViewOfTimeSelectedBtn{
-    self.backViewOfTimeSelectedBtn = [[TimeSelectedBtnsView alloc] init];
-    [self.reminderView addSubview:self.backViewOfTimeSelectedBtn];
-    self.backViewOfTimeSelectedBtn.delegate = self;
-    [self.backViewOfTimeSelectedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.reminderView);
-        make.width.mas_equalTo(MAIN_SCREEN_W);
-        make.top.equalTo(self.reminderView).offset(0.4515*MAIN_SCREEN_H);
-    }];
-}
+
 - (DLWeeklSelectView *)weekselectView{
     if (!_weekselectView) {
         _weekselectView = [[DLWeeklSelectView alloc] init];
@@ -204,5 +214,47 @@
     }
     return _timeSelectView;
 }
-
+- (void)loadAddButton{
+    UIButton *btn = [[UIButton alloc] init];
+    [btn setBackgroundImage:[UIImage imageNamed:@"timeAddImage"] forState:UIControlStateNormal];
+    [btn sizeToFit];
+    [self.reminderView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.reminderView).offset(0.4594*MAIN_SCREEN_H);
+        make.bottom.equalTo(self.backViewOfTimeSelectedBtn.backView);
+        make.right.equalTo(self.reminderView).offset(-0.104*MAIN_SCREEN_W);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.0693);
+        make.width.mas_equalTo(MAIN_SCREEN_W*0.0693);
+    }];
+    [btn addTarget:self action:@selector(showTimeSelectView) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)addReminderView{
+    self.reminderView = [[DLReminderView alloc] init];
+    self.reminderView.frame = self.view.frame;
+    [self.view addSubview:self.reminderView];
+//    [self.reminderView resetConstrains];
+    self.reminderView.titleLab.text = _noticeString;
+    self.reminderView.textFiled.delegate = self;
+    self.reminderView.textFiled.text = _detailString;
+    [self.reminderView.textFiled mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.reminderView).offset(MAIN_SCREEN_H*0.2916);
+    }];
+    [self.reminderView.nextBtn addTarget:self action:@selector(didClickNextButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.reminderView.nextBtn.tag = 1;
+    [self.reminderView.backBtn addTarget: self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+/// 添加带叉的时间按钮的背景
+- (void)addBackViewOfTimeSelectedBtn{
+    self.backViewOfTimeSelectedBtn = [[TimeBtnSelectedBackView alloc] init];
+    [self.reminderView addSubview:self.backViewOfTimeSelectedBtn];
+    self.backViewOfTimeSelectedBtn.timeDateDelegate = self;
+    [self.backViewOfTimeSelectedBtn.addBtn addTarget:self action:@selector(showTimeSelectView) forControlEvents:UIControlEventTouchUpInside];
+    [self.backViewOfTimeSelectedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.reminderView);
+        make.width.mas_equalTo(MAIN_SCREEN_W);
+        make.top.equalTo(self.reminderView).offset(0.4515*MAIN_SCREEN_H);
+//        make.bottom.equalTo(self.reminderView).offset(-MAIN_SCREEN_H*0.2);
+    }];
+}
 @end
