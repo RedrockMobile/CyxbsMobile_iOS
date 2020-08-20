@@ -367,6 +367,14 @@
 }
 
 - (void)showMoreButtonTapped {
+    if (self.detailItem.imagesArray.count == 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewController.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"暂时还没有图片哦";
+        [hud hide:YES afterDelay:1.2];
+        
+        return;
+    }
     CQUPTMapMoreImageViewController *vc = [[CQUPTMapMoreImageViewController alloc] initWithPlaceDetailItem:self.detailItem];
     [self.viewController.navigationController pushViewController:vc animated:YES];
 }
