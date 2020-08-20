@@ -15,6 +15,12 @@
 @interface DLWeeklSelectView ()
 /// 周选择view
 @property (nonatomic, strong)UIView *backViewOfWeeKBtns;
+
+/// 周选择按钮的标题数据来源
+@property (nonatomic, strong)NSArray *weekArray;
+
+///储存已经选择的周的字符串
+@property (nonatomic, strong)NSMutableArray <NSString*> *weekSelectedTextxs;
 @end
 
 @implementation DLWeeklSelectView
@@ -24,37 +30,45 @@
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        self.backViewOfWeeKBtns = [[UIView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_H-360*kRateY, MAIN_SCREEN_W, 360*kRateY+30)];
-        [self addSubview:self.backViewOfWeeKBtns];
-        
-        if (@available(iOS 11.0, *)) {
-            self.backViewOfWeeKBtns.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
-        } else {
-             self.backViewOfWeeKBtns.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
-            // Fallback on earlier versions
-        }
-        
-        self.backViewOfWeeKBtns.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.8].CGColor;
-        self.backViewOfWeeKBtns.layer.shadowOffset = CGSizeMake(0,5);
-        self.backViewOfWeeKBtns.layer.shadowRadius = 30*kRateY;
-        self.backViewOfWeeKBtns.layer.shadowOpacity = 1;
-        self.backViewOfWeeKBtns.layer.cornerRadius = 16*kRateX;
-//        self.backViewOfWeeKBtns.layer.masksToBounds = YES;
-        
-        //添加一个点击手势：下移360*kRateY，再从父控件移除
-        [self addGesture];
-        
-        //给backViewOfWeeKBtns加一个空手势以免疫在self上的下移手势
-        UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {}];
-        [self.backViewOfWeeKBtns addGestureRecognizer:tgr];
+        [self addBackViewOfWeeKBtns];
         [self initConfirmButton];
+        self.weekArray = @[@"整学期", @"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周",];
+        [self initWeekButtons];
+        self.weekSelectedTextxs = [NSMutableArray array];
     }
     return self;
 }
+
+- (void)addBackViewOfWeeKBtns{
+    self.backViewOfWeeKBtns = [[UIView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, 360*kRateY+30)];
+    [self addSubview:self.backViewOfWeeKBtns];
+    
+    if (@available(iOS 11.0, *)) {
+        self.backViewOfWeeKBtns.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
+    } else {
+         self.backViewOfWeeKBtns.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+        // Fallback on earlier versions
+    }
+    
+    self.backViewOfWeeKBtns.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.8].CGColor;
+    self.backViewOfWeeKBtns.layer.shadowOffset = CGSizeMake(0,5);
+    self.backViewOfWeeKBtns.layer.shadowRadius = 30*kRateY;
+    self.backViewOfWeeKBtns.layer.shadowOpacity = 1;
+    self.backViewOfWeeKBtns.layer.cornerRadius = 16*kRateX;
+    
+    //添加一个点击手势：下移360*kRateY，再从父控件移除
+    [self addGesture];
+    
+    //给backViewOfWeeKBtns加一个空手势以免疫在self上的下移手势
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {}];
+    [self.backViewOfWeeKBtns addGestureRecognizer:tgr];
+}
+
 - (void) initConfirmButton{
     self.confirmBtn = [[UIButton alloc] init];
-//    self.confirmBtn.frame = CGRectMake(130.0,728.0,120.0,40.0);
     self.confirmBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
+    
+    [self.confirmBtn addTarget:self action:@selector(confirmBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
     CAGradientLayer *gl = [CAGradientLayer layer];
     gl.frame = CGRectMake(130.0,728.0,120.0,40.0);
@@ -79,10 +93,7 @@
     }];
     
 }
-- (void)setWeekArray:(NSArray *)weekArray{
-    _weekArray = weekArray;
-    [self initWeekButtons];
-}
+
 
 - (void)initWeekButtons{
     CGFloat hasOccupiedWidth = 16 * kRateX;
@@ -116,19 +127,36 @@
 - (void)didClickWeekButton:(DLWeekButton *)button{
     button.selected = !button.selected;
     button.isChangeColor = !button.isChangeColor;
-    if (button.selected) {
-        [self.delegate selectedWeekArrayAtIndex:button.tag];
+    if (button.selected==YES) {
+        [self.weekSelectedTextxs addObject:button.titleLabel.text];
+    }else{
+        [self.weekSelectedTextxs removeObject:button.titleLabel.text];
     }
+    
+    NSLog(@"%@",self.weekSelectedTextxs);
+    
 }
+
 - (void)addGesture{
     UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
         
         [UIView animateWithDuration:0.3 animations:^{
-            [self setFrame:CGRectMake(0, 360*kRateY, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+            [self setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 360*kRateY+MAIN_SCREEN_H)];
         }completion:^(BOOL finished) {
             [self removeFromSuperview];
         }];
     }];
     [self addGestureRecognizer:TGR];
+}
+
+/// 确定按钮点击后调用
+- (void)confirmBtnClicked{
+    [UIView animateWithDuration:0.3 animations:^{
+        [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, MAIN_SCREEN_H+360*kRateY)];
+    }completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+    //调用代理方法，传入已经选择的周string
+    [self.delegate selectedTimeStringArray:self.weekSelectedTextxs];
 }
 @end

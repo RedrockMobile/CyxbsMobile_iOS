@@ -22,6 +22,11 @@
     if (self) {
         self.titleLabel.font = [UIFont fontWithName:@".PingFang SC-Semibold" size:15*kRateX];
         self.layer.masksToBounds = NO;
+        self.layer.cornerRadius = 20;
+        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(MAIN_SCREEN_W*0.03467);
+            make.right.equalTo(self).offset(-MAIN_SCREEN_W*0.04267);
+        }];
         self.image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reminderDeleteImage"]];
         [self addSubview: self.image];
     }
@@ -37,32 +42,30 @@
     }];
     self.image.layer.cornerRadius = 8.5*kRateX;
     self.image.layer.masksToBounds = YES;
-//    self.userInteractionEnabled = YES;
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didClickDeleteimage)];
-//    [self.image addGestureRecognizer: tap];
 }
 
-//- (void)didClickDeleteimage{
-//    [self.delegate deleteButtonWithTag:self.tag];
-//    [self removeFromSuperview];
-//}
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     
     //首先调用父类的方法确定点击的区域确实在按钮的区域中
     BOOL res = [super pointInside:point withEvent:event];
     if (res) {
-        CGRect btnBounds = self.bounds;
-        //扩大点击区域，想缩小就将-10设为正值
-        btnBounds = CGRectInset(btnBounds, 17, 17);
-        if (CGRectContainsPoint(btnBounds, point)) {
-            //如果在path区域内，可以接收交互事件，从而截获父视图的点击事件
-//            self.userInteractionEnabled = YES;
-            return YES;
-        } else {
+        //拿到叉的矩形区
+        CGRect imgBound = self.image.bounds;
+        
+        //叉的矩形区宽高各加5，center不变
+        imgBound = CGRectInset(imgBound, -10, -10);
+        
+        //转化为叉内的点
+        CGPoint imgPoint = [self convertPoint:point toView:self.image];
+        
+        //判断是否在加5后的区域，如果是就删除
+        if (CGRectContainsPoint(imgBound, imgPoint)) {
             [self.delegate deleteButtonWithTag:self.tag];
             [self removeFromSuperview];
-            return NO;
+            return YES;
+        } else {
+            return YES;
         }
     }
     return NO;

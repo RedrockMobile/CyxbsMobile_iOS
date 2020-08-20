@@ -18,6 +18,14 @@
 @property(nonatomic,strong)NSArray *weekTextArray;
 
 @property(nonatomic,strong)NSArray *lessonTextArray;
+
+/// weekPicker选择的数据
+@property(nonatomic,copy)NSString *weekString;
+
+/// lessonPicker选择的数据
+@property(nonatomic,copy)NSString *lessonString;
+
+@property(nonatomic,strong)NSMutableArray *array;
 @end
 
 @implementation DLTimeSelectView
@@ -33,9 +41,10 @@
         [self addGesture];
         self.weekTextArray =
         @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
-        
         self.lessonTextArray =
         @[@"一二节课",@"三四节课",@"五六节课",@"七八节课",@"九十节课",@"十一十二节课"];
+        self.weekString = @"周一";
+        self.lessonString = @"一二节课";
     }
     return self;
 }
@@ -109,6 +118,8 @@
 - (void)initAddButton{
     self.addButton = [[UIButton alloc] init];
     [self.addButton setImage:[UIImage imageNamed:@"timeAddImage"] forState:UIControlStateNormal];
+    [self.addButton addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.backViewOfPickerView addSubview: self.addButton];
     [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.weekPicker);
@@ -128,6 +139,32 @@
     [self addGestureRecognizer:TGR];
 }
 
+/// 点击周选择view的加号后调用这个方法
+- (void)addBtnClicked{
+    [UIView animateWithDuration:0.3 animations:^{
+        self.frame = CGRectMake(0, 0, MAIN_SCREEN_W, 300*kRateY+MAIN_SCREEN_H);
+    }completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+    //调用代理方法
+    NSDictionary *timeDict = @{
+        @"weekString":self.weekString,
+        @"lessonString":self.lessonString
+    };
+    if([self.delegate.timeDictArray containsObject:timeDict]){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewController.view animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"这个时间已经添加过了";
+        [hud hide:YES afterDelay:0.8];
+    }else{
+        //虽然这边可以直接修改timeDictArray的元素，但是还是放到代理内部改比较好
+        //,实际上只有修改timeDictArray的操作都放到了TimeSelectedBtnsView
+        [self.delegate pickerDidSelectedWithDataDict:timeDict];
+    }
+}
+
+
+//MARK:-picker的代理方法：
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }
@@ -168,5 +205,13 @@
     pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
     
     return pickerLabel;
+}
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    
+    if([pickerView isEqual:self.weekPicker]){
+        self.weekString = self.weekTextArray[row];
+    }else{
+        self.lessonString = self.lessonTextArray[row];
+    }
 }
 @end

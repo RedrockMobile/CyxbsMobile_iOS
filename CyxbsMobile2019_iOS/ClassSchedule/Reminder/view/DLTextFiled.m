@@ -23,7 +23,7 @@
             // Fallback on earlier versions
         }
         
-        self.layer.cornerRadius = 28*rateX;
+        self.layer.cornerRadius = MAIN_SCREEN_W*0.07333;
         self.layer.masksToBounds = YES;
         if (@available(iOS 11.0, *)) {
             self.textColor = [UIColor colorNamed:@"titleLabelColor"];

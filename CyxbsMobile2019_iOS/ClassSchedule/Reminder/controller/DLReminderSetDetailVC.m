@@ -31,7 +31,7 @@
         DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
         vc.noticeString = self.noticeString;
         vc.detailString = self.inputString;
-        [self.navigationController pushViewController:vc animated:NO];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else{
         NSLog(@"未输入");
@@ -50,21 +50,11 @@
         _reminderView.titleLab.text = @"为你的行程添加 具体内容";
         _reminderView.notoiceLab.text = [NSString stringWithFormat:@"标题：%@",self.noticeString];
 //        _reminderView.textFiled.delegate = self;
-        _reminderView.nextBtn.backgroundColor = [UIColor colorWithHexString:@"#AABBFF"];
+//        _reminderView.nextBtn.backgroundColor = [UIColor colorWithHexString:@"#AABBFF"];
         [_reminderView.nextBtn addTarget:self action:@selector(didClickNextButton:) forControlEvents:UIControlEventTouchUpInside];
         [_reminderView.backBtn addTarget: self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     }
     return _reminderView;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
