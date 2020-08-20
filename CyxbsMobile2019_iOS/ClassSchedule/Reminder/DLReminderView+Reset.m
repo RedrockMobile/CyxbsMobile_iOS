@@ -38,7 +38,6 @@
         make.width.mas_equalTo(33.15*kRateX);
         make.height.mas_equalTo(24*kRateY);
     }];
-//    []
 }
 
 - (void)loadAddButton{

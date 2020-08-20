@@ -119,13 +119,14 @@
     self.addButton = [[UIButton alloc] init];
     [self.addButton setImage:[UIImage imageNamed:@"timeAddImage"] forState:UIControlStateNormal];
     [self.addButton addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.addButton sizeToFit];
     
     [self.backViewOfPickerView addSubview: self.addButton];
     [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.weekPicker);
         make.right.equalTo(self.backViewOfPickerView).mas_offset(-50*kRateX);
-        make.width.mas_equalTo(MAIN_SCREEN_W*0.05867);
-        make.height.mas_equalTo(MAIN_SCREEN_W*0.05867);
+        make.width.mas_equalTo(MAIN_SCREEN_W*0.0693);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.0693);
     }];
 }
 - (void)addGesture{
