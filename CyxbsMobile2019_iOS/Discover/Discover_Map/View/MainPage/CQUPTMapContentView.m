@@ -52,14 +52,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-        
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+        } else {
+            self.backgroundColor = [UIColor whiteColor];
+        }
         self.mapDataItem = mapDataItem;
         self.hotPlaceItemArray = hotPlaceItemArray;
         self.pinsArray = [@[] mutableCopy];
         
         UIView *topView = [[UIView alloc] init];
-        topView.backgroundColor = [UIColor whiteColor];
+        topView.backgroundColor = self.backgroundColor;
         [self addSubview:topView];
         self.topView = topView;
         
@@ -129,7 +132,6 @@
         self.mapScrollView = mapScrollView;
         
         UIImageView *mapView = [[UIImageView alloc] init];
-        mapView.backgroundColor = [UIColor grayColor];
         mapView.image = [UIImage imageNamed:@"Map_map"];
         mapView.contentMode = UIViewContentModeScaleAspectFill;
         mapView.userInteractionEnabled = YES;
@@ -304,6 +306,15 @@
 }
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
+    if (placeIDArray.count == 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+        hud.labelText = @"未能搜到此地点";
+        [hud setMode:(MBProgressHUDModeText)];
+        [hud hide:YES afterDelay:1.5];
+        
+        return;
+    }
+    
     [self.beforeSearchView searchPlaceSuccess:placeIDArray];
 }
 

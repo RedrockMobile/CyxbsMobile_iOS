@@ -37,7 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor systemBackgroundColor];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];

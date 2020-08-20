@@ -22,7 +22,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         
         self.hotPlaceItem = hotPlaceItem;
         

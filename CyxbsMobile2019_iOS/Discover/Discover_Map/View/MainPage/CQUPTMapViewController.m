@@ -15,6 +15,7 @@
 
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
 
+@property (nonatomic, weak) MBProgressHUD *hud;
 @property (nonatomic, strong) CQUPTMapPresenter *presenter;
 
 @end
@@ -24,12 +25,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"地图加载中，请耐心等待哦～";
+    self.hud = hud;
+    
     self.presenter = [[CQUPTMapPresenter alloc] init];
     [self.presenter attachView:self];
     
     [self.presenter requestMapData];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
     
 }
 
@@ -44,8 +54,9 @@
 
 #pragma mark - Presenter 回调
 - (void)mapDataRequestSuccessWithMapData:(CQUPTMapDataItem *)mapData hotPlace:(nonnull NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceArray {
-    [mapData archiveItem];
+    [self.hud hide:YES];
     
+    [mapData archiveItem];
     
     CQUPTMapContentView *contentView = [[CQUPTMapContentView alloc] initWithFrame:self.view.bounds andMapData:mapData andHotPlaceItemArray:hotPlaceArray];
     contentView.backgroundColor = [UIColor colorWithHexString:mapData.mapColor];
@@ -56,8 +67,13 @@
         contentView.mapView.contentMode = UIViewContentModeScaleAspectFill;
     }];
     
+    contentView.alpha = 0;
     [self.view addSubview:contentView];
     self.contentView = contentView;
+    
+    [UIView animateWithDuration:0.5 delay:0.3 options:UIViewAnimationOptionCurveLinear animations:^{
+        contentView.alpha = 1;
+    } completion:nil];
 }
 
 - (void)starPlaceRequestSuccessWithStarPlace:(CQUPTMapStarPlaceItem *)starPlace {
