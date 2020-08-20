@@ -49,6 +49,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.searchImageView.mas_trailing).offset(12);
         make.centerY.equalTo(self.searchImageView);
+        make.width.equalTo(self).offset(-50);
     }];
 }
 

@@ -47,6 +47,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.contentView).offset(15);
         make.top.equalTo(self.contentView).offset(11);
+        make.width.equalTo(self).offset(-30);
     }];
     
     [self.deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {

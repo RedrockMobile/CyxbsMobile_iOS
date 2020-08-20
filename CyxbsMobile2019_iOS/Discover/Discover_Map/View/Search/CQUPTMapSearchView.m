@@ -134,7 +134,13 @@
     if (tableView == self.historyTableView) {
         CQUPTMapBeforeSearchCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         ((CQUPTMapContentView *)(self.superview)).searchBar.text = cell.titleLabel.text;
+        if ([((CQUPTMapContentView *)(self.superview)).delegate respondsToSelector:@selector(searchPlaceWithString:)]) {
+            [((CQUPTMapContentView *)(self.superview)).delegate searchPlaceWithString:cell.titleLabel.text];
+        }
     } else {
+        if ([((CQUPTMapContentView *)(self.superview)).delegate respondsToSelector:@selector(requestPlaceDataWithPlaceID:)]) {
+            [((CQUPTMapContentView *)(self.superview)).delegate requestPlaceDataWithPlaceID:self.resultArray[indexPath.row].placeId];
+        }
         [((CQUPTMapContentView *)(self.superview)) selectedAPlace:self.resultArray[indexPath.row]];
         [((CQUPTMapContentView *)(self.superview)) cancelSearch];
         [((CQUPTMapContentView *)(self.superview)) endEditing:YES];

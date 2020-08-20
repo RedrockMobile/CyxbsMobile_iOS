@@ -350,6 +350,9 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if (self.detailItem.tagsArray.count == 0) {
+        return CGSizeMake([self attributeLabelWidthText:@"暂无信息"] + 5, 22);
+    }
     return CGSizeMake([self attributeLabelWidthText:self.detailItem.tagsArray[indexPath.item]] + 5, 22);
 }
 

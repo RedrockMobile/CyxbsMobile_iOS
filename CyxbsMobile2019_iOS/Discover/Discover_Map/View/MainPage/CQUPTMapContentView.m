@@ -15,7 +15,6 @@
 #import "CQUPTMapStarPlaceItem.h"
 #import "CQUPTMapSearchView.h"
 #import "CQUPTMapDetailView.h"
-#import <IQKeyboardManager.h>
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, CALayerDelegate>
 
@@ -78,7 +77,6 @@
         searchBar.returnKeyType = UIReturnKeySearch;
         searchBar.font = [UIFont fontWithName:PingFangSCMedium size:14];
         searchBar.placeholder = [NSString stringWithFormat:@"大家都在搜：%@", mapDataItem.hotWord];
-        [searchBar.keyboardToolbar.doneBarButton setTarget:self action:@selector(cancelSearch)];
         searchBar.delegate = self;
         [self addSubview:searchBar];
         self.searchBar = searchBar;
