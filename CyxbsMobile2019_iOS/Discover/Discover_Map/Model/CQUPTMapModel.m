@@ -57,6 +57,12 @@
             CQUPTMapStarPlaceItem *item = [[CQUPTMapStarPlaceItem alloc] initWithDice:responseObject];
             
             success(item);
+        } else if ([responseObject[@"data"] isEqualToString:@""]) {
+            // 这里后端的逻辑很奇怪，没有收藏的时候data本来应该是@{}，但是却返回了一个@""，并且status是500。
+            // 所以这里只有单独写一个判断了。
+            CQUPTMapStarPlaceItem *item = [[CQUPTMapStarPlaceItem alloc] init];
+            
+            success(item);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -119,7 +125,7 @@
         @"place_id": placeID
     };
     
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPDELETECOLLECT method:HttpRequestDelete parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:CQUPTMAPDELETECOLLECT method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
         [item.starPlaceArray removeObject:placeID];
         [item archiveItem];

@@ -18,6 +18,8 @@
 
 - (void)requestPlaceDataWithPlaceID:(NSString *_Nonnull)placeID;
 
+- (void)vrButtonTapped;
+
 @end
 
 NS_ASSUME_NONNULL_BEGIN

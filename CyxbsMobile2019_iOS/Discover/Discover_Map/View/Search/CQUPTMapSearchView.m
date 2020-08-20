@@ -37,7 +37,11 @@
     if (self) {
         self.historyArray = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] copy];
         
-        self.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+        } else {
+            self.backgroundColor = [UIColor whiteColor];
+        }
         
         UILabel *historyLabel = [[UILabel alloc] init];
         historyLabel.text = @"历史记录";
@@ -58,7 +62,11 @@
         historyTableView.rowHeight = 37;
         historyTableView.dataSource = self;
         historyTableView.delegate = self;
-        historyTableView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            historyTableView.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+        } else {
+            historyTableView.backgroundColor = [UIColor whiteColor];
+        }
         historyTableView.tableFooterView = [[UIView alloc] init];
         historyTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self addSubview:historyTableView];
@@ -134,7 +142,13 @@
     if (tableView == self.historyTableView) {
         CQUPTMapBeforeSearchCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         ((CQUPTMapContentView *)(self.superview)).searchBar.text = cell.titleLabel.text;
+        if ([((CQUPTMapContentView *)(self.superview)).delegate respondsToSelector:@selector(searchPlaceWithString:)]) {
+            [((CQUPTMapContentView *)(self.superview)).delegate searchPlaceWithString:cell.titleLabel.text];
+        }
     } else {
+        if ([((CQUPTMapContentView *)(self.superview)).delegate respondsToSelector:@selector(requestPlaceDataWithPlaceID:)]) {
+            [((CQUPTMapContentView *)(self.superview)).delegate requestPlaceDataWithPlaceID:self.resultArray[indexPath.row].placeId];
+        }
         [((CQUPTMapContentView *)(self.superview)) selectedAPlace:self.resultArray[indexPath.row]];
         [((CQUPTMapContentView *)(self.superview)) cancelSearch];
         [((CQUPTMapContentView *)(self.superview)) endEditing:YES];
@@ -160,7 +174,11 @@
         resultTableView.rowHeight = 37;
         resultTableView.dataSource = self;
         resultTableView.delegate = self;
-        resultTableView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            resultTableView.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+        } else {
+            resultTableView.backgroundColor = [UIColor whiteColor];
+        }
         resultTableView.tableFooterView = [[UIView alloc] init];
         resultTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         resultTableView.alpha = 0;

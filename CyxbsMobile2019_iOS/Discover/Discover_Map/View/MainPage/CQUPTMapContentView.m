@@ -15,7 +15,6 @@
 #import "CQUPTMapStarPlaceItem.h"
 #import "CQUPTMapSearchView.h"
 #import "CQUPTMapDetailView.h"
-#import <IQKeyboardManager.h>
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, CALayerDelegate>
 
@@ -29,6 +28,8 @@
 @property (nonatomic, weak) UIButton *backButton;
 @property (nonatomic, weak) UIImageView *searchScopeImageView;
 @property (nonatomic, weak) UIButton *cancelButton;
+@property (nonatomic, weak) UIImageView *compassView;
+@property (nonatomic, weak) UIButton *vrButton;
 
 @property (nonatomic, weak) UIScrollView *hotScrollView;
 @property (nonatomic, strong) NSMutableArray<CQUPTMapHotPlaceButton *> *hotButtonArray;
@@ -53,14 +54,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-        
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+        } else {
+            self.backgroundColor = [UIColor whiteColor];
+        }
         self.mapDataItem = mapDataItem;
         self.hotPlaceItemArray = hotPlaceItemArray;
         self.pinsArray = [@[] mutableCopy];
         
         UIView *topView = [[UIView alloc] init];
-        topView.backgroundColor = [UIColor whiteColor];
+        topView.backgroundColor = self.backgroundColor;
         [self addSubview:topView];
         self.topView = topView;
         
@@ -78,7 +82,6 @@
         searchBar.returnKeyType = UIReturnKeySearch;
         searchBar.font = [UIFont fontWithName:PingFangSCMedium size:14];
         searchBar.placeholder = [NSString stringWithFormat:@"大家都在搜：%@", mapDataItem.hotWord];
-        [searchBar.keyboardToolbar.doneBarButton setTarget:self action:@selector(cancelSearch)];
         searchBar.delegate = self;
         [self addSubview:searchBar];
         self.searchBar = searchBar;
@@ -131,7 +134,6 @@
         self.mapScrollView = mapScrollView;
         
         UIImageView *mapView = [[UIImageView alloc] init];
-        mapView.backgroundColor = [UIColor grayColor];
         mapView.image = [UIImage imageNamed:@"Map_map"];
         mapView.contentMode = UIViewContentModeScaleAspectFill;
         mapView.userInteractionEnabled = YES;
@@ -144,6 +146,16 @@
         mapScrollView.maximumZoomScale = 6.0;
         mapScrollView.minimumZoomScale = 1.0;
         [mapScrollView scrollToBottom];
+        
+        UIImageView *compassView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Map_Compass"]];
+        [self addSubview:compassView];
+        self.compassView = compassView;
+        
+        UIButton *vrButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [vrButton setImage:[UIImage imageNamed:@"Map_VRMap"] forState:UIControlStateNormal];
+        [vrButton addTarget:self action:@selector(vrButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:vrButton];
+        self.vrButton = vrButton;
         
         // 深色模式
         if (@available(iOS 11.0, *)) {
@@ -229,6 +241,18 @@
         make.height.equalTo(@54);
     }];
     
+    [self.compassView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.hotScrollView.mas_bottom).offset(15);
+        make.trailing.equalTo(self).offset(-15);
+        make.width.height.equalTo(@65);
+    }];
+    
+    [self.vrButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.compassView);
+        make.leading.equalTo(self).offset(15);
+        make.width.height.equalTo(@36);
+    }];
+    
     [self.mapScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.equalTo(self);
         make.top.equalTo(self.hotScrollView.mas_bottom);
@@ -306,6 +330,15 @@
 }
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
+    if (placeIDArray.count == 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+        hud.labelText = @"未能搜到此地点";
+        [hud setMode:(MBProgressHUDModeText)];
+        [hud hide:YES afterDelay:1.5];
+        
+        return;
+    }
+    
     [self.beforeSearchView searchPlaceSuccess:placeIDArray];
 }
 
@@ -493,6 +526,13 @@
     self.starPlace = starPlace;
     [starPlace archiveItem];
     
+    if (starPlace.starPlaceArray.count == 0) {
+        MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"暂无收藏";
+        [hud hide:YES afterDelay:1.2];
+    }
+    
     [self addPinsOnMapWithPlaceArray:[CQUPTMapStarPlaceItem starPlaceDetail]];
 }
 
@@ -537,6 +577,12 @@
     }
     
     [self addPinsOnMapWithPlaceArray:tmpArray];
+}
+
+- (void)vrButtonTapped {
+    if ([self.delegate respondsToSelector:@selector(vrButtonTapped)]) {
+        [self.delegate vrButtonTapped];
+    }
 }
 
 @end

@@ -37,7 +37,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor systemBackgroundColor];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
@@ -78,6 +82,16 @@
     imageCollectionView.dataSource = self;
     [self.view addSubview:imageCollectionView];
     self.imageCollectionView = imageCollectionView;
+    
+    UILabel *noMoreImageLabel = [[UILabel alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W - 75 - 15, 0, 75, 12)];
+    noMoreImageLabel.text = @"暂无更多图片";
+    noMoreImageLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
+    if (@available(iOS 11.0, *)) {
+        noMoreImageLabel.textColor = [UIColor colorNamed:@"Map_SearchClearColor"];
+    } else {
+        noMoreImageLabel.textColor = [UIColor colorWithHexString:@"ABBCD8"];
+    }
+    imageCollectionView.mj_footer = noMoreImageLabel;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -142,6 +156,20 @@
     UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:10 delegate:self];
+        [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"不能发布视频呢";
+            [hud hide:YES afterDelay:1.2];
+        }];
+        
+        [imagePickerVc setDidFinishPickingGifImageHandle:^(UIImage *coverImage, PHAsset *asset) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"不能发布GIF呢";
+            [hud hide:YES afterDelay:1.2];
+        }];
+        
         [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
             [self dismissViewControllerAnimated:YES completion:^{
                 
