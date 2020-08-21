@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,7 +16,7 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="csH-T6-l3r" kind="relationship" relationship="viewControllers" id="iB0-0P-iZF"/>
@@ -31,7 +32,7 @@
         <scene sceneID="0Bf-T6-idt">
             <objects>
                 <navigationController title="发现" id="csH-T6-l3r" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" id="lkW-ZO-7tQ"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="Discover_Off" selectedImage="Discover_On" id="lkW-ZO-7tQ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wMw-0P-YR5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -80,7 +81,7 @@
         <scene sceneID="KiW-4y-yeI">
             <objects>
                 <navigationController title="邮问" id="J1I-im-Hff" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="邮问" id="ypO-e7-Kpl"/>
+                    <tabBarItem key="tabBarItem" title="邮问" image="QA_Off" selectedImage="QA_On" id="ypO-e7-Kpl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XBu-Bk-4nF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -130,7 +131,7 @@
         <scene sceneID="AGL-bw-WRV">
             <objects>
                 <navigationController id="ljy-HH-ei3" userLabel="我的" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的" id="qKf-bw-NYB" userLabel="我的"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="Mine_Off" selectedImage="Mine_On" id="qKf-bw-NYB" userLabel="我的"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Iz-48-mLy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -161,4 +162,12 @@
             <point key="canvasLocation" x="-1522" y="554"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Discover_Off" width="25" height="25"/>
+        <image name="Discover_On" width="25" height="24"/>
+        <image name="Mine_Off" width="25" height="25"/>
+        <image name="Mine_On" width="25" height="25"/>
+        <image name="QA_Off" width="25" height="25"/>
+        <image name="QA_On" width="25" height="25"/>
+    </resources>
 </document>
