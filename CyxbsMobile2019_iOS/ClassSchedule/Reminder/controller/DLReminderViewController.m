@@ -24,9 +24,6 @@
 @end
 
 @implementation DLReminderViewController
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reminderVCPoped" object:nil];
-}
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
 }
@@ -34,6 +31,7 @@
     self = [self init];
     if (self) {
         self.remind = remind;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"bbbb" object:nil];
     }
     return self;
 }
@@ -54,7 +52,8 @@
     }else{
         DLReminderSetDetailVC *vc = [[DLReminderSetDetailVC alloc] init];
         vc.noticeString = self.reminderView.textFiled.text;
-        [self.navigationController pushViewController:vc animated:YES];
+        [vc setModalPresentationStyle:(UIModalPresentationFullScreen)];
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 - (void)didClickHistoryButton:(DLHistodyButton *)button{
@@ -65,7 +64,7 @@
     self.reminderView.textFiled.text = self.buttonTitleArray[button.tag];
 }
 - (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
 }
 
 - (void)loadHistoryButtons{
@@ -99,6 +98,5 @@
     }
     return _reminderView;
 }
-
 
 @end

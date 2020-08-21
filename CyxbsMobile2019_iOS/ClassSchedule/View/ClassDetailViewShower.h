@@ -12,7 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ClassDetailViewShower : UIView<LessonViewDelegate>
-
+@property (nonatomic,strong)NSArray <NSDictionary*>*courseDataDictArray;
+@property (nonatomic,strong)NSArray <NoteDataModel*>*noteDataModelArray;
 @end
 
 NS_ASSUME_NONNULL_END

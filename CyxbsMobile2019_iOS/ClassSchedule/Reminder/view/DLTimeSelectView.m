@@ -207,6 +207,7 @@
     
     return pickerLabel;
 }
+
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
     if([pickerView isEqual:self.weekPicker]){

@@ -21,6 +21,8 @@
 
 ///储存已经选择的周的字符串
 @property (nonatomic, strong)NSMutableArray <NSString*> *weekSelectedTextxs;
+
+@property (nonatomic, strong)NSMutableArray <DLWeekButton*>*weekBtnArray;
 @end
 
 @implementation DLWeeklSelectView
@@ -32,9 +34,10 @@
         self.backgroundColor = [UIColor clearColor];
         [self addBackViewOfWeeKBtns];
         [self initConfirmButton];
-        self.weekArray = @[@"整学期", @"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周",];
-        [self initWeekButtons];
+        self.weekArray = @[@"整学期", @"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周",];
         self.weekSelectedTextxs = [NSMutableArray array];
+        self.weekBtnArray = [NSMutableArray array];
+        [self initWeekButtons];
     }
     return self;
 }
@@ -106,9 +109,11 @@
             hasOccupiedWidth = 16*kRateX;
         }
         DLWeekButton *button = [[DLWeekButton alloc] init];
+        [self.weekBtnArray addObject:button];
         [button setTitle:self.weekArray[i] forState:UIControlStateNormal];
         [button setTitle:self.weekArray[i] forState:UIControlStateSelected];
         [button setTitle:self.weekArray[i] forState:UIControlStateSelected|UIControlStateHighlighted];
+        //整学期按钮tag==0
         button.tag = i;
         [button addTarget:self action:@selector(didClickWeekButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.backViewOfWeeKBtns addSubview: button];
@@ -129,12 +134,24 @@
     button.isChangeColor = !button.isChangeColor;
     if (button.selected==YES) {
         [self.weekSelectedTextxs addObject:button.titleLabel.text];
+        if(button.tag==0){//如果选择了整学期
+            int count = (int)self.weekBtnArray.count;
+            DLWeekButton *ortherBtn;//除了整学期以外的按钮
+            for (int i=1; i<count; i++) {
+                ortherBtn = self.weekBtnArray[i];
+                ortherBtn.selected = NO;
+                ortherBtn.isChangeColor = NO;
+                [self.weekSelectedTextxs removeObject:ortherBtn.titleLabel.text];
+            }
+        }else{
+            //对整学期按钮进行操作
+            self.weekBtnArray[0].isChangeColor = NO;
+            self.weekBtnArray[0].selected = NO;
+            [self.weekSelectedTextxs removeObject:self.weekBtnArray[0].titleLabel.text];
+        }
     }else{
         [self.weekSelectedTextxs removeObject:button.titleLabel.text];
     }
-    
-    NSLog(@"%@",self.weekSelectedTextxs);
-    
 }
 
 - (void)addGesture{

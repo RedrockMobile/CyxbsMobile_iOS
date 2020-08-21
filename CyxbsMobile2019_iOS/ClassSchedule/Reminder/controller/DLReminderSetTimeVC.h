@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *detailString;
 
 /// 选择时间的DLTimeSelectView和显示已选择时间的TimeSelectedBtnsView的代理属性，里面是已经选择的时间字典
-/// ，结构：@{@"weekString":@"",  @"lessonString":@""}，代码把这个属性的alloc init
+/// ，结构：@{@"weekString":@"",  @"lessonString":@""}，代码把这个timeDictArray的alloc init
 /// 放DLReminderSetTimeVC，对数组内部元素的增删操作都放在TimeSelectedBtnsView
 @property(nonatomic,strong)NSMutableArray <NSDictionary*> *timeDictArray;
 @end
