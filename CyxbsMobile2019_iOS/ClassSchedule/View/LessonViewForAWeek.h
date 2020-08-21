@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LessonView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LessonViewForAWeek : UIView
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 代表是第week周的课，0就是整学期
 @property(nonatomic,assign)int week;
+- (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model;
 @end
 
 NS_ASSUME_NONNULL_END

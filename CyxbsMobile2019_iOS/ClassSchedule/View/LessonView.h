@@ -15,15 +15,18 @@
 #define DISTANCE_W (MAIN_SCREEN_W*0.0053)
 
 #define DISTANCE_H (DISTANCE_W*1.5)
+
+#import "NoteDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol LessonViewDelegate <NSObject>
-- (void)showDetailWithCourseDataDict:(NSArray*)courseDataDictArray;
+- (void)showDetail;
 - (void)hideDetail;
+@property (nonatomic,strong)NSArray <NSDictionary*>*courseDataDictArray;
+@property (nonatomic,strong)NSArray <NoteDataModel*>*noteDataModelArray;
 @end
 
 @protocol LessonViewAddNoteDelegate <NSObject>
-
 /// 通过导入的空课信息添加备忘
 /// @param emptyLessonData dict = @{
 ///    @"hash_day":0,
@@ -34,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addNoteWithEmptyLessonData:(NSDictionary*)emptyLessonData;
 @end
 
+
+/// 空课和有课处的view都是这个这个类
 @interface LessonView : UIView
 
 /// 显示在课表上的课的信息字典，也就是courseDataDictArray[0]，空课的结构：
@@ -44,17 +49,23 @@ NS_ASSUME_NONNULL_BEGIN
 ///    @"week":第week周的空课，week代表整学期
 /// };
 @property(nonatomic,strong)NSDictionary *courseDataDict;
-//全部课信息
-@property(nonatomic,strong)NSArray *courseDataDictArray;
+//全部课的信息
+@property(nonatomic,strong)NSArray <NSDictionary*>*courseDataDictArray;
+//全部的备忘信息
+@property (nonatomic,strong)NSArray <NoteDataModel*>*noteDataModelArray;
 /// 是不是一节空课
 @property(nonatomic,assign)BOOL isEmptyLesson;
 
 @property(nonatomic,weak)id<LessonViewDelegate>delegate;
 @property(nonatomic,weak)id<LessonViewAddNoteDelegate>addNoteDelegate;
 
+@property(nonatomic,strong)NSDictionary *emptyClassDate;
 /// 更新数据，调用前需确保已经对self.courseDataDict进行更新
 - (void)setUpData;
 
+/// 由LessonViewForAWeek调用，用来添加一个备忘
+/// @param model 一次备忘的信息
+- (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model;
 @end
 
 NS_ASSUME_NONNULL_END

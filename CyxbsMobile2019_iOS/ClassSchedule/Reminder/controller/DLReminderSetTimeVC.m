@@ -19,10 +19,12 @@
 #import "DLTimeSelectedButton.h"
 #import "DLHistodyButton.h"
 #import "TimeBtnSelectedBackView.h"
+#import "NoticeWaySelectView.h"
+#import "NoteDataModel.h"
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
-@interface DLReminderSetTimeVC ()<UITextFieldDelegate, WeekSelectDelegate,DLTimeSelectViewDelegate,TimeBtnSelectedBackViewDeleget>
+@interface DLReminderSetTimeVC ()<UITextFieldDelegate, WeekSelectDelegate,DLTimeSelectViewDelegate,TimeBtnSelectedBackViewDeleget,NoticeWaySelectViewDelegate>
 @property (nonatomic, strong) UIPickerView *timePiker;
 @property (nonatomic, strong) DLReminderView *reminderView;
 
@@ -32,19 +34,21 @@
 /// 时间选择view，懒加载
 @property (nonatomic, strong) DLTimeSelectView *timeSelectView;
 
-@property (nonatomic, copy) NSArray *weekArray;
+//@property (nonatomic, copy) NSArray *weekArray;
 
+@property (nonatomic, strong)NoticeWaySelectView *notiWaySelecter;
 
 ///存储已选择的周
 @property (nonatomic, strong) NSArray *weekSelectedArray;
 
-///存储已选择的时间 内容为string
-@property (nonatomic, strong) NSMutableArray *timeSelectedArray;
+/// 提醒方式的字符串
+@property (nonatomic, copy)NSString *notiStr;
 
 /// 显示已经添加时间的按钮的背景view
 @property (nonatomic,strong)TimeBtnSelectedBackView *backViewOfTimeSelectedBtn;
 
 @property (nonatomic,strong)UIButton *ifNotiBtn;
+
 
 @end
 
@@ -74,6 +78,8 @@
     [self.reminderView addSubview:ifNotiBtn];
     self.ifNotiBtn = ifNotiBtn;
 
+    [ifNotiBtn addTarget:self action:@selector(pushNotiWaySelecter) forControlEvents:UIControlEventTouchUpInside];
+    
     [ifNotiBtn mas_updateConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.reminderView).offset(MAIN_SCREEN_W*0.0534);
         make.top.equalTo(self.backViewOfTimeSelectedBtn.mas_bottom).offset(10);
@@ -85,38 +91,44 @@
         make.width.mas_equalTo(66*kRateX);
         make.height.mas_equalTo(66*kRateX);
     }];
+    
+    self.notiStr = @"不提醒";
 }
 
 #pragma mark - 点击事件
 //点击下方的大勾勾按钮
+//@{@"weekString":@"",  @"lessonString":@""}
 - (void)didClickNextButton:(UIButton *)button{
-//    那个idnum不知道是啥，随便写了个
-    NSDictionary *dic = @{@"idNum": @123,
-                          @"title": self.noticeString,//为你的行程添加标题时选择的标题
-                          @"content": self.detailString//为你的行程添加内容时输入的文字
-    };
-    
-    NSLog(@"notice = %@,detail = %@",self.noticeString,self.detailString);
-    
-    //DLReminderModel只在这里使用过
-    DLReminderModel *model = [[DLReminderModel alloc] initWithRemindDict:dic];
-    model.week = self.weekSelectedArray;
-    //不知道classNum是不是指学号，这里假设就是学号
-    model.classNum = [NSNumber numberWithString:[UserDefaultTool getStuNum]];
-    //不知道model配置是否正确
-//    model.week = self.weekArray;
-    //不知道model配置是否正确
-//    model.day = [self.pickerSlectedItems firstObject];
-//    ADDREMINDAPI
-    //网络请求参数不知道怎么配置
-    NSDictionary *param = [@{
-        @"stuNum":model.classNum,
-        @"idNum":model.idNum,
-//    @"date":jsonString,
-//    @"time":model.time,
-    @"title":model.title,
-        @"content":model.content,
-    } mutableCopy];
+    int mark=0;
+    if(self.timeDictArray.count==0){
+        mark+=1;
+    }
+    if(self.weekSelectedArray.count==0){
+        mark+=2;
+    }
+//    self.notiStr默认为@“不提醒”，所以不可能为空，故这里不作判断
+    NSArray *textArray  = @[@"",@"还没有选择具体时间",@"还没有选择备忘周",@"什么时间都还没选呢",];
+    if(mark!=0){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = textArray[mark];
+        [hud hide:YES afterDelay:1];
+        return;
+    }else{
+        NoteDataModel *model = [[NoteDataModel alloc] initWithNotoDataDict:@{
+            @"weeksStrArray":self.weekSelectedArray,
+            @"timeStrDictArray":self.timeDictArray,
+            @"notiBeforeTime":self.notiStr,
+            @"noteTitleStr":self.noticeString,
+            @"noteDetailStr":self.detailString,
+        }];
+        NSArray *modelArray =  [[NSUserDefaults standardUserDefaults] objectForKey:@"userNoteDataModelArray"];
+        NSMutableArray *newModelArray = [modelArray mutableCopy];
+        [newModelArray addObject:model];
+        [[NSUserDefaults standardUserDefaults] setObject:newModelArray forKey:@"userNoteDataModel"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldAddNote" object:model];
+        [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 /// 添加弹出选择周view的按钮，显示@“备忘周”3字
@@ -152,7 +164,7 @@
 }
 
 - (void)back{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
 }
 
 /// 弹出选择周的view
@@ -175,28 +187,40 @@
     }];
 }
 
-
+/// 推出选择
+- (void)pushNotiWaySelecter{
+    [self.notiWaySelecter setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H+0.4261*MAIN_SCREEN_H)];
+    [self.view addSubview:self.notiWaySelecter];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.notiWaySelecter.frame = CGRectMake(0, -0.4261*MAIN_SCREEN_H, MAIN_SCREEN_W, MAIN_SCREEN_H+0.4261*MAIN_SCREEN_H);
+    }];
+}
 
 - (void)addNotiBtn{
     
 }
 #pragma mark - delegate
-/// 点击周选择view的确定按钮后调用
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return NO;
+}
+
+/// 点击周选择view的确定按钮后调用的代理方法
 /// @param stringArray 在WeekSelect里面选择的周的标题组成的数组
 - (void)selectedTimeStringArray:(NSArray *)stringArray{
     self.weekSelectedArray = stringArray;
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    return NO;
-}
-
-/// 点击周选择view的加号后调用代理方法
+/// 点击时间选择view里的加号后调用的代理方法
 /// @param dataDict picker所选择的数据，结构：@{@"weekString":@"",  @"lessonString":@""}
 - (void)pickerDidSelectedWithDataDict:(NSDictionary *)dataDict{
     [self.backViewOfTimeSelectedBtn loadSelectedButtonsWithTimeDict:dataDict];
 }
 
+/// 选择提醒方式的view上的确定按钮点击后调用的代理方法
+/// @param notiStr 提醒方式字符串
+- (void)notiPickerDidSelectedWithString:(NSString *)notiStr{
+    self.notiStr = notiStr;
+}
 #pragma mark - 懒加载&加载
 
 - (DLWeeklSelectView *)weekselectView{
@@ -214,20 +238,15 @@
     }
     return _timeSelectView;
 }
-- (void)loadAddButton{
-    UIButton *btn = [[UIButton alloc] init];
-    [btn setBackgroundImage:[UIImage imageNamed:@"timeAddImage"] forState:UIControlStateNormal];
-    [btn sizeToFit];
-    [self.reminderView addSubview:btn];
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.reminderView).offset(0.4594*MAIN_SCREEN_H);
-        make.bottom.equalTo(self.backViewOfTimeSelectedBtn.backView);
-        make.right.equalTo(self.reminderView).offset(-0.104*MAIN_SCREEN_W);
-        make.height.mas_equalTo(MAIN_SCREEN_W*0.0693);
-        make.width.mas_equalTo(MAIN_SCREEN_W*0.0693);
-    }];
-    [btn addTarget:self action:@selector(showTimeSelectView) forControlEvents:UIControlEventTouchUpInside];
+
+- (NoticeWaySelectView *)notiWaySelecter{
+    if(_notiWaySelecter==nil){
+        _notiWaySelecter = [[NoticeWaySelectView alloc] init];
+        _notiWaySelecter.delegate = self;
+    }
+    return _notiWaySelecter;
 }
+/// 加上背景
 - (void)addReminderView{
     self.reminderView = [[DLReminderView alloc] init];
     self.reminderView.frame = self.view.frame;

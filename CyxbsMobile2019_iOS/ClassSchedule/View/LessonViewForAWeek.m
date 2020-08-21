@@ -7,7 +7,6 @@
 //
 
 #import "LessonViewForAWeek.h"
-#import "LessonView.h"
 #import "ClassDetailViewShower.h"
 #import "DLReminderViewController.h"
 
@@ -79,10 +78,8 @@
 //@"week":[NSString stringWithFormat:@"%d",self.week],
 - (void)addNoteWithEmptyLessonData:(NSDictionary *)emptyLessonData{
     DLReminderViewController *reminderVC = [[DLReminderViewController alloc] init];
-    //发送通知，让ClassScheduleTabBarView.VC把课表控制器disMiss
-    //disMiss后，ClassScheduleTabBarView会再发送叫@"pushReminderVC"的通知
-    //让DiscoverViewController.navgationVC push reminderVC
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"disMissSchedul_pushReminderVC" object:reminderVC];
+    [reminderVC setModalPresentationStyle:(UIModalPresentationFullScreen)];
+    [self.viewController presentViewController:reminderVC animated:YES completion:nil];
 }
 
 -(ClassDetailViewShower *)detailViewShower{
@@ -92,4 +89,24 @@
     }
     return _detailViewShower;
 }
+//self.lessonViewsArray[i][j]代表(星期i+1)的(第j+1节大课)的LessonView控件
+- (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model{
+    NSNumber *weekNum,*lessonNum;
+    LessonView *lv;
+    for (NSDictionary *timeDict in model.timeDictArray) {
+        weekNum = timeDict[@"weekNum"];//星期weekNum
+        lessonNum = timeDict[@"lessonNum"];//第lessonNum节大课
+        
+        //lv是周（weekNum+1），第（lessonNum+1）节大课的LessonView
+        lv = self.lessonViewsArray[weekNum.intValue][lessonNum.intValue];
+        [lv addNoteLabelWithNoteDataModel:model];
+    }
+    
+}
+//NoteDataModel.timeDictArray的结构：
+/// @[
+///     @{@"weekNum":@0,  @"lessonNum":@2},
+///     @{@"weekNum":@1,  @"lessonNum":@0}
+/// ]
+///代表某周的周一 第3节大课和周二的第一节大课的备忘
 @end

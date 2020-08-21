@@ -23,7 +23,8 @@
 @property (nonatomic, strong)  UIScrollView *scrollView;
 @property (nonatomic, strong) DateModle *dateModel;
 @property (nonatomic, strong)TopBarScrollView *topBarView;
-@property (nonatomic, strong)NSMutableArray *lessonVCArray;
+//20几张LessonViewForAWeek课表组成的数组，lessonViewArray[0]是整学期
+@property (nonatomic, strong)NSMutableArray <LessonViewForAWeek*> *lessonViewArray;
 /// 课的详情弹窗
 @property (nonatomic, strong)UIView *detailView;
 
@@ -32,7 +33,7 @@
 const float distance=20;
 @implementation WYCClassBookViewController
 - (void)viewDidLoad {
-    self.lessonVCArray = [NSMutableArray array];
+    self.lessonViewArray = [NSMutableArray array];
     self.navigationController.navigationBar.hidden = YES;
     [super viewDidLoad];
     
@@ -57,6 +58,7 @@ const float distance=20;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadView)
                                                  name:@"reloadView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNoteWithModel:) name:@"LessonViewShouldAddNote" object:nil];
     //登录成功后
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(loginSucceeded)
@@ -81,7 +83,13 @@ const float distance=20;
    [self addDragHintView];
        
 }
-
+- (void)addNoteWithModel:(NSNotification*)noti{
+    NoteDataModel *model = noti.object;
+    /// 若model.weeksArray==@[@4,@1,@18],代表第4、1、18周的备忘
+    for (NSNumber *weekNum in model.weeksArray) {
+        [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
+    }
+}
 - (void)viewDidDisappear:(BOOL)animated{
     [self.detailView removeFromSuperview];
 }
@@ -221,7 +229,7 @@ const float distance=20;
             
             //课表
             LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
-            [self.lessonVCArray addObject:lessonViewForAWeek];
+            [self.lessonViewArray addObject:lessonViewForAWeek];
             
             
             lessonViewForAWeek.week = dateNum;
@@ -510,6 +518,5 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
         }
     }
 }
-
 @end
 

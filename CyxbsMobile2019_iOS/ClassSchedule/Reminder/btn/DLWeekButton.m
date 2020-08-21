@@ -46,7 +46,11 @@
         self.backgroundColor = [UIColor colorWithHexString:@"#F7DAD7"];
     }
     else{
-        self.backgroundColor = [UIColor colorWithHexString:@"#F2F3F7"];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"HistodayButtonBackGroundColor"];
+        } else {
+             self.backgroundColor = [UIColor colorWithHexString:@"#F2F3F7"];
+        }
     }
 }
 @end

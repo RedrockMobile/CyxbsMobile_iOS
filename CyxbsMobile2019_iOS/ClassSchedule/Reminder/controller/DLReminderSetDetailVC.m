@@ -15,14 +15,9 @@
 @end
 
 @implementation DLReminderSetDetailVC
-- (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBar.hidden = YES;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview: self.reminderView];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didClickNextButton:(UIButton *)button{
@@ -31,18 +26,17 @@
         DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
         vc.noticeString = self.noticeString;
         vc.detailString = self.inputString;
-        [self.navigationController pushViewController:vc animated:YES];
+        [vc setModalPresentationStyle:(UIModalPresentationFullScreen) ];
+        [self presentViewController:vc animated:YES completion:nil];
     }
     else{
         NSLog(@"未输入");
     }
     
 }
-
 - (void)back{
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
 }
-
 - (DLReminderView *)reminderView{
     if (!_reminderView) {
         _reminderView = [[DLReminderView alloc] init];

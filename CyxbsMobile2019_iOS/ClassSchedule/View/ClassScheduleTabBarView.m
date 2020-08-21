@@ -190,16 +190,5 @@
     [self.mySchedul viewWillAppear:YES];
     
     [self addGesture];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(disMissMySchedulAndPushReminderVC:)
-    name:@"disMissSchedul_pushReminderVC" object:nil];
-}
-
-- (void)disMissMySchedulAndPushReminderVC:(NSNotification*)noti{
-    UIViewController *reminderVC = noti.object;
-    [self.viewController dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"pushReminderVC" object:reminderVC];
-    }];
 }
 @end
