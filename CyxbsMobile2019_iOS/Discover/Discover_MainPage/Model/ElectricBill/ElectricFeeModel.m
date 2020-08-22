@@ -42,7 +42,8 @@
             }
            
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"电费信息请求失败");
+            NSLog(@"电费信息请求失败");//发送消息提醒用户可能是服务器开小差了
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRequestFailed" object:nil];
         }]; 
     }
 
