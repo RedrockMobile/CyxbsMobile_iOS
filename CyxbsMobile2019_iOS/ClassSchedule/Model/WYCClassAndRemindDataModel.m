@@ -215,5 +215,45 @@
     
 }
 
+- (void)addNoteDataWithModel:(NoteDataModel*)model{
+    [_noteDataModelArray addObject:model];
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
+    //取出noteDataModelArray中所有模型的noteDataDict
+    
+    NSArray *rowData = [_noteDataModelArray valueForKeyPath:@"noteDataDict"];
+    
+    //把所有的noteDataDict写入文件
+    [rowData writeToFile:remindPath atomically:YES];
+}
+- (void)deleteNoteDataWithModel:(NoteDataModel*)model{
+    [self.noteDataModelArray removeObject:model];
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *remPath = [path stringByAppendingPathComponent:@"remind.plist"];
+    NSMutableArray *rowData = [NSMutableArray arrayWithContentsOfFile:remPath];
+    [rowData removeObject:model.noteDataDict];
+    [rowData writeToFile:remPath atomically:YES];
+}
+
+- (NSMutableArray *)noteDataModelArray{
+    if(_noteDataModelArray==nil){
+        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *remPath = [path stringByAppendingPathComponent:@"remind.plist"];
+        NSArray *rowData = [NSMutableArray arrayWithContentsOfFile:remPath];
+        NSMutableArray *modelArray = [NSMutableArray array];
+        for (NSDictionary *noteDataDict in rowData) {
+            [modelArray addObject:[[NoteDataModel alloc]initWithNotoDataDict:noteDataDict]];
+        }
+        
+        _noteDataModelArray = modelArray;
+        
+        NSLog(@"%@",modelArray);
+        
+        if(_noteDataModelArray==nil){
+            _noteDataModelArray = [@[] mutableCopy];
+        }
+    }
+    return _noteDataModelArray;
+}
 @end
 

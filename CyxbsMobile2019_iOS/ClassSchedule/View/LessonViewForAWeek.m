@@ -51,19 +51,18 @@
             
             if(lessonDateArray.count!=0){//非空课
                 lessonView.isEmptyLesson = NO;
+                lessonView.courseDataDictArray = self.weekDataArray[i][j];
             }else{//空课
                 lessonView.isEmptyLesson = YES;
-                lessonDateArray = @[@{
+                lessonView.emptyClassDate = @{
                     @"hash_day":[NSNumber numberWithInt:i],
                     @"hash_lesson":[NSNumber numberWithInt:j],
                     @"period":[NSNumber numberWithInt:2],
                     @"week":[NSString stringWithFormat:@"%d",self.week],
-                }];
+                };
             }
             lessonView.delegate = self.detailViewShower;
             lessonView.addNoteDelegate = self;
-            lessonView.courseDataDictArray = lessonDateArray;
-            
             [lessonView setUpData];
             [self addSubview:lessonView];
             [dayLessonViewsArray addObject:lessonView];
@@ -99,7 +98,9 @@
         
         //lv是周（weekNum+1），第（lessonNum+1）节大课的LessonView
         lv = self.lessonViewsArray[weekNum.intValue][lessonNum.intValue];
-        [lv addNoteLabelWithNoteDataModel:model];
+        [lv.noteDataModelArray addObject:model];
+        lv.isNoted = YES;
+        [lv setUpData];
     }
     
 }

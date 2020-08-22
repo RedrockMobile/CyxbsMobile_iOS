@@ -13,7 +13,6 @@
     self = [super init];
     if(self){
         self.noteDataDict = noteDataDict;
-        
         self.noteTitleStr = noteDataDict[@"noteTitleStr"];
         self.noteDetailStr = noteDataDict[@"noteDetailStr"];
         self.notiBeforeTime = noteDataDict[@"notiBeforeTime"];
@@ -23,6 +22,10 @@
         self.weeksArray = [self transferWSAWithArray:self.weeksStrArray];
         
         self.timeDictArray = [self transferTSDAWithArray:self.timeStrDictArray];
+        
+        self.noteID = [self getNoteID];
+        
+        NSLog(@"%@",self.noteID);
         
     }
     return self;
@@ -76,4 +79,26 @@
     return transfer;
 }
 //@{@"weekString":@"",  @"lessonString":@""}
+
+- (NSString*)getNoteID{
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formate = [[NSDateFormatter alloc] init];
+    NSDate *Thurs = [formate dateFromString:@"2020-01-01"];
+        
+        
+        formate.dateFormat = @"yyyy-M-d";
+    //    NSString *today = [formate stringFromDate:[NSDate date]];
+        
+        NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+
+        
+        NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:Thurs toDate:now options:0];
+        
+        //得到2020和今日隔了几天
+        long interval = [compsday day];
+    
+    formate.dateFormat = @"MMddHHmmss";
+    return [NSString stringWithFormat:@"%ld%@",interval,[formate stringFromDate:now]];
+    
+}
 @end
