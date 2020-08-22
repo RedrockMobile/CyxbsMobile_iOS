@@ -139,31 +139,33 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //        make.left.right.top.height.equalTo(self.view);
 //        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
 //    }];
-    [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(20);
-//        make.top.equalTo(self.contentView).offset(-20);
-        make.left.right.equalTo(self.view);
-        make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
-    }];
+
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
-        make.height.equalTo(self.view).offset(-TABBARHEIGHT-50);
-        make.bottom.equalTo(self.volView.mas_bottom).offset(15);
+//        make.height.equalTo(self.view).offset(-TABBARHEIGHT-50);
+        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
+//        make.bottom.equalTo(self.volView.mas_bottom).offset(15);
 //        make.height.equalTo(@750);
 //        make.top.equalTo(self.view);
 //        make.edges.equalTo(self.backView);
     }];
+    [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.view).offset(20);
+        make.top.equalTo(self.contentView).offset(-20);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
+    }];
     [self.eleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.finderView.mas_bottom).offset(20);
-        make.width.equalTo(self.view);
+        make.width.equalTo(self.contentView);
         make.height.equalTo(@152);
 //        make.left.right.equalTo(self.contentView);
     }];
     [self.volView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.eleView.mas_bottom).offset(-15);
-        make.left.right.width.equalTo(self.view);
+        make.left.right.equalTo(self.view);
         make.height.equalTo(@152);
-//        make.bottom.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView).offset(-20);
     }];
 }
 - (void)presentToLogin {
