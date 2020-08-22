@@ -11,7 +11,7 @@
 #import "NoteDetailView.h"
 //#define Shower_scrollView_H DETAILVIEW_H-30
 
-@interface ClassDetailViewShower()
+@interface ClassDetailViewShower()<NoteDetailViewDelegate>
 @property(nonatomic,strong)UIView *backViewOfScrollView;
 @property(nonatomic,strong)UIScrollView *scrollView;
 @end
@@ -49,6 +49,7 @@
         
         NoteDataModel *model = self.noteDataModelArray[j];
         NoteDetailView *detailView = [[NoteDetailView alloc] init];
+        detailView.delegate = self;
         [detailView setFrame:CGRectMake((i+j)*MAIN_SCREEN_W, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
         //已经重写了NoteDetailView的setDataModel方法，对dataModel赋值，
         //自动完成对内部label文字的设置

@@ -14,6 +14,7 @@
 @property (nonatomic,strong)UIButton *editBtn;
 @property (nonatomic,strong)UILabel *detailLabel;
 @property (nonatomic,strong)UILabel *weekTextsLabel;
+@property (nonatomic,strong)UINavigationController *navc;
 @end
 
 @implementation NoteDetailView
@@ -62,6 +63,8 @@
     }
     [btn setTitle:@"删除" forState:UIControlStateNormal];
     
+    [btn addTarget:self action:@selector(deleteBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W*0.6133);
         make.top.equalTo(self).offset(0.0295*MAIN_SCREEN_H);
@@ -81,6 +84,8 @@
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     [btn setTitle:@"修改" forState:UIControlStateNormal];
+    
+    [btn addTarget:self action:@selector(editBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W*0.8026);
@@ -172,5 +177,22 @@
         str2 = [NSString stringWithFormat:@"%@、%@ %@",str2,weekStr,lessonStr];
     }
     self.weekTextsLabel.text = [NSString stringWithFormat:@"%@的\n\n%@",str1,str2];
+}
+
+- (void)deleteBtnClicked{
+    //调用代理方法，移走弹窗
+    [self.delegate hideDetail];
+    
+   //发送通知，让WYCClassBookViewController调用WYCClassAndRemindDataModel的方法删除备忘
+    //然后在重载self.scrollview的所有view
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldDeleteNote" object:self.dataModel];
+    
+}
+
+- (void)editBtnClicked{
+    //调用代理方法，移走弹窗
+    [self.delegate hideDetail];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DLReminderSetTimeVCShouldEditNote" object:self.dataModel];
+    
 }
 @end

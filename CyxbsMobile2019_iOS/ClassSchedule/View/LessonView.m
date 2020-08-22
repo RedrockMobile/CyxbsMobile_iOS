@@ -10,10 +10,10 @@
 @interface LessonView()
 
 /// 课程名称
-@property(nonatomic,strong)UILabel *courseNameLabel;
+@property(nonatomic,strong)UILabel *titleLable;
 
 /// 教室名
-@property(nonatomic,strong)UILabel *classroomNameLabel;
+@property(nonatomic,strong)UILabel *detailLable;
 
 /// 课程时长
 @property(nonatomic,assign)int period;
@@ -24,7 +24,7 @@
 /// 第几节大课，hash_lesson=2代表第3节大课，也就是5-6节
 @property(nonatomic,assign)int hash_lesson;
 
-//@property(nonatomic,assign)BOOL isNoted;
+
 
 /// 提醒是只有一节课还是有多节课
 @property(nonatomic,strong)UIView *tipView;
@@ -34,29 +34,47 @@
 - (instancetype)init{
     self = [super init];
     if(self){
-        [self setUpUI];
+        self.layer.cornerRadius = 8;
         [self addTipView];
-        self.noteDataModelArray = @[];
+        self.noteDataModelArray = [NSMutableArray array];
         UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTouched)];
         [self addGestureRecognizer:TGR];
     }
     return self;
 }
-
-/// 给两个label分配空间，同时，把定死的参数配好
-- (void)setUpUI{
-    self.layer.cornerRadius = 8;
-    self.courseNameLabel = [[UILabel alloc] init];
-    self.courseNameLabel.font = [UIFont fontWithName:@".PingFang SC" size: 11];
-    self.courseNameLabel.numberOfLines = 4;
-    [self addSubview:self.courseNameLabel];
-    [self.courseNameLabel setTextAlignment:(NSTextAlignmentCenter)];
-    
-    self.classroomNameLabel = [[UILabel alloc] init];
-    self.classroomNameLabel.font = [UIFont fontWithName:@".PingFang SC" size: 11];
-    self.classroomNameLabel.numberOfLines = 3;
-    [self.classroomNameLabel setTextAlignment:(NSTextAlignmentCenter)];
-    [self addSubview:self.classroomNameLabel];
+- (UILabel *)titleLable{
+    if(_titleLable==nil){
+        UILabel *lable = [[UILabel alloc] init];
+        _titleLable = lable;
+        lable.font = [UIFont fontWithName:PingFangSCRegular size: 11];
+        lable.numberOfLines = 4;
+        [self addSubview:lable];
+        [lable setTextAlignment:(NSTextAlignmentCenter)];
+        
+        [lable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.top.equalTo(self).offset(self.frame.size.height*0.0727);
+            make.width.equalTo(self).multipliedBy(0.7234);
+        }];
+    }
+    return _titleLable;
+}
+- (UILabel *)detailLable{
+    if(_detailLable==nil){
+        UILabel *lable = [[UILabel alloc] init];
+        _detailLable = lable;
+        lable.font = [UIFont fontWithName:PingFangSCRegular size: 11];
+        lable.numberOfLines = 3;
+        [self addSubview:lable];
+        [lable setTextAlignment:(NSTextAlignmentCenter)];
+        
+        [lable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.bottom.equalTo(self).offset(-self.frame.size.height*0.0455);
+            make.width.equalTo(self).multipliedBy(0.7234);
+        }];
+    }
+    return _detailLable;
 }
 
 /// 更新显示的课表数据，调用前需确保已经对self.courseDataDict进行更新、且已经调用了setUpUI
@@ -67,21 +85,36 @@
     }else{
         self.tipView.hidden = YES;
     }
-    //选取self.courseDataDictArray的第一个课用来显示课信息
-    self.courseDataDict = [self.courseDataDictArray firstObject];
+    
+    if(self.isEmptyLesson==NO){
+        //如果是有课，那么选取self.courseDataDictArray来设置这节课的位置、时长、view的frame
+        self.courseDataDict = [self.courseDataDictArray firstObject];
+        [self setFrameAndLessonLocationWithInfoDict:self.courseDataDict];
+        [self setCourseInfoWithCourseDataDict:self.courseDataDict];
+    }else if(self.isNoted==YES){
+        //如果是无课而有备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
+        [self setFrameAndLessonLocationWithInfoDict:self.emptyClassDate];
+        NoteDataModel *model = [self.noteDataModelArray firstObject];
+        [self setNoteInfoWithNoteDataModel:model];
+    }else{
+        //如果是无课而无备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
+        [self setFrameAndLessonLocationWithInfoDict:self.emptyClassDate];
+        self.backgroundColor = UIColor.clearColor;
+        self.titleLable = nil;
+        self.detailLable = nil;
+    }
+    
+    if(self.noteDataModelArray.count+self.courseDataDictArray.count>1){
+        self.tipView.hidden = NO;
+    }else{
+        self.tipView.hidden = YES;
+    }
+}
+///调用后会设置titleLabe的文字为课程名称，detailLabel的文字为教室地点，背景颜色，字体
+- (void)setCourseInfoWithCourseDataDict:(NSDictionary*)courseDataDict{
     //根据self.courseDataDict对子控件的数据更新：
-    self.courseNameLabel.text = self.courseDataDict[@"course"];
-    self.classroomNameLabel.text = self.courseDataDict[@"classroom"];
-    
-    NSString *hash_day = self.courseDataDict[@"hash_day"];
-    self.hash_day = [hash_day intValue];
-    
-    NSString *hash_lesson = self.courseDataDict[@"hash_lesson"];
-    self.hash_lesson = [hash_lesson intValue];
-    
-    NSString *period = self.courseDataDict[@"period"];
-    self.period = [period intValue];
-    
+    self.titleLable.text = courseDataDict[@"course"];
+    self.detailLable.text = courseDataDict[@"classroom"];
     UIColor *textColor;
     if(self.isEmptyLesson==YES){self.backgroundColor = [UIColor clearColor];}else{
         switch (self.hash_lesson) {
@@ -120,27 +153,40 @@
                 break;
         }
     }
-    self.courseNameLabel.textColor = textColor;
-    self.classroomNameLabel.textColor = textColor;
-    
-    //对自己的frame更新：
-    self.frame = CGRectMake(self.hash_day*(LESSON_W+DISTANCE_W), self.hash_lesson*(2*LESSON_H+DISTANCE_H), LESSON_W, self.period*LESSON_H);
-    [self addConstraint];
+    self.titleLable.textColor = textColor;
+    self.detailLable.textColor = textColor;
 }
-
-/// 加约束，调用前需确保两个label都已经加入父view
-- (void)addConstraint{
-    [self.courseNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.top.equalTo(self).offset(self.frame.size.height*0.0727);
-        make.width.equalTo(self).multipliedBy(0.7234);
-    }];
+///调用后会设置titleLabe的文字为备忘标题，detailLabel的文字为备忘详情，背景颜色，字体
+- (void)setNoteInfoWithNoteDataModel:(NoteDataModel*)model{
+    if(model==nil)return;
     
-    [self.classroomNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.bottom.equalTo(self).offset(-self.frame.size.height*0.0455);
-        make.width.equalTo(self).multipliedBy(0.7234);
-    }];
+    self.titleLable.text = model.noteTitleStr;
+    self.detailLable.text = model.noteDetailStr;
+    
+    //加备忘、删备忘、修改备忘、第一次加载
+    //      移除model+reload
+    self.backgroundColor = UIColor.clearColor;
+    
+    if (@available(iOS 11.0, *)) {
+        self.titleLable.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        self.detailLable.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    } else {
+        self.titleLable.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+        self.detailLable.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
+}
+- (void)setFrameAndLessonLocationWithInfoDict:(NSDictionary*)infoDict{
+    NSString *hash_day = infoDict[@"hash_day"];
+       self.hash_day = [hash_day intValue];
+       
+       NSString *hash_lesson = infoDict[@"hash_lesson"];
+       self.hash_lesson = [hash_lesson intValue];
+       
+       NSString *period = infoDict[@"period"];
+       self.period = [period intValue];
+       
+       //对自己的frame更新：
+       self.frame = CGRectMake(self.hash_day*(LESSON_W+DISTANCE_W), self.hash_lesson*(2*LESSON_H+DISTANCE_H), LESSON_W, self.period*LESSON_H);
 }
 
 //self被点击后调用
@@ -148,7 +194,7 @@
     
     if(self.isEmptyLesson==YES){
         
-        if(self.noteDataModelArray.count==0){
+        if(self.isNoted==NO){
             
             [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
         }else{
@@ -162,81 +208,6 @@
         self.delegate.noteDataModelArray = self.noteDataModelArray;
         [self.delegate showDetail];
     }
-}
-///由LessonViewForAWeek调用，添加备忘
-- (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model{
-    if(model==nil)return;
-    
-    NSMutableArray *tempA;
-    //如果是有课或者是已经添加过备忘，那就不加备忘信息在课表上
-    if(self.isEmptyLesson==NO||self.noteDataModelArray.count!=0){
-        tempA = [self.noteDataModelArray mutableCopy];
-        [tempA addObject:model];
-        self.noteDataModelArray = tempA;
-        
-        //根据备忘和课的总数判断是否显示提示view
-        if(self.courseDataDictArray.count+self.noteDataModelArray.count>1+self.isEmptyLesson){
-            self.tipView.hidden = NO;
-        }else{
-            self.tipView.hidden = YES;
-        }
-        return;
-    }
-    
-    tempA = [self.noteDataModelArray mutableCopy];
-    [tempA addObject:model];
-    self.noteDataModelArray = tempA;
-    
-    //根据备忘和课的总数判断是否显示提示view
-    if(self.courseDataDictArray.count+self.noteDataModelArray.count>1+self.isEmptyLesson){
-        self.tipView.hidden = NO;
-    }else{
-        self.tipView.hidden = YES;
-    }
-    
-   
-    
-    UILabel *titleLab = [self getLabel];
-    [self addSubview:titleLab];
-    
-    titleLab.text = model.noteTitleStr;
-    titleLab.numberOfLines = 0;
-    
-    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.01067*MAIN_SCREEN_W);
-        make.right.equalTo(self).offset(-0.01067*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.016*MAIN_SCREEN_W);
-    }];
-    
-    
-    UILabel *detailLab = [self getLabel];
-    [self addSubview:detailLab];
-    
-    detailLab.text = model.noteDetailStr;
-    detailLab.numberOfLines = 0;
-    
-    [detailLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.01067*MAIN_SCREEN_W);
-        make.right.equalTo(self).offset(-0.01067*MAIN_SCREEN_W);
-        make.bottom.equalTo(self).offset(-0.016*MAIN_SCREEN_W);
-    }];
-    
-    
-}
-
-- (UILabel*)getLabel{
-    UILabel *label = [[UILabel alloc] init];
-    
-    if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-    } else {
-        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
-    }
-    
-    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    [label setTextAlignment:(NSTextAlignmentCenter)];
-    
-    return label;
 }
 
 - (void)addTipView{

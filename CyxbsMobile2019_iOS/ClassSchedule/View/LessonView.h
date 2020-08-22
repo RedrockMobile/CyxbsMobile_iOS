@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 //全部课的信息
 @property(nonatomic,strong)NSArray <NSDictionary*>*courseDataDictArray;
 //全部的备忘信息
-@property (nonatomic,strong)NSArray <NoteDataModel*>*noteDataModelArray;
+@property (nonatomic,strong)NSMutableArray <NoteDataModel*>*noteDataModelArray;
 /// 是不是一节空课
 @property(nonatomic,assign)BOOL isEmptyLesson;
 
@@ -60,12 +60,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,weak)id<LessonViewAddNoteDelegate>addNoteDelegate;
 
 @property(nonatomic,strong)NSDictionary *emptyClassDate;
-/// 更新数据，调用前需确保已经对self.courseDataDict进行更新
+
+@property(nonatomic,assign)BOOL isNoted;
+
+/// 更新数据，调用前需确保已经对self.courseDataDictArray进行更新
 - (void)setUpData;
 
-/// 由LessonViewForAWeek调用，用来添加一个备忘
-/// @param model 一次备忘的信息
-- (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model;
 @end
 
 NS_ASSUME_NONNULL_END

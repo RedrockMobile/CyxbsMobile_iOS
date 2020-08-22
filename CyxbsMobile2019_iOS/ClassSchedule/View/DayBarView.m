@@ -213,9 +213,8 @@
     
     NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
-    NSDate *Thurs1 = [formate dateFromString:@"2020-8-16"];
     
-    NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:Thurs1 toDate:now options:0];
+    NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:Thurs toDate:now options:0];
     
     //得到周四和今日隔了几天
     long interval = [compsday day];
@@ -228,7 +227,7 @@
         int num2 = day.intValue;
         if(num1==num2){
             view  =  self.weekLabelViewArray[3+interval];
-        }else{
+        }else if(num2==[self.dataArray[3-interval][@"day"] intValue]){
             view  =  self.weekLabelViewArray[3-interval];
         }
 

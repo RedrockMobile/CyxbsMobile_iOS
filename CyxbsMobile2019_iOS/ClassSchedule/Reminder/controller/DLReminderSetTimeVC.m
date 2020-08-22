@@ -20,10 +20,11 @@
 #import "DLHistodyButton.h"
 #import "TimeBtnSelectedBackView.h"
 #import "NoticeWaySelectView.h"
-#import "NoteDataModel.h"
+
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
+
 @interface DLReminderSetTimeVC ()<UITextFieldDelegate, WeekSelectDelegate,DLTimeSelectViewDelegate,TimeBtnSelectedBackViewDeleget,NoticeWaySelectViewDelegate>
 @property (nonatomic, strong) UIPickerView *timePiker;
 @property (nonatomic, strong) DLReminderView *reminderView;
@@ -41,7 +42,7 @@
 ///存储已选择的周
 @property (nonatomic, strong) NSArray *weekSelectedArray;
 
-/// 提醒方式的字符串
+/// 提醒方式的字符串.不提醒、提前5分钟。。
 @property (nonatomic, copy)NSString *notiStr;
 
 /// 显示已经添加时间的按钮的背景view
@@ -49,6 +50,7 @@
 
 @property (nonatomic,strong)UIButton *ifNotiBtn;
 
+@property (nonatomic,strong)NoteDataModel *modelNeedBeDelete;
 
 @end
 
@@ -58,6 +60,7 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.weekSelectedArray = [@[] mutableCopy];
     self.timeDictArray = [NSMutableArray array];
@@ -127,7 +130,20 @@
         [newModelArray addObject:model];
         [[NSUserDefaults standardUserDefaults] setObject:newModelArray forKey:@"userNoteDataModel"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldAddNote" object:model];
-        [self.presentingViewController.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        
+        UIViewController *con = self;
+        
+        do{//拿到课表控制器，再让课表控制器dissmiss一下，以回到课表页
+            con = con.presentingViewController;
+        }while (con.presentingViewController.presentingViewController!=nil);
+        
+        //让课表控制器dissmiss一下
+        [con dismissViewControllerAnimated:YES completion:nil];
+        if(self.modelNeedBeDelete!=nil){
+            //这个属性存在说明是通过点击修改按钮来的这个页面，所以发一个删除原备忘的通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldDeleteNote" object:self.modelNeedBeDelete];
+            
+        }
     }
 }
 
@@ -220,6 +236,7 @@
 /// @param notiStr 提醒方式字符串
 - (void)notiPickerDidSelectedWithString:(NSString *)notiStr{
     self.notiStr = notiStr;
+    [self.ifNotiBtn setTitle:notiStr forState:UIControlStateNormal];
 }
 #pragma mark - 懒加载&加载
 
@@ -275,5 +292,20 @@
         make.top.equalTo(self.reminderView).offset(0.4515*MAIN_SCREEN_H);
 //        make.bottom.equalTo(self.reminderView).offset(-MAIN_SCREEN_H*0.2);
     }];
+}
+//点击备忘详情弹窗的修改按钮后会调用这个方法，来配置一些已选择的数据参数
+- (void)initDataForEditNoteWithMode:(NoteDataModel *)model{
+    [self.weekselectView setWeekBtnsSelectedWithIndexArray:model.weeksArray];
+    self.noticeString = model.noteTitleStr;
+    self.detailString = model.noteDetailStr;
+    self.reminderView.textFiled.text = model.noteDetailStr;
+    self.reminderView.titleLab.text = model.noteTitleStr;
+    self.notiStr = model.notiBeforeTime;
+    [self.ifNotiBtn setTitle:model.notiBeforeTime forState:UIControlStateNormal];
+    self.weekSelectedArray = model.weeksStrArray;
+    for (NSDictionary *dict in model.timeStrDictArray) {
+        [self.backViewOfTimeSelectedBtn loadSelectedButtonsWithTimeDict:dict];
+    }
+    self.modelNeedBeDelete = model;
 }
 @end
