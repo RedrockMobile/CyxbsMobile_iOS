@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *noteDetailStr;
 
 /// 提前多分钟提醒，0代表不提醒
-@property(nonatomic,strong)NSNumber *notiBeforeTime;
+@property(nonatomic,strong)NSString *notiBeforeTime;
 
 ///@[@"第一周"，@“第二周”]
 @property(nonatomic,strong)NSArray <NSString*> *weeksStrArray;
@@ -43,6 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //init时传入的字典
 @property(nonatomic,strong)NSDictionary *noteDataDict;
+
+@property(nonatomic,copy)NSString *noteID;
+- (NSString*)getNoteID;
 @end
 
 NS_ASSUME_NONNULL_END

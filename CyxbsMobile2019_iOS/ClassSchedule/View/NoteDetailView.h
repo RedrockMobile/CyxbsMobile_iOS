@@ -10,9 +10,14 @@
 #import "NoteDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol NoteDetailViewDelegate <NSObject>
+//点击修改或删除按钮后调用代理方法，代理设置为ClassDetailViewShower
+- (void)hideDetail;
+@end
 
 @interface NoteDetailView : UIView
 @property(nonatomic,strong)NoteDataModel *dataModel;
+@property(nonatomic,weak)id<NoteDetailViewDelegate>delegate;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -162,6 +162,20 @@
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
     
+    {NSMutableArray *whole = [NSMutableArray array];
+        for (int i=0; i<25; i++) {
+            NSMutableArray *aWeek = [NSMutableArray array];
+            for (int j=0; j<7; j++) {
+                NSMutableArray *aDay = [NSMutableArray array];
+                for (int k=0; k<6; k++) {
+                    [aDay addObject:@[]];
+                }
+                [aWeek addObject:aDay];
+            }
+            [whole addObject:aWeek];
+        }
+        [[NSUserDefaults standardUserDefaults] setValue:whole forKey:@"noteDataModelArray"];
+    }
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
     
     self.mySchedul.idNum = [UserDefaultTool getIdNum];

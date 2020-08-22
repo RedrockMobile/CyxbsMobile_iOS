@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 某个周按钮被点后调用代理方法，
 @property (nonatomic, weak) id<WeekSelectDelegate> delegate;
 
-
+- (void)setWeekBtnsSelectedWithIndexArray:(NSArray*)indexArray;
 @end
 
 NS_ASSUME_NONNULL_END

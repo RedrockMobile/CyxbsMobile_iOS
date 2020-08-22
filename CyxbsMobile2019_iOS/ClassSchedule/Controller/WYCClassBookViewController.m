@@ -9,7 +9,7 @@
 #import "WYCClassBookViewController.h"
 #import "ClassTabBar.h"
 #import "TopBarScrollView.h"
-//#import "LessonViewController.h"
+#import "DLReminderSetTimeVC.h"
 #import "DayBarView.h"
 #import "LeftBar.h"
 #import "LessonViewForAWeek.h"
@@ -33,10 +33,9 @@
 const float distance=20;
 @implementation WYCClassBookViewController
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.lessonViewArray = [NSMutableArray array];
     self.navigationController.navigationBar.hidden = YES;
-    [super viewDidLoad];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(ModelDataLoadSuccess)
                                                  name:@"ModelDataLoadSuccess" object:nil];
@@ -58,11 +57,14 @@ const float distance=20;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadView)
                                                  name:@"reloadView" object:nil];
+    
+    //添加备忘信息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNoteWithModel:) name:@"LessonViewShouldAddNote" object:nil];
-    //登录成功后
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(loginSucceeded)
-//                                                 name:@"Login_LoginSuceeded" object:nil];
+    
+    //删除备忘信息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNoteWithModel:) name:@"shouldDeleteNote" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editNoteWithModel:) name:@"DLReminderSetTimeVCShouldEditNote" object:nil];
     
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
@@ -83,13 +85,37 @@ const float distance=20;
    [self addDragHintView];
        
 }
+
+/// DLReminderSetTimeVC发送通知后调用
+/// @param noti 内部的object是备忘数据对应的NoteDataModel
 - (void)addNoteWithModel:(NSNotification*)noti{
     NoteDataModel *model = noti.object;
+    [self.model addNoteDataWithModel:model];
     /// 若model.weeksArray==@[@4,@1,@18],代表第4、1、18周的备忘
     for (NSNumber *weekNum in model.weeksArray) {
         [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
     }
 }
+- (void)deleteNoteWithModel:(NSNotification*)noti{
+    NoteDataModel *model = noti.object;
+    [self.model deleteNoteDataWithModel:model];
+    [self.scrollView removeAllSubviews];
+    self.lessonViewArray = [NSMutableArray array];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"加载数据中...";
+    hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
+    [self ModelDataLoadSuccess];
+}
+
+- (void)editNoteWithModel:(NSNotification*)noti{
+    NoteDataModel *model = noti.object;
+    DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
+    [vc setModalPresentationStyle:(UIModalPresentationFullScreen)];
+    [self presentViewController:vc animated:YES completion:nil];
+    [vc initDataForEditNoteWithMode:model];
+}
+
 - (void)viewDidDisappear:(BOOL)animated{
     [self.detailView removeFromSuperview];
 }
@@ -98,9 +124,7 @@ const float distance=20;
 - (void)viewWillAppear:(BOOL)animated{
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
-//        [UIView animateWithDuration:0.3 animations:^{
             self.topBarView.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
-//        }];
     }
 }
 //MARK:-懒加载
@@ -116,7 +140,6 @@ const float distance=20;
 - (void)setIndex:(NSNumber *)index{
     if(index.intValue>25)index = [NSNumber numberWithInt:0];
     _index = index;
-//    self.scrollView.contentOffset = CGPointMake(_index.intValue*MAIN_SCREEN_W, 0);
     self.topBarView.correctIndex = _index;
 }
 
@@ -139,10 +162,6 @@ const float distance=20;
     dragHintView.layer.cornerRadius = 2.5;
     [self.view addSubview:dragHintView];
 }
-//登录成功后调用
--(void)loginSucceeded{
-//    [self initModel];
-}
 
 -(void)reloadView{
     [self.view removeAllSubviews];
@@ -154,10 +173,6 @@ const float distance=20;
     [self initNavigationBar];
     [self addTopBarView];
     [self addDragHintView];
-}
-
--(void)updateScrollViewOffSet{
-    
 }
 
 //登录成功、viewDidLoad、reloadView，时会调用这个方法
@@ -254,6 +269,12 @@ const float distance=20;
             [scrollView addSubview:lessonViewForAWeek];
             [scrollView addSubview:leftBar];
             [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height+10)];
+        }
+    }
+    
+    for (NoteDataModel *model in self.model.noteDataModelArray) {
+        for (NSNumber *weekNum in model.weeksArray) {
+            [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
         }
     }
     

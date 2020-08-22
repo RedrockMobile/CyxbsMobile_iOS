@@ -7,7 +7,7 @@
 //最终编辑备忘时间的页面
 
 #import <UIKit/UIKit.h>
-
+#import "NoteDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DLReminderSetTimeVC : UIViewController
@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// ，结构：@{@"weekString":@"",  @"lessonString":@""}，代码把这个timeDictArray的alloc init
 /// 放DLReminderSetTimeVC，对数组内部元素的增删操作都放在TimeSelectedBtnsView
 @property(nonatomic,strong)NSMutableArray <NSDictionary*> *timeDictArray;
+
+- (void)initDataForEditNoteWithMode:(NoteDataModel*)model;
 @end
 
 NS_ASSUME_NONNULL_END

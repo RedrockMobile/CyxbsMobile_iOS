@@ -176,4 +176,10 @@
     //调用代理方法，传入已经选择的周string
     [self.delegate selectedTimeStringArray:self.weekSelectedTextxs];
 }
+
+- (void)setWeekBtnsSelectedWithIndexArray:(NSArray*)indexArray{
+    for (NSNumber *num in indexArray) {
+        [self didClickWeekButton:self.weekBtnArray[num.intValue]];
+    }
+}
 @end

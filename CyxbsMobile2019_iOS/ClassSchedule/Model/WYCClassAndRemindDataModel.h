@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HttpClient.h"
+#import "NoteDataModel.h"
 #define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
 
 @protocol WYCClassAndRemindDataModelDelegate <NSObject>
@@ -42,7 +43,7 @@
 @property (nonatomic, strong) NSMutableArray *weekArray;
 @property (nonatomic, strong) NSMutableArray *remindArray;
 @property (nonatomic, weak)id<WYCClassAndRemindDataModelDelegate>delegate;
-
+@property (nonatomic, strong)NSMutableArray *noteDataModelArray;
 - (void)getClassBookArray:(NSString *)stu_Num;
 - (void)getClassBookArrayFromNet:(NSString *)stu_Num;
 
@@ -53,6 +54,9 @@
 
 -(void)parsingClassBookData:(NSArray*)array;
 -(void)loadFinish;
+
+- (void)addNoteDataWithModel:(NoteDataModel*)model;
+- (void)deleteNoteDataWithModel:(NoteDataModel*)model;
 @end
 
 //1.
