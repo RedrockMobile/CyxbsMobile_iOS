@@ -125,6 +125,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
     self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
@@ -289,6 +291,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
       hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
       [hud hide:YES afterDelay:1.5];
       return;
+}
+-(void)requestElectricFeeFailed {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:(MBProgressHUDModeText)];
+    hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
+    [hud hide:YES afterDelay:1.5];
+    return;
 }
 - (void)updateElectricFeeUI {
 
@@ -498,7 +507,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //        self.placeArray = @[@"宁静苑",@"明理苑",@"知行苑",@"兴业苑",@"四海苑"];
         NSInteger selectedRow = [pickerView selectedRowInComponent:0];
         NSArray *arr = [self.pickerModel.allArray objectAtIndex:selectedRow];
-         return [arr objectAtIndex:row];
+        if (row < arr.count){
+            return [arr objectAtIndex:row];
+        }else {
+            return [arr objectAtIndex:0];
+        }
     }
 }
 
