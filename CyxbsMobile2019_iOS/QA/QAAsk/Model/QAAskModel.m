@@ -44,12 +44,11 @@
 - (void)uploadPhoto:(NSArray *)photoArray{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameters = @{@"question_id":self.questionId};
-    NSMutableArray *imageNamesx = [NSMutableArray array];
+    NSMutableArray *imageNames = [NSMutableArray array];
     for (int i = 0; i < photoArray.count; i++) {
-        [imageNamesx addObject:[NSString stringWithFormat:@"photo%d",i+1]];
+        [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
         
     }
-    NSArray *imageNames = [NSArray arrayWithObject:imageNamesx];
     [client uploadImageWithJson:QA_UPLOAD_PIC_API method:HttpRequestPost parameters:parameters imageArray:photoArray imageNames:imageNames prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject){
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
