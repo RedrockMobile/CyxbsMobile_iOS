@@ -118,4 +118,15 @@
         make.width.mas_equalTo(240*kRateX);
     }];
 }
+
+- (void)addBackGroundeCircle{
+    UIView *topRight = [[UIView alloc] init];
+    [self addSubview:topRight];
+    
+    topRight.layer.cornerRadius = 0.3414*MAIN_SCREEN_W;
+    
+    [topRight mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self);
+    }];
+}
 @end

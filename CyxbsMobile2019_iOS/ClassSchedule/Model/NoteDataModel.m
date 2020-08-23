@@ -25,8 +25,6 @@
         
         self.noteID = [self getNoteID];
         
-        NSLog(@"%@",self.noteID);
-        
     }
     return self;
 }
@@ -80,25 +78,22 @@
 }
 //@{@"weekString":@"",  @"lessonString":@""}
 
+/// 依据添加备忘时的时间来得到一个唯一的noteID，
 - (NSString*)getNoteID{
     NSDate *now = [NSDate date];
     NSDateFormatter *formate = [[NSDateFormatter alloc] init];
-    NSDate *Thurs = [formate dateFromString:@"2020-01-01"];
-        
-        
-        formate.dateFormat = @"yyyy-M-d";
-    //    NSString *today = [formate stringFromDate:[NSDate date]];
-        
-        NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-
-        
-        NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:Thurs toDate:now options:0];
-        
-        //得到2020和今日隔了几天
-        long interval = [compsday day];
+    formate.dateFormat = @"yyyy-M-d";
     
+    NSDate *Thurs = [formate dateFromString:@"2020-01-01"];
+
+    NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+
+    NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:Thurs toDate:now options:0];
+
+    //得到2020和今日隔了几天
+    long interval = [compsday day];
+
     formate.dateFormat = @"MMddHHmmss";
     return [NSString stringWithFormat:@"%ld%@",interval,[formate stringFromDate:now]];
-    
 }
 @end

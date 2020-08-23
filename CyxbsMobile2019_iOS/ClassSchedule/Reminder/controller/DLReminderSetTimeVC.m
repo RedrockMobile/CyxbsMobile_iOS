@@ -39,10 +39,10 @@
 
 @property (nonatomic, strong)NoticeWaySelectView *notiWaySelecter;
 
-///存储已选择的周
+///存储已选择的周@[@"第一周",@"第三周"...]
 @property (nonatomic, strong) NSArray *weekSelectedArray;
 
-/// 提醒方式的字符串.不提醒、提前5分钟。。
+/// 提醒方式的字符串.@"不提醒"、@"提前5分钟"......
 @property (nonatomic, copy)NSString *notiStr;
 
 /// 显示已经添加时间的按钮的背景view
@@ -96,6 +96,11 @@
     }];
     
     self.notiStr = @"不提醒";
+    
+    if(self.remind!=nil){
+        //self.remind非空，说明是点了某一空课处添加备忘，所以根据传来的空课信息初始化self
+        [self initDataForAddNoteWithDict:self.remind];
+    }
 }
 
 #pragma mark - 点击事件
@@ -217,9 +222,14 @@
 }
 #pragma mark - delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    return NO;
+    return YES;
 }
-
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    self.detailString = textField.text;
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 /// 点击周选择view的确定按钮后调用的代理方法
 /// @param stringArray 在WeekSelect里面选择的周的标题组成的数组
 - (void)selectedTimeStringArray:(NSArray *)stringArray{
@@ -295,17 +305,65 @@
 }
 //点击备忘详情弹窗的修改按钮后会调用这个方法，来配置一些已选择的数据参数
 - (void)initDataForEditNoteWithMode:(NoteDataModel *)model{
+    
+    //为备忘周控件添加已选周
     [self.weekselectView setWeekBtnsSelectedWithIndexArray:model.weeksArray];
+    
+    //储存备忘标题的字符串
     self.noticeString = model.noteTitleStr;
+    
+    //储存备忘详情的字符串
     self.detailString = model.noteDetailStr;
+    
+    //中央的textfield
     self.reminderView.textFiled.text = model.noteDetailStr;
+    
+    //中央的textfield上面的标题
     self.reminderView.titleLab.text = model.noteTitleStr;
+    
+    //储存@“不提醒”、@“提前5分钟”按钮上的文字的字符串
     self.notiStr = model.notiBeforeTime;
+    
+    //@“不提醒”、@“提前5分钟”按钮的标题加字
     [self.ifNotiBtn setTitle:model.notiBeforeTime forState:UIControlStateNormal];
+    
+    //记录已选择的备忘周的数组@[@"第一周",@"第三周"...]
     self.weekSelectedArray = model.weeksStrArray;
+    
+    //时间选择view、显示已选时间的view、self三者需要共享已选时间的数据，三者各自持有一份数据会导致
+    //在数据同步上面花过多代码，故这里决定通过代理实现三者共用一份数据，但是对于数据的的修改操作都放在
+    //self.backViewOfTimeSelectedBt里面，所以这里通过调用loadSelectedButtonsWithTimeDict
+    //添加已选周的数据。
+    //如果没完全了解结构，不要在self里修改self.timeDictArray来增删数据，否则可能会出错
     for (NSDictionary *dict in model.timeStrDictArray) {
         [self.backViewOfTimeSelectedBtn loadSelectedButtonsWithTimeDict:dict];
     }
     self.modelNeedBeDelete = model;
 }
+
+/// 根据传来的空课信息初始化self
+/// @param dict 空课信息字典，结构@{
+///    @"hash_day":0,
+///   @"hash_lesson":2,
+///    @"period":2,
+///    @"week": @"3"、@“5”，第week周的空课，week=0代表整学期
+/// };
+- (void)initDataForAddNoteWithDict:(NSDictionary*)dict{
+    
+    //为选择备忘周的控件添加已选周
+    [self.weekselectView setWeekBtnsSelectedWithIndexArray:@[dict[@"week"]]];
+    NSArray *transfer = @[@"整学期", @"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周",];
+    
+    //记录已选择的备忘周的数组@[@"第一周",@"第三周"...]
+    self.weekSelectedArray = @[transfer[[dict[@"week"] intValue]]];
+    
+    NSArray *WT = @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
+    NSArray *LT = @[@"一二节课",@"三四节课",@"五六节课",@"七八节课",@"九十节课",@"十一十二节课"];
+    
+    [self.backViewOfTimeSelectedBtn loadSelectedButtonsWithTimeDict:@{
+        @"weekString":WT[[dict[@"hash_day"] intValue]],
+        @"lessonString":LT[[dict[@"hash_lesson"] intValue]]
+    }];
+}
+//@{@"weekString":@"",  @"lessonString":@""}
 @end

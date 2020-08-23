@@ -33,22 +33,23 @@
         
         self.lessonViewsArray = [NSMutableArray array];
         
-        [self setUpUI];
     }
     return self;
 }
 
-/// 把所有按钮的参数都配置好，并加入superView
+/// 把所有按钮的参数都配置好，并加入superView,外界调用，调用前确保self.week已赋值
 - (void)setUpUI{
     for (int i=0; i<7; i++) {
         
-        NSMutableArray *dayLessonViewsArray = [NSMutableArray array];
+        NSMutableArray <LessonView*> *dayLessonViewsArray = [NSMutableArray array];
         for (int j=0; j<6; j++){
             
             NSArray *lessonDateArray = self.weekDataArray[i][j];
             
             LessonView *lessonView = [[LessonView alloc] init];;
-            
+            if([dayLessonViewsArray lastObject].period>2){
+                lessonView.noteShowerDelegate = [dayLessonViewsArray lastObject];
+            }
             if(lessonDateArray.count!=0){//非空课
                 lessonView.isEmptyLesson = NO;
                 lessonView.courseDataDictArray = self.weekDataArray[i][j];
@@ -77,6 +78,7 @@
 //@"week":[NSString stringWithFormat:@"%d",self.week],
 - (void)addNoteWithEmptyLessonData:(NSDictionary *)emptyLessonData{
     DLReminderViewController *reminderVC = [[DLReminderViewController alloc] init];
+    reminderVC.remind = emptyLessonData;
     [reminderVC setModalPresentationStyle:(UIModalPresentationFullScreen)];
     [self.viewController presentViewController:reminderVC animated:YES completion:nil];
 }
@@ -89,6 +91,9 @@
     return _detailViewShower;
 }
 //self.lessonViewsArray[i][j]代表(星期i+1)的(第j+1节大课)的LessonView控件
+
+/// 由课表控制器调用，调用后根据model的信息在本周课表view的相应位置加备忘
+/// @param model 数据model
 - (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model{
     NSNumber *weekNum,*lessonNum;
     LessonView *lv;
@@ -98,11 +103,13 @@
         
         //lv是周（weekNum+1），第（lessonNum+1）节大课的LessonView
         lv = self.lessonViewsArray[weekNum.intValue][lessonNum.intValue];
+        //某课前面是长度为3或4的大课时，备忘信息将显示在noteShowerDelegate上
+        //noteShowerDelegate设置为那节长度过长的大课
+        if(lv.noteShowerDelegate!=nil)lv = lv.noteShowerDelegate;
         [lv.noteDataModelArray addObject:model];
         lv.isNoted = YES;
         [lv setUpData];
     }
-    
 }
 //NoteDataModel.timeDictArray的结构：
 /// @[

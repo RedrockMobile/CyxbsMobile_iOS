@@ -30,6 +30,10 @@
                } else {
                   self.backgroundColor = [UIColor whiteColor];
                }
+        
+        self.layer.shadowOffset = CGSizeMake(0, -5);
+        self.layer.shadowOpacity = 0.1;
+        
         // 遮住下面两个圆角
         UIView *bottomCoverView = [[UIView alloc] init];
         bottomCoverView.backgroundColor = self.backgroundColor;
@@ -81,9 +85,7 @@
         
         //如果真实姓名非空，那么已登录
         if(item.realName!=nil){
-//            [self addGesture];
             [self initMySchedul];
-            
         }
     }
     return self;
@@ -152,7 +154,8 @@
         if(self.isPresenting==NO){
             self.isPresenting = YES;
             [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
-               self.isPresenting = NO;
+                sleep(0.1);
+                self.isPresenting = NO;
             }];
         }
     }];
@@ -161,7 +164,7 @@
 
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
-    
+    /**
     {NSMutableArray *whole = [NSMutableArray array];
         for (int i=0; i<25; i++) {
             NSMutableArray *aWeek = [NSMutableArray array];
@@ -176,6 +179,7 @@
         }
         [[NSUserDefaults standardUserDefaults] setValue:whole forKey:@"noteDataModelArray"];
     }
+    */
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
     
     self.mySchedul.idNum = [UserDefaultTool getIdNum];
@@ -195,9 +199,11 @@
     [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
     
     if (self.mySchedul.stuNum) {
-        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
+//        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
+        [model getClassBookArray:self.mySchedul.stuNum];
     }
     
+//    self.mySchedul.transitioningDelegate = self;
     
     self.mySchedul.schedulTabBar = self;
     
