@@ -37,6 +37,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
+        self.frame = frame;
         [self setContentSize:(CGSizeMake(2*MAIN_SCREEN_W, 0))];
         self.scrollEnabled = NO;
         
@@ -162,7 +163,7 @@
     [self addRightArrowBtn];
     [self addBackCurrentWeekBtn];
     
-    //添加周选择条的约束
+    //添加约束
     [nowWeekBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.leftArrowBtn.mas_right);
         make.top.equalTo(self);
@@ -334,8 +335,11 @@
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
-//周选择条的按钮点击后调用，tag=0代表是点击了整学期按钮，tag=2代表是第二周
+- (void)dealloc{
+    [self removeObserver:self forKeyPath:@"correctIndex"];
+}
 
+//周选择条的按钮点击后调用，tag=0代表是点击了整学期按钮，tag=2代表是第二周
 //用tag给correctIndex赋值
 - (void)weekChooseBtnClick:(UIButton*)btn{
     //改变correctIndex，随后KVO会根据correctIndex的改变完成一系列相关操作

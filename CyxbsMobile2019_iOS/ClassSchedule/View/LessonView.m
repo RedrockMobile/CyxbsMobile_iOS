@@ -15,8 +15,6 @@
 /// 教室名
 @property(nonatomic,strong)UILabel *detailLable;
 
-/// 课程时长
-@property(nonatomic,assign)int period;
 
 /// 周几的课，hash_day=3代表周四
 @property(nonatomic,assign)int hash_day;
@@ -35,7 +33,6 @@
     self = [super init];
     if(self){
         self.layer.cornerRadius = 8;
-        [self addTipView];
         self.noteDataModelArray = [NSMutableArray array];
         UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTouched)];
         [self addGestureRecognizer:TGR];
@@ -105,9 +102,7 @@
     }
     
     if(self.noteDataModelArray.count+self.courseDataDictArray.count>1){
-        self.tipView.hidden = NO;
-    }else{
-        self.tipView.hidden = YES;
+        [self addTipView];
     }
 }
 ///调用后会设置titleLabe的文字为课程名称，detailLabel的文字为教室地点，背景颜色，字体
@@ -174,7 +169,9 @@
         self.titleLable.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
         self.detailLable.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"条纹"]];
 }
+
 - (void)setFrameAndLessonLocationWithInfoDict:(NSDictionary*)infoDict{
     NSString *hash_day = infoDict[@"hash_day"];
        self.hash_day = [hash_day intValue];
@@ -215,12 +212,45 @@
     [self addSubview:view];
     self.tipView = view;
     
-    if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-    } else {
-        view.backgroundColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    UIColor *color;
+    
+    
+    
+    if(self.isEmptyLesson==YES){
+        if (@available(iOS 11.0, *)) {
+            color = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
+        } else {
+            color = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
+        }
+    }else{
+        switch (self.hash_lesson) {
+            case 0:
+            case 1:
+                if(@available(iOS 11.0, *)){
+                    color = [UIColor colorNamed:@"ClassLabelColor1"];
+                }else{
+                    color = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
+                }
+                break;
+            case 2:
+            case 3:
+            if(@available(iOS 11.0, *)){
+                color = [UIColor colorNamed:@"ClassLabelColor2"];
+            }else{
+                color = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
+            }
+            break;
+            default:
+                if(@available(iOS 11.0, *)){
+                    color = [UIColor colorNamed:@"ClassLabelColor3"];
+                }else{
+                    color = [UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
+                }
+                break;
+        }
     }
-    view.hidden = YES;
+    view.backgroundColor = color;
+    view.layer.cornerRadius = 0.004*MAIN_SCREEN_W;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.092*MAIN_SCREEN_W);
         make.top.equalTo(self).offset(0.012*MAIN_SCREEN_W);

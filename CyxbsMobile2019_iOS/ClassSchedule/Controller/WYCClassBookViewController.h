@@ -11,7 +11,7 @@
 #import "WYCClassAndRemindDataModel.h"
 
 #import "DateModle.h"
-#import "WYCClassBookView.h"
+
 #import "WYCClassDetailView.h"
 #import "WYCShowDetailView.h"
 #import "WMTWeekChooseBar.h"
