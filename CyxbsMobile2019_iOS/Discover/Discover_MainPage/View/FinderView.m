@@ -9,6 +9,8 @@
 #import "FinderView.h"
 #import <SDCycleScrollView.h>
 #import "URLController.h"
+#import "WeekAndDay.h"
+
 #define PingFangSC @".PingFang SC"
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
@@ -50,15 +52,20 @@
 - (void) addWeekTimeLabel {
     UILabel *weekTimeLabel = [[UILabel alloc]init];
     self.weekTime = weekTimeLabel;
-    weekTimeLabel.text = @"第666周，周666";
-    weekTimeLabel.text = @"";
+    NSString *weekNum = [WeekAndDay defaultWeekDay].weekNumber;
+    NSString *weekday = [WeekAndDay defaultWeekDay].weekday;
+    weekTimeLabel.text =[NSString stringWithFormat:@"第%@周，周%@",weekNum,weekday];
+    
+    if ([weekNum isEqual: @"0"]) {
+        weekTimeLabel.text =[NSString stringWithFormat:@"欢迎新同学"];
+    }
+//    weekTimeLabel.text = @"";
     if (@available(iOS 11.0, *)) {
         weekTimeLabel.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
     }
     weekTimeLabel.font = [UIFont fontWithName:PingFangSCBold size: 10];
     [self addSubview:weekTimeLabel];
     
-
 }
 - (void) addFinderTitle {
     UILabel *finderTitle = [[UILabel alloc]init];
@@ -188,7 +195,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     [self.weekTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(10);
+        make.top.equalTo(self).offset(30);
         make.left.equalTo(self).offset(15);
     }];
     [self.finderTitle mas_makeConstraints:^(MASConstraintMaker *make) {

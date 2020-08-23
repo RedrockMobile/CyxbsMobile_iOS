@@ -348,6 +348,7 @@
 		EE131C2724713BE100B6ED97 /* schoolschedule_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EE131C2424713BE100B6ED97 /* schoolschedule_2.png */; };
 		EE131C2824713BE100B6ED97 /* schoolschedule_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EE131C2524713BE100B6ED97 /* schoolschedule_1.png */; };
 		EE131C2924713BE100B6ED97 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C2624713BE100B6ED97 /* CalendarViewController.m */; };
+		EE4007A824F2AAC90042FF55 /* WeekAndDay.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4007A724F2AAC90042FF55 /* WeekAndDay.m */; };
 		EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFB23F5884100208039 /* DiscoverViewController.m */; };
 		EE75BF9023F5884100208039 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE75BEFD23F5884100208039 /* electricity_header_setting.gif */; };
 		EE75BF9123F5884100208039 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFE23F5884100208039 /* InstallBuildTableViewCell.m */; };
@@ -1100,6 +1101,8 @@
 		EE131C2424713BE100B6ED97 /* schoolschedule_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schoolschedule_2.png; sourceTree = "<group>"; };
 		EE131C2524713BE100B6ED97 /* schoolschedule_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schoolschedule_1.png; sourceTree = "<group>"; };
 		EE131C2624713BE100B6ED97 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		EE4007A624F2AAC90042FF55 /* WeekAndDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeekAndDay.h; sourceTree = "<group>"; };
+		EE4007A724F2AAC90042FF55 /* WeekAndDay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeekAndDay.m; sourceTree = "<group>"; };
 		EE75BEFA23F5884100208039 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		EE75BEFB23F5884100208039 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		EE75BEFD23F5884100208039 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
@@ -2920,6 +2923,15 @@
 			path = Discover_SchoolCalendar;
 			sourceTree = "<group>";
 		};
+		EE4007A524F2AAA70042FF55 /* ViewTool */ = {
+			isa = PBXGroup;
+			children = (
+				EE4007A624F2AAC90042FF55 /* WeekAndDay.h */,
+				EE4007A724F2AAC90042FF55 /* WeekAndDay.m */,
+			);
+			path = ViewTool;
+			sourceTree = "<group>";
+		};
 		EE75BEF723F5884100208039 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -2947,6 +2959,7 @@
 				EE75BEF923F5884100208039 /* Controller */,
 				EE75BEFC23F5884100208039 /* ChooseBuildingFile */,
 				EE75BF0623F5884100208039 /* Model */,
+				EE4007A524F2AAA70042FF55 /* ViewTool */,
 				EE75BF1623F5884100208039 /* View */,
 			);
 			path = Discover_MainPage;
@@ -3806,6 +3819,7 @@
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
+				EE4007A824F2AAC90042FF55 /* WeekAndDay.m in Sources */,
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				EE8234A624673FE700F6B4AE /* HeaderGifRefresh.m in Sources */,
