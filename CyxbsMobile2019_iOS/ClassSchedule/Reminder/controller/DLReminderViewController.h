@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DLReminderViewController : UIViewController
-- (instancetype)initWithRemindDic:(NSDictionary *)remind;
+
+/// 空课信息字典，init后由外界赋值
+@property (nonatomic, copy)NSDictionary *remind;
 @end
 
 NS_ASSUME_NONNULL_END

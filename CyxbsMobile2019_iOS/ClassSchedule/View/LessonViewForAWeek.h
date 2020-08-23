@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 代表是第week周的课，0就是整学期
 @property(nonatomic,assign)int week;
 - (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model;
+//调用前确保self.week已赋值
+- (void)setUpUI;
 @end
 
 NS_ASSUME_NONNULL_END

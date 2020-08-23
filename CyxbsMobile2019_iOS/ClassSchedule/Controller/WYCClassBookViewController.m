@@ -16,7 +16,7 @@
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 
-@interface WYCClassBookViewController ()<UIScrollViewDelegate,WYCClassBookViewDelegate,WYCShowDetailDelegate,TopBarScrollViewDelegate>
+@interface WYCClassBookViewController ()<UIScrollViewDelegate,TopBarScrollViewDelegate>
 /**课表顶部的小拖拽条*/
 @property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, assign) NSNumber *index;
@@ -25,17 +25,12 @@
 @property (nonatomic, strong)TopBarScrollView *topBarView;
 //20几张LessonViewForAWeek课表组成的数组，lessonViewArray[0]是整学期
 @property (nonatomic, strong)NSMutableArray <LessonViewForAWeek*> *lessonViewArray;
-/// 课的详情弹窗
-@property (nonatomic, strong)UIView *detailView;
-
 @end
 
-const float distance=20;
 @implementation WYCClassBookViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.lessonViewArray = [NSMutableArray array];
-    self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(ModelDataLoadSuccess)
                                                  name:@"ModelDataLoadSuccess" object:nil];
@@ -51,9 +46,6 @@ const float distance=20;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadView)
                                                  name:@"RemindDeleteSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateScrollViewOffSet)
-                                                 name:@"ScrollViewBarChanged" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadView)
                                                  name:@"reloadView" object:nil];
@@ -76,8 +68,6 @@ const float distance=20;
     
     //初始化self.scrollView，并把它加到self.view上面
     [self initScrollView];
-    //往navgationBar上加了一个按钮
-    [self initNavigationBar];
     
     //添加周选择条、显示本周的条
    [self addTopBarView];
@@ -92,10 +82,20 @@ const float distance=20;
     NoteDataModel *model = noti.object;
     [self.model addNoteDataWithModel:model];
     /// 若model.weeksArray==@[@4,@1,@18],代表第4、1、18周的备忘
+    
     for (NSNumber *weekNum in model.weeksArray) {
-        [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
+        if(weekNum.intValue==0){
+            for (LessonViewForAWeek *lvfw in self.lessonViewArray) {
+                [lvfw addNoteLabelWithNoteDataModel:model];
+            }
+        }else{
+            [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
+        }
     }
 }
+
+/// 接收要修改备忘的通知时调用，由NoteDetailView、DLReminderSetTimeVC发送通知，
+/// @param noti 通知
 - (void)deleteNoteWithModel:(NSNotification*)noti{
     NoteDataModel *model = noti.object;
     [self.model deleteNoteDataWithModel:model];
@@ -108,16 +108,14 @@ const float distance=20;
     [self ModelDataLoadSuccess];
 }
 
+/// 接收要修改备忘的通知时调用，由NoteDetailView发送通知
+/// @param noti 通知
 - (void)editNoteWithModel:(NSNotification*)noti{
     NoteDataModel *model = noti.object;
     DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
     [vc setModalPresentationStyle:(UIModalPresentationFullScreen)];
     [self presentViewController:vc animated:YES completion:nil];
     [vc initDataForEditNoteWithMode:model];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [self.detailView removeFromSuperview];
 }
 
 //view要出现时调用
@@ -152,6 +150,8 @@ const float distance=20;
     topBarView.weekChooseDelegate = self;
     topBarView.correctIndex = self.index;
 }
+
+/// 添加提示可拖拽的条
 - (void)addDragHintView{
     UIView *dragHintView = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W*0.472,MAIN_SCREEN_W*0.024,27,5)];
     if (@available(iOS 11.0, *)) {
@@ -166,11 +166,8 @@ const float distance=20;
 -(void)reloadView{
     [self.view removeAllSubviews];
     [self initModel];
-    
     //初始化self.scrollView，并把它加到self.view上面
     [self initScrollView];
-    //往navgationBar上加了一个按钮
-    [self initNavigationBar];
     [self addTopBarView];
     [self addDragHintView];
 }
@@ -245,9 +242,9 @@ const float distance=20;
             //课表
             LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
             [self.lessonViewArray addObject:lessonViewForAWeek];
-            
-            
             lessonViewForAWeek.week = dateNum;
+            [lessonViewForAWeek setUpUI];
+            
             lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
             
             
@@ -268,13 +265,19 @@ const float distance=20;
             scrollView.showsVerticalScrollIndicator = NO;
             [scrollView addSubview:lessonViewForAWeek];
             [scrollView addSubview:leftBar];
-            [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height+10)];
+            [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height+30)];
         }
     }
     
     for (NoteDataModel *model in self.model.noteDataModelArray) {
         for (NSNumber *weekNum in model.weeksArray) {
-            [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
+            if(weekNum.intValue==0){
+                for (LessonViewForAWeek *lvfw in self.lessonViewArray) {
+                    [lvfw addNoteLabelWithNoteDataModel:model];
+                }
+            }else{
+                [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
+            }
         }
     }
     
@@ -312,71 +315,6 @@ const float distance=20;
     [self.scrollView layoutIfNeeded];
     [self.view addSubview:self.scrollView];
 }
-
-- (void)initNavigationBar{
-    //添加备忘按钮
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"plus"] style:UIBarButtonItemStylePlain target:self action:@selector(addNote)];
-    self.navigationItem.rightBarButtonItem = right;
-}
-
-//添加备忘
-- (void)addNote{
-    DLReminderViewController *vc = [[DLReminderViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-//WYCClassBookView的代理方法
-//点击某节课后调用，出现一个显示该节课信息的弹窗
-- (void)showDetail:(NSArray *)array{
-    [self.detailView removeFromSuperview];
-    WYCShowDetailView *detailClassBookView  = [[WYCShowDetailView alloc]init];
-    detailClassBookView.chooseClassListDelegate = self;
-    [detailClassBookView initViewWithArray:array];
-    
-    detailClassBookView.layer.shadowOffset = CGSizeMake(0, 1.5);
-    detailClassBookView.layer.shadowRadius = 5;
-    detailClassBookView.layer.shadowOpacity = 0.5;
-    detailClassBookView.layer.cornerRadius = 8;
-    
-    
-    [detailClassBookView setFrame:CGRectMake(0, DETAILVIEW_H, MAIN_SCREEN_W, MAIN_SCREEN_H)];
-    [UIView animateWithDuration:0.5 animations:^{
-        [detailClassBookView setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H)];
-    }];
-    [self.view addSubview:detailClassBookView];
-    
-    self.detailView = detailClassBookView;
-    //添加点击手势
-    UIGestureRecognizer *hiddenDetailView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenDetailView)];
-    [detailClassBookView addGestureRecognizer:hiddenDetailView];
-}
-
-- (void)hiddenDetailView{
-    [UIView animateWithDuration:0.3 animations:^{
-        [self.detailView setFrame:CGRectMake(0, DETAILVIEW_H, MAIN_SCREEN_W, MAIN_SCREEN_H)];
-    } completion:^(BOOL finished) {
-        [self.detailView removeFromSuperview];
-    }];
-}
-- (void)clickEditNoteBtn:(NSDictionary *)dic{
-    [self hiddenDetailView];
-    AddRemindViewController *vc = [[AddRemindViewController alloc]initWithRemind:dic];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-
-}
-- (void)clickDeleteNoteBtn:(NSDictionary *)dic{
-    [self hiddenDetailView];
-    NSNumber *noteId = [dic objectForKey:@"id"];
-    NSString *stuNum = [UserDefaultTool getStuNum];
-    NSString *idNum = [UserDefaultTool getIdNum];
-
-    WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc]init];
-    [model deleteRemind:stuNum idNum:idNum remindId:noteId];
-    [self reloadView];
-}
-
 
 //程序回到前台时调用，在这里更新显示下节课信息的tabBar的信息
 - (void)applicationWillEnterForeground:(UIApplication *)application{

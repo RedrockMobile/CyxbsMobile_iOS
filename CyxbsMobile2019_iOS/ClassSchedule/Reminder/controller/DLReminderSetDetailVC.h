@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DLReminderSetDetailVC : UIViewController
 @property (nonatomic, strong) NSString *noticeString;
+/// 空课信息字典，init后由DLReminderViewController赋值
+@property (nonatomic, copy)NSDictionary *remind;
 @end
 
 NS_ASSUME_NONNULL_END

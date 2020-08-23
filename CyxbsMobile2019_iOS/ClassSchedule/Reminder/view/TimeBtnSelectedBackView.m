@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/20.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//显示已选择的时间的view，里面有一个加号，@“第一周 第三四节课” @“整学期 第七八节课”
 
 #import "TimeBtnSelectedBackView.h"
 #import "DLTimeSelectedButton.h"
@@ -149,21 +149,6 @@
         button.delegate = self;
         [self.timebuttonArray addObject:button];
     }
-    
-   /**
-    [self.backView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(row*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*0.104);
-    }];
-    if(row<4){
-        [self mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(row*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*0.104);
-        }];
-        self.contentOffset = CGPointZero;
-    }else{
-        self.contentOffset = CGPointMake(0, (row-3)*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*0.104);
-    }
-    self.contentSize = CGSizeMake(0, row*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*0.104);
-    */
     //根据最后一个按钮所在的row更新self的高度
     [self upDateWithRow:row andFloat:0.104];
     
@@ -180,20 +165,6 @@
             anchor = self.backView.mas_left;
             //并且把self的高度调高一些，因为self.addBtn的底部和self的底部是equal的
             [self upDateWithRow:row andFloat:0.21];
-            /**
-            [self.backView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.height.mas_equalTo(row*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*0.21);
-            }];
-            if(row<4){
-                [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.height.mas_equalTo(row*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*0.21);
-                }];
-                self.contentOffset = CGPointZero;
-            }else{
-                self.contentOffset = CGPointMake(0, (row-3)*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*0.21);
-            }
-            self.contentSize = CGSizeMake(0, row*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*0.21);
-            */
         }
     
     //为什么是用reamke，而不是update？因为用update后发现时间按钮会被扭曲压缩，
@@ -236,13 +207,14 @@
     }
 }
 
-/// 添加一个时间的方法，供外界调用
-/// @param timeDict 时间字典
+/// 添加一个时间按钮的方法，供外界调用
+/// @param timeDict 时间字典结构：@{@"weekString":@"",  @"lessonString":@""}
 - (void)loadSelectedButtonsWithTimeDict:(NSDictionary*)timeDict{
     [self.timeDateDelegate.timeDictArray addObject:timeDict];
     [self reloadSelectedButtonsWithTimeStringArray:self.timeDateDelegate.timeDictArray];
     self.timeSelctbtn.hidden = YES;
 }
+
 - (void)loadAddButton{
     UIButton *btn = [[UIButton alloc] init];
     self.addBtn = btn;
@@ -250,7 +222,7 @@
     [btn sizeToFit];
     [self.backView addSubview:btn];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.backView).offset(-2);
+        make.bottom.equalTo(self.backView).offset(-6.85);
         make.left.equalTo(self.timeSelctbtn.mas_right).offset(0.0427*MAIN_SCREEN_W);
         make.height.mas_equalTo(MAIN_SCREEN_W*0.0693);
         make.width.mas_equalTo(MAIN_SCREEN_W*0.0693);

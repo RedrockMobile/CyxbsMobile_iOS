@@ -37,8 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSArray <NSString*> *weeksStrArray;
 
 ///@[
-///     @{@"weekString":@"",  @"lessonString":@""}
-///@]           //周x                            //xx节课
+///     @{@"weekString":@"周一",  @"lessonString":@"一二节课"}
+///     @{@"weekString":@"周日",  @"lessonString":@"十一十二节课"}
+///     .........
+///     .....
+///@]
 @property(nonatomic,strong)NSArray <NSDictionary*> *timeStrDictArray;
 
 //init时传入的字典

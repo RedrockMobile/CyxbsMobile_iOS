@@ -24,6 +24,7 @@
     self.inputString = self.reminderView.textFiled.text;
     if (self.inputString) {
         DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
+        vc.remind = self.remind;
         vc.noticeString = self.noticeString;
         vc.detailString = self.inputString;
         [vc setModalPresentationStyle:(UIModalPresentationFullScreen) ];

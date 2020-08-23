@@ -18,7 +18,7 @@
 @interface DLReminderViewController ()<UITextFieldDelegate>
 @property (nonatomic, strong) NSString *inputString; //
 @property (nonatomic, strong) NSMutableArray *buttonTitleArray;  //
-@property (nonatomic, copy)NSDictionary *remind;
+
 //需要删除buttonTitleArray的endIndex
 @property (nonatomic, strong) DLReminderView *reminderView;
 @end
@@ -27,19 +27,17 @@
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = YES;
 }
-- (instancetype)initWithRemindDic:(NSDictionary *)remind{
-    self = [self init];
-    if (self) {
-        self.remind = remind;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(back) name:@"bbbb" object:nil];
-    }
-    return self;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.buttonTitleArray = [@[@"自习", @"值班",@"会议",@"考试",@"作业",@"休息",@"补课",@"实验",@"复习",@"学习",] mutableCopy];
     [self.view addSubview: self.reminderView];
     [self loadHistoryButtons];
+    [self.reminderView.nextBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.reminderView.textFiled.mas_bottom).mas_offset(204*kRateY);
+        make.centerX.equalTo(self.reminderView.mas_centerX);
+        make.width.mas_equalTo(66*kRateX);
+        make.height.mas_equalTo(66*kRateX);
+    }];
     
 }
 - (void)didClickNextButton:(UIButton *)button{
@@ -51,6 +49,7 @@
         [hud hide:YES afterDelay:1];
     }else{
         DLReminderSetDetailVC *vc = [[DLReminderSetDetailVC alloc] init];
+        vc.remind = self.remind;
         vc.noticeString = self.reminderView.textFiled.text;
         [vc setModalPresentationStyle:(UIModalPresentationFullScreen)];
         [self presentViewController:vc animated:YES completion:nil];
