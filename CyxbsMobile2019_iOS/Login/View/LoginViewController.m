@@ -87,19 +87,26 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
     if ([self.stuNumTextField.text isEqualToString:@""] && [self.idNumTextField.text isEqualToString:@""]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"你账号密码都没输诶";
+        hud.labelText = @"请输入账号密码";
         [hud hide:YES afterDelay:1.5];
     } else if ([self.idNumTextField.text isEqualToString:@""]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"你没有输密码诶";
+        hud.labelText = @"请输入密码";
         [hud hide:YES afterDelay:1.5];
     } else if ([self.stuNumTextField.text isEqualToString:@""]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"你没有输账号诶";
+        hud.labelText = @"请输入账号";
         [hud hide:YES afterDelay:1.5];
     } else  {
+        if (!self.protocolCheckButton.isSelected) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"请阅读并同意《掌上重邮用户协议》";
+            [hud hide:YES afterDelay:1.5];
+            return;
+        }
         [_presenter loginWithStuNum:self.stuNumTextField.text andIdNum:self.idNumTextField.text];
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeIndeterminate;
@@ -121,7 +128,7 @@ typedef NS_ENUM(NSInteger, LZLoginState) {
 - (void)loginFailed {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"密码输错了吧小老弟？";
+    hud.labelText = @"账号或密码错误";
     [hud hide:YES afterDelay:1.5];
     [self.loginHUD hide:YES];
 }

@@ -23,25 +23,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngc-Ei-4LW">
-                    <rect key="frame" x="15" y="73" width="68" height="47.666666666666657"/>
+                    <rect key="frame" x="15" y="100" width="68" height="47.666666666666657"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="34"/>
                     <color key="textColor" red="0.082352941176470587" green="0.19215686274509802" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您好，欢迎来到掌上重邮！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVV-gQ-7jl">
-                    <rect key="frame" x="15" y="120.66666666666667" width="216.33333333333334" height="25.333333333333329"/>
+                    <rect key="frame" x="15" y="147.66666666666666" width="216.33333333333334" height="25.333333333333343"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="18"/>
                     <color key="textColor" red="0.082352941176470587" green="0.19215686274509802" blue="0.35686274509803922" alpha="0.59736194349315064" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入身份证后六位" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cbb-IW-JMm">
-                    <rect key="frame" x="64" y="272" width="286" height="40"/>
+                    <rect key="frame" x="64" y="299" width="286" height="40"/>
                     <color key="textColor" red="0.10932291299999999" green="0.18826079370000001" blue="0.34511461850000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入学号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aeg-82-sDY">
-                    <rect key="frame" x="64" y="192" width="286" height="40"/>
+                    <rect key="frame" x="64" y="219" width="286" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="lLp-gx-Dwa"/>
                     </constraints>
@@ -50,7 +50,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBT-Ct-4OS">
-                    <rect key="frame" x="30" y="360" width="354" height="52"/>
+                    <rect key="frame" x="30" y="387" width="354" height="52"/>
                     <color key="backgroundColor" red="0.29146888850000002" green="0.2702849209" blue="0.86279320719999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="zWg-Ca-sG0"/>
@@ -68,14 +68,14 @@
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="账号" translatesAutoresizingMaskIntoConstraints="NO" id="JAc-t8-gMS">
-                    <rect key="frame" x="20" y="202" width="20" height="20"/>
+                    <rect key="frame" x="20" y="229" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="DcF-zJ-aq3"/>
                         <constraint firstAttribute="height" constant="20" id="g7L-Hh-YG5"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="密码" translatesAutoresizingMaskIntoConstraints="NO" id="wlf-pb-6P3">
-                    <rect key="frame" x="20" y="282" width="20" height="20"/>
+                    <rect key="frame" x="20" y="309" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="2LX-eb-nOJ"/>
                         <constraint firstAttribute="height" constant="20" id="r6T-il-AFL"/>
@@ -132,7 +132,7 @@
                 <constraint firstItem="CBT-Ct-4OS" firstAttribute="top" secondItem="Cbb-IW-JMm" secondAttribute="bottom" constant="48" id="ka4-eB-c1a"/>
                 <constraint firstItem="Aeg-82-sDY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="64" id="nvM-C7-vZO"/>
                 <constraint firstItem="wlf-pb-6P3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="orW-yV-W8h"/>
-                <constraint firstItem="ngc-Ei-4LW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="73" id="rQI-yS-fcP"/>
+                <constraint firstItem="ngc-Ei-4LW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="rQI-yS-fcP"/>
                 <constraint firstItem="VWP-UR-mlg" firstAttribute="leading" secondItem="8B2-Yb-uY2" secondAttribute="trailing" id="uJp-ur-Muw"/>
                 <constraint firstAttribute="bottom" secondItem="tae-rn-F2n" secondAttribute="bottom" constant="53" id="w5P-S4-naU"/>
                 <constraint firstItem="ngc-Ei-4LW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="yC6-Sl-fHy"/>
