@@ -81,13 +81,14 @@
                         <constraint firstAttribute="height" constant="20" id="r6T-il-AFL"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tae-rn-F2n">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tae-rn-F2n">
                     <rect key="frame" x="114" y="667" width="16" height="16"/>
                     <color key="backgroundColor" red="0.29146888850000002" green="0.2702849209" blue="0.86279320719999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="IMg-FW-iog"/>
                         <constraint firstAttribute="height" constant="16" id="Kca-P9-PVp"/>
                     </constraints>
+                    <state key="selected" backgroundImage="ProtocolCheckButton"/>
                     <connections>
                         <action selector="protocolCheckButtonClicked:" destination="-1" eventType="touchUpInside" id="KAK-mP-PLq"/>
                     </connections>
@@ -141,6 +142,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ProtocolCheckButton" width="16" height="16"/>
         <image name="密码" width="98" height="74"/>
         <image name="账号" width="78" height="87"/>
     </resources>
