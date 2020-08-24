@@ -8,6 +8,7 @@
 
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapModel.h"
+#import <SDImageCache.h>
 
 @implementation CQUPTMapPresenter
 
@@ -21,6 +22,10 @@
 
 - (void)requestMapData {
     [CQUPTMapModel requestMapDataSuccess:^(CQUPTMapDataItem * _Nonnull mapDataItem, NSArray<CQUPTMapHotPlaceItem *> * _Nonnull hotPlaceItemArray) {
+        CQUPTMapDataItem *oldMap = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
+        if ([mapDataItem.mapVersion intValue] > [oldMap.mapVersion intValue]) {
+            [[SDImageCache sharedImageCache] removeImageForKey:oldMap.mapURL withCompletion:nil];
+        }
         [self.view mapDataRequestSuccessWithMapData:mapDataItem hotPlace:hotPlaceItemArray];
     } failed:^(NSError * _Nonnull error) {
         

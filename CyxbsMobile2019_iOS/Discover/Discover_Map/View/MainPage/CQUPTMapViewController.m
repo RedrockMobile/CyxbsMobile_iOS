@@ -11,10 +11,12 @@
 #import "CQUPTMapViewProtocol.h"
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapHotPlaceItem.h"
-
+#import "CQUPTMapProgressView.h"
+#import <SDImageCache.h>
 
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
 
+@property (nonatomic, weak) CQUPTMapProgressView *progressView;
 @property (nonatomic, weak) MBProgressHUD *hud;
 @property (nonatomic, strong) CQUPTMapPresenter *presenter;
 
@@ -58,22 +60,43 @@
     
     [mapData archiveItem];
     
+    self.view.backgroundColor = [UIColor colorWithHexString:mapData.mapColor];
+    
     CQUPTMapContentView *contentView = [[CQUPTMapContentView alloc] initWithFrame:self.view.bounds andMapData:mapData andHotPlaceItemArray:hotPlaceArray];
     contentView.backgroundColor = [UIColor colorWithHexString:mapData.mapColor];
     contentView.delegate = self;
-
-    NSURL *mapURL = [NSURL URLWithString:mapData.mapURL];
-    [contentView.mapView sd_setImageWithURL:mapURL placeholderImage:[UIImage imageNamed:@"Map_map"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        contentView.mapView.contentMode = UIViewContentModeScaleAspectFill;
-    }];
-    
     contentView.alpha = 0;
-    [self.view addSubview:contentView];
-    self.contentView = contentView;
     
-    [UIView animateWithDuration:0.5 delay:0.3 options:UIViewAnimationOptionCurveLinear animations:^{
-        contentView.alpha = 1;
-    } completion:nil];
+    NSURL *mapURL = [NSURL URLWithString:mapData.mapURL];
+    
+    [contentView.mapView sd_setImageWithURL:mapURL placeholderImage:nil options:SDWebImageRefreshCached progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!self.progressView && ![[SDImageCache sharedImageCache] diskImageDataExistsWithKey:mapData.mapURL]) {
+                CQUPTMapProgressView *progress = [[CQUPTMapProgressView alloc] initWithFrame:self.view.bounds title:@"下载地图" describe:@"仅在地图更新时需要下载地图哦"];
+                [self.view addSubview:progress];
+                self.progressView = progress;
+            }
+            self.progressView.progresView.progress = (float)receivedSize / (float)expectedSize;
+            self.progressView.percentLabel.text = [NSString stringWithFormat:@"%2.0f%%", fabs(round((float)receivedSize / (float)expectedSize * 100))];
+        });
+        
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+
+        [self.progressView removeFromSuperview];
+        
+        [self.view addSubview:contentView];
+        self.contentView = contentView;
+        
+        [UIView animateWithDuration:0.5 delay:0.3 options:UIViewAnimationOptionCurveLinear animations:^{
+            contentView.alpha = 1;
+        } completion:nil];
+        
+        contentView.mapView.contentMode = UIViewContentModeScaleAspectFill;
+
+        self.contentView.mapScrollView.contentSize = image.size;
+        [self.contentView.mapScrollView scrollToBottom];
+    }];
 }
 
 - (void)starPlaceRequestSuccessWithStarPlace:(CQUPTMapStarPlaceItem *)starPlace {
