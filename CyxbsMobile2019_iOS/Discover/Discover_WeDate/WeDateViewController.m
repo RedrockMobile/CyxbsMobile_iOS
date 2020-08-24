@@ -123,6 +123,7 @@
     self.searchField = textField;
     textField.backgroundColor = UIColor.clearColor;
     textField.placeholder = @"添加同学";
+    [textField setReturnKeyType:(UIReturnKeySearch)];
     textField.delegate = self;
     textField.font = [UIFont fontWithName:@".PingFang SC" size: 15];
     
@@ -241,67 +242,68 @@
 //点击紫色的那个查询后调用
 
 - (void)enquiry{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:(MBProgressHUDModeText)];
     if(self.infoDictArray.count==0){
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [hud setMode:(MBProgressHUDModeText)];
         hud.labelText = @"没有添加同学";
         [hud hide:YES afterDelay:1];
         return;
+    }else{
+        hud.labelText = @"加载中";
+            
+        HttpClient *client = [HttpClient defaultClient];
+        __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
+
+        //用GCD实现多人的课表的请求,把请求到的课表数据都放入lessonOfAllPeople
+        dispatch_group_t group = dispatch_group_create();
+        for (NSDictionary *infoDict in self.infoDictArray) {
+            
+            dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
+
+                } progress:^(NSProgress *progress) {
+
+                } success:^(NSURLSessionDataTask *task, id responseObject) {
+                    //课表数据全部放入lessonOfAllPeople
+                    [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
+                    
+                    dispatch_semaphore_signal(semaphore);
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    
+                    dispatch_semaphore_signal(semaphore);
+                }];
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+         });
+        }
+        
+        //完成group的任务后执行block里的内容
+        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+            
+            WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
+            //对model赋值
+            vc.model = model;
+            
+            vc.schedulType = ScheduleTypeWeDate;
+            
+            model.writeToFile = NO;
+            //模拟从storyBoard加载课表时对model的操作
+            model.weekArray = [@[lessonOfAllPeople]mutableCopy];
+            [model parsingClassBookData:lessonOfAllPeople];
+            [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
+            [model setValue:@"YES" forKey:@"classDataLoadFinish"];
+            model.delegate = vc;
+            
+            //present这种刷新UI的操作得放主线程，不然会报错
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [model loadFinish];
+                [self presentViewController:vc animated:YES completion:nil];
+            });
+         });
+        
+        [hud hide:YES afterDelay:0.3];
     }
-    
-    HttpClient *client = [HttpClient defaultClient];
-    __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
-
-    //用GCD实现多人的课表的请求,把请求到的课表数据都放入lessonOfAllPeople
-    dispatch_group_t group = dispatch_group_create();
-    for (NSDictionary *infoDict in self.infoDictArray) {
-        
-        dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-            [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
-
-            } progress:^(NSProgress *progress) {
-
-            } success:^(NSURLSessionDataTask *task, id responseObject) {
-                //课表数据全部放入lessonOfAllPeople
-                [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
-                
-                dispatch_semaphore_signal(semaphore);
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                
-                dispatch_semaphore_signal(semaphore);
-            }];
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-     });
-    }
-    
-    //完成group的任务后执行block里的内容
-    dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
-        
-        WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
-        vc.model = model;
-        vc.schedulType = ScheduleTypeWeDate;
-        
-        model.writeToFile = NO;
-        //模拟从storyBoard加载课表时对model的操作
-        model.weekArray = [@[lessonOfAllPeople]mutableCopy];
-        [model parsingClassBookData:lessonOfAllPeople];
-        [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
-        [model setValue:@"YES" forKey:@"classDataLoadFinish"];
-        model.delegate = vc;
-        
-        
-        
-        //对model赋值
-        
-        
-        //present这种刷新UI的操作得放主线程，不然会报错
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [model loadFinish];
-            [self presentViewController:vc animated:YES completion:nil];
-        });
-     });
 }
 
 //MARK: - 需要实现的代理方法：

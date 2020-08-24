@@ -51,8 +51,7 @@
         DLReminderSetDetailVC *vc = [[DLReminderSetDetailVC alloc] init];
         vc.remind = self.remind;
         vc.noticeString = self.reminderView.textFiled.text;
-        [vc setModalPresentationStyle:(UIModalPresentationFullScreen)];
-        [self presentViewController:vc animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (void)didClickHistoryButton:(DLHistodyButton *)button{
@@ -63,7 +62,7 @@
     self.reminderView.textFiled.text = self.buttonTitleArray[button.tag];
 }
 - (void)back{
-    [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
+    [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)loadHistoryButtons{

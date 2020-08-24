@@ -8,13 +8,16 @@
 
 #import "ClassScheduleTabBarView.h"
 #import "WYCClassBookViewController.h"
+#import "TransitionManager.h"
 @interface ClassScheduleTabBarView ()
 
 @property (nonatomic, weak) UIView *bottomCoverView;
 @property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, assign)BOOL isPresenting;
-//@property (nonatomic,assign)BOOL isLoaded;
+@property (nonatomic, strong)UINavigationController *nav;
+@property (nonatomic,strong)UIPanGestureRecognizer *PGR;
+@property (nonatomic,strong)TransitionManager *TM;
 //用户的课表
 @property (nonatomic, strong)WYCClassBookViewController *mySchedul;
 @end
@@ -33,6 +36,8 @@
         
         self.layer.shadowOffset = CGSizeMake(0, -5);
         self.layer.shadowOpacity = 0.1;
+        
+        self.TM = [[TransitionManager alloc] init];
         
         // 遮住下面两个圆角
         UIView *bottomCoverView = [[UIView alloc] init];
@@ -150,36 +155,23 @@
 
 /// 添加一个上拉后显示弹窗的手势
 - (void)addGesture{
-    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        if(self.isPresenting==NO){
-            self.isPresenting = YES;
-            [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
-                sleep(0.1);
-                self.isPresenting = NO;
-            }];
-        }
-    }];
+    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(presentMySchedul)];
+    self.PGR = PGR;
     [self addGestureRecognizer:PGR];
 }
 
+- (void)presentMySchedul{
+    
+    if(self.PGR.state==UIGestureRecognizerStateBegan){
+        self.TM.PGRToInitTransition = self.PGR;
+        [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
+            self.TM.PGRToInitTransition = nil;
+        } ];
+    }
+}
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
-    /**
-    {NSMutableArray *whole = [NSMutableArray array];
-        for (int i=0; i<25; i++) {
-            NSMutableArray *aWeek = [NSMutableArray array];
-            for (int j=0; j<7; j++) {
-                NSMutableArray *aDay = [NSMutableArray array];
-                for (int k=0; k<6; k++) {
-                    [aDay addObject:@[]];
-                }
-                [aWeek addObject:aDay];
-            }
-            [whole addObject:aWeek];
-        }
-        [[NSUserDefaults standardUserDefaults] setValue:whole forKey:@"noteDataModelArray"];
-    }
-    */
+    
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
     
     self.mySchedul.idNum = [UserDefaultTool getIdNum];
@@ -199,11 +191,13 @@
     [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
     
     if (self.mySchedul.stuNum) {
-//        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
-        [model getClassBookArray:self.mySchedul.stuNum];
+        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
+//        [model getClassBookArray:self.mySchedul.stuNum];
     }
     
-//    self.mySchedul.transitioningDelegate = self;
+    self.mySchedul.transitioningDelegate = self.TM;
+    
+    [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
     
     self.mySchedul.schedulTabBar = self;
     
@@ -211,4 +205,5 @@
     
     [self addGesture];
 }
+
 @end

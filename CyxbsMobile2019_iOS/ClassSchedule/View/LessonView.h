@@ -71,6 +71,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 课程时长
 @property(nonatomic,assign)int period;
 
+/// 课表类型
+@property(nonatomic,assign)ScheduleType schType;
+
 /// 更新数据，调用前需确保已经对self.courseDataDictArray进行更新
 - (void)setUpData;
 
