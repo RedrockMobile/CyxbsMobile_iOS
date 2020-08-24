@@ -79,9 +79,9 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dp0-wt-lnr">
-                    <rect key="frame" x="339" y="118.5" width="20" height="10"/>
+                    <rect key="frame" x="339" y="113.5" width="20" height="20"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="10" id="Noq-nQ-bdc"/>
+                        <constraint firstAttribute="height" constant="20" id="Noq-nQ-bdc"/>
                         <constraint firstAttribute="width" constant="20" id="UPD-fp-vTL"/>
                     </constraints>
                     <state key="normal" title="Button" image="QAMoreButton"/>
