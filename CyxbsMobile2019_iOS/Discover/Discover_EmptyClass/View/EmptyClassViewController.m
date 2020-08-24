@@ -103,7 +103,7 @@
     } else {
         today = [NSDate date].weekday - 1;
     }
-
+    
     // 自动选择当前日期
     [self weekButtonChoosed:self.contentView.weekButtonArray[nowWeek]];
     [self weekdayButtonChoosed:self.contentView.weekDayButtonArray[today - 1]];
