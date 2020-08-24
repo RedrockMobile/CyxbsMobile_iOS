@@ -7,7 +7,6 @@
 //
 
 #import "FinderToolViewItem.h"
-
 #define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#DFDFE3" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
 #define Color_isFavoriteTool [UIColor colorNamed:@"Color_isFavoriteTool" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
 

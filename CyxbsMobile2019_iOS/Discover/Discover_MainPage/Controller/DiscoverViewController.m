@@ -123,7 +123,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addVolView];
     [self layoutSubviews];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = self.finderView.backgroundColor;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
     
