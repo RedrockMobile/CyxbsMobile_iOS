@@ -8,6 +8,7 @@
 
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapModel.h"
+#import "CQUPTMapPlaceItem.h"
 #import <SDImageCache.h>
 
 @implementation CQUPTMapPresenter
@@ -41,11 +42,17 @@
 }
 
 - (void)searchPlaceWithString:(NSString *)string {
-    [CQUPTMapModel searchPlaceWithString:string success:^(NSArray<CQUPTMapSearchItem *> * _Nonnull placeIDArray) {
-        [self.view searchPlaceSuccess:placeIDArray];
-    } failed:^(NSError * _Nonnull error) {
-        
-    }];
+    CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
+    NSArray<CQUPTMapPlaceItem *> *placeArray = mapData.placeList;
+    
+    NSMutableArray *tmpArray = [@[] mutableCopy];
+    for (CQUPTMapPlaceItem *place in placeArray) {
+        if ([place.placeName containsString:string]) {
+            [tmpArray addObject:place.placeId];
+        }
+    }
+    
+    [self.view searchPlaceSuccess:tmpArray];
 }
 
 - (void)requestPlaceDataWithPlaceID:(NSString *)placeID {
