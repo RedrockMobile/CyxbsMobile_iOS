@@ -23,6 +23,8 @@
 /// 问题id
 @property(strong,nonatomic)NSNumber *questionId;
 
+@property (nonatomic, weak) UIScrollView *scrollView;
+
 /// 问题描述
 @property(copy,nonatomic)NSString *content;
 
@@ -91,25 +93,34 @@
 }
 
 - (void)setupUI{
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    [self.view addSubview:scrollView];
+    self.scrollView = scrollView;
+    [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(TOTAL_TOP_HEIGHT);
+        make.leading.trailing.bottom.equalTo(self.view);
+    }];
+    
     UILabel *titleLabel = [[UILabel alloc]init];
     [titleLabel setText:@"问题描述"];
     [titleLabel setAlpha:0.64];
     [titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:15]];
-    [self.view addSubview:titleLabel];
+    [scrollView addSubview:titleLabel];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT + 20);
+        make.top.mas_equalTo(self.scrollView.mas_top).mas_offset(20);
         make.height.mas_equalTo(25);
     }];
     
     UILabel *contentLabel = [[UILabel alloc] init];
     contentLabel.numberOfLines = 0;
     contentLabel.font = [UIFont fontWithName:PingFangSCRegular size: 15];
+    contentLabel.text = self.content;
     contentLabel.alpha = 1.0;
     
-    [self.view addSubview:contentLabel];
+    [scrollView addSubview:contentLabel];
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
@@ -124,7 +135,7 @@
     [self.answerTextView setFont:[UIFont fontWithName:PingFangSCRegular size:16]];
     self.answerTextView.layer.cornerRadius = 8;
     self.answerTextView.delegate = self;
-    [self.view addSubview:self.answerTextView];
+    [scrollView addSubview:self.answerTextView];
     [self.answerTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-20);
         make.left.mas_equalTo(self.view.mas_left).mas_offset(20);
@@ -171,7 +182,7 @@
         // 添加点击手势
         UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addImage)];
         [addImageView addGestureRecognizer:tapGesture];
-        [self.view addSubview:addImageView];
+        [self.scrollView addSubview:addImageView];
         
         NSInteger widthAndHeight = (SCREEN_WIDTH - 60)/3;
         
@@ -182,12 +193,21 @@
                     make.left.mas_equalTo(self.view.mas_left).mas_offset(20 + (widthAndHeight + 10) * count);
                     make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
                     make.height.width.mas_equalTo(widthAndHeight);
+                    make.bottom.equalTo(self.scrollView).offset(-150);
                 }];
             } else {
+                for (int i = 0; i < 3; i++) {
+                    [self.answerImageViewArray[i] mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.left.mas_equalTo(self.view.mas_left).mas_offset(20 + (widthAndHeight + 10) * i);
+                        make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(10);
+                        make.height.width.mas_equalTo(widthAndHeight);
+                    }];
+                }
                 [addImageView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.mas_equalTo(self.view.mas_left).mas_offset(20 + (widthAndHeight + 10) * (count - 3));
                     make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(widthAndHeight + 20);
                     make.height.width.mas_equalTo(widthAndHeight);
+                    make.bottom.equalTo(self.scrollView).offset(-150);
                 }];
             }
         } else if (count + 1 == 7) {        // 已经有6张图片了，“添加按钮”就不加在前面的图片后面了，而是直接加在第6张上面
@@ -196,6 +216,7 @@
                 make.left.mas_equalTo(self.view.mas_left).mas_offset(20 + (widthAndHeight + 10) * 2);
                 make.top.mas_equalTo(self.answerTextView.mas_bottom).mas_offset(widthAndHeight + 20);
                 make.height.width.mas_equalTo(widthAndHeight);
+                make.bottom.equalTo(self.scrollView).offset(-150);
             }];
         }
         [self.answerImageViewArray addObject:addImageView];
