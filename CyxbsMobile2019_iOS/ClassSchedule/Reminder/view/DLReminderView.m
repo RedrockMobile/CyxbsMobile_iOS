@@ -32,7 +32,7 @@
 
 - (void)initBackButton{
     self.backBtn = [[UIButton alloc]init];
-    [self.backBtn setImage:[UIImage imageNamed:@"reminderBack"] forState:UIControlStateNormal];
+    [self.backBtn setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
     self.backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     
     [self addSubview: self.backBtn];

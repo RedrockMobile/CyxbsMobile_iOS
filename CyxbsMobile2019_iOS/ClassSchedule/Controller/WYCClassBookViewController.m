@@ -67,6 +67,7 @@
         self.view.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
     }
     [self initModel];
+    
     self.index = self.dateModel.nowWeek;
     
     //初始化self.scrollView，并把它加到self.view上面
@@ -74,12 +75,19 @@
     
     //添加周选择条、显示本周的条
    [self addTopBarView];
-   
+    
+   //加拖拽提示条
    [self addDragHintView];
+    
     //如果是自己的课表，那就加上下拉dismiss手势
     if(self.schedulType==ScheduleTypePersonal)[self addGesture];
+    
     //用贝塞尔曲线给左上和右上加圆角，避免没课约、查课表页的课表再底部出现圆角
     [self addRoundRect];
+    
+//    self.view.layer.shadowOffset = CGSizeMake(0, 15);
+    
+//    self.view.layer.shadowOpacity = 0.5;
 }
 
 //加上下拉dismiss手势
@@ -167,7 +175,6 @@
     maskLayer.frame = self.view.bounds;
     maskLayer.path = maskPath.CGPath;
     self.view.layer.mask = maskLayer;
-    
 }
 //MARK:-懒加载
 
@@ -197,14 +204,20 @@
 
 /// 添加提示可拖拽的条
 - (void)addDragHintView{
-    UIView *dragHintView = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W*0.472,MAIN_SCREEN_W*0.024,27,5)];
+    UIView *dragHintView = [[UIView alloc]init];
+    [self.view addSubview:dragHintView];
     if (@available(iOS 11.0, *)) {
         dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
     } else {
         dragHintView.backgroundColor = [UIColor whiteColor];
     }
     dragHintView.layer.cornerRadius = 2.5;
-    [self.view addSubview:dragHintView];
+    [dragHintView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@27);
+        make.height.equalTo(@5);
+        make.top.equalTo(self.view).offset(8);
+        make.centerX.equalTo(self.view);
+    }];
 }
 
 -(void)reloadView{
@@ -229,62 +242,14 @@
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     @autoreleasepool {
-        
-        //无序的一周的课表数据
-        NSArray *classBookData;
-        
-        //hash_day代表(周hash_day+1)，hash_lesson代表(第hash_lesson+1节大课)
-        NSNumber *hash_day, *hash_lesson;
-        
-        self.orderlySchedulArray = [NSMutableArray array];
         for (int dateNum = 0; dateNum < self.dateModel.dateArray.count + 1; dateNum++) {
-            
-            
-//------完成对orderlySchedulArray的初始化操作，初始化后里面就是有序的整学期课表和备忘----------
-            //有序的课表数据，day[i][j]代表（星期i+1）的（第j+1节大课）
-            NSMutableArray *day = [[NSMutableArray alloc]initWithCapacity:7];
-            [self.orderlySchedulArray addObject:day];
-            
-            for (int i = 0; i < 7; i++) {
-                
-                NSMutableArray *lesson = [[NSMutableArray alloc]initWithCapacity:6];
-                
-                for (int j = 0; j < 6; j++) {
-                    
-                    [lesson addObject:[@[] mutableCopy]];
-                }
-                [day addObject:[lesson mutableCopy]];
-            }
-            classBookData = self.model.weekArray[dateNum];
-            for (int i = 0; i < classBookData.count; i++) {
-                
-                hash_day = [classBookData[i] objectForKey:@"hash_day"];
-                hash_lesson = [classBookData[i] objectForKey:@"hash_lesson"];
-                
-                [ day[hash_day.integerValue][hash_lesson.integerValue] addObject: classBookData[i]];
-                
-            }
-            //如果不是整学期课表，那就加入备忘
-            if (dateNum !=0) {
-                NSArray *noteData = self.model.remindArray[dateNum-1];
-                
-                for (int i = 0; i < noteData.count; i++) {
-                    
-                    NSNumber *hash_day = [noteData[i] objectForKey:@"hash_day"];
-                    NSNumber *hash_lesson = [noteData[i] objectForKey:@"hash_lesson"];
-                    
-                    [ day[hash_day.integerValue][hash_lesson.integerValue] addObject: noteData[i]];
-                }
-            }
-//------完成对orderlySchedulArray的初始化操作，初始化后里面就是有序的整学期课表和备忘----------
             
             //左侧课条
             LeftBar *leftBar = [[LeftBar alloc] init];
             leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
             
-            
             //课表
-            LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
+            LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.model.orderlySchedulArray[dateNum]];
             [self.lessonViewArray addObject:lessonViewForAWeek];
             lessonViewForAWeek.week = dateNum;
             lessonViewForAWeek.schType = self.schedulType;

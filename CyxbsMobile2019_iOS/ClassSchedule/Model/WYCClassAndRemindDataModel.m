@@ -16,8 +16,8 @@
 
 @implementation WYCClassAndRemindDataModel
 
-
-- (void)getClassBookArray:(NSString *)stu_Num{
+///从本地加载课表数据
+- (void)getClassBookArray{
     //如果有缓存，则从缓存加载数据
     NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
@@ -28,12 +28,11 @@
         [self.weekArray addObject:array];
         
         [self parsingClassBookData:array];
-        
-        self.classDataLoadFinish = YES;
-        [self loadFinish];
+        [self parseClassBookData:array];
+        [self.delegate ModelDataLoadSuccess];
     }else{
         
-        [self getClassBookArrayFromNet:stu_Num];
+        [self.delegate ModelDataLoadFailure];
     }
 }
 
@@ -67,36 +66,189 @@
         
         [self.weekArray addObject:lessonArray];
         [self parsingClassBookData:lessonArray];
-        
-        self.classDataLoadFinish = YES;
-        [self loadFinish];
-        
+        [self parseClassBookData:lessonArray];
+        [self.delegate ModelDataLoadSuccess];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        NSLog(@"WYCClassBookModelLoadErrorCode:%@",error);
-        self.classDataLoadFinish = NO;
-        [self loadFinish];
+        [self.delegate ModelDataLoadFailure];
     }];
     
 }
 
+- (void)getPersonalClassBookArrayFromNet:(NSString *)stu_Num{
+    self.classDataLoadFinish = NO;
+    self.weekArray = [[NSMutableArray alloc]init];
+    
+    NSDictionary *parameters = @{@"stu_num":stu_Num};
+    
+    [[HttpClient defaultClient] requestWithPath:URL method:HttpRequestPost parameters:parameters prepareExecute:nil progress:^(NSProgress *progress) {
+        
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+
+        NSArray *lessonArray = [responseObject objectForKey:@"data"];
+
+        [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
+        //保存获取的课表数据到文件
+        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
+        [lessonArray writeToFile:lessonPath atomically:YES];
+
+        
+        // 共享数据
+        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
+        [shared setObject:responseObject forKey:@"lessonResponse"];
+        [shared synchronize];
+        
+        
+        
+        [self.weekArray addObject:lessonArray];
+        [self parsingClassBookData:lessonArray];
+        [self parseClassBookData:lessonArray];
+        
+        [self.delegate ModelDataLoadSuccess];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self getClassBookArray];
+    }];
+}
+///解析课表数据
 -(void)parsingClassBookData:(NSArray*)array{
-    int i;
-    for (i=0; i<25; i++) {
-        [_weekArray addObject:[@[]mutableCopy]];
-    }
-    NSArray *week;
-    NSNumber *num;
-    for (NSDictionary *infoForALesson in array) {
-        week = infoForALesson[@"week"];
-        for (i=0; i<week.count; i++) {
-            num = week[i];
-            [_weekArray[num.intValue] addObject:infoForALesson];
-        }
-    }
+//    int i;
+//    for (i=0; i<25; i++) {
+//        [_weekArray addObject:[@[]mutableCopy]];
+//    }
+//    NSArray *week;
+//    NSNumber *num;
+//    for (NSDictionary *infoForALesson in array) {
+//        week = infoForALesson[@"week"];
+//        for (i=0; i<week.count; i++) {
+//            num = week[i];
+//            [_weekArray[num.intValue] addObject:infoForALesson];
+//        }
+//    }
     
 }
+//输入要求：[responseObject objectForKey:@"data"]
+- (void)parseClassBookData:(NSArray *)array{
+    NSNumber *hash_day,*hash_lesson;
+    NSArray *weeks;
+    for (NSDictionary *couseDataDict in array) {
+        weeks = couseDataDict[@"week"];
+        hash_day = couseDataDict[@"hash_day"];
+        hash_lesson = couseDataDict[@"hash_lesson"];
+        for (NSNumber *weekNum in weeks) {
+            [self.orderlySchedulArray[weekNum.intValue][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+        }
+        [self.orderlySchedulArray[0][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+    }
+}
+- (NSMutableArray *)orderlySchedulArray{
+    if(_orderlySchedulArray==nil){
+        //整学期
+        NSMutableArray *whole = [NSMutableArray array];
+        for (int i=0; i<26; i++) {
+            //某一周
+            NSMutableArray *week = [NSMutableArray array];
+            for (int j=0; j<7; j++) {
+                //某一周的某一天
+                NSMutableArray *day = [NSMutableArray array];
+                for (int k=0; k<6; k++) {
+                    //某一周的某一天的某一节课，它是数组
+                    NSMutableArray *aLesson = [NSMutableArray array];
+                    [day addObject:aLesson];
+                }
+                [week addObject:day];
+            }
+            [whole addObject:week];
+        }
+        _orderlySchedulArray = whole;
+    }
+    return _orderlySchedulArray;
+}
+///添加备忘模型
+- (void)addNoteDataWithModel:(NoteDataModel*)model{
+    [self.noteDataModelArray addObject:model];
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
+    //取出noteDataModelArray中所有模型的noteDataDict
+    
+    NSArray *rowData = [self.noteDataModelArray valueForKeyPath:@"noteDataDict"];
+    
+    //把所有的noteDataDict写入文件
+    [rowData writeToFile:remindPath atomically:YES];
+}
+///删除备忘模型
+- (void)deleteNoteDataWithModel:(NoteDataModel*)model{
+    [self.noteDataModelArray removeObject:model];
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *remPath = [path stringByAppendingPathComponent:@"remind.plist"];
+    NSMutableArray *rowData = [NSMutableArray arrayWithContentsOfFile:remPath];
+    [rowData removeObject:model.noteDataDict];
+    [rowData writeToFile:remPath atomically:YES];
+}
 
+
+/// 备忘模型数组的懒加载
+- (NSMutableArray *)noteDataModelArray{
+    if(_noteDataModelArray==nil){
+        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *remPath = [path stringByAppendingPathComponent:@"remind.plist"];
+        NSArray *rowData = [NSMutableArray arrayWithContentsOfFile:remPath];
+        NSMutableArray *modelArray = [NSMutableArray array];
+        for (NSDictionary *noteDataDict in rowData) {
+            [modelArray addObject:[[NoteDataModel alloc]initWithNotoDataDict:noteDataDict]];
+        }
+        
+        _noteDataModelArray = modelArray;
+        
+        if(_noteDataModelArray==nil){
+            _noteDataModelArray = [@[] mutableCopy];
+        }
+    }
+    return _noteDataModelArray;
+}
+
+- (void)getClassBookArrayFromNetWithInfoDict:(NSArray*)infoDictArray{
+    
+        HttpClient *client = [HttpClient defaultClient];
+        __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
+
+        //用GCD实现多人的课表的请求,把请求到的课表数据都放入lessonOfAllPeople
+        dispatch_group_t group = dispatch_group_create();
+        for (NSDictionary *infoDict in infoDictArray) {
+            
+            dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
+
+                } progress:^(NSProgress *progress) {
+
+                } success:^(NSURLSessionDataTask *task, id responseObject) {
+                    //课表数据全部放入lessonOfAllPeople
+                    [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
+                    
+                    dispatch_semaphore_signal(semaphore);
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    
+                    dispatch_semaphore_signal(semaphore);
+                }];
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+         });
+        }
+        
+        //完成group的任务后执行block里的内容
+        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self parseClassBookData:lessonOfAllPeople];
+            [self.delegate ModelDataLoadSu:self];
+         });
+}
+@end
+
+
+//没有用上的备忘方法：
+/**
 //备忘
 - (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum{
     //如果有缓存，则从缓存加载数据
@@ -183,6 +335,7 @@
     
     
 }
+
 - (void)deleteRemind:(NSString *)stuNum idNum:(NSString *)idNum remindId:(NSNumber *)remindId{
     NSDictionary *parameters = @{@"stuNum":stuNum,@"idNum":idNum,@"id":remindId};
     
@@ -215,46 +368,4 @@
     }
     
 }
-
-- (void)addNoteDataWithModel:(NoteDataModel*)model{
-    [_noteDataModelArray addObject:model];
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
-    //取出noteDataModelArray中所有模型的noteDataDict
-    
-    NSArray *rowData = [_noteDataModelArray valueForKeyPath:@"noteDataDict"];
-    
-    //把所有的noteDataDict写入文件
-    [rowData writeToFile:remindPath atomically:YES];
-}
-- (void)deleteNoteDataWithModel:(NoteDataModel*)model{
-    [self.noteDataModelArray removeObject:model];
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *remPath = [path stringByAppendingPathComponent:@"remind.plist"];
-    NSMutableArray *rowData = [NSMutableArray arrayWithContentsOfFile:remPath];
-    [rowData removeObject:model.noteDataDict];
-    [rowData writeToFile:remPath atomically:YES];
-}
-
-- (NSMutableArray *)noteDataModelArray{
-    if(_noteDataModelArray==nil){
-        NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *remPath = [path stringByAppendingPathComponent:@"remind.plist"];
-        NSArray *rowData = [NSMutableArray arrayWithContentsOfFile:remPath];
-        NSMutableArray *modelArray = [NSMutableArray array];
-        for (NSDictionary *noteDataDict in rowData) {
-            [modelArray addObject:[[NoteDataModel alloc]initWithNotoDataDict:noteDataDict]];
-        }
-        
-        _noteDataModelArray = modelArray;
-        
-        NSLog(@"%@",modelArray);
-        
-        if(_noteDataModelArray==nil){
-            _noteDataModelArray = [@[] mutableCopy];
-        }
-    }
-    return _noteDataModelArray;
-}
-@end
-
+*/

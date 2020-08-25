@@ -14,7 +14,7 @@
 
 #define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-@interface WeDateViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateDelete,PeopleListTableViewCellDelegateAdd>
+@interface WeDateViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateDelete,PeopleListTableViewCellDelegateAdd,WYCClassAndRemindDataModelDelegate>
 /**推出没课约的按钮*/
 @property (nonatomic, strong)UIButton *backButton;
 /**显示“没课约”3个字的label*/
@@ -250,7 +250,7 @@
         return;
     }else{
         hud.labelText = @"加载中";
-            
+            /**
         HttpClient *client = [HttpClient defaultClient];
         __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
 
@@ -293,15 +293,18 @@
             [model parsingClassBookData:lessonOfAllPeople];
             [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
             [model setValue:@"YES" forKey:@"classDataLoadFinish"];
-            model.delegate = vc;
+//            model.delegate = vc;
             
             //present这种刷新UI的操作得放主线程，不然会报错
             dispatch_async(dispatch_get_main_queue(), ^{
-                [model loadFinish];
+                [vc ModelDataLoadSuccess];
                 [self presentViewController:vc animated:YES completion:nil];
             });
          });
-        
+        */
+        WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
+        model.delegate = self;
+        [model getClassBookArrayFromNetWithInfoDict:self.infoDictArray];
         [hud hide:YES afterDelay:0.3];
     }
 }
@@ -365,5 +368,26 @@
         [self search];
     }
     return YES;
+}
+- (void)ModelDataLoadSuccess{
+    
+}
+- (void)ModelDataLoadFailure{
+    
+}
+- (void)ModelDataLoadSu:(id)model{
+    WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+
+    //对model赋值
+    vc.model = model;
+    
+    //设置课表类型为WeDate
+    vc.schedulType = ScheduleTypeWeDate;
+    
+    //present这种刷新UI的操作得放主线程，不然会报错
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [vc ModelDataLoadSuccess];
+        [self presentViewController:vc animated:YES completion:nil];
+    });
 }
 @end
