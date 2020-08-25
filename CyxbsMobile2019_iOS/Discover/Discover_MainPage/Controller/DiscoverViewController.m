@@ -569,6 +569,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
     CheckInViewController * vc = [[CheckInViewController alloc]init];
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController presentViewController:vc animated:true completion:^{
         
