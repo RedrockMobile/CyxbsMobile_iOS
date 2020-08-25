@@ -19,19 +19,21 @@
 
         if(IS_IPHONEX){
             // 83 + 58 = 141
-            [to.view setFrame:CGRectMake(0, MAIN_SCREEN_H-141, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+            [to.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 141, MAIN_SCREEN_W, MAIN_SCREEN_H)];
         }else{
             //49 + 58 = 107
-            [to.view setFrame:CGRectMake(0, MAIN_SCREEN_H-107, MAIN_SCREEN_W, MAIN_SCREEN_W)];
+            [to.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 107, MAIN_SCREEN_W, 58)];
+            to.view.clipsToBounds = YES;
         }
         [transitionContext.containerView addSubview:to.view];
                 
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            from.view.layer.affineTransform = CGAffineTransformMakeScale(0.88, 0.88);
-            from.view.layer.cornerRadius = 16;
-            from.view.layer.masksToBounds = YES;
-            [to.view setFrame:CGRectMake(0, 50, 375, 667)];
+//            from.view.layer.affineTransform = CGAffineTransformMakeScale(0.88, 0.88);
+//            from.view.layer.cornerRadius = 16;
+//            from.view.layer.masksToBounds = YES;
+            [to.view setFrame:CGRectMake(0, 44, MAIN_SCREEN_W, MAIN_SCREEN_H - 44)];
+            from.tabBar.frame = CGRectMake(0, to.view.frame.origin.y + to.view.frame.size.height, MAIN_SCREEN_W, TABBARHEIGHT);
             
         }completion:^(BOOL finished) {
             BOOL wasCancel = [transitionContext transitionWasCancelled];
@@ -47,9 +49,15 @@
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            [from.view setFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, MAIN_SCREEN_H)];
-            to.view.layer.affineTransform = CGAffineTransformMakeScale(1, 1);
-            to.view.layer.cornerRadius = 0;
+            if(IS_IPHONEX){
+                // 83 + 58 = 141
+                [from.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 141, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+            }else{
+                //49 + 58 = 107
+                [from.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 107, MAIN_SCREEN_W, 58)];
+                from.view.clipsToBounds = YES;
+            }
+            to.tabBar.layer.affineTransform = CGAffineTransformTranslate(to.tabBar.layer.affineTransform, 0, - TABBARHEIGHT);
             
         }completion:^(BOOL finished) {
             BOOL wasCancel = [transitionContext transitionWasCancelled];
