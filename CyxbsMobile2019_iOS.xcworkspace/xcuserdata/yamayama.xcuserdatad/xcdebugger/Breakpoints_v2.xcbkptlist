@@ -1148,8 +1148,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-initMySchedul"
             landmarkType = "7">
          </BreakpointContent>
@@ -1164,8 +1164,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-initMySchedul"
             landmarkType = "7">
          </BreakpointContent>
@@ -1404,8 +1404,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "-ModelDataLoadFailure"
             landmarkType = "7">
          </BreakpointContent>
