@@ -73,9 +73,9 @@
     //用贝塞尔曲线给左上和右上加圆角，避免没课约、查课表页的课表再底部出现圆角
     [self addRoundRect];
     
-//    self.view.layer.shadowOffset = CGSizeMake(0, 15);
+    self.view.layer.shadowOffset = CGSizeMake(0, 15);
     
-//    self.view.layer.shadowOpacity = 0.5;
+    self.view.layer.shadowOpacity = 0.5;
 }
 
 //加上下拉dismiss手势
@@ -185,7 +185,7 @@
 //MARK:-
 //添加周选择条、显示本周的条
 - (void)addTopBarView{
-    TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_W*0.07867-15, MAIN_SCREEN_W, 30)];
+    TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_W*0.07867-15, MAIN_SCREEN_W, 40)];
     self.topBarView = topBarView;
     [self.view addSubview:topBarView];
     topBarView.weekChooseDelegate = self;

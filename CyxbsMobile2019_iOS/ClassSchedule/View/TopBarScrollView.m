@@ -74,7 +74,7 @@
     UIView *view = [[UIView alloc] init];
     self.backView = view;
     [self addSubview:view];
-    view.frame =CGRectMake(0, 0, 2*MAIN_SCREEN_W,30);
+    view.frame =CGRectMake(0, 0, 2*MAIN_SCREEN_W,40);
 }
 
 //添加周选择条和左箭头按钮，周选择条在self的左侧
@@ -196,6 +196,7 @@
     weekLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     [weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nowWeekBar).offset(MAIN_SCREEN_W*0.0427);
+        make.centerY.equalTo(self.nowWeekBar);
     }];
 }
 
@@ -259,13 +260,12 @@
         [backBtn setBackgroundColor:[UIColor colorWithRed:69/255.0 green:62/255.0 blue:217/255.0 alpha:1]];
     }
     backBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 13];
-    backBtn.layer.cornerRadius = MAIN_SCREEN_H*0.0197;
+    backBtn.layer.cornerRadius = MAIN_SCREEN_W*0.045;
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nowWeekBar).offset(MAIN_SCREEN_W*0.728);
-//        make.bottom.equalTo(self.nowWeekBar);
         make.centerY.equalTo(self.nowWeekBar);
         make.width.mas_equalTo(0.2293*MAIN_SCREEN_W);
-        make.height.mas_equalTo(0.0394*MAIN_SCREEN_H);
+        make.height.mas_equalTo(0.0853*MAIN_SCREEN_W);
     }];
     
 
@@ -334,7 +334,9 @@
         self.weekLabel.text = newBtn.titleLabel.text;
         if(newIndex.intValue==self.dateModel.nowWeek.intValue){
             self.nowWeekLabel.text = @" (本周) ";
+            self.backCurrentWeekBtn.hidden = YES;
         }else{
+            self.backCurrentWeekBtn.hidden = NO;
             self.nowWeekLabel.text = @" ";
         }
         
@@ -354,7 +356,7 @@
     //调用代理方法，告诉代理点击了哪一周的按钮，0代表整学期，17代表第十七周
     [self.weekChooseDelegate gotoWeekAtIndex:self.correctIndex];
 }
-//解决第一次加载课表时TopBar显示的不是nowWeekBar
+//解决第一次加载课表时TopBar显示的不是nowWeekBar的问题
 - (void)layoutSubviews{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
