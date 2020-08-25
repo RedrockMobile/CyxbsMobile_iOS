@@ -8,7 +8,7 @@
 
 #import "WYCClassBookViewController.h"
 #import "ClassTabBar.h"
-#import "TopBarScrollView.h"
+
 #import "DLReminderSetTimeVC.h"
 #import "DayBarView.h"
 #import "LeftBar.h"
@@ -23,7 +23,7 @@
 @property (nonatomic, assign) NSNumber *index;
 @property (nonatomic, strong)  UIScrollView *scrollView;
 @property (nonatomic, strong) DateModle *dateModel;
-@property (nonatomic, strong)TopBarScrollView *topBarView;
+
 //20几张LessonViewForAWeek课表组成的数组，lessonViewArray[0]是整学期
 @property (nonatomic, strong)NSMutableArray <LessonViewForAWeek*> *lessonViewArray;
 @property (nonatomic, strong)UIPanGestureRecognizer *PGR;
@@ -66,6 +66,7 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
     }
+    [self addFakeBar];
     [self initModel];
     
     self.index = self.dateModel.nowWeek;
@@ -162,6 +163,7 @@
 //view要出现时调用
 - (void)viewWillAppear:(BOOL)animated{
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
+        [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
             self.topBarView.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
     }
@@ -202,6 +204,11 @@
     topBarView.correctIndex = self.index;
 }
 
+- (void)addFakeBar{
+    FakeTabBarView *bar = [[FakeTabBarView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 58)];
+    self.fakeBar = bar;
+    [self.view addSubview:bar];
+}
 /// 添加提示可拖拽的条
 - (void)addDragHintView{
     UIView *dragHintView = [[UIView alloc]init];
@@ -336,6 +343,7 @@
     NSLog(@"-----back---");
     
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
+        [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
     }
 }
@@ -360,8 +368,8 @@
     for (; hash_week<25; hash_week++) {
         for (; hash_day<7; hash_day++){
             for (; hash_lesson<6; hash_lesson++) {
-                if([self.orderlySchedulArray[hash_week][hash_day][hash_lesson] count]!=0){
-                    lesson = self.orderlySchedulArray[hash_week][hash_day][hash_lesson];
+                if([self.model.orderlySchedulArray[hash_week][hash_day][hash_lesson] count]!=0){
+                    lesson = self.model.orderlySchedulArray[hash_week][hash_day][hash_lesson];
                     //找到下一节课后，用goto跳出3层循环
                     goto WYCClassBookViewControllerGetNextLessonDataBreak;
                 }

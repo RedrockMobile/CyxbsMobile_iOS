@@ -16,7 +16,8 @@
     if([[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] isMemberOfClass:[WYCClassBookViewController class]]){
         WYCClassBookViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         ClassTabBarController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-
+        to.topBarView.alpha = 0;
+        to.fakeBar.alpha = 1;
         if(IS_IPHONEX){
             // 83 + 58 = 141
             [to.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 141, MAIN_SCREEN_W, MAIN_SCREEN_H)];
@@ -28,7 +29,8 @@
         [transitionContext.containerView addSubview:to.view];
                 
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            
+            to.topBarView.alpha = 1;
+            to.fakeBar.alpha = 0;
 //            from.view.layer.affineTransform = CGAffineTransformMakeScale(0.88, 0.88);
 //            from.view.layer.cornerRadius = 16;
 //            from.view.layer.masksToBounds = YES;
@@ -46,9 +48,11 @@
     }else{
         ClassTabBarController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         WYCClassBookViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-        
+        from.topBarView.alpha = 1;
+        from.fakeBar.alpha = 0;
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            
+            from.topBarView.alpha = 0;
+            from.fakeBar.alpha = 1;
             if(IS_IPHONEX){
                 // 83 + 58 = 141
                 [from.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 141, MAIN_SCREEN_W, MAIN_SCREEN_H)];
