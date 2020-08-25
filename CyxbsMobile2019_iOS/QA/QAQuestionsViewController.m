@@ -126,6 +126,7 @@
     
     if (nowWeek < 0 || nowWeek >= weekNumArray.count) {
         nowWeek = 0;
+        return @"欢迎新同学～";
     }
     
     NSString *weekNum = weekNumArray[nowWeek];

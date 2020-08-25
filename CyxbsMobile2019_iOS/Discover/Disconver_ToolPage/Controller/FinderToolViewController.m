@@ -162,7 +162,8 @@
     [self.view addSubview:OKButton];
     [OKButton addTarget:self action:@selector(chooseCompleted) forControlEvents:UIControlEventTouchUpInside];
     [OKButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.right.centerX.centerY.equalTo(self.settingButton);
+        make.centerX.centerY.equalTo(self.settingButton);
+        make.width.height.equalTo(@29);
     }];
     
     for (FinderToolViewItem*item in self.toolViewItems) {
@@ -178,13 +179,20 @@
             fav++;
         }
     }
+    
+    if (fav == 0) {
+        [self.OKButton removeFromSuperview];
+        [self.settingButton setHidden:NO];
+        return;
+    }
+    
     if (fav != 3) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"只能选择三个哦";
         [hud hide:YES afterDelay:1];
 
-    }else {
+    } else {
         [self.OKButton removeFromSuperview];
         [self.settingButton setHidden:NO];
         for (FinderToolViewItem*item in self.toolViewItems) {
@@ -201,7 +209,6 @@
         [hud hide:YES afterDelay:1];
         //发送消息给DiscoverMainView更新finderView视图
         [[NSNotificationCenter defaultCenter] postNotificationName:@"customizeMainPageViewSuccess" object:nil];
-//        NSLog(@"目前选择的是%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"ToolPage_UserFavoriteToolsName"]);
     }
 }
 -(void) writeUserFavoriteToolToPropertylist {
