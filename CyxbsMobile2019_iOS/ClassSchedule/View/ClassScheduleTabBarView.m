@@ -191,8 +191,8 @@
     [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
     
     if (self.mySchedul.stuNum) {
-        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
-//        [model getClassBookArray:self.mySchedul.stuNum];
+        [model getPersonalClassBookArrayFromNet:self.mySchedul.stuNum];
+//        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
     }
     
     self.mySchedul.transitioningDelegate = self.TM;

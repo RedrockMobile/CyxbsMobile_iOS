@@ -43,17 +43,33 @@
 @property (nonatomic, strong) NSMutableArray *weekArray;
 @property (nonatomic, strong) NSMutableArray *remindArray;
 @property (nonatomic, weak)id<WYCClassAndRemindDataModelDelegate>delegate;
-@property (nonatomic, strong)NSMutableArray *noteDataModelArray;
-- (void)getClassBookArray:(NSString *)stu_Num;
+
+/// 有序的全部课表，/// orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）
+/// ,orderlySchedulArray[i][j][k]是一个数组
+@property (nonatomic,strong)NSMutableArray *orderlySchedulArray;
+/// 备忘模型数组
+@property (nonatomic, strong)NSMutableArray <NoteDataModel*>*noteDataModelArray;
+//- (void)getClassBookArray:(NSString *)stu_Num;
+
+/// 网络请求获取他人课表，不把课表数据存入本地
+/// @param stu_Num 学号
 - (void)getClassBookArrayFromNet:(NSString *)stu_Num;
 
+/// 网络请求获取自己课表，会把课表数据存入本地
+/// @param stu_Num 学号
+- (void)getPersonalClassBookArrayFromNet:(NSString *)stu_Num;
 
-- (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum;
-- (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum;
-- (void)deleteRemind:(NSString *)stuNum idNum:(NSString *)idNum remindId:(NSNumber *)remindId;
+
+//下面三个方法没用上
+//- (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum;
+//- (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum;
+//- (void)deleteRemind:(NSString *)stuNum idNum:(NSString *)idNum remindId:(NSNumber *)remindId;
+
+
 
 -(void)parsingClassBookData:(NSArray*)array;
--(void)loadFinish;
+
+//-(void)loadFinish;
 
 - (void)addNoteDataWithModel:(NoteDataModel*)model;
 - (void)deleteNoteDataWithModel:(NoteDataModel*)model;
