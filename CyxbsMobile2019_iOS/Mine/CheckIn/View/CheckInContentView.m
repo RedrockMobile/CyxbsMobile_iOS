@@ -46,7 +46,7 @@
         self.backBtn = backBtn;
 
         UILabel *yearsLabel = [[UILabel alloc] init];
-        yearsLabel.text = @"2019-2020";
+        yearsLabel.text = @"2020-2019";
         yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
         if (IS_IPHONESE) {
             yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
