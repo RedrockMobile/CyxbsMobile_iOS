@@ -28,7 +28,7 @@
         [self.weekArray addObject:array];
         
         [self parsingClassBookData:array];
-        
+        [self parseClassBookData:array];
         [self.delegate ModelDataLoadSuccess];
     }else{
         
@@ -66,7 +66,7 @@
         
         [self.weekArray addObject:lessonArray];
         [self parsingClassBookData:lessonArray];
-        
+        [self parseClassBookData:lessonArray];
         [self.delegate ModelDataLoadSuccess];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -104,8 +104,10 @@
         
         [self.weekArray addObject:lessonArray];
         [self parsingClassBookData:lessonArray];
+        [self parseClassBookData:lessonArray];
         
         [self.delegate ModelDataLoadSuccess];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         [self getClassBookArray];
@@ -113,19 +115,19 @@
 }
 ///解析课表数据
 -(void)parsingClassBookData:(NSArray*)array{
-    int i;
-    for (i=0; i<25; i++) {
-        [_weekArray addObject:[@[]mutableCopy]];
-    }
-    NSArray *week;
-    NSNumber *num;
-    for (NSDictionary *infoForALesson in array) {
-        week = infoForALesson[@"week"];
-        for (i=0; i<week.count; i++) {
-            num = week[i];
-            [_weekArray[num.intValue] addObject:infoForALesson];
-        }
-    }
+//    int i;
+//    for (i=0; i<25; i++) {
+//        [_weekArray addObject:[@[]mutableCopy]];
+//    }
+//    NSArray *week;
+//    NSNumber *num;
+//    for (NSDictionary *infoForALesson in array) {
+//        week = infoForALesson[@"week"];
+//        for (i=0; i<week.count; i++) {
+//            num = week[i];
+//            [_weekArray[num.intValue] addObject:infoForALesson];
+//        }
+//    }
     
 }
 //输入要求：[responseObject objectForKey:@"data"]
@@ -139,13 +141,14 @@
         for (NSNumber *weekNum in weeks) {
             [self.orderlySchedulArray[weekNum.intValue][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
         }
+        [self.orderlySchedulArray[0][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
     }
 }
 - (NSMutableArray *)orderlySchedulArray{
     if(_orderlySchedulArray==nil){
         //整学期
         NSMutableArray *whole = [NSMutableArray array];
-        for (int i=0; i<25; i++) {
+        for (int i=0; i<26; i++) {
             //某一周
             NSMutableArray *week = [NSMutableArray array];
             for (int j=0; j<7; j++) {
@@ -205,6 +208,41 @@
         }
     }
     return _noteDataModelArray;
+}
+
+- (void)getClassBookArrayFromNetWithInfoDict:(NSArray*)infoDictArray{
+    
+        HttpClient *client = [HttpClient defaultClient];
+        __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
+
+        //用GCD实现多人的课表的请求,把请求到的课表数据都放入lessonOfAllPeople
+        dispatch_group_t group = dispatch_group_create();
+        for (NSDictionary *infoDict in infoDictArray) {
+            
+            dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+                [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
+
+                } progress:^(NSProgress *progress) {
+
+                } success:^(NSURLSessionDataTask *task, id responseObject) {
+                    //课表数据全部放入lessonOfAllPeople
+                    [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
+                    
+                    dispatch_semaphore_signal(semaphore);
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    
+                    dispatch_semaphore_signal(semaphore);
+                }];
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+         });
+        }
+        
+        //完成group的任务后执行block里的内容
+        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self parseClassBookData:lessonOfAllPeople];
+            [self.delegate ModelDataLoadSu:self];
+         });
 }
 @end
 

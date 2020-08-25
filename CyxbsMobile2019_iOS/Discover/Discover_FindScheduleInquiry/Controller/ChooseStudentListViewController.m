@@ -39,8 +39,11 @@
     //添加显示同学课表四个字的label
     [self addTitleLabel];
     
-    self.view.backgroundColor = [UIColor colorNamed:@"没课约控制器的view背景色"];
-    // Do any additional setup after loading the view.
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"没课约控制器的view背景色"];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 //MARK: - 初始化子控件的方法：

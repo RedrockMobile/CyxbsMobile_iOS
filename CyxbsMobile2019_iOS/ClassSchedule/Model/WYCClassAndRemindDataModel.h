@@ -10,14 +10,11 @@
 #import "HttpClient.h"
 #import "NoteDataModel.h"
 #define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
-
 @protocol WYCClassAndRemindDataModelDelegate <NSObject>
-
 - (void)ModelDataLoadSuccess;
 - (void)ModelDataLoadFailure;
-
+- (void)ModelDataLoadSu:(id)model;
 @end
-
 @interface WYCClassAndRemindDataModel : NSObject
 //创建后要对writeToFile进行赋值，代表网络请求后是否把数据写入文件
 @property (nonatomic, assign) BOOL writeToFile;
@@ -59,6 +56,7 @@
 /// @param stu_Num 学号
 - (void)getPersonalClassBookArrayFromNet:(NSString *)stu_Num;
 
+- (void)getClassBookArrayFromNetWithInfoDict:(NSArray*)infoDictArray;
 
 //下面三个方法没用上
 //- (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum;
@@ -73,7 +71,9 @@
 
 - (void)addNoteDataWithModel:(NoteDataModel*)model;
 - (void)deleteNoteDataWithModel:(NoteDataModel*)model;
+
 @end
+
 
 //1.
 //WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];

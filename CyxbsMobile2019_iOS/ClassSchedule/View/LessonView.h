@@ -57,6 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)BOOL isEmptyLesson;
 
 @property(nonatomic,weak)id<LessonViewDelegate>delegate;
+
 @property(nonatomic,weak)id<LessonViewAddNoteDelegate>addNoteDelegate;
 
 @property(nonatomic,strong)NSDictionary *emptyClassDate;

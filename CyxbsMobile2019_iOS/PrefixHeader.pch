@@ -108,7 +108,7 @@
 #define kSegmentViewTitleHeight (SCREEN_HEIGHT * 50 / 667)
 
 //学期开始时间
-#define DateStart @"2020-02-17"
+#define DateStart @"2020-09-07"
 
 /*----------------------------------------------------------------
 ｜                              字体                              |
