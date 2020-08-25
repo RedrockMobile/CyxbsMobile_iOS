@@ -24,6 +24,11 @@ extern CFAbsoluteTime StartTime;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // 如果打开应用时有学号密码，但是没有token，退出登录
+    if ([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) {
+        [UserItemTool logout];
+    }
+    
     // 打开应用时刷新token
     [UserItemTool refresh];
  
