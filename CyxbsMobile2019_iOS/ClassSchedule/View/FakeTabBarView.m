@@ -46,18 +46,20 @@
         [self addSubview:dragHintView];
         self.dragHintView = dragHintView;
         
-        UILabel *classLabel = [[UILabel alloc] init];
-        classLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
+        FYHCycleLabel *classLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.3*MAIN_SCREEN_W, 50)];
+        classLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
+        classLabel.cycleLabel.textColor = [UIColor blackColor];
         [self addSubview:classLabel];
         self.classLabel = classLabel;
+        
         
         UIImageView *clockImageView = [[UIImageView alloc] init];
         [clockImageView setImage:[UIImage imageNamed:@"nowClassTime"]];
         [self addSubview:clockImageView];
         self.clockImageView = clockImageView;
         
-        UILabel *classTimeLabel = [[UILabel alloc] init];
-        classTimeLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+        FYHCycleLabel *classTimeLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
+        classTimeLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classTimeLabel];
         self.classTimeLabel = classTimeLabel;
         
@@ -66,8 +68,8 @@
         [self addSubview:locationImageView];
         self.locationImageView = locationImageView;
         
-        UILabel *classroomLabel = [[UILabel alloc] init];
-        classroomLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+        FYHCycleLabel *classroomLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
+        classroomLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
         
@@ -93,10 +95,12 @@
     [self.classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(23);
         make.centerY.equalTo(self);
+        make.width.mas_equalTo(0.3*MAIN_SCREEN_W);
+        make.height.mas_equalTo(50);
     }];
     
     [self.clockImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classLabel.mas_trailing).offset(22);
+        make.leading.equalTo(self.classLabel.mas_trailing).offset(10);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
@@ -104,10 +108,12 @@
     [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.clockImageView.mas_trailing).offset(3);
         make.centerY.equalTo(self.classLabel);
+        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
+        make.height.mas_equalTo(50);
     }];
     
     [self.locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classTimeLabel.mas_trailing).offset(22);
+        make.leading.equalTo(self.classTimeLabel.mas_trailing).offset(10);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
@@ -115,6 +121,8 @@
     [self.classroomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.locationImageView.mas_trailing).offset(3);
         make.centerY.equalTo(self.classLabel);
+        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
+        make.height.mas_equalTo(50);
     }];
 }
 
@@ -122,15 +130,14 @@
 /// @param paramDict 下节课的数据字典
 - (void)updateSchedulTabBarViewWithDic:(NSDictionary *)paramDict{
     if( [paramDict[@"is"] intValue]==1){//有下一节课
-        self.classroomLabel.text = paramDict[@"classroomLabel"];
-        self.classTimeLabel.text = paramDict[@"classTimeLabel"];
-        self.classLabel.text = paramDict[@"classLabel"];
+        self.classroomLabel.labelText = paramDict[@"classroomLabel"];
+        self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
+        self.classLabel.labelText = paramDict[@"classLabel"];
     }else{//无下一节课
-        self.classroomLabel.text = @"无课了";
-        self.classTimeLabel.text = @"无课了";
-        self.classLabel.text = @"无课了";
+        self.classroomLabel.labelText = @"无课了";
+        self.classTimeLabel.labelText = @"无课了";
+        self.classLabel.labelText = @"无课了";
     }
 }
-
 
 @end

@@ -10,7 +10,7 @@
 #import "WYCClassBookViewController.h"
 #import "TransitionManager.h"
 #import "FakeTabBarView.h"
-@interface ClassScheduleTabBarView ()
+@interface ClassScheduleTabBarView ()<WYCClassAndRemindDataModelDelegate>
 
 @property (nonatomic, weak) UIView *bottomCoverView;
 @property (nonatomic, strong) NSDictionary *dic;
@@ -36,7 +36,7 @@
                }
         
         self.layer.shadowOffset = CGSizeMake(0, -5);
-        self.layer.shadowOpacity = 0.1;
+        self.layer.shadowOpacity = 0.05;
         
         self.TM = [[TransitionManager alloc] init];
         
@@ -58,18 +58,21 @@
         [self addSubview:dragHintView];
         self.dragHintView = dragHintView;
         
-        UILabel *classLabel = [[UILabel alloc] init];
-        classLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
+        
+        FYHCycleLabel *classLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.3*MAIN_SCREEN_W, 50)];
+        classLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
+        classLabel.cycleLabel.textColor = [UIColor blackColor];
         [self addSubview:classLabel];
         self.classLabel = classLabel;
+        
         
         UIImageView *clockImageView = [[UIImageView alloc] init];
         [clockImageView setImage:[UIImage imageNamed:@"nowClassTime"]];
         [self addSubview:clockImageView];
         self.clockImageView = clockImageView;
         
-        UILabel *classTimeLabel = [[UILabel alloc] init];
-        classTimeLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+        FYHCycleLabel *classTimeLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
+        classTimeLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classTimeLabel];
         self.classTimeLabel = classTimeLabel;
         
@@ -78,10 +81,13 @@
         [self addSubview:locationImageView];
         self.locationImageView = locationImageView;
         
-        UILabel *classroomLabel = [[UILabel alloc] init];
-        classroomLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+        FYHCycleLabel *classroomLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
+        classroomLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
+        
+//        classLabel.backgroundColor = classTimeLabel.backgroundColor = classroomLabel.backgroundColor = [UIColor colorWithRGB:23 alpha:0.2];
+        
         
         //加上登录成功通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)
@@ -115,10 +121,12 @@
     [self.classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(23);
         make.centerY.equalTo(self);
+        make.width.mas_equalTo(0.3*MAIN_SCREEN_W);
+        make.height.mas_equalTo(50);
     }];
     
     [self.clockImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classLabel.mas_trailing).offset(22);
+        make.leading.equalTo(self.classLabel.mas_trailing).offset(10);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
@@ -126,10 +134,12 @@
     [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.clockImageView.mas_trailing).offset(3);
         make.centerY.equalTo(self.classLabel);
+        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
+        make.height.mas_equalTo(50);
     }];
     
     [self.locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classTimeLabel.mas_trailing).offset(22);
+        make.leading.equalTo(self.classTimeLabel.mas_trailing).offset(10);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
@@ -137,6 +147,8 @@
     [self.classroomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.locationImageView.mas_trailing).offset(3);
         make.centerY.equalTo(self.classLabel);
+        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
+        make.height.mas_equalTo(50);
     }];
 }
 
@@ -144,13 +156,13 @@
 /// @param paramDict 下节课的数据字典
 - (void)updateSchedulTabBarViewWithDic:(NSDictionary *)paramDict{
     if( [paramDict[@"is"] intValue]==1){//有下一节课
-        self.classroomLabel.text = paramDict[@"classroomLabel"];
-        self.classTimeLabel.text = paramDict[@"classTimeLabel"];
-        self.classLabel.text = paramDict[@"classLabel"];
+        self.classroomLabel.labelText = paramDict[@"classroomLabel"];
+        self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
+        self.classLabel.labelText = paramDict[@"classLabel"];
     }else{//无下一节课
-        self.classroomLabel.text = @"无课了";
-        self.classTimeLabel.text = @"无课了";
-        self.classLabel.text = @"无课了";
+        self.classroomLabel.labelText = @"无课了";
+        self.classTimeLabel.labelText = @"无课了";
+        self.classLabel.labelText = @"无课了";
     }
 }
 
@@ -162,7 +174,6 @@
 }
 
 - (void)presentMySchedul{
-    
     if(self.PGR.state==UIGestureRecognizerStateBegan){
         self.TM.PGRToInitTransition = self.PGR;
         [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
@@ -185,7 +196,7 @@
     
     self.mySchedul.model = model;
     
-    model.delegate = self.mySchedul;
+    model.delegate = self;
     
     model.writeToFile = YES;
     
@@ -205,6 +216,25 @@
     [self.mySchedul viewWillAppear:YES];
     
     [self addGesture];
+}
+- (void)ModelDataLoadFailure{
+    [self.mySchedul ModelDataLoadFailure];
+}
+
+- (void)ModelDataLoadSuccess:(id)model{
+    [self.mySchedul ModelDataLoadSuccess:model];
+    //如果非空，那么就是选择了启动app时优先显示课表
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
+        
+        self.mySchedul.transitioningDelegate = nil;
+        [self.mySchedul setModalPresentationStyle:(UIModalPresentationFormSheet)];
+        self.mySchedul.fakeBar.alpha = 0;
+        [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
+            self.mySchedul.transitioningDelegate = self.TM;
+            [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+        }];
+        
+    }
 }
 
 @end

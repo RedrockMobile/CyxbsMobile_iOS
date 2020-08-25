@@ -94,8 +94,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Controller/WYCClassBookViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "-reloadView"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Controller/WYCClassBookViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "342"
-            endingLineNumber = "342"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "-applicationWillEnterForeground:"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Controller/WYCClassBookViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "-applicationWillEnterForeground:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1077,22 +1077,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DF5EC115-DA5B-4DCC-9846-4A287109550E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "-presentMySchedul"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "18C1AC3C-6011-43C7-A1FD-31D42DE5610F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1164,8 +1148,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-initMySchedul"
             landmarkType = "7">
          </BreakpointContent>
@@ -1180,8 +1164,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-initMySchedul"
             landmarkType = "7">
          </BreakpointContent>
@@ -1391,6 +1375,38 @@
             startingLineNumber = "59"
             endingLineNumber = "59"
             landmarkName = "-getMonthAndDay:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A8910375-6788-4595-8CE2-B28034285059"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "-getClassBookArrayFromNetWithInfoDict:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "909CCEAE-1931-413E-98A1-2C3EAAC0FAA7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "-ModelDataLoadFailure"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

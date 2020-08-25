@@ -76,13 +76,18 @@
 
 /// 更新显示的课表数据，调用前需确保已经对self.courseDataDict进行更新、且已经调用了setUpUI
 - (void)setUpData{
-    //根据备忘和课的总数判断是否显示提示view
-    if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
-        self.tipView.hidden = NO;
-    }else{
-        self.tipView.hidden = YES;
-    }
+    //是否在没课的地方显示备忘
+    NSString *ifShowMyNote = [[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"];
     
+    //如果不是空课那就判断要不要加tipView，如果没关闭“在没课的地方显示备忘“那就判断要不要加tipView
+    if(self.isEmptyLesson==YES||ifShowMyNote==nil){
+        //根据备忘和课的总数判断是否显示提示view
+        if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
+            self.tipView.hidden = NO;
+        }else{
+            self.tipView.hidden = YES;
+        }
+    }
     if(self.isEmptyLesson==NO){
         //如果是有课，那么选取self.courseDataDictArray来设置这节课的位置、时长、view的frame
         self.courseDataDict = [self.courseDataDictArray firstObject];
@@ -91,8 +96,10 @@
     }else if(self.isNoted==YES){
         //如果是无课而有备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
         [self setFrameAndLessonLocationWithInfoDict:self.emptyClassDate];
-        NoteDataModel *model = [self.noteDataModelArray firstObject];
-        [self setNoteInfoWithNoteDataModel:model];
+        if(ifShowMyNote!=nil){
+            NoteDataModel *model = [self.noteDataModelArray firstObject];
+            [self setNoteInfoWithNoteDataModel:model];
+        }
     }else{
         //如果是无课而无备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
         [self setFrameAndLessonLocationWithInfoDict:self.emptyClassDate];
@@ -186,8 +193,14 @@
        NSString *period = infoDict[@"period"];
        self.period = [period intValue];
        
+    float h;
+    if(self.period>3){
+        h = self.period*LESSON_H +(self.period-2)/2*DISTANCE_H;
+    }else{
+        h = self.period*LESSON_H;
+    }
        //对自己的frame更新：
-       self.frame = CGRectMake(self.hash_day*(LESSON_W+DISTANCE_W), self.hash_lesson*(2*LESSON_H+DISTANCE_H), LESSON_W, self.period*LESSON_H);
+       self.frame = CGRectMake(self.hash_day*(LESSON_W+DISTANCE_W), self.hash_lesson*(2*LESSON_H+DISTANCE_H), LESSON_W, h);
 }
 
 //self被点击后调用
@@ -200,9 +213,11 @@
             //空课且无备忘则加备忘
             [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
         }else{
-            self.delegate.courseDataDictArray = @[];
-            self.delegate.noteDataModelArray = self.noteDataModelArray;
-            [self.delegate showDetail];
+            if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]){
+                self.delegate.courseDataDictArray = @[];
+                self.delegate.noteDataModelArray = self.noteDataModelArray;
+                [self.delegate showDetail];
+            }
         }
     }else{
         self.delegate.courseDataDictArray = self.courseDataDictArray;
