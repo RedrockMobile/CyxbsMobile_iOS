@@ -139,6 +139,9 @@
     [view addSubview:scoreEnterButton];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(scoreEnterButton).offset(-10);//十个像素缓冲了scoreEnterButton的10个像素
+        if IS_IPHONEX {
+            make.top.equalTo(scoreEnterButton).offset(-20);//十个像素缓冲了scoreEnterButton的10个像素
+        }
         make.left.right.bottom.equalTo(scoreEnterButton);
     }];
     

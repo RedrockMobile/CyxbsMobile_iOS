@@ -58,7 +58,7 @@
 - (void)addMajor {
     UILabel *label = [[UILabel alloc]init];
     self.majorLabel = label;
-    label.text = @"学院信息加载中";
+    label.text = [UserItem defaultItem].college;
     if (@available(iOS 11.0, *)) {
         label.textColor = Color42_78_132;
     } else {
@@ -79,7 +79,7 @@
     }
     [label setAlpha:0.71];
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    label.text = @"学号加载中";
+    label.text = [UserItem defaultItem].stuNum;
     [self addSubview:label];
 }
 - (void)layoutSubviews {

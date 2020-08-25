@@ -13,8 +13,9 @@
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
+#import "CheckInViewController.h"
 #import "WeDateViewController.h"//没课约
-
+#import "CQUPTMapViewController.h"
 #import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
 #import "NewsViewController.h"
@@ -135,22 +136,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 -(void)layoutSubviews {
-//    [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.top.height.equalTo(self.view);
-//        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
-//    }];
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
-//        make.height.equalTo(self.view).offset(-TABBARHEIGHT-50);
         make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
-//        make.bottom.equalTo(self.volView.mas_bottom).offset(15);
-//        make.height.equalTo(@750);
-//        make.top.equalTo(self.view);
-//        make.edges.equalTo(self.backView);
     }];
     [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.view).offset(20);
         make.top.equalTo(self.contentView).offset(-20);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
@@ -159,7 +150,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.top.equalTo(self.finderView.mas_bottom).offset(20);
         make.width.equalTo(self.contentView);
         make.height.equalTo(@152);
-//        make.left.right.equalTo(self.contentView);
     }];
     [self.volView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.eleView.mas_bottom).offset(-15);
@@ -215,11 +205,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
-//-(void)addBackContentView {
-//    UIScrollView * backView = [[UIScrollView alloc]init];
-//    self.backView = backView;
-//    [self.view addSubview:backView];
-//}
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]init];
     self.contentView = contentView;
@@ -583,6 +568,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //MARK: FinderView代理
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
+    CheckInViewController * vc = [[CheckInViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController presentViewController:vc animated:true completion:^{
+        
+    }];
 }
 
 - (void)touchNewsSender {
@@ -647,6 +637,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 -(void)touchMap {
     NSLog(@"点击了重邮地图");
+    CQUPTMapViewController * vc = [[CQUPTMapViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchEmptyClass {
     NSLog(@"点击了空教室");

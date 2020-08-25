@@ -226,13 +226,10 @@
     //如果非空，那么就是选择了启动app时优先显示课表
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
         
-        self.mySchedul.transitioningDelegate = nil;
-        [self.mySchedul setModalPresentationStyle:(UIModalPresentationFormSheet)];
+        self.mySchedul.transitioningDelegate = self.TM;
+        [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
         self.mySchedul.fakeBar.alpha = 0;
-        [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
-            self.mySchedul.transitioningDelegate = self.TM;
-            [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
-        }];
+        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
         
     }
 }
