@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UITableView *historyTableView;
 @property (nonatomic, weak) UITableView *resultTableView;
 
-- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray;
+- (void)searchPlaceSuccess:(NSArray<NSString *> *)placeIDArray;
 
 @end
 

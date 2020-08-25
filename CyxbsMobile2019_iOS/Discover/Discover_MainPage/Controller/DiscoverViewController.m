@@ -260,7 +260,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)bindingVolunteerButton {
     QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController hidesBottomBarWhenPushed];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -130,25 +130,23 @@
             @"noteTitleStr":self.noticeString,
             @"noteDetailStr":self.detailString,
         }];
-        NSArray *modelArray =  [[NSUserDefaults standardUserDefaults] objectForKey:@"userNoteDataModelArray"];
-        NSMutableArray *newModelArray = [modelArray mutableCopy];
-        [newModelArray addObject:model];
-        [[NSUserDefaults standardUserDefaults] setObject:newModelArray forKey:@"userNoteDataModel"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldAddNote" object:model];
         
-        UIViewController *con = self;
+        if(self.navigationController!=nil){
+            //如果nav不是空，那么就是点击没课的空白处后进行添加备忘的，那么：
+        [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            //否则就是通过点击备忘详情弹窗的修改按钮后来到这个控制器的，那么：
+            [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
+        }
         
-        do{//拿到课表控制器，再让课表控制器dissmiss一下，以回到课表页
-            con = con.presentingViewController;
-        }while (con.presentingViewController.presentingViewController!=nil);
-        
-        //让课表控制器dissmiss一下
-        [con dismissViewControllerAnimated:YES completion:nil];
         if(self.modelNeedBeDelete!=nil){
-            //这个属性存在说明是通过点击修改按钮来的这个页面，所以发一个删除原备忘的通知
+            //这个属性存在说明是通过点击修改按钮来的这个页面，所以发一个删除原备忘的通知，
+            //让WYCClassBookViewController删除备忘
             [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldDeleteNote" object:self.modelNeedBeDelete];
             
         }
+        //删除了旧的再添加新的，否则如果用户点击修改备忘后没做任何改动，但是点击了箭头，就会导致该备忘从文件里被删除
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldAddNote" object:model];
     }
 }
 
@@ -185,7 +183,13 @@
 }
 
 - (void)back{
-    [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
+    if(self.navigationController!=nil){
+        //如果nav不是空，那么就是点击没课的空白处后进行添加备忘的，那么：
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        //否则就是通过点击备忘详情弹窗的修改按钮后来到这个控制器的，那么：
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 /// 弹出选择周的view

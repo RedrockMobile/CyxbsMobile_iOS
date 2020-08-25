@@ -204,11 +204,12 @@
     NSString *selfMonth = self.dataArray[3][@"month"];
     NSString *selfDay = self.dataArray[3][@"day"];
     NSString *dataStr = [NSString stringWithFormat:@"%@-%@-%@",year,selfMonth,selfDay];
+    
+    formate.dateFormat = @"yyyy-M-d";
+    
     //得到该周周4的日期
     NSDate *Thurs = [formate dateFromString:dataStr];
     
-    
-    formate.dateFormat = @"yyyy-M-d";
 //    NSString *today = [formate stringFromDate:[NSDate date]];
     
     NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -218,6 +219,8 @@
     
     //得到周四和今日隔了几天
     long interval = [compsday day];
+    if(interval<0)return;
+    
     if(interval<4){//时间间隔小于4，代表这个课表是本周课表
         [formate setDateFormat:@"d"];
         NSString *day = [formate stringFromDate:[NSDate date]];

@@ -27,8 +27,7 @@
         vc.remind = self.remind;
         vc.noticeString = self.noticeString;
         vc.detailString = self.inputString;
-        [vc setModalPresentationStyle:(UIModalPresentationFullScreen) ];
-        [self presentViewController:vc animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else{
         NSLog(@"未输入");
@@ -36,7 +35,7 @@
     
 }
 - (void)back{
-    [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (DLReminderView *)reminderView{
     if (!_reminderView) {

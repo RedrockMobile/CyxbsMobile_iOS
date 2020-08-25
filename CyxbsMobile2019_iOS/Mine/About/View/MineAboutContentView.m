@@ -245,6 +245,9 @@
             break;
             
         case 2:
+            if ([self.delegate respondsToSelector:@selector(selectedFeedBack)]) {
+                [self.delegate selectedFeedBack];
+            }
             break;
             
         case 3:

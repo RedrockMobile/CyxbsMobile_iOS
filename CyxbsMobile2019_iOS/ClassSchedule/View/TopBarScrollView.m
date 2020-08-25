@@ -31,6 +31,8 @@
 @property (nonatomic,strong)UILabel *nowWeekLabel;
 /**回到本周的那个按钮*/
 @property (nonatomic,strong)UIButton *backCurrentWeekBtn;
+
+@property(nonatomic,strong)UIView *backView;
 @end
 
 @implementation TopBarScrollView
@@ -40,7 +42,7 @@
         self.frame = frame;
         [self setContentSize:(CGSizeMake(2*MAIN_SCREEN_W, 0))];
         self.scrollEnabled = NO;
-        
+        [self addBackView];
         //初始化weekTextArray
         self.weekTextArray = @[@"整学期",@"一周",@"二周",@"三周",@"四周",@"五周",@"六周",@"七周",@"八周",@"九周",@"十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
         /**
@@ -68,14 +70,22 @@
     }
     return _dateModel;
 }
+- (void)addBackView{
+    UIView *view = [[UIView alloc] init];
+    self.backView = view;
+    [self addSubview:view];
+    view.frame =CGRectMake(0, 0, 2*MAIN_SCREEN_W,30);
+}
+
 //添加周选择条和左箭头按钮，周选择条在self的左侧
 - (void)addWeekChooseBarAndLeftArrowBtn{
     UIButton *btn = [[UIButton alloc] init];
-    [self addSubview:btn];
+    [self.backView addSubview:btn];
     self.leftArrowBtn = btn;
     [btn addTarget:self action:@selector(leftArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"<" forState:UIControlStateNormal];
-//    [btn setBackgroundImage:[UIImage imageNamed:@"左箭头"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"左箭头"] forState:UIControlStateNormal];
+    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+    
     if(@available(iOS 11.0, *)){
         [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
     }else{
@@ -84,30 +94,26 @@
     btn.titleLabel.font =  [UIFont fontWithName:@".PingFang SC" size: 15];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(MAIN_SCREEN_W);
-        make.top.equalTo(self);
-        make.bottom.equalTo(self);
         make.width.mas_equalTo(20);
+        make.height.mas_equalTo(20);
+        make.centerY.equalTo(self.backView);
+        make.left.equalTo(self.backView).offset(MAIN_SCREEN_W-20);
     }];
     
-    
     UIScrollView *weekChooseBar = [[UIScrollView alloc] init];
-    [self addSubview:weekChooseBar];
+    [self.backView addSubview:weekChooseBar];
     self.weekChooseBar = weekChooseBar;
     [weekChooseBar setContentSize:(CGSizeMake(1731, 0))];
-    
     weekChooseBar.showsHorizontalScrollIndicator = NO;
     
     //添加周选择条里面全部的的某周的按钮
     [self addWeekChooseBtns];
     
-//    NSLog(@"%@",[self.weekChooseBtnArray lastObject]);
-    
     //添加约束
     [weekChooseBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
-        make.top.equalTo(self);
-        make.bottom.equalTo(self);
+        make.left.equalTo(self.backView);
+        make.top.equalTo(self.backView);
+        make.bottom.equalTo(self.backView);
         make.right.equalTo(btn.mas_left);
     }];
 }
@@ -118,6 +124,7 @@
     [self.weekChooseBar addSubview:firstBtn];
     [firstBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.weekChooseBar).offset(0.0427*MAIN_SCREEN_W);
+        make.centerY.equalTo(self.weekChooseBar);
     }];
     UIButton *lastBtn = firstBtn;
     float distance = MAIN_SCREEN_W*0.064;
@@ -155,7 +162,7 @@
 - (void)addNowWeekBar{
     UIView *nowWeekBar = [[UIScrollView alloc] init];
     self.nowWeekBar = nowWeekBar;
-    [self addSubview:nowWeekBar];
+    [self.backView addSubview:nowWeekBar];
     
     //添加显示本周、第七周的那个label
     [self addWeekLabel];
@@ -165,12 +172,11 @@
     
     //添加约束
     [nowWeekBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.leftArrowBtn.mas_right);
-        make.top.equalTo(self);
-        make.bottom.equalTo(self);
+        make.right.equalTo(self.backView);
+        make.top.equalTo(self.backView);
+        make.bottom.equalTo(self.backView);
         make.width.mas_equalTo(MAIN_SCREEN_W);
     }];
-    
 }
 //显示本周、第七周的那个label
 - (void)addWeekLabel{
@@ -200,8 +206,8 @@
     [self.nowWeekBar addSubview: nowWeekLabel];
     self.nowWeekLabel = nowWeekLabel;
     
-    nowWeekLabel.text = @"（本周）";
-    nowWeekLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+    nowWeekLabel.text = @" (本周) ";
+    nowWeekLabel.font = [UIFont fontWithName:PingFangSCRegular size: 15];
     if (@available(iOS 11.0, *)) {
         nowWeekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     } else {
@@ -221,10 +227,10 @@
     UIButton *btn = [[UIButton alloc] init];
     [self.nowWeekBar addSubview:btn];
     self.rightArrowBtn = btn;
-//    UserDefaultTool
     [btn addTarget:self action:@selector(rightArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@">" forState:UIControlStateNormal];
-//    [btn setBackgroundImage:[UIImage imageNamed:@"右箭头"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"右箭头"] forState:UIControlStateNormal];
+    [btn setImageEdgeInsets:(UIEdgeInsetsMake(0, 0, 0, 11))];
+    
     if (@available(iOS 11.0, *)) {
         [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
     } else {
@@ -233,9 +239,10 @@
     btn.titleLabel.font =  [UIFont fontWithName:@".PingFang SC" size: 15];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.nowWeekLabel.mas_right);
-        make.bottom.equalTo(self.weekLabel).offset(6);
         make.width.mas_equalTo(20);
+        make.height.mas_equalTo(20);
+        make.left.equalTo(self.nowWeekLabel.mas_right);
+        make.centerY.equalTo(self.weekLabel).offset(2.5);
     }];
 }
 //添加回到本周按钮
@@ -326,9 +333,9 @@
         
         self.weekLabel.text = newBtn.titleLabel.text;
         if(newIndex.intValue==self.dateModel.nowWeek.intValue){
-            self.nowWeekLabel.text = @"（本周）";
+            self.nowWeekLabel.text = @" (本周) ";
         }else{
-            self.nowWeekLabel.text = @"";
+            self.nowWeekLabel.text = @" ";
         }
         
     } else {

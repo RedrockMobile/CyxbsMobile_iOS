@@ -69,7 +69,7 @@
         nowWeek = 0;
     }
 
-    self.contentView.weekLabel.text = [NSString stringWithFormat:@"下学期%@", weekArray[nowWeek]];
+    self.contentView.weekLabel.text = [NSString stringWithFormat:@"上学期%@", weekArray[nowWeek]];
     
     // 过场动画
     [self animationForViewWillAppear];

@@ -156,13 +156,13 @@
 }
 
 
-- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
+- (void)searchPlaceSuccess:(NSArray<NSString *> *)placeIDArray {
     CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
     
     NSMutableArray *tmpArray = [NSMutableArray array];
-    for (CQUPTMapSearchItem *placeID in placeIDArray) {
+    for (NSString *placeID in placeIDArray) {
         for (CQUPTMapPlaceItem *place in mapData.placeList) {
-            if (placeID.placeID == [place.placeId intValue]) {
+            if (placeID.intValue == [place.placeId intValue]) {
                 [tmpArray addObject:place];
             }
         }

@@ -8,11 +8,12 @@
 
 #import "WYCClassBookViewController.h"
 #import "ClassTabBar.h"
-#import "TopBarScrollView.h"
+
 #import "DLReminderSetTimeVC.h"
 #import "DayBarView.h"
 #import "LeftBar.h"
 #import "LessonViewForAWeek.h"
+#import "TransitionManager.h"
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 
@@ -22,33 +23,17 @@
 @property (nonatomic, assign) NSNumber *index;
 @property (nonatomic, strong)  UIScrollView *scrollView;
 @property (nonatomic, strong) DateModle *dateModel;
-@property (nonatomic, strong)TopBarScrollView *topBarView;
+
 //20几张LessonViewForAWeek课表组成的数组，lessonViewArray[0]是整学期
 @property (nonatomic, strong)NSMutableArray <LessonViewForAWeek*> *lessonViewArray;
+@property (nonatomic, strong)UIPanGestureRecognizer *PGR;
 @end
 
 @implementation WYCClassBookViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.lessonViewArray = [NSMutableArray array];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(ModelDataLoadSuccess)
-                                                 name:@"ModelDataLoadSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(ModelDataLoadFailure)
-                                                 name:@"ModelDataLoadFailure" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadView)
-                                                 name:@"RemindAddSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadView)
-                                                 name:@"RemindEditSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadView)
-                                                 name:@"RemindDeleteSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadView)
-                                                 name:@"reloadView" object:nil];
     
     //添加备忘信息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNoteWithModel:) name:@"LessonViewShouldAddNote" object:nil];
@@ -56,6 +41,7 @@
     //删除备忘信息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNoteWithModel:) name:@"shouldDeleteNote" object:nil];
     
+    //编辑备忘
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editNoteWithModel:) name:@"DLReminderSetTimeVCShouldEditNote" object:nil];
     
     if (@available(iOS 11.0, *)) {
@@ -63,7 +49,13 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
     }
+    //如果是自己的课表，那就加假的tabBar
+    if(self.schedulType==ScheduleTypePersonal){
+        [self addFakeBar];
+    }
+    
     [self initModel];
+    
     self.index = self.dateModel.nowWeek;
     
     //初始化self.scrollView，并把它加到self.view上面
@@ -71,14 +63,43 @@
     
     //添加周选择条、显示本周的条
    [self addTopBarView];
-   
+    
+   //加拖拽提示条
    [self addDragHintView];
-       
+    
+    //如果是自己的课表，那就加上下拉dismiss手势
+    if(self.schedulType==ScheduleTypePersonal)[self addGesture];
+    
+    //用贝塞尔曲线给左上和右上加圆角，避免没课约、查课表页的课表再底部出现圆角
+    [self addRoundRect];
+    
+//    self.view.layer.shadowOffset = CGSizeMake(0, 15);
+    
+//    self.view.layer.shadowOpacity = 0.5;
 }
 
+//加上下拉dismiss手势
+- (void)addGesture{
+    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissSelf)];
+    self.PGR = PGR;
+    [self.view addGestureRecognizer:PGR];
+}
+//自己课表页下拉后调用
+- (void)dissMissSelf{
+    if(self.PGR.state==UIGestureRecognizerStateBegan){
+        TransitionManager *TM =  (TransitionManager*)self.transitioningDelegate;
+        TM.PGRToInitTransition = self.PGR;
+        [self dismissViewControllerAnimated:YES completion:^{
+            TM.PGRToInitTransition=nil;
+        }];
+    }
+}
 /// DLReminderSetTimeVC发送通知后调用
 /// @param noti 内部的object是备忘数据对应的NoteDataModel
 - (void)addNoteWithModel:(NSNotification*)noti{
+    //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
+    //这里也做一次判断：如果课表类型不是自己的，那么return
+    if(self.schedulType!=ScheduleTypePersonal)return;
     NoteDataModel *model = noti.object;
     [self.model addNoteDataWithModel:model];
     /// 若model.weeksArray==@[@4,@1,@18],代表第4、1、18周的备忘
@@ -97,6 +118,10 @@
 /// 接收要修改备忘的通知时调用，由NoteDetailView、DLReminderSetTimeVC发送通知，
 /// @param noti 通知
 - (void)deleteNoteWithModel:(NSNotification*)noti{
+    //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
+    //这里也做一次判断：如果课表类型不是自己的，那么return
+    if(self.schedulType!=ScheduleTypePersonal)return;
+    
     NoteDataModel *model = noti.object;
     [self.model deleteNoteDataWithModel:model];
     [self.scrollView removeAllSubviews];
@@ -105,15 +130,19 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
-    [self ModelDataLoadSuccess];
+    [self ModelDataLoadSuccess:self.model];
 }
 
 /// 接收要修改备忘的通知时调用，由NoteDetailView发送通知
 /// @param noti 通知
 - (void)editNoteWithModel:(NSNotification*)noti{
+    //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
+    //这里也做一次判断：如果课表类型不是自己的，那么return
+    if(self.schedulType!=ScheduleTypePersonal)return;
+    
     NoteDataModel *model = noti.object;
     DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
-    [vc setModalPresentationStyle:(UIModalPresentationFullScreen)];
+    [vc setModalPresentationStyle:(UIModalPresentationCustom)];
     [self presentViewController:vc animated:YES completion:nil];
     [vc initDataForEditNoteWithMode:model];
 }
@@ -121,9 +150,21 @@
 //view要出现时调用
 - (void)viewWillAppear:(BOOL)animated{
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
+        //让tabBar和假的tabBar更新一下下节课信息
+        [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
             self.topBarView.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
     }
+}
+
+///用贝塞尔曲线给左上和右上加圆角，避免没课约、查课表页的课表再底部出现圆角
+- (void)addRoundRect{
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight) cornerRadii:CGSizeMake(16, 0)];
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.view.layer.mask = maskLayer;
 }
 //MARK:-懒加载
 
@@ -151,16 +192,27 @@
     topBarView.correctIndex = self.index;
 }
 
+- (void)addFakeBar{
+    FakeTabBarView *bar = [[FakeTabBarView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 58)];
+    self.fakeBar = bar;
+    [self.view addSubview:bar];
+}
 /// 添加提示可拖拽的条
 - (void)addDragHintView{
-    UIView *dragHintView = [[UIView alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W*0.472,MAIN_SCREEN_W*0.024,27,5)];
+    UIView *dragHintView = [[UIView alloc]init];
+    [self.view addSubview:dragHintView];
     if (@available(iOS 11.0, *)) {
         dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
     } else {
         dragHintView.backgroundColor = [UIColor whiteColor];
     }
     dragHintView.layer.cornerRadius = 2.5;
-    [self.view addSubview:dragHintView];
+    [dragHintView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@27);
+        make.height.equalTo(@5);
+        make.top.equalTo(self.view).offset(8);
+        make.centerX.equalTo(self.view);
+    }];
 }
 
 -(void)reloadView{
@@ -181,68 +233,23 @@
 }
 
 //WYCClassAndRemindDataModel模型加载成功后调用
-- (void)ModelDataLoadSuccess{
-    
+- (void)ModelDataLoadSuccess:(id)model{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    //让tabBar和假的tabBar更新一下下节课信息
+    [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+    [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
     @autoreleasepool {
-        
-        //无序的一周的课表数据
-        NSArray *classBookData;
-        
-        //hash_day代表(周hash_day+1)，hash_lesson代表(第hash_lesson+1节大课)
-        NSNumber *hash_day, *hash_lesson;
-        
-        self.orderlySchedulArray = [NSMutableArray array];
         for (int dateNum = 0; dateNum < self.dateModel.dateArray.count + 1; dateNum++) {
-            
-            
-//------完成对orderlySchedulArray的初始化操作，初始化后里面就是有序的整学期课表和备忘----------
-            //有序的课表数据，day[i][j]代表（星期i+1）的（第j+1节大课）
-            NSMutableArray *day = [[NSMutableArray alloc]initWithCapacity:7];
-            [self.orderlySchedulArray addObject:day];
-            
-            for (int i = 0; i < 7; i++) {
-                
-                NSMutableArray *lesson = [[NSMutableArray alloc]initWithCapacity:6];
-                
-                for (int j = 0; j < 6; j++) {
-                    
-                    [lesson addObject:[@[] mutableCopy]];
-                }
-                [day addObject:[lesson mutableCopy]];
-            }
-            classBookData = self.model.weekArray[dateNum];
-            for (int i = 0; i < classBookData.count; i++) {
-                
-                hash_day = [classBookData[i] objectForKey:@"hash_day"];
-                hash_lesson = [classBookData[i] objectForKey:@"hash_lesson"];
-                
-                [ day[hash_day.integerValue][hash_lesson.integerValue] addObject: classBookData[i]];
-                
-            }
-            //如果不是整学期课表，那就加入备忘
-            if (dateNum !=0) {
-                NSArray *noteData = self.model.remindArray[dateNum-1];
-                
-                for (int i = 0; i < noteData.count; i++) {
-                    
-                    NSNumber *hash_day = [noteData[i] objectForKey:@"hash_day"];
-                    NSNumber *hash_lesson = [noteData[i] objectForKey:@"hash_lesson"];
-                    
-                    [ day[hash_day.integerValue][hash_lesson.integerValue] addObject: noteData[i]];
-                }
-            }
-//------完成对orderlySchedulArray的初始化操作，初始化后里面就是有序的整学期课表和备忘----------
             
             //左侧课条
             LeftBar *leftBar = [[LeftBar alloc] init];
             leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
             
-            
             //课表
-            LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
+            LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.model.orderlySchedulArray[dateNum]];
             [self.lessonViewArray addObject:lessonViewForAWeek];
             lessonViewForAWeek.week = dateNum;
+            lessonViewForAWeek.schType = self.schedulType;
             [lessonViewForAWeek setUpUI];
             
             lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
@@ -269,14 +276,18 @@
         }
     }
     
-    for (NoteDataModel *model in self.model.noteDataModelArray) {
-        for (NSNumber *weekNum in model.weeksArray) {
-            if(weekNum.intValue==0){
-                for (LessonViewForAWeek *lvfw in self.lessonViewArray) {
-                    [lvfw addNoteLabelWithNoteDataModel:model];
+    //如果是自己的课表,那就添加备忘
+    if(self.schedulType==ScheduleTypePersonal){
+        for (NoteDataModel *model in self.model.noteDataModelArray) {
+            for (NSNumber *weekNum in model.weeksArray) {
+                //如果是整学期处的备忘，那么每张课表都要加一下备忘信息
+                if(weekNum.intValue==0){
+                    for (LessonViewForAWeek *lvfw in self.lessonViewArray) {
+                        [lvfw addNoteLabelWithNoteDataModel:model];
+                    }
+                }else{
+                    [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
                 }
-            }else{
-                [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
             }
         }
     }
@@ -322,6 +333,8 @@
     NSLog(@"-----back---");
     
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
+        //让tabBar和假的tabBar更新一下下节课信息
+        [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
     }
 }
@@ -346,8 +359,8 @@
     for (; hash_week<25; hash_week++) {
         for (; hash_day<7; hash_day++){
             for (; hash_lesson<6; hash_lesson++) {
-                if([self.orderlySchedulArray[hash_week][hash_day][hash_lesson] count]!=0){
-                    lesson = self.orderlySchedulArray[hash_week][hash_day][hash_lesson];
+                if([self.model.orderlySchedulArray[hash_week][hash_day][hash_lesson] count]!=0){
+                    lesson = self.model.orderlySchedulArray[hash_week][hash_day][hash_lesson];
                     //找到下一节课后，用goto跳出3层循环
                     goto WYCClassBookViewControllerGetNextLessonDataBreak;
                 }
@@ -477,5 +490,6 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
         }
     }
 }
+
 @end
 

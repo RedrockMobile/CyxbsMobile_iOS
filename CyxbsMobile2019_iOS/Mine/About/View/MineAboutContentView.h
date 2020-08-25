@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)backButtonClicked;
 - (void)selectedProductWebsite;
+- (void)selectedFeedBack;
 
 @end
 

@@ -57,13 +57,15 @@
     weekTimeLabel.text =[NSString stringWithFormat:@"第%@周，周%@",weekNum,weekday];
     
     if ([weekNum isEqual: @"0"]) {
-        weekTimeLabel.text =[NSString stringWithFormat:@"欢迎新同学"];
+        weekTimeLabel.text =[NSString stringWithFormat:@"欢迎新同学～"];
     }
 //    weekTimeLabel.text = @"";
     if (@available(iOS 11.0, *)) {
-        weekTimeLabel.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        [weekTimeLabel setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
+    } else {
+        [weekTimeLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
     }
-    weekTimeLabel.font = [UIFont fontWithName:PingFangSCBold size: 10];
+    weekTimeLabel.font = [UIFont fontWithName:PingFangSCLight size: 10];
     [self addSubview:weekTimeLabel];
     
 }
@@ -154,7 +156,7 @@
         }
         [nameArray addObject:@"更多功能"];
     }else {
-        nameArray = @[@"空教室", @"校车轨迹", @"空课表", @"更多功能"];//用来保存图片和名称
+        nameArray = [@[@"空教室", @"校车轨迹", @"空课表", @"更多功能"] mutableCopy];//用来保存图片和名称
     }
         
     NSMutableArray *array = [NSMutableArray array];
@@ -197,11 +199,11 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     [self.weekTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(30);
-        make.left.equalTo(self).offset(15);
+        make.top.equalTo(self).offset(STATUSBARHEIGHT + 1);
+        make.left.equalTo(self).offset(17);
     }];
     [self.finderTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.weekTime.mas_bottom).offset(5);
+        make.top.equalTo(self.weekTime.mas_bottom).offset(1);
         make.left.equalTo(self.weekTime);
     }];
     [self.writeButton mas_makeConstraints:^(MASConstraintMaker *make) {

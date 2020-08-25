@@ -7,25 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FYHCycleLabel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ClassScheduleTabBarView : UIView<updateSchedulTabBarViewProtocol>
 
 /// 当前课程名称
-@property (nonatomic, weak) UILabel *classLabel;
+@property (nonatomic, weak) FYHCycleLabel *classLabel;
 
 /// 时钟图片
 @property (nonatomic, weak) UIImageView *clockImageView;
 
 /// 当前课程时段
-@property (nonatomic, weak) UILabel *classTimeLabel;
+@property (nonatomic, weak) FYHCycleLabel *classTimeLabel;
 
 /// 教室地点图片
 @property (nonatomic, weak) UIImageView *locationImageView;
 
 /// 教室地点
-@property (nonatomic, weak) UILabel *classroomLabel;
+@property (nonatomic, weak) FYHCycleLabel *classroomLabel;
 
 @end
 

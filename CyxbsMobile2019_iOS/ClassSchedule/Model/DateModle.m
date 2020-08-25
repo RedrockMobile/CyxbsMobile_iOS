@@ -83,6 +83,8 @@
     }
     self.nowWeek = [NSNumber numberWithInteger:nowWeek];
     [UserDefaultTool saveValue:self.nowWeek forKey:@"nowWeek"];
+    
     NSLog(@"nowweek:%ld",(long)nowWeek);
+    
 }
 @end

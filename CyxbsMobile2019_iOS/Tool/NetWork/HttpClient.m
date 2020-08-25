@@ -8,6 +8,8 @@
 
 #import "HttpClient.h"
 #import "UIImage+Helper.h"
+#import "NSDate+Timestamp.h"
+
 @implementation HttpClient
 
 + (HttpClient *)defaultClient
@@ -158,7 +160,9 @@
             UIImage *image = imageArray[i];
             UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
             NSData *data = UIImageJPEGRepresentation(image1, 0.8);
-            [formData appendPartWithFileData:data name:imageNames[i] fileName:@"tmp.png" mimeType:@"image/png"]; }
+            NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
+            [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/png"];
+        }
         
     } success:success failure:failure];
 }

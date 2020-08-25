@@ -44,7 +44,7 @@
     self.photoImageView = photoImageView;
     
     NSURL *imageURL = [NSURL URLWithString:item.photo_src];
-    [self.photoImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"签到背景"] options:SDWebImageRefreshCached];
+    [self.photoImageView sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"] options:SDWebImageRefreshCached];
     
     UILabel *nameLabel = [[UILabel alloc] init];
     nameLabel.text = item.name;
