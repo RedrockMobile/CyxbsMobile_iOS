@@ -11,9 +11,9 @@
 #import "NoteDataModel.h"
 #define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
 @protocol WYCClassAndRemindDataModelDelegate <NSObject>
-- (void)ModelDataLoadSuccess;
+- (void)ModelDataLoadSuccess:(id)model;
 - (void)ModelDataLoadFailure;
-- (void)ModelDataLoadSu:(id)model;
+//- (void)ModelDataLoadSu:(id)model;
 @end
 @interface WYCClassAndRemindDataModel : NSObject
 //创建后要对writeToFile进行赋值，代表网络请求后是否把数据写入文件

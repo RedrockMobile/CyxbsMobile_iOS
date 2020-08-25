@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 //如果WYCClassAndRemindDataModel的代理是课表控制器，那么模型加载操作完毕后无需外界调这两个方法
 //但是如果代理不是课表控制器，那么外界需要调用一下这两个方法
 - (void)ModelDataLoadFailure;
-- (void)ModelDataLoadSuccess;
+- (void)ModelDataLoadSuccess:(id)modal;
 @end
 
 NS_ASSUME_NONNULL_END

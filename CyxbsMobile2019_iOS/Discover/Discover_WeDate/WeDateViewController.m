@@ -369,13 +369,10 @@
     }
     return YES;
 }
-- (void)ModelDataLoadSuccess{
-    
-}
 - (void)ModelDataLoadFailure{
     
 }
-- (void)ModelDataLoadSu:(id)model{
+- (void)ModelDataLoadSuccess:(id)model{
     WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
 
     //对model赋值
@@ -386,7 +383,7 @@
     
     //present这种刷新UI的操作得放主线程，不然会报错
     dispatch_async(dispatch_get_main_queue(), ^{
-        [vc ModelDataLoadSuccess];
+        [vc ModelDataLoadSuccess:model];
         [self presentViewController:vc animated:YES completion:nil];
     });
 }

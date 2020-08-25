@@ -34,24 +34,6 @@
     [super viewDidLoad];
     
     self.lessonViewArray = [NSMutableArray array];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(ModelDataLoadSuccess)
-                                                 name:@"ModelDataLoadSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(ModelDataLoadFailure)
-                                                 name:@"ModelDataLoadFailure" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadView)
-                                                 name:@"RemindAddSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadView)
-                                                 name:@"RemindEditSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadView)
-                                                 name:@"RemindDeleteSuccess" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reloadView)
-                                                 name:@"reloadView" object:nil];
     
     //添加备忘信息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNoteWithModel:) name:@"LessonViewShouldAddNote" object:nil];
@@ -59,6 +41,7 @@
     //删除备忘信息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNoteWithModel:) name:@"shouldDeleteNote" object:nil];
     
+    //编辑备忘
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editNoteWithModel:) name:@"DLReminderSetTimeVCShouldEditNote" object:nil];
     
     if (@available(iOS 11.0, *)) {
@@ -66,7 +49,11 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
     }
-    [self addFakeBar];
+    //如果是自己的课表，那就加假的tabBar
+    if(self.schedulType==ScheduleTypePersonal){
+        [self addFakeBar];
+    }
+    
     [self initModel];
     
     self.index = self.dateModel.nowWeek;
@@ -143,7 +130,7 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
-    [self ModelDataLoadSuccess];
+    [self ModelDataLoadSuccess:self.model];
 }
 
 /// 接收要修改备忘的通知时调用，由NoteDetailView发送通知
@@ -163,6 +150,7 @@
 //view要出现时调用
 - (void)viewWillAppear:(BOOL)animated{
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
+        //让tabBar和假的tabBar更新一下下节课信息
         [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
             self.topBarView.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
@@ -245,9 +233,11 @@
 }
 
 //WYCClassAndRemindDataModel模型加载成功后调用
-- (void)ModelDataLoadSuccess{
-    
+- (void)ModelDataLoadSuccess:(id)model{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    //让tabBar和假的tabBar更新一下下节课信息
+    [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+    [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
     @autoreleasepool {
         for (int dateNum = 0; dateNum < self.dateModel.dateArray.count + 1; dateNum++) {
             
@@ -343,6 +333,7 @@
     NSLog(@"-----back---");
     
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
+        //让tabBar和假的tabBar更新一下下节课信息
         [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
     }

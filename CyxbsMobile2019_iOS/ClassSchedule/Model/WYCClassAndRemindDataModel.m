@@ -29,7 +29,7 @@
         
         [self parsingClassBookData:array];
         [self parseClassBookData:array];
-        [self.delegate ModelDataLoadSuccess];
+        [self.delegate ModelDataLoadSuccess:self];
     }else{
         
         [self.delegate ModelDataLoadFailure];
@@ -67,7 +67,7 @@
         [self.weekArray addObject:lessonArray];
         [self parsingClassBookData:lessonArray];
         [self parseClassBookData:lessonArray];
-        [self.delegate ModelDataLoadSuccess];
+        [self.delegate ModelDataLoadSuccess:self];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         [self.delegate ModelDataLoadFailure];
@@ -106,7 +106,7 @@
         [self parsingClassBookData:lessonArray];
         [self parseClassBookData:lessonArray];
         
-        [self.delegate ModelDataLoadSuccess];
+        [self.delegate ModelDataLoadSuccess:self];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -227,6 +227,9 @@
 
                 } success:^(NSURLSessionDataTask *task, id responseObject) {
                     //课表数据全部放入lessonOfAllPeople
+                    if([responseObject objectForKey:@"data"]==nil){
+                        
+                    }
                     [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
                     
                     dispatch_semaphore_signal(semaphore);
@@ -241,7 +244,7 @@
         //完成group的任务后执行block里的内容
         dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self parseClassBookData:lessonOfAllPeople];
-            [self.delegate ModelDataLoadSu:self];
+            [self.delegate ModelDataLoadSuccess:self];
          });
 }
 @end
