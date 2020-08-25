@@ -39,6 +39,7 @@ MJExtensionCodingImplementation
         self.mapColor = dict[@"data"][@"map_background_color"];
         self.mapWidth = [dict[@"data"][@"map_width"] floatValue];
         self.mapHeight = [dict[@"data"][@"map_height"] floatValue];
+        self.mapVersion = [dict[@"data"][@"picture_version"] stringValue];
     }
     return self;
 }

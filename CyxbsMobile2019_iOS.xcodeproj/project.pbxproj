@@ -77,6 +77,7 @@
 		1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A46C34723DC6F58005DC1F3 /* MyResponseRecievedCell.m */; };
 		1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */; };
 		1A4A467724D16A810033734E /* UserInformationIntorductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A467624D16A800033734E /* UserInformationIntorductionView.m */; };
+		1A4B3B3B24F38FE0001913A1 /* CQUPTMapProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B3B3A24F38FE0001913A1 /* CQUPTMapProgressView.m */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
 		1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDA23600C9100543BAE /* LoginViewController.m */; };
 		1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDD23600CBE00543BAE /* Login.xcassets */; };
@@ -351,6 +352,7 @@
 		EE131C2724713BE100B6ED97 /* schoolschedule_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EE131C2424713BE100B6ED97 /* schoolschedule_2.png */; };
 		EE131C2824713BE100B6ED97 /* schoolschedule_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EE131C2524713BE100B6ED97 /* schoolschedule_1.png */; };
 		EE131C2924713BE100B6ED97 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C2624713BE100B6ED97 /* CalendarViewController.m */; };
+		EE4007A824F2AAC90042FF55 /* WeekAndDay.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4007A724F2AAC90042FF55 /* WeekAndDay.m */; };
 		EE75BF8F23F5884100208039 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFB23F5884100208039 /* DiscoverViewController.m */; };
 		EE75BF9023F5884100208039 /* electricity_header_setting.gif in Resources */ = {isa = PBXBuildFile; fileRef = EE75BEFD23F5884100208039 /* electricity_header_setting.gif */; };
 		EE75BF9123F5884100208039 /* InstallBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EE75BEFE23F5884100208039 /* InstallBuildTableViewCell.m */; };
@@ -643,6 +645,8 @@
 		1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserProtocolViewController.m; sourceTree = "<group>"; };
 		1A4A467524D16A800033734E /* UserInformationIntorductionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInformationIntorductionView.h; sourceTree = "<group>"; };
 		1A4A467624D16A800033734E /* UserInformationIntorductionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInformationIntorductionView.m; sourceTree = "<group>"; };
+		1A4B3B3924F38FE0001913A1 /* CQUPTMapProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapProgressView.h; sourceTree = "<group>"; };
+		1A4B3B3A24F38FE0001913A1 /* CQUPTMapProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapProgressView.m; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		1A5A5ED923600C9100543BAE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		1A5A5EDA23600C9100543BAE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -1109,6 +1113,8 @@
 		EE131C2424713BE100B6ED97 /* schoolschedule_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schoolschedule_2.png; sourceTree = "<group>"; };
 		EE131C2524713BE100B6ED97 /* schoolschedule_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schoolschedule_1.png; sourceTree = "<group>"; };
 		EE131C2624713BE100B6ED97 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		EE4007A624F2AAC90042FF55 /* WeekAndDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeekAndDay.h; sourceTree = "<group>"; };
+		EE4007A724F2AAC90042FF55 /* WeekAndDay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeekAndDay.m; sourceTree = "<group>"; };
 		EE75BEFA23F5884100208039 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		EE75BEFB23F5884100208039 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		EE75BEFD23F5884100208039 /* electricity_header_setting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = electricity_header_setting.gif; sourceTree = "<group>"; };
@@ -1953,6 +1959,8 @@
 				1A810BA824E299C100E79126 /* CQUPTMapHotPlaceButton.m */,
 				1AB2E58824E38F26004B4067 /* CQUPTMapMyStarButton.h */,
 				1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */,
+				1A4B3B3924F38FE0001913A1 /* CQUPTMapProgressView.h */,
+				1A4B3B3A24F38FE0001913A1 /* CQUPTMapProgressView.m */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -2935,6 +2943,15 @@
 			path = Discover_SchoolCalendar;
 			sourceTree = "<group>";
 		};
+		EE4007A524F2AAA70042FF55 /* ViewTool */ = {
+			isa = PBXGroup;
+			children = (
+				EE4007A624F2AAC90042FF55 /* WeekAndDay.h */,
+				EE4007A724F2AAC90042FF55 /* WeekAndDay.m */,
+			);
+			path = ViewTool;
+			sourceTree = "<group>";
+		};
 		EE75BEF723F5884100208039 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
@@ -2962,6 +2979,7 @@
 				EE75BEF923F5884100208039 /* Controller */,
 				EE75BEFC23F5884100208039 /* ChooseBuildingFile */,
 				EE75BF0623F5884100208039 /* Model */,
+				EE4007A524F2AAA70042FF55 /* ViewTool */,
 				EE75BF1623F5884100208039 /* View */,
 			);
 			path = Discover_MainPage;
@@ -3821,6 +3839,7 @@
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
+				EE4007A824F2AAC90042FF55 /* WeekAndDay.m in Sources */,
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				EE8234A624673FE700F6B4AE /* HeaderGifRefresh.m in Sources */,
@@ -3944,6 +3963,7 @@
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
+				1A4B3B3B24F38FE0001913A1 /* CQUPTMapProgressView.m in Sources */,
 				EE75BF9A23F5884100208039 /* OneNewsItemData.m in Sources */,
 				AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */,
 				1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */,
@@ -4276,7 +4296,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PU7F26AM3C;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -4285,7 +4305,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOSc";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4298,7 +4318,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PU7F26AM3C;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -4307,7 +4327,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOSc";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mredrock.cyxbs.CyxbsMobile2019-iOS";
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

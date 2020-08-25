@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *mapColor;
 @property (nonatomic, assign) CGFloat mapWidth;
 @property (nonatomic, assign) CGFloat mapHeight;
+@property (nonatomic, copy) NSString *mapVersion;   // 时间戳
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

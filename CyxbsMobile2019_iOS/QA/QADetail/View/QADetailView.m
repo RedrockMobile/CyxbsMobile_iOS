@@ -43,7 +43,7 @@
     if (self.scrollviewHeight < MAIN_SCREEN_H) {
         self.scrollviewHeight = MAIN_SCREEN_H;
     }
-    self.scrollView.contentSize = CGSizeMake(0, self.scrollviewHeight);
+    self.scrollView.contentSize = CGSizeMake(0, self.scrollviewHeight + 100);
 }
 - (void)setupUIwithDic:(NSDictionary *)dic answersData:(nonnull NSArray *)answersData{
     UIView *userInfoView = [[UIView alloc]init];
