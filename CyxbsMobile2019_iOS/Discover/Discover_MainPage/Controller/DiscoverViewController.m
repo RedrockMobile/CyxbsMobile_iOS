@@ -14,7 +14,7 @@
 #import "ElectricFeeModel.h"
 #import "OneNewsModel.h"
 #import "WeDateViewController.h"//没课约
-
+#import "CQUPTMapViewController.h"
 #import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
 #import "NewsViewController.h"
@@ -647,6 +647,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 -(void)touchMap {
     NSLog(@"点击了重邮地图");
+    CQUPTMapViewController * vc = [[CQUPTMapViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchEmptyClass {
     NSLog(@"点击了空教室");

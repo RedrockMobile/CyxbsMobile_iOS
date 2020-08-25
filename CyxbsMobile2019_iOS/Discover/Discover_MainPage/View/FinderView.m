@@ -185,6 +185,8 @@
         [enterButton.imageButton addTarget:self action:@selector(touchMyTest) forControlEvents:UIControlEventTouchUpInside];
         }else if([enterButton.label.text isEqual: @"校历"]) {
         [enterButton.imageButton addTarget:self action:@selector(touchSchoolCalender) forControlEvents:UIControlEventTouchUpInside];
+        }else if([enterButton.label.text isEqual:@"重邮地图"]){
+        [enterButton.imageButton addTarget:self action:@selector(touchMap) forControlEvents:UIControlEventTouchUpInside];
         }
         [self addSubview:enterButton];
     }
@@ -308,6 +310,11 @@
 - (void) touchSchedule {
     if ([self.delegate respondsToSelector:@selector(touchSchedule)]) {
         [self.delegate touchSchedule];
+    }
+}
+-(void)touchMap {
+    if ([self.delegate respondsToSelector:@selector(touchMap)]) {
+        [self.delegate touchMap];
     }
 }
 - (void) touchMore {
