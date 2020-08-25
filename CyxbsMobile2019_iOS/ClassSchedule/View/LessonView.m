@@ -101,6 +101,10 @@
         self.detailLable = nil;
     }
     
+    //如果自己的信息显示偏移代理非空，那么就说自己的前面有一节长度超过2的课，
+    //那么自己就不要响应点击事件什么的，所以使self.hidden = YES;
+    if(self.noteShowerDelegate!=nil)self.hidden = YES;
+    
     if(self.noteDataModelArray.count+self.courseDataDictArray.count>1){
         [self addTipView];
     }

@@ -89,7 +89,7 @@
         UserItem *item = [UserItem defaultItem];
         
         //如果真实姓名非空，那么已登录
-        if(item.realName!=nil){
+        if(item.realName!=nil||![item.realName isEqualToString:@""]){
             [self initMySchedul];
         }
     }
@@ -107,7 +107,7 @@
     [self.dragHintView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@27);
         make.height.equalTo(@5);
-        make.top.equalTo(self).offset(4);
+        make.top.equalTo(self).offset(8);
         make.centerX.equalTo(self);
     }];
     
@@ -191,8 +191,8 @@
     [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
     
     if (self.mySchedul.stuNum) {
-        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
-//        [model getClassBookArray:self.mySchedul.stuNum];
+        [model getPersonalClassBookArrayFromNet:self.mySchedul.stuNum];
+//        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
     }
     
     self.mySchedul.transitioningDelegate = self.TM;

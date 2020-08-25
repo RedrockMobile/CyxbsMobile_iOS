@@ -10,14 +10,11 @@
 #import "HttpClient.h"
 #import "NoteDataModel.h"
 #define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
-
 @protocol WYCClassAndRemindDataModelDelegate <NSObject>
-
 - (void)ModelDataLoadSuccess;
 - (void)ModelDataLoadFailure;
-
+- (void)ModelDataLoadSu:(id)model;
 @end
-
 @interface WYCClassAndRemindDataModel : NSObject
 //创建后要对writeToFile进行赋值，代表网络请求后是否把数据写入文件
 @property (nonatomic, assign) BOOL writeToFile;
@@ -43,21 +40,40 @@
 @property (nonatomic, strong) NSMutableArray *weekArray;
 @property (nonatomic, strong) NSMutableArray *remindArray;
 @property (nonatomic, weak)id<WYCClassAndRemindDataModelDelegate>delegate;
-@property (nonatomic, strong)NSMutableArray *noteDataModelArray;
-- (void)getClassBookArray:(NSString *)stu_Num;
+
+/// 有序的全部课表，/// orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）
+/// ,orderlySchedulArray[i][j][k]是一个数组
+@property (nonatomic,strong)NSMutableArray *orderlySchedulArray;
+/// 备忘模型数组
+@property (nonatomic, strong)NSMutableArray <NoteDataModel*>*noteDataModelArray;
+//- (void)getClassBookArray:(NSString *)stu_Num;
+
+/// 网络请求获取他人课表，不把课表数据存入本地
+/// @param stu_Num 学号
 - (void)getClassBookArrayFromNet:(NSString *)stu_Num;
 
+/// 网络请求获取自己课表，会把课表数据存入本地
+/// @param stu_Num 学号
+- (void)getPersonalClassBookArrayFromNet:(NSString *)stu_Num;
 
-- (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum;
-- (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum;
-- (void)deleteRemind:(NSString *)stuNum idNum:(NSString *)idNum remindId:(NSNumber *)remindId;
+- (void)getClassBookArrayFromNetWithInfoDict:(NSArray*)infoDictArray;
+
+//下面三个方法没用上
+//- (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum;
+//- (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum;
+//- (void)deleteRemind:(NSString *)stuNum idNum:(NSString *)idNum remindId:(NSNumber *)remindId;
+
+
 
 -(void)parsingClassBookData:(NSArray*)array;
--(void)loadFinish;
+
+//-(void)loadFinish;
 
 - (void)addNoteDataWithModel:(NoteDataModel*)model;
 - (void)deleteNoteDataWithModel:(NoteDataModel*)model;
+
 @end
+
 
 //1.
 //WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
