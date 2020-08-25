@@ -292,16 +292,21 @@
         UIImageView *placeImageView = [[UIImageView alloc] init];
         placeImageView.layer.cornerRadius = 9;
         placeImageView.clipsToBounds = YES;
-        placeImageView.backgroundColor = [UIColor grayColor];
+        placeImageView.image = [UIImage imageNamed:@"PlaceHolderImage"];
+        placeImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.imagesScrollView addSubview:placeImageView];
         [self.imagesArray addObject:placeImageView];
     }
     
     for (int i = 0; i < detailItem.imagesArray.count; i++) {
         UIImageView *placeImageView = [[UIImageView alloc] init];
-        [placeImageView sd_setImageWithURL:detailItem.imagesArray[i] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        
+        NSURL *placeUrl = [NSURL URLWithString:detailItem.imagesArray[i]];
+        
+        [placeImageView sd_setImageWithURL:placeUrl placeholderImage:[UIImage imageNamed:@"PlaecHolderImage"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             placeImageView.contentMode = UIViewContentModeScaleAspectFill;
         }];
+        
         placeImageView.layer.cornerRadius = 9;
         placeImageView.clipsToBounds = YES;
         [self.imagesScrollView addSubview:placeImageView];

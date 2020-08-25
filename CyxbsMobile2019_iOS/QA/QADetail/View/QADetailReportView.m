@@ -29,6 +29,18 @@
             [btn setTitleColor:[UIColor colorWithHexString:@"#4841E2"] forState:UIControlStateNormal];
         }
     }
+    
+        if (@available(iOS 11.0, *)) {
+               self.contentView.backgroundColor = [UIColor colorNamed:@"QABackgroundColor"];
+            for(UIButton *btn in self.reportBtnCollection){
+                btn.tintColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+                [btn setTitleColor:[UIColor colorNamed:@"QANavigationTitleColor"] forState:UIControlStateNormal];
+            }
+            [self.cancelButton setTitleColor:[UIColor colorNamed:@"QANavigationTitleColor"] forState:UIControlStateNormal];
+           } else {
+               
+           }
+    
     self.cancelButton.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
     [self.cancelButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     self.cancelButton.layer.cornerRadius = 20;

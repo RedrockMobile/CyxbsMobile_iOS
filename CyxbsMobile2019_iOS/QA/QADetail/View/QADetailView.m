@@ -171,7 +171,7 @@ contentLabel.text = content;
             UIImageView *imgView = [[UIImageView alloc]init];
             NSString *urlString = [NSString stringWithFormat:@"%@",self.imageUrlArray[i]];
             NSURL *url = [NSURL URLWithString:urlString];
-            [imgView setImageURL:url];
+            [imgView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"]];
             imgView.userInteractionEnabled = YES;
             imgView.layer.cornerRadius = 8;
             imgView.clipsToBounds = YES;
@@ -417,8 +417,8 @@ contentLabel.text = content;
         CGFloat labelHeight = [self calculateLabelHeight:content width:labelWidth fontsize:fontsize];
         CGFloat answerViewHeight = labelHeight + 135;
         answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, answerViewHeight)];
-        [answerView setupView:dic isSelf:self.isSelf];
         [self.scrollView addSubview:answerView];
+        [answerView setupView:dic isSelf:self.isSelf];
         self.scrollviewHeight += answerViewHeight;
     
          
