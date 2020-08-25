@@ -16,8 +16,8 @@
 #import "WYCShowDetailView.h"
 #import "WMTWeekChooseBar.h"
 #import "LoginViewController.h"
-
-
+#import "FakeTabBarView.h"
+#import "TopBarScrollView.h"
 #import "AddRemindViewController.h"
 #import "UIFont+AdaptiveFont.h"
 #import "RemindNotification.h"
@@ -42,7 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *stuNum;
 @property (nonatomic, copy) NSString *idNum;
-
+@property (nonatomic,strong)FakeTabBarView *fakeBar;
+@property (nonatomic, strong)TopBarScrollView *topBarView;
 //如果WYCClassAndRemindDataModel的代理是课表控制器，那么模型加载操作完毕后无需外界调这两个方法
 //但是如果代理不是课表控制器，那么外界需要调用一下这两个方法
 - (void)ModelDataLoadFailure;

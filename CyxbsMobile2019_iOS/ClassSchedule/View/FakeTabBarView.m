@@ -1,29 +1,19 @@
 //
-//  ClassScheduleTabBarView.m
+//  FakeTabBarView.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 方昱恒 on 2020/3/29.
+//  Created by Stove on 2020/8/25.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "ClassScheduleTabBarView.h"
-#import "WYCClassBookViewController.h"
-#import "TransitionManager.h"
 #import "FakeTabBarView.h"
-@interface ClassScheduleTabBarView ()
+@interface FakeTabBarView()
 
 @property (nonatomic, weak) UIView *bottomCoverView;
-@property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, weak) UIView *dragHintView;
-@property (nonatomic, assign)BOOL isPresenting;
-@property (nonatomic, strong)UINavigationController *nav;
-@property (nonatomic,strong)UIPanGestureRecognizer *PGR;
-@property (nonatomic,strong)TransitionManager *TM;
-//用户的课表
-@property (nonatomic, strong)WYCClassBookViewController *mySchedul;
-@end
 
-@implementation ClassScheduleTabBarView
+@end
+@implementation FakeTabBarView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -37,8 +27,6 @@
         
         self.layer.shadowOffset = CGSizeMake(0, -5);
         self.layer.shadowOpacity = 0.1;
-        
-        self.TM = [[TransitionManager alloc] init];
         
         // 遮住下面两个圆角
         UIView *bottomCoverView = [[UIView alloc] init];
@@ -83,16 +71,6 @@
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
         
-        //加上登录成功通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)
-            name:@"Login_LoginSuceeded" object:nil];
-        
-        UserItem *item = [UserItem defaultItem];
-        
-        //如果真实姓名非空，那么已登录
-        if(item.realName!=nil||![item.realName isEqualToString:@""]){
-            [self initMySchedul];
-        }
     }
     return self;
 }
@@ -154,57 +132,5 @@
     }
 }
 
-/// 添加一个上拉后显示弹窗的手势
-- (void)addGesture{
-    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(presentMySchedul)];
-    self.PGR = PGR;
-    [self addGestureRecognizer:PGR];
-}
-
-- (void)presentMySchedul{
-    
-    if(self.PGR.state==UIGestureRecognizerStateBegan){
-        self.TM.PGRToInitTransition = self.PGR;
-        [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
-            self.TM.PGRToInitTransition = nil;
-        } ];
-    }
-}
-/// 初始化课表，课表控制器是这个类的一个属性
-- (void)initMySchedul{
-    
-    self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
-    
-    self.mySchedul.idNum = [UserDefaultTool getIdNum];
-    
-    self.mySchedul.stuNum = [UserDefaultTool getStuNum];
-    
-    self.mySchedul.schedulType = ScheduleTypePersonal;
-    
-    WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc]init];
-    
-    self.mySchedul.model = model;
-    
-    model.delegate = self.mySchedul;
-    
-    model.writeToFile = YES;
-    
-    [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
-    
-    if (self.mySchedul.stuNum) {
-        [model getPersonalClassBookArrayFromNet:self.mySchedul.stuNum];
-//        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
-    }
-    
-    self.mySchedul.transitioningDelegate = self.TM;
-    
-    [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
-    
-    self.mySchedul.schedulTabBar = self;
-    
-    [self.mySchedul viewWillAppear:YES];
-    
-    [self addGesture];
-}
 
 @end
