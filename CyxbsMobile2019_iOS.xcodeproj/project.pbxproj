@@ -149,6 +149,7 @@
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */; };
 		AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1124EFC78C00FDF70C /* NoteDetailView.m */; };
+		AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */; };
 		AA33F23D24BDF0DE00ECB09E /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */; };
 		AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82D924E8E03C00B65042 /* ClassDetailView.m */; };
 		AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82DC24E9343A00B65042 /* DayBarView.m */; };
@@ -157,6 +158,8 @@
 		AA40B40B24D2AE400037071A /* WeDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B40A24D2AE400037071A /* WeDateViewController.m */; };
 		AA40B40E24D2BB7C0037071A /* PeopleListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B40D24D2BB7C0037071A /* PeopleListTableViewCell.m */; };
 		AA40B41124D2C9710037071A /* ChoosePeopleListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA40B41024D2C9710037071A /* ChoosePeopleListView.m */; };
+		AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA49098524F3B6B4007CB3BC /* ClassSchedulInterController.m */; };
+		AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA49098824F3BF5A007CB3BC /* TransitionManager.m */; };
 		AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */; };
 		AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588824EE739F002F6F6D /* TimeBtnSelectedBackView.m */; };
 		AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */; };
@@ -789,6 +792,8 @@
 		AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDataModel.m; sourceTree = "<group>"; };
 		AA289B1024EFC78C00FDF70C /* NoteDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailView.h; sourceTree = "<group>"; };
 		AA289B1124EFC78C00FDF70C /* NoteDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDetailView.m; sourceTree = "<group>"; };
+		AA289B1324F29F7600FDF70C /* ClassSchedulPresentingAnimater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassSchedulPresentingAnimater.h; sourceTree = "<group>"; };
+		AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassSchedulPresentingAnimater.m; sourceTree = "<group>"; };
 		AA33F23B24BDF0DE00ECB09E /* ScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		AA33F23C24BDF0DE00ECB09E /* ScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		AA3F82D824E8E03C00B65042 /* ClassDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassDetailView.h; sourceTree = "<group>"; };
@@ -805,6 +810,10 @@
 		AA40B40D24D2BB7C0037071A /* PeopleListTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeopleListTableViewCell.m; sourceTree = "<group>"; };
 		AA40B40F24D2C9710037071A /* ChoosePeopleListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleListView.h; sourceTree = "<group>"; };
 		AA40B41024D2C9710037071A /* ChoosePeopleListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleListView.m; sourceTree = "<group>"; };
+		AA49098424F3B6B4007CB3BC /* ClassSchedulInterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassSchedulInterController.h; sourceTree = "<group>"; };
+		AA49098524F3B6B4007CB3BC /* ClassSchedulInterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassSchedulInterController.m; sourceTree = "<group>"; };
+		AA49098724F3BF5A007CB3BC /* TransitionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionManager.h; sourceTree = "<group>"; };
+		AA49098824F3BF5A007CB3BC /* TransitionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionManager.m; sourceTree = "<group>"; };
 		AA4B0FB124D3E09B00221B5A /* TopBarScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopBarScrollView.h; sourceTree = "<group>"; };
 		AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopBarScrollView.m; sourceTree = "<group>"; };
 		AA57588724EE739F002F6F6D /* TimeBtnSelectedBackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeBtnSelectedBackView.h; sourceTree = "<group>"; };
@@ -2690,6 +2699,12 @@
 				DB34EA36239BD4540052B65E /* WYCClassBookView.xib */,
 				1A1691F62430DEE70076EDC7 /* ClassScheduleTabBarView.h */,
 				1A1691F72430DEE70076EDC7 /* ClassScheduleTabBarView.m */,
+				AA289B1324F29F7600FDF70C /* ClassSchedulPresentingAnimater.h */,
+				AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */,
+				AA49098424F3B6B4007CB3BC /* ClassSchedulInterController.h */,
+				AA49098524F3B6B4007CB3BC /* ClassSchedulInterController.m */,
+				AA49098724F3BF5A007CB3BC /* TransitionManager.h */,
+				AA49098824F3BF5A007CB3BC /* TransitionManager.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3849,6 +3864,7 @@
 				1A810BBC24E2CC0E00E79126 /* CQUPTMapPlaceItem.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
+				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
@@ -3859,6 +3875,7 @@
 				1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */,
 				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
+				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				D06AAEDF24AC00BB00EE0892 /* QAReviewView.m in Sources */,
@@ -3929,6 +3946,7 @@
 				EE75BFB923F5884100208039 /* NewsCell.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				1AE1374624DEE79F000F2C30 /* CQUPTMapViewController.m in Sources */,
+				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				EE75BF9D23F5884100208039 /* FinderView.m in Sources */,
 				1A810BB924E2A5C800E79126 /* CQUPTMapHotPlaceItem.m in Sources */,
@@ -4282,7 +4300,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -4304,7 +4322,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

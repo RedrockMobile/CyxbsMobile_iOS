@@ -12,8 +12,6 @@
 
 @interface LessonViewForAWeek()<LessonViewAddNoteDelegate>
 //@property (nonatomic,strong)UIScrollView *scrollView;
-/// 存放所有课控件的数组，lessonViewsArray[i][j]代表(星期i+1)的(第j+1节大课)
-@property(nonatomic,strong)NSMutableArray *lessonViewsArray;
 
 /// 用这个类来显示课详情，懒加载
 @property(nonatomic,strong)ClassDetailViewShower *detailViewShower;
@@ -37,7 +35,7 @@
     return self;
 }
 
-/// 把所有按钮的参数都配置好，并加入superView,外界调用，调用前确保self.week已赋值
+/// 把所有按钮的参数都配置好，并加入superView,外界调用，调用前确保self.week、self.schType已赋值
 - (void)setUpUI{
     for (int i=0; i<7; i++) {
         
@@ -46,7 +44,8 @@
             
             NSArray *lessonDateArray = self.weekDataArray[i][j];
             
-            LessonView *lessonView = [[LessonView alloc] init];;
+            LessonView *lessonView = [[LessonView alloc] init];
+            lessonView.schType = self.schType;
             if([dayLessonViewsArray lastObject].period>2){
                 lessonView.noteShowerDelegate = [dayLessonViewsArray lastObject];
             }
@@ -79,8 +78,10 @@
 - (void)addNoteWithEmptyLessonData:(NSDictionary *)emptyLessonData{
     DLReminderViewController *reminderVC = [[DLReminderViewController alloc] init];
     reminderVC.remind = emptyLessonData;
-    [reminderVC setModalPresentationStyle:(UIModalPresentationFullScreen)];
-    [self.viewController presentViewController:reminderVC animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:reminderVC];
+//    nav.modalPresentationStyle = UIModalPresentationFullScreen;
+    [nav setModalPresentationStyle:(UIModalPresentationCustom)];
+    [self.viewController presentViewController:nav animated:YES completion:nil];
 }
 
 -(ClassDetailViewShower *)detailViewShower{

@@ -13,6 +13,7 @@
 #import "DayBarView.h"
 #import "LeftBar.h"
 #import "LessonViewForAWeek.h"
+#import "TransitionManager.h"
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 
@@ -25,11 +26,13 @@
 @property (nonatomic, strong)TopBarScrollView *topBarView;
 //20几张LessonViewForAWeek课表组成的数组，lessonViewArray[0]是整学期
 @property (nonatomic, strong)NSMutableArray <LessonViewForAWeek*> *lessonViewArray;
+@property (nonatomic, strong)UIPanGestureRecognizer *PGR;
 @end
 
 @implementation WYCClassBookViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.lessonViewArray = [NSMutableArray array];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(ModelDataLoadSuccess)
@@ -73,12 +76,34 @@
    [self addTopBarView];
    
    [self addDragHintView];
-       
+    //如果是自己的课表，那就加上下拉dismiss手势
+    if(self.schedulType==ScheduleTypePersonal)[self addGesture];
+    //用贝塞尔曲线给左上和右上加圆角，避免没课约、查课表页的课表再底部出现圆角
+    [self addRoundRect];
 }
 
+//加上下拉dismiss手势
+- (void)addGesture{
+    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissSelf)];
+    self.PGR = PGR;
+    [self.view addGestureRecognizer:PGR];
+}
+//自己课表页下拉后调用
+- (void)dissMissSelf{
+    if(self.PGR.state==UIGestureRecognizerStateBegan){
+        TransitionManager *TM =  (TransitionManager*)self.transitioningDelegate;
+        TM.PGRToInitTransition = self.PGR;
+        [self dismissViewControllerAnimated:YES completion:^{
+            TM.PGRToInitTransition=nil;
+        }];
+    }
+}
 /// DLReminderSetTimeVC发送通知后调用
 /// @param noti 内部的object是备忘数据对应的NoteDataModel
 - (void)addNoteWithModel:(NSNotification*)noti{
+    //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
+    //这里也做一次判断：如果课表类型不是自己的，那么return
+    if(self.schedulType!=ScheduleTypePersonal)return;
     NoteDataModel *model = noti.object;
     [self.model addNoteDataWithModel:model];
     /// 若model.weeksArray==@[@4,@1,@18],代表第4、1、18周的备忘
@@ -97,6 +122,10 @@
 /// 接收要修改备忘的通知时调用，由NoteDetailView、DLReminderSetTimeVC发送通知，
 /// @param noti 通知
 - (void)deleteNoteWithModel:(NSNotification*)noti{
+    //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
+    //这里也做一次判断：如果课表类型不是自己的，那么return
+    if(self.schedulType!=ScheduleTypePersonal)return;
+    
     NoteDataModel *model = noti.object;
     [self.model deleteNoteDataWithModel:model];
     [self.scrollView removeAllSubviews];
@@ -111,9 +140,13 @@
 /// 接收要修改备忘的通知时调用，由NoteDetailView发送通知
 /// @param noti 通知
 - (void)editNoteWithModel:(NSNotification*)noti{
+    //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
+    //这里也做一次判断：如果课表类型不是自己的，那么return
+    if(self.schedulType!=ScheduleTypePersonal)return;
+    
     NoteDataModel *model = noti.object;
     DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
-    [vc setModalPresentationStyle:(UIModalPresentationFullScreen)];
+    [vc setModalPresentationStyle:(UIModalPresentationCustom)];
     [self presentViewController:vc animated:YES completion:nil];
     [vc initDataForEditNoteWithMode:model];
 }
@@ -124,6 +157,17 @@
         [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
             self.topBarView.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
     }
+}
+
+///用贝塞尔曲线给左上和右上加圆角，避免没课约、查课表页的课表再底部出现圆角
+- (void)addRoundRect{
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.view.bounds byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight) cornerRadii:CGSizeMake(16, 0)];
+    
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.view.layer.mask = maskLayer;
+    
 }
 //MARK:-懒加载
 
@@ -243,6 +287,7 @@
             LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.orderlySchedulArray[dateNum]];
             [self.lessonViewArray addObject:lessonViewForAWeek];
             lessonViewForAWeek.week = dateNum;
+            lessonViewForAWeek.schType = self.schedulType;
             [lessonViewForAWeek setUpUI];
             
             lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
@@ -269,14 +314,18 @@
         }
     }
     
-    for (NoteDataModel *model in self.model.noteDataModelArray) {
-        for (NSNumber *weekNum in model.weeksArray) {
-            if(weekNum.intValue==0){
-                for (LessonViewForAWeek *lvfw in self.lessonViewArray) {
-                    [lvfw addNoteLabelWithNoteDataModel:model];
+    //如果是自己的课表,那就添加备忘
+    if(self.schedulType==ScheduleTypePersonal){
+        for (NoteDataModel *model in self.model.noteDataModelArray) {
+            for (NSNumber *weekNum in model.weeksArray) {
+                //如果是整学期处的备忘，那么每张课表都要加一下备忘信息
+                if(weekNum.intValue==0){
+                    for (LessonViewForAWeek *lvfw in self.lessonViewArray) {
+                        [lvfw addNoteLabelWithNoteDataModel:model];
+                    }
+                }else{
+                    [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
                 }
-            }else{
-                [self.lessonViewArray[weekNum.intValue] addNoteLabelWithNoteDataModel:model];
             }
         }
     }
@@ -477,5 +526,6 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
         }
     }
 }
+
 @end
 

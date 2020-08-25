@@ -36,6 +36,7 @@
         [self getClassBookArrayFromNet:stu_Num];
     }
 }
+
 - (void)getClassBookArrayFromNet:(NSString *)stu_Num{
     self.classDataLoadFinish = NO;
     self.weekArray = [[NSMutableArray alloc]init];

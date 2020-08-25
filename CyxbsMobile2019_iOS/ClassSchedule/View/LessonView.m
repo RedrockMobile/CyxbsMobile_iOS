@@ -44,7 +44,7 @@
         UILabel *lable = [[UILabel alloc] init];
         _titleLable = lable;
         lable.font = [UIFont fontWithName:PingFangSCRegular size: 11];
-        lable.numberOfLines = 4;
+        lable.numberOfLines = 3;
         [self addSubview:lable];
         [lable setTextAlignment:(NSTextAlignmentCenter)];
         
@@ -190,9 +190,10 @@
 - (void)viewTouched{
     
     if(self.isEmptyLesson==YES){
-        
+        //如果是空课且不是在个人课表页，那就return
+        if(self.schType!=ScheduleTypePersonal)return;
         if(self.isNoted==NO){
-            
+            //空课且无备忘则加备忘
             [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
         }else{
             self.delegate.courseDataDictArray = @[];
@@ -200,7 +201,6 @@
             [self.delegate showDetail];
         }
     }else{
-        
         self.delegate.courseDataDictArray = self.courseDataDictArray;
         self.delegate.noteDataModelArray = self.noteDataModelArray;
         [self.delegate showDetail];
@@ -213,8 +213,6 @@
     self.tipView = view;
     
     UIColor *color;
-    
-    
     
     if(self.isEmptyLesson==YES){
         if (@available(iOS 11.0, *)) {

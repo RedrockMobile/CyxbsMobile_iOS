@@ -31,24 +31,16 @@
 }
 
 - (void)initBackButton{
-    UIImageView *backImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reminderBack"]];
-    backImage.backgroundColor = [UIColor clearColor];
-    [self addSubview: backImage];
-    [backImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).mas_offset(45*kRateY);
-        make.left.equalTo(self.mas_left).mas_offset(14*kRateX);
-        make.width.mas_equalTo(8*kRateX);
-        make.height.mas_equalTo(15*kRateY);
-    }];
-    
     self.backBtn = [[UIButton alloc]init];
-    self.backBtn.backgroundColor = [UIColor clearColor];
+    [self.backBtn setImage:[UIImage imageNamed:@"reminderBack"] forState:UIControlStateNormal];
+    self.backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+    
     [self addSubview: self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).mas_offset(45*kRateY);
         make.left.equalTo(self.mas_left).mas_offset(14*kRateX);
-        make.width.mas_equalTo(15*kRateX);
-        make.height.mas_equalTo(30*kRateY);
+        make.width.mas_equalTo(19);
+        make.height.mas_equalTo(19);
     }];
 }
 

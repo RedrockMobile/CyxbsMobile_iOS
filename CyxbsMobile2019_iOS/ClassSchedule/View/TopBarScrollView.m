@@ -76,6 +76,10 @@
     [btn addTarget:self action:@selector(leftArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [btn setTitle:@"<" forState:UIControlStateNormal];
 //    [btn setBackgroundImage:[UIImage imageNamed:@"左箭头"] forState:UIControlStateNormal];
+//    [btn setImage:[UIImage imageNamed:@"左箭头"] forState:UIControlStateNormal];
+//    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+    
+//    btn.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.1];
     if(@available(iOS 11.0, *)){
         [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
     }else{
@@ -87,7 +91,9 @@
         make.right.equalTo(self).offset(MAIN_SCREEN_W);
         make.top.equalTo(self);
         make.bottom.equalTo(self);
+//        make.centerY.equalTo(self);
         make.width.mas_equalTo(20);
+//        make.height.mas_equalTo(20);
     }];
     
     
