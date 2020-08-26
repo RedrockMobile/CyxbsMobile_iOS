@@ -8,7 +8,7 @@
 
 #import "QADetailView.h"
 #import "QADetailAnswerListView.h"
-@interface QADetailView()
+@interface QADetailView()<QADetailAnswerListViewDelegate>
 ///用来作为添加回答view时进行约束的参照物
 @property (nonatomic,strong)UIView *anchorView;
 ///下一次上拉刷新所要加载的参数page
@@ -398,6 +398,7 @@ contentLabel.text = content;
         //上拉到一定距离时并且当前没有在加载数据，那么就调用代理的方法加载数据。
         if(scrollView.contentOffset.y>scrollView.contentSize.height-MAIN_SCREEN_H&&self.isLoadingData==NO&&self.isNoMoreAnswer==NO){
                 self.isLoadingData=YES;
+                //代理是QADetailViewController
                 [self.delegate loadMoreAtPage:self.page];
         }
     }
@@ -417,6 +418,7 @@ contentLabel.text = content;
         CGFloat labelHeight = [self calculateLabelHeight:content width:labelWidth fontsize:fontsize];
         CGFloat answerViewHeight = labelHeight + 135;
         answerView = [[QADetailAnswerListView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, answerViewHeight)];
+        answerView.actionDelagate = self;
         [self.scrollView addSubview:answerView];
         [answerView setupView:dic isSelf:self.isSelf];
         self.scrollviewHeight += answerViewHeight;
@@ -432,7 +434,7 @@ contentLabel.text = content;
     self.anchorView = answerView;
 }
 
-
+//代理是QADetailViewController
 //调用代理的loadMoreAtPage方法加载更多后，由代理调用这个方法，入果请求成功isSuccessful==YES
 //这里answersData的结构和setupUIwithDic:里面的answersData结构一样
 - (void)loadMoreWithArray:(NSArray*) answersData ifSuccessful:(BOOL)isSuccessful{

@@ -312,8 +312,14 @@
 
 //点击某条回答后调用，answerId是某条回答的tag
 - (void)tapToViewComment:(NSNumber *)answerId{
+    
+    NSLog(@"%@",self.model.answersData);
+    
     for(int i = 0; i < self.model.answersData.count; i++){
         NSDictionary *dic = self.model.answersData[i];
+        
+        NSLog(@"%@,%@",answerId,[dic objectForKey:@"id"]);
+        
         if ([answerId integerValue] == [[dic objectForKey:@"id"] integerValue]) {
             QAReviewViewController *vc = [[QAReviewViewController alloc]initViewWithId:answerId answerData:dic];
             [self.navigationController pushViewController:vc animated:YES];
