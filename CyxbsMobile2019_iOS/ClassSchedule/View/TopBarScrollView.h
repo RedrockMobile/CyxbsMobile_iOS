@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/7/31.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//顶部周信息条，@“回到本周”、@“二周”、选择周的条的bar
 
 #import <UIKit/UIKit.h>
 
@@ -15,14 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 //index里面是0，代表点击整学期，是17代表点击十七周
 - (void)gotoWeekAtIndex:(NSNumber*)index;
 @end
-//@protocol TopBarScrollViewNowWeekBarDelegate <NSObject>
-//
-//- (void)
-//
-//@end
+
 @interface TopBarScrollView : UIScrollView
 
-//正确的下标，修改correctIndex后自动把该下标对应的view移动到中央
+//通过修改correctIndex自动完成以下操作：
+//1.该下标对应的周view移动到中央，如果是边缘的按钮那就不会移到中央
+//2.对应周的按钮字体变大，原先下标所在的按钮字体复原
+//3.让代理(课表)也把课表位置移动到现在的位置
+//4.判断是否显示“回到本周”按钮
+//改变nowWeekBar的周信息
 //改变correctIndex，KVO会根据correctIndex的改变完成一系列相关操作,0代表在整学期页
 @property (nonatomic,assign)NSNumber *correctIndex;
 @property (nonatomic,weak)id<TopBarScrollViewDelegate>weekChooseDelegate;

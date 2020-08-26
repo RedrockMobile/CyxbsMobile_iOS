@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/16.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//显示某课详情的弹窗view
 
 #import "ClassDetailView.h"
 @interface ClassDetailView()
@@ -45,11 +45,12 @@
     if(self){
         [self setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
         [self initLabel];
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
-        } else {
-            self.backgroundColor = [UIColor whiteColor];
-        }
+//        if (@available(iOS 11.0, *)) {
+//            self.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+//        } else {
+//            self.backgroundColor = [UIColor whiteColor];
+//        }
+        self.backgroundColor = UIColor.clearColor;
     }
     return self;
 }

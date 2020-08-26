@@ -148,12 +148,8 @@
     UIButton *btn = [[UIButton alloc] init];
     [self.view addSubview:btn];
     self.clearHistoryItemBtn = btn;
-    
-    [btn setBackgroundImage:[UIImage imageNamed:@"垃圾桶"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"草稿箱垃圾桶"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(clearHistoryItemBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [btn sizeToFit];
-    float scale = 0.0533*MAIN_SCREEN_W/btn.frame.size.width;
-    btn.transform = CGAffineTransformMakeScale(scale, scale);
     //拿到存放历史记录的缓存数组
     NSArray *array = [[NSUserDefaults standardUserDefaults] objectForKey:self.UserDefaultKey];
     //如果没有历史记录，那就让按钮失效
@@ -162,6 +158,8 @@
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.historyLabel);
         make.centerX.equalTo(self.view).offset(0.4307*MAIN_SCREEN_W);
+        make.width.height.mas_equalTo(0.0533*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.05931*MAIN_SCREEN_W);
     }];
 }
 

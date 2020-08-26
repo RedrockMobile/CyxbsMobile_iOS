@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FYHCycleLabel.h"
+#import "WYCClassBookViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ClassScheduleTabBarView : UIView<updateSchedulTabBarViewProtocol>
@@ -27,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 教室地点
 @property (nonatomic, weak) FYHCycleLabel *classroomLabel;
 
+//用户的课表
+@property (nonatomic, strong)WYCClassBookViewController *mySchedul;
 @end
 
 NS_ASSUME_NONNULL_END

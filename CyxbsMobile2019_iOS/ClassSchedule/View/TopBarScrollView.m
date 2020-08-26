@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/7/31.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//顶部周信息条，@“回到本周”、@“二周”、选择周的条的bar
 
 #import "TopBarScrollView.h"
 #import "DateModle.h"
@@ -44,10 +44,10 @@
         self.scrollEnabled = NO;
         [self addBackView];
         //初始化weekTextArray
-        self.weekTextArray = @[@"整学期",@"一周",@"二周",@"三周",@"四周",@"五周",@"六周",@"七周",@"八周",@"九周",@"十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
         /**
-        self.weekTextArray = @[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
+        self.weekTextArray = @[@"整学期",@"一周",@"二周",@"三周",@"四周",@"五周",@"六周",@"七周",@"八周",@"九周",@"十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
         */
+        self.weekTextArray = @[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
         
         //初始化weekChooseBtnArray
         self.weekChooseBtnArray = [NSMutableArray arrayWithCapacity:self.weekTextArray.count];
@@ -335,9 +335,13 @@
         self.weekLabel.text = newBtn.titleLabel.text;
         if(newIndex.intValue==self.dateModel.nowWeek.intValue){
             self.nowWeekLabel.text = @" (本周) ";
-            self.backCurrentWeekBtn.hidden = YES;
+            [UIView animateWithDuration:0.5 animations:^{
+                self.backCurrentWeekBtn.alpha = 0;
+            }];
         }else{
-            self.backCurrentWeekBtn.hidden = NO;
+            [UIView animateWithDuration:0.5 animations:^{
+                self.backCurrentWeekBtn.alpha = 1;
+            }];
             self.nowWeekLabel.text = @" ";
         }
         

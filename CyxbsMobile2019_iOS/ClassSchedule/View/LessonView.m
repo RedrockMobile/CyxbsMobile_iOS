@@ -76,18 +76,6 @@
 
 /// 更新显示的课表数据，调用前需确保已经对self.courseDataDict进行更新、且已经调用了setUpUI
 - (void)setUpData{
-    //是否在没课的地方显示备忘
-    NSString *ifShowMyNote = [[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"];
-    
-    //如果不是空课那就判断要不要加tipView，如果没关闭“在没课的地方显示备忘“那就判断要不要加tipView
-    if(self.isEmptyLesson==YES||ifShowMyNote==nil){
-        //根据备忘和课的总数判断是否显示提示view
-        if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
-            self.tipView.hidden = NO;
-        }else{
-            self.tipView.hidden = YES;
-        }
-    }
     if(self.isEmptyLesson==NO){
         //如果是有课，那么选取self.courseDataDictArray来设置这节课的位置、时长、view的frame
         self.courseDataDict = [self.courseDataDictArray firstObject];
@@ -96,10 +84,8 @@
     }else if(self.isNoted==YES){
         //如果是无课而有备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
         [self setFrameAndLessonLocationWithInfoDict:self.emptyClassDate];
-        if(ifShowMyNote!=nil){
-            NoteDataModel *model = [self.noteDataModelArray firstObject];
-            [self setNoteInfoWithNoteDataModel:model];
-        }
+        NoteDataModel *model = [self.noteDataModelArray firstObject];
+        [self setNoteInfoWithNoteDataModel:model];
     }else{
         //如果是无课而无备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
         [self setFrameAndLessonLocationWithInfoDict:self.emptyClassDate];
@@ -112,8 +98,19 @@
     //那么自己就不要响应点击事件什么的，所以使self.hidden = YES;
     if(self.noteShowerDelegate!=nil)self.hidden = YES;
     
-    if(self.noteDataModelArray.count+self.courseDataDictArray.count>1){
-        [self addTipView];
+    if(self.isEmptyLesson==YES&&self.isNoted==YES){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideNote) name:@"Mine_DisplayMemopadOFF" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNote) name:@"Mine_DisplayMemopadON" object:nil];
+    }
+    //根据备忘和课的总数判断是否显示提示view
+    if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
+        self.tipView.hidden = NO;
+    }else{
+        self.tipView.hidden = YES;
+    }
+    //是否在没课的地方显示备忘
+    if(self.isEmptyLesson==YES&&![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]){
+        [self hideNote];
     }
 }
 ///调用后会设置titleLabe的文字为课程名称，detailLabel的文字为教室地点，背景颜色，字体
@@ -171,7 +168,6 @@
     
     //加备忘、删备忘、修改备忘、第一次加载
     //      移除model+reload
-    self.backgroundColor = UIColor.clearColor;
     
     if (@available(iOS 11.0, *)) {
         self.titleLable.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
@@ -213,11 +209,16 @@
             //空课且无备忘则加备忘
             [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
         }else{
+            
             if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]){
                 self.delegate.courseDataDictArray = @[];
                 self.delegate.noteDataModelArray = self.noteDataModelArray;
                 [self.delegate showDetail];
+            }else{
+                
+                [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
             }
+            
         }
     }else{
         self.delegate.courseDataDictArray = self.courseDataDictArray;
@@ -226,54 +227,79 @@
     }
 }
 
-- (void)addTipView{
-    UIView *view = [[UIView alloc] init];
-    [self addSubview:view];
-    self.tipView = view;
-    
-    UIColor *color;
-    
-    if(self.isEmptyLesson==YES){
-        if (@available(iOS 11.0, *)) {
-            color = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
-        } else {
-            color = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
-        }
-    }else{
-        switch (self.hash_lesson) {
-            case 0:
-            case 1:
-                if(@available(iOS 11.0, *)){
-                    color = [UIColor colorNamed:@"ClassLabelColor1"];
-                }else{
-                    color = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
-                }
-                break;
-            case 2:
-            case 3:
-            if(@available(iOS 11.0, *)){
-                color = [UIColor colorNamed:@"ClassLabelColor2"];
-            }else{
-                color = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
+- (UIView *)tipView{
+    if(_tipView==nil){
+        UIView *view = [[UIView alloc] init];
+        [self addSubview:view];
+        _tipView = view;
+        
+        UIColor *color;
+        
+        if(self.isEmptyLesson==YES){
+            if (@available(iOS 11.0, *)) {
+                color = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
+            } else {
+                color = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
             }
-            break;
-            default:
+        }else{
+            switch (self.hash_lesson) {
+                case 0:
+                case 1:
+                    if(@available(iOS 11.0, *)){
+                        color = [UIColor colorNamed:@"ClassLabelColor1"];
+                    }else{
+                        color = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
+                    }
+                    break;
+                case 2:
+                case 3:
                 if(@available(iOS 11.0, *)){
-                    color = [UIColor colorNamed:@"ClassLabelColor3"];
+                    color = [UIColor colorNamed:@"ClassLabelColor2"];
                 }else{
-                    color = [UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
+                    color = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
                 }
                 break;
+                default:
+                    if(@available(iOS 11.0, *)){
+                        color = [UIColor colorNamed:@"ClassLabelColor3"];
+                    }else{
+                        color = [UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
+                    }
+                    break;
+            }
         }
+        view.backgroundColor = color;
+        view.layer.cornerRadius = 0.004*MAIN_SCREEN_W;
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(0.092*MAIN_SCREEN_W);
+            make.top.equalTo(self).offset(0.012*MAIN_SCREEN_W);
+            make.width.mas_equalTo(0.0213*MAIN_SCREEN_W);
+            make.height.mas_equalTo(0.008*MAIN_SCREEN_W);
+        }];
     }
-    view.backgroundColor = color;
-    view.layer.cornerRadius = 0.004*MAIN_SCREEN_W;
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.092*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.012*MAIN_SCREEN_W);
-        make.width.mas_equalTo(0.0213*MAIN_SCREEN_W);
-        make.height.mas_equalTo(0.008*MAIN_SCREEN_W);
-    }];
+    return _tipView;
+}
+
+- (void)showNote{
+    
+    
+    self.titleLable.hidden =
+    self.detailLable.hidden = NO;
+    
+    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"条纹"]];
+    
+    if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
+        self.tipView.hidden = NO;
+    }
+}
+
+- (void)hideNote{
+    
+    self.tipView.hidden =
+    self.titleLable.hidden =
+    self.detailLable.hidden = YES;
+    
+    self.backgroundColor = [UIColor clearColor];
 }
 @end
 

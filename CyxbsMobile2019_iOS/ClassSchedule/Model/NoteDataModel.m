@@ -18,6 +18,7 @@
         self.notiBeforeTime = noteDataDict[@"notiBeforeTime"];
         self.weeksStrArray = noteDataDict[@"weeksStrArray"];
         self.timeStrDictArray = noteDataDict[@"timeStrDictArray"];
+        self.weekNameStr = noteDataDict[@"weekNameStr"];
         
         self.weeksArray = [self transferWSAWithArray:self.weeksStrArray];
         

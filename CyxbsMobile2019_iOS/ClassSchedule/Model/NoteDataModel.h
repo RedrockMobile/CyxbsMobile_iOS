@@ -49,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,copy)NSString *noteID;
 - (NSString*)getNoteID;
+
+@property(nonatomic,copy)NSString *weekNameStr;
 @end
 
 NS_ASSUME_NONNULL_END

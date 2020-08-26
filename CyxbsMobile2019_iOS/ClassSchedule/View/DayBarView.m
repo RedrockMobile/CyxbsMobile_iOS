@@ -4,13 +4,9 @@
 //
 //  Created by Stove on 2020/8/16.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//显示日期信息的view
 
 #import "DayBarView.h"
-//#define DAY_BAR_ITEM_H (MAIN_SCREEN_H*0.0616)
-//#define DAY_BAR_ITEM_W (MAIN_SCREEN_W*0.1227)
-//#define MONTH_ITEM_W (MAIN_SCREEN_W*0.088)
-//#define DAYBARVIEW_DISTANCE (MAIN_SCREEN_W*0.00885)
 @interface DayBarView ()
 @property (nonatomic,strong)NSMutableArray *weekLabelViewArray;
 @property (nonatomic,strong)UIView *monthView;
