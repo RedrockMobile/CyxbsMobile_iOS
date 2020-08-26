@@ -163,7 +163,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.top.equalTo(self.eleView.mas_bottom).offset(-15);
         make.left.right.equalTo(self.view);
         make.height.equalTo(@152);
-        make.bottom.equalTo(self.contentView).offset(-20);
+        make.bottom.equalTo(self.contentView);
     }];
 }
 - (void)presentToLogin {

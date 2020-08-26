@@ -94,12 +94,12 @@
         
         if (i == 0) {
             //创建滑块
-            _sliderWidth = _titleBtnWidth * 0.3;
-            _sliderHeight = _titleHeight * 0.08;
+            _sliderWidth = _titleBtnWidth * 0.6;
+            _sliderHeight = _titleHeight * 0.1;
             
             _sliderLinePart1 = [[UIView alloc] initWithFrame:CGRectMake((_titleBtnWidth - _sliderWidth) / 2.0 , _titleHeight - _sliderHeight, _sliderWidth, _sliderHeight)];
             _sliderLinePart1.layer.cornerRadius = 2.0;
-            UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"sliderLinePart"]];
+            UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"分页滑条"]];
             [imgView setFrame:CGRectMake(0, 0, _sliderWidth, _sliderHeight)];
             [_sliderLinePart1 addSubview:imgView];
             [_titleView addSubview:_sliderLinePart1];
