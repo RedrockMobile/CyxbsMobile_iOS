@@ -86,7 +86,7 @@
 //添加删除按钮
 - (void)addDeleteBtn{
     UIButton *btn = [[UIButton alloc] init];
-    [btn setBackgroundImage:[UIImage imageNamed:@"垃圾桶"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@"草稿箱垃圾桶"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(deleteBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
     [self.contentView addSubview:btn];

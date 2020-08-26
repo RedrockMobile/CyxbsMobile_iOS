@@ -282,11 +282,15 @@
 
 - (void)showNote{
     
-    self.tipView.hidden =
+    
     self.titleLable.hidden =
     self.detailLable.hidden = NO;
     
     self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"条纹"]];
+    
+    if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
+        self.tipView.hidden = NO;
+    }
 }
 
 - (void)hideNote{

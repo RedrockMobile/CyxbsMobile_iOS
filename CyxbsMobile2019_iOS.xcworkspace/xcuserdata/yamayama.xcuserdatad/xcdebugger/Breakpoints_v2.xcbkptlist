@@ -1379,8 +1379,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/LessonView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "-hideNote"
             landmarkType = "7">
          </BreakpointContent>
