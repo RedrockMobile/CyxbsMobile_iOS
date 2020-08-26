@@ -73,9 +73,9 @@
     //用贝塞尔曲线给左上和右上加圆角，避免没课约、查课表页的课表再底部出现圆角
     [self addRoundRect];
     
-//    self.view.layer.shadowOffset = CGSizeMake(0, 15);
+    self.view.layer.shadowOffset = CGSizeMake(0, -15);
     
-//    self.view.layer.shadowOpacity = 0.5;
+    self.view.layer.shadowOpacity = 0.5;
 }
 
 //加上下拉dismiss手势
@@ -185,7 +185,7 @@
 //MARK:-
 //添加周选择条、显示本周的条
 - (void)addTopBarView{
-    TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_W*0.07867-15, MAIN_SCREEN_W, 30)];
+    TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_W*0.07867-15, MAIN_SCREEN_W, 40)];
     self.topBarView = topBarView;
     [self.view addSubview:topBarView];
     topBarView.weekChooseDelegate = self;
@@ -266,13 +266,13 @@
             dayBar.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
             
             
-            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1787, MAIN_SCREEN_W, MAIN_SCREEN_W*1.4)];
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1787, MAIN_SCREEN_W, MAIN_SCREEN_H*0.8247)];
             [self.scrollView addSubview:scrollView];
             scrollView.backgroundColor = [UIColor clearColor];
             scrollView.showsVerticalScrollIndicator = NO;
             [scrollView addSubview:lessonViewForAWeek];
             [scrollView addSubview:leftBar];
-            [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height+30)];
+            [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height*1.1)];
         }
     }
     
@@ -396,7 +396,7 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
     @"y":年,
     @"M":月,
     @"d":日,
-    @"k":小时（24小时制）,
+    @"k":小时（24小时制）,[1, 24]
     @"m:分"
     @"e":周几，2～周一，1~周日，4～周3
     @"c":周几，2～周一，1~周日，4～周3
@@ -424,6 +424,8 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
 //由当前的时间信息，推出下一节课在什么时候的方法，这里的下一节课可能是无课
 - (NSDictionary*)transformDataWithDict:(NSDictionary*)dataDict{
     int week = [dataDict[@"e"] intValue],hour = [dataDict[@"k"] intValue],min = [dataDict[@"m"] intValue];
+    //把时间范围转化为[0, 23]
+    if(hour==24)hour=0; else hour-=1;
     int totalMin = hour*60+min;
     int a1[] = {6,0,1,2,3,4,5};
     int isNextWeek=0;//用来表示下一节课是否在下周是
