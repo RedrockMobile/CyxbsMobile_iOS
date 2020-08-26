@@ -63,7 +63,12 @@
 //- (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum;
 //- (void)deleteRemind:(NSString *)stuNum idNum:(NSString *)idNum remindId:(NSNumber *)remindId;
 
-
+/// 查老师课表要用的方法
+/// @param parameters @{
+///    @"teaName":@"陈希明",
+///    @"tea":@"020101"
+/// };
+- (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters;
 
 -(void)parsingClassBookData:(NSArray*)array;
 
