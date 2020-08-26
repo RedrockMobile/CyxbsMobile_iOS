@@ -134,7 +134,6 @@
     textField.font=font;
     textField.textColor=[UIColor grayColor];
     textField.borderStyle=UITextBorderStyleNone;
-    [textField setValue:[UIColor grayColor] forKeyPath:@"_placeholderLabel.textColor"];
     textField.placeholder=placeholder;
     return textField;
 }
