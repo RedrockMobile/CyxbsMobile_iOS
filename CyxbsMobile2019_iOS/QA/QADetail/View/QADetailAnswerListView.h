@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol QADetailAnswerListViewDelegate <NSObject>
 
+- (void)tapToViewBigAnswerImage:(UIButton *)sender;
+//点赞
+- (void)tapPraiseBtn:(UIButton *)sender;
+//采纳
+- (void)tapAdoptBtn:(UIButton *)sender;
+//点击某条回答后调用，answerId是某条回答的tag
+- (void)tapToViewComment:(UIView *)sender;
+@end
 @interface QADetailAnswerListView : UIView
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *adoptBtn;
@@ -26,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *tapToViewComment;
 @property(strong,nonatomic)NSNumber *answerId;
 - (void)setupView:(NSDictionary *)dic isSelf:(BOOL)isSelf;
-
+@property(nonatomic,weak)id<QADetailAnswerListViewDelegate>actionDelagate;
 @end
 
 NS_ASSUME_NONNULL_END

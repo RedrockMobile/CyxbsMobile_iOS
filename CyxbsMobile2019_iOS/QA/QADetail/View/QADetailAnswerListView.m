@@ -76,13 +76,13 @@
     }else{
         self.tapToViewImages.hidden = YES;
     }
-    [self.praiseBtn addTarget:self.superview action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.adoptBtn addTarget:self.superview action:@selector(tapAdoptBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [self.tapToViewImages addTarget:self.superview action:@selector(tapToViewBigAnswerImage:) forControlEvents:UIControlEventTouchUpInside];
+    [self.praiseBtn addTarget:self.actionDelagate action:@selector(tapPraiseBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.adoptBtn addTarget:self.actionDelagate action:@selector(tapAdoptBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tapToViewImages addTarget:self.actionDelagate action:@selector(tapToViewBigAnswerImage:) forControlEvents:UIControlEventTouchUpInside];
     
     self.tapToViewComment.tag = [self.answerId integerValue];
     //点击进入评论界面
-    [self.tapToViewComment addTarget:self.superview action:@selector(tapToViewComment:) forControlEvents:UIControlEventTouchUpInside];
+    [self.tapToViewComment addTarget:self.actionDelagate action:@selector(tapToViewComment:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.commentBtn addTarget:self.superview action:@selector(tapCommentBtn:) forControlEvents:UIControlEventTouchUpInside];
 //
     
