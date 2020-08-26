@@ -16,7 +16,7 @@
 #import "CheckInViewController.h"
 #import "WeDateViewController.h"//没课约
 #import "CQUPTMapViewController.h"
-#import "InstallRoomViewController.h"
+//#import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
 #import "NewsViewController.h"
 #import "ClassScheduleTabBarView.h"
@@ -569,6 +569,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
     CheckInViewController * vc = [[CheckInViewController alloc]init];
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController presentViewController:vc animated:true completion:^{
         

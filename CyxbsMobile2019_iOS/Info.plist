@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -26,19 +26,19 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>邮问上传图片，修改头像等可能需要使用相机，需要您允许</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>校车定位功能需要知道您的位置，并需要您允许。</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
+	<string>校车定位功能需要知道您的位置，并需要您允许。</string>
 	<key>NSLocationUsageDescription</key>
-	<string></string>
+	<string>校车定位功能需要知道您的位置，并需要您允许。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>校车定位功能需要知道您的位置，并需要您允许。</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string></string>
+	<string>使用麦克风时需要您允许。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>邮问上传图片，修改头像等可能需要打开相册，需要您允许。</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Impact.ttf</string>
