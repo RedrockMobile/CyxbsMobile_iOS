@@ -89,7 +89,7 @@
     [self addSubview: self.textFiled];
     [self.textFiled mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLab.mas_bottom).mas_offset(15*kRateY);
-        make.left.equalTo(self.mas_left).mas_offset(16*kRateX);
+        make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W*0.0534);
         make.width.mas_equalTo(343*kRateX);
         make.height.mas_equalTo(55*kRateY);
     }];

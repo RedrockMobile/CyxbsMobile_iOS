@@ -52,6 +52,8 @@
 
 @property (nonatomic,strong)NoteDataModel *modelNeedBeDelete;
 
+/// 显示点击的是哪一周的空课，点击这个按钮后会弹出选择周按钮
+@property (nonatomic,strong)UIButton *nowWeekBtn;
 @end
 
 @implementation DLReminderSetTimeVC
@@ -70,6 +72,7 @@
     
     UIButton *weekChooseBtn =  [self getBtnWithTitileStr:@"备忘周"];
     [self.reminderView addSubview:weekChooseBtn];
+    self.nowWeekBtn = weekChooseBtn;
     [weekChooseBtn addTarget:self action:@selector(showWeekselectView) forControlEvents:UIControlEventTouchUpInside];
 
     [weekChooseBtn mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -129,14 +132,14 @@
             @"notiBeforeTime":self.notiStr,
             @"noteTitleStr":self.noticeString,
             @"noteDetailStr":self.detailString,
+            @"weekNameStr":self.nowWeekBtn.titleLabel.text,
         }];
-        
         if(self.navigationController!=nil){
             //如果nav不是空，那么就是点击没课的空白处后进行添加备忘的，那么：
         [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }else{
             //否则就是通过点击备忘详情弹窗的修改按钮后来到这个控制器的，那么：
-            [self.presentingViewController dismissViewControllerAnimated:self completion:nil];
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }
         
         if(self.modelNeedBeDelete!=nil){
@@ -150,7 +153,7 @@
     }
 }
 
-/// 添加弹出选择周view的按钮，显示@“备忘周”3字
+/// 显示@“备忘周”3字、@“不提醒“的那两个按钮从次获得
 - (UIButton*)getBtnWithTitileStr:(NSString*)titleStr{
     UIButton *weekChooseBtn = [[UIButton alloc] init];
     
@@ -322,6 +325,8 @@
     //中央的textfield
     self.reminderView.textFiled.text = model.noteDetailStr;
     
+    [self.nowWeekBtn setTitle:model.weekNameStr forState:UIControlStateNormal];
+    
     //中央的textfield上面的标题
     self.reminderView.titleLab.text = model.noteTitleStr;
     
@@ -360,6 +365,8 @@
     
     //记录已选择的备忘周的数组@[@"第一周",@"第三周"...]
     self.weekSelectedArray = @[transfer[[dict[@"week"] intValue]]];
+    //把选择周的按钮的字变成那个空课的所在周
+    [self.nowWeekBtn setTitle:transfer[[dict[@"week"] intValue]] forState:UIControlStateNormal];
     
     NSArray *WT = @[@"周一",@"周二",@"周三",@"周四",@"周五",@"周六",@"周日"];
     NSArray *LT = @[@"一二节课",@"三四节课",@"五六节课",@"七八节课",@"九十节课",@"十一十二节课"];

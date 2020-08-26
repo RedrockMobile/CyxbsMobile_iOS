@@ -17,6 +17,8 @@
 @property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, assign)BOOL isPresenting;
 @property (nonatomic, strong)UINavigationController *nav;
+
+/// 上拉弹出课表的手势
 @property (nonatomic,strong)UIPanGestureRecognizer *PGR;
 @property (nonatomic,strong)TransitionManager *TM;
 //用户的课表
@@ -134,36 +136,36 @@
     }];
     
     [self.classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self).offset(23);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.0774);
         make.centerY.equalTo(self);
         make.width.mas_equalTo(0.3*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(0.08*MAIN_SCREEN_W);
     }];
     
     [self.clockImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classLabel.mas_trailing).offset(10);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4054);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
     
     [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.clockImageView.mas_trailing).offset(3);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4554);
         make.centerY.equalTo(self.classLabel);
-        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(0.1867*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.04533*MAIN_SCREEN_W);
     }];
     
     [self.locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classTimeLabel.mas_trailing).offset(10);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.6694);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
     
     [self.classroomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.locationImageView.mas_trailing).offset(3);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.7014);
         make.centerY.equalTo(self.classLabel);
-        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(0.224*MAIN_SCREEN_W);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.04533);
     }];
 }
 
@@ -181,11 +183,19 @@
     }
 }
 
-/// 添加一个上拉后显示弹窗的手势
+/// 添加一个上拉后显示课表的手势和点击后显示课表的手势
 - (void)addGesture{
+    //上拉后显示课表
     UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(presentMySchedul)];
     self.PGR = PGR;
     [self addGestureRecognizer:PGR];
+    
+    //点击后显示课表
+    UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+        self.mySchedul.fakeBar.alpha = 0;
+        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
+    }];
+    [self addGestureRecognizer:TGR];
 }
 
 - (void)presentMySchedul{
@@ -219,7 +229,6 @@
     
     if (self.mySchedul.stuNum) {
         [model getPersonalClassBookArrayFromNet:self.mySchedul.stuNum];
-//        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
     }
     
     self.mySchedul.transitioningDelegate = self.TM;

@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/21.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//显示备忘详情的弹窗view
 
 #import <UIKit/UIKit.h>
 #import "NoteDataModel.h"
