@@ -243,6 +243,8 @@
 
 #define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
+
+#define TEAkebiaoAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
 /// 空教室接口
 #define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
 

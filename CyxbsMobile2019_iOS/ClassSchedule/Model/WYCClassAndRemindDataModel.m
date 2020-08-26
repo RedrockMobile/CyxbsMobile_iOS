@@ -113,6 +113,34 @@
         [self getClassBookArray];
     }];
 }
+
+- (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
+    self.classDataLoadFinish = NO;
+    self.weekArray = [[NSMutableArray alloc]init];
+    
+    [[HttpClient defaultClient] requestWithPath:TEAkebiaoAPI method:HttpRequestPost parameters:parameters prepareExecute:nil progress:^(NSProgress *progress) {
+        
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        
+        NSArray *lessonArray = [responseObject objectForKey:@"data"];
+        
+        // 共享数据
+        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
+        [shared setObject:responseObject forKey:@"lessonResponse"];
+        [shared synchronize];
+        
+        
+        [self.weekArray addObject:lessonArray];
+        [self parsingClassBookData:lessonArray];
+        [self parseClassBookData:lessonArray];
+        [self.delegate ModelDataLoadSuccess:self];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self.delegate ModelDataLoadFailure];
+    }];
+    
+}
 ///解析课表数据
 -(void)parsingClassBookData:(NSArray*)array{
 //    int i;
@@ -209,44 +237,42 @@
     }
     return _noteDataModelArray;
 }
-
+//没课约查多人课表用这个方法
 - (void)getClassBookArrayFromNetWithInfoDict:(NSArray*)infoDictArray{
-    
-        HttpClient *client = [HttpClient defaultClient];
-        __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
 
-        //用GCD实现多人的课表的请求,把请求到的课表数据都放入lessonOfAllPeople
-        dispatch_group_t group = dispatch_group_create();
-        for (NSDictionary *infoDict in infoDictArray) {
-            
-            dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-                [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
+    HttpClient *client = [HttpClient defaultClient];
+    __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
 
-                } progress:^(NSProgress *progress) {
+    //用GCD实现多人的课表的请求,把请求到的课表数据都放入lessonOfAllPeople
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t que = dispatch_queue_create("weData1", DISPATCH_QUEUE_CONCURRENT);
+    for (NSDictionary *infoDict in infoDictArray) {
+        dispatch_group_async(group, que, ^{
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
 
-                } success:^(NSURLSessionDataTask *task, id responseObject) {
-                    //课表数据全部放入lessonOfAllPeople
-                    if([responseObject objectForKey:@"data"]==nil){
-                        
-                    }
-                    [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
-                    
-                    dispatch_semaphore_signal(semaphore);
-                } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                    
-                    dispatch_semaphore_signal(semaphore);
-                }];
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-         });
-        }
-        
-        //完成group的任务后执行block里的内容
-        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self parseClassBookData:lessonOfAllPeople];
-            [self.delegate ModelDataLoadSuccess:self];
-         });
+            } progress:^(NSProgress *progress) {
+
+            } success:^(NSURLSessionDataTask *task, id responseObject) {
+                //课表数据全部放入lessonOfAllPeople
+                [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
+                
+                dispatch_semaphore_signal(semaphore);
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                
+                dispatch_semaphore_signal(semaphore);
+            }];
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+     });
+    }
+
+    //完成group的任务后执行block里的内容
+    dispatch_group_notify(group, que, ^{
+        [self parseClassBookData:lessonOfAllPeople];
+        [self.delegate ModelDataLoadSuccess:self];
+     });
 }
+
 @end
 
 

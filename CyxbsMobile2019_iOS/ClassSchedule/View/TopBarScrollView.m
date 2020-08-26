@@ -60,8 +60,9 @@
         
         //添加当前周信息的条（回到本周按钮就在这个条上面）,条在self的右侧
         [self addNowWeekBar];
+        //让TopBar最开始显示的是nowWeekBar
+        self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
     }
-    
     return self;
 }
 - (DateModle *)dateModel{
@@ -356,13 +357,10 @@
     //调用代理方法，告诉代理点击了哪一周的按钮，0代表整学期，17代表第十七周
     [self.weekChooseDelegate gotoWeekAtIndex:self.correctIndex];
 }
-//解决第一次加载课表时TopBar显示的不是nowWeekBar的问题
+
 - (void)layoutSubviews{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
-    });
     UIView *lastBtn = [self.weekChooseBtnArray lastObject];
+    //根据最后一个周选择按钮调整weekChooseBar的滚动范围
     [self.weekChooseBar setContentSize:CGSizeMake(lastBtn.frame.origin.x+lastBtn.frame.size.width, 0)];
 }
 @end
