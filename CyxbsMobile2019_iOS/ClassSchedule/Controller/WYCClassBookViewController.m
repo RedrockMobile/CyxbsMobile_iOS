@@ -20,12 +20,16 @@
 @interface WYCClassBookViewController ()<UIScrollViewDelegate,TopBarScrollViewDelegate>
 /**课表顶部的小拖拽条*/
 @property (nonatomic, weak) UIView *dragHintView;
+//当前显示的课表对应的下标
 @property (nonatomic, assign) NSNumber *index;
+//承载20几张课表的view
 @property (nonatomic, strong)  UIScrollView *scrollView;
+//日期数据模型
 @property (nonatomic, strong) DateModle *dateModel;
 
 //20几张LessonViewForAWeek课表组成的数组，lessonViewArray[0]是整学期
 @property (nonatomic, strong)NSMutableArray <LessonViewForAWeek*> *lessonViewArray;
+//拖动手势，下拉弹回课表
 @property (nonatomic, strong)UIPanGestureRecognizer *PGR;
 @end
 
@@ -54,7 +58,7 @@
         [self addFakeBar];
     }
     
-    [self initModel];
+    [self showHud];
     
     self.index = self.dateModel.nowWeek;
     
@@ -217,7 +221,7 @@
 
 -(void)reloadView{
     [self.view removeAllSubviews];
-    [self initModel];
+    [self showHud];
     //初始化self.scrollView，并把它加到self.view上面
     [self initScrollView];
     [self addTopBarView];
@@ -225,7 +229,7 @@
 }
 
 //登录成功、viewDidLoad、reloadView，时会调用这个方法
-- (void)initModel{
+- (void)showHud{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
@@ -254,7 +258,7 @@
             
             lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
             
-            
+            //显示日期信息的条
             DayBarView *dayBar;
             if(dateNum==0){
                 dayBar = [[DayBarView alloc] initForWholeTerm];
@@ -266,6 +270,7 @@
             dayBar.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
             
             
+            //承载课表和左侧第几节课信息的条
             UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1787, MAIN_SCREEN_W, MAIN_SCREEN_H*0.8247)];
             [self.scrollView addSubview:scrollView];
             scrollView.backgroundColor = [UIColor clearColor];
@@ -377,8 +382,8 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
         NSArray *time = @[@"8:00 - 9:40",@"10:15 - 11:55",@"14:00 - 15:40",@"16:15 - 18:55",@"19:00 - 20:40",@"21:15 - 22:55"];
         NSDictionary *lessondata = [lesson firstObject];
         dataDict =  @{
-                @"classroomLabel":time[hash_lesson],
-                @"classTimeLabel":lessondata[@"classroom"],
+                @"classroomLabel":lessondata[@"classroom"],
+                @"classTimeLabel":time[hash_lesson],
                 @"classLabel":lessondata[@"course"],
                 @"is":@"1",
         };

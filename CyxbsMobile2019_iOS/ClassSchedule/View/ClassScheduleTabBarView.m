@@ -7,7 +7,7 @@
 //
 
 #import "ClassScheduleTabBarView.h"
-#import "WYCClassBookViewController.h"
+//#import "WYCClassBookViewController.h"
 #import "TransitionManager.h"
 #import "FakeTabBarView.h"
 @interface ClassScheduleTabBarView ()<WYCClassAndRemindDataModelDelegate>
@@ -17,10 +17,10 @@
 @property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, assign)BOOL isPresenting;
 @property (nonatomic, strong)UINavigationController *nav;
+
+/// 上拉弹出课表的手势
 @property (nonatomic,strong)UIPanGestureRecognizer *PGR;
 @property (nonatomic,strong)TransitionManager *TM;
-//用户的课表
-@property (nonatomic, strong)WYCClassBookViewController *mySchedul;
 @end
 
 @implementation ClassScheduleTabBarView
@@ -90,7 +90,7 @@
         self.classroomLabel = classroomLabel;
         
         
-        //统一改一下label字色
+        //统一改一下label字色和字
         if (@available(iOS 11.0, *)) {
             classTimeLabel.cycleLabel.textColor =
             classroomLabel.cycleLabel.textColor =
@@ -102,7 +102,9 @@
             classLabel.cycleLabel.textColor =
             [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
         }
-        
+        self.classroomLabel.labelText =
+        self.classTimeLabel.labelText =
+        self.classLabel.labelText = @"加载数据中..";
         
         //加上登录成功通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)
@@ -134,36 +136,36 @@
     }];
     
     [self.classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self).offset(23);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.0774);
         make.centerY.equalTo(self);
         make.width.mas_equalTo(0.3*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(0.08*MAIN_SCREEN_W);
     }];
     
     [self.clockImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classLabel.mas_trailing).offset(10);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4054);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
     
     [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.clockImageView.mas_trailing).offset(3);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4554);
         make.centerY.equalTo(self.classLabel);
-        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(0.1867*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.04533*MAIN_SCREEN_W);
     }];
     
     [self.locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classTimeLabel.mas_trailing).offset(10);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.6694);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
     
     [self.classroomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.locationImageView.mas_trailing).offset(3);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.7014);
         make.centerY.equalTo(self.classLabel);
-        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(0.224*MAIN_SCREEN_W);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.04533);
     }];
 }
 
@@ -175,17 +177,25 @@
         self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
         self.classLabel.labelText = paramDict[@"classLabel"];
     }else{//无下一节课
-        self.classroomLabel.labelText = @"无课了";
-        self.classTimeLabel.labelText = @"无课了";
+        self.classroomLabel.labelText =
+        self.classTimeLabel.labelText =
         self.classLabel.labelText = @"无课了";
     }
 }
 
-/// 添加一个上拉后显示弹窗的手势
+/// 添加一个上拉后显示课表的手势和点击后显示课表的手势
 - (void)addGesture{
+    //上拉后显示课表
     UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(presentMySchedul)];
     self.PGR = PGR;
     [self addGestureRecognizer:PGR];
+    
+    //点击后显示课表
+    UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+        self.mySchedul.fakeBar.alpha = 0;
+        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
+    }];
+    [self addGestureRecognizer:TGR];
 }
 
 - (void)presentMySchedul{
@@ -198,7 +208,7 @@
 }
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
-    
+    if(self.mySchedul!=nil)return;
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
     
     self.mySchedul.idNum = [UserDefaultTool getIdNum];
@@ -211,7 +221,7 @@
     
     self.mySchedul.model = model;
     
-    model.delegate = self;
+    model.delegate = self.mySchedul;
     
     model.writeToFile = YES;
     
@@ -219,7 +229,6 @@
     
     if (self.mySchedul.stuNum) {
         [model getPersonalClassBookArrayFromNet:self.mySchedul.stuNum];
-//        [model getClassBookArrayFromNet:self.mySchedul.stuNum];
     }
     
     self.mySchedul.transitioningDelegate = self.TM;
@@ -232,21 +241,14 @@
     
     [self addGesture];
 }
-- (void)ModelDataLoadFailure{
-    [self.mySchedul ModelDataLoadFailure];
-}
-
-- (void)ModelDataLoadSuccess:(id)model{
-    [self.mySchedul ModelDataLoadSuccess:model];
-    //如果非空，那么就是选择了启动app时优先显示课表
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
-        
-        self.mySchedul.transitioningDelegate = self.TM;
-        [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
-        self.mySchedul.fakeBar.alpha = 0;
-        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
-        
-    }
-}
+//- (void)ModelDataLoadFailure{
+//    [self.mySchedul ModelDataLoadFailure];
+//}
+//
+//- (void)ModelDataLoadSuccess:(id)model{
+//    [self.mySchedul ModelDataLoadSuccess:model];
+//    //如果非空，那么就是选择了启动app时优先显示课表
+//    
+//}
 
 @end

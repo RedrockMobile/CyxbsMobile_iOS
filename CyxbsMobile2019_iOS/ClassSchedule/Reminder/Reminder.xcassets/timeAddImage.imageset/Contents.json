@@ -1,17 +1,48 @@
 {
   "images" : [
     {
-      "filename" : "组 199.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "组 199@2x.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "备忘加号@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "组 199@3x.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "同学课表加号@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "备忘加号@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "同学课表加号@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

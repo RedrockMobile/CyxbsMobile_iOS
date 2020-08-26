@@ -112,11 +112,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
     if(((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView==nil){
-    ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
-    classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
-    [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
-    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
-    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
+        ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
+        classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
+        [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
+        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
+        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
+            
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
+            [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+            classTabBarView.mySchedul.fakeBar.alpha = 0;
+            [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
+        }
+        
     }
 }
 
