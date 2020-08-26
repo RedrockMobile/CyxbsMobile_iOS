@@ -10,7 +10,7 @@
 #import "VolunteeringEventItem.h"
 
 // 志愿者信息
-@interface VolunteerItem : NSObject
+@interface VolunteerItem : NSObject <NSCoding>
 
 @property (nonatomic, copy)NSString *uid;
 @property (nonatomic, copy)NSString *sid;
@@ -20,5 +20,13 @@
 
 
 - (void)getVolunteerInfoWithUserName: (NSString *)userName andPassWord: (NSString *)passWord finishBlock:(void (^)(VolunteerItem *volunteer))finish;
+
+
+/// 获取缓存路径
++ (NSString *)archivePath;
+
+/// 归档对象
+- (void)archiveItem;
+
 
 @end

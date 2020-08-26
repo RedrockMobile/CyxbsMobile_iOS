@@ -59,7 +59,7 @@
 #import <UMAnalytics/MobClick.h>
 #import "SDMask.h"
 #import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
-//#import "AESCipher.h"         // 加密用的，暂时没什么用，有用的时候再打开注释吧
+#import "AESCipher.h"         // AES加密算法
 
 
 #pragma Group共享
@@ -266,6 +266,10 @@
 
 /// banner
 #define BANNERVIEWAPI @"http://api-234.redrock.team/magipoke-text/banner/get"
+
+/// 志愿查询
+#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
+#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer/select"
 
 
 /*----------------------------------------------------------------

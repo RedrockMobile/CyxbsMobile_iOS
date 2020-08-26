@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 // 志愿信息
-@interface VolunteeringEventItem : NSObject
+@interface VolunteeringEventItem : NSObject <NSCoding>
 
 @property (nonatomic, copy)NSString *hour;
 @property (nonatomic, copy)NSString *creatTime;
