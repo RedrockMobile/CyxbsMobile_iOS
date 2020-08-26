@@ -169,19 +169,13 @@
             
             [self.answersData addObjectsFromArray:[responseObject objectForKey:@"data"]];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreSuccess" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreSuccess" object:[responseObject objectForKey:@"data"]];
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreError" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreError" object:[responseObject objectForKey:@"data"]];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreFailure" object:nil];
     }];
-}
-- (NSMutableArray *)answersData{
-    if(_answersData==nil){
-        _answersData = [NSMutableArray array];
-    }
-    return _answersData;
 }
 @end

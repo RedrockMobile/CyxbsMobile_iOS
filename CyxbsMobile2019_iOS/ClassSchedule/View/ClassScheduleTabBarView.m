@@ -61,9 +61,9 @@
         
         FYHCycleLabel *classLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.3*MAIN_SCREEN_W, 50)];
         classLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
-//        classLabel.cycleLabel.textColor = [UIColor blackColor];
         [self addSubview:classLabel];
         self.classLabel = classLabel;
+        
         
         
         UIImageView *clockImageView = [[UIImageView alloc] init];
@@ -71,20 +71,37 @@
         [self addSubview:clockImageView];
         self.clockImageView = clockImageView;
         
+        
         FYHCycleLabel *classTimeLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
         classTimeLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classTimeLabel];
         self.classTimeLabel = classTimeLabel;
+        
         
         UIImageView *locationImageView = [[UIImageView alloc] init];
         [locationImageView setImage:[UIImage imageNamed:@"nowLocation"]];
         [self addSubview:locationImageView];
         self.locationImageView = locationImageView;
         
+        
         FYHCycleLabel *classroomLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
         classroomLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
+        
+        
+        //统一改一下label字色
+        if (@available(iOS 11.0, *)) {
+            classTimeLabel.cycleLabel.textColor =
+            classroomLabel.cycleLabel.textColor =
+            classLabel.cycleLabel.textColor =
+            [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        } else {
+            classTimeLabel.cycleLabel.textColor =
+            classroomLabel.cycleLabel.textColor =
+            classLabel.cycleLabel.textColor =
+            [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+        }
         
         
         //加上登录成功通知
