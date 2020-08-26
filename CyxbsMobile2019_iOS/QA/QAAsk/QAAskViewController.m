@@ -388,7 +388,7 @@
             [photos addObject:photo];
         }
         GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:index];
-        browser.showStyle = GKPhotoBrowserShowStylePush;
+        browser.showStyle = GKPhotoBrowserShowStyleNone;
         [browser showFromVC:self];
     }];
     

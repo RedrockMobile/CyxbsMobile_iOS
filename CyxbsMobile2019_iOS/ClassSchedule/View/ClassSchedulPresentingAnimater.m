@@ -20,12 +20,12 @@
         to.fakeBar.alpha = 1;
         if(IS_IPHONEX){
             // 83 + 58 = 141
-            [to.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 141, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+            [to.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 141, MAIN_SCREEN_W, 58)];
         }else{
             //49 + 58 = 107
             [to.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 107, MAIN_SCREEN_W, 58)];
-            to.view.clipsToBounds = YES;
         }
+        to.view.clipsToBounds = YES;
         [transitionContext.containerView addSubview:to.view];
                 
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
@@ -35,7 +35,6 @@
 //            from.view.layer.cornerRadius = 16;
 //            from.view.layer.masksToBounds = YES;
             [to.view setFrame:CGRectMake(0, 44, MAIN_SCREEN_W, MAIN_SCREEN_H - 44)];
-            from.tabBar.alpha = 0;
             
         }completion:^(BOOL finished) {
             BOOL wasCancel = [transitionContext transitionWasCancelled];
@@ -55,13 +54,12 @@
             from.fakeBar.alpha = 1;
             if(IS_IPHONEX){
                 // 83 + 58 = 141
-                [from.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 141, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+                [from.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 141, MAIN_SCREEN_W, 58)];
             }else{
                 //49 + 58 = 107
                 [from.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 107, MAIN_SCREEN_W, 58)];
                 from.view.clipsToBounds = YES;
             }
-            to.tabBar.alpha = 1;
             
         }completion:^(BOOL finished) {
             BOOL wasCancel = [transitionContext transitionWasCancelled];

@@ -82,6 +82,8 @@
         make.top.equalTo(self.contentView).offset(17);
         make.height.width.equalTo(@48);
     }];
+    self.sendingUserImageView.layer.cornerRadius = 24;
+    self.sendingUserImageView.clipsToBounds = YES;
     
     [self.sendingUserNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.sendingUserImageView.mas_trailing).offset(12);

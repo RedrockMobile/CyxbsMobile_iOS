@@ -18,6 +18,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -26,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>邮问上传图片，修改头像等可能需要使用相机，需要您允许</string>
+	<string>邮问上传图片，修改头像等可能需要使用相机，需要您允许。</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>校车定位功能需要知道您的位置，并需要您允许。</string>
 	<key>NSLocationAlwaysUsageDescription</key>

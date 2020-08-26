@@ -12,11 +12,10 @@
         <scene sceneID="yl2-sM-qoP">
             <objects>
                 <tabBarController id="49e-Tb-3d3" customClass="ClassTabBarController" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="csH-T6-l3r" kind="relationship" relationship="viewControllers" id="iB0-0P-iZF"/>
@@ -48,6 +47,7 @@
         <!--Class Book View Controller-->
         <scene sceneID="mTE-un-9R5">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sl7-j5-H3e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="WYCClassBookViewController" id="34x-6y-pIg" customClass="WYCClassBookViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bPD-i5-flf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -57,7 +57,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="YRA-gF-Sul"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sl7-j5-H3e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1523" y="1284"/>
         </scene>
@@ -66,7 +65,7 @@
             <objects>
                 <viewController title="发现" id="DRh-DO-htN" customClass="DiscoverViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ftj-ZW-XbT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Ux3-0V-50A"/>
@@ -99,7 +98,7 @@
             <objects>
                 <viewController title="邮问" id="kXR-bh-Wbj" customClass="QAQuestionsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ega-Mc-Pep">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="968-rb-pBw"/>
@@ -115,7 +114,7 @@
             <objects>
                 <viewController title="我的" id="jCg-wf-KoG" customClass="MineViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PaO-5e-asf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="z6U-C2-0Qa"/>
@@ -147,6 +146,7 @@
         <!--Item-->
         <scene sceneID="wnP-uc-9gz">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K0D-la-XLf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="4db-qy-Dko" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="JYe-1G-u0L"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PoG-cs-cuL">
@@ -157,7 +157,6 @@
                         <segue destination="34x-6y-pIg" kind="relationship" relationship="rootViewController" id="iDp-Ne-2K0"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K0D-la-XLf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1522" y="554"/>
         </scene>

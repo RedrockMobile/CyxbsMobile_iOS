@@ -149,6 +149,17 @@
                 
             }];
         }
+    } else if ([self.title isEqualToString:@"评论回复"]) {
+        NSString *questionID = [self.itemsArray[indexPath.row] performSelector:@selector(questionID)];
+        [MineQAModel requestQuestionDetailWithQuestionID:questionID succeeded:^(NSDictionary * _Nonnull responseObject) {
+            
+            NSString *title = responseObject[@"data"][@"title"];
+            QADetailViewController *questionDetailVC = [[QADetailViewController alloc] initViewWithId:[questionID numberValue] title:title];
+            [self.superController.navigationController pushViewController:questionDetailVC animated:YES];
+            
+        } failed:^(NSError * _Nonnull error) {
+            
+        }];
     }
 }
 
