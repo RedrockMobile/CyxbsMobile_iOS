@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     self.presenter = [[SchoolBusPresenter alloc] init];
     [self.presenter attachView:self];
     
@@ -61,13 +63,6 @@
     if (!self.dismissed) {
         [self.presenter performSelector:@selector(requestSchoolBusLocation) afterDelay:2];
     }
-    
-    // 绘制折线
-//    CLLocationCoordinate2D commonPolylineCoords[busArray.count];
-//    for (int i = 0; i < busArray.count; i++) {
-//        commonPolylineCoords[i].latitude = busArray[i].lat;
-//        commonPolylineCoords[i].longitude = busArray[i].lon;
-//    }
 }
 
 - (void)schoolBusLocationRequestsFailure {

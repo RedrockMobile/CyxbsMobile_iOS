@@ -35,7 +35,6 @@
 //            from.view.layer.cornerRadius = 16;
 //            from.view.layer.masksToBounds = YES;
             [to.view setFrame:CGRectMake(0, 44, MAIN_SCREEN_W, MAIN_SCREEN_H - 44)];
-            from.tabBar.alpha = 0;
             
         }completion:^(BOOL finished) {
             BOOL wasCancel = [transitionContext transitionWasCancelled];
@@ -61,7 +60,6 @@
                 [from.view setFrame:CGRectMake(0, MAIN_SCREEN_H - 107, MAIN_SCREEN_W, 58)];
                 from.view.clipsToBounds = YES;
             }
-            to.tabBar.alpha = 1;
             
         }completion:^(BOOL finished) {
             BOOL wasCancel = [transitionContext transitionWasCancelled];

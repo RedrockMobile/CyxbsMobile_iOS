@@ -142,7 +142,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
     }];
     [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(-20);
+        make.top.equalTo(self.contentView).offset(- STATUSBARHEIGHT);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
     }];
