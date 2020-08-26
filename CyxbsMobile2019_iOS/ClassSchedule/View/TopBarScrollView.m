@@ -335,9 +335,13 @@
         self.weekLabel.text = newBtn.titleLabel.text;
         if(newIndex.intValue==self.dateModel.nowWeek.intValue){
             self.nowWeekLabel.text = @" (本周) ";
-            self.backCurrentWeekBtn.hidden = YES;
+            [UIView animateWithDuration:0.5 animations:^{
+                self.backCurrentWeekBtn.alpha = 0;
+            }];
         }else{
-            self.backCurrentWeekBtn.hidden = NO;
+            [UIView animateWithDuration:0.5 animations:^{
+                self.backCurrentWeekBtn.alpha = 1;
+            }];
             self.nowWeekLabel.text = @" ";
         }
         

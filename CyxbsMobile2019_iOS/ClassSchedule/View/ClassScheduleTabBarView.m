@@ -7,7 +7,7 @@
 //
 
 #import "ClassScheduleTabBarView.h"
-#import "WYCClassBookViewController.h"
+//#import "WYCClassBookViewController.h"
 #import "TransitionManager.h"
 #import "FakeTabBarView.h"
 @interface ClassScheduleTabBarView ()<WYCClassAndRemindDataModelDelegate>
@@ -21,8 +21,6 @@
 /// 上拉弹出课表的手势
 @property (nonatomic,strong)UIPanGestureRecognizer *PGR;
 @property (nonatomic,strong)TransitionManager *TM;
-//用户的课表
-@property (nonatomic, strong)WYCClassBookViewController *mySchedul;
 @end
 
 @implementation ClassScheduleTabBarView
@@ -92,7 +90,7 @@
         self.classroomLabel = classroomLabel;
         
         
-        //统一改一下label字色
+        //统一改一下label字色和字
         if (@available(iOS 11.0, *)) {
             classTimeLabel.cycleLabel.textColor =
             classroomLabel.cycleLabel.textColor =
@@ -104,7 +102,9 @@
             classLabel.cycleLabel.textColor =
             [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
         }
-        
+        self.classroomLabel.labelText =
+        self.classTimeLabel.labelText =
+        self.classLabel.labelText = @"加载数据中..";
         
         //加上登录成功通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)
@@ -177,8 +177,8 @@
         self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
         self.classLabel.labelText = paramDict[@"classLabel"];
     }else{//无下一节课
-        self.classroomLabel.labelText = @"无课了";
-        self.classTimeLabel.labelText = @"无课了";
+        self.classroomLabel.labelText =
+        self.classTimeLabel.labelText =
         self.classLabel.labelText = @"无课了";
     }
 }
@@ -208,7 +208,7 @@
 }
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
-    
+    if(self.mySchedul!=nil)return;
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
     
     self.mySchedul.idNum = [UserDefaultTool getIdNum];
@@ -221,7 +221,7 @@
     
     self.mySchedul.model = model;
     
-    model.delegate = self;
+    model.delegate = self.mySchedul;
     
     model.writeToFile = YES;
     
@@ -241,21 +241,14 @@
     
     [self addGesture];
 }
-- (void)ModelDataLoadFailure{
-    [self.mySchedul ModelDataLoadFailure];
-}
-
-- (void)ModelDataLoadSuccess:(id)model{
-    [self.mySchedul ModelDataLoadSuccess:model];
-    //如果非空，那么就是选择了启动app时优先显示课表
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
-        
-        self.mySchedul.transitioningDelegate = self.TM;
-        [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
-        self.mySchedul.fakeBar.alpha = 0;
-        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
-        
-    }
-}
+//- (void)ModelDataLoadFailure{
+//    [self.mySchedul ModelDataLoadFailure];
+//}
+//
+//- (void)ModelDataLoadSuccess:(id)model{
+//    [self.mySchedul ModelDataLoadSuccess:model];
+//    //如果非空，那么就是选择了启动app时优先显示课表
+//    
+//}
 
 @end
