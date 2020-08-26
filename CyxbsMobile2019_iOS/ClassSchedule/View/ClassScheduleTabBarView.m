@@ -86,8 +86,6 @@
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
         
-//        classLabel.backgroundColor = classTimeLabel.backgroundColor = classroomLabel.backgroundColor = [UIColor colorWithRGB:23 alpha:0.2];
-        
         
         //加上登录成功通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)

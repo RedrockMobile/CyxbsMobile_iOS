@@ -4,7 +4,7 @@
 //
 //  Created by 丁磊 on 2020/4/11.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//用两个picker选择时间的那个view
 
 #import "DLTimeSelectView.h"
 
