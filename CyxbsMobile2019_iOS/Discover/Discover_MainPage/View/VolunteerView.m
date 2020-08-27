@@ -45,7 +45,7 @@
         
         if ([self.defaults objectForKey:@"volunteer_account"]) {
             self.volunteerItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[VolunteerItem archivePath]];
-//            [self addBindingView];
+            [self refreshViewIfNeeded];
         }
         [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
     }
@@ -54,6 +54,10 @@
 -(void)refreshViewIfNeeded {
     [self removeUnbindingView];
     [self addBindingView];
+    [self updateAllHour];//总时长刷新
+}
+-(void)updateAllHour {
+    self.allTime.text = self.volunteerItem.hour;
 }
 -(void)removeUnbindingView {
     [self.hintLabel removeFromSuperview];
@@ -82,7 +86,7 @@
     [self addVolunteerTitle];
     [self addAllTimeBackImage];
     [self addHintLabel];
-    }
+}
 - (void)addSeperateLine {
     UIView *line = [[UIView alloc]init];
     if (@available(iOS 11.0, *)) {
@@ -184,23 +188,24 @@
 - (void)addRecentTitle {
     UILabel *recentTitle = [[UILabel alloc]init];
     self.recentTitle = recentTitle;
-    recentTitle.text = @"测试标题";
+    recentTitle.text = self.volunteerItem.eventsArray.firstObject.eventName;
     recentTitle.font = [UIFont fontWithName: PingFangSCRegular size:15];
     if (@available(iOS 11.0, *)) {
         recentTitle.textColor = Color21_49_91_F0F0F2;
     } else {
         // Fallback on earlier versions
     }
-    [self.volunteer addSubview:recentTitle];
+    [self addSubview:recentTitle];
     [self.recentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.volunteerTitle.mas_right).offset(22);
         make.top.equalTo(self.allTimeBackImage);
+        make.right.equalTo(self).offset(-70);
     }];
 }
 - (void)addRecentDate {
     UILabel *recentDate = [[UILabel alloc]init];
     self.recentDate = recentDate;
-    recentDate.text = @"2019.8.2";
+    recentDate.text = self.volunteerItem.eventsArray.firstObject.creatTime;
     recentDate.font = [UIFont fontWithName:PingFangSCLight size: 10];
     if (@available(iOS 11.0, *)) {
         recentDate.textColor = Color21_49_91_F0F0F2;
@@ -208,7 +213,7 @@
         // Fallback on earlier versions
     }
     recentDate.alpha = 0.54;
-    [self.volunteer addSubview:recentDate];
+    [self addSubview:recentDate];
     [self.recentDate mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.recentTitle);
         make.right.equalTo(self).offset(-15);
@@ -217,7 +222,7 @@
 - (void)addRecentTime {
     UILabel *recentTime = [[UILabel alloc]init];
     self.recentTime = recentTime;
-    recentTime.text = @"5小时";
+    recentTime.text = self.volunteerItem.eventsArray.firstObject.hour;
     recentTime.font = [UIFont fontWithName:PingFangSCLight size: 13];
     if (@available(iOS 11.0, *)) {
         recentTime.textColor = Color21_49_91_F0F0F2;
@@ -225,7 +230,7 @@
         // Fallback on earlier versions
     }
     recentTime.alpha = 0.8;
-    [self.volunteer addSubview:recentTime];
+    [self addSubview:recentTime];
     [self.recentTime mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.recentTitle);
         make.top.equalTo(self.recentTitle.mas_bottom).offset(4);
@@ -234,7 +239,7 @@
 - (void)addRecentTeam {
     UILabel *recentTeam= [[UILabel alloc]init];
     self.recentTeam = recentTeam;
-    recentTeam.text = @"红领巾志愿服务小分队";
+    recentTeam.text = self.volunteerItem.eventsArray.firstObject.orgName;
     recentTeam.font = [UIFont fontWithName:PingFangSCLight size: 13];
     if (@available(iOS 11.0, *)) {
         recentTeam.textColor = Color21_49_91_F0F0F2;
@@ -242,7 +247,7 @@
         // Fallback on earlier versions
     }
     recentTeam.alpha = 0.8;
-    [self.volunteer addSubview:recentTeam];
+    [self addSubview:recentTeam];
     [self.recentTeam mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.recentTime);
         make.top.equalTo(self.recentTime.mas_bottom).offset(4);
