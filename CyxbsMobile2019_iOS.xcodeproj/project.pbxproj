@@ -4279,7 +4279,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbsCJH;
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4303,7 +4303,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbsCJH;
 				PRODUCT_NAME = "掌上重邮";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
