@@ -30,6 +30,9 @@
     }
     return self;
 }
+
+/// 获取左侧课条内部的小课块
+/// @param text 实际上是一个数字，范围：[1,12]
 - (UILabel*)getLabelWithString:(NSString*)text{
     UILabel *label = [[UILabel alloc] init];
     if (@available(iOS 11.0, *)) {
@@ -42,5 +45,27 @@
     label.text = text;
     label.backgroundColor = [UIColor clearColor];
     return label;
+}
+/**
+    返回的字典的结构：@{
+    @"y":年,
+    @"M":月,
+    @"d":日,
+    @"k":小时（24小时制）,[1, 24]
+    @"m:分"
+    @"e":周几，2～周一，1~周日，4～周3
+    @"c":周几，2～周一，1~周日，4～周3
+    };
+*/
+//获取当前时间信息的方法
+- (NSDictionary *)getCurrentTime{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSArray *array = @[@"y",@"M",@"d",@"k",@"m",@"e",@"c"];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (NSString *str in array) {
+        [formatter setDateFormat:str];
+        [dict setValue:[formatter stringFromDate:[NSDate date]]forKey:str];
+    }
+    return dict;
 }
 @end

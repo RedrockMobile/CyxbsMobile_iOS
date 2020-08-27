@@ -24,7 +24,7 @@
     
     item.name = dictionary[@"name"];
     item.major = dictionary[@"teaMajor"];
-    item.stuNum = dictionary[@"teaNum"];
+    item.teaNum = dictionary[@"teaNum"];
     
     return item;
 }

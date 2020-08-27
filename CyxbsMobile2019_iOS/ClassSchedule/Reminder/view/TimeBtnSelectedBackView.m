@@ -128,14 +128,14 @@
         if(line==0){
             [button mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.backView).offset(row*0.1573*MAIN_SCREEN_W);
-                make.left.equalTo(self.backView).offset(MAIN_SCREEN_W*0.0427);
+                make.left.equalTo(self.backView).offset(MAIN_SCREEN_W*0.0534);
                 make.height.mas_equalTo(MAIN_SCREEN_W*0.104);
             }];
         }else{
             leftBtn = [self.timebuttonArray lastObject];
             [button mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.backView).offset(row*0.1573*MAIN_SCREEN_W);
-                make.left.equalTo(leftBtn.mas_right).offset(MAIN_SCREEN_W*0.0427);
+                make.left.equalTo(leftBtn.mas_right).offset(MAIN_SCREEN_W*0.0534);
                 make.height.mas_equalTo(MAIN_SCREEN_W*0.104);
             }];
         }

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface QADetailModel : NSObject
 
 ///回答的数据
-@property(strong,nonatomic)NSArray *answersData;
+@property(strong,nonatomic)NSMutableArray *answersData;
 ///问题详情
 @property(strong,nonatomic)NSDictionary *detailData;
 

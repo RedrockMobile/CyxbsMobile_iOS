@@ -59,7 +59,7 @@
 #import <UMAnalytics/MobClick.h>
 #import "SDMask.h"
 #import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
-//#import "AESCipher.h"         // 加密用的，暂时没什么用，有用的时候再打开注释吧
+#import "AESCipher.h"         // AES加密算法
 
 
 #pragma Group共享
@@ -144,9 +144,9 @@
  -----------------------------------------------------------------*/
 
 /// 登录接口
-#define LOGINAPI @"https://cyxbsmobile.redrock.team/app/token"
+#define LOGINAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token"
 /// 刷新token
-#define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/app/token/refresh"
+#define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token/refresh"
 
 
 /// 上传头像
@@ -243,6 +243,8 @@
 
 #define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
+
+#define TEAkebiaoAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
 /// 空教室接口
 #define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
 
@@ -264,6 +266,10 @@
 
 /// banner
 #define BANNERVIEWAPI @"http://api-234.redrock.team/magipoke-text/banner/get"
+
+/// 志愿查询
+#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
+#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer/select"
 
 
 /*----------------------------------------------------------------

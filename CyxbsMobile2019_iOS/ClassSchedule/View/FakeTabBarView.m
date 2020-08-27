@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/25.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//课表顶部一个长得和现实课信息的tabBar一模一样的bar
 
 #import "FakeTabBarView.h"
 @interface FakeTabBarView()
@@ -46,6 +46,7 @@
         [self addSubview:dragHintView];
         self.dragHintView = dragHintView;
         
+        
         FYHCycleLabel *classLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.3*MAIN_SCREEN_W, 50)];
         classLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
         classLabel.cycleLabel.textColor = [UIColor blackColor];
@@ -58,71 +59,88 @@
         [self addSubview:clockImageView];
         self.clockImageView = clockImageView;
         
+        
         FYHCycleLabel *classTimeLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
         classTimeLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classTimeLabel];
         self.classTimeLabel = classTimeLabel;
+        
         
         UIImageView *locationImageView = [[UIImageView alloc] init];
         [locationImageView setImage:[UIImage imageNamed:@"nowLocation"]];
         [self addSubview:locationImageView];
         self.locationImageView = locationImageView;
         
+        
         FYHCycleLabel *classroomLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
         classroomLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
         
+        
+        //统一改一下label字色
+        if (@available(iOS 11.0, *)) {
+            classTimeLabel.cycleLabel.textColor =
+            classroomLabel.cycleLabel.textColor =
+            classLabel.cycleLabel.textColor =
+            [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        } else {
+            classTimeLabel.cycleLabel.textColor =
+            classroomLabel.cycleLabel.textColor =
+            classLabel.cycleLabel.textColor =
+            [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+        }
+        
     }
     return self;
 }
 
-- (void)layoutSubviews {
+- (void)layoutSubviews{
     [super layoutSubviews];
-    
+
     [self.bottomCoverView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.equalTo(self);
         make.height.equalTo(@16);
     }];
-    
+
     [self.dragHintView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@27);
         make.height.equalTo(@5);
         make.top.equalTo(self).offset(8);
         make.centerX.equalTo(self);
     }];
-    
+
     [self.classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self).offset(23);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.0774);
         make.centerY.equalTo(self);
         make.width.mas_equalTo(0.3*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.height.mas_equalTo(0.08*MAIN_SCREEN_W);
     }];
-    
+
     [self.clockImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classLabel.mas_trailing).offset(10);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4054);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
-    
+
     [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.clockImageView.mas_trailing).offset(3);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4554);
         make.centerY.equalTo(self.classLabel);
-        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(0.1867*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.04533*MAIN_SCREEN_W);
     }];
-    
+
     [self.locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.classTimeLabel.mas_trailing).offset(10);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.6694);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
-    
+
     [self.classroomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.locationImageView.mas_trailing).offset(3);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.7214);
         make.centerY.equalTo(self.classLabel);
-        make.width.mas_equalTo(0.25*MAIN_SCREEN_W);
-        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(0.224*MAIN_SCREEN_W);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.04533);
     }];
 }
 

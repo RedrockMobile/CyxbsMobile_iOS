@@ -38,7 +38,7 @@
 //        map.color
         map.zoomLevel = 15.4;
         map.centerCoordinate = CLLocationCoordinate2DMake(29.529332, 106.607517);
-        map.scaleOrigin = CGPointMake(20, 35);      // 比例尺位置
+        map.scaleOrigin = CGPointMake(50, STATUSBARHEIGHT + 10);      // 比例尺位置
         map.showsCompass = NO;                      // 不显示指南针
         [self addSubview:map];
         self.mapView = map;
@@ -73,8 +73,9 @@
         
         // 返回按钮
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        backButton.frame = CGRectMake(20, 60, 50, 30);
-        [backButton setTitle:@"back" forState:UIControlStateNormal];
+        backButton.frame = CGRectMake(17, STATUSBARHEIGHT + 13, 19, 19);
+        backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+        [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [backButton setTintColor:[UIColor grayColor]];
         [backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backButton];

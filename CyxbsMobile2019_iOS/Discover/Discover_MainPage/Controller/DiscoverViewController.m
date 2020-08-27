@@ -16,7 +16,7 @@
 #import "CheckInViewController.h"
 #import "WeDateViewController.h"//没课约
 #import "CQUPTMapViewController.h"
-#import "InstallRoomViewController.h"
+//#import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
 #import "NewsViewController.h"
 #import "ClassScheduleTabBarView.h"
@@ -94,6 +94,14 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+//    self.tabBarController.tabBar.translucent = NO;
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
+    if (@available(iOS 11.0, *)) {
+        self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
+    } else {
+        self.tabBarController.tabBar.barTintColor = [UIColor whiteColor];
+    }
+    
     self.navigationController.navigationBar.hidden = YES;
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
@@ -104,11 +112,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
     if(((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView==nil){
-    ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
-    classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
-    [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
-    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
-    ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
+        ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
+        classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
+        [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
+        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
+        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
+            
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
+            [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+            classTabBarView.mySchedul.fakeBar.alpha = 0;
+            [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
+        }
+        
     }
 }
 
@@ -142,7 +157,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
     }];
     [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(-20);
+        make.top.equalTo(self.contentView).offset(- STATUSBARHEIGHT);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
     }];

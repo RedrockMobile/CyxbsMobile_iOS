@@ -44,7 +44,7 @@
     [client requestWithPath:QA_QUESTION_ANSWERLIST method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
-            self.answersData = [responseObject objectForKey:@"data"];
+            self.answersData = [[responseObject objectForKey:@"data"] mutableCopy];
 
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadSuccess" object:nil];
         }else{
@@ -166,11 +166,12 @@
     [client requestWithPath:QA_QUESTION_ANSWERLIST method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
-            self.answersData = [responseObject objectForKey:@"data"];
-
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreSuccess" object:nil];
+            
+            [self.answersData addObjectsFromArray:[responseObject objectForKey:@"data"]];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreSuccess" object:[responseObject objectForKey:@"data"]];
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreError" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataLoadMoreError" object:[responseObject objectForKey:@"data"]];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

@@ -26,3 +26,15 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+//    LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] init];
+//
+//    lessonViewForAWeek.weekDataArray = self.model.orderlySchedulArray[dateNum];
+//
+//    lessonViewForAWeek.week = dateNum;
+//
+//    lessonViewForAWeek.schType = self.schedulType;
+//    
+//    [lessonViewForAWeek setUpUI];
+//
+//    lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);

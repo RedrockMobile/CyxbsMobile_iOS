@@ -16,7 +16,7 @@
 @property(strong,nonatomic)QAListModel *model;
 @property(assign,nonatomic)BOOL isShowAlert;
 @end
-
+/// 邮问问题列表页面（邮问主页）
 @implementation QAQuestionsViewController
 
 - (void)viewDidLoad {

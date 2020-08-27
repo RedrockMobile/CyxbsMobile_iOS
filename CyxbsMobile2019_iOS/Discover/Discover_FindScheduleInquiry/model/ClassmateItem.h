@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *major;
 @property (nonatomic, copy) NSString *stuNum;
-
+@property (nonatomic, copy) NSString *teaNum;
 + (ClassmateItem *)classmateWithDictionary:(NSDictionary *)dictionary;
 + (ClassmateItem *)teaItemWithDictionary:(NSDictionary *)dictionary;
 @end

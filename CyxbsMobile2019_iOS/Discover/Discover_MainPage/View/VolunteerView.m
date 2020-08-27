@@ -7,6 +7,7 @@
 //
 
 #import "VolunteerView.h"
+#import "VolunteerItem.h"
 ///平方字体部分
 #define PingFangSC @".PingFang SC"
 //Bahnschrift字体部分
@@ -17,9 +18,17 @@
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
+
 @interface VolunteerView()
-@property NSUserDefaults *defaults;
+
+@property (nonatomic, strong) NSUserDefaults *defaults;
+
+@property (nonatomic, strong) VolunteerItem *volunteerItem;
+
 @end
+
+
 @implementation VolunteerView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -31,9 +40,14 @@
         } else {
             // Fallback on earlier versions
         }
-       [self loadUserDefaults];//加载缓存用作视图的初始化
-       [self addNoBindingView];
-       [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
+        [self loadUserDefaults];//加载缓存用作视图的初始化
+        [self addNoBindingView];
+        
+        if ([self.defaults objectForKey:@"volunteer_account"]) {
+            self.volunteerItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[VolunteerItem archivePath]];
+//            [self addBindingView];
+        }
+        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
     }
     return self;
 }

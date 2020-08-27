@@ -117,6 +117,8 @@
     
     ClassmateItem *item = self.classmatesList.classmatesArray[indexPath.row];
     
+    NSLog(@"%@,%@,%@",item.major,item.stuNum,item.name);
+    
     WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc]init];
     
     model.delegate = vc;
@@ -128,9 +130,14 @@
     model.writeToFile = NO;
     
     [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
-    
-    [model getClassBookArrayFromNet:item.stuNum];
-    
+    if(self.peopleType==PeopleTypeStudent){
+        [model getClassBookArrayFromNet:item.stuNum];
+    }else{
+        [model getTeaClassBookArrayFromNet:@{
+            @"teaName":item.name,
+            @"tea":item.teaNum
+        }];
+    }
     [self presentViewController:vc animated:YES completion:nil];
     
 }

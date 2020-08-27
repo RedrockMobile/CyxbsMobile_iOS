@@ -111,13 +111,13 @@
                                                  name:@"QADetailIgnoreFailure" object:nil];
     //上拉加载
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(QADetailDataLoadMoreSuccess)
+                                             selector:@selector(QADetailDataLoadMoreSuccess:)
                                                  name:@"QADetailDataLoadMoreSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(QADetailDataLoadMoreError)
+                                             selector:@selector(QADetailDataLoadMoreError:)
                                                  name:@"QADetailDataLoadMoreError" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(QADetailDataLoadMoreFailure)
+                                             selector:@selector(QADetailDataLoadMoreFailure:)
                                                  name:@"QADetailDataLoadMoreFailure" object:nil];
 }
 
@@ -208,14 +208,17 @@
     [controller addAction:act1];
     [self presentViewController:controller animated:YES completion:^{}];
 }
-- (void)QADetailDataLoadMoreSuccess{
-    [self.detailView loadMoreWithArray:self.model.answersData ifSuccessful:YES];
+- (void)QADetailDataLoadMoreSuccess:(NSNotification*)noti{
+    NSArray *newAnswer = noti.object;
+    [self.detailView loadMoreWithArray:newAnswer ifSuccessful:YES];
 }
-- (void)QADetailDataLoadMoreError{
-    [self.detailView loadMoreWithArray:self.model.answersData ifSuccessful:NO];
+- (void)QADetailDataLoadMoreError:(NSNotification*)noti{
+    NSArray *newAnswer = noti.object;
+    [self.detailView loadMoreWithArray:newAnswer ifSuccessful:NO];
 }
-- (void)QADetailDataLoadMoreFailure{
-    [self.detailView loadMoreWithArray:self.model.answersData ifSuccessful:NO];
+- (void)QADetailDataLoadMoreFailure:(NSNotification*)noti{
+    NSArray *newAnswer = noti.object;
+    [self.detailView loadMoreWithArray:newAnswer ifSuccessful:NO];
 }
 
 - (void)reloadView{
@@ -320,8 +323,6 @@
             break;
         }
     }
-    
-    
 }
 //QADetailView的代理方法，用来下拉刷新
 - (void)reloadData{

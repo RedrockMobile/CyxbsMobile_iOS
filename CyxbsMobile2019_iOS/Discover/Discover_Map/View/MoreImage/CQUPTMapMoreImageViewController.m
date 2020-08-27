@@ -11,8 +11,9 @@
 #import "CQUPTMapAllImageCollectionViewCell.h"
 #import "CQUPTMapPlaceDetailItem.h"
 #import <TZImagePickerController.h>
+#import "GKPhotoBrowser.h"
 
-@interface CQUPTMapMoreImageViewController () <UICollectionViewDataSource, TZImagePickerControllerDelegate>
+@interface CQUPTMapMoreImageViewController () <UICollectionViewDataSource, UICollectionViewDelegate, TZImagePickerControllerDelegate>
 
 @property (nonatomic, strong) CQUPTMapPlaceDetailItem *detailItem;
 
@@ -80,6 +81,7 @@
     [imageCollectionView registerClass:[CQUPTMapAllImageCollectionViewCell class] forCellWithReuseIdentifier:@"CQUPTMapAllImageCollectionViewCell"];
     imageCollectionView.backgroundColor = [UIColor clearColor];
     imageCollectionView.dataSource = self;
+    imageCollectionView.delegate = self;
     [self.view addSubview:imageCollectionView];
     self.imageCollectionView = imageCollectionView;
     
@@ -147,6 +149,20 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray *photos = [NSMutableArray array];
+    
+    for (int i = 0; i < self.detailItem.imagesArray.count; i++) {
+        UIImage *img = ((CQUPTMapAllImageCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath])).imageView.image;
+        
+        GKPhoto *photo = [GKPhoto new];
+        photo.image = img;
+        [photos addObject:photo];
+    }
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:indexPath.item];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:self];
+}
 
 - (void)shareImageButtonTapped {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"共享照片" message:@"在这里，与邮子们共同分享你们所拍的校园风景。上传你的照片，优质照片有机会在此展示。" preferredStyle:UIAlertControllerStyleAlert];

@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/16.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//显示某课详情的弹窗view
 
 #import <UIKit/UIKit.h>
 //某课详情弹窗的高度

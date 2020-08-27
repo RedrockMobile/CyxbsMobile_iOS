@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/7/31.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//顶部周信息条，@“回到本周”、@“二周”、选择周的条的bar
 
 #import "TopBarScrollView.h"
 #import "DateModle.h"
@@ -44,10 +44,10 @@
         self.scrollEnabled = NO;
         [self addBackView];
         //初始化weekTextArray
-        self.weekTextArray = @[@"整学期",@"一周",@"二周",@"三周",@"四周",@"五周",@"六周",@"七周",@"八周",@"九周",@"十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
         /**
-        self.weekTextArray = @[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
+        self.weekTextArray = @[@"整学期",@"一周",@"二周",@"三周",@"四周",@"五周",@"六周",@"七周",@"八周",@"九周",@"十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
         */
+        self.weekTextArray = @[@"整学期",@"第一周",@"第二周",@"第三周",@"第四周",@"第五周",@"第六周",@"第七周",@"第八周",@"第九周",@"第十周",@"十一周",@"十二周",@"十三周",@"十四周",@"十五周",@"十六周",@"十七周",@"十八周",@"十九周",@"二十周",@"二十一周",@"二十二周",@"二十三周",@"二十四周",@"二十五周"];
         
         //初始化weekChooseBtnArray
         self.weekChooseBtnArray = [NSMutableArray arrayWithCapacity:self.weekTextArray.count];
@@ -60,8 +60,9 @@
         
         //添加当前周信息的条（回到本周按钮就在这个条上面）,条在self的右侧
         [self addNowWeekBar];
+        //让TopBar最开始显示的是nowWeekBar
+        self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
     }
-    
     return self;
 }
 - (DateModle *)dateModel{
@@ -74,7 +75,7 @@
     UIView *view = [[UIView alloc] init];
     self.backView = view;
     [self addSubview:view];
-    view.frame =CGRectMake(0, 0, 2*MAIN_SCREEN_W,30);
+    view.frame =CGRectMake(0, 0, 2*MAIN_SCREEN_W,40);
 }
 
 //添加周选择条和左箭头按钮，周选择条在self的左侧
@@ -196,6 +197,7 @@
     weekLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     [weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nowWeekBar).offset(MAIN_SCREEN_W*0.0427);
+        make.centerY.equalTo(self.nowWeekBar);
     }];
 }
 
@@ -259,13 +261,12 @@
         [backBtn setBackgroundColor:[UIColor colorWithRed:69/255.0 green:62/255.0 blue:217/255.0 alpha:1]];
     }
     backBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 13];
-    backBtn.layer.cornerRadius = MAIN_SCREEN_H*0.0197;
+    backBtn.layer.cornerRadius = MAIN_SCREEN_W*0.045;
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nowWeekBar).offset(MAIN_SCREEN_W*0.728);
-//        make.bottom.equalTo(self.nowWeekBar);
         make.centerY.equalTo(self.nowWeekBar);
         make.width.mas_equalTo(0.2293*MAIN_SCREEN_W);
-        make.height.mas_equalTo(0.0394*MAIN_SCREEN_H);
+        make.height.mas_equalTo(0.0853*MAIN_SCREEN_W);
     }];
     
 
@@ -334,7 +335,13 @@
         self.weekLabel.text = newBtn.titleLabel.text;
         if(newIndex.intValue==self.dateModel.nowWeek.intValue){
             self.nowWeekLabel.text = @" (本周) ";
+            [UIView animateWithDuration:0.5 animations:^{
+                self.backCurrentWeekBtn.alpha = 0;
+            }];
         }else{
+            [UIView animateWithDuration:0.5 animations:^{
+                self.backCurrentWeekBtn.alpha = 1;
+            }];
             self.nowWeekLabel.text = @" ";
         }
         
@@ -354,13 +361,10 @@
     //调用代理方法，告诉代理点击了哪一周的按钮，0代表整学期，17代表第十七周
     [self.weekChooseDelegate gotoWeekAtIndex:self.correctIndex];
 }
-//解决第一次加载课表时TopBar显示的不是nowWeekBar
+
 - (void)layoutSubviews{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
-    });
     UIView *lastBtn = [self.weekChooseBtnArray lastObject];
+    //根据最后一个周选择按钮调整weekChooseBar的滚动范围
     [self.weekChooseBar setContentSize:CGSizeMake(lastBtn.frame.origin.x+lastBtn.frame.size.width, 0)];
 }
 @end
