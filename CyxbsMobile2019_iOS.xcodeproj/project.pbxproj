@@ -146,6 +146,7 @@
 		1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1523237D826A004D9CEA /* EditMyInfoContentView.m */; };
 		1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */; };
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
+		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
 		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
 		AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */; };
 		AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1124EFC78C00FDF70C /* NoteDetailView.m */; };
@@ -782,6 +783,8 @@
 		1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineEditTextField.m; sourceTree = "<group>"; };
 		1AFD153023819FBD004D9CEA /* EditMyInfoTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoTransitionAnimator.h; sourceTree = "<group>"; };
 		1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoTransitionAnimator.m; sourceTree = "<group>"; };
+		1AFE534F24F7571300F42A74 /* IntroductionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroductionController.h; sourceTree = "<group>"; };
+		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDataModel.h; sourceTree = "<group>"; };
 		AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDataModel.m; sourceTree = "<group>"; };
@@ -1673,6 +1676,8 @@
 				1A344BB623E96AD80014A3B4 /* MineAboutController.m */,
 				1A344BB823E96BF50014A3B4 /* MineAboutContentView.h */,
 				1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */,
+				1AFE534F24F7571300F42A74 /* IntroductionController.h */,
+				1AFE535024F7571300F42A74 /* IntroductionController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3959,6 +3964,7 @@
 				D06AAEE124AC00BB00EE0892 /* QAReviewViewController.m in Sources */,
 				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
+				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
 				1A4022FE244C9FD0000F8524 /* EmptyClassContentView.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				1A22DDD1244FF89E00FBB51E /* EmptyClassModel.m in Sources */,

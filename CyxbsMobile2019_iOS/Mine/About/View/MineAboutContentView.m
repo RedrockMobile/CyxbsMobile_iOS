@@ -111,7 +111,7 @@
         self.corporationLabel = corporationLabel;
         
         UILabel *copyrightLabel = [[UILabel alloc] init];
-        copyrightLabel.text = @"Copyright © 2015-2019 All Rights Reserverd";
+        copyrightLabel.text = @"Copyright © 2015-2020 All Rights Reserverd";
         copyrightLabel.textAlignment = NSTextAlignmentCenter;
         copyrightLabel.font = [UIFont systemFontOfSize:11];
         if (@available(iOS 11.0, *)) {
@@ -236,6 +236,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0:
+            if ([self.delegate respondsToSelector:@selector(selectedIntroduction)]) {
+                [self.delegate selectedIntroduction];
+            }
             break;
             
         case 1:
@@ -251,6 +254,9 @@
             break;
             
         case 3:
+            if ([self.delegate respondsToSelector:@selector(selectedUpdateCheck)]) {
+                [self.delegate selectedUpdateCheck];
+            }
             break;
             
         default:
