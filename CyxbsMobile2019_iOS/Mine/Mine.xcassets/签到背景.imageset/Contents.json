@@ -2,22 +2,21 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "签到背景@1x.png",
       "scale" : "1x"
     },
     {
+      "filename" : "组 9@2x.png",
       "idiom" : "universal",
-      "filename" : "签到背景@2x.png",
       "scale" : "2x"
     },
     {
+      "filename" : "组 9@3x.png",
       "idiom" : "universal",
-      "filename" : "签到背景@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
