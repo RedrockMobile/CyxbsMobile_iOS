@@ -209,7 +209,6 @@
 }
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
-//    if(self.mySchedul!=nil)return;
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
     
     self.mySchedul.idNum = [UserDefaultTool getIdNum];
@@ -238,18 +237,6 @@
     
     self.mySchedul.schedulTabBar = self;
     
-//    [self.mySchedul viewWillAppear:YES];
-    
     [self addGesture];
 }
-//- (void)ModelDataLoadFailure{
-//    [self.mySchedul ModelDataLoadFailure];
-//}
-//
-//- (void)ModelDataLoadSuccess:(id)model{
-//    [self.mySchedul ModelDataLoadSuccess:model];
-//    //如果非空，那么就是选择了启动app时优先显示课表
-//    
-//}
-
 @end

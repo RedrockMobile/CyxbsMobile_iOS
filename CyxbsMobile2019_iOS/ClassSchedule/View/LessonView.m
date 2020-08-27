@@ -126,7 +126,7 @@
         self.tipView.hidden = YES;
     }
     //是否在没课的地方显示备忘
-    if(self.isEmptyLesson==YES&&![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]){
+    if(self.isEmptyLesson==YES&&![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]&&self.isNoted==YES){
         [self hideNote];
     }
 }
@@ -298,24 +298,20 @@
 }
 
 - (void)showNote{
-    
-    
     self.titleLable.hidden =
     self.detailLable.hidden = NO;
-    
-    self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"条纹"]];
-    
+    if(self.noteDataModelArray.count!=0){
+        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"条纹"]];
+    }
     if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
         self.tipView.hidden = NO;
     }
 }
 
 - (void)hideNote{
-    
     self.tipView.hidden =
     self.titleLable.hidden =
     self.detailLable.hidden = YES;
-    
     self.backgroundColor = [UIColor clearColor];
 }
 @end
