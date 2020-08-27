@@ -77,14 +77,31 @@
 /// 更新显示的课表数据，调用前需确保已经对self.courseDataDict进行更新、且已经调用了setUpUI
 - (void)setUpData{
     if(self.isEmptyLesson==NO){
+        //这个代理非空说明上一节课长度超过2，所以本节课的内容要显示到上一节课上面
+        if(self.noteShowerDelegate!=nil){
+            NSMutableArray *temp = [self.noteShowerDelegate.courseDataDictArray mutableCopy];
+            [temp addObjectsFromArray:self.courseDataDictArray];
+            self.noteShowerDelegate.courseDataDictArray = temp;
+            [self.noteShowerDelegate setUpData];
+            return;
+        }
         //如果是有课，那么选取self.courseDataDictArray来设置这节课的位置、时长、view的frame
         self.courseDataDict = [self.courseDataDictArray firstObject];
         [self setFrameAndLessonLocationWithInfoDict:self.courseDataDict];
         [self setCourseInfoWithCourseDataDict:self.courseDataDict];
     }else if(self.isNoted==YES){
+        
+        NoteDataModel *model = [self.noteDataModelArray firstObject];
+        if(self.noteShowerDelegate!=nil){
+            //某课前面是长度为3或4的大课时，备忘信息将显示在noteShowerDelegate上
+            //noteShowerDelegate设置为那节长度过长的大课
+            [self.noteShowerDelegate.noteDataModelArray addObject:model];
+            [self.noteShowerDelegate setUpData];
+            self.noteShowerDelegate.isNoted = YES;
+            return;
+        }
         //如果是无课而有备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
         [self setFrameAndLessonLocationWithInfoDict:self.emptyClassDate];
-        NoteDataModel *model = [self.noteDataModelArray firstObject];
         [self setNoteInfoWithNoteDataModel:model];
     }else{
         //如果是无课而无备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame

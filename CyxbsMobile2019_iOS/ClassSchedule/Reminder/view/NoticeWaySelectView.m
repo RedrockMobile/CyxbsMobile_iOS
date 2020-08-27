@@ -50,7 +50,16 @@
     backView.layer.shadowOpacity = 1;
     backView.layer.cornerRadius = 16;
     backView.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 11.0, *)) {
+        backView.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+    } else {
+         backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
+    }
     
+    backView.layer.shadowOffset = CGSizeMake(0,2.5);
+    backView.layer.shadowRadius = 15;
+    backView.layer.cornerRadius = 16;
+    backView.layer.shadowOpacity = 0.3;
     //给backview加一个空手势，以屏蔽移除弹窗手势
     [backView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender){ }]];
     

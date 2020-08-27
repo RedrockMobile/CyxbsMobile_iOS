@@ -104,9 +104,6 @@
         
         //lv是周（weekNum+1），第（lessonNum+1）节大课的LessonView
         lv = self.lessonViewsArray[weekNum.intValue][lessonNum.intValue];
-        //某课前面是长度为3或4的大课时，备忘信息将显示在noteShowerDelegate上
-        //noteShowerDelegate设置为那节长度过长的大课
-        if(lv.noteShowerDelegate!=nil)lv = lv.noteShowerDelegate;
         [lv.noteDataModelArray addObject:model];
         lv.isNoted = YES;
         [lv setUpData];
