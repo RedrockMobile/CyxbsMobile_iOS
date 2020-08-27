@@ -58,9 +58,9 @@
         }
         
         // 共享数据
-        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
-        [shared setObject:responseObject forKey:@"lessonResponse"];
-        [shared synchronize];
+//        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
+//        [shared setObject:responseObject forKey:@"lessonResponse"];
+//        [shared synchronize];
         
         
         
@@ -88,7 +88,8 @@
 
         NSArray *lessonArray = [responseObject objectForKey:@"data"];
 
-        [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
+//        [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
+        
         //保存获取的课表数据到文件
         NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
@@ -96,9 +97,9 @@
 
         
         // 共享数据
-        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
-        [shared setObject:responseObject forKey:@"lessonResponse"];
-        [shared synchronize];
+//        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
+//        [shared setObject:responseObject forKey:@"lessonResponse"];
+//        [shared synchronize];
         
         
         
@@ -126,9 +127,9 @@
         NSArray *lessonArray = [responseObject objectForKey:@"data"];
         
         // 共享数据
-        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
-        [shared setObject:responseObject forKey:@"lessonResponse"];
-        [shared synchronize];
+//        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
+//        [shared setObject:responseObject forKey:@"lessonResponse"];
+//        [shared synchronize];
         
         
         [self.weekArray addObject:lessonArray];
@@ -229,6 +230,7 @@
             [modelArray addObject:[[NoteDataModel alloc]initWithNotoDataDict:noteDataDict]];
         }
         
+
         _noteDataModelArray = modelArray;
         
         if(_noteDataModelArray==nil){

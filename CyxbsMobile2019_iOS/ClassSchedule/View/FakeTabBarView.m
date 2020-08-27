@@ -98,49 +98,49 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
 
-    [self.bottomCoverView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.bottomCoverView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.equalTo(self);
         make.height.equalTo(@16);
     }];
-
-    [self.dragHintView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.dragHintView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@27);
         make.height.equalTo(@5);
         make.top.equalTo(self).offset(8);
         make.centerX.equalTo(self);
     }];
-
-    [self.classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.classLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W*0.0774);
         make.centerY.equalTo(self);
         make.width.mas_equalTo(0.3*MAIN_SCREEN_W);
-        make.height.mas_equalTo(0.08*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.12*MAIN_SCREEN_W);
     }];
-
-    [self.clockImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.clockImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4054);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
-
-    [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.classTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4554);
         make.centerY.equalTo(self.classLabel);
         make.width.mas_equalTo(0.1867*MAIN_SCREEN_W);
-        make.height.mas_equalTo(0.04533*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.12*MAIN_SCREEN_W);
     }];
-
-    [self.locationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.locationImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W*0.6694);
         make.centerY.equalTo(self.classLabel);
         make.height.width.equalTo(@11);
     }];
-
-    [self.classroomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.7214);
+    
+    [self.classroomLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.7214);
         make.centerY.equalTo(self.classLabel);
         make.width.mas_equalTo(0.224*MAIN_SCREEN_W);
-        make.height.mas_equalTo(MAIN_SCREEN_W*0.04533);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.12);
     }];
 }
 

@@ -1052,8 +1052,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "-initMySchedul"
             landmarkType = "7">
          </BreakpointContent>
@@ -1068,8 +1068,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-initMySchedul"
             landmarkType = "7">
          </BreakpointContent>
@@ -1084,8 +1084,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "-getPersonalClassBookArrayFromNet:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1100,8 +1100,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "-getPersonalClassBookArrayFromNet:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1292,8 +1292,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "-getClassBookArrayFromNetWithInfoDict:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1447,6 +1447,54 @@
             endingLineNumber = "221"
             landmarkName = "-viewTouched"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7DA702F6-F630-4955-9124-204F6ADBDE33"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7DA702F6-F630-4955-9124-204F6ADBDE33 - 30c605284fd91268"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ClassScheduleTabBarView layoutSubviews]"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/%E7%94%A8%E6%9D%A5%E5%81%9A%E6%8E%8C%E9%82%AE%E9%A1%B9%E7%9B%AE%E7%9A%84git%E4%BB%93%E5%BA%93%E7%9A%84/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "53">
+               </Location>
+               <Location
+                  uuid = "7DA702F6-F630-4955-9124-204F6ADBDE33 - dd0875cfe670bf1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[ClassScheduleTabBarView layoutSubviews]_block_invoke"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/%E7%94%A8%E6%9D%A5%E5%81%9A%E6%8E%8C%E9%82%AE%E9%A1%B9%E7%9B%AE%E7%9A%84git%E4%BB%93%E5%BA%93%E7%9A%84/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/ClassSchedule/View/ClassScheduleTabBarView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
+                  offsetFromSymbolStart = "17">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
