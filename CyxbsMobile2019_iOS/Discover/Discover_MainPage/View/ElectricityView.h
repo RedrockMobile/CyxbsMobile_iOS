@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak)UILabel *electricFeeHintRight;//“使用度数/本月”
 @property (nonatomic, weak)UILabel *hintLabel;//“还未绑定账号哦～”
 
+@property (nonatomic, weak)UIButton *clearButton;
 @property (nonatomic, weak)UIButton *bindingButton;//点击之后跳转绑定宿舍
 
 /// 当有数据的时候调用这个方法更新为有预览的视图
