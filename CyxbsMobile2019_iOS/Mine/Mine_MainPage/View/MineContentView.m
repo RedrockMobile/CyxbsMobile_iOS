@@ -94,7 +94,7 @@
         
         
         // 添加FooterView（APP设置TableView）
-        UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 218) style:UITableViewStyleGrouped];
+        UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 55 * ((NSArray *)(self.settingsArray[1][@"settings"])).count + 168) style:UITableViewStyleGrouped];
         appSettingTabelView.delegate = self;
         appSettingTabelView.dataSource = self;
         appSettingTabelView.backgroundColor = self.backgroundColor;

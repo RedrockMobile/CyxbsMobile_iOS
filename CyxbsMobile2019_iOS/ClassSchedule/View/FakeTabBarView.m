@@ -137,7 +137,7 @@
     }];
 
     [self.classroomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.7014);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W*0.7214);
         make.centerY.equalTo(self.classLabel);
         make.width.mas_equalTo(0.224*MAIN_SCREEN_W);
         make.height.mas_equalTo(MAIN_SCREEN_W*0.04533);

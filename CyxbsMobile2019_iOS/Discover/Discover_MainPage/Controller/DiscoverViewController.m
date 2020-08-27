@@ -94,7 +94,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.tabBar.translucent = NO;
+//    self.tabBarController.tabBar.translucent = NO;
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
     if (@available(iOS 11.0, *)) {
         self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
@@ -170,7 +170,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.top.equalTo(self.eleView.mas_bottom).offset(-15);
         make.left.right.equalTo(self.view);
         make.height.equalTo(@152);
-        make.bottom.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView).offset(-20);
     }];
 }
 - (void)presentToLogin {
