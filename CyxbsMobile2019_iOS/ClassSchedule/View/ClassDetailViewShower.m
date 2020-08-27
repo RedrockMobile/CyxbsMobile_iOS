@@ -97,8 +97,8 @@
     
     view.layer.shadowOffset = CGSizeMake(0,2.5);
     view.layer.shadowRadius = 15;
-    view.layer.shadowOpacity = 1;
-    view.layer.cornerRadius = 8;
+    view.layer.shadowOpacity = 0.3;
+    view.layer.cornerRadius = 16;
     [view setFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, DETAILVIEW_H)];
     //加一个空手势，避免点击弹窗后弹窗移走
     [view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender){ }]];

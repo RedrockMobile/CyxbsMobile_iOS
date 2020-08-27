@@ -47,18 +47,18 @@
     [self addSubview:self.backViewOfWeeKBtns];
     
     if (@available(iOS 11.0, *)) {
-        self.backViewOfWeeKBtns.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
+        self.backViewOfWeeKBtns.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
     } else {
          self.backViewOfWeeKBtns.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         // Fallback on earlier versions
     }
     
-    self.backViewOfWeeKBtns.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.8].CGColor;
-    self.backViewOfWeeKBtns.layer.shadowOffset = CGSizeMake(0,5);
-    self.backViewOfWeeKBtns.layer.shadowRadius = 30*kRateY;
-    self.backViewOfWeeKBtns.layer.shadowOpacity = 1;
-    self.backViewOfWeeKBtns.layer.cornerRadius = 16*kRateX;
+//    self.backViewOfWeeKBtns.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.8].CGColor;
     
+    self.backViewOfWeeKBtns.layer.shadowOffset = CGSizeMake(0,2.5);
+    self.backViewOfWeeKBtns.layer.shadowRadius = 15;
+    self.backViewOfWeeKBtns.layer.shadowOpacity = 0.3;
+    self.backViewOfWeeKBtns.layer.cornerRadius = 16;
     //添加一个点击手势：下移360*kRateY，再从父控件移除
     [self addGesture];
     
