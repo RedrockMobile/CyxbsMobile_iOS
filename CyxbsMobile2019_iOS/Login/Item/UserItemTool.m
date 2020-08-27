@@ -58,6 +58,15 @@
         NSError *err;
         [fileManager removeItemAtPath:filePath error:&err];
     }
+    
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    
+    NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
+    [@[] writeToFile:lessonPath atomically:YES];
+    
+    NSString *remindPath = [path stringByAppendingPathComponent: @"remind.plist"];
+    [@[] writeToFile:remindPath atomically:YES];
+    
     //退出后停止umeng统计发送数据
     [MobClick profileSignOff];
 }
