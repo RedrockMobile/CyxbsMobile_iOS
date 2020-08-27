@@ -245,6 +245,7 @@
             myAcademyLabel.textColor = LABELCOLOR;
         }
         myAcademyLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+        myAcademyLabel.numberOfLines = 0;
         [self.contentScrollView addSubview:myAcademyLabel];
         self.myAcademyLabel = myAcademyLabel;
         
@@ -374,7 +375,7 @@
     [self.myAcademyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.academyLabel);
         make.trailing.equalTo(self).offset(-18);
-        make.height.equalTo(@22);
+        make.leading.greaterThanOrEqualTo(self.academyLabel.mas_trailing).offset(20);
     }];
 
     [self.explainLabel mas_makeConstraints:^(MASConstraintMaker *make) {
