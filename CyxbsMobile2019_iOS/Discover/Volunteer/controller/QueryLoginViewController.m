@@ -167,6 +167,7 @@
             QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:self.volunteer];
             queryVC.view.backgroundColor = [UIColor whiteColor];
             [self.navigationController pushViewController:queryVC animated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginVolunteerAccountSucceed" object:nil];
         }];
     });
 }
