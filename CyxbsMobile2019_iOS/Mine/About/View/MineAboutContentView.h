@@ -13,8 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol MineAboutContentViewDelegate <NSObject>
 
 - (void)backButtonClicked;
+
+- (void)selectedIntroduction;
 - (void)selectedProductWebsite;
 - (void)selectedFeedBack;
+- (void)selectedUpdateCheck;
 
 @end
 

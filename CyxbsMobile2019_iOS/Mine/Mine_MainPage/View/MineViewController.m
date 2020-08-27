@@ -73,7 +73,7 @@
         self.contentView.headerView.introductionLabel.text = user.introduction;
     }
     
-    self.contentView.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user.checkInDay];
+    self.contentView.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user ? user.checkInDay : @"0"];
     
     NSURL *headerImageURL = [NSURL URLWithString:[UserItemTool defaultItem].headImgUrl];
     [self.contentView.headerView.headerImageView sd_setImageWithURL:headerImageURL placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageRefreshCached];

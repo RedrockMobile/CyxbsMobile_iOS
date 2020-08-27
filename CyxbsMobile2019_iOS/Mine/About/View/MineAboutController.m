@@ -9,6 +9,7 @@
 #import "MineAboutController.h"
 #import "MineAboutContentView.h"
 #import "ProductWebsiteViewController.h"
+#import "IntroductionController.h"
 
 @interface MineAboutController () <MineAboutContentViewDelegate>
 
@@ -36,6 +37,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)selectedIntroduction {
+    IntroductionController *introductionVC = [[IntroductionController alloc] init];
+    [self presentViewController:introductionVC animated:YES completion:nil];
+}
+
 - (void)selectedProductWebsite {
     ProductWebsiteViewController *vc = [[ProductWebsiteViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
@@ -52,6 +58,13 @@
     [feedBackGroupAllert addAction:certainAction];
     
     [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
+}
+
+- (void)selectedUpdateCheck {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"已经是最新版本";
+    [hud hide:YES afterDelay:0.7];
 }
 
 
