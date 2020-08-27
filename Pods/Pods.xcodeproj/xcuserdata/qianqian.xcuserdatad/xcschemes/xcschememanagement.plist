@@ -12,7 +12,7 @@
 		<key>AFNetworking.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>19</integer>
+			<integer>7</integer>
 		</dict>
 		<key>AMap2DMap.xcscheme_^#shared#^_</key>
 		<dict>
@@ -24,10 +24,20 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>AMap3DMap-NO-IDFA.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>AMapFoundation-NO-IDFA.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
+		</dict>
+		<key>AMapFoundation-NO-IDFA.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>AMapFoundation.xcscheme_^#shared#^_</key>
 		<dict>
@@ -38,6 +48,11 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
+		</dict>
+		<key>AMapLocation-NO-IDFA.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>AMapLocation.xcscheme_^#shared#^_</key>
 		<dict>
@@ -57,7 +72,7 @@
 		<key>FMDB.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 		<key>GMImagePicker.xcscheme</key>
 		<dict>
@@ -67,12 +82,17 @@
 		<key>GMImagePicker.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>11</integer>
+			<integer>25</integer>
 		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
+		</dict>
+		<key>IQKeyboardManager.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
@@ -82,7 +102,7 @@
 		<key>MBProgressHUD.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>13</integer>
 		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
@@ -92,7 +112,7 @@
 		<key>MJExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>24</integer>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
@@ -102,7 +122,7 @@
 		<key>MJRefresh.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>18</integer>
+			<integer>10</integer>
 		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
@@ -112,12 +132,17 @@
 		<key>Masonry.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>1</integer>
 		</dict>
 		<key>NudeIn.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>12</integer>
+		</dict>
+		<key>NudeIn.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
 		</dict>
 		<key>Pods-CyxbsMobile2019_iOS.xcscheme</key>
 		<dict>
@@ -127,7 +152,7 @@
 		<key>Pods-CyxbsMobile2019_iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>20</integer>
 		</dict>
 		<key>SDCycleScrollView.xcscheme</key>
 		<dict>
@@ -137,7 +162,7 @@
 		<key>SDCycleScrollView.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>23</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
@@ -147,12 +172,12 @@
 		<key>SDWebImage.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>21</integer>
 		</dict>
 		<key>TZImagePickerController.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>18</integer>
 		</dict>
 		<key>UMCAnalytics.xcscheme</key>
 		<dict>
@@ -162,7 +187,7 @@
 		<key>UMCAnalytics.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>12</integer>
 		</dict>
 		<key>UMCCommon.xcscheme</key>
 		<dict>
@@ -172,7 +197,7 @@
 		<key>UMCCommon.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>5</integer>
 		</dict>
 		<key>UMCCommonLog.xcscheme</key>
 		<dict>
@@ -182,7 +207,7 @@
 		<key>UMCCommonLog.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>4</integer>
+			<integer>14</integer>
 		</dict>
 		<key>UMCErrorCatch.xcscheme</key>
 		<dict>
@@ -192,7 +217,7 @@
 		<key>UMCErrorCatch.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>6</integer>
 		</dict>
 		<key>UMCPush.xcscheme</key>
 		<dict>
@@ -202,7 +227,7 @@
 		<key>UMCPush.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>17</integer>
+			<integer>15</integer>
 		</dict>
 		<key>UMCSecurityPlugins.xcscheme</key>
 		<dict>
@@ -212,7 +237,7 @@
 		<key>UMCSecurityPlugins.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>16</integer>
 		</dict>
 		<key>UMCShare.xcscheme</key>
 		<dict>
@@ -222,7 +247,7 @@
 		<key>UMCShare.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>5</integer>
+			<integer>3</integer>
 		</dict>
 		<key>UMengAnalytics-NO-IDFA.xcscheme_^#shared#^_</key>
 		<dict>
@@ -242,7 +267,7 @@
 		<key>YYKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>19</integer>
 		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
@@ -252,7 +277,7 @@
 		<key>pop.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>15</integer>
+			<integer>22</integer>
 		</dict>
 	</dict>
 </dict>

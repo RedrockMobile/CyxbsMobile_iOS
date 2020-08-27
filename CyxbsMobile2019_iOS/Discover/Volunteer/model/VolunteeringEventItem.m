@@ -10,13 +10,15 @@
 
 @implementation VolunteeringEventItem
 
+MJExtensionCodingImplementation
+
 - (instancetype)initWithDictinary: (NSDictionary *)dict {
     if (self = [self init]) {
-        self.hour = dict[@"hour_num"];
-        self.creatTime = dict[@"create_time"];
-        self.eventName = dict[@"opp_name"];
-        self.address = dict[@"opp_district"];
-        self.orgName = dict[@"org_name"];
+        self.hour = dict[@"hours"];
+        self.creatTime = dict[@"start_time"];
+        self.eventName = dict[@"title"];
+        self.address = dict[@"addWay"];
+        self.orgName = dict[@"server_group"];
     }
     return self;
 }

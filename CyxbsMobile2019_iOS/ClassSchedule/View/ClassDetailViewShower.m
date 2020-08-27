@@ -62,13 +62,13 @@
     }
     
     self.scrollView.contentSize = CGSizeMake((i+j)*MAIN_SCREEN_W, 0);
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.backViewOfScrollView setFrame:CGRectMake(0, MAIN_SCREEN_H-DETAILVIEW_H+10, MAIN_SCREEN_W, DETAILVIEW_H+40)];
-    }];
+    } completion:nil];
 }
 
 - (void)hideDetail{
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.backViewOfScrollView setFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, DETAILVIEW_H)];
     }completion:^(BOOL finished) {
         [self.scrollView removeAllSubviews];
@@ -124,7 +124,7 @@
     } else {
         PC.currentPageIndicatorTintColor = [UIColor colorWithRed:184/255.0 green:82/255.0 blue:255/255.0 alpha:1];
     }
-    PC.pageIndicatorTintColor = [UIColor colorWithHexString:@"#C4C4C4"];
+    PC.pageIndicatorTintColor = [UIColor colorWithHexString:@"#969696"];
     PC.hidden = NO;
     
     [PC mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -36,7 +36,7 @@
                 to.contentView.storeView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
             }
             to.contentView.storeCollectionView.backgroundColor = to.contentView.storeView.backgroundColor;
-            from.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.88, 0.88);
+            from.contentView.layer.affineTransform = CGAffineTransformMakeScale(0.87, 0.87);
             from.contentView.layer.cornerRadius = 16;
             from.contentView.clipsToBounds = YES;
         } completion:^(BOOL finished) {

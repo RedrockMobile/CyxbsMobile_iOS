@@ -32,18 +32,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     if ([user objectForKey:@"volunteer_account"]) {
-        self.loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        self.loadHud.labelText = @"正在登录";
-        NSDictionary *account = [user objectForKey:@"volunteer_account"];
-        self.accountField.text = account[@"username"];
-        self.passwordField.text = account[@"password"];
+        VolunteerItem *volunteer = [NSKeyedUnarchiver unarchiveObjectWithFile:[VolunteerItem archivePath]];
         
-        self.volunteer = [[VolunteerItem alloc] init];
+        NSDictionary *account = [user objectForKey:@"volunteer_account"];
+        QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:volunteer];
+        queryVC.view.backgroundColor = [UIColor whiteColor];
+        [self.navigationController pushViewController:queryVC animated:YES];
+        
         [self.volunteer getVolunteerInfoWithUserName:account[@"username"] andPassWord:account[@"password"] finishBlock:^(VolunteerItem *volunteer) {
-            self.volunteer = volunteer;
-            QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:self.volunteer];
-            queryVC.view.backgroundColor = [UIColor whiteColor];
-            [self.navigationController pushViewController:queryVC animated:YES];
+            [volunteer archiveItem];
         }];
     }
 }
@@ -170,6 +167,7 @@
             QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:self.volunteer];
             queryVC.view.backgroundColor = [UIColor whiteColor];
             [self.navigationController pushViewController:queryVC animated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginVolunteerAccountSucceed" object:nil];
         }];
     });
 }
