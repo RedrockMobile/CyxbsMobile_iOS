@@ -55,19 +55,18 @@
     [self addSubview:self.backViewOfPickerView];
     
     if (@available(iOS 11.0, *)) {
-        self.backViewOfPickerView.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
+        self.backViewOfPickerView.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
     } else {
          self.backViewOfPickerView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     }
     
 //    self.backViewOfPickerView.backgroundColor = [UIColor colorWithRGB:23 alpha:0.5];
     
-    self.backViewOfPickerView.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.8].CGColor;
-    self.backViewOfPickerView.layer.shadowOffset = CGSizeMake(0,5);
-    self.backViewOfPickerView.layer.shadowRadius = 30*kRateY;
-    self.backViewOfPickerView.layer.shadowOpacity = 1;
-    self.backViewOfPickerView.layer.cornerRadius = 16*kRateX;
-    
+//    self.backViewOfPickerView.layer.shadowColor = [UIColor colorWithRed:83/255.0 green:105/255.0 blue:188/255.0 alpha:0.8].CGColor;
+    self.backViewOfPickerView.layer.shadowOffset = CGSizeMake(0,2.5);
+    self.backViewOfPickerView.layer.shadowRadius = 15;
+    self.backViewOfPickerView.layer.shadowOpacity = 0.3;
+    self.backViewOfPickerView.layer.cornerRadius = 16;
     UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {}];
     [self.backViewOfPickerView addGestureRecognizer:tgr];
 }
