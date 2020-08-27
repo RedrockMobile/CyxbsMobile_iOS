@@ -142,7 +142,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.view.backgroundColor = self.finderView.backgroundColor;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
-    
+    //志愿服务绑定完成后重新加载发现主页
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadVolViewIdNeeded) name:@"LoginVolunteerAccountSucceed" object:nil];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
@@ -563,6 +565,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 -(void)reloadElectricViewIfNeeded {
 //    NSLog(@"%@",[UserItem defaultItem].room);
 //    NSLog(@"%@",[UserItem defaultItem].building);
+    [self reloadViewController:self];
+}
+-(void)reloadVolViewIdNeeded {
     [self reloadViewController:self];
 }
 - (void)reloadViewController:(UIViewController *)viewController {
