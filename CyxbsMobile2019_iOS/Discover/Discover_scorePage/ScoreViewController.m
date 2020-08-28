@@ -13,6 +13,8 @@
 #import "ABScoreView.h"
 #import "DetailScorePerYearCell.h"
 #import "IdsBinding.h"
+#import "GPA.h"
+#import "GPAItem.h"
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -32,6 +34,9 @@
 
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
 
+
+@property (nonatomic)GPA *GPAModel;
+@property (nonatomic)GPAItem *GPAItem;
 @end
 
 @implementation ScoreViewController
@@ -52,6 +57,7 @@
     [self addTermScoreView];//“学期成绩”
     [self addTableView];
     
+    [self requestGPA];
     // Do any additional setup after loading the view.
 }
 -(void)idsBindingTest {
@@ -121,6 +127,11 @@
 }
 - (BOOL)SCChart:(SCChart *)chart ShowMaxMinAtIndex:(NSInteger)index {
     return YES;
+}
+-(void)requestGPA {
+    self.GPAModel = [[GPA alloc]init];
+    [self.GPAModel fetchData];
+    
 }
 #warning 修改tableView高度
 - (void)addTableView {
