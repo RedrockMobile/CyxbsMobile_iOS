@@ -25,7 +25,7 @@
         
         
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.font = [UIFont fontWithName:@".PingFang SC-Regular" size:12*kRateX];
+        self.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:12*kRateX];
         
         if (@available(iOS 11.0, *)) {
             [self setTitleColor:[UIColor colorNamed:@"HistodayButtonLabelColor"] forState:UIControlStateNormal];

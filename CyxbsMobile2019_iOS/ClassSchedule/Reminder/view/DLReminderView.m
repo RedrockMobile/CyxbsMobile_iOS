@@ -70,7 +70,7 @@
     self.notoiceLab = [[UILabel alloc] init];
     self.notoiceLab.textAlignment = NSTextAlignmentLeft;
     self.notoiceLab.numberOfLines = 1;
-    self.notoiceLab.font = [UIFont fontWithName:@".PingFang SC-Semibold" size: 15*kRateX];
+    self.notoiceLab.font = [UIFont fontWithName:PingFangSCSemibold size: 15*kRateX];
     if (@available(iOS 11.0, *)) {
         self.notoiceLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
     } else {

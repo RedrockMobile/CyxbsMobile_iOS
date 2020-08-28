@@ -118,6 +118,7 @@
 #define PingFangSCMedium @"PingFangSC-Medium"
 #define PingFangSCBold @"PingFangSC-Semibold"
 #define PingFangSCHeavy @"PingFangSC-Heavy"
+#define PingFangSCSemibold @"PingFangSC-Semibold"
 // Bahnschrift字体
 #define BahnschriftBold @"Bahnschrift_Bold"
 

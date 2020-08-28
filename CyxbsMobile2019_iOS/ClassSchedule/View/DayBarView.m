@@ -128,7 +128,7 @@
     [backView addSubview:month];
     
     month.backgroundColor = UIColor.clearColor;
-    month.font = [UIFont fontWithName:@".PingFang SC" size: 12];
+    month.font = [UIFont fontWithName:PingFangSCRegular size: 12];
     if(num==nil){
         month.text = @"";
     }else{

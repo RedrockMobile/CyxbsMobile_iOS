@@ -43,33 +43,33 @@
 
     self.dic = dic;
     self.Type.text = @"类型";
-    self.Type.font =[UIFont fontWithName:@"PingFangSC-Regular" size:15];
+    self.Type.font =[UIFont fontWithName:PingFangSCRegular size:15];
     self.Type.textAlignment = NSTextAlignmentLeft;
     [self.Type setNumberOfLines:1];
     self.Type.lineBreakMode = NSLineBreakByWordWrapping;
 
     
     self.Time.text = @"时间";
-    self.Time.font =[UIFont fontWithName:@"PingFangSC-Regular" size:15];
+    self.Time.font =[UIFont fontWithName:PingFangSCRegular size:15];
     self.Time.textAlignment = NSTextAlignmentLeft;
     [self.Time setNumberOfLines:1];
     self.Time.lineBreakMode = NSLineBreakByWordWrapping;
     
     self.Week.text = @"周数";
-    self.Week.font =[UIFont fontWithName:@"PingFangSC-Regular" size:15];
+    self.Week.font =[UIFont fontWithName:PingFangSCRegular size:15];
     self.Week.textAlignment = NSTextAlignmentLeft;
     [self.Week setNumberOfLines:1];
     self.Week.lineBreakMode = NSLineBreakByWordWrapping;
     
     self.className.text = [dic objectForKey:@"course"];
-    self.className.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18];
+    self.className.font = [UIFont fontWithName:PingFangSCSemibold size:18];
     self.className.alpha = 1.0;
     self.className.textAlignment = NSTextAlignmentLeft;
     [self.className setNumberOfLines:1];
     self.className.lineBreakMode = NSLineBreakByWordWrapping;
     
     self.teacher.text = [dic objectForKey:@"teacher"];
-    self.teacher.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    self.teacher.font = [UIFont fontWithName:PingFangSCRegular size:12];
     self.teacher.alpha = 1.0;
     self.teacher.textAlignment = NSTextAlignmentLeft;
     [self.teacher setNumberOfLines:1];
@@ -77,7 +77,7 @@
     
     
     self.classroom.text = [dic objectForKey:@"classroom"];
-    self.classroom.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    self.classroom.font = [UIFont fontWithName:PingFangSCRegular size:12];
     self.classroom.alpha = 1.0;
     self.classroom.textAlignment = NSTextAlignmentLeft;
     [self.classroom setNumberOfLines:1];
@@ -85,19 +85,19 @@
     
     
     self.classTime.text = [self getClassTime];
-    self.classTime.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+    self.classTime.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     self.classTime.alpha = 1.0;
     self.classTime.textAlignment = NSTextAlignmentLeft;
     [self.classTime setNumberOfLines:1];
     self.classTime.lineBreakMode = NSLineBreakByWordWrapping;
     
     self.classType.text = [dic objectForKey:@"type"];
-    self.classType.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+    self.classType.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     self.classType.alpha = 1.0;
     self.classType.textAlignment = NSTextAlignmentLeft;
     
     self.classWeek.text = [dic objectForKey:@"rawWeek"];
-    self.classWeek.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+    self.classWeek.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     self.classWeek.alpha = 1.0;
     self.classWeek.textAlignment = NSTextAlignmentLeft;
     [self.classWeek setNumberOfLines:1];

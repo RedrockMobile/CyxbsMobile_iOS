@@ -32,7 +32,7 @@
              self.textColor = [UIColor colorWithHexString:@"#15315B"];
             // Fallback on earlier versions
         }
-        self.font = [UIFont fontWithName:@".PingFang SC-Semibold" size:21*rateX];
+        self.font = [UIFont fontWithName:PingFangSCSemibold size:21*rateX];
         if (@available(iOS 11.0, *)) {
             self.tintColor = [UIColor colorNamed:@"tintColor"];
         } else {

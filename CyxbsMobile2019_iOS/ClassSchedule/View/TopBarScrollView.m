@@ -92,7 +92,7 @@
     }else{
         [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
     }
-    btn.titleLabel.font =  [UIFont fontWithName:@".PingFang SC" size: 15];
+    btn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(20);
@@ -238,7 +238,7 @@
     } else {
         [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
     }
-    btn.titleLabel.font =  [UIFont fontWithName:@".PingFang SC" size: 15];
+    btn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(20);
@@ -260,7 +260,7 @@
     } else {
         [backBtn setBackgroundColor:[UIColor colorWithRed:69/255.0 green:62/255.0 blue:217/255.0 alpha:1]];
     }
-    backBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 13];
+    backBtn.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size: 13];
     backBtn.layer.cornerRadius = MAIN_SCREEN_W*0.045;
     [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nowWeekBar).offset(MAIN_SCREEN_W*0.728);

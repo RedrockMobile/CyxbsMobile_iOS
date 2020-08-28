@@ -111,7 +111,7 @@
         } else {
              pickerLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
         }
-        [pickerLabel setFont: [UIFont fontWithName:@".PingFang SC-Semibold" size: 16]];
+        [pickerLabel setFont: [UIFont fontWithName:PingFangSCSemibold size: 16]];
     }
     
     pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
@@ -139,7 +139,7 @@
     self.confirmBtn.layer.cornerRadius = 0.05333*MAIN_SCREEN_W;
     self.confirmBtn.layer.masksToBounds = YES;
     [self.confirmBtn.titleLabel setTextColor: [UIColor whiteColor]];
-    self.confirmBtn.titleLabel.font = [UIFont fontWithName:@".PingFang SC-Medium" size:18];
+    self.confirmBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
     self.confirmBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.confirmBtn.titleLabel.frame = self.confirmBtn.frame;
     [self.confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
