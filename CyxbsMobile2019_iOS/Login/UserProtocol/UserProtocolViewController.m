@@ -24,6 +24,23 @@
         self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
     
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [backButton setTitle:@"完成" forState:UIControlStateNormal];
+    if (@available(iOS 11.0, *)) {
+        [backButton setTitleColor:[UIColor colorNamed:@"LoginTitleColor"] forState:UIControlStateNormal];
+    } else {
+        [backButton setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
+    }
+    backButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:19];
+    backButton.frame = CGRectMake(MAIN_SCREEN_W - 20 - 50, 10, 50, 30);
+    [backButton addTarget:self action:@selector(backButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+    
+    UIView *separatorLine = [[UIView alloc] initWithFrame:CGRectMake(0, 50, MAIN_SCREEN_W, 1)];
+    separatorLine.alpha = 0.15;
+    separatorLine.backgroundColor = backButton.titleLabel.textColor;
+    [self.view addSubview:separatorLine];
+    
     CGFloat rowSpace;
     CGFloat titleRowSpace;
     CGFloat titleFontSize;
@@ -153,7 +170,7 @@
         .paraSpacing(0, rowSpace)
         .attach();
     }];
-    userProtocolTextView.frame = CGRectMake(20, 40, MAIN_SCREEN_W - 40, self.view.frame.size.height - 100);
+    userProtocolTextView.frame = CGRectMake(20, 51, MAIN_SCREEN_W - 40, self.view.frame.size.height - 100);
     if (@available(iOS 11.0, *)) {
         userProtocolTextView.textColor = [UIColor colorNamed:@"LoginTitleColor"];
         userProtocolTextView.backgroundColor = [UIColor colorNamed:@"LoginBackgroundColor"];
@@ -161,8 +178,14 @@
         userProtocolTextView.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
         userProtocolTextView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
+    userProtocolTextView.textContainerInset = UIEdgeInsetsMake(20, 0, 0, 0);
     userProtocolTextView.scrollEnabled = YES;
     [self.view addSubview:userProtocolTextView];
+
+}
+
+- (void)backButtonTapped {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

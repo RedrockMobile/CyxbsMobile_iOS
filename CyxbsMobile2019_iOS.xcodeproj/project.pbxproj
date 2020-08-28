@@ -109,6 +109,7 @@
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1A9EB51D24F8E18000B6AD83 /* CQUPTVRMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EB51C24F8E18000B6AD83 /* CQUPTVRMapController.m */; };
+		1A9EB52024F90C6D00B6AD83 /* IntegralIntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EB51F24F90C6D00B6AD83 /* IntegralIntroductionController.m */; };
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */; };
 		1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */; };
@@ -705,6 +706,8 @@
 		1A9B7690235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9EB51B24F8E18000B6AD83 /* CQUPTVRMapController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTVRMapController.h; sourceTree = "<group>"; };
 		1A9EB51C24F8E18000B6AD83 /* CQUPTVRMapController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTVRMapController.m; sourceTree = "<group>"; };
+		1A9EB51E24F90C6D00B6AD83 /* IntegralIntroductionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralIntroductionController.h; sourceTree = "<group>"; };
+		1A9EB51F24F90C6D00B6AD83 /* IntegralIntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralIntroductionController.m; sourceTree = "<group>"; };
 		1AAFACF6236B360F00E854A3 /* MinePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePresenter.h; sourceTree = "<group>"; };
 		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
 		1AB2E58324E2D41A004B4067 /* CQUPTMapPlaceRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceRect.h; sourceTree = "<group>"; };
@@ -2573,6 +2576,8 @@
 				D0011A6C23F082FD009A242C /* QAExitView.h */,
 				D0011A6D23F082FD009A242C /* QAExitView.m */,
 				D0011A6F23F0830B009A242C /* QAExitView.xib */,
+				1A9EB51E24F90C6D00B6AD83 /* IntegralIntroductionController.h */,
+				1A9EB51F24F90C6D00B6AD83 /* IntegralIntroductionController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3844,6 +3849,7 @@
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
+				1A9EB52024F90C6D00B6AD83 /* IntegralIntroductionController.m in Sources */,
 				EE75BFC823F5884100208039 /* UserInfoView.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
 				1A810BBC24E2CC0E00E79126 /* CQUPTMapPlaceItem.m in Sources */,
@@ -4282,7 +4288,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -4306,7 +4312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
