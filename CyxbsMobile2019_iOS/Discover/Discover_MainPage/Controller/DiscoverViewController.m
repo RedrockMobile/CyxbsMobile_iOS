@@ -648,6 +648,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 -(void)touchMyTest {
     NSLog(@"点击了我的考试");
     TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchSchoolCalender {
