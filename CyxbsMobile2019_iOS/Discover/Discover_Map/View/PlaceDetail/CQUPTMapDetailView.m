@@ -303,7 +303,7 @@
         
         NSURL *placeUrl = [NSURL URLWithString:detailItem.imagesArray[i]];
         
-        [placeImageView sd_setImageWithURL:placeUrl placeholderImage:[UIImage imageNamed:@"PlaecHolderImage"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        [placeImageView sd_setImageWithURL:placeUrl placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"] options:SDWebImageScaleDownLargeImages completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             placeImageView.contentMode = UIViewContentModeScaleAspectFill;
         }];
         

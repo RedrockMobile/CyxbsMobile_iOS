@@ -93,7 +93,6 @@
     } else {
         noMoreImageLabel.textColor = [UIColor colorWithHexString:@"ABBCD8"];
     }
-    imageCollectionView.mj_footer = noMoreImageLabel;
 }
 
 - (void)viewDidLayoutSubviews {
@@ -153,7 +152,9 @@
     NSMutableArray *photos = [NSMutableArray array];
     
     for (int i = 0; i < self.detailItem.imagesArray.count; i++) {
-        UIImage *img = ((CQUPTMapAllImageCollectionViewCell *)([collectionView cellForItemAtIndexPath:indexPath])).imageView.image;
+        NSIndexPath *tmpIndexPath = [NSIndexPath indexPathForItem:i inSection:indexPath.section];
+        
+        UIImage *img = ((CQUPTMapAllImageCollectionViewCell *)([collectionView cellForItemAtIndexPath:tmpIndexPath])).imageView.image;
         
         GKPhoto *photo = [GKPhoto new];
         photo.image = img;
@@ -163,6 +164,7 @@
     browser.showStyle = GKPhotoBrowserShowStyleNone;
     [browser showFromVC:self];
 }
+
 
 - (void)shareImageButtonTapped {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"共享照片" message:@"在这里，与邮子们共同分享你们所拍的校园风景。上传你的照片，优质照片有机会在此展示。" preferredStyle:UIAlertControllerStyleAlert];
