@@ -200,6 +200,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
         [UserItemTool defaultItem].rank_Persent = responseObject[@"data"][@"percent"];
         [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
+        [UserItemTool defaultItem].canCheckIn = [responseObject[@"data"][@"can_check_in"] boolValue];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
