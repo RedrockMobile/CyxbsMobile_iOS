@@ -123,10 +123,15 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
         }
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
     }
 }
-
+- (void)presentMySchedul{
+    ClassScheduleTabBarView *classTabBarView = ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView;
+    [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+    classTabBarView.mySchedul.fakeBar.alpha = 0;
+    [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configDefaults];

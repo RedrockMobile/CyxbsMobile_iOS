@@ -17,7 +17,7 @@
 #import "MineQAController.h"
 #import "MineQADataItem.h"
 #import "MineAboutController.h"
-
+#import <UserNotifications/UserNotifications.h>
 @interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) MinePresenter *presenter;
@@ -120,25 +120,54 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
-
+//上课前提醒我
 - (void)switchedRemindBeforeClass:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
         [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindBeforeClass"];
+        //通知WYCClassBookViewController要课前提醒
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"remindBeforeClass" object:nil];
     } else {                    // 关闭开关
+        
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindBeforeClass"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        //通知WYCClassBookViewController不要课前提醒
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"notRemindBeforeClass" object:nil];
     }
 }
-
+//每天推送课表
 - (void)switchedRemindEveryDay:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
+        
         [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindEveryDay"];
+        [self setLocalNoti];
+        
     } else {                    // 关闭开关
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindEveryDay"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        //去除本地通知
+        [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"deliverSchedulEverday"]];
+        
     }
 }
-
+//设置本地通知
+- (void)setLocalNoti{
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.title = @"今日份课表已送达";
+    content.body = @"查看今日课表，提前做好规划";
+    
+    NSDateComponents *component = [[NSDateComponents alloc] init];
+    
+    component.hour = 7;
+    
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:component repeats:YES];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"deliverSchedulEverday" content:content trigger:trigger];
+    
+    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        
+    }];
+}
+//是否显示备忘
 - (void)switchedDisplayMemoPad:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
         [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemopadON" object:nil];

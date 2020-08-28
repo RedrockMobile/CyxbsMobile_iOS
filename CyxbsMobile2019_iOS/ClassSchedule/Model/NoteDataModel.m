@@ -25,7 +25,15 @@
         self.timeDictArray = [self transferTSDAWithArray:self.timeStrDictArray];
         
         self.noteID = [self getNoteID];
-        
+        NSDictionary *transfer = @{
+            @"不提醒":@0,
+            @"提前五分钟":@5,
+            @"提前十分钟":@10,
+            @"提前二十分钟":@20,
+            @"提前三十分钟":@30,
+            @"提前一小时":@60
+        };
+        self.notiBeforeTimeLenth = [transfer[self.notiBeforeTime] intValue];
     }
     return self;
 }

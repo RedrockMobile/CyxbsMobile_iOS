@@ -10,13 +10,16 @@
 //#import "WYCClassBookViewController.h"
 #import "TransitionManager.h"
 #import "FakeTabBarView.h"
-@interface ClassScheduleTabBarView ()<WYCClassAndRemindDataModelDelegate>
+//#import <UserNotifications/UserNotifications.h>
+#import "LocalNotiManager.h"
+@interface ClassScheduleTabBarView ()
 
 @property (nonatomic, weak) UIView *bottomCoverView;
 @property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, assign)BOOL isPresenting;
 @property (nonatomic, strong)UINavigationController *nav;
+@property (nonatomic, assign)BOOL isInitingMySchedul;
 
 /// 上拉弹出课表的手势
 @property (nonatomic,strong)UIPanGestureRecognizer *PGR;
@@ -174,16 +177,92 @@
 /// @param paramDict 下节课的数据字典
 - (void)updateSchedulTabBarViewWithDic:(NSDictionary *)paramDict{
     if( [paramDict[@"is"] intValue]==1){//有下一节课
+        
+//        [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"remindBeforeCourseBegin"]];
+        
         self.classroomLabel.labelText = paramDict[@"classroomLabel"];
         self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
         self.classLabel.labelText = paramDict[@"classLabel"];
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_RemindBeforeClass"]!=nil){
+            
+            int weekNum,weekday,lesson;
+            weekday = [paramDict[@"hash_day"] intValue];
+            lesson = [paramDict[@"hash_lesson"] intValue];
+            weekNum = [paramDict[@"hash_week"] intValue];
+            NSString *bodyStr = [NSString stringWithFormat:@"课程内容：%@",paramDict[@"classLabel"]];
+            NSString *subTitleStr =[NSString stringWithFormat:@"教室地点：%@",paramDict[@"classroomLabel"]];
+                //在第weekNum周的（星期weekday）的（第lesson节大课）前20提醒
+            [LocalNotiManager setLocalNotiWithWeekNum:weekNum weekDay:weekday lesson:lesson before:20 titleStr:@"老师还有20分钟到达教室" subTitleStr:subTitleStr bodyStr:bodyStr ID:@"remindBeforeCourseBegin"];
+            
+            /**
+            NSDateComponents *compont = [[NSDateComponents alloc] init];
+            //周几    ，第几节课,哪个小时提醒，哪个分钟提醒，提前多久提醒
+            int weekday,lesson,hour=0, minute=0;
+            weekday = [paramDict[@"hash_day"] intValue];
+            lesson = [paramDict[@"hash_lesson"] intValue];
+            //week的转化：compont.weekday==1代表周日提醒，compont.weekday==2代表周一提醒
+            weekday+=2;
+            if (weekday==8) {
+                weekday = 1;
+            }
+//@[@"8:00 - 9:40",@"10:15 - 11:55",@"14:00 - 15:40",@"16:15 - 18:55",@"19:00 - 20:40",@"21:15 - 22:55"];
+            switch (lesson) {
+                case 0:
+                    hour = 7;
+                    minute = 40;
+                    break;
+                case 1:
+                    hour = 9;
+                    minute = 55;
+                    break;
+                case 2:
+                    hour = 13;
+                    minute = 40;
+                    break;
+                case 3:
+                    hour = 15;
+                    minute = 55;
+                    break;
+                 case 4:
+                    hour = 18;
+                    minute = 40;
+                    break;
+                case 5:
+                    hour = 20;
+                    minute = 5;
+                    break;
+                default:
+                    break;
+            }
+            
+            compont.hour = hour;
+            compont.minute = minute;
+            compont.weekday = weekday;
+            
+            UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:compont repeats:NO];
+            
+            UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+            
+            content.title = @"老师还有20分钟到达教室";
+            content.body = [NSString stringWithFormat:@"在%@上%@",paramDict[@"classroomLabel"],paramDict[@"classLabel"]];
+            
+            UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"remindBeforeCourseBegin" content:content trigger:trigger];
+            
+            [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
+            */
+        }else{
+            //移除提醒
+            
+            NSLog(@"nnnnn");
+            
+            [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"remindBeforeCourseBegin"]];
+        }
     }else{//无下一节课
         self.classroomLabel.labelText =
         self.classTimeLabel.labelText =
         self.classLabel.labelText = @"无课了";
     }
 }
-
 /// 添加一个上拉后显示课表的手势和点击后显示课表的手势
 - (void)addGesture{
     //上拉后显示课表
@@ -209,6 +288,8 @@
 }
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
+    if(self.isInitingMySchedul==YES)return;
+    self.isInitingMySchedul = YES;
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
     
     self.mySchedul.idNum = [UserDefaultTool getIdNum];
@@ -238,5 +319,6 @@
     self.mySchedul.schedulTabBar = self;
     
     [self addGesture];
+    self.isInitingMySchedul = NO;
 }
 @end

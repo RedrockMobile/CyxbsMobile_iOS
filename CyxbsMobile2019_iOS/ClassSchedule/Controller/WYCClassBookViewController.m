@@ -14,6 +14,7 @@
 #import "LeftBar.h"
 #import "LessonViewForAWeek.h"
 #import "TransitionManager.h"
+#import <UserNotifications/UserNotifications.h>
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 
@@ -48,10 +49,16 @@
     //编辑备忘
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editNoteWithModel:) name:@"DLReminderSetTimeVCShouldEditNote" object:nil];
     
+    //课前提醒开关打开时，MineViewController发送通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remindBeforeClass) name:@"remindBeforeClass" object:nil];
+    
+    //课前提醒开关关闭时，MineViewController发送通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notRemindBeforeClass) name:@"notRemindBeforeClass" object:nil];
+    
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
-        self.view.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     //如果是自己的课表，那就加假的tabBar
     if(self.schedulType==ScheduleTypePersonal){
@@ -81,7 +88,18 @@
     
     self.view.layer.shadowOpacity = 0.5;
 }
-
+- (void)remindBeforeClass{
+    //刷新tabar的数据，tabbar会根据偏好设置缓存决定是否提醒或者移除提醒
+    [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+    //fakeBar不会对本地通知做出改动，只是刷新数据
+    [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+}
+- (void)notRemindBeforeClass{
+    //刷新tabar的数据，tabbar会根据偏好设置缓存决定是否提醒或者移除提醒
+    [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+    //fakeBar不会对本地通知做出改动，只是刷新数据
+    [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+}
 //加上下拉dismiss手势
 - (void)addGesture{
     UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissSelf)];
@@ -125,8 +143,25 @@
     //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
     //这里也做一次判断：如果课表类型不是自己的，那么return
     if(self.schedulType!=ScheduleTypePersonal)return;
-    
     NoteDataModel *model = noti.object;
+    //  如果不是@“不提醒”，那就去除本地通知,
+    if(![model.notiBeforeTime isEqualToString:@"不提醒"]){
+        if([model.weeksArray firstObject].intValue==0){
+            for (int i=1; i<25; i++) {
+                for (NSDictionary *timeDict in model.timeDictArray) {
+                    NSString *notiID = [NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,i,timeDict[@"weekNum"],timeDict[@"lessonNum"]];
+                    [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[notiID]];
+                }
+            }
+        }else{
+            for (NSNumber *weekNum in model.weeksArray) {
+                for (NSDictionary *timeDict in model.timeDictArray) {
+                    NSString *notiID = [NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,weekNum.intValue,timeDict[@"weekNum"],timeDict[@"lessonNum"]];
+                    [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[notiID]];
+                }
+            }
+        }
+    }
     [self.model deleteNoteDataWithModel:model];
     [self.scrollView removeAllSubviews];
     self.lessonViewArray = [NSMutableArray array];
@@ -386,6 +421,9 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
                 @"classTimeLabel":time[hash_lesson],
                 @"classLabel":lessondata[@"course"],
                 @"is":@"1",
+                @"hash_lesson":[NSNumber numberWithInt:hash_lesson],
+                @"hash_day":[NSNumber numberWithInt:hash_day],
+                @"hash_week":[NSNumber numberWithInt:hash_week],
         };
     }else{
         //没课了
