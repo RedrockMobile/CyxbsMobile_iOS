@@ -120,7 +120,9 @@ extern CFAbsoluteTime StartTime;
 
 //iOS10新增：处理前台收到通知的代理方法
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    
     NSDictionary * userInfo = notification.request.content.userInfo;
+    
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [UMessage setAutoAlert:NO];
         //应用处于前台时的远程推送接受
@@ -128,12 +130,14 @@ extern CFAbsoluteTime StartTime;
         [UMessage didReceiveRemoteNotification:userInfo];
     }else{
         //应用处于前台时的本地推送接受
+        
     }
     completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
 }
 
 //iOS10新增：处理后台点击通知的代理方法
--(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+    
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         //应用处于后台时的远程推送接受
@@ -141,6 +145,20 @@ extern CFAbsoluteTime StartTime;
         [UMessage didReceiveRemoteNotification:userInfo];
     }else{
         //应用处于后台时的本地推送接受
+        //如果点击的是每日推送课表的消息，那么延时0.2秒后发送通知，让DiscoverViewController弹出课表
+        //0.2秒用于加载UI，不延时会导致发送通知时DiscoverViewController还未加载完成
+        //用se2模拟器模拟下延只时0.05s也不会有什么问题，保险起见延时0.2s后发送通知
+        if([response.notification.request.identifier
+            isEqualToString:@"deliverSchedulEverday"]
+           || [response.notification.request.identifier
+              isEqualToString:@"remindBeforeCourseBegin"]
+           ){
+            dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC);
+            dispatch_after(timer, dispatch_get_main_queue(), ^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverVCShouldPresentMySchedul" object:nil];
+            });
+        }
     }
 }
 @end
+

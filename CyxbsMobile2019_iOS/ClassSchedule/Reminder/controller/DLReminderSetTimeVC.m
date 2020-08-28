@@ -20,7 +20,7 @@
 #import "DLHistodyButton.h"
 #import "TimeBtnSelectedBackView.h"
 #import "NoticeWaySelectView.h"
-
+#import "LocalNotiManager.h"
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
@@ -144,12 +144,27 @@
         
         if(self.modelNeedBeDelete!=nil){
             //这个属性存在说明是通过点击修改按钮来的这个页面，所以发一个删除原备忘的通知，
-            //让WYCClassBookViewController删除备忘
+            //让WYCClassBookViewController删除备忘,同时清除本地通知
             [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldDeleteNote" object:self.modelNeedBeDelete];
             
         }
         //删除了旧的再添加新的，否则如果用户点击修改备忘后没做任何改动，但是点击了箭头，就会导致该备忘从文件里被删除
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldAddNote" object:model];
+        //如果是@“不提醒”，那就不加本地通知
+        if([self.notiStr isEqualToString:@"不提醒"])return;
+        if([model.weeksArray firstObject].intValue==0){
+            for (int i=1; i<25; i++) {
+                for (NSDictionary *timeDict in model.timeDictArray) {
+                    [LocalNotiManager setLocalNotiWithWeekNum:i weekDay:[timeDict[@"weekNum"] intValue] lesson:[timeDict[@"lessonNum"] intValue] before:model.notiBeforeTimeLenth titleStr:model.noteTitleStr subTitleStr:nil bodyStr:model.noteDetailStr ID:[NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,i,timeDict[@"weekNum"],timeDict[@"lessonNum"]]];
+                }
+            }
+        }else{
+            for (NSNumber *weekNum in model.weeksArray) {
+                for (NSDictionary *timeDict in model.timeDictArray) {
+                    [LocalNotiManager setLocalNotiWithWeekNum:weekNum.intValue weekDay:[timeDict[@"weekNum"] intValue] lesson:[timeDict[@"lessonNum"] intValue] before:model.notiBeforeTimeLenth titleStr:model.noteTitleStr subTitleStr:nil bodyStr:model.noteDetailStr ID:[NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,weekNum.intValue,timeDict[@"weekNum"],timeDict[@"lessonNum"]]];
+                }
+            }
+        }
     }
 }
 
@@ -224,9 +239,6 @@
     }];
 }
 
-- (void)addNotiBtn{
-    
-}
 #pragma mark - delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     return YES;

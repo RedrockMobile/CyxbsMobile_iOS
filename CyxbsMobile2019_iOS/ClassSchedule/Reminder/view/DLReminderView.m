@@ -49,7 +49,8 @@
     self.titleLab = [[UILabel alloc] init];
     self.titleLab.textAlignment = NSTextAlignmentLeft;
     self.titleLab.numberOfLines = 0;
-    self.titleLab.font = [UIFont fontWithName:@".PingFang SC-Semibold" size: 34*kRateX];
+    
+    self.titleLab.font = [UIFont fontWithName:PingFangSCBold size: 34*kRateX];
     if (@available(iOS 11.0, *)) {
         self.titleLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
     } else {
