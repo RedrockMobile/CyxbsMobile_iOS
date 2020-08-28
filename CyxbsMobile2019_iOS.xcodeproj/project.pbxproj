@@ -108,6 +108,7 @@
 		1A9B767A235F50A800725937 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7679235F50A800725937 /* main.m */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
+		1A9EB51D24F8E18000B6AD83 /* CQUPTVRMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EB51C24F8E18000B6AD83 /* CQUPTVRMapController.m */; };
 		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58424E2D41A004B4067 /* CQUPTMapPlaceRect.m */; };
 		1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB2E58924E38F26004B4067 /* CQUPTMapMyStarButton.m */; };
@@ -702,6 +703,8 @@
 		1A9B768A235F50A900725937 /* CyxbsMobile2019_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsMobile2019_iOSUITests.m; sourceTree = "<group>"; };
 		1A9B7690235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A9EB51B24F8E18000B6AD83 /* CQUPTVRMapController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTVRMapController.h; sourceTree = "<group>"; };
+		1A9EB51C24F8E18000B6AD83 /* CQUPTVRMapController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTVRMapController.m; sourceTree = "<group>"; };
 		1AAFACF6236B360F00E854A3 /* MinePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePresenter.h; sourceTree = "<group>"; };
 		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
 		1AB2E58324E2D41A004B4067 /* CQUPTMapPlaceRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceRect.h; sourceTree = "<group>"; };
@@ -1931,6 +1934,15 @@
 			path = CyxbsMobile2019_iOSUITests;
 			sourceTree = "<group>";
 		};
+		1A9EB51A24F8E15C00B6AD83 /* VRMap */ = {
+			isa = PBXGroup;
+			children = (
+				1A9EB51B24F8E18000B6AD83 /* CQUPTVRMapController.h */,
+				1A9EB51C24F8E18000B6AD83 /* CQUPTVRMapController.m */,
+			);
+			path = VRMap;
+			sourceTree = "<group>";
+		};
 		1AAFAD41236DC96300E854A3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -2071,6 +2083,7 @@
 		1AE1374124DEE752000F2C30 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1A9EB51A24F8E15C00B6AD83 /* VRMap */,
 				1A79FCD724EAEAB000CBB124 /* MoreImage */,
 				1AE72A1224E6614B00665176 /* PlaceDetail */,
 				1AB2E5A024E427C0004B4067 /* MainPage */,
@@ -3913,6 +3926,7 @@
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				EE75BFBD23F5884100208039 /* SCChart.m in Sources */,
 				1A21CD5E242A4D82008B2EA7 /* SchoolBusItem.m in Sources */,
+				1A9EB51D24F8E18000B6AD83 /* CQUPTVRMapController.m in Sources */,
 				EE8234DF24673FE800F6B4AE /* QueryLoginViewController.m in Sources */,
 				D06AAEE024AC00BB00EE0892 /* QAReviewAnswerListView.m in Sources */,
 				EE75BFB923F5884100208039 /* NewsCell.m in Sources */,

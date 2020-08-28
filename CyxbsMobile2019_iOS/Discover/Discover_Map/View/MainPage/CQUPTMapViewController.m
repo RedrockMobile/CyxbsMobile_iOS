@@ -12,6 +12,7 @@
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapProgressView.h"
+#import "CQUPTVRMapController.h"
 #import <SDImageCache.h>
 
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
@@ -141,7 +142,8 @@
 }
 
 - (void)vrButtonTapped {
-    NSLog(@"VRMap");
+    CQUPTVRMapController *vrMap = [[CQUPTVRMapController alloc] init];
+    [self.navigationController pushViewController:vrMap animated:YES];
 }
 
 @end

@@ -407,7 +407,7 @@
                     
                     NSMutableArray *names = [@[] mutableCopy];
                     for (int i = 0; i < photos.count; i++) {
-                        [names addObject:@"image"];
+                        [names addObject:@"file"];
                     }
                     
                     [[HttpClient defaultClient] uploadImageWithJson:CQUPTMAPUPLOADIMAGE method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
