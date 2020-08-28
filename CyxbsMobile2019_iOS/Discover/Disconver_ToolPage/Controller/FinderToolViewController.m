@@ -183,6 +183,10 @@
     if (fav == 0) {
         [self.OKButton removeFromSuperview];
         [self.settingButton setHidden:NO];
+        for (FinderToolViewItem*item in self.toolViewItems) {
+            item.isChooingNow = NO;
+            item.isFavorite = NO;
+        }
         return;
     }
     

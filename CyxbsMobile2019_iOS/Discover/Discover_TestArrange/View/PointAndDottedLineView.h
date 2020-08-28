@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak)UIView *bigCircle;
 /// 圆点点由一个大圆和一个小圆堆叠而成，这个是小圆
 @property (nonatomic, weak)UIView *smallCircle;
+@property(nonatomic)BOOL isNoExam;
 /// 这是一个用来装饰考试安排页面tableView 的圆点点和虚线的结合
 /// @param pointCount 圆点点的个数
 /// @param spacing 两个圆点点之间的距离

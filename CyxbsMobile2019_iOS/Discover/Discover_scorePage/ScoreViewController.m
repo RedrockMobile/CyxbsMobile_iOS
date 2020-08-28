@@ -35,8 +35,8 @@
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
 
 
-@property (nonatomic)GPA *GPAModel;
-@property (nonatomic)GPAItem *GPAItem;
+@property (nonatomic)GPA *gpaModel;
+//@property (nonatomic)GPAItem *GPAItem;
 @end
 
 @implementation ScoreViewController
@@ -129,9 +129,8 @@
     return YES;
 }
 -(void)requestGPA {
-    self.GPAModel = [[GPA alloc]init];
-    [self.GPAModel fetchData];
-    
+    self.gpaModel = [[GPA alloc]init];
+    [self.gpaModel fetchData];
 }
 #warning 修改tableView高度
 - (void)addTableView {
@@ -139,7 +138,7 @@
     self.tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.scrollEnabled = NO;
+    tableView.scrollEnabled = YES;
     [self.contentView addSubview:tableView];
 }
 
@@ -148,6 +147,7 @@
 - (NSArray *)getXTitles:(int)num {
     NSMutableArray *xTitles = [NSMutableArray array];
     xTitles = @[@"大一上", @"大一下", @"大二上", @"大二下", @"大三上", @"大三下", @"大四上", @"大四下"];
+    
     return xTitles;
 }
 
@@ -174,10 +174,12 @@
 }
 //MARK: - tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+//    return self.gpaModel.gpaItem.termGrades.termGrades.count;
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailScorePerYearCell *cell = [[DetailScorePerYearCell alloc]init];
+    cell.timeLabel.text = self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].term;
     cell.selectionStyle  = UITableViewCellSelectionStyleNone;
     return cell;
 }
