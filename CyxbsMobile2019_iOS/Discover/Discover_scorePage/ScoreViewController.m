@@ -16,6 +16,7 @@
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color_WhiteTo222222 [UIColor colorNamed:@"Color_WhiteTo222222" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define Color_chartLine [UIColor colorNamed:@"Color_chartLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
@@ -30,6 +31,7 @@
 @property (nonatomic, weak)UITableView *tableView;//每学年的成绩
 
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
+
 @end
 
 @implementation ScoreViewController
@@ -79,13 +81,18 @@
     SCChart *chartView = [[SCChart alloc]initwithSCChartDataFrame:CGRectMake(0, self.twoTitleView.origin.y + self.twoTitleView.height + 2, self.view.width, 180) withSource:self withStyle:SCChartLineStyle];
     
     if (@available(iOS 11.0, *)) {
-        chartView.backgroundColor = Color42_78_132to2D2D2D;
+        chartView.backgroundColor = self.view.backgroundColor;
+//        chartView.backgroundColor = [UIColor redColor];
+//        chartView.tintColor = [UIColor clearColor];
+//        chartView.tintColor
+        
     } else {
         // Fallback on earlier versions
     }
     [chartView showInView:self.contentView];
     self.chartView = chartView;
 }
+
 - (void)addABScoreView {
     ABScoreView *view = [[ABScoreView alloc]initWithFrame:CGRectMake(0, self.chartView.origin.y + self.chartView.size.height, self.view.width, 90)];
     self.ABScoreView = view;
@@ -111,6 +118,9 @@
     self.termLabel = termLabel;
     [self.termBackView addSubview:termLabel];
     
+}
+- (BOOL)SCChart:(SCChart *)chart ShowMaxMinAtIndex:(NSInteger)index {
+    return YES;
 }
 #warning 修改tableView高度
 - (void)addTableView {

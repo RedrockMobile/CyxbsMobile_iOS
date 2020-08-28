@@ -157,10 +157,10 @@
 }
 - (void) pushToScoreVC {
     //GPA接口暂时弄不了，所以关闭GPA查询入口
-//    ScoreViewController *vc = [[ScoreViewController alloc]init];
-//    [self presentViewController:vc animated:YES completion:^{
-//        NSLog(@"跳转至学分成绩vc");
-//    }];
+    ScoreViewController *vc = [[ScoreViewController alloc]init];
+    [self presentViewController:vc animated:YES completion:^{
+        NSLog(@"跳转至学分成绩vc");
+    }];
 
 }
 - (void)getExamArrangeData {

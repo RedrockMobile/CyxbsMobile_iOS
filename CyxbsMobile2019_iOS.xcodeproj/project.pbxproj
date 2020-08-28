@@ -3227,12 +3227,12 @@
 			children = (
 				EE75BF7F23F5884100208039 /* DetailScorePerYearCell.h */,
 				EE75BF8023F5884100208039 /* UserInfoView.h */,
+				EE75BF8623F5884100208039 /* ABScoreView.h */,
 				EE75BF8123F5884100208039 /* ABScoreView.m */,
 				EE75BF8223F5884100208039 /* ScoreTwoTitleView.h */,
 				EE75BF8323F5884100208039 /* UserInfoView.m */,
 				EE75BF8423F5884100208039 /* DetailScorePerYearCell.m */,
 				EE75BF8523F5884100208039 /* ScoreTwoTitleView.m */,
-				EE75BF8623F5884100208039 /* ABScoreView.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
