@@ -21,6 +21,9 @@
 
 - (void)getVolunteerInfoWithUserName: (NSString *)userName andPassWord: (NSString *)passWord finishBlock:(void (^)(VolunteerItem *volunteer))finish;
 
+-(NSString *)aesEncrypt:(NSString *)plainText;
+
+- (void)sortEvents;
 
 /// 获取缓存路径
 + (NSString *)archivePath;
