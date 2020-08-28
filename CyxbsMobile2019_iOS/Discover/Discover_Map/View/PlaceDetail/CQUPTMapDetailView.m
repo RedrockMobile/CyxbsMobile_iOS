@@ -303,7 +303,7 @@
         
         NSURL *placeUrl = [NSURL URLWithString:detailItem.imagesArray[i]];
         
-        [placeImageView sd_setImageWithURL:placeUrl placeholderImage:[UIImage imageNamed:@"PlaecHolderImage"] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        [placeImageView sd_setImageWithURL:placeUrl placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"] options:SDWebImageScaleDownLargeImages completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             placeImageView.contentMode = UIViewContentModeScaleAspectFill;
         }];
         
@@ -407,7 +407,7 @@
                     
                     NSMutableArray *names = [@[] mutableCopy];
                     for (int i = 0; i < photos.count; i++) {
-                        [names addObject:@"image"];
+                        [names addObject:@"file"];
                     }
                     
                     [[HttpClient defaultClient] uploadImageWithJson:CQUPTMAPUPLOADIMAGE method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {

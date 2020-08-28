@@ -55,7 +55,7 @@
         
         UIImageView *iconImageView = [[UIImageView alloc] init];
         iconImageView.image = [UIImage imageNamed:@"appIcon"];
-        iconImageView.backgroundColor = [UIColor grayColor];
+        iconImageView.backgroundColor = [UIColor clearColor];
         iconImageView.layer.cornerRadius = 24;
         iconImageView.clipsToBounds = YES;
         [self addSubview:iconImageView];

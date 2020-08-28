@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class CQUPTMapModel;
 @interface CQUPTMapPresenter : NSObject
 
-@property (nonatomic, strong) UIViewController<CQUPTMapViewProtocol> *view;
+@property (nonatomic, weak) UIViewController<CQUPTMapViewProtocol> *view;
 @property (nonatomic, strong) CQUPTMapModel *model;
 
 - (void)attachView:(UIViewController<CQUPTMapViewProtocol> *)view;

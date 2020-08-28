@@ -123,7 +123,7 @@
         [path addLineToPoint:CGPointMake(UUYLabelwidth+i*_xLabelWidth,self.frame.size.height-2*UULabelHeight)];
         [path closePath];
         shapeLayer.path = path.CGPath;
-        shapeLayer.strokeColor = [[[UIColor blackColor] colorWithAlphaComponent:0.1] CGColor];
+        shapeLayer.strokeColor = [[[UIColor blackColor] colorWithAlphaComponent:0.0] CGColor];
         shapeLayer.fillColor = [[UIColor whiteColor] CGColor];
         shapeLayer.lineWidth = 1;
         [self.layer addSublayer:shapeLayer];

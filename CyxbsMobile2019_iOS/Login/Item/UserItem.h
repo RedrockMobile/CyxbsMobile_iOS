@@ -69,6 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 一周内的签到情况
 @property (nonatomic, copy) NSString *week_info;
 
+/// 是否能签到
+@property (nonatomic, assign) BOOL canCheckIn;
+
 /// 楼栋：例如26
 @property (nonatomic, copy) NSString *building;
 

@@ -174,7 +174,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.height.equalTo(@152);
     }];
     [self.volView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.eleView.mas_bottom).offset(-15);
+        make.top.equalTo(self.eleView.mas_bottom).offset(-20);
         make.left.right.equalTo(self.view);
         make.height.equalTo(@152);
         make.bottom.equalTo(self.contentView).offset(-20);
@@ -205,6 +205,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
         [UserItemTool defaultItem].rank_Persent = responseObject[@"data"][@"percent"];
         [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
+        [UserItemTool defaultItem].canCheckIn = [responseObject[@"data"][@"can_check_in"] boolValue];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
@@ -653,6 +654,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 -(void)touchMyTest {
     NSLog(@"点击了我的考试");
     TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchSchoolCalender {

@@ -46,7 +46,7 @@
         self.backBtn = backBtn;
 
         UILabel *yearsLabel = [[UILabel alloc] init];
-        yearsLabel.text = @"2020-2019";
+        yearsLabel.text = @"2020-2021";
         yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
         if (IS_IPHONESE) {
             yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
@@ -135,6 +135,16 @@
         [checkInButton addTarget:self action:@selector(CheckInButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [checkInView addSubview:checkInButton];
         self.checkInButton = checkInButton;
+        
+        if (![UserItemTool defaultItem].canCheckIn) {
+            checkInRankLabel.text = @"假期不能签到哟O(∩_∩)O~~";
+            checkInButton.enabled = NO;
+            if (@available(iOS 11.0, *)) {
+                checkInButton.backgroundColor = [UIColor colorNamed:@"Mine_CanNotCheckInColor"];
+            } else {
+                checkInButton.backgroundColor = [UIColor colorWithHexString:@"DDDDEE"];
+            }
+        }
         
         UIView *storeView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {

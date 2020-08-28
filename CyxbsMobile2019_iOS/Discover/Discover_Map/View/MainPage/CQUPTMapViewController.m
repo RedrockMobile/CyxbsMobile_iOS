@@ -12,6 +12,7 @@
 #import "CQUPTMapDataItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapProgressView.h"
+#import "CQUPTVRMapController.h"
 #import <SDImageCache.h>
 
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
@@ -49,7 +50,7 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)dealloc {
     [self.presenter detachView];
 }
 
@@ -69,7 +70,7 @@
     
     NSURL *mapURL = [NSURL URLWithString:mapData.mapURL];
     
-    [contentView.mapView sd_setImageWithURL:mapURL placeholderImage:nil options:SDWebImageRefreshCached | SDWebImageScaleDownLargeImages progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+    [contentView.mapView sd_setImageWithURL:mapURL placeholderImage:nil options:SDWebImageScaleDownLargeImages progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!self.progressView && ![[SDImageCache sharedImageCache] diskImageDataExistsWithKey:mapData.mapURL]) {
@@ -141,7 +142,8 @@
 }
 
 - (void)vrButtonTapped {
-    NSLog(@"VRMap");
+    CQUPTVRMapController *vrMap = [[CQUPTVRMapController alloc] init];
+    [self.navigationController pushViewController:vrMap animated:YES];
 }
 
 @end

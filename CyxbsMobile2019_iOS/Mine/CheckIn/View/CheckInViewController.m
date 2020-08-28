@@ -65,11 +65,15 @@
     
     NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
     
-    if(nowWeek < 0 || nowWeek >= weekArray.count){
+    if (nowWeek < 0 || nowWeek >= weekArray.count) {
         nowWeek = 0;
     }
 
-    self.contentView.weekLabel.text = [NSString stringWithFormat:@"上学期%@", weekArray[nowWeek]];
+    if ([UserItemTool defaultItem].canCheckIn) {
+        self.contentView.weekLabel.text = [NSString stringWithFormat:@"上学期%@", weekArray[nowWeek]];
+    } else {
+        self.contentView.weekLabel.text = @"假期愉快～";
+    }
     
     // 过场动画
     [self animationForViewWillAppear];

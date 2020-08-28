@@ -12,6 +12,8 @@
 #import <UMShare/UMShare.h>
 #import <UMAnalytics/MobClick.h>
 #import <UMCommonLog/UMCommonLogHeaders.h>
+#import "VolunteeringEventItem.h"
+#import "VolunteerItem.h"
 
 extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
@@ -32,6 +34,46 @@ extern CFAbsoluteTime StartTime;
     // 打开应用时刷新token
     [UserItemTool refresh];
  
+    // 刷新志愿信息
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    [responseSerializer setRemovesKeysWithNullValues:YES];
+    [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
+    
+    manager.responseSerializer = responseSerializer;
+    
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Basic enNjeTpyZWRyb2Nrenk="]  forHTTPHeaderField:@"Authorization"];
+    
+    VolunteerItem *volunteerItem = [[VolunteerItem alloc] init];
+    
+    NSDictionary *requestParams = @{
+        @"uid": [volunteerItem aesEncrypt:[UserDefaultTool getStuNum]]
+    };
+    
+    volunteerItem.uid = [volunteerItem aesEncrypt:[UserDefaultTool getStuNum]];
+    
+    [manager POST:VOLUNTEERREQUEST parameters:requestParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
+        for (NSDictionary *dict in responseObject[@"record"]) {
+            VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
+            [temp addObject:volEvent];
+        }
+        volunteerItem.eventsArray = temp;
+        [volunteerItem sortEvents];
+        
+        NSInteger hour = 0;
+        for (VolunteeringEventItem *event in volunteerItem.eventsArray) {
+            hour += [event.hour integerValue];
+        }
+        volunteerItem.hour = [NSString stringWithFormat:@"%ld", hour];
+        
+        [volunteerItem archiveItem];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+    
     //开发者需要显式的调用此函数，日志系统才能工作
     [UMCommonLogManager setUpUMCommonLogManager];
     //初始化umenge功能
