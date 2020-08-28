@@ -20,7 +20,7 @@
     
     WKWebViewConfiguration *webConfiguration = [WKWebViewConfiguration new];
     WKWebView *webView = [[WKWebView alloc] initWithFrame:[UIScreen mainScreen].bounds configuration:webConfiguration];
-    NSString *urlStr = @"https://wx.redrock.team/game/handheldcqupt-pc/#/download";
+    NSString *urlStr = @"https://wx.redrock.team/game/handheldcqupt-pc/#/";
     NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [webView loadRequest:request];
