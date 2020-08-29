@@ -32,7 +32,7 @@
              self.textColor = [UIColor colorWithHexString:@"#15315B"];
             // Fallback on earlier versions
         }
-        self.font = [UIFont fontWithName:PingFangSCSemibold size:21*rateX];
+        self.font = [UIFont fontWithName:PingFangSCRegular size:20];
         if (@available(iOS 11.0, *)) {
             self.tintColor = [UIColor colorNamed:@"tintColor"];
         } else {
@@ -46,12 +46,12 @@
 
 //设置光标偏移
 - (CGRect)textRectForBounds:(CGRect)bounds {
-    bounds.origin.x += 30*rateX;
+    bounds.origin.x += 20 * rateX;
     return bounds;
 }
 
 - (CGRect)editingRectForBounds:(CGRect)bounds {
-    bounds.origin.x += 30*rateX;
+    bounds.origin.x += 20 * rateX;
     return bounds;
 }
 @end

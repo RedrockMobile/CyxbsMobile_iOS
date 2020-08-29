@@ -27,7 +27,7 @@
         
         self.titleLabel.frame = self.frame;
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:12*kRateX];
+        self.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:12];
         if (@available(iOS 11.0, *)) {
             [self setTitleColor:[UIColor colorNamed:@"titleLabelColor"] forState:UIControlStateNormal];
         } else {

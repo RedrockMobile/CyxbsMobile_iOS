@@ -83,7 +83,7 @@
     self.confirmBtn.layer.cornerRadius = 16*kRateX;
     self.confirmBtn.layer.masksToBounds = YES;
     [self.confirmBtn.titleLabel setTextColor: [UIColor whiteColor]];
-    self.confirmBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:18*kRateX];
+    self.confirmBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
     self.confirmBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.confirmBtn.titleLabel.frame = self.confirmBtn.frame;
     [self.confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
@@ -103,7 +103,7 @@
     NSInteger j = 0;
     NSInteger count = self.weekArray.count;
     for (NSInteger i = 0; i < count; i++) {
-        CGSize size = [self.weekArray[i] sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCRegular size:12*kRateX]}];
+        CGSize size = [self.weekArray[i] sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCRegular size:12]}];
         if (hasOccupiedWidth + size.width + 40*kRateX > SCREEN_WIDTH - 16*kRateX) {
             j++;
             hasOccupiedWidth = 16*kRateX;
