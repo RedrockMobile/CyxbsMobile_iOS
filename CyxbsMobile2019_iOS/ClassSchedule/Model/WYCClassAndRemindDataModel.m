@@ -12,6 +12,8 @@
 @property (nonatomic, assign) BOOL classDataLoadFinish;
 @property (nonatomic, assign) BOOL remindDataLoadFinish;
 //备忘
+//[responseObject objectForKey:@"data"]
+@property (nonatomic, strong)NSArray *rowDataArray;
 @end
 
 @implementation WYCClassAndRemindDataModel
@@ -21,31 +23,36 @@
     //如果有缓存，则从缓存加载数据
     NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
-    NSArray *array = [NSMutableArray arrayWithContentsOfFile:lessonPath];
-    
-    if (array) {
-        self.weekArray = [[NSMutableArray alloc]init];
-        [self.weekArray addObject:array];
-        
-        [self parsingClassBookData:array];
-        [self parseClassBookData:array];
+    NSArray *rowDataArray = [NSArray arrayWithContentsOfFile:lessonPath];
+    if (rowDataArray) {
+        self.rowDataArray = rowDataArray;
+        [self parseClassBookData:rowDataArray];
         [self.delegate ModelDataLoadSuccess:self];
     }else{
-        
         [self.delegate ModelDataLoadFailure];
     }
 }
 
+- (void)getPersonalClassBookArrayWithStuNum:(NSString*)stuNum{
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
+    NSArray *rowDataArray = [NSArray arrayWithContentsOfFile:lessonPath];
+    if(rowDataArray!=nil){
+        self.rowDataArray = rowDataArray;
+        [self parseClassBookData:self.rowDataArray];
+        [self.delegate ModelDataLoadSuccess:self];
+    }
+    
+    [self getPersonalClassBookArrayFromNet:stuNum];
+}
+
 - (void)getClassBookArrayFromNet:(NSString *)stu_Num{
     self.classDataLoadFinish = NO;
-    self.weekArray = [[NSMutableArray alloc]init];
-    
     NSDictionary *parameters = @{@"stu_num":stu_Num};
     
     [[HttpClient defaultClient] requestWithPath:URL method:HttpRequestPost parameters:parameters prepareExecute:nil progress:^(NSProgress *progress) {
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
-        
         
         NSArray *lessonArray = [responseObject objectForKey:@"data"];
         
@@ -56,16 +63,6 @@
             NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
             [lessonArray writeToFile:lessonPath atomically:YES];
         }
-        
-        // 共享数据
-//        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
-//        [shared setObject:responseObject forKey:@"lessonResponse"];
-//        [shared synchronize];
-        
-        
-        
-        [self.weekArray addObject:lessonArray];
-        [self parsingClassBookData:lessonArray];
         [self parseClassBookData:lessonArray];
         [self.delegate ModelDataLoadSuccess:self];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -75,49 +72,43 @@
     
 }
 
-- (void)getPersonalClassBookArrayFromNet:(NSString *)stu_Num{
-    self.classDataLoadFinish = NO;
-    self.weekArray = [[NSMutableArray alloc]init];
+- (void)getPersonalClassBookArrayFromNet:(NSString *)stuNum{
     
-    NSDictionary *parameters = @{@"stu_num":stu_Num};
+    NSDictionary *parameters = @{@"stu_num":stuNum};
     
     [[HttpClient defaultClient] requestWithPath:URL method:HttpRequestPost parameters:parameters prepareExecute:nil progress:^(NSProgress *progress) {
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         
-
         NSArray *lessonArray = [responseObject objectForKey:@"data"];
-
-//        [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
+        
+        if(lessonArray==nil){
+            [self.delegate ModelDataLoadFailure];
+            return;
+        }
+        
+        if([lessonArray isEqualToArray:self.rowDataArray])return;
+        
         
         //保存获取的课表数据到文件
         NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        
         NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
+        
         [lessonArray writeToFile:lessonPath atomically:YES];
 
-        
-        // 共享数据
-//        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
-//        [shared setObject:responseObject forKey:@"lessonResponse"];
-//        [shared synchronize];
-        
-        
-        
-        [self.weekArray addObject:lessonArray];
-        [self parsingClassBookData:lessonArray];
         [self parseClassBookData:lessonArray];
         
         [self.delegate ModelDataLoadSuccess:self];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        [self getClassBookArray];
+        [self.delegate ModelDataLoadFailure];
     }];
 }
 
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
     self.classDataLoadFinish = NO;
-    self.weekArray = [[NSMutableArray alloc]init];
     
     [[HttpClient defaultClient] requestWithPath:TEAkebiaoAPI method:HttpRequestPost parameters:parameters prepareExecute:nil progress:^(NSProgress *progress) {
         
@@ -126,14 +117,7 @@
         
         NSArray *lessonArray = [responseObject objectForKey:@"data"];
         
-        // 共享数据
-//        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
-//        [shared setObject:responseObject forKey:@"lessonResponse"];
-//        [shared synchronize];
         
-        
-        [self.weekArray addObject:lessonArray];
-        [self parsingClassBookData:lessonArray];
         [self parseClassBookData:lessonArray];
         [self.delegate ModelDataLoadSuccess:self];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -142,35 +126,30 @@
     }];
     
 }
-///解析课表数据
--(void)parsingClassBookData:(NSArray*)array{
-//    int i;
-//    for (i=0; i<25; i++) {
-//        [_weekArray addObject:[@[]mutableCopy]];
-//    }
-//    NSArray *week;
-//    NSNumber *num;
-//    for (NSDictionary *infoForALesson in array) {
-//        week = infoForALesson[@"week"];
-//        for (i=0; i<week.count; i++) {
-//            num = week[i];
-//            [_weekArray[num.intValue] addObject:infoForALesson];
-//        }
-//    }
-    
-}
 //输入要求：[responseObject objectForKey:@"data"]
 - (void)parseClassBookData:(NSArray *)array{
+    //整学期
+    if(_orderlySchedulArray!=nil){
+        for (NSMutableArray *week in self.orderlySchedulArray) {
+            for (NSMutableArray *day in week) {
+                for (NSMutableArray *lesson in day) {
+                    [lesson removeAllObjects];
+                }
+            }
+        }
+    }
     NSNumber *hash_day,*hash_lesson;
     NSArray *weeks;
     for (NSDictionary *couseDataDict in array) {
         weeks = couseDataDict[@"week"];
         hash_day = couseDataDict[@"hash_day"];
         hash_lesson = couseDataDict[@"hash_lesson"];
+        //为整学期页的设置数据
+        [self.orderlySchedulArray[0][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+        //为后面有课的周设置数据
         for (NSNumber *weekNum in weeks) {
             [self.orderlySchedulArray[weekNum.intValue][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
         }
-        [self.orderlySchedulArray[0][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
     }
 }
 - (NSMutableArray *)orderlySchedulArray{

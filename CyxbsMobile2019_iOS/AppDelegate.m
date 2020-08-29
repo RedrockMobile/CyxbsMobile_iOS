@@ -195,8 +195,8 @@ extern CFAbsoluteTime StartTime;
            || [response.notification.request.identifier
               isEqualToString:@"remindBeforeCourseBegin"]
            ){
-            dispatch_time_t timer = dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC);
-            dispatch_after(timer, dispatch_get_main_queue(), ^{
+            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC);
+            dispatch_after(time, dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverVCShouldPresentMySchedul" object:nil];
             });
         }

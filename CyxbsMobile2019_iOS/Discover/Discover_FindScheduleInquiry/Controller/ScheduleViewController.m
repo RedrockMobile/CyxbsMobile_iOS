@@ -114,15 +114,47 @@
     
     textField.delegate = self;
     
-       if (@available(iOS 11.0, *)) {
-           textField.textColor = Color21_49_91_F0F0F2;
-           textField.tintColor = Color21_49_91_F0F0F2;
-       } else {
-           textField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
-           textField.tintColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
-       }
+    if (@available(iOS 11.0, *)) {
+       textField.textColor = Color21_49_91_F0F0F2;
+       textField.tintColor = Color21_49_91_F0F0F2;
+    } else {
+       textField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+       textField.tintColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
     textField.backgroundColor = UIColor.clearColor;
+    [self addKeyBoardToolBarforTextField:textField];
+}
+
+- (void)addKeyBoardToolBarforTextField:(UITextField*)textField{
+    UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 44)];
     
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(MAIN_SCREEN_W-60, 0, 50, 44)];
+    [toolBar addSubview:btn];
+    [btn setTitleColor:UIColor.systemBlueColor forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    [btn setTitle:@"完成" forState:UIControlStateNormal];
+    
+    [btn addTarget:self action:@selector(doneClicked) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    UILabel *placeHolderLabel = [[UILabel alloc] init];
+    [toolBar addSubview:placeHolderLabel];
+    placeHolderLabel.text = textField.placeholder;
+    placeHolderLabel.font = [UIFont systemFontOfSize:13];
+    placeHolderLabel.alpha = 0.8;
+    placeHolderLabel.textColor = [UIColor systemGrayColor];
+    [placeHolderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(toolBar);
+        make.top.equalTo(toolBar);
+        make.bottom.equalTo(toolBar);
+    }];
+    
+    textField.inputAccessoryView = toolBar;
+}
+//点击键盘右上角的完成按钮后调用
+- (void)doneClicked{
+    [self.view endEditing:YES];
+    [self touchSearchButton];
 }
 
 //添加显示“历史记录”四个字的label
