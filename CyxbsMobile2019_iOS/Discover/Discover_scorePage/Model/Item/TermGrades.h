@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TermGrades : NSObject
 @property (nonatomic)NSArray<TermGrade *> *termGrades;
+@property(nonatomic)NSNumber *a_credit;
+@property(nonatomic)NSNumber *b_credit;
+
 - (instancetype)initWithDictionary: (NSDictionary *)dict;
 
 @end

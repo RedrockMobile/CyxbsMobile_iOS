@@ -11,7 +11,7 @@
 
 @interface URLController ()
 @property (nonatomic, weak)UIButton *backButton;//返回按钮
-
+@property (nonatomic, weak)WKWebView *webView;
 @end
 
 @implementation URLController
@@ -26,15 +26,43 @@
     self.navigationController.navigationBar.hidden=YES;
     [self addBackButton];
     WKWebView * webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 100, self.view.width, self.view.height)];
+    self.webView = webView;
     if(!IS_IPHONEX) {
         webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 75, self.view.width, self.view.height)];
     }
     NSURL * url = [NSURL URLWithString:_toUrl];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    // 添加观察者，监听 WKWebView 对象的 title 属性
+//
+//    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
+//
     [webView loadRequest:request];
     [self.view addSubview:webView];
     // Do any additional setup after loading the view.
 }
+
+//- (void)observeValueForKeyPath:(NSString *)keyPath
+//                      ofObject:(id)object
+//                        change:(NSDictionary<NSString *,id> *)change
+//                       context:(void *)context
+//{
+//    if ([keyPath isEqualToString:@"title"]) {
+//        if (object == self.webView)
+//        {
+//            self.title = self.webView.title;
+//        }
+//        else {
+//            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+//        }
+//
+//    }
+//
+//}
+//
+////移除监听
+//- (void)dealloc{
+//    [self.webView removeObserver:self forKeyPath:@"title" context:nil];
+//}
 - (void)addBackButton {
     UIButton *button = [[UIButton alloc]init];
     [self.view addSubview:button];
