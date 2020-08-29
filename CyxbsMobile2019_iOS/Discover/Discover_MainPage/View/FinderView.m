@@ -156,7 +156,7 @@
         }
         [nameArray addObject:@"更多功能"];
     }else {
-        nameArray = [@[@"空教室", @"校车轨迹", @"空课表", @"更多功能"] mutableCopy];//用来保存图片和名称
+        nameArray = [@[@"空教室", @"校车轨迹", @"查课表", @"更多功能"] mutableCopy];//用来保存图片和名称
     }
         
     NSMutableArray *array = [NSMutableArray array];
@@ -175,7 +175,7 @@
     for (EnterButton *enterButton in self.enterButtonArray) {
         if ([enterButton.label.text isEqual: @"空教室"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchFindClass) forControlEvents:UIControlEventTouchUpInside];
-        }else if([enterButton.label.text isEqual: @"空课表"]) {
+        }else if([enterButton.label.text isEqual: @"查课表"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchSchedule) forControlEvents:UIControlEventTouchUpInside];
         }else if([enterButton.label.text isEqual: @"校车轨迹"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchSchoolCar) forControlEvents:UIControlEventTouchUpInside];
