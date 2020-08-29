@@ -20,8 +20,10 @@
     [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             //请求成功
+            GPAItem *item = [[GPAItem alloc]initWithDictionary:responseObject];
+            self.gpaItem = item;
+            
             NSLog(@"GPA请求成功");
-            NSLog(@"%@",responseObject);
             
     } else {
         NSLog(@"GPA请求失败Error: %@, %@, %@", error, response, responseObject);

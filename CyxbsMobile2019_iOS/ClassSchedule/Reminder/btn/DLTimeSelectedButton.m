@@ -20,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        self.titleLabel.font = [UIFont fontWithName:@".PingFang SC-Semibold" size:15*kRateX];
+        self.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
         self.layer.masksToBounds = NO;
         self.layer.cornerRadius = 20;
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

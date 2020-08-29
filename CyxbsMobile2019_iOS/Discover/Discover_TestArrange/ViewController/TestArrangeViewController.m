@@ -189,9 +189,14 @@
     PointAndDottedLineView *pointAndDottedLineView = [[PointAndDottedLineView alloc]initWithPointCount:pointCount Spacing:spacing];
     [pointAndDottedLineView setFrame:CGRectMake(-30, 7, 11, pointAndDottedLineView.bigCircle.width + spacing * (pointCount - 1))];
     self.tableView.clipsToBounds = NO;
-
-//    NSLog(@"%f",self.titleLabel.origin.y + self.titleLabel.height + 18);
     [self.tableView addSubview:pointAndDottedLineView];
+    if (pointAndDottedLineView.isNoExam) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"您当前没有考试哦～";
+        [hud hide:YES afterDelay:1.5];
+    }
+        
     
 }
 - (void)popController {

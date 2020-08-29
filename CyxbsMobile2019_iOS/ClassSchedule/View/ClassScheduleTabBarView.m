@@ -63,7 +63,7 @@
         
         
         FYHCycleLabel *classLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.3*MAIN_SCREEN_W, 50)];
-        classLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
+        classLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:22];
         [self addSubview:classLabel];
         self.classLabel = classLabel;
         
@@ -76,7 +76,7 @@
         
         
         FYHCycleLabel *classTimeLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
-        classTimeLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+        classTimeLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCLight size:12];
         [self addSubview:classTimeLabel];
         self.classTimeLabel = classTimeLabel;
         
@@ -88,7 +88,7 @@
         
         
         FYHCycleLabel *classroomLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
-        classroomLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+        classroomLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCLight size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
         
