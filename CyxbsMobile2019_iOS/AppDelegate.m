@@ -189,7 +189,7 @@ extern CFAbsoluteTime StartTime;
         //应用处于后台时的本地推送接受
         //如果点击的是每日推送课表的消息，那么延时0.2秒后发送通知，让DiscoverViewController弹出课表
         //0.2秒用于加载UI，不延时会导致发送通知时DiscoverViewController还未加载完成
-        //用se2模拟器模拟下延只时0.05s也不会有什么问题，保险起见延时0.2s后发送通知
+        //用se2模拟器模拟下只延时0.05s也不会有什么问题，保险起见延时0.2s后发送通知
         if([response.notification.request.identifier
             isEqualToString:@"deliverSchedulEverday"]
            || [response.notification.request.identifier

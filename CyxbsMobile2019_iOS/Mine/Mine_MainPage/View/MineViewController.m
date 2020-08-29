@@ -152,12 +152,12 @@
 //设置本地通知
 - (void)setLocalNoti{
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-    content.title = @"今日份课表已送达";
-    content.body = @"查看今日课表，提前做好规划";
+    content.title = @"明日课表已送达";
+    content.body = @"查看明日课表，提前做好规划";
     
     NSDateComponents *component = [[NSDateComponents alloc] init];
     
-    component.hour = 7;
+    component.hour = 22;
     
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:component repeats:YES];
     
