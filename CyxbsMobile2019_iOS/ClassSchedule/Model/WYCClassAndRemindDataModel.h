@@ -37,7 +37,7 @@
             @[@{}, @{}, @{} ],
         ]
 */
-@property (nonatomic, strong) NSMutableArray *weekArray;
+//@property (nonatomic, strong) NSMutableArray *weekArray;
 @property (nonatomic, strong) NSMutableArray *remindArray;
 @property (nonatomic, weak)id<WYCClassAndRemindDataModelDelegate>delegate;
 
@@ -54,10 +54,10 @@
 
 /// 网络请求获取自己课表，会把课表数据存入本地
 /// @param stu_Num 学号
-- (void)getPersonalClassBookArrayFromNet:(NSString *)stu_Num;
+//- (void)getPersonalClassBookArrayFromNet:(NSString *)stu_Num;
 
 - (void)getClassBookArrayFromNetWithInfoDict:(NSArray*)infoDictArray;
-
+- (void)getPersonalClassBookArrayWithStuNum:(NSString*)stuNum;
 //下面三个方法没用上
 //- (void)getRemind:(NSString *)stuNum idNum:(NSString *)idNum;
 //- (void)getRemindFromNet:(NSString *)stuNum idNum:(NSString *)idNum;
@@ -70,7 +70,7 @@
 /// };
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters;
 
--(void)parsingClassBookData:(NSArray*)array;
+//-(void)parsingClassBookData:(NSArray*)array;
 
 //-(void)loadFinish;
 

@@ -77,7 +77,11 @@
 - (void)addTitleLabel {
     UILabel *label = [[UILabel alloc]init];
     self.titleLabel = label;
-    self.titleLabel.text = @"同学课表";
+    if(self.peopleType==PeopleTypeStudent){
+        label.text = @"同学课表";
+    }else{
+        label.text = @"老师课表";
+    }
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];

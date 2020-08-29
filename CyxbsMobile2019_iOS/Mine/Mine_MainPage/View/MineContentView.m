@@ -40,7 +40,7 @@
                         @"hasSwitch": @YES
                     },
                     @{
-                        @"title": @"每天推送课表给我",
+                        @"title": @"每天晚上推送课表给我",
                         @"hasSwitch": @YES
                     },
                     @{

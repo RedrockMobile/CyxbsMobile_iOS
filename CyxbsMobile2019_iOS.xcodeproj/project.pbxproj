@@ -228,14 +228,6 @@
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
 		DB34EACE239BD4550052B65E /* DateModle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2D239BD4540052B65E /* DateModle.m */; };
 		DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */; };
-		DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA33239BD4540052B65E /* WYCShowDetailView.m */; };
-		DB34EAD1239BD4550052B65E /* WYCClassBookView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB34EA36239BD4540052B65E /* WYCClassBookView.xib */; };
-		DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA38239BD4540052B65E /* WYCNoteDetailView.m */; };
-		DB34EAD3239BD4550052B65E /* WYCNoteDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB34EA3A239BD4540052B65E /* WYCNoteDetailView.xib */; };
-		DB34EAD4239BD4550052B65E /* WYCClassDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB34EA3B239BD4540052B65E /* WYCClassDetailView.xib */; };
-		DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA3C239BD4540052B65E /* WYCClassDetailView.m */; };
-		DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA3D239BD4540052B65E /* WMTWeekChooseBar.m */; };
-		DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA3E239BD4540052B65E /* WYCClassBookView.m */; };
 		DB34EAD8239BD4550052B65E /* ClassBookImg.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB34EA3F239BD4540052B65E /* ClassBookImg.xcassets */; };
 		DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA42239BD4540052B65E /* TimeHandle.m */; };
 		DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA45239BD4540052B65E /* RemindNotification.m */; };
@@ -941,19 +933,6 @@
 		DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCClassAndRemindDataModel.m; sourceTree = "<group>"; };
 		DB34EA2F239BD4540052B65E /* DateModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateModle.h; sourceTree = "<group>"; };
 		DB34EA30239BD4540052B65E /* WYCClassAndRemindDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassAndRemindDataModel.h; sourceTree = "<group>"; };
-		DB34EA32239BD4540052B65E /* WYCNoteDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCNoteDetailView.h; sourceTree = "<group>"; };
-		DB34EA33239BD4540052B65E /* WYCShowDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCShowDetailView.m; sourceTree = "<group>"; };
-		DB34EA34239BD4540052B65E /* WMTWeekChooseBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMTWeekChooseBar.h; sourceTree = "<group>"; };
-		DB34EA35239BD4540052B65E /* WYCClassDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassDetailView.h; sourceTree = "<group>"; };
-		DB34EA36239BD4540052B65E /* WYCClassBookView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYCClassBookView.xib; sourceTree = "<group>"; };
-		DB34EA37239BD4540052B65E /* WYCClassBookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassBookView.h; sourceTree = "<group>"; };
-		DB34EA38239BD4540052B65E /* WYCNoteDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCNoteDetailView.m; sourceTree = "<group>"; };
-		DB34EA39239BD4540052B65E /* WYCShowDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCShowDetailView.h; sourceTree = "<group>"; };
-		DB34EA3A239BD4540052B65E /* WYCNoteDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYCNoteDetailView.xib; sourceTree = "<group>"; };
-		DB34EA3B239BD4540052B65E /* WYCClassDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WYCClassDetailView.xib; sourceTree = "<group>"; };
-		DB34EA3C239BD4540052B65E /* WYCClassDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYCClassDetailView.m; sourceTree = "<group>"; };
-		DB34EA3D239BD4540052B65E /* WMTWeekChooseBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMTWeekChooseBar.m; sourceTree = "<group>"; };
-		DB34EA3E239BD4540052B65E /* WYCClassBookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WYCClassBookView.m; sourceTree = "<group>"; };
 		DB34EA3F239BD4540052B65E /* ClassBookImg.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ClassBookImg.xcassets; sourceTree = "<group>"; };
 		DB34EA42239BD4540052B65E /* TimeHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeHandle.m; sourceTree = "<group>"; };
 		DB34EA43239BD4540052B65E /* TimeHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeHandle.h; sourceTree = "<group>"; };
@@ -2698,19 +2677,6 @@
 				AA3F82DF24E992C000B65042 /* LessonView.m */,
 				AA9ABE9124EB8ADB00D16BE0 /* LessonViewForAWeek.h */,
 				AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */,
-				DB34EA32239BD4540052B65E /* WYCNoteDetailView.h */,
-				DB34EA38239BD4540052B65E /* WYCNoteDetailView.m */,
-				DB34EA3A239BD4540052B65E /* WYCNoteDetailView.xib */,
-				DB34EA39239BD4540052B65E /* WYCShowDetailView.h */,
-				DB34EA33239BD4540052B65E /* WYCShowDetailView.m */,
-				DB34EA34239BD4540052B65E /* WMTWeekChooseBar.h */,
-				DB34EA3D239BD4540052B65E /* WMTWeekChooseBar.m */,
-				DB34EA35239BD4540052B65E /* WYCClassDetailView.h */,
-				DB34EA3C239BD4540052B65E /* WYCClassDetailView.m */,
-				DB34EA3B239BD4540052B65E /* WYCClassDetailView.xib */,
-				DB34EA37239BD4540052B65E /* WYCClassBookView.h */,
-				DB34EA3E239BD4540052B65E /* WYCClassBookView.m */,
-				DB34EA36239BD4540052B65E /* WYCClassBookView.xib */,
 				1A1691F62430DEE70076EDC7 /* ClassScheduleTabBarView.h */,
 				1A1691F72430DEE70076EDC7 /* ClassScheduleTabBarView.m */,
 				AA289B1324F29F7600FDF70C /* ClassSchedulPresentingAnimater.h */,
@@ -3606,7 +3572,6 @@
 				DB34EAF6239BD4550052B65E /* 类型@2x.png in Resources */,
 				DB34EAE0239BD4550052B65E /* 老师@3x.png in Resources */,
 				EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */,
-				DB34EAD4239BD4550052B65E /* WYCClassDetailView.xib in Resources */,
 				1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */,
 				1A31062F23770C7300A56468 /* Mine.xcassets in Resources */,
 				EE8234CA24673FE700F6B4AE /* scroll@2x.png in Resources */,
@@ -3636,7 +3601,6 @@
 				DB34EB0A239BD4550052B65E /* remind_image_title@3x.png in Resources */,
 				1A9B7677235F50A800725937 /* LaunchScreen.storyboard in Resources */,
 				DB34EAEB239BD4550052B65E /* 时间@3x.png in Resources */,
-				DB34EAD1239BD4550052B65E /* WYCClassBookView.xib in Resources */,
 				DB34EADC239BD4550052B65E /* remind2@2x.png in Resources */,
 				DB34EB1F239BD4550052B65E /* DetailLessonController.xib in Resources */,
 				DB34EAE9239BD4550052B65E /* remind2@3x.png in Resources */,
@@ -3698,7 +3662,6 @@
 				EE8234B024673FE700F6B4AE /* toolbar_background.png in Resources */,
 				EE8234C624673FE700F6B4AE /* 展开前@3x.png in Resources */,
 				DB34EB0B239BD4550052B65E /* timeTable_image_add@2x.png in Resources */,
-				DB34EAD3239BD4550052B65E /* WYCNoteDetailView.xib in Resources */,
 				EE8234B824673FE700F6B4AE /* 1@2x.png in Resources */,
 				EE8234D924673FE800F6B4AE /* 年份圆圈.png in Resources */,
 				EE8234BD24673FE700F6B4AE /* login_password@3x.png in Resources */,
@@ -3813,7 +3776,6 @@
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				EE75BFCA23F5884100208039 /* ScoreTwoTitleView.m in Sources */,
 				EE75BFBE23F5884100208039 /* SCGenericChart.m in Sources */,
-				DB34EAD0239BD4550052B65E /* WYCShowDetailView.m in Sources */,
 				EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				AA33F23D24BDF0DE00ECB09E /* ScheduleViewController.m in Sources */,
@@ -3864,7 +3826,6 @@
 				EE75BFC223F5884100208039 /* SCBarChart.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
 				1AB2E58524E2D41B004B4067 /* CQUPTMapPlaceRect.m in Sources */,
-				DB34EAD7239BD4550052B65E /* WYCClassBookView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
@@ -3918,7 +3879,6 @@
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				1A810BAD24E2A17400E79126 /* CQUPTMapPresenter.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
-				DB34EAD6239BD4550052B65E /* WMTWeekChooseBar.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
 				AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
@@ -3946,7 +3906,6 @@
 				AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
-				DB34EAD5239BD4550052B65E /* WYCClassDetailView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				1A810BB524E2A56F00E79126 /* CQUPTMapDataItem.m in Sources */,
@@ -4104,7 +4063,6 @@
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
-				DB34EAD2239BD4550052B65E /* WYCNoteDetailView.m in Sources */,
 				EE75BFB523F5884100208039 /* NewsViewController.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				1AB2E59F24E426CE004B4067 /* CQUPTMapSearchView.m in Sources */,
@@ -4289,7 +4247,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = PU7F26AM3C;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -4299,7 +4257,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbsCJH;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4314,7 +4272,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = PU7F26AM3C;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -4324,7 +4282,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbsCJH;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

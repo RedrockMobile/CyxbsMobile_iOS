@@ -12,9 +12,7 @@
 
 #import "DateModle.h"
 
-#import "WYCClassDetailView.h"
-#import "WYCShowDetailView.h"
-#import "WMTWeekChooseBar.h"
+
 #import "LoginViewController.h"
 #import "FakeTabBarView.h"
 #import "TopBarScrollView.h"

@@ -32,6 +32,8 @@
 @property (nonatomic, strong)NSMutableArray <LessonViewForAWeek*> *lessonViewArray;
 //拖动手势，下拉弹回课表
 @property (nonatomic, strong)UIPanGestureRecognizer *PGR;
+
+@property (nonatomic, assign)BOOL isReloading;
 @end
 
 @implementation WYCClassBookViewController
@@ -273,6 +275,8 @@
 
 //WYCClassAndRemindDataModel模型加载成功后调用
 - (void)ModelDataLoadSuccess:(id)model{
+    [self.scrollView removeAllSubviews];
+    [self.lessonViewArray removeAllObjects];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     //让tabBar和假的tabBar更新一下下节课信息
     [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
@@ -308,6 +312,7 @@
             //承载课表和左侧第几节课信息的条
             UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1787, MAIN_SCREEN_W, MAIN_SCREEN_H*0.8247)];
             [self.scrollView addSubview:scrollView];
+            scrollView.delegate = self;
             scrollView.backgroundColor = [UIColor clearColor];
             scrollView.showsVerticalScrollIndicator = NO;
             [scrollView addSubview:lessonViewForAWeek];
@@ -346,10 +351,7 @@
     
     [controller addAction:act1];
     
-    [self presentViewController:controller animated:YES completion:^{
-        
-    }];
-    self.scrollView.contentSize = CGSizeMake(0, self.scrollView.height + 100);
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 //初始化self.scrollView，并把它加到self.view上面
@@ -420,7 +422,7 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
                 @"classroomLabel":lessondata[@"classroom"],
                 @"classTimeLabel":time[hash_lesson],
                 @"classLabel":lessondata[@"course"],
-                @"is":@"1",
+                @"is":@"1",//是否有课的标志
                 @"hash_lesson":[NSNumber numberWithInt:hash_lesson],
                 @"hash_day":[NSNumber numberWithInt:hash_day],
                 @"hash_week":[NSNumber numberWithInt:hash_week],
@@ -525,7 +527,6 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"%f,%f",scrollView.contentOffset.x,scrollView.contentOffset.y);
     if([scrollView isEqual:self.scrollView]){
         if(scrollView.dragging==NO&&scrollView.decelerating==NO&&scrollView.tracking==NO){
             //重写了_index的set方法，内部增加了判断，如果index超过25就让index等0，
@@ -533,6 +534,24 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
             _index = [NSNumber numberWithInt:(int)(scrollView.contentOffset.x/MAIN_SCREEN_W)];
             self.topBarView.correctIndex = _index;
         }
+    }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO){
+        self.isReloading = YES;
+        [self showHud];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.scrollView.alpha = 0;
+        }completion:^(BOOL finished) {
+            [self.scrollView removeAllSubviews];
+            self.scrollView.alpha = 1;
+            
+            [self.model getPersonalClassBookArrayWithStuNum:self.stuNum];
+        }];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+//                self.isReloading = NO;
+//        });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.isReloading = NO;
+        });
     }
 }
 
