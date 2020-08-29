@@ -68,4 +68,9 @@
     }
     return dict;
 }
+- (void)getHash_lesson{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"k"];
+    
+}
 @end

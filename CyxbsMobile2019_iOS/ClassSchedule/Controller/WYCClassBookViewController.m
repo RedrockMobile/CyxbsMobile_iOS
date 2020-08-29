@@ -420,7 +420,7 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
                 @"classroomLabel":lessondata[@"classroom"],
                 @"classTimeLabel":time[hash_lesson],
                 @"classLabel":lessondata[@"course"],
-                @"is":@"1",
+                @"is":@"1",//是否有课的标志
                 @"hash_lesson":[NSNumber numberWithInt:hash_lesson],
                 @"hash_day":[NSNumber numberWithInt:hash_day],
                 @"hash_week":[NSNumber numberWithInt:hash_week],
