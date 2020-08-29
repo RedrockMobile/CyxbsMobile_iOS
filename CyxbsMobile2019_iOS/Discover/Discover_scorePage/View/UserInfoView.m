@@ -38,6 +38,7 @@
 - (void)addImage {
     UIImageView *headerImageView = [[UIImageView alloc]initWithFrame:CGRectMake(16, 30, 40, 40)];
     [headerImageView.layer setCornerRadius:20];
+    headerImageView.clipsToBounds = YES;
     [self addSubview:headerImageView];
     self.userImage = headerImageView;
     NSString *headImgUrl_str = [UserItemTool defaultItem].headImgUrl;

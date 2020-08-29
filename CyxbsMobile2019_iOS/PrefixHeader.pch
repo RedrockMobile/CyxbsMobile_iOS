@@ -22,7 +22,7 @@
     } while (0)
 #else
     #define DDLog(xx, ...)     ;
-    //#define NSLog(format, ...) ;
+    #define NSLog(format, ...) ;
 #endif
 #define BACK_COLOR [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1.0]
 #define MAIN_COLOR  [UIColor colorWithRed:84/255.0 green:172/255.0 blue:255/255.0 alpha:1]
