@@ -59,6 +59,14 @@
     
     [self requestGPA];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestGPASucceed) name:@"GPASucceed" object:nil];
+}
+-(void)requestGPASucceed {
+    [self.tableView reloadData];
+    self.ABScoreView.AScore.text = self.gpaModel.gpaItem.termGrades.a_credit.stringValue;
+    self.ABScoreView.BScore.text = self.gpaModel.gpaItem.termGrades.b_credit.stringValue;
+//    [self.tableView reloadInputViews];
+
 }
 -(void)idsBindingTest {
     IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:@"1659843" isPassword:@"313416"];
@@ -67,6 +75,7 @@
 - (void) addContentView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     self.contentView = scrollView;
+    scrollView.contentSize = CGSizeMake(0, 1200);
     if (@available(iOS 11.0, *)) {
         scrollView.backgroundColor = Color42_78_132to2D2D2D;
     }
@@ -134,11 +143,11 @@
 }
 #warning 修改tableView高度
 - (void)addTableView {
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width, 300) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width, 600) style:UITableViewStylePlain];
     self.tableView = tableView;
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.scrollEnabled = YES;
+    tableView.scrollEnabled = NO;
     [self.contentView addSubview:tableView];
 }
 
@@ -174,16 +183,41 @@
 }
 //MARK: - tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return self.gpaModel.gpaItem.termGrades.termGrades.count;
-    return 3;
+    if(self.gpaModel.gpaItem.termGrades.termGrades.count) {
+        return self.gpaModel.gpaItem.termGrades.termGrades.count;
+    }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailScorePerYearCell *cell = [[DetailScorePerYearCell alloc]init];
-    cell.timeLabel.text = self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].term;
+    if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].term) {
+        cell.timeLabel.text = [self getTermTitleWithString:self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].term];
+    }
+    if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].gpa) {
+        NSLog(@"%ld",(long)indexPath.row);
+        cell.averangePointLabel.text =self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].gpa.stringValue;
+        
+    }
+    if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].grade) {
+        cell.averangeScoreLabel.text = self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].grade.stringValue;
+    }
+    if (self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].rank) {
+        cell.averangeRankLabel.text = self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].rank.stringValue;
+    }
     cell.selectionStyle  = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 144;
+}
+-(NSString*)getTermTitleWithString:(NSString*)string {
+    NSNumber *startYear = [string substringToIndex:4].numberValue;
+    NSNumber *endYear = [NSNumber numberWithInt:startYear.intValue+1];
+    if([[string substringFromIndex:4] isEqual:@"1"]) {
+        return [NSString stringWithFormat:@"%@-%@第一学期",startYear,endYear];
+    }else {
+        return [NSString stringWithFormat:@"%@-%@第二学期",startYear,endYear];
+    }
+    
 }
 @end

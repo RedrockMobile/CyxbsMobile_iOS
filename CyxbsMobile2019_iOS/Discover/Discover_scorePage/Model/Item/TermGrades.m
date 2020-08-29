@@ -11,6 +11,8 @@
 @implementation TermGrades
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     if (self = [super init]) {
+        self.a_credit = dict[@"a_credit"];
+        self.b_credit = dict[@"b_credit"];
         NSMutableArray<TermGrade*> *arr = [NSMutableArray array];
         for (NSDictionary * d in dict[@"term_grades"]) {
             TermGrade * g = [[TermGrade alloc]initWithDictionary:d];

@@ -14,8 +14,8 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     if (self = [super init]) {
        self.status = dict[@"status"];
-       self.termGrades = dict[@"term_grades"];
-       self.credits = dict[@"credits"];
+        self.termGrades = [[TermGrades alloc]initWithDictionary:dict[@"data"]];
+//       self.termGrades = dict[@"term_grades"];
     }
     return self;
 }

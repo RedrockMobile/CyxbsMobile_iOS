@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak)UILabel *averangeRankLabel;//平均排名
 @property (nonatomic, weak)UILabel *averangeRankTitleLabel;//平均排名
 
-@property (nonatomic, weak)UILabel *watchMoreButton;//“查看各科成绩”
+@property (nonatomic, weak)UIButton *watchMoreButton;//“查看各科成绩”
 @end
 
 NS_ASSUME_NONNULL_END

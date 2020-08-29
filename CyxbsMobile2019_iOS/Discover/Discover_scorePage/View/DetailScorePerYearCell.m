@@ -49,7 +49,6 @@
 }
 - (void)addTimeLabel {
     UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
     self.timeLabel = label;
     label.font = [UIFont fontWithName:PingFangSCBold size:15];
     if (@available(iOS 11.0, *)) {
@@ -72,8 +71,7 @@
 }
 - (void) addAverangePointLabel {
         UILabel *averangePointLabel = [[UILabel alloc]init];
-    self.averangePointLabel = averangePointLabel;
-        [self addSubview:averangePointLabel];
+        self.averangePointLabel = averangePointLabel;
         averangePointLabel.font = [UIFont fontWithName:PingFangSCBold size:21];
         if (@available(iOS 11.0, *)) {
             averangePointLabel.textColor = Color21_49_91_F0F0F2;
@@ -85,7 +83,6 @@
 }
 - (void) addAverangePointTitleLabel {
     UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
     self.averangePointTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
@@ -99,7 +96,6 @@
 - (void) addAverangeScoreLabel {
         UILabel *label = [[UILabel alloc]init];
         self.averangeScoreLabel = label;
-        [self addSubview:label];
         label.font = [UIFont fontWithName:PingFangSCBold size:21];
         if (@available(iOS 11.0, *)) {
             label.textColor = Color21_49_91_F0F0F2;
@@ -111,7 +107,6 @@
 }
 - (void)addAverangeScoreTitleLabel {
     UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
     self.averangeScoreTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
@@ -125,7 +120,6 @@
 - (void)addAverangeRankLabel {
     UILabel *label = [[UILabel alloc]init];
     self.averangeRankLabel = label;
-    [self addSubview:label];
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
     if (@available(iOS 11.0, *)) {
         label.textColor = Color21_49_91_F0F0F2;
@@ -137,7 +131,6 @@
 }
 - (void) addAverangeRankTitleLabel {
     UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
     self.averangeRankTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
@@ -149,18 +142,22 @@
     [self.blueBackgroundView addSubview:label];
 }
 - (void)addWatchMoreButton {
-    UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
-    self.watchMoreButton = label;
-    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    label.alpha = 0.35;
+    UIButton *button = [[UIButton alloc]init];
+    self.watchMoreButton = button;
+    button.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    button.alpha = 0.35;
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        [button setTitleColor:Color21_49_91_F0F0F2 forState:normal];
     } else {
         // Fallback on earlier versions
     }
-    label.text = @"查看各科成绩";
-    [self.blueBackgroundView addSubview:label];
+    [button setTitle:@"查看各科成绩" forState:normal];
+    [self.blueBackgroundView addSubview:button];
+    [button addTarget:self action:@selector(touchWatchMoreButton) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)touchWatchMoreButton {
+
+    
 }
 - (void)layoutSubviews {
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {

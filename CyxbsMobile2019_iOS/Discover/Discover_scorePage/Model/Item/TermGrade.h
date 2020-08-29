@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TermGrade : NSObject
 
 @property (nonatomic, copy)NSString *term;
-@property (nonatomic, copy)NSString *gpa;
-@property (nonatomic, copy)NSString *grade;
-@property (nonatomic, copy)NSString *rank;
+@property (nonatomic)NSNumber *gpa;
+@property (nonatomic)NSNumber *grade;
+@property (nonatomic)NSNumber *rank;
 @property (nonatomic) NSArray<SingleGrade*> *singegradesArr;
 - (instancetype)initWithDictionary: (NSDictionary *)dict;
 @end
