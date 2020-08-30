@@ -15,6 +15,7 @@
 #import "IdsBinding.h"
 #import "GPA.h"
 #import "GPAItem.h"
+#import "IdsBindingView.h"
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -22,7 +23,7 @@
 
 #define Color_chartLine [UIColor colorNamed:@"Color_chartLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-@interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource>
+@interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource,IdsBindingViewDelegate>
 @property (nonatomic, weak)UserInfoView *userInfoView;
 @property (nonatomic, weak)UIScrollView *contentView;
 @property (nonatomic, weak)UIView *twoTitleView;//学风成绩平均绩点
@@ -31,7 +32,7 @@
 @property (nonatomic, weak)UIView *termBackView;
 @property (nonatomic, weak)UILabel *termLabel;//"学期成绩"
 @property (nonatomic, weak)UITableView *tableView;//每学年的成绩
-
+@property(nonatomic, weak)IdsBindingView *idsBindgView;
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
 
 
@@ -48,9 +49,24 @@
     } else {
         // Fallback on earlier versions
     }
-    [self idsBindingTest];
+    [self addContentView];//scrollView
+    [self addUserInfoView];
+    
+    [self addIdsBindingView];//提示用户绑定统一认证码的title;
   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBindingUnknownError" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBinding_passwordError" object:nil];
+    
+    
+}
+-(void)addIdsBindingView {
+
+    IdsBindingView *bindingView = [[IdsBindingView alloc]initWithFrame:CGRectMake(0, self.userInfoView.height, self.view.width, 600)];
+    bindingView.delegate = self;
+    self.idsBindgView = bindingView;
+    [self.view addSubview:bindingView];
+    
     
 }
 -(void)requestGPASucceed {
@@ -64,9 +80,14 @@
     [self.chartView removeFromSuperview];
     [self addChartView];
 }
+-(void) idsBindingError {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.idsBindgView animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"绑定失败";
+    [hud hide:YES afterDelay:1.0];
+}
 -(void)idsBindingSuccess {
-    [self addContentView];//scrollView
-      [self addUserInfoView];
+    [self.idsBindgView removeFromSuperview];
       [self addTwoTitleView];
       [self addChartView];
       [self addABScoreView];//AB学分
@@ -76,11 +97,12 @@
       [self requestGPA];
       // Do any additional setup after loading the view.
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestGPASucceed) name:@"GPASucceed" object:nil];
+
+    
+    
 }
--(void)idsBindingTest {
-    IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:@"16833373" isPassword:@"313513"];
-    [binding fetchData];
-}
+
+
 - (void) addContentView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     self.contentView = scrollView;
@@ -158,7 +180,20 @@
     tableView.scrollEnabled = NO;
     [self.contentView addSubview:tableView];
 }
-
+//MARK: - IdsBindingViewDelegate
+- (void)touchBindingButton {
+    NSString *bindingNum = self.idsBindgView.accountfield.text;
+    NSString *bindingPasswd = self.idsBindgView.passTextfield.text;
+    if(![bindingNum isEqual: @""] && ![bindingPasswd isEqual: @""]) {
+        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:bindingNum isPassword:bindingPasswd];
+        [binding fetchData];
+    }else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.idsBindgView animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"请输入统一认证码和密码呦～";
+        [hud hide:YES afterDelay:2.0];
+    }
+}
 //MARK: - 折线图代理
 
 - (NSArray *)getXTitles:(int)num {

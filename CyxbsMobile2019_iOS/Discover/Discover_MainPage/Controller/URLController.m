@@ -9,7 +9,7 @@
 #import "URLController.h"
 #import <WebKit/WebKit.h>
 
-@interface URLController ()
+@interface URLController ()<WKNavigationDelegate>
 @property (nonatomic, weak)UIButton *backButton;//返回按钮
 @property (nonatomic, weak)WKWebView *webView;
 @end
@@ -18,29 +18,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%@",self.webView.title);
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
     } else {
         // Fallback on earlier versions
     }
-    self.navigationController.navigationBar.hidden=YES;
+//    self.navigationController.navigationBar.hidden=YES;
     [self addBackButton];
-    WKWebView * webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 100, self.view.width, self.view.height)];
+    
+    //获取导航栏高度
+    double navHeight = self.navigationController.navigationBar.frame.size.height;
+    //获取状态栏高度
+    double statusHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
+    
+    WKWebView * webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, statusHeight+navHeight+15, self.view.width, self.view.height)];
     self.webView = webView;
-    if(!IS_IPHONEX) {
-        webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 75, self.view.width, self.view.height)];
-    }
+    self.webView.navigationDelegate = self;
+//    if(!IS_IPHONEX) {
+//        webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, 75, self.view.width, self.view.height)];
+//    }
     NSURL * url = [NSURL URLWithString:_toUrl];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
-    // 添加观察者，监听 WKWebView 对象的 title 属性
-//
-//    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
-//
+
     [webView loadRequest:request];
     [self.view addSubview:webView];
+
+        // 添加观察者，监听 WKWebView 对象的 title 属性
+    //
+    //    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
+    //
     // Do any additional setup after loading the view.
 }
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    NSLog(@"网页加载失败");
+}
 
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+//    NSLog(@"**%@**",self.webView.title);
+//    self.navigationItem.title = self.webView.title;
+    [self addTitle];
+}
 //- (void)observeValueForKeyPath:(NSString *)keyPath
 //                      ofObject:(id)object
 //                        change:(NSDictionary<NSString *,id> *)change
@@ -81,6 +99,21 @@
     }];
     [button setImageEdgeInsets:UIEdgeInsetsMake(6, 10, 6, 10)];//增大点击范围
     [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)addTitle {
+    UILabel *label = [[UILabel alloc]init];
+    [self.view addSubview:label];
+    label.text = self.webView.title;
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backButton.mas_right).offset(15);
+        make.centerY.equalTo(self.backButton);
+    }];
+    label.font = [UIFont fontWithName:PingFangSCMedium size: 22];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+    } else {
+        // Fallback on earlier versions
+    }
 }
 - (void)popController {
     [self.navigationController popViewControllerAnimated:YES];

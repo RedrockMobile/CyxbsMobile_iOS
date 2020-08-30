@@ -136,7 +136,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addEleView];
     [self addVolView];
     [self layoutSubviews];
-    
     self.view.backgroundColor = self.finderView.backgroundColor;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
@@ -297,6 +296,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
       MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
       [hud setMode:(MBProgressHUDModeText)];
       hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
+    [UserItem defaultItem].building = NULL;
+    [UserItem defaultItem].room = NULL;
+    
       [hud hide:YES afterDelay:1.2];
       return;
 }

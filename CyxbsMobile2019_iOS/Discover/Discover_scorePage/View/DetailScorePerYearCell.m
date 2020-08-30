@@ -13,7 +13,8 @@
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface DetailScorePerYearCell()
-@property(nonatomic, assign)int plainHeight;
+@property(nonatomic, assign)int plainHeight;//cell不展开时候的高度
+@property (nonatomic, assign)int subjectCellHeight;//
 @end
 @implementation DetailScorePerYearCell
 
@@ -39,6 +40,7 @@
         }
         self.layer.cornerRadius = 8;
         self.clipsToBounds = YES;
+        self.subjectCellHeight = 35;
         [self addTimeLabel];
         [self addBlueBackgroundView];
         [self addAverangePointLabel];
@@ -164,7 +166,7 @@
     [self.watchMoreButton removeAllTargets];
     [self.watchMoreButton addTarget:self action:@selector(mergeScoreMore) forControlEvents:UIControlEventTouchUpInside];
     self.plainHeight = self.height;
-    self.height = 1500;
+    self.height = self.subjectCellHeight*self.singleGradesArray.count;
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.blueBackgroundView.width, 1000) style:UITableViewStylePlain];
     tableView.backgroundColor = UIColor.clearColor;
     self.detailTableView = tableView;
@@ -197,7 +199,7 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 35;
+    return self.subjectCellHeight;
 }
 //MARK: layoutSubviews
 - (void)layoutSubviews {
