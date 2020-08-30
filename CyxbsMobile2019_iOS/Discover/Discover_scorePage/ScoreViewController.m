@@ -66,7 +66,8 @@
     self.ABScoreView.AScore.text = self.gpaModel.gpaItem.termGrades.a_credit.stringValue;
     self.ABScoreView.BScore.text = self.gpaModel.gpaItem.termGrades.b_credit.stringValue;
 //    [self.tableView reloadInputViews];
-
+    [self.chartView removeFromSuperview];
+    [self addChartView];
 }
 -(void)idsBindingTest {
     IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:@"1659843" isPassword:@"313416"];
@@ -134,9 +135,7 @@
     [self.termBackView addSubview:termLabel];
     
 }
-- (BOOL)SCChart:(SCChart *)chart ShowMaxMinAtIndex:(NSInteger)index {
-    return YES;
-}
+
 -(void)requestGPA {
     self.gpaModel = [[GPA alloc]init];
     [self.gpaModel fetchData];
@@ -166,9 +165,13 @@
 }
 
 - (NSArray *)SCChart_yValueArray:(SCChart *)chart {
-            NSMutableArray *ary = [NSMutableArray array];
-            ary = @[@1.2, @2.2, @3.1, @4.0, @2.1, @3.5, @1.8, @3.3];
-            return @[ary];
+    if([self getChartArray]!=NULL) {
+        return @[[self getChartArray]];
+        NSLog(@"%@",[self getChartArray]);
+    }
+    NSMutableArray *ary = [NSMutableArray array];
+    ary = @[@0];//备用数据
+    return @[ary];
 }
 - (NSArray *)SCChart_ColorArray:(SCChart *)chart {
     if (@available(iOS 11.0, *)) {
@@ -178,8 +181,23 @@
         return @[[UIColor colorWithHexString:@"#2921D1"]];
     }
 }
+- (BOOL)SCChart:(SCChart *)chart ShowMaxMinAtIndex:(NSInteger)index {
+    return YES;
+}
 - (BOOL)SCChart:(SCChart *)chart ShowHorizonLineAtIndex:(NSInteger)index {
     return YES;
+}
+
+-(NSArray*)getChartArray {
+    NSMutableArray *arr = [NSMutableArray array];
+    for (TermGrade*t in self.gpaModel.gpaItem.termGrades.termGrades) {
+        double gpaNumber = t.gpa.doubleValue;
+//            NSString *gpa = gpaNumber.stringValue;
+            [arr addObject:@(gpaNumber)];
+    }
+    NSLog(@"%@",self.gpaModel.gpaItem.termGrades.termGrades);
+    NSArray *array = arr;
+    return array;
 }
 //MARK: - tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
