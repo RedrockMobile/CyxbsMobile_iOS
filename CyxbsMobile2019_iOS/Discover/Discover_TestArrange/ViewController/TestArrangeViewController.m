@@ -76,7 +76,11 @@
     [button setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(17);
-        make.top.equalTo(self.view).offset(53);
+        make.top.equalTo(self.view).offset(43);
+        make.width.equalTo(@30);
+        make.height.equalTo(@30);
+    }];
+    [button.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
