@@ -471,6 +471,7 @@
 		EEA301D7246866E400A8DB26 /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301D6246866E400A8DB26 /* BannerModel.m */; };
 		EEA301DA2468670B00A8DB26 /* BannerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301D92468670B00A8DB26 /* BannerItem.m */; };
 		EEA301DD2468680800A8DB26 /* BannerData.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301DC2468680800A8DB26 /* BannerData.m */; };
+		EEA88EB424FB3A340062A205 /* DetailSubjectScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA88EB324FB3A340062A205 /* DetailSubjectScoreCell.m */; };
 		EED03014247E9F1E009DD181 /* PickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EED03013247E9F1E009DD181 /* PickerModel.m */; };
 		EEEBD287248E504D00A2DDB1 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEBD286248E504D00A2DDB1 /* ElectricityView.m */; };
 		EEEBD28A248E5D8000A2DDB1 /* VolunteerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEBD289248E5D8000A2DDB1 /* VolunteerView.m */; };
@@ -1290,6 +1291,8 @@
 		EEA301D92468670B00A8DB26 /* BannerItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerItem.m; sourceTree = "<group>"; };
 		EEA301DB2468680800A8DB26 /* BannerData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerData.h; sourceTree = "<group>"; };
 		EEA301DC2468680800A8DB26 /* BannerData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerData.m; sourceTree = "<group>"; };
+		EEA88EB224FB3A340062A205 /* DetailSubjectScoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailSubjectScoreCell.h; sourceTree = "<group>"; };
+		EEA88EB324FB3A340062A205 /* DetailSubjectScoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailSubjectScoreCell.m; sourceTree = "<group>"; };
 		EED03012247E9F1E009DD181 /* PickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerModel.h; sourceTree = "<group>"; };
 		EED03013247E9F1E009DD181 /* PickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickerModel.m; sourceTree = "<group>"; };
 		EEEBD285248E504D00A2DDB1 /* ElectricityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
@@ -3211,6 +3214,8 @@
 			children = (
 				EE75BF7F23F5884100208039 /* DetailScorePerYearCell.h */,
 				EE75BF8423F5884100208039 /* DetailScorePerYearCell.m */,
+				EEA88EB224FB3A340062A205 /* DetailSubjectScoreCell.h */,
+				EEA88EB324FB3A340062A205 /* DetailSubjectScoreCell.m */,
 				EE75BF8023F5884100208039 /* UserInfoView.h */,
 				EE75BF8623F5884100208039 /* ABScoreView.h */,
 				EE75BF8123F5884100208039 /* ABScoreView.m */,
@@ -3946,6 +3951,7 @@
 				1A22DDD1244FF89E00FBB51E /* EmptyClassModel.m in Sources */,
 				EE75BFBA23F5884100208039 /* SCLineChart.m in Sources */,
 				EE75BFA323F5884100208039 /* ExamArrangeData.m in Sources */,
+				EEA88EB424FB3A340062A205 /* DetailSubjectScoreCell.m in Sources */,
 				EEA301C32468593F00A8DB26 /* SingleGrade.m in Sources */,
 				EE75BF9623F5884100208039 /* ElectricFeeItem.m in Sources */,
 				1A0E15F024E4EADF00C39B4D /* CQUPTMapSearchItem.m in Sources */,

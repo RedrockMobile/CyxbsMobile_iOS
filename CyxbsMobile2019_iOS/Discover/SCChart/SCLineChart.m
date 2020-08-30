@@ -271,7 +271,7 @@
         label.font = [UIFont systemFontOfSize:10];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = view.backgroundColor;
-        label.text = [NSString stringWithFormat:@"%d",(int)value];
+        label.text = [NSString stringWithFormat:@"%.2f",(float)value];
         [self addSubview:label];
     }
     
