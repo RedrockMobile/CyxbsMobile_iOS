@@ -477,7 +477,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)bindingDormitory {
     UserItem *item = [UserItem defaultItem];
     if (self.buildingNumberLabel.text != nil) {
-        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+//        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+        NSString *building = [self.buildingNumberLabel.text stringByReplacingOccurrencesOfString:@"栋" withString:@""];
+
         item.building = building;
     }
         NSLog(@"*%@*",self.roomTextField.text);
