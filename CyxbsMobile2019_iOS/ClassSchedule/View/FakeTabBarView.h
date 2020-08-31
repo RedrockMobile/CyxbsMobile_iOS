@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/25.
 //  Copyright © 2020 Redrock. All rights reserved.
-//课表顶部一个长得和现实课信息的tabBar一模一样的bar
+//课表顶部一个长得和显示课信息的tabBar一模一样的bar
 
 #import <UIKit/UIKit.h>
 #import "FYHCycleLabel.h"

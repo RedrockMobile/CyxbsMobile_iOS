@@ -26,11 +26,43 @@
             UILabel *label = [self getLabelWithString:[NSString stringWithFormat:@"%d",i+1]];
             [self addSubview:label];
             [label setFrame:CGRectMake(0, i*(H_H+dis), MONTH_ITEM_W, H_H)];
+//            [self getTipView];
         }
     }
     return self;
 }
 
+- (void)getTipView{
+    UIView *view = [[UIView alloc] init];
+    
+    UIView *bollView = [[UIView alloc] init];
+    [view addSubview:bollView];
+    bollView.layer.cornerRadius = MAIN_SCREEN_W*0.008;
+    [bollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(view);
+        make.centerY.equalTo(view);
+        make.width.height.mas_equalTo(MAIN_SCREEN_W*0.016);
+    }];
+    
+    
+    UIView *longView = [[UIView alloc] init];
+    [view addSubview:longView];
+    [longView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bollView.mas_right);
+        make.centerY.equalTo(view);
+        make.width.mas_equalTo(MAIN_SCREEN_W*0.0666);
+        make.height.mas_equalTo(1);
+    }];
+    if (@available(iOS 11.0, *)) {
+        longView.backgroundColor =
+        bollView.backgroundColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    } else {
+        longView.backgroundColor =
+        bollView.backgroundColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
+    [view setFrame:CGRectMake(0, H_H, MAIN_SCREEN_W*0.0826, MAIN_SCREEN_W*0.016)];
+    [self addSubview:view];
+}
 /// 获取左侧课条内部的小课块
 /// @param text 实际上是一个数字，范围：[1,12]
 - (UILabel*)getLabelWithString:(NSString*)text{
@@ -68,8 +100,10 @@
     }
     return dict;
 }
+
 - (void)getHash_lesson{
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    
     [formatter setDateFormat:@"k"];
     
 }

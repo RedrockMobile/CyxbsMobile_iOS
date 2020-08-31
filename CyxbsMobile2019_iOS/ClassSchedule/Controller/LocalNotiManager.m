@@ -11,17 +11,23 @@
 @implementation LocalNotiManager
 
 + (void)setLocalNotiWithWeekNum:(int)weekNum weekDay:(int)weekDay lesson:(int)lesson before:(int)minute titleStr:(NSString*)title subTitleStr:(NSString*_Nullable)subTitleStr bodyStr:(NSString*)body ID:(NSString*)idStr{
+    //获取component，component的作用是告诉UNNotificationRequest在什么时候通知
     NSDateComponents *component = [self getComponentWithWeekNum:weekNum weekDay:weekDay lesson:lesson before:minute];
     
+    //trigger有好几种，定时、延时、定地点、通知。。这里是定时通知型，不重复
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:component repeats:NO];
     
+    //content的作用是设置通知标题、子标题等
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
     content.title = title;
     content.body = body;
     content.subtitle = subTitleStr;
     [content setSound:[UNNotificationSound defaultSound]];
     
+    //创建request，还需要一个IDString
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:idStr content:content trigger:trigger];
+    
+    //[UNUserNotificationCenter currentNotificationCenter]是单例
     [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
 }
 
@@ -31,9 +37,7 @@
 /// @param lesson 第x节大课
 /// @param minute 课前x分钟提醒
 + (NSDateComponents*)getComponentWithWeekNum:(int)weekNum weekDay:(int)weekDay lesson:(int)lesson before:(int)minute{
-    if(weekNum==0){
-        
-    }
+    
     NSArray *timeArray = @[@"8:00",@"10:15",@"14:00",@"16:15",@"19:00",@"21:15"];
     
     NSDateComponents *component = [[NSDateComponents alloc] init];
@@ -43,7 +47,10 @@
     int dayIntervel = (weekNum-1)*7+weekDay;
     
     NSDate *roughNotiTime = [itemBegainTime dateByAddingDays:dayIntervel];
+    //得到提醒时间
     NSDate *notiTime = [roughNotiTime dateByAddingMinutes:-minute];
+    
+    //设置component
     component.year = notiTime.year;
     component.month = notiTime.month;
     component.day = notiTime.day;

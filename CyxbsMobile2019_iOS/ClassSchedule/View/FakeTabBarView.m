@@ -8,8 +8,10 @@
 
 #import "FakeTabBarView.h"
 @interface FakeTabBarView()
-
+//用来遮圆角的
 @property (nonatomic, weak) UIView *bottomCoverView;
+
+/// 可拖拽提示条
 @property (nonatomic, weak) UIView *dragHintView;
 
 @end

@@ -154,6 +154,7 @@
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
     content.title = @"明日课表已送达";
     content.body = @"查看明日课表，提前做好规划";
+    [content setSound:[UNNotificationSound defaultSound]];
     
     NSDateComponents *component = [[NSDateComponents alloc] init];
     
@@ -163,9 +164,7 @@
     
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"deliverSchedulEverday" content:content trigger:trigger];
     
-    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        
-    }];
+    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
 }
 //是否显示备忘
 - (void)switchedDisplayMemoPad:(UISwitch *)sender {

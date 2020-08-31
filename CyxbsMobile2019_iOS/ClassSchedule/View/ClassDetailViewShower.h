@@ -12,7 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ClassDetailViewShower : UIView<LessonViewDelegate>
+/// 某几节课的信息字典组成的数组
 @property (nonatomic,strong)NSArray <NSDictionary*>*courseDataDictArray;
+/// 某几个备忘模型组成的数组
 @property (nonatomic,strong)NSArray <NoteDataModel*>*noteDataModelArray;
 @end
 

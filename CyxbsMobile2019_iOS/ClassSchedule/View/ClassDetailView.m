@@ -24,8 +24,8 @@
 /// 时间
 @property (nonatomic, strong)UILabel *classTimeLabel;
 
-/// 学分数
-@property (nonatomic, strong)UILabel *scoreLabel;
+/// 学课程类型
+@property (nonatomic, strong)UILabel *typeLabel;
 
 /// 显示“周期”二字的label
 @property (nonatomic, strong)UILabel *week;
@@ -33,8 +33,8 @@
 /// 显示“时间”二字的label
 @property (nonatomic, strong)UILabel *time;
 
-/// 显示“学分数”二字的label
-@property (nonatomic, strong)UILabel *score;
+/// 显示@"课程类型"的label
+@property (nonatomic, strong)UILabel *type;
 
 @end
 
@@ -45,11 +45,6 @@
     if(self){
         [self setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
         [self initLabel];
-//        if (@available(iOS 11.0, *)) {
-//            self.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
-//        } else {
-//            self.backgroundColor = [UIColor whiteColor];
-//        }
         self.backgroundColor = UIColor.clearColor;
     }
     return self;
@@ -66,7 +61,7 @@
     NSString *daytime = [self transformDataString:dataDict[@"lesson"] withPeriod:[dataDict[@"period"]intValue]];
     self.classTimeLabel.text =
     [NSString stringWithFormat:@"%@  %@",dataDict[@"day"],daytime];
-    self.scoreLabel.text = dataDict[@"type"];
+    self.typeLabel.text = dataDict[@"type"];
 //    self.classroomNameLabel.text = @"计算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406/C407)";
     if(self.classroomNameLabel.text.length>25){
         [self.classroomNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,22 +70,21 @@
     }
 }
 
-//文本框初始化
+///文本框初始化，完成对定死的数据的设置
 - (void)initLabel{
     //alloc init
     self.lessonNameLabel = [[UILabel alloc] init];
     self.weekRangeLabel = [[UILabel alloc] init];
     self.classTimeLabel = [[UILabel alloc] init];
-    self.scoreLabel = [[UILabel alloc] init];
+    self.typeLabel = [[UILabel alloc] init];
     self.classroomNameLabel = [[UILabel alloc] init];
     self.teacherNameLabel = [[UILabel alloc] init];
     self.week = [[UILabel alloc] init];
     self.time = [[UILabel alloc] init];
-    self.score = [[UILabel alloc] init];
+    self.type = [[UILabel alloc] init];
     
     //教室地点的行数
     self.classroomNameLabel.numberOfLines = 0;
-    
     
     //alpha
     float alpha1 = 0.61, alpha2 = 0.81;
@@ -98,7 +92,7 @@
     self.teacherNameLabel.alpha = alpha1;
     self.week.alpha = alpha2;
     self.time.alpha = alpha2;
-    self.score.alpha = alpha2;
+    self.type.alpha = alpha2;
 
     
     //上色
@@ -111,18 +105,14 @@
     self.lessonNameLabel.textColor = textColor;
     self.weekRangeLabel.textColor = textColor;
     self.classTimeLabel.textColor = textColor;
-    self.scoreLabel.textColor = textColor;
+    self.typeLabel.textColor = textColor;
     self.classroomNameLabel.textColor = textColor;
     self.teacherNameLabel.textColor = textColor;
     self.week.textColor = textColor;
     self.time.textColor = textColor;
-    self.score.textColor = textColor;
+    self.type.textColor = textColor;
     
-//    #define PingFangSCRegular @"PingFangSC-Regular"
-//    #define PingFangSCLight @"PingFangSC-Light"
-//    #define PingFangSCMedium @"PingFangSC-Medium"
-//    #define PingFangSCBold @"PingFangSC-Semibold"
-//    #define PingFangSCHeavy @"PingFangSC-Heavy"
+    
     //字号
     UIFont *regu13 = [UIFont fontWithName:PingFangSCRegular size: 13];
     UIFont *regu15 = [UIFont fontWithName:PingFangSCRegular size: 15];
@@ -131,32 +121,34 @@
     self.lessonNameLabel.font = [UIFont fontWithName:PingFangSCBold size: 22];
     self.weekRangeLabel.font = semi15;
     self.classTimeLabel.font = semi15;
-    self.scoreLabel.font = semi15;
+    self.typeLabel.font = semi15;
     
     self.classroomNameLabel.font = regu13;
     self.teacherNameLabel.font = regu13;
     
     self.week.font = regu15;
     self.time.font = regu15;
-    self.score.font = regu15;
+    self.type.font = regu15;
     
     //addsubView
     [self addSubview:self.lessonNameLabel];
     [self addSubview:self.weekRangeLabel];
     [self addSubview:self.classTimeLabel];
-    [self addSubview:self.scoreLabel];
+    [self addSubview:self.typeLabel];
     [self addSubview:self.classroomNameLabel];
     [self addSubview:self.teacherNameLabel];
     [self addSubview:self.week];
     [self addSubview:self.time];
-    [self addSubview:self.score];
+    [self addSubview:self.type];
     
     //给几个文字定死的label加字
     self.week.text = @"周期";
     self.time.text = @"时间";
-    self.score.text = @"课程类型";
+    self.type.text = @"课程类型";
 }
 
+
+/// 加约束
 - (void)layoutSubviews{
     /// 加约束
     [self.lessonNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -179,7 +171,7 @@
         make.top.equalTo(self).offset(0.392*MAIN_SCREEN_W);
     }];
     
-    [self.score mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.type mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
         make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
     }];
@@ -203,12 +195,13 @@
         make.top.equalTo(self).offset(0.392*MAIN_SCREEN_W);
     }];
     
-    [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
         make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
     }];
 }
-//把@"一二节"转换为@"1-2节"、如果period==3，那么@"九十节"->@"9-11节"
+
+///把@"一二节"转换为@"1-2节"、如果period==3，那么@"九十节"->@"9-11节"
 - (NSString*)transformDataString:(NSString*)dataString withPeriod:(int)period{
     NSDictionary *tranfer = @{
         @"一二节":[NSString stringWithFormat:@"1-%d节",0+period],
@@ -220,28 +213,30 @@
     return tranfer[dataString];
 }
 @end
-//"begin_lesson" = 1;
-//教室                                classroom = 2217;
-//课程名称                        course = "高等数学A(下)";
-//                                    "course_num" = A1110310;
-//                                    day = "星期一";
-//周几的课                        "hash_day" = 0;
-//从第几节开始上                  "hash_lesson" = 0;
-//                                    lesson = "一二节";
-//这节课的时长                    period = 2;
-//                                    rawWeek = "3-17周";
-//                                    teacher = "邓志颖";
-//                                    type = "必修";
-//  那些周有课                    week =         (
-//                                                            3,
-//                                                          5,
-//                                                            7,
-//                                                            9,
-//                                                            11,
-//                                                            13,
-//                                                            15,
-//                                                            17
-//                                                  );
-//                                        weekBegin = 3;
-//                                        weekEnd = 17;
-//                                        weekModel = single;
+/**
+"begin_lesson" = 1;
+教室                                classroom = 2217;
+课程名称                        course = "高等数学A(下)";
+                                    "course_num" = A1110310;
+                                    day = "星期一";
+周几的课                        "hash_day" = 0;
+从第几节开始上                  "hash_lesson" = 0;
+                                    lesson = "一二节";
+这节课的时长                    period = 2;
+                                    rawWeek = "3-17周";
+                                    teacher = "邓志颖";
+                                    type = "必修";
+  那些周有课                    week =         (
+                                                            3,
+                                                          5,
+                                                            7,
+                                                            9,
+                                                            11,
+                                                            13,
+                                                            15,
+                                                            17
+                                                  );
+                                        weekBegin = 3;
+                                        weekEnd = 17;
+                                        weekModel = single;
+*/

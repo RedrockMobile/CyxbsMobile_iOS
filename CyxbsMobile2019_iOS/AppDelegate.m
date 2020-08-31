@@ -190,11 +190,12 @@ extern CFAbsoluteTime StartTime;
         //如果点击的是每日推送课表的消息，那么延时0.2秒后发送通知，让DiscoverViewController弹出课表
         //0.2秒用于加载UI，不延时会导致发送通知时DiscoverViewController还未加载完成
         //用se2模拟器模拟下只延时0.05s也不会有什么问题，保险起见延时0.2s后发送通知
-        if([response.notification.request.identifier
-            isEqualToString:@"deliverSchedulEverday"]
-           || [response.notification.request.identifier
-              isEqualToString:@"remindBeforeCourseBegin"]
-           ){
+        BOOL is = [response.notification.request.identifier
+         isEqualToString:@"deliverSchedulEverday"]
+        ||[response.notification.request.identifier
+           isEqualToString:@"remindBeforeCourseBegin"];
+        
+        if(is&&![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
             dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC);
             dispatch_after(time, dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverVCShouldPresentMySchedul" object:nil];
@@ -202,5 +203,6 @@ extern CFAbsoluteTime StartTime;
         }
     }
 }
+//
 @end
 

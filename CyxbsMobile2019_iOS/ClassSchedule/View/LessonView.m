@@ -9,20 +9,17 @@
 #import "LessonView.h"
 @interface LessonView()
 
-/// 课程名称
+/// 课程名称或者备忘标题
 @property(nonatomic,strong)UILabel *titleLable;
 
-/// 教室名
+/// 教室名或者备忘详情
 @property(nonatomic,strong)UILabel *detailLable;
-
 
 /// 周几的课，hash_day=3代表周四
 @property(nonatomic,assign)int hash_day;
 
 /// 第几节大课，hash_lesson=2代表第3节大课，也就是5-6节
 @property(nonatomic,assign)int hash_lesson;
-
-
 
 /// 提醒是只有一节课还是有多节课
 @property(nonatomic,strong)UIView *tipView;
@@ -39,6 +36,7 @@
     }
     return self;
 }
+//标题懒加载
 - (UILabel *)titleLable{
     if(_titleLable==nil){
         UILabel *lable = [[UILabel alloc] init];
@@ -56,6 +54,8 @@
     }
     return _titleLable;
 }
+
+//详情懒加载
 - (UILabel *)detailLable{
     if(_detailLable==nil){
         UILabel *lable = [[UILabel alloc] init];
@@ -72,6 +72,60 @@
         }];
     }
     return _detailLable;
+}
+
+//提示view的懒加载
+- (UIView *)tipView{
+    if(_tipView==nil){
+        UIView *view = [[UIView alloc] init];
+        [self addSubview:view];
+        _tipView = view;
+        
+        UIColor *color;
+        
+        if(self.isEmptyLesson==YES){
+            if (@available(iOS 11.0, *)) {
+                color = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
+            } else {
+                color = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
+            }
+        }else{
+            switch (self.hash_lesson) {
+                case 0:
+                case 1:
+                    if(@available(iOS 11.0, *)){
+                        color = [UIColor colorNamed:@"ClassLabelColor1"];
+                    }else{
+                        color = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
+                    }
+                    break;
+                case 2:
+                case 3:
+                if(@available(iOS 11.0, *)){
+                    color = [UIColor colorNamed:@"ClassLabelColor2"];
+                }else{
+                    color = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
+                }
+                break;
+                default:
+                    if(@available(iOS 11.0, *)){
+                        color = [UIColor colorNamed:@"ClassLabelColor3"];
+                    }else{
+                        color = [UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
+                    }
+                    break;
+            }
+        }
+        view.backgroundColor = color;
+        view.layer.cornerRadius = 0.004*MAIN_SCREEN_W;
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(0.092*MAIN_SCREEN_W);
+            make.top.equalTo(self).offset(0.012*MAIN_SCREEN_W);
+            make.width.mas_equalTo(0.0213*MAIN_SCREEN_W);
+            make.height.mas_equalTo(0.008*MAIN_SCREEN_W);
+        }];
+    }
+    return _tipView;
 }
 
 /// 更新显示的课表数据，调用前需确保已经对self.courseDataDict进行更新、且已经调用了setUpUI
@@ -130,6 +184,7 @@
         [self hideNote];
     }
 }
+
 ///调用后会设置titleLabe的文字为课程名称，detailLabel的文字为教室地点，背景颜色，字体
 - (void)setCourseInfoWithCourseDataDict:(NSDictionary*)courseDataDict{
     //根据self.courseDataDict对子控件的数据更新：
@@ -176,6 +231,7 @@
     self.titleLable.textColor = textColor;
     self.detailLable.textColor = textColor;
 }
+
 ///调用后会设置titleLabe的文字为备忘标题，detailLabel的文字为备忘详情，背景颜色，字体
 - (void)setNoteInfoWithNoteDataModel:(NoteDataModel*)model{
     if(model==nil)return;
@@ -196,29 +252,31 @@
     self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"条纹"]];
 }
 
+/// 设置自己的frame
+/// @param infoDict 结构：@{@"hash_day":@0, @"hash_lesson":@0, @"period": @3}
 - (void)setFrameAndLessonLocationWithInfoDict:(NSDictionary*)infoDict{
     NSString *hash_day = infoDict[@"hash_day"];
-       self.hash_day = [hash_day intValue];
-       
-       NSString *hash_lesson = infoDict[@"hash_lesson"];
-       self.hash_lesson = [hash_lesson intValue];
-       
-       NSString *period = infoDict[@"period"];
-       self.period = [period intValue];
-       
+    self.hash_day = [hash_day intValue];
+
+    NSString *hash_lesson = infoDict[@"hash_lesson"];
+    self.hash_lesson = [hash_lesson intValue];
+
+    NSString *period = infoDict[@"period"];
+    self.period = [period intValue];
+
     float h;
     if(self.period>3){
         h = self.period*LESSON_H +(self.period-2)/2*DISTANCE_H;
     }else{
         h = self.period*LESSON_H;
     }
-       //对自己的frame更新：
-       self.frame = CGRectMake(self.hash_day*(LESSON_W+DISTANCE_W), self.hash_lesson*(2*LESSON_H+DISTANCE_H), LESSON_W, h);
+    //对自己的frame更新：
+    self.frame = CGRectMake(self.hash_day*(LESSON_W+DISTANCE_W), self.hash_lesson*(2*LESSON_H+DISTANCE_H), LESSON_W, h);
 }
 
+/**
 //self被点击后调用
-- (void)viewTouched{
-    
+- (void)viewTouchedd{
     if(self.isEmptyLesson==YES){
         //如果是空课且不是在个人课表页，那就return
         if(self.schType!=ScheduleTypePersonal)return;
@@ -228,7 +286,7 @@
         }else{
             
             if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]){
-                self.delegate.courseDataDictArray = @[];
+                self.delegate.courseDataDictArray = self.courseDataDictArray;
                 self.delegate.noteDataModelArray = self.noteDataModelArray;
                 [self.delegate showDetail];
             }else{
@@ -243,60 +301,32 @@
         [self.delegate showDetail];
     }
 }
-
-- (UIView *)tipView{
-    if(_tipView==nil){
-        UIView *view = [[UIView alloc] init];
-        [self addSubview:view];
-        _tipView = view;
-        
-        UIColor *color;
-        
-        if(self.isEmptyLesson==YES){
-            if (@available(iOS 11.0, *)) {
-                color = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
-            } else {
-                color = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
-            }
-        }else{
-            switch (self.hash_lesson) {
-                case 0:
-                case 1:
-                    if(@available(iOS 11.0, *)){
-                        color = [UIColor colorNamed:@"ClassLabelColor1"];
-                    }else{
-                        color = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
-                    }
-                    break;
-                case 2:
-                case 3:
-                if(@available(iOS 11.0, *)){
-                    color = [UIColor colorNamed:@"ClassLabelColor2"];
-                }else{
-                    color = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
-                }
-                break;
-                default:
-                    if(@available(iOS 11.0, *)){
-                        color = [UIColor colorNamed:@"ClassLabelColor3"];
-                    }else{
-                        color = [UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
-                    }
-                    break;
-            }
-        }
-        view.backgroundColor = color;
-        view.layer.cornerRadius = 0.004*MAIN_SCREEN_W;
-        [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(0.092*MAIN_SCREEN_W);
-            make.top.equalTo(self).offset(0.012*MAIN_SCREEN_W);
-            make.width.mas_equalTo(0.0213*MAIN_SCREEN_W);
-            make.height.mas_equalTo(0.008*MAIN_SCREEN_W);
-        }];
+*/
+//self被点击后调用
+- (void)viewTouched{
+    //被点击后要么显示弹窗，要么去添加备忘，要么没反应
+    //点击后会显示弹窗必然至少满足以下一种情况：
+    //1.非空课
+    //2.有备忘&&打开了显示备忘的开关&&在个人页
+    BOOL state1 = self.isEmptyLesson==NO;
+    
+    BOOL state2 = self.isNoted==YES&&[[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]&&self.schType==ScheduleTypePersonal;
+    
+    if(state1||state2){//满足两种情况的一种，那么显示弹窗
+        //把数据给代理，代理是ClassDetailViewShower
+        self.delegate.courseDataDictArray = self.courseDataDictArray;
+        self.delegate.noteDataModelArray = self.noteDataModelArray;
+        //让代理show一下弹窗
+        [self.delegate showDetail];
+    }else if(self.schType==ScheduleTypePersonal){
+        //否则判断是否要跳转到添加备忘页，如果是自己的课表，那就跳转
+        [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
     }
-    return _tipView;
 }
 
+
+//MARK:- 通知中心
+/// 打开显示备忘开关时调用
 - (void)showNote{
     self.titleLable.hidden =
     self.detailLable.hidden = NO;
@@ -308,6 +338,7 @@
     }
 }
 
+/// 关闭显示备忘开关时调用
 - (void)hideNote{
     self.tipView.hidden =
     self.titleLable.hidden =
@@ -318,29 +349,30 @@
 
 
 
-
-//"begin_lesson" = 1;
-//教室                                classroom = 2217;
-//课程名称                        course = "高等数学A(下)";
-//                                    "course_num" = A1110310;
-//                                    day = "星期一";
-//周几的课                        "hash_day" = 0;
-//从第几节开始上                  "hash_lesson" = 0;
-//                                    lesson = "一二节";
-//这节课的时长                    period = 2;
-//                                    rawWeek = "3-17周";
-//                                    teacher = "邓志颖";
-//                                    type = "必修";
-//  那些周有课                    week =         (
-//                                                            3,
-//                                                          5,
-//                                                            7,
-//                                                            9,
-//                                                            11,
-//                                                            13,
-//                                                            15,
-//                                                            17
-//                                                  );
-//                                        weekBegin = 3;
-//                                        weekEnd = 17;
-//                                        weekModel = single;
+/**
+"begin_lesson" = 1;
+教室                                classroom = 2217;
+课程名称                        course = "高等数学A(下)";
+                                    "course_num" = A1110310;
+                                    day = "星期一";
+周几的课                        "hash_day" = 0;
+从第几节开始上                  "hash_lesson" = 0;
+                                    lesson = "一二节";
+这节课的时长                    period = 2;
+                                    rawWeek = "3-17周";
+                                    teacher = "邓志颖";
+                                    type = "必修";
+  那些周有课                    week =         (
+                                                            3,
+                                                          5,
+                                                            7,
+                                                            9,
+                                                            11,
+                                                            13,
+                                                            15,
+                                                            17
+                                                  );
+                                        weekBegin = 3;
+                                        weekEnd = 17;
+                                        weekModel = single;
+*/
