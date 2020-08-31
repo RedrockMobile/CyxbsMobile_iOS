@@ -444,7 +444,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
     UIButton * button = [[UIButton alloc]init];
     [bindingView addSubview:button];
-    button.backgroundColor = UIColor.blueColor;
+    button.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
     [button setTitle:@"确定" forState:normal];
     button.layer.cornerRadius = 20;
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
