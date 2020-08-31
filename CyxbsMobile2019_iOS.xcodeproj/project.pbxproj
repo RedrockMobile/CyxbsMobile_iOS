@@ -3211,8 +3211,6 @@
 				EEA301B62468075200A8DB26 /* Model */,
 				EE75BF7C23F5884100208039 /* ScoreViewController.h */,
 				EE75BF7D23F5884100208039 /* ScoreViewController.m */,
-				EE60B51524FBA40C000B1CAD /* IdsBindingView.h */,
-				EE60B51624FBA40C000B1CAD /* IdsBindingView.m */,
 				EE75BF7E23F5884100208039 /* View */,
 				EEA301B4246800D200A8DB26 /* ScorePageMeida.xcassets */,
 			);
@@ -3222,6 +3220,8 @@
 		EE75BF7E23F5884100208039 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EE60B51524FBA40C000B1CAD /* IdsBindingView.h */,
+				EE60B51624FBA40C000B1CAD /* IdsBindingView.m */,
 				EE75BF7F23F5884100208039 /* DetailScorePerYearCell.h */,
 				EE75BF8423F5884100208039 /* DetailScorePerYearCell.m */,
 				EEA88EB224FB3A340062A205 /* DetailSubjectScoreCell.h */,

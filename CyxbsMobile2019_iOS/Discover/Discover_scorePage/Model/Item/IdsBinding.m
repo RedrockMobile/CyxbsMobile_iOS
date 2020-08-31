@@ -34,6 +34,8 @@
         if (!error) {
             if ([responseObject[@"status"] isEqual:@"10000"]) {
                 //ids绑定成功
+                [UserItem defaultItem].idsAccount = self.idsNum;
+                [UserItem defaultItem].idsPasswd = self.idsPassword;
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
                 NSLog(@"ids绑定成功");
             }
