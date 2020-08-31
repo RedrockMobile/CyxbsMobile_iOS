@@ -15,10 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *class_num;
 @property (nonatomic, copy)NSString *class_name;
 @property (nonatomic, copy)NSString *class_type;
-@property (nonatomic, copy)NSString *credit;
+@property (nonatomic)NSNumber *credit;
 @property (nonatomic, copy)NSString *exam_type;
 @property (nonatomic, copy)NSString *grade;
-@property (nonatomic, copy)NSString *gpa;
+@property (nonatomic)NSNumber *gpa;
 
 
 

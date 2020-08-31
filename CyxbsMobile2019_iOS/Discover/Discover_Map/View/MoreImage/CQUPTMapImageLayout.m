@@ -96,11 +96,10 @@
     // 更新列高
     if ([self.columnHeights[0] doubleValue] <= [self.columnHeights[1] doubleValue]) {       // item在左边一列
         self.columnHeights[0] = @(h + y);
-        self.contentHeight = self.columnHeights[1].doubleValue;
     } else {                            // item在右边一列
         self.columnHeights[1] = @(h + y);
-        self.contentHeight = self.columnHeights[0].doubleValue;
     }
+    self.contentHeight = self.columnHeights[0].doubleValue > self.columnHeights[1].doubleValue ? self.columnHeights[0].doubleValue : self.columnHeights[1].doubleValue;
     
     return attrs;
 }

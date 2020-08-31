@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ABScoreView : UIView
+@property (nonatomic, weak)UILabel *AScore;
+@property (nonatomic, weak)UILabel *BScore;
 
 @end
 

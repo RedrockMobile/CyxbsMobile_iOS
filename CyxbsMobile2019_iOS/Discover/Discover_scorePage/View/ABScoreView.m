@@ -14,9 +14,7 @@
 
 @interface ABScoreView()
 @property (nonatomic, weak)UILabel *AScoreLabel;
-@property (nonatomic, weak)UILabel *AScore;
 @property (nonatomic, weak)UILabel *BScoreLbabel;
-@property (nonatomic, weak)UILabel *BScore;
 @property (nonatomic, weak)UIView *seperateLine;
 @end
 @implementation ABScoreView
@@ -57,7 +55,7 @@
 }
 - (void)addABScore {
     UILabel *AScore = [[UILabel alloc]init];
-    AScore.text = @"45";
+    AScore.text = @"Loading";
     self.AScore = AScore;
     [self addSubview:AScore];
     AScore.font = [UIFont fontWithName:@"Impact" size: 32];
@@ -67,7 +65,7 @@
         // Fallback on earlier versions
     }
     UILabel *BScore = [[UILabel alloc] init];
-    BScore.text = @"2";
+    BScore.text = @"Loading";
     self.BScore = BScore;
     [self addSubview:BScore];
     BScore.font = AScore.font;

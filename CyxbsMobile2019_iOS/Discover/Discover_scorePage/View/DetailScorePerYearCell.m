@@ -7,11 +7,15 @@
 //
 
 #import "DetailScorePerYearCell.h"
+#import "DetailSubjectScoreCell.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorBackView  [UIColor colorNamed:@"Color_E8F1FC&#5A5A5A" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-
+@interface DetailScorePerYearCell()
+@property(nonatomic, assign)int plainHeight;//cell不展开时候的高度
+@property (nonatomic, assign)int subjectCellHeight;//
+@end
 @implementation DetailScorePerYearCell
 
 - (void)awakeFromNib {
@@ -24,6 +28,7 @@
 
     // Configure the view for the selected state
 }
+
 - (instancetype)init
 {
     self = [super init];
@@ -35,6 +40,7 @@
         }
         self.layer.cornerRadius = 8;
         self.clipsToBounds = YES;
+        self.subjectCellHeight = 35;
         [self addTimeLabel];
         [self addBlueBackgroundView];
         [self addAverangePointLabel];
@@ -49,7 +55,6 @@
 }
 - (void)addTimeLabel {
     UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
     self.timeLabel = label;
     label.font = [UIFont fontWithName:PingFangSCBold size:15];
     if (@available(iOS 11.0, *)) {
@@ -72,8 +77,7 @@
 }
 - (void) addAverangePointLabel {
         UILabel *averangePointLabel = [[UILabel alloc]init];
-    self.averangePointLabel = averangePointLabel;
-        [self addSubview:averangePointLabel];
+        self.averangePointLabel = averangePointLabel;
         averangePointLabel.font = [UIFont fontWithName:PingFangSCBold size:21];
         if (@available(iOS 11.0, *)) {
             averangePointLabel.textColor = Color21_49_91_F0F0F2;
@@ -85,7 +89,6 @@
 }
 - (void) addAverangePointTitleLabel {
     UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
     self.averangePointTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
@@ -99,7 +102,6 @@
 - (void) addAverangeScoreLabel {
         UILabel *label = [[UILabel alloc]init];
         self.averangeScoreLabel = label;
-        [self addSubview:label];
         label.font = [UIFont fontWithName:PingFangSCBold size:21];
         if (@available(iOS 11.0, *)) {
             label.textColor = Color21_49_91_F0F0F2;
@@ -111,7 +113,6 @@
 }
 - (void)addAverangeScoreTitleLabel {
     UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
     self.averangeScoreTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
@@ -125,7 +126,6 @@
 - (void)addAverangeRankLabel {
     UILabel *label = [[UILabel alloc]init];
     self.averangeRankLabel = label;
-    [self addSubview:label];
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
     if (@available(iOS 11.0, *)) {
         label.textColor = Color21_49_91_F0F0F2;
@@ -137,7 +137,6 @@
 }
 - (void) addAverangeRankTitleLabel {
     UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
     self.averangeRankTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
@@ -149,19 +148,60 @@
     [self.blueBackgroundView addSubview:label];
 }
 - (void)addWatchMoreButton {
-    UILabel *label = [[UILabel alloc]init];
-    [self addSubview:label];
-    self.watchMoreButton = label;
-    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    label.alpha = 0.35;
+    UIButton *button = [[UIButton alloc]init];
+    self.watchMoreButton = button;
+    button.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    button.alpha = 0.35;
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        [button setTitleColor:Color21_49_91_F0F0F2 forState:normal];
     } else {
         // Fallback on earlier versions
     }
-    label.text = @"查看各科成绩";
-    [self.blueBackgroundView addSubview:label];
+    [button setTitle:@"查看各科成绩" forState:normal];
+    [self.blueBackgroundView addSubview:button];
+    [button addTarget:self action:@selector(touchWatchMoreButton) forControlEvents:UIControlEventTouchUpInside];
 }
+-(void)touchWatchMoreButton {
+    [self.watchMoreButton setTitle:@"收起各科成绩" forState:normal];
+    [self.watchMoreButton removeAllTargets];
+    [self.watchMoreButton addTarget:self action:@selector(mergeScoreMore) forControlEvents:UIControlEventTouchUpInside];
+    self.plainHeight = self.height;
+    self.height = self.subjectCellHeight*self.singleGradesArray.count;
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.blueBackgroundView.width, 1000) style:UITableViewStylePlain];
+    tableView.backgroundColor = UIColor.clearColor;
+    self.detailTableView = tableView;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.scrollEnabled = NO;
+    [self.blueBackgroundView addSubview:tableView];
+    [self layoutSubviews];
+}
+-(void)mergeScoreMore {
+    [self.watchMoreButton setTitle:@"查看各科成绩" forState:normal];
+    [self.watchMoreButton removeAllTargets];
+    [self.watchMoreButton addTarget:self action:@selector(touchWatchMoreButton) forControlEvents:UIControlEventTouchUpInside];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.detailTableView removeFromSuperview];
+    }];
+    self.height = self.plainHeight;
+    
+
+}
+//MARK:  tableView delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.singleGradesArray.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DetailSubjectScoreCell*cell = [[DetailSubjectScoreCell alloc]init];
+    cell.nameLabel.text = self.singleGradesArray[indexPath.row].class_name;
+    cell.scoreLabel.text = self.singleGradesArray[indexPath.row].grade;
+    cell.majorLabel.text = self.singleGradesArray[indexPath.row].class_type;
+    return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.subjectCellHeight;
+}
+//MARK: layoutSubviews
 - (void)layoutSubviews {
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(28);
@@ -200,6 +240,11 @@
     [self.watchMoreButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.averangeScoreLabel);
         make.bottom.equalTo(self.blueBackgroundView.mas_bottom).offset(-6);
+    }];
+    [self.detailTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.blueBackgroundView.mas_bottom).offset(20);
+        make.left.right.equalTo(self.blueBackgroundView);
+        make.height.equalTo(@1300);
     }];
 }
 @end

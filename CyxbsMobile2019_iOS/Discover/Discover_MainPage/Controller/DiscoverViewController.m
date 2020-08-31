@@ -32,11 +32,6 @@
 #import "VolunteerView.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-#define LIKE_IPHONEXSMAX (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 896.f)
-
-#define LIKE_IPHONEX (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 812.f)
-#define LIKE_IPHONE6plus (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 736.f)
-
 #define ColorWhite  [UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define TextColor [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define TextColor [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -136,14 +131,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [super viewDidLoad];
     [self configDefaults];
     [self requestData];
-//    [self addBackContentView];
     [self addContentView];
-    self.contentView.delegate = self;
     [self addFinderView];
     [self addEleView];
     [self addVolView];
     [self layoutSubviews];
-    
     self.view.backgroundColor = self.finderView.backgroundColor;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
@@ -160,11 +152,15 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 -(void)layoutSubviews {
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
+        if(IS_IPHONEX) {
+            make.top.equalTo(self.view).offset(20);
+        }
+        make.top.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
     }];
     [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(- STATUSBARHEIGHT);
+        make.top.equalTo(self.contentView);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
     }];
@@ -231,6 +227,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]init];
     self.contentView = contentView;
+    self.contentView.delegate = self;
     if (@available(iOS 11.0, *)) {
         self.contentView.backgroundColor = Color242_243_248to000000;
     } else {
@@ -278,7 +275,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.volView = volView;
     volView.delegate = self;
     [self.contentView addSubview:volView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeVolunteerAccount) name:@"removeVolunteerAccount" object:nil];
 
+}
+-(void)removeVolunteerAccount {
+    [self.volView refreshViewIfNeeded];
 }
 - (void)bindingVolunteerButton {
     QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
@@ -299,7 +300,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
       MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
       [hud setMode:(MBProgressHUDModeText)];
       hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
-      [hud hide:YES afterDelay:1.5];
+    [UserItem defaultItem].building = NULL;
+    [UserItem defaultItem].room = NULL;
+    
+      [hud hide:YES afterDelay:1.2];
       return;
 }
 -(void)requestElectricFeeFailed {
