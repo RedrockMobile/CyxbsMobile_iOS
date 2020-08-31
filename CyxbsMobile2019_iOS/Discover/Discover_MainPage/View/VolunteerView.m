@@ -52,9 +52,17 @@
     return self;
 }
 -(void)refreshViewIfNeeded {
-    [self removeUnbindingView];
-    [self addBindingView];
-    [self updateAllHour];//总时长刷新
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_account"]) {
+        [self removeUnbindingView];
+        [self addBindingView];
+        [self updateAllHour];//总时长刷新
+    }else {
+        [self removeAllSubviews];
+        [self addNoBindingView];
+        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
+
+    }
+
 }
 -(void)updateAllHour {
     self.allTime.text = self.volunteerItem.hour;
@@ -173,7 +181,7 @@
     }
     [self.allTimeBackImage addSubview:shi];
     [self.shi mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.allTimeBackImage).offset(-5.5);
+        make.right.equalTo(self.allTimeBackImage).offset(-3);
         make.bottom.equalTo(self.allTime).offset(-7);
     }];
 }
@@ -199,7 +207,7 @@
     [self.recentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.volunteerTitle.mas_right).offset(22);
         make.top.equalTo(self.allTimeBackImage);
-        make.right.equalTo(self).offset(-70);
+        make.right.equalTo(self).offset(-80);
     }];
 }
 - (void)addRecentDate {

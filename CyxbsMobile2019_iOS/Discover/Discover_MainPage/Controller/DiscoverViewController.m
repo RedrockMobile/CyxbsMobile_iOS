@@ -275,7 +275,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.volView = volView;
     volView.delegate = self;
     [self.contentView addSubview:volView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeVolunteerAccount) name:@"removeVolunteerAccount" object:nil];
 
+}
+-(void)removeVolunteerAccount {
+    [self.volView refreshViewIfNeeded];
 }
 - (void)bindingVolunteerButton {
     QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];

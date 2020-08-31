@@ -106,13 +106,13 @@ static NSString *reUsedStr[REUESED_SIZE] = {nil}; // 重用标示
         UIColor *myColor = [UIColor colorWithRed:244/255.0 green:243/255.0 blue:243/255.0 alpha:1];
         cell.backgroundColor = myColor;
         
-        NSInteger hours = 0;
+        float hours = 0;
         for (NSArray *eventArray in self.eventsSortedByYears) {
             for (VolunteeringEventItem *event in eventArray) {
-                hours += [event.hour integerValue];
+                hours += [event.hour floatValue];
             }
         }
-        cell.backgroundLabel3.text = [NSString stringWithFormat:@"%.1f", (CGFloat)hours];
+        cell.backgroundLabel3.text = [NSString stringWithFormat:@"%.1f", hours];
         
         cell.userInteractionEnabled = NO;
         cell.selected = false;
