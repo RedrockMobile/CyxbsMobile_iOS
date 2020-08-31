@@ -13,7 +13,6 @@
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface DetailScorePerYearCell()
-@property(nonatomic, assign)int plainHeight;//cell不展开时候的高度
 @property (nonatomic, assign)int subjectCellHeight;//
 @end
 @implementation DetailScorePerYearCell
@@ -28,7 +27,9 @@
 
     // Configure the view for the selected state
 }
-
++ (float)plainHeight {
+    return 144;
+}
 - (instancetype)init
 {
     self = [super init];
@@ -38,6 +39,7 @@
         } else {
             // Fallback on earlier versions
         }
+        self.tableViewIsOpen = NO;
         self.layer.cornerRadius = 8;
         self.clipsToBounds = YES;
         self.subjectCellHeight = 35;
@@ -162,12 +164,14 @@
     [button addTarget:self action:@selector(touchWatchMoreButton) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)touchWatchMoreButton {
-    [self.watchMoreButton setTitle:@"收起各科成绩" forState:normal];
+    self.tableViewIsOpen = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"expandSubjectScoreTableView" object:nil];
+    [self.watchMoreButton setTitle:@"收起各科成绩" forState:normal];//发送消息 刷新该cell高度
     [self.watchMoreButton removeAllTargets];
     [self.watchMoreButton addTarget:self action:@selector(mergeScoreMore) forControlEvents:UIControlEventTouchUpInside];
-    self.plainHeight = self.height;
     self.height = self.subjectCellHeight*self.singleGradesArray.count;
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.blueBackgroundView.width, 0) style:UITableViewStylePlain];
+    self.openingHeight = self.subjectCellHeight*self.singleGradesArray.count;
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.blueBackgroundView.width,0) style:UITableViewStylePlain];
     tableView.backgroundColor = UIColor.clearColor;
     self.detailTableView = tableView;
     tableView.delegate = self;
@@ -177,13 +181,16 @@
     [self layoutSubviews];
 }
 -(void)mergeScoreMore {
+    self.tableViewIsOpen = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"contractSubjectScoreTableView" object:nil];
+
     [self.watchMoreButton setTitle:@"查看各科成绩" forState:normal];
     [self.watchMoreButton removeAllTargets];
     [self.watchMoreButton addTarget:self action:@selector(touchWatchMoreButton) forControlEvents:UIControlEventTouchUpInside];
     [UIView animateWithDuration:0.5 animations:^{
         [self.detailTableView removeFromSuperview];
     }];
-    self.height = self.plainHeight;
+    self.height = [self.class plainHeight];
     
 
 }
@@ -244,7 +251,8 @@
     [self.detailTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.blueBackgroundView.mas_bottom).offset(20);
         make.left.right.equalTo(self.blueBackgroundView);
-        make.height.equalTo(@1300);
+        make.height.equalTo(@(self.height));
     }];
 }
 @end
+ 

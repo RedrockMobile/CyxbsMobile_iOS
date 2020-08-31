@@ -29,6 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, weak)UITableView *detailTableView;//“具体学科成绩”
 @property (nonatomic)NSArray<SingleGrade*> *singleGradesArray;//每个cell持有一份singleGrade数据，用来驱动内部的tableView
 
+@property (nonatomic)BOOL tableViewIsOpen;//tableView展开
+
+//@property (nonatomic, assign)float plainHeight;//cell不展开时候的高度
+@property (nonatomic, assign)float openingHeight;//展开时的高度
+
++(float)plainHeight;
 @end
 
 NS_ASSUME_NONNULL_END

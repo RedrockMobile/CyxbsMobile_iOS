@@ -57,6 +57,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBindingUnknownError" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBinding_passwordError" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandSubjectScoreTableView) name:@"expandSubjectScoreTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contractSubjectScoreTableView) name:@"contractSubjectScoreTableView" object:nil];
     
 }
 -(void)tryIDSBinding {
@@ -76,6 +78,14 @@
     [self.view addSubview:bindingView];
     
     
+}
+-(void)expandSubjectScoreTableView {
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+-(void)contractSubjectScoreTableView {
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
@@ -263,7 +273,6 @@
         cell.timeLabel.text = [self getTermTitleWithString:self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].term];
     }
     if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].gpa) {
-        NSLog(@"%ld",(long)indexPath.row);
         cell.averangePointLabel.text =self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].gpa.stringValue;
         
     }
@@ -280,7 +289,11 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 144;
+    DetailScorePerYearCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if(cell.tableViewIsOpen) {
+        return cell.openingHeight;
+    }
+    return DetailScorePerYearCell.plainHeight;
 }
 -(NSString*)getTermTitleWithString:(NSString*)string {
     NSNumber *startYear = [string substringToIndex:4].numberValue;
