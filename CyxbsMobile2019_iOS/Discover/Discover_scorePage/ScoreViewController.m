@@ -51,23 +51,41 @@
     }
     [self addContentView];//scrollView
     [self addUserInfoView];
-    
-    [self addIdsBindingView];//提示用户绑定统一认证码的title;
+    [self tryIDSBinding];
   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBindingUnknownError" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBinding_passwordError" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandSubjectScoreTableView) name:@"expandSubjectScoreTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contractSubjectScoreTableView) name:@"contractSubjectScoreTableView" object:nil];
     
 }
+-(void)tryIDSBinding {
+    NSString *idsAccount = [UserItem defaultItem].idsAccount;
+    NSString *idsPasswd = [UserItem defaultItem].idsPasswd;
+    if(idsAccount && idsPasswd) {
+        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:idsAccount isPassword:idsPasswd];
+        [binding fetchData];
+    }else {
+        [self addIdsBindingView];//提示用户绑定统一认证码的title;
+    }
+}
 -(void)addIdsBindingView {
-
     IdsBindingView *bindingView = [[IdsBindingView alloc]initWithFrame:CGRectMake(0, self.userInfoView.height, self.view.width, 600)];
     bindingView.delegate = self;
     self.idsBindgView = bindingView;
     [self.view addSubview:bindingView];
     
     
+}
+-(void)expandSubjectScoreTableView {
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+-(void)contractSubjectScoreTableView {
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
@@ -170,7 +188,6 @@
     self.gpaModel = [[GPA alloc]init];
     [self.gpaModel fetchData];
 }
-#warning 修改tableView高度
 - (void)addTableView {
     int plainCellHeight = 143;
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaModel.gpaItem.termGrades.termGrades.count) style:UITableViewStylePlain];
@@ -256,7 +273,6 @@
         cell.timeLabel.text = [self getTermTitleWithString:self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].term];
     }
     if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].gpa) {
-        NSLog(@"%ld",(long)indexPath.row);
         cell.averangePointLabel.text =self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].gpa.stringValue;
         
     }
@@ -273,7 +289,11 @@
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 144;
+    DetailScorePerYearCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if(cell.tableViewIsOpen) {
+        return cell.openingHeight;
+    }
+    return DetailScorePerYearCell.plainHeight;
 }
 -(NSString*)getTermTitleWithString:(NSString*)string {
     NSNumber *startYear = [string substringToIndex:4].numberValue;
