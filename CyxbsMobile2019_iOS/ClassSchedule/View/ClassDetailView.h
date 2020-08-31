@@ -4,13 +4,13 @@
 //
 //  Created by Stove on 2020/8/16.
 //  Copyright © 2020 Redrock. All rights reserved.
-//显示某课详情的弹窗view
+//
 
 #import <UIKit/UIKit.h>
 //某课详情弹窗的高度
 #define DETAILVIEW_H (MAIN_SCREEN_H*0.38)
 NS_ASSUME_NONNULL_BEGIN
-
+///显示某课详情的弹窗view
 @interface ClassDetailView : UIView
 /// 显示一节课详情的view
 
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_END
 //view.dataDict = dict;
 
 //3.设置frame，默认frame为CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
-//[view setFrame:CGRectMake()];
+//[view setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
 
 //4.加入父控件
 //[xxxView addSubview:view];

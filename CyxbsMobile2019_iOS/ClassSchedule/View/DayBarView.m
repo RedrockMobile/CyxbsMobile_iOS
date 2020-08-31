@@ -9,7 +9,14 @@
 #import "DayBarView.h"
 @interface DayBarView ()
 @property (nonatomic,strong)NSMutableArray *weekLabelViewArray;
+
+/// 显示月份的View
 @property (nonatomic,strong)UIView *monthView;
+
+/// 数据字典组成的数组@[
+/// @{@"month":@2,    @"day":@24 },
+/// @{},.....
+/// ],7个字典，代表一周七天的日期
 @property (nonatomic,strong)NSArray *dataArray;
 @end
 
@@ -19,9 +26,11 @@
     self = [super init];
     if(self){
         self.dataArray = dataArray;
+        
         NSDictionary *firstDay =[dataArray firstObject];
         self.monthView = [self getMonthViewWithNum:firstDay[@"month"]];
         [self addSubview:self.monthView];
+        
         self.weekLabelViewArray = [NSMutableArray array];
         for (int i=0; i<7; i++) {
             NSDictionary *dayData = [self transferData:@{
@@ -33,6 +42,7 @@
             [self addSubview:weekLabelView];
             [self.weekLabelViewArray addObject:weekLabelView];
         }
+        
         [self updata];
         [self addConstraint];
     }
@@ -66,7 +76,7 @@
     if (@available(iOS 11.0, *)) {
         backView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
-        backView.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
+        backView.backgroundColor = [UIColor whiteColor];
     }
     backView.layer.cornerRadius = 8;
     
@@ -115,13 +125,13 @@
     return backView;
 }
 
-//得到一个显示@“num月”的monthView,如果num==nil那么显示的文字为空
+//得到一个显示@“num月”的monthView,如果num==nil那么显示的文字为@“”
 - (UIView*)getMonthViewWithNum:(NSNumber*)num{
     UIView *backView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
         backView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
-        backView.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
+        backView.backgroundColor = [UIColor whiteColor];
     }
     
     UILabel *month =  [[UILabel alloc] init];
@@ -173,6 +183,7 @@
     }];
 }
 
+///字典的键值对转换：
 //@"index":@3, -> @"week":@"周四",
 //@"day":26, -> @"day":@"x日",
 - (NSDictionary*)transferData:(NSDictionary*)dict{
@@ -191,6 +202,8 @@
     };
     
 }
+
+//更新一下，让今日的weekLabelView变一下色
 - (void)updata{
     NSDate *now = [NSDate date];
     NSDateFormatter *formate = [[NSDateFormatter alloc] init];

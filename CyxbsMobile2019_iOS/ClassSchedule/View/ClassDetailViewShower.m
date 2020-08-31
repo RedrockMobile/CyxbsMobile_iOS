@@ -9,11 +9,14 @@
 #import "ClassDetailViewShower.h"
 #import "ClassDetailView.h"
 #import "NoteDetailView.h"
-//#define Shower_scrollView_H DETAILVIEW_H-30
 
 @interface ClassDetailViewShower()<NoteDetailViewDelegate,UIScrollViewDelegate>
+
+/// scrollView的背景view，弹窗
 @property(nonatomic,strong)UIView *backViewOfScrollView;
 @property(nonatomic,strong)UIScrollView *scrollView;
+
+/// 分页控制器
 @property(nonatomic,strong)UIPageControl *PC;
 @end
 @implementation ClassDetailViewShower
@@ -21,14 +24,89 @@
 - (instancetype)init{
     self = [super init];
     if(self){
+        //添加scrollView的背景view
         [self addBackViewOfScrollView];
+        
+        //添加scrollView
         [self addScrollView];
+        
+        //添加分页控制器
         [self addPC];
+        
+        //添加一个点击后就移除self的方法，backViewOfScrollView会加一个空的点击手势，
+        //避免点击弹窗后弹窗被移除
         UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideDetail)];
         [self addGestureRecognizer:TGR];
     }
     return self;
 }
+
+
+//MARK:-添加子控件
+
+/// 添加scrollView的背景view
+- (void)addBackViewOfScrollView{
+    UIView *view = [[UIView alloc] init];
+    self.backViewOfScrollView = view;
+    [self addSubview:view];
+    
+    view.layer.shadowOffset = CGSizeMake(0,2.5);
+    view.layer.shadowRadius = 15;
+    view.layer.shadowOpacity = 0.3;
+    view.layer.cornerRadius = 16;
+    [view setFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, DETAILVIEW_H)];
+    
+    //加一个空手势，避免点击弹窗后弹窗被移除
+    [view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender){ }]];
+    
+    if (@available(iOS 11.0, *)) {
+        view.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+    } else {
+        view.backgroundColor = [UIColor whiteColor];
+    }
+}
+
+/// 添加scrollView
+- (void)addScrollView{
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    self.scrollView = scrollView;
+    [self.backViewOfScrollView addSubview:scrollView];
+    
+    self.scrollView.delegate = self;
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.layer.cornerRadius = 16;
+    scrollView.layer.masksToBounds = YES;
+    [self.scrollView setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
+}
+
+/// 添加分页控制器
+- (void)addPC{
+    UIPageControl *PC = [[UIPageControl alloc] init];
+    self.PC = PC;
+    [self.backViewOfScrollView addSubview:PC];
+    PC.currentPage = 0;
+    PC.numberOfPages = self.courseDataDictArray.count+self.noteDataModelArray.count;
+    PC.hidesForSinglePage = YES;
+//    PC.currentPageIndicatorTintColor = [UIColor colorWithHexString:@"#5599FF"];
+    
+    if (@available(iOS 11.0, *)) {
+        PC.currentPageIndicatorTintColor = [UIColor colorNamed:@"184_82_255&black"];
+    } else {
+        PC.currentPageIndicatorTintColor = [UIColor colorWithRed:184/255.0 green:82/255.0 blue:255/255.0 alpha:1];
+    }
+    PC.pageIndicatorTintColor = [UIColor colorWithHexString:@"#969696"];
+    PC.hidden = NO;
+    
+    [PC mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.backViewOfScrollView);
+        make.top.equalTo(self.backViewOfScrollView).offset(DETAILVIEW_H*0.82);
+    }];
+}
+
+
+//MARK:-代理方法
+/// LessonViewDelegate要求的代理方法，点击某一节有备忘或者有课的课后调用，弹出弹窗
 - (void)showDetail{
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     [keyWindow addSubview:self];
@@ -67,71 +145,19 @@
     } completion:nil];
 }
 
+/// NoteDetailViewDelegate要求的代理方法，点击后面的空白处、点击删除或者修改按钮后调用，移除弹窗
 - (void)hideDetail{
     [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.backViewOfScrollView setFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, DETAILVIEW_H)];
     }completion:^(BOOL finished) {
+        self.scrollView.contentOffset = CGPointZero;
         [self.scrollView removeAllSubviews];
         [self removeFromSuperview];
     }];
     
 }
 
-- (void)addScrollView{
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    self.scrollView = scrollView;
-    [self.backViewOfScrollView addSubview:scrollView];
-    
-    self.scrollView.delegate = self;
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    scrollView.layer.cornerRadius = 16;
-    scrollView.layer.masksToBounds = YES;
-    [self.scrollView setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
-}
-
-- (void)addBackViewOfScrollView{
-    UIView *view = [[UIView alloc] init];
-    self.backViewOfScrollView = view;
-    [self addSubview:view];
-    
-    view.layer.shadowOffset = CGSizeMake(0,2.5);
-    view.layer.shadowRadius = 15;
-    view.layer.shadowOpacity = 0.3;
-    view.layer.cornerRadius = 16;
-    [view setFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, DETAILVIEW_H)];
-    //加一个空手势，避免点击弹窗后弹窗移走
-    [view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender){ }]];
-    
-    if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
-    } else {
-        view.backgroundColor = [UIColor whiteColor];
-    }
-}
-
-- (void)addPC{
-    UIPageControl *PC = [[UIPageControl alloc] init];
-    self.PC = PC;
-    [self.backViewOfScrollView addSubview:PC];
-    PC.currentPage = 0;
-    PC.numberOfPages = self.courseDataDictArray.count+self.noteDataModelArray.count;
-    PC.hidesForSinglePage = YES;
-//    PC.currentPageIndicatorTintColor = [UIColor colorWithHexString:@"#5599FF"];
-    
-    if (@available(iOS 11.0, *)) {
-        PC.currentPageIndicatorTintColor = [UIColor colorNamed:@"184_82_255&black"];
-    } else {
-        PC.currentPageIndicatorTintColor = [UIColor colorWithRed:184/255.0 green:82/255.0 blue:255/255.0 alpha:1];
-    }
-    PC.pageIndicatorTintColor = [UIColor colorWithHexString:@"#969696"];
-    PC.hidden = NO;
-    
-    [PC mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.backViewOfScrollView);
-        make.top.equalTo(self.backViewOfScrollView).offset(DETAILVIEW_H*0.82);
-    }];
-}
+//scrollView的代理方法，用来刷新分页控制器的页码
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     self.PC.currentPage = (NSInteger)self.scrollView.contentOffset.x/MAIN_SCREEN_W;
 }

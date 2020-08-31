@@ -21,7 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol LessonViewDelegate <NSObject>
 - (void)showDetail;
-- (void)hideDetail;
 @property (nonatomic,strong)NSArray <NSDictionary*>*courseDataDictArray;
 @property (nonatomic,strong)NSArray <NoteDataModel*>*noteDataModelArray;
 @end

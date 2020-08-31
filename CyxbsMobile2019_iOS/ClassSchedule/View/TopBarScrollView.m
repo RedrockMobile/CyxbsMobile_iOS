@@ -9,39 +9,57 @@
 #import "TopBarScrollView.h"
 #import "DateModle.h"
 @interface TopBarScrollView()<UIScrollViewDelegate>
-/**选择去某一周的条*/
+/// 选择去某一周的条
 @property (nonatomic,strong)UIScrollView *weekChooseBar;
-/**显示本周是哪一周的条*/
+
+/// 显示本周是哪一周的条
 @property (nonatomic,strong)UIView *nowWeekBar;
-/**日期等数据的来源*/
+
+/// 日期等数据的来源
 @property (nonatomic,strong)DateModle *dateModel;
-/**储存@“整学期”，@“十六周”等字符串的数组*/
+
+/// 储存@“整学期”，@“十六周”等字符串的数组
 @property (nonatomic,strong)NSArray <NSString*> *weekTextArray;
-/**左箭头按钮*/
+
+/// 左箭头按钮
 @property (nonatomic,strong)UIButton *leftArrowBtn;
-/**在本周时的左箭头按钮*/
+
+/// 在本周时的左箭头按钮
 @property (nonatomic,strong)UIButton *nowWeekLeftArrowBtn;
-/**右箭头按钮*/
+
+/// 右箭头按钮
 @property (nonatomic,strong)UIButton *rightArrowBtn;
-/**选择周的bar里面的按钮*/
+
+/// 选择周的bar里面的按钮
 @property (nonatomic,strong)NSMutableArray <UIButton*> *weekChooseBtnArray;
-/**显示当前课表是第几周课表的label，@“十九周”、@“一周”、@“整学期”*/
+
+/// 显示当前课表是第几周课表的label，@“十九周”、@“一周”、@“整学期”
 @property (nonatomic,strong)UILabel *weekLabel;
-/**当课表是本周的课表时，显示@"（本周）"的label*/
+
+/// 当课表是本周的课表时，显示@"（本周）"的label
 @property (nonatomic,strong)UILabel *nowWeekLabel;
-/**回到本周的那个按钮*/
+
+/// 回到本周的那个按钮
 @property (nonatomic,strong)UIButton *backCurrentWeekBtn;
 
+/// weekChooseBar、nowWeekBar的背景view
 @property(nonatomic,strong)UIView *backView;
 @end
 
 @implementation TopBarScrollView
+
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
+        
         self.frame = frame;
+        
         [self setContentSize:(CGSizeMake(2*MAIN_SCREEN_W, 0))];
+        
+        //禁止滑动
         self.scrollEnabled = NO;
+        
+        //添加weekChooseBar、nowWeekBar的背景view
         [self addBackView];
         //初始化weekTextArray
         /**
@@ -60,17 +78,25 @@
         
         //添加当前周信息的条（回到本周按钮就在这个条上面）,条在self的右侧
         [self addNowWeekBar];
+        
         //让TopBar最开始显示的是nowWeekBar
         self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
     }
     return self;
 }
+
+//MARK:-懒加载
+///日期模型懒加载
 - (DateModle *)dateModel{
     if(_dateModel==nil){
         _dateModel = [DateModle initWithStartDate:DateStart];
     }
     return _dateModel;
 }
+
+
+//MARK:- 添加控件
+/// 添加weekChooseBar、nowWeekBar的背景view
 - (void)addBackView{
     UIView *view = [[UIView alloc] init];
     self.backView = view;
@@ -78,15 +104,15 @@
     view.frame =CGRectMake(0, 0, 2*MAIN_SCREEN_W,40);
 }
 
-//添加周选择条和左箭头按钮，周选择条在self的左侧
+///添加周选择条和左箭头按钮，周选择条在self的左侧
 - (void)addWeekChooseBarAndLeftArrowBtn{
     UIButton *btn = [[UIButton alloc] init];
     [self.backView addSubview:btn];
     self.leftArrowBtn = btn;
+    
     [btn addTarget:self action:@selector(leftArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:@"左箭头"] forState:UIControlStateNormal];
     btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-    
     if(@available(iOS 11.0, *)){
         [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
     }else{
@@ -94,6 +120,7 @@
     }
     btn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
     
+    //约束
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(20);
         make.height.mas_equalTo(20);
@@ -119,15 +146,18 @@
     }];
 }
 
-// 添加周选择条里面全部的的某周的按钮
+/// 添加周选择条里面全部的的某周的按钮
 - (void)addWeekChooseBtns{
     UIButton *firstBtn = [self getWeekChooseBtnWithTag:0];
     [self.weekChooseBar addSubview:firstBtn];
+    //给第一个按钮加约束，@“整学期”按钮
     [firstBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.weekChooseBar).offset(0.0427*MAIN_SCREEN_W);
         make.centerY.equalTo(self.weekChooseBar);
     }];
+    //lastBtn的意义是上一个添加约束的按钮，后面添加约束的按钮将以它作为一部分参照
     UIButton *lastBtn = firstBtn;
+    //上一个添加约束的按钮和btn的间距
     float distance = MAIN_SCREEN_W*0.064;
     for (int i=1; i<self.weekTextArray.count; i++) {
         UIButton *btn = [self getWeekChooseBtnWithTag:i];
@@ -136,11 +166,14 @@
             make.left.equalTo(lastBtn.mas_right).offset(distance);
             make.centerY.equalTo(self.weekChooseBar);
         }];
+        //更新lastBtn为btn
         lastBtn = btn;
     }
 }
-//创建一个周选择条里面的按钮，设置按钮tag为tag，按钮的标题是self.weekTextArray[tag]
+
+//按钮的标题是self.weekTextArray[tag]@“整学期”、@“第一周”
 //并且把btn加入self.weekChooseBtnArray
+/// 创建一个周选择条里面的按钮，设置按钮tag为tag，
 - (UIButton*)getWeekChooseBtnWithTag:(int)tag{
     UIButton *btn = [[UIButton alloc] init];
     [btn setTitle:self.weekTextArray[tag] forState:UIControlStateNormal];
@@ -157,9 +190,7 @@
     return btn;
 }
 
-
-
-//添加当前周信息的条（回到本周按钮就在这个条上面）,条在self的右侧
+///添加当前周信息的条（回到本周按钮就在这个条上面）,条在self的右侧
 - (void)addNowWeekBar{
     UIView *nowWeekBar = [[UIScrollView alloc] init];
     self.nowWeekBar = nowWeekBar;
@@ -167,8 +198,14 @@
     
     //添加显示本周、第七周的那个label
     [self addWeekLabel];
-    [self addNowWeekLabelAndNowWeekLeftArrowBtn];
+    
+    //添加当课表是本周的课表时，显示@"（本周）"的label
+    [self addNowWeekLabel];
+    
+    //添加右箭头按钮
     [self addRightArrowBtn];
+    
+    //添加回到本周按钮
     [self addBackCurrentWeekBtn];
     
     //添加约束
@@ -179,31 +216,31 @@
         make.width.mas_equalTo(MAIN_SCREEN_W);
     }];
 }
-//显示本周、第七周的那个label
+
+//添加显示本周、第七周的那个label
 - (void)addWeekLabel{
     //    nowWeekBar.backgroundColor = UIColor.redColor;
-    //显示本周、第七周的那个label
+    //显示本周、第七周、整学期的那个label
     UILabel *weekLabel = [[UILabel alloc] init];
     [self.nowWeekBar addSubview: weekLabel];
     self.weekLabel = weekLabel;
     
     weekLabel.text = @"整学期";
-//    weekLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
     if (@available(iOS 11.0, *)) {
         weekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     } else {
         weekLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     weekLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    
     [weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nowWeekBar).offset(MAIN_SCREEN_W*0.0427);
         make.centerY.equalTo(self.nowWeekBar);
     }];
 }
 
-
-//添加当课表是本周的课表时，显示@"（本周）"的label及其旁边的右箭头按钮
-- (void)addNowWeekLabelAndNowWeekLeftArrowBtn{
+///添加当课表是本周的课表时，显示@"（本周）"的label
+- (void)addNowWeekLabel{
     UILabel *nowWeekLabel = [[UILabel alloc] init];
     [self.nowWeekBar addSubview: nowWeekLabel];
     self.nowWeekLabel = nowWeekLabel;
@@ -224,7 +261,7 @@
     
 }
 
-//添加右箭头按钮
+/// 添加右箭头按钮
 - (void)addRightArrowBtn{
     UIButton *btn = [[UIButton alloc] init];
     [self.nowWeekBar addSubview:btn];
@@ -247,7 +284,8 @@
         make.centerY.equalTo(self.weekLabel).offset(2.5);
     }];
 }
-//添加回到本周按钮
+
+/// 添加@“回到本周”按钮
 - (void)addBackCurrentWeekBtn{
     UIButton *backBtn = [[UIButton alloc] init];
     [self.nowWeekBar addSubview:backBtn];
@@ -272,7 +310,10 @@
 
     [backBtn addTarget:self action:@selector(backCurrentWeekBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
+
+
 //MARK:-点击某按钮后调用的方法：
+/// 回到本周按钮点击后调用，回到本周
 - (void)backCurrentWeekBtnClicked{
     if(self.dateModel.nowWeek.intValue>25){
         self.correctIndex = [NSNumber numberWithInt:0];
@@ -282,17 +323,40 @@
     [self.weekChooseDelegate gotoWeekAtIndex:self.correctIndex];
 }
 
+/// 左箭头按钮点击后调用，改变self的setContentOffset来显示nowWeekBar
 - (void)leftArrowBtnClicked{
     [UIView animateWithDuration:0.5 animations:^{
         [self setContentOffset:(CGPointMake(MAIN_SCREEN_W, 0))];
     }];
 }
 
+/// 右箭头按钮点击后调用，改变self的setContentOffset来显示weekChooseBar
 - (void)rightArrowBtnClicked{
     [UIView animateWithDuration:0.5 animations:^{
         [self setContentOffset:(CGPointMake(0, 0))];
     }];
 }
+
+//周选择条的按钮点击后调用，tag=0代表是点击了整学期按钮，tag=2代表是第二周
+/// 用tag给correctIndex赋值
+- (void)weekChooseBtnClick:(UIButton*)btn{
+    //改变correctIndex，随后KVO会根据correctIndex的改变完成一系列相关操作
+    self.correctIndex = [NSNumber numberWithLong:btn.tag];
+    //调用代理方法，告诉代理点击了哪一周的按钮，0代表整学期，17代表第十七周
+    [self.weekChooseDelegate gotoWeekAtIndex:self.correctIndex];
+}
+
+
+//MARK:-其他方法
+/// KVO
+/**通过修改correctIndex自动完成以下操作：
+//1.该下标对应的周view移动到中央，如果是边缘的按钮那就不会移到中央
+//2.对应周的按钮字体变大，原先下标所在的按钮字体复原
+//3.让代理(课表)也把课表位置移动到现在的位置
+//4.自动判断是否显示“回到本周”按钮
+//改变nowWeekBar的周信息
+//改变correctIndex，KVO会根据correctIndex的改变完成一系列相关操作,0代表在整学期页
+*/
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (context == @"TopBarScrollView.correctIndex") {
@@ -300,30 +364,35 @@
         if([change[@"new"]isEqual:change[@"old"]]){
             return;
         }
+        
+    //----------------------------改变新旧按钮的字体----------------------------
         //更改旧按钮的的字体
         NSNumber *oldIndex = change[@"old"];
         UIButton *oldBtn = self.weekChooseBtnArray[oldIndex.intValue];
         oldBtn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
         oldBtn.alpha = 0.81;
         
-        //要先改旧按钮，因为如果是第一调用，那么change[@"old"]
-        //就是nil，导致oldBtn==newBtn，先改新按钮会导致新按钮的修改被旧按钮的修改覆盖
+        //要先改旧按钮，因为如果是第一次调用，那么change[@"old"]就是nil，
+        //会导致oldBtn==newBtn，所以先改新按钮会导致新按钮的修改被旧按钮的修改覆盖
         
         //更改新按钮的的字体
         NSNumber *newIndex = change[@"new"];
         UIButton *newBtn = self.weekChooseBtnArray[newIndex.intValue];
         newBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
         newBtn.alpha = 1;
+    //------------------------------------------------------------------------------
+       
         
+        
+    //------------------------让新按钮移到周选择条的中央---------------------------
         //动画时长
         float duration = abs(newIndex.intValue-oldIndex.intValue)*0.3;
+        if(duration>0.6)duration=0.6;
         
         //weekChooseBar的contentOffset的x会用contentOffsetX赋值
         float contentOffsetX = newBtn.center.x-0.5*MAIN_SCREEN_W;
-        if(duration>0.6)duration=0.6;
-        
+        //下面的两个判断是为了避免第一个按钮和最后一个按钮被移到中间，导致条出现空白处
         if(contentOffsetX < 0) contentOffsetX = 0;
-        
         if(contentOffsetX > self.weekChooseBar.contentSize.width-self.weekChooseBar.frame.size.width){
             contentOffsetX = self.weekChooseBar.contentSize.width-self.weekChooseBar.frame.size.width;
         }
@@ -331,8 +400,15 @@
         [UIView animateWithDuration:duration animations:^{
             [self.weekChooseBar setContentOffset:CGPointMake(contentOffsetX, 0)];
         }];
+    //------------------------------------------------------------------------------
         
+        
+        //改变nowWeekBar上面显示当前周数的label的字为新按钮的标题
         self.weekLabel.text = newBtn.titleLabel.text;
+        
+        //根据新下标判断当前显示的课表是不是本周的课表，
+        //如果是，那么nowWeekLabel的标题为@" (本周) "，且隐藏回到本周按钮
+        //如果不是那标题就为@" "，且显示回到本周按钮
         if(newIndex.intValue==self.dateModel.nowWeek.intValue){
             self.nowWeekLabel.text = @" (本周) ";
             [UIView animateWithDuration:0.5 animations:^{
@@ -349,19 +425,13 @@
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
+
+///移除KVO
 - (void)dealloc{
     [self removeObserver:self forKeyPath:@"correctIndex"];
 }
 
-//周选择条的按钮点击后调用，tag=0代表是点击了整学期按钮，tag=2代表是第二周
-//用tag给correctIndex赋值
-- (void)weekChooseBtnClick:(UIButton*)btn{
-    //改变correctIndex，随后KVO会根据correctIndex的改变完成一系列相关操作
-    self.correctIndex = [NSNumber numberWithLong:btn.tag];
-    //调用代理方法，告诉代理点击了哪一周的按钮，0代表整学期，17代表第十七周
-    [self.weekChooseDelegate gotoWeekAtIndex:self.correctIndex];
-}
-
+//调整weekChooseBar的滚动范围
 - (void)layoutSubviews{
     UIView *lastBtn = [self.weekChooseBtnArray lastObject];
     //根据最后一个周选择按钮调整weekChooseBar的滚动范围
