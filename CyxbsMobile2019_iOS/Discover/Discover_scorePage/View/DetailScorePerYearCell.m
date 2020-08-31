@@ -167,7 +167,7 @@
     [self.watchMoreButton addTarget:self action:@selector(mergeScoreMore) forControlEvents:UIControlEventTouchUpInside];
     self.plainHeight = self.height;
     self.height = self.subjectCellHeight*self.singleGradesArray.count;
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.blueBackgroundView.width, 1000) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.blueBackgroundView.width, 0) style:UITableViewStylePlain];
     tableView.backgroundColor = UIColor.clearColor;
     self.detailTableView = tableView;
     tableView.delegate = self;
