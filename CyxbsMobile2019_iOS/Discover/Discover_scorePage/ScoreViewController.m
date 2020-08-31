@@ -51,8 +51,7 @@
     }
     [self addContentView];//scrollView
     [self addUserInfoView];
-    
-    [self addIdsBindingView];//提示用户绑定统一认证码的title;
+    [self tryIDSBinding];
   
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBindingUnknownError" object:nil];
@@ -60,8 +59,17 @@
     
     
 }
+-(void)tryIDSBinding {
+    NSString *idsAccount = [UserItem defaultItem].idsAccount;
+    NSString *idsPasswd = [UserItem defaultItem].idsPasswd;
+    if(idsAccount && idsPasswd) {
+        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:idsAccount isPassword:idsPasswd];
+        [binding fetchData];
+    }else {
+        [self addIdsBindingView];//提示用户绑定统一认证码的title;
+    }
+}
 -(void)addIdsBindingView {
-
     IdsBindingView *bindingView = [[IdsBindingView alloc]initWithFrame:CGRectMake(0, self.userInfoView.height, self.view.width, 600)];
     bindingView.delegate = self;
     self.idsBindgView = bindingView;
@@ -170,7 +178,6 @@
     self.gpaModel = [[GPA alloc]init];
     [self.gpaModel fetchData];
 }
-#warning 修改tableView高度
 - (void)addTableView {
     int plainCellHeight = 143;
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaModel.gpaItem.termGrades.termGrades.count) style:UITableViewStylePlain];
