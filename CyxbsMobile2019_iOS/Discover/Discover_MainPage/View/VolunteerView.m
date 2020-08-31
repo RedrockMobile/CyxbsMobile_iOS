@@ -173,7 +173,7 @@
     }
     [self.allTimeBackImage addSubview:shi];
     [self.shi mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.allTimeBackImage).offset(-5.5);
+        make.right.equalTo(self.allTimeBackImage).offset(-3);
         make.bottom.equalTo(self.allTime).offset(-7);
     }];
 }
@@ -199,7 +199,7 @@
     [self.recentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.volunteerTitle.mas_right).offset(22);
         make.top.equalTo(self.allTimeBackImage);
-        make.right.equalTo(self).offset(-70);
+        make.right.equalTo(self).offset(-80);
     }];
 }
 - (void)addRecentDate {
