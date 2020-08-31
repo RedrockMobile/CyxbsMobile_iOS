@@ -52,9 +52,17 @@
     return self;
 }
 -(void)refreshViewIfNeeded {
-    [self removeUnbindingView];
-    [self addBindingView];
-    [self updateAllHour];//总时长刷新
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_account"]) {
+        [self removeUnbindingView];
+        [self addBindingView];
+        [self updateAllHour];//总时长刷新
+    }else {
+        [self removeAllSubviews];
+        [self addNoBindingView];
+        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
+
+    }
+
 }
 -(void)updateAllHour {
     self.allTime.text = self.volunteerItem.hour;

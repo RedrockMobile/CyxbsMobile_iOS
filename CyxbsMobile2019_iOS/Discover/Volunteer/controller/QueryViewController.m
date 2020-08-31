@@ -172,6 +172,7 @@
     UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
         [user removeObjectForKey:@"volunteer_account"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"removeVolunteerAccount" object:nil];
         [user synchronize];
         
 //        [self.navigationController popViewControllerAnimated:YES];
