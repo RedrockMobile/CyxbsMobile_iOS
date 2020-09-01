@@ -8,7 +8,7 @@
 
 #import "WYCClassBookViewController.h"
 #import "ClassTabBar.h"
-
+#import "NextLessonFinder.h"
 #import "DLReminderSetTimeVC.h"
 #import "DayBarView.h"
 #import "LeftBar.h"
@@ -211,7 +211,7 @@
 
 - (DateModle *)dateModel{
     if(_dateModel==nil){//@"2020-09-07"
-        //@"2020-08-24"2020-07-20
+        //@"2020-08-24 @"2020-07-20"
         _dateModel = [DateModle initWithStartDate:DateStart];
     }
     return _dateModel;
@@ -230,6 +230,7 @@
     TopBarScrollView *topBarView = [[TopBarScrollView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_W*0.07867-15, MAIN_SCREEN_W, 40)];
     self.topBarView = topBarView;
     [self.view addSubview:topBarView];
+    topBarView.dateModel = self.dateModel;
     topBarView.weekChooseDelegate = self;
     topBarView.correctIndex = self.index;
 }
@@ -289,14 +290,6 @@
             LeftBar *leftBar = [[LeftBar alloc] init];
             leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
             
-            //课表
-            LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.model.orderlySchedulArray[dateNum]];
-            [self.lessonViewArray addObject:lessonViewForAWeek];
-            lessonViewForAWeek.week = dateNum;
-            lessonViewForAWeek.schType = self.schedulType;
-            [lessonViewForAWeek setUpUI];
-            
-            lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
             
             //显示日期信息的条
             DayBarView *dayBar;
@@ -308,6 +301,16 @@
             }
             [self.scrollView addSubview:dayBar];
             dayBar.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
+            
+            
+            //课表
+            LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.model.orderlySchedulArray[dateNum]];
+            [self.lessonViewArray addObject:lessonViewForAWeek];
+            lessonViewForAWeek.week = dateNum;
+            lessonViewForAWeek.schType = self.schedulType;
+            [lessonViewForAWeek setUpUI];
+            
+            lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
             
             
             //承载课表和左侧第几节课信息的条
@@ -384,11 +387,62 @@
 
 /**
     返回值的结构：
-    classroomLabel：教室地点
-    classTimeLabel：上课时间
-    classLabel：课程名称
-    is:是否还有课
+    @"classroomLabel"：教室地点
+    @"classTimeLabel"：上课时间
+    @"classLabel"：课程名称
+    @"is"：是否有课的标志,1就是有课
+    @"hash_lesson"：第几节大课，0代表第一节
+    @"hash_day"：星期几，0代表星期一
+    @"hash_week"：第几周，1代表第一周
 */
+- (NSDictionary*)getNextLessonData{
+    return [NextLessonFinder getNextLessonDataWithOSArr:self.model.orderlySchedulArray andNowWeek:self.dateModel.nowWeek.intValue];
+}
+
+//MARK:-代理方法：
+//代理方法，去某一周
+- (void)gotoWeekAtIndex:(NSNumber*)index{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.scrollView.contentOffset = CGPointMake(index.intValue*MAIN_SCREEN_W, 0);
+    }];
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    //重写了_index的set方法，内部增加了判断，如果index超过25就让index等0，也就是整学期课表的下标
+    if([scrollView isEqual:self.scrollView]){
+        _index = [NSNumber numberWithInt:(int)(scrollView.contentOffset.x/MAIN_SCREEN_W)];
+        self.topBarView.correctIndex = _index;
+    }
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if([scrollView isEqual:self.scrollView]){
+        if(scrollView.dragging==NO&&scrollView.decelerating==NO&&scrollView.tracking==NO){
+            //重写了_index的set方法，内部增加了判断，如果index超过25就让index等0，
+            //也就是整学期课表的下标
+            _index = [NSNumber numberWithInt:(int)(self.scrollView.contentOffset.x/MAIN_SCREEN_W)];
+            self.topBarView.correctIndex = _index;
+        }
+    }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO){
+        self.isReloading = YES;
+        [self showHud];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.scrollView.alpha = 0;
+        }completion:^(BOOL finished) {
+            [self.scrollView removeAllSubviews];
+            self.scrollView.alpha = 1;
+            
+            [self.model getPersonalClassBookArrayWithStuNum:self.stuNum];
+        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.isReloading = NO;
+        });
+    }
+}
+
+@end
+
+/**
 //获取下一节有课的课在什么时候的方法
 - (NSDictionary*)getNextLessonData{
     NSDictionary *nextLessonData = [self transformDataWithDict:[self getCurrentTime]];
@@ -417,8 +471,29 @@
 WYCClassBookViewControllerGetNextLessonDataBreak:;
     NSDictionary *dataDict;
     if(lesson!=nil){
-        NSArray *time = @[@"8:00 - 9:40",@"10:15 - 11:55",@"14:00 - 15:40",@"16:15 - 18:55",@"19:00 - 20:40",@"21:15 - 22:55"];
         NSDictionary *lessondata = [lesson firstObject];
+        int period = [lessondata[@"period"] intValue];
+        NSString *str12,*str56,*str910;
+        switch (period) {
+            case 2:
+                str12 = @"8:00-9:40";
+                str56 = @"14:00-16:15";
+                str910 = @"19:00-20:40";
+                break;
+            case 3:
+                str12 = @"8:00-11:00";
+                str56 = @"14:00-17:00";
+                str910 = @"19:00-21:35";
+                break;
+            case 4:
+                str12 = @"8:00-11:55";
+                str56 = @"14:00-17:55";
+                str910 = @"19:00-22:30";
+                break;
+            default:
+                break;
+        }
+        NSArray *time = @[str12,@"10:15 - 11:55",str56,@"16:15 - 18:55",str910,@"20:50 - 22:30"];
         dataDict =  @{
                 @"classroomLabel":lessondata[@"classroom"],
                 @"classTimeLabel":time[hash_lesson],
@@ -437,21 +512,20 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
     return dataDict;
 }
 
-/**
-    返回的字典的结构：@{
-    @"y":年,
-    @"M":月,
-    @"d":日,
-    @"k":小时（24小时制）,[1, 24]
-    @"m:分"
-    @"e":周几，2～周一，1~周日，4～周3
-    @"c":周几，2～周一，1~周日，4～周3
-    };
-*/
+
+//返回的字典的结构：@{
+//@"y":年,
+//@"M":月,
+//@"d":日,
+//@"k":小时（24小时制）,[1, 24]
+//@"m:分"
+//@"e":周几，2～周一，1~周日，4～周3
+//@"c":周几，2～周一，1~周日，4～周3
+//};
 //获取当前时间信息的方法
 - (NSDictionary *)getCurrentTime{
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    NSArray *array = @[@"y",@"M",@"d",@"k",@"m",@"e",@"c"];
+    NSArray *array = @[@"y",@"M",@"d",@"k",@"m",@"e",@"c",@"H"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     for (NSString *str in array) {
         [formatter setDateFormat:str];
@@ -460,18 +534,16 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
     return dict;
 }
 
-/**
-    返回值结构：@{
-    @"hash_day":星期hash_day+1,
-    @"hash_lesson":第hash_lesson节大课
-    @"isNextWeek"
-    }
- */
+
+//返回值结构：@{
+//@"hash_day":星期hash_day+1,
+//@"hash_lesson":第hash_lesson节大课
+//@"isNextWeek"
+//}
 //由当前的时间信息，推出下一节课在什么时候的方法，这里的下一节课可能是无课
 - (NSDictionary*)transformDataWithDict:(NSDictionary*)dataDict{
-    int week = [dataDict[@"e"] intValue],hour = [dataDict[@"k"] intValue],min = [dataDict[@"m"] intValue];
-    //把时间范围转化为[0, 23]
-    if(hour==24)hour=0; else hour-=1;
+    int week = [dataDict[@"e"] intValue],hour = [dataDict[@"H"] intValue],min = [dataDict[@"m"] intValue];
+    
     int totalMin = hour*60+min;
     int a1[] = {6,0,1,2,3,4,5};
     int isNextWeek=0;//用来表示下一节课是否在下周是
@@ -512,45 +584,4 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
     };
 }
 
-
-//MARK:-代理方法：
-//代理方法，去某一周
-- (void)gotoWeekAtIndex:(NSNumber*)index{
-    [UIView animateWithDuration:0.5 animations:^{
-        self.scrollView.contentOffset = CGPointMake(index.intValue*MAIN_SCREEN_W, 0);
-    }];
-}
-
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    //重写了_index的set方法，内部增加了判断，如果index超过25就让index等0，也就是整学期课表的下标
-    _index = [NSNumber numberWithInt:(int)(scrollView.contentOffset.x/MAIN_SCREEN_W)];
-    self.topBarView.correctIndex = _index;
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if([scrollView isEqual:self.scrollView]){
-        if(scrollView.dragging==NO&&scrollView.decelerating==NO&&scrollView.tracking==NO){
-            //重写了_index的set方法，内部增加了判断，如果index超过25就让index等0，
-            //也就是整学期课表的下标
-            _index = [NSNumber numberWithInt:(int)(scrollView.contentOffset.x/MAIN_SCREEN_W)];
-            self.topBarView.correctIndex = _index;
-        }
-    }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO){
-        self.isReloading = YES;
-        [self showHud];
-        [UIView animateWithDuration:0.5 animations:^{
-            self.scrollView.alpha = 0;
-        }completion:^(BOOL finished) {
-            [self.scrollView removeAllSubviews];
-            self.scrollView.alpha = 1;
-            
-            [self.model getPersonalClassBookArrayWithStuNum:self.stuNum];
-        }];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.isReloading = NO;
-        });
-    }
-}
-
-@end
-
+*/

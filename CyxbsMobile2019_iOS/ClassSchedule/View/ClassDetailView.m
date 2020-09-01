@@ -203,12 +203,32 @@
 
 ///把@"一二节"转换为@"1-2节"、如果period==3，那么@"九十节"->@"9-11节"
 - (NSString*)transformDataString:(NSString*)dataString withPeriod:(int)period{
+    NSString *str12,*str56,*str910;
+         switch (period) {
+         case 2:
+             str12 = @"8:00-9:40";
+             str56 = @"14:00-16:15";
+             str910 = @"19:00-20:40";
+             break;
+         case 3:
+             str12 = @"8:00-11:00";
+             str56 = @"14:00-17:00";
+             str910 = @"19:00-21:35";
+             break;
+         case 4:
+             str12 = @"8:00-11:55";
+             str56 = @"14:00-17:55";
+             str910 = @"19:00-22:30";
+             break;
+         default:
+             break;
+     }
     NSDictionary *tranfer = @{
-        @"一二节":[NSString stringWithFormat:@"1-%d节",0+period],
-        @"三四节":[NSString stringWithFormat:@"3-%d节",2+period],
-        @"五六节":[NSString stringWithFormat:@"5-%d节",4+period],
-        @"七八节":[NSString stringWithFormat:@"7-%d节",4+period],
-        @"九十节":[NSString stringWithFormat:@"9-%d节",8+period],
+        @"一二节":str12,
+        @"三四节":@"10:15-11:55",
+        @"五六节":str56,
+        @"七八节":@"16:15-17:55",
+        @"九十节":str910,
     };
     return tranfer[dataString];
 }
@@ -240,3 +260,4 @@
                                         weekEnd = 17;
                                         weekModel = single;
 */
+//@[@"8:00 - 9:40",@"10:15 - 11:55",@"14:00 - 15:40",@"16:15 - 18:55",@"19:00 - 20:40",@"20:50 - 22:30"];

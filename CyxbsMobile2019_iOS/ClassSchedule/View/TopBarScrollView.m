@@ -7,16 +7,13 @@
 //顶部周信息条，@“回到本周”、@“二周”、选择周的条的bar
 
 #import "TopBarScrollView.h"
-#import "DateModle.h"
+
 @interface TopBarScrollView()<UIScrollViewDelegate>
 /// 选择去某一周的条
 @property (nonatomic,strong)UIScrollView *weekChooseBar;
 
 /// 显示本周是哪一周的条
 @property (nonatomic,strong)UIView *nowWeekBar;
-
-/// 日期等数据的来源
-@property (nonatomic,strong)DateModle *dateModel;
 
 /// 储存@“整学期”，@“十六周”等字符串的数组
 @property (nonatomic,strong)NSArray <NSString*> *weekTextArray;
@@ -83,15 +80,6 @@
         self.contentOffset = CGPointMake(MAIN_SCREEN_W, 0);
     }
     return self;
-}
-
-//MARK:-懒加载
-///日期模型懒加载
-- (DateModle *)dateModel{
-    if(_dateModel==nil){
-        _dateModel = [DateModle initWithStartDate:DateStart];
-    }
-    return _dateModel;
 }
 
 

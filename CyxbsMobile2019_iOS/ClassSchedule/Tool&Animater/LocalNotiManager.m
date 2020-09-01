@@ -38,8 +38,7 @@
 /// @param minute 课前x分钟提醒
 + (NSDateComponents*)getComponentWithWeekNum:(int)weekNum weekDay:(int)weekDay lesson:(int)lesson before:(int)minute{
     
-    NSArray *timeArray = @[@"8:00",@"10:15",@"14:00",@"16:15",@"19:00",@"21:15"];
-    
+    NSArray *timeArray = @[@"8:00",@"10:15",@"14:00",@"16:15",@"19:00",@"20:50"];
     NSDateComponents *component = [[NSDateComponents alloc] init];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-M-d-k:mm"];
