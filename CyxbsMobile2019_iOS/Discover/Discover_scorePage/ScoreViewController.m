@@ -34,6 +34,7 @@
 @property (nonatomic, weak)UITableView *tableView;//每学年的成绩
 @property(nonatomic, weak)IdsBindingView *idsBindgView;
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
+@property (nonatomic, strong) MBProgressHUD *loadHud;
 
 @property (nonatomic,assign)float tableViewCurrentHeight;//tableView的当前高度
 
@@ -111,6 +112,7 @@
     [self addChartView];
 }
 -(void) idsBindingError {
+    [self.loadHud hide:YES];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.idsBindgView animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = @"绑定失败";
@@ -118,6 +120,7 @@
 }
 -(void)idsBindingSuccess {
     [self.idsBindgView removeFromSuperview];
+    [self.loadHud hide:YES];
       [self addTwoTitleView];
       [self addChartView];
       [self addABScoreView];//AB学分
@@ -217,6 +220,8 @@
     NSString *bindingNum = self.idsBindgView.accountfield.text;
     NSString *bindingPasswd = self.idsBindgView.passTextfield.text;
     if(![bindingNum isEqual: @""] && ![bindingPasswd isEqual: @""]) {
+        self.loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+         self.loadHud.labelText = @"正在验证";
         IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:bindingNum isPassword:bindingPasswd];
         [binding fetchData];
     }else {
