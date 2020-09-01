@@ -26,13 +26,17 @@
             UILabel *label = [self getLabelWithString:[NSString stringWithFormat:@"%d",i+1]];
             [self addSubview:label];
             [label setFrame:CGRectMake(0, i*(H_H+dis), MONTH_ITEM_W, H_H)];
-//            [self getTipView];
+            [self getTipView];
         }
     }
     return self;
 }
 
 - (void)getTipView{
+    float y = [self getTipViewY];
+    //如果y<0那就意味着不用添加提示view
+    if(y<0)return;
+    
     UIView *view = [[UIView alloc] init];
     
     UIView *bollView = [[UIView alloc] init];
@@ -60,7 +64,7 @@
         longView.backgroundColor =
         bollView.backgroundColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
-    [view setFrame:CGRectMake(0, H_H, MAIN_SCREEN_W*0.0826, MAIN_SCREEN_W*0.016)];
+    [view setFrame:CGRectMake(MAIN_SCREEN_W*0.012, y, MAIN_SCREEN_W*0.0826, MAIN_SCREEN_W*0.016)];
     [self addSubview:view];
 }
 /// 获取左侧课条内部的小课块
@@ -100,11 +104,26 @@
     }
     return dict;
 }
-
-- (void)getHash_lesson{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    
-    [formatter setDateFormat:@"k"];
-    
+//获取提示view的y，如果y是负数，代表当前时间不在第一节课和最后一节课之间
+- (float)getTipViewY{
+    NSDate *nowTime = [NSDate date];
+    long totalMinute =  nowTime.hour*60+nowTime.minute;
+    float percent,y;
+    int i;
+    if(480<totalMinute&&totalMinute<1350){
+        int timePoints[] = {480,615,840,975,1140,1250,1350};
+        for (i=1; i<6; i++) {
+            if(timePoints[i]>totalMinute)break;
+        }
+        percent = (totalMinute-timePoints[i-1])/100.0;
+        if(percent<1){
+            y = (i-1)*(2*H_H+2*dis)+percent*(2*H_H+dis);
+        }else{
+            y = i*(2*H_H+2*dis)-0.5*dis;
+        }
+    }else{
+        y = -1;
+    }
+    return y;
 }
 @end

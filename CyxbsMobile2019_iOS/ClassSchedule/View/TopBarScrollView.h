@@ -7,7 +7,7 @@
 //顶部周信息条，@“回到本周”、@“二周”、选择周的条的bar
 
 #import <UIKit/UIKit.h>
-
+#import "DateModle.h"
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 代理，点击回到本周按钮后，会让课表去某一周
 @property (nonatomic,weak)id<TopBarScrollViewDelegate>weekChooseDelegate;
 
+/// 日期等数据的来源
+@property (nonatomic,strong)DateModle *dateModel;
 @end
 
 NS_ASSUME_NONNULL_END
