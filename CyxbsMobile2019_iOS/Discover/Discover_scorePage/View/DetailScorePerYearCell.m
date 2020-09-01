@@ -13,7 +13,6 @@
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface DetailScorePerYearCell()
-@property (nonatomic, assign)int subjectCellHeight;//
 @end
 @implementation DetailScorePerYearCell
 
@@ -41,8 +40,8 @@
         }
         self.tableViewIsOpen = NO;
         self.layer.cornerRadius = 8;
-        self.clipsToBounds = YES;
-        self.subjectCellHeight = 35;
+//        self.clipsToBounds = YES;
+        self.subjectCellHeight = 35;//具体学科的cell高度
         [self addTimeLabel];
         [self addBlueBackgroundView];
         [self addAverangePointLabel];
@@ -75,7 +74,7 @@
     } else {
         // Fallback on earlier versions
     }
-    [self.contentView addSubview:self.blueBackgroundView];
+    [self addSubview:self.blueBackgroundView];
 }
 - (void) addAverangePointLabel {
         UILabel *averangePointLabel = [[UILabel alloc]init];
@@ -152,45 +151,57 @@
 - (void)addWatchMoreButton {
     UIButton *button = [[UIButton alloc]init];
     self.watchMoreButton = button;
-    button.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    [button.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:11]];
     button.alpha = 0.35;
     if (@available(iOS 11.0, *)) {
         [button setTitleColor:Color21_49_91_F0F0F2 forState:normal];
     } else {
         // Fallback on earlier versions
     }
+    button.backgroundColor = UIColor.clearColor;
     [button setTitle:@"查看各科成绩" forState:normal];
     [self.blueBackgroundView addSubview:button];
     [button addTarget:self action:@selector(touchWatchMoreButton) forControlEvents:UIControlEventTouchUpInside];
-}
--(void)touchWatchMoreButton {
-    self.tableViewIsOpen = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"expandSubjectScoreTableView" object:nil];
-    [self.watchMoreButton setTitle:@"收起各科成绩" forState:normal];//发送消息 刷新该cell高度
-    [self.watchMoreButton removeAllTargets];
-    [self.watchMoreButton addTarget:self action:@selector(mergeScoreMore) forControlEvents:UIControlEventTouchUpInside];
-    self.height = self.subjectCellHeight*self.singleGradesArray.count;
-    self.openingHeight = self.subjectCellHeight*self.singleGradesArray.count;
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.blueBackgroundView.width,0) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.blueBackgroundView.width,1) style:UITableViewStylePlain];
     tableView.backgroundColor = UIColor.clearColor;
     self.detailTableView = tableView;
+    [tableView setUserInteractionEnabled:NO];
     tableView.delegate = self;
+    tableView.clipsToBounds = NO;
     tableView.dataSource = self;
     tableView.scrollEnabled = NO;
+    [tableView setHidden:YES];
     [self.blueBackgroundView addSubview:tableView];
+}
+-(void)touchWatchMoreButton {
+    [self.detailTableView setHidden:NO];
+    self.tableViewIsOpen = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"expandSubjectScoreTableView" object:nil];//发送消息 刷新该cell高度
+    NSNumber *cellHeight = @(self.subjectCellHeight*self.singleGradesArray.count);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"expandSubjectScoreTableView" object:nil userInfo:@{@"cellHeight":cellHeight}];
+    [self.watchMoreButton setTitle:@"收起各科成绩" forState:normal];
+    [self.watchMoreButton removeAllTargets];
+    [self.watchMoreButton addTarget:self action:@selector(mergeScoreMore) forControlEvents:UIControlEventTouchUpInside];
+//    self.height = self.subjectCellHeight*self.singleGradesArray.count+[DetailScorePerYearCell plainHeight];
     [self layoutSubviews];
+//    [self.blueBackgroundView bringSubviewToFront:self.watchMoreButton];
 }
 -(void)mergeScoreMore {
+    [self.detailTableView setHidden:YES];
     self.tableViewIsOpen = NO;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"contractSubjectScoreTableView" object:nil];
+    NSNumber *cellHeight = @(self.subjectCellHeight*self.singleGradesArray.count);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"contractSubjectScoreTableView" object:nil userInfo:@{@"cellHeight":cellHeight}];
 
     [self.watchMoreButton setTitle:@"查看各科成绩" forState:normal];
     [self.watchMoreButton removeAllTargets];
     [self.watchMoreButton addTarget:self action:@selector(touchWatchMoreButton) forControlEvents:UIControlEventTouchUpInside];
-    [UIView animateWithDuration:0.5 animations:^{
-        [self.detailTableView removeFromSuperview];
-    }];
+//    [UIView animateWithDuration:0.5 animations:^{
+//        [self.detailTableView removeFromSuperview];
+//    }];
     self.height = [self.class plainHeight];
+    [self layoutSubviews];
+//    [self.blueBackgroundView bringSubviewToFront:self.watchMoreButton];
+
     
 
 }
@@ -211,6 +222,7 @@
 //MARK: layoutSubviews
 - (void)layoutSubviews {
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@20);
         make.left.equalTo(self).offset(28);
         make.top.equalTo(self).offset(15);
     }];
@@ -218,7 +230,8 @@
         make.top.equalTo(self.timeLabel.mas_bottom).offset(9);
         make.left.equalTo(self).offset(16);
         make.right.equalTo(self).offset(-16);
-        make.height.equalTo(@99);
+//        make.height.equalTo(@99);
+        make.bottom.equalTo(self.watchMoreButton).offset(5);
     }];
     [self.averangePointLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.blueBackgroundView).offset(28);
@@ -227,6 +240,7 @@
     [self.averangePointTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.averangePointLabel);
         make.top.equalTo(self.averangePointLabel.mas_bottom).offset(0.68);
+        make.height.equalTo(@12);
     }];
     [self.averangeScoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.blueBackgroundView);
@@ -235,6 +249,8 @@
     [self.averangeScoreTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.averangeScoreLabel);
         make.top.equalTo(self.averangeScoreLabel.mas_bottom).offset(0.68);
+        make.height.equalTo(@12);
+
     }];
     [self.averangeRankLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.blueBackgroundView).offset(-29);
@@ -243,15 +259,34 @@
     [self.averangeRankTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.averangeRankLabel);
         make.top.equalTo(self.averangeRankLabel.mas_bottom).offset(0.68);
+        make.height.equalTo(@12);
+
     }];
-    [self.watchMoreButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.averangeScoreLabel);
-        make.bottom.equalTo(self.blueBackgroundView.mas_bottom).offset(-6);
+    if(self.tableViewIsOpen) {
+        [self.watchMoreButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.averangeScoreLabel);
+            make.bottom.equalTo(self).offset(-5);
+            make.height.equalTo(@22);
+            }];
+    }else {
+        [self.watchMoreButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.averangeScoreLabel);
+            make.top.equalTo(self.detailTableView).offset(5);
+            make.height.equalTo(@22);
+    //        make.bottom.equalTo(self.blueBackgroundView.mas_bottom).offset(-6);
+    //        make.bottom.equalTo(self.detailTableView.mas_bottom).offset(-15);
+        }];
+    }
+    [self.watchMoreButton.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.watchMoreButton).offset(0);
     }];
     [self.detailTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.blueBackgroundView.mas_bottom).offset(20);
+        make.top.equalTo(self.averangeScoreTitleLabel.mas_bottom).offset(0);
         make.left.right.equalTo(self.blueBackgroundView);
-        make.height.equalTo(@(self.height));
+        make.height.equalTo(@(self.subjectCellHeight*self.singleGradesArray.count));
+    }];
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.blueBackgroundView).offset(5);
     }];
 }
 @end

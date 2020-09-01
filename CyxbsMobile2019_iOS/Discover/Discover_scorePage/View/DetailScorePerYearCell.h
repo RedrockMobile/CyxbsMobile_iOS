@@ -32,9 +32,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic)BOOL tableViewIsOpen;//tableView展开
 
 //@property (nonatomic, assign)float plainHeight;//cell不展开时候的高度
-@property (nonatomic, assign)float openingHeight;//展开时的高度
+@property (nonatomic, assign)float openingHeight;//cell展开时的高度
 
+@property (nonatomic, assign)float subjectCellHeight;//具体学科的cell高度
+
+//@property (nonatomic, assign)float tableViewOpeningHeight;//table
+/// cell不展开时的高度
 +(float)plainHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END
