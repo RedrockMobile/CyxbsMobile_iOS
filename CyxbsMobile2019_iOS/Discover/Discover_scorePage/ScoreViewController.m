@@ -87,7 +87,7 @@
         self.tableViewCurrentHeight += cellHeightIncrease.floatValue;
 //    self.tableViewCurrentHeight += 20;
     [self.tableView setHeight:self.tableViewCurrentHeight];
-        self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+50);
+        self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
 }
 -(void)contractSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
@@ -97,13 +97,13 @@
 //    self.tableViewCurrentHeight -= 20;
     [self.tableView setHeight:self.tableViewCurrentHeight];
 
-    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+50);
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
 }
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
     [self.tableView removeFromSuperview];
     [self addTableView];
-    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+50);
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
     self.ABScoreView.AScore.text = self.gpaModel.gpaItem.termGrades.a_credit.stringValue;
     self.ABScoreView.BScore.text = self.gpaModel.gpaItem.termGrades.b_credit.stringValue;
 //    [self.tableView reloadInputViews];
@@ -136,6 +136,8 @@
 - (void) addContentView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     self.contentView = scrollView;
+    [scrollView setBounces:NO];
+    scrollView.showsVerticalScrollIndicator = NO;
     scrollView.contentSize = CGSizeMake(0, 0);
     if (@available(iOS 11.0, *)) {
         scrollView.backgroundColor = Color42_78_132to2D2D2D;
@@ -202,7 +204,7 @@
 }
 - (void)addTableView {
     int plainCellHeight = 143;
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaModel.gpaItem.termGrades.termGrades.count) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaModel.gpaItem.termGrades.termGrades.count+25) style:UITableViewStylePlain];
     self.tableView = tableView;
     self.tableViewCurrentHeight = tableView.height;
     tableView.delegate = self;

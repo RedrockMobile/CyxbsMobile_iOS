@@ -93,9 +93,9 @@
 - (void)addTableView {
     UITableView *tableView;
     if (IS_IPHONEX) {
-        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+40, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+40, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 30) style:UITableViewStylePlain];
     }else {
-        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 50) style:UITableViewStylePlain];
     }
     self.tableView = tableView;
     tableView.showsVerticalScrollIndicator = NO;
