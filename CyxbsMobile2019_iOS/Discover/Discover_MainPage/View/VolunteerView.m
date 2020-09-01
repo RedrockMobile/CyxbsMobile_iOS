@@ -145,13 +145,13 @@
     self.allTimeBackImage = allTimeBackImage;
     [allTimeBackImage setImage:[UIImage imageNamed:@"志愿时长"]];
     [self addSubview:allTimeBackImage];
-    [self addAllTime];
-    [self addShi];
     [self.allTimeBackImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.volunteerTitle);
         make.top.equalTo(self.volunteerTitle.mas_bottom).offset(16);
         make.width.height.equalTo(@64);
     }];
+    [self addAllTime];
+    [self addShi];
 }
 - (void)addAllTime {
     UILabel *allTime = [[UILabel alloc]init];
@@ -165,7 +165,7 @@
     }
     [self.allTimeBackImage addSubview:allTime];
     [self.allTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.allTimeBackImage);
+        make.centerX.equalTo(self.allTimeBackImage).offset(-5);
         make.centerY.equalTo(self.allTimeBackImage).offset(2);
     }];
 }
@@ -181,7 +181,7 @@
     }
     [self.allTimeBackImage addSubview:shi];
     [self.shi mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.allTimeBackImage).offset(-3);
+        make.leading.equalTo(self.allTime.mas_trailing).offset(2);
         make.bottom.equalTo(self.allTime).offset(-7);
     }];
 }
@@ -205,7 +205,7 @@
     }
     [self addSubview:recentTitle];
     [self.recentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.volunteerTitle.mas_right).offset(22);
+        make.left.equalTo(self.allTimeBackImage.mas_right).offset(22);
         make.top.equalTo(self.allTimeBackImage);
         make.right.equalTo(self).offset(-80);
     }];
@@ -259,6 +259,7 @@
     [self.recentTeam mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.recentTime);
         make.top.equalTo(self.recentTime.mas_bottom).offset(4);
+        make.right.equalTo(self).offset(-15);
     }];
 }
 @end

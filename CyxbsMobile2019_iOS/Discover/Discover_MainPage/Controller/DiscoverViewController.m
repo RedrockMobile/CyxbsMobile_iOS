@@ -58,6 +58,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
 @property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
 @property (nonatomic, weak)UIView *hideTabbarView;//用来遮挡tabbar的View
+@property (nonatomic, weak)UIView *colorView;//用来补充志愿服务页面下方颜色
 //Model
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
@@ -175,6 +176,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.height.equalTo(@152);
         make.bottom.equalTo(self.contentView).offset(-20);
     }];
+    
+    [self.colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.volView.mas_bottom);
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@600);
+    }];
 }
 - (void)presentToLogin {
     LoginViewController *loginVC = [[LoginViewController alloc] init];
@@ -276,7 +283,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     volView.delegate = self;
     [self.contentView addSubview:volView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeVolunteerAccount) name:@"removeVolunteerAccount" object:nil];
-
+    
+    UIView *view = [[UIView alloc]init];//色块View
+    self.colorView = view;
+    self.colorView.backgroundColor = self.volView.backgroundColor;
+    [self.contentView addSubview:self.colorView];
 }
 -(void)removeVolunteerAccount {
     [self.volView refreshViewIfNeeded];
@@ -444,7 +455,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
     UIButton * button = [[UIButton alloc]init];
     [bindingView addSubview:button];
-    button.backgroundColor = UIColor.blueColor;
+    button.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
     [button setTitle:@"确定" forState:normal];
     button.layer.cornerRadius = 20;
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -477,7 +488,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)bindingDormitory {
     UserItem *item = [UserItem defaultItem];
     if (self.buildingNumberLabel.text != nil) {
-        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+//        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+        NSString *building = [self.buildingNumberLabel.text stringByReplacingOccurrencesOfString:@"栋" withString:@""];
+
         item.building = building;
     }
         NSLog(@"*%@*",self.roomTextField.text);

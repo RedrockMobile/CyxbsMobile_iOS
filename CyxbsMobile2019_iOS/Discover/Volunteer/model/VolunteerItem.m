@@ -57,11 +57,11 @@ MJExtensionCodingImplementation
             self.eventsArray = temp;
             [self sortEvents];
             
-            NSInteger hour = 0;
+            float hour = 0;
             for (VolunteeringEventItem *event in self.eventsArray) {
-                hour += [event.hour integerValue];
+                hour += [event.hour floatValue];
             }
-            self.hour = [NSString stringWithFormat:@"%ld", hour];
+            self.hour = [NSString stringWithFormat:@"%.1f",hour];
             
             [self archiveItem];
             
@@ -91,13 +91,13 @@ MJExtensionCodingImplementation
     NSDate  *currentDate = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:currentDate];
-    NSInteger year=[components year];
+    int year=[components year];
     
     NSMutableArray *allEvents = [NSMutableArray array];
     NSMutableArray *eventInAYear = [NSMutableArray array];
     for (int i = 0; i < 4; i++) {
         for (VolunteeringEventItem *event in self.eventsArray) {
-            if ([[event.creatTime substringToIndex:4] isEqualToString:[NSString stringWithFormat:@"%ld", year - i]]) {
+            if ([[event.creatTime substringToIndex:4] isEqualToString:[NSString stringWithFormat:@"%d", year - i]]) {
                 [eventInAYear addObject:event];
             }
         }

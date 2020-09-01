@@ -159,6 +159,8 @@
     view.clipsToBounds = YES;
     [scoreEnterButton addTarget:self action:@selector(pushToScoreVC) forControlEvents:UIControlEventTouchUpInside];
 }
+
+
 - (void) pushToScoreVC {
     //GPA接口暂时弄不了，所以关闭GPA查询入口
 //    ScoreViewController *vc = [[ScoreViewController alloc]init];

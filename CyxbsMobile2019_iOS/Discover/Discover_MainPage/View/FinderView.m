@@ -199,7 +199,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     [self.weekTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(STATUSBARHEIGHT + 1.7);
+        make.top.equalTo(self).offset(1.7);
         make.left.equalTo(self).offset(17);
     }];
     [self.finderTitle mas_makeConstraints:^(MASConstraintMaker *make) {
