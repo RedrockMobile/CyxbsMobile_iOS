@@ -91,13 +91,11 @@
 }
 
 - (void)addTableView {
-//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, [[UIApplication sharedApplication] statusBarFrame].size.height + 120, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];//130是底部学分成绩入口按钮
-//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
     UITableView *tableView;
     if (IS_IPHONEX) {
-        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+40, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+40, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 30) style:UITableViewStylePlain];
     }else {
-        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 50) style:UITableViewStylePlain];
     }
     self.tableView = tableView;
     tableView.showsVerticalScrollIndicator = NO;
@@ -163,10 +161,10 @@
 
 - (void) pushToScoreVC {
     //GPA接口暂时弄不了，所以关闭GPA查询入口
-//    ScoreViewController *vc = [[ScoreViewController alloc]init];
-//    [self presentViewController:vc animated:YES completion:^{
-//        NSLog(@"跳转至学分成绩vc");
-//    }];
+    ScoreViewController *vc = [[ScoreViewController alloc]init];
+    [self presentViewController:vc animated:YES completion:^{
+        NSLog(@"跳转至学分成绩vc");
+    }];
 
 }
 - (void)getExamArrangeData {

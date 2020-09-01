@@ -34,7 +34,9 @@
 @property (nonatomic, weak)UITableView *tableView;//每学年的成绩
 @property(nonatomic, weak)IdsBindingView *idsBindgView;
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
+@property (nonatomic, strong) MBProgressHUD *loadHud;
 
+@property (nonatomic,assign)float tableViewCurrentHeight;//tableView的当前高度
 
 @property (nonatomic)GPA *gpaModel;
 //@property (nonatomic)GPAItem *GPAItem;
@@ -52,13 +54,13 @@
     [self addContentView];//scrollView
     [self addUserInfoView];
     [self tryIDSBinding];
-  
+    self.tableViewCurrentHeight = [DetailScorePerYearCell plainHeight];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBindingUnknownError" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBinding_passwordError" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandSubjectScoreTableView) name:@"expandSubjectScoreTableView" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contractSubjectScoreTableView) name:@"contractSubjectScoreTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandSubjectScoreTableView:) name:@"expandSubjectScoreTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contractSubjectScoreTableView:) name:@"contractSubjectScoreTableView" object:nil];
     
 }
 -(void)tryIDSBinding {
@@ -79,19 +81,30 @@
     
     
 }
--(void)expandSubjectScoreTableView {
+-(void)expandSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+        NSNumber *cellHeightIncrease = notification.userInfo[@"cellHeight"];
+        self.tableViewCurrentHeight += cellHeightIncrease.floatValue;
+//    self.tableViewCurrentHeight += 20;
+    [self.tableView setHeight:self.tableViewCurrentHeight];
+        self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
 }
--(void)contractSubjectScoreTableView {
+-(void)contractSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+     NSNumber *cellHeightReduce = notification.userInfo[@"cellHeight"];
+    self.tableViewCurrentHeight -= cellHeightReduce.floatValue;
+//    self.tableViewCurrentHeight -= 20;
+    [self.tableView setHeight:self.tableViewCurrentHeight];
+
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
 }
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
     [self.tableView removeFromSuperview];
     [self addTableView];
-    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+50);
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
     self.ABScoreView.AScore.text = self.gpaModel.gpaItem.termGrades.a_credit.stringValue;
     self.ABScoreView.BScore.text = self.gpaModel.gpaItem.termGrades.b_credit.stringValue;
 //    [self.tableView reloadInputViews];
@@ -99,6 +112,7 @@
     [self addChartView];
 }
 -(void) idsBindingError {
+    [self.loadHud hide:YES];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.idsBindgView animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = @"绑定失败";
@@ -106,6 +120,7 @@
 }
 -(void)idsBindingSuccess {
     [self.idsBindgView removeFromSuperview];
+    [self.loadHud hide:YES];
       [self addTwoTitleView];
       [self addChartView];
       [self addABScoreView];//AB学分
@@ -124,6 +139,8 @@
 - (void) addContentView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     self.contentView = scrollView;
+    [scrollView setBounces:NO];
+    scrollView.showsVerticalScrollIndicator = NO;
     scrollView.contentSize = CGSizeMake(0, 0);
     if (@available(iOS 11.0, *)) {
         scrollView.backgroundColor = Color42_78_132to2D2D2D;
@@ -190,8 +207,9 @@
 }
 - (void)addTableView {
     int plainCellHeight = 143;
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaModel.gpaItem.termGrades.termGrades.count) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaModel.gpaItem.termGrades.termGrades.count+25) style:UITableViewStylePlain];
     self.tableView = tableView;
+    self.tableViewCurrentHeight = tableView.height;
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.scrollEnabled = NO;
@@ -202,6 +220,8 @@
     NSString *bindingNum = self.idsBindgView.accountfield.text;
     NSString *bindingPasswd = self.idsBindgView.passTextfield.text;
     if(![bindingNum isEqual: @""] && ![bindingPasswd isEqual: @""]) {
+        self.loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+         self.loadHud.labelText = @"正在验证";
         IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:bindingNum isPassword:bindingPasswd];
         [binding fetchData];
     }else {
@@ -284,6 +304,8 @@
     }
     if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr) {
         cell.singleGradesArray =self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr;
+        cell.openingHeight = cell.subjectCellHeight*cell.singleGradesArray.count+[cell.class plainHeight];
+
     }
     cell.selectionStyle  = UITableViewCellSelectionStyleNone;
     return cell;
