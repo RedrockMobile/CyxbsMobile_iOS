@@ -35,6 +35,7 @@
 @property(nonatomic, weak)IdsBindingView *idsBindgView;
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
 
+@property (nonatomic,assign)float tableViewCurrentHeight;//tableView的当前高度
 
 @property (nonatomic)GPA *gpaModel;
 //@property (nonatomic)GPAItem *GPAItem;
@@ -52,13 +53,13 @@
     [self addContentView];//scrollView
     [self addUserInfoView];
     [self tryIDSBinding];
-  
+    self.tableViewCurrentHeight = [DetailScorePerYearCell plainHeight];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBindingUnknownError" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBinding_passwordError" object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandSubjectScoreTableView) name:@"expandSubjectScoreTableView" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contractSubjectScoreTableView) name:@"contractSubjectScoreTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandSubjectScoreTableView:) name:@"expandSubjectScoreTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contractSubjectScoreTableView:) name:@"contractSubjectScoreTableView" object:nil];
     
 }
 -(void)tryIDSBinding {
@@ -79,13 +80,24 @@
     
     
 }
--(void)expandSubjectScoreTableView {
+-(void)expandSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+        NSNumber *cellHeightIncrease = notification.userInfo[@"cellHeight"];
+        self.tableViewCurrentHeight += cellHeightIncrease.floatValue;
+//    self.tableViewCurrentHeight += 20;
+    [self.tableView setHeight:self.tableViewCurrentHeight];
+        self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+50);
 }
--(void)contractSubjectScoreTableView {
+-(void)contractSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+     NSNumber *cellHeightReduce = notification.userInfo[@"cellHeight"];
+    self.tableViewCurrentHeight -= cellHeightReduce.floatValue;
+//    self.tableViewCurrentHeight -= 20;
+    [self.tableView setHeight:self.tableViewCurrentHeight];
+
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+50);
 }
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
@@ -192,6 +204,7 @@
     int plainCellHeight = 143;
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaModel.gpaItem.termGrades.termGrades.count) style:UITableViewStylePlain];
     self.tableView = tableView;
+    self.tableViewCurrentHeight = tableView.height;
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.scrollEnabled = NO;
@@ -284,6 +297,8 @@
     }
     if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr) {
         cell.singleGradesArray =self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr;
+        cell.openingHeight = cell.subjectCellHeight*cell.singleGradesArray.count+[cell.class plainHeight];
+
     }
     cell.selectionStyle  = UITableViewCellSelectionStyleNone;
     return cell;
