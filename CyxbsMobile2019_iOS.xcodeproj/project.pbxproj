@@ -3404,6 +3404,8 @@
 		EEA301B62468075200A8DB26 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EEA301B72468079200A8DB26 /* IdsBinding.h */,
+				EEA301B82468079200A8DB26 /* IdsBinding.m */,
 				EEA301D3246864B000A8DB26 /* Item */,
 				EEA301BB2468579400A8DB26 /* GPA.h */,
 				EEA301BC2468579400A8DB26 /* GPA.m */,
@@ -3414,8 +3416,6 @@
 		EEA301D3246864B000A8DB26 /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				EEA301B72468079200A8DB26 /* IdsBinding.h */,
-				EEA301B82468079200A8DB26 /* IdsBinding.m */,
 				EEA301C12468593F00A8DB26 /* SingleGrade.h */,
 				EEA301C22468593F00A8DB26 /* SingleGrade.m */,
 				EEA301C424685C8E00A8DB26 /* TermGrade.h */,

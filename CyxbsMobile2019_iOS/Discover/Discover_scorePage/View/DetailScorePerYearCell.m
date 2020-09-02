@@ -234,11 +234,13 @@
         make.bottom.equalTo(self.watchMoreButton).offset(5);
     }];
     [self.averangePointLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.blueBackgroundView).offset(28);
+//        make.left.equalTo(self.blueBackgroundView).offset(28);
+        make.centerX.equalTo(self.averangePointTitleLabel);
         make.top.equalTo(self.blueBackgroundView).offset(16);
     }];
     [self.averangePointTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.averangePointLabel);
+        make.left.equalTo(self.blueBackgroundView).offset(28);
+//        make.centerX.equalTo(self.averangePointLabel);
         make.top.equalTo(self.averangePointLabel.mas_bottom).offset(0.68);
         make.height.equalTo(@12);
     }];
