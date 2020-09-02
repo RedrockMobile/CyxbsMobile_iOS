@@ -560,7 +560,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
        }
     NSInteger row0 = [pickerView selectedRowInComponent:0];
     NSInteger row1 = [pickerView selectedRowInComponent:1];
-    NSLog(@"%@",self.buildingNumberLabel.text = [self.pickerModel getNumberOfDormitoryWith:self.pickerModel.placeArray[row0] andPlace:self.pickerModel.allArray[row0][row1]]);
+    self.buildingNumberLabel.text = [self.pickerModel getNumberOfDormitoryWith:self.pickerModel.placeArray[row0] andPlace:self.pickerModel.allArray[row0][row1]];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
