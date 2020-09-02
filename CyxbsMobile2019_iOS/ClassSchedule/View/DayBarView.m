@@ -219,8 +219,6 @@
     //得到该周周4的日期
     NSDate *Thurs = [formate dateFromString:dataStr];
     
-    NSLog(@"%@,%@",Thurs,dataStr);
-//    NSString *today = [formate stringFromDate:[NSDate date]];
     
     NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
@@ -229,7 +227,8 @@
     
     //得到周四和今日隔了几天
     long interval = [compsday day];
-    if(interval<0)interval--;
+    
+    if(interval<=0){interval--;}
     
     if(labs(interval)<4){//时间间隔小于4，代表这个课表是本周课表
         [formate setDateFormat:@"d"];
@@ -240,44 +239,45 @@
         int num2 = day.intValue;
         if(num1==num2){
             view  =  self.weekLabelViewArray[3+interval];
-        }else if(num2==[self.dataArray[3-interval][@"day"] intValue]){
-            view  =  self.weekLabelViewArray[3-interval];
-        }
-        
-        //添加一个背景长条
-        UIView *tipView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DAY_BAR_ITEM_W, MAIN_SCREEN_H)];
-        [view.superview addSubview:tipView];
-        [view removeFromSuperview];
-        [tipView addSubview:view];
-        if(@available(iOS 11.0,*)){
-            tipView.backgroundColor = [UIColor colorNamed:@"231_240_255_0.59&1_1_1_0.16"];
-        }else{
-            tipView.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:0.59];
-        }
-        tipView.layer.cornerRadius = 8;
-        [tipView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(view);
-            make.top.equalTo(view);
-            make.height.mas_equalTo(MAIN_SCREEN_H);
-            make.width.mas_equalTo(DAY_BAR_ITEM_W);
-        }];
-        
-        
-        if (@available(iOS 11.0, *)) {
-            view.backgroundColor = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
-        } else {
-            view.backgroundColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
-        }
-        
-        for (UILabel *label in view.subviews) {
+            
+            //        添加一个背景长条
+            UIView *tipView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DAY_BAR_ITEM_W, MAIN_SCREEN_H)];
+            [view.superview addSubview:tipView];
+            [view removeFromSuperview];
+            [tipView addSubview:view];
+            if(@available(iOS 11.0,*)){
+                tipView.backgroundColor = [UIColor colorNamed:@"231_240_255_0.59&1_1_1_0.16"];
+            }else{
+                tipView.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:0.59];
+            }
+            tipView.layer.cornerRadius = 8;
+            [tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(view);
+                make.top.equalTo(view);
+                make.height.mas_equalTo(MAIN_SCREEN_H);
+                make.width.mas_equalTo(DAY_BAR_ITEM_W);
+            }];
+            
+            
             if (@available(iOS 11.0, *)) {
-                label.textColor = [UIColor colorNamed:@"white_51_46_72_dayBar_today_textColor"];
+                view.backgroundColor = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
             } else {
-                label.textColor = [UIColor whiteColor];
+                view.backgroundColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
             }
-            if(label.tag==2){
-                label.alpha = 0.64;
+            
+            for (UILabel *label in view.subviews) {
+                if (@available(iOS 11.0, *)) {
+                    label.textColor = [UIColor colorNamed:@"white_51_46_72_dayBar_today_textColor"];
+                } else {
+                    label.textColor = [UIColor whiteColor];
+                }
+                if(label.tag==2){
+                    label.alpha = 0.64;
+                }
             }
+            
+        }else{
+            
         }
     }
 }
