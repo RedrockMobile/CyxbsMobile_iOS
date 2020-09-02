@@ -155,12 +155,12 @@
     }];
     view.layer.cornerRadius = 16;
     view.clipsToBounds = YES;
-    [scoreEnterButton addTarget:self action:@selector(pushToScoreVC) forControlEvents:UIControlEventTouchUpInside];
+    //GPA接口暂时弄不了，所以关闭GPA查询入口
+//    [scoreEnterButton addTarget:self action:@selector(pushToScoreVC) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
 - (void) pushToScoreVC {
-    //GPA接口暂时弄不了，所以关闭GPA查询入口
     ScoreViewController *vc = [[ScoreViewController alloc]init];
     [self presentViewController:vc animated:YES completion:^{
         NSLog(@"跳转至学分成绩vc");
