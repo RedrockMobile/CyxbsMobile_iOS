@@ -161,7 +161,7 @@
 /// 加约束，调用前需确保：self.weekLabelViewArray、self.monthView初始化完成，且已经加到父控件
 - (void)addConstraint{
     [self.monthView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
+        make.left.equalTo(self).offset(1.4);
         make.bottom.equalTo(self);
         make.top.equalTo(self);
         make.width.mas_equalTo(MONTH_ITEM_W);
@@ -255,7 +255,7 @@
                 make.centerX.equalTo(view);
                 make.top.equalTo(view);
                 make.height.mas_equalTo(MAIN_SCREEN_H);
-                make.width.mas_equalTo(DAY_BAR_ITEM_W);
+                make.width.mas_equalTo(MAIN_SCREEN_W*0.1245);
             }];
             
             
