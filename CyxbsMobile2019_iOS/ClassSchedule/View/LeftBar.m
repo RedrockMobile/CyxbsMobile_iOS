@@ -26,8 +26,8 @@
             UILabel *label = [self getLabelWithString:[NSString stringWithFormat:@"%d",i+1]];
             [self addSubview:label];
             [label setFrame:CGRectMake(0, i*(H_H+dis), MONTH_ITEM_W, H_H)];
-            [self getTipView];
         }
+        [self getTipView];
     }
     return self;
 }
@@ -119,7 +119,7 @@
         if(percent<1){
             y = (i-1)*(2*H_H+2*dis)+percent*(2*H_H+dis);
         }else{
-            y = i*(2*H_H+2*dis)-0.5*dis;
+            y = i*(2*H_H+2*dis)-1.5*dis;
         }
     }else{
         y = -1;
