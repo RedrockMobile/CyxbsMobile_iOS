@@ -297,7 +297,9 @@
         
     }
     if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].grade) {
-        cell.averangeScoreLabel.text = self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].grade.stringValue;
+        NSString *averangeScore = [NSString stringWithFormat:@"%.2f",self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].grade.floatValue];
+        
+        cell.averangeScoreLabel.text = averangeScore;
     }
     if (self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].rank) {
         cell.averangeRankLabel.text = self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].rank.stringValue;

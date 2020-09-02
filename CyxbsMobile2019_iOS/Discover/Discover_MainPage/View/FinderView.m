@@ -52,12 +52,31 @@
 - (void) addWeekTimeLabel {
     UILabel *weekTimeLabel = [[UILabel alloc]init];
     self.weekTime = weekTimeLabel;
-    NSString *weekNum = [WeekAndDay defaultWeekDay].weekNumber;
-    NSString *weekday = [WeekAndDay defaultWeekDay].weekday;
-    weekTimeLabel.text =[NSString stringWithFormat:@"第%@周，周%@",weekNum,weekday];
     
-    if ([weekNum isEqual: @"0"]) {
+    // 从字符串转换日期
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy.MM.d"];
+    NSDate *resDate = [formatter dateFromString:DateStart];
+    
+    // 计算当前是第几周
+    NSInteger beginTime=[resDate timeIntervalSince1970];
+    NSDate *now = [NSDate date];
+    NSInteger nowTime = [now timeIntervalSince1970];
+    double day = (float)(nowTime - beginTime)/(float)86400/(float)7;
+    NSInteger nowWeek = (int)ceil(day) - 1;
+    
+    NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
+    
+    //计算星期几
+    NSArray *weekday = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
+    
+    if (nowWeek < 0 || nowWeek >= weekArray.count) {
         weekTimeLabel.text =[NSString stringWithFormat:@"欢迎新同学～"];
+    } else {
+        weekTimeLabel.text = [NSString stringWithFormat:@"%@ %@", weekArray[nowWeek], weekday[components.weekday - 1]];
     }
 //    weekTimeLabel.text = @"";
     if (@available(iOS 11.0, *)) {
