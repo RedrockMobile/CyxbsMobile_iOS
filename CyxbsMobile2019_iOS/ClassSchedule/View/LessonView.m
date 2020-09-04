@@ -170,8 +170,8 @@
     if(self.noteShowerDelegate!=nil)self.hidden = YES;
     
     if(self.isEmptyLesson==YES&&self.isNoted==YES){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideNote) name:@"Mine_DisplayMemopadOFF" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNote) name:@"Mine_DisplayMemopadON" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideNote) name:@"Mine_DisplayMemoPadOFF" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNote) name:@"Mine_DisplayMemoPadON" object:nil];
     }
     //根据备忘和课的总数判断是否显示提示view
     if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
@@ -274,34 +274,6 @@
     self.frame = CGRectMake(self.hash_day*(LESSON_W+DISTANCE_W), self.hash_lesson*(2*LESSON_H+DISTANCE_H), LESSON_W, h);
 }
 
-/**
-//self被点击后调用
-- (void)viewTouchedd{
-    if(self.isEmptyLesson==YES){
-        //如果是空课且不是在个人课表页，那就return
-        if(self.schType!=ScheduleTypePersonal)return;
-        if(self.isNoted==NO){
-            //空课且无备忘则加备忘
-            [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
-        }else{
-            
-            if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]){
-                self.delegate.courseDataDictArray = self.courseDataDictArray;
-                self.delegate.noteDataModelArray = self.noteDataModelArray;
-                [self.delegate showDetail];
-            }else{
-                
-                [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
-            }
-            
-        }
-    }else{
-        self.delegate.courseDataDictArray = self.courseDataDictArray;
-        self.delegate.noteDataModelArray = self.noteDataModelArray;
-        [self.delegate showDetail];
-    }
-}
-*/
 //self被点击后调用
 - (void)viewTouched{
     //被点击后要么显示弹窗，要么去添加备忘，要么没反应
