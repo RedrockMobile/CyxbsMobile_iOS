@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DLReminderViewController.h"
 #import "WYCClassAndRemindDataModel.h"
-
 #import "DateModle.h"
-
-
 #import "LoginViewController.h"
 #import "FakeTabBarView.h"
 #import "TopBarScrollView.h"
@@ -20,28 +17,31 @@
 #import "UIFont+AdaptiveFont.h"
 #import "RemindNotification.h"
 
-
-//#define DateStart @"2020-02-17"
-
 NS_ASSUME_NONNULL_BEGIN
-//目标：输入[responseObject objectForKey:@"data"]，输出：显示整学期课表
-//现状：输入WYCClassAndRemindDataModel，输出：显示整学期课表
+
 @interface WYCClassBookViewController : UIViewController<WYCClassAndRemindDataModelDelegate,UIApplicationDelegate>
 
-//如果是用代码加载，必须对model赋值，详细说明看底下注释
+/// 课表数据、备忘数据模型
 @property (nonatomic, strong) WYCClassAndRemindDataModel *model;
-//如果是用代码加载，必须对schedulType赋值
+
+/// 课表类型，共分3种：个人、没课约、查课表
 @property (nonatomic, assign)ScheduleType schedulType;
 
+/// 真正的tabbar，显示下节课信息
 @property (nonatomic, weak)id <updateSchedulTabBarViewProtocol>schedulTabBar;
 
-/// orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）,orderlySchedulArray[i][j][k]是一个数组
-@property (nonatomic, strong)NSMutableArray *orderlySchedulArray;
-
+/// 学号
 @property (nonatomic, copy) NSString *stuNum;
+
+/// 身份证后六位
 @property (nonatomic, copy) NSString *idNum;
+
+/// 假的tabbar，用来模拟真的tabbar，达到tabbar跟随课表运动的假象
 @property (nonatomic,strong)FakeTabBarView *fakeBar;
+
+/// 最顶部的 一个可以切换成选择周 或 当前课表页周信息的条，上面有左右箭头按钮、回到本周按钮、选择周条。。
 @property (nonatomic, strong)TopBarScrollView *topBarView;
+
 //如果WYCClassAndRemindDataModel的代理是课表控制器，那么模型加载操作完毕后无需外界调这两个方法
 //但是如果代理不是课表控制器，那么外界需要调用一下这两个方法
 - (void)ModelDataLoadFailure;

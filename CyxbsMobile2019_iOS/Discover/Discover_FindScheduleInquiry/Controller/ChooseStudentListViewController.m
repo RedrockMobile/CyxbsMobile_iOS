@@ -130,10 +130,7 @@
     vc.schedulType = ScheduleTypeClassmate;
     
     vc.model = model;
-    
-    model.writeToFile = NO;
-    
-    [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
+        
     if(self.peopleType==PeopleTypeStudent){
         [model getClassBookArrayFromNet:item.stuNum];
     }else{
