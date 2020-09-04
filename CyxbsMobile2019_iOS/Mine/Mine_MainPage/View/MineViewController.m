@@ -170,12 +170,12 @@
 //是否显示备忘
 - (void)switchedDisplayMemoPad:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemoPadON" object:nil];
         [UserDefaultTool saveValue:@"test" forKey:@"Mine_DisplayMemoPad"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemoPadON" object:nil];
     } else {                    // 关闭开关
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemoPadOFF" object:nil];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_DisplayMemoPad"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemoPadOFF" object:nil];
     }
 }
 

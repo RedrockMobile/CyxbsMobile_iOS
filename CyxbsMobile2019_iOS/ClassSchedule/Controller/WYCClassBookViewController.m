@@ -34,6 +34,7 @@
 @property (nonatomic, strong)UIPanGestureRecognizer *PGR;
 
 @property (nonatomic, assign)BOOL isReloading;
+@property (nonatomic, strong)NSMutableArray <UIView*> *backViewArray;
 @end
 
 @implementation WYCClassBookViewController
@@ -41,7 +42,12 @@
     [super viewDidLoad];
     
     self.lessonViewArray = [NSMutableArray array];
+    self.backViewArray = [NSMutableArray array];
     
+//    for (int i=0; i<self.dateModel.dateArray.count+1; i++) {
+//        [self.backViewArray addObject:[[UIView alloc]init]];
+//    }
+
     //添加备忘信息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNoteWithModel:) name:@"LessonViewShouldAddNote" object:nil];
     
@@ -115,6 +121,18 @@
         TM.PGRToInitTransition = self.PGR;
         [self dismissViewControllerAnimated:YES completion:^{
             TM.PGRToInitTransition=nil;
+            int i;
+            int count = (int)self.dateModel.dateArray.count;
+            for (i=0; i<self.index.intValue-1; i++) {
+                if(self.backViewArray[i].superview!=nil){
+                    [self.backViewArray[i] removeFromSuperview];
+                }
+            }
+            for (i=self.index.intValue+2; i<count+1; i++) {
+                if(self.backViewArray[i].superview!=nil){
+                    [self.backViewArray[i] removeFromSuperview];
+                }
+            }
         }];
     }
 }
@@ -165,8 +183,6 @@
         }
     }
     [self.model deleteNoteDataWithModel:model];
-    [self.scrollView removeAllSubviews];
-    self.lessonViewArray = [NSMutableArray array];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = @"加载数据中...";
@@ -212,7 +228,7 @@
 - (DateModle *)dateModel{
     if(_dateModel==nil){//@"2020-09-07"
         //@"2020-08-24" @"2020-07-20" DateStart
-        _dateModel = [DateModle initWithStartDate:@"2020-07-20"];
+        _dateModel = [DateModle initWithStartDate:DateStart];
     }
     return _dateModel;
 }
@@ -222,6 +238,27 @@
     if(index.intValue>25)index = [NSNumber numberWithInt:0];
     _index = index;
     self.topBarView.correctIndex = _index;
+//    [self loadSchedulWithIndex:index.intValue];
+//    [self addSchedulWithIndex:index.intValue-1];
+//    [self addSchedulWithIndex:index.intValue+1];
+//    return;
+    int count = (int)self.backViewArray.count;
+    if(0<index.intValue&&index.intValue<count-1){
+        [self addSchedulWithIndex:index.intValue];
+        [self addSchedulWithIndex:index.intValue-1];
+        [self addSchedulWithIndex:index.intValue+1];
+    }else if(index.intValue==0){
+        [self addSchedulWithIndex:index.intValue];
+        [self addSchedulWithIndex:index.intValue+1];
+    }else if(index.intValue==count-1){
+        [self addSchedulWithIndex:index.intValue];
+        [self addSchedulWithIndex:index.intValue-1];
+    }
+}
+
+- (void)addSchedulWithIndex:(int)index{
+    if(self.backViewArray[index].superview!=nil)return;
+    [self.scrollView addSubview:self.backViewArray[index]];
 }
 
 //MARK:-
@@ -279,17 +316,16 @@
 - (void)ModelDataLoadSuccess:(id)model{
     [self.scrollView removeAllSubviews];
     [self.lessonViewArray removeAllObjects];
+    [self.backViewArray removeAllObjects];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     //让tabBar和假的tabBar更新一下下节课信息
     [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
     [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
+    
     @autoreleasepool {
         for (int dateNum = 0; dateNum < self.dateModel.dateArray.count + 1; dateNum++) {
-            
-            //左侧课条
-            LeftBar *leftBar = [[LeftBar alloc] init];
-            leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
-            
+            UIView *backView = [[UIView alloc] init];
+            backView.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, MAIN_SCREEN_H);
             
             //显示日期信息的条
             DayBarView *dayBar;
@@ -299,8 +335,15 @@
                 //顶部日期条
                 dayBar = [[DayBarView alloc] initWithDataArray:self.dateModel.dateArray[dateNum-1]];
             }
-            [self.scrollView addSubview:dayBar];
-            dayBar.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
+            [backView addSubview:dayBar];
+            dayBar.frame = CGRectMake(0,0, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
+            
+            
+            
+            //左侧课条
+            LeftBar *leftBar = [[LeftBar alloc] init];
+            leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
+            
             
             
             //课表
@@ -309,22 +352,25 @@
             lessonViewForAWeek.week = dateNum;
             lessonViewForAWeek.schType = self.schedulType;
             [lessonViewForAWeek setUpUI];
-            
             lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
             
             
-            //承载课表和左侧第几节课信息的条
-            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(dateNum*self.scrollView.frame.size.width, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.1787, MAIN_SCREEN_W, MAIN_SCREEN_H*0.8247)];
-            [self.scrollView addSubview:scrollView];
+            
+            //承载课表和左侧第几节课信息的条的view
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.024, MAIN_SCREEN_W, MAIN_SCREEN_H*0.8247)];
+            [backView addSubview:scrollView];
             scrollView.delegate = self;
             scrollView.backgroundColor = [UIColor clearColor];
             scrollView.showsVerticalScrollIndicator = NO;
             [scrollView addSubview:lessonViewForAWeek];
             [scrollView addSubview:leftBar];
             [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height*1.1)];
+            
+            self.backViewArray[dateNum] = backView;
+//            [self.backViewArray addObject:backView];
+//            [self.scrollView addSubview:backView];
         }
     }
-    
     //如果是自己的课表,那就添加备忘
     if(self.schedulType==ScheduleTypePersonal){
         for (NoteDataModel *model in self.model.noteDataModelArray) {
@@ -368,7 +414,6 @@
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     
-    [self.scrollView removeAllSubviews];
     [self.scrollView layoutIfNeeded];
     [self.view addSubview:self.scrollView];
 }
@@ -410,8 +455,8 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     //重写了_index的set方法，内部增加了判断，如果index超过25就让index等0，也就是整学期课表的下标
     if([scrollView isEqual:self.scrollView]){
-        _index = [NSNumber numberWithInt:(int)(scrollView.contentOffset.x/MAIN_SCREEN_W)];
-        self.topBarView.correctIndex = _index;
+        self.index = [NSNumber numberWithInt:(int)(scrollView.contentOffset.x/MAIN_SCREEN_W)];
+        self.topBarView.correctIndex = self.index;
     }
 }
 
@@ -420,8 +465,8 @@
         if(scrollView.dragging==NO&&scrollView.decelerating==NO&&scrollView.tracking==NO){
             //重写了_index的set方法，内部增加了判断，如果index超过25就让index等0，
             //也就是整学期课表的下标
-            _index = [NSNumber numberWithInt:(int)(self.scrollView.contentOffset.x/MAIN_SCREEN_W)];
-            self.topBarView.correctIndex = _index;
+            self.index = [NSNumber numberWithInt:(int)(self.scrollView.contentOffset.x/MAIN_SCREEN_W)];
+            self.topBarView.correctIndex = self.index;
         }
     }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO){
         self.isReloading = YES;
@@ -585,3 +630,50 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
 }
 
 */
+//
+//- (void)loadSchedulWithIndex:(int)index{
+//    if(!(-1<index&&index<self.dateModel.dateArray.count+1))return;
+//    if(self.backViewArray[index].subviews!=nil)return;
+//    UIView *backView = self.backViewArray[index];
+//    backView.frame = CGRectMake(index*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, MAIN_SCREEN_H);
+//
+//    //显示日期信息的条
+//    DayBarView *dayBar;
+//    if(index==0){
+//        dayBar = [[DayBarView alloc] initForWholeTerm];
+//    }else{
+//        //顶部日期条
+//        dayBar = [[DayBarView alloc] initWithDataArray:self.dateModel.dateArray[index-1]];
+//    }
+//    [backView addSubview:dayBar];
+//    dayBar.frame = CGRectMake(0,0, self.scrollView.frame.size.width, DAY_BAR_ITEM_H);
+//
+//
+//
+//    //左侧课条
+//    LeftBar *leftBar = [[LeftBar alloc] init];
+//    leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
+//
+//
+//
+//    //课表
+//    LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.model.orderlySchedulArray[index]];
+//    [self.lessonViewArray addObject:lessonViewForAWeek];
+//    lessonViewForAWeek.week = index;
+//    lessonViewForAWeek.schType = self.schedulType;
+//    [lessonViewForAWeek setUpUI];
+//    lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
+//
+//
+//
+//    //承载课表和左侧第几节课信息的条的view
+//    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.024, MAIN_SCREEN_W, MAIN_SCREEN_H*0.8247)];
+//    [backView addSubview:scrollView];
+//    scrollView.delegate = self;
+//    scrollView.backgroundColor = [UIColor clearColor];
+//    scrollView.showsVerticalScrollIndicator = NO;
+//    [scrollView addSubview:lessonViewForAWeek];
+//    [scrollView addSubview:leftBar];
+//    [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height*1.1)];
+//    [self.scrollView addSubview:backView];
+//}
