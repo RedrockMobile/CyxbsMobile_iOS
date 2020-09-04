@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TermGrade : NSObject
+@interface TermGrade : NSObject<NSCoding>
 
 @property (nonatomic, copy)NSString *term;
 @property (nonatomic)NSNumber *gpa;

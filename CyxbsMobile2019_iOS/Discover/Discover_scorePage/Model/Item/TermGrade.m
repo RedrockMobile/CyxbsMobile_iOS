@@ -23,4 +23,23 @@
     }
     return self;
 }
+- (void)encodeWithCoder:(nonnull NSCoder *)coder { 
+    [coder encodeObject:self.term forKey:@"term"];
+    [coder encodeObject:self.gpa forKey:@"gpa"];
+    [coder encodeObject:self.grade forKey:@"grade"];
+    [coder encodeObject:self.rank forKey:@"rank"];
+    [coder encodeObject:self.singegradesArr forKey:@"single_grades"];
+}
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+
+    if(self = [super init]) {
+        self.term = [coder decodeObjectForKey:@"term"];
+        self.gpa = [coder decodeObjectForKey:@"gpa"];
+        self.grade = [coder decodeObjectForKey:@"grade"];
+        self.rank = [coder decodeObjectForKey:@"rank"];
+        self.singegradesArr = [coder decodeObjectForKey:@"single_grades"];
+    }
+    return self;
+}
+
 @end
