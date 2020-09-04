@@ -19,4 +19,17 @@
     }
     return self;
 }
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeObject:self.status forKey:@"status"];
+    [coder encodeObject:self.termGrades forKey:@"termGrades"];
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+    if(self = [super init]) {
+        self.status = [coder decodeObjectForKey:@"status"];
+        self.termGrades = [coder decodeObjectForKey:@"termGrades"];
+    }
+    return self;
+}
+
 @end

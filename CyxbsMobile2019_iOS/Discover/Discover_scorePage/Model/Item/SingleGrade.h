@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SingleGrade : NSObject
+@interface SingleGrade : NSObject<NSCoding>
 
 @property (nonatomic, copy)NSString *class_num;
 @property (nonatomic, copy)NSString *class_name;
