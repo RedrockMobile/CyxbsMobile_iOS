@@ -166,18 +166,20 @@
     
     [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
 }
+
 //是否显示备忘
 - (void)switchedDisplayMemoPad:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemopadON" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemoPadON" object:nil];
         [UserDefaultTool saveValue:@"test" forKey:@"Mine_DisplayMemoPad"];
     } else {                    // 关闭开关
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemopadOFF" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemoPadOFF" object:nil];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_DisplayMemoPad"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
+//打开app后是否自动弹出课表
 - (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
         [UserDefaultTool saveValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];

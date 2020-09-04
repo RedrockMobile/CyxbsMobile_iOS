@@ -362,7 +362,7 @@
 - (void)initScrollView{
     self.scrollView = [[UIScrollView alloc]init];
     [self.scrollView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    self.scrollView.contentSize = CGSizeMake(self.dateModel.dateArray.count * self.scrollView.frame.size.width, 0);
+    self.scrollView.contentSize = CGSizeMake((self.dateModel.dateArray.count+1) * self.scrollView.frame.size.width, 0);
     self.scrollView.pagingEnabled = YES;
     self.scrollView.delegate = self;
     self.scrollView.showsVerticalScrollIndicator = NO;

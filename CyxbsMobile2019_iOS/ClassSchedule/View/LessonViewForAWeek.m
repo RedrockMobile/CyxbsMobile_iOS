@@ -15,8 +15,9 @@
 
 /// 用这个类来显示课详情，懒加载
 @property(nonatomic,strong)ClassDetailViewShower *detailViewShower;
-
-
+@property(nonatomic,assign)BOOL isNoCourse;
+@property(nonatomic,assign)BOOL isNoNote;
+@property(nonatomic,strong)UIImageView *imgView;
 @end
 
 
@@ -30,11 +31,27 @@
         self.weekDataArray = weekDataArray;
         
         self.lessonViewsArray = [NSMutableArray array];
+        self.isNoCourse = YES;
+        self.isNoNote = YES;
         
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNote) name:@"Mine_DisplayMemoPadON" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideNote) name:@"Mine_DisplayMemoPadOFF" object:nil];
+        [self addImgView];
     }
     return self;
 }
 
+- (void)addImgView{
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"寂静"]];
+    self.imgView = imgView;
+    [self addSubview:imgView];
+    
+    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.width.mas_equalTo(MAIN_SCREEN_W*0.6667);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.429);
+    }];
+}
 /// 把所有按钮的参数都配置好，并加入superView,外界调用，调用前确保self.week、self.schType已赋值
 - (void)setUpUI{
     for (int i=0; i<7; i++) {
@@ -52,6 +69,7 @@
             if(lessonDateArray.count!=0){//非空课
                 lessonView.isEmptyLesson = NO;
                 lessonView.courseDataDictArray = self.weekDataArray[i][j];
+                self.isNoCourse = NO;
             }else{//空课
                 lessonView.isEmptyLesson = YES;
                 lessonView.emptyClassDate = @{
@@ -68,6 +86,11 @@
             [dayLessonViewsArray addObject:lessonView];
         }
         [self.lessonViewsArray addObject:dayLessonViewsArray];
+    }
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"Mine_DisplayMemoPad"]){
+        [self showNote];
+    }else{
+        [self hideNote];
     }
 }
 //emptyLessonData 结构：
@@ -96,6 +119,7 @@
 /// 由课表控制器调用，调用后根据model的信息在本周课表view的相应位置加备忘
 /// @param model 数据model
 - (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model{
+    self.isNoNote = NO;
     NSNumber *weekNum,*lessonNum;
     LessonView *lv;
     for (NSDictionary *timeDict in model.timeDictArray) {
@@ -107,6 +131,38 @@
         [lv.noteDataModelArray addObject:model];
         lv.isNoted = YES;
         [lv setUpData];
+    }
+    
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"Mine_DisplayMemoPad"]){
+        [self showNote];
+    }else{
+        [self hideNote];
+    }
+}
+
+- (void)showNote{
+    
+    if(self.isNoCourse==YES&&self.isNoNote==YES){
+        self.imgView.hidden = NO;
+    }else{
+        self.imgView.hidden = YES;
+    }
+}
+
+- (void)hideNote{
+    
+    if(self.isNoCourse==YES){
+        self.imgView.hidden = NO;
+    }else{
+        self.imgView.hidden = YES;
+    }
+}
+
+- (void)judgeIfShowEmptyImg{
+    if(self.isNoCourse==YES&&self.isNoNote==YES){
+        self.imgView.hidden = NO;
+    }else{
+        self.imgView.hidden = YES;
     }
 }
 //NoteDataModel.timeDictArray的结构：
