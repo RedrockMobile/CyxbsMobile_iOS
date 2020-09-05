@@ -92,7 +92,7 @@
         self.tableViewCurrentHeight += cellHeightIncrease.floatValue;
 //    self.tableViewCurrentHeight += 20;
     [self.tableView setHeight:self.tableViewCurrentHeight];
-        self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
+        self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 }
 -(void)contractSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
@@ -102,13 +102,11 @@
 //    self.tableViewCurrentHeight -= 20;
     [self.tableView setHeight:self.tableViewCurrentHeight];
 
-    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 }
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
     //GPA请求成功后进行对象归档
-//    NSArray *documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//      NSString *documentPath = documents[0];
     self.gpaItem = self.gpaModel.gpaItem;
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"];
     if([NSKeyedArchiver archiveRootObject:self.gpaModel.gpaItem toFile:filePath]) {
@@ -117,7 +115,7 @@
     
     [self.tableView removeFromSuperview];
     [self addTableView];
-    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 
 //    [self.tableView reloadInputViews];
     [self.chartView removeFromSuperview];
@@ -136,7 +134,8 @@
 //    self.gpaItem = gpaItem;
     NSLog(@"解档");
     self.gpaItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"]];
-    
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
+
 //    NSLog(@"%@,%@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
 
     [self.loadHud hide:YES];
