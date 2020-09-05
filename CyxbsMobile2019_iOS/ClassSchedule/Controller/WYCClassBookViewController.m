@@ -75,10 +75,10 @@
     
     [self showHud];
     
-    self.index = self.dateModel.nowWeek;
-    
     //初始化self.scrollView，并把它加到self.view上面
     [self initScrollView];
+    
+    self.index = self.dateModel.nowWeek;
     
     //添加周选择条、显示本周的条
    [self addTopBarView];
@@ -238,11 +238,8 @@
     if(index.intValue>25)index = [NSNumber numberWithInt:0];
     _index = index;
     self.topBarView.correctIndex = _index;
-//    [self loadSchedulWithIndex:index.intValue];
-//    [self addSchedulWithIndex:index.intValue-1];
-//    [self addSchedulWithIndex:index.intValue+1];
-//    return;
     int count = (int)self.backViewArray.count;
+    if(count==0)return;
     if(0<index.intValue&&index.intValue<count-1){
         [self addSchedulWithIndex:index.intValue];
         [self addSchedulWithIndex:index.intValue-1];
@@ -367,8 +364,7 @@
             [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height*1.1)];
             
             self.backViewArray[dateNum] = backView;
-//            [self.backViewArray addObject:backView];
-//            [self.scrollView addSubview:backView];
+            
         }
     }
     //如果是自己的课表,那就添加备忘
@@ -388,6 +384,7 @@
     }
     
     self.scrollView.contentOffset = CGPointMake(self.index.intValue*self.scrollView.frame.size.width,0);
+    self.index = self.index;
 }
 
 //WYCClassAndRemindDataModel模型加载失败后调用

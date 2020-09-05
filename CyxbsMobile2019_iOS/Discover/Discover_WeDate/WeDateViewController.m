@@ -251,7 +251,7 @@
         if(classmatesList.classmatesArray.count==0){
             
             hud.labelText = @"搜索无结果";
-            [hud hide:YES afterDelay:0.5];
+            [hud hide:YES afterDelay:1];
             return;
         }
         [hud hide:YES afterDelay:0.1];
@@ -262,8 +262,6 @@
         [listView showPeopleListView];
         
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [hud setMode:(MBProgressHUDModeText)];
         hud.labelText = @"加载失败";
         [hud hide:YES afterDelay:1];
     }];
@@ -286,7 +284,7 @@
         hud.labelText = @"加载中";
         WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
         model.delegate = self;
-        [model getClassBookArrayFromNetWithInfoDict:self.infoDictArray];
+        [model getClassBookArrayFromNetWithInfoDictArr:self.infoDictArray];
         [hud hide:YES afterDelay:0.3];
     }
 }

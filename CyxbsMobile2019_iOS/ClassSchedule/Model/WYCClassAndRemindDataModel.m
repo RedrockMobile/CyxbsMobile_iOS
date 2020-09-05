@@ -8,31 +8,14 @@
 
 #import "WYCClassAndRemindDataModel.h"
 @interface WYCClassAndRemindDataModel()
-//课表
-@property (nonatomic, assign) BOOL classDataLoadFinish;
-@property (nonatomic, assign) BOOL remindDataLoadFinish;
-//备忘
 //[responseObject objectForKey:@"data"]
 @property (nonatomic, strong)NSArray *rowDataArray;
 @end
 
 @implementation WYCClassAndRemindDataModel
 
-///从本地加载课表数据
-- (void)getClassBookArray{
-    //如果有缓存，则从缓存加载数据
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
-    NSArray *rowDataArray = [NSArray arrayWithContentsOfFile:lessonPath];
-    if (rowDataArray) {
-        self.rowDataArray = rowDataArray;
-        [self parseClassBookData:rowDataArray];
-        [self.delegate ModelDataLoadSuccess:self];
-    }else{
-        [self.delegate ModelDataLoadFailure];
-    }
-}
-
+/// 查个人课表用这个方法,它会先加载本地数据，再调去用getPersonalClassBookArrayFromNet方法来网络请求数据
+/// @param stuNum 学号
 - (void)getPersonalClassBookArrayWithStuNum:(NSString*)stuNum{
     NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
@@ -46,8 +29,9 @@
     [self getPersonalClassBookArrayFromNet:stuNum];
 }
 
+/// 查同学课表用这个方法来网络请求
+/// @param stu_Num 学号
 - (void)getClassBookArrayFromNet:(NSString *)stu_Num{
-    self.classDataLoadFinish = NO;
     NSDictionary *parameters = @{@"stu_num":stu_Num};
     
     [[HttpClient defaultClient] requestWithPath:URL method:HttpRequestPost parameters:parameters prepareExecute:nil progress:^(NSProgress *progress) {
@@ -56,15 +40,10 @@
         
         NSArray *lessonArray = [responseObject objectForKey:@"data"];
         
-        if(self.writeToFile==YES){
-            [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
-            //保存获取的课表数据到文件
-            NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-            NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
-            [lessonArray writeToFile:lessonPath atomically:YES];
-        }
         [self parseClassBookData:lessonArray];
+        
         [self.delegate ModelDataLoadSuccess:self];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         [self.delegate ModelDataLoadFailure];
@@ -72,6 +51,8 @@
     
 }
 
+/// 通过网络请求获取个人课表数据用这个方法，如果请求的数据和本地不一样且请求数据非空那么刷新课表
+/// @param stuNum 学号
 - (void)getPersonalClassBookArrayFromNet:(NSString *)stuNum{
     
     NSDictionary *parameters = @{@"stu_num":stuNum};
@@ -107,8 +88,9 @@
     }];
 }
 
+/// 查老师课表用这个方法来网络请求
+/// @param parameters 参数结构： @{ @"teaName": name, @"tea": teaNum }
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
-    self.classDataLoadFinish = NO;
     
     [[HttpClient defaultClient] requestWithPath:TEAkebiaoAPI method:HttpRequestPost parameters:parameters prepareExecute:nil progress:^(NSProgress *progress) {
         
@@ -126,7 +108,9 @@
     }];
     
 }
-//输入要求：[responseObject objectForKey:@"data"]
+
+/// 解析未经处理的课表数据
+/// @param array 结构同[responseObject objectForKey:@"data"]
 - (void)parseClassBookData:(NSArray *)array{
     //整学期
     if(_orderlySchedulArray!=nil){
@@ -152,6 +136,7 @@
         }
     }
 }
+
 - (NSMutableArray *)orderlySchedulArray{
     if(_orderlySchedulArray==nil){
         //整学期
@@ -175,6 +160,7 @@
     }
     return _orderlySchedulArray;
 }
+
 ///添加备忘模型
 - (void)addNoteDataWithModel:(NoteDataModel*)model{
     [self.noteDataModelArray addObject:model];
@@ -187,6 +173,7 @@
     //把所有的noteDataDict写入文件
     [rowData writeToFile:remindPath atomically:YES];
 }
+
 ///删除备忘模型
 - (void)deleteNoteDataWithModel:(NoteDataModel*)model{
     [self.noteDataModelArray removeObject:model];
@@ -196,7 +183,6 @@
     [rowData removeObject:model.noteDataDict];
     [rowData writeToFile:remPath atomically:YES];
 }
-
 
 /// 备忘模型数组的懒加载
 - (NSMutableArray *)noteDataModelArray{
@@ -218,8 +204,10 @@
     }
     return _noteDataModelArray;
 }
-//没课约查多人课表用这个方法
-- (void)getClassBookArrayFromNetWithInfoDict:(NSArray*)infoDictArray{
+
+/// 没课约查多人课表用这个方法
+/// @param infoDictArray n个人的信息字典组成的数组，信息只用到了@"stuNum"对应的value
+- (void)getClassBookArrayFromNetWithInfoDictArr:(NSArray*)infoDictArray{
 
     HttpClient *client = [HttpClient defaultClient];
     __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
@@ -246,7 +234,6 @@
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
      });
     }
-
     //完成group的任务后执行block里的内容
     dispatch_group_notify(group, que, ^{
         [self parseClassBookData:lessonOfAllPeople];

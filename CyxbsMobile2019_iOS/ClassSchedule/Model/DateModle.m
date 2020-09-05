@@ -17,7 +17,7 @@
 -(void)initCalculateDate:(NSString *)startDate{
     //从字符串转换日期
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-d"];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     
     NSDate *resDate = [formatter dateFromString:startDate];
     

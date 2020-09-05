@@ -245,10 +245,6 @@
     
     model.delegate = self.mySchedul;
     
-    model.writeToFile = YES;
-    
-    [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
-    
     if (self.mySchedul.stuNum) {
         [model getPersonalClassBookArrayWithStuNum:self.mySchedul.stuNum];
     }
