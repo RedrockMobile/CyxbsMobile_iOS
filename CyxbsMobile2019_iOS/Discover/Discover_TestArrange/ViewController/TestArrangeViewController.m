@@ -156,7 +156,7 @@
     view.layer.cornerRadius = 16;
     view.clipsToBounds = YES;
     //GPA接口暂时弄不了，所以关闭GPA查询入口
-//    [scoreEnterButton addTarget:self action:@selector(pushToScoreVC) forControlEvents:UIControlEventTouchUpInside];
+    [scoreEnterButton addTarget:self action:@selector(pushToScoreVC) forControlEvents:UIControlEventTouchUpInside];
 }
 
 

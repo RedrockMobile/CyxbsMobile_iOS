@@ -151,4 +151,8 @@ static UserItem *item = nil;
     _idsPasswd = idsPasswd;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
+- (void)setIdsBindingSuccess:(BOOL)idsBindingSuccess {
+    _idsBindingSuccess = idsBindingSuccess;
+    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
 @end

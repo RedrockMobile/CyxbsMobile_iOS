@@ -89,6 +89,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// ids绑定密码
 @property (nonatomic, copy)NSString *idsPasswd;
+
+/// ids绑定成功
+@property (nonatomic, assign) BOOL idsBindingSuccess;
 /// 获得单例对象
 + (UserItem *)defaultItem;
 
