@@ -39,7 +39,7 @@
 @property (nonatomic,assign)float tableViewCurrentHeight;//tableView的当前高度
 
 @property (nonatomic)GPA *gpaModel;
-//@property (nonatomic)GPAItem *GPAItem;
+@property (nonatomic)GPAItem *gpaItem;
 @end
 
 @implementation ScoreViewController
@@ -102,11 +102,20 @@
 }
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
+    //GPA请求成功后进行对象归档
+//    NSArray *documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//      NSString *documentPath = documents[0];
+    self.gpaItem = self.gpaModel.gpaItem;
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"];
+    if([NSKeyedArchiver archiveRootObject:self.gpaModel.gpaItem toFile:filePath]) {
+        NSLog(@"归档成功,路径%@",filePath);
+    }
+    
     [self.tableView removeFromSuperview];
     [self addTableView];
     self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
-    self.ABScoreView.AScore.text = self.gpaModel.gpaItem.termGrades.a_credit.stringValue;
-    self.ABScoreView.BScore.text = self.gpaModel.gpaItem.termGrades.b_credit.stringValue;
+    self.ABScoreView.AScore.text = self.gpaItem.termGrades.a_credit.stringValue;
+    self.ABScoreView.BScore.text = self.gpaItem.termGrades.b_credit.stringValue;
 //    [self.tableView reloadInputViews];
     [self.chartView removeFromSuperview];
     [self addChartView];
@@ -120,6 +129,9 @@
 }
 -(void)idsBindingSuccess {
     [self.idsBindgView removeFromSuperview];
+//    GPAItem *gpaItem = [[GPAItem alloc]init];
+//    self.gpaItem = gpaItem;
+    self.gpaItem = [NSKeyedUnarchiver unarchiveObjectWithFile:@"gpaItemObject.archiver"];
     [self.loadHud hide:YES];
       [self addTwoTitleView];
       [self addChartView];
@@ -207,7 +219,7 @@
 }
 - (void)addTableView {
     int plainCellHeight = 143;
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaModel.gpaItem.termGrades.termGrades.count+25) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaItem.termGrades.termGrades.count+25) style:UITableViewStylePlain];
     self.tableView = tableView;
     self.tableViewCurrentHeight = tableView.height;
     tableView.delegate = self;
@@ -271,41 +283,41 @@
 
 -(NSArray*)getChartArray {
     NSMutableArray *arr = [NSMutableArray array];
-    for (TermGrade*t in self.gpaModel.gpaItem.termGrades.termGrades) {
+    for (TermGrade*t in self.gpaItem.termGrades.termGrades) {
         double gpaNumber = t.gpa.doubleValue;
 //            NSString *gpa = gpaNumber.stringValue;
             [arr addObject:@(gpaNumber)];
     }
-    NSLog(@"%@",self.gpaModel.gpaItem.termGrades.termGrades);
+    NSLog(@"%@",self.gpaItem.termGrades.termGrades);
     NSArray *array = arr;
     return array;
 }
 //MARK: - tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(self.gpaModel.gpaItem.termGrades.termGrades.count) {
-        return self.gpaModel.gpaItem.termGrades.termGrades.count;
+    if(self.gpaItem.termGrades.termGrades.count) {
+        return self.gpaItem.termGrades.termGrades.count;
     }
     return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailScorePerYearCell *cell = [[DetailScorePerYearCell alloc]init];
-    if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].term) {
-        cell.timeLabel.text = [self getTermTitleWithString:self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].term];
+    if(self.gpaItem.termGrades.termGrades[indexPath.row].term) {
+        cell.timeLabel.text = [self getTermTitleWithString:self.gpaItem.termGrades.termGrades[indexPath.row].term];
     }
-    if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].gpa) {
-        cell.averangePointLabel.text =self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].gpa.stringValue;
+    if(self.gpaItem.termGrades.termGrades[indexPath.row].gpa) {
+        cell.averangePointLabel.text =self.gpaItem.termGrades.termGrades[indexPath.row].gpa.stringValue;
         
     }
-    if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].grade) {
-        NSString *averangeScore = [NSString stringWithFormat:@"%.2f",self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].grade.floatValue];
+    if(self.gpaItem.termGrades.termGrades[indexPath.row].grade) {
+        NSString *averangeScore = [NSString stringWithFormat:@"%.2f",self.gpaItem.termGrades.termGrades[indexPath.row].grade.floatValue];
         
         cell.averangeScoreLabel.text = averangeScore;
     }
-    if (self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].rank) {
-        cell.averangeRankLabel.text = self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].rank.stringValue;
+    if (self.gpaItem.termGrades.termGrades[indexPath.row].rank) {
+        cell.averangeRankLabel.text = self.gpaItem.termGrades.termGrades[indexPath.row].rank.stringValue;
     }
-    if(self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr) {
-        cell.singleGradesArray =self.gpaModel.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr;
+    if(self.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr) {
+        cell.singleGradesArray =self.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr;
         cell.openingHeight = cell.subjectCellHeight*cell.singleGradesArray.count+[cell.class plainHeight];
 
     }
