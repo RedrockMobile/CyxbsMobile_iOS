@@ -476,6 +476,7 @@
 		EEA301DD2468680800A8DB26 /* BannerData.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA301DC2468680800A8DB26 /* BannerData.m */; };
 		EEA88EB424FB3A340062A205 /* DetailSubjectScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA88EB324FB3A340062A205 /* DetailSubjectScoreCell.m */; };
 		EED03014247E9F1E009DD181 /* PickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EED03013247E9F1E009DD181 /* PickerModel.m */; };
+		EEDE5ABF2504828600E39280 /* ScorePresentAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDE5ABD2504828600E39280 /* ScorePresentAnimation.m */; };
 		EEEBD287248E504D00A2DDB1 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEBD286248E504D00A2DDB1 /* ElectricityView.m */; };
 		EEEBD28A248E5D8000A2DDB1 /* VolunteerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EEEBD289248E5D8000A2DDB1 /* VolunteerView.m */; };
 /* End PBXBuildFile section */
@@ -1304,6 +1305,8 @@
 		EEA88EB324FB3A340062A205 /* DetailSubjectScoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailSubjectScoreCell.m; sourceTree = "<group>"; };
 		EED03012247E9F1E009DD181 /* PickerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerModel.h; sourceTree = "<group>"; };
 		EED03013247E9F1E009DD181 /* PickerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickerModel.m; sourceTree = "<group>"; };
+		EEDE5ABD2504828600E39280 /* ScorePresentAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScorePresentAnimation.m; sourceTree = "<group>"; };
+		EEDE5ABE2504828600E39280 /* ScorePresentAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScorePresentAnimation.h; sourceTree = "<group>"; };
 		EEEBD285248E504D00A2DDB1 /* ElectricityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
 		EEEBD286248E504D00A2DDB1 /* ElectricityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
 		EEEBD288248E5D8000A2DDB1 /* VolunteerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerView.h; sourceTree = "<group>"; };
@@ -3095,6 +3098,8 @@
 			isa = PBXGroup;
 			children = (
 				EE75BF3223F5884100208039 /* TestArrangeViewController.h */,
+				EEDE5ABE2504828600E39280 /* ScorePresentAnimation.h */,
+				EEDE5ABD2504828600E39280 /* ScorePresentAnimation.m */,
 				EE75BF3123F5884100208039 /* TestArrangeViewController.m */,
 			);
 			path = ViewController;
@@ -4094,6 +4099,7 @@
 				EE75BFA923F5884100208039 /* ChooseStudentListViewController.m in Sources */,
 				EE75BFC023F5884100208039 /* SCPieChart.m in Sources */,
 				EE8234DA24673FE800F6B4AE /* AllYearsViewController.m in Sources */,
+				EEDE5ABF2504828600E39280 /* ScorePresentAnimation.m in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,

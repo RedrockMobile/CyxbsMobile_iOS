@@ -13,12 +13,13 @@
 #import "ExamArrangeModel.h"
 #import "ExamArrangeData.h"
 #import "UserInfoView.h"
+#import "ScorePresentAnimation.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define tableViewColor [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-@interface TestArrangeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TestArrangeViewController ()<UITableViewDelegate,UITableViewDataSource,UIViewControllerTransitioningDelegate>
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak)UILabel *titleLabel;
 @property (nonatomic, strong)ExamArrangeModel *examArrangeModel;
@@ -162,11 +163,13 @@
 
 - (void) pushToScoreVC {
     ScoreViewController *vc = [[ScoreViewController alloc]init];
+    vc.transitioningDelegate = self;
     [self presentViewController:vc animated:YES completion:^{
         NSLog(@"跳转至学分成绩vc");
     }];
 
 }
+
 - (void)getExamArrangeData {
     ExamArrangeModel *model = [[ExamArrangeModel alloc]init];
     self.examArrangeModel = model;
@@ -209,7 +212,12 @@
     [self removeBackButtonTitle];
 }
 
-
+//MARK: - translationVC Delegate
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    ScorePresentAnimation *myAnimation = [[ScorePresentAnimation alloc]init];
+    myAnimation.isPresent = YES;
+    return myAnimation;
+}
 //MARK: - tableView代理
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
