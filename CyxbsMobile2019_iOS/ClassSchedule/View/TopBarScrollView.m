@@ -101,12 +101,6 @@
     [btn addTarget:self action:@selector(leftArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:@"左箭头"] forState:UIControlStateNormal];
     btn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-    if(@available(iOS 11.0, *)){
-        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
-    }else{
-        [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
-    }
-    btn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
     
     //约束
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -254,21 +248,15 @@
     UIButton *btn = [[UIButton alloc] init];
     [self.nowWeekBar addSubview:btn];
     self.rightArrowBtn = btn;
+    
     [btn addTarget:self action:@selector(rightArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:@"右箭头"] forState:UIControlStateNormal];
-    [btn setImageEdgeInsets:(UIEdgeInsetsMake(0, 0, 0, 11))];
-    
-    if (@available(iOS 11.0, *)) {
-        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
-    } else {
-        [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
-    }
-    btn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
+    [btn setImageEdgeInsets:(UIEdgeInsetsMake(0, 5, 0, 6))];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(20);
         make.height.mas_equalTo(20);
-        make.left.equalTo(self.nowWeekLabel.mas_right);
+        make.left.equalTo(self.nowWeekLabel.mas_right).offset(-5);
         make.centerY.equalTo(self.weekLabel).offset(2.5);
     }];
 }
