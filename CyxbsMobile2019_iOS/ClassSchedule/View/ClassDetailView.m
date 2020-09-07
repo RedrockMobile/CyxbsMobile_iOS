@@ -83,7 +83,7 @@
 //    self.classroomNameLabel.text = @"计算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406/C407)";
     if (self.classroomNameLabel.text.length>25) {
         [self.classroomNameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(MAIN_SCREEN_W*0.7);
+            make.width.mas_equalTo(MAIN_SCREEN_W*0.62);
         }];
     }
 }
@@ -219,7 +219,7 @@
     }];
     
     [self.rightArrBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.classroomNameLabel.mas_right).offset(2);
+        make.left.equalTo(self.classroomNameLabel.mas_right).offset(-4);
         make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
         make.width.height.mas_equalTo(20);
     }];

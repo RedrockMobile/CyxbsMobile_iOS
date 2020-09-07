@@ -337,14 +337,27 @@
             
             
             
+            //承载课表和左侧第几节课信息的条的view
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.024, MAIN_SCREEN_W, MAIN_SCREEN_H*0.8247)];
+            [backView addSubview:scrollView];
+            scrollView.delegate = self;
+            scrollView.backgroundColor = [UIColor clearColor];
+            scrollView.showsVerticalScrollIndicator = NO;
+            [scrollView setContentSize:CGSizeMake(0, MAIN_SCREEN_W*1.979186)];
+            
+            
+            
+            
             //左侧课条
             LeftBar *leftBar = [[LeftBar alloc] init];
+            [scrollView addSubview:leftBar];
             leftBar.frame = CGRectMake(0,0, MONTH_ITEM_W, leftBar.frame.size.height);
             
             
             
             //课表
             LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.model.orderlySchedulArray[dateNum]];
+            [scrollView addSubview:lessonViewForAWeek];
             [self.lessonViewArray addObject:lessonViewForAWeek];
             lessonViewForAWeek.week = dateNum;
             lessonViewForAWeek.schType = self.schedulType;
@@ -353,15 +366,6 @@
             
             
             
-            //承载课表和左侧第几节课信息的条的view
-            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, DAY_BAR_ITEM_H+MAIN_SCREEN_W*0.024, MAIN_SCREEN_W, MAIN_SCREEN_H*0.8247)];
-            [backView addSubview:scrollView];
-            scrollView.delegate = self;
-            scrollView.backgroundColor = [UIColor clearColor];
-            scrollView.showsVerticalScrollIndicator = NO;
-            [scrollView addSubview:lessonViewForAWeek];
-            [scrollView addSubview:leftBar];
-            [scrollView setContentSize:CGSizeMake(0, lessonViewForAWeek.frame.size.height*1.1)];
             
             self.backViewArray[dateNum] = backView;
             
