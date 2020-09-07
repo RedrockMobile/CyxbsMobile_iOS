@@ -25,10 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestStarListSuccess:(void (^)(CQUPTMapStarPlaceItem *starPlace))success
                         failed:(void (^)(NSError *error))failed;
 
-+ (void)searchPlaceWithString:(NSString *)string
-                      success:(void (^)(NSArray<CQUPTMapSearchItem *> *placeIDArray))success
-                       failed:(void (^)(NSError *error))failed;
-
 + (void)requestPlaceDataWithPlaceID:(NSString *)placeID
                             success:(void (^)(CQUPTMapPlaceDetailItem *placeDetailItem))success
                              failed:(void (^)(NSError *error))failed;

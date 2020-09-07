@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) CQUPTMapContentView *contentView;
 
+- (instancetype)initWithInitialPlace:(NSString *)placeID;
+
 @end
 
 NS_ASSUME_NONNULL_END
