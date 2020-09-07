@@ -51,11 +51,11 @@
     } else {
         // Fallback on earlier versions
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     [self addContentView];//scrollView
     [self addUserInfoView];
     [self tryIDSBinding];
     self.tableViewCurrentHeight = [DetailScorePerYearCell plainHeight];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBindingUnknownError" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBinding_passwordError" object:nil];
     
@@ -66,6 +66,10 @@
 -(void)tryIDSBinding {
     NSString *idsAccount = [UserItem defaultItem].idsAccount;
     NSString *idsPasswd = [UserItem defaultItem].idsPasswd;
+    if([UserItem defaultItem].idsBindingSuccess) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
+        return;
+    }
     if(idsAccount && idsPasswd) {
         IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:idsAccount isPassword:idsPasswd];
         [binding fetchData];
@@ -88,7 +92,7 @@
         self.tableViewCurrentHeight += cellHeightIncrease.floatValue;
 //    self.tableViewCurrentHeight += 20;
     [self.tableView setHeight:self.tableViewCurrentHeight];
-        self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
+        self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 }
 -(void)contractSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
@@ -98,24 +102,21 @@
 //    self.tableViewCurrentHeight -= 20;
     [self.tableView setHeight:self.tableViewCurrentHeight];
 
-    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 }
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
     //GPA请求成功后进行对象归档
-//    NSArray *documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//      NSString *documentPath = documents[0];
     self.gpaItem = self.gpaModel.gpaItem;
-    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"];
+    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"];
     if([NSKeyedArchiver archiveRootObject:self.gpaModel.gpaItem toFile:filePath]) {
         NSLog(@"归档成功,路径%@",filePath);
     }
     
     [self.tableView removeFromSuperview];
     [self addTableView];
-    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+40);
-    self.ABScoreView.AScore.text = self.gpaItem.termGrades.a_credit.stringValue;
-    self.ABScoreView.BScore.text = self.gpaItem.termGrades.b_credit.stringValue;
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
+
 //    [self.tableView reloadInputViews];
     [self.chartView removeFromSuperview];
     [self addChartView];
@@ -131,7 +132,12 @@
     [self.idsBindgView removeFromSuperview];
 //    GPAItem *gpaItem = [[GPAItem alloc]init];
 //    self.gpaItem = gpaItem;
-    self.gpaItem = [NSKeyedUnarchiver unarchiveObjectWithFile:@"gpaItemObject.archiver"];
+    NSLog(@"解档");
+    self.gpaItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"]];
+    self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
+
+//    NSLog(@"%@,%@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
+
     [self.loadHud hide:YES];
       [self addTwoTitleView];
       [self addChartView];
@@ -189,6 +195,8 @@
 - (void)addABScoreView {
     ABScoreView *view = [[ABScoreView alloc]initWithFrame:CGRectMake(0, self.chartView.origin.y + self.chartView.size.height, self.view.width, 90)];
     self.ABScoreView = view;
+    self.ABScoreView.AScore.text = self.gpaItem.termGrades.a_credit.stringValue;
+    self.ABScoreView.BScore.text = self.gpaItem.termGrades.b_credit.stringValue;
     [self.contentView addSubview:view];
 }
 - (void)addTermScoreView {

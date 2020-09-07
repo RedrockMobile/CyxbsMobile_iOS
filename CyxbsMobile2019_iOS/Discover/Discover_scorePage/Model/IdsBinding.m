@@ -38,6 +38,7 @@
                 [UserItem defaultItem].idsPasswd = self.idsPassword;
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
                 NSLog(@"ids绑定成功");
+                [UserItem defaultItem].idsBindingSuccess = YES;
             }
             
     } else {
