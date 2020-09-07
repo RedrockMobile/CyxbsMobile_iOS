@@ -7,6 +7,9 @@
 //显示某课详情的弹窗view
 
 #import "ClassDetailView.h"
+#import "ClassDetailModel.h"
+#import "CQUPTMapViewController.h"
+
 @interface ClassDetailView()
 
 /// 课程名称
@@ -42,7 +45,7 @@
 
 @implementation ClassDetailView
 
-- (instancetype)init{
+- (instancetype)init {
     self = [super init];
     if(self){
         [self setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
@@ -54,7 +57,7 @@
 }
 
 /// 添加教室地址旁边的右箭头按钮
-- (void)addRightArrBtn{
+- (void)addRightArrBtn {
     UIButton *btn = [[UIButton alloc] init];
     self.rightArrBtn  = btn;
     [self addSubview:btn];
@@ -66,7 +69,7 @@
 }
 
 /// 重写了dataDict的set方法，这样给dataDict赋值就可以自动完成对文字的设置
-- (void)setDataDict:(NSDictionary *)dataDict{
+- (void)setDataDict:(NSDictionary *)dataDict {
     _dataDict = dataDict;
     self.lessonNameLabel.text = dataDict[@"course"];
     self.classroomNameLabel.text = dataDict[@"classroom"];
@@ -78,7 +81,7 @@
     [NSString stringWithFormat:@"%@  %@",dataDict[@"day"],daytime];
     self.typeLabel.text = dataDict[@"type"];
 //    self.classroomNameLabel.text = @"计算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406/C407)";
-    if(self.classroomNameLabel.text.length>25){
+    if (self.classroomNameLabel.text.length>25) {
         [self.classroomNameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(MAIN_SCREEN_W*0.7);
         }];
@@ -86,7 +89,7 @@
 }
 
 ///文本框初始化，完成对定死的数据的设置
-- (void)initLabel{
+- (void)initLabel {
     //alloc init
     self.lessonNameLabel = [[UILabel alloc] init];
     self.weekRangeLabel = [[UILabel alloc] init];
@@ -112,9 +115,9 @@
     
     //上色
     UIColor *textColor;
-    if(@available(iOS 11.0, *)){
+    if (@available(iOS 11.0, *)) {
         textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-    }else{
+    } else {
         textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     self.lessonNameLabel.textColor = textColor;
@@ -164,7 +167,7 @@
 
 
 /// 加约束
-- (void)layoutSubviews{
+- (void)layoutSubviews {
     /// 加约束
     [self.lessonNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
@@ -223,7 +226,7 @@
 }
 
 ///把@"一二节"转换为@"1-2节"、如果period==3，那么@"九十节"->@"9-11节"
-- (NSString*)transformDataString:(NSString*)dataString withPeriod:(int)period{
+- (NSString*)transformDataString:(NSString*)dataString withPeriod:(int)period {
     NSString *str12,*str56,*str910;
          switch (period) {
          case 2:
@@ -254,10 +257,15 @@
     return tranfer[dataString];
 }
 
-- (void)rightArrowBtnClicked{
-    
+- (void)rightArrowBtnClicked {
+    [ClassDetailModel requestPlaceIDWithPlaceName:self.classroomNameLabel.text success:^(NSDictionary * _Nonnull responseObject) {
+        CQUPTMapViewController *mapVC = [[CQUPTMapViewController alloc] initWithInitialPlace:[responseObject[@"data"][@"place_id"] stringValue]];
+        
+//        [self.viewController presentViewController:mapVC animated:YES completion:nil];
+    }];
 }
 @end
+
 /**
 "begin_lesson" = 1;
 教室                                classroom = 2217;

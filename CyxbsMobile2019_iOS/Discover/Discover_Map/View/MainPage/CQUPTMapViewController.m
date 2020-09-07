@@ -10,6 +10,7 @@
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapViewProtocol.h"
 #import "CQUPTMapDataItem.h"
+#import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapProgressView.h"
 #import "CQUPTVRMapController.h"
@@ -20,10 +21,18 @@
 @property (nonatomic, weak) CQUPTMapProgressView *progressView;
 @property (nonatomic, weak) MBProgressHUD *hud;
 @property (nonatomic, strong) CQUPTMapPresenter *presenter;
+@property (nonatomic, copy) NSString *initialPlaceID;
 
 @end
 
 @implementation CQUPTMapViewController
+
+- (instancetype)initWithInitialPlace:(NSString *)placeID {
+    if (self = [super init]) {
+        self.initialPlaceID = placeID;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,7 +66,6 @@
 
 #pragma mark - Presenter 回调
 - (void)mapDataRequestSuccessWithMapData:(CQUPTMapDataItem *)mapData hotPlace:(nonnull NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceArray {
-    [self.hud hide:YES];
     
     [mapData archiveItem];
     
@@ -97,7 +105,20 @@
 
         self.contentView.mapScrollView.contentSize = image.size;
         [self.contentView.mapScrollView scrollToBottom];
+        
+        if (self.initialPlaceID) {
+            for (CQUPTMapPlaceItem *placeItem in mapData.placeList) {
+                if ([placeItem.placeId isEqualToString:self.initialPlaceID]) {
+                    [self.contentView selectedAPlace:placeItem];
+                    [self requestPlaceDataWithPlaceID:self.initialPlaceID];
+                    return;
+                }
+            }
+        }
     }];
+    
+    [self.hud hide:YES];
+    
 }
 
 - (void)starPlaceRequestSuccessWithStarPlace:(CQUPTMapStarPlaceItem *)starPlace {

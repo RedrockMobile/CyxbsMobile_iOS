@@ -428,6 +428,7 @@
         [self.mapView addSubview:pinImageView];
         [self.pinsArray addObject:pinImageView];
         
+        [self layoutIfNeeded];
         [pinImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.leading.equalTo(self.mapView).offset(placeItem.centerX * self.mapView.width / self.mapScrollView.zoomScale - 12.5 / self.mapScrollView.zoomScale);
             make.top.equalTo(self.mapView).offset(placeItem.centerY * self.mapView.height / self.mapScrollView.zoomScale - 18 / self.mapScrollView.zoomScale);

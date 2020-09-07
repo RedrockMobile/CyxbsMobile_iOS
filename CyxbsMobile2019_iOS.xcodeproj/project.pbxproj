@@ -50,6 +50,7 @@
 		1A22DDD1244FF89E00FBB51E /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A22DDD0244FF89E00FBB51E /* EmptyClassModel.m */; };
 		1A22DDD4244FF92300FBB51E /* EmptyClassItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A22DDD3244FF92300FBB51E /* EmptyClassItem.m */; };
 		1A22DDD724502A6E00FBB51E /* EmptyClassCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A22DDD624502A6E00FBB51E /* EmptyClassCollectionViewCell.m */; };
+		1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2CEA8E250667C200A0EE0F /* ClassDetailModel.m */; };
 		1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */; };
 		1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */; };
 		1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */; };
@@ -585,6 +586,8 @@
 		1A22DDD3244FF92300FBB51E /* EmptyClassItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyClassItem.m; sourceTree = "<group>"; };
 		1A22DDD524502A6E00FBB51E /* EmptyClassCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyClassCollectionViewCell.h; sourceTree = "<group>"; };
 		1A22DDD624502A6E00FBB51E /* EmptyClassCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyClassCollectionViewCell.m; sourceTree = "<group>"; };
+		1A2CEA8D250667C200A0EE0F /* ClassDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassDetailModel.h; sourceTree = "<group>"; };
+		1A2CEA8E250667C200A0EE0F /* ClassDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassDetailModel.m; sourceTree = "<group>"; };
 		1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreViewController.h; sourceTree = "<group>"; };
 		1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreViewController.m; sourceTree = "<group>"; };
 		1A30F39523D05AB200FBBD83 /* IntegralStoreTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreTransitionAnimator.h; sourceTree = "<group>"; };
@@ -2685,6 +2688,8 @@
 				DB34EA2E239BD4540052B65E /* WYCClassAndRemindDataModel.m */,
 				AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */,
 				AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */,
+				1A2CEA8D250667C200A0EE0F /* ClassDetailModel.h */,
+				1A2CEA8E250667C200A0EE0F /* ClassDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3839,6 +3844,7 @@
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				EE75BFAD23F5884100208039 /* ClassmatesList.m in Sources */,
+				1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */,
 				EE75BFC723F5884100208039 /* ABScoreView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
