@@ -36,6 +36,8 @@
 /// 显示@"课程类型"的label
 @property (nonatomic, strong)UILabel *type;
 
+/// 教室地址旁边的右箭头按钮
+@property (nonatomic, strong)UIButton *rightArrBtn;
 @end
 
 @implementation ClassDetailView
@@ -45,9 +47,22 @@
     if(self){
         [self setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
         [self initLabel];
+        [self addRightArrBtn];
         self.backgroundColor = UIColor.clearColor;
     }
     return self;
+}
+
+/// 添加教室地址旁边的右箭头按钮
+- (void)addRightArrBtn{
+    UIButton *btn = [[UIButton alloc] init];
+    self.rightArrBtn  = btn;
+    [self addSubview:btn];
+    
+    
+    [btn addTarget:self action:@selector(rightArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:@"右箭头"] forState:UIControlStateNormal];
+    [btn setImageEdgeInsets:(UIEdgeInsetsMake(0, 5, 0, 6))];
 }
 
 /// 重写了dataDict的set方法，这样给dataDict赋值就可以自动完成对文字的设置
@@ -64,7 +79,7 @@
     self.typeLabel.text = dataDict[@"type"];
 //    self.classroomNameLabel.text = @"计算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406算机教室(十一) (综合实验楼C405/C406/C407)";
     if(self.classroomNameLabel.text.length>25){
-        [self.classroomNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.classroomNameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(MAIN_SCREEN_W*0.7);
         }];
     }
@@ -199,6 +214,12 @@
         make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
         make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
     }];
+    
+    [self.rightArrBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.classroomNameLabel.mas_right).offset(2);
+        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
+        make.width.height.mas_equalTo(20);
+    }];
 }
 
 ///把@"一二节"转换为@"1-2节"、如果period==3，那么@"九十节"->@"9-11节"
@@ -207,7 +228,7 @@
          switch (period) {
          case 2:
              str12 = @"8:00-9:40";
-             str56 = @"14:00-16:15";
+             str56 = @"14:00-15:40";
              str910 = @"19:00-20:40";
              break;
          case 3:
@@ -231,6 +252,10 @@
         @"九十节":str910,
     };
     return tranfer[dataString];
+}
+
+- (void)rightArrowBtnClicked{
+    
 }
 @end
 /**
