@@ -30,10 +30,11 @@
     for (NSString *text in self.dataArray) {
         UIButton *button = [[UIButton alloc]init];
         [button.titleLabel setFont:self.exampleButton.titleLabel.font];
-        [button setTitleColor:self.exampleButton.titleLabel.textColor forState:normal];
+        [button setTitleColor:self.exampleButton.titleLabel.textColor forState:UIControlStateNormal];
+        [button addTarget:self.btnClickedDelegate action:@selector(touchHistoryButton:) forControlEvents:UIControlEventTouchUpInside];
         button.backgroundColor = self.exampleButton.backgroundColor;
         button.layer.cornerRadius = self.exampleButton.layer.cornerRadius;
-        [button setTitle:text forState:normal];
+        [button setTitle:text forState:UIControlStateNormal];
         [self addSubview:button];
         [self.buttonArray addObject:button];
     }
@@ -83,7 +84,10 @@
 //        }
 //}
 - (void)setHistoryBtnView{
-    
+    [self removeAllSubviews];
+    for (UIButton *butt in self.buttonArray) {
+        [self addSubview:butt];
+    }
     //MARK: - 所有按钮的约束部分
     for (int i = 0; i < _dataArray.count; i++) {
         [self.buttonArray[i].titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -127,15 +131,25 @@
                 }
         }
 }
+
 - (void)addHistoryBtnWithString:(NSString*)string reLayout:(BOOL)is{
     if([string isEqualToString:[self.dataArray firstObject]]){return;}
     UIButton *btn = [[UIButton alloc]init];
     [btn.titleLabel setFont:self.exampleButton.titleLabel.font];
-    [btn setTitleColor:self.exampleButton.titleLabel.textColor forState:normal];
+    [btn setTitleColor:self.exampleButton.titleLabel.textColor forState:UIControlStateNormal];
     btn.backgroundColor = self.exampleButton.backgroundColor;
     btn.layer.cornerRadius = self.exampleButton.layer.cornerRadius;
-    [btn setTitle:string forState:normal];
+    [btn setTitle:string forState:UIControlStateNormal];
     [self addSubview:btn];
+    [btn addTarget:self.btnClickedDelegate action:@selector(touchHistoryButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    for (int i=0; i<self.buttonArray.count; i++) {
+        if([self.buttonArray[i].titleLabel.text isEqualToString:string]){
+            [self.buttonArray removeObject:self.buttonArray[i]];
+            [self.dataArray removeObject:string];
+            break;
+        }
+    }
     
     [self.buttonArray insertObject:btn atIndex:0];
     [self.dataArray insertObject:string atIndex:0];

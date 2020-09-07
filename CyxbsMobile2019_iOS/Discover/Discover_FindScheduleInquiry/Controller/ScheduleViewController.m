@@ -17,7 +17,7 @@
 
 
 
-@interface ScheduleViewController ()<UITextFieldDelegate>
+@interface ScheduleViewController ()<UITextFieldDelegate,HistoryViewDelegate>
 /**搜索栏里的UITextField*/
 @property (nonatomic, weak)UITextField *textField;
 
@@ -214,9 +214,8 @@
     
     self.historyView = view;
     [self.view addSubview:view];
-    for (UIButton *button in view.buttonArray) {
-        [button addTarget:self action:@selector(touchHistoryButton:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    view.btnClickedDelegate = self;
+    
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.historyLabel.mas_bottom).offset(9);
         make.left.equalTo(self.searchBackView);
@@ -361,20 +360,25 @@
     
     //现在array不可能是nil
     
-    //判断是否和上一次搜索的内容一样，如果不一样就添加新的历史记录
-    if(![[array firstObject] isEqualToString:str]){
-        
-        //加到数组的第一个，这样可以把最新的历史记录显示在最上面
-        [array insertObject:str atIndex:0];
-    
-        //限制最多缓存MAXLEN个历史记录
-        if(array.count>MAXLEN){
-            [array removeLastObject];
+    //判断是否和以前的搜索内容一样，如果一样就移除旧的历史记录
+    for (NSString *historyStr in array) {
+        if ([historyStr isEqualToString:str]) {
+            [array removeObject:str];
+            break;
         }
-        
-        //加上重新放回去
-        [defa setObject:array forKey:key];
     }
+    
+    //加到数组的第一个，这样可以把最新的历史记录显示在最上面
+    [array insertObject:str atIndex:0];
+
+    //限制最多缓存MAXLEN个历史记录
+    if(array.count>MAXLEN){
+        [array removeLastObject];
+    }
+    
+    //加上重新放回去
+    [defa setObject:array forKey:key];
+    
 }
 
 @end
