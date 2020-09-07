@@ -25,14 +25,13 @@
         // Fallback on earlier versions
     }
 //    self.navigationController.navigationBar.hidden=YES;
-    [self addBackButton];
     
     //获取导航栏高度
     double navHeight = self.navigationController.navigationBar.frame.size.height;
     //获取状态栏高度
     double statusHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
-    
-    WKWebView * webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, statusHeight+navHeight+15, self.view.width, self.view.height)];
+    NSLog(@"nav%f,sta%f",navHeight,statusHeight);
+    WKWebView * webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, statusHeight+navHeight, self.view.width, self.view.height-statusHeight-navHeight)];
     self.webView = webView;
     self.webView.navigationDelegate = self;
 //    if(!IS_IPHONEX) {
@@ -43,6 +42,7 @@
 
     [webView loadRequest:request];
     [self.view addSubview:webView];
+    [self addBackButton];
 
         // 添加观察者，监听 WKWebView 对象的 title 属性
     //
@@ -90,11 +90,13 @@
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@30);
         make.height.equalTo(@30);
-        if (IS_IPHONEX) {
-            make.top.equalTo(self.view).offset(65);
-        }else {
-            make.top.equalTo(self.view).offset(40);
-        }
+//        make.bottom.equalTo(self.navigationController.navigationBar.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.webView.mas_top).offset(-10);
+//        if (IS_IPHONEX) {
+//            make.top.equalTo(self.view).offset(65);
+//        }else {
+//            make.top.equalTo(self.view).offset(40);
+//        }
         make.left.equalTo(self.view).offset(8.6);
     }];
     [button setImageEdgeInsets:UIEdgeInsetsMake(6, 10, 6, 10)];//增大点击范围
