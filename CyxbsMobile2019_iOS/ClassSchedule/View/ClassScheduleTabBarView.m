@@ -24,6 +24,7 @@
 /// 上拉弹出课表的手势
 @property (nonatomic,strong)UIPanGestureRecognizer *PGR;
 @property (nonatomic,strong)TransitionManager *TM;
+@property (nonatomic,strong)UINavigationController *mySchedulNaVC;
 @end
 
 @implementation ClassScheduleTabBarView
@@ -117,7 +118,7 @@
         UserItem *item = [UserItem defaultItem];
         
         //如果真实姓名非空，那么已登录
-        if(item.realName!=nil||![item.realName isEqualToString:@""]){
+        if(item.realName!=nil&&![item.realName isEqualToString:@""]){
             [self initMySchedul];
         }
     }
@@ -212,7 +213,7 @@
     //点击后显示课表
     UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
         self.mySchedul.fakeBar.alpha = 0;
-        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
+        [self.viewController presentViewController:self.mySchedulNaVC animated:YES completion:nil];
     }];
     [self addGestureRecognizer:TGR];
 }
@@ -220,7 +221,7 @@
 - (void)presentMySchedul{
     if(self.PGR.state==UIGestureRecognizerStateBegan){
         self.TM.PGRToInitTransition = self.PGR;
-        [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
+        [self.viewController presentViewController:self.mySchedulNaVC animated:YES completion:^{
             self.TM.PGRToInitTransition = nil;
         } ];
     }
@@ -245,13 +246,17 @@
     
     model.delegate = self.mySchedul;
     
-    if (self.mySchedul.stuNum) {
-        [model getPersonalClassBookArrayWithStuNum:self.mySchedul.stuNum];
-    }
+    [model getPersonalClassBookArrayWithStuNum:self.mySchedul.stuNum];
     
-    self.mySchedul.transitioningDelegate = self.TM;
+    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:self.mySchedul];
     
-    [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+    self.mySchedulNaVC = naVC;
+    
+    naVC.navigationBarHidden = YES;
+    
+    self.mySchedulNaVC.transitioningDelegate = self.TM;
+    
+    [self.mySchedulNaVC setModalPresentationStyle:(UIModalPresentationCustom)];
     
     [self addGesture];
     self.isInitingMySchedul = NO;

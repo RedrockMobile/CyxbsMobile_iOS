@@ -13,8 +13,11 @@
 @implementation ClassSchedulPresentingAnimater
 
 - (void)animateTransition:(nonnull id<UIViewControllerContextTransitioning>)transitionContext { 
-    if([[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] isMemberOfClass:[WYCClassBookViewController class]]){
-        WYCClassBookViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    if([[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] isMemberOfClass:[UINavigationController class]]){
+        UINavigationController *naVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        
+        WYCClassBookViewController *to = [naVC.viewControllers firstObject];
+        
         ClassTabBarController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         to.topBarView.alpha = 0;
         to.fakeBar.alpha = 1;
@@ -45,8 +48,13 @@
         }];
         
     }else{
+        
         ClassTabBarController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-        WYCClassBookViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        
+        UINavigationController *naVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        
+        WYCClassBookViewController *from = [naVC.viewControllers firstObject];
+        
         from.topBarView.alpha = 1;
         from.fakeBar.alpha = 0;
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{

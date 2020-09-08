@@ -148,6 +148,7 @@
     }];
     
 }
+
 /// 为UITextField自定义键盘上的toolBar
 /// @param textField 需要自定义toolBar的UITextField
 - (void)addKeyBoardToolBarforTextField:(UITextField*)textField{
@@ -176,6 +177,7 @@
     
     textField.inputAccessoryView = toolBar;
 }
+
 //点击键盘右上角的完成按钮后调用
 - (void)doneClicked{
     [self.view endEditing:YES];
