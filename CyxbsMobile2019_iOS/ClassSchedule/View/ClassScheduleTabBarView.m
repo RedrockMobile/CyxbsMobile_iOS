@@ -117,7 +117,7 @@
         UserItem *item = [UserItem defaultItem];
         
         //如果真实姓名非空，那么已登录
-        if(item.realName!=nil||![item.realName isEqualToString:@""]){
+        if(item.realName!=nil&&![item.realName isEqualToString:@""]){
             [self initMySchedul];
         }
     }

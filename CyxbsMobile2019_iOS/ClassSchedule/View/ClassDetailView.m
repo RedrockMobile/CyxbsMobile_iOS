@@ -260,8 +260,7 @@
 - (void)rightArrowBtnClicked {
     [ClassDetailModel requestPlaceIDWithPlaceName:self.classroomNameLabel.text success:^(NSDictionary * _Nonnull responseObject) {
         CQUPTMapViewController *mapVC = [[CQUPTMapViewController alloc] initWithInitialPlace:[responseObject[@"data"][@"place_id"] stringValue]];
-        
-//        [self.viewController presentViewController:mapVC animated:YES completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"WYCClassBookVCShouldPresentVC" object:mapVC];
     }];
 }
 @end
