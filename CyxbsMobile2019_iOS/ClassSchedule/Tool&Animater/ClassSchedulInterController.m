@@ -60,10 +60,8 @@
 - (CGFloat)gesturePercent:(UIPanGestureRecognizer *)sender {
     CGPoint translation = [sender translationInView:self.transitionContext.containerView];
     
-//    _lastTranslationY = translation.y;
-    
     // 如果是下拉
-    if ([[self.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isMemberOfClass:[WYCClassBookViewController class]]) {
+    if ([[self.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isMemberOfClass:[UINavigationController class]]) {
         CGFloat percent = translation.y / 667;
         if (percent > 0) {
             return percent;

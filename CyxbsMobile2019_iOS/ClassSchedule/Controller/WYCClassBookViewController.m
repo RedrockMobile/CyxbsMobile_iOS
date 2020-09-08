@@ -120,9 +120,9 @@
 //自己课表页下拉后调用
 - (void)dissMissSelf{
     if(self.PGR.state==UIGestureRecognizerStateBegan){
-        TransitionManager *TM =  (TransitionManager*)self.transitioningDelegate;
+        TransitionManager *TM =  (TransitionManager*)self.navigationController.transitioningDelegate;
         TM.PGRToInitTransition = self.PGR;
-        [self dismissViewControllerAnimated:YES completion:^{
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
             TM.PGRToInitTransition=nil;
             int i;
             int count = (int)self.dateModel.dateArray.count;
@@ -491,8 +491,10 @@
 ///通过通知中心调用，调用后全屏presentVC
 - (void)shouldPresentVC:(NSNotification*)noti{
     UIViewController *VC = noti.object;
-    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:VC];
-    [naVC setModalPresentationStyle:(UIModalPresentationFullScreen)];
-    [self presentViewController:naVC animated:YES completion:nil];
+    
+    [self.navigationController pushViewController:VC animated:YES];
+    
+    NSLog(@"%@___%@___%@",self.navigationController,VC,self.navigationController.viewControllers);
+    
 }
 @end
