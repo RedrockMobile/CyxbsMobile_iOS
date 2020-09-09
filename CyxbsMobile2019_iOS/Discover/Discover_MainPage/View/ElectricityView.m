@@ -26,12 +26,18 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self loadUserDefaults];//加载缓存用作视图的初始化
-        [self addNoBindingView];
+        [self addTitle];
+        [self setUIDefaults];//对自身进行设置
+        if([UserItem defaultItem].building && [UserItem defaultItem].room) {
+            [self addBindingView];
+        }else {
+            [self addNoBindingView];
+        }
         [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
     }
     return self;
 }
--(void)addNoBindingView {
+-(void)setUIDefaults {
      if (@available(iOS 11.0, *)) {
         self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
     } else {
@@ -42,7 +48,8 @@
     self.layer.shadowOffset = CGSizeMake(0, 5);
     self.layer.cornerRadius = 25;
     self.clipsToBounds = YES;
-    [self addTitle];
+}
+-(void)addNoBindingView {
     [self addHintLabel];
 }
 -(void)removeUnbindingView {
@@ -175,9 +182,9 @@
 - (void)addDegree {
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
-    NSLog(@"%@",[self.defaults objectForKey:@"ElectricFee_degree"]);
     if ([self.defaults objectForKey:@"ElectricFee_degree"]){
         degree.text = [NSString stringWithFormat:@"%@", [self.defaults objectForKey:@"ElectricFee_degree"]];
+        
     }else {
         degree.text = @"0";
     }
