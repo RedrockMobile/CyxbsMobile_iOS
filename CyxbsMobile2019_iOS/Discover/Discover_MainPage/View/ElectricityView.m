@@ -117,19 +117,8 @@
 //MARK: 绑定部分
 - (void) addBindingView {
 //    [self addSubview:self.electricFee];
-
-    [self addChildViewToElectricFeeButton];//给按钮添加子视图
-    
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOpacity = 0.16f;
-    self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
-    self.layer.shadowOffset = CGSizeMake(0, 5);
-    
-}
-
-- (void)addChildViewToElectricFeeButton {
     //其中涉及网络请求的有time,money,degree
-//    [self addTitle];
+    
     [self addTime];
     [self addMoney];
     [self addDegree];
@@ -137,11 +126,19 @@
     [self addDu];
     [self addHintLeft];
     [self addHintRight];
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOpacity = 0.16f;
+    self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0, 5);
+    
 }
 
 
 
 - (void)addTime {
+    if(self.electricFeeTime) {
+        [self.electricFeeTime removeFromSuperview];
+    }
     UILabel *time = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = time;
     if ([self.defaults objectForKey:@"ElectricFee_time"]!= NULL) {
@@ -161,6 +158,9 @@
 }
 
 - (void)addMoney {
+    if(self.electricFeeMoney) {
+        [self.electricFeeMoney removeFromSuperview];
+    }
     UIButton *money = [[UIButton alloc]init];//左边数字
     self.electricFeeMoney = money;
     if ([self.defaults objectForKey:@"ElectricFee_money"] != NULL) {
@@ -180,6 +180,9 @@
 }
 
 - (void)addDegree {
+    if(self.electricFeeDegree) {
+        [self.electricFeeDegree removeFromSuperview];
+    }
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
     if ([self.defaults objectForKey:@"ElectricFee_degree"]){
@@ -200,6 +203,9 @@
 }
 
 - (void)addYuan {
+    if(self.electricFeeYuan) {
+        [self.electricFeeYuan removeFromSuperview];
+    }
     UILabel *yuan = [[UILabel alloc]init];//汉字“元”
     self.electricFeeYuan = yuan;
         yuan.text = @"元";
@@ -214,6 +220,9 @@
 }
 
 - (void)addDu {
+    if(self.electricFeeDu) {
+        [self.electricFeeDu removeFromSuperview];
+    }
     UILabel *du = [[UILabel alloc]init];//汉字“度”
     self.electricFeeDu = du;
         du.text = @"度";
@@ -228,6 +237,9 @@
 }
 
 - (void)addHintLeft {
+    if(self.electricFeeHintLeft) {
+        [self.electricFeeHintLeft removeFromSuperview];
+    }
     UILabel *hintLeft = [[UILabel alloc]init];//汉字“费用、本月”
     self.electricFeeHintLeft = hintLeft;
     hintLeft.text = @"费用/本月";
@@ -243,6 +255,9 @@
 }
 
 - (void)addHintRight {
+    if(self.electricFeeHintRight) {
+        [self.electricFeeHintRight removeFromSuperview];
+    }
     UILabel *hintRight = [[UILabel alloc] init];//汉字“使用度数，本月”
     self.electricFeeHintRight = hintRight;
         hintRight.text = @"使用度数/本月";
