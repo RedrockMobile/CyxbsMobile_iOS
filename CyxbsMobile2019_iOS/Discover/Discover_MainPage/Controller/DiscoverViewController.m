@@ -138,6 +138,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addVolView];
     [self layoutSubviews];
     self.view.backgroundColor = self.finderView.backgroundColor;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"Login_LoginSuceeded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
     //志愿服务绑定完成后重新加载发现主页
@@ -149,7 +150,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
 }
-
+-(void)loginSucceed {
+    [self requestData];
+}
 -(void)layoutSubviews {
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -325,15 +328,16 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     return;
 }
 - (void)updateElectricFeeUI {
-
+    //先写入缓存
+    [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
+    [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
+    [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     self.eleView.electricFeeTime.text = self.elecModel.electricFeeItem.time;
-    //同时写入缓存
-    [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
-    [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
-    [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
+
+
 }
 
 - (void)updateNewsUI {
