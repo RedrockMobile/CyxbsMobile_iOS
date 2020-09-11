@@ -79,8 +79,8 @@ extern CFAbsoluteTime StartTime;
     //开发者需要显式的调用此函数，日志系统才能工作
     [UMCommonLogManager setUpUMCommonLogManager];
     //初始化umenge功能
-    [UMConfigure setLogEnabled:YES];
-    [UMConfigure initWithAppkey:@"573183a5e0f55a59c9000694" channel:nil];
+    [UMConfigure setLogEnabled:NO];
+    [UMConfigure initWithAppkey:@"5f4f4cde12981d3ca30d4ac1" channel:nil];
     
     //开发者需要显式的调用此函数，日志系统才能工作
     [UMCommonLogManager setUpUMCommonLogManager];
@@ -95,8 +95,9 @@ extern CFAbsoluteTime StartTime;
     [UNUserNotificationCenter currentNotificationCenter].delegate=self;
     [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
         if (granted) {
-        }else
-        {
+            
+        } else {
+            
         }
     }];
     

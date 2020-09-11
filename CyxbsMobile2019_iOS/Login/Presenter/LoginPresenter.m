@@ -8,6 +8,7 @@
 
 #import "LoginPresenter.h"
 #import "LoginViewProtocol.h"
+#import <UMPush/UMessage.h>
 
 @implementation LoginPresenter
 
@@ -33,6 +34,11 @@
         UserItem *item = [UserItem mj_objectWithKeyValues:responseObject];
         [UserItemTool archive:item];
         [self.attachedView loginSucceeded:item];
+        
+        [UMessage addAlias:stuNum type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+            
+        }];
+        
     } failed:^(NSError * _Nonnull error) {
         NSLog(@"%@", error);
         [self.attachedView loginFailed];

@@ -8,6 +8,7 @@
 
 #import "UserItemTool.h"
 #import "LoginViewController.h"
+#import <UMPush/UMessage.h>
 
 @interface UserItemTool ()
 
@@ -67,8 +68,13 @@
     NSString *remindPath = [path stringByAppendingPathComponent: @"remind.plist"];
     [@[] writeToFile:remindPath atomically:YES];
     
-    //退出后停止umeng统计发送数据
+    // 退出后停止umeng统计发送数据
     [MobClick profileSignOff];
+    
+    // 退出后移除友盟推送别名
+    [UMessage removeAlias:[UserItemTool defaultItem].stuNum type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+        
+    }];
 }
 
 + (void)refresh {
