@@ -35,8 +35,8 @@
         [UserItemTool archive:item];
         [self.attachedView loginSucceeded:item];
         
-        [UMessage addAlias:stuNum type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
-            
+        [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+            NSLog(@"%@", responseObject);
         }];
         
     } failed:^(NSError * _Nonnull error) {

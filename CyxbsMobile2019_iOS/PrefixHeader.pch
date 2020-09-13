@@ -80,6 +80,8 @@
 //gege
 #define BACK_GRAY_COLOR [UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]
 
+// 友盟DeciveToken
+#define kUMDeviceToken @"kUMDeviceToken"
 
 
 /* 小屏适配 */

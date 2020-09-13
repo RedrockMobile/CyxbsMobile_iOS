@@ -14,6 +14,7 @@
 #import <UMCommonLog/UMCommonLogHeaders.h>
 #import "VolunteeringEventItem.h"
 #import "VolunteerItem.h"
+#import <Bagel.h>
 
 extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
@@ -22,9 +23,36 @@ extern CFAbsoluteTime StartTime;
 
 @implementation AppDelegate
 
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    if (![deviceToken isKindOfClass:[NSData class]]) return;
+    const unsigned *tokenBytes = (const unsigned *)[deviceToken bytes];
+    NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
+                          ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
+                          ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
+                          ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
+    NSLog(@"deviceToken:%@",hexToken);
+    
+    [UserDefaultTool saveValue:hexToken forKey:kUMDeviceToken];
+    
+    //1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
+    //传入的devicetoken是系统回调didRegisterForRemoteNotificationsWithDeviceToken的入参，切记
+    //[UMessage registerDeviceToken:deviceToken];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    #ifdef DEBUG
+    [Bagel start];
+    #endif
+    
+    if ([UserDefaultTool getStuNum]) {
+        [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+            NSLog(@"%@", responseObject);
+        }];
+    }
     
     // 如果打开应用时有学号密码，但是没有token，退出登录
     if ([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) {

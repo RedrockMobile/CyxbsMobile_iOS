@@ -2,6 +2,7 @@ source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 platform :ios,'9.0'
 target 'CyxbsMobile2019_iOS' do
+  pod 'Bagel', '~> 1.3.2'
 	pod 'TZImagePickerController'
 	pod 'NudeIn'
 	pod 'SDWebImage'

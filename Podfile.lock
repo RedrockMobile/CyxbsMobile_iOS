@@ -25,6 +25,9 @@ PODS:
   - AMapFoundation-NO-IDFA (1.6.3)
   - AMapLocation-NO-IDFA (2.6.5):
     - AMapFoundation-NO-IDFA (~> 1.6.3)
+  - Bagel (1.3.2):
+    - CocoaAsyncSocket
+  - CocoaAsyncSocket (7.6.4)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -70,6 +73,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
   - AMap3DMap-NO-IDFA
   - AMapLocation-NO-IDFA
+  - Bagel (~> 1.3.2)
   - FMDB
   - GMImagePicker
   - IQKeyboardManager
@@ -99,6 +103,8 @@ SPEC REPOS:
     - AMap3DMap-NO-IDFA
     - AMapFoundation-NO-IDFA
     - AMapLocation-NO-IDFA
+    - Bagel
+    - CocoaAsyncSocket
     - FMDB
     - GMImagePicker
     - IQKeyboardManager
@@ -125,6 +131,8 @@ SPEC CHECKSUMS:
   AMap3DMap-NO-IDFA: f0981f6f48ec192c45f6db140f5ab53c47d16424
   AMapFoundation-NO-IDFA: cf241b2f4832fe6c9e121af381e34791be49ad0d
   AMapLocation-NO-IDFA: 681a55b09638a0a5838c7c260f8825a1dbc7d98d
+  Bagel: 199e0105ac694d6eee9db54dd006c940da6ce81b
+  CocoaAsyncSocket: 694058e7c0ed05a9e217d1b3c7ded962f4180845
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   GMImagePicker: 6438a6764d6280b1dbf19b59140313f5a73daeeb
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
@@ -146,6 +154,6 @@ SPEC CHECKSUMS:
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8ecd5f0286b01a9dfdc6e8744c43236a9dafc784
+PODFILE CHECKSUM: 353b69f2b30d365d445810fa56a65f522a6c1c0c
 
 COCOAPODS: 1.9.1
