@@ -10,9 +10,19 @@
 @interface WYCClassAndRemindDataModel()
 //[responseObject objectForKey:@"data"]
 @property (nonatomic, strong)NSArray *rowDataArray;
+@property (nonatomic, strong)AFHTTPSessionManager *httpSeManager;
 @end
 
 @implementation WYCClassAndRemindDataModel
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.httpSeManager = [[AFHTTPSessionManager alloc] init];
+    }
+    return self;
+}
 
 /// 查个人课表用这个方法,它会先加载本地数据，再调去用getPersonalClassBookArrayFromNet方法来网络请求数据
 /// @param stuNum 学号
@@ -205,42 +215,116 @@
     return _noteDataModelArray;
 }
 
-/// 没课约查多人课表用这个方法
+/// 没课约查多人课表用底下的这两个方法
 /// @param infoDictArray n个人的信息字典组成的数组，信息只用到了@"stuNum"对应的value
-- (void)getClassBookArrayFromNetWithInfoDictArr:(NSArray*)infoDictArray{
 
-    HttpClient *client = [HttpClient defaultClient];
-    __block NSMutableArray *lessonOfAllPeople = [NSMutableArray array];
-
+//方法1，信号量+队列组
+- (void)getClassBookArrayFromNetWithInfoDictArr2:(NSArray*)infoDictArray{
     //用GCD实现多人的课表的请求,把请求到的课表数据都放入lessonOfAllPeople
+    
+    HttpClient *client = [HttpClient defaultClient];
+    //用来存储多人课表数组的数组
+    __block NSMutableArray *lessonOfAllPeople = [infoDictArray mutableCopy];
+
+    //infoDict是infoDictArray的数组元素
+    NSDictionary *infoDict;
+    
+    //创建一个队列组
     dispatch_group_t group = dispatch_group_create();
+    //创建一个并行队列
     dispatch_queue_t que = dispatch_queue_create("weData1", DISPATCH_QUEUE_CONCURRENT);
-    for (NSDictionary *infoDict in infoDictArray) {
+    //创建一个信号量，这里把信号量的创建放在这里和放在dispatch_group_async里面是等价的，
+    //因为wait和signal是一一对应的，在其他地方有可能会不等价，
+    //因为第x层循环的wait收到的信号有可能是第y层循环发出的
+    //验证方法：在wait后面加上代码：NSLog(@"%@",lessonOfAllPeople[i]);
+    //会发现有时候打印出来的并不是课表数据
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    __block BOOL isAllSuccess = YES;
+    
+    int count = (int)infoDictArray.count,i;
+    for (i=0; i<count; i++) {
+        infoDict = infoDictArray[i];
         dispatch_group_async(group, que, ^{
-            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-            [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:^{
-
-            } progress:^(NSProgress *progress) {
-
-            } success:^(NSURLSessionDataTask *task, id responseObject) {
+            [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:@{@"stuNum":infoDict[@"stuNum"]} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                
                 //课表数据全部放入lessonOfAllPeople
-                [lessonOfAllPeople addObjectsFromArray:[responseObject objectForKey:@"data"]];
+                lessonOfAllPeople[i] = [responseObject objectForKey:@"data"];
                 
                 dispatch_semaphore_signal(semaphore);
             } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                isAllSuccess = NO;
                 
                 dispatch_semaphore_signal(semaphore);
             }];
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
      });
     }
+        
     //完成group的任务后执行block里的内容
     dispatch_group_notify(group, que, ^{
-        [self parseClassBookData:lessonOfAllPeople];
-        [self.delegate ModelDataLoadSuccess:self];
-     });
+        if(isAllSuccess==YES){
+            NSMutableArray *tmp = [[NSMutableArray alloc] init];
+            for (NSArray *lessonDataArr in lessonOfAllPeople) {
+                [tmp addObjectsFromArray:lessonDataArr];
+            }
+            [self parseClassBookData:tmp];
+            [self.delegate ModelDataLoadSuccess:self];
+        }else{
+            [self.delegate ModelDataLoadFailure];
+        }
+    });
 }
-
+//方法2，信号量+栅栏函数
+- (void)getClassBookArrayFromNetWithInfoDictArr:(NSArray*)infoDictArray{
+    
+    //用来存储多人课表数组的数组
+    __block NSMutableArray *lessonOfAllPeople = [infoDictArray mutableCopy];
+    
+    //创建一个并行队列
+    dispatch_queue_t que = dispatch_queue_create("weDate2", DISPATCH_QUEUE_CONCURRENT);
+    
+    //创建一个信号量，这里把信号量的创建放在这里和放在dispatch_group_async里面是等价的，
+    //因为wait和signal是一一对应的，在其他地方有可能会不等价，
+    //因为第x层循环的wait收到的信号有可能是第y层循环发出的
+    //验证方法：在wait后面加上代码：NSLog(@"%@",lessonOfAllPeople[i]);
+    //会发现有时候打印出来的并不是课表数据
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    //infoDict是infoDictArray的数组元素
+    NSDictionary *infoDict;
+    
+    __block BOOL isAllSuccess = YES;
+    
+    int i,count = (int)infoDictArray.count;
+    for (i=0; i<count; i++) {
+        infoDict = infoDictArray[i];
+        dispatch_async(que, ^{
+            [self.httpSeManager POST:kebiaoAPI parameters:@{@"stuNum":infoDict[@"stuNum"]} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                lessonOfAllPeople[i] = [responseObject objectForKey:@"data"];
+                
+                dispatch_semaphore_signal(semaphore);
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                isAllSuccess = NO;
+                dispatch_semaphore_signal(semaphore);
+            }];
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        });
+    }
+    
+    dispatch_barrier_async(que, ^{
+        if(isAllSuccess==YES){
+            NSMutableArray *tmp = [[NSMutableArray alloc] init];
+            for (NSArray *arr in lessonOfAllPeople) {
+                [tmp addObjectsFromArray:arr];
+            }
+            [self parseClassBookData:tmp];
+            [self.delegate ModelDataLoadSuccess:self];
+        }else{
+            [self.delegate ModelDataLoadFailure];
+        }
+    });
+}
 @end
 
 

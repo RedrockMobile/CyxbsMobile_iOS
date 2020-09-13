@@ -113,9 +113,11 @@
 }
 //加上下拉dismiss手势
 - (void)addGesture{
-    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissSelf)];
-    self.PGR = PGR;
-    [self.view addGestureRecognizer:PGR];
+    if(self.schedulType==ScheduleTypePersonal){
+        UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissSelf)];
+        self.PGR = PGR;
+        [self.view addGestureRecognizer:PGR];
+    }
 }
 //自己课表页下拉后调用
 - (void)dissMissSelf{
@@ -472,7 +474,7 @@
             self.index = [NSNumber numberWithInt:(int)(self.scrollView.contentOffset.x/MAIN_SCREEN_W)];
             self.topBarView.correctIndex = self.index;
         }
-    }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO){
+    }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO&&self.schedulType==ScheduleTypePersonal){
         self.isReloading = YES;
         [self showHud];
         [UIView animateWithDuration:0.5 animations:^{
