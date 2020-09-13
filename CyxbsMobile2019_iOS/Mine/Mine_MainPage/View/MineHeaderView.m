@@ -8,6 +8,7 @@
 
 #import "MineHeaderView.h"
 #import "MineQADataItem.h"
+#import <UMPush/UMessage.h>
 
 @interface MineHeaderView ()
 
@@ -32,6 +33,31 @@
         [self addSubview:headerImageView];
         self.headerImageView = headerImageView;
         
+#ifdef DEBUG
+        headerImageView.userInteractionEnabled = YES;
+        UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+            
+            NSString *deviceToken = [UserDefaultTool valueWithKey:kUMDeviceToken];
+            if (deviceToken) {
+                UIAlertController *deviceTokenAlert = [UIAlertController alertControllerWithTitle:@"deviceToken" message:deviceToken preferredStyle:UIAlertControllerStyleAlert];
+                
+                
+                UIAlertAction *copyAction = [UIAlertAction actionWithTitle:@"复制" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+                    pasteboard.string = deviceToken;
+                }];
+                
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+                
+                [deviceTokenAlert addAction:copyAction];
+                [deviceTokenAlert addAction:cancelAction];
+                
+                [self.viewController presentViewController:deviceTokenAlert animated:YES completion:nil];
+            }
+        }];
+        [self.headerImageView addGestureRecognizer:longTap];
+#endif
+
         UILabel *nicknameLabel = [[UILabel alloc] init];
         [self addSubview:nicknameLabel];
         nicknameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];

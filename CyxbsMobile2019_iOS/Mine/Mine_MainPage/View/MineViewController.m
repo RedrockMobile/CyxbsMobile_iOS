@@ -53,11 +53,11 @@
     }];
     contentView.delegate = self;
     
-    // 加载邮问数据
-    [self.presenter requestQAInfo];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // 加载邮问数据
+    [self.presenter requestQAInfo];
     // 隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
     [self loadUserData];
@@ -79,7 +79,8 @@
     [self.contentView.headerView.headerImageView sd_setImageWithURL:headerImageURL placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageRefreshCached];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)dealloc
+{
     [self.presenter detachView];
 }
 

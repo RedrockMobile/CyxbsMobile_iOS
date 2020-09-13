@@ -54,10 +54,10 @@
     self.weekTime = weekTimeLabel;
     
     // 从字符串转换日期
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy.MM.d"];
     NSDate *resDate = [formatter dateFromString:DateStart];
-    
     // 计算当前是第几周
     NSInteger beginTime=[resDate timeIntervalSince1970];
     NSDate *now = [NSDate date];
@@ -73,10 +73,31 @@
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
     
+    
+    //阳历节日
+       NSDictionary *lunDic = @{
+                                @"1-1":@"元旦",
+                                @"3-8":@"妇女节",
+                                @"5-1":@"劳动节",
+                                @"6-1":@"儿童节",
+                                @"8-1":@"建军节",
+                                @"9-10":@"教师节",
+                                @"10-1":@"国庆节",
+                                @"10-24":@"程序员日",
+                                @"11-1":@"植树节"
+       };
+    NSString *hoildayString = @"";
+    for (NSString *hoilday in lunDic.allKeys) {
+        NSLog(@"%ld-%ld",(long)now.month,(long)now.day);
+        if([hoilday isEqual:[NSString stringWithFormat:@"%ld-%ld",now.month,now.day]]) {
+            hoildayString = [lunDic objectForKey:hoilday];
+        }
+    }
+    
     if (nowWeek < 0 || nowWeek >= weekArray.count) {
         weekTimeLabel.text =[NSString stringWithFormat:@"欢迎新同学～"];
     } else {
-        weekTimeLabel.text = [NSString stringWithFormat:@"%@ %@", weekArray[nowWeek], weekday[components.weekday - 1]];
+        weekTimeLabel.text = [NSString stringWithFormat:@"%@ %@ %@", weekArray[nowWeek], weekday[components.weekday - 1],hoildayString];
     }
 //    weekTimeLabel.text = @"";
     if (@available(iOS 11.0, *)) {
