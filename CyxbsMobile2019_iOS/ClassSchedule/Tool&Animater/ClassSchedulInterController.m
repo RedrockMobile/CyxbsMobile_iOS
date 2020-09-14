@@ -47,6 +47,7 @@
             if (percent > 0.1) {
                 //完成转场动画
                 [self finishInteractiveTransition];
+                
             } else {
                 //取消转场
                 [self cancelInteractiveTransition];
@@ -73,7 +74,7 @@
             return 0;
         }
     } else {
-        return - translation.y / 667;
+        return fabs(translation.y / 667);
     }
     
 }

@@ -213,15 +213,16 @@
     //点击后显示课表
     UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
         self.mySchedul.fakeBar.alpha = 0;
-        [self.viewController presentViewController:self.mySchedulNaVC animated:YES completion:nil];
+        [self.viewController presentViewController:self.mySchedul animated:YES completion:nil];
     }];
     [self addGestureRecognizer:TGR];
 }
 
+/// 弹出课表的方法
 - (void)presentMySchedul{
     if(self.PGR.state==UIGestureRecognizerStateBegan){
         self.TM.PGRToInitTransition = self.PGR;
-        [self.viewController presentViewController:self.mySchedulNaVC animated:YES completion:^{
+        [self.viewController presentViewController:self.mySchedul animated:YES completion:^{
             self.TM.PGRToInitTransition = nil;
         } ];
     }
@@ -248,15 +249,9 @@
     
     [model getPersonalClassBookArrayWithStuNum:self.mySchedul.stuNum];
     
-    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:self.mySchedul];
+    self.mySchedul.transitioningDelegate = self.TM;
     
-    self.mySchedulNaVC = naVC;
-    
-    naVC.navigationBarHidden = YES;
-    
-    self.mySchedulNaVC.transitioningDelegate = self.TM;
-    
-    [self.mySchedulNaVC setModalPresentationStyle:(UIModalPresentationCustom)];
+    [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
     
     [self addGesture];
     self.isInitingMySchedul = NO;

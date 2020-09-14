@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 //用户的课表
 @property (nonatomic, strong)WYCClassBookViewController *mySchedul;
 
-@property (nonatomic,strong)UINavigationController *mySchedulNaVC;
+//@property (nonatomic,strong)UINavigationController *mySchedulNaVC;
 @end
 
 NS_ASSUME_NONNULL_END

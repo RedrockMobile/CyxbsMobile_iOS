@@ -13,20 +13,11 @@
 @implementation ClassSchedulPresentingAnimater
 
 - (void)animateTransition:(nonnull id<UIViewControllerContextTransitioning>)transitionContext { 
-    if([[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] isMemberOfClass:[UINavigationController class]]){
-        UINavigationController *naVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    if([[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] isMemberOfClass:[WYCClassBookViewController class]]){
+
         
-        WYCClassBookViewController *to = nil;
-        for (UIViewController *VC in naVC.viewControllers) {
-            if ([VC.class isEqual:WYCClassBookViewController.class]) {
-                to = (WYCClassBookViewController*)VC;
-                break;
-            }
-        }
-        if(to==nil){
-            [transitionContext completeTransition:YES];
-            return;
-        }
+        WYCClassBookViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        
         
         ClassTabBarController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         to.topBarView.alpha = 0;
@@ -61,19 +52,7 @@
         
         ClassTabBarController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         
-        UINavigationController *naVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-        
-        WYCClassBookViewController *from = nil;
-        for (UIViewController *VC in naVC.viewControllers) {
-            if ([VC.class isEqual:WYCClassBookViewController.class]) {
-                from = (WYCClassBookViewController*)VC;
-                break;
-            }
-        }
-        if(from==nil){
-            [transitionContext completeTransition:YES];
-            return;
-        }
+        WYCClassBookViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         
         from.topBarView.alpha = 1;
         from.fakeBar.alpha = 0;

@@ -260,7 +260,11 @@
 - (void)rightArrowBtnClicked {
     [ClassDetailModel requestPlaceIDWithPlaceName:self.classroomNameLabel.text success:^(NSDictionary * _Nonnull responseObject) {
         CQUPTMapViewController *mapVC = [[CQUPTMapViewController alloc] initWithInitialPlace:[responseObject[@"data"][@"place_id"] stringValue]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"WYCClassBookVCShouldPresentVC" object:mapVC];
+        mapVC.isPresent = YES;
+        
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:mapVC];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"WYCClassBookVCShouldPresentVC" object:naVC];
     }];
 }
 @end
