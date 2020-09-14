@@ -473,7 +473,7 @@
                 sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
             }];
             return;
-        } else if (sender.view.frame.origin.y > MAIN_SCREEN_H - 112) {  // 弹回到底
+        } else if (sender.view.frame.origin.y > self.height - 112) {  // 弹回到底
             [UIView animateWithDuration:0.1 animations:^{
                 sender.view.frame = CGRectMake(0, MAIN_SCREEN_H, sender.view.width, sender.view.height);
             } completion:^(BOOL finished) {
@@ -492,13 +492,13 @@
                 } completion:nil];
             } else {        // 移动距离太小，弹回到底
                 [UIView animateWithDuration:0.2 animations:^{
-                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                    sender.view.frame = CGRectMake(0, self.height - 112, sender.view.width, sender.view.height);
                 }];
             }
         } else {                        // 往下拉
             if ((STATUSBARHEIGHT + 181) - sender.view.mj_y < -100 || sender.view.mj_y - self.lastY > 10) {    // 移动距离 > 50 或者速度足够快
                 [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    sender.view.frame = CGRectMake(0, MAIN_SCREEN_H - 112, sender.view.width, sender.view.height);
+                    sender.view.frame = CGRectMake(0, self.height - 112, sender.view.width, sender.view.height);
                 } completion:nil];
             } else {
                 [UIView animateWithDuration:0.2 animations:^{
