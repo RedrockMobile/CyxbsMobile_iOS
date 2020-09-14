@@ -327,7 +327,7 @@
     @autoreleasepool {
         for (int dateNum = 0; dateNum < self.dateModel.dateArray.count + 1; dateNum++) {
             UIView *backView = [[UIView alloc] init];
-            backView.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, MAIN_SCREEN_H);
+            backView.frame = CGRectMake(dateNum*self.scrollView.frame.size.width-0.1,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, MAIN_SCREEN_H);
             
             //显示日期信息的条
             DayBarView *dayBar;

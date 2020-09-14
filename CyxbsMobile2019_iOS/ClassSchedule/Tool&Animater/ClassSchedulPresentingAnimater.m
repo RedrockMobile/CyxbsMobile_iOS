@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/23.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//转场动画管理者，实现具体的转场动画代码
 
 #import "ClassSchedulPresentingAnimater.h"
 #import "ClassTabBarController.h"
@@ -16,7 +16,17 @@
     if([[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey] isMemberOfClass:[UINavigationController class]]){
         UINavigationController *naVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
         
-        WYCClassBookViewController *to = [naVC.viewControllers firstObject];
+        WYCClassBookViewController *to = nil;
+        for (UIViewController *VC in naVC.viewControllers) {
+            if ([VC.class isEqual:WYCClassBookViewController.class]) {
+                to = (WYCClassBookViewController*)VC;
+                break;
+            }
+        }
+        if(to==nil){
+            [transitionContext completeTransition:YES];
+            return;
+        }
         
         ClassTabBarController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         to.topBarView.alpha = 0;
@@ -53,7 +63,17 @@
         
         UINavigationController *naVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
         
-        WYCClassBookViewController *from = [naVC.viewControllers firstObject];
+        WYCClassBookViewController *from = nil;
+        for (UIViewController *VC in naVC.viewControllers) {
+            if ([VC.class isEqual:WYCClassBookViewController.class]) {
+                from = (WYCClassBookViewController*)VC;
+                break;
+            }
+        }
+        if(from==nil){
+            [transitionContext completeTransition:YES];
+            return;
+        }
         
         from.topBarView.alpha = 1;
         from.fakeBar.alpha = 0;

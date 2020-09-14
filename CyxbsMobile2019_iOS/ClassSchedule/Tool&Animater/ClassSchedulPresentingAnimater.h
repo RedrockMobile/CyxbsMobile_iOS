@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/23.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//转场动画管理者，实现具体的转场动画代码
 
 #import <Foundation/Foundation.h>
 

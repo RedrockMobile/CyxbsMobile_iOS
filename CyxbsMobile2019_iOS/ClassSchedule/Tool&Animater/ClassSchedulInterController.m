@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/24.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//过渡手势管理者，作用：更新转场动画进度、在恰当的时机取消转场或者完成转场
 
 #import "ClassSchedulInterController.h"
 #import "WYCClassBookViewController.h"
@@ -39,25 +39,29 @@
             break;
             
         case UIGestureRecognizerStateChanged:
+            //更新转场动画进度
             [self updateInteractiveTransition:percent / 4];
-            
             break;
             
         case UIGestureRecognizerStateEnded:
             if (percent > 0.1) {
+                //完成转场动画
                 [self finishInteractiveTransition];
             } else {
+                //取消转场
                 [self cancelInteractiveTransition];
             }
             break;
         
         default:
+            //取消转场
             [self cancelInteractiveTransition];
             break;
     }
 }
 
 - (CGFloat)gesturePercent:(UIPanGestureRecognizer *)sender {
+    //获取手势再横坐标上、纵坐标上拖动的像素
     CGPoint translation = [sender translationInView:self.transitionContext.containerView];
     
     // 如果是下拉

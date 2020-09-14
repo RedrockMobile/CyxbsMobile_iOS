@@ -24,7 +24,7 @@
 /// 上拉弹出课表的手势
 @property (nonatomic,strong)UIPanGestureRecognizer *PGR;
 @property (nonatomic,strong)TransitionManager *TM;
-@property (nonatomic,strong)UINavigationController *mySchedulNaVC;
+
 @end
 
 @implementation ClassScheduleTabBarView
