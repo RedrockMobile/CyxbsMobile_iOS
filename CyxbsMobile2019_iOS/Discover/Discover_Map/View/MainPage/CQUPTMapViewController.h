@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) CQUPTMapContentView *contentView;
 
+@property (nonatomic, assign) BOOL isPresent;
+
 - (instancetype)initWithInitialPlace:(NSString *)placeID;
 
 @end

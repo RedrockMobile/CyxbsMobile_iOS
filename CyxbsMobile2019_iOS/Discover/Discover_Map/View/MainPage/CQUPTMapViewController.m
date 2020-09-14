@@ -136,7 +136,11 @@
 
 #pragma mark - ContentView代理
 - (void)backButtonClicked {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.isPresent) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)requestStarData {
