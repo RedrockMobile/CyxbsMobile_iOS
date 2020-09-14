@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/9/1.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//用来寻找下一节课的工具类
 
 #import "NextLessonFinder.h"
 

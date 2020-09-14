@@ -113,24 +113,29 @@
 }
 //加上下拉dismiss手势
 - (void)addGesture{
-    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissSelf)];
-    self.PGR = PGR;
-    [self.view addGestureRecognizer:PGR];
+    if(self.schedulType==ScheduleTypePersonal){
+        UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissSelf)];
+        self.PGR = PGR;
+        [self.view addGestureRecognizer:PGR];
+    }
 }
 //自己课表页下拉后调用
 - (void)dissMissSelf{
     if(self.PGR.state==UIGestureRecognizerStateBegan){
-        TransitionManager *TM =  (TransitionManager*)self.navigationController.transitioningDelegate;
+        TransitionManager *TM =  (TransitionManager*)self.transitioningDelegate;
         TM.PGRToInitTransition = self.PGR;
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+            
             TM.PGRToInitTransition=nil;
-            int i;
-            int count = (int)self.dateModel.dateArray.count;
+            
+            int count = (int)self.dateModel.dateArray.count, i;
             for (i=0; i<self.index.intValue-1; i++) {
                 if(self.backViewArray[i].superview!=nil){
                     [self.backViewArray[i] removeFromSuperview];
                 }
             }
+            
             for (i=self.index.intValue+2; i<count+1; i++) {
                 if(self.backViewArray[i].superview!=nil){
                     [self.backViewArray[i] removeFromSuperview];
@@ -325,7 +330,7 @@
     @autoreleasepool {
         for (int dateNum = 0; dateNum < self.dateModel.dateArray.count + 1; dateNum++) {
             UIView *backView = [[UIView alloc] init];
-            backView.frame = CGRectMake(dateNum*self.scrollView.frame.size.width,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, MAIN_SCREEN_H);
+            backView.frame = CGRectMake(dateNum*self.scrollView.frame.size.width-0.1,MAIN_SCREEN_W*0.1547, self.scrollView.frame.size.width, MAIN_SCREEN_H);
             
             //显示日期信息的条
             DayBarView *dayBar;
@@ -472,7 +477,7 @@
             self.index = [NSNumber numberWithInt:(int)(self.scrollView.contentOffset.x/MAIN_SCREEN_W)];
             self.topBarView.correctIndex = self.index;
         }
-    }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO){
+    }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO&&self.schedulType==ScheduleTypePersonal){
         self.isReloading = YES;
         [self showHud];
         [UIView animateWithDuration:0.5 animations:^{
@@ -491,10 +496,6 @@
 ///通过通知中心调用，调用后全屏presentVC
 - (void)shouldPresentVC:(NSNotification*)noti{
     UIViewController *VC = noti.object;
-    
-    [self.navigationController pushViewController:VC animated:YES];
-    
-    NSLog(@"%@___%@___%@",self.navigationController,VC,self.navigationController.viewControllers);
-    
+    [self presentViewController:VC animated:YES completion:nil];
 }
 @end

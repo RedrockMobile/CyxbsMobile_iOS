@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/27.
 //  Copyright © 2020 Redrock. All rights reserved.
-//用来添加本地通知的一个类
+//用来添加本地通知的一个工具类
 
 #import <Foundation/Foundation.h>
 #import <UserNotifications/UserNotifications.h>
