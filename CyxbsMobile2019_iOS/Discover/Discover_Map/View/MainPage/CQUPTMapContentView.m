@@ -15,6 +15,7 @@
 #import "CQUPTMapStarPlaceItem.h"
 #import "CQUPTMapSearchView.h"
 #import "CQUPTMapDetailView.h"
+#import "CQUPTMapViewController.h"
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, CALayerDelegate>
 
@@ -457,10 +458,17 @@
 - (void)transitionViewDragged:(UIPanGestureRecognizer *)sender {
     CGPoint translation = [sender translationInView:self];
     
+    CGFloat topY;
+    if (((CQUPTMapViewController *)(self.viewController)).isPresent) {
+        topY = 141;
+    } else {
+        topY = 181;
+    }
+    
     if (sender.state == UIGestureRecognizerStateChanged) {
         self.lastY = sender.view.mj_y;
         
-        if (sender.view.frame.origin.y < STATUSBARHEIGHT + 181 && translation.y < 0) { // 到顶后继续上拉要减速
+        if (sender.view.frame.origin.y < STATUSBARHEIGHT + topY && translation.y < 0) { // 到顶后继续上拉要减速
             translation.y = translation.y / (MAIN_SCREEN_H / sender.view.mj_y);
         }
                 
@@ -468,9 +476,9 @@
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         
         // 超出范围后回弹
-        if (sender.view.frame.origin.y < STATUSBARHEIGHT + 181) {       // 弹回到顶
+        if (sender.view.frame.origin.y < STATUSBARHEIGHT + topY) {       // 弹回到顶
             [UIView animateWithDuration:0.2 animations:^{
-                sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
+                sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + topY, sender.view.width, sender.view.height);
             }];
             return;
         } else if (sender.view.frame.origin.y > self.height - 112) {  // 弹回到底
@@ -488,7 +496,7 @@
         if (sender.view.mj_y - self.lastY < 0) {        // 往上拉
             if ((MAIN_SCREEN_H - 112) - sender.view.mj_y > 100 || sender.view.mj_y - self.lastY < -10) {    // 移动距离 > 50 或者速度足够快
                 [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
+                    sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + topY, sender.view.width, sender.view.height);
                 } completion:nil];
             } else {        // 移动距离太小，弹回到底
                 [UIView animateWithDuration:0.2 animations:^{
@@ -496,13 +504,13 @@
                 }];
             }
         } else {                        // 往下拉
-            if ((STATUSBARHEIGHT + 181) - sender.view.mj_y < -100 || sender.view.mj_y - self.lastY > 10) {    // 移动距离 > 50 或者速度足够快
+            if ((STATUSBARHEIGHT + topY) - sender.view.mj_y < -100 || sender.view.mj_y - self.lastY > 10) {    // 移动距离 > 50 或者速度足够快
                 [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                     sender.view.frame = CGRectMake(0, self.height - 112, sender.view.width, sender.view.height);
                 } completion:nil];
             } else {
                 [UIView animateWithDuration:0.2 animations:^{
-                    sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + 181, sender.view.width, sender.view.height);
+                    sender.view.frame = CGRectMake(0, STATUSBARHEIGHT + topY, sender.view.width, sender.view.height);
                 }];
             }
         }
