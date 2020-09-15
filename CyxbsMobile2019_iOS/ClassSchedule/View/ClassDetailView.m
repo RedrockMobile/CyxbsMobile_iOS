@@ -166,6 +166,11 @@
     self.time = [[UILabel alloc] init];
     self.type = [[UILabel alloc] init];
     
+    // 手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(rightArrowBtnClicked)];
+    [self.classroomNameLabel addGestureRecognizer:tap];
+    self.classroomNameLabel.userInteractionEnabled = YES;
+    
     //教室地点的行数
     self.classroomNameLabel.numberOfLines = 0;
     
@@ -238,6 +243,8 @@
         mapVC.isPresent = YES;
         
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:mapVC];
+        naVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        mapVC.modalPresentationStyle = UIModalPresentationFormSheet;
         
         //发送通知，让课表控制器present控制器
         [[NSNotificationCenter defaultCenter] postNotificationName:@"WYCClassBookVCShouldPresentVC" object:naVC];
