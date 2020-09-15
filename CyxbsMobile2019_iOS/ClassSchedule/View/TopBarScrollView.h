@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TopBarScrollView : UIScrollView
 
-//通过修改correctIndex自动完成以下操作：
+//通过修改correctIndex会自动完成以下操作：
 //1.该下标对应的周view移动到中央，如果是边缘的按钮那就不会移到中央
 //2.对应周的按钮字体变大，原先下标所在的按钮字体复原
 //3.让代理(课表)也把课表位置移动到现在的位置

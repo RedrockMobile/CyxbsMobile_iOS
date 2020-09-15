@@ -44,7 +44,7 @@
 @end
 
 @implementation TopBarScrollView
-
+//MARK:-重写的方法
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
@@ -82,8 +82,14 @@
     return self;
 }
 
+//调整weekChooseBar的滚动范围
+- (void)layoutSubviews{
+    UIView *lastBtn = [self.weekChooseBtnArray lastObject];
+    //根据最后一个周选择按钮调整weekChooseBar的滚动范围
+    [self.weekChooseBar setContentSize:CGSizeMake(lastBtn.frame.origin.x+lastBtn.frame.size.width, 0)];
+}
 
-//MARK:- 添加控件
+//MARK:- 添加子控件的方法
 /// 添加weekChooseBar、nowWeekBar的背景view
 - (void)addBackView{
     UIView *view = [[UIView alloc] init];
@@ -407,10 +413,4 @@
     [self removeObserver:self forKeyPath:@"correctIndex"];
 }
 
-//调整weekChooseBar的滚动范围
-- (void)layoutSubviews{
-    UIView *lastBtn = [self.weekChooseBtnArray lastObject];
-    //根据最后一个周选择按钮调整weekChooseBar的滚动范围
-    [self.weekChooseBar setContentSize:CGSizeMake(lastBtn.frame.origin.x+lastBtn.frame.size.width, 0)];
-}
 @end

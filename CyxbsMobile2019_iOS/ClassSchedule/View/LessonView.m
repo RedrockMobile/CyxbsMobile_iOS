@@ -128,7 +128,7 @@
     return _tipView;
 }
 
-/// 更新显示的课表数据，调用前需确保已经对self.courseDataDict进行更新、且已经调用了setUpUI
+/// 更新显示的课表数据，调用前需确保已经对self.courseDataDictArray进行更新、且已经调用了setUpUI
 - (void)setUpData{
     if(self.isEmptyLesson==NO){
         //这个代理非空说明上一节课长度超过2，所以本节课的内容要显示到上一节课上面
@@ -140,9 +140,9 @@
             return;
         }
         //如果是有课，那么选取self.courseDataDictArray来设置这节课的位置、时长、view的frame
-        self.courseDataDict = [self.courseDataDictArray firstObject];
-        [self setFrameAndLessonLocationWithInfoDict:self.courseDataDict];
-        [self setCourseInfoWithCourseDataDict:self.courseDataDict];
+        [self setFrameAndLessonLocationWithInfoDict:[self.courseDataDictArray firstObject]];
+        [self setCourseInfoWithCourseDataDict:[self.courseDataDictArray firstObject]];
+        
     }else if(self.isNoted==YES){
         
         NoteDataModel *model = [self.noteDataModelArray firstObject];
@@ -295,7 +295,6 @@
         [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
     }
 }
-
 
 //MARK:- 通知中心
 /// 打开显示备忘开关时调用

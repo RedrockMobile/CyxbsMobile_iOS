@@ -27,6 +27,7 @@
 @end
 
 @implementation NoteDetailView
+//MARK:-重写的方法
 - (instancetype)init
 {
     self = [super init];
@@ -41,7 +42,39 @@
     return self;
 }
 
-//MARK:-添加子控件
+/// 重写self.dataModel的set方法，对dataModel赋值，自动设置内部label显示的文本
+/// @param dataModel 备忘模型
+- (void)setDataModel:(NoteDataModel *)dataModel{
+    _dataModel = dataModel;
+    
+    //设置内部label显示的文本
+    self.noteTitleLabel.text = dataModel.noteTitleStr;
+    self.detailLabel.text = dataModel.noteDetailStr;
+    
+    //str1是@“第一周、第五周” @“第九周、第十三周、十八周”
+    NSString *str1 = [dataModel.weeksStrArray firstObject];
+    int i,count = (int)dataModel.weeksStrArray.count;
+    for (i=1; i<count; i++) {
+        str1 = [NSString stringWithFormat:@"%@、%@",str1,dataModel.weeksStrArray[i]];
+    }
+    
+    //weekStr是@“周一”、@“周日”，lessonStr是@“一二节课”、@“五六节课”
+    //str2是@“周一 五六节课、周四 三四节课”
+    NSString *weekStr,*lessonStr,*str2;
+    weekStr = [dataModel.timeStrDictArray firstObject][@"weekString"];
+    lessonStr = [dataModel.timeStrDictArray firstObject][@"lessonString"];
+    str2 = [NSString stringWithFormat:@"%@ %@",weekStr,lessonStr];
+    count = (int)dataModel.timeStrDictArray.count;
+    for (i=1; i<count; i++) {
+        weekStr = dataModel.timeStrDictArray[i][@"weekString"];
+        lessonStr = dataModel.timeStrDictArray[i][@"lessonString"];
+        str2 = [NSString stringWithFormat:@"%@、%@ %@",str2,weekStr,lessonStr];
+    }
+    //最后组合出的是@“第九周、第十三周、十八周的\n\n周一 五六节课、周四 三四节课”
+    self.weekTextsLabel.text = [NSString stringWithFormat:@"%@的\n\n%@",str1,str2];
+}
+
+//MARK:-添加子控件的方法
 /// 添加备忘标题标题label
 - (void)addNoteTitleLabel{
     UILabel *label = [[UILabel alloc] init];
@@ -109,29 +142,6 @@
     }];
 }
 
-/// 获得一个圆角、titleLabel间距、font、文本对其方式、宽高和编辑按钮、删除按钮一样的按钮
-- (UIButton*)getBtn{
-    UIButton *btn = [[UIButton alloc] init];
-    
-    btn.layer.cornerRadius = 0.04265*MAIN_SCREEN_W;
-    
-    [btn.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(btn).offset(MAIN_SCREEN_W*0.033);
-        make.right.equalTo(btn).offset(-MAIN_SCREEN_W*0.033);
-    }];
-    
-    btn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
-    [btn.titleLabel setTextAlignment:(NSTextAlignmentCenter)];
-    
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(0.1546*MAIN_SCREEN_W);
-        make.height.mas_equalTo(0.0853*MAIN_SCREEN_W);
-    }];
-    
-    return btn;
-}
-
-
 /// 添加备忘时间label
 - (void)addWeekTextsLabel{
     UILabel *label = [[UILabel alloc] init];
@@ -175,41 +185,12 @@
     }];
 }
 
-/// 重写self.dataModel的set方法，对dataModel赋值，自动设置内部label显示的文本
-/// @param dataModel 备忘模型
-- (void)setDataModel:(NoteDataModel *)dataModel{
-    _dataModel = dataModel;
-    
-    //设置内部label显示的文本
-    self.noteTitleLabel.text = dataModel.noteTitleStr;
-    self.detailLabel.text = dataModel.noteDetailStr;
-    
-    //str1是@“第一周、第五周” @“第九周、第十三周、十八周”
-    NSString *str1 = [dataModel.weeksStrArray firstObject];
-    int i,count = (int)dataModel.weeksStrArray.count;
-    for (i=1; i<count; i++) {
-        str1 = [NSString stringWithFormat:@"%@、%@",str1,dataModel.weeksStrArray[i]];
-    }
-    
-    //weekStr是@“周一”、@“周日”，lessonStr是@“一二节课”、@“五六节课”
-    //str2是@“周一 五六节课、周四 三四节课”
-    NSString *weekStr,*lessonStr,*str2;
-    weekStr = [dataModel.timeStrDictArray firstObject][@"weekString"];
-    lessonStr = [dataModel.timeStrDictArray firstObject][@"lessonString"];
-    str2 = [NSString stringWithFormat:@"%@ %@",weekStr,lessonStr];
-    count = (int)dataModel.timeStrDictArray.count;
-    for (i=1; i<count; i++) {
-        weekStr = dataModel.timeStrDictArray[i][@"weekString"];
-        lessonStr = dataModel.timeStrDictArray[i][@"lessonString"];
-        str2 = [NSString stringWithFormat:@"%@、%@ %@",str2,weekStr,lessonStr];
-    }
-    //最后组合出的是@“第九周、第十三周、十八周的\n\n周一 五六节课、周四 三四节课”
-    self.weekTextsLabel.text = [NSString stringWithFormat:@"%@的\n\n%@",str1,str2];
-}
+//MARK:-点击某按钮后调用的方法
 
+/// 点击删除按钮后调用
 - (void)deleteBtnClicked{
     //调用代理方法，移走弹窗，代理是ClassDetailViewShower
-    [self.delegate hideDetail];
+    [self.hideDetailDelegate hideDetail];
     
     //发送通知，让WYCClassBookViewController调用WYCClassAndRemindDataModel的
     //方法删除备忘然后再重载self.scrollview的所有view
@@ -217,10 +198,37 @@
     
 }
 
+/// 点击编辑按钮后调用
 - (void)editBtnClicked{
     //调用代理方法，移走弹窗，代理是ClassDetailViewShower
-    [self.delegate hideDetail];
+    [self.hideDetailDelegate hideDetail];
+    
+    //发送通知，让WYCClassBookViewController调用WYCClassAndRemindDataModel的方法
+    //弹窗备忘控制器
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DLReminderSetTimeVCShouldEditNote" object:self.dataModel];
     
+}
+
+//MARK:-其他方法
+/// 获得一个圆角、titleLabel间距、font、文本对其方式、宽高和编辑按钮、删除按钮一样的按钮
+- (UIButton*)getBtn{
+    UIButton *btn = [[UIButton alloc] init];
+    
+    btn.layer.cornerRadius = 0.04265*MAIN_SCREEN_W;
+    
+    [btn.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(btn).offset(MAIN_SCREEN_W*0.033);
+        make.right.equalTo(btn).offset(-MAIN_SCREEN_W*0.033);
+    }];
+    
+    btn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    [btn.titleLabel setTextAlignment:(NSTextAlignmentCenter)];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(0.1546*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.0853*MAIN_SCREEN_W);
+    }];
+    
+    return btn;
 }
 @end

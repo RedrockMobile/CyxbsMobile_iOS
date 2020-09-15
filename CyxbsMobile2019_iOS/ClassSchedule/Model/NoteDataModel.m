@@ -37,6 +37,7 @@
     }
     return self;
 }
+
 /// @[@4,@1,@18]代表第4、1、18周的备忘，0代表整学期
 - (NSArray*)transferWSAWithArray:(NSArray*)weeksStrArray{
     NSMutableArray *array = [NSMutableArray array];

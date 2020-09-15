@@ -14,6 +14,7 @@
 
 /// scrollView的背景view，弹窗
 @property(nonatomic,strong)UIView *backViewOfScrollView;
+
 @property(nonatomic,strong)UIScrollView *scrollView;
 
 /// 分页控制器
@@ -21,6 +22,7 @@
 @end
 @implementation ClassDetailViewShower
 
+//MARK:-重写的方法
 - (instancetype)init{
     self = [super init];
     if(self){
@@ -42,8 +44,7 @@
 }
 
 
-//MARK:-添加子控件
-
+//MARK:-添加子控件的方法
 /// 添加scrollView的背景view
 - (void)addBackViewOfScrollView{
     UIView *view = [[UIView alloc] init];
@@ -106,7 +107,7 @@
 
 
 //MARK:-代理方法
-/// LessonViewDelegate要求的代理方法，点击某一节有备忘或者有课的课后调用，弹出弹窗
+/// LessonViewDelegate要求的代理方法，点击某一节有备忘或者有课的课后调用，作用：弹出弹窗
 - (void)showDetail{
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     [keyWindow addSubview:self];
@@ -131,7 +132,7 @@
         
         NoteDataModel *model = self.noteDataModelArray[j];
         NoteDetailView *detailView = [[NoteDetailView alloc] init];
-        detailView.delegate = self;
+        detailView.hideDetailDelegate = self;
         [detailView setFrame:CGRectMake((i+j)*MAIN_SCREEN_W, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
         //已经重写了NoteDetailView的setDataModel方法，对dataModel赋值，
         //自动完成对内部label文字的设置
@@ -145,7 +146,7 @@
     } completion:nil];
 }
 
-/// NoteDetailViewDelegate要求的代理方法，点击后面的空白处、点击删除或者修改按钮后调用，移除弹窗
+/// NoteDetailViewDelegate要求的代理方法，点击后面的空白处、点击删除或者修改按钮后调用，作用：移除弹窗
 - (void)hideDetail{
     [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.backViewOfScrollView setFrame:CGRectMake(0, MAIN_SCREEN_H, MAIN_SCREEN_W, DETAILVIEW_H)];

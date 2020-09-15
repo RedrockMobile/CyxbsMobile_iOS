@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NoteDataModel *dataModel;
 
 /// 代理，设置为ClassDetailViewShower
-@property(nonatomic,weak)id<NoteDetailViewDelegate>delegate;
+@property(nonatomic,weak)id<NoteDetailViewDelegate>hideDetailDelegate;
 @end
 
 NS_ASSUME_NONNULL_END

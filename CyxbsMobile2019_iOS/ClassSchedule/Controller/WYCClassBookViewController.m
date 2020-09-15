@@ -209,6 +209,7 @@
     DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
     [vc setModalPresentationStyle:(UIModalPresentationCustom)];
     [self presentViewController:vc animated:YES completion:nil];
+    //通过原备忘的数据，来设置好信息
     [vc initDataForEditNoteWithMode:model];
 }
 
