@@ -375,15 +375,21 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)commitAnswer{
+    MBProgressHUD *HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [HUD setMode:(MBProgressHUDModeText)];
+    HUD.labelText = @"上传回答中";
+    
+    [self.view endEditing:YES];
+    //禁止交互，如果网络请求失败，会在失败通知的方法QAAnswerCommitFailure里面解开禁止
+    self.view.userInteractionEnabled = NO;
+    
     [self.model commitAnswer:self.questionId content:self.answerTextView.text imageArray:self.answerImageArray];
-
 }
 - (void)QAAnswerCommitSuccess{
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)QAAnswerCommitFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    
     UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"答案提交失败" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -391,7 +397,7 @@
     [controller addAction:act1];
     
     [self presentViewController:controller animated:YES completion:^{
-        
+        self.view.userInteractionEnabled = YES;
     }];
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {

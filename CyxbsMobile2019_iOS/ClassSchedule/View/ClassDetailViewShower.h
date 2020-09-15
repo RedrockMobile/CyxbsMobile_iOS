@@ -19,3 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+//用法：
+
+//1.设置数据
+//self.delegate.courseDataDictArray = self.courseDataDictArray;
+//self.delegate.noteDataModelArray = self.noteDataModelArray;
+
+//2.调用showDetail方法
+//[self.delegate showDetail];

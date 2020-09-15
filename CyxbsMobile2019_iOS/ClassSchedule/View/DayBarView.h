@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/8/16.
 //  Copyright © 2020 Redrock. All rights reserved.
-//显示日期信息的view
+//显示星期、月份、日期信息的view
 
 #import <UIKit/UIKit.h>
 //每一个小块的宽度

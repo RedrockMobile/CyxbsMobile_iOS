@@ -44,28 +44,80 @@
 @end
 
 @implementation ClassDetailView
-
+//MARK:-重写的方法
 - (instancetype)init {
     self = [super init];
     if(self){
         [self setFrame:CGRectMake(0, 0, MAIN_SCREEN_W, DETAILVIEW_H)];
+        
+        //文本框初始化，完成对定死的数据的设置
         [self initLabel];
+        
+        // 添加教室地址旁边的右箭头按钮
         [self addRightArrBtn];
+        
         self.backgroundColor = UIColor.clearColor;
     }
     return self;
 }
 
-/// 添加教室地址旁边的右箭头按钮
-- (void)addRightArrBtn {
-    UIButton *btn = [[UIButton alloc] init];
-    self.rightArrBtn  = btn;
-    [self addSubview:btn];
+/// 加约束
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.lessonNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.05867*MAIN_SCREEN_W);
+    }];
     
+    [self.classroomNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
+    }];
     
-    [btn addTarget:self action:@selector(rightArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [btn setImage:[UIImage imageNamed:@"右箭头"] forState:UIControlStateNormal];
-    [btn setImageEdgeInsets:(UIEdgeInsetsMake(0, 5, 0, 6))];
+    [self.week mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.272*MAIN_SCREEN_W);
+    }];
+    
+    [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.392*MAIN_SCREEN_W);
+    }];
+    
+    [self.type mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
+    }];
+    
+//___________________________________________________
+    
+    [self.teacherNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.classroomNameLabel.mas_right).offset(0.0747*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
+    }];
+    
+//___________________________________________________
+    
+    [self.weekRangeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.272*MAIN_SCREEN_W);
+    }];
+    
+    [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.392*MAIN_SCREEN_W);
+    }];
+    
+    [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
+    }];
+    
+    [self.rightArrBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.classroomNameLabel.mas_right).offset(-4);
+        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
+        make.width.height.mas_equalTo(20);
+    }];
 }
 
 /// 重写了dataDict的set方法，这样给dataDict赋值就可以自动完成对文字的设置
@@ -86,6 +138,19 @@
             make.width.mas_equalTo(MAIN_SCREEN_W*0.62);
         }];
     }
+}
+
+//MARK:-添加子控件的方法
+/// 添加教室地址旁边的右箭头按钮
+- (void)addRightArrBtn {
+    UIButton *btn = [[UIButton alloc] init];
+    self.rightArrBtn  = btn;
+    [self addSubview:btn];
+    
+    
+    [btn addTarget:self action:@selector(rightArrowBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:@"右箭头"] forState:UIControlStateNormal];
+    [btn setImageEdgeInsets:(UIEdgeInsetsMake(0, 5, 0, 6))];
 }
 
 ///文本框初始化，完成对定死的数据的设置
@@ -165,66 +230,21 @@
     self.type.text = @"课程类型";
 }
 
-
-/// 加约束
-- (void)layoutSubviews {
-    /// 加约束
-    [self.lessonNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.05867*MAIN_SCREEN_W);
-    }];
-    
-    [self.classroomNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
-    }];
-    
-    [self.week mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.272*MAIN_SCREEN_W);
-    }];
-    
-    [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.392*MAIN_SCREEN_W);
-    }];
-    
-    [self.type mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
-    }];
-    
-//___________________________________________________
-    
-    [self.teacherNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.classroomNameLabel.mas_right).offset(0.0747*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
-    }];
-    
-//___________________________________________________
-    
-    [self.weekRangeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.272*MAIN_SCREEN_W);
-    }];
-    
-    [self.classTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.392*MAIN_SCREEN_W);
-    }];
-    
-    [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-0.04*MAIN_SCREEN_W);
-        make.top.equalTo(self).offset(0.512*MAIN_SCREEN_W);
-    }];
-    
-    [self.rightArrBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.classroomNameLabel.mas_right).offset(-4);
-        make.top.equalTo(self).offset(0.15733*MAIN_SCREEN_W);
-        make.width.height.mas_equalTo(20);
+//MARK:-点击某按钮后调用的方法
+/// 点击课程详情旁的右箭头按钮后调用，弹出一个地图控制器
+- (void)rightArrowBtnClicked {
+    [ClassDetailModel requestPlaceIDWithPlaceName:self.classroomNameLabel.text success:^(NSDictionary * _Nonnull responseObject) {
+        CQUPTMapViewController *mapVC = [[CQUPTMapViewController alloc] initWithInitialPlace:[responseObject[@"data"][@"place_id"] stringValue]];
+        mapVC.isPresent = YES;
+        
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:mapVC];
+        
+        //发送通知，让课表控制器present控制器
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"WYCClassBookVCShouldPresentVC" object:naVC];
     }];
 }
 
+//MARK:-其他方法
 ///把@"一二节"转换为@"1-2节"、如果period==3，那么@"九十节"->@"9-11节"
 - (NSString*)transformDataString:(NSString*)dataString withPeriod:(int)period {
     NSString *str12,*str56,*str910;
@@ -257,16 +277,6 @@
     return tranfer[dataString];
 }
 
-- (void)rightArrowBtnClicked {
-    [ClassDetailModel requestPlaceIDWithPlaceName:self.classroomNameLabel.text success:^(NSDictionary * _Nonnull responseObject) {
-        CQUPTMapViewController *mapVC = [[CQUPTMapViewController alloc] initWithInitialPlace:[responseObject[@"data"][@"place_id"] stringValue]];
-        mapVC.isPresent = YES;
-        
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:mapVC];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"WYCClassBookVCShouldPresentVC" object:naVC];
-    }];
-}
 @end
 
 /**

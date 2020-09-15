@@ -27,7 +27,9 @@
             
             
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitError" object:nil];
+            //这个通知貌似没有接受者啊，改成failure算了
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitError" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitFailure" object:nil];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -57,7 +59,9 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QADetailDataReLoad" object:nil];
             
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitError" object:nil];
+            //这个通知貌似没有接受者啊，改成failure算了
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitError" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QAAnswerCommitFailure" object:nil];
         }
         
     }  failure:^(AFHTTPRequestOperation *operation, NSError *error){
