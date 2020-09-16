@@ -7,7 +7,7 @@
 //
 
 #import "SCChart.h"
-#define kRowMax 6 // 可支持最大行数
+#define kRowMax 8 // 可支持最大行数
 
 @interface SCChart ()
 

@@ -18,7 +18,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.clipsToBounds = YES;
+        self.clipsToBounds = NO;
+        self.showRange = YES;
     }
     return self;
 }
@@ -50,7 +51,11 @@
     }else{
         _yValueMin = 0;
     }
-    _yValueMax = max;
+    if(max <= 3) {
+        _yValueMax = max+1;
+    }else {
+        _yValueMax = max;
+    }
     
     if (_chooseRange.max!=_chooseRange.min) { // 自定义数值范围
         _yValueMax = _chooseRange.max;
@@ -60,7 +65,17 @@
         _yValueMax = [SCTool rangeMaxWithValueMax:_yValueMax] == 0 ? 100 : [SCTool rangeMaxWithValueMax:_yValueMax];
         _yValueMin = 0;
     }
-    
+    //这里再写一遍的原因是自动计算数值范围的时候会覆盖_yValueMin
+    if (self.showRange) {
+        if(min >= 1) {
+            _yValueMin = min -1;
+        }else {
+            _yValueMin = min;
+        }
+    }else{
+        _yValueMin = 0;
+    }
+
     float level = (_yValueMax-_yValueMin) /rowCount; // 每个区间的差值
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
     CGFloat levelHeight = chartCavanHeight /rowCount; // 每个区间的高度
