@@ -84,11 +84,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 志愿服务密码
 @property (nonatomic, copy) NSString *volunteerPassword ;
 
-/// 统一认证号
-@property (nonatomic, copy)NSString *idsAccount;
-
-/// ids绑定密码
-@property (nonatomic, copy)NSString *idsPasswd;
 
 /// ids绑定成功
 @property (nonatomic, assign) BOOL idsBindingSuccess;
