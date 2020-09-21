@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@",self.webView.title);
+//    NSLog(@"%@",self.webView.title);
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
     } else {
@@ -30,7 +30,7 @@
     double navHeight = self.navigationController.navigationBar.frame.size.height;
     //获取状态栏高度
     double statusHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
-    NSLog(@"nav%f,sta%f",navHeight,statusHeight);
+//    NSLog(@"nav%f,sta%f",navHeight,statusHeight);
     WKWebView * webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, statusHeight+navHeight, self.view.width, self.view.height-statusHeight-navHeight)];
     self.webView = webView;
     self.webView.navigationDelegate = self;
@@ -43,7 +43,6 @@
     [webView loadRequest:request];
     [self.view addSubview:webView];
     [self addBackButton];
-
         // 添加观察者，监听 WKWebView 对象的 title 属性
     //
     //    [self.webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
