@@ -88,6 +88,7 @@
 		1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EF02361A82E00543BAE /* UserItemTool.m */; };
 		1A5E914B24EAEF45004BF5C4 /* CQUPTMapImageLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E914A24EAEF45004BF5C4 /* CQUPTMapImageLayout.m */; };
 		1A5E914E24EAF0AF004BF5C4 /* CQUPTMapAllImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E914D24EAF0AF004BF5C4 /* CQUPTMapAllImageCollectionViewCell.m */; };
+		1A67856D251B4F94002BCA28 /* MGJRouterRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A67856C251B4F94002BCA28 /* MGJRouterRegister.m */; };
 		1A6F214A24ED362500158617 /* FYHCycleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F214924ED362500158617 /* FYHCycleLabel.m */; };
 		1A79FCCD24E81E3300CBB124 /* CQUPTMapPlaceDetailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A79FCCC24E81E3300CBB124 /* CQUPTMapPlaceDetailItem.m */; };
 		1A79FCD024EADC4F00CBB124 /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A79FCCF24EADC4F00CBB124 /* CQUPTMapDetailTagsCollectionViewCell.m */; };
@@ -660,6 +661,8 @@
 		1A5E914A24EAEF45004BF5C4 /* CQUPTMapImageLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapImageLayout.m; sourceTree = "<group>"; };
 		1A5E914C24EAF0AF004BF5C4 /* CQUPTMapAllImageCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapAllImageCollectionViewCell.h; sourceTree = "<group>"; };
 		1A5E914D24EAF0AF004BF5C4 /* CQUPTMapAllImageCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapAllImageCollectionViewCell.m; sourceTree = "<group>"; };
+		1A67856B251B4F94002BCA28 /* MGJRouterRegister.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGJRouterRegister.h; sourceTree = "<group>"; };
+		1A67856C251B4F94002BCA28 /* MGJRouterRegister.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGJRouterRegister.m; sourceTree = "<group>"; };
 		1A6F214824ED362500158617 /* FYHCycleLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYHCycleLabel.h; sourceTree = "<group>"; };
 		1A6F214924ED362500158617 /* FYHCycleLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYHCycleLabel.m; sourceTree = "<group>"; };
 		1A79FCCB24E81E3300CBB124 /* CQUPTMapPlaceDetailItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceDetailItem.h; sourceTree = "<group>"; };
@@ -1411,6 +1414,7 @@
 		1A141339235F524B0001417E /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				1A67856A251B4F66002BCA28 /* MGJRouter */,
 				D0101F4A243587A1004337ED /* GKPhotoBrowser */,
 				D0101D3D2433C885004337ED /* SDMask */,
 				1A141345235F524B0001417E /* NetWork */,
@@ -1803,6 +1807,15 @@
 				1A5A5EEE2360298900543BAE /* LoginViewProtocol.h */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		1A67856A251B4F66002BCA28 /* MGJRouter */ = {
+			isa = PBXGroup;
+			children = (
+				1A67856B251B4F94002BCA28 /* MGJRouterRegister.h */,
+				1A67856C251B4F94002BCA28 /* MGJRouterRegister.m */,
+			);
+			path = MGJRouter;
 			sourceTree = "<group>";
 		};
 		1A79FCD724EAEAB000CBB124 /* MoreImage */ = {
@@ -3958,6 +3971,7 @@
 				1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */,
 				1A79FCD324EAE81B00CBB124 /* CollectionViewSpaceLayout.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
+				1A67856D251B4F94002BCA28 /* MGJRouterRegister.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
