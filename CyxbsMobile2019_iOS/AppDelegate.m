@@ -15,6 +15,7 @@
 #import "VolunteeringEventItem.h"
 #import "VolunteerItem.h"
 #import <Bagel.h>
+#import "QADetailViewController.h"
 
 extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
@@ -44,9 +45,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    #ifdef DEBUG
-    [Bagel start];
-    #endif
+    // 一个网络调试工具用的，需要在Mac端使用一个叫Bagel的软件配合调试，升级Xcode以后这个库出了点问题
+//    #ifdef DEBUG
+//    [Bagel start];
+//    #endif
     
     if ([UserDefaultTool getStuNum]) {
         [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
@@ -55,7 +57,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     }
     
     // 如果打开应用时有学号密码，但是没有token，退出登录
-    if ([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) {
+    if (([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) || ![UserDefaultTool getStuNum]) {
         [UserItemTool logout];
     }
     
@@ -216,6 +218,18 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         //应用处于后台时的远程推送接受
         //必须加这句代码
         [UMessage didReceiveRemoteNotification:userInfo];
+        
+//        @{
+//            @"question_id": @"123"
+//        }
+        
+        QADetailViewController *qaDetailVC = [[QADetailViewController alloc] initViewWithId:[userInfo[@"question_id"] numberValue] title:@""];
+        qaDetailVC.isPresent = YES;
+        
+        [((UITabBarController *)(self.window.rootViewController)) presentViewController:qaDetailVC animated:YES completion:nil];
+        
+        
+        
     }else{
         //应用处于后台时的本地推送接受
         //如果点击的是每日推送课表的消息，那么延时0.2秒后发送通知，让DiscoverViewController弹出课表
@@ -234,6 +248,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         }
     }
 }
-//
+
+
 @end
 
