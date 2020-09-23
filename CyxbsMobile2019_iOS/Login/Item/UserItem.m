@@ -142,15 +142,8 @@ static UserItem *item = nil;
     _volunteerPassword = volunteerPassword;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
-- (void)setIdsAccount:(NSString *)idsAccount {
-    _idsAccount = idsAccount;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 
-}
-- (void)setIdsPasswd:(NSString *)idsPasswd {
-    _idsPasswd = idsPasswd;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
-}
+
 - (void)setIdsBindingSuccess:(BOOL)idsBindingSuccess {
     _idsBindingSuccess = idsBindingSuccess;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];

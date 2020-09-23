@@ -311,12 +311,14 @@
 }
 //MARK: - bannerView按钮触发事件
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    URLController * controller = [[URLController alloc]init];
-    controller.hidesBottomBarWhenPushed = YES;
-    controller.toUrl = self.bannerGoToURL[index];
-    [self.viewController.navigationController pushViewController:controller animated:YES];
-//    self.viewController.hidesBottomBarWhenPushed = YES;
-    NSLog(@"点击了第%ld个bannerView", (long)index);
+//    URLController * controller = [[URLController alloc]init];
+//    controller.hidesBottomBarWhenPushed = YES;
+//    controller.toUrl = self.bannerGoToURL[index];
+//    [self.viewController.navigationController pushViewController:controller animated:YES];
+////    self.viewController.hidesBottomBarWhenPushed = YES;
+//    NSLog(@"点击了第%ld个bannerView", (long)index);
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.bannerGoToURL[index]]];
 }
 //MARK: - 按钮触发事件部分实现
 -(void) touchMyTest {
