@@ -318,7 +318,18 @@
 ////    self.viewController.hidesBottomBarWhenPushed = YES;
 //    NSLog(@"点击了第%ld个bannerView", (long)index);
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.bannerGoToURL[index]]];
+    // 如果是http或者https协议的URL，用浏览器打开网页，如果是cyxbs协议的URL，打开对应页面
+    if ([self.bannerGoToURL[index] hasPrefix:@"http"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.bannerGoToURL[index]] options:@{} completionHandler:nil];
+    } else if ([self.bannerGoToURL[index] hasPrefix:@"cyxbs"]) {
+        
+        NSDictionary *userInfo = @{
+            kMGJNavigationControllerKey: self.viewController.navigationController
+        };
+        
+        [MGJRouter openURL:self.bannerGoToURL[index] withUserInfo:userInfo completion:nil];
+    }
+    
 }
 //MARK: - 按钮触发事件部分实现
 -(void) touchMyTest {
