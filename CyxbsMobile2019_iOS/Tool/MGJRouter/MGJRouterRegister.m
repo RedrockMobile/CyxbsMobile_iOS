@@ -51,7 +51,9 @@
     // 重邮地图
     [MGJRouter registerURLPattern:kCQUPTMapRUL toHandler:^(NSDictionary *routerParameters) {
         
-        CQUPTMapViewController *mapVC = [[CQUPTMapViewController alloc] initWithInitialPlace:[routerParameters[@"course_pos_to_map"] stringValue]];
+        CQUPTMapViewController *mapVC = [[CQUPTMapViewController alloc] initWithInitialPlace:routerParameters[@"course_pos_to_map"]];
+        
+        mapVC.hidesBottomBarWhenPushed = YES;
         
         [routerParameters[MGJRouterParameterUserInfo][kMGJNavigationControllerKey] pushViewController:mapVC animated:YES];
         
