@@ -11,8 +11,8 @@
 #import "CQUPTMapViewController.h"
 
 
-/// 用于注册MGJRouter的URL。
-/// PrefixHeader.pch中有一个宏：kMGJNavigationControllerKey，用于从跳转的from页面的导航控制器，例如：
+/// MGJRouterRegister用于注册MGJRouter的URL。
+/// PrefixHeader.pch中有一个宏：kMGJNavigationControllerKey，用于表示“从跳转的from页面的导航控制器”的key，例如：
 /*  NSDictionary *userInfo = @{
         kMGJNavigationController: self.navigationController
     };

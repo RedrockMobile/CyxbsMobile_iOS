@@ -220,14 +220,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [UMessage didReceiveRemoteNotification:userInfo];
         
 //        @{
-//            @"question_id": @"123"
+//            @"uri": @"cyxbs://xxx.xxx?xxx=xxx"
 //        }
         
-        QADetailViewController *qaDetailVC = [[QADetailViewController alloc] initViewWithId:[userInfo[@"question_id"] numberValue] title:@""];
-        qaDetailVC.isPresent = YES;
-        
-        [((UITabBarController *)(self.window.rootViewController)) presentViewController:qaDetailVC animated:YES completion:nil];
-        
+        if ([userInfo[@"aps"][@"uri"] hasPrefix:@"http"]) {
+            
+        } else if ([userInfo[@"aps"][@"uri"] hasPrefix:@"cyxbs"]) {
+            NSDictionary *params = @{
+                kMGJNavigationControllerKey: ((UITabBarController *)(self.window.rootViewController)).selectedViewController    // 当前选中的控制器（三个都是导航控制器）
+            };
+            [MGJRouter openURL:userInfo[@"aps"][@"uri"] withUserInfo:params completion:nil];
+        }
         
         
     }else{
