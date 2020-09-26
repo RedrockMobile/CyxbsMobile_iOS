@@ -17,6 +17,7 @@
 #import <Bagel.h>
 #import "QADetailViewController.h"
 
+
 extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
@@ -223,11 +224,18 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //            @"uri": @"cyxbs://xxx.xxx?xxx=xxx"
 //        }
         
-        if ([userInfo[@"aps"][@"uri"] hasPrefix:@"http"]) {
-            
-        } else if ([userInfo[@"aps"][@"uri"] hasPrefix:@"cyxbs"]) {
+        // 当前选中的控制器（三个都是导航控制器）
+        UINavigationController *navigationController = ((UITabBarController *)(self.window.rootViewController)).selectedViewController;
+
+        
+        if ([userInfo[@"uri"] hasPrefix:@"http"]) {
+            URLController * controller = [[URLController alloc]init];
+            controller.hidesBottomBarWhenPushed = YES;
+            controller.toUrl = userInfo[@"uri"];
+            [navigationController pushViewController:controller animated:YES];
+        } else if ([userInfo[@"uri"] hasPrefix:@"cyxbs"]) {
             NSDictionary *params = @{
-                kMGJNavigationControllerKey: ((UITabBarController *)(self.window.rootViewController)).selectedViewController    // 当前选中的控制器（三个都是导航控制器）
+                kMGJNavigationControllerKey: navigationController
             };
             [MGJRouter openURL:userInfo[@"aps"][@"uri"] withUserInfo:params completion:nil];
         }

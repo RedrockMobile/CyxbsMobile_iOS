@@ -311,16 +311,14 @@
 }
 //MARK: - bannerView按钮触发事件
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-//    URLController * controller = [[URLController alloc]init];
-//    controller.hidesBottomBarWhenPushed = YES;
-//    controller.toUrl = self.bannerGoToURL[index];
-//    [self.viewController.navigationController pushViewController:controller animated:YES];
-////    self.viewController.hidesBottomBarWhenPushed = YES;
-//    NSLog(@"点击了第%ld个bannerView", (long)index);
     
     // 如果是http或者https协议的URL，用浏览器打开网页，如果是cyxbs协议的URL，打开对应页面
     if ([self.bannerGoToURL[index] hasPrefix:@"http"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.bannerGoToURL[index]] options:@{} completionHandler:nil];
+        URLController * controller = [[URLController alloc]init];
+        controller.hidesBottomBarWhenPushed = YES;
+        controller.toUrl = self.bannerGoToURL[index];
+        [self.viewController.navigationController pushViewController:controller animated:YES];
+
     } else if ([self.bannerGoToURL[index] hasPrefix:@"cyxbs"]) {
         
         NSDictionary *userInfo = @{

@@ -68,7 +68,6 @@
 		1A3106312377173B00A56468 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A310630237711A800A56468 /* Impact.ttf */; };
 		1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A344BB623E96AD80014A3B4 /* MineAboutController.m */; };
 		1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */; };
-		1A3B6D522476D3C00028E8A6 /* ProductWebsiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3B6D512476D3C00028E8A6 /* ProductWebsiteViewController.m */; };
 		1A4022FB244C9F6B000F8524 /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4022FA244C9F6B000F8524 /* EmptyClassViewController.m */; };
 		1A4022FE244C9FD0000F8524 /* EmptyClassContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4022FD244C9FD0000F8524 /* EmptyClassContentView.m */; };
 		1A402302244CA03C000F8524 /* EmptyClassPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A402301244CA03C000F8524 /* EmptyClassPresenter.m */; };
@@ -621,8 +620,6 @@
 		1A344BB623E96AD80014A3B4 /* MineAboutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineAboutController.m; sourceTree = "<group>"; };
 		1A344BB823E96BF50014A3B4 /* MineAboutContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineAboutContentView.h; sourceTree = "<group>"; };
 		1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineAboutContentView.m; sourceTree = "<group>"; };
-		1A3B6D502476D3C00028E8A6 /* ProductWebsiteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductWebsiteViewController.h; sourceTree = "<group>"; };
-		1A3B6D512476D3C00028E8A6 /* ProductWebsiteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductWebsiteViewController.m; sourceTree = "<group>"; };
 		1A4022F9244C9F6B000F8524 /* EmptyClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
 		1A4022FA244C9F6B000F8524 /* EmptyClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
 		1A4022FC244C9FD0000F8524 /* EmptyClassContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyClassContentView.h; sourceTree = "<group>"; };
@@ -1414,6 +1411,7 @@
 		1A141339235F524B0001417E /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				1A67857D251F1E02002BCA28 /* WebView */,
 				1A67856A251B4F66002BCA28 /* MGJRouter */,
 				D0101F4A243587A1004337ED /* GKPhotoBrowser */,
 				D0101D3D2433C885004337ED /* SDMask */,
@@ -1666,7 +1664,6 @@
 		1A344BB123E96AB80014A3B4 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				1A3B6D4F2476CF5F0028E8A6 /* ProductWebsite */,
 				1A344BB423E96AB80014A3B4 /* View */,
 			);
 			path = About;
@@ -1683,15 +1680,6 @@
 				1AFE535024F7571300F42A74 /* IntroductionController.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1A3B6D4F2476CF5F0028E8A6 /* ProductWebsite */ = {
-			isa = PBXGroup;
-			children = (
-				1A3B6D502476D3C00028E8A6 /* ProductWebsiteViewController.h */,
-				1A3B6D512476D3C00028E8A6 /* ProductWebsiteViewController.m */,
-			);
-			path = ProductWebsite;
 			sourceTree = "<group>";
 		};
 		1A4022F7244C9D54000F8524 /* Discover_EmptyClass */ = {
@@ -1816,6 +1804,15 @@
 				1A67856C251B4F94002BCA28 /* MGJRouterRegister.m */,
 			);
 			path = MGJRouter;
+			sourceTree = "<group>";
+		};
+		1A67857D251F1E02002BCA28 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				EE131C1F2471362E00B6ED97 /* URLController.h */,
+				EE131C202471362E00B6ED97 /* URLController.m */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		1A79FCD724EAEAB000CBB124 /* MoreImage */ = {
@@ -3007,8 +3004,6 @@
 			children = (
 				EE75BEFA23F5884100208039 /* DiscoverViewController.h */,
 				EE75BEFB23F5884100208039 /* DiscoverViewController.m */,
-				EE131C1F2471362E00B6ED97 /* URLController.h */,
-				EE131C202471362E00B6ED97 /* URLController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3902,7 +3897,6 @@
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				1A79FCD024EADC4F00CBB124 /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
-				1A3B6D522476D3C00028E8A6 /* ProductWebsiteViewController.m in Sources */,
 				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
 				1AE72A2124E80A7000665176 /* CQUPTMapDetailView.m in Sources */,
 				D06AAEDB24AC00BB00EE0892 /* QAReviewModel.m in Sources */,

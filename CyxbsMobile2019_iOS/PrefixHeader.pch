@@ -68,6 +68,7 @@
 #import "BaseViewController.h"
 #import "QABaseViewController.h"
 #import "NSDate+Timestamp.h"
+#import "URLController.h"
 #import <UMAnalytics/MobClick.h>
 #import "SDMask.h"
 #import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
