@@ -1114,22 +1114,6 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C3337715-F21A-449E-B1F3-9B42A612EC26"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassDetailViewShower.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "-init"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             uuid = "7419AE21-6B99-4F7C-A5CB-B63FB7CFC99F"
@@ -1140,6 +1124,55 @@
             breakpointStackSelectionBehavior = "1"
             scope = "1"
             stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44FD79D4-8B77-4588-BE5E-76B6B4F717D5"
+            shouldBeEnabled = "No"
+            condition = "[self.lessonNameLabel.text hasPrefix:@&quot;&#x968f;&#x673a;&quot;]"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassDetailView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "44FD79D4-8B77-4588-BE5E-76B6B4F717D5 - 48e2491a96009a25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ClassDetailView layoutSubviews]"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/%E7%94%A8%E6%9D%A5%E5%81%9A%E6%8E%8C%E9%82%AE%E9%A1%B9%E7%9B%AE%E7%9A%84git%E4%BB%93%E5%BA%93%E7%9A%84/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/ClassSchedule/View/ClassDetailView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "54">
+               </Location>
+               <Location
+                  uuid = "44FD79D4-8B77-4588-BE5E-76B6B4F717D5 - cae4129243df1aaf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__33-[ClassDetailView layoutSubviews]_block_invoke"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%9A%91%E6%9C%9F%E6%8E%8C%E9%82%AE/%E7%94%A8%E6%9D%A5%E5%81%9A%E6%8E%8C%E9%82%AE%E9%A1%B9%E7%9B%AE%E7%9A%84git%E4%BB%93%E5%BA%93%E7%9A%84/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/ClassSchedule/View/ClassDetailView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

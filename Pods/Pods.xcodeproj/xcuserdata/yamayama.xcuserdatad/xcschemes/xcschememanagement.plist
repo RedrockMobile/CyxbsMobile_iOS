@@ -35,12 +35,12 @@
 		<key>Bagel.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>27</integer>
+			<integer>25</integer>
 		</dict>
 		<key>CocoaAsyncSocket.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>24</integer>
 		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
@@ -70,6 +70,11 @@
 			<key>orderHint</key>
 			<integer>9</integer>
 		</dict>
+		<key>MGJRouter.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>27</integer>
+		</dict>
 		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -94,7 +99,7 @@
 		<key>NudeIn.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>26</integer>
 		</dict>
 		<key>Pods-CyxbsMobile2019_iOS.xcscheme</key>
 		<dict>
@@ -120,7 +125,7 @@
 		<key>TZImagePickerController.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>26</integer>
+			<integer>28</integer>
 		</dict>
 		<key>UMCAnalytics.xcscheme</key>
 		<dict>
