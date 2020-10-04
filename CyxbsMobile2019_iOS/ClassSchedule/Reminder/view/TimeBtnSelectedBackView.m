@@ -145,7 +145,6 @@
             make.right.equalTo(button).offset(-0.0427*MAIN_SCREEN_W);
         }];
         
-        [button initImageConstrains];
         button.delegate = self;
         [self.timebuttonArray addObject:button];
     }
@@ -198,7 +197,9 @@
     self.contentSize = CGSizeMake(0, row*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*num);
 }
 
-- (void)deleteButtonWithTag:(NSInteger)tag{
+- (void)deleteButtonWithBtn:(DLTimeSelectedButton*)btn{
+    [btn removeFromSuperview];
+    NSInteger tag = btn.tag;
     NSDictionary *deleteDict = self.timeDateDelegate.timeDictArray[tag];
     [self.timeDateDelegate.timeDictArray removeObject: deleteDict];
     [self reloadSelectedButtonsWithTimeStringArray:self.timeDateDelegate.timeDictArray];

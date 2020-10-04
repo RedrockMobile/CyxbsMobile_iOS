@@ -94,8 +94,8 @@
             filePath = "CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "-setupUIwithDic:answersData:"
             landmarkType = "7">
          </BreakpointContent>
@@ -143,8 +143,8 @@
             filePath = "CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "389"
-            endingLineNumber = "389"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
             landmarkName = "-tapToViewComment:"
             landmarkType = "7">
          </BreakpointContent>
@@ -159,8 +159,8 @@
             filePath = "CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "411"
-            endingLineNumber = "411"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
             landmarkName = "-addAnswerListViewWithDataArray:"
             landmarkType = "7">
          </BreakpointContent>
@@ -175,8 +175,8 @@
             filePath = "CyxbsMobile2019_iOS/QA/QADetail/View/QADetailView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "457"
+            endingLineNumber = "457"
             landmarkName = "-loadMoreWithArray:ifSuccessful:"
             landmarkType = "7">
          </BreakpointContent>
@@ -517,7 +517,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "25547D89-E11B-4968-AB83-223C4D75DEC2 - f7412797ca76b440"
+                  uuid = "25547D89-E11B-4968-AB83-223C4D75DEC2 - 70e350035796e879"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -532,7 +532,7 @@
                   offsetFromSymbolStart = "72">
                </Location>
                <Location
-                  uuid = "25547D89-E11B-4968-AB83-223C4D75DEC2 - 963ec92f979f85bd"
+                  uuid = "25547D89-E11B-4968-AB83-223C4D75DEC2 - 119cbebb0a7fd984"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -610,7 +610,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0D69EE9F-0420-4889-BBD0-F68DAB132060 - e1d45b56527ad46f"
+                  uuid = "0D69EE9F-0420-4889-BBD0-F68DAB132060 - aefe085c9490e480"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -625,7 +625,7 @@
                   offsetFromSymbolStart = "70">
                </Location>
                <Location
-                  uuid = "0D69EE9F-0420-4889-BBD0-F68DAB132060 - e1d45b56527ad46f"
+                  uuid = "0D69EE9F-0420-4889-BBD0-F68DAB132060 - aefe085c9490e480"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -674,7 +674,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "1216FC16-26E3-4800-AF13-A49D989AEE1D - ae382bf47b3c18b1"
+                  uuid = "1216FC16-26E3-4800-AF13-A49D989AEE1D - de9b147d88890f3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -689,7 +689,7 @@
                   offsetFromSymbolStart = "816">
                </Location>
                <Location
-                  uuid = "1216FC16-26E3-4800-AF13-A49D989AEE1D - e5e2e66f75f6f92e"
+                  uuid = "1216FC16-26E3-4800-AF13-A49D989AEE1D - 46337cdcd642710d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -866,7 +866,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "2AC9FE08-232F-42A6-8447-292D6C8C4492 - 6b20538e2430cc93"
+                  uuid = "2AC9FE08-232F-42A6-8447-292D6C8C4492 - 40b2a23aebf48c6a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -881,7 +881,7 @@
                   offsetFromSymbolStart = "3207">
                </Location>
                <Location
-                  uuid = "2AC9FE08-232F-42A6-8447-292D6C8C4492 - da1d7033822b3ffa"
+                  uuid = "2AC9FE08-232F-42A6-8447-292D6C8C4492 - f18f81874def7f62"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -896,54 +896,6 @@
                   offsetFromSymbolStart = "19">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2867EC8D-09EC-49BC-A279-D6E87D517EBC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-getClassBookArrayFromNet:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "97392CA7-78B4-4D00-B130-E7275FC76765"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-getPersonalClassBookArrayFromNet:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BD7FDCBF-0D3E-4A70-9F74-83C7CA4C99F6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-getPersonalClassBookArrayFromNet:"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1116,38 +1068,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "27BA8869-555D-41A4-AEE0-5BBF918936AF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-getPersonalClassBookArrayFromNet:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AC753553-79FF-41CE-819F-F12D4B88B2EC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Model/WYCClassAndRemindDataModel.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-getPersonalClassBookArrayWithStuNum:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "28484303-6659-4CF8-910E-BAAAF370D28E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1191,6 +1111,35 @@
             endingLineNumber = "36"
             landmarkName = "-updateAnimation:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C3337715-F21A-449E-B1F3-9B42A612EC26"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/View/ClassDetailViewShower.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "-init"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "7419AE21-6B99-4F7C-A5CB-B63FB7CFC99F"
+            shouldBeEnabled = "Yes"
+            nameForDebugger = "&#x5168;&#x5c40;"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

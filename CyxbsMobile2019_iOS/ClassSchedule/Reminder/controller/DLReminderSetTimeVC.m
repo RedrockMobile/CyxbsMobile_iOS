@@ -126,7 +126,7 @@
         [hud hide:YES afterDelay:1];
         return;
     }else{
-        NoteDataModel *model = [[NoteDataModel alloc] initWithNotoDataDict:@{
+        NoteDataModel *model = [[NoteDataModel alloc] initWithNoteDataDict:@{
             @"weeksStrArray":self.weekSelectedArray,
             @"timeStrDictArray":self.timeDictArray,
             @"notiBeforeTime":self.notiStr,

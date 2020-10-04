@@ -168,18 +168,6 @@
     [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
 }
 
-//是否显示备忘
-- (void)switchedDisplayMemoPad:(UISwitch *)sender {
-    if (sender.on) {            // 打开开关
-        [UserDefaultTool saveValue:@"test" forKey:@"Mine_DisplayMemoPad"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemoPadON" object:nil];
-    } else {                    // 关闭开关
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_DisplayMemoPad"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-         [[NSNotificationCenter defaultCenter] postNotificationName:@"Mine_DisplayMemoPadOFF" object:nil];
-    }
-}
-
 //打开app后是否自动弹出课表
 - (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender {
     if (sender.on) {            // 打开开关

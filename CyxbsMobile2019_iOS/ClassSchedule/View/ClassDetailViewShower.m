@@ -19,6 +19,13 @@
 
 /// 分页控制器
 @property(nonatomic,strong)UIPageControl *PC;
+
+/// 定时器
+@property(nonatomic,strong)NSTimer *timer;
+
+/// 当有timer在时，全屏大小的一个view，点击它后会invalid timer
+@property(nonatomic,strong)UIView *backViewToStopTimer;
+
 @end
 @implementation ClassDetailViewShower
 
@@ -143,7 +150,17 @@
     self.scrollView.contentSize = CGSizeMake((i+j)*MAIN_SCREEN_W, 0);
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self.backViewOfScrollView setFrame:CGRectMake(0, MAIN_SCREEN_H-DETAILVIEW_H+10, MAIN_SCREEN_W, DETAILVIEW_H+40)];
-    } completion:nil];
+    } completion:^(BOOL is){
+        //判断是否已经展示过功能，不为空，则展示过。
+        if([[NSUserDefaults standardUserDefaults] stringForKey:@"isClassDetailViewShower_Displayed"]!=nil)return;
+        if(self.PC.numberOfPages!=1){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self displayOnce];
+                [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"isClassDetailViewShower_Displayed"];
+            });
+        }
+    }];
+    
 }
 
 /// NoteDetailViewDelegate要求的代理方法，点击后面的空白处、点击删除或者修改按钮后调用，作用：移除弹窗
@@ -161,6 +178,43 @@
 //scrollView的代理方法，用来刷新分页控制器的页码
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     self.PC.currentPage = (NSInteger)self.scrollView.contentOffset.x/MAIN_SCREEN_W;
+}
+
+/// 在showDetail方法里，判断用户是第一次安装掌邮后，会调用这个方法展示课详情的滑动功能
+- (void)displayOnce{
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        if(self.scrollView.contentOffset.x+self.scrollView.frame.size.width<self.scrollView.contentSize.width){
+            [UIView animateWithDuration:0.6 animations:^{
+                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x+self.scrollView.frame.size.width, 0);
+            }];
+            self.PC.currentPage++;
+        }else{
+            if(self.timer!=nil){
+                [self.timer invalidate];
+                self.timer = nil;
+                [self.backViewToStopTimer removeFromSuperview];
+                self.backViewToStopTimer = nil;
+            }
+        }
+    }];
+    [self.timer fire];
+    
+    //______________下面是创建一个全屏的背景view，点击它会invalid timer______________
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H)];
+    self.backViewToStopTimer = view;
+    [self addSubview:view];
+    
+    UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+        if(self.timer!=nil){
+            [self.timer invalidate];
+            self.timer = nil;
+            [self.backViewToStopTimer removeFromSuperview];
+            self.backViewToStopTimer = nil;
+        }
+    }];
+    [view addGestureRecognizer:TGR];
 }
 @end
 

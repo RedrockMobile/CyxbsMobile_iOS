@@ -9,7 +9,7 @@
 #import "NoteDataModel.h"
 
 @implementation NoteDataModel
-- (instancetype)initWithNotoDataDict:(NSDictionary*)noteDataDict{
+- (instancetype)initWithNoteDataDict:(NSDictionary*)noteDataDict{
     self = [super init];
     if(self){
         self.noteDataDict = noteDataDict;

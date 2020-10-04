@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteDataModel : NSObject
-- (instancetype)initWithNotoDataDict:(NSDictionary*)noteDataDict;
+- (instancetype)initWithNoteDataDict:(NSDictionary*)noteDataDict;
 
 
 /// @[@4,@1,@18]代表第4、1、18周的备忘
