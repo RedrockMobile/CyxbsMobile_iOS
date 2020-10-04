@@ -8,7 +8,6 @@
 
 #import "MineAboutController.h"
 #import "MineAboutContentView.h"
-#import "ProductWebsiteViewController.h"
 #import "IntroductionController.h"
 
 @interface MineAboutController () <MineAboutContentViewDelegate>
@@ -32,6 +31,10 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
+}
+
 #pragma mark - contentView代理
 - (void)backButtonClicked {
     [self.navigationController popViewControllerAnimated:YES];
@@ -43,8 +46,10 @@
 }
 
 - (void)selectedProductWebsite {
-    ProductWebsiteViewController *vc = [[ProductWebsiteViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    URLController * controller = [[URLController alloc]init];
+    controller.hidesBottomBarWhenPushed = YES;
+    controller.toUrl = @"https://wx.redrock.team/game/handheldcqupt-pc/#/";
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)selectedFeedBack {

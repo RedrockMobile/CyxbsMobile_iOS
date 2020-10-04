@@ -64,14 +64,13 @@
     
 }
 -(void)tryIDSBinding {
-    NSString *idsAccount = [UserItem defaultItem].idsAccount;
-    NSString *idsPasswd = [UserItem defaultItem].idsPasswd;
+    NSString *idsPasswd = [[NSUserDefaults standardUserDefaults] objectForKey:@"idsPasswd"];
     if([UserItem defaultItem].idsBindingSuccess) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
         return;
     }
-    if(idsAccount && idsPasswd) {
-        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:idsAccount isPassword:idsPasswd];
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"idsAccount"] && idsPasswd) {
+        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:[[NSUserDefaults standardUserDefaults] objectForKey:@"idsAccount"] isPassword:idsPasswd];
         [binding fetchData];
     }else {
         [self addIdsBindingView];//提示用户绑定统一认证码的title;
@@ -255,7 +254,9 @@
 
 - (NSArray *)getXTitles:(int)num {
     NSMutableArray *xTitles = [NSMutableArray array];
-    xTitles = @[@"大一上", @"大一下", @"大二上", @"大二下", @"大三上", @"大三下", @"大四上", @"大四下"];
+    xTitles = [@[
+        @"大一上", @"大一下", @"大二上", @"大二下", @"大三上", @"大三下", @"大四上", @"大四下"
+    ] mutableCopy];
     
     return xTitles;
 }
@@ -266,14 +267,15 @@
 }
 
 - (NSArray *)SCChart_yValueArray:(SCChart *)chart {
-    if([self getChartArray]!=NULL) {
+    if ([self getChartArray] != nil) {
         return @[[self getChartArray]];
-        NSLog(@"%@",[self getChartArray]);
+        NSLog(@"%@", [self getChartArray]);
     }
     NSMutableArray *ary = [NSMutableArray array];
-    ary = @[@0];//备用数据
+    ary = [@[@0] mutableCopy];//备用数据
     return @[ary];
 }
+
 - (NSArray *)SCChart_ColorArray:(SCChart *)chart {
     if (@available(iOS 11.0, *)) {
         return @[Color_chartLine];
@@ -282,16 +284,18 @@
         return @[[UIColor colorWithHexString:@"#2921D1"]];
     }
 }
+
 - (BOOL)SCChart:(SCChart *)chart ShowMaxMinAtIndex:(NSInteger)index {
     return YES;
 }
+
 - (BOOL)SCChart:(SCChart *)chart ShowHorizonLineAtIndex:(NSInteger)index {
     return YES;
 }
 
 -(NSArray*)getChartArray {
     NSMutableArray *arr = [NSMutableArray array];
-    for (TermGrade*t in self.gpaItem.termGrades.termGrades) {
+    for (TermGrade *t in self.gpaItem.termGrades.termGrades) {
         double gpaNumber = t.gpa.doubleValue;
 //            NSString *gpa = gpaNumber.stringValue;
             [arr addObject:@(gpaNumber)];
@@ -300,6 +304,8 @@
     NSArray *array = arr;
     return array;
 }
+
+
 //MARK: - tableView代理
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(self.gpaItem.termGrades.termGrades.count) {

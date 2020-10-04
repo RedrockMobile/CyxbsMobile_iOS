@@ -9,6 +9,10 @@
 #ifndef MoblieCQUPT_iOS_PrefixHeader_pch
 #define MoblieCQUPT_iOS_PrefixHeader_pch
 
+
+
+#pragma mark - 自定义Log
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #if DEBUG
@@ -24,6 +28,11 @@
     #define DDLog(xx, ...)     ;
     #define NSLog(format, ...) ;
 #endif
+
+
+
+#pragma mark - 颜色
+
 #define BACK_COLOR [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1.0]
 #define MAIN_COLOR  [UIColor colorWithRed:84/255.0 green:172/255.0 blue:255/255.0 alpha:1]
 #define FONT_COLOR  [UIColor colorWithRed:89/255.0 green:89/255.0 blue:89/255.0 alpha:1]
@@ -41,6 +50,9 @@
 #define COLOR_NONEED [UIColor colorWithRed:148/255.0 green:148/255.0 blue:148/255.0 alpha:0.6]
 
 
+
+#pragma mark - 头文件
+
 #import <AFNetworking.h>
 #import <MJRefresh.h>
 #import <UIImageView+WebCache.h>
@@ -56,13 +68,17 @@
 #import "BaseViewController.h"
 #import "QABaseViewController.h"
 #import "NSDate+Timestamp.h"
+#import "URLController.h"
 #import <UMAnalytics/MobClick.h>
 #import "SDMask.h"
 #import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
 #import "AESCipher.h"         // AES加密算法
+#import <MGJRouter.h>
 
 
-#pragma Group共享
+
+#pragma mark - Group共享
+
 #define kAPPGroupID @"group.com.redrock.mobile"
 #define kAppGroupShareNowDay @"nowDay"
 #define kAppGroupShareThisWeekArray @"thisWeekArray"
@@ -80,9 +96,16 @@
 //gege
 #define BACK_GRAY_COLOR [UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]
 
+
+
+#pragma mark - 友盟
+
 // 友盟DeciveToken
 #define kUMDeviceToken @"kUMDeviceToken"
 
+
+
+#pragma mark - 屏幕适配相关
 
 /* 小屏适配 */
 #define IS_IPHONESE (SCREEN_WIDTH == 320.f && SCREEN_HEIGHT == 568.f)
@@ -112,9 +135,17 @@
 //学期开始时间
 #define DateStart @"2020-09-07"
 
-/*----------------------------------------------------------------
-｜                              字体                              |
------------------------------------------------------------------*/
+
+
+#pragma mark - MGJRouter用到的宏
+
+// MGJRouter中用到的一些宏
+// UserInfo的key：
+#define kMGJNavigationControllerKey @"MGJNavigationControllerKey"
+
+
+#pragma mark - 字体
+
 #define PingFangSCRegular @"PingFangSC-Regular"
 #define PingFangSCLight @"PingFangSC-Light"
 #define PingFangSCMedium @"PingFangSC-Medium"
@@ -142,9 +173,8 @@
 #define ZOOM(x) x / SCREEN_RATE
 
 
-/*----------------------------------------------------------------
- ｜                            我的接口                            |
- -----------------------------------------------------------------*/
+
+#pragma mark - “我的”接口
 
 /// 登录接口
 #define LOGINAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token"
@@ -188,9 +218,8 @@
 #define DELETEDRAFT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/deleteItemInDraft"
 
 
-/*----------------------------------------------------------------
-｜                            发现接口                            |
------------------------------------------------------------------*/
+
+#pragma mark - “发现”接口
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
@@ -210,6 +239,27 @@
 /// 教务新闻附件下载
 #define NEWSDOWNLOAD @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 
+///查询绩点需要先绑定ids
+#define IDSBINDINGAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
+///绩点查询
+#define GPAAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/gpa"
+
+/// 考试安排接口
+#define EXAMARRANGEAPI @"https://cyxbsmobile.redrock.team/api/examSchedule"
+
+/// 校车位置
+#define SCHOOLBUSAPI @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
+
+/// banner
+#define BANNERVIEWAPI @"http://api-234.redrock.team/magipoke-text/banner/get"
+
+/// 志愿查询
+#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
+#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer/select"
+
+
+
+#pragma mark - ”重邮地图“接口
 
 /// 重邮地图历史记录偏好设置Key
 #define CQUPTMAPHISTORYKEY @"MapSearchHistory"
@@ -231,7 +281,10 @@
 /// 重邮地图：删除收藏
 #define CQUPTMAPDELETECOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/delete"
 
-/// 课表、备忘接口
+
+
+#pragma mark - “课表”、“备忘”接口
+
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
 
 
@@ -256,28 +309,10 @@
 /// 查找老师
 #define SEARCHTEACHERAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch"
 
-///查询绩点需要先绑定ids
-#define IDSBINDINGAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
-///绩点查询
-#define GPAAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/gpa"
-
-/// 考试安排接口
-#define EXAMARRANGEAPI @"https://cyxbsmobile.redrock.team/api/examSchedule"
-
-/// 校车位置
-#define SCHOOLBUSAPI @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
-
-/// banner
-#define BANNERVIEWAPI @"http://api-234.redrock.team/magipoke-text/banner/get"
-
-/// 志愿查询
-#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
-#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer/select"
 
 
-/*----------------------------------------------------------------
-｜                            邮问接口                            |
------------------------------------------------------------------*/
+#pragma mark - “邮问”接口
+
 /*
  问题部分
  */
