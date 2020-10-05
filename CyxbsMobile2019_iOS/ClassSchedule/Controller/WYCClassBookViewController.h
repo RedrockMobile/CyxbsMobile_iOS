@@ -10,7 +10,7 @@
 #import "DLReminderViewController.h"
 #import "WYCClassAndRemindDataModel.h"
 #import "DateModle.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "FakeTabBarView.h"
 #import "TopBarScrollView.h"
 #import "AddRemindViewController.h"

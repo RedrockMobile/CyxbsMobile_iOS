@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0AC5F8252B235800221514 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0AC5F7252B235800221514 /* LoginViewController.swift */; };
 		1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */; };
 		1A0E15F024E4EADF00C39B4D /* CQUPTMapSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */; };
 		1A141320235F521C0001417E /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131A235F521C0001417E /* BaseTableViewController.m */; };
@@ -79,7 +80,6 @@
 		1A4A467724D16A810033734E /* UserInformationIntorductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A467624D16A800033734E /* UserInformationIntorductionView.m */; };
 		1A4B3B3B24F38FE0001913A1 /* CQUPTMapProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B3B3A24F38FE0001913A1 /* CQUPTMapProgressView.m */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
-		1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDA23600C9100543BAE /* LoginViewController.m */; };
 		1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDD23600CBE00543BAE /* Login.xcassets */; };
 		1A5A5EE52360100B00543BAE /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EE42360100B00543BAE /* UserItem.m */; };
 		1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EE7236021FE00543BAE /* LoginPresenter.m */; };
@@ -500,6 +500,8 @@
 
 /* Begin PBXFileReference section */
 		0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CyxbsMobile2019_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0AC5F6252B235800221514 /* CyxbsMobile2019_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsMobile2019_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		1A0AC5F7252B235800221514 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1A0E15EB24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapBeforeSearchCell.h; sourceTree = "<group>"; };
 		1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapBeforeSearchCell.m; sourceTree = "<group>"; };
 		1A0E15EE24E4EADF00C39B4D /* CQUPTMapSearchItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchItem.h; sourceTree = "<group>"; };
@@ -642,8 +644,6 @@
 		1A4B3B3924F38FE0001913A1 /* CQUPTMapProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapProgressView.h; sourceTree = "<group>"; };
 		1A4B3B3A24F38FE0001913A1 /* CQUPTMapProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapProgressView.m; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		1A5A5ED923600C9100543BAE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		1A5A5EDA23600C9100543BAE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1A5A5EDD23600CBE00543BAE /* Login.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Login.xcassets; sourceTree = "<group>"; };
 		1A5A5EE32360100B00543BAE /* UserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		1A5A5EE42360100B00543BAE /* UserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
@@ -1341,6 +1341,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0AC5F5252B234700221514 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				1A0AC602252B259B00221514 /* Login */,
+				1A0AC5F6252B235800221514 /* CyxbsMobile2019_iOS-Bridging-Header.h */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		1A0AC602252B259B00221514 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1A0AC5F7252B235800221514 /* LoginViewController.swift */,
+				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		1A141319235F521C0001417E /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1753,9 +1771,6 @@
 		1A5A5ED523600BD700543BAE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1A5A5ED923600C9100543BAE /* LoginViewController.h */,
-				1A5A5EDA23600C9100543BAE /* LoginViewController.m */,
-				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1902,6 +1917,7 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1A0AC5F5252B234700221514 /* Swift */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				EE75BEF723F5884100208039 /* Discover */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
@@ -3552,6 +3568,7 @@
 				TargetAttributes = {
 					1A9B7666235F50A600725937 = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1200;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3879,6 +3896,7 @@
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
+				1A0AC5F8252B235800221514 /* LoginViewController.swift in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				1A21CD5B242A48F6008B2EA7 /* SchoolBusContentView.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
@@ -4001,7 +4019,6 @@
 				EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */,
 				1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
-				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				EE75BFAE23F5884100208039 /* PeopleListCellTableViewCell.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
@@ -4293,6 +4310,7 @@
 			baseConfigurationReference = 6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
@@ -4309,6 +4327,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4318,6 +4339,7 @@
 			baseConfigurationReference = F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
@@ -4334,6 +4356,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -4341,6 +4365,7 @@
 		1A9B7697235F50A900725937 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPM8HVK7C6;
@@ -4361,6 +4386,7 @@
 		1A9B7698235F50A900725937 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPM8HVK7C6;
@@ -4381,6 +4407,7 @@
 		1A9B769A235F50A900725937 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPM8HVK7C6;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
@@ -4399,6 +4426,7 @@
 		1A9B769B235F50A900725937 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPM8HVK7C6;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;

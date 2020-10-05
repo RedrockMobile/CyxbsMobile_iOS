@@ -10,7 +10,7 @@
 #import "LessonButtonController.h"
 #import "DetailViewController.h"
 #import "AddRemindViewController.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "RemindNotification.h"
 #import "UIFont+AdaptiveFont.h"
 #import "MainView.h"

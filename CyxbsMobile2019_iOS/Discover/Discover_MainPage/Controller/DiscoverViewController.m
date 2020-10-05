@@ -7,7 +7,7 @@
 //
 
 #import "DiscoverViewController.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "FinderToolViewController.h"
 #import "FinderView.h"
 #import "EmptyClassViewController.h"

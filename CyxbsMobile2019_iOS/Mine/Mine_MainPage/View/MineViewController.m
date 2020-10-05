@@ -7,7 +7,7 @@
 //
 
 #import "MineViewController.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "MineContentViewProtocol.h"
 #import "MinePresenter.h"
 #import "EditMyInfoViewController.h"
