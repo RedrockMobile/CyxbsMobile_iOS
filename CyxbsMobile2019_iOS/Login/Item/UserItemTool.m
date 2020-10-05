@@ -81,7 +81,7 @@
 + (void)refresh {
     __block UserItem *item = [UserItemTool defaultItem];
     
-    if (!item) {
+    if (!item.refreshToken) {
         return;
     }
     

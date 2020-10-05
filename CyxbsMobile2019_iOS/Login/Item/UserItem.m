@@ -14,10 +14,12 @@ MJExtensionCodingImplementation
 
 static UserItem *item = nil;
 + (UserItem *)defaultItem {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (!item) {
         item = [NSKeyedUnarchiver unarchiveObjectWithFile:[UserItemTool userItemPath]];
-    });
+        if (!item) {
+            item = [[UserItem alloc] init];
+        }
+    }
     return item;
 }
 

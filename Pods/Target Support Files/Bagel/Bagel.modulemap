@@ -1,0 +1,6 @@
+framework module Bagel {
+  umbrella header "Bagel-umbrella.h"
+
+  export *
+  module * { export * }
+}

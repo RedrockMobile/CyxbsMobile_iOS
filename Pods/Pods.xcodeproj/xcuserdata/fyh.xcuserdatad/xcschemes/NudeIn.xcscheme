@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AF5763882A58DA3767DE637EEB4722D7"
-               BuildableName = "libNudeIn.a"
+               BuildableName = "NudeIn.framework"
                BlueprintName = "NudeIn"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

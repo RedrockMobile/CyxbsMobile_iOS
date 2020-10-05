@@ -1,1 +1,0 @@
-../../../Bagel/iOS/Source/BagelRequestInfo.h

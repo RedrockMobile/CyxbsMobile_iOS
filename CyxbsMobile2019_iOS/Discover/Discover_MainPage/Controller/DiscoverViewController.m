@@ -78,10 +78,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 #pragma mark - Getter
 - (LoginStates)loginStatus {
-    if (![UserItemTool defaultItem]) {
+    if (![UserItemTool defaultItem].token) {
         return DidntLogin;
     } else {
-        if ([[UserItemTool defaultItem].iat integerValue] + 45 * 24 * 3600 < [NSDate nowTimestamp]) {
+        if (![[UserItemTool defaultItem].iat integerValue]
+            && [[UserItemTool defaultItem].iat integerValue] + 45 * 24 * 3600 < [NSDate nowTimestamp]) {
             return LoginTimeOut;
         } else {
             return AlreadyLogin;
