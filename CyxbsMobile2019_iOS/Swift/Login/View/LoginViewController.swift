@@ -103,6 +103,7 @@ class LoginViewController: UIViewController {
                     self.hideHud()
                     self.dismiss(animated: true, completion: nil)
                 } failed: {
+                    self.dismiss(animated: true, completion: nil)
                     self.showHud("账号或密码错误", time: 1)
                 }
                 
