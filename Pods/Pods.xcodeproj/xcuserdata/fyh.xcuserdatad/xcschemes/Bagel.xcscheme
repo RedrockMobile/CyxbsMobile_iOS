@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "92077976CB3E088351E515981DC39115"
-               BuildableName = "libBagel.a"
+               BuildableName = "Bagel.framework"
                BlueprintName = "Bagel"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

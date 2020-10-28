@@ -7,7 +7,7 @@
 //
 
 #import "NoLoginView.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "UIFont+AdaptiveFont.h"
 @implementation NoLoginView
 -(instancetype)initWithFrame:(CGRect)frame{

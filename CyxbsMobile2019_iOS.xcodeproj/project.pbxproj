@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0AC5F8252B235800221514 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0AC5F7252B235800221514 /* LoginViewController.swift */; };
 		1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */; };
 		1A0E15F024E4EADF00C39B4D /* CQUPTMapSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */; };
 		1A141320235F521C0001417E /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14131A235F521C0001417E /* BaseTableViewController.m */; };
@@ -79,16 +80,15 @@
 		1A4A467724D16A810033734E /* UserInformationIntorductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A467624D16A800033734E /* UserInformationIntorductionView.m */; };
 		1A4B3B3B24F38FE0001913A1 /* CQUPTMapProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4B3B3A24F38FE0001913A1 /* CQUPTMapProgressView.m */; };
 		1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5ED823600C9100543BAE /* LoginViewController.xib */; };
-		1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDA23600C9100543BAE /* LoginViewController.m */; };
 		1A5A5EDE23600CBE00543BAE /* Login.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5A5EDD23600CBE00543BAE /* Login.xcassets */; };
 		1A5A5EE52360100B00543BAE /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EE42360100B00543BAE /* UserItem.m */; };
-		1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EE7236021FE00543BAE /* LoginPresenter.m */; };
-		1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EEA236022C500543BAE /* LoginModel.m */; };
 		1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EF02361A82E00543BAE /* UserItemTool.m */; };
 		1A5E914B24EAEF45004BF5C4 /* CQUPTMapImageLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E914A24EAEF45004BF5C4 /* CQUPTMapImageLayout.m */; };
 		1A5E914E24EAF0AF004BF5C4 /* CQUPTMapAllImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E914D24EAF0AF004BF5C4 /* CQUPTMapAllImageCollectionViewCell.m */; };
 		1A67856D251B4F94002BCA28 /* MGJRouterRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A67856C251B4F94002BCA28 /* MGJRouterRegister.m */; };
 		1A6F214A24ED362500158617 /* FYHCycleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6F214924ED362500158617 /* FYHCycleLabel.m */; };
+		1A799562252B43E400603253 /* SwiftyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A799561252B43E400603253 /* SwiftyClient.swift */; };
+		1A79956C252B5BC300603253 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79956B252B5BC300603253 /* LoginModel.swift */; };
 		1A79FCCD24E81E3300CBB124 /* CQUPTMapPlaceDetailItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A79FCCC24E81E3300CBB124 /* CQUPTMapPlaceDetailItem.m */; };
 		1A79FCD024EADC4F00CBB124 /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A79FCCF24EADC4F00CBB124 /* CQUPTMapDetailTagsCollectionViewCell.m */; };
 		1A79FCD324EAE81B00CBB124 /* CollectionViewSpaceLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A79FCD124EAE81B00CBB124 /* CollectionViewSpaceLayout.m */; };
@@ -150,7 +150,7 @@
 		1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1526237D9A7E004D9CEA /* MineEditTextField.m */; };
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
-		2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */; };
+		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */; };
 		AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1124EFC78C00FDF70C /* NoteDetailView.m */; };
 		AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */; };
@@ -499,7 +499,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CyxbsMobile2019_iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A0AC5F6252B235800221514 /* CyxbsMobile2019_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsMobile2019_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		1A0AC5F7252B235800221514 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1A0E15EB24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapBeforeSearchCell.h; sourceTree = "<group>"; };
 		1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapBeforeSearchCell.m; sourceTree = "<group>"; };
 		1A0E15EE24E4EADF00C39B4D /* CQUPTMapSearchItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapSearchItem.h; sourceTree = "<group>"; };
@@ -642,16 +643,9 @@
 		1A4B3B3924F38FE0001913A1 /* CQUPTMapProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapProgressView.h; sourceTree = "<group>"; };
 		1A4B3B3A24F38FE0001913A1 /* CQUPTMapProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapProgressView.m; sourceTree = "<group>"; };
 		1A5A5ED823600C9100543BAE /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		1A5A5ED923600C9100543BAE /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		1A5A5EDA23600C9100543BAE /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		1A5A5EDD23600CBE00543BAE /* Login.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Login.xcassets; sourceTree = "<group>"; };
 		1A5A5EE32360100B00543BAE /* UserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		1A5A5EE42360100B00543BAE /* UserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
-		1A5A5EE6236021FE00543BAE /* LoginPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginPresenter.h; sourceTree = "<group>"; };
-		1A5A5EE7236021FE00543BAE /* LoginPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginPresenter.m; sourceTree = "<group>"; };
-		1A5A5EE9236022C500543BAE /* LoginModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginModel.h; sourceTree = "<group>"; };
-		1A5A5EEA236022C500543BAE /* LoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginModel.m; sourceTree = "<group>"; };
-		1A5A5EEE2360298900543BAE /* LoginViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewProtocol.h; sourceTree = "<group>"; };
 		1A5A5EEF2361A82E00543BAE /* UserItemTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItemTool.h; sourceTree = "<group>"; };
 		1A5A5EF02361A82E00543BAE /* UserItemTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItemTool.m; sourceTree = "<group>"; };
 		1A5E914924EAEF45004BF5C4 /* CQUPTMapImageLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapImageLayout.h; sourceTree = "<group>"; };
@@ -662,6 +656,8 @@
 		1A67856C251B4F94002BCA28 /* MGJRouterRegister.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGJRouterRegister.m; sourceTree = "<group>"; };
 		1A6F214824ED362500158617 /* FYHCycleLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FYHCycleLabel.h; sourceTree = "<group>"; };
 		1A6F214924ED362500158617 /* FYHCycleLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FYHCycleLabel.m; sourceTree = "<group>"; };
+		1A799561252B43E400603253 /* SwiftyClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyClient.swift; sourceTree = "<group>"; };
+		1A79956B252B5BC300603253 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		1A79FCCB24E81E3300CBB124 /* CQUPTMapPlaceDetailItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapPlaceDetailItem.h; sourceTree = "<group>"; };
 		1A79FCCC24E81E3300CBB124 /* CQUPTMapPlaceDetailItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapPlaceDetailItem.m; sourceTree = "<group>"; };
 		1A79FCCE24EADC4F00CBB124 /* CQUPTMapDetailTagsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapDetailTagsCollectionViewCell.h; sourceTree = "<group>"; };
@@ -789,6 +785,7 @@
 		1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoTransitionAnimator.m; sourceTree = "<group>"; };
 		1AFE534F24F7571300F42A74 /* IntroductionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroductionController.h; sourceTree = "<group>"; };
 		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
+		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDataModel.h; sourceTree = "<group>"; };
 		AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDataModel.m; sourceTree = "<group>"; };
@@ -1320,7 +1317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */,
-				2A484C14CCF353BF33ED4EE4 /* libPods-CyxbsMobile2019_iOS.a in Frameworks */,
+				422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1338,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0AC5F5252B234700221514 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				1A0AC5F6252B235800221514 /* CyxbsMobile2019_iOS-Bridging-Header.h */,
+				1A799560252B43CF00603253 /* Tools */,
+				1A0AC602252B259B00221514 /* Login */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
+		1A0AC602252B259B00221514 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1A79956A252B5B3B00603253 /* Model */,
+				1A799569252B5B3400603253 /* View */,
+				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		1A141319235F521C0001417E /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -1741,41 +1758,9 @@
 			children = (
 				1A5A5EDD23600CBE00543BAE /* Login.xcassets */,
 				1A4A466924C97D610033734E /* UserProtocol */,
-				1A5A5EEC2360240000543BAE /* Protocol */,
-				1A5A5ED523600BD700543BAE /* View */,
-				1A5A5ED723600BE000543BAE /* Presenter */,
-				1A5A5ED623600BDC00543BAE /* Model */,
 				1A5A5EE223600FE600543BAE /* Item */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		1A5A5ED523600BD700543BAE /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1A5A5ED923600C9100543BAE /* LoginViewController.h */,
-				1A5A5EDA23600C9100543BAE /* LoginViewController.m */,
-				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1A5A5ED623600BDC00543BAE /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1A5A5EE9236022C500543BAE /* LoginModel.h */,
-				1A5A5EEA236022C500543BAE /* LoginModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1A5A5ED723600BE000543BAE /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				1A5A5EE6236021FE00543BAE /* LoginPresenter.h */,
-				1A5A5EE7236021FE00543BAE /* LoginPresenter.m */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		1A5A5EE223600FE600543BAE /* Item */ = {
@@ -1787,14 +1772,6 @@
 				1A5A5EF02361A82E00543BAE /* UserItemTool.m */,
 			);
 			path = Item;
-			sourceTree = "<group>";
-		};
-		1A5A5EEC2360240000543BAE /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				1A5A5EEE2360298900543BAE /* LoginViewProtocol.h */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		1A67856A251B4F66002BCA28 /* MGJRouter */ = {
@@ -1813,6 +1790,30 @@
 				EE131C202471362E00B6ED97 /* URLController.m */,
 			);
 			path = WebView;
+			sourceTree = "<group>";
+		};
+		1A799560252B43CF00603253 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				1A799561252B43E400603253 /* SwiftyClient.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		1A799569252B5B3400603253 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1A0AC5F7252B235800221514 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1A79956A252B5B3B00603253 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A79956B252B5BC300603253 /* LoginModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1A79FCD724EAEAB000CBB124 /* MoreImage */ = {
@@ -1902,6 +1903,7 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1A0AC5F5252B234700221514 /* Swift */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				EE75BEF723F5884100208039 /* Discover */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
@@ -2273,7 +2275,7 @@
 			isa = PBXGroup;
 			children = (
 				D09081D923F4571B00D5342D /* UserNotifications.framework */,
-				0913CE267FCBD5EB99727800 /* libPods-CyxbsMobile2019_iOS.a */,
+				378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3492,6 +3494,7 @@
 				1A9B7664235F50A600725937 /* Frameworks */,
 				1A9B7665235F50A600725937 /* Resources */,
 				81DCEEACD5150216D20A1471 /* [CP] Copy Pods Resources */,
+				5069A10D9BED088AE88BB0DB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3552,6 +3555,7 @@
 				TargetAttributes = {
 					1A9B7666235F50A600725937 = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1200;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3770,6 +3774,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5069A10D9BED088AE88BB0DB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		81DCEEACD5150216D20A1471 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3879,6 +3900,7 @@
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
+				1A0AC5F8252B235800221514 /* LoginViewController.swift in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				1A21CD5B242A48F6008B2EA7 /* SchoolBusContentView.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
@@ -3932,6 +3954,7 @@
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				D0101F61243587A1004337ED /* GKLoadingView.m in Sources */,
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
+				1A799562252B43E400603253 /* SwiftyClient.swift in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				EE75BFBD23F5884100208039 /* SCChart.m in Sources */,
@@ -3975,7 +3998,6 @@
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
 				1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */,
-				1A5A5EEB236022C500543BAE /* LoginModel.m in Sources */,
 				D069799023D737800007E479 /* QADetailModel.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
@@ -4001,7 +4023,6 @@
 				EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */,
 				1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
-				1A5A5EDC23600C9100543BAE /* LoginViewController.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				EE75BFAE23F5884100208039 /* PeopleListCellTableViewCell.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
@@ -4032,6 +4053,7 @@
 				1A22DDD724502A6E00FBB51E /* EmptyClassCollectionViewCell.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				EE75BFC123F5884100208039 /* SCColor.m in Sources */,
+				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */,
@@ -4114,7 +4136,6 @@
 				EE75BFB523F5884100208039 /* NewsViewController.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				1AB2E59F24E426CE004B4067 /* CQUPTMapSearchView.m in Sources */,
-				1A5A5EE8236021FE00543BAE /* LoginPresenter.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,
 				EE8234DB24673FE800F6B4AE /* QueryViewController.m in Sources */,
@@ -4293,6 +4314,7 @@
 			baseConfigurationReference = 6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
@@ -4309,6 +4331,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4318,6 +4343,7 @@
 			baseConfigurationReference = F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
@@ -4334,6 +4360,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -4341,6 +4369,7 @@
 		1A9B7697235F50A900725937 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPM8HVK7C6;
@@ -4361,6 +4390,7 @@
 		1A9B7698235F50A900725937 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPM8HVK7C6;
@@ -4381,6 +4411,7 @@
 		1A9B769A235F50A900725937 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPM8HVK7C6;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
@@ -4399,6 +4430,7 @@
 		1A9B769B235F50A900725937 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPM8HVK7C6;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;

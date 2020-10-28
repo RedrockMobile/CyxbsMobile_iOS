@@ -14,7 +14,7 @@
 #import "HeaderGifRefresh.h"
 #import "VolunteerItem.h"
 #import "NoLoginView.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "DiscoverViewController.h"
 
 @interface QueryViewController() <UIScrollViewDelegate>

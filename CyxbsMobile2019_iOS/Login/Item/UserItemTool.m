@@ -7,7 +7,7 @@
 //
 
 #import "UserItemTool.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import <UMPush/UMessage.h>
 
 @interface UserItemTool ()
@@ -35,6 +35,7 @@
 
 /// 退出登录（清除用户缓存）
 + (void)logout {
+    
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     if (tabBarVC.presentedViewController) {
@@ -79,7 +80,7 @@
 + (void)refresh {
     __block UserItem *item = [UserItemTool defaultItem];
     
-    if (!item) {
+    if (!item.refreshToken) {
         return;
     }
     

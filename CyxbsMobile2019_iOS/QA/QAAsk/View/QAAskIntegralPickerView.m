@@ -68,7 +68,7 @@
     [label setFont:[UIFont fontWithName:@"Impact" size:64]];
     label.textColor = [UIColor colorWithHexString:@"#2A4E84"];
     ((UILabel *)[pickerView.subviews objectAtIndex:1]).hidden = YES;    //隐藏分隔线
-    ((UILabel *)[pickerView.subviews objectAtIndex:2]).hidden = YES;    //隐藏分隔线
+//    ((UILabel *)[pickerView.subviews objectAtIndex:2]).hidden = YES;    //隐藏分隔线
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
     } else {

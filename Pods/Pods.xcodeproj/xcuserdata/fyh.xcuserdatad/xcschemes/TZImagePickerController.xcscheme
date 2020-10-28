@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A96BBB982D62BB807B5BD10774BE2D07"
-               BuildableName = "libTZImagePickerController.a"
+               BuildableName = "TZImagePickerController.framework"
                BlueprintName = "TZImagePickerController"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
