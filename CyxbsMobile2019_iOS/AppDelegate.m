@@ -16,7 +16,7 @@
 #import "VolunteerItem.h"
 #import <Bagel.h>
 #import "QADetailViewController.h"
-
+#import <AFNetworkReachabilityManager.h>
 
 extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
@@ -63,7 +63,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     }
     
     // 打开应用时刷新token
-    [UserItemTool refresh];
+    AFNetworkReachabilityManager *man = [AFNetworkReachabilityManager sharedManager];
+    //开始监测网络状态
+    [man startMonitoring];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if([man isReachable]){
+            //如果网络可用，刷新token
+            [UserItemTool refresh];
+            //停止监测
+            [man stopMonitoring];
+        }
+    });
  
     if ([UserDefaultTool getStuNum] && [UserItemTool defaultItem].token && [NSKeyedUnarchiver unarchiveObjectWithFile:[VolunteerItem archivePath]]) {
         // 刷新志愿信息
@@ -154,7 +164,18 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
     double launchTime = (CFAbsoluteTimeGetCurrent() - StartTime);
     NSLog(@"double======%f",launchTime);
+    
+    /// 完成创建文件/文件夹的操作
+    [self setFile];
     return YES;
+}
+
+/// 完成创建文件/文件夹的操作
+- (void)setFile{
+    //如果存储备忘/课表 数据的目录不存在那么创建一个
+    if(![[NSFileManager defaultManager] fileExistsAtPath:remAndLesDataDirectoryPath]){
+        [[NSFileManager defaultManager] createDirectoryAtPath:remAndLesDataDirectoryPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
 }
 
 
@@ -220,9 +241,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         //必须加这句代码
         [UMessage didReceiveRemoteNotification:userInfo];
         
-//        @{
-//            @"uri": @"cyxbs://xxx.xxx?xxx=xxx"
-//        }
         
         // 当前选中的控制器（三个都是导航控制器）
         UINavigationController *navigationController = ((UITabBarController *)(self.window.rootViewController)).selectedViewController;
@@ -251,7 +269,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         ||[response.notification.request.identifier
            isEqualToString:@"remindBeforeCourseBegin"];
         
-        if(is&&![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
+        //如果本地通知信息是这两个且没有打开“启动APP时显示课表”的开关
+        if(is&&[UserItem defaultItem].realName&&[[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
             dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC);
             dispatch_after(time, dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverVCShouldPresentMySchedul" object:nil];

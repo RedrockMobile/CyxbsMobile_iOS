@@ -192,7 +192,7 @@
             [cell.contentView addSubview:settingSwitch];
             if ([cell.textLabel.text hasPrefix:@"启动"]) {
                 [settingSwitch addTarget:self action:@selector(switchedLaunchingWithClassScheduleView:) forControlEvents:UIControlEventValueChanged];
-                if ([UserDefaultTool valueWithKey:@"Mine_LaunchingWithClassScheduleView"]) {
+                if (![UserDefaultTool valueWithKey:@"Mine_LaunchingWithClassScheduleView"]) {
                     settingSwitch.on = YES;
                     // 在这里读取缓存，设置cell的text
                 }
@@ -202,6 +202,7 @@
     return  cell;
 }
 
+/// 获取开关
 - (UISwitch*)getSwitch{
     UISwitch *settingSwitch = [[UISwitch alloc] init];
     settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);

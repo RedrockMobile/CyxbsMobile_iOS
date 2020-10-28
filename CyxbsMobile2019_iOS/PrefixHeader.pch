@@ -241,6 +241,7 @@
 
 ///查询绩点需要先绑定ids
 #define IDSBINDINGAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
+
 ///绩点查询
 #define GPAAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/gpa"
 
@@ -285,28 +286,31 @@
 
 #pragma mark - “课表”、“备忘”接口
 
+//查课表数据，POST，参数：@{@"stu_num":学号}
 #define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
 
-
+//加备忘，POST
 #define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
 
-
+//获得备忘，POST
 #define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
 
-
+//编辑备忘，POST
 #define EDITREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
 
-
+//删除备忘，POST
 #define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
-
+//查老师课表数据，POST，参数： @{ @"teaName": 姓名, @"tea": 工号？}
 #define TEAkebiaoAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
+
 /// 空教室接口
 #define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
 
-/// 同学课表之查找同学
+/// 同学课表之查找同学，GET，参数：@{@"stu": 用来搜索的数据}
 #define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
-/// 查找老师
+
+/// 查找老师，POST，参数：@{@"teaName": 用来搜索的数据}
 #define SEARCHTEACHERAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch"
 
 
@@ -417,4 +421,18 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 //显示月份、周几、日期的条内部item的间距；课表view和leftBar的距离
 #define DAYBARVIEW_DISTANCE (MAIN_SCREEN_W*0.0075)
 //0.00885
+
+//课表、备忘数据文件的文件夹
+#define remAndLesDataDirectoryPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les"]
+
+//未解析的课表数据文件路径
+#define rowDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/rowLessonDataArr"]
+
+//已解析的课表数据文件路径
+#define parsedDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/parsedLessonDataArr"]
+
+//备忘数据文件路径
+#define remDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/remindDataArr"]
+
+#define nowWeekKey @"SchedulNowWeek"
 #endif

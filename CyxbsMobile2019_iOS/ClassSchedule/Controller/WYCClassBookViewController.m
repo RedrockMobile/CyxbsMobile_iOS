@@ -130,13 +130,13 @@
             TM.PGRToInitTransition=nil;
             
             int count = (int)self.dateModel.dateArray.count, i;
-            for (i=0; i<self.index.intValue-1; i++) {
+            for (i=0; i<self.index.intValue-1&&i<self.backViewArray.count; i++) {
                 if(self.backViewArray[i].superview!=nil){
                     [self.backViewArray[i] removeFromSuperview];
                 }
             }
             
-            for (i=self.index.intValue+2; i<count+1; i++) {
+            for (i=self.index.intValue+2; i<count+1&&i<self.backViewArray.count; i++) {
                 if(self.backViewArray[i].superview!=nil){
                     [self.backViewArray[i] removeFromSuperview];
                 }
@@ -412,6 +412,8 @@
     [controller addAction:act1];
     
     [self presentViewController:controller animated:YES completion:nil];
+    
+    [self ModelDataLoadSuccess:@""];
 }
 
 //初始化self.scrollView，并把它加到self.view上面
