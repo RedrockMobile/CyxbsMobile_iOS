@@ -116,6 +116,16 @@
                     <color key="textColor" systemColor="systemGray2Color"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rf-CR-0sl">
+                    <rect key="frame" x="175.66666666666666" y="457.66666666666669" width="57" height="26"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" title="忘记密码？">
+                        <color key="titleColor" red="0.6835195422" green="0.73539280890000003" blue="0.83530837300000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="forgotPassword:" destination="-1" eventType="touchUpInside" id="CYL-l7-e7K"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -129,7 +139,9 @@
                 <constraint firstItem="VWP-UR-mlg" firstAttribute="centerY" secondItem="8B2-Yb-uY2" secondAttribute="centerY" id="BVn-bm-fFa"/>
                 <constraint firstItem="AJN-5Y-gnw" firstAttribute="top" secondItem="Cbb-IW-JMm" secondAttribute="bottom" constant="25" id="F7f-mV-lsk"/>
                 <constraint firstItem="8B2-Yb-uY2" firstAttribute="centerY" secondItem="tae-rn-F2n" secondAttribute="centerY" id="G2c-0N-0eS"/>
+                <constraint firstItem="5rf-CR-0sl" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="-3" id="ItL-ga-ugq"/>
                 <constraint firstAttribute="trailing" secondItem="Aeg-82-sDY" secondAttribute="trailing" constant="64" id="KNY-bV-RFR"/>
+                <constraint firstItem="VWP-UR-mlg" firstAttribute="top" secondItem="5rf-CR-0sl" secondAttribute="bottom" id="O5C-Nn-d39"/>
                 <constraint firstItem="JAc-t8-gMS" firstAttribute="centerY" secondItem="Aeg-82-sDY" secondAttribute="centerY" id="O6W-wB-Iff"/>
                 <constraint firstItem="Aeg-82-sDY" firstAttribute="top" secondItem="mVV-gQ-7jl" secondAttribute="bottom" constant="25" id="SeX-q1-Nkz"/>
                 <constraint firstItem="CBT-Ct-4OS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="T1A-1z-f9e"/>

@@ -130,6 +130,7 @@
 		1AD038DD23FA7B0E00D5C90E /* MineQARecommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038DC23FA7B0E00D5C90E /* MineQARecommentItem.m */; };
 		1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1BE23E161100099A7E2 /* MineModel.m */; };
 		1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */; };
+		1ADB6A10254BE2CC00C8CA9A /* FindPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB6A0F254BE2CC00C8CA9A /* FindPasswordView.swift */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
 		1AE1374624DEE79F000F2C30 /* CQUPTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374524DEE79F000F2C30 /* CQUPTMapViewController.m */; };
 		1AE1374924DEEA62000F2C30 /* CQUPTMapContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE1374824DEEA62000F2C30 /* CQUPTMapContentView.m */; };
@@ -743,6 +744,7 @@
 		1AD6D1BE23E161100099A7E2 /* MineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineModel.m; sourceTree = "<group>"; };
 		1AD6D1C023E1636D0099A7E2 /* MineQADataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineQADataItem.h; sourceTree = "<group>"; };
 		1AD6D1C123E1636D0099A7E2 /* MineQADataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineQADataItem.m; sourceTree = "<group>"; };
+		1ADB6A0F254BE2CC00C8CA9A /* FindPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordView.swift; sourceTree = "<group>"; };
 		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
 		1AE1374424DEE79F000F2C30 /* CQUPTMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapViewController.h; sourceTree = "<group>"; };
@@ -1804,6 +1806,7 @@
 			isa = PBXGroup;
 			children = (
 				1A0AC5F7252B235800221514 /* LoginViewController.swift */,
+				1ADB6A0F254BE2CC00C8CA9A /* FindPasswordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4142,6 +4145,7 @@
 				1A79FCCD24E81E3300CBB124 /* CQUPTMapPlaceDetailItem.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
 				AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */,
+				1ADB6A10254BE2CC00C8CA9A /* FindPasswordView.swift in Sources */,
 				1AD038DD23FA7B0E00D5C90E /* MineQARecommentItem.m in Sources */,
 				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
 				EE75BFBF23F5884100208039 /* SCChartLabel.m in Sources */,
