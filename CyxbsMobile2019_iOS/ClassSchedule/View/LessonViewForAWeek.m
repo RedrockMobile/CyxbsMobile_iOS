@@ -35,8 +35,6 @@
         self.isNoCourse = YES;
         self.isNoNote = YES;
         self.notedLessonViewArray = [NSMutableArray array];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(judgeIfShowEmptyImg) name:@"Mine_DisplayMemoPadON" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(judgeIfShowEmptyImg) name:@"Mine_DisplayMemoPadOFF" object:nil];
         [self addBackgroundView];
     }
     return self;
@@ -153,10 +151,10 @@
     [self judgeIfShowEmptyImg];
 }
 
-/// 判断是否显示
+/// 判断是否显示"一片寂静图片"
 - (void)judgeIfShowEmptyImg{
-    NSString *isON = [[NSUserDefaults standardUserDefaults]objectForKey:@"Mine_DisplayMemoPad"];
-    if(self.isNoCourse==YES&&(self.isNoNote==YES||!isON)){
+    
+    if(self.isNoCourse==YES&&(self.isNoNote==YES)){
         self.nothingLabel.hidden =
         self.imgView.hidden = NO;
     }else{

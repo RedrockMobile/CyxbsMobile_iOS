@@ -169,19 +169,11 @@
     //那么自己就不要响应点击事件什么的，所以使self.hidden = YES;
     if(self.noteShowerDelegate!=nil)self.hidden = YES;
     
-    if(self.isEmptyLesson==YES&&self.isNoted==YES){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideNote) name:@"Mine_DisplayMemoPadOFF" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNote) name:@"Mine_DisplayMemoPadON" object:nil];
-    }
     //根据备忘和课的总数判断是否显示提示view
     if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
         self.tipView.hidden = NO;
     }else{
         self.tipView.hidden = YES;
-    }
-    //是否在没课的地方显示备忘
-    if(self.isEmptyLesson==YES&&![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]&&self.isNoted==YES){
-        [self hideNote];
     }
 }
 
@@ -282,7 +274,7 @@
     //2.有备忘&&打开了显示备忘的开关&&在个人页
     BOOL state1 = self.isEmptyLesson==NO;
     
-    BOOL state2 = self.isNoted==YES&&[[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_DisplayMemoPad"]&&self.schType==ScheduleTypePersonal;
+    BOOL state2 = self.isNoted==YES&&self.schType==ScheduleTypePersonal;
     
     if(state1||state2){//满足两种情况的一种，那么显示弹窗
         //把数据给代理，代理是ClassDetailViewShower
@@ -294,27 +286,6 @@
         //否则判断是否要跳转到添加备忘页，如果是自己的课表，那就跳转
         [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
     }
-}
-
-//MARK:- 通知中心
-/// 打开显示备忘开关时调用
-- (void)showNote{
-    self.titleLable.hidden =
-    self.detailLable.hidden = NO;
-    if(self.noteDataModelArray.count!=0){
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"条纹"]];
-    }
-    if(self.courseDataDictArray.count+self.noteDataModelArray.count>1){
-        self.tipView.hidden = NO;
-    }
-}
-
-/// 关闭显示备忘开关时调用
-- (void)hideNote{
-    self.tipView.hidden =
-    self.titleLable.hidden =
-    self.detailLable.hidden = YES;
-    self.backgroundColor = [UIColor clearColor];
 }
 @end
 

@@ -126,7 +126,7 @@
         [hud hide:YES afterDelay:1];
         return;
     }else{
-        NoteDataModel *model = [[NoteDataModel alloc] initWithNotoDataDict:@{
+        NoteDataModel *model = [[NoteDataModel alloc] initWithNoteDataDict:@{
             @"weeksStrArray":self.weekSelectedArray,
             @"timeStrDictArray":self.timeDictArray,
             @"notiBeforeTime":self.notiStr,
@@ -134,6 +134,7 @@
             @"noteDetailStr":self.detailString,
             @"weekNameStr":self.nowWeekBtn.titleLabel.text,
         }];
+        
         if(self.navigationController!=nil){
             //如果nav不是空，那么就是点击没课的空白处后进行添加备忘的，那么：
         [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];

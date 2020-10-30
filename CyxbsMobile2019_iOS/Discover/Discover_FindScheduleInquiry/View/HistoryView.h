@@ -12,19 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol HistoryViewDelegate <NSObject>
 //点击某个历史记录后调用代理方法，代理是ScheduleViewController
 - (void)touchHistoryButton:(UIButton *)sender;
-
 @end
 
 /// 该View接受一个数组，将数组中的所有数据以一个一个Item的形式展示出来，自动换行
 @interface HistoryView : UIView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
-/// 请设置好这个Label的字体大小，字体颜色,圆角等一切想要自己定制的属性，创造出来的Item样式将取决于此exampleLabel
-@property (nonatomic, weak) UIButton *exampleButton;
 @property (nonatomic, strong)NSMutableArray <UIButton*>*buttonArray;//每一个button
-@property (nonatomic, weak)id btnClickedDelegate;
-- (instancetype) initWithFrame:(CGRect)frame button:(UIButton *)exampleButton dataArray: (NSMutableArray*) dataArray;
+@property (nonatomic, weak)id <HistoryViewDelegate>btnClickedDelegate;
+@property (nonatomic, copy)NSString *UserDefaultKey;
 - (void)addHistoryBtnWithString:(NSString*)string reLayout:(BOOL)is;
+- (instancetype)initWithUserDefaultKey:(NSString*)key;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -4,7 +4,7 @@
 //
 //  Created by 王一成 on 2020/1/20.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//答案页的控制器
 
 #import "QADetailViewController.h"
 #import "QAAnswerViewController.h"

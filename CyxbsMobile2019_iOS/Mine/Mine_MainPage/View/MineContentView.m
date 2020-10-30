@@ -43,10 +43,6 @@
                         @"title": @"每天晚上推送课表给我",
                         @"hasSwitch": @YES
                     },
-                    @{
-                        @"title": @"在没课的地方显示备忘录",
-                        @"hasSwitch": @YES
-                    }
                 ]
             },
             @{
@@ -169,36 +165,19 @@
         
         // 添加开关
         if ([((NSArray *)(self.settingsArray[0][@"settings"]))[indexPath.row][@"hasSwitch"] boolValue]) {
-            UISwitch *settingSwitch = [[UISwitch alloc] init];
-            settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);
-            if (@available(iOS 11.0, *)) {
-                settingSwitch.onTintColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_On"];
-            } else {
-                settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
-            }
-            if (@available(iOS 11.0, *)) {
-                settingSwitch.backgroundColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_Off"];
-            } else {
-                settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
-            }
-            settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
+            UISwitch *settingSwitch = [self getSwitch];
             [cell.contentView addSubview:settingSwitch];
             
-            if ([cell.textLabel.text hasPrefix:@"上课前"]) {
-                [settingSwitch addTarget:self action:@selector(switchedRemindBeforeClass:) forControlEvents:UIControlEventValueChanged];
-                if ([UserDefaultTool valueWithKey:@"Mine_RemindBeforeClass"]) {
-                    settingSwitch.on = YES;
-                    // 在这里读取缓存，设置cell的text
-                }
-            } else if ([cell.textLabel.text hasPrefix:@"每天"]) {
-                [settingSwitch addTarget:self action:@selector(switchedRemindEveryDay:) forControlEvents:UIControlEventValueChanged];
-                if ([UserDefaultTool valueWithKey:@"Mine_RemindEveryDay"]) {
-                    settingSwitch.on = YES;
-                    // 在这里读取缓存，设置cell的text
-                }
-            } else if ([cell.textLabel.text hasPrefix:@"在没课的地方显示备忘录"]) {
-                [settingSwitch addTarget:self action:@selector(switchedDisplayMemoPad:) forControlEvents:UIControlEventValueChanged];
-                if ([UserDefaultTool valueWithKey:@"Mine_DisplayMemoPad"]) {
+            {//ccc
+                SEL SELARR[] = {@selector(switchedRemindBeforeClass:),
+                    @selector(switchedRemindEveryDay:),
+                };
+                
+                NSArray *arr = @[@"Mine_RemindBeforeClass",@"Mine_RemindEveryDay",];
+                
+                
+                [settingSwitch addTarget:self action:SELARR[indexPath.row] forControlEvents:UIControlEventValueChanged];
+                if ([UserDefaultTool valueWithKey:arr[indexPath.row]]) {
                     settingSwitch.on = YES;
                     // 在这里读取缓存，设置cell的text
                 }
@@ -209,32 +188,35 @@
         
         // 添加开关
         if ([((NSArray *)(self.settingsArray[1][@"settings"]))[indexPath.row][@"hasSwitch"] boolValue]) {
-            UISwitch *settingSwitch = [[UISwitch alloc] init];
-            settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);
-            if (@available(iOS 11.0, *)) {
-                settingSwitch.onTintColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_On"];
-            } else {
-                settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
-            }
-            if (@available(iOS 11.0, *)) {
-                settingSwitch.backgroundColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_Off"];
-            } else {
-                settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
-                
-            }
-            settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
+            UISwitch *settingSwitch = [self getSwitch];
             [cell.contentView addSubview:settingSwitch];
             if ([cell.textLabel.text hasPrefix:@"启动"]) {
                 [settingSwitch addTarget:self action:@selector(switchedLaunchingWithClassScheduleView:) forControlEvents:UIControlEventValueChanged];
-                if ([UserDefaultTool valueWithKey:@"Mine_LaunchingWithClassScheduleView"]) {
+                if (![UserDefaultTool valueWithKey:@"Mine_LaunchingWithClassScheduleView"]) {
                     settingSwitch.on = YES;
                     // 在这里读取缓存，设置cell的text
                 }
             }
         }
     }
-    
     return  cell;
+}
+
+/// 获取开关
+- (UISwitch*)getSwitch{
+    UISwitch *settingSwitch = [[UISwitch alloc] init];
+    settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);
+    if (@available(iOS 11.0, *)) {
+        settingSwitch.onTintColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_On"];
+        settingSwitch.backgroundColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_Off"];
+    } else {
+        settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
+        settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];
+    }
+    
+    settingSwitch.layer.cornerRadius = settingSwitch.height / 2.0;
+    
+    return settingSwitch;
 }
 
 # pragma mark - TableView代理
@@ -325,12 +307,6 @@
 - (void)switchedRemindEveryDay:(UISwitch *)sender {
     if ([self.delegate respondsToSelector:@selector(switchedRemindEveryDay:)]) {
         [self.delegate switchedRemindEveryDay:sender];
-    }
-}
-
-- (void)switchedDisplayMemoPad:(UISwitch *)sender {
-    if ([self.delegate respondsToSelector:@selector(switchedDisplayMemoPad:)]) {
-        [self.delegate switchedDisplayMemoPad:sender];
     }
 }
 

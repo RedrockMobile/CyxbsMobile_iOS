@@ -9,15 +9,32 @@
 #import "NoteDataModel.h"
 
 @implementation NoteDataModel
-- (instancetype)initWithNotoDataDict:(NSDictionary*)noteDataDict{
+- (instancetype)initWithNoteDataDict:(NSDictionary*)noteDataDict{
     self = [super init];
     if(self){
+        //init时传入的字典
         self.noteDataDict = noteDataDict;
+        
+        //备忘标题
         self.noteTitleStr = noteDataDict[@"noteTitleStr"];
+        
+        //备忘详情
         self.noteDetailStr = noteDataDict[@"noteDetailStr"];
+        
+        //"不提醒"，@“提前5分钟”...
         self.notiBeforeTime = noteDataDict[@"notiBeforeTime"];
+        
+        //@["第一周"，@“第二周”]...
         self.weeksStrArray = noteDataDict[@"weeksStrArray"];
+        
+        ///@[
+        ///     @{@"weekString":@"周一",  @"lessonString":@"一二节课"}
+        ///     @{@"weekString":@"周日",  @"lessonString":@"十一十二节课"}
+        ///     .........
+        ///     .....
+        ///@]
         self.timeStrDictArray = noteDataDict[@"timeStrDictArray"];
+        
         self.weekNameStr = noteDataDict[@"weekNameStr"];
         
         self.weeksArray = [self transferWSAWithArray:self.weeksStrArray];
@@ -91,14 +108,15 @@
 /// 依据添加备忘时的时间来得到一个唯一的noteID，
 - (NSString*)getNoteID{
     NSDate *now = [NSDate date];
+    
     NSDateFormatter *formate = [[NSDateFormatter alloc] init];
     formate.dateFormat = @"yyyy-M-d";
     
-    NSDate *Thurs = [formate dateFromString:@"2020-01-01"];
+    NSDate *date2020_01_01 = [formate dateFromString:@"2020-01-01"];
 
     NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
-    NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:Thurs toDate:now options:0];
+    NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:date2020_01_01 toDate:now options:0];
 
     //得到2020和今日隔了几天
     long interval = [compsday day];

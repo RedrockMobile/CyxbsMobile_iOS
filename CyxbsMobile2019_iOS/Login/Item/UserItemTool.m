@@ -50,10 +50,13 @@
     
     // 删除偏好设置
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     NSDictionary *dic = [defaults dictionaryRepresentation];
+    
     for (id key in dic) {
         [defaults removeObjectForKey:key];
     }
+    
     // 删除归档
     NSFileManager * fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:filePath]) {
@@ -61,13 +64,9 @@
         [fileManager removeItemAtPath:filePath error:&err];
     }
     
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     
-    NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
-    [@[] writeToFile:lessonPath atomically:YES];
-    
-    NSString *remindPath = [path stringByAppendingPathComponent: @"remind.plist"];
-    [@[] writeToFile:remindPath atomically:YES];
+    //清除课表数据和备忘数据
+    [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];
     
     // 退出后停止umeng统计发送数据
     [MobClick profileSignOff];

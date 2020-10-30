@@ -64,6 +64,7 @@
 /// 加约束
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
     [self.lessonNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*MAIN_SCREEN_W);
         make.top.equalTo(self).offset(0.05867*MAIN_SCREEN_W);
@@ -124,6 +125,16 @@
 - (void)setDataDict:(NSDictionary *)dataDict {
     _dataDict = dataDict;
     self.lessonNameLabel.text = dataDict[@"course"];
+    
+    //判断课程名称的长度是不是太长了，如果是，那么按照比例缩小fontSize
+    if(self.lessonNameLabel.text.length>15){
+        float fontSize = 16.0/self.lessonNameLabel.text.length*22;
+        if(fontSize<17){
+            fontSize=17;
+        }
+        [self.lessonNameLabel setFont:[UIFont fontWithName:PingFangSCBold size:fontSize]];
+    }
+
     self.classroomNameLabel.text = dataDict[@"classroom"];
     self.teacherNameLabel.text = dataDict[@"teacher"];
     self.weekRangeLabel.text = dataDict[@"rawWeek"];
@@ -280,10 +291,11 @@
         @"五六节":str56,
         @"七八节":@"16:15-17:55",
         @"九十节":str910,
+        @"十一十二节":@"20:50-22:30",
     };
     return tranfer[dataString];
 }
-
+//十一十二节没有时间的用户2019210081
 @end
 
 /**

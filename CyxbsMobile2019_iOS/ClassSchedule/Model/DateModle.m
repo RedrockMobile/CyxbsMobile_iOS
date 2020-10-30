@@ -74,5 +74,7 @@
         nowWeek = 0;
     }
     self.nowWeek = [NSNumber numberWithInteger:nowWeek];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:self.nowWeek.stringValue forKey:nowWeekKey];
 }
 @end
