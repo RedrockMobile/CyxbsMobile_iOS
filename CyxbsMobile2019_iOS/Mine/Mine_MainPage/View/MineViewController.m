@@ -7,7 +7,6 @@
 //
 
 #import "MineViewController.h"
-//#import "LoginViewController.h"
 #import "MineContentViewProtocol.h"
 #import "MinePresenter.h"
 #import "EditMyInfoViewController.h"
@@ -18,14 +17,16 @@
 #import "MineQADataItem.h"
 #import "MineAboutController.h"
 #import <UserNotifications/UserNotifications.h>
+
+
 @interface MineViewController () <MineContentViewDelegate, MineContentViewProtocol, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) MinePresenter *presenter;
 
 @end
 
-@implementation MineViewController
 
+@implementation MineViewController
 
 #pragma mark - 生命周期
 - (void)viewDidLoad {
@@ -121,6 +122,7 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
 //上课前提醒我
 - (void)switchedRemindBeforeClass:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
@@ -135,6 +137,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notRemindBeforeClass" object:nil];
     }
 }
+
 //每天推送课表
 - (void)switchedRemindEveryDay:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
@@ -150,6 +153,7 @@
         
     }
 }
+
 //设置本地通知
 - (void)setLocalNoti{
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
