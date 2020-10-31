@@ -107,11 +107,14 @@
 //    [self.tableView reloadData];
     //GPA请求成功后进行对象归档
     self.gpaItem = self.gpaModel.gpaItem;
+    self.ABScoreView.AScore.text = self.gpaItem.termGrades.a_credit.stringValue;
+    self.ABScoreView.BScore.text = self.gpaItem.termGrades.b_credit.stringValue;
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"];
     if([NSKeyedArchiver archiveRootObject:self.gpaModel.gpaItem toFile:filePath]) {
         NSLog(@"归档成功,路径%@",filePath);
     }
-    
+    NSLog(@"a = %@, b = %@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
+
     [self.tableView removeFromSuperview];
     [self addTableView];
     self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
@@ -132,6 +135,7 @@
 //    GPAItem *gpaItem = [[GPAItem alloc]init];
 //    self.gpaItem = gpaItem;
     NSLog(@"解档");
+    NSLog(@"a = %@, b = %@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
     self.gpaItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"]];
     self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 
