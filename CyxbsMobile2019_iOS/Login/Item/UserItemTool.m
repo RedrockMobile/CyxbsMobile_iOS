@@ -68,6 +68,10 @@
     //清除课表数据和备忘数据
     [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];
     
+    //清除所有已有的本地通知
+    [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+    [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
+    
     // 退出后停止umeng统计发送数据
     [MobClick profileSignOff];
     

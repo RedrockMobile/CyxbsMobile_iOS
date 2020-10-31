@@ -165,8 +165,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     double launchTime = (CFAbsoluteTimeGetCurrent() - StartTime);
     NSLog(@"double======%f",launchTime);
     
-    /// 完成创建文件/文件夹的操作
+    // 完成创建文件/文件夹的操作
     [self setFile];
+    
+    // 完成每天晚上推送课表的相关操作
+    [self pushSchedulEveryday];
     return YES;
 }
 
@@ -178,6 +181,119 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     }
 }
 
+//设置每日推送课表的本地通知
+- (void)pushSchedulEveryday{
+    //移除旧的每日推送课表
+    [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"deliverSchedulEverday"]];
+    [[UNUserNotificationCenter currentNotificationCenter] removeDeliveredNotificationsWithIdentifiers:@[@"deliverSchedulEverday"]];
+    
+    //真正的当前周数
+    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] valueForKey:nowWeekKey];
+    
+    //如果没有打开每日推送课表开关，或者当前已配置的推送的周 和 当前真正的周相同，那么return
+    if([[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_RemindEveryDay"]==nil || [[NSUserDefaults standardUserDefaults] valueForKey:@"当前每天晚上推送的课表对应的周"]==nowWeek){
+        return;
+    }
+    //更新已配置的推送的周
+    [[NSUserDefaults standardUserDefaults] setValue:nowWeek forKey:@"当前每天晚上推送的课表对应的周"];
+    //下面的代码，功能是完成一周7天的通知配置
+    
+    //week[j][k]代表（星期j+1）的（第k+1节大课
+    NSArray *week = [self getNowWeekSchedul];
+    
+    //配置component
+    NSDateComponents *component = [[NSDateComponents alloc] init];
+    //推送时间
+    component.hour = 22;
+    
+    //通过component配置trigger
+    UNCalendarNotificationTrigger *trigger;
+    
+    //配置content
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+    content.title = @"明日课表已送达";
+    [content setSound:[UNNotificationSound defaultSound]];
+    
+    
+    NSString *bodyStr;//通知主体
+    NSString *str; //某一节课的内容
+    NSString *requestIDStr; //本地通知的通知ID
+    UNNotificationRequest *request; //通知请求
+    int i=0;
+    for (NSArray *day in week) {
+        bodyStr = @"明天的课程有：";
+        requestIDStr = [NSString stringWithFormat:@"每天晚上推送课表%d",i];
+        //周几推送
+        component.weekday = i==0 ? 1 : i+1;
+        i++;
+        for (NSArray *course in day) {
+            //如果count==0说明该节课是无课
+            if(course.count==0)continue;
+            //拼接出单节课的str
+            for (NSDictionary *courseDict in course) {
+                str = [NSString stringWithFormat:@"%@ 在 %@ 上 %@\n",courseDict[@"lesson"],courseDict[@"classroom"],courseDict[@"course"]];
+            }
+            //将str拼接到bodyStr后面
+            bodyStr = [NSString stringWithFormat:@"%@\n%@",bodyStr,str];
+        }
+        //如果equal，说明明天没课了
+        if([bodyStr isEqualToString:@"明天的课程有："]){
+            bodyStr = @"明天没课了哦～";
+        }
+        
+        //设置推送的主体文字
+        content.body = bodyStr;
+        
+        //配置trigger
+        trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:component repeats:YES];
+        
+        //通过trigger和content配置request
+        request = [UNNotificationRequest requestWithIdentifier:requestIDStr content:content trigger:trigger];
+        
+        //通过request添加本地通知
+        [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+            NSLog(@"添加%@成功",requestIDStr);
+        }];
+    }
+    
+    /**
+     {
+     "begin_lesson" = 1;
+     classroom = 3212;
+     course = "\U5927\U5b66\U751f\U804c\U4e1a\U53d1\U5c55\U4e0e\U5c31\U4e1a\U6307\U5bfc1";
+     "course_num" = B1220060;
+     day = "\U661f\U671f\U4e00";
+     "hash_day" = 0;
+     "hash_lesson" = 0;
+     lesson = "\U4e00\U4e8c\U8282";
+     period = 2;
+     rawWeek = "1-8\U5468";
+     teacher = "\U9648\U65ed";
+     type = "\U5fc5\U4fee";
+     week =                 (
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8
+     );
+     weekBegin = 1;
+     weekEnd = 8;
+     weekModel = all;
+     }
+     */
+}
+
+- (NSArray*)getNowWeekSchedul{
+    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] valueForKey:nowWeekKey];
+    
+    //返回orderlySchedulArray[nowWeek],因为：
+    //orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）
+    return [NSArray arrayWithContentsOfFile:parsedDataArrPath][nowWeek.intValue];
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
