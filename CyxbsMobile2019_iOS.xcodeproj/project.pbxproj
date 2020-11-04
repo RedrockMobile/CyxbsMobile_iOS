@@ -152,6 +152,8 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
+		7F60A320254D6B0B0073019A /* ByPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F60A31F254D6B0B0073019A /* ByPasswordViewController.m */; };
+		7FC436E0254C297D0003E25C /* ByWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC436DF254C297D0003E25C /* ByWordViewController.m */; };
 		AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */; };
 		AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1124EFC78C00FDF70C /* NoteDetailView.m */; };
 		AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */; };
@@ -789,6 +791,10 @@
 		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7F60A31E254D6B0B0073019A /* ByPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ByPasswordViewController.h; sourceTree = "<group>"; };
+		7F60A31F254D6B0B0073019A /* ByPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ByPasswordViewController.m; sourceTree = "<group>"; };
+		7FC436DE254C297D0003E25C /* ByWordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ByWordViewController.h; sourceTree = "<group>"; };
+		7FC436DF254C297D0003E25C /* ByWordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ByWordViewController.m; sourceTree = "<group>"; };
 		AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDataModel.h; sourceTree = "<group>"; };
 		AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDataModel.m; sourceTree = "<group>"; };
 		AA289B1024EFC78C00FDF70C /* NoteDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailView.h; sourceTree = "<group>"; };
@@ -1807,6 +1813,10 @@
 			children = (
 				1A0AC5F7252B235800221514 /* LoginViewController.swift */,
 				1ADB6A0F254BE2CC00C8CA9A /* FindPasswordView.swift */,
+				7FC436DE254C297D0003E25C /* ByWordViewController.h */,
+				7FC436DF254C297D0003E25C /* ByWordViewController.m */,
+				7F60A31E254D6B0B0073019A /* ByPasswordViewController.h */,
+				7F60A31F254D6B0B0073019A /* ByPasswordViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3995,6 +4005,7 @@
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
+				7FC436E0254C297D0003E25C /* ByWordViewController.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				EEA301DA2468670B00A8DB26 /* BannerItem.m in Sources */,
@@ -4041,6 +4052,7 @@
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
+				7F60A320254D6B0B0073019A /* ByPasswordViewController.m in Sources */,
 				1A21CD5224288BEC008B2EA7 /* SchoolBusModel.m in Sources */,
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
@@ -4322,7 +4334,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = QM475FB4ML;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -4332,7 +4344,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -4351,7 +4363,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = QM475FB4ML;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -4361,7 +4373,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";

@@ -44,6 +44,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+
     // Override point for customization after application launch.
     
     // 一个网络调试工具用的，需要在Mac端使用一个叫Bagel的软件配合调试，升级Xcode以后这个库出了点问题
@@ -278,7 +280,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         }
     }
 }
-
 
 @end
 
