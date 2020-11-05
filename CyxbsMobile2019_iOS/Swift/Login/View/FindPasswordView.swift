@@ -52,7 +52,7 @@ class FindPasswordView: UIView {
         buttonBoard.addSubview(findByQuestionButton)
         
         self.buttonBoard.layer.transformScale = 1.3
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
             self.backgroundColor = UIColor(red: 0, green: 15/255.0, blue: 37/255.0, alpha: 0.14)
             self.buttonBoard.layer.transformScale = 1
             self.buttonBoard.alpha = 1
@@ -76,12 +76,12 @@ class FindPasswordView: UIView {
         
         self.findByEmailButton.snp.makeConstraints { (make) in
             make.leading.top.trailing.equalTo(self.buttonBoard)
-            make.height.equalTo(70.5)
+            make.height.equalTo(findByQuestionButton)
         }
         
         self.findByQuestionButton.snp.makeConstraints { (make) in
             make.leading.bottom.trailing.equalTo(self.buttonBoard)
-            make.height.equalTo(70.5)
+            make.top.equalTo(findByEmailButton.snp_bottomMargin)
         }
     }
     
@@ -95,13 +95,15 @@ class FindPasswordView: UIView {
     
     
     @objc func findByQuestion() {
-        self.viewController?.navigationController?.pushViewController(UIViewController(), animated: true)
+        let ByWord = ByWordViewController()
+        self.viewController?.navigationController?.pushViewController(ByWord, animated: true)
     }
     
     @objc func findByEmail() {
-        self.viewController?.navigationController?.pushViewController(UIViewController(), animated: true)
+        let Bypass = ByPasswordViewController()
+        self.viewController?.navigationController?.pushViewController(Bypass, animated: true)
+
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.removeFromSuperview()
     }

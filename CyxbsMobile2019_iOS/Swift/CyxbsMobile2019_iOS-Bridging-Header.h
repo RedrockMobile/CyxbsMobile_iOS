@@ -27,6 +27,8 @@
 #import "AESCipher.h"           // AES加密算法
 #import <MGJRouter.h>
 #import "UserProtocolViewController.h"
+#import "ByWordViewController.h"
+#import "ByPasswordViewController.h"
 
 
 
