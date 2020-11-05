@@ -141,97 +141,20 @@
 //每天推送课表
 - (void)switchedRemindEveryDay:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
-        
         [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindEveryDay"];
-        [self setLocalNoti];
-        
     } else {                    // 关闭开关
+        
+        NSArray *idStrArr = @[@"每天晚上推送课表0",@"每天晚上推送课表1",@"每天晚上推送课表2",
+                              @"每天晚上推送课表3",@"每天晚上推送课表4",@"每天晚上推送课表5",
+                              @"每天晚上推送课表6",];
+        [[UNUserNotificationCenter currentNotificationCenter] removeDeliveredNotificationsWithIdentifiers:idStrArr];
+        
+        [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:idStrArr];
+        
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindEveryDay"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        //去除本地通知
-        [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"deliverSchedulEverday"]];
-        
     }
 }
-
-//设置本地通知 
-- (void)setLocalNoti{
-    //week[j][k]代表（星期j+1）的（第k+1节大课
-    NSArray *week = [self getNowWeekSchedul];
-    //配置content
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-    [content setSound:[UNNotificationSound defaultSound]];
-    
-    //配置component
-    NSDateComponents *component = [[NSDateComponents alloc] init];
-    //推送时间
-    component.hour = 22;
-    
-    //通过component配置trigger
-    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:component repeats:NO];
-    
-    NSArray *requestIDStrArr = @[@""];
-    
-    for (NSArray *day in week) {
-        for (NSArray *courses in day) {
-            for (NSString *IDStr in requestIDStrArr) {
-                content.title = @"明日课表已送达";
-                for (NSDictionary *aCourse in courses) {
-                }
-                content.body = @"";
-            }
-            
-            
-        }
-    }
-    
-    //    {
-    //    "begin_lesson" = 1;
-    //    classroom = 3212;
-    //    course = "\U5927\U5b66\U751f\U804c\U4e1a\U53d1\U5c55\U4e0e\U5c31\U4e1a\U6307\U5bfc1";
-    //    "course_num" = B1220060;
-    //    day = "\U661f\U671f\U4e00";
-    //    "hash_day" = 0;
-    //    "hash_lesson" = 0;
-    //    lesson = "\U4e00\U4e8c\U8282";
-    //    period = 2;
-    //    rawWeek = "1-8\U5468";
-    //    teacher = "\U9648\U65ed";
-    //    type = "\U5fc5\U4fee";
-    //    week =                 (
-    //    1,
-    //    2,
-    //    3,
-    //    4,
-    //    5,
-    //    6,
-    //    7,
-    //    8
-    //    );
-    //    weekBegin = 1;
-    //    weekEnd = 8;
-    //    weekModel = all;
-    //    }
-    
-    
-    
-    //通过trigger和content配置request
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"deliverSchedulEverday" content:content trigger:trigger];
-    
-    
-    
-    //通过request添加本地通知
-    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
-}
-
-- (NSArray*)getNowWeekSchedul{
-    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] valueForKey:nowWeekKey];
-    
-    //返回orderlySchedulArray[nowWeek],因为：
-    //orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）
-    return [NSArray arrayWithContentsOfFile:parsedDataArrPath][nowWeek.intValue];
-}
-
 //- (void)setLocalNoti{
 //    //配置content
 //    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];

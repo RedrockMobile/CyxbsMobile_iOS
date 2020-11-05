@@ -75,6 +75,7 @@
     }
     self.nowWeek = [NSNumber numberWithInteger:nowWeek];
     
+    //把当前的周数存入缓存
     [[NSUserDefaults standardUserDefaults] setValue:self.nowWeek.stringValue forKey:nowWeekKey];
 }
 @end
