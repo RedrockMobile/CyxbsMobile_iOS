@@ -217,7 +217,17 @@
 /// 删除草稿
 #define DELETEDRAFT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/deleteItemInDraft"
 
-
+#pragma mark - 修改密码 借口
+/// 密保问题列表
+#define QUESTIONLISTAPI @"https://cyxbsmobile.redrock.team/wx/api/password/user/question"
+///修改密码
+#define CHANGEPASSWORDAPI @"https://cyxbsmobile.redrock.team/wx/api/password/user/password/personal"
+///邮箱验证码
+#define EMAILCODEAPI @"https://cyxbsmobile.redrock.team/wx/api/password/user/bind/email"
+///是否绑定邮箱，设置密保
+#define BINDINGEMAILANDQUESTIONAPI @"https://cyxbsmobile.redrock.team/wx/api/user/bind/is"
+///上传密保消息
+#define SENDQUESTION @"https://cyxbsmobile.redrock.team/wxapi/user/bind/question"
 
 #pragma mark - “发现”接口
 

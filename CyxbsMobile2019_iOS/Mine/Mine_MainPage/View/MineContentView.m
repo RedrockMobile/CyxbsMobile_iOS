@@ -53,6 +53,10 @@
                         @"hasSwitch": @YES
                     },
                     @{
+                        @"title": @"账号与安全",
+                        @"hasSwitch": @NO
+                    },
+                    @{
                         @"title": @"关于",
                         @"hasSwitch": @NO
                     }
@@ -226,9 +230,12 @@
         if ([self.delegate respondsToSelector:@selector(selectedAboutCell)]) {
             [self.delegate selectedAboutCell];
         }
+    }else if ([selectedCell.textLabel.text isEqualToString:@"账号与安全"]) {
+        if ([self.delegate respondsToSelector:@selector(selectedSafeCell)]) {
+            [self.delegate selectedSafeCell];
+        }
     }
 }
-
 
 // Section的header
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
