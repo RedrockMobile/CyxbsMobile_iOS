@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18BA51382554E70F0067A8FD /* SetQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51062554E70F0067A8FD /* SetQuestionViewController.m */; };
+		18BA51392554E70F0067A8FD /* setEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA510A2554E70F0067A8FD /* setEmailViewController.m */; };
+		18BA513A2554E70F0067A8FD /* sendCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA510B2554E70F0067A8FD /* sendCodeViewController.m */; };
+		18BA513B2554E70F0067A8FD /* ChangePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA510E2554E70F0067A8FD /* ChangePwdViewController.m */; };
+		18BA513C2554E70F0067A8FD /* ResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA510F2554E70F0067A8FD /* ResetPwdViewController.m */; };
+		18BA513D2554E70F0067A8FD /* selfSafeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51132554E70F0067A8FD /* selfSafeViewController.m */; };
+		18BA513E2554E70F0067A8FD /* questionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51192554E70F0067A8FD /* questionModel.m */; };
+		18BA513F2554E70F0067A8FD /* questionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA511A2554E70F0067A8FD /* questionItem.m */; };
+		18BA51402554E70F0067A8FD /* questionAndAnswerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA511B2554E70F0067A8FD /* questionAndAnswerModel.m */; };
+		18BA51412554E70F0067A8FD /* sendCodeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA511E2554E70F0067A8FD /* sendCodeModel.m */; };
+		18BA51422554E70F0067A8FD /* changePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51202554E70F0067A8FD /* changePassword.m */; };
+		18BA51432554E70F0067A8FD /* questionAndEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51232554E70F0067A8FD /* questionAndEmail.m */; };
+		18BA51442554E70F0067A8FD /* SetQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51292554E70F0067A8FD /* SetQuestionView.m */; };
+		18BA51452554E70F0067A8FD /* QuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA512A2554E70F0067A8FD /* QuestionView.m */; };
+		18BA51462554E70F0067A8FD /* setEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA512C2554E70F0067A8FD /* setEmail.m */; };
+		18BA51472554E70F0067A8FD /* sendCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA512D2554E70F0067A8FD /* sendCodeView.m */; };
+		18BA51482554E70F0067A8FD /* ResetPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51322554E70F0067A8FD /* ResetPwdView.m */; };
+		18BA51492554E70F0067A8FD /* safePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51342554E70F0067A8FD /* safePopView.m */; };
+		18BA514A2554E70F0067A8FD /* SelfSafeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BA51372554E70F0067A8FD /* SelfSafeView.m */; };
 		1A0AC5F8252B235800221514 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0AC5F7252B235800221514 /* LoginViewController.swift */; };
 		1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EC24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m */; };
 		1A0E15F024E4EADF00C39B4D /* CQUPTMapSearchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E15EF24E4EADF00C39B4D /* CQUPTMapSearchItem.m */; };
@@ -152,6 +171,8 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
+		7F60A320254D6B0B0073019A /* ByPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F60A31F254D6B0B0073019A /* ByPasswordViewController.m */; };
+		7FC436E0254C297D0003E25C /* ByWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FC436DF254C297D0003E25C /* ByWordViewController.m */; };
 		AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */; };
 		AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1124EFC78C00FDF70C /* NoteDetailView.m */; };
 		AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */; };
@@ -500,6 +521,44 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18BA51052554E70F0067A8FD /* SetQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetQuestionViewController.h; sourceTree = "<group>"; };
+		18BA51062554E70F0067A8FD /* SetQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetQuestionViewController.m; sourceTree = "<group>"; };
+		18BA51082554E70F0067A8FD /* sendCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendCodeViewController.h; sourceTree = "<group>"; };
+		18BA51092554E70F0067A8FD /* setEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setEmailViewController.h; sourceTree = "<group>"; };
+		18BA510A2554E70F0067A8FD /* setEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setEmailViewController.m; sourceTree = "<group>"; };
+		18BA510B2554E70F0067A8FD /* sendCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendCodeViewController.m; sourceTree = "<group>"; };
+		18BA510D2554E70F0067A8FD /* ResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdViewController.h; sourceTree = "<group>"; };
+		18BA510E2554E70F0067A8FD /* ChangePwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePwdViewController.m; sourceTree = "<group>"; };
+		18BA510F2554E70F0067A8FD /* ResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPwdViewController.m; sourceTree = "<group>"; };
+		18BA51102554E70F0067A8FD /* ChangePwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePwdViewController.h; sourceTree = "<group>"; };
+		18BA51122554E70F0067A8FD /* selfSafeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = selfSafeViewController.h; sourceTree = "<group>"; };
+		18BA51132554E70F0067A8FD /* selfSafeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selfSafeViewController.m; sourceTree = "<group>"; };
+		18BA51162554E70F0067A8FD /* questionAndAnswerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = questionAndAnswerModel.h; sourceTree = "<group>"; };
+		18BA51172554E70F0067A8FD /* questionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = questionItem.h; sourceTree = "<group>"; };
+		18BA51182554E70F0067A8FD /* questionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = questionModel.h; sourceTree = "<group>"; };
+		18BA51192554E70F0067A8FD /* questionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = questionModel.m; sourceTree = "<group>"; };
+		18BA511A2554E70F0067A8FD /* questionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = questionItem.m; sourceTree = "<group>"; };
+		18BA511B2554E70F0067A8FD /* questionAndAnswerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = questionAndAnswerModel.m; sourceTree = "<group>"; };
+		18BA511D2554E70F0067A8FD /* sendCodeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendCodeModel.h; sourceTree = "<group>"; };
+		18BA511E2554E70F0067A8FD /* sendCodeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendCodeModel.m; sourceTree = "<group>"; };
+		18BA51202554E70F0067A8FD /* changePassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = changePassword.m; sourceTree = "<group>"; };
+		18BA51212554E70F0067A8FD /* changePassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = changePassword.h; sourceTree = "<group>"; };
+		18BA51232554E70F0067A8FD /* questionAndEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = questionAndEmail.m; sourceTree = "<group>"; };
+		18BA51242554E70F0067A8FD /* questionAndEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = questionAndEmail.h; sourceTree = "<group>"; };
+		18BA51272554E70F0067A8FD /* SetQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetQuestionView.h; sourceTree = "<group>"; };
+		18BA51282554E70F0067A8FD /* QuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionView.h; sourceTree = "<group>"; };
+		18BA51292554E70F0067A8FD /* SetQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetQuestionView.m; sourceTree = "<group>"; };
+		18BA512A2554E70F0067A8FD /* QuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionView.m; sourceTree = "<group>"; };
+		18BA512C2554E70F0067A8FD /* setEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setEmail.m; sourceTree = "<group>"; };
+		18BA512D2554E70F0067A8FD /* sendCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sendCodeView.m; sourceTree = "<group>"; };
+		18BA512E2554E70F0067A8FD /* setEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setEmail.h; sourceTree = "<group>"; };
+		18BA512F2554E70F0067A8FD /* sendCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sendCodeView.h; sourceTree = "<group>"; };
+		18BA51312554E70F0067A8FD /* ResetPwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPwdView.h; sourceTree = "<group>"; };
+		18BA51322554E70F0067A8FD /* ResetPwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPwdView.m; sourceTree = "<group>"; };
+		18BA51342554E70F0067A8FD /* safePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = safePopView.m; sourceTree = "<group>"; };
+		18BA51352554E70F0067A8FD /* SelfSafeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfSafeView.h; sourceTree = "<group>"; };
+		18BA51362554E70F0067A8FD /* safePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safePopView.h; sourceTree = "<group>"; };
+		18BA51372554E70F0067A8FD /* SelfSafeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfSafeView.m; sourceTree = "<group>"; };
 		1A0AC5F6252B235800221514 /* CyxbsMobile2019_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsMobile2019_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		1A0AC5F7252B235800221514 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1A0E15EB24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CQUPTMapBeforeSearchCell.h; sourceTree = "<group>"; };
@@ -789,6 +848,10 @@
 		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7F60A31E254D6B0B0073019A /* ByPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ByPasswordViewController.h; sourceTree = "<group>"; };
+		7F60A31F254D6B0B0073019A /* ByPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ByPasswordViewController.m; sourceTree = "<group>"; };
+		7FC436DE254C297D0003E25C /* ByWordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ByWordViewController.h; sourceTree = "<group>"; };
+		7FC436DF254C297D0003E25C /* ByWordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ByWordViewController.m; sourceTree = "<group>"; };
 		AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDataModel.h; sourceTree = "<group>"; };
 		AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDataModel.m; sourceTree = "<group>"; };
 		AA289B1024EFC78C00FDF70C /* NoteDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailView.h; sourceTree = "<group>"; };
@@ -1340,6 +1403,171 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18BA51022554E70F0067A8FD /* Safe */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51032554E70F0067A8FD /* Controller */,
+				18BA51142554E70F0067A8FD /* Model */,
+				18BA51252554E70F0067A8FD /* View */,
+			);
+			path = Safe;
+			sourceTree = "<group>";
+		};
+		18BA51032554E70F0067A8FD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51042554E70F0067A8FD /* 设置密保 */,
+				18BA51072554E70F0067A8FD /* 绑定邮箱 */,
+				18BA510C2554E70F0067A8FD /* 修改密码 */,
+				18BA51112554E70F0067A8FD /* 主界面 */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		18BA51042554E70F0067A8FD /* 设置密保 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51052554E70F0067A8FD /* SetQuestionViewController.h */,
+				18BA51062554E70F0067A8FD /* SetQuestionViewController.m */,
+			);
+			path = "设置密保";
+			sourceTree = "<group>";
+		};
+		18BA51072554E70F0067A8FD /* 绑定邮箱 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51082554E70F0067A8FD /* sendCodeViewController.h */,
+				18BA51092554E70F0067A8FD /* setEmailViewController.h */,
+				18BA510A2554E70F0067A8FD /* setEmailViewController.m */,
+				18BA510B2554E70F0067A8FD /* sendCodeViewController.m */,
+			);
+			path = "绑定邮箱";
+			sourceTree = "<group>";
+		};
+		18BA510C2554E70F0067A8FD /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA510D2554E70F0067A8FD /* ResetPwdViewController.h */,
+				18BA510E2554E70F0067A8FD /* ChangePwdViewController.m */,
+				18BA510F2554E70F0067A8FD /* ResetPwdViewController.m */,
+				18BA51102554E70F0067A8FD /* ChangePwdViewController.h */,
+			);
+			path = "修改密码";
+			sourceTree = "<group>";
+		};
+		18BA51112554E70F0067A8FD /* 主界面 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51122554E70F0067A8FD /* selfSafeViewController.h */,
+				18BA51132554E70F0067A8FD /* selfSafeViewController.m */,
+			);
+			path = "主界面";
+			sourceTree = "<group>";
+		};
+		18BA51142554E70F0067A8FD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51152554E70F0067A8FD /* 设置密保 */,
+				18BA511C2554E70F0067A8FD /* 绑定邮箱 */,
+				18BA511F2554E70F0067A8FD /* 修改密码 */,
+				18BA51222554E70F0067A8FD /* 主界面 */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		18BA51152554E70F0067A8FD /* 设置密保 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51162554E70F0067A8FD /* questionAndAnswerModel.h */,
+				18BA51172554E70F0067A8FD /* questionItem.h */,
+				18BA51182554E70F0067A8FD /* questionModel.h */,
+				18BA51192554E70F0067A8FD /* questionModel.m */,
+				18BA511A2554E70F0067A8FD /* questionItem.m */,
+				18BA511B2554E70F0067A8FD /* questionAndAnswerModel.m */,
+			);
+			path = "设置密保";
+			sourceTree = "<group>";
+		};
+		18BA511C2554E70F0067A8FD /* 绑定邮箱 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA511D2554E70F0067A8FD /* sendCodeModel.h */,
+				18BA511E2554E70F0067A8FD /* sendCodeModel.m */,
+			);
+			path = "绑定邮箱";
+			sourceTree = "<group>";
+		};
+		18BA511F2554E70F0067A8FD /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51202554E70F0067A8FD /* changePassword.m */,
+				18BA51212554E70F0067A8FD /* changePassword.h */,
+			);
+			path = "修改密码";
+			sourceTree = "<group>";
+		};
+		18BA51222554E70F0067A8FD /* 主界面 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51232554E70F0067A8FD /* questionAndEmail.m */,
+				18BA51242554E70F0067A8FD /* questionAndEmail.h */,
+			);
+			path = "主界面";
+			sourceTree = "<group>";
+		};
+		18BA51252554E70F0067A8FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51262554E70F0067A8FD /* 设置密保 */,
+				18BA512B2554E70F0067A8FD /* 绑定邮箱 */,
+				18BA51302554E70F0067A8FD /* 修改密码 */,
+				18BA51332554E70F0067A8FD /* 主界面 */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18BA51262554E70F0067A8FD /* 设置密保 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51272554E70F0067A8FD /* SetQuestionView.h */,
+				18BA51282554E70F0067A8FD /* QuestionView.h */,
+				18BA51292554E70F0067A8FD /* SetQuestionView.m */,
+				18BA512A2554E70F0067A8FD /* QuestionView.m */,
+			);
+			path = "设置密保";
+			sourceTree = "<group>";
+		};
+		18BA512B2554E70F0067A8FD /* 绑定邮箱 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA512C2554E70F0067A8FD /* setEmail.m */,
+				18BA512D2554E70F0067A8FD /* sendCodeView.m */,
+				18BA512E2554E70F0067A8FD /* setEmail.h */,
+				18BA512F2554E70F0067A8FD /* sendCodeView.h */,
+			);
+			path = "绑定邮箱";
+			sourceTree = "<group>";
+		};
+		18BA51302554E70F0067A8FD /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51312554E70F0067A8FD /* ResetPwdView.h */,
+				18BA51322554E70F0067A8FD /* ResetPwdView.m */,
+			);
+			path = "修改密码";
+			sourceTree = "<group>";
+		};
+		18BA51332554E70F0067A8FD /* 主界面 */ = {
+			isa = PBXGroup;
+			children = (
+				18BA51342554E70F0067A8FD /* safePopView.m */,
+				18BA51352554E70F0067A8FD /* SelfSafeView.h */,
+				18BA51362554E70F0067A8FD /* safePopView.h */,
+				18BA51372554E70F0067A8FD /* SelfSafeView.m */,
+			);
+			path = "主界面";
+			sourceTree = "<group>";
+		};
 		1A0AC5F5252B234700221514 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
@@ -1376,6 +1604,7 @@
 		1A14132A235F523B0001417E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				18BA51022554E70F0067A8FD /* Safe */,
 				1A31062E23770C7300A56468 /* Mine.xcassets */,
 				1AEF3103245BFF3D00487D40 /* MyGoods */,
 				1A344BB123E96AB80014A3B4 /* About */,
@@ -1807,6 +2036,10 @@
 			children = (
 				1A0AC5F7252B235800221514 /* LoginViewController.swift */,
 				1ADB6A0F254BE2CC00C8CA9A /* FindPasswordView.swift */,
+				7FC436DE254C297D0003E25C /* ByWordViewController.h */,
+				7FC436DF254C297D0003E25C /* ByWordViewController.m */,
+				7F60A31E254D6B0B0073019A /* ByPasswordViewController.h */,
+				7F60A31F254D6B0B0073019A /* ByPasswordViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3846,6 +4079,7 @@
 				EE75BFBE23F5884100208039 /* SCGenericChart.m in Sources */,
 				EE75BFA423F5884100208039 /* ExamArrangeDataItem.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
+				18BA513C2554E70F0067A8FD /* ResetPwdViewController.m in Sources */,
 				AA33F23D24BDF0DE00ECB09E /* ScheduleViewController.m in Sources */,
 				1AD038DA23FA775600D5C90E /* MineQACommentItem.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
@@ -3857,6 +4091,7 @@
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
+				18BA513B2554E70F0067A8FD /* ChangePwdViewController.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				EE4007A824F2AAC90042FF55 /* WeekAndDay.m in Sources */,
@@ -3911,6 +4146,7 @@
 				AA40B40B24D2AE400037071A /* WeDateViewController.m in Sources */,
 				1A22DDCC244FF61600FBB51E /* EmptyClassTableViewCell.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
+				18BA51492554E70F0067A8FD /* safePopView.m in Sources */,
 				EEA301D7246866E400A8DB26 /* BannerModel.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
 				EE8234E224673FE800F6B4AE /* VolunteerItem.m in Sources */,
@@ -3943,9 +4179,11 @@
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
 				EEA301B92468079200A8DB26 /* IdsBinding.m in Sources */,
+				18BA513F2554E70F0067A8FD /* questionItem.m in Sources */,
 				EE75BFB623F5884100208039 /* NewDetailViewController.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
+				18BA51462554E70F0067A8FD /* setEmail.m in Sources */,
 				1A810BAD24E2A17400E79126 /* CQUPTMapPresenter.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
@@ -3958,6 +4196,7 @@
 				D0101F61243587A1004337ED /* GKLoadingView.m in Sources */,
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
 				1A799562252B43E400603253 /* SwiftyClient.swift in Sources */,
+				18BA51412554E70F0067A8FD /* sendCodeModel.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				EE75BFBD23F5884100208039 /* SCChart.m in Sources */,
@@ -3991,10 +4230,13 @@
 				1AE72A1124E5251000665176 /* CQUPTMapSearchResultCell.m in Sources */,
 				1A79FCD324EAE81B00CBB124 /* CollectionViewSpaceLayout.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
+				18BA513A2554E70F0067A8FD /* sendCodeViewController.m in Sources */,
 				1A67856D251B4F94002BCA28 /* MGJRouterRegister.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
+				18BA51452554E70F0067A8FD /* QuestionView.m in Sources */,
 				D03E59D123DB30AA00E0F34D /* QAAskModel.m in Sources */,
+				7FC436E0254C297D0003E25C /* ByWordViewController.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				EEA301DA2468670B00A8DB26 /* BannerItem.m in Sources */,
@@ -4004,14 +4246,17 @@
 				D069799023D737800007E479 /* QADetailModel.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
+				18BA51392554E70F0067A8FD /* setEmailViewController.m in Sources */,
 				EE8234DD24673FE800F6B4AE /* QueryTableViewCell.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
+				18BA513D2554E70F0067A8FD /* selfSafeViewController.m in Sources */,
 				D06AAEE124AC00BB00EE0892 /* QAReviewViewController.m in Sources */,
 				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
 				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
 				1A4022FE244C9FD0000F8524 /* EmptyClassContentView.m in Sources */,
+				18BA51422554E70F0067A8FD /* changePassword.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				1A22DDD1244FF89E00FBB51E /* EmptyClassModel.m in Sources */,
 				EE75BFBA23F5884100208039 /* SCLineChart.m in Sources */,
@@ -4025,9 +4270,11 @@
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
 				EE75BFB823F5884100208039 /* DownFileDetailCellTableViewCell.m in Sources */,
 				1A0E15ED24E4D3FA00C39B4D /* CQUPTMapBeforeSearchCell.m in Sources */,
+				18BA51432554E70F0067A8FD /* questionAndEmail.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				EE75BFAE23F5884100208039 /* PeopleListCellTableViewCell.m in Sources */,
+				18BA51482554E70F0067A8FD /* ResetPwdView.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				1A4022FB244C9F6B000F8524 /* EmptyClassViewController.m in Sources */,
 				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
@@ -4041,11 +4288,13 @@
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
+				7F60A320254D6B0B0073019A /* ByPasswordViewController.m in Sources */,
 				1A21CD5224288BEC008B2EA7 /* SchoolBusModel.m in Sources */,
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				1A402302244CA03C000F8524 /* EmptyClassPresenter.m in Sources */,
+				18BA514A2554E70F0067A8FD /* SelfSafeView.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
@@ -4067,6 +4316,7 @@
 				EE75BFA723F5884100208039 /* TestArrangeViewController.m in Sources */,
 				EE75BFBC23F5884100208039 /* SCCircleChart.m in Sources */,
 				EE75BFAF23F5884100208039 /* HistoryView.m in Sources */,
+				18BA51472554E70F0067A8FD /* sendCodeView.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				1AEF311C245C71CE00487D40 /* MyGoodsModel.m in Sources */,
 				EE75BF9923F5884100208039 /* OneNewsItem.m in Sources */,
@@ -4082,6 +4332,7 @@
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				1AEF3122245E9D5300487D40 /* MyGoodsItem.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
+				18BA51442554E70F0067A8FD /* SetQuestionView.m in Sources */,
 				AA40B40E24D2BB7C0037071A /* PeopleListTableViewCell.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
@@ -4131,6 +4382,7 @@
 				DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */,
 				EE75BFA923F5884100208039 /* ChooseStudentListViewController.m in Sources */,
 				EE75BFC023F5884100208039 /* SCPieChart.m in Sources */,
+				18BA51402554E70F0067A8FD /* questionAndAnswerModel.m in Sources */,
 				EE8234DA24673FE800F6B4AE /* AllYearsViewController.m in Sources */,
 				EEDE5ABF2504828600E39280 /* ScorePresentAnimation.m in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
@@ -4151,10 +4403,12 @@
 				EE75BFBF23F5884100208039 /* SCChartLabel.m in Sources */,
 				D0011A6E23F082FD009A242C /* QAExitView.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
+				18BA51382554E70F0067A8FD /* SetQuestionViewController.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
 				EE75BF9B23F5884100208039 /* VolunteerModel.m in Sources */,
 				1A6F214A24ED362500158617 /* FYHCycleLabel.m in Sources */,
 				1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */,
+				18BA513E2554E70F0067A8FD /* questionModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4322,7 +4576,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = PU7F26AM3C;
+				DEVELOPMENT_TEAM = QM475FB4ML;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -4332,7 +4586,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -4351,7 +4605,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 18;
-				DEVELOPMENT_TEAM = PU7F26AM3C;
+				DEVELOPMENT_TEAM = QM475FB4ML;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -4361,7 +4615,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";

@@ -92,12 +92,14 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"我再看看" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"马上登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         LoginViewController *loginViewController = [[LoginViewController alloc]init];
+        UINavigationController *navC =[[UINavigationController alloc]initWithRootViewController:loginViewController];
+
 //        loginViewController.loginSuccessHandler = ^(BOOL success) {
 //            if (success) {
 ////                [self afterLogin];
 //            }
 //        };
-        [self.navigationController presentViewController:loginViewController animated:YES completion:nil];
+        [self.navigationController presentViewController:navC animated:YES completion:nil];
     }];
     [alertController addAction:cancelAction];
     [alertController addAction:loginAction];

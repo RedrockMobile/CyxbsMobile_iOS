@@ -44,6 +44,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+
     // Override point for customization after application launch.
     
     // 一个网络调试工具用的，需要在Mac端使用一个叫Bagel的软件配合调试，升级Xcode以后这个库出了点问题
@@ -121,7 +123,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [UMCommonLogManager setUpUMCommonLogManager];
     //初始化umenge功能
     [UMConfigure setLogEnabled:NO];
-    [UMConfigure initWithAppkey:@"5f4f4cde12981d3ca30d4ac1" channel:nil];
+    [UMConfigure initWithAppkey:@"573183a5e0f55a59c9000694" channel:nil];
+    
     
     //开发者需要显式的调用此函数，日志系统才能工作
     [UMCommonLogManager setUpUMCommonLogManager];
@@ -397,7 +400,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         }
     }
 }
-
 
 @end
 

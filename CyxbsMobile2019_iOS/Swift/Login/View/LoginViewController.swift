@@ -63,9 +63,18 @@ class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.isNavigationBarHidden = true
+
         protocolCheckButton.backgroundColor = UIColor.clear
         protocolCheckButton.layer.cornerRadius = 8
         protocolCheckButton.clipsToBounds = true

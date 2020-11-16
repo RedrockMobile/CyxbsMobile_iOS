@@ -16,6 +16,7 @@
 #import "MineQAController.h"
 #import "MineQADataItem.h"
 #import "MineAboutController.h"
+#import "SelfSafeViewController.h"
 #import <UserNotifications/UserNotifications.h>
 
 
@@ -214,6 +215,14 @@
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+- (void)selectedSafeCell {
+    selfSafeViewController *vc = [[selfSafeViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 
 #pragma mark - Presenter回调

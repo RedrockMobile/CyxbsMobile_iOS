@@ -37,6 +37,7 @@
 + (void)logout {
     
     LoginViewController *loginVC = [[LoginViewController alloc] init];
+   // UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
     UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     if (tabBarVC.presentedViewController) {
         [tabBarVC dismissViewControllerAnimated:YES completion:^{
