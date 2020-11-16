@@ -7,7 +7,7 @@
 //
 
 #import "WYCClassAndRemindDataModel.h"
-
+#import "LocalNotiManager.h"
 //[responseObject objectForKey:@"data"]
 @interface WYCClassAndRemindDataModel()
 @property (nonatomic, strong)NSArray *rowDataArray;
@@ -168,11 +168,18 @@
 /// 备忘模型数组的懒加载
 - (NSMutableArray *)noteDataModelArray{
     if(_noteDataModelArray==nil){
-        
         NSArray *rowData = [NSMutableArray arrayWithContentsOfFile:remDataArrPath];
         NSMutableArray *modelArray = [NSMutableArray array];
         for (NSDictionary *noteDataDict in rowData) {
-            [modelArray addObject:[[NoteDataModel alloc]initWithNoteDataDict:noteDataDict]];
+            //添加本地通知
+            NoteDataModel *model = [[NoteDataModel alloc]initWithNoteDataDict:noteDataDict];
+            [modelArray addObject:model];
+            if([model.notiBeforeTime isEqual:@"不提醒"])continue;
+            for (NSNumber *weekNum in model.weeksArray) {
+                for (NSDictionary *timeDict in model.timeDictArray) {
+                    [LocalNotiManager setLocalNotiWithWeekNum:weekNum.intValue weekDay:[timeDict[@"weekNum"] intValue] lesson:[timeDict[@"lessonNum"] intValue] before:model.notiBeforeTimeLenth titleStr:model.noteTitleStr subTitleStr:nil bodyStr:model.noteDetailStr ID:[NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,weekNum.intValue,timeDict[@"weekNum"],timeDict[@"lessonNum"]]];
+                }
+            }
         }
         
         _noteDataModelArray = modelArray;

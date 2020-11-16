@@ -179,6 +179,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     if(![[NSFileManager defaultManager] fileExistsAtPath:remAndLesDataDirectoryPath]){
         [[NSFileManager defaultManager] createDirectoryAtPath:remAndLesDataDirectoryPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
+    if(![[NSFileManager defaultManager] fileExistsAtPath:remDataDirectory]){
+        [[NSFileManager defaultManager] createDirectoryAtPath:remDataDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    }
 }
 
 //设置每日推送课表的本地通知
