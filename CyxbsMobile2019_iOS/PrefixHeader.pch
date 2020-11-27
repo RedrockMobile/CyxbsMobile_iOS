@@ -185,7 +185,7 @@
 /// 上传头像
 #define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/app/index.php/Home/Photo/uploadArticle"
 /// 上传用户信息
-#define UPLOADUSERINFOAPI @"http://api-234.redrock.team/magipoke/Person/SetInfo"
+#define UPLOADUSERINFOAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/Person/SetInfo"
 
 
 /// 获取签到信息

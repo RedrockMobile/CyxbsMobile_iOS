@@ -215,7 +215,7 @@
     [self reloadSelectedButtonsWithTimeStringArray:self.timeDateDelegate.timeDictArray];
     self.timeSelctbtn.hidden = YES;
 }
-
+//添加加号按钮
 - (void)loadAddButton{
     UIButton *btn = [[UIButton alloc] init];
     self.addBtn = btn;
