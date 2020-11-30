@@ -16,9 +16,10 @@
     [client requestWithPath:QUESTIONLISTAPI method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"错误");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWorkToGetQuestionList" object:nil userInfo:nil];
     }];
 }
 
 
 @end
+

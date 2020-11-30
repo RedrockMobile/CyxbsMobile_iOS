@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *sendCodeToEmialLabel;
 
+- (instancetype)initWithcode:(NSString *)code AndTime:(NSString *)time;
+
 @end
 
 NS_ASSUME_NONNULL_END

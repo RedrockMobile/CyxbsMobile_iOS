@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *placeholderLab;
 @property (nonatomic, strong) UILabel *sendEmailLab;
 @property (nonatomic, strong) UITextField *emailField;
+@property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, weak) id<setEmailDelegate> delegate;
 
 @end

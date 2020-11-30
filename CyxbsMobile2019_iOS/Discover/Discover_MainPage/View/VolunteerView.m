@@ -8,6 +8,7 @@
 
 #import "VolunteerView.h"
 #import "VolunteerItem.h"
+#import "ArchiveTool.h"
 ///平方字体部分
 #define PingFangSC @".PingFang SC"
 //Bahnschrift字体部分
@@ -43,8 +44,8 @@
         [self loadUserDefaults];//加载缓存用作视图的初始化
         [self addNoBindingView];
         
-        if ([self.defaults objectForKey:@"volunteer_account"]) {
-            self.volunteerItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[VolunteerItem archivePath]];
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_information"]) {
+            self.volunteerItem = [ArchiveTool getPersonalInfo];
             [self refreshViewIfNeeded];
         }
         [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
@@ -52,7 +53,7 @@
     return self;
 }
 -(void)refreshViewIfNeeded {
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_account"]) {
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_information"]) {
         [self removeUnbindingView];
         [self addBindingView];
         [self updateAllHour];//总时长刷新
@@ -65,7 +66,7 @@
 
 }
 -(void)updateAllHour {
-    self.allTime.text = self.volunteerItem.hour;
+    self.allTime.text = [NSString stringWithFormat:@"%d",[self.volunteerItem.hour intValue]];
 }
 -(void)removeUnbindingView {
     [self.hintLabel removeFromSuperview];
@@ -157,7 +158,7 @@
     UILabel *allTime = [[UILabel alloc]init];
     self.allTime = allTime;
     allTime.text = @"0";
-    allTime.font = [UIFont fontWithName:ImpactRegular size:36];
+    allTime.font = [UIFont fontWithName:ImpactRegular size:32];
     if (@available(iOS 11.0, *)) {
         allTime.textColor = Color21_49_91_F0F0F2;
     } else {
@@ -196,7 +197,7 @@
 - (void)addRecentTitle {
     UILabel *recentTitle = [[UILabel alloc]init];
     self.recentTitle = recentTitle;
-    recentTitle.text = self.volunteerItem.eventsArray.firstObject.eventName;
+    recentTitle.text = self.volunteerItem.eventsArray.firstObject.title;
     recentTitle.font = [UIFont fontWithName: PingFangSCRegular size:15];
     if (@available(iOS 11.0, *)) {
         recentTitle.textColor = Color21_49_91_F0F0F2;
@@ -231,7 +232,7 @@
     UILabel *recentTime = [[UILabel alloc]init];
     self.recentTime = recentTime;
     recentTime.text = self.volunteerItem.eventsArray.firstObject.hour;
-    recentTime.font = [UIFont fontWithName:PingFangSCLight size: 13];
+    recentTime.font = [UIFont fontWithName:PingFangSCLight size: 11];
     if (@available(iOS 11.0, *)) {
         recentTime.textColor = Color21_49_91_F0F0F2;
     } else {
@@ -247,7 +248,7 @@
 - (void)addRecentTeam {
     UILabel *recentTeam= [[UILabel alloc]init];
     self.recentTeam = recentTeam;
-    recentTeam.text = self.volunteerItem.eventsArray.firstObject.orgName;
+    recentTeam.text = self.volunteerItem.eventsArray.firstObject.server_group;
     recentTeam.font = [UIFont fontWithName:PingFangSCLight size: 13];
     if (@available(iOS 11.0, *)) {
         recentTeam.textColor = Color21_49_91_F0F0F2;

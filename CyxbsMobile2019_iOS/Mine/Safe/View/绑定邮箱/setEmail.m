@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UILabel *barTitle;
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIButton *contactBtn;
-@property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) UIView *line;
 
 
@@ -59,7 +58,10 @@
         emailField.borderStyle = UITextBorderStyleNone;
         emailField.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:1.0];
         emailField.layer.cornerRadius = 8;
-        emailField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        UIView *blankView = [[UIView alloc] initWithFrame:CGRectMake(emailField.frame.origin.x,emailField.frame.origin.y,15.0, emailField.frame.size.height)];
+        emailField.leftView = blankView;
+        emailField.leftViewMode =UITextFieldViewModeAlways;
+        emailField.clearButtonMode = UITextFieldViewModeNever;
         [self addSubview:emailField];
         _emailField = emailField;
         
@@ -187,3 +189,4 @@
 }
 
 @end
+

@@ -58,6 +58,7 @@
         questionLabel.layer.borderWidth = 1.0;
         questionLabel.layer.masksToBounds = YES;
         questionLabel.layer.cornerRadius = 8;
+        questionLabel.text = @"请选择一个密保问题";
         [questionLabel setBackgroundColor:[UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:1.0]];
         questionLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
         questionLabel.textAlignment = NSTextAlignmentCenter;

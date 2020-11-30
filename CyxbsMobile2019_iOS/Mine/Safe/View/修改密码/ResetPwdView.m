@@ -17,7 +17,7 @@
 @property (nonatomic, strong) UIImageView *passwordImageView1;
 @property (nonatomic, strong) UIImageView *passwordImageView2;
 @property (nonatomic, strong) UIImageView *passwordRightImageView1;
-@property (nonatomic, strong) UIImageView *passwordRightImageView2;
+@property (nonatomic, strong) UIButton *passwordRight2;
 
 @end
 
@@ -40,14 +40,14 @@
         
         ///密码输入框
         UITextField *passwordField1=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@"请输入6位以上新密码"];
-        passwordField1.clearButtonMode = UITextFieldViewModeWhileEditing;
+        passwordField1.clearButtonMode = UITextFieldViewModeNever;
         passwordField1.alpha = 0.36;
         [self addSubview:passwordField1];
         _passwordField1 = passwordField1;
         
         ///密码确认框
         UITextField *passwordField2=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@"请再次输入6位以上新密码"];
-        passwordField2.clearButtonMode = UITextFieldViewModeWhileEditing;
+        passwordField2.clearButtonMode = UITextFieldViewModeNever;
         passwordField2.alpha = 0.36;
         passwordField2.secureTextEntry = YES;
         [self addSubview:passwordField2];
@@ -124,12 +124,14 @@
         [self addSubview:passwordRightImageView1];
         _passwordRightImageView1 = passwordRightImageView1;
         
-        ///密码确认右侧图片
-        UIImageView *passwordRightImageView2 = [[UIImageView alloc] init];
-        UIImage *passwordRightImage2 = [UIImage imageNamed:@"眼睛2"];
-        passwordRightImageView2.image = passwordRightImage2;
-        [self addSubview:passwordRightImageView2];
-        _passwordRightImageView2 = passwordRightImageView2;
+        
+        UIButton *passwordRight2 = [[UIButton alloc] init];
+        [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛2"] forState:UIControlStateNormal];
+        [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛1"] forState:UIControlStateSelected];
+        passwordRight2.selected = NO;
+        [passwordRight2 addTarget:self action:@selector(securityPassword) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:passwordRight2];
+        _passwordRight2 = passwordRight2;
         
     }
     return self;
@@ -215,7 +217,7 @@
         make.height.mas_equalTo(SCREEN_HEIGHT * 0.0258);
     }];
     
-    [_passwordRightImageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_passwordRight2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.2192);
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.073);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.0579);
@@ -244,6 +246,16 @@
     }];
     _nextBtn.layer.cornerRadius = _nextBtn.frame.size.height * 26/50;
     
+}
+
+- (void)securityPassword {
+    if (_passwordRight2.selected == YES) {
+        _passwordField2.secureTextEntry = NO;
+        _passwordRight2.selected = NO;
+    }else {
+        _passwordField2.secureTextEntry = YES;
+        _passwordRight2.selected = YES;
+    }
 }
 
 ///创建输入框

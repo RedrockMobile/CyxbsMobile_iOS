@@ -58,7 +58,10 @@
         codeField.borderStyle = UITextBorderStyleNone;
         codeField.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:1.0];
         codeField.layer.cornerRadius = 8;
-        codeField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        UIView *blankView = [[UIView alloc] initWithFrame:CGRectMake(codeField.frame.origin.x,codeField.frame.origin.y,15.0, codeField.frame.size.height)];
+        codeField.leftView = blankView;
+        codeField.leftViewMode =UITextFieldViewModeAlways;
+        codeField.clearButtonMode = UITextFieldViewModeNever;
         [self addSubview:codeField];
         _codeField = codeField;
         
@@ -120,7 +123,7 @@
         make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0653);
         make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0347);
         make.right.mas_equalTo(self.right);
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.2 * 25/75);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0357);
     }];
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -204,3 +207,4 @@
 
 
 @end
+
