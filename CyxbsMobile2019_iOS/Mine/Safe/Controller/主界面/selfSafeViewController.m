@@ -79,7 +79,7 @@
     questionAndEmail *model = [[questionAndEmail alloc] init];
     [model isBindEmailAndQuestion];
     [model setBlock:^(id  _Nonnull info) {
-        if ([info[@"status"] isEqual:@"10000"]) {
+        if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
             self->_question_is = info[@"data"][@"question_is"];
             self->_email_is = info[@"data"][@"email_is"];
             if ([self->_question_is intValue] == 0 || [self->_email_is intValue] == 0) {
@@ -101,12 +101,14 @@
 - (void)setQuestion {
     SetQuestionViewController *setquestionVC = [[SetQuestionViewController alloc] init];
     [self.navigationController pushViewController:setquestionVC animated:YES];
+    [self dismissAlertView];
 }
 
 ///进入设置邮箱界面
 - (void)setEmail {
     setEmailViewController *setEmailVC = [[setEmailViewController alloc] init];
     [self.navigationController pushViewController:setEmailVC animated:YES];
+    [self dismissAlertView];
 }
 
 

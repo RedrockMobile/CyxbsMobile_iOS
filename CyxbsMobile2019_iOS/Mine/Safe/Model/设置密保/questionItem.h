@@ -12,14 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface questionItem : NSObject
 
-//@property (nonatomic ,strong) NSString *questionId;
-//@property (nonatomic ,strong) NSString *questionContent;
-
-@property (nonatomic, strong) NSString *day;
-@property (nonatomic, strong) NSString *teacher;
+@property (nonatomic ,strong) NSString *questionId;
+@property (nonatomic ,strong) NSString *questionContent;
 
 - (instancetype) initWithDict:(NSDictionary *)dict;
 
 @end
 
 NS_ASSUME_NONNULL_END
+

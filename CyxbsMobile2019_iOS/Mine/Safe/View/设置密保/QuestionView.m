@@ -33,6 +33,7 @@ NSString *ID1 = @"Sport_cell";
         backView.backgroundColor = [UIColor colorWithRed:0/255.0 green:15/255.0 blue:37/255.0 alpha:0.14];
         backView.userInteractionEnabled = YES;
         [self addSubview:backView];
+        _backView = backView;
         
         ///问题列表
         UITableView *questionTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -118,7 +119,6 @@ NSString *ID1 = @"Sport_cell";
         self.alpha = 0.0;
         [self removeFromSuperview];
     }completion:nil];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"changeTitle" object:nil userInfo:nil];
 }
 
@@ -160,15 +160,15 @@ NSString *ID1 = @"Sport_cell";
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     questionItem *model = _questionArray[indexPath.row];
-        //展示cell上的数据
-    cell.textLabel.text = model.day;
+    //展示cell上的数据
+    cell.textLabel.text = model.questionContent;
         
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     questionItem *model = _questionArray[indexPath.row];
-    _question = model.day;
+    _question = model.questionContent;
     _questionId = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
     [self disMissView];
 }
@@ -178,3 +178,4 @@ NSString *ID1 = @"Sport_cell";
     
 @end
     
+

@@ -11,11 +11,16 @@
 // 志愿信息
 @interface VolunteeringEventItem : NSObject <NSCoding>
 
-@property (nonatomic, copy)NSString *hour;
-@property (nonatomic, copy)NSString *creatTime;
-@property (nonatomic, copy)NSString *eventName;
-@property (nonatomic, copy)NSString *address;
-@property (nonatomic, copy)NSString *orgName;   // 组织名称
+@property (nonatomic, strong) NSString *creatTime;
+@property (nonatomic, strong) NSString *hour;
+@property (nonatomic, strong) NSString *content;
+@property (nonatomic, strong) NSString *start_time;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *addWay;
+@property (nonatomic, strong) NSString *server_group;
+@property (nonatomic, strong) NSString *orgId;
+
+
 
 - (instancetype)initWithDictinary: (NSDictionary *)dict;
 

@@ -10,18 +10,10 @@
 
 @implementation questionItem
 
-//- (instancetype)initWithDict:(NSDictionary *)dict {
-//    if ([super init]) {
-//        self.questionId = dict[@"id"];
-//        self.questionContent = dict[@"content"];
-//    }
-//    return self;
-//}
-
 - (instancetype)initWithDict:(NSDictionary *)dict {
     if ([super init]) {
-        self.day = dict[@"day"];
-        self.teacher = dict[@"teacher"];
+        self.questionId = dict[@"id"];
+        self.questionContent = dict[@"content"];
     }
     return self;
 }

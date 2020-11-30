@@ -30,6 +30,9 @@
 #import <MBProgressHUD.h>
 #import "ElectricityView.h"
 #import "VolunteerView.h"
+#import "VolunteerItem.h"
+#import "QueryViewController.h"
+#import "ArchiveTool.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define ColorWhite  [UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -115,8 +118,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
         ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
             
-        //如果无该缓存值且已登录，那么弹出课表
-        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]&&[UserItem defaultItem].realName){
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
             [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
@@ -190,10 +192,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 - (void)presentToLogin {
     LoginViewController *loginVC = [[LoginViewController alloc] init];
-    UINavigationController *navC =[[UINavigationController alloc]initWithRootViewController:loginVC];
-    //[self presentViewController:navC animated:NO completion:nil];
-    loginVC.hidesBottomBarWhenPushed =YES;
-    [self.navigationController pushViewController:loginVC animated:YES];
+    [self presentViewController:loginVC animated:NO completion:nil];
     if (self.loginStatus == LoginTimeOut) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"太久没有登录掌邮了..." message:@"\n重新登录试试吧" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"好哒！" style:UIAlertActionStyleDefault handler:nil];
@@ -203,6 +202,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 
+///这里有问题
 - (void)RequestCheckinInfo {
     NSDictionary *params = @{
         @"stunum": [UserDefaultTool getStuNum],
@@ -290,20 +290,25 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.volView = volView;
     volView.delegate = self;
     [self.contentView addSubview:volView];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeVolunteerAccount) name:@"removeVolunteerAccount" object:nil];
     
     UIView *view = [[UIView alloc]init];//色块View
     self.colorView = view;
     self.colorView.backgroundColor = self.volView.backgroundColor;
     [self.contentView addSubview:self.colorView];
 }
--(void)removeVolunteerAccount {
-    [self.volView refreshViewIfNeeded];
-}
+
 - (void)bindingVolunteerButton {
-    QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    ///需要在此处判断一下是否已经登陆了志愿者的界面，如果登陆了，则直接跳QueryViewController，如果未登陆的话则跳登陆的viewController
+    if (![self.defaults objectForKey:@"volunteer_information"]) {
+        QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        VolunteerItem *volunteer = [ArchiveTool getPersonalInfo];
+        QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:volunteer];
+        queryVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:queryVC animated:YES];
+    }
 }
 
 - (void)requestData {

@@ -9,6 +9,7 @@
 #import "UserItemTool.h"
 //#import "LoginViewController.h"
 #import <UMPush/UMessage.h>
+#import "ArchiveTool.h"
 
 @interface UserItemTool ()
 
@@ -64,6 +65,8 @@
         NSError *err;
         [fileManager removeItemAtPath:filePath error:&err];
     }
+    
+    [ArchiveTool deleteFile];
     
     
     //清除课表数据和备忘数据

@@ -8,11 +8,15 @@
 
 #import "setEmailViewController.h"
 #import "setEmail.h"
+#import "sendEmailModel.h"
 #import "sendCodeViewController.h"
 
 @interface setEmailViewController ()<setEmailDelegate>
 @property (nonatomic,strong) setEmail *setEmailView;
 @property (nonatomic,assign) int count;
+@property (nonatomic, assign) BOOL isConnected;
+
+
 @end
 
 @implementation setEmailViewController
@@ -20,11 +24,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    NSLog(@"%@",[self getNowTimeTimestamp1]);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     setEmail *setEmailView = [[setEmail alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    [self checkNetWorkTrans];
     setEmailView.delegate = self;
     setEmailView.placeholderLab.hidden = YES;
     [self.view addSubview:setEmailView];
@@ -44,20 +50,85 @@
     
     [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
 }
+- (void)checkNetWorkTrans {
+    AFNetworkReachabilityManager *managerAF = [AFNetworkReachabilityManager sharedManager];
+    [managerAF startMonitoring];
+    [managerAF setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown:
+                self->_isConnected = true;
+                break;
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                self->_isConnected = true;
+                break;
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+                self->_isConnected = true;
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+                self->_isConnected = false;
+                break;
+        }
+    }];
+}
+
 
 - (void)ClickedNext {
-    if (([_setEmailView.emailField.text rangeOfString:@"@"].location == NSNotFound || [_setEmailView.emailField.text rangeOfString:@".com"].location == NSNotFound) || _setEmailView.emailField.text.length == 0) {
-        _setEmailView.placeholderLab.hidden = NO;
-    } else {
-        _setEmailView.placeholderLab.hidden = YES;
-        sendCodeViewController *sendCodeVC = [[sendCodeViewController alloc] init];
-        sendCodeVC.sendCodeToEmialLabel = _setEmailView.emailField.text;
-        [self.navigationController pushViewController:sendCodeVC animated:YES];
+    if (self.isConnected == NO) {
+        [self NoNetWorkToBindingEmail];
+    }else {
+        if (([_setEmailView.emailField.text rangeOfString:@"@"].location == NSNotFound || [_setEmailView.emailField.text rangeOfString:@".com"].location == NSNotFound) || _setEmailView.emailField.text.length == 0) {
+            _setEmailView.placeholderLab.hidden = NO;
+        } else {
+            _setEmailView.placeholderLab.hidden = YES;
+            [self sendCodeToEmail];
+        }
     }
+}
+
+- (void)sendCodeToEmail {
+    sendEmailModel *model = [[sendEmailModel alloc] init];
+    [model sendEmail:_setEmailView.emailField.text];
+    [model setBlock:^(id  _Nonnull info) {
+        if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
+            NSDictionary *dic = info[@"data"];
+            sendCodeViewController *sendCodeVC = [[sendCodeViewController alloc] initWithcode:[NSString stringWithFormat:@"%@",dic[@"code"]]  AndTime:dic[@"expired_time"]];
+            sendCodeVC.sendCodeToEmialLabel = self->_setEmailView.emailField.text;
+            [self.navigationController pushViewController:sendCodeVC animated:YES];
+        }else if ([info[@"status"] isEqual:[NSNumber numberWithInt:10022]]) {
+            [self EmailPatternWrong];
+        }
+    }];
 }
 
 - (void)backButtonClicked {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+///弹窗：提示没有网络，无法绑定邮箱
+- (void)NoNetWorkToBindingEmail {
+    MBProgressHUD *noNetHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    noNetHud.mode = MBProgressHUDModeText;
+    noNetHud.labelText = @"没有网络，请检查网络连接";
+    [noNetHud hide:YES afterDelay:1.2];
+    [noNetHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+    [noNetHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+}
+
+- (void)EmailPatternWrong {
+    MBProgressHUD *emailWrongHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    emailWrongHud.mode = MBProgressHUDModeText;
+    emailWrongHud.labelText = @"邮箱格式有问题";
+    [emailWrongHud hide:YES afterDelay:1.2];
+    [emailWrongHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+    [emailWrongHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+}
+
+- (NSString *)getNowTimeTimestamp1 {
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970];
+    NSString*timeString = [NSString stringWithFormat:@"%0.f", a];//转为字符型
+    return timeString;
 }
 
 

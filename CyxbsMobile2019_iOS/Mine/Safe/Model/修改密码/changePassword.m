@@ -11,12 +11,12 @@
 @implementation changePassword
 
 - (void)changePasswordWithNewPassword:(NSString *)password {
-    NSDictionary *param = @{@"origin_password":password,@"new_password":password};
+    NSDictionary *param = @{@"origin_password":[UserDefaultTool getIdNum],@"new_password":password};
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:CHANGEPASSWORDAPI method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWorkToChangePassword" object:nil userInfo:nil];
     }];
 }
 

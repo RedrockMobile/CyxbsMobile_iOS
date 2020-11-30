@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NoNetWorkToChangePassword) name:@"NoNetWorkToChangePassword" object:nil];
     ResetPwdView *resetView = [[ResetPwdView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     resetView.delegate = self;
     resetView.placeholder1Error.hidden = YES;
@@ -38,7 +38,7 @@
 
 ///返回按钮的点击事件
 - (void)backButtonClicked {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 ///点击下一步按钮后，进行以下下判断，出现相应的提示文字
@@ -60,9 +60,6 @@
     }else {
         [self placeholderShowEmpty1:YES AndEmpty2:YES AndError1:YES AndError:YES];
         [self changePasswordWithNewPwd:_resetView.passwordField1.text];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        });
     }
 }
 
@@ -87,14 +84,18 @@
     changePassword *model = [[changePassword alloc] init];
     [model changePasswordWithNewPassword:password];
     [model setBlock:^(id  _Nonnull info) {
-        if ([info[@"status"] isEqual:@"10000"]) {
+        if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
             ///修改密码成功
-            [self changePasswordSuccessful];
+            NSLog(@"修改密码成功");
             [self updatePassword];
-        }else if ([info[@"status"] isEqual:@"10004"]) {
+            [self changePasswordSuccessful];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            });
+        }else if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10004]]) {
             ///密码格式有问题
             [self PasswordIsIllegal];
-        }else if ([info[@"status"] isEqual:@"10020"]) {
+        }else if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10020]]) {
             ///新旧密码重复
             [self PasswordIsRepate];
         }
@@ -110,7 +111,7 @@
 - (void)changePasswordSuccessful{
     self.successfulHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.successfulHud.mode = MBProgressHUDModeText;
-    self.successfulHud.labelText = @"重置密码成功！由于账号互通，重邮帮小程序的密码也会一起更改哦~";
+    self.successfulHud.detailsLabelText = @"重置密码成功！由于账号互通，重邮帮小程序的密码也会一起更改哦~";
     [self.successfulHud hide:YES afterDelay:1.2];
     [self.successfulHud setYOffset:-SCREEN_HEIGHT * 0.3704];
     [self.successfulHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
@@ -134,6 +135,16 @@
     [repateHud hide:YES afterDelay:1.2];
     [repateHud setYOffset:-SCREEN_HEIGHT * 0.3704];
     [repateHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+}
+
+///弹窗：提示没有网络，无法更改密码
+- (void)NoNetWorkToChangePassword {
+    MBProgressHUD *noNetHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    noNetHud.mode = MBProgressHUDModeText;
+    noNetHud.labelText = @"没有网络，请检查网络连接";
+    [noNetHud hide:YES afterDelay:1.2];
+    [noNetHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+    [noNetHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 

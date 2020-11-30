@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UITableView *questionTableView;
 @property (nonatomic, strong) NSString *question;
 @property (nonatomic, strong) NSString *questionId;
+@property (nonatomic, strong) UIView *backView;
 
 
 - (void)popQuestionView:(UIView *)view;
@@ -23,3 +24,4 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+

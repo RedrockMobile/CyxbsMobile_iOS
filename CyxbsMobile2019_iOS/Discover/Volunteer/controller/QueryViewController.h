@@ -13,6 +13,7 @@
 
 //@property (nonatomic, strong)VolunteeringEventItem *;
 @property (nonatomic, strong)VolunteerItem *volunteer;
+//- (instancetype)initWithAccount:(NSString *)account AndPassword:(NSString *)password;
 - (instancetype)initWithVolunteerItem: (VolunteerItem *)volunteer;
 
 @end 
