@@ -24,7 +24,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    NSLog(@"%@",[self getNowTimeTimestamp1]);
 }
 
 - (void)viewDidLoad {
@@ -35,6 +34,7 @@
     setEmailView.placeholderLab.hidden = YES;
     [self.view addSubview:setEmailView];
     _setEmailView = setEmailView;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reSendCodeToEmail:) name:@"sendCodeToEmailAgain" object:nil];
 }
 
 
@@ -91,11 +91,25 @@
     [model setBlock:^(id  _Nonnull info) {
         if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
             NSDictionary *dic = info[@"data"];
-            sendCodeViewController *sendCodeVC = [[sendCodeViewController alloc] initWithcode:[NSString stringWithFormat:@"%@",dic[@"code"]]  AndTime:dic[@"expired_time"]];
+            sendCodeViewController *sendCodeVC = [[sendCodeViewController alloc] initWithExpireTime:dic[@"expired_time"]];
             sendCodeVC.sendCodeToEmialLabel = self->_setEmailView.emailField.text;
             [self.navigationController pushViewController:sendCodeVC animated:YES];
         }else if ([info[@"status"] isEqual:[NSNumber numberWithInt:10022]]) {
             [self EmailPatternWrong];
+        }else if ([info[@"status"] isEqual:[NSNumber numberWithInt:10009]]) {
+            
+        }
+    }];
+}
+
+- (void)reSendCodeToEmail:(NSNotification *)sender {
+    sendEmailModel *model = [[sendEmailModel alloc] init];
+    [model sendEmail:_setEmailView.emailField.text];
+    [model setBlock:^(id  _Nonnull info) {
+        if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
+            NSLog(@"重新发送了验证码");
+        }else {
+            NSLog(@"重新发送验证码失败");
         }
     }];
 }
@@ -124,11 +138,13 @@
     [emailWrongHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
-- (NSString *)getNowTimeTimestamp1 {
-    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
-    NSTimeInterval a=[dat timeIntervalSince1970];
-    NSString*timeString = [NSString stringWithFormat:@"%0.f", a];//转为字符型
-    return timeString;
+- (void)EmailLimited {
+    MBProgressHUD *emailLimited = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    emailLimited.mode = MBProgressHUDModeText;
+    emailLimited.labelText = @"今日发送次数已经用完~";
+    [emailLimited hide:YES afterDelay:1.2];
+    [emailLimited setYOffset:-SCREEN_HEIGHT * 0.3704];
+    [emailLimited setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 
