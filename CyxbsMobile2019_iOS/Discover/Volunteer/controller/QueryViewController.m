@@ -69,6 +69,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     _tableView=[[GestureTableView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.0837, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];//group/plain都可
+    _tableView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1.0];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.layer.cornerRadius = 16;
@@ -369,6 +370,22 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     return 140;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        // Setup label properties - frame, font, colors etc
+        //adjustsFontSizeToFitWidth property to YES
+        pickerLabel.adjustsFontSizeToFitWidth = YES;
+        [pickerLabel setBackgroundColor:[UIColor clearColor]];
+        [pickerLabel setTextColor:[UIColor blackColor]];
+        [pickerLabel setFont:[UIFont boldSystemFontOfSize:25]];
+    }
+    // Fill the label text here
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
 }
 
 ///将选择的年份通过通知中心传回去

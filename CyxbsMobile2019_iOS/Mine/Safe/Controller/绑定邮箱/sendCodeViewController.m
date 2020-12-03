@@ -15,7 +15,6 @@
 
 @property (nonatomic, strong) sendCodeView *sendcodeview;
 @property (nonatomic, assign) int count;
-@property (nonatomic, strong) NSString *code;
 @property (nonatomic, strong) NSString *time;
 @property (nonatomic, strong) MBProgressHUD *failureHud;
 @property (nonatomic, strong) MBProgressHUD *successHud;
@@ -24,9 +23,8 @@
 
 @implementation sendCodeViewController
 
-- (instancetype)initWithcode:(NSString *)code AndTime:(NSString *)time {
+- (instancetype)initWithExpireTime:(NSString *)time {
     if ([super init]) {
-        self.code = code;
         self.time = time;
     }
     return self;
@@ -65,7 +63,7 @@
 }
 
 - (void)ClickedSure {
-    if ([_sendcodeview.codeField.text isEqualToString:self.code]) {
+    if ([[self getNowTimeTimestamp] longValue] <= [self.time longValue]) {
         sendCodeModel *model = [[sendCodeModel alloc] init];
         [model sendCode:_sendcodeview.codeField.text ToEmail:_sendCodeToEmialLabel];
         [model setBlock:^(id  _Nonnull info) {
@@ -74,12 +72,12 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.navigationController popToRootViewControllerAnimated:YES];
                 });
-            }else {
-                [self sendCodeFailure];
+            }else if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10007]]) {
+                [self codeWrong];
             }
         }];
     }else {
-        [self codeWrong];
+        [self sendCodeFailure];
     }
     
 }
@@ -91,6 +89,8 @@
 
 - (void)ClickedResend {
     ///设置倒计时
+    NSDictionary *dic = @{@"email":_sendCodeToEmialLabel};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"sendCodeToEmailAgain" object:nil userInfo:dic];
     [self performSelectorInBackground:@selector(Thread) withObject:nil];
 }
 
@@ -129,7 +129,7 @@
 - (void)sendCodeFailure{
     self.failureHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.failureHud.mode = MBProgressHUDModeText;
-    self.failureHud.labelText = @"验证失败";
+    self.failureHud.labelText = @"验证码已失效";
     [self.failureHud hide:YES afterDelay:1.2];
     [self.failureHud setYOffset:-SCREEN_HEIGHT * 0.3704];
     [self.failureHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
@@ -145,7 +145,7 @@
     [noNetHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
-///验证码错误
+///弹窗：验证码错误
 - (void)codeWrong {
     MBProgressHUD *codeWrongHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     codeWrongHud.mode = MBProgressHUDModeText;

@@ -34,6 +34,13 @@
 //    [self.view endEditing:YES];
 //}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+      self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginFailed) name:@"QueryVolunteerInfoFailed" object:nil];
