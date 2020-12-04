@@ -11,12 +11,20 @@
 @implementation sendCodeModel
 
 - (void)sendCode:(NSString *)code ToEmail:(NSString *)email{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    [responseSerializer setRemovesKeysWithNullValues:YES];
+    [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
+    
+    manager.responseSerializer = responseSerializer;
+    
+    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [UserItemTool defaultItem].token]  forHTTPHeaderField:@"Authorization"];
     NSDictionary *param = @{@"email":email,@"code":code};
-    HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:EMAILCODEAPI method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            self->_Block(responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+    
+    [manager POST:EMAILCODEAPI parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        self->_Block(responseObject);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWorkToBindingEmail" object:nil userInfo:nil];
     }];
 }
 

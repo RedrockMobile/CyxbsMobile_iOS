@@ -30,6 +30,7 @@
     setquestionView.delegate = self;
     setquestionView.textView.delegate = self;
     setquestionView.placeholderLabMore.hidden = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NoNetWorkToGetQuestionList) name:@"NoNetWorkToGetQuestionList" object:nil];
     UITapGestureRecognizer *tapRecognizer=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doClick:)];
     [setquestionView.questionLabel addGestureRecognizer:tapRecognizer];
     [self.view addSubview:setquestionView];
@@ -38,6 +39,8 @@
     ///问题列表
     QuestionView *questionView = [[QuestionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _questionView = questionView;
+    UITapGestureRecognizer *dismissRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissClick:)];
+    [_questionView.backView addGestureRecognizer:dismissRecognizer];
     
     ///实时更新Label里的问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showUpload) name:@"changeTitle" object:nil];
@@ -54,10 +57,6 @@
 - (void)ClickedSureBtn {
     ///将设置好的数据传到后端去
     [self questionAndAnswer];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    });
 }
 
 #pragma mark -textView的代理
@@ -76,8 +75,12 @@
 ///点击问题后弹出列表
 - (void)doClick:(UITapGestureRecognizer *)sender{
     [_questionView popQuestionView:self.view];
-    NSLog(@"%@",_questionView);
 }
+
+- (void)dismissClick:(UITapGestureRecognizer *)sender{
+    [_questionView removeFromSuperview];
+}
+
 
 ///更新问题文字
 - (void)showUpload {
@@ -104,14 +107,27 @@
     [errorHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
+///弹窗：提示没有网络，无法更改密码
+- (void)NoNetWorkToGetQuestionList {
+    MBProgressHUD *noNetHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    noNetHud.mode = MBProgressHUDModeText;
+    noNetHud.labelText = @"没有网络，请检查网络连接";
+    [noNetHud hide:YES afterDelay:1.2];
+    [noNetHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+    [noNetHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+}
+
 ///将密保问题传回后端
 - (void)questionAndAnswer {
     questionAndAnswerModel *model = [[questionAndAnswerModel alloc] init];
     [model sendQuestionAndAnswerWithId:_questionView.questionId AndContent:_setquestionView.textView.text];
     [model setBlock:^(id  _Nonnull info) {
-        if ([info[@"status"] isEqual:@"10000"]) {
+        if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
             [self setQuestionSuccessful];
-        }else if ([info[@"status"] isEqual:@"10021"]) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            });
+        }else if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10021]]) {
             [self setQuestionError];
         }
     }];
@@ -119,3 +135,4 @@
 
 
 @end
+

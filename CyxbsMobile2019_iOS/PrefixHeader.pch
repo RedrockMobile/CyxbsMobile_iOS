@@ -132,6 +132,9 @@
 
 #define kSegmentViewTitleHeight (SCREEN_HEIGHT * 50 / 667)
 
+#define SCREEN_WINDOW_HEIGHT (SCREEN_HEIGHT-(STATUS_HEIGHT+44))
+#define STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height//状态栏高度
+
 //学期开始时间
 #define DateStart @"2020-09-07"
 
@@ -183,7 +186,7 @@
 
 
 /// 上传头像
-#define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/app/index.php/Home/Photo/uploadArticle"
+#define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/person/upload/avatar"
 /// 上传用户信息
 #define UPLOADUSERINFOAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/Person/SetInfo"
 
@@ -219,15 +222,17 @@
 
 #pragma mark - 修改密码 借口
 /// 密保问题列表
-#define QUESTIONLISTAPI @"https://cyxbsmobile.redrock.team/wx/api/password/user/question"
+#define QUESTIONLISTAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/question"
 ///修改密码
-#define CHANGEPASSWORDAPI @"https://cyxbsmobile.redrock.team/wx/api/password/user/password/personal"
-///邮箱验证码
-#define EMAILCODEAPI @"https://cyxbsmobile.redrock.team/wx/api/password/user/bind/email"
-///是否绑定邮箱，设置密保
-#define BINDINGEMAILANDQUESTIONAPI @"https://cyxbsmobile.redrock.team/wx/api/user/bind/is"
+#define CHANGEPASSWORDAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/password/personal"
+///发送绑定邮箱验证码
+#define SENDEMAILCODEAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/code"
+///验证绑定邮箱验证码
+#define EMAILCODEAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email"
+///是否绑定信息
+#define BINDINGEMAILANDQUESTIONAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/is"
 ///上传密保消息
-#define SENDQUESTION @"https://cyxbsmobile.redrock.team/wxapi/user/bind/question"
+#define SENDQUESTION @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/question"
 
 #pragma mark - “发现”接口
 
@@ -265,10 +270,10 @@
 #define BANNERVIEWAPI @"http://api-234.redrock.team/magipoke-text/banner/get"
 
 /// 志愿查询
-#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
-#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer/select"
-
-
+#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer-message/binding"
+#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer-message/select"
+#define VOLUNTEERUNBINDING @"https://cyxbsmobile.redrock.team/wxapi/volunteer-message/unbinding"
+#define VOLUNTEERACTIVITY @"https://cyxbsmobile.redrock.team/wxapi/cyb-volunteer/volunteer/activity/info/new"
 
 #pragma mark - ”重邮地图“接口
 

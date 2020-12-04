@@ -14,9 +14,10 @@
 
 @property (nonatomic, copy)NSString *uid;
 @property (nonatomic, copy)NSString *sid;
-@property (nonatomic, copy)NSString *hour;
+@property (nonatomic, strong) NSString *count;
+@property (nonatomic, copy) NSString *hour;
 @property (nonatomic, strong)NSArray<VolunteeringEventItem *> *eventsArray;
-@property (nonatomic, strong)NSArray<VolunteeringEventItem *> *eventsSortedByYears;
+@property (nonatomic, strong) NSArray<NSMutableArray<VolunteeringEventItem *> *> *eventsSortedByYears;
 
 
 - (void)getVolunteerInfoWithUserName: (NSString *)userName andPassWord: (NSString *)passWord finishBlock:(void (^)(VolunteerItem *volunteer))finish;
@@ -24,12 +25,6 @@
 -(NSString *)aesEncrypt:(NSString *)plainText;
 
 - (void)sortEvents;
-
-/// 获取缓存路径
-+ (NSString *)archivePath;
-
-/// 归档对象
-- (void)archiveItem;
 
 
 @end
