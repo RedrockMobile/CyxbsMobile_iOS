@@ -38,6 +38,7 @@ NSString *ID1 = @"Sport_cell";
         ///问题列表
         UITableView *questionTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         questionTableView.layer.cornerRadius = 16;
+        questionTableView.backgroundColor = [UIColor whiteColor];
         questionTableView.separatorColor = [UIColor clearColor];
         questionTableView.rowHeight = 61;
         questionTableView.scrollEnabled = YES;
@@ -152,11 +153,7 @@ NSString *ID1 = @"Sport_cell";
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-    if (@available(iOS 11.0, *)) {
-        cell.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
-    } else {
-        cell.textColor = [UIColor colorWithRed:41/255.0 green:78/255.0 blue:132/255.0 alpha:1];
-    }
+    cell.textColor = [UIColor colorWithRed:41/255.0 green:78/255.0 blue:132/255.0 alpha:1];
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     questionItem *model = _questionArray[indexPath.row];
@@ -169,8 +166,7 @@ NSString *ID1 = @"Sport_cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     questionItem *model = _questionArray[indexPath.row];
     _question = model.questionContent;
-    _questionId = [NSString stringWithFormat:@"%ld",(long)indexPath.row];
-    [self disMissView];
+     [self disMissView];
 }
 
 

@@ -191,14 +191,17 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }];
 }
 - (void)presentToLogin {
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    [self presentViewController:loginVC animated:NO completion:nil];
+//    LoginViewController *loginVC = [[LoginViewController alloc] init];
+//    [self presentViewController:loginVC animated:NO completion:nil];
+    
+    [UserItemTool logout];
+    
     if (self.loginStatus == LoginTimeOut) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"太久没有登录掌邮了..." message:@"\n重新登录试试吧" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"好哒！" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:action];
         
-        [loginVC presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

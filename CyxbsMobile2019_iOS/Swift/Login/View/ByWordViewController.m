@@ -8,6 +8,9 @@
 
 #import "ByWordViewController.h"
 #import "Masonry.h"
+#import "ResetPwdViewController.h"
+#import "AFHTTPRequestOperationManager.h"
+
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
 
@@ -15,6 +18,8 @@
 @property(nonatomic, weak)UITextView *tf;
 @property(nonatomic, weak) UIButton *saveBtn;
 @property(nonatomic, weak)UILabel *placeHolder;
+@property(nonatomic, strong)UILabel *label3;
+@property(nonatomic,strong) NSNumber *questNum;
 
 @end
 
@@ -22,28 +27,34 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBar.hidden = NO;
+    
+}
+-(void) viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
-        backButton.title = @"找回密码";
-        [self.navigationItem setBackBarButtonItem:backButton];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:88/255.0 alpha:1.0];
-    self.navigationController.navigationBar.topItem.title = @"找回密码";
-    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ找回密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
+    [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
+    [UIColor colorWithRed:21/255.0 green:49/255.0 blue:88/255.0 alpha:1.0], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    self.navigationItem.leftBarButtonItem =leftButton;
     
     [self setLable];
     [self setTextView];
     [self setBtn];
+    [self get1];
     
+}
+-(void) clickLeftButton{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void) setLable{
     //uilable
     UILabel *label1 = [[UILabel alloc] init];
-    label1.frame = CGRectMake(20,20,120,21);
+    label1.frame = CGRectMake(20,20 + TOTAL_TOP_HEIGHT,120,21);
     label1.numberOfLines = 0;
     [self.view addSubview:label1];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"你的密保问题是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
@@ -52,7 +63,7 @@
     label1.alpha = 0.64;
     
     UILabel *label2 = [[UILabel alloc] init];
-    label2.frame = CGRectMake(20,85,120,21);
+    label2.frame = CGRectMake(20,85 + TOTAL_TOP_HEIGHT,120,21);
     label2.numberOfLines = 0;
     [self.view addSubview:label2];
     NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:@"你的问题答案是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
@@ -61,10 +72,11 @@
     label2.alpha = 0.64;
 
     UILabel *label3 = [[UILabel alloc] init];
-    label3.frame = CGRectMake(20,45,213,22);
+    self.label3 = label3;
+    label3.frame = CGRectMake(20,45 + TOTAL_TOP_HEIGHT,213,22);
     label3.numberOfLines = 0;
     [self.view addSubview:label3];
-    NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:@"啦啦啦啦啦啦啦啦啦啦啦啦啦" attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 16], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
+    NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:@" " attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 16], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label3.attributedText = string3;
     label3.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
     label3.alpha = 1.0;
@@ -74,7 +86,8 @@
 }
 
 -(void) setTextView{
-    UITextView *tf = [[UITextView alloc]initWithFrame:(CGRectMake(20,218-100,339,100))];
+    UITextView *tf = [[UITextView alloc]initWithFrame:(CGRectMake(20,218-100 + TOTAL_TOP_HEIGHT,339,100))];
+    self.tf = tf;
     tf.layer.cornerRadius = 13;//设置边框圆角
     tf.layer.masksToBounds = YES;
     tf.textContainerInset = UIEdgeInsetsMake(15, 10, 10, 10);//设置边界间距
@@ -101,6 +114,14 @@
       tf.font = [UIFont systemFontOfSize:16.f];
       placeHolderLabel.font = [UIFont systemFontOfSize:16.f];
       [tf setValue:placeHolderLabel forKey:@"_placeholderLabel"];
+    
+    [tf mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(SCREEN_HEIGHT * 0.13  + TOTAL_TOP_HEIGHT);
+        make.height.mas_equalTo(SCREEN_HEIGHT*0.123);
+        make.centerX.equalTo(self.view);
+        make.width.mas_equalTo(SCREEN_WIDTH*0.904);
+        
+    }];
 }
 
 -(void) setBtn{
@@ -115,10 +136,80 @@
     btn.titleLabel.font = [UIFont fontWithName:@"Arial" size:18.0];
     [btn addTarget:self action:@selector(jumpTOset) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.view).mas_offset(SCREEN_HEIGHT * 0.3867 + TOTAL_TOP_HEIGHT);
+            make.left.mas_equalTo(self.view).mas_offset(SCREEN_WIDTH * 0.128);
+            make.width.mas_equalTo(SCREEN_WIDTH * 0.7467);
+            make.height.mas_equalTo(SCREEN_WIDTH * 0.7467 * 52/280);
+    }];
 }
 
--(void) jumpTOset{
+-(void) jumpTOset
+{
     printf("跳转至修改密码页面\n");
+    if(_tf.text.length>=2)
+    {
+        [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/valid/question" method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
+        {
+            if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
+            {
+                ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
+                [self.navigationController pushViewController:rView animated:YES];
+            }
+            else
+            {
+                UILabel *tipsLable = [[UILabel alloc]init];
+                tipsLable.text = @"密保答案错误";
+                tipsLable.font =[UIFont fontWithName:nil size:12];
+                tipsLable.textColor = [UIColor colorWithRed:11/225.0 green:204/225.0 blue:240/225.0 alpha:1.0];
+                [self.view addSubview:tipsLable];
+                [tipsLable mas_makeConstraints:^(MASConstraintMaker *make)
+                {
+                            make.top.mas_equalTo(self.view).mas_offset(SCREEN_HEIGHT * 0.27 + TOTAL_TOP_HEIGHT);
+                            make.left.mas_equalTo(self.view).mas_offset(SCREEN_WIDTH * 0.053);
+                            make.width.mas_equalTo(SCREEN_WIDTH * 0.31);
+                }];
+        }
+        }
+        failure:^(NSURLSessionDataTask *task, NSError *error)
+            {
+                    NSLog(@"-----------%@",error);
+        }
+            ];
+        }
+    else
+        {
+        UILabel *tipsLable = [[UILabel alloc]init];
+        tipsLable.text = @"请至少输入两个字符";
+        tipsLable.font =[UIFont fontWithName:nil size:12];
+        tipsLable.textColor = [UIColor colorWithRed:11/225.0 green:204/225.0 blue:240/225.0 alpha:1.0];
+        [self.view addSubview:tipsLable];
+        [tipsLable mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.mas_equalTo(self.view).mas_offset(SCREEN_HEIGHT * 0.27 + TOTAL_TOP_HEIGHT);
+                    make.left.mas_equalTo(self.view).mas_offset(SCREEN_WIDTH * 0.053);
+                    make.width.mas_equalTo(SCREEN_WIDTH * 0.31);
+                    //make.height.mas_equalTo(SCREEN_WIDTH * 0.7467 * 52/280);
+        }];
+    }
+    
+}
+
+-(void) get1{
+    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/question/detail" method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSLog(@"%@",responseObject);
+//            NSString *questWord = responseObject[@"data"][@"content"];
+//        NSString *questWord = responseObject[@"data"][@"content"];
+        NSArray *array = responseObject[@"data"];
+        NSDictionary *dic = array[0];
+        self.questNum = dic[@"id"];
+        NSString *str = dic[@"content"];
+        self.label3.text = str;
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"-------------%@",error);
+        }];
 }
 /*
 #pragma mark - Navigation

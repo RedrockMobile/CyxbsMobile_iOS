@@ -26,7 +26,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"密码返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
@@ -39,14 +39,24 @@
         _barTitle = barTitle;
         
         ///密码输入框
-        UITextField *passwordField1=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@"请输入6位以上新密码"];
+        UITextField *passwordField1=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@""];
+        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+        attrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
+        attrs[NSForegroundColorAttributeName] = [UIColor colorWithRed:171.0/255.0 green:181.0/255.0 blue:196.0/255.0 alpha:1.0];
+        NSAttributedString * str = [[NSAttributedString alloc] initWithString:@"请输入6位数以上密码" attributes:attrs];
+        passwordField1.attributedPlaceholder = str;
         passwordField1.clearButtonMode = UITextFieldViewModeNever;
         passwordField1.alpha = 0.36;
         [self addSubview:passwordField1];
         _passwordField1 = passwordField1;
         
         ///密码确认框
-        UITextField *passwordField2=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@"请再次输入6位以上新密码"];
+        UITextField *passwordField2=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@""];
+        NSMutableDictionary *attr = [NSMutableDictionary dictionary];
+        attr[NSFontAttributeName] = [UIFont systemFontOfSize:15];
+        attr[NSForegroundColorAttributeName] = [UIColor colorWithRed:171.0/255.0 green:181.0/255.0 blue:196.0/255.0 alpha:1.0];
+        NSAttributedString * Str = [[NSAttributedString alloc] initWithString:@"请再次输入6位数以上密码" attributes:attr];
+        passwordField2.attributedPlaceholder = Str;
         passwordField2.clearButtonMode = UITextFieldViewModeNever;
         passwordField2.alpha = 0.36;
         passwordField2.secureTextEntry = YES;
@@ -126,9 +136,9 @@
         
         
         UIButton *passwordRight2 = [[UIButton alloc] init];
-        [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛2"] forState:UIControlStateNormal];
-        [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛1"] forState:UIControlStateSelected];
-        passwordRight2.selected = NO;
+        [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛1"] forState:UIControlStateNormal];
+        [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛2"] forState:UIControlStateSelected];
+        passwordRight2.selected = YES;
         [passwordRight2 addTarget:self action:@selector(securityPassword) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:passwordRight2];
         _passwordRight2 = passwordRight2;

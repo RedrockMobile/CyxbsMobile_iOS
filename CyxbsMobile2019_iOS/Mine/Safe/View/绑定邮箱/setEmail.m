@@ -25,7 +25,7 @@
         self.backgroundColor = [UIColor whiteColor];
         ///返回按钮
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"轮播右箭头"] forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"密码返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
@@ -103,14 +103,14 @@
     [super layoutSubviews];
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0764);
-        make.left.mas_equalTo(self.left).mas_offset(SCREEN_WIDTH * 0.0427);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.0187);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0172);
+        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0739);
+        make.left.mas_equalTo(self.left).mas_offset(SCREEN_WIDTH * 0.0453);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.024);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0228);
     }];
     
     [_barTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0653);
+        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.069);
         make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0347);
         make.right.mas_equalTo(self.right);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.2 * 25/75);

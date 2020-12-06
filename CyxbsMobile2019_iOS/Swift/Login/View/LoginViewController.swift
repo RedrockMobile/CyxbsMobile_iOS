@@ -141,8 +141,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func forgotPassword(_ sender: Any) {
-        let findPasswordView = FindPasswordView(frame: self.view.bounds)
-        view.addSubview(findPasswordView)
+//        let findPasswordView = FindPasswordView(frame: self.view.bounds)
+//        view.addSubview(findPasswordView)
+        let getVC = YYZGetIdVC()
+        self.navigationController?.pushViewController(getVC, animated: true)
     }
     
     

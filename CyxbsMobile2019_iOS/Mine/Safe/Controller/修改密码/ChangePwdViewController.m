@@ -47,7 +47,7 @@
     
     ///返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"密码返回"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     _backBtn = backBtn;
@@ -104,7 +104,11 @@
 
     ///输入框
     UITextField *passwordField = [[UITextField alloc] init];
-    passwordField.placeholder = @"请输入旧密码";
+    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
+    attr[NSFontAttributeName] = [UIFont systemFontOfSize:15];
+    attr[NSForegroundColorAttributeName] = [UIColor colorWithRed:171.0/255.0 green:181.0/255.0 blue:196.0/255.0 alpha:1.0];
+    NSAttributedString * Str = [[NSAttributedString alloc] initWithString:@"请输入旧密码" attributes:attr];
+    passwordField.attributedPlaceholder = Str;
     passwordField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
     passwordField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
     passwordField.borderStyle = UITextBorderStyleNone;

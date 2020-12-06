@@ -1,8 +1,8 @@
 //
-//  UIViewController+ByWordVC.h
+//  YYZpopView.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 杨远舟 on 2020/10/30.
+//  Created by 杨远舟 on 2020/12/6.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIViewController (ByWordVC)
-
+@interface YYZpopView : UIView
+-(void) showPop;
+@property(nonatomic,strong) UIButton *backBtn;
 @end
 
 NS_ASSUME_NONNULL_END

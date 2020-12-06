@@ -29,7 +29,8 @@
 #import "UserProtocolViewController.h"
 #import "ByWordViewController.h"
 #import "ByPasswordViewController.h"
-
+#import "AFHTTPRequestOperationManager.h"
+#import "YYZGetIdVC.h"
 
 
 #pragma mark - Group共享

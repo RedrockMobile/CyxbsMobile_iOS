@@ -1,8 +1,8 @@
 //
-//  ByWordViewController.h
+//  YYZSendVC.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 杨远舟 on 2020/10/30.
+//  Created by 杨远舟 on 2020/12/6.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ByWordViewController : UIViewController
+@interface YYZSendVC : UIViewController
 
-@property(nonatomic, strong)NSString *idString;
+@property(nonatomic,strong) NSString *id3;
 
 @end
 

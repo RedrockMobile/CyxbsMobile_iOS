@@ -28,7 +28,7 @@
         self.backgroundColor = [UIColor whiteColor];
         ///返回按钮
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"志愿返回"] forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [self addSubview:backBtn];
         _backBtn = backBtn;
         
@@ -52,7 +52,12 @@
         _VolunterLab = VolunterLab;
         
         ///账号输入框
-        UITextField *accountField=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@"请输入志愿重庆账号"];
+        UITextField *accountField=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@""];
+        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
+        attrs[NSFontAttributeName] = [UIFont systemFontOfSize:17];
+        attrs[NSForegroundColorAttributeName] = [UIColor colorWithRed:171.0/255.0 green:181.0/255.0 blue:196.0/255.0 alpha:1];
+        NSAttributedString *attStr = [[NSAttributedString alloc] initWithString:@"输入志愿重庆账号" attributes:attrs];
+        accountField.attributedPlaceholder = attStr;
         accountField.clearButtonMode = UITextFieldViewModeWhileEditing;
         accountField.alpha = 0.36;
         [self addSubview:accountField];
@@ -60,6 +65,11 @@
         
         ///密码输入框
         UITextField *passwordField=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@"请输入密码"];
+        NSMutableDictionary *attr = [NSMutableDictionary dictionary];
+        attr[NSFontAttributeName] = [UIFont systemFontOfSize:17];
+        attr[NSForegroundColorAttributeName] = [UIColor colorWithRed:171.0/255.0 green:181.0/255.0 blue:196.0/255.0 alpha:1];
+        NSAttributedString *Str = [[NSAttributedString alloc] initWithString:@"请输入密码" attributes:attr];
+        passwordField.attributedPlaceholder = Str;
         passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
         passwordField.alpha = 0.36;
         passwordField.secureTextEntry = YES;

@@ -149,7 +149,7 @@
 - (void)setNavigationBar {
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [backBtn setBackgroundColor:[UIColor clearColor]];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"密码返回"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
 

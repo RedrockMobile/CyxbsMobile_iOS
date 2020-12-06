@@ -22,15 +22,11 @@
 
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Mine_Store_ContainerColor"];
-        } else {
-            self.backgroundColor = [UIColor colorWithRed:239/255.0 green:242/255.0 blue:247/255.0 alpha:1];
-        }
+        self.backgroundColor = [UIColor colorWithRed:239.0/255.0 green:242.0/255.0 blue:247.0/255.0 alpha:1];
         
         ///返回按钮
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"密码返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
@@ -47,6 +43,7 @@
         ///列表
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.layer.cornerRadius = 16;
+        tableView.backgroundColor = [UIColor whiteColor];
         tableView.separatorColor = [UIColor clearColor];
         tableView.rowHeight = 61;
         tableView.scrollEnabled = YES;
@@ -104,11 +101,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-    if (@available(iOS 11.0, *)) {
-        cell.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
-    } else {
-        cell.textColor = [UIColor colorWithRed:41/255.0 green:78/255.0 blue:132/255.0 alpha:1];
-    }
+    cell.textColor = [UIColor colorWithRed:25.0/255.0 green:56.0/255.0 blue:102.0/255.0 alpha:1];
     cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
