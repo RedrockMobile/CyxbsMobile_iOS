@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C95E720EB304DC831BACB44F0ECBB8CA"
-               BuildableName = "GMImagePicker.framework"
-               BlueprintName = "GMImagePicker"
+               BlueprintIdentifier = "4622BFEF3DC16E8BD15EEFC30D4D0084"
+               BuildableName = "RxRelay.framework"
+               BlueprintName = "RxRelay"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
