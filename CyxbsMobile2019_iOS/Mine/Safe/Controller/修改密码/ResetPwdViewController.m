@@ -21,8 +21,12 @@
 @implementation ResetPwdViewController
 
 - (void)viewDidLoad {
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NoNetWorkToChangePassword) name:@"NoNetWorkToChangePassword" object:nil];
     ResetPwdView *resetView = [[ResetPwdView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     resetView.delegate = self;
