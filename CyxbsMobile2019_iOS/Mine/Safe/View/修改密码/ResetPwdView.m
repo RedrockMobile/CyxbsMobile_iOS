@@ -25,40 +25,32 @@
 
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
+//        self.backgroundColor = [UIColor clearColor];
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"密码返回"] forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
         
         ///bar标题
-        UILabel *barTitle = [self creatLabelWithText:@"重设密码" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 21] AndTextColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]];
-        barTitle.textAlignment = NSTextAlignmentLeft;
-        barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        [self addSubview:barTitle];
-        _barTitle = barTitle;
+        if (@available(iOS 11.0, *)) {
+            UILabel *barTitle = [self creatLabelWithText:@"重设密码" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            barTitle.textAlignment = NSTextAlignmentLeft;
+            [self addSubview:barTitle];
+            _barTitle = barTitle;
+        } else {
+            // Fallback on earlier versions
+        }
         
         ///密码输入框
-        UITextField *passwordField1=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@""];
-        NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
-        attrs[NSFontAttributeName] = [UIFont systemFontOfSize:15];
-        attrs[NSForegroundColorAttributeName] = [UIColor colorWithRed:171.0/255.0 green:181.0/255.0 blue:196.0/255.0 alpha:1.0];
-        NSAttributedString * str = [[NSAttributedString alloc] initWithString:@"请输入6位数以上密码" attributes:attrs];
-        passwordField1.attributedPlaceholder = str;
+        UITextField *passwordField1=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请输入6位以上新密码"];
         passwordField1.clearButtonMode = UITextFieldViewModeNever;
-        passwordField1.alpha = 0.36;
         [self addSubview:passwordField1];
         _passwordField1 = passwordField1;
         
         ///密码确认框
-        UITextField *passwordField2=[self createTextFieldWithFont:[UIFont systemFontOfSize:15] placeholder:@""];
-        NSMutableDictionary *attr = [NSMutableDictionary dictionary];
-        attr[NSFontAttributeName] = [UIFont systemFontOfSize:15];
-        attr[NSForegroundColorAttributeName] = [UIColor colorWithRed:171.0/255.0 green:181.0/255.0 blue:196.0/255.0 alpha:1.0];
-        NSAttributedString * Str = [[NSAttributedString alloc] initWithString:@"请再次输入6位数以上密码" attributes:attr];
-        passwordField2.attributedPlaceholder = Str;
+        UITextField *passwordField2=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请再次输入6位以上新密码"];
         passwordField2.clearButtonMode = UITextFieldViewModeNever;
-        passwordField2.alpha = 0.36;
         passwordField2.secureTextEntry = YES;
         [self addSubview:passwordField2];
         _passwordField2 = passwordField2;
@@ -161,7 +153,7 @@
         make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.048);
         make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0293);
         make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0357);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.232 * 29/87);
     }];
     
     [_passWordLine1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -175,14 +167,14 @@
         make.top.mas_equalTo(_barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.1195);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.1573);
         make.width.mas_equalTo(_passWordLine1);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0308);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.4827 * 25/181);
     }];
     
     [_passwordImageView1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.1232);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.072);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.05);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0258);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.05 * 20.92/18.74);
     }];
     
     [_passwordRightImageView1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -217,14 +209,14 @@
         make.top.mas_equalTo(_barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.2131);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.1573);
         make.width.mas_equalTo(_passWordLine1);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0308);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.4827 * 25/181);
     }];
     
     [_passwordImageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.2167);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.072);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.05);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0258);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.05 * 20.92/18.74);
     }];
     
     [_passwordRight2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -272,9 +264,15 @@
 - (UITextField *)createTextFieldWithFont:(UIFont *)font placeholder:(NSString *)placeholder{
     UITextField *textField = [[UITextField alloc] init];
     textField.font = font;
-    textField.textColor = [UIColor grayColor];
     textField.borderStyle = UITextBorderStyleNone;
     textField.placeholder = placeholder;
+    if (@available(iOS 11.0, *)) {
+        textField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:placeholder attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor colorNamed:@"MGDSafePlaceholderColor"]}];
+        textField.attributedPlaceholder = string;
+    } else {
+        // Fallback on earlier versions
+    }
     return textField;
 }
     

@@ -38,7 +38,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 11.0, *)) {
+        self.view.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     [self buildUI];
     
 }
@@ -47,7 +51,7 @@
     
     ///返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"密码返回"] forState:UIControlStateNormal];
+    [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     _backBtn = backBtn;
@@ -63,7 +67,11 @@
     UILabel *barTitle = [[UILabel alloc] init];
     barTitle.text = @"账号与安全";
     barTitle.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 21];
-    barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        barTitle.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     barTitle.textAlignment = NSTextAlignmentLeft;
     [self.view addSubview:barTitle];
     _barTitle = barTitle;
@@ -104,13 +112,14 @@
 
     ///输入框
     UITextField *passwordField = [[UITextField alloc] init];
-    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
-    attr[NSFontAttributeName] = [UIFont systemFontOfSize:15];
-    attr[NSForegroundColorAttributeName] = [UIColor colorWithRed:171.0/255.0 green:181.0/255.0 blue:196.0/255.0 alpha:1.0];
-    NSAttributedString * Str = [[NSAttributedString alloc] initWithString:@"请输入旧密码" attributes:attr];
-    passwordField.attributedPlaceholder = Str;
     passwordField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
-    passwordField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        passwordField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"请输入旧密码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor colorNamed:@"MGDSafePlaceholderColor"]}];
+        passwordField.attributedPlaceholder = string;
+    } else {
+        // Fallback on earlier versions
+    }
     passwordField.borderStyle = UITextBorderStyleNone;
     passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [passwordField addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -191,26 +200,43 @@
     
     ///弹出页面
     UIView *popView = [[UIView alloc] init];
-    popView.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 11.0, *)) {
+        popView.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     popView.layer.cornerRadius = 8;
     popView.userInteractionEnabled = YES;
     [self.view addSubview:popView];
     _popView = popView;
     
+    [_backView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender){
+        [self->_popView removeFromSuperview];
+        [self->_backView removeFromSuperview];
+    }]];
+    
     ///两个按钮
     UIButton *findByEmail = [UIButton buttonWithType:UIButtonTypeSystem];
-    [findByEmail setBackgroundColor:[UIColor whiteColor]];
+    [findByEmail setBackgroundColor:[UIColor clearColor]];
     [findByEmail setTitle:@"邮箱找回" forState:UIControlStateNormal];
-    findByEmail.titleLabel.tintColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        findByEmail.titleLabel.tintColor = [UIColor colorNamed:@"MGDSafeTwoColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     findByEmail.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
     findByEmail.layer.cornerRadius = 8;
     [findByEmail addTarget:self action:@selector(findByEmail) forControlEvents:UIControlEventTouchUpInside];
     [popView addSubview:findByEmail];
     
     UIButton *findByQuestion = [UIButton buttonWithType:UIButtonTypeSystem];
-    [findByQuestion setBackgroundColor:[UIColor whiteColor]];
+    [findByQuestion setBackgroundColor:[UIColor clearColor]];
     [findByQuestion setTitle:@"密保找回" forState:UIControlStateNormal];
-    findByQuestion.titleLabel.tintColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
+    if (@available(iOS 11.0, *)) {
+        findByQuestion.titleLabel.tintColor = [UIColor colorNamed:@"MGDSafeTwoColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     findByQuestion.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
     findByQuestion.layer.cornerRadius = 8;
     [findByQuestion addTarget:self action:@selector(findByQuestion) forControlEvents:UIControlEventTouchUpInside];

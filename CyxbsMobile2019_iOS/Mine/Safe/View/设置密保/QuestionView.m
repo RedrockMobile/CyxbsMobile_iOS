@@ -38,7 +38,11 @@ NSString *ID1 = @"Sport_cell";
         ///问题列表
         UITableView *questionTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         questionTableView.layer.cornerRadius = 16;
-        questionTableView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            questionTableView.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         questionTableView.separatorColor = [UIColor clearColor];
         questionTableView.rowHeight = 61;
         questionTableView.scrollEnabled = YES;
@@ -87,15 +91,24 @@ NSString *ID1 = @"Sport_cell";
     
     ///头视图分割线
     UIView *lineView = [[UIView alloc] init];
-    lineView.backgroundColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    if (@available(iOS 11.0, *)) {
+        lineView.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     lineView.alpha = 0.04;
     [topView addSubview:lineView];
     
     ///头视图文字
     UILabel *placeholder = [[UILabel alloc] init];
     placeholder.text = @"选择一个密保问题";
-    placeholder.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    placeholder.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 13];
+    if (@available(iOS 11.0, *)) {
+        placeholder.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+    } else {
+        // Fallback on earlier versions
+    }
+    placeholder.alpha = 0.61;
+    placeholder.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 13];
     [topView addSubview:placeholder];
     
     [placeholder mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,8 +166,12 @@ NSString *ID1 = @"Sport_cell";
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-    cell.textColor = [UIColor colorWithRed:41/255.0 green:78/255.0 blue:132/255.0 alpha:1];
-    cell.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 11.0, *)) {
+        cell.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        cell.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+    } else {
+        // Fallback on earlier versions
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     questionItem *model = _questionArray[indexPath.row];
     //展示cell上的数据
@@ -166,12 +183,11 @@ NSString *ID1 = @"Sport_cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     questionItem *model = _questionArray[indexPath.row];
     _question = model.questionContent;
-     [self disMissView];
+    _questionId = model.questionId;
+    [self disMissView];
 }
 
 
-
-    
 @end
     
 

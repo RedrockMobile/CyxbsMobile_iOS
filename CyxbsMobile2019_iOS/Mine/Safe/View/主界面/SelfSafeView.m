@@ -22,11 +22,15 @@
 
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor colorWithRed:239.0/255.0 green:242.0/255.0 blue:247.0/255.0 alpha:1];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"MGDSafeMainBackColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         
         ///返回按钮
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"密码返回"] forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
@@ -35,7 +39,11 @@
         UILabel *barTitle = [[UILabel alloc] init];
         barTitle.text = @"账号与安全";
         barTitle.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 21];
-        barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            barTitle.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         barTitle.textAlignment = NSTextAlignmentLeft;
         [self addSubview:barTitle];
         _barTitle = barTitle;
@@ -43,7 +51,11 @@
         ///列表
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.layer.cornerRadius = 16;
-        tableView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            tableView.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         tableView.separatorColor = [UIColor clearColor];
         tableView.rowHeight = 61;
         tableView.scrollEnabled = YES;
@@ -101,8 +113,12 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-    cell.textColor = [UIColor colorWithRed:25.0/255.0 green:56.0/255.0 blue:102.0/255.0 alpha:1];
-    cell.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 11.0, *)) {
+        cell.textColor = [UIColor colorNamed:@"MGDSafeCellTextColor"];
+    } else {
+        // Fallback on earlier versions
+    }
+    cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     switch (indexPath.row) {
