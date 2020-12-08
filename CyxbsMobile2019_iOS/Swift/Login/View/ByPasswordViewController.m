@@ -227,8 +227,14 @@
 }
 
 -(void) getMail{
-    
-    [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/detail" method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSString *num = [[NSString alloc] init];
+    NSString *stuNum = [UserDefaultTool getStuNum];
+    if (![stuNum isEqualToString:@""]) {
+        num = stuNum;
+    }else {
+        num = self.idString;
+    }
+    [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *email = responseObject[@"data"][@"email"];
         self.lable3.text = email;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {

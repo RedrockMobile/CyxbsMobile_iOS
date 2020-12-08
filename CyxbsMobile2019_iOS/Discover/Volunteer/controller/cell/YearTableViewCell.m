@@ -55,10 +55,10 @@
     _yearLabel = yearLabel;
     
     [_yearLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0163);
+        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0148);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.048);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.1573);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0302);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.1573 * 21/59);
     }];
     
     UIButton *chooseBtn = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -69,10 +69,10 @@
     _chooseBtn = chooseBtn;
     
     [_chooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0246);
-        make.left.mas_equalTo(self.yearLabel.mas_right).mas_offset(SCREEN_WIDTH * 0.01);
+        make.top.mas_equalTo(_yearLabel.mas_top).mas_offset(SCREEN_HEIGHT * 0.0099);
+        make.left.mas_equalTo(_yearLabel.mas_right);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.0365);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0101);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0116);
     }];
     
     UILabel *totalLabel = [[UILabel alloc] init];
@@ -87,10 +87,10 @@
     _totalLabel = totalLabel;
     
     [_totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0201);
+        make.top.mas_equalTo(_yearLabel.mas_top).mas_offset(SCREEN_HEIGHT * 0.0025);
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0587);
         make.left.mas_equalTo(self.chooseBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.03);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0245);
+        make.bottom.mas_equalTo(_yearLabel.mas_bottom).mas_offset(-SCREEN_HEIGHT * 0.0025);
     }];
     
     UIView *lineView = [[UIView alloc] init];
