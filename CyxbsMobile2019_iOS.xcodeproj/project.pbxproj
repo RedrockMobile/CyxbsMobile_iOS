@@ -252,11 +252,11 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
+		7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */; };
 		7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39E7257B79F20077494E /* FindPasswordView.swift */; };
 		7FBF39F3257B79F30077494E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EA257B79F20077494E /* LoginViewController.swift */; };
 		7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EB257B79F20077494E /* ByPasswordViewController.m */; };
 		7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EF257B79F30077494E /* ByWordViewController.m */; };
-		7FBF39F8257B79F30077494E /* YYZGetIdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39F1257B79F30077494E /* YYZGetIdVC.m */; };
 		7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF3A12257CBCCC0077494E /* YYZpopView.m */; };
 		AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */; };
 		AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1124EFC78C00FDF70C /* NoteDetailView.m */; };
@@ -983,14 +983,14 @@
 		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7F318CA0257F5ACD009FE4EA /* YYZGetIdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZGetIdVC.h; sourceTree = "<group>"; };
+		7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZGetIdVC.m; sourceTree = "<group>"; };
 		7FBF39E7257B79F20077494E /* FindPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordView.swift; sourceTree = "<group>"; };
 		7FBF39E8257B79F20077494E /* ByWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByWordViewController.h; sourceTree = "<group>"; };
 		7FBF39E9257B79F20077494E /* ByPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByPasswordViewController.h; sourceTree = "<group>"; };
 		7FBF39EA257B79F20077494E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7FBF39EB257B79F20077494E /* ByPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ByPasswordViewController.m; sourceTree = "<group>"; };
-		7FBF39ED257B79F20077494E /* YYZGetIdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZGetIdVC.h; sourceTree = "<group>"; };
 		7FBF39EF257B79F30077494E /* ByWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ByWordViewController.m; sourceTree = "<group>"; };
-		7FBF39F1257B79F30077494E /* YYZGetIdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZGetIdVC.m; sourceTree = "<group>"; };
 		7FBF3A11257CBCCC0077494E /* YYZpopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYZpopView.h; sourceTree = "<group>"; };
 		7FBF3A12257CBCCC0077494E /* YYZpopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYZpopView.m; sourceTree = "<group>"; };
 		AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDataModel.h; sourceTree = "<group>"; };
@@ -2308,8 +2308,8 @@
 				7FBF39EF257B79F30077494E /* ByWordViewController.m */,
 				7FBF39E7257B79F20077494E /* FindPasswordView.swift */,
 				7FBF39EA257B79F20077494E /* LoginViewController.swift */,
-				7FBF39ED257B79F20077494E /* YYZGetIdVC.h */,
-				7FBF39F1257B79F30077494E /* YYZGetIdVC.m */,
+				7F318CA0257F5ACD009FE4EA /* YYZGetIdVC.h */,
+				7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */,
 				7FBF3A11257CBCCC0077494E /* YYZpopView.h */,
 				7FBF3A12257CBCCC0077494E /* YYZpopView.m */,
 			);
@@ -4249,7 +4249,6 @@
 				EEA301CF2468608000A8DB26 /* Credits.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				1AB2E58A24E38F26004B4067 /* CQUPTMapMyStarButton.m in Sources */,
-				7FBF39F8257B79F30077494E /* YYZGetIdVC.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				1A9EB52024F90C6D00B6AD83 /* IntegralIntroductionController.m in Sources */,
 				EE75BFC823F5884100208039 /* UserInfoView.m in Sources */,
@@ -4417,6 +4416,7 @@
 				18BA51432554E70F0067A8FD /* questionAndEmail.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
+				7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */,
 				EE75BFAE23F5884100208039 /* PeopleListCellTableViewCell.m in Sources */,
 				186888BA25738AAF001BC2AD /* HeaderGifRefresh.m in Sources */,
 				18BA51482554E70F0067A8FD /* ResetPwdView.m in Sources */,
@@ -4731,7 +4731,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = QM475FB4ML;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -4741,7 +4741,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.0.1;
+				MARKETING_VERSION = 6.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4760,7 +4760,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = QM475FB4ML;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -4770,7 +4770,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.0.1;
+				MARKETING_VERSION = 6.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";

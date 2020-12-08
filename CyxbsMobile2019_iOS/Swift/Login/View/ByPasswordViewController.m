@@ -94,6 +94,7 @@
     UITextView *tf = [[UITextView alloc]initWithFrame:(CGRectMake(20,107,339,45))];
     tf.layer.cornerRadius = 10;//设置边框圆角
     tf.layer.masksToBounds = YES;
+    tf.keyboardType = UIKeyboardTypeNumberPad;
     tf.textContainerInset = UIEdgeInsetsMake(15, 10, 10, 10);//设置边界间距
     tf.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:1.0];
     [self.view addSubview:tf];
