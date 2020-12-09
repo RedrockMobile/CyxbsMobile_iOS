@@ -182,8 +182,9 @@
         make.left.equalTo(weekChooseBtn).offset(0.03429*MAIN_SCREEN_W);
         make.right.equalTo(weekChooseBtn).offset(-0.03429*MAIN_SCREEN_W);
     }];
+//    HistodayButtonLabelColor
     if (@available(iOS 11.0, *)) {
-        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistodayButtonLabelColor"] forState:UIControlStateNormal];
+        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistoryBtnTextColor"] forState:UIControlStateNormal];
     } else {
         [weekChooseBtn setTitleColor:[UIColor colorWithHexString:@"F0F0F2"] forState:UIControlStateNormal];
     }

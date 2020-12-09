@@ -196,7 +196,14 @@
 }
 
 -(void) get1{
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/question/detail" method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSString *num = [[NSString alloc] init];
+    NSString *stuNum = [UserDefaultTool getStuNum];
+    if (![stuNum isEqualToString:@""]) {
+        num = stuNum;
+    }else {
+        num = self.idString;
+    }
+    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/question/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSLog(@"%@",responseObject);
 //            NSString *questWord = responseObject[@"data"][@"content"];

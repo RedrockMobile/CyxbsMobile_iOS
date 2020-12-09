@@ -198,8 +198,8 @@
             [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"remindBeforeCourseBegin"]];
         }
     }else{//无下一节课
-        self.classroomLabel.labelText =
-        self.classTimeLabel.labelText =
+        self.classroomLabel.labelText = @"---";
+        self.classTimeLabel.labelText = @"---";
         self.classLabel.labelText = @"无课了";
     }
 }
