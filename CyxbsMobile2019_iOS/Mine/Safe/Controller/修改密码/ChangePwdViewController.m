@@ -264,14 +264,12 @@
     }];
 }
 
-///杨远舟通过邮箱找回密码界面
 - (void)findByEmail {
     ByPasswordViewController *vc = [[ByPasswordViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     [self dismissPopview];
 }
 
-///杨远舟通过密保找回密码界面
 - (void)findByQuestion {
     ByWordViewController *vc = [[ByWordViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
