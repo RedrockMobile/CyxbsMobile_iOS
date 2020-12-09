@@ -23,9 +23,9 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Mine_Store_ContainerColor"];
+            self.backgroundColor = [UIColor colorNamed:@"MGDSafeMainBackColor"];
         } else {
-            self.backgroundColor = [UIColor colorWithRed:239/255.0 green:242/255.0 blue:247/255.0 alpha:1];
+            // Fallback on earlier versions
         }
         
         ///返回按钮
@@ -39,7 +39,11 @@
         UILabel *barTitle = [[UILabel alloc] init];
         barTitle.text = @"账号与安全";
         barTitle.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 21];
-        barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            barTitle.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         barTitle.textAlignment = NSTextAlignmentLeft;
         [self addSubview:barTitle];
         _barTitle = barTitle;
@@ -47,6 +51,11 @@
         ///列表
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.layer.cornerRadius = 16;
+        if (@available(iOS 11.0, *)) {
+            tableView.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         tableView.separatorColor = [UIColor clearColor];
         tableView.rowHeight = 61;
         tableView.scrollEnabled = YES;
@@ -105,11 +114,11 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
     if (@available(iOS 11.0, *)) {
-        cell.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
+        cell.textColor = [UIColor colorNamed:@"MGDSafeCellTextColor"];
     } else {
-        cell.textColor = [UIColor colorWithRed:41/255.0 green:78/255.0 blue:132/255.0 alpha:1];
+        // Fallback on earlier versions
     }
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     switch (indexPath.row) {

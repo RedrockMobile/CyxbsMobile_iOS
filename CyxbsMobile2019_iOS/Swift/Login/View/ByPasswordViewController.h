@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ByPasswordViewController : UIViewController
 
+@property(nonatomic, strong)NSString *idString;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

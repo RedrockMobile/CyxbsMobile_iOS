@@ -35,7 +35,11 @@
         _backView = backView;
         
         UIView *AlertView = [[UIView alloc] init];
-        AlertView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            AlertView.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         [self addSubview:AlertView];
         _AlertView = AlertView;
         
@@ -48,7 +52,11 @@
         placeholderLab1.text = @"温馨提示";
         placeholderLab1.textAlignment = NSTextAlignmentCenter;
         placeholderLab1.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
-        placeholderLab1.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            placeholderLab1.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         [_AlertView addSubview:placeholderLab1];
         _placeholderLab1 = placeholderLab1;
         
@@ -56,7 +64,11 @@
         placeholderLab2.text = @"为了您的账号安全，请设置密保/绑定邮箱";
         placeholderLab2.textAlignment = NSTextAlignmentCenter;
         placeholderLab2.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 11];
-        placeholderLab2.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            placeholderLab2.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         [_AlertView addSubview:placeholderLab2];
         _placeholderLab2 = placeholderLab2;
         

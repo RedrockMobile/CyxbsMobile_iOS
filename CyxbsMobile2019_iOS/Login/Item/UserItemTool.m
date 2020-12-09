@@ -38,14 +38,15 @@
 + (void)logout {
     
     LoginViewController *loginVC = [[LoginViewController alloc] init];
-   // UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    navController.modalPresentationStyle = UIModalPresentationFullScreen;
     UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     if (tabBarVC.presentedViewController) {
         [tabBarVC dismissViewControllerAnimated:YES completion:^{
-            [tabBarVC presentViewController:loginVC animated:YES completion:nil];
+            [tabBarVC presentViewController:navController animated:YES completion:nil];
         }];
     } else {
-        [tabBarVC presentViewController:loginVC animated:YES completion:nil];
+        [tabBarVC presentViewController:navController animated:YES completion:nil];
     }
     
     NSString *filePath = [self userItemPath];

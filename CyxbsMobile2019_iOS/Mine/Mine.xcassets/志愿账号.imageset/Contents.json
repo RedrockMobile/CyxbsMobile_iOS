@@ -1,17 +1,50 @@
 {
   "images" : [
     {
-      "filename" : "志愿账号@1X.png",
+      "filename" : "组 227.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "志愿账号@2X.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "组 184.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "组 227@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "志愿账号@3X.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "组 184@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "组 227@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "组 184@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

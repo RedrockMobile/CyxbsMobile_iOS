@@ -10,6 +10,16 @@ import UIKit
 import SnapKit
 
 class FindPasswordView: UIView {
+    @objc var id2 = " "
+    
+//    var setid2 :(String) {
+//        get{
+//            return id2
+//        }
+//        set(str){
+//            id2 = str
+//        }
+//    }
     
     lazy private var buttonBoard: UIView = {
         let view = UIView()
@@ -95,17 +105,21 @@ class FindPasswordView: UIView {
     
     
     @objc func findByQuestion() {
-        let ByWord = ByWordViewController()
-        self.viewController?.navigationController?.pushViewController(ByWord, animated: true)
+        let bywordVC = ByWordViewController()
+        bywordVC.idString = id2
+        self.viewController?.navigationController?.pushViewController(bywordVC, animated: true)
+        
     }
     
     @objc func findByEmail() {
-        let Bypass = ByPasswordViewController()
-        self.viewController?.navigationController?.pushViewController(Bypass, animated: true)
+        let bypassVC = ByPasswordViewController()
+        bypassVC.idString = id2
+        self.viewController?.navigationController?.pushViewController(bypassVC, animated: true)
 
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         self.removeFromSuperview()
     }
-    
+
 }

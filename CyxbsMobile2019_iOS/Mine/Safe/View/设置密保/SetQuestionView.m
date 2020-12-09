@@ -24,7 +24,11 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         ///返回按钮
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [backBtn setBackgroundImage:[UIImage imageNamed:@"轮播右箭头"] forState:UIControlStateNormal];
@@ -33,55 +37,72 @@
         _backBtn = backBtn;
         
         ///标题
-        UILabel *barTitle = [self creatLabelWithText:@"重设密保" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 21] AndTextColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]];
-        barTitle.textAlignment = NSTextAlignmentLeft;
-        barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        [self addSubview:barTitle];
-        _barTitle = barTitle;
+        if (@available(iOS 11.0, *)) {
+            UILabel *barTitle = [self creatLabelWithText:@"重设密保" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            barTitle.textAlignment = NSTextAlignmentLeft;
+            [self addSubview:barTitle];
+            _barTitle = barTitle;
+        } else {
+            // Fallback on earlier versions
+        }
         
         ///分割线
         UIView *line = [[UIView alloc] init];
-        line.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            line.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         [self addSubview:line];
         _line = line;
         
         ///密保问题描述
-        UILabel *questionLab = [self creatLabelWithText:@"你的密保问题是:" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 15] AndTextColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]];
-        questionLab.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:questionLab];
-        _questionLab = questionLab;
-        
-        ///密保问题
-        UILabel *questionLabel = [[UILabel alloc] init];
-        questionLabel.userInteractionEnabled = YES;
-        questionLabel.layer.borderColor = [[UIColor clearColor] CGColor];
-        questionLabel.layer.borderWidth = 1.0;
-        questionLabel.layer.masksToBounds = YES;
-        questionLabel.layer.cornerRadius = 8;
-        questionLabel.text = @"请选择一个密保问题";
-        [questionLabel setBackgroundColor:[UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:1.0]];
-        questionLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        questionLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:questionLabel];
-        _questionLabel = questionLabel;
-
-        
-        ///密保答案描述
-        UILabel *answerLab = [self creatLabelWithText:@"你的密保答案是:" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 15] AndTextColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]];
-        questionLab.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:answerLab];
-        _answerLab = answerLab;
+        if (@available(iOS 11.0, *)) {
+            UILabel *questionLab = [self creatLabelWithText:@"你的密保问题是:" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 15] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            questionLab.alpha = 0.64;
+            questionLab.textAlignment = NSTextAlignmentLeft;
+            [self addSubview:questionLab];
+            _questionLab = questionLab;
+            
+            ///密保问题
+            UILabel *questionLabel = [[UILabel alloc] init];
+            questionLabel.userInteractionEnabled = YES;
+            questionLabel.layer.borderColor = [[UIColor clearColor] CGColor];
+            questionLabel.layer.borderWidth = 1.0;
+            questionLabel.layer.masksToBounds = YES;
+            questionLabel.layer.cornerRadius = 8;
+            questionLabel.text = @"请选择一个密保问题";
+            questionLab.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 16];
+            [questionLabel setBackgroundColor:[UIColor colorNamed:@"MGDSafeFieldBackColor"]];
+            questionLabel.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+            questionLabel.textAlignment = NSTextAlignmentCenter;
+            [self addSubview:questionLabel];
+            _questionLabel = questionLabel;
+            
+            
+            ///密保答案描述
+            UILabel *answerLab = [self creatLabelWithText:@"你的密保答案是:" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 15] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            answerLab.alpha = 0.64;
+            questionLab.textAlignment = NSTextAlignmentLeft;
+            [self addSubview:answerLab];
+            _answerLab = answerLab;
+            
+            ///答案输入框
+            UITextView *textView = [[UITextView alloc] init];
+            textView.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 16];
+            textView.dataDetectorTypes = UIDataDetectorTypeAll;
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入密保问题的答案（由2-16位字符组成）" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:16], NSForegroundColorAttributeName:[UIColor colorNamed:@"MGDSafePlaceholderColor"]}];
+            textView.attributedPlaceholder = string;
+            textView.layer.cornerRadius = 8;
+            textView.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+            textView.backgroundColor = [UIColor colorNamed:@"MGDSafeFieldBackColor"];
+            [self addSubview:textView];
+            _textView = textView;
+            
+        } else {
+            // Fallback on earlier versions
+        }
     
-        ///答案输入框
-        UITextView *textView = [[UITextView alloc] init];
-        textView.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 16];
-        textView.dataDetectorTypes = UIDataDetectorTypeAll;
-        textView.placeholder = @" 请输入密保问题的答案（由2-16位字符组成）";
-        textView.layer.cornerRadius = 8;
-        textView.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        textView.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:1.0];
-        [self addSubview:textView];
-        _textView = textView;
         
         ///提示文字（少）
         UILabel *placeholderLabLess = [self creatLabelWithText:@"请至少输入两个字符" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];

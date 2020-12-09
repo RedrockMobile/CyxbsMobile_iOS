@@ -22,41 +22,62 @@
 
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         ///返回按钮
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"轮播右箭头"] forState:UIControlStateNormal];
+        [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
         
         ///标题
-        UILabel *barTitle = [self creatLabelWithText:@"绑定邮箱" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 21] AndTextColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]];
-        barTitle.textAlignment = NSTextAlignmentLeft;
-        barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        [self addSubview:barTitle];
-        _barTitle = barTitle;
+        if (@available(iOS 11.0, *)) {
+            UILabel *barTitle = [self creatLabelWithText:@"绑定邮箱" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            barTitle.textAlignment = NSTextAlignmentLeft;
+            barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+            [self addSubview:barTitle];
+            _barTitle = barTitle;
+        } else {
+            // Fallback on earlier versions
+        }
         
         ///分割线
         UIView *line = [[UIView alloc] init];
-        line.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            line.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         [self addSubview:line];
         _line = line;
         
         ///绑定邮箱描述 / 发送邮箱描述
-        UILabel *sendCodeLab = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 16] AndTextColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]];
-        sendCodeLab.numberOfLines = 0;
-        sendCodeLab.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:sendCodeLab];
-        _sendCodeLab = sendCodeLab;
+        if (@available(iOS 11.0, *)) {
+            UILabel *sendCodeLab = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 16] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            sendCodeLab.numberOfLines = 0;
+            sendCodeLab.textAlignment = NSTextAlignmentLeft;
+            [self addSubview:sendCodeLab];
+            _sendCodeLab = sendCodeLab;
+        } else {
+            // Fallback on earlier versions
+        }
         
         ///输入框
         UITextField *codeField = [[UITextField alloc] init];
-        codeField.placeholder = @" 请输入验证码";
         codeField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
-        codeField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+        if (@available(iOS 11.0, *)) {
+            codeField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+            codeField.backgroundColor = [UIColor colorNamed:@"MGDSafeFieldBackColor"];
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入验证码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:15], NSForegroundColorAttributeName:[UIColor colorNamed:@"MGDSafePlaceholderColor"]}];
+            codeField.attributedPlaceholder = string;
+        } else {
+            // Fallback on earlier versions
+        }
         codeField.borderStyle = UITextBorderStyleNone;
-        codeField.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:1.0];
         codeField.layer.cornerRadius = 8;
         UIView *blankView = [[UIView alloc] initWithFrame:CGRectMake(codeField.frame.origin.x,codeField.frame.origin.y,15.0, codeField.frame.size.height)];
         codeField.leftView = blankView;
@@ -113,17 +134,17 @@
     [super layoutSubviews];
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0764);
-        make.left.mas_equalTo(self.left).mas_offset(SCREEN_WIDTH * 0.0427);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.0187);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0172);
+        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0739);
+        make.left.mas_equalTo(self.left).mas_offset(SCREEN_WIDTH * 0.0453);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.024);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0228);
     }];
     
     [_barTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0653);
+        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.069);
         make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0347);
         make.right.mas_equalTo(self.right);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0357);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2 * 25/75);
     }];
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
