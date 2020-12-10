@@ -446,8 +446,15 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 //已解析的课表数据文件路径
 #define parsedDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/parsedLessonDataArr"]
 
-//备忘数据文件路径
-#define remDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/remindDataArr"]
 
+//备忘数据文件夹路径
+#define remDataDirectory [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/remDataDirectory"]
+
+//备忘数据文件路径
+#define remDataArrPath [remDataDirectory stringByAppendingPathComponent:[UserItem defaultItem].stuNum]
+
+//#define remDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/remindDataArr"]
+
+//可以通过NSUserDefaults取出当前周数，类型是NSString
 #define nowWeekKey @"SchedulNowWeek"
 #endif

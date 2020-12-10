@@ -22,7 +22,6 @@
     if (self) {
         self.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
         self.layer.masksToBounds = NO;
-        self.layer.cornerRadius = 20;
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(MAIN_SCREEN_W*0.03467);
             make.right.equalTo(self).offset(-MAIN_SCREEN_W*0.04267);

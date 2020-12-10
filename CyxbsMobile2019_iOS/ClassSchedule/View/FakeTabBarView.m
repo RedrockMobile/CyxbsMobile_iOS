@@ -154,8 +154,8 @@
         self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
         self.classLabel.labelText = paramDict[@"classLabel"];
     }else{//无下一节课
-        self.classroomLabel.labelText = @"无课了";
-        self.classTimeLabel.labelText = @"无课了";
+        self.classroomLabel.labelText = @"---";
+        self.classTimeLabel.labelText = @"---";
         self.classLabel.labelText = @"无课了";
     }
 }

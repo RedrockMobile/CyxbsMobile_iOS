@@ -668,8 +668,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/controller/DLReminderSetTimeVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "-showWeekselectView"
             landmarkType = "7">
             <Locations>
@@ -732,8 +732,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/controller/DLReminderSetTimeVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "297"
-            endingLineNumber = "297"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "-addReminderView"
             landmarkType = "7">
          </BreakpointContent>
@@ -748,8 +748,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/controller/DLReminderSetTimeVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "-addReminderView"
             landmarkType = "7">
          </BreakpointContent>
@@ -828,8 +828,8 @@
             filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/controller/DLReminderSetTimeVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -1404,7 +1404,7 @@
          <BreakpointContent
             uuid = "5FE06244-A8CA-4F1E-95BE-906981D166FE"
             shouldBeEnabled = "No"
-            nameForDebugger = "&#x8fd9;&#x91cc;&#x597d;&#x50cf;&#x6709;&#x4e2a;BUG&#xff0c;&#x767b;&#x5f55;&#x8fc7;&#x671f;&#x540e;&#x518d;&#x91cd;&#x65b0;&#x767b;&#x5f55;&#x65f6;&#x51fa;&#x73b0;"
+            nameForDebugger = "&#x8fd9;&#x91cc;&#x597d;&#x50cf;&#x6709;&#x4e2a;BUG&#xff0c;&#x767b;&#x5f55;&#x8fc7;&#x671f;&#x540e;&#x518d;&#x91cd;&#x65b0;&#x767b;&#x5f55;&#x65f6;&#x51fa;&#x73b0;(2)"
             condition = "Thread 1: &quot;*** -[__NSPlaceholderDictionary initWithObjects:forKeys:count:]: attempt to insert nil object from objects[0]&quot;"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1413,7 +1413,23 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "205"
             endingLineNumber = "205"
-            landmarkName = "-RequestCheckinInfo"
+            landmarkName = "DiscoverViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F1BAFDB7-5546-4FC1-81BD-3323C2C6B543"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/ClassSchedule/Reminder/view/DLTimeSelectView.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-addBtnClicked"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

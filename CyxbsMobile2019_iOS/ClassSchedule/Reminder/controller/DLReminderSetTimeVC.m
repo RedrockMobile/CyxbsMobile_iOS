@@ -5,10 +5,7 @@
 //  Created by 丁磊 on 2020/4/10.
 //  Copyright © 2020 Redrock. All rights reserved.
 //最终编辑备忘时间的页面
-/*
- 逻辑错误：
- 1.
- */
+
 
 #import "DLReminderSetTimeVC.h"
 #import "DLReminderView.h"
@@ -185,8 +182,9 @@
         make.left.equalTo(weekChooseBtn).offset(0.03429*MAIN_SCREEN_W);
         make.right.equalTo(weekChooseBtn).offset(-0.03429*MAIN_SCREEN_W);
     }];
+//    HistodayButtonLabelColor
     if (@available(iOS 11.0, *)) {
-        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistodayButtonLabelColor"] forState:UIControlStateNormal];
+        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistoryBtnTextColor"] forState:UIControlStateNormal];
     } else {
         [weekChooseBtn setTitleColor:[UIColor colorWithHexString:@"F0F0F2"] forState:UIControlStateNormal];
     }
