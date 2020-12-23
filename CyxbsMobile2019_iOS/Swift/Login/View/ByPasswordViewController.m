@@ -234,7 +234,7 @@
     }else {
         num = self.idString;
     }
-    [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/detail" method:HttpRequestPost parameters:@{@"stu_num":@"2019213784"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *email = responseObject[@"data"][@"email"];
         self.lable3.text = email;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
