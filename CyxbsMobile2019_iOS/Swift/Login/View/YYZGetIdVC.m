@@ -35,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    NSUserDefaults *userdfa = [NSUserDefaults standardUserDefaults];
+    [userdfa setBool:0 forKey:@"isLogin"];
     //设置导航栏
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ忘记密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
