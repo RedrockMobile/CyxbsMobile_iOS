@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1817F0402594D5C500FE1304 /* NewQAMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */; };
+		1817F0412594D5C500FE1304 /* PostItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0112594D5C500FE1304 /* PostItem.m */; };
+		1817F0422594D5C500FE1304 /* GroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0122594D5C500FE1304 /* GroupItem.m */; };
+		1817F0432594D5C500FE1304 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0132594D5C500FE1304 /* PostModel.m */; };
+		1817F0442594D5C500FE1304 /* HotSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0152594D5C500FE1304 /* HotSearchModel.m */; };
+		1817F0452594D5C500FE1304 /* ReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F01C2594D5C500FE1304 /* ReportModel.m */; };
+		1817F0462594D5C500FE1304 /* FollowGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F01E2594D5C500FE1304 /* FollowGroupModel.m */; };
+		1817F0472594D5C500FE1304 /* GroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F01F2594D5C500FE1304 /* GroupModel.m */; };
+		1817F0482594D5C500FE1304 /* StarPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0202594D5C500FE1304 /* StarPostModel.m */; };
+		1817F0492594D5C500FE1304 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0222594D5C500FE1304 /* PostTableViewCell.m */; };
+		1817F04A2594D5C500FE1304 /* FuncView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0232594D5C500FE1304 /* FuncView.m */; };
+		1817F04B2594D5C500FE1304 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0292594D5C500FE1304 /* ShareView.m */; };
+		1817F04C2594D5C500FE1304 /* TopFollowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F02B2594D5C500FE1304 /* TopFollowView.m */; };
+		1817F04D2594D5C500FE1304 /* GroupBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F02C2594D5C500FE1304 /* GroupBtn.m */; };
+		1817F04E2594D5C500FE1304 /* ReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F02D2594D5C500FE1304 /* ReportView.m */; };
+		1817F04F2594D5C500FE1304 /* SearchBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F02E2594D5C500FE1304 /* SearchBtn.m */; };
+		1817F0502594D5C500FE1304 /* GroupFollowBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0322594D5C500FE1304 /* GroupFollowBtn.m */; };
+		1817F0512594D5C500FE1304 /* FunctionBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0332594D5C500FE1304 /* FunctionBtn.m */; };
+		1817F0522594D5C500FE1304 /* ShareBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0342594D5C500FE1304 /* ShareBtn.m */; };
+		1817F0532594D5C500FE1304 /* RecommendedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0352594D5C500FE1304 /* RecommendedTableView.m */; };
+		1817F0542594D5C500FE1304 /* NewQA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1817F0382594D5C500FE1304 /* NewQA.xcassets */; };
+		1817F0552594D5C500FE1304 /* PostArchiveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F03B2594D5C500FE1304 /* PostArchiveTool.m */; };
+		1817F0562594D5C500FE1304 /* MGDRefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F03D2594D5C500FE1304 /* MGDRefreshTool.m */; };
+		1817F0572594D5C500FE1304 /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F03F2594D5C500FE1304 /* NewQAHud.m */; };
 		18CDF478257F8D9C006E8E5C /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF477257F8D9C006E8E5C /* Mine.xcassets */; };
 		18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */; };
 		18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF487257F8DBD006E8E5C /* setEmailViewController.m */; };
@@ -543,6 +567,53 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainPageViewController.m; sourceTree = "<group>"; };
+		1817F00F2594D5C500FE1304 /* NewQAMainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainPageViewController.h; sourceTree = "<group>"; };
+		1817F0112594D5C500FE1304 /* PostItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostItem.m; sourceTree = "<group>"; };
+		1817F0122594D5C500FE1304 /* GroupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupItem.m; sourceTree = "<group>"; };
+		1817F0132594D5C500FE1304 /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostModel.m; sourceTree = "<group>"; };
+		1817F0142594D5C500FE1304 /* ReportModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportModel.h; sourceTree = "<group>"; };
+		1817F0152594D5C500FE1304 /* HotSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotSearchModel.m; sourceTree = "<group>"; };
+		1817F0162594D5C500FE1304 /* StarPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarPostModel.h; sourceTree = "<group>"; };
+		1817F0172594D5C500FE1304 /* GroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupModel.h; sourceTree = "<group>"; };
+		1817F0182594D5C500FE1304 /* FollowGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowGroupModel.h; sourceTree = "<group>"; };
+		1817F0192594D5C500FE1304 /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostModel.h; sourceTree = "<group>"; };
+		1817F01A2594D5C500FE1304 /* PostItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostItem.h; sourceTree = "<group>"; };
+		1817F01B2594D5C500FE1304 /* GroupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupItem.h; sourceTree = "<group>"; };
+		1817F01C2594D5C500FE1304 /* ReportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportModel.m; sourceTree = "<group>"; };
+		1817F01D2594D5C500FE1304 /* HotSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotSearchModel.h; sourceTree = "<group>"; };
+		1817F01E2594D5C500FE1304 /* FollowGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowGroupModel.m; sourceTree = "<group>"; };
+		1817F01F2594D5C500FE1304 /* GroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupModel.m; sourceTree = "<group>"; };
+		1817F0202594D5C500FE1304 /* StarPostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarPostModel.m; sourceTree = "<group>"; };
+		1817F0222594D5C500FE1304 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
+		1817F0232594D5C500FE1304 /* FuncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuncView.m; sourceTree = "<group>"; };
+		1817F0242594D5C500FE1304 /* SearchBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBtn.h; sourceTree = "<group>"; };
+		1817F0252594D5C500FE1304 /* ReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportView.h; sourceTree = "<group>"; };
+		1817F0262594D5C500FE1304 /* ShareBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBtn.h; sourceTree = "<group>"; };
+		1817F0272594D5C500FE1304 /* FunctionBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionBtn.h; sourceTree = "<group>"; };
+		1817F0282594D5C500FE1304 /* GroupFollowBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupFollowBtn.h; sourceTree = "<group>"; };
+		1817F0292594D5C500FE1304 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		1817F02A2594D5C500FE1304 /* RecommendedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedTableView.h; sourceTree = "<group>"; };
+		1817F02B2594D5C500FE1304 /* TopFollowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopFollowView.m; sourceTree = "<group>"; };
+		1817F02C2594D5C500FE1304 /* GroupBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBtn.m; sourceTree = "<group>"; };
+		1817F02D2594D5C500FE1304 /* ReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportView.m; sourceTree = "<group>"; };
+		1817F02E2594D5C500FE1304 /* SearchBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBtn.m; sourceTree = "<group>"; };
+		1817F02F2594D5C500FE1304 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
+		1817F0302594D5C500FE1304 /* FuncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuncView.h; sourceTree = "<group>"; };
+		1817F0312594D5C500FE1304 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		1817F0322594D5C500FE1304 /* GroupFollowBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupFollowBtn.m; sourceTree = "<group>"; };
+		1817F0332594D5C500FE1304 /* FunctionBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionBtn.m; sourceTree = "<group>"; };
+		1817F0342594D5C500FE1304 /* ShareBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBtn.m; sourceTree = "<group>"; };
+		1817F0352594D5C500FE1304 /* RecommendedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedTableView.m; sourceTree = "<group>"; };
+		1817F0362594D5C500FE1304 /* GroupBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBtn.h; sourceTree = "<group>"; };
+		1817F0372594D5C500FE1304 /* TopFollowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopFollowView.h; sourceTree = "<group>"; };
+		1817F0382594D5C500FE1304 /* NewQA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewQA.xcassets; sourceTree = "<group>"; };
+		1817F03A2594D5C500FE1304 /* NewQAHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHud.h; sourceTree = "<group>"; };
+		1817F03B2594D5C500FE1304 /* PostArchiveTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostArchiveTool.m; sourceTree = "<group>"; };
+		1817F03C2594D5C500FE1304 /* MGDRefreshTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDRefreshTool.h; sourceTree = "<group>"; };
+		1817F03D2594D5C500FE1304 /* MGDRefreshTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDRefreshTool.m; sourceTree = "<group>"; };
+		1817F03E2594D5C500FE1304 /* PostArchiveTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostArchiveTool.h; sourceTree = "<group>"; };
+		1817F03F2594D5C500FE1304 /* NewQAHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAHud.m; sourceTree = "<group>"; };
 		18CDF477257F8D9C006E8E5C /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		18CDF482257F8DBD006E8E5C /* SetQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetQuestionViewController.h; sourceTree = "<group>"; };
 		18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetQuestionViewController.m; sourceTree = "<group>"; };
@@ -1470,6 +1541,92 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1817F00C2594D5C500FE1304 /* NewQA */ = {
+			isa = PBXGroup;
+			children = (
+				1817F00D2594D5C500FE1304 /* Controller */,
+				1817F0102594D5C500FE1304 /* Model */,
+				1817F0212594D5C500FE1304 /* View */,
+				1817F0382594D5C500FE1304 /* NewQA.xcassets */,
+				1817F0392594D5C500FE1304 /* Tool */,
+			);
+			path = NewQA;
+			sourceTree = "<group>";
+		};
+		1817F00D2594D5C500FE1304 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */,
+				1817F00F2594D5C500FE1304 /* NewQAMainPageViewController.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1817F0102594D5C500FE1304 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1817F0112594D5C500FE1304 /* PostItem.m */,
+				1817F0122594D5C500FE1304 /* GroupItem.m */,
+				1817F0132594D5C500FE1304 /* PostModel.m */,
+				1817F0142594D5C500FE1304 /* ReportModel.h */,
+				1817F0152594D5C500FE1304 /* HotSearchModel.m */,
+				1817F0162594D5C500FE1304 /* StarPostModel.h */,
+				1817F0172594D5C500FE1304 /* GroupModel.h */,
+				1817F0182594D5C500FE1304 /* FollowGroupModel.h */,
+				1817F0192594D5C500FE1304 /* PostModel.h */,
+				1817F01A2594D5C500FE1304 /* PostItem.h */,
+				1817F01B2594D5C500FE1304 /* GroupItem.h */,
+				1817F01C2594D5C500FE1304 /* ReportModel.m */,
+				1817F01D2594D5C500FE1304 /* HotSearchModel.h */,
+				1817F01E2594D5C500FE1304 /* FollowGroupModel.m */,
+				1817F01F2594D5C500FE1304 /* GroupModel.m */,
+				1817F0202594D5C500FE1304 /* StarPostModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1817F0212594D5C500FE1304 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1817F0222594D5C500FE1304 /* PostTableViewCell.m */,
+				1817F0232594D5C500FE1304 /* FuncView.m */,
+				1817F0242594D5C500FE1304 /* SearchBtn.h */,
+				1817F0252594D5C500FE1304 /* ReportView.h */,
+				1817F0262594D5C500FE1304 /* ShareBtn.h */,
+				1817F0272594D5C500FE1304 /* FunctionBtn.h */,
+				1817F0282594D5C500FE1304 /* GroupFollowBtn.h */,
+				1817F0292594D5C500FE1304 /* ShareView.m */,
+				1817F02A2594D5C500FE1304 /* RecommendedTableView.h */,
+				1817F02B2594D5C500FE1304 /* TopFollowView.m */,
+				1817F02C2594D5C500FE1304 /* GroupBtn.m */,
+				1817F02D2594D5C500FE1304 /* ReportView.m */,
+				1817F02E2594D5C500FE1304 /* SearchBtn.m */,
+				1817F02F2594D5C500FE1304 /* PostTableViewCell.h */,
+				1817F0302594D5C500FE1304 /* FuncView.h */,
+				1817F0312594D5C500FE1304 /* ShareView.h */,
+				1817F0322594D5C500FE1304 /* GroupFollowBtn.m */,
+				1817F0332594D5C500FE1304 /* FunctionBtn.m */,
+				1817F0342594D5C500FE1304 /* ShareBtn.m */,
+				1817F0352594D5C500FE1304 /* RecommendedTableView.m */,
+				1817F0362594D5C500FE1304 /* GroupBtn.h */,
+				1817F0372594D5C500FE1304 /* TopFollowView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1817F0392594D5C500FE1304 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				1817F03A2594D5C500FE1304 /* NewQAHud.h */,
+				1817F03B2594D5C500FE1304 /* PostArchiveTool.m */,
+				1817F03C2594D5C500FE1304 /* MGDRefreshTool.h */,
+				1817F03D2594D5C500FE1304 /* MGDRefreshTool.m */,
+				1817F03E2594D5C500FE1304 /* PostArchiveTool.h */,
+				1817F03F2594D5C500FE1304 /* NewQAHud.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		18CDF47F257F8DBD006E8E5C /* Safe */ = {
 			isa = PBXGroup;
 			children = (
@@ -2911,6 +3068,7 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1817F00C2594D5C500FE1304 /* NewQA */,
 				18CDF4D4257F91BC006E8E5C /* Discover */,
 				1A0AC5F5252B234700221514 /* Swift */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
@@ -4066,6 +4224,7 @@
 				DB34EB09239BD4550052B65E /* remind1@2x.png in Resources */,
 				18CDF6E1257F91BE006E8E5C /* login_back@3x.png in Resources */,
 				18CDF6DB257F91BE006E8E5C /* login_number.png in Resources */,
+				1817F0542594D5C500FE1304 /* NewQA.xcassets in Resources */,
 				18CDF6D4257F91BE006E8E5C /* 服务记录矩形.png in Resources */,
 				18CDF6FA257F91BE006E8E5C /* login_password@2x.png in Resources */,
 				18CDF6E8257F91BE006E8E5C /* 3@2x.png in Resources */,
@@ -4229,6 +4388,7 @@
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
+				1817F0562594D5C500FE1304 /* MGDRefreshTool.m in Sources */,
 				AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
@@ -4248,18 +4408,21 @@
 				18CDF6CC257F91BE006E8E5C /* SchoolBusPresenter.m in Sources */,
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
+				1817F04C2594D5C500FE1304 /* TopFollowView.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
 				1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */,
 				18CDF6D1257F91BE006E8E5C /* MGDSliderBar.m in Sources */,
+				1817F0502594D5C500FE1304 /* GroupFollowBtn.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
+				1817F0532594D5C500FE1304 /* RecommendedTableView.m in Sources */,
 				18CDF66B257F91BD006E8E5C /* BannerData.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
@@ -4273,6 +4436,7 @@
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
+				1817F0512594D5C500FE1304 /* FunctionBtn.m in Sources */,
 				18CDF661257F91BD006E8E5C /* WeekAndDay.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
@@ -4304,6 +4468,7 @@
 				18CDF6AE257F91BD006E8E5C /* SCChart.m in Sources */,
 				18CDF672257F91BD006E8E5C /* ExamArrangeData.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
+				1817F0492594D5C500FE1304 /* PostTableViewCell.m in Sources */,
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */,
@@ -4313,6 +4478,7 @@
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
 				18CDF6A5257F91BD006E8E5C /* CQUPTMapDetailView.m in Sources */,
+				1817F0552594D5C500FE1304 /* PostArchiveTool.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
@@ -4336,6 +4502,7 @@
 				D0101F61243587A1004337ED /* GKLoadingView.m in Sources */,
 				18CDF669257F91BD006E8E5C /* VolunteerModel.m in Sources */,
 				1AD6D1C223E1636D0099A7E2 /* MineQADataItem.m in Sources */,
+				1817F0482594D5C500FE1304 /* StarPostModel.m in Sources */,
 				1A799562252B43E400603253 /* SwiftyClient.swift in Sources */,
 				18CDF671257F91BD006E8E5C /* ExamArrangeModel.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
@@ -4346,6 +4513,7 @@
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
 				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
+				1817F04E2594D5C500FE1304 /* ReportView.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
@@ -4358,11 +4526,13 @@
 				18CDF4BD257F8DBD006E8E5C /* questionModel.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
+				1817F0432594D5C500FE1304 /* PostModel.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
+				1817F0572594D5C500FE1304 /* NewQAHud.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */,
 				18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
@@ -4385,6 +4555,7 @@
 				18CDF6B5257F91BD006E8E5C /* SCBar.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
+				1817F0452594D5C500FE1304 /* ReportModel.m in Sources */,
 				18CDF6C5257F91BE006E8E5C /* IdsBindingView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
 				1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */,
@@ -4409,6 +4580,7 @@
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
+				1817F04B2594D5C500FE1304 /* ShareView.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
 				18CDF6B2257F91BD006E8E5C /* SCColor.m in Sources */,
@@ -4426,15 +4598,18 @@
 				1A16592023D85CD60039BA46 /* MineQAController.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
+				1817F0522594D5C500FE1304 /* ShareBtn.m in Sources */,
 				18CDF69F257F91BD006E8E5C /* CQUPTMapSearchView.m in Sources */,
 				18CDF693257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
 				7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */,
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
+				1817F04F2594D5C500FE1304 /* SearchBtn.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
+				1817F0412594D5C500FE1304 /* PostItem.m in Sources */,
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
 				18CDF6C1257F91BE006E8E5C /* ABScoreView.m in Sources */,
 				18CDF6D2257F91BE006E8E5C /* MGDSliderContentView.m in Sources */,
@@ -4452,7 +4627,9 @@
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
+				1817F04D2594D5C500FE1304 /* GroupBtn.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
+				1817F0442594D5C500FE1304 /* HotSearchModel.m in Sources */,
 				AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */,
 				18CDF696257F91BD006E8E5C /* FYHCycleLabel.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
@@ -4470,6 +4647,7 @@
 				D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */,
 				AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
+				1817F0462594D5C500FE1304 /* FollowGroupModel.m in Sources */,
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				18CDF4C7257F8DBD006E8E5C /* sendCodeView.m in Sources */,
 				1AEF3122245E9D5300487D40 /* MyGoodsItem.m in Sources */,
@@ -4485,6 +4663,7 @@
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				18CDF686257F91BD006E8E5C /* EmptyClassViewController.m in Sources */,
+				1817F0402594D5C500FE1304 /* NewQAMainPageViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
@@ -4504,6 +4683,7 @@
 				18CDF6CD257F91BE006E8E5C /* SchoolBusViewController.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
+				1817F0422594D5C500FE1304 /* GroupItem.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
@@ -4537,6 +4717,7 @@
 				18CDF677257F91BD006E8E5C /* ScorePresentAnimation.m in Sources */,
 				18CDF4C5257F8DBD006E8E5C /* QuestionView.m in Sources */,
 				AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */,
+				1817F0472594D5C500FE1304 /* GroupModel.m in Sources */,
 				18CDF6B9257F91BD006E8E5C /* Credit.m in Sources */,
 				18CDF673257F91BD006E8E5C /* ExamArrangeDataItem.m in Sources */,
 				18CDF66A257F91BD006E8E5C /* BannerItem.m in Sources */,
@@ -4550,6 +4731,7 @@
 				18CDF4BB257F8DBD006E8E5C /* ResetPwdViewController.m in Sources */,
 				18CDF67C257F91BD006E8E5C /* ClassmatesList.m in Sources */,
 				18CDF6A9257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m in Sources */,
+				1817F04A2594D5C500FE1304 /* FuncView.m in Sources */,
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
 				D0011A6E23F082FD009A242C /* QAExitView.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
