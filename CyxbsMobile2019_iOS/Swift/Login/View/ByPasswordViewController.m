@@ -229,12 +229,17 @@
 -(void) getMail{
     NSString *num = [[NSString alloc] init];
     NSString *stuNum = [UserDefaultTool getStuNum];
-    if (![stuNum isEqualToString:@""]) {
-        num = stuNum;
-    }else {
+
+    if(self.idString!=nil)
         num = self.idString;
+<<<<<<< HEAD
     }
     [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/detail" method:HttpRequestPost parameters:@{@"stu_num":@"2019213784"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+=======
+    else
+        num = stuNum;
+    [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+>>>>>>> dbf3b6aab5f06b319261f1060b6d5298b252670c
         NSString *email = responseObject[@"data"][@"email"];
         self.lable3.text = email;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {

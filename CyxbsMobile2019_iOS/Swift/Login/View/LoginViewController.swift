@@ -143,6 +143,7 @@ class LoginViewController: UIViewController {
     @IBAction func forgotPassword(_ sender: Any) {
 //        let findPasswordView = FindPasswordView(frame: self.view.bounds)
 //        view.addSubview(findPasswordView)
+//        self.navigationController ?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
         let getVC = YYZGetIdVC()
         self.navigationController?.pushViewController(getVC, animated: true)
     }
