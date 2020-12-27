@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ClickedStarBtn:(FunctionBtn *)sender;
 - (void)ClickedCommentBtn:(FunctionBtn *)sender;
 - (void)ClickedShareBtn:(UIButton *)sender;
+- (void)ClickedImageView1:(UITapGestureRecognizer *)tap;
+- (void)ClickedImageView2:(UITapGestureRecognizer *)tap;
+- (void)ClickedImageView3:(UITapGestureRecognizer *)tap;
 
 @end
 
@@ -53,6 +56,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PostItem *item;
 
 @property (nonatomic, weak) id <PostTableViewCellDelegate> delegate;
+
+@property (nonatomic, strong) UITapGestureRecognizer *tap1;
+@property (nonatomic, strong) UITapGestureRecognizer *tap2;
+@property (nonatomic, strong) UITapGestureRecognizer *tap3;
 
 @end
 

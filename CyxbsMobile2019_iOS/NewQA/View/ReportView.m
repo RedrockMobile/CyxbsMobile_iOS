@@ -73,19 +73,19 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0322);
+        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.6827 * 21.5/256);
         make.left.right.mas_equalTo(self);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0441);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.4023 * 14.5/103);
     }];
     
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.033);
+        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.6827 * 58/256);
         make.left.right.mas_equalTo(self);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.2736);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.6827 * 182.5/256);
     }];
     
     [_sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.textView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.0382);
+        make.top.mas_equalTo(self.textView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.6827 * 25.5/256);
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.068);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.2466 * 34/92.5);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.2466);

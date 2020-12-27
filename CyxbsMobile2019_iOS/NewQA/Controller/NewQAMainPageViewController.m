@@ -23,6 +23,7 @@
 #import "HotSearchModel.h"
 #import "PostArchiveTool.h"
 #import "FollowGroupModel.h"
+#import "ShieldModel.h"
 
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
 
@@ -190,11 +191,6 @@
                                              selector:@selector(topFollowViewLoadSuccess)
                                                  name:@"MyFollowGroupDataLoadSuccess" object:nil];
     
-    ///点击图片进行查看
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(SetArrayForPhotoBrowser:)
-                                                 name:@"ClickedImageViewToShowImage" object:nil];
-    
     ///关注圈子
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(reCacheMyFollowGroupList:)
@@ -231,11 +227,6 @@
         self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
 
       } completion:nil];
-}
-
-///点击搜索按钮跳转到搜索页面
-- (void)searchPost {
-    NSLog(@"跳转到搜索页面");
 }
 
 #pragma mark -我的关注相关
@@ -457,7 +448,7 @@
     return UITableViewAutomaticDimension;
 }
 
-///点击跳转到具体的帖子
+///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
@@ -472,6 +463,9 @@
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
         cell.item = item;
+        cell.tap1.view.tag = indexPath.row;
+        cell.tap2.view.tag = indexPath.row;
+        cell.tap3.view.tag = indexPath.row;
         cell.commendBtn.tag = indexPath.row;
         cell.shareBtn.tag = indexPath.row;
         cell.starBtn.tag = indexPath.row;
@@ -483,6 +477,7 @@
     return cell;
 }
 
+#pragma mark - Cell中的相关事件
 ///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
 - (void)ClickedStarBtn:(FunctionBtn *)sender {
     if (sender.selected == YES) {
@@ -501,9 +496,10 @@
     [model starPostWithPostID:[NSNumber numberWithString:item.post_id]];
 }
 
-///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下
+///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(FunctionBtn *)sender {
 //    PostItem *item = self.postArray[sender.tag];
+//    int post_id = [item.post_id intValue];
 }
 
 ///分享帖子
@@ -512,10 +508,10 @@
     [self showShareBackView];
     _shareView = [[ShareView alloc] init];
     _shareView.delegate = self;
-    [self.view addSubview:_shareView];
+    [[UIApplication sharedApplication].keyWindow addSubview:_shareView];
     [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
-        make.left.right.bottom.mas_equalTo(self.view);
+        make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
+        make.left.right.bottom.mas_equalTo([UIApplication sharedApplication].keyWindow);
     }];
     PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
@@ -524,14 +520,8 @@
     pasteboard.string = shareURL;
 }
 
-
-#pragma mark -NewQAMainPage delegate
-///点击了发布按钮，跳转到发布动态的页面
-- (void)clickedPublishBtn {
-    NSLog(@"跳转到发布界面");
-}
-
 /**
+ 举报和屏蔽的多能按钮
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
  */
 - (void)ClickedFuncBtn:(UIButton *)sender {
@@ -551,39 +541,117 @@
     _popView.layer.cornerRadius = 8;
 //    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
-    [self.view addSubview:_popView];
-    [self.view bringSubviewToFront:_popView];
+    [[UIApplication sharedApplication].keyWindow addSubview:_popView];
+//    [self.view addSubview:_popView];
+//    [self.view bringSubviewToFront:_popView];
 }
 
+///点击第一张图片
+- (void)ClickedImageView1:(UITapGestureRecognizer *)tap {
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[tap.view.tag]];
+    NSMutableArray *photos = [NSMutableArray array];
+    for (int i = 0;i < [item.pics count]; i++) {
+        GKPhoto *photo = [GKPhoto new];
+        photo.url = [NSURL URLWithString:item.pics[i]];
+        [photos addObject:photo];
+    }
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:0];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:self];
+}
+
+///点击第二张图片
+- (void)ClickedImageView2:(UITapGestureRecognizer *)tap {
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[tap.view.tag]];
+    NSMutableArray *photos = [NSMutableArray array];
+    for (int i = 0;i < [item.pics count]; i++) {
+        GKPhoto *photo = [GKPhoto new];
+        photo.url = [NSURL URLWithString:item.pics[i]];
+        [photos addObject:photo];
+    }
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:1];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:self];
+}
+
+///点击第三张图片
+- (void)ClickedImageView3:(UITapGestureRecognizer *)tap {
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[tap.view.tag]];
+    NSMutableArray *photos = [NSMutableArray array];
+    for (int i = 0;i < [item.pics count]; i++) {
+        GKPhoto *photo = [GKPhoto new];
+        photo.url = [NSURL URLWithString:item.pics[i]];
+        [photos addObject:photo];
+    }
+    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:2];
+    browser.showStyle = GKPhotoBrowserShowStyleNone;
+    [browser showFromVC:self];
+}
+
+#pragma mark -发布动态和搜索的跳转
+///点击了发布按钮，跳转到发布动态的页面
+- (void)clickedPublishBtn {
+    NSLog(@"跳转到发布界面");
+}
+
+///点击了搜索按钮，跳转到搜索页面
+- (void)searchPost {
+    NSLog(@"跳转到搜索页面");
+}
+
+#pragma mark- 配置相关弹出View和其蒙版的操作
+///设置相关蒙版
+- (void)setBackViewAndTap {
+    ///点击多功能按钮弹出的蒙版
+    _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _backView.backgroundColor = [UIColor blackColor];
+    _backView.alpha = 0.36;
+    UITapGestureRecognizer *popTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPopView)];
+    [self.backView addGestureRecognizer:popTap];
+    
+    ///点击分享弹出的蒙版
+    _shareBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _shareBackView.backgroundColor = [UIColor blackColor];
+    _shareBackView.alpha = 0.36;
+    UITapGestureRecognizer *shareTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissShareBackView)];
+    [_shareBackView addGestureRecognizer:shareTap];
+    
+    ///点击举报弹出的蒙版
+    _reportBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _reportBackView.backgroundColor = [UIColor blackColor];
+    _reportBackView.alpha = 0.36;
+    UITapGestureRecognizer *reportTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissReportBackView)];
+    [_reportBackView addGestureRecognizer:reportTap];
+}
+///多功能View的蒙版
 -(void)showBackView {
-    [self.view addSubview:_backView];
+    [[UIApplication sharedApplication].keyWindow addSubview:_backView];
 }
-
+///多功能View消失
 - (void)dismissPopView {
     [_popView removeFromSuperview];
     [_backView removeFromSuperview];
 }
-
+///分享View的蒙版
 - (void)showShareBackView {
-    [self.view addSubview:_shareBackView];
+    [[UIApplication sharedApplication].keyWindow addSubview:_shareBackView];
 }
-
+///分享View的消失
 - (void)dismissShareBackView {
     [_shareView removeFromSuperview];
     [_shareBackView removeFromSuperview];
 }
-
+///举报View的蒙版
 - (void)showReportBackView {
-    [self.view addSubview:_reportBackView];
+    [[UIApplication sharedApplication].keyWindow addSubview:_reportBackView];
 }
-
+///举报View的消失
 - (void)dismissReportBackView {
-    [_reportBackView removeFromSuperview];
     [_reportView removeFromSuperview];
+    [_reportBackView removeFromSuperview];
 }
 
-
-#pragma mark -多功能页面的代理方法
+#pragma mark -多功能View的代理方法
 ///点击关注按钮
 //- (void)ClickedStarGroupBtn:(UIButton *)sender {
 //    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
@@ -618,7 +686,15 @@
 //}
 ///点击屏蔽按钮
 - (void)ClickedShieldBtn:(UIButton *)sender {
+//    ShieldModel *model = [[ShieldModel alloc] init];
+//    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
     [self showShieldSuccessful];
+//    [model ShieldPersonWithUid:item.uid];
+//    [model setBlock:^(id  _Nonnull info) {
+//        if ([info[@"info"] isEqualToString:@"success"]) {
+//            [self showShieldSuccessful];
+//        }
+//    }];
 }
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
@@ -627,32 +703,13 @@
     PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
     _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
     _reportView.delegate = self;
-    [self.view addSubview:_reportView];
+    [[UIApplication sharedApplication].keyWindow addSubview:_reportView];
     [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(SCREEN_WIDTH * 0.1587);
-        make.right.mas_equalTo(self.view.mas_right).mas_offset(-SCREEN_WIDTH * 0.1587);
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.6827 * 329/256);
+        make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
+        make.left.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_left).mas_offset(SCREEN_WIDTH * 0.1587);
+        make.right.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_right).mas_offset(-SCREEN_WIDTH * 0.1587);
+        make.height.mas_equalTo([UIApplication sharedApplication].keyWindow.width * 0.6827 * 329/256);
     }];
-}
-
-///图片浏览器
-- (void)SetArrayForPhotoBrowser:(NSNotification *)sender {
-    NSDictionary *dict = sender.userInfo;
-    NSLog(@"%@",dict);
-    int Btntag = [dict[@"tag"] intValue];
-    int num = [dict[@"num"] intValue];
-    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[Btntag]];
-    NSLog(@"%@",item.pics);
-    NSMutableArray *photos = [NSMutableArray array];
-    for (int i = 0;i < [item.pics count]; i++) {
-        GKPhoto *photo = [GKPhoto new];
-        photo.url = [NSURL URLWithString:item.pics[i]];
-        [photos addObject:photo];
-    }
-    GKPhotoBrowser *browser = [GKPhotoBrowser photoBrowserWithPhotos:photos currentIndex:num-1];
-    browser.showStyle = GKPhotoBrowserShowStyleNone;
-    [browser showFromVC:self];
 }
 
 #pragma mark -举报页面的代理方法
@@ -674,7 +731,7 @@
     [_reportView removeFromSuperview];
 }
 
-///设置弹窗
+#pragma mark- 配置相关操作成功后的弹窗
 - (void)showStarSuccessful {
     [self dismissPopView];
     [NewQAHud showHudWith:@"已关注圈子" AddView:self.view];
@@ -688,7 +745,6 @@
 - (void)showShieldSuccessful {
     [self dismissPopView];
     [NewQAHud showHudWith:@"将不再推荐该用户的动态给你" AddView:self.view];
-    
 }
 
 - (void)showReportSuccessful {
@@ -701,7 +757,11 @@
     [NewQAHud showHudWith:@"网络繁忙，请稍后再试" AddView:self.view];
 }
 
-#pragma mark -分享页面的代理方法
+- (void)shareSuccessful {
+    [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
+}
+
+#pragma mark -分享View的代理方法
 ///点击取消
 - (void)ClickedCancel {
     [self dismissShareBackView];
@@ -737,43 +797,17 @@
     [self shareSuccessful];
 }
 
-///配置分享后的弹窗
-- (void)shareSuccessful {
-    [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
-}
-
-- (void)setBackViewAndTap {
-    ///点击多功能按钮弹出的蒙版
-    _backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _backView.backgroundColor = [UIColor blackColor];
-    _backView.alpha = 0.36;
-    UITapGestureRecognizer *popTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPopView)];
-    [self.backView addGestureRecognizer:popTap];
-    
-    ///点击分享弹出的蒙版
-    _shareBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _shareBackView.backgroundColor = [UIColor blackColor];
-    _shareBackView.alpha = 0.36;
-    UITapGestureRecognizer *shareTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissShareBackView)];
-    [_shareBackView addGestureRecognizer:shareTap];
-    
-    ///点击举报弹出的蒙版
-    _reportBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _reportBackView.backgroundColor = [UIColor blackColor];
-    _reportBackView.alpha = 0.36;
-    UITapGestureRecognizer *reportTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissReportBackView)];
-    [_reportBackView addGestureRecognizer:reportTap];
-}
-
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
     
 }
+
 ///点击跳转到具体的圈子里去
 - (void)printClick:(UIButton *)sender {
     
 }
 
 @end
+
 

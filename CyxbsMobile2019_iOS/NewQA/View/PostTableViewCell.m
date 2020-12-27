@@ -86,17 +86,16 @@
     [self.contentView addSubview:detailLabel];
     _detailLabel = detailLabel;
     
-    UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ClickedImageView:)];
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ClickedImageView:)];
-    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ClickedImageView:)];
+    _tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ClickedImageView1:)];
+    _tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ClickedImageView2:)];
+    _tap3 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ClickedImageView3:)];
     ///三张图片
     UIImageView *imageView1 = [[UIImageView alloc] init];
     imageView1.backgroundColor = [UIColor clearColor];
     imageView1.layer.cornerRadius = 7.5;
     imageView1.layer.masksToBounds = YES;
-    imageView1.tag = 1;
     imageView1.userInteractionEnabled = YES;
-    [imageView1 addGestureRecognizer:tap1];
+    [imageView1 addGestureRecognizer:_tap1];
     [self.contentView addSubview:imageView1];
     _imageView1 = imageView1;
     
@@ -104,9 +103,8 @@
     imageView2.backgroundColor = [UIColor clearColor];
     imageView2.layer.cornerRadius = 7.5;
     imageView2.layer.masksToBounds = YES;
-    imageView2.tag = 2;
     imageView2.userInteractionEnabled = YES;
-    [imageView2 addGestureRecognizer:tap2];
+    [imageView2 addGestureRecognizer:_tap2];
     [self.contentView addSubview:imageView2];
     _imageView2 = imageView2;
     
@@ -115,8 +113,7 @@
     imageView3.layer.cornerRadius = 7.5;
     imageView3.layer.masksToBounds = YES;
     imageView3.userInteractionEnabled = YES;
-    imageView3.tag = 3;
-    [imageView3 addGestureRecognizer:tap3];
+    [imageView3 addGestureRecognizer:_tap3];
     [self.contentView addSubview:imageView3];
     _imageView3 = imageView3;
     
@@ -335,15 +332,6 @@
     }
 }
 
-///点击了某个cell中的某个图片，获取该cell的tag和imageView的tag，传给controller，然后在controller里展示图片
-- (void)ClickedImageView:(UITapGestureRecognizer *)tap {
-    NSLog(@"点击了第%ld个图片",(long)tap.view.tag);
-    NSNumber *cellTag = [NSNumber numberWithInteger:self.tag];
-    NSNumber *num = [NSNumber numberWithInteger:tap.view.tag];
-    NSDictionary *dict = @{@"num":num,@"tag":cellTag};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedImageViewToShowImage" object:nil userInfo:dict];
-}
-
 ///点赞的逻辑：点赞后，本地改变点赞的数值，然后通过网络请求传入后端
 - (void)ClickedStar:(FunctionBtn *)sender {
     if ([self.delegate respondsToSelector:@selector(ClickedStarBtn:)]) {
@@ -365,7 +353,27 @@
     }
 }
 
+///点击第一张图片
+- (void)ClickedImageView1:(UITapGestureRecognizer *)tap {
+    if ([self.delegate respondsToSelector:@selector(ClickedImageView1:)]) {
+        [self.delegate ClickedImageView1:tap];
+    }
+}
 
+///点击第二张图片
+- (void)ClickedImageView2:(UITapGestureRecognizer *)tap {
+    if ([self.delegate respondsToSelector:@selector(ClickedImageView2:)]) {
+        [self.delegate ClickedImageView2:tap];
+    }
+}
+
+///点击第三张图片
+- (void)ClickedImageView3:(UITapGestureRecognizer *)tap {
+    if ([self.delegate respondsToSelector:@selector(ClickedImageView3:)]) {
+        [self.delegate ClickedImageView3:tap];
+    }
+}
 
 @end
+
 
