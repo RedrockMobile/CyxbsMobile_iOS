@@ -804,7 +804,7 @@
 }
 
 ///点击跳转到具体的圈子里去
-- (void)printClick:(UIButton *)sender {
+- (void)ClickedGroupBtn:(UIButton *)sender {
     
 }
 

@@ -62,7 +62,7 @@
                     GroupBtn *btn = [[GroupBtn alloc] init];
                     btn.groupBtnImageView.image = [UIImage imageNamed:@"关注更多"];
                     btn.groupBtnLabel.text = @"关注更多";
-                    [btn addTarget:self action:@selector(followMoreGroups) forControlEvents:UIControlEventTouchUpInside];
+                    [btn addTarget:self action:@selector(FollowGroups) forControlEvents:UIControlEventTouchUpInside];
                     btn.frame = CGRectMake(SCREEN_WIDTH * 0.044, SCREEN_HEIGHT * 0.0307, SCREEN_WIDTH * 0.1627, SCREEN_HEIGHT * 0.0944);
                     btn.messageCountLabel.hidden = YES;
                     MASAttachKeys(btn);
@@ -80,7 +80,7 @@
                         NSString *count = [item.message_count intValue] > 99 ? @"99+":[NSString stringWithFormat:@"%@",item.message_count];
                         btn.messageCountLabel.text = count;
                     }
-                    [btn addTarget:self action:@selector(printClick:) forControlEvents:UIControlEventTouchUpInside];
+                    [btn addTarget:self action:@selector(ClickedGroupBtn:) forControlEvents:UIControlEventTouchUpInside];
                     btn.frame = CGRectMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.2627 * i, SCREEN_HEIGHT * 0.0307, SCREEN_WIDTH * 0.1627, SCREEN_HEIGHT * 0.0944);
                     MASAttachKeys(btn);
                     [_groupsScrollView addSubview:btn];
@@ -90,14 +90,6 @@
         }
     }
     return self;
-}
-
-- (void)followMoreGroups {
-    NSLog(@"跳转至圈子列表去关注更多的圈子");
-}
-
-- (void)printClick:(UIButton *)sender {
-    NSLog(@"点击了按钮");
 }
 
 - (void)layoutSubviews {
@@ -123,6 +115,12 @@
 - (void)FollowGroups {
     if ([self.delegate respondsToSelector:@selector(FollowGroups)]) {
         [self.delegate FollowGroups];
+    }
+}
+
+- (void)ClickedGroupBtn:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(ClickedGroupBtn:)]) {
+        [self.delegate ClickedGroupBtn:sender];
     }
 }
 

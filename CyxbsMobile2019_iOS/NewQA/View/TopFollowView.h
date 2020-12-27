@@ -11,10 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol TopFollowViewDelegate <NSObject>
 
-///点击关注你喜欢的圈子
+///点击跳转到圈子广场
 - (void)FollowGroups;
 ///点击跳转到具体的圈子里去
-- (void)printClick:(UIButton *)sender;
+- (void)ClickedGroupBtn:(UIButton *)sender;
 
 @end
 
