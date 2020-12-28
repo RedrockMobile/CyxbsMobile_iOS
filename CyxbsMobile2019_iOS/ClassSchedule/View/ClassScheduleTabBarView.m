@@ -38,6 +38,15 @@
                } else {
                   self.backgroundColor = [UIColor whiteColor];
                }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                            selector:@selector(hideBottom)
+                            name:@"HideBottomClassScheduleTabBarView"
+                            object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                            selector:@selector(showBottom)
+                            name:@"ShowBottomClassScheduleTabBarView"
+                            object:nil];
         
         self.layer.shadowOffset = CGSizeMake(0, -5);
         self.layer.shadowOpacity = 0.05;
@@ -256,4 +265,16 @@
     [self addGesture];
     self.isInitingMySchedul = NO;
 }
+
+
+- (void)hideBottom {
+    self.userInteractionEnabled = NO;
+    self.alpha = 0;
+}
+
+- (void)showBottom {
+    self.userInteractionEnabled = YES;
+    self.alpha = 1;
+}
+
 @end

@@ -156,7 +156,7 @@
 - (void)setNavigationBar {
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [backBtn setBackgroundColor:[UIColor clearColor]];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
 
@@ -170,18 +170,19 @@
         UIButton *logOutBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [logOutBtn setBackgroundColor:[UIColor clearColor]];
         [logOutBtn setTitle:@"切换绑定" forState:UIControlStateNormal];
-        logOutBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 11];
+        logOutBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Heavy" size: 11];
         logOutBtn.titleLabel.alpha = 0.54;
         [logOutBtn setTintColor:[UIColor colorNamed:@"MGDTimeCellTextColor"]];
         [logOutBtn addTarget:self action:@selector(logOut) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:logOutBtn];
         
         [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.view.mas_top).mas_offset(SCREEN_HEIGHT * 0.0556);
-            make.left.mas_equalTo(self.view.mas_left).mas_offset(SCREEN_WIDTH * 0.0453);
-            make.width.mas_equalTo(SCREEN_WIDTH * 0.024);
-            make.height.mas_equalTo(SCREEN_HEIGHT * 0.0229);
+            make.top.mas_equalTo(self.view.mas_top);
+            make.left.mas_equalTo(self.view.mas_left);
+            make.width.mas_equalTo(SCREEN_WIDTH * 0.024 + SCREEN_WIDTH * 0.0453);
+            make.height.mas_equalTo(SCREEN_HEIGHT * 0.0229 + SCREEN_HEIGHT * 0.0556);
         }];
+        [backBtn setImageEdgeInsets:UIEdgeInsetsMake(SCREEN_HEIGHT * 0.055, SCREEN_WIDTH * 0.0453, 0, 0)];
         
         [barTitle mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.view.mas_top).mas_offset(SCREEN_HEIGHT * 0.048);
