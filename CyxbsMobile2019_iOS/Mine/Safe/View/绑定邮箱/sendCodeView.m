@@ -14,7 +14,6 @@
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIButton *contactBtn;
 @property (nonatomic, strong) UIButton *sureBtn;
-@property (nonatomic, strong) UIView *line;
 
 @end
 
@@ -36,7 +35,7 @@
         
         ///标题
         if (@available(iOS 11.0, *)) {
-            UILabel *barTitle = [self creatLabelWithText:@"绑定邮箱" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            UILabel *barTitle = [self creatLabelWithText:@"绑定邮箱" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
             barTitle.textAlignment = NSTextAlignmentLeft;
             barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
             [self addSubview:barTitle];
@@ -148,7 +147,7 @@
     }];
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.1071);
+        make.top.mas_equalTo(self.barTitle.mas_bottom).mas_offset(5);
         make.left.right.mas_equalTo(self);
         make.height.mas_equalTo(3);
     }];
