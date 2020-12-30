@@ -372,6 +372,7 @@
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
 		AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */; };
 		D0011A6E23F082FD009A242C /* QAExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A6D23F082FD009A242C /* QAExitView.m */; };
 		D0011A7023F0830B009A242C /* QAExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A6F23F0830B009A242C /* QAExitView.xib */; };
 		D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A7223F08CB5009A242C /* QAAnswerExitView.xib */; };
@@ -1244,6 +1245,7 @@
 		AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextLessonFinder.m; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewQA_Search.xcassets; sourceTree = "<group>"; };
 		D0011A6C23F082FD009A242C /* QAExitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAExitView.h; sourceTree = "<group>"; };
 		D0011A6D23F082FD009A242C /* QAExitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAExitView.m; sourceTree = "<group>"; };
 		D0011A6F23F0830B009A242C /* QAExitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QAExitView.xib; sourceTree = "<group>"; };
@@ -1562,8 +1564,8 @@
 		1817F00D2594D5C500FE1304 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */,
 				1817F00F2594D5C500FE1304 /* NewQAMainPageViewController.h */,
+				1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3079,6 +3081,7 @@
 			isa = PBXGroup;
 			children = (
 				1817F00C2594D5C500FE1304 /* NewQA */,
+				B8EFF3CC259C61B3003753DD /* Search */,
 				18CDF4D4257F91BC006E8E5C /* Discover */,
 				1A0AC5F5252B234700221514 /* Swift */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
@@ -3436,6 +3439,14 @@
 				AA49098824F3BF5A007CB3BC /* TransitionManager.m */,
 			);
 			path = "Tool&Animater";
+			sourceTree = "<group>";
+		};
+		B8EFF3CC259C61B3003753DD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		D0011A7123F08C90009A242C /* View */ = {
@@ -4206,6 +4217,7 @@
 				DB34EAE8239BD4550052B65E /* 多课1@2x.png in Resources */,
 				DB34EAE3239BD4550052B65E /* 书@2x.png in Resources */,
 				DB34EAF3239BD4550052B65E /* courseMengbi.jpg in Resources */,
+				B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */,
 				18CDF702257F91BE006E8E5C /* login_icon@2x.png in Resources */,
 				DB34EB14239BD4550052B65E /* 无事项@2x.png in Resources */,
 				18CDF704257F91BE006E8E5C /* 背景板@3x.png in Resources */,
