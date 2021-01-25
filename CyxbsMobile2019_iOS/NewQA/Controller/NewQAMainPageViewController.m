@@ -24,7 +24,7 @@
 #import "PostArchiveTool.h"
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
-
+#import "SearchBeginVC.h"
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *tableArray;
@@ -596,6 +596,8 @@
 
 ///点击了搜索按钮，跳转到搜索页面
 - (void)searchPost {
+    SearchBeginVC *cv = [[SearchBeginVC alloc] init];
+    [self.navigationController pushViewController:cv animated:YES];
     NSLog(@"跳转到搜索页面");
 }
 

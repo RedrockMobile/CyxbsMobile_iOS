@@ -372,6 +372,11 @@
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
 		AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B892095425BEC30B00386451 /* SearchTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095325BEC30B00386451 /* SearchTopView.m */; };
+		B892095A25BEDA1A00386451 /* SearchBeiginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095925BEDA1A00386451 /* SearchBeiginView.m */; };
+		B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B892096B25BEDEA600386451 /* SearchBeginVC.m */; };
+		B8AA53E225B94A5000CEE847 /* BeginSearchPage.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AA53E125B94A5000CEE847 /* BeginSearchPage.m */; };
+		B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */; };
 		D0011A6E23F082FD009A242C /* QAExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A6D23F082FD009A242C /* QAExitView.m */; };
 		D0011A7023F0830B009A242C /* QAExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A6F23F0830B009A242C /* QAExitView.xib */; };
 		D0011A7523F08CB5009A242C /* QAAnswerExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A7223F08CB5009A242C /* QAAnswerExitView.xib */; };
@@ -1244,6 +1249,15 @@
 		AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextLessonFinder.m; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B892095225BEC30B00386451 /* SearchTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchTopView.h; sourceTree = "<group>"; };
+		B892095325BEC30B00386451 /* SearchTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTopView.m; sourceTree = "<group>"; };
+		B892095825BEDA1A00386451 /* SearchBeiginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBeiginView.h; sourceTree = "<group>"; };
+		B892095925BEDA1A00386451 /* SearchBeiginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBeiginView.m; sourceTree = "<group>"; };
+		B892096A25BEDEA600386451 /* SearchBeginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBeginVC.h; sourceTree = "<group>"; };
+		B892096B25BEDEA600386451 /* SearchBeginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBeginVC.m; sourceTree = "<group>"; };
+		B8AA53E025B94A5000CEE847 /* BeginSearchPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeginSearchPage.h; sourceTree = "<group>"; };
+		B8AA53E125B94A5000CEE847 /* BeginSearchPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeginSearchPage.m; sourceTree = "<group>"; };
+		B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewQA_Search.xcassets; sourceTree = "<group>"; };
 		D0011A6C23F082FD009A242C /* QAExitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAExitView.h; sourceTree = "<group>"; };
 		D0011A6D23F082FD009A242C /* QAExitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAExitView.m; sourceTree = "<group>"; };
 		D0011A6F23F0830B009A242C /* QAExitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QAExitView.xib; sourceTree = "<group>"; };
@@ -1555,6 +1569,7 @@
 				1817F0212594D5C500FE1304 /* View */,
 				1817F0382594D5C500FE1304 /* NewQA.xcassets */,
 				1817F0392594D5C500FE1304 /* Tool */,
+				B8EFF3CC259C61B3003753DD /* Search */,
 			);
 			path = NewQA;
 			sourceTree = "<group>";
@@ -1562,8 +1577,8 @@
 		1817F00D2594D5C500FE1304 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */,
 				1817F00F2594D5C500FE1304 /* NewQAMainPageViewController.h */,
+				1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3438,6 +3453,102 @@
 			path = "Tool&Animater";
 			sourceTree = "<group>";
 		};
+		B8AA53D525B9491700CEE847 /* SearchPage */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA53D825B9495A00CEE847 /* Models */,
+				B8AA53D925B9496900CEE847 /* Views */,
+				B8AA53D625B9493800CEE847 /* Controllers */,
+				B8AA53DA25B9497A00CEE847 /* ViewModels */,
+			);
+			path = SearchPage;
+			sourceTree = "<group>";
+		};
+		B8AA53D625B9493800CEE847 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B892096A25BEDEA600386451 /* SearchBeginVC.h */,
+				B892096B25BEDEA600386451 /* SearchBeginVC.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B8AA53D825B9495A00CEE847 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B8AA53D925B9496900CEE847 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B892095825BEDA1A00386451 /* SearchBeiginView.h */,
+				B892095925BEDA1A00386451 /* SearchBeiginView.m */,
+				B892095225BEC30B00386451 /* SearchTopView.h */,
+				B892095325BEC30B00386451 /* SearchTopView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8AA53DA25B9497A00CEE847 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B8AA53DB25B9499A00CEE847 /* ReleaseDynamic */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA53DF25B949EE00CEE847 /* Models */,
+				B8AA53DE25B949E500CEE847 /* Views */,
+				B8AA53DD25B949DC00CEE847 /* Controller */,
+				B8AA53DC25B949D200CEE847 /* ViewModels */,
+			);
+			path = ReleaseDynamic;
+			sourceTree = "<group>";
+		};
+		B8AA53DC25B949D200CEE847 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B8AA53DD25B949DC00CEE847 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA53E025B94A5000CEE847 /* BeginSearchPage.h */,
+				B8AA53E125B94A5000CEE847 /* BeginSearchPage.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B8AA53DE25B949E500CEE847 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8AA53DF25B949EE00CEE847 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B8EFF3CC259C61B3003753DD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA53D525B9491700CEE847 /* SearchPage */,
+				B8AA53DB25B9499A00CEE847 /* ReleaseDynamic */,
+				B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		D0011A7123F08C90009A242C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -4206,6 +4317,7 @@
 				DB34EAE8239BD4550052B65E /* 多课1@2x.png in Resources */,
 				DB34EAE3239BD4550052B65E /* 书@2x.png in Resources */,
 				DB34EAF3239BD4550052B65E /* courseMengbi.jpg in Resources */,
+				B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */,
 				18CDF702257F91BE006E8E5C /* login_icon@2x.png in Resources */,
 				DB34EB14239BD4550052B65E /* 无事项@2x.png in Resources */,
 				18CDF704257F91BE006E8E5C /* 背景板@3x.png in Resources */,
@@ -4393,6 +4505,7 @@
 				18CDF6A6257F91BD006E8E5C /* NewsViewController.m in Sources */,
 				18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
+				B892095425BEC30B00386451 /* SearchTopView.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
@@ -4587,6 +4700,7 @@
 				18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				18CDF668257F91BD006E8E5C /* OneNewsItemData.m in Sources */,
+				B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
@@ -4598,6 +4712,7 @@
 				7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
 				18CDF719257F91BE006E8E5C /* VolunteerItem.m in Sources */,
+				B8AA53E225B94A5000CEE847 /* BeginSearchPage.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */,
 				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
@@ -4608,6 +4723,7 @@
 				1A16592023D85CD60039BA46 /* MineQAController.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				1817F0632598672E00FE1304 /* CancelShieldModel.m in Sources */,
+				B892095A25BEDA1A00386451 /* SearchBeiginView.m in Sources */,
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				1817F0522594D5C500FE1304 /* ShareBtn.m in Sources */,
 				18CDF69F257F91BD006E8E5C /* CQUPTMapSearchView.m in Sources */,
