@@ -372,6 +372,7 @@
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
 		AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B8AA53E225B94A5000CEE847 /* BeginSearchPage.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AA53E125B94A5000CEE847 /* BeginSearchPage.m */; };
 		B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */; };
 		D0011A6E23F082FD009A242C /* QAExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A6D23F082FD009A242C /* QAExitView.m */; };
 		D0011A7023F0830B009A242C /* QAExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A6F23F0830B009A242C /* QAExitView.xib */; };
@@ -1245,6 +1246,8 @@
 		AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextLessonFinder.m; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B8AA53E025B94A5000CEE847 /* BeginSearchPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeginSearchPage.h; sourceTree = "<group>"; };
+		B8AA53E125B94A5000CEE847 /* BeginSearchPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeginSearchPage.m; sourceTree = "<group>"; };
 		B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewQA_Search.xcassets; sourceTree = "<group>"; };
 		D0011A6C23F082FD009A242C /* QAExitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAExitView.h; sourceTree = "<group>"; };
 		D0011A6D23F082FD009A242C /* QAExitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAExitView.m; sourceTree = "<group>"; };
@@ -3441,9 +3444,91 @@
 			path = "Tool&Animater";
 			sourceTree = "<group>";
 		};
+		B8AA53D525B9491700CEE847 /* SearchPage */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA53D825B9495A00CEE847 /* Models */,
+				B8AA53D925B9496900CEE847 /* Views */,
+				B8AA53D625B9493800CEE847 /* Controllers */,
+				B8AA53DA25B9497A00CEE847 /* ViewModels */,
+			);
+			path = SearchPage;
+			sourceTree = "<group>";
+		};
+		B8AA53D625B9493800CEE847 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B8AA53D825B9495A00CEE847 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B8AA53D925B9496900CEE847 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8AA53DA25B9497A00CEE847 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B8AA53DB25B9499A00CEE847 /* ReleaseDynamic */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA53DF25B949EE00CEE847 /* Models */,
+				B8AA53DE25B949E500CEE847 /* Views */,
+				B8AA53DD25B949DC00CEE847 /* Controller */,
+				B8AA53DC25B949D200CEE847 /* ViewModels */,
+			);
+			path = ReleaseDynamic;
+			sourceTree = "<group>";
+		};
+		B8AA53DC25B949D200CEE847 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B8AA53DD25B949DC00CEE847 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA53E025B94A5000CEE847 /* BeginSearchPage.h */,
+				B8AA53E125B94A5000CEE847 /* BeginSearchPage.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B8AA53DE25B949E500CEE847 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8AA53DF25B949EE00CEE847 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B8EFF3CC259C61B3003753DD /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				B8AA53DB25B9499A00CEE847 /* ReleaseDynamic */,
+				B8AA53D525B9491700CEE847 /* SearchPage */,
 				B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */,
 			);
 			path = Search;
@@ -4610,6 +4695,7 @@
 				7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
 				18CDF719257F91BE006E8E5C /* VolunteerItem.m in Sources */,
+				B8AA53E225B94A5000CEE847 /* BeginSearchPage.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */,
 				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
