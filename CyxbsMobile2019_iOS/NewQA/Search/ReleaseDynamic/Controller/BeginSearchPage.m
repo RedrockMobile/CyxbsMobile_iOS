@@ -16,13 +16,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [UIView animateWithDuration:3 animations:^{
-            //
-    }];
-    
-    UIView animateWithDuration:<#(NSTimeInterval)#> delay:<#(NSTimeInterval)#> usingSpringWithDamping:<#(CGFloat)#> initialSpringVelocity:<#(CGFloat)#> options:<#(UIViewAnimationOptions)#> animations:<#^(void)animations#> completion:<#^(BOOL finished)completion#>
-    
-    // Do any additional setup after loading the view.
 }
 
 /*
