@@ -31,6 +31,15 @@
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.0562));
     }];
     
+    [self addSubview:self.hotSearchView];
+    [self.hotSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.searchTopView.mas_bottom).offset(MAIN_SCREEN_H * 0.0449);
+        make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0426);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.8506, MAIN_SCREEN_H * 0.1874));
+    }];
+    
+    
+    
 }
 #pragma mark- getter
 - (SearchTopView *)searchTopView{
@@ -39,6 +48,11 @@
     }
     return _searchTopView;
 }
-
+- (SZHHotSearchView *)hotSearchView{
+    if (_hotSearchView == nil) {
+        _hotSearchView = [[SZHHotSearchView alloc] initWithString:@"热门搜索"];
+    }
+    return _hotSearchView;
+}
 
 @end

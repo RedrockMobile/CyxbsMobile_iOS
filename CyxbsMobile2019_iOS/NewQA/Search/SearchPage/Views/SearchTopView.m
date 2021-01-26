@@ -17,8 +17,6 @@
 /// 用于轮播的序数
 @property (nonatomic, assign) int i;
 
-/// 轮播的palceholder数组，里面有三个元素，网络请求获取
-@property (nonatomic, strong) NSArray *placeholderArray;
 
 @property (nonatomic, strong) UIImageView *searchFieldBackgroundView;
 @end
@@ -32,6 +30,11 @@
         } else {
             // Fallback on earlier versions
         }
+        self.searchTextfield.placeholder = [NSString stringWithFormat:@"大家都在搜%@",self.placeholderArray[0]];;
+        //设置placeholder轮播
+        self.second = 0;
+        self.i = 0;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(cycle) userInfo:nil repeats:YES];
     }
     return self;
 }
@@ -73,7 +76,25 @@
     }];
 }
 
-#pragma mark- Private methods
+#pragma mark- evet response
+
+/// 循环轮播搜索框词组
+- (void)cycle{
+    self.second++;      //开始计时
+    if (self.second % 3 == 0) {     //每3秒轮播一次内容
+        self.i++;
+        [UIView transitionWithView:self.searchTextfield
+                          duration:0.25f
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+            self.searchTextfield.placeholder = [NSString stringWithFormat:@"大家都在搜%@",self.placeholderArray[self.i]];
+          } completion:nil];
+        //以此不断循环轮播内容
+        if (self.i == 2) {
+            self.i = -1;
+        }
+    }
+}
 
 
 
@@ -110,11 +131,6 @@
         } else {
             // Fallback on earlier versions
         }
-        
-            //设置提示文字
-    //    self.searchTextfield.placeholder = [NSString stringWithFormat:@"大家都在搜%@",_placeholderArray[_i]];
-        _searchTextfield.placeholder = @"大家都在搜红岩网校";
-        
        _searchTextfield.backgroundColor = [UIColor clearColor];
     }
     return _searchTextfield;
@@ -128,4 +144,12 @@
     }
     return _searchFieldBackgroundView;
 }
+
+- (NSArray *)placeholderArray{
+    if (_placeholderArray == nil) {
+        _placeholderArray = @[@"红岩",@"考研",@"啦啦操"];
+    }
+    return _placeholderArray;
+}
+
 @end

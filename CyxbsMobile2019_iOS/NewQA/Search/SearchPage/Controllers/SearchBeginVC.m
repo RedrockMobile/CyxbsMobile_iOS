@@ -8,16 +8,23 @@
 
 #import "SearchBeginVC.h"
 #import "SearchBeiginView.h"
+#import "SZHSearchDataModel.h"
 @interface SearchBeginVC ()<SearchTopViewDelegate,UITextFieldDelegate>
 /// 上半部分视图
 @property (nonatomic, strong) SearchBeiginView *searchBeginTopView;
+
+@property (nonatomic, strong) SZHSearchDataModel *searchDataModel;
 @end
 
 @implementation SearchBeginVC
 #pragma mark- life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.searchDataModel getHotArayWithProgress:^(NSArray * _Nonnull ary) {
+//        self.searchBeginTopView.searchTopView.placeholderArray = ary;
+        self.searchBeginTopView.hotSearchView.buttonTextAry = ary;
+        [self.searchBeginTopView.hotSearchView updateBtns];
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -55,5 +62,11 @@
         _searchBeginTopView.searchTopView.delegate = self;
     }
     return _searchBeginTopView;
+}
+- (SZHSearchDataModel *)searchDataModel{
+    if (_searchDataModel == nil) {
+        _searchDataModel = [[SZHSearchDataModel alloc] init];
+    }
+    return _searchDataModel;
 }
 @end

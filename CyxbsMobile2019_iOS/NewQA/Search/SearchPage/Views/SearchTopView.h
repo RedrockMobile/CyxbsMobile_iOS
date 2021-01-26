@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 搜索输入框
 @property (nonatomic, strong) UITextField *searchTextfield;
 
+/// 轮播的palceholder数组，里面有三个元素，网络请求获取
+@property (nonatomic, strong) NSArray *placeholderArray;
 @end
 
 NS_ASSUME_NONNULL_END

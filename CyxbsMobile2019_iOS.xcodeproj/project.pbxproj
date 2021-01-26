@@ -372,6 +372,9 @@
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
 		AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B845735725C0390A005EFB91 /* SZHHotSearchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B845735625C0390A005EFB91 /* SZHHotSearchButton.m */; };
+		B845737325C03A9E005EFB91 /* SZHHotSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = B845737225C03A9E005EFB91 /* SZHHotSearchView.m */; };
+		B845737925C0408E005EFB91 /* SZHSearchDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B845737825C0408E005EFB91 /* SZHSearchDataModel.m */; };
 		B892095425BEC30B00386451 /* SearchTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095325BEC30B00386451 /* SearchTopView.m */; };
 		B892095A25BEDA1A00386451 /* SearchBeiginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095925BEDA1A00386451 /* SearchBeiginView.m */; };
 		B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B892096B25BEDEA600386451 /* SearchBeginVC.m */; };
@@ -1249,6 +1252,12 @@
 		AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextLessonFinder.m; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B845735525C0390A005EFB91 /* SZHHotSearchButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHHotSearchButton.h; sourceTree = "<group>"; };
+		B845735625C0390A005EFB91 /* SZHHotSearchButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHHotSearchButton.m; sourceTree = "<group>"; };
+		B845737125C03A9E005EFB91 /* SZHHotSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHHotSearchView.h; sourceTree = "<group>"; };
+		B845737225C03A9E005EFB91 /* SZHHotSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHHotSearchView.m; sourceTree = "<group>"; };
+		B845737725C0408E005EFB91 /* SZHSearchDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHSearchDataModel.h; path = CyxbsMobile2019_iOS/NewQA/Search/SearchPage/Views/SZHSearchDataModel.h; sourceTree = SOURCE_ROOT; };
+		B845737825C0408E005EFB91 /* SZHSearchDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SZHSearchDataModel.m; path = CyxbsMobile2019_iOS/NewQA/Search/SearchPage/Views/SZHSearchDataModel.m; sourceTree = SOURCE_ROOT; };
 		B892095225BEC30B00386451 /* SearchTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchTopView.h; sourceTree = "<group>"; };
 		B892095325BEC30B00386451 /* SearchTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTopView.m; sourceTree = "<group>"; };
 		B892095825BEDA1A00386451 /* SearchBeiginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBeiginView.h; sourceTree = "<group>"; };
@@ -3476,6 +3485,8 @@
 		B8AA53D825B9495A00CEE847 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B845737725C0408E005EFB91 /* SZHSearchDataModel.h */,
+				B845737825C0408E005EFB91 /* SZHSearchDataModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3487,6 +3498,10 @@
 				B892095925BEDA1A00386451 /* SearchBeiginView.m */,
 				B892095225BEC30B00386451 /* SearchTopView.h */,
 				B892095325BEC30B00386451 /* SearchTopView.m */,
+				B845735525C0390A005EFB91 /* SZHHotSearchButton.h */,
+				B845735625C0390A005EFB91 /* SZHHotSearchButton.m */,
+				B845737125C03A9E005EFB91 /* SZHHotSearchView.h */,
+				B845737225C03A9E005EFB91 /* SZHHotSearchView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4579,6 +4594,7 @@
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
 				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
+				B845735725C0390A005EFB91 /* SZHHotSearchButton.m in Sources */,
 				D06AAEDB24AC00BB00EE0892 /* QAReviewModel.m in Sources */,
 				1AD038D123F92F6700D5C90E /* MineQAMyQuestionDraftItem.m in Sources */,
 				18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */,
@@ -4772,6 +4788,7 @@
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
 				18CDF720257F91BE006E8E5C /* VolunteerLabel.m in Sources */,
 				D05C04D023E5E047009A2E63 /* QAAskIntegralPickerView.m in Sources */,
+				B845737325C03A9E005EFB91 /* SZHHotSearchView.m in Sources */,
 				AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				1817F0462594D5C500FE1304 /* FollowGroupModel.m in Sources */,
@@ -4867,6 +4884,7 @@
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
 				18CDF68E257F91BD006E8E5C /* CQUPTMapModel.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
+				B845737925C0408E005EFB91 /* SZHSearchDataModel.m in Sources */,
 				1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */,
 				18CDF4C3257F8DBD006E8E5C /* questionAndEmail.m in Sources */,
 			);

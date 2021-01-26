@@ -55,7 +55,10 @@
 #define SZHMainBoardColor  [UIColor colorNamed:@"SZHMainBoardColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 //搜索页搜索框的字体颜色
 #define SZHSearchTextColor  [UIColor colorNamed:@"SZHSearchTextColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
+//搜索页的大标题字体颜色
+#define SZHHotHistoryKnowledgeLblColor  [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+//搜索页热门搜索按钮和重邮知识库的按钮文本和边框颜色
+#define SZHSearchBtnTextColor  [UIColor colorNamed:@"SZHSearchBtnTextColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
 #pragma mark - 头文件

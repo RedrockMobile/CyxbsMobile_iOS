@@ -10,12 +10,13 @@
  */
 #import <UIKit/UIKit.h>
 #import "SearchTopView.h"
+#import "SZHHotSearchView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchBeiginView : UIView
 /// 顶部搜索的视图
 @property (nonatomic, strong) SearchTopView *searchTopView;
-
+@property (nonatomic, strong) SZHHotSearchView *hotSearchView;
 @end
 
 NS_ASSUME_NONNULL_END
