@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SZHSearchDataModel : NSObject
-//获取热搜词汇
+/// 获取热搜词汇
+/// @param progress 获取到热搜词组后进行的代码操作
 - (void)getHotArayWithProgress:(void (^)(NSArray *ary))progress;
 @end
 

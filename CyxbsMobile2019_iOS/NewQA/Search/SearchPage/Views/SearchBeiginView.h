@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 顶部搜索的视图
 @property (nonatomic, strong) SearchTopView *searchTopView;
 @property (nonatomic, strong) SZHHotSearchView *hotSearchView;
+@property (nonatomic, strong) UIView *topSeparation;
 @end
 
 NS_ASSUME_NONNULL_END
