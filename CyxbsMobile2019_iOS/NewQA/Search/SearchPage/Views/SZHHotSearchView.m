@@ -22,7 +22,7 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = SZHMainBoardColor;
+            self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
         } else {
             // Fallback on earlier versions
         }
@@ -103,6 +103,7 @@
     }
 }
 
+//更新UI
 - (void)updateBtns{
     for (int i = 0; i < self.buttonAry.count; i++) {
         [self.buttonAry[i] removeFromSuperview];
@@ -116,7 +117,7 @@
         _hotSearch_KnowledgeLabel = [[UILabel alloc] init];
         _hotSearch_KnowledgeLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
         if (@available(iOS 11.0, *)) {
-            _hotSearch_KnowledgeLabel.textColor = SZHHotHistoryKnowledgeLblColor;
+            _hotSearch_KnowledgeLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
         } else {
             // Fallback on earlier versions
         }

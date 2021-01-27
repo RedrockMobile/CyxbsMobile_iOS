@@ -49,16 +49,6 @@
 #define COLOR_NEED [UIColor colorWithRed:101/255.0 green:178/255.0 blue:255/255.0 alpha:1]
 #define COLOR_NONEED [UIColor colorWithRed:148/255.0 green:148/255.0 blue:148/255.0 alpha:0.6]
 
-//MARK:新版邮问深色模式颜色宏
-/**搜索页以及发布动态页*/
-//大部分主板的深色模式颜色
-#define SZHMainBoardColor  [UIColor colorNamed:@"SZHMainBoardColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-//搜索页搜索框的字体颜色
-#define SZHSearchTextColor  [UIColor colorNamed:@"SZHSearchTextColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-//搜索页的大标题字体颜色
-#define SZHHotHistoryKnowledgeLblColor  [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-//搜索页热门搜索按钮和重邮知识库的按钮文本和边框颜色
-#define SZHSearchBtnTextColor  [UIColor colorNamed:@"SZHSearchBtnTextColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
 #pragma mark - 头文件

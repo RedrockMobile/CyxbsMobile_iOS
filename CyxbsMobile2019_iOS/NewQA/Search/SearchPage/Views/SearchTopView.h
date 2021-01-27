@@ -14,9 +14,6 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol SearchTopViewDelegate <NSObject>
 
-/// 为UITextField自定义键盘上的toolBar
-/// @param textField 需要自定义toolBar的UITextField
-//- (void)addKeyBoardToolBarforTextField:(UITextField*)textField;
 
 /// 返回按钮跳回到“邮圈界面”
 - (void)jumpBack;

@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = SZHMainBoardColor;
+            self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
         } else {
             // Fallback on earlier versions
         }

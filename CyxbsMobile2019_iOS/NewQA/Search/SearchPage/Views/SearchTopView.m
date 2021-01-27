@@ -26,7 +26,7 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = SZHMainBoardColor;
+            self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
         } else {
             // Fallback on earlier versions
         }
@@ -51,9 +51,7 @@
     }];
     
     //搜索视图
-        //1.添加背景view
-   
-            //1.4添加到屏幕上并设置布局
+        //1.添加背景view到屏幕上并设置布局
     [self addSubview:self.searchFieldBackgroundView];
     [self.searchFieldBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(self);
@@ -127,7 +125,7 @@
         
             //字体颜色
         if (@available(iOS 11.0, *)) {
-            _searchTextfield.textColor = SZHSearchTextColor;
+            _searchTextfield.textColor = [UIColor colorNamed:@"SZHSearchTextColor"];
         } else {
             // Fallback on earlier versions
         }

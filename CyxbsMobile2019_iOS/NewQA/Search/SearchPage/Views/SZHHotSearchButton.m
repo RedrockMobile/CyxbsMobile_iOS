@@ -7,7 +7,9 @@
 //
 
 #import "SZHHotSearchButton.h"
+@interface SZHHotSearchButton()<UITraitEnvironment>
 
+@end
 @implementation SZHHotSearchButton
 - (instancetype)init{
     self = [super init];
@@ -16,7 +18,7 @@
         
         //设置title颜色
         if (@available(iOS 11.0, *)) {
-            [self setTitleColor:SZHSearchBtnTextColor forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor colorNamed:@"SZHSearchBtnTextColor"] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }
@@ -38,12 +40,32 @@
         self.layer.borderWidth = 1;
         //设置边框颜色
         if (@available(iOS 11.0, *)) {
-            self.layer.borderColor = SZHSearchBtnTextColor.CGColor;
+            self.layer.borderColor = [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
         } else {
             // Fallback on earlier versions
         }
     }
     return self;
 }
-
+//监听系统的颜色模式来配置地图的白天、深色模式下的自定义样式
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
+    [super traitCollectionDidChange: previousTraitCollection];
+    if (@available(iOS 13.0, *)) {
+        if([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]){
+              UIUserInterfaceStyle  mode = UITraitCollection.currentTraitCollection.userInterfaceStyle;
+                if (mode == UIUserInterfaceStyleDark) {
+                    NSLog(@"深色模式");
+                    self.layer.borderColor =  [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
+                } else if (mode == UIUserInterfaceStyleLight) {
+                    NSLog(@"浅色模式");
+                    self.layer.borderColor = [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
+                } else {
+                    NSLog(@"未知模式");
+                }
+            
+        }
+    } else {
+        // Fallback on earlier versions
+    }
+}
 @end
