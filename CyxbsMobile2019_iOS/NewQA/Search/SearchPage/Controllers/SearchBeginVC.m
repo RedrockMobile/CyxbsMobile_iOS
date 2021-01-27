@@ -55,9 +55,10 @@
    
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
     self.navigationController.navigationBar.hidden = YES;
+    self.tabBarController.tabBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
     //接收到搜索无结果页的通知，刷新历史记录的table
@@ -286,7 +287,7 @@
     [self.searchBeginTopView addSubview:self.historyTable];
     [self.historyTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.historyLabel);
-        make.top.equalTo(self.historyLabel.mas_bottom).offset(MAIN_SCREEN_H * 0.0449);
+        make.top.equalTo(self.historyLabel.mas_bottom).offset(MAIN_SCREEN_H * 0.04);
         make.right.equalTo(self.clearAllHistoryRecordbtn);
         make.bottom.equalTo(self.searchBeginTopView);
     }];

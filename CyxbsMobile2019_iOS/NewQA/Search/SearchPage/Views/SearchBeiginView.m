@@ -38,7 +38,12 @@
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.8506, MAIN_SCREEN_H * 0.1874));
     }];
     
-    
+    [self addSubview:self.topSeparation];
+    [self.topSeparation mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.hotSearchView.mas_bottom);
+        make.left.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, 1));
+    }];
     
 }
 #pragma mark- getter
@@ -54,5 +59,15 @@
     }
     return _hotSearchView;
 }
-
+- (UIView *)topSeparation{
+    if (_topSeparation == nil) {
+        _topSeparation = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            _topSeparation.backgroundColor = [UIColor colorNamed:@"SZH分割条颜色"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    return _topSeparation;
+}
 @end
