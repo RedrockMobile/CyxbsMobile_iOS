@@ -1,21 +1,23 @@
 //
-//  BeginSearchPage.m
+//  SZHReleaseDynamic.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 石子涵 on 2021/1/21.
+//  Created by 石子涵 on 2021/1/27.
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
-#import "BeginSearchPage.h"
+#import "SZHReleaseDynamic.h"
 
-@interface BeginSearchPage ()
+@interface SZHReleaseDynamic ()
 
 @end
 
-@implementation BeginSearchPage
+@implementation SZHReleaseDynamic
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    // Do any additional setup after loading the view.
 }
 
 /*

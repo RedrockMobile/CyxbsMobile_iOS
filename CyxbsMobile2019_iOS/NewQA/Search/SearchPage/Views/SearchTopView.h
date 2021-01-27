@@ -14,9 +14,6 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol SearchTopViewDelegate <NSObject>
 
-/// 为UITextField自定义键盘上的toolBar
-/// @param textField 需要自定义toolBar的UITextField
-//- (void)addKeyBoardToolBarforTextField:(UITextField*)textField;
 
 /// 返回按钮跳回到“邮圈界面”
 - (void)jumpBack;
@@ -36,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 搜索输入框
 @property (nonatomic, strong) UITextField *searchTextfield;
 
+/// 轮播的palceholder数组，里面有三个元素，网络请求获取
+@property (nonatomic, strong) NSArray *placeholderArray;
 @end
 
 NS_ASSUME_NONNULL_END
