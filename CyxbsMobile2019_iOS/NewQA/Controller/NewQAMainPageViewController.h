@@ -23,15 +23,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NewQAMainPageViewController : UIViewController
-
-///多功能按钮点击后，整体的背景的蒙版
-@property (nonatomic, strong) UIView *backView;
-
-///分享按钮点击后，整体的背景蒙版
-@property (nonatomic, strong) UIView *shareBackView;
-
-///分享按钮点击后，整体的背景蒙版
-@property (nonatomic, strong) UIView *reportBackView;
+///背景蒙版
+@property (nonatomic, strong) UIView *backViewWithGesture;
 
 ///多功能View
 @property (nonatomic, strong) FuncView *popView;

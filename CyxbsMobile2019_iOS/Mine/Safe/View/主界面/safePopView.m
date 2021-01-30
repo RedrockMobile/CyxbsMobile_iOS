@@ -40,7 +40,7 @@
         } else {
             // Fallback on earlier versions
         }
-        AlertView.layer.cornerRadius = 8;
+        AlertView.layer.cornerRadius = 16;
         [self addSubview:AlertView];
         _AlertView = AlertView;
         

@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *sendCodeLab;
 @property (nonatomic, strong) UITextField *codeField;
 @property (nonatomic, strong) UILabel *resend;
+@property (nonatomic, strong) UIView *line;
 @property (nonatomic, weak) id<sendCodeDelegate> delegate;
 
 @end

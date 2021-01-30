@@ -188,7 +188,7 @@
         make.left.mas_equalTo(self.iconImageView);
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
     }];
-    self.detailLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:15];
+    self.detailLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:15];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
@@ -228,12 +228,12 @@
         make.top.mas_equalTo(self.groupLabel.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.0225);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 20.75/20.05);
         make.left.mas_equalTo(self.groupLabel.mas_right).mas_offset(SCREEN_WIDTH * 0.2467);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.13);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.1648);
     }];
     
     [_commendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.width.mas_equalTo(self.starBtn);
-        make.left.mas_equalTo(self.starBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.042);
+        make.left.mas_equalTo(self.starBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.01);
     }];
     
     [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -297,10 +297,16 @@
             [self.imageView2 sd_setImageWithURL:[NSURL URLWithString:item.pics[1]] placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"] options:SDWebImageRefreshCached];
             [self.imageView3 sd_setImageWithURL:[NSURL URLWithString:item.pics[2]] placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"] options:SDWebImageRefreshCached];
         }
-        [self.groupLabel setTitle:[NSString stringWithFormat:@"#     %@",item.topic] forState:UIControlStateNormal];
-        self.commendBtn.countLabel.text = [NSString stringWithFormat:@"%d",[item.comment_count intValue]];
-        self.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[item.praise_count intValue]];
+        [self.groupLabel setTitle:[NSString stringWithFormat:@"# %@",item.topic] forState:UIControlStateNormal];
+        self.commendBtn.countLabel.text = [NSString stringWithFormat:@"%d",123];
+        self.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",3243];
         self.starBtn.selected = [item.is_praised intValue] == 1 ? YES : NO;
+        if (@available(iOS 11.0, *)) {
+            self.starBtn.countLabel.textColor = self.starBtn.selected == YES ? [UIColor colorNamed:@"countLabelColor"] : [UIColor colorNamed:@"FuncBtnColor"];
+            self.commendBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        } else {
+            // Fallback on earlier versions
+        }
         [self.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
     }
 }

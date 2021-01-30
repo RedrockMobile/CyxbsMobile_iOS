@@ -170,8 +170,9 @@
         UIButton *logOutBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [logOutBtn setBackgroundColor:[UIColor clearColor]];
         [logOutBtn setTitle:@"切换绑定" forState:UIControlStateNormal];
-        logOutBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Heavy" size: 11];
+        logOutBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 11];
         logOutBtn.titleLabel.alpha = 0.54;
+        logOutBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
         [logOutBtn setTintColor:[UIColor colorNamed:@"MGDTimeCellTextColor"]];
         [logOutBtn addTarget:self action:@selector(logOut) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:logOutBtn];
@@ -194,7 +195,7 @@
         [logOutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(barTitle.mas_top).mas_offset(SCREEN_HEIGHT * 0.0074);
             make.left.mas_equalTo(self.view.mas_left).mas_offset(SCREEN_WIDTH * 0.8187);
-            make.width.mas_equalTo(SCREEN_WIDTH * 0.12);
+            make.right.mas_equalTo(self.view.mas_right);
             make.height.mas_equalTo(SCREEN_WIDTH * 0.12 * 16/45);
         }];
     } else {

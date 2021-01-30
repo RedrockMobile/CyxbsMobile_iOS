@@ -26,7 +26,7 @@
         UILabel *searchBtnLabel = [[UILabel alloc] init];
         self.searchBtnLabel.text = @"红岩网校";
         if (@available(iOS 11.0, *)) {
-            searchBtnLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
+            searchBtnLabel.textColor = [UIColor colorNamed:@"SearchTitleColor"];
         } else {
             // Fallback on earlier versions
         }
