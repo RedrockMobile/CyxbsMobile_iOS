@@ -1562,8 +1562,8 @@
 		1817F00D2594D5C500FE1304 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */,
 				1817F00F2594D5C500FE1304 /* NewQAMainPageViewController.h */,
+				1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1598,28 +1598,28 @@
 		1817F0212594D5C500FE1304 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1817F0222594D5C500FE1304 /* PostTableViewCell.m */,
-				1817F0232594D5C500FE1304 /* FuncView.m */,
-				1817F0242594D5C500FE1304 /* SearchBtn.h */,
-				1817F0252594D5C500FE1304 /* ReportView.h */,
-				1817F0262594D5C500FE1304 /* ShareBtn.h */,
-				1817F0272594D5C500FE1304 /* FunctionBtn.h */,
-				1817F0282594D5C500FE1304 /* GroupFollowBtn.h */,
-				1817F0292594D5C500FE1304 /* ShareView.m */,
 				1817F02A2594D5C500FE1304 /* RecommendedTableView.h */,
-				1817F02B2594D5C500FE1304 /* TopFollowView.m */,
-				1817F02C2594D5C500FE1304 /* GroupBtn.m */,
-				1817F02D2594D5C500FE1304 /* ReportView.m */,
-				1817F02E2594D5C500FE1304 /* SearchBtn.m */,
-				1817F02F2594D5C500FE1304 /* PostTableViewCell.h */,
-				1817F0302594D5C500FE1304 /* FuncView.h */,
-				1817F0312594D5C500FE1304 /* ShareView.h */,
-				1817F0322594D5C500FE1304 /* GroupFollowBtn.m */,
-				1817F0332594D5C500FE1304 /* FunctionBtn.m */,
-				1817F0342594D5C500FE1304 /* ShareBtn.m */,
 				1817F0352594D5C500FE1304 /* RecommendedTableView.m */,
-				1817F0362594D5C500FE1304 /* GroupBtn.h */,
+				1817F02F2594D5C500FE1304 /* PostTableViewCell.h */,
+				1817F0222594D5C500FE1304 /* PostTableViewCell.m */,
+				1817F0302594D5C500FE1304 /* FuncView.h */,
+				1817F0232594D5C500FE1304 /* FuncView.m */,
+				1817F0262594D5C500FE1304 /* ShareBtn.h */,
+				1817F0342594D5C500FE1304 /* ShareBtn.m */,
+				1817F0242594D5C500FE1304 /* SearchBtn.h */,
+				1817F02E2594D5C500FE1304 /* SearchBtn.m */,
+				1817F0252594D5C500FE1304 /* ReportView.h */,
+				1817F02D2594D5C500FE1304 /* ReportView.m */,
+				1817F0272594D5C500FE1304 /* FunctionBtn.h */,
+				1817F0332594D5C500FE1304 /* FunctionBtn.m */,
+				1817F0282594D5C500FE1304 /* GroupFollowBtn.h */,
+				1817F0322594D5C500FE1304 /* GroupFollowBtn.m */,
+				1817F0312594D5C500FE1304 /* ShareView.h */,
+				1817F0292594D5C500FE1304 /* ShareView.m */,
 				1817F0372594D5C500FE1304 /* TopFollowView.h */,
+				1817F02B2594D5C500FE1304 /* TopFollowView.m */,
+				1817F0362594D5C500FE1304 /* GroupBtn.h */,
+				1817F02C2594D5C500FE1304 /* GroupBtn.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

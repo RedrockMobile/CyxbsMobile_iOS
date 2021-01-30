@@ -97,7 +97,7 @@
         <!--邮问-->
         <scene sceneID="dfA-sD-qhx">
             <objects>
-                <viewController title="邮问" id="kXR-bh-Wbj" customClass="QAQuestionsViewController" sceneMemberID="viewController">
+                <viewController title="邮问" id="kXR-bh-Wbj" customClass="NewQAMainPageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ega-Mc-Pep">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

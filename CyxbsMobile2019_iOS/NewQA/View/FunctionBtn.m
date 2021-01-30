@@ -17,17 +17,8 @@
         [self addSubview:_iconView];
         
         _countLabel = [[UILabel alloc] init];
-        if (self.state == YES) {
-            if (@available(iOS 11.0, *)) {
-                _countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
-            } else {
-                // Fallback on earlier versions
-            }
-        }
         _countLabel.font = [UIFont fontWithName:@"Arial" size: 12];
-        _countLabel.textAlignment = NSTextAlignmentRight;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countLabelPlus) name:@"CountLabelPlus" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countLabelMinus) name:@"CountLabelMinus" object:nil];
+        _countLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:_countLabel];
     }
     return self;
@@ -44,7 +35,7 @@
         make.top.mas_equalTo(self.iconView.mas_top).mas_offset(SCREEN_HEIGHT * 0.009);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.052 * 8.5/19.5);
         make.right.mas_equalTo(self.mas_right);
-        make.left.mas_equalTo(self.iconView.mas_right).mas_offset(SCREEN_WIDTH * 0.0133);
+        make.left.mas_equalTo(self.iconView.mas_right).mas_offset(SCREEN_WIDTH * 0.0173);
     }];
 }
 
@@ -56,15 +47,6 @@
     }
 }
 
-- (void)countLabelPlus {
-    NSString *count = _countLabel.text;
-    _countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
-}
-
-- (void)countLabelMinus {
-    NSString *count = _countLabel.text;
-    _countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
-}
 
 @end
 
