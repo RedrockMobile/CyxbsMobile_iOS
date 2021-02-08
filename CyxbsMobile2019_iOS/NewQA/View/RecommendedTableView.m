@@ -32,7 +32,6 @@
         } else {
             // Fallback on earlier versions
         }
-        self.layer.cornerRadius = 30;
         self.rowHeight = UITableViewAutomaticDimension;
         self.estimatedRowHeight = SCREEN_HEIGHT * 0.461;
     }

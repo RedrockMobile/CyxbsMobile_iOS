@@ -26,7 +26,7 @@
 #import "UIPasteboard+YYText.h"
 #import "UIDevice+YYAdd.h"
 #import "UIApplication+YYAdd.h"
-#import "YYImage.h"
+#import <YYKit/YYImage.h>
 
 
 #define kDefaultUndoLevelMax 20 // Default maximum undo level

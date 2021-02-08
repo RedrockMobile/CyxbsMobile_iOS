@@ -19,9 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ClickedStarBtn:(FunctionBtn *)sender;
 - (void)ClickedCommentBtn:(FunctionBtn *)sender;
 - (void)ClickedShareBtn:(UIButton *)sender;
-- (void)ClickedImageView1:(UITapGestureRecognizer *)tap;
-- (void)ClickedImageView2:(UITapGestureRecognizer *)tap;
-- (void)ClickedImageView3:(UITapGestureRecognizer *)tap;
 
 @end
 
@@ -36,10 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *funcBtn;
 ///内容
 @property (nonatomic, strong) UILabel *detailLabel;
-///三个图片
-@property (nonatomic, strong) UIImageView *imageView1;
-@property (nonatomic, strong) UIImageView *imageView2;
-@property (nonatomic, strong) UIImageView *imageView3;
+///图片列表
+@property (nonatomic, strong) UICollectionView *collectView;
 ///圈子标签
 @property (nonatomic, strong) UIButton *groupLabel;
 ///点赞
@@ -57,11 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id <PostTableViewCellDelegate> delegate;
 
-@property (nonatomic, strong) UITapGestureRecognizer *tap1;
-@property (nonatomic, strong) UITapGestureRecognizer *tap2;
-@property (nonatomic, strong) UITapGestureRecognizer *tap3;
-
 @end
 
 NS_ASSUME_NONNULL_END
+
+
 
