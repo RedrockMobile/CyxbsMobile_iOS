@@ -24,7 +24,7 @@ MJCodingImplementation
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MyFollowGroupDataLoadSuccess" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MyFollowGroupDataLoadError" object:nil];
     }];
 }
 

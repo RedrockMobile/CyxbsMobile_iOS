@@ -7,6 +7,8 @@ target 'CyxbsMobile2019_iOS' do
   pod 'MGJRouter'
   pod 'Bagel', '~> 1.3.2'
 	pod 'TZImagePickerController'
+	pod 'YBImageBrowser'
+	pod 'YYImage', :git => 'https://github.com/QiuYeHong90/YYImage.git'
 	pod 'NudeIn'
 	pod 'SDWebImage'
 	pod 'AFNetworking','~> 2.6.3'

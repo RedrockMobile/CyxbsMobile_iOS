@@ -16,7 +16,7 @@
 #import "NSParagraphStyle+YYText.h"
 #import "YYTextArchiver.h"
 #import "YYTextRunDelegate.h"
-#import "YYAnimatedImageView.h"
+#import <YYKit/YYAnimatedImageView.h>
 #import "YYTextUtilities.h"
 #import <CoreFoundation/CoreFoundation.h>
 

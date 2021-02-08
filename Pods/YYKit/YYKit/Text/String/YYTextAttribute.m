@@ -14,7 +14,7 @@
 #import <CoreText/CoreText.h>
 #import "NSObject+YYAdd.h"
 #import "NSAttributedString+YYText.h"
-#import "YYAnimatedImageView.h"
+#import <YYKit/YYAnimatedImageView.h>
 #import "YYTextArchiver.h"
 #import "UIFont+YYAdd.h"
 #import "UIDevice+YYAdd.h"

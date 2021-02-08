@@ -24,7 +24,7 @@ MJCodingImplementation
                 self.postArray = [NSMutableArray arrayWithArray:dataArray];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NewQAListPageDataLoadSuccess" object:nil];
             }else{
-                [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"NewQAListPage%ldDataLoadError",(long)page] object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"NewQAListPageDataLoadError" object:nil];
             }
         }else{
             [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"NewQAListDataLoadError"] object:nil];
@@ -34,3 +34,4 @@ MJCodingImplementation
     }];
 }
 @end
+

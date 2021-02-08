@@ -11,7 +11,7 @@
 
 #import "UIPasteboard+YYText.h"
 #import "YYKitMacro.h"
-#import "YYImage.h"
+#import <YYKit/YYImage.h>
 #import "NSAttributedString+YYText.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
