@@ -16,19 +16,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //设置背景颜色
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"SZH发布动态主板颜色"];
     } else {
         // Fallback on earlier versions
     }
+    
+    [self addReleaseView];
+    if (self.releaseView.releaseTextView.text.length == 0) {
+    self.releaseView.releaseBtn.userInteractionEnabled = NO;
+        if (@available(iOS 11.0, *)) {
+            self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }else{
+        self.releaseView.releaseBtn.userInteractionEnabled = YES;
+        self.releaseView.releaseBtn.backgroundColor = [UIColor blueColor];
+    }
     // Do any additional setup after loading the view.
 }
 
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    [self.view addSubview:self.releaseView];
-    self.releaseView.frame = self.view.frame;
-}
 
 #pragma mark- Delegate
 //MARK:发布动态的view的代理方法
@@ -43,6 +52,7 @@
 //MARK:UITExteView代理方法
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
     [self.releaseView.placeHolderLabel setHidden:YES];
+    
     return YES;
 }
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
@@ -84,25 +94,39 @@
         }
     }
     //实时统计字数
-    self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%lu/%d",(unsigned long)textView.text.length, 500];
+    self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%lu/%d",(unsigned long)textView.text.length - 1,500];
     
     //如果有文字则按钮可以使用，否则就是禁用
     if (toBeString.length > 0) {
-        self.releaseView.releaseBtn.enabled = YES;
+        //设置按钮可用和背景色
+        self.releaseView.releaseBtn.userInteractionEnabled = YES;
+        self.releaseView.releaseBtn.backgroundColor = [UIColor blueColor];
     }else{
-        self.releaseView.releaseBtn.enabled = NO;
+        //1.设置按钮禁用和背景色
+        self.releaseView.releaseBtn.userInteractionEnabled = NO;
+            if (@available(iOS 11.0, *)) {
+                self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+            } else {
+                // Fallback on earlier versions
+            }
+        //2.设置字数文本
+        self.releaseView.numberOfTextLbl.text = @"0/500";
     }
     return YES;
 }
 
-#pragma mark- getter
-- (SZHReleasView *)releaseView{
+#pragma mark- 添加控件
+/// 添加表层的view，其实只包括添加图片按钮以上的内容
+- (void)addReleaseView{
+    //1.属性设置
     if (_releaseView == nil) {
         _releaseView = [[SZHReleasView alloc] init];
         _releaseView.delegate = self;
         _releaseView.releaseTextView.delegate = self;
     }
-    return _releaseView;
+    //2.frame
+    [self.view addSubview:self.releaseView];
+    self.releaseView.frame = self.view.frame;
 }
 
 @end
