@@ -385,6 +385,7 @@
 		B892095A25BEDA1A00386451 /* SearchBeiginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095925BEDA1A00386451 /* SearchBeiginView.m */; };
 		B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B892096B25BEDEA600386451 /* SearchBeginVC.m */; };
 		B8C705BF25D7ABC8009B73F7 /* SZHPhotoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C705BE25D7ABC8009B73F7 /* SZHPhotoImageView.m */; };
+		B8C705C525D8018D009B73F7 /* originPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C705C425D8018D009B73F7 /* originPhotoView.m */; };
 		B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */; };
 		D0011A6E23F082FD009A242C /* QAExitView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0011A6D23F082FD009A242C /* QAExitView.m */; };
 		D0011A7023F0830B009A242C /* QAExitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0011A6F23F0830B009A242C /* QAExitView.xib */; };
@@ -1284,6 +1285,8 @@
 		B892096B25BEDEA600386451 /* SearchBeginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBeginVC.m; sourceTree = "<group>"; };
 		B8C705BD25D7ABC8009B73F7 /* SZHPhotoImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHPhotoImageView.h; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHPhotoImageView.h; sourceTree = SOURCE_ROOT; };
 		B8C705BE25D7ABC8009B73F7 /* SZHPhotoImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SZHPhotoImageView.m; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHPhotoImageView.m; sourceTree = SOURCE_ROOT; };
+		B8C705C325D8018D009B73F7 /* originPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = originPhotoView.h; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/originPhotoView.h; sourceTree = SOURCE_ROOT; };
+		B8C705C425D8018D009B73F7 /* originPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = originPhotoView.m; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/originPhotoView.m; sourceTree = SOURCE_ROOT; };
 		B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewQA_Search.xcassets; sourceTree = "<group>"; };
 		D0011A6C23F082FD009A242C /* QAExitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QAExitView.h; sourceTree = "<group>"; };
 		D0011A6D23F082FD009A242C /* QAExitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QAExitView.m; sourceTree = "<group>"; };
@@ -3573,6 +3576,8 @@
 				B85C435A25C1A38900C51318 /* SZHReleasView.m */,
 				B8C705BD25D7ABC8009B73F7 /* SZHPhotoImageView.h */,
 				B8C705BE25D7ABC8009B73F7 /* SZHPhotoImageView.m */,
+				B8C705C325D8018D009B73F7 /* originPhotoView.h */,
+				B8C705C425D8018D009B73F7 /* originPhotoView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4678,6 +4683,7 @@
 				1A799562252B43E400603253 /* SwiftyClient.swift in Sources */,
 				18CDF671257F91BD006E8E5C /* ExamArrangeModel.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
+				B8C705C525D8018D009B73F7 /* originPhotoView.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				D06AAEE024AC00BB00EE0892 /* QAReviewAnswerListView.m in Sources */,
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,

@@ -10,15 +10,19 @@
 #import "SZHReleaseDynamic.h"
 #import "SZHReleasView.h"
 #import "SZHPhotoImageView.h"       //图片框
-
+#import "originPhotoView.h"         //原图的view
 #define MAX_LIMT_NUM 500  //textview限制输入的最大字数
 
-@interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate>
+@interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate>
 @property (nonatomic, strong) SZHReleasView *releaseView;
 
 /// 从相册中获取到的图片
 @property (nonatomic, strong) NSMutableArray <UIImage *>* imagesAry;
 @property (nonatomic, strong) NSMutableArray <UIImageView *>*imageViewArray;
+
+///原图view的相关
+@property (nonatomic, strong) originPhotoView *originView;
+@property int buttonStateNumber;            //用于计数，进行相关操作
 @end
 
 @implementation SZHReleaseDynamic
@@ -33,20 +37,27 @@
     }
     
     [self addReleaseView];
-    if (self.releaseView.releaseTextView.text.length == 0) {
-    self.releaseView.releaseBtn.userInteractionEnabled = NO;
-        if (@available(iOS 11.0, *)) {
-            self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
-        } else {
-            // Fallback on earlier versions
-        }
-    }else{
-        self.releaseView.releaseBtn.userInteractionEnabled = YES;
-        self.releaseView.releaseBtn.backgroundColor = [UIColor blueColor];
-    }
+//    if (self.releaseView.releaseTextView.text.length == 0) {
+//    self.releaseView.releaseBtn.userInteractionEnabled = NO;
+//        if (@available(iOS 11.0, *)) {
+//            self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+//        } else {
+//            // Fallback on earlier versions
+//        }
+//    }else{
+//        self.releaseView.releaseBtn.userInteractionEnabled = YES;
+//        self.releaseView.releaseBtn.backgroundColor = [UIColor blueColor];
+//    }
     //初始化图片和图片框数组
     self.imagesAry = [NSMutableArray array];
     self.imageViewArray = [NSMutableArray array];
+    self.buttonStateNumber = 1;
+    
+    originPhotoView *originView = [[originPhotoView alloc] init];
+    self.originView = originView;
+    self.originView.delegate = self;
+    [self.releaseView addSubview:originView];
+    
 }
 
 #pragma mark- private methods
@@ -59,11 +70,13 @@
             make.left.equalTo(self.view).offset(16);
             make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.296, MAIN_SCREEN_W * 0.296));
         }];
+        [self.originView setHidden:YES];    //为0时隐藏原图的view
         return;
     }
     
     // 清除之前所有的图片框
     if (self.imageViewArray.count > 0) {
+        [self.originView setHidden:NO];     //显示原图的view
         for (int i = 0; i < self.imageViewArray.count; i++) {
             UIImageView *imageView = self.imageViewArray[i];
             [imageView removeFromSuperview];
@@ -102,15 +115,23 @@
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.296, MAIN_SCREEN_W * 0.296));
     }];
     
-    //设置是否为原图的小视图
-    
-    
+    //设置是否为原图的小视图的约束
+    [self.originView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(MAIN_SCREEN_W * 0.0427);
+        make.top.equalTo(self.releaseView.releaseTextView.mas_bottom).offset(7 + (self.imageViewArray.count/3 + 1) * (MAIN_SCREEN_W * 0.296 + 5.5) + MAIN_SCREEN_H * 0.018 );
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.134, 14));
+    }];
     
     //如果图片框为9时，使添加图片按钮透明度为0,同时更新圈子标签view的约束
     if (self.imagesAry.count == 9) {
- //如果设置为去除的话，程序会崩溃
+        //如果设置为去除的话，程序会崩溃
         self.releaseView.addPhotosBtn.alpha = 0;
-        
+        //重新设置原图view的约束
+        [self.originView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view).offset(MAIN_SCREEN_W * 0.0427);
+            make.top.equalTo(self.releaseView.releaseTextView.mas_bottom).offset(7 + self.imageViewArray.count/3 * (MAIN_SCREEN_W * 0.296 + 5.5) + MAIN_SCREEN_H * 0.018 );
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.134, 14));
+        }];
         //更新圈子标签view的约束
 //        [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
 //            make.left.right.bottom.equalTo(self.view);
@@ -130,6 +151,15 @@
 //设置点击空白处收回键盘
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
+}
+//点击是否选择上传原图
+- (void)choseState{
+    self.buttonStateNumber++;
+    if (self.buttonStateNumber%2 == 0) {
+        [self.originView.clickBtn setBackgroundImage:[UIImage imageNamed:@"原图圈圈点击后"] forState:UIControlStateNormal];
+    }else{
+        [self.originView.clickBtn setBackgroundImage:[UIImage imageNamed:@"原图圈圈"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark- Delegate
@@ -259,14 +289,14 @@
     }
     
     //不让显示负数 口口日
-    self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,MAX_LIMT_NUM    - existTextNum),MAX_LIMT_NUM];
+    self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,existTextNum),MAX_LIMT_NUM];
     
     //根据编辑文本设置按钮、以及
     if (existTextNum > 0) {
         //不显示提示文字
         [self.releaseView.placeHolderLabel setHidden:YES];
         //设置按钮为可用状态并设置颜色
-        self.releaseView.releaseBtn.userInteractionEnabled = NO;
+        self.releaseView.releaseBtn.enabled = YES;
         if (@available(iOS 11.0, *)) {
             self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
         } else {
@@ -276,7 +306,7 @@
         //显示提示文字
         [self.releaseView.placeHolderLabel setHidden:NO];
         //设置按钮为禁用状态并且设置颜色
-        self.releaseView.releaseBtn.userInteractionEnabled = YES;
+        self.releaseView.releaseBtn.enabled = NO;
         if (@available(iOS 11.0, *)) {
             self.releaseView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
         } else {
@@ -335,6 +365,7 @@
         //判断添加图片框是否还存在，不存在就创建
     [self imageViewsConstraint];
 }
+
 #pragma mark- 添加控件
 /// 添加表层的view，其实只包括添加图片按钮以上的内容
 - (void)addReleaseView{
@@ -343,14 +374,10 @@
         _releaseView = [[SZHReleasView alloc] init];
         _releaseView.delegate = self;
         _releaseView.releaseTextView.delegate = self;
-        _releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%d/%d",MAX_LIMT_NUM,MAX_LIMT_NUM];
+        _releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%d/%d",0,MAX_LIMT_NUM];
     }
     //2.frame
     [self.view addSubview:self.releaseView];
     self.releaseView.frame = self.view.frame;
-}
-
-- (void)originalImage{
-    //
 }
 @end
