@@ -5,14 +5,20 @@
 //  Created by 石子涵 on 2021/1/27.
 //  Copyright © 2021 Redrock. All rights reserved.
 //
+#import <PhotosUI/PhotosUI.h>      //用于使用PHPicker
 
 #import "SZHReleaseDynamic.h"
 #import "SZHReleasView.h"
+#import "SZHPhotoImageView.h"       //图片框
 
 #define MAX_LIMT_NUM 500  //textview限制输入的最大字数
 
-@interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate>
+@interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate>
 @property (nonatomic, strong) SZHReleasView *releaseView;
+
+/// 从相册中获取到的图片
+@property (nonatomic, strong) NSMutableArray <UIImage *>* imagesAry;
+@property (nonatomic, strong) NSMutableArray <UIImageView *>*imageViewArray;
 @end
 
 @implementation SZHReleaseDynamic
@@ -38,18 +44,134 @@
         self.releaseView.releaseBtn.userInteractionEnabled = YES;
         self.releaseView.releaseBtn.backgroundColor = [UIColor blueColor];
     }
-    // Do any additional setup after loading the view.
+    //初始化图片和图片框数组
+    self.imagesAry = [NSMutableArray array];
+    self.imageViewArray = [NSMutableArray array];
 }
 
+#pragma mark- private methods
+/// 添加的图片框的约束
+- (void)imageViewsConstraint{
+    //如果图片数组为0，则添加按钮回到初始的位置
+    if (self.imagesAry.count == 0) {
+        [self.releaseView.addPhotosBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.releaseView.releaseTextView.mas_bottom).offset(7);
+            make.left.equalTo(self.view).offset(16);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.296, MAIN_SCREEN_W * 0.296));
+        }];
+        return;
+    }
+    
+    // 清除之前所有的图片框
+    if (self.imageViewArray.count > 0) {
+        for (int i = 0; i < self.imageViewArray.count; i++) {
+            UIImageView *imageView = self.imageViewArray[i];
+            [imageView removeFromSuperview];
+        }
+        [self.imageViewArray removeAllObjects];
+    }
+    
+    //清除图片数组里面大于9的的那些图片
+    for (int i = 0; i < self.imagesAry.count; i++){
+        if (i > 8) {
+            UIImage *image = self.imagesAry[i];
+            [self.imagesAry removeObject:image];
+        }
+    }
+    
+    //遍历图片数组，创建imageView,并对其进行约束
+    for (int i = 0; i < self.imagesAry.count; i++) {
+        SZHPhotoImageView *imageView = [[SZHPhotoImageView alloc] init];
+        imageView.delegate = self;
+        imageView.image = self.imagesAry[i];
+        [self.imageViewArray addObject:imageView];
+        [self.view addSubview:imageView];
+        
+        //约束图片框
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view).offset( 15 + i%3 * (6 + MAIN_SCREEN_W * 0.296));
+            make.top.equalTo(self.releaseView.releaseTextView.mas_bottom).offset(7 + i/3 * (MAIN_SCREEN_W * 0.296 + 5.5));
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.296, MAIN_SCREEN_W * 0.296));
+        }];
+    }
+    
+    //设置添加照片按钮的约束
+    [self.releaseView.addPhotosBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15 + self.imageViewArray.count%3 * (6 + MAIN_SCREEN_W * 0.296));
+        make.top.equalTo(self.releaseView.releaseTextView.mas_bottom).offset(7 + self.imageViewArray.count/3 * (MAIN_SCREEN_W * 0.296 + 5.5));
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.296, MAIN_SCREEN_W * 0.296));
+    }];
+    
+    //设置是否为原图的小视图
+    
+    
+    
+    //如果图片框为9时，使添加图片按钮透明度为0,同时更新圈子标签view的约束
+    if (self.imagesAry.count == 9) {
+ //如果设置为去除的话，程序会崩溃
+        self.releaseView.addPhotosBtn.alpha = 0;
+        
+        //更新圈子标签view的约束
+//        [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.bottom.equalTo(self.view);
+//            make.top.equalTo([self.imageViewArray lastObject].mas_bottom).offset(MAIN_SCREEN_H * 0.0569);;
+//        }];
+    }else{
+        self.releaseView.addPhotosBtn.alpha = 1;
+        //更新圈子标签view的约束
+//        [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.left.right.bottom.equalTo(self.view);
+//            make.top.equalTo(self.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
+//        }];
+    }
+}
+
+#pragma mark- respose events
+//设置点击空白处收回键盘
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 
 #pragma mark- Delegate
 //MARK:发布动态的view的代理方法
 - (void)pop{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+/**
+ 发布动态
+ 1.如果选择标签，就提示没有选择标签，如果不选择就归类到其他
+ 2.无网络连接提示无网络连接
+ 3.
+ */
 - (void)releaseDynamic{
     NSLog(@"发布动态");
+}
+//添加图片
+- (void)addPhotos{
+    //配置PhPickerConfiguration
+    if (@available(iOS 14, *)) {
+        PHPickerConfiguration *configuration = [[PHPickerConfiguration alloc] init];
+        
+        //设置当前的选择模式
+        //    configuration.preferredAssetRepresentationMode = PHPickerConfigurationAssetRepresentationModeAutomatic;
+        
+        //设置最多只能选九张图片 如果设置为0，则是无限制选择。默认为1
+        configuration.selectionLimit = 9;
+        //设定只能选择图片  //设定为nil的时候图片、livePhoto、视频都可以选择
+        configuration.filter = nil;
+        
+        //设置PHPickerController
+        PHPickerViewController *pickerCV = [[PHPickerViewController alloc] initWithConfiguration:configuration];
+        pickerCV.delegate = self;       //设置代理
+        
+        //弹出图片选择器
+        [self presentViewController:pickerCV animated:YES completion:nil];
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.releaseView animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"请将系统升级至ios14.0再使用本功能";
+        [hud hide:YES afterDelay:1.5];  //延迟1.5秒后消失
+    }
 }
 
 //MARK:UITExteView代理方法
@@ -117,8 +239,7 @@
         return NO;
     }
 }
-
-//用于显示记述的label
+//用于显示记录的label
 - (void)textViewDidChange:(UITextView *)textView{
     UITextRange *selectedRange = [textView markedTextRange];
     //获取高亮部分
@@ -164,6 +285,56 @@
     }
 }
 
+//MARK:PHPicker代理方法
+/// 选择器调用完之后会使用这个方法
+/// @param picker 当前使用的图片选择器
+/// @param results 选中的图片数组
+- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results API_AVAILABLE(ios(14)){
+    //使图片选择器消失
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    for (int i = 0; i < results.count; i++) {
+        //获取返回的对象
+        PHPickerResult *result = results[i];
+        //获取图片
+        [result.itemProvider loadObjectOfClass:[UIImage class] completionHandler:^(__kindof id<NSItemProviderReading>  _Nullable object, NSError * _Nullable error) {
+            if ([object isKindOfClass:[UIImage class]]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    __weak typeof(self) weakSelf = self;
+                    //如果图片大于九张，就删除掉前面选择的
+                    if (weakSelf.imagesAry.count <= 9) {
+                        [weakSelf.imagesAry addObject:(UIImage *)object];
+                    }
+                    //遍历循环到最后一个时进行图片框的添加约束
+                    if (i == results.count - 1) {
+                        dispatch_async(dispatch_get_main_queue(),^{
+                            [weakSelf imageViewsConstraint];
+                        });
+                    }
+                });
+            }
+        }];
+    }
+}
+
+//MARK:图片框的代理方法
+- (void)clearPhotoImageView:(UIImageView *)imageView{
+    UIImage *image = imageView.image;
+    //1.先删除照片组中的照片
+    NSMutableArray *array = [self.imagesAry mutableCopy];
+    for (UIImage *resultImage in array) {
+        if ([resultImage isEqual:image]) {
+            [array removeObject:resultImage];
+            self.imagesAry = array;
+            break;;
+        }
+    }
+//    //2.再移除照片框
+    [imageView removeFromSuperview];
+    
+    //3.重新布局
+        //判断添加图片框是否还存在，不存在就创建
+    [self imageViewsConstraint];
+}
 #pragma mark- 添加控件
 /// 添加表层的view，其实只包括添加图片按钮以上的内容
 - (void)addReleaseView{
@@ -179,4 +350,7 @@
     self.releaseView.frame = self.view.frame;
 }
 
+- (void)originalImage{
+    //
+}
 @end

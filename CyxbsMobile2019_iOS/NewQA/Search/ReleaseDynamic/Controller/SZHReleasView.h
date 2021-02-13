@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 发布动态
 - (void)releaseDynamic;
 
+/// 添加图片
+- (void)addPhotos;
 @end
 @interface SZHReleasView : UIView
 /// 代理
@@ -36,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 发布动态的按钮
 @property (nonatomic, strong) UIButton *releaseBtn;
+
+/// 添加图片按钮
+@property (nonatomic, strong) UIButton *addPhotosBtn;
 @end
 
 NS_ASSUME_NONNULL_END

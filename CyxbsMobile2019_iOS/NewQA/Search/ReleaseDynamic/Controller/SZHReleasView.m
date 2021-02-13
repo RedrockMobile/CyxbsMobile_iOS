@@ -31,6 +31,7 @@
         //添加控件
         [self addTopBarView];
         [self addTextView];
+        [self addAddPhotosBtn];
     }
     return self;
 }
@@ -82,15 +83,6 @@
         [_releaseBtn setTitle:@"发布" forState:UIControlStateNormal];
         [_releaseBtn setTitle:@"发布" forState:UIControlStateDisabled];
         _releaseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
-//        if (_releaseBtn.state == UIControlStateDisabled) {
-//            if (@available(iOS 11.0, *)) {
-//                _releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
-//            } else {
-//                // Fallback on earlier versions
-//            }
-//        }else if(self.releaseBtn.state == UIControlStateNormal){
-//            _releaseBtn.backgroundColor = [UIColor blueColor];
-//        }
         [_releaseBtn addTarget:self.delegate action:@selector(releaseDynamic) forControlEvents:UIControlEventTouchUpInside];
         _releaseBtn.layer.cornerRadius = MAIN_SCREEN_W * 0.0411;
     }
@@ -183,4 +175,47 @@
     }];
 }
 
+/// 添加照片的按钮
+- (void)addAddPhotosBtn{
+    UIButton *button = [[UIButton alloc] init];
+    [button setBackgroundImage:[UIImage imageNamed:@"添加图片背景"] forState:UIControlStateNormal];
+    button.layer.cornerRadius = 10;
+    button.layer.masksToBounds = YES;
+    [button addTarget:self.delegate action:@selector(addPhotos) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.releaseTextView.mas_bottom).offset(7);
+        make.left.equalTo(self).offset(16);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.296, MAIN_SCREEN_W * 0.296));
+    }];
+    
+    //添加中心的小图片框
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.image = [UIImage imageNamed:@"相机"];
+    [button addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(button.mas_centerX);
+        make.bottom.equalTo(button.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(28, 28));
+    }];
+    
+    //下方的label
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"添加图片";
+    label.font = [UIFont fontWithName:@"PingFangSC-Medium" size:12];
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor colorNamed:@"SZH发布动态提示文字颜色"];
+    } else {
+        // Fallback on earlier versions
+    }
+    [button addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(imageView);
+        make.top.equalTo(imageView.mas_bottom).offset(13.5);
+        make.height.mas_equalTo(11.5);
+    }];
+    
+    self.addPhotosBtn = button;
+    
+}
 @end
