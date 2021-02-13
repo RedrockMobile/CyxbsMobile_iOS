@@ -177,7 +177,6 @@
 }
 
 
-
 #pragma mark- delegate
 //MARK:上半部分视图的代理方法以及UITextfield的代理方法
 - (void)jumpBack{
@@ -363,48 +362,4 @@
     return _searchDataModel;
 }
 
-//- (UILabel *)historyLabel{
-//    if (_historyLabel == nil) {
-//        _historyLabel = [[UILabel alloc] init];
-//        _historyLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
-//        _historyLabel.text = @"历史记录";
-//        if (@available(iOS 11.0, *)) {
-//            _historyLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//    }
-//    return _historyLabel;
-//}
-//- (UIButton *)clearAllHistoryRecordbtn{
-//    if (_clearAllHistoryRecordbtn == nil) {
-//        _clearAllHistoryRecordbtn = [[UIButton alloc] init];
-//        [_clearAllHistoryRecordbtn setTitle:@"清除全部" forState:UIControlStateNormal];
-//        if (@available(iOS 11.0, *)) {
-//            [_clearAllHistoryRecordbtn setTitleColor:[UIColor colorNamed:@"SZHClearBtnTextColor"] forState:UIControlStateNormal];
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//        _clearAllHistoryRecordbtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
-//        [_clearAllHistoryRecordbtn addTarget:self action:@selector(clearAllrecords) forControlEvents:UIControlEventTouchUpInside];
-//        //button宽度随title字数自适应
-//        _clearAllHistoryRecordbtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-//    }
-//    return _clearAllHistoryRecordbtn;
-//}
-//- (UITableView *)historyTable{
-//    if (_historyTable == nil) {
-//        _historyTable = [[UITableView alloc] init];
-//        _historyTable.backgroundColor = [UIColor clearColor];
-//        [_historyTable setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
-//        _historyTable.showsHorizontalScrollIndicator = NO;
-//        _historyTable.showsVerticalScrollIndicator = NO;
-//        _historyTable.allowsSelection = NO;
-//        _historyTable.delegate = self;
-//        _historyTable.dataSource = self;
-//        //设置tableView可以被选中，如果不设置的话，点击cell无反应
-//        _historyTable.allowsSelection = YES;
-//    }
-//    return _historyTable;
-//}
 @end

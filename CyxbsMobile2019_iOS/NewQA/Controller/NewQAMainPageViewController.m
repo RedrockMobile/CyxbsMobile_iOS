@@ -22,7 +22,7 @@
 #import "PostArchiveTool.h"
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
-
+#import "SearchBeginVC.h"   //搜索初始界面
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
 //帖子列表数据源数组
 @property (nonatomic, strong) NSMutableArray *tableArray;
@@ -720,6 +720,8 @@
 
 ///点击了搜索按钮，跳转到搜索页面
 - (void)searchPost {
+    SearchBeginVC *vc = [[SearchBeginVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"跳转到搜索页面");
 }
 
