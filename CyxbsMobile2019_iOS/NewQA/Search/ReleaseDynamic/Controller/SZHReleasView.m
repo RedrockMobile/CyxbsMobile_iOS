@@ -82,15 +82,15 @@
         [_releaseBtn setTitle:@"发布" forState:UIControlStateNormal];
         [_releaseBtn setTitle:@"发布" forState:UIControlStateDisabled];
         _releaseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
-        if (_releaseBtn.state == UIControlStateDisabled) {
-            if (@available(iOS 11.0, *)) {
-                _releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
-            } else {
-                // Fallback on earlier versions
-            }
-        }else if(self.releaseBtn.state == UIControlStateNormal){
-            _releaseBtn.backgroundColor = [UIColor blueColor];
-        }
+//        if (_releaseBtn.state == UIControlStateDisabled) {
+//            if (@available(iOS 11.0, *)) {
+//                _releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+//            } else {
+//                // Fallback on earlier versions
+//            }
+//        }else if(self.releaseBtn.state == UIControlStateNormal){
+//            _releaseBtn.backgroundColor = [UIColor blueColor];
+//        }
         [_releaseBtn addTarget:self.delegate action:@selector(releaseDynamic) forControlEvents:UIControlEventTouchUpInside];
         _releaseBtn.layer.cornerRadius = MAIN_SCREEN_W * 0.0411;
     }
@@ -167,7 +167,6 @@
         //1.属性设置
     if (_numberOfTextLbl == nil) {
         _numberOfTextLbl = [[UILabel alloc] init];
-        _numberOfTextLbl.text = @"0/500";
         _numberOfTextLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:10.92];
         if (@available(iOS 11.0, *)) {
             _numberOfTextLbl.textColor = [UIColor colorNamed:@"SZHHistoryCellLblColor"];

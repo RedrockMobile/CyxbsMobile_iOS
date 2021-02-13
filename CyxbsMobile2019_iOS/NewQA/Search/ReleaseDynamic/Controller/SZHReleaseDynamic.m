@@ -8,6 +8,9 @@
 
 #import "SZHReleaseDynamic.h"
 #import "SZHReleasView.h"
+
+#define MAX_LIMT_NUM 500  //textview限制输入的最大字数
+
 @interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate>
 @property (nonatomic, strong) SZHReleasView *releaseView;
 @end
@@ -55,64 +58,110 @@
     
     return YES;
 }
+//计算限制字数
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    NSString *toBeString = textView.text;
-    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];  //键盘的输入模式
-    //当输入模式为简体中文时，进行限制字数
-    if ([lang isEqualToString:@"zh-Hans"]) {
-        UITextRange *selectRange = [textView markedTextRange];
-            //获取高亮部分
-        UITextPosition *position = [textView positionFromPosition:selectRange.start offset:0];
-            //没有高亮选择的字，就对已经输入的文字进行字数统计和限制
-        if (!position) {
-            if (toBeString.length > 500) {
-                //此方法用于在字符串的一个range范围内，返回此range范围内完整的字符串的range
-                NSRange finalRange = [toBeString rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, 500)];
-                textView.text = [toBeString substringWithRange:finalRange];
-                /*
-                 也可以直接使用以下方法显示最后的文本，但是这样可能会遇到emoji无法正常显示的问题.旧版邮问就有这样的问题
-                 textField.text = [toBeString substringToIndex:MastNumber];
-                 */
-            }
-            //如果没有文本就显示提示label,否则不显示
-            if (toBeString.length == 0) {
-                [self.releaseView.placeHolderLabel setHidden:NO];
-            }else{
-                [self.releaseView.placeHolderLabel setHidden:YES];
-            }
-        }
-        //有高亮选择的字符串，则暂不对文字进行统计和限制
-        else{
-
-        }
-    }
-    //中文输入法以外就直接进行统计限制
-    else{
-        if (toBeString.length > 500) {
-            NSRange finalRange = [toBeString rangeOfComposedCharacterSequencesForRange:NSMakeRange(0, 500)];
-            textView.text = [toBeString substringWithRange:finalRange];
-        }
-    }
-    //实时统计字数
-    self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%lu/%d",(unsigned long)textView.text.length - 1,500];
+    UITextRange *selectedRange = [textView markedTextRange];
+    //获取高部分
+    UITextPosition *pos = [textView positionFromPosition:selectedRange offset:0];
     
-    //如果有文字则按钮可以使用，否则就是禁用
-    if (toBeString.length > 0) {
-        //设置按钮可用和背景色
-        self.releaseView.releaseBtn.userInteractionEnabled = YES;
-        self.releaseView.releaseBtn.backgroundColor = [UIColor blueColor];
-    }else{
-        //1.设置按钮禁用和背景色
-        self.releaseView.releaseBtn.userInteractionEnabled = NO;
-            if (@available(iOS 11.0, *)) {
-                self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
-            } else {
-                // Fallback on earlier versions
-            }
-        //2.设置字数文本
-        self.releaseView.numberOfTextLbl.text = @"0/500";
+    //如果有高亮部分，并且字数小于最大限制时允许输入
+    if (selectedRange && pos) {
+        NSInteger startOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRange.start];
+        NSInteger endOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRange.end];
+        NSRange offsetRange = NSMakeRange(startOffset, endOffset - startOffset);
+        if (offsetRange.location < MAX_LIMT_NUM) {
+            return YES;
+        }else{
+            return NO;
+        }
     }
-    return YES;
+    
+    NSString *comcatstr = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    NSInteger caninputlen = MAX_LIMT_NUM - comcatstr.length;
+    if (caninputlen >= 0) {
+        return YES;
+    }else{
+        NSInteger len = text.length + caninputlen;
+        //防止当text.length + caninputlen < 0时，使得rg.length为一个非法最大正数出错
+        NSRange rg = {0,MAX(len,0)};
+        if (rg.length > 0) {
+            NSString *s = @"";
+            //判断是否只普通的字符或asc码(对于中文和表情返回NO)
+            BOOL asc = [text canBeConvertedToEncoding:NSASCIIStringEncoding];
+            if (asc) {
+                s = [text substringWithRange:rg];//因为是ascii码直接取就可以了不会错
+            }else{
+                __block NSInteger idx = 0;
+                __block NSString  *trimString = @"";//截取出的字串
+                //使用字符串遍历，这个方法能准确知道每个emoji是占一个unicode还是两个
+                [text enumerateSubstringsInRange:NSMakeRange(0, [text length])
+                                         options:NSStringEnumerationByComposedCharacterSequences
+                                      usingBlock: ^(NSString* substring, NSRange substringRange, NSRange enclosingRange, BOOL* stop) {
+                    NSInteger steplen = substring.length;
+                    if (idx >= rg.length) {
+                        *stop = YES; //取出所需要就break，提高效率
+                        return ;
+                    }
+                    trimString = [trimString stringByAppendingString:substring];
+                    
+                    idx = idx + steplen;    //使用字串占的长度来作为步长
+                }];
+                s = trimString;
+            }
+            //rang是指从当前光标处进行替换处理(注意如果执行此句后面返回的是YES会触发didchange事件)
+            [textView setText:[textView.text stringByReplacingCharactersInRange:range withString:s]];
+            //既然是超出部分截取了，哪一定是最大限制了。
+            self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%d/%ld",0,(long)MAX_LIMT_NUM];
+        }
+        return NO;
+    }
+}
+
+//用于显示记述的label
+- (void)textViewDidChange:(UITextView *)textView{
+    UITextRange *selectedRange = [textView markedTextRange];
+    //获取高亮部分
+    UITextPosition *pos = [textView positionFromPosition:selectedRange offset:0];
+    //如果在变化中是高亮部分，就不计算字符
+    if (selectedRange && pos) {
+        return;
+    }
+    NSString  *nsTextContent = textView.text;
+    NSInteger existTextNum = nsTextContent.length;
+    if (existTextNum > MAX_LIMT_NUM)
+    {
+        //截取到最大位置的字符(由于超出截部分在should时被处理了所在这里这了提高效率不再判断)
+        NSString *s = [nsTextContent substringToIndex:MAX_LIMT_NUM];
+        
+        [textView setText:s];
+    }
+    
+    //不让显示负数 口口日
+    self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%ld/%d",MAX(0,MAX_LIMT_NUM    - existTextNum),MAX_LIMT_NUM];
+    
+    //根据编辑文本设置按钮、以及
+    if (existTextNum > 0) {
+        //不显示提示文字
+        [self.releaseView.placeHolderLabel setHidden:YES];
+        //设置按钮为可用状态并设置颜色
+        self.releaseView.releaseBtn.userInteractionEnabled = NO;
+        if (@available(iOS 11.0, *)) {
+            self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }else{
+        //显示提示文字
+        [self.releaseView.placeHolderLabel setHidden:NO];
+        //设置按钮为禁用状态并且设置颜色
+        self.releaseView.releaseBtn.userInteractionEnabled = YES;
+        if (@available(iOS 11.0, *)) {
+            self.releaseView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }
 }
 
 #pragma mark- 添加控件
@@ -123,6 +172,7 @@
         _releaseView = [[SZHReleasView alloc] init];
         _releaseView.delegate = self;
         _releaseView.releaseTextView.delegate = self;
+        _releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%d/%d",MAX_LIMT_NUM,MAX_LIMT_NUM];
     }
     //2.frame
     [self.view addSubview:self.releaseView];
