@@ -47,7 +47,7 @@
     }
     return self;
 }
-//监听系统的颜色模式来配置地图的白天、深色模式下的自定义样式
+//监听系统的颜色模式来配置的白天、深色模式下的样式
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
     [super traitCollectionDidChange: previousTraitCollection];
     if (@available(iOS 13.0, *)) {
