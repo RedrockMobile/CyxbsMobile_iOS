@@ -62,7 +62,7 @@
         if ([self.hotSearch_KnowledgeLabel.text isEqualToString:@"热门搜索"]) {
             [button addTarget:self.delegate action:@selector(touchHotSearchBtnsThroughBtn:) forControlEvents:UIControlEventTouchUpInside];
         }else if ([self.hotSearch_KnowledgeLabel.text isEqualToString:@"重邮知识库"]){
-            [button addTarget:self.delegate action:@selector(touchCQUPTKonwledge) forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:self.delegate action:@selector(touchCQUPTKonwledgeThroughBtn:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         [self addSubview:button];

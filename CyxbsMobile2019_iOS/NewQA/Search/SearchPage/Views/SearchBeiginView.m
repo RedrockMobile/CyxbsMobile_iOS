@@ -10,7 +10,7 @@
 
 @implementation SearchBeiginView
 #pragma mark- life cycle
-- (instancetype)init{
+- (instancetype)initWithString:(NSString *)str{
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
@@ -18,6 +18,7 @@
         } else {
             // Fallback on earlier versions
         }
+        self.hotTitleStr = str;
     }
     return self;
 }
@@ -55,7 +56,7 @@
 }
 - (SZHHotSearchView *)hotSearchView{
     if (_hotSearchView == nil) {
-        _hotSearchView = [[SZHHotSearchView alloc] initWithString:@"热门搜索"];
+        _hotSearchView = [[SZHHotSearchView alloc] initWithString:self.hotTitleStr];
     }
     return _hotSearchView;
 }

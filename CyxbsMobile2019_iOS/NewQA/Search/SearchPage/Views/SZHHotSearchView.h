@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)touchHotSearchBtnsThroughBtn:(UIButton *)btn;
 
 /// 点击重邮知识库item会调用的方法
-- (void)touchCQUPTKonwledge;
+- (void)touchCQUPTKonwledgeThroughBtn:(UIButton *)btn;
 @end
 @interface SZHHotSearchView : UIView
 @property (nonatomic, weak) id <SZHHotSearchViewDelegate>delegate;
