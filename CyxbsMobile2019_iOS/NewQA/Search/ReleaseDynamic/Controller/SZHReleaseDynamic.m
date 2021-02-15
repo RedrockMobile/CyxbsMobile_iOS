@@ -11,9 +11,10 @@
 #import "SZHReleasView.h"
 #import "SZHPhotoImageView.h"       //图片框
 #import "originPhotoView.h"         //原图的view
+#import "SZHCircleLabelView.h"      //标签的view
 #define MAX_LIMT_NUM 500  //textview限制输入的最大字数
 
-@interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate>
+@interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate,SZHCircleLabelViewDelegate>
 @property (nonatomic, strong) SZHReleasView *releaseView;
 
 /// 从相册中获取到的图片
@@ -23,6 +24,10 @@
 ///原图view的相关
 @property (nonatomic, strong) originPhotoView *originView;
 @property int buttonStateNumber;            //用于计数，进行相关操作
+
+///圈子标签相关
+@property (nonatomic, strong) SZHCircleLabelView *circleLabelView;
+@property (nonatomic, copy) NSString *circleLabelText;  //添加的文本标签
 @end
 
 @implementation SZHReleaseDynamic
@@ -35,40 +40,34 @@
     } else {
         // Fallback on earlier versions
     }
-    
+    //添加视图控件
     [self addReleaseView];
-//    if (self.releaseView.releaseTextView.text.length == 0) {
-//    self.releaseView.releaseBtn.userInteractionEnabled = NO;
-//        if (@available(iOS 11.0, *)) {
-//            self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
-//        } else {
-//            // Fallback on earlier versions
-//        }
-//    }else{
-//        self.releaseView.releaseBtn.userInteractionEnabled = YES;
-//        self.releaseView.releaseBtn.backgroundColor = [UIColor blueColor];
-//    }
+    [self addOriginView];
+    [self addSZHCircleLabelView];
     //初始化图片和图片框数组
     self.imagesAry = [NSMutableArray array];
     self.imageViewArray = [NSMutableArray array];
     self.buttonStateNumber = 1;
     
-    originPhotoView *originView = [[originPhotoView alloc] init];
-    self.originView = originView;
-    self.originView.delegate = self;
-    [self.releaseView addSubview:originView];
+    
     
 }
 
 #pragma mark- private methods
 /// 添加的图片框的约束
 - (void)imageViewsConstraint{
-    //如果图片数组为0，则添加按钮回到初始的位置
+    //如果图片数组为0，则添加按钮以及圈子标签view回到初始的位置
     if (self.imagesAry.count == 0) {
+        //添加按钮
         [self.releaseView.addPhotosBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.releaseView.releaseTextView.mas_bottom).offset(7);
             make.left.equalTo(self.view).offset(16);
             make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.296, MAIN_SCREEN_W * 0.296));
+        }];
+        //圈子标签view
+        [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.releaseView);
+            make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
         }];
         [self.originView setHidden:YES];    //为0时隐藏原图的view
         return;
@@ -122,6 +121,12 @@
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.134, 14));
     }];
     
+    //设置圈子标签的view
+    [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.releaseView);
+        make.top.equalTo(self.originView.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
+    }];
+    
     //如果图片框为9时，使添加图片按钮透明度为0,同时更新圈子标签view的约束
     if (self.imagesAry.count == 9) {
         //如果设置为去除的话，程序会崩溃
@@ -132,18 +137,8 @@
             make.top.equalTo(self.releaseView.releaseTextView.mas_bottom).offset(7 + self.imageViewArray.count/3 * (MAIN_SCREEN_W * 0.296 + 5.5) + MAIN_SCREEN_H * 0.018 );
             make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.134, 14));
         }];
-        //更新圈子标签view的约束
-//        [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.bottom.equalTo(self.view);
-//            make.top.equalTo([self.imageViewArray lastObject].mas_bottom).offset(MAIN_SCREEN_H * 0.0569);;
-//        }];
     }else{
         self.releaseView.addPhotosBtn.alpha = 1;
-        //更新圈子标签view的约束
-//        [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.bottom.equalTo(self.view);
-//            make.top.equalTo(self.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
-//        }];
     }
 }
 
@@ -366,6 +361,30 @@
     [self imageViewsConstraint];
 }
 
+//MARK:圈子标签的代理
+- (void)clickACirleBtn:(UIButton *)sender{
+    for (UIButton *button in self.circleLabelView.buttonArray) {
+        if (button.tag != sender.tag) {
+            if (@available(iOS 11.0, *)) {
+                button.backgroundColor = [UIColor colorNamed:@"圈子标签按钮未选中时背景颜色"];
+//                [button setTintColor:[UIColor colorNamed:@"圈子标签按钮未选中时文本颜色"]];
+                [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮未选中时文本颜色"] forState:UIControlStateNormal];
+            } else {
+                // Fallback on earlier versions
+            }
+        }else{
+            if (@available(iOS 11.0, *)) {
+                button.backgroundColor = [UIColor colorNamed:@"圈子标签按钮选中时背景颜色"];
+                [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮选中时文本颜色"] forState:UIControlStateNormal];
+    
+            } else {
+                // Fallback on earlier versions
+            }
+            self.circleLabelText = sender.titleLabel.text;
+        }
+//        NSLog(@"%@",sender.titleLabel.text);
+    }
+}
 #pragma mark- 添加控件
 /// 添加表层的view，其实只包括添加图片按钮以上的内容
 - (void)addReleaseView{
@@ -379,5 +398,24 @@
     //2.frame
     [self.view addSubview:self.releaseView];
     self.releaseView.frame = self.view.frame;
+}
+//添加原图view
+- (void)addOriginView{
+    originPhotoView *originView = [[originPhotoView alloc] init];
+    self.originView = originView;
+    self.originView.delegate = self;
+    [self.releaseView addSubview:originView];
+}
+//添加标签view
+- (void)addSZHCircleLabelView{
+    NSArray *titlearray = @[@"校园周边",@"海底捞",@"学习",@"运动",@"兴趣",@"问答",@"其他",@"123"];
+    self.circleLabelView = [[SZHCircleLabelView alloc] initWithArrays:titlearray];
+    self.circleLabelView.delegate = self;
+    [self.releaseView addSubview:self.circleLabelView];
+    [self.circleLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.releaseView);
+        make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
+    }];
+    
 }
 @end
