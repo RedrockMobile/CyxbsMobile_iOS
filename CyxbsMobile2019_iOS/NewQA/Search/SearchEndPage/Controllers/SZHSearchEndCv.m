@@ -5,11 +5,19 @@
 //  Created by 石子涵 on 2021/1/27.
 //  Copyright © 2021 Redrock. All rights reserved.
 //
+//工具类
+#import "MGDRefreshTool.h"      //列表刷新工具类
 #import "NewQAHud.h"            //新版邮问提示框
+
+//controller类
 #import "SZHSearchEndCv.h"
 #import "SearchEndNoResultCV.h" //搜索无结果vc
+
+//模型类
 #import "SZHSearchDataModel.h"  //搜索模型
 #import "StarPostModel.h"       //点赞网络请求模型
+#import "SearchEndModel.h"      //搜索结束页网络请求模型
+//视图类
 #import "SearchBeiginView.h"    //本界面上半部分
 #import "RecommendedTableView.h"//下半部分相关动态表格
 #import "PostTableViewCell.h"   //相关动态表格cell
@@ -27,14 +35,18 @@
 
 
 ///下半部分视图相关
-    ///视图
 @property(nonatomic, strong) UILabel *relevantDynamicLbl;   //相关动态标题
+    ///表格相关
 @property (nonatomic, strong) RecommendedTableView *relevantDynamicTable;   //展示相关动态的表格
+@property (nonatomic, strong) SearchEndModel *searchEndDataModel;   //结束页网络请求model
+@property (nonatomic, strong) MJRefreshBackNormalFooter *footer;    //列表底部刷新控件
+@property (nonatomic, strong) MJRefreshNormalHeader *header;        //列表顶部刷新控件
+@property (nonatomic, assign) NSInteger page;   //列表分页展示
+    //cell相关
 @property (nonatomic, strong) FuncView *popView;    //多功能View（点击cell上的三个小点后出来的view）
 @property (nonatomic, strong) ReportView *reportView;   //举报页面
 @property (nonatomic, strong) ShareView *shareView; //分享页面
-///模型相关
-@property (nonatomic, assign) NSInteger page;   //列表分页展示
+
 
 ///背景蒙版
 @property (nonatomic, strong) UIView *backViewWithGesture;
@@ -50,8 +62,6 @@
     if (self.tableDataAry != nil) {
         [self addSearchEndBottomView];
     }
-    
-  
 }
 
 #pragma mark- event response
@@ -100,6 +110,54 @@
     [self wirteHistoryRecord:searchString];
 }
 
+/// 上滑增加动态列表页数
+- (void)dynamicTableLoadData{
+    self.page +=1;
+    __weak typeof(self)weakSelf = self;
+    __strong typeof(weakSelf)strongSelf = weakSelf;
+    [self.searchEndDataModel loadRelevantDynamicDataWithStr:@"test" Page:self.page Sucess:^(NSArray * _Nonnull array) {
+        [strongSelf loadDynamicTableSucessWithAry:array];
+        [self loadDynamicTableSucessWithAry:array];
+        } Failure:^{
+            [strongSelf loadDynamicTableFailure];
+        }];
+}
+/// 下拉刷新动态列表
+- (void)dynamicTableReloadData{
+    self.page = 1;
+//    self.tableDataAry = [NSArray array];
+    __weak typeof(self)weakSelf = self;
+    __strong typeof(weakSelf)strongSelf = weakSelf;
+    [self.searchEndDataModel loadRelevantDynamicDataWithStr:@"test" Page:self.page Sucess:^(NSArray * _Nonnull array) {
+        [strongSelf loadDynamicTableSucessWithAry:array];
+        [self loadDynamicTableSucessWithAry:array];
+        } Failure:^{
+            [strongSelf loadDynamicTableFailure];
+        }];
+}
+
+///动态列表成功请求数据后的操作
+- (void)loadDynamicTableSucessWithAry:(NSArray *)array{
+    //根据当前页数判断是下拉刷新还是上滑增加内容
+    if (self.page == 1) {
+        self.tableDataAry = array;
+        [self.relevantDynamicTable reloadData];
+        [self.relevantDynamicTable.mj_header endRefreshing];
+    }else{
+        NSMutableArray *ary = [NSMutableArray arrayWithArray:self.tableDataAry];
+        [ary addObjectsFromArray:array];
+        self.tableDataAry = ary;
+        [self.relevantDynamicTable reloadData];
+        [self.relevantDynamicTable.mj_footer endRefreshing];
+    }
+    
+}
+///动态列表请求数据失败后的操作
+- (void)loadDynamicTableFailure{
+    [self.relevantDynamicTable.mj_footer endRefreshing];
+    [self.relevantDynamicTable.mj_header endRefreshing];
+    [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+}
 #pragma mark- private methonds
 /// 将搜索的内容添加到历史记录
 /// @param string 搜索的内容
@@ -468,6 +526,20 @@
             make.top.equalTo(self.relevantDynamicLbl.mas_bottom).offset(MAIN_SCREEN_H * 0.0299);
         }];
     }
+    self.page = 1;
+    [self setUpRefresh];
+}
+///设置列表加载菊花
+- (void)setUpRefresh {
+    //上滑加载的设置
+    _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(dynamicTableLoadData)];
+    self.relevantDynamicTable.mj_footer = _footer;
+    
+    //下拉刷新的设置
+    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dynamicTableReloadData)];
+    self.relevantDynamicTable.mj_header = _header;
+    
+    [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
 }
 
 #pragma mark- getter
@@ -476,5 +548,11 @@
         _searchDataModel = [[SZHSearchDataModel alloc] init];
     }
     return _searchDataModel;
+}
+- (SearchEndModel *)searchEndDataModel{
+    if (_searchEndDataModel == nil) {
+        _searchEndDataModel = [[SearchEndModel alloc] init];
+    }
+    return _searchEndDataModel;
 }
 @end

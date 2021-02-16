@@ -373,6 +373,7 @@
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
 		AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B82C451D25DBC09000340C12 /* SearchEndModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C451C25DBC09000340C12 /* SearchEndModel.m */; };
 		B83766E725C13E0E00A8666A /* SZHSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */; };
 		B83766ED25C14FD600A8666A /* SearchEndNoResultCV.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766EC25C14FD600A8666A /* SearchEndNoResultCV.m */; };
 		B83766F325C150C000A8666A /* SZHSearchEndCv.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766F225C150C000A8666A /* SZHSearchEndCv.m */; };
@@ -1263,6 +1264,8 @@
 		AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextLessonFinder.m; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B82C451B25DBC09000340C12 /* SearchEndModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchEndModel.h; sourceTree = "<group>"; };
+		B82C451C25DBC09000340C12 /* SearchEndModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchEndModel.m; sourceTree = "<group>"; };
 		B83766E525C13E0E00A8666A /* SZHSearchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHSearchTableViewCell.h; sourceTree = "<group>"; };
 		B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHSearchTableViewCell.m; sourceTree = "<group>"; };
 		B83766EB25C14FD600A8666A /* SearchEndNoResultCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchEndNoResultCV.h; sourceTree = "<group>"; };
@@ -3491,6 +3494,15 @@
 			path = "Tool&Animater";
 			sourceTree = "<group>";
 		};
+		B82C450E25DBB44400340C12 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B82C451B25DBC09000340C12 /* SearchEndModel.h */,
+				B82C451C25DBC09000340C12 /* SearchEndModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B8AA53D525B9491700CEE847 /* SearchPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -3600,6 +3612,7 @@
 		B8C6757C25D9586100D2598B /* SearchEndPage */ = {
 			isa = PBXGroup;
 			children = (
+				B82C450E25DBB44400340C12 /* Models */,
 				B8C6757D25D9588100D2598B /* Controllers */,
 			);
 			path = SearchEndPage;
@@ -4583,6 +4596,7 @@
 				18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				B892095425BEC30B00386451 /* SearchTopView.m in Sources */,
+				B82C451D25DBC09000340C12 /* SearchEndModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
