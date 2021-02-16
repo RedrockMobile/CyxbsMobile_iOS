@@ -486,14 +486,14 @@
     self.searchEndTopView = [[SearchBeiginView alloc] initWithString:@"重邮知识库"];
     
     //设置重邮知识库的view
-    self.knowlegeAry = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
+//    self.knowlegeAry = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
     if (self.knowlegeAry != nil) {
-//        NSMutableArray *muteAry = [NSMutableArray array];
-//        for (NSDictionary *dic in self.knowlegeAry) {
-//            NSString *titleStr = dic[@"content"];
-//            [muteAry addObject:titleStr];
-//        }
-//        self.searchEndTopView.hotSearchView.buttonTextAry = muteAry;
+        NSMutableArray *muteAry = [NSMutableArray array];
+        for (NSDictionary *dic in self.knowlegeAry) {
+            NSString *titleStr = dic[@"content"];
+            [muteAry addObject:titleStr];
+        }
+        self.searchEndTopView.hotSearchView.buttonTextAry = muteAry;
         self.searchEndTopView.hotSearchView.buttonTextAry = self.knowlegeAry;
         [self.searchEndTopView.hotSearchView updateBtns];
     }

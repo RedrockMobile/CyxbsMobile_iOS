@@ -111,36 +111,36 @@
         return;                 //直接返回
     }
     
-//    //2.内容不为空
-//    /*
-//     进行网络请求获取数据
-//     先将搜索帖子和搜索知识库的网络请求全部获取后再进行后续逻辑判断
-//    */
-//    self.getDynamicFailure = NO;
-//    self.getKnowledgeFailure = NO;
-//    __weak typeof(self)weakSelf = self;
-//    //请求相关动态
-//    [self.searchDataModel getSearchDynamicWithStr:@"test" Sucess:^(NSDictionary * _Nonnull dynamicDic) {
-//        weakSelf.searchDynamicDic = dynamicDic;
-//        [weakSelf processData];
-//        } Failure:^{
-//            weakSelf.getDynamicFailure = YES;
-//            [weakSelf processData];
-//        }];
-//    //请求帖子
-//    [self.searchDataModel getSearchKnowledgeWithStr:@"test" Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
-//        weakSelf.searchKnowledgeDic = knowledgeDic;
-//        [weakSelf processData];
-//        } Failure:^{
-//            weakSelf.getKnowledgeFailure = YES;
-//            [weakSelf processData];
-//        }];
-//
-//    //清除缓存
-//    self.searchDynamicDic = nil;
-//    self.searchKnowledgeDic = nil;
-    SearchEndNoResultCV *vc = [[SearchEndNoResultCV alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    //2.内容不为空
+    /*
+     进行网络请求获取数据
+     先将搜索帖子和搜索知识库的网络请求全部获取后再进行后续逻辑判断
+    */
+    self.getDynamicFailure = NO;
+    self.getKnowledgeFailure = NO;
+    __weak typeof(self)weakSelf = self;
+    //请求相关动态
+    [self.searchDataModel getSearchDynamicWithStr:@"test" Sucess:^(NSDictionary * _Nonnull dynamicDic) {
+        weakSelf.searchDynamicDic = dynamicDic;
+        [weakSelf processData];
+        } Failure:^{
+            weakSelf.getDynamicFailure = YES;
+            [weakSelf processData];
+        }];
+    //请求帖子
+    [self.searchDataModel getSearchKnowledgeWithStr:@"test" Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
+        weakSelf.searchKnowledgeDic = knowledgeDic;
+        [weakSelf processData];
+        } Failure:^{
+            weakSelf.getKnowledgeFailure = YES;
+            [weakSelf processData];
+        }];
+
+    //清除缓存
+    self.searchDynamicDic = nil;
+    self.searchKnowledgeDic = nil;
+//    SearchEndNoResultCV *vc = [[SearchEndNoResultCV alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
     
     //3.添加历史记录
     [self wirteHistoryRecord:searchString];
