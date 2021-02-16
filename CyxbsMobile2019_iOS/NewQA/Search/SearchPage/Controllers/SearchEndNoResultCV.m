@@ -9,6 +9,8 @@
 #import "SearchEndNoResultCV.h"
 #import "SearchTopView.h"               //顶部的搜索视图
 #import "SZHReleaseDynamic.h"
+#import "SZHSearchEndCv.h"              //搜索结果界面
+#import "SZHSearchDataModel.h"          //搜索模型
 @interface SearchEndNoResultCV ()<SearchTopViewDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) SearchTopView *searchTopView;
 
@@ -20,6 +22,12 @@
 
 /// 去提问的button
 @property (nonatomic, strong) UIButton *askBtn;
+
+@property (nonatomic, strong) SZHSearchDataModel *searchDataModel;
+@property (nonatomic, strong) NSDictionary *searchDynamicDic;    //相关动态数组
+@property (nonatomic, strong) NSDictionary *searchKnowledgeDic;    //知识库数组
+@property (nonatomic, assign) BOOL getDynamicFailure;   //获取动态失败
+@property (nonatomic, assign) BOOL getKnowledgeFailure; //获取知识库失败
 @end
 
 @implementation SearchEndNoResultCV
@@ -96,9 +104,9 @@
 /// 点击搜索按钮之后去进行的逻辑操作
 /// @param searchString 搜索的文本
 - (void)searchWithString:(NSString *)searchString{
-    //如果内容为空，提示
+    //1.如果内容为空仅提示
     if ([searchString isEqualToString:@""]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.searchTopView animated:YES];
         [hud setMode:(MBProgressHUDModeText)];
 //        hud.label.text = @"输入为空";
         hud.labelText = @"输入为空";
@@ -106,38 +114,37 @@
         return;                 //直接返回
     }
     
-    //内容不为空则
-        //1.进行网络请求获取数据
-    __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [hud setMode:MBProgressHUDModeText];
-    hud.labelText = @"加载中";
-    [hud hide:YES afterDelay:1];  //延迟一秒后消失
-#warning 此处去得到网络请求的结果，三种情况：无网络连接，无结果，有结果
-    //1.无网络连接：提示没有网络
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [hud setMode:(MBProgressHUDModeText)];
-//    hud.label.text = @"请检查网络";
-//    [hud hideAnimated:YES afterDelay:1];    //延迟一秒后消失
-//    return;                 //直接返回
+    //2.内容不为空
+    /*
+     进行网络请求获取数据
+     先将搜索帖子和搜索知识库的网络请求全部获取后再进行后续逻辑判断
+    */
+    self.getDynamicFailure = NO;
+    self.getKnowledgeFailure = NO;
+    __weak typeof(self)weakSelf = self;
+    //请求相关动态
+    [self.searchDataModel getSearchDynamicWithStr:@"test" Sucess:^(NSDictionary * _Nonnull dynamicDic) {
+        weakSelf.searchDynamicDic = dynamicDic;
+        [weakSelf processData];
+        } Failure:^{
+            weakSelf.getDynamicFailure = YES;
+            [weakSelf processData];
+        }];
+    //请求帖子
+    [self.searchDataModel getSearchKnowledgeWithStr:@"test" Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
+        weakSelf.searchKnowledgeDic = knowledgeDic;
+        [weakSelf processData];
+        } Failure:^{
+            weakSelf.getKnowledgeFailure = YES;
+            [weakSelf processData];
+        }];
     
-    //2.无结果，hud提示无结果
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [hud setMode:(MBProgressHUDModeText)];
-//    hud.label.text = @"无搜索结果";
-//    [hud hideAnimated:YES afterDelay:1];    //延迟一秒后消失
-//    return;                 //直接返回
+    //清除缓存
+    self.searchDynamicDic = nil;
+    self.searchKnowledgeDic = nil;
     
-    //3.有结果,跳转到搜索结果页，并写入历史记录
-        //3.1跳转到搜索结果
-//    SearchEndCV *cv = [[SearchEndCV alloc] init];
-//    [self.navigationController pushViewController:cv animated:YES];
-    
-        //3.2添加历史记录
+    //3.添加历史记录
     [self wirteHistoryRecord:searchString];
-    
-    //跳转到搜索无结果界面
-    SearchEndNoResultCV *cv = [[SearchEndNoResultCV alloc] init];
-    [self.navigationController pushViewController:cv animated:YES];
 }
 
 /// 将搜索的内容添加到历史记录
@@ -165,9 +172,51 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadHistory" object:nil];
 }
 
+/// 处理网络请求的数据，进行逻辑判断跳转界面
+- (void)processData{
+    //如果两个返回的response均有值，则可进行逻辑判断，否则直接返回
+    if (self.searchDynamicDic == nil || self.searchKnowledgeDic == nil) {
+        return;
+    }else{
+        //1.无网络连接
+        if (self.getKnowledgeFailure == YES && self.getDynamicFailure == YES) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.searchTopView animated:YES];
+            [hud setMode:MBProgressHUDModeText];
+            hud.labelText = @"无网络连接";
+            [hud hide:YES afterDelay:1];  //延迟一秒后消失
+            return;
+        }
+        //2.有网络连接
+        NSDictionary *dynamicDic = self.searchDynamicDic;
+        NSDictionary *knowledgeDic = self.searchKnowledgeDic;
+        NSArray *dynamicAry = dynamicDic[@"data"];
+        NSArray *knowledgeAry = knowledgeDic[@"data"];
+//        NSArray *knowledgeAry = self.knowledgeDic[@"data"];
+            //2.1加载提示
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.searchTopView animated:YES];
+        [hud setMode:MBProgressHUDModeText];
+        hud.labelText = @"加载中";
+        [hud hide:YES afterDelay:1];  //延迟一秒后消失
+    
+            //2.1无搜索内容，跳转到搜索无结果页
+        if (dynamicAry == nil && knowledgeAry == nil) {
+            SearchEndNoResultCV *vc = [[SearchEndNoResultCV alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{//2.2 有搜索内容进行赋值，跳转到搜索结果页
+            SZHSearchEndCv *vc = [[SZHSearchEndCv alloc] init];
+//            vc.tableDataAry = dynamicAry;
+//            vc.knowlegeAry = knowledgeAry;
+            [self.navigationController pushViewController:vc animated:YES];
+            NSLog(@"跳转时搜索帖子-----%@",dynamicAry);
+            NSLog(@"跳转时搜索知识库-----%@",knowledgeAry);
+        }
+    }
+    
+}
+
 #pragma mark- delegate
 - (void)jumpBack{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark- getter
@@ -213,5 +262,12 @@
         [_askBtn addTarget:self action:@selector(goAskPage) forControlEvents:UIControlEventTouchUpInside];
     }
     return _askBtn;
+}
+
+- (SZHSearchDataModel *)searchDataModel{
+    if (_searchDataModel == nil) {
+        _searchDataModel = [[SZHSearchDataModel alloc] init];
+    }
+    return _searchDataModel;
 }
 @end

@@ -3509,8 +3509,6 @@
 				B892096B25BEDEA600386451 /* SearchBeginVC.m */,
 				B83766EB25C14FD600A8666A /* SearchEndNoResultCV.h */,
 				B83766EC25C14FD600A8666A /* SearchEndNoResultCV.m */,
-				B83766F125C150C000A8666A /* SZHSearchEndCv.h */,
-				B83766F225C150C000A8666A /* SZHSearchEndCv.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3599,10 +3597,28 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		B8C6757C25D9586100D2598B /* SearchEndPage */ = {
+			isa = PBXGroup;
+			children = (
+				B8C6757D25D9588100D2598B /* Controllers */,
+			);
+			path = SearchEndPage;
+			sourceTree = "<group>";
+		};
+		B8C6757D25D9588100D2598B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B83766F125C150C000A8666A /* SZHSearchEndCv.h */,
+				B83766F225C150C000A8666A /* SZHSearchEndCv.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		B8EFF3CC259C61B3003753DD /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				B8AA53D525B9491700CEE847 /* SearchPage */,
+				B8C6757C25D9586100D2598B /* SearchEndPage */,
 				B8AA53DB25B9499A00CEE847 /* ReleaseDynamic */,
 				B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */,
 			);
