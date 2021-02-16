@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SZHSearchDataModel : NSObject
+/// 热搜界面的按钮的文本内容
+@property (nonatomic, strong) NSArray *hotWordsList;
+
 /// 获取热搜词汇
 /// @param progress 获取到热搜词组后进行的代码操作
 - (void)getHotArayWithProgress:(void (^)(NSArray *ary))progress;

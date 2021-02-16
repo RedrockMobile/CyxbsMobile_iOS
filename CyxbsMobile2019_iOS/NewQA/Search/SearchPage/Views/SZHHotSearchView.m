@@ -105,6 +105,9 @@
 
 //更新UI
 - (void)updateBtns{
+    if (self.buttonTextAry.count == 0) {
+        return;
+    }
     for (int i = 0; i < self.buttonAry.count; i++) {
         [self.buttonAry[i] removeFromSuperview];
     }
@@ -127,7 +130,6 @@
 
 - (NSArray *)buttonTextAry{
     if (_buttonTextAry == nil) {
-//        _buttonTextAry = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
     }
     return _buttonTextAry;
 }

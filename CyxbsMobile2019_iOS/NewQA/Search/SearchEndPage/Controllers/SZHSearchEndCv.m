@@ -279,7 +279,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
-//点击重邮知识库后
+//点击重邮知识库按钮 跳转到详细界面，等别人完工
 - (void)touchCQUPTKonwledgeThroughBtn:(UIButton *)btn{
     NSString *str = btn.titleLabel.text;
     NSLog(@"点击重邮知识库---%@",str);
@@ -484,11 +484,26 @@
 /// 添加上半部分视图
 - (void)addSearchEndTopView{
     self.searchEndTopView = [[SearchBeiginView alloc] initWithString:@"重邮知识库"];
+    
+    //设置重邮知识库的view
+    self.knowlegeAry = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
+    if (self.knowlegeAry != nil) {
+//        NSMutableArray *muteAry = [NSMutableArray array];
+//        for (NSDictionary *dic in self.knowlegeAry) {
+//            NSString *titleStr = dic[@"content"];
+//            [muteAry addObject:titleStr];
+//        }
+//        self.searchEndTopView.hotSearchView.buttonTextAry = muteAry;
+        self.searchEndTopView.hotSearchView.buttonTextAry = self.knowlegeAry;
+        [self.searchEndTopView.hotSearchView updateBtns];
+    }
+    
+    
     //设置代理
     self.searchEndTopView.searchTopView.delegate = self;
     self.searchEndTopView.hotSearchView.delegate = self;
     self.searchEndTopView.searchTopView.searchTextfield.delegate = self;
-    [ self.searchEndTopView.searchTopView.searchTextfield setReturnKeyType:UIReturnKeySearch];
+    [self.searchEndTopView.searchTopView.searchTextfield setReturnKeyType:UIReturnKeySearch];
     //设置frame
     [self.view addSubview:self.searchEndTopView];
     self.searchEndTopView.frame = self.view.frame;

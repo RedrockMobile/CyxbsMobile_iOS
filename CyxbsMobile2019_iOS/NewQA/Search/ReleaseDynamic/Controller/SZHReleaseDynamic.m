@@ -7,6 +7,11 @@
 //
 #import <PhotosUI/PhotosUI.h>      //用于使用PHPicker
 
+#import "SZHArchiveTool.h"
+#import "NewQAHud.h"            //提示框
+
+#import "ReleaseDynamicModel.h"
+
 #import "SZHReleaseDynamic.h"
 #import "SZHReleasView.h"
 #import "SZHPhotoImageView.h"       //图片框
@@ -23,11 +28,18 @@
 
 ///原图view的相关
 @property (nonatomic, strong) originPhotoView *originView;
+@property (nonatomic, assign) BOOL isSumitOriginPhoto;      //是否上传原图
 @property int buttonStateNumber;            //用于计数，进行相关操作
 
 ///圈子标签相关
 @property (nonatomic, strong) SZHCircleLabelView *circleLabelView;
+@property (nonatomic, strong) NSArray *topicAry;
 @property (nonatomic, copy) NSString *circleLabelText;  //添加的文本标签
+
+/// 点击发布按钮相关
+//点击发布按钮的次数
+@property int clickReleaseDynamicBtnNumber;
+@property (nonatomic, strong) ReleaseDynamicModel *releaseDynamicModel;
 @end
 
 @implementation SZHReleaseDynamic
@@ -44,13 +56,41 @@
     [self addReleaseView];
     [self addOriginView];
     [self addSZHCircleLabelView];
+    
     //初始化图片和图片框数组
     self.imagesAry = [NSMutableArray array];
     self.imageViewArray = [NSMutableArray array];
+    self.isSumitOriginPhoto = NO;
+    self.circleLabelText = @"未添加标签";
     self.buttonStateNumber = 1;
+    self.clickReleaseDynamicBtnNumber = 0;
     
+    //判断是上次退出时是否有草稿，有草稿的话就显示草稿内容
+    //如果上次推出前保存了草稿，则出现上次草稿内容
+    NSString *string1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"isSaveDrafts"];
+    if ([string1 isEqualToString:@"yes"]) {
+        self.releaseView.releaseTextView.text = [SZHArchiveTool getDraftsStr];
+        if ([self.releaseView.releaseTextView.text isEqualToString:@""]) {
+//            [self.releaseView.placeHolderLabel setHidden:NO];
+        }else{
+            [self.releaseView.placeHolderLabel setHidden:YES];
+            //设置统计字数
+            self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%lu/%d",(unsigned long)self.releaseView.releaseTextView.text.length,MAX_LIMT_NUM];
+            //设置按钮为可用状态并设置颜色
+            self.releaseView.releaseBtn.enabled = YES;
+            if (@available(iOS 11.0, *)) {
+                self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            } else {
+                // Fallback on earlier versions
+            }
+            
+        }
+        self.imagesAry = [NSMutableArray arrayWithArray:[SZHArchiveTool getDraftsImagesAry]];
+        [self imageViewsConstraint];
+    }
     
-    
+    //请求网络数据并缓存
+    [self saveDataFromNet];
 }
 
 #pragma mark- private methods
@@ -142,6 +182,25 @@
     }
 }
 
+///网络请求归档处理
+- (void)saveDataFromNet{
+    //标签
+    [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+        [SZHArchiveTool saveTopicsAry:topicsAry];
+    }];
+}
+
+/// 网络上传动态
+- (void)updateDynamic{
+
+    [self.releaseDynamicModel sumitDynamicDataWithContent:self.releaseView.releaseTextView.text TopicID:self.circleLabelText ImageAry:self.imagesAry IsOriginPhoto:self.isSumitOriginPhoto Sucess:^{
+            [NewQAHud showHudWith:@"发布动态成功" AddView:self.view];
+        } Failure:^{
+            [NewQAHud showHudWith:@"请检查你的网络设置" AddView:self.releaseView.releaseTextView];
+        }];
+   
+    
+}
 #pragma mark- respose events
 //设置点击空白处收回键盘
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -152,15 +211,81 @@
     self.buttonStateNumber++;
     if (self.buttonStateNumber%2 == 0) {
         [self.originView.clickBtn setBackgroundImage:[UIImage imageNamed:@"原图圈圈点击后"] forState:UIControlStateNormal];
+        self.isSumitOriginPhoto = YES;
     }else{
         [self.originView.clickBtn setBackgroundImage:[UIImage imageNamed:@"原图圈圈"] forState:UIControlStateNormal];
+        self.isSumitOriginPhoto = NO;
     }
 }
 
 #pragma mark- Delegate
 //MARK:发布动态的view的代理方法
+//如果无内容，返回到邮圈，如果有内容就提示保存
 - (void)pop{
-    [self.navigationController popViewControllerAnimated:YES];
+    //1.无内容，返回到上个界面
+    if ([self.releaseView.releaseTextView.text isEqualToString:@""] && self.imagesAry.count == 0) {
+        //跳回到邮圈
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    //2.有内容点击提示保存内容
+    else{
+        [self.view endEditing:YES];
+        //遮罩层
+        UIView *view = [[UIView alloc] initWithFrame:self.view.frame];
+        view.backgroundColor = [UIColor blackColor];
+        view.userInteractionEnabled = NO;               //设置禁用
+        view.alpha = 0.5;
+        [self.view addSubview:view];
+        
+        //警告提示列表 是否需要保存草稿
+        UIAlertController *alertCv = [UIAlertController alertControllerWithTitle:@"是否保存草稿" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        
+        //定义警告活动列表的按钮方法
+            //草稿归档，发送网络请求，并且回到上一个界面
+        UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [view removeFromSuperview];     //移除遮罩层
+            [NewQAHud showHudWith:@"正在保存" AddView:self.view];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSString *draftStr = self.releaseView.releaseTextView.text;
+                [SZHArchiveTool saveDraftsImagesAry:self.imagesAry];
+                [SZHArchiveTool saveDraftsStr:draftStr];
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+            
+            //异步执行归档耗时操作
+           
+//            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                //缓存
+//
+//            });
+            NSString *string = @"yes";
+            [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"isSaveDrafts"];
+            
+        }];
+        
+            //不保存草稿，清除之前保存的草稿 回到“圈子”界面
+        UIAlertAction *noSaveAction = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            [view removeFromSuperview];     //移除遮罩层
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [SZHArchiveTool removeDrafts];
+            [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"isSaveDrafts"];
+        }];
+        
+            //取消
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [view removeFromSuperview];     //移除遮罩层
+        }];
+        
+        //为警告活动列表添加方法
+        [alertCv addAction:saveAction];
+        [alertCv addAction:noSaveAction];
+        [alertCv addAction:cancelAction];
+        
+        //弹出警告活动列表
+        [self presentViewController:alertCv animated:YES completion:nil];
+    }
 }
 /**
  发布动态
@@ -170,7 +295,25 @@
  */
 - (void)releaseDynamic{
     NSLog(@"发布动态");
+    //如果未添加标签，则第一次提示未添加标签，第二次就直接归类到其他
+    if ([self.circleLabelText isEqualToString:@"未添加标签"]) {
+        self.clickReleaseDynamicBtnNumber++;
+        //显示提示
+        if (self.clickReleaseDynamicBtnNumber == 1) {
+            //显示提示框
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            [hud setMode:(MBProgressHUDModeText)];
+            hud.labelText = @"未添加标签";
+            [hud hide:YES afterDelay:1];    //延迟一秒后消失
+        }else{
+            self.circleLabelText = @"# 其他";
+            [self updateDynamic];
+        }
+    }else{
+        [self updateDynamic];
+    }
 }
+
 //添加图片
 - (void)addPhotos{
     //配置PhPickerConfiguration
@@ -367,7 +510,6 @@
         if (button.tag != sender.tag) {
             if (@available(iOS 11.0, *)) {
                 button.backgroundColor = [UIColor colorNamed:@"圈子标签按钮未选中时背景颜色"];
-//                [button setTintColor:[UIColor colorNamed:@"圈子标签按钮未选中时文本颜色"]];
                 [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮未选中时文本颜色"] forState:UIControlStateNormal];
             } else {
                 // Fallback on earlier versions
@@ -380,9 +522,8 @@
             } else {
                 // Fallback on earlier versions
             }
-            self.circleLabelText = sender.titleLabel.text;
+            self.circleLabelText = [sender.titleLabel.text substringFromIndex:2];
         }
-//        NSLog(@"%@",sender.titleLabel.text);
     }
 }
 #pragma mark- 添加控件
@@ -397,6 +538,7 @@
     }
     //2.frame
     [self.view addSubview:self.releaseView];
+    
     self.releaseView.frame = self.view.frame;
 }
 //添加原图view
@@ -408,8 +550,17 @@
 }
 //添加标签view
 - (void)addSZHCircleLabelView{
-    NSArray *titlearray = @[@"校园周边",@"海底捞",@"学习",@"运动",@"兴趣",@"问答",@"其他",@"123"];
-    self.circleLabelView = [[SZHCircleLabelView alloc] initWithArrays:titlearray];
+    //先从缓存中读取数据，如果缓存中没有则进行网络请求
+    self.topicAry = [SZHArchiveTool getTopicsAry];
+    if (self.topicAry == nil ) {
+        [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+            [self.circleLabelView updateViewWithAry:topicsAry];
+//            NSLog(@"得到全部标签----%@",topicsAry);
+            [SZHArchiveTool saveTopicsAry:topicsAry];
+        }];
+    }
+    
+    self.circleLabelView = [[SZHCircleLabelView alloc] initWithArrays:self.topicAry];
     self.circleLabelView.delegate = self;
     [self.releaseView addSubview:self.circleLabelView];
     [self.circleLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -417,5 +568,13 @@
         make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
     }];
     
+}
+
+#pragma mark- getter
+- (ReleaseDynamicModel *)releaseDynamicModel{
+    if (_releaseDynamicModel == nil) {
+        _releaseDynamicModel = [[ReleaseDynamicModel alloc] init];
+    }
+    return _releaseDynamicModel;
 }
 @end
