@@ -56,6 +56,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitSuccess" object:nil];
             
         }else{
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QAQuestionCommitError" object:nil];
         }
         

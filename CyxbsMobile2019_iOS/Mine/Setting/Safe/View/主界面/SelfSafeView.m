@@ -30,7 +30,7 @@
         
         ///返回按钮
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+        [backBtn setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
@@ -72,21 +72,21 @@
     [super layoutSubviews];
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0567);
-        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0453);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.024);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0228);
+        make.top.left.mas_equalTo(self);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.024 + SCREEN_WIDTH * 0.0453);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0228 + SCREEN_HEIGHT * 0.0739);
     }];
+    [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(SCREEN_HEIGHT * 0.0739, SCREEN_WIDTH * 0.0453, 0, 0)];
     
     [_barTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0481);
-        make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0293);
-        make.width.greaterThanOrEqualTo(@(SCREEN_WIDTH * 0.2907));
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0358);
+        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.069);
+        make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0347);
+        make.right.mas_equalTo(self.right);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2 * 25/75);
     }];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.106);
+        make.top.mas_equalTo(self.barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.0222);
         make.left.right.mas_equalTo(self);
         make.bottom.mas_equalTo(self.mas_bottom);
     }];

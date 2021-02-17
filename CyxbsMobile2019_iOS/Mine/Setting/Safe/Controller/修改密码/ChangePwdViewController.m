@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIImageView *passwordImageView;
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) UITextField *passwordField;
 @property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) UIButton *forgetBtn;
@@ -51,17 +52,17 @@
     
     ///返回按钮
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     _backBtn = backBtn;
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(SCREEN_HEIGHT * 0.0556);
-        make.left.mas_equalTo(self.view.mas_left).mas_offset(SCREEN_WIDTH * 0.0453);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.024);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0229);
+        make.top.left.mas_equalTo(self.view);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.024 + SCREEN_WIDTH * 0.0453);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0228 + SCREEN_HEIGHT * 0.0739);
     }];
+    [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(SCREEN_HEIGHT * 0.0739, SCREEN_WIDTH * 0.0453, 0, 0)];
     
     ///标题
     UILabel *barTitle = [[UILabel alloc] init];
@@ -77,10 +78,26 @@
     _barTitle = barTitle;
     
     [_barTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.mas_top).mas_offset(SCREEN_HEIGHT * 0.0469);
-        make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0293);
-        make.width.greaterThanOrEqualTo(@(SCREEN_WIDTH * 0.232));
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.232 * 29/87);
+        make.top.mas_equalTo(self.view.top).mas_offset(SCREEN_HEIGHT * 0.069);
+        make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0347);
+        make.right.mas_equalTo(self.view.right);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2 * 25/75);
+    }];
+    
+    ///分割线
+    UIView *line = [[UIView alloc] init];
+    if (@available(iOS 11.0, *)) {
+        line.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+    } else {
+        // Fallback on earlier versions
+    }
+    [self.view addSubview:line];
+    _line = line;
+    
+    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.barTitle.mas_bottom).mas_offset(5);
+        make.left.right.mas_equalTo(self.view);
+        make.height.mas_equalTo(3);
     }];
     
     ///密码图片

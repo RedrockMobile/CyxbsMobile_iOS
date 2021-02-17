@@ -31,7 +31,7 @@
         }
         ///返回按钮
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"轮播右箭头"] forState:UIControlStateNormal];
+        [backBtn setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
@@ -135,21 +135,21 @@
     [super layoutSubviews];
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0764);
-        make.left.mas_equalTo(self.left).mas_offset(SCREEN_WIDTH * 0.0427);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.0187);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0172);
+        make.top.left.mas_equalTo(self);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.024 + SCREEN_WIDTH * 0.0453);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0228 + SCREEN_HEIGHT * 0.0739);
     }];
+    [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(SCREEN_HEIGHT * 0.0739, SCREEN_WIDTH * 0.0453, 0, 0)];
     
     [_barTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.0653);
+        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.069);
         make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0347);
         make.right.mas_equalTo(self.right);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0357);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2 * 25/75);
     }];
     
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.1071);
+        make.top.mas_equalTo(self.barTitle.mas_bottom).mas_offset(5);
         make.left.right.mas_equalTo(self);
         make.height.mas_equalTo(3);
     }];

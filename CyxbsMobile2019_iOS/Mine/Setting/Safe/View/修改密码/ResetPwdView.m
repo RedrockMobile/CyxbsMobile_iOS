@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UILabel *barTitle;
 @property (nonatomic, strong) UIView *passWordLine1;
 @property (nonatomic, strong) UIView *passWordLine2;
+@property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) UIImageView *passwordImageView1;
 @property (nonatomic, strong) UIImageView *passwordImageView2;
 @property (nonatomic, strong) UIImageView *passwordRightImageView1;
@@ -27,20 +28,30 @@
     if ([super initWithFrame:frame]) {
 //        self.backgroundColor = [UIColor clearColor];
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [backBtn setBackgroundImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+        [backBtn setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         _backBtn = backBtn;
         
         ///bar标题
         if (@available(iOS 11.0, *)) {
-            UILabel *barTitle = [self creatLabelWithText:@"重设密码" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            UILabel *barTitle = [self creatLabelWithText:@"重设密码" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
             barTitle.textAlignment = NSTextAlignmentLeft;
             [self addSubview:barTitle];
             _barTitle = barTitle;
         } else {
             // Fallback on earlier versions
         }
+        
+        ///分割线
+        UIView *line = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            line.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+        [self addSubview:line];
+        _line = line;
         
         ///密码输入框
         UITextField *passwordField1=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请输入6位以上新密码"];
@@ -143,17 +154,23 @@
     [super layoutSubviews];
     
     [_backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0556);
-        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0453);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.024);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0229);
+        make.top.left.mas_equalTo(self);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.024 + SCREEN_WIDTH * 0.0453);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0228 + SCREEN_HEIGHT * 0.0739);
     }];
+    [_backBtn setImageEdgeInsets:UIEdgeInsetsMake(SCREEN_HEIGHT * 0.0739, SCREEN_WIDTH * 0.0453, 0, 0)];
     
     [_barTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.048);
-        make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0293);
-        make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.232 * 29/87);
+        make.top.mas_equalTo(self.top).mas_offset(SCREEN_HEIGHT * 0.069);
+        make.left.mas_equalTo(_backBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.0347);
+        make.right.mas_equalTo(self.right);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2 * 25/75);
+    }];
+    
+    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.barTitle.mas_bottom).mas_offset(5);
+        make.left.right.mas_equalTo(self);
+        make.height.mas_equalTo(3);
     }];
     
     [_passWordLine1 mas_makeConstraints:^(MASConstraintMaker *make) {

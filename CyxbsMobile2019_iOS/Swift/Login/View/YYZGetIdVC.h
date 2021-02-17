@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UITextField *testF;
 
+- (void)addViewTo:(UIView *)view;
+
 @end
 
 NS_ASSUME_NONNULL_END

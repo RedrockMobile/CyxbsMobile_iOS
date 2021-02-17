@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "46BCF746-7216-402D-9597-29053DB8CCC7"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "2B241C98-5DE5-4665-B2F0-C537E2DD7AD6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "73093C1F-EC80-4F2A-9EB6-E0B2C5CB4A01"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHReleaseDynamic.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "556"
+            endingLineNumber = "556"
+            landmarkName = "-addSZHCircleLabelView"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "73093C1F-EC80-4F2A-9EB6-E0B2C5CB4A01 - d0970cb03385bd10"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SZHReleaseDynamic addSZHCircleLabelView]"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shizihan/Documents/Github/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHReleaseDynamic.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "463"
+                  endingLineNumber = "463"
+                  offsetFromSymbolStart = "148">
+               </Location>
+               <Location
+                  uuid = "73093C1F-EC80-4F2A-9EB6-E0B2C5CB4A01 - cd45fa8fc4b4939a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42-[SZHReleaseDynamic addSZHCircleLabelView]_block_invoke"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shizihan/Documents/Github/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHReleaseDynamic.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "463"
+                  endingLineNumber = "463"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

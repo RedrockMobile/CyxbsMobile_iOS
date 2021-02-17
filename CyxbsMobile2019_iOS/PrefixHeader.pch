@@ -30,32 +30,6 @@
 #endif
 
 
-#if DEBUG
-//移除NSLog
-#undef NSLog
-#define NSLog(...)
-
-//只有末尾自动换行
-#define Log(format, ...) fprintf(stderr,"%s\n\n",[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String])
-
-//末尾自动换行 + Log所在行
-#define CLog(format,...) do{\
-fprintf(stderr,"[%d] %s\n\n",__LINE__, [[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]);\
-}while(0)
-
-//末尾自动换行 + Log所在行 + 文件名
-#define CCLog(format,...) fprintf(stderr,"[%s - %d] %s\n\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],__LINE__,[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String])
-
-//时间戳 + 自动换行
-#define CCCLog(format,...) fprintf(stderr,"[%s] %s\n\n",[[NSString stringWithFormat:@"%@", NSDate.date] UTF8String], [[NSString stringWithFormat:format, ##__VA_ARGS__]UTF8String])
-
-#else
-#define Log(format, ...)
-#define CLog(format, ...)
-#define CCLog(format, ...)
-#define CCCLog(format, ...)
-#endif
-
 
 #pragma mark - 颜色
 
@@ -427,6 +401,24 @@ fprintf(stderr,"[%d] %s\n\n",__LINE__, [[NSString stringWithFormat:format, ##__V
 #define QA_ADD_DRAFT_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/addItemInDraft"
 //更新草稿箱内容
 #define QA_UPDATE_DRAFT_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/updateItemInDraft"
+
+#pragma mark- “新版邮问”接口
+/*
+ 搜索部分
+ */
+//热词搜索列表（非搜索框内）
+#define NEWQA_HOT_WORDS_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/getSearchHotWord"
+//搜索结果：
+    //相关动态
+#define NEWQA_SEARCH_DYNAMIC_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/searchPost"
+    //重邮知识库
+#define NEWQA_SEARCH_KNOWLEDGE_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/searchKnowledge"
+
+/*
+ 发布动态页
+ */
+//发布动态
+#define NEWQA_RELEASEDYNAMIC_RELEASE_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/releaseDynamic"
 
 
 typedef NS_ENUM(NSInteger, PeopleType) {

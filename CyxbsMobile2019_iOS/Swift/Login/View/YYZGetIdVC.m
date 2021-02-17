@@ -35,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    NSUserDefaults *userdfa = [NSUserDefaults standardUserDefaults];
+    [userdfa setBool:0 forKey:@"isLogin"];
     //设置导航栏
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ忘记密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
@@ -65,7 +67,7 @@
 }
 -(void) backToLogin{
     LoginViewController *loginVc = [[LoginViewController alloc]init];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController pushViewController:loginVc animated:YES];
 }
 -(void) setImage{
     UIImageView * imageV = [[UIImageView alloc]initWithFrame:CGRectMake(20, 195, 18, 21)];
@@ -115,10 +117,10 @@
         //如果是默认密码，弹出提示框
         if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
             NSLog(@"111111111");
-            _popView.alpha = 1.0;
-            [self.view addSubview:_backView];
+            self->_popView.alpha = 1.0;
+            [self.view addSubview:self->_backView];
             [self.view addSubview:self.popView];
-            [_popView mas_makeConstraints:^(MASConstraintMaker *make) {
+            [self->_popView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.centerX.equalTo(self.view);
                 //make.top.equalTo(self.view).offset = 267;
                 make.centerY.equalTo(self.view);
@@ -140,6 +142,10 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"----------%@",error);
         }];
+}
+
+- (void)addViewTo:(UIView *)view {
+    [view addSubview:self.view];
 }
 
 

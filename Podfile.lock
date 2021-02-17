@@ -75,6 +75,14 @@ PODS:
   - UMCShare/UI (6.9.6):
     - UMCCommon
     - UMCShare/Core
+  - YBImageBrowser (3.0.9):
+    - YBImageBrowser/Core (= 3.0.9)
+  - YBImageBrowser/Core (3.0.9):
+    - SDWebImage (>= 5.0.0)
+    - YYImage
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -111,6 +119,8 @@ DEPENDENCIES:
   - UMCShare/Social/ReducedQQ
   - UMCShare/Social/ReducedWeChat
   - UMCShare/UI
+  - YBImageBrowser
+  - YYImage (from `https://github.com/QiuYeHong90/YYImage.git`)
   - YYKit
 
 SPEC REPOS:
@@ -147,7 +157,17 @@ SPEC REPOS:
     - UMCPush
     - UMCSecurityPlugins
     - UMCShare
+    - YBImageBrowser
     - YYKit
+
+EXTERNAL SOURCES:
+  YYImage:
+    :git: https://github.com/QiuYeHong90/YYImage.git
+
+CHECKOUT OPTIONS:
+  YYImage:
+    :commit: 4164acb76e8979c0612530bd874e099a1fa51e9d
+    :git: https://github.com/QiuYeHong90/YYImage.git
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -182,8 +202,10 @@ SPEC CHECKSUMS:
   UMCPush: 1edd856027dcf905333effb4040ace5d236a7316
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UMCShare: e0cef55c0fd6051254c8cda1d0630eb578b27bad
+  YBImageBrowser: 7ecc8bf33ffa5f3b94c397c29b4f3638dd37f527
+  YYImage: 20ec986d18a8d0ad421619d166a9e628097e2433
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 00bc04f0b766846d01885abe3f59a41a57946780
+PODFILE CHECKSUM: 0d86bbc72ff4ca3d716902ebc78ff482bfbc71bd
 
-COCOAPODS: 1.10.0.beta.2
+COCOAPODS: 1.9.3
