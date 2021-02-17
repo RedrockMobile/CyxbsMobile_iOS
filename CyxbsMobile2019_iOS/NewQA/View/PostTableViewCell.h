@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ClickedStarBtn:(FunctionBtn *)sender;
 - (void)ClickedCommentBtn:(FunctionBtn *)sender;
 - (void)ClickedShareBtn:(UIButton *)sender;
+- (void)ClickedGroupTopicBtn:(UIButton *)sender;
 
 @end
 
@@ -55,6 +56,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
 
 

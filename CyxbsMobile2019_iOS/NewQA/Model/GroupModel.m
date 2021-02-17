@@ -15,7 +15,7 @@ MJCodingImplementation
 
 - (void)loadMyFollowGroup {
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/getFollowedTopic" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEW_QA_FOLLOWGROUP method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self.dataArray = [NSMutableArray array];
         NSArray *tmpArray = responseObject[@"data"];
         for (NSDictionary *dic in tmpArray) {
