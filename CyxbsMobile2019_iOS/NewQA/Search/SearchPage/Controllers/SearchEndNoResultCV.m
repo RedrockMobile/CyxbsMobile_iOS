@@ -204,8 +204,8 @@
             [self.navigationController pushViewController:vc animated:YES];
         }else{//2.2 有搜索内容进行赋值，跳转到搜索结果页
             SZHSearchEndCv *vc = [[SZHSearchEndCv alloc] init];
-//            vc.tableDataAry = dynamicAry;
-//            vc.knowlegeAry = knowledgeAry;
+            vc.tableDataAry = dynamicAry;
+            vc.knowlegeAry = knowledgeAry;
             [self.navigationController pushViewController:vc animated:YES];
             NSLog(@"跳转时搜索帖子-----%@",dynamicAry);
             NSLog(@"跳转时搜索知识库-----%@",knowledgeAry);

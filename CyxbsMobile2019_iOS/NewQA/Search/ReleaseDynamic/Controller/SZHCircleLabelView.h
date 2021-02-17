@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 按钮布局约束
 - (void)btnsAddConstraints;
+
+//更新布局
+- (void)updateViewWithAry:(NSArray *)array;
 @end
 
 NS_ASSUME_NONNULL_END

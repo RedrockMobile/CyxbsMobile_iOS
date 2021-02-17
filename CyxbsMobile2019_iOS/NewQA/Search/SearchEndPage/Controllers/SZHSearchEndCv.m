@@ -5,17 +5,26 @@
 //  Created by 石子涵 on 2021/1/27.
 //  Copyright © 2021 Redrock. All rights reserved.
 //
+//工具类
+#import "MGDRefreshTool.h"      //列表刷新工具类
+#import "NewQAHud.h"            //新版邮问提示框
 
+//controller类
 #import "SZHSearchEndCv.h"
 #import "SearchEndNoResultCV.h" //搜索无结果vc
+
+//模型类
 #import "SZHSearchDataModel.h"  //搜索模型
+#import "StarPostModel.h"       //点赞网络请求模型
+#import "SearchEndModel.h"      //搜索结束页网络请求模型
+//视图类
 #import "SearchBeiginView.h"    //本界面上半部分
 #import "RecommendedTableView.h"//下半部分相关动态表格
 #import "PostTableViewCell.h"   //相关动态表格cell
 #import "ReportView.h"          //举报界面
 #import "ShareView.h"           //分享界面
 #import "FuncView.h"            //cell上的三个点点击后界面
-@interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,ShareViewDelegate,FuncViewProtocol,ReportViewDelegate>
 @property (nonatomic, strong) SearchBeiginView *searchEndTopView;   //上半部分视图
     ///顶部搜索逻辑相关
 @property (nonatomic, strong) SZHSearchDataModel *searchDataModel;
@@ -26,15 +35,21 @@
 
 
 ///下半部分视图相关
-    ///视图
 @property(nonatomic, strong) UILabel *relevantDynamicLbl;   //相关动态标题
+    ///表格相关
 @property (nonatomic, strong) RecommendedTableView *relevantDynamicTable;   //展示相关动态的表格
+@property (nonatomic, strong) SearchEndModel *searchEndDataModel;   //结束页网络请求model
+@property (nonatomic, strong) MJRefreshBackNormalFooter *footer;    //列表底部刷新控件
+@property (nonatomic, strong) MJRefreshNormalHeader *header;        //列表顶部刷新控件
+@property (nonatomic, assign) NSInteger page;   //列表分页展示
+    //cell相关
 @property (nonatomic, strong) FuncView *popView;    //多功能View（点击cell上的三个小点后出来的view）
 @property (nonatomic, strong) ReportView *reportView;   //举报页面
 @property (nonatomic, strong) ShareView *shareView; //分享页面
-    ///模型相关
-@property (nonatomic, assign) NSInteger page;   //列表分页展示
 
+
+///背景蒙版
+@property (nonatomic, strong) UIView *backViewWithGesture;
 
 @end
 
@@ -44,11 +59,9 @@
     [super viewDidLoad];
     [self addSearchEndTopView];
     //如果数据源数组为空，无数据，则不展示下半部分页面
-//    if (self.tableDataAry.count == 0) {
+    if (self.tableDataAry != nil) {
         [self addSearchEndBottomView];
-//    }
-    
-  
+    }
 }
 
 #pragma mark- event response
@@ -97,6 +110,54 @@
     [self wirteHistoryRecord:searchString];
 }
 
+/// 上滑增加动态列表页数
+- (void)dynamicTableLoadData{
+    self.page +=1;
+    __weak typeof(self)weakSelf = self;
+    __strong typeof(weakSelf)strongSelf = weakSelf;
+    [self.searchEndDataModel loadRelevantDynamicDataWithStr:@"test" Page:self.page Sucess:^(NSArray * _Nonnull array) {
+        [strongSelf loadDynamicTableSucessWithAry:array];
+        [self loadDynamicTableSucessWithAry:array];
+        } Failure:^{
+            [strongSelf loadDynamicTableFailure];
+        }];
+}
+/// 下拉刷新动态列表
+- (void)dynamicTableReloadData{
+    self.page = 1;
+//    self.tableDataAry = [NSArray array];
+    __weak typeof(self)weakSelf = self;
+    __strong typeof(weakSelf)strongSelf = weakSelf;
+    [self.searchEndDataModel loadRelevantDynamicDataWithStr:@"test" Page:self.page Sucess:^(NSArray * _Nonnull array) {
+        [strongSelf loadDynamicTableSucessWithAry:array];
+        [self loadDynamicTableSucessWithAry:array];
+        } Failure:^{
+            [strongSelf loadDynamicTableFailure];
+        }];
+}
+
+///动态列表成功请求数据后的操作
+- (void)loadDynamicTableSucessWithAry:(NSArray *)array{
+    //根据当前页数判断是下拉刷新还是上滑增加内容
+    if (self.page == 1) {
+        self.tableDataAry = array;
+        [self.relevantDynamicTable reloadData];
+        [self.relevantDynamicTable.mj_header endRefreshing];
+    }else{
+        NSMutableArray *ary = [NSMutableArray arrayWithArray:self.tableDataAry];
+        [ary addObjectsFromArray:array];
+        self.tableDataAry = ary;
+        [self.relevantDynamicTable reloadData];
+        [self.relevantDynamicTable.mj_footer endRefreshing];
+    }
+    
+}
+///动态列表请求数据失败后的操作
+- (void)loadDynamicTableFailure{
+    [self.relevantDynamicTable.mj_footer endRefreshing];
+    [self.relevantDynamicTable.mj_header endRefreshing];
+    [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+}
 #pragma mark- private methonds
 /// 将搜索的内容添加到历史记录
 /// @param string 搜索的内容
@@ -154,14 +215,61 @@
             [self.navigationController pushViewController:vc animated:YES];
         }else{//2.2 有搜索内容进行赋值，跳转到搜索结果页
             SZHSearchEndCv *vc = [[SZHSearchEndCv alloc] init];
-//            vc.tableDataAry = dynamicAry;
-//            vc.knowlegeAry = knowledgeAry;
+            vc.tableDataAry = dynamicAry;
+            vc.knowlegeAry = knowledgeAry;
             [self.navigationController pushViewController:vc animated:YES];
             NSLog(@"跳转时搜索帖子-----%@",dynamicAry);
             NSLog(@"跳转时搜索知识库-----%@",knowledgeAry);
         }
     }
     
+}
+
+///设置相关蒙版
+- (void)setBackViewWithGesture {
+    _backViewWithGesture = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _backViewWithGesture.backgroundColor = [UIColor blackColor];
+    _backViewWithGesture.alpha = 0.36;
+    UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBackViewWithGesture)];
+    [self.backViewWithGesture addGestureRecognizer:dismiss];
+}
+- (void)showBackViewWithGesture {
+    [[UIApplication sharedApplication].keyWindow addSubview:_backViewWithGesture];
+}
+- (void)dismissBackViewWithGestureAnd:(UIView *)view {
+    [view removeFromSuperview];
+    [_backViewWithGesture removeFromSuperview];
+}
+- (void)dismissBackViewWithGesture {
+    [_popView removeFromSuperview];
+    [_shareView removeFromSuperview];
+    [_reportView removeFromSuperview];
+    [_backViewWithGesture removeFromSuperview];
+}
+
+//配置相关操作成功后的弹窗
+- (void)showShieldSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"将不再推荐该用户的动态给你" AddView:self.view];
+}
+
+- (void)showReportSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"举报成功" AddView:self.view];
+}
+
+- (void)showReportFailure {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"网络繁忙，请稍后再试" AddView:self.view];
+}
+
+- (void)shareSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
 }
 
 #pragma mark- 代理方法
@@ -171,7 +279,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
-//点击重邮知识库后
+//点击重邮知识库按钮 跳转到详细界面，等别人完工
 - (void)touchCQUPTKonwledgeThroughBtn:(UIButton *)btn{
     NSString *str = btn.titleLabel.text;
     NSLog(@"点击重邮知识库---%@",str);
@@ -209,16 +317,193 @@
     }
     return cell;
 }
+///点击跳转到具体的帖子（与下方commentBtn的事件相同）
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+//自适应高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
+}
+
+//MARK:相关动态cell的代理方法
+///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
+- (void)ClickedStarBtn:(FunctionBtn *)sender {
+    if (sender.selected == YES) {
+        sender.selected = NO;
+        sender.iconView.image = [UIImage imageNamed:@"未点赞"];
+        NSString *count = sender.countLabel.text;
+        sender.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
+        if (@available(iOS 11.0, *)) {
+            sender.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }else {
+        sender.selected = YES;
+        sender.iconView.image = [UIImage imageNamed:@"点赞"];
+        NSString *count = sender.countLabel.text;
+        sender.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
+        if (@available(iOS 11.0, *)) {
+            sender.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+            
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+    StarPostModel *model = [[StarPostModel alloc] init];
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
+    [model starPostWithPostID:[NSNumber numberWithString:item.post_id]];
+}
+
+///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
+- (void)ClickedCommentBtn:(FunctionBtn *)sender {
+//    PostItem *item = self.postArray[sender.tag];
+//    int post_id = [item.post_id intValue];
+}
+
+///分享帖子
+- (void)ClickedShareBtn:(UIButton *)sender{
+    [self showBackViewWithGesture];
+    _shareView = [[ShareView alloc] init];
+    _shareView.delegate = self;
+    [[UIApplication sharedApplication].keyWindow addSubview:_shareView];
+    [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
+        make.left.right.bottom.mas_equalTo([UIApplication sharedApplication].keyWindow);
+    }];
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
+    //此处还需要修改
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    NSString *shareURL = [NSString stringWithFormat:@"%@%@",@"cyxbs://redrock.team/answer_list/qa/entry?question_id=",item.post_id];
+    pasteboard.string = shareURL;
+}
+
+/**
+ 举报和屏蔽的多能按钮
+ 此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
+ */
+- (void)ClickedFuncBtn:(UIButton *)sender {
+    UIWindow* desWindow=[UIApplication sharedApplication].keyWindow;
+    CGRect frame = [sender convertRect:sender.bounds toView:desWindow];
+    [self showBackViewWithGesture];
+    _popView = [[FuncView alloc] init];
+    _popView.delegate = self;
+    _popView.layer.cornerRadius = 3;
+    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
+    [[UIApplication sharedApplication].keyWindow addSubview:_popView];
+}
+
+//MARK:多功能View代理方法
+///点击屏蔽按钮
+- (void)ClickedShieldBtn:(UIButton *)sender {
+//    ShieldModel *model = [[ShieldModel alloc] init];
+//    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
+    [self showShieldSuccessful];
+//    [model ShieldPersonWithUid:item.uid];
+//    [model setBlock:^(id  _Nonnull info) {
+//        if ([info[@"info"] isEqualToString:@"success"]) {
+//            [self showShieldSuccessful];
+//        }
+//    }];
+}
+///点击举报按钮
+- (void)ClickedReportBtn:(UIButton *)sender  {
+    [_popView removeFromSuperview];
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
+    _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
+    _reportView.delegate = self;
+    [[UIApplication sharedApplication].keyWindow addSubview:_reportView];
+    [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
+        make.left.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_left).mas_offset(SCREEN_WIDTH * 0.1587);
+        make.right.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_right).mas_offset(-SCREEN_WIDTH * 0.1587);
+        make.height.mas_equalTo([UIApplication sharedApplication].keyWindow.width * 0.6827 * 329/256);
+    }];
+}
+
+//MARK:举报页面代理方法
+///举报页面点击确定按钮
+- (void)ClickedSureBtn {
+//    [self dismissReportBackView];
+    [_reportView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self showReportSuccessful];
+//    ReportModel *model = [[ReportModel alloc] init];
+//    [model ReportWithPostID:_reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:_reportView.textView.text];
+//    [model setBlock:^(id  _Nonnull info) {
+//        [self showReportSuccessful];
+//    }];
+}
+///举报页面点击取消按钮
+- (void)ClickedCancelBtn {
+    [_reportView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+}
+
+//MARK:分享view的代理方法
+///点击取消
+- (void)ClickedCancel {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+}
+///点击分享QQ空间
+- (void)ClickedQQZone {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
+///点击分享朋友圈
+- (void)ClickedVXGroup {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
+///点击分享QQ
+- (void)ClickedQQ {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
+///点击分享微信好友
+- (void)ClickedVXFriend {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
+///点击分享复制链接
+- (void)ClickedUrl {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
 
 #pragma mark- 添加界面控件
 /// 添加上半部分视图
 - (void)addSearchEndTopView{
     self.searchEndTopView = [[SearchBeiginView alloc] initWithString:@"重邮知识库"];
+    
+    //设置重邮知识库的view
+//    self.knowlegeAry = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
+    if (self.knowlegeAry != nil) {
+        NSMutableArray *muteAry = [NSMutableArray array];
+        for (NSDictionary *dic in self.knowlegeAry) {
+            NSString *titleStr = dic[@"content"];
+            [muteAry addObject:titleStr];
+        }
+        self.searchEndTopView.hotSearchView.buttonTextAry = muteAry;
+        self.searchEndTopView.hotSearchView.buttonTextAry = self.knowlegeAry;
+        [self.searchEndTopView.hotSearchView updateBtns];
+    }
+    
+    
     //设置代理
     self.searchEndTopView.searchTopView.delegate = self;
     self.searchEndTopView.hotSearchView.delegate = self;
     self.searchEndTopView.searchTopView.searchTextfield.delegate = self;
-    [ self.searchEndTopView.searchTopView.searchTextfield setReturnKeyType:UIReturnKeySearch];
+    [self.searchEndTopView.searchTopView.searchTextfield setReturnKeyType:UIReturnKeySearch];
     //设置frame
     [self.view addSubview:self.searchEndTopView];
     self.searchEndTopView.frame = self.view.frame;
@@ -248,14 +533,28 @@
     //相关动态的table
     if (self.relevantDynamicTable == nil) {
         self.relevantDynamicTable = [[RecommendedTableView alloc] init];
-//        self.relevantDynamicTable.delegate = self;
-//        self.relevantDynamicTable.dataSource = self;
+        self.relevantDynamicTable.delegate = self;
+        self.relevantDynamicTable.dataSource = self;
         [self.view addSubview:self.relevantDynamicTable];
         [self.relevantDynamicTable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.searchEndTopView);
             make.top.equalTo(self.relevantDynamicLbl.mas_bottom).offset(MAIN_SCREEN_H * 0.0299);
         }];
     }
+    self.page = 1;
+    [self setUpRefresh];
+}
+///设置列表加载菊花
+- (void)setUpRefresh {
+    //上滑加载的设置
+    _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(dynamicTableLoadData)];
+    self.relevantDynamicTable.mj_footer = _footer;
+    
+    //下拉刷新的设置
+    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dynamicTableReloadData)];
+    self.relevantDynamicTable.mj_header = _header;
+    
+    [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
 }
 
 #pragma mark- getter
@@ -264,5 +563,11 @@
         _searchDataModel = [[SZHSearchDataModel alloc] init];
     }
     return _searchDataModel;
+}
+- (SearchEndModel *)searchEndDataModel{
+    if (_searchEndDataModel == nil) {
+        _searchEndDataModel = [[SearchEndModel alloc] init];
+    }
+    return _searchEndDataModel;
 }
 @end

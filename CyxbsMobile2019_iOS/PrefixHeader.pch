@@ -414,7 +414,11 @@
     //重邮知识库
 #define NEWQA_SEARCH_KNOWLEDGE_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/searchKnowledge"
 
-
+/*
+ 发布动态页
+ */
+//发布动态
+#define NEWQA_RELEASEDYNAMIC_RELEASE_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/releaseDynamic"
 
 
 typedef NS_ENUM(NSInteger, PeopleType) {

@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //根据传入的字符串决定显示的是热门搜索还是知识库
 - (instancetype)initWithString:(NSString *)string;
-/// 更新UI
+/// 更新UI(button排列)
 - (void)updateBtns;
 @end
 

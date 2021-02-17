@@ -64,6 +64,9 @@
 
 /// 添加按钮
 - (void)addButtonsWithArray:(NSArray *)array{
+    if (array.count == 0) {
+        return;
+    }
     self.buttonArray = [NSMutableArray array];
     for (int i = 0; i < array.count; i++) {
         CircleLabelBtn *button = [[CircleLabelBtn alloc] init];
@@ -111,6 +114,11 @@
             }
         });
     }
+}
+
+- (void)updateViewWithAry:(NSArray *)array{
+    [self addButtonsWithArray:array];
+    [self btnsAddConstraints];
 }
 
 - (void)changeBtnState:(UIButton *)sender{
