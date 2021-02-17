@@ -14,14 +14,14 @@
     //获取component，component的作用是告诉UNNotificationRequest在什么时候通知
     NSDateComponents *component = [self getComponentWithWeekNum:weekNum weekDay:weekDay lesson:lesson before:minute];
     
-    //trigger有好几种，定时、延时、定地点、通知。。这里是定时通知型，不重复
+    //trigger有好几种，定时、延时、定地点、通知...  这里是定时通知型，不重复
     UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:component repeats:NO];
     
     //content的作用是设置通知标题、子标题等
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
     content.title = title;
-    content.body = body;
     content.subtitle = subTitleStr;
+    content.body = body;
     [content setSound:[UNNotificationSound defaultSound]];
     
     //创建request，还需要一个IDString

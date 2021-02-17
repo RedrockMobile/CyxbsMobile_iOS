@@ -501,4 +501,17 @@
     UIViewController *VC = noti.object;
     [self presentViewController:VC animated:YES completion:nil];
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    
+}
+
+- (void)f{
+    
+}
 @end

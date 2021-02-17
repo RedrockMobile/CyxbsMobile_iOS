@@ -7,7 +7,8 @@
 //
 
 #import "MineAboutContentView.h"
-
+#import "LearnMoreViewController.h"
+#import "TopBarBasicViewController.h"
 @interface MineAboutContentView () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) UIButton *backButton;
@@ -121,10 +122,67 @@
         }
         [self addSubview:copyrightLabel];
         self.copyrightLabel = copyrightLabel;
+        [self addLearnMoreBtns];
     }
     return self;
 }
 
+/// 添加 “服务协议”、“隐私条款” 按钮
+- (void)addLearnMoreBtns{
+    UIView *backView = [[UIView alloc] init];
+    [self addSubview:backView];
+    
+    
+    UIButton *leftBtn = [self getLearnMoreBtn];
+    [backView addSubview:leftBtn];
+    
+    [leftBtn setTitle:@"服务协议 " forState:UIControlStateNormal];
+    [leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(backView);
+        make.bottom.equalTo(backView);
+    }];
+    [leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    UIButton *rightBtn = [self getLearnMoreBtn];
+    [backView addSubview:rightBtn];
+    
+    [rightBtn setTitle:@"| 隐私条款" forState:UIControlStateNormal];
+    [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(backView);
+        make.bottom.equalTo(backView);
+        make.left.equalTo(leftBtn.mas_right);
+    }];
+    [rightBtn addTarget:self action:@selector(rightBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.corporationLabel.mas_top).offset(-0.024*SCREEN_WIDTH);
+        make.centerX.equalTo(self);
+        make.height.equalTo(leftBtn);
+    }];
+    
+}
+- (void)leftBtnClicked{
+    LearnMoreViewController *vc = [[LearnMoreViewController alloc] initWithType:LMVCTypeServiceAgreement];
+//    TopBarBasicViewController *vc = [[TopBarBasicViewController alloc] init];
+//    vc.VCTitleStr = @"掌上重邮";
+    [self.viewController.navigationController pushViewController:vc animated:YES];
+}
+- (void)rightBtnClicked{
+    LearnMoreViewController *vc = [[LearnMoreViewController alloc] initWithType:LMVCTypePrivacyClause];
+    [self.viewController.navigationController pushViewController:vc animated:YES];
+}
+- (UIButton*)getLearnMoreBtn{
+    UIButton *btn = [[UIButton alloc] init];
+    if (@available(iOS 11.0, *)) {
+        [btn setTitleColor:[UIColor colorNamed:@"44_223_255&94_223_250"] forState:UIControlStateNormal];
+    } else {
+        [btn setTitleColor:[UIColor colorWithRed:44/255.0 green:223/255.0 blue:255/255.0 alpha:1] forState:UIControlStateNormal];
+    }
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:11]];
+    return btn;
+}
 - (void)layoutSubviews {
     [super layoutSubviews];
     

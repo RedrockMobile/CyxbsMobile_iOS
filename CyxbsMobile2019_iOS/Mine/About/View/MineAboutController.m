@@ -4,7 +4,7 @@
 //
 //  Created by 方昱恒 on 2020/2/4.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//关于我们页面 - 主控制器
 
 #import "MineAboutController.h"
 #import "MineAboutContentView.h"

@@ -30,6 +30,32 @@
 #endif
 
 
+#if DEBUG
+//移除NSLog
+#undef NSLog
+#define NSLog(...)
+
+//只有末尾自动换行
+#define Log(format, ...) fprintf(stderr,"%s\n\n",[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String])
+
+//末尾自动换行 + Log所在行
+#define CLog(format,...) do{\
+fprintf(stderr,"[%d] %s\n\n",__LINE__, [[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]);\
+}while(0)
+
+//末尾自动换行 + Log所在行 + 文件名
+#define CCLog(format,...) fprintf(stderr,"[%s - %d] %s\n\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],__LINE__,[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String])
+
+//时间戳 + 自动换行
+#define CCCLog(format,...) fprintf(stderr,"[%s] %s\n\n",[[NSString stringWithFormat:@"%@", NSDate.date] UTF8String], [[NSString stringWithFormat:format, ##__VA_ARGS__]UTF8String])
+
+#else
+#define Log(format, ...)
+#define CLog(format, ...)
+#define CCLog(format, ...)
+#define CCCLog(format, ...)
+#endif
+
 
 #pragma mark - 颜色
 

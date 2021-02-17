@@ -118,7 +118,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
         ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
             
-        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
+        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]&&classTabBarView.mySchedul!=nil){
             [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
@@ -204,6 +204,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 ///这里有问题
 - (void)RequestCheckinInfo {
+    if(![UserDefaultTool getStuNum]){
+        @throw [[NSException alloc] initWithName:NSInvalidArgumentException reason:@"用户学号为空" userInfo:nil];
+    }
+    
     NSDictionary *params = @{
         @"stunum": [UserDefaultTool getStuNum],
         @"idnum": [UserDefaultTool getIdNum]
@@ -678,7 +682,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 -(void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
-    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":@"陈剑辉",@"stuNum":@"2019211534"}] mutableCopy]];
+    UserItem *item = [[UserItem alloc] init];
+    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":item.realName,@"stuNum":item.stuNum}] mutableCopy]];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
