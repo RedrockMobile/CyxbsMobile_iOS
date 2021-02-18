@@ -26,8 +26,8 @@
             filePath = "CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHReleaseDynamic.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "556"
-            endingLineNumber = "556"
+            startingLineNumber = "581"
+            endingLineNumber = "581"
             landmarkName = "-addSZHCircleLabelView"
             landmarkType = "7">
             <Locations>

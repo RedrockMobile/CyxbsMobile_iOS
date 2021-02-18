@@ -719,8 +719,12 @@
 
 ///点击了搜索按钮，跳转到搜索页面
 - (void)searchPost {
+    self.hidesBottomBarWhenPushed = YES;
+    [self.tabBarController.tabBar setHidden:YES];
+    self.tabBarController.tabBar.hidden = YES;
     SearchBeginVC *vc = [[SearchBeginVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
+   
     NSLog(@"跳转到搜索页面");
 }
 
