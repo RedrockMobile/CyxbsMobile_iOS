@@ -420,6 +420,23 @@
 //发布动态
 #define NEWQA_RELEASEDYNAMIC_RELEASE_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/releaseDynamic"
 
+// 获取帖子
+#define NEW_QA_POST @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getDynamicList"
+
+// 举报
+#define NEW_QA_REPORT @"http://localhost:8080/new/report"
+
+// 热词搜索
+#define NEW_QA_HOTWORD @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/getSearchHotWord"
+
+// 我的关注
+#define NEW_QA_FOLLOWGROUP @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/getFollowedTopic"
+
+// 点赞帖子
+#define NEW_QA_STAR @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/praise"
+
+// 屏蔽
+#define NEW_QA_SHIELD @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/addIgnoreUid"
 
 typedef NS_ENUM(NSInteger, PeopleType) {
     /**代表传入的是学生相关*/

@@ -86,7 +86,7 @@
                     [_groupsScrollView addSubview:btn];
                 }
             }
-            groupsScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 0.044 + (SCREEN_WIDTH * 0.2627 * dataArray.count), CGRectGetHeight(_groupBtn.frame));
+            groupsScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 0.044 + (SCREEN_WIDTH * 0.2627 * (dataArray.count + 1)), CGRectGetHeight(_groupBtn.frame));
         }
     }
     return self;

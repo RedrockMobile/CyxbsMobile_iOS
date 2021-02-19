@@ -13,7 +13,7 @@
 - (void)ShieldPersonWithUid:(NSString *)uid {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"uid":uid};
-    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/addIgnoreUid" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEW_QA_SHIELD method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     
