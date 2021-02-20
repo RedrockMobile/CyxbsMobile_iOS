@@ -20,6 +20,8 @@
 #define MAX_LIMT_NUM 500  //textview限制输入的最大字数
 
 @interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate,SZHCircleLabelViewDelegate>
+
+@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) SZHReleasView *releaseView;
 
 /// 从相册中获取到的图片
@@ -53,6 +55,7 @@
         // Fallback on earlier versions
     }
     //添加视图控件
+    [self addScrollView];
     [self addReleaseView];
     [self addOriginView];
     [self addSZHCircleLabelView];
@@ -73,7 +76,15 @@
     //请求网络数据并缓存
     [self saveDataFromNet];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.tabBarController.tabBar setHidden:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    //点属性设置不行，必须用set
+    [self.tabBarController.tabBar setHidden:NO];
+}
 #pragma mark- private methods
 /// 添加的图片框的约束
 - (void)imageViewsConstraint{
@@ -136,6 +147,7 @@
     }];
     
     //设置是否为原图的小视图的约束
+    self.originView.hidden = NO;
     [self.originView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(MAIN_SCREEN_W * 0.0427);
         make.top.equalTo(self.releaseView.releaseTextView.mas_bottom).offset(7 + (self.imageViewArray.count/3 + 1) * (MAIN_SCREEN_W * 0.296 + 5.5) + MAIN_SCREEN_H * 0.018 );
@@ -176,6 +188,11 @@
 
     [self.releaseDynamicModel sumitDynamicDataWithContent:self.releaseView.releaseTextView.text TopicID:self.circleLabelText ImageAry:self.imagesAry IsOriginPhoto:self.isSumitOriginPhoto Sucess:^{
             [NewQAHud showHudWith:@"发布动态成功" AddView:self.view];
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        });
+//        [self.navigationController popToRootViewControllerAnimated:YES];
         } Failure:^{
             [NewQAHud showHudWith:@"请检查你的网络设置" AddView:self.releaseView.releaseTextView];
         }];
@@ -552,6 +569,16 @@
     }
 }
 #pragma mark- 添加控件
+- (void)addScrollView{
+    self.scrollView = [[UIScrollView alloc] init];
+    self.scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 1.5);
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
+    [self.view addSubview:self.scrollView];
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self.view);
+    }];
+}
 /// 添加表层的view，其实只包括添加图片按钮以上的内容
 - (void)addReleaseView{
     //1.属性设置
@@ -562,8 +589,7 @@
         _releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%d/%d",0,MAX_LIMT_NUM];
     }
     //2.frame
-    [self.view addSubview:self.releaseView];
-    
+    [self.scrollView addSubview:self.releaseView];
     self.releaseView.frame = self.view.frame;
 }
 //添加原图view
@@ -572,6 +598,7 @@
     self.originView = originView;
     self.originView.delegate = self;
     [self.releaseView addSubview:originView];
+    self.originView.hidden = YES;
 }
 //添加标签view
 - (void)addSZHCircleLabelView{
@@ -587,7 +614,7 @@
     
     self.circleLabelView = [[SZHCircleLabelView alloc] initWithArrays:self.topicAry];
     self.circleLabelView.delegate = self;
-    [self.releaseView addSubview:self.circleLabelView];
+    [self.scrollView addSubview:self.circleLabelView];
     [self.circleLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.releaseView);
         make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);

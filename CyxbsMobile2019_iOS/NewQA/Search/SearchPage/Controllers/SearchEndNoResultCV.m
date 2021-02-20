@@ -31,7 +31,6 @@
 @end
 
 @implementation SearchEndNoResultCV
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
@@ -41,11 +40,15 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.tabBarController.tabBar setHidden:YES];
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    //点属性设置不行，必须用set
+    [self.tabBarController.tabBar setHidden:NO];
+}
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     //顶部搜索框
@@ -108,7 +111,6 @@
     if ([searchString isEqualToString:@""]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.searchTopView animated:YES];
         [hud setMode:(MBProgressHUDModeText)];
-//        hud.label.text = @"输入为空";
         hud.labelText = @"输入为空";
         [hud hide:YES afterDelay:1];  //延迟一秒后消失
         return;                 //直接返回
@@ -123,7 +125,7 @@
     self.getKnowledgeFailure = NO;
     __weak typeof(self)weakSelf = self;
     //请求相关动态
-    [self.searchDataModel getSearchDynamicWithStr:@"test" Sucess:^(NSDictionary * _Nonnull dynamicDic) {
+    [self.searchDataModel getSearchDynamicWithStr:searchString Sucess:^(NSDictionary * _Nonnull dynamicDic) {
         weakSelf.searchDynamicDic = dynamicDic;
         [weakSelf processData];
         } Failure:^{
@@ -131,7 +133,7 @@
             [weakSelf processData];
         }];
     //请求帖子
-    [self.searchDataModel getSearchKnowledgeWithStr:@"test" Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
+    [self.searchDataModel getSearchKnowledgeWithStr:searchString Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
         weakSelf.searchKnowledgeDic = knowledgeDic;
         [weakSelf processData];
         } Failure:^{
@@ -216,7 +218,7 @@
 
 #pragma mark- delegate
 - (void)jumpBack{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark- getter
