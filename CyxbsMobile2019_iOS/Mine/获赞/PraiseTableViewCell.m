@@ -15,7 +15,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-//    CCLog(@"%@",self.imageView);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

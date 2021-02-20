@@ -181,7 +181,6 @@
     [anchorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self);
     }];
-    CLog(@"anc=%@",anchorView);
 }
 
 ///字典的键值对转换：
