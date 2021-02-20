@@ -2,7 +2,7 @@
 //  SZHCircleLabelView.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 石子涵 on 2021/2/14.
+//  Created by 石子涵 on 2021/2/20.
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 /**
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)clickACirleBtn:(UIButton *)sender;
 @end
 
-@interface SZHCircleLabelView : UIScrollView
+@interface SZHCircleLabelView : UIView
 /// 顶部的分割条
 @property (nonatomic, strong) UIView *topSeparationView;
 

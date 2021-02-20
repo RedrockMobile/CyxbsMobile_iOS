@@ -63,7 +63,15 @@
         [self addSearchEndBottomView];
     }
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.tabBarController.tabBar setHidden:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    //点属性设置不行，必须用set
+    [self.tabBarController.tabBar setHidden:NO];
+}
 #pragma mark- event response
 /// 点击搜索按钮之后去进行的逻辑操作
 /// @param searchString 搜索的文本

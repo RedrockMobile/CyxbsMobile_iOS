@@ -31,7 +31,6 @@
 @end
 
 @implementation SearchEndNoResultCV
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
@@ -41,11 +40,15 @@
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.tabBarController.tabBar setHidden:YES];
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    //点属性设置不行，必须用set
+    [self.tabBarController.tabBar setHidden:NO];
+}
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     //顶部搜索框
