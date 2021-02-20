@@ -80,6 +80,8 @@
         //1.属性设置
     if (_releaseBtn == nil) {
         _releaseBtn = [[UIButton alloc] init];
+        //最开始设置禁用
+        _releaseBtn.userInteractionEnabled = NO;
         [_releaseBtn setTitle:@"发布" forState:UIControlStateNormal];
         [_releaseBtn setTitle:@"发布" forState:UIControlStateDisabled];
         _releaseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];

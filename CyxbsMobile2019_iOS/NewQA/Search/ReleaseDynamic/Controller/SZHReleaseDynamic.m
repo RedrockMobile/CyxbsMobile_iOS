@@ -66,27 +66,9 @@
     self.clickReleaseDynamicBtnNumber = 0;
     
     //判断是上次退出时是否有草稿，有草稿的话就显示草稿内容
-    //如果上次推出前保存了草稿，则出现上次草稿内容
     NSString *string1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"isSaveDrafts"];
     if ([string1 isEqualToString:@"yes"]) {
-        self.releaseView.releaseTextView.text = [SZHArchiveTool getDraftsStr];
-        if ([self.releaseView.releaseTextView.text isEqualToString:@""]) {
-//            [self.releaseView.placeHolderLabel setHidden:NO];
-        }else{
-            [self.releaseView.placeHolderLabel setHidden:YES];
-            //设置统计字数
-            self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%lu/%d",(unsigned long)self.releaseView.releaseTextView.text.length,MAX_LIMT_NUM];
-            //设置按钮为可用状态并设置颜色
-            self.releaseView.releaseBtn.enabled = YES;
-            if (@available(iOS 11.0, *)) {
-                self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
-            } else {
-                // Fallback on earlier versions
-            }
-            
-        }
-        self.imagesAry = [NSMutableArray arrayWithArray:[SZHArchiveTool getDraftsImagesAry]];
-        [self imageViewsConstraint];
+        [self showDrafts];
     }
     
     //请求网络数据并缓存
@@ -201,6 +183,49 @@
    
     
 }
+
+
+/// 显示草稿
+- (void)showDrafts{
+    //异步解压图片
+    NSArray *array = [SZHArchiveTool getDraftsImagesAry];
+    if (array.count != 0) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setCenter:self.view.center];
+        [hud setCenterY:(MAIN_SCREEN_H * 0.4303)];
+        [hud setMode:MBProgressHUDModeIndeterminate];   //设置类型为菊花加载类型
+        hud.labelText = @"请稍等";
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            for (NSData *data in array) {
+                UIImage *image = [UIImage imageWithData:data];
+                [self.imagesAry addObject:image];
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [UIView animateWithDuration:0.5 animations:^{
+                    [hud hide:YES];
+                }];
+                [self imageViewsConstraint];
+            });
+        });
+    }
+    
+    //显示草稿文字
+    self.releaseView.releaseTextView.text = [SZHArchiveTool getDraftsStr];
+    if ([self.releaseView.releaseTextView.text isEqualToString:@""]) {
+    }else{
+        [self.releaseView.placeHolderLabel setHidden:YES];
+        //设置统计字数
+        self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%lu/%d",(unsigned long)self.releaseView.releaseTextView.text.length,MAX_LIMT_NUM];
+        //设置按钮为可用状态并设置颜色
+        self.releaseView.releaseBtn.userInteractionEnabled = YES;
+        if (@available(iOS 11.0, *)) {
+            self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+}
+
 #pragma mark- respose events
 //设置点击空白处收回键盘
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -246,20 +271,23 @@
         UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [view removeFromSuperview];     //移除遮罩层
             [NewQAHud showHudWith:@"正在保存" AddView:self.view];
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                NSString *draftStr = self.releaseView.releaseTextView.text;
-                [SZHArchiveTool saveDraftsImagesAry:self.imagesAry];
-                [SZHArchiveTool saveDraftsStr:draftStr];
-                [self.navigationController popViewControllerAnimated:YES];
-            });
-            
+
             //异步执行归档耗时操作
-           
-//            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//                //缓存
-//
-//            });
+            NSString *draftStr = self.releaseView.releaseTextView.text;
+            
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                NSMutableArray *imageDataAry = [NSMutableArray array];
+                for (UIImage *image in self.imagesAry) {
+                    NSData *data = UIImagePNGRepresentation(image);
+                    [imageDataAry addObject:data];
+                }
+                [SZHArchiveTool saveDraftsImagesAry:imageDataAry];
+                [SZHArchiveTool saveDraftsStr:draftStr];
+            });
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+            //保存有草稿的信号
+
             NSString *string = @"yes";
             [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"isSaveDrafts"];
             
@@ -269,7 +297,8 @@
         UIAlertAction *noSaveAction = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
             [view removeFromSuperview];     //移除遮罩层
             [self.navigationController popToRootViewControllerAnimated:YES];
-            [SZHArchiveTool removeDrafts];
+            [SZHArchiveTool removeDrafts];      //删除之前的草稿缓存
+            //保存无草稿的信号
             [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"isSaveDrafts"];
         }];
         
@@ -289,7 +318,7 @@
 }
 /**
  发布动态
- 1.如果选择标签，就提示没有选择标签，如果不选择就归类到其他
+ 1.如果选择标签，第一次点击提示没有选择标签，如果第二次点击仍不选择就归类到其他
  2.无网络连接提示无网络连接
  3.
  */
@@ -306,7 +335,7 @@
             hud.labelText = @"未添加标签";
             [hud hide:YES afterDelay:1];    //延迟一秒后消失
         }else{
-            self.circleLabelText = @"# 其他";
+            self.circleLabelText = @"其他";
             [self updateDynamic];
         }
     }else{
@@ -434,7 +463,7 @@
         //不显示提示文字
         [self.releaseView.placeHolderLabel setHidden:YES];
         //设置按钮为可用状态并设置颜色
-        self.releaseView.releaseBtn.enabled = YES;
+        self.releaseView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
             self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
         } else {
@@ -444,7 +473,7 @@
         //显示提示文字
         [self.releaseView.placeHolderLabel setHidden:NO];
         //设置按钮为禁用状态并且设置颜色
-        self.releaseView.releaseBtn.enabled = NO;
+        self.releaseView.releaseBtn.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
             self.releaseView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
         } else {

@@ -183,11 +183,15 @@
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
         make.width.mas_equalTo(_groupImage.size);
     }];
+
+    _groupLabel.layer.cornerRadius = 1/2 * _groupImage.size.height * 1/2;
+
     
     [_starBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groupLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 20.75/20.05);
-        make.left.mas_equalTo(self.groupLabel.mas_right).mas_offset(SCREEN_WIDTH * 0.2467);
+
+        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.5587);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.1648);
     }];
     
@@ -226,6 +230,21 @@
         self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%@",item.publish_time]];
         self.detailLabel.text = item.content;
         [self.groupLabel setTitle:[NSString stringWithFormat:@"# %@",item.topic] forState:UIControlStateNormal];
+
+        NSString *content = self.groupLabel.titleLabel.text;
+        UIFont *font = self.groupLabel.titleLabel.font;
+        CGSize size = CGSizeMake(MAXFLOAT, 30.0f);
+        CGSize buttonSize = [content boundingRectWithSize:size
+        options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+        attributes:@{ NSFontAttributeName:font}
+        context:nil].size;
+        [_groupLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.collectView.mas_bottom).mas_offset(11);
+            make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-Pading * 62.5/16);
+            make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
+            make.width.mas_equalTo(buttonSize.width + SCREEN_WIDTH * 0.05 * 2);
+        }];
+
         self.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.comment_count];
         self.starBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.praise_count];
         self.starBtn.selected = [item.is_praised intValue] == 1 ? YES : NO;
@@ -353,6 +372,13 @@
 - (void)ClickedShare:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(ClickedShareBtn:)]) {
         [self.delegate ClickedShareBtn:sender];
+    }
+}
+
+///点击标签跳转进相应的圈子
+- (void)ClickedGroupTopicBtn:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(ClickedGroupTopicBtn:)]) {
+        [self.delegate ClickedGroupTopicBtn:sender];
     }
 }
 @end

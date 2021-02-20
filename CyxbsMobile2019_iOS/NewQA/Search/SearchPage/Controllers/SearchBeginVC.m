@@ -76,6 +76,12 @@
 }
 
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    //点属性设置不行，必须用set
+    [self.tabBarController.tabBar setHidden:NO];
+}
+
 #pragma mark- event response
 //设置点击空白处收回键盘
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -105,7 +111,6 @@
     if ([searchString isEqualToString:@""]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.searchBeginTopView animated:YES];
         [hud setMode:(MBProgressHUDModeText)];
-//        hud.label.text = @"输入为空";
         hud.labelText = @"输入为空";
         [hud hide:YES afterDelay:1];  //延迟一秒后消失
         return;                 //直接返回
@@ -116,31 +121,32 @@
      进行网络请求获取数据
      先将搜索帖子和搜索知识库的网络请求全部获取后再进行后续逻辑判断
     */
-    self.getDynamicFailure = NO;
-    self.getKnowledgeFailure = NO;
-    __weak typeof(self)weakSelf = self;
-    //请求相关动态
-    [self.searchDataModel getSearchDynamicWithStr:@"test" Sucess:^(NSDictionary * _Nonnull dynamicDic) {
-        weakSelf.searchDynamicDic = dynamicDic;
-        [weakSelf processData];
-        } Failure:^{
-            weakSelf.getDynamicFailure = YES;
-            [weakSelf processData];
-        }];
-    //请求帖子
-    [self.searchDataModel getSearchKnowledgeWithStr:@"test" Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
-        weakSelf.searchKnowledgeDic = knowledgeDic;
-        [weakSelf processData];
-        } Failure:^{
-            weakSelf.getKnowledgeFailure = YES;
-            [weakSelf processData];
-        }];
 
-    //清除缓存
-    self.searchDynamicDic = nil;
-    self.searchKnowledgeDic = nil;
-//    SearchEndNoResultCV *vc = [[SearchEndNoResultCV alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+//    self.getDynamicFailure = NO;
+//    self.getKnowledgeFailure = NO;
+//    __weak typeof(self)weakSelf = self;
+//    //请求相关动态
+//    [self.searchDataModel getSearchDynamicWithStr:@"test" Sucess:^(NSDictionary * _Nonnull dynamicDic) {
+//        weakSelf.searchDynamicDic = dynamicDic;
+//        [weakSelf processData];
+//        } Failure:^{
+//            weakSelf.getDynamicFailure = YES;
+//            [weakSelf processData];
+//        }];
+//    //请求帖子
+//    [self.searchDataModel getSearchKnowledgeWithStr:@"test" Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
+//        weakSelf.searchKnowledgeDic = knowledgeDic;
+//        [weakSelf processData];
+//        } Failure:^{
+//            weakSelf.getKnowledgeFailure = YES;
+//            [weakSelf processData];
+//        }];
+//
+//    //清除缓存
+//    self.searchDynamicDic = nil;
+//    self.searchKnowledgeDic = nil;
+    SearchEndNoResultCV *vc = [[SearchEndNoResultCV alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
     
     //3.添加历史记录
     [self wirteHistoryRecord:searchString];
@@ -330,7 +336,7 @@
                 [SZHArchiveTool saveHotWordsList:ary];
             }];
         }
-
+        
     }
 }
 /// 添加下半部分视图，如果有历史记录就展示，否则就不展示

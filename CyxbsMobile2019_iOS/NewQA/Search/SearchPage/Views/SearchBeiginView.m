@@ -29,6 +29,7 @@
     [_searchTopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0352);
+        make.bottom.equalTo(self.mas_top).offset(NVGBARHEIGHT + STATUSBARHEIGHT);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.0562));
     }];
     

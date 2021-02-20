@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ClickedCommentBtn:(FunctionBtn *)sender;
 - (void)ClickedShareBtn:(UIButton *)sender;
 
+- (void)ClickedGroupTopicBtn:(UIButton *)sender;
+
 @end
 
 @interface PostTableViewCell : UITableViewCell
