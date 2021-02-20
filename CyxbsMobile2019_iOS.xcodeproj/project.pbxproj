@@ -390,10 +390,10 @@
 		B845737925C0408E005EFB91 /* SZHSearchDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B845737825C0408E005EFB91 /* SZHSearchDataModel.m */; };
 		B85C435B25C1A38900C51318 /* SZHReleasView.m in Sources */ = {isa = PBXBuildFile; fileRef = B85C435A25C1A38900C51318 /* SZHReleasView.m */; };
 		B87E3DFB25D8F49D00C16E39 /* CircleLabelBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = B87E3DFA25D8F49D00C16E39 /* CircleLabelBtn.m */; };
-		B87E3E0125D8F82600C16E39 /* SZHCircleLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B87E3E0025D8F82600C16E39 /* SZHCircleLabelView.m */; };
 		B892095425BEC30B00386451 /* SearchTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095325BEC30B00386451 /* SearchTopView.m */; };
 		B892095A25BEDA1A00386451 /* SearchBeiginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095925BEDA1A00386451 /* SearchBeiginView.m */; };
 		B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B892096B25BEDEA600386451 /* SearchBeginVC.m */; };
+		B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */; };
 		B8C705BF25D7ABC8009B73F7 /* SZHPhotoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C705BE25D7ABC8009B73F7 /* SZHPhotoImageView.m */; };
 		B8C705C525D8018D009B73F7 /* originPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C705C425D8018D009B73F7 /* originPhotoView.m */; };
 		B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */; };
@@ -1304,14 +1304,14 @@
 		B85C435A25C1A38900C51318 /* SZHReleasView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SZHReleasView.m; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHReleasView.m; sourceTree = SOURCE_ROOT; };
 		B87E3DF925D8F49D00C16E39 /* CircleLabelBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CircleLabelBtn.h; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/CircleLabelBtn.h; sourceTree = SOURCE_ROOT; };
 		B87E3DFA25D8F49D00C16E39 /* CircleLabelBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CircleLabelBtn.m; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/CircleLabelBtn.m; sourceTree = SOURCE_ROOT; };
-		B87E3DFF25D8F82600C16E39 /* SZHCircleLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHCircleLabelView.h; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHCircleLabelView.h; sourceTree = SOURCE_ROOT; };
-		B87E3E0025D8F82600C16E39 /* SZHCircleLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SZHCircleLabelView.m; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHCircleLabelView.m; sourceTree = SOURCE_ROOT; };
 		B892095225BEC30B00386451 /* SearchTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchTopView.h; sourceTree = "<group>"; };
 		B892095325BEC30B00386451 /* SearchTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchTopView.m; sourceTree = "<group>"; };
 		B892095825BEDA1A00386451 /* SearchBeiginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBeiginView.h; sourceTree = "<group>"; };
 		B892095925BEDA1A00386451 /* SearchBeiginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBeiginView.m; sourceTree = "<group>"; };
 		B892096A25BEDEA600386451 /* SearchBeginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBeginVC.h; sourceTree = "<group>"; };
 		B892096B25BEDEA600386451 /* SearchBeginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBeginVC.m; sourceTree = "<group>"; };
+		B8A981F525E1452B0020CD86 /* SZHCircleLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHCircleLabelView.h; path = CyxbsMobile2019_iOS/SZHCircleLabelView.h; sourceTree = SOURCE_ROOT; };
+		B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SZHCircleLabelView.m; path = CyxbsMobile2019_iOS/SZHCircleLabelView.m; sourceTree = SOURCE_ROOT; };
 		B8C705BD25D7ABC8009B73F7 /* SZHPhotoImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHPhotoImageView.h; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHPhotoImageView.h; sourceTree = SOURCE_ROOT; };
 		B8C705BE25D7ABC8009B73F7 /* SZHPhotoImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SZHPhotoImageView.m; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHPhotoImageView.m; sourceTree = SOURCE_ROOT; };
 		B8C705C325D8018D009B73F7 /* originPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = originPhotoView.h; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/originPhotoView.h; sourceTree = SOURCE_ROOT; };
@@ -3643,8 +3643,8 @@
 				B8C705C425D8018D009B73F7 /* originPhotoView.m */,
 				B87E3DF925D8F49D00C16E39 /* CircleLabelBtn.h */,
 				B87E3DFA25D8F49D00C16E39 /* CircleLabelBtn.m */,
-				B87E3DFF25D8F82600C16E39 /* SZHCircleLabelView.h */,
-				B87E3E0025D8F82600C16E39 /* SZHCircleLabelView.m */,
+				B8A981F525E1452B0020CD86 /* SZHCircleLabelView.h */,
+				B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4687,6 +4687,7 @@
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				D06AAEDF24AC00BB00EE0892 /* QAReviewView.m in Sources */,
 				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
+				B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */,
 				18CDF717257F91BE006E8E5C /* ActivityItem.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				18CDF6B8257F91BD006E8E5C /* ScoreViewController.m in Sources */,

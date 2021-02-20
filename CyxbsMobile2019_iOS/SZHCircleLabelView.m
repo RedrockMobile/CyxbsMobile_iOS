@@ -2,7 +2,7 @@
 //  SZHCircleLabelView.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 石子涵 on 2021/2/14.
+//  Created by 石子涵 on 2021/2/20.
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
@@ -14,12 +14,6 @@
     if (self) {
         //关于一些自己的设置
         self.split = MAIN_SCREEN_W * 0.032;
-            //设置滑动区域
-        self.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.75);
-            //隐藏滑动条
-        self.showsHorizontalScrollIndicator = NO;
-        self.showsVerticalScrollIndicator = NO;
-        
         //添加控件
         [self addLabelAndView];
         
@@ -124,4 +118,5 @@
 - (void)changeBtnState:(UIButton *)sender{
     [self.delegate clickACirleBtn:sender];
 }
+
 @end

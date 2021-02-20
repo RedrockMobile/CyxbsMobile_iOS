@@ -28,7 +28,6 @@
         for (int i = 0; i < imageAry.count; i++) {
             [imageNameAry addObject:[NSString stringWithFormat:@"photo%d",i+1]];
         }
-
         //如果上传原图，将图片进行无损压缩
         if (isOriginPhoto == YES) {
             for (int i = 0; i < imageAry.count; i++) {

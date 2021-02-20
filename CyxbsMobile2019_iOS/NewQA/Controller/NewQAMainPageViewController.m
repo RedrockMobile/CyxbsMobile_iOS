@@ -706,12 +706,10 @@
     
 }
 
-
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(UIButton *)sender {
     
 }
-
 
 ///点击标签跳转到相应的圈子
 - (void)ClickedGroupTopicBtn:(UIButton *)sender {
@@ -726,7 +724,6 @@
 
 ///点击了搜索按钮，跳转到搜索页面
 - (void)searchPost {
-
     self.hidesBottomBarWhenPushed = YES;
     [self.tabBarController.tabBar setHidden:YES];
     self.tabBarController.tabBar.hidden = YES;
