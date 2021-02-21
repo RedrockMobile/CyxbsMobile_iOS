@@ -82,7 +82,7 @@
         if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
             self->_question_is = info[@"data"][@"question_is"];
             self->_email_is = info[@"data"][@"email_is"];
-            if ([self->_question_is intValue] != 0 || [self->_email_is intValue] != 0) {
+            if ([self->_question_is intValue] == 0 || [self->_email_is intValue] == 0) {
                 [self setAlertView];
             }
         }

@@ -77,13 +77,14 @@
     [self saveDataFromNet];
 }
 - (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
     [self.tabBarController.tabBar setHidden:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:YES];
+    [super viewWillDisappear:animated];
     //点属性设置不行，必须用set
-    [self.tabBarController.tabBar setHidden:NO];
+//    [self.tabBarController.tabBar setHidden:NO];
+    self.tabBarController.tabBar.hidden = NO;
 }
 #pragma mark- private methods
 /// 添加的图片框的约束
