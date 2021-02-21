@@ -27,13 +27,17 @@
         } else {
             
         }
+        self.rowHeight = UITableViewAutomaticDimension;
+        self.estimatedRowHeight = SCREEN_HEIGHT * 0.461;
         if (@available(iOS 11.0, *)) {
             self.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
-            // Fallback on earlier versions
+            if (@available(iOS 13.0, *)) {
+                self.automaticallyAdjustsScrollIndicatorInsets = NO;
+            } else {
+                // Fallback on earlier versions
+            }
         }
-        self.rowHeight = UITableViewAutomaticDimension;
-        self.estimatedRowHeight = SCREEN_HEIGHT * 0.461;
     }
     return self;
 }

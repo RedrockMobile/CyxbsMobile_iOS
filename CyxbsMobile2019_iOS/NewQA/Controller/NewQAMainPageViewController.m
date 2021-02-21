@@ -23,6 +23,9 @@
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
 #import "SearchBeginVC.h"   //搜索初始界面
+#import "SZHReleaseDynamic.h" // 发布动态界面
+
+
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
 //帖子列表数据源数组
 @property (nonatomic, strong) NSMutableArray *tableArray;
@@ -60,6 +63,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    self.tabBarController.tabBar.hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
 }
 -(void)viewDidLayoutSubviews{
@@ -719,17 +723,19 @@
 #pragma mark -发布动态和搜索的跳转
 ///点击了发布按钮，跳转到发布动态的页面
 - (void)clickedPublishBtn {
+    SZHReleaseDynamic *vc = [[SZHReleaseDynamic alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    self.tabBarController.tabBar.hidden = NO;
+    [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"跳转到发布界面");
 }
 
 ///点击了搜索按钮，跳转到搜索页面
 - (void)searchPost {
-    self.hidesBottomBarWhenPushed = YES;
-    [self.tabBarController.tabBar setHidden:YES];
-    self.tabBarController.tabBar.hidden = YES;
     SearchBeginVC *vc = [[SearchBeginVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    self.tabBarController.tabBar.hidden = NO;
     [self.navigationController pushViewController:vc animated:YES];
-   
     NSLog(@"跳转到搜索页面");
 }
 
