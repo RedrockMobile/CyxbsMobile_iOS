@@ -285,7 +285,6 @@
 		1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */; };
 		1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */; };
 		1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */; };
-		1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3A623D33F1300FBBD83 /* CheckInPresenter.m */; };
 		1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3A923D33F1300FBBD83 /* CheckInModel.m */; };
 		1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */; };
 		1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3B123D340EF00FBBD83 /* StoreCollectionViewCell.m */; };
@@ -310,7 +309,6 @@
 		1A67856D251B4F94002BCA28 /* MGJRouterRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A67856C251B4F94002BCA28 /* MGJRouterRegister.m */; };
 		1A799562252B43E400603253 /* SwiftyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A799561252B43E400603253 /* SwiftyClient.swift */; };
 		1A79956C252B5BC300603253 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79956B252B5BC300603253 /* LoginModel.swift */; };
-		1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7BAC652369AC2900CA512D /* MineContentView.m */; };
 		1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7BAC682369B28400CA512D /* MineHeaderView.m */; };
 		1A9B766C235F50A600725937 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B766B235F50A600725937 /* AppDelegate.m */; };
 		1A9B7674235F50A800725937 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B7673235F50A800725937 /* Assets.xcassets */; };
@@ -319,7 +317,6 @@
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1A9EB52024F90C6D00B6AD83 /* IntegralIntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9EB51F24F90C6D00B6AD83 /* IntegralIntroductionController.m */; };
-		1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AAFACF7236B360F00E854A3 /* MinePresenter.m */; };
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
 		1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550423C9AB3700DF0475 /* CheckedInDot.m */; };
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
@@ -366,6 +363,14 @@
 		AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA49098524F3B6B4007CB3BC /* ClassSchedulInterController.m */; };
 		AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA49098824F3BF5A007CB3BC /* TransitionManager.m */; };
 		AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */; };
+		AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FA1DE25C2DE5F005139BA /* LearnMoreViewController.m */; };
+		AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FA1F325C2E1E3005139BA /* PraiseViewController.m */; };
+		AA4FA1FA25C2E2E5005139BA /* PraiseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FA1F925C2E2E5005139BA /* PraiseTableViewCell.m */; };
+		AA4FF36525879CD500C31286 /* MineSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FF36425879CD500C31286 /* MineSettingViewController.m */; };
+		AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5368EF2589E28800236CB5 /* QuitTipView.m */; };
+		AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA536DD9258C3F7C00F69E73 /* TopBarBasicViewController.m */; };
+		AA536DF5258C4F7600F69E73 /* IgnoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA536DF4258C4F7600F69E73 /* IgnoreViewController.m */; };
+		AA536DFC258C544800F69E73 /* IgnoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA536DFB258C544800F69E73 /* IgnoreTableViewCell.m */; };
 		AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588824EE739F002F6F6D /* TimeBtnSelectedBackView.m */; };
 		AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */; };
 		AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */; };
@@ -1090,8 +1095,6 @@
 		1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreContentView.m; sourceTree = "<group>"; };
 		1A30F39B23D0B86400FBBD83 /* IntegralStorePercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStorePercentDrivenController.h; sourceTree = "<group>"; };
 		1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStorePercentDrivenController.m; sourceTree = "<group>"; };
-		1A30F3A523D33F1300FBBD83 /* CheckInPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInPresenter.h; sourceTree = "<group>"; };
-		1A30F3A623D33F1300FBBD83 /* CheckInPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInPresenter.m; sourceTree = "<group>"; };
 		1A30F3A823D33F1300FBBD83 /* CheckInModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInModel.h; sourceTree = "<group>"; };
 		1A30F3A923D33F1300FBBD83 /* CheckInModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInModel.m; sourceTree = "<group>"; };
 		1A30F3AB23D33F1300FBBD83 /* CheckInProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInProtocol.h; sourceTree = "<group>"; };
@@ -1136,11 +1139,8 @@
 		1A67856C251B4F94002BCA28 /* MGJRouterRegister.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGJRouterRegister.m; sourceTree = "<group>"; };
 		1A799561252B43E400603253 /* SwiftyClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyClient.swift; sourceTree = "<group>"; };
 		1A79956B252B5BC300603253 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
-		1A7BAC642369AC2900CA512D /* MineContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineContentView.h; sourceTree = "<group>"; };
-		1A7BAC652369AC2900CA512D /* MineContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineContentView.m; sourceTree = "<group>"; };
 		1A7BAC672369B28400CA512D /* MineHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeaderView.h; sourceTree = "<group>"; };
 		1A7BAC682369B28400CA512D /* MineHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineHeaderView.m; sourceTree = "<group>"; };
-		1A7BAC6A2369C93400CA512D /* MineContentViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineContentViewProtocol.h; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B766A235F50A600725937 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A9B766B235F50A600725937 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1156,8 +1156,6 @@
 		1A9B7690235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9EB51E24F90C6D00B6AD83 /* IntegralIntroductionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralIntroductionController.h; sourceTree = "<group>"; };
 		1A9EB51F24F90C6D00B6AD83 /* IntegralIntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralIntroductionController.m; sourceTree = "<group>"; };
-		1AAFACF6236B360F00E854A3 /* MinePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinePresenter.h; sourceTree = "<group>"; };
-		1AAFACF7236B360F00E854A3 /* MinePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinePresenter.m; sourceTree = "<group>"; };
 		1ABE8024238D01EC00E88C4E /* CheckInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInViewController.h; sourceTree = "<group>"; };
 		1ABE8025238D01EC00E88C4E /* CheckInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInViewController.m; sourceTree = "<group>"; };
 		1AC2550323C9AB3700DF0475 /* CheckedInDot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckedInDot.h; sourceTree = "<group>"; };
@@ -1252,6 +1250,22 @@
 		AA49098824F3BF5A007CB3BC /* TransitionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitionManager.m; sourceTree = "<group>"; };
 		AA4B0FB124D3E09B00221B5A /* TopBarScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopBarScrollView.h; sourceTree = "<group>"; };
 		AA4B0FB224D3E09B00221B5A /* TopBarScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopBarScrollView.m; sourceTree = "<group>"; };
+		AA4FA1DD25C2DE5E005139BA /* LearnMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnMoreViewController.h; sourceTree = "<group>"; };
+		AA4FA1DE25C2DE5F005139BA /* LearnMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnMoreViewController.m; sourceTree = "<group>"; };
+		AA4FA1F225C2E1E3005139BA /* PraiseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PraiseViewController.h; sourceTree = "<group>"; };
+		AA4FA1F325C2E1E3005139BA /* PraiseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PraiseViewController.m; sourceTree = "<group>"; };
+		AA4FA1F825C2E2E5005139BA /* PraiseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PraiseTableViewCell.h; sourceTree = "<group>"; };
+		AA4FA1F925C2E2E5005139BA /* PraiseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PraiseTableViewCell.m; sourceTree = "<group>"; };
+		AA4FF36325879CD500C31286 /* MineSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSettingViewController.h; sourceTree = "<group>"; };
+		AA4FF36425879CD500C31286 /* MineSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineSettingViewController.m; sourceTree = "<group>"; };
+		AA5368EE2589E28800236CB5 /* QuitTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuitTipView.h; sourceTree = "<group>"; };
+		AA5368EF2589E28800236CB5 /* QuitTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuitTipView.m; sourceTree = "<group>"; };
+		AA536DD8258C3F7C00F69E73 /* TopBarBasicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopBarBasicViewController.h; sourceTree = "<group>"; };
+		AA536DD9258C3F7C00F69E73 /* TopBarBasicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopBarBasicViewController.m; sourceTree = "<group>"; };
+		AA536DF3258C4F7600F69E73 /* IgnoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IgnoreViewController.h; sourceTree = "<group>"; };
+		AA536DF4258C4F7600F69E73 /* IgnoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IgnoreViewController.m; sourceTree = "<group>"; };
+		AA536DFA258C544800F69E73 /* IgnoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IgnoreTableViewCell.h; sourceTree = "<group>"; };
+		AA536DFB258C544800F69E73 /* IgnoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IgnoreTableViewCell.m; sourceTree = "<group>"; };
 		AA57588724EE739F002F6F6D /* TimeBtnSelectedBackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimeBtnSelectedBackView.h; sourceTree = "<group>"; };
 		AA57588824EE739F002F6F6D /* TimeBtnSelectedBackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimeBtnSelectedBackView.m; sourceTree = "<group>"; };
 		AA57588A24EF5841002F6F6D /* NoticeWaySelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeWaySelectView.h; sourceTree = "<group>"; };
@@ -2059,11 +2073,11 @@
 			isa = PBXGroup;
 			children = (
 				18CDF514257F91BC006E8E5C /* ScheduleInquiryViewController.h */,
-				18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */,
-				18CDF516257F91BC006E8E5C /* ScheduleViewController.m */,
-				18CDF517257F91BC006E8E5C /* ChooseStudentListViewController.h */,
 				18CDF518257F91BC006E8E5C /* ScheduleInquiryViewController.m */,
+				18CDF517257F91BC006E8E5C /* ChooseStudentListViewController.h */,
+				18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */,
 				18CDF519257F91BC006E8E5C /* ScheduleViewController.h */,
+				18CDF516257F91BC006E8E5C /* ScheduleViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2149,12 +2163,12 @@
 		18CDF53B257F91BC006E8E5C /* Discover_WeDate */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF53C257F91BC006E8E5C /* PeopleListTableViewCell.h */,
 				18CDF53D257F91BC006E8E5C /* WeDateViewController.h */,
-				18CDF53E257F91BC006E8E5C /* ChoosePeopleListView.h */,
 				18CDF53F257F91BC006E8E5C /* WeDateViewController.m */,
-				18CDF540257F91BC006E8E5C /* PeopleListTableViewCell.m */,
+				18CDF53E257F91BC006E8E5C /* ChoosePeopleListView.h */,
 				18CDF541257F91BC006E8E5C /* ChoosePeopleListView.m */,
+				18CDF53C257F91BC006E8E5C /* PeopleListTableViewCell.h */,
+				18CDF540257F91BC006E8E5C /* PeopleListTableViewCell.m */,
 			);
 			path = Discover_WeDate;
 			sourceTree = "<group>";
@@ -2739,10 +2753,13 @@
 		1A14132A235F523B0001417E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF47F257F8DBD006E8E5C /* Safe */,
+				AA536DD8258C3F7C00F69E73 /* TopBarBasicViewController.h */,
+				AA536DD9258C3F7C00F69E73 /* TopBarBasicViewController.m */,
+				AA4FF36225879C6E00C31286 /* Setting */,
 				18CDF477257F8D9C006E8E5C /* Mine.xcassets */,
 				1AEF3103245BFF3D00487D40 /* MyGoods */,
 				1A344BB123E96AB80014A3B4 /* About */,
+				AA4FA1C025C2DBC9005139BA /* 获赞 */,
 				1A16591423D84AC00039BA46 /* Mine_QA */,
 				1A30F38E23D0574F00FBBD83 /* IntegralStore */,
 				1AFD152C23819505004D9CEA /* CustomTransition */,
@@ -2753,22 +2770,9 @@
 			path = Mine;
 			sourceTree = "<group>";
 		};
-		1A14132B235F523B0001417E /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				1AAFACF6236B360F00E854A3 /* MinePresenter.h */,
-				1AAFACF7236B360F00E854A3 /* MinePresenter.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		1A14132D235F523B0001417E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1A14132E235F523B0001417E /* MineViewController.h */,
-				1A14132F235F523B0001417E /* MineViewController.m */,
-				1A7BAC642369AC2900CA512D /* MineContentView.h */,
-				1A7BAC652369AC2900CA512D /* MineContentView.m */,
 				1A7BAC672369B28400CA512D /* MineHeaderView.h */,
 				1A7BAC682369B28400CA512D /* MineHeaderView.m */,
 			);
@@ -2953,15 +2957,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1A30F3A423D33F1300FBBD83 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				1A30F3A523D33F1300FBBD83 /* CheckInPresenter.h */,
-				1A30F3A623D33F1300FBBD83 /* CheckInPresenter.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		1A30F3A723D33F1300FBBD83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3022,6 +3017,8 @@
 				1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */,
 				1AFE534F24F7571300F42A74 /* IntroductionController.h */,
 				1AFE535024F7571300F42A74 /* IntroductionController.m */,
+				AA4FA1DD25C2DE5E005139BA /* LearnMoreViewController.h */,
+				AA4FA1DE25C2DE5F005139BA /* LearnMoreViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3107,14 +3104,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1A7BAC632369AB9500CA512D /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				1A7BAC6A2369C93400CA512D /* MineContentViewProtocol.h */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
@@ -3194,7 +3183,6 @@
 			isa = PBXGroup;
 			children = (
 				1A30F3A723D33F1300FBBD83 /* Model */,
-				1A30F3A423D33F1300FBBD83 /* Presenter */,
 				1A30F3AA23D33F1300FBBD83 /* Protocol */,
 				1ABE8021238D01C600E88C4E /* View */,
 			);
@@ -3333,9 +3321,8 @@
 			isa = PBXGroup;
 			children = (
 				1AD6D1BC23E161050099A7E2 /* Model */,
-				1A7BAC632369AB9500CA512D /* Protocol */,
-				1A14132B235F523B0001417E /* Presenter */,
 				1A14132D235F523B0001417E /* View */,
+				AA4FA1BC25C2A5C2005139BA /* Controller */,
 			);
 			path = Mine_MainPage;
 			sourceTree = "<group>";
@@ -3425,6 +3412,50 @@
 				F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AA4FA1BC25C2A5C2005139BA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A14132E235F523B0001417E /* MineViewController.h */,
+				1A14132F235F523B0001417E /* MineViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		AA4FA1C025C2DBC9005139BA /* 获赞 */ = {
+			isa = PBXGroup;
+			children = (
+				AA4FA1F225C2E1E3005139BA /* PraiseViewController.h */,
+				AA4FA1F325C2E1E3005139BA /* PraiseViewController.m */,
+				AA4FA1F825C2E2E5005139BA /* PraiseTableViewCell.h */,
+				AA4FA1F925C2E2E5005139BA /* PraiseTableViewCell.m */,
+			);
+			path = "获赞";
+			sourceTree = "<group>";
+		};
+		AA4FF36225879C6E00C31286 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				AA4FF36325879CD500C31286 /* MineSettingViewController.h */,
+				AA4FF36425879CD500C31286 /* MineSettingViewController.m */,
+				AA5368EE2589E28800236CB5 /* QuitTipView.h */,
+				AA5368EF2589E28800236CB5 /* QuitTipView.m */,
+				AA8A7422258B57430062FD9D /* PeopleIgnore */,
+				18CDF47F257F8DBD006E8E5C /* Safe */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		AA8A7422258B57430062FD9D /* PeopleIgnore */ = {
+			isa = PBXGroup;
+			children = (
+				AA536DF3258C4F7600F69E73 /* IgnoreViewController.h */,
+				AA536DF4258C4F7600F69E73 /* IgnoreViewController.m */,
+				AA536DFA258C544800F69E73 /* IgnoreTableViewCell.h */,
+				AA536DFB258C544800F69E73 /* IgnoreTableViewCell.m */,
+			);
+			path = PeopleIgnore;
 			sourceTree = "<group>";
 		};
 		AA9ABE9424ECC9E300D16BE0 /* btn */ = {
@@ -4629,6 +4660,8 @@
 				18CDF4C1257F8DBD006E8E5C /* sendEmailModel.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
 				1A16591D23D84B560039BA46 /* MineSegmentedView.m in Sources */,
+				AA4FA1FA25C2E2E5005139BA /* PraiseTableViewCell.m in Sources */,
+				AA4FF36525879CD500C31286 /* MineSettingViewController.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				18CDF6CC257F91BE006E8E5C /* SchoolBusPresenter.m in Sources */,
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
@@ -4666,6 +4699,7 @@
 				1817F0512594D5C500FE1304 /* FunctionBtn.m in Sources */,
 				18CDF661257F91BD006E8E5C /* WeekAndDay.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
+				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				D03E59D323DB30AA00E0F34D /* QAAskViewController.m in Sources */,
 				D026A81723D50421001A4774 /* QADetailViewController.m in Sources */,
@@ -4676,6 +4710,7 @@
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
 				18CDF6B6257F91BD006E8E5C /* SCPieChartDataItem.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
+				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
 				18CDF682257F91BD006E8E5C /* EmptyClassItem.m in Sources */,
 				18CDF688257F91BD006E8E5C /* EmptyClassContentView.m in Sources */,
 				18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */,
@@ -4747,9 +4782,11 @@
 				1817F04E2594D5C500FE1304 /* ReportView.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
+				B87E3E0125D8F82600C16E39 /* SZHCircleLabelView.m in Sources */,
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				18CDF6AA257F91BD006E8E5C /* NewsCell.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
+				AA536DF5258C4F7600F69E73 /* IgnoreViewController.m in Sources */,
 				18CDF66C257F91BD006E8E5C /* BannerModel.m in Sources */,
 				18CDF685257F91BD006E8E5C /* EmptyClassTableViewCell.m in Sources */,
 				18CDF663257F91BD006E8E5C /* ElectricFeeItem.m in Sources */,
@@ -4817,6 +4854,7 @@
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
+				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
 				18CDF6B2257F91BD006E8E5C /* SCColor.m in Sources */,
 				18CDF6D3257F91BE006E8E5C /* HeaderGifRefresh.m in Sources */,
 				7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */,
@@ -4870,7 +4908,6 @@
 				18CDF696257F91BD006E8E5C /* FYHCycleLabel.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
 				18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */,
-				1A30F3AC23D33F1300FBBD83 /* CheckInPresenter.m in Sources */,
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				1AEF311C245C71CE00487D40 /* MyGoodsModel.m in Sources */,
@@ -4932,6 +4969,7 @@
 				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
 				18CDF709257F91BE006E8E5C /* segmentTableViewCell.m in Sources */,
 				7FBF39F3257B79F30077494E /* LoginViewController.swift in Sources */,
+				AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */,
 				1AD6D1BF23E161100099A7E2 /* MineModel.m in Sources */,
 				DB4065002466D889006CE5BC /* DLHistodyButton.m in Sources */,
 				18CDF4BF257F8DBD006E8E5C /* questionAndAnswerModel.m in Sources */,
@@ -4953,6 +4991,7 @@
 				18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
 				18CDF677257F91BD006E8E5C /* ScorePresentAnimation.m in Sources */,
+				AA536DFC258C544800F69E73 /* IgnoreTableViewCell.m in Sources */,
 				18CDF4C5257F8DBD006E8E5C /* QuestionView.m in Sources */,
 				AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */,
 				1817F0472594D5C500FE1304 /* GroupModel.m in Sources */,
@@ -5150,7 +5189,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 19;
-				DEVELOPMENT_TEAM = QM475FB4ML;
+				DEVELOPMENT_TEAM = PU7F26AM3C;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5160,7 +5199,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869CDWE;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -5179,7 +5218,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 19;
-				DEVELOPMENT_TEAM = QM475FB4ML;
+				DEVELOPMENT_TEAM = PU7F26AM3C;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5189,7 +5228,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869CDWE;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";

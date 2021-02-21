@@ -34,14 +34,13 @@
     
     UIViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
+    MineViewController *mineVC;
     if ([from isKindOfClass:[UITabBarController class]]) {
         [transitionContext.containerView addSubview:to.view];
         
         to.view.frame = CGRectMake(25, MAIN_SCREEN_H, MAIN_SCREEN_W - 50, MAIN_SCREEN_H - 100 - 24);
         [transitionContext.containerView layoutIfNeeded];
         
-        MineViewController *mineVC;
         for (UINavigationController *childVC in from.childViewControllers) {
             if ([childVC.viewControllers[0] isMemberOfClass:[MineViewController class]]) {
                 mineVC = (MineViewController *)childVC.viewControllers[0];
@@ -79,7 +78,7 @@
             from: EditMyInfoViewController
          */
         
-        MineViewController *mineVC;
+        
         for (UINavigationController *childVC in to.childViewControllers) {
             if ([childVC.viewControllers[0] isMemberOfClass:[MineViewController class]]) {
                 mineVC = (MineViewController *)childVC.viewControllers[0];

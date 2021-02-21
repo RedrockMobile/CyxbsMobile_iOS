@@ -10,7 +10,7 @@
 
 @implementation CheckInModel
 
-- (void)CheckInSucceeded:(void (^)(void))succeded Failed:(void (^)(NSError * _Nonnull))failed {
++ (void)CheckInSucceeded:(void (^)(void))succeded Failed:(void (^)(NSError * _Nonnull))failed {
     NSDictionary *params = @{
         @"stunum": [UserDefaultTool getStuNum],
         @"idnum": [UserDefaultTool getIdNum]
@@ -27,7 +27,7 @@
     }];
 }
 
-- (void)requestCheckInInfoWithParams:(NSDictionary *)params succeeded:(void (^)(void))succeded {
++ (void)requestCheckInInfoWithParams:(NSDictionary *)params succeeded:(void (^)(void))succeded {
     HttpClient *client = [HttpClient defaultClient];
     
     [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {

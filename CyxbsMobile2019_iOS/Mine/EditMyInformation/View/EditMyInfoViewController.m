@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) EditMyInfoPresenter *presenter;
 
-@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
+//@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 
 @property (nonatomic, assign) BOOL profileChanged;
 
@@ -26,13 +26,13 @@
 @implementation EditMyInfoViewController
 
 
-#pragma mark - Getter & Setter
-- (UIPanGestureRecognizer *)panGesture {
-    if (!_panGesture) {
-        _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(slideToDismiss:)];
-    }
-    return _panGesture;
-}
+//#pragma mark - Getter & Setter
+//- (UIPanGestureRecognizer *)panGesture {
+//    if (!_panGesture) {
+//        _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(slideToDismiss:)];
+//    }
+//    return _panGesture;
+//}
 
 
 - (void)viewDidLoad {
@@ -49,7 +49,6 @@
     self.contentView = contentView;
     contentView.delegate = self;
     contentView.contentScrollView.delegate = self;
-    [contentView.gestureView addGestureRecognizer:self.panGesture];
     contentView.contentScrollView.delegate = self;
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.leading.trailing.equalTo(self.view);
