@@ -51,7 +51,7 @@
     self.tittleLbl.font = [UIFont fontWithName:@"PingFangSC-Bold" size:15];
     [self addSubview:self.tittleLbl];
     [self.tittleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.0427);
+        make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.04);
         make.top.equalTo(self.topSeparationView.mas_bottom).offset(MAIN_SCREEN_H * 0.0292);
     }];
 }
@@ -82,31 +82,38 @@
 ///为btns添加约束，让它自动换行等等
 - (void)btnsAddConstraints{
     if (self.buttonArray.count == 0) return;
-    __block int k = 0;
     [self.buttonArray[0] mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.tittleLbl.mas_bottom).offset(MAIN_SCREEN_W * 0.0413);
+        make.top.equalTo(self.tittleLbl.mas_bottom).offset(MAIN_SCREEN_H * 0.0292);
         make.left.equalTo(self.tittleLbl);
         make.height.mas_equalTo(MAIN_SCREEN_H * 0.0382);
     }];
-    __block float lastBtnW,lastBtnX;
+    [self layoutIfNeeded];
+//NSLog(@"第一个button的x为%f,第一个button的y为%f",self.buttonArray[0].frame.origin.x,self.buttonArray[0].frame.origin.y);
+//    NSLog(@"第一个button的最小x为%f,第一个button的最小y为%f", CGRectGetMinX(self.buttonArray[0].frame),CGRectGetMinY(self.buttonArray[0].frame));
+//    NSLog(@"第一个button的最大x为%f,第一个button的最大y为%f", CGRectGetMaxY(self.buttonArray[0].frame),CGRectGetMaxX(self.buttonArray[0].frame));
+    //初始的X、Y值
+    CGFloat originX = self.buttonArray[0].frame.origin.x;
+    CGFloat originY = self.buttonArray[0].frame.origin.y;
+    //button间X、Y间距
+    CGFloat space = MAIN_SCREEN_W * 0.0333;
+    //button位置临界值判断变量
+    CGFloat positionX = originX;
+    CGFloat positionY = originY;
+    //最大X值
+    CGFloat maxX = MAIN_SCREEN_W;
     for (int i = 1; i < self.buttonArray.count; i++) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self layoutIfNeeded];
-            lastBtnW = self.buttonArray[i-1].frame.size.width;
-            lastBtnX = self.buttonArray[i-1].frame.origin.x;
-            if(lastBtnX + lastBtnW*2 > self.frame.size.width) {
-                k++;
-                [self.buttonArray[i] mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.tittleLbl.mas_bottom).offset(k * MAIN_SCREEN_W*0.1147 + self.split);
-                    make.left.equalTo(self.tittleLbl);
-                }];
-            }else {
-                [self.buttonArray[i] mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.left.equalTo(self.tittleLbl).offset(self.split + lastBtnW + lastBtnX);
-                    make.top.equalTo(self.tittleLbl.mas_bottom).offset(k * MAIN_SCREEN_W*0.1147 + MAIN_SCREEN_W * 0.0413);
-                }];
-            }
-        });
+        //button的字符串宽度
+        CGFloat titleWidth = [self.buttonArray[i].titleLabel.text boundingRectWithSize:CGSizeMake(1000, MAIN_SCREEN_H * 0.0382) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:12]} context:nil].size.width;
+        //button宽度
+        CGFloat buttonWidth = titleWidth + MAIN_SCREEN_W * 0.112;
+        CGFloat buttonX = CGRectGetMaxX(self.buttonArray[i-1].frame) + space;
+        positionX = CGRectGetMaxX(self.buttonArray[i-1].frame) + space + buttonWidth;
+        if (positionX > maxX) {
+            positionX = originX;
+            buttonX = originX;
+            positionY = positionY + MAIN_SCREEN_H * 0.0382 + space;
+        }
+        self.buttonArray[i].frame = CGRectMake(buttonX, positionY, buttonWidth, MAIN_SCREEN_H * 0.0382);
     }
 }
 

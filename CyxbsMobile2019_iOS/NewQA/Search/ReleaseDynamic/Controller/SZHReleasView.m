@@ -29,7 +29,7 @@
             // Fallback on earlier versions
         }
         //添加控件
-        [self addTopBarView];
+//        [self addTopBarView];
         [self addTextView];
         [self addAddPhotosBtn];
     }
@@ -141,7 +141,7 @@
     [self addSubview:self.releaseTextView];
     [self.releaseTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
-        make.top.equalTo(self.topSeparationView.mas_bottom);
+        make.top.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.1574));
     }];
     
@@ -180,7 +180,7 @@
     [self addSubview:self.numberOfTextLbl];
     [self.numberOfTextLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.releaseTextView);
-        make.right.equalTo(self.releaseBtn);
+        make.right.equalTo(self).offset(-MAIN_SCREEN_W *0.0413);
         make.height.mas_equalTo(11);
     }];
 }

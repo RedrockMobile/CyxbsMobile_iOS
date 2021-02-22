@@ -381,6 +381,7 @@
 		B82C451D25DBC09000340C12 /* SearchEndModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C451C25DBC09000340C12 /* SearchEndModel.m */; };
 		B82C452425DBE96200340C12 /* ReleaseDynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C452325DBE96200340C12 /* ReleaseDynamicModel.m */; };
 		B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C454225DC302100340C12 /* SZHArchiveTool.m */; };
+		B82D115525E35FF400690FA6 /* SZHReleaseTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82D115425E35FF400690FA6 /* SZHReleaseTopBarView.m */; };
 		B83766E725C13E0E00A8666A /* SZHSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */; };
 		B83766ED25C14FD600A8666A /* SearchEndNoResultCV.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766EC25C14FD600A8666A /* SearchEndNoResultCV.m */; };
 		B83766F325C150C000A8666A /* SZHSearchEndCv.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766F225C150C000A8666A /* SZHSearchEndCv.m */; };
@@ -1286,6 +1287,8 @@
 		B82C452325DBE96200340C12 /* ReleaseDynamicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReleaseDynamicModel.m; sourceTree = "<group>"; };
 		B82C454125DC302100340C12 /* SZHArchiveTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHArchiveTool.h; sourceTree = "<group>"; };
 		B82C454225DC302100340C12 /* SZHArchiveTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHArchiveTool.m; sourceTree = "<group>"; };
+		B82D115325E35FF400690FA6 /* SZHReleaseTopBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHReleaseTopBarView.h; sourceTree = "<group>"; };
+		B82D115425E35FF400690FA6 /* SZHReleaseTopBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHReleaseTopBarView.m; sourceTree = "<group>"; };
 		B83766E525C13E0E00A8666A /* SZHSearchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHSearchTableViewCell.h; sourceTree = "<group>"; };
 		B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHSearchTableViewCell.m; sourceTree = "<group>"; };
 		B83766EB25C14FD600A8666A /* SearchEndNoResultCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchEndNoResultCV.h; sourceTree = "<group>"; };
@@ -3611,16 +3614,8 @@
 				B82C452125DBE94900340C12 /* Models */,
 				B8AA53DE25B949E500CEE847 /* Views */,
 				B8AA53DD25B949DC00CEE847 /* Controller */,
-				B8AA53DC25B949D200CEE847 /* ViewModels */,
 			);
 			path = ReleaseDynamic;
-			sourceTree = "<group>";
-		};
-		B8AA53DC25B949D200CEE847 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B8AA53DD25B949DC00CEE847 /* Controller */ = {
@@ -3635,6 +3630,8 @@
 		B8AA53DE25B949E500CEE847 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B82D115325E35FF400690FA6 /* SZHReleaseTopBarView.h */,
+				B82D115425E35FF400690FA6 /* SZHReleaseTopBarView.m */,
 				B85C435925C1A38900C51318 /* SZHReleasView.h */,
 				B85C435A25C1A38900C51318 /* SZHReleasView.m */,
 				B8C705BD25D7ABC8009B73F7 /* SZHPhotoImageView.h */,
@@ -4774,6 +4771,7 @@
 				B8C705C525D8018D009B73F7 /* originPhotoView.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				D06AAEE024AC00BB00EE0892 /* QAReviewAnswerListView.m in Sources */,
+				B82D115525E35FF400690FA6 /* SZHReleaseTopBarView.m in Sources */,
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
@@ -4782,7 +4780,6 @@
 				1817F04E2594D5C500FE1304 /* ReportView.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
-				B87E3E0125D8F82600C16E39 /* SZHCircleLabelView.m in Sources */,
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				18CDF6AA257F91BD006E8E5C /* NewsCell.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
@@ -4822,7 +4819,6 @@
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				18CDF6B5257F91BD006E8E5C /* SCBar.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
-				1A7BAC662369AC2900CA512D /* MineContentView.m in Sources */,
 				1817F0452594D5C500FE1304 /* ReportModel.m in Sources */,
 				18CDF6C5257F91BE006E8E5C /* IdsBindingView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
@@ -4833,7 +4829,6 @@
 				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				B83766E725C13E0E00A8666A /* SZHSearchTableViewCell.m in Sources */,
-				1AAFACF8236B360F00E854A3 /* MinePresenter.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
 				18CDF6B1257F91BD006E8E5C /* SCPieChart.m in Sources */,
@@ -5193,7 +5188,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5222,7 +5217,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -61,6 +61,7 @@
     //如果数据源数组为空，无数据，则不展示下半部分页面
     if (self.tableDataAry != nil) {
         [self addSearchEndBottomView];
+        [self dynamicTableReloadData];  //手动调用刷洗一次
     }
 }
 - (void)viewWillAppear:(BOOL)animated{
