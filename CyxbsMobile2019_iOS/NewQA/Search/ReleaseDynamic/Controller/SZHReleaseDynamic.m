@@ -13,14 +13,16 @@
 #import "ReleaseDynamicModel.h"
 
 #import "SZHReleaseDynamic.h"
+#import "SZHReleaseTopBarView.h"    //顶部的导航栏view
 #import "SZHReleasView.h"
 #import "SZHPhotoImageView.h"       //图片框
 #import "originPhotoView.h"         //原图的view
 #import "SZHCircleLabelView.h"      //标签的view
 #define MAX_LIMT_NUM 500  //textview限制输入的最大字数
 
-@interface SZHReleaseDynamic ()<SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate,SZHCircleLabelViewDelegate>
-
+@interface SZHReleaseDynamic ()<SZHReleaseTopBarViewDelegate,SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate,SZHCircleLabelViewDelegate>
+///视图相关
+@property (nonatomic, strong) SZHReleaseTopBarView *topBarView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) SZHReleasView *releaseView;
 
@@ -55,6 +57,14 @@
         // Fallback on earlier versions
     }
     //添加视图控件
+    self.topBarView = [[SZHReleaseTopBarView alloc] init];
+    self.topBarView.delegate = self;
+    [self.view addSubview:self.topBarView];
+    [self.topBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_top).offset(STATUSBARHEIGHT + NVGBARHEIGHT);
+    }];
+    
     [self addScrollView];
     [self addReleaseView];
     [self addOriginView];
@@ -233,9 +243,9 @@
         //设置统计字数
         self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%lu/%d",(unsigned long)self.releaseView.releaseTextView.text.length,MAX_LIMT_NUM];
         //设置按钮为可用状态并设置颜色
-        self.releaseView.releaseBtn.userInteractionEnabled = YES;
+        self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
         } else {
             // Fallback on earlier versions
         }
@@ -477,9 +487,9 @@
         //不显示提示文字
         [self.releaseView.placeHolderLabel setHidden:YES];
         //设置按钮为可用状态并设置颜色
-        self.releaseView.releaseBtn.userInteractionEnabled = YES;
+        self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.releaseView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
         } else {
             // Fallback on earlier versions
         }
@@ -487,9 +497,9 @@
         //显示提示文字
         [self.releaseView.placeHolderLabel setHidden:NO];
         //设置按钮为禁用状态并且设置颜色
-        self.releaseView.releaseBtn.userInteractionEnabled = NO;
+        self.topBarView.releaseBtn.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
-            self.releaseView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
         } else {
             // Fallback on earlier versions
         }
@@ -577,7 +587,8 @@
     self.scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self.view);
+        make.left.right.bottom.equalTo(self.view);
+        make.top.equalTo(self.topBarView.mas_bottom);
     }];
 }
 /// 添加表层的view，其实只包括添加图片按钮以上的内容
@@ -592,6 +603,10 @@
     //2.frame
     [self.scrollView addSubview:self.releaseView];
     self.releaseView.frame = self.view.frame;
+//    [self.releaseView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.bottom.equalTo(self.view);
+//        make.top.equalTo(self.topView.mas_bottom);
+//    }];
 }
 //添加原图view
 - (void)addOriginView{
