@@ -41,8 +41,10 @@
 
 - (void)setIconViewSelectedImage:(UIImage *)selectedImage AndUnSelectedImage:(UIImage *)unSelectedImnage {
     if (self.selected == YES) {
+        self.iconView.contentMode = UIViewContentModeScaleAspectFit;
         self.iconView.image = selectedImage;
     }else {
+        self.iconView.contentMode = UIViewContentModeScaleAspectFit;
         self.iconView.image = unSelectedImnage;
     }
 }

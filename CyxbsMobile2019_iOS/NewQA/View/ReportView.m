@@ -10,9 +10,8 @@
 
 @implementation ReportView
 
-- (instancetype)initWithPostID:(NSNumber *)PostID {
+- (instancetype)init{
     if ([super init]) {
-        self.postID = PostID;
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"ReportViewBackColor"];
         } else {
