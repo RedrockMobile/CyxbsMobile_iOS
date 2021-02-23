@@ -390,6 +390,7 @@
 		B82C451D25DBC09000340C12 /* SearchEndModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C451C25DBC09000340C12 /* SearchEndModel.m */; };
 		B82C452425DBE96200340C12 /* ReleaseDynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C452325DBE96200340C12 /* ReleaseDynamicModel.m */; };
 		B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C454225DC302100340C12 /* SZHArchiveTool.m */; };
+		B82D115525E35FF400690FA6 /* SZHReleaseTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82D115425E35FF400690FA6 /* SZHReleaseTopBarView.m */; };
 		B83766E725C13E0E00A8666A /* SZHSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */; };
 		B83766ED25C14FD600A8666A /* SearchEndNoResultCV.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766EC25C14FD600A8666A /* SearchEndNoResultCV.m */; };
 		B83766F325C150C000A8666A /* SZHSearchEndCv.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766F225C150C000A8666A /* SZHSearchEndCv.m */; };
@@ -1313,6 +1314,8 @@
 		B82C452325DBE96200340C12 /* ReleaseDynamicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReleaseDynamicModel.m; sourceTree = "<group>"; };
 		B82C454125DC302100340C12 /* SZHArchiveTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHArchiveTool.h; sourceTree = "<group>"; };
 		B82C454225DC302100340C12 /* SZHArchiveTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHArchiveTool.m; sourceTree = "<group>"; };
+		B82D115325E35FF400690FA6 /* SZHReleaseTopBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHReleaseTopBarView.h; sourceTree = "<group>"; };
+		B82D115425E35FF400690FA6 /* SZHReleaseTopBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHReleaseTopBarView.m; sourceTree = "<group>"; };
 		B83766E525C13E0E00A8666A /* SZHSearchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHSearchTableViewCell.h; sourceTree = "<group>"; };
 		B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHSearchTableViewCell.m; sourceTree = "<group>"; };
 		B83766EB25C14FD600A8666A /* SearchEndNoResultCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchEndNoResultCV.h; sourceTree = "<group>"; };
@@ -3680,16 +3683,8 @@
 				B82C452125DBE94900340C12 /* Models */,
 				B8AA53DE25B949E500CEE847 /* Views */,
 				B8AA53DD25B949DC00CEE847 /* Controller */,
-				B8AA53DC25B949D200CEE847 /* ViewModels */,
 			);
 			path = ReleaseDynamic;
-			sourceTree = "<group>";
-		};
-		B8AA53DC25B949D200CEE847 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B8AA53DD25B949DC00CEE847 /* Controller */ = {
@@ -3704,6 +3699,8 @@
 		B8AA53DE25B949E500CEE847 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B82D115325E35FF400690FA6 /* SZHReleaseTopBarView.h */,
+				B82D115425E35FF400690FA6 /* SZHReleaseTopBarView.m */,
 				B85C435925C1A38900C51318 /* SZHReleasView.h */,
 				B85C435A25C1A38900C51318 /* SZHReleasView.m */,
 				B8C705BD25D7ABC8009B73F7 /* SZHPhotoImageView.h */,
@@ -4848,6 +4845,7 @@
 				B8C705C525D8018D009B73F7 /* originPhotoView.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				D06AAEE024AC00BB00EE0892 /* QAReviewAnswerListView.m in Sources */,
+				B82D115525E35FF400690FA6 /* SZHReleaseTopBarView.m in Sources */,
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
@@ -5268,7 +5266,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5297,7 +5295,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -14,8 +14,8 @@
     self = [super init];
     if (self) {
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.0573);
-            make.right.equalTo(self).offset(-MAIN_SCREEN_W * 0.0573);
+            make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.056);
+            make.right.equalTo(self).offset(-MAIN_SCREEN_W * 0.056);
         }];
         //设置button宽度随title文本长度自适应
         self.titleLabel.adjustsFontSizeToFitWidth = YES;

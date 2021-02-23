@@ -77,8 +77,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
-    //点属性设置不行，必须用set
-    [self.tabBarController.tabBar setHidden:NO];
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 #pragma mark- event response

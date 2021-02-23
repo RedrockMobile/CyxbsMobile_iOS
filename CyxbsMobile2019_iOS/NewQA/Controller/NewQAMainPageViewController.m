@@ -23,6 +23,9 @@
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
 #import "SearchBeginVC.h"   //搜索初始界面
+#import "SZHReleaseDynamic.h" // 发布动态界面
+
+
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
 //帖子列表数据源数组
 @property (nonatomic, strong) NSMutableArray *tableArray;
@@ -52,6 +55,8 @@
 @property (nonatomic, strong) NSMutableArray<GroupItem *> *dataArray;
 //加载视图菊花
 @property (nonatomic, strong) MBProgressHUD *loadHUD;
+//获取cell里item数据的NSDictionary
+@property (nonatomic, strong) NSDictionary *itemDic;
 
 @end
 
@@ -60,6 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    self.tabBarController.tabBar.hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
 }
 -(void)viewDidLayoutSubviews{
@@ -159,6 +165,8 @@
         userInfo:nil
         repeats:YES];
     
+    [self funcPopViewinit];
+    
 }
 //设置通知中心的监听
 - (void)setNotification{
@@ -186,6 +194,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(topFollowViewLoadError)
                                                  name:@"MyFollowGroupDataLoadError" object:nil];
+}
+
+# pragma mark 初始化功能弹出页面
+- (void)funcPopViewinit {
+    // 创建分享页面
+    _shareView = [[ShareView alloc] init];
+    // 创建功能页面
+    _popView = [[FuncView alloc] init];
+    // 创建举报页面
+    _reportView = [[ReportView alloc] init];
+    
 }
 
 #pragma mark -热搜词汇相关
@@ -314,7 +333,7 @@
     if (@available(iOS 11.0, *)) {
         self.topFollowView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
     } else {
-        // Fallback on earlier versions
+        self.topFollowView.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
     }
     [self.view addSubview:self.topFollowView];
     if ([self.dataArray count] == 0) {
@@ -325,7 +344,7 @@
     if (@available(iOS 11.0, *)) {
         lineView.backgroundColor = [UIColor colorNamed:@"ShareLineViewColor"];
     } else {
-        // Fallback on earlier versions
+        lineView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:232.0/255.0 blue:238.0/255.0 alpha:1];
     }
     [self.view addSubview:lineView];
     _lineView = lineView;
@@ -334,14 +353,14 @@
     if (@available(iOS 11.0, *)) {
         _recommendedLabel.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
     } else {
-        // Fallback on earlier versions
+        _recommendedLabel.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
     }
     _recommendedLabel.text = @"  推荐";
     _recommendedLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
     if (@available(iOS 11.0, *)) {
         _recommendedLabel.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
     } else {
-        // Fallback on earlier versions
+        _recommendedLabel.textColor = [UIColor colorWithRed:21.0/255.0 green:49.0/255.0 blue:91.0/255.0 alpha:1];
     }
     _recommendedLabel.textAlignment = NSTextAlignmentLeft;
     [self.topFollowView addSubview:_recommendedLabel];
@@ -350,7 +369,7 @@
     if (@available(iOS 11.0, *)) {
         _topBackView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
     } else {
-        // Fallback on earlier versions
+        _topBackView.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
     }
     [self.view addSubview:_topBackView];
 
@@ -470,11 +489,11 @@
     NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
-        PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
         //这里
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
-        cell.item = item;
+        cell.item = _item;
         cell.commendBtn.tag = indexPath.row;
         cell.shareBtn.tag = indexPath.row;
         cell.starBtn.tag = indexPath.row;
@@ -513,31 +532,30 @@
         
     }
     StarPostModel *model = [[StarPostModel alloc] init];
-    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
-    [model starPostWithPostID:[NSNumber numberWithString:item.post_id]];
+    _itemDic = self.tableArray[sender.tag];
+    [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
 }
 
 ///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(FunctionBtn *)sender {
-//    PostItem *item = self.postArray[sender.tag];
-//    int post_id = [item.post_id intValue];
+//    _itemDic = self.tableArray[sender.tag];
+//    int post_id = [_itemDic[@"post_id"] intValue];
 }
 
 ///分享帖子
 - (void)ClickedShareBtn:(UIButton *)sender{
     [self showBackViewWithGesture];
-    _shareView = [[ShareView alloc] init];
     _shareView.delegate = self;
-    [[UIApplication sharedApplication].keyWindow addSubview:_shareView];
+    [self.view.window addSubview:_shareView];
     [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
-        make.left.right.bottom.mas_equalTo([UIApplication sharedApplication].keyWindow);
+        make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
+        make.left.right.bottom.mas_equalTo(self.view.window);
     }];
-    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
+    _itemDic = self.tableArray[sender.tag];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    NSString *shareURL = [NSString stringWithFormat:@"%@%@",@"cyxbs://redrock.team/answer_list/qa/entry?question_id=",item.post_id];
+    NSString *shareURL = [NSString stringWithFormat:@"%@%@",@"cyxbs://redrock.team/answer_list/qa/entry?question_id=",_itemDic[@"post_id"]];
     pasteboard.string = shareURL;
 }
 
@@ -546,14 +564,14 @@
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
  */
 - (void)ClickedFuncBtn:(UIButton *)sender {
-    UIWindow* desWindow=[UIApplication sharedApplication].keyWindow;
+    UIWindow* desWindow=self.view.window;
     CGRect frame = [sender convertRect:sender.bounds toView:desWindow];
     [self showBackViewWithGesture];
     _popView = [[FuncView alloc] init];
     _popView.delegate = self;
     _popView.layer.cornerRadius = 3;
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
-    [[UIApplication sharedApplication].keyWindow addSubview:_popView];
+    [self.view.window addSubview:_popView];
 }
 
 #pragma mark- 配置相关弹出View和其蒙版的操作
@@ -568,7 +586,7 @@
 }
 
 - (void)showBackViewWithGesture {
-    [[UIApplication sharedApplication].keyWindow addSubview:_backViewWithGesture];
+    [self.view.window addSubview:_backViewWithGesture];
 }
 
 - (void)dismissBackViewWithGestureAnd:(UIView *)view {
@@ -587,9 +605,9 @@
 ///点击屏蔽按钮
 - (void)ClickedShieldBtn:(UIButton *)sender {
 //    ShieldModel *model = [[ShieldModel alloc] init];
-//    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
+//    _itemDic = self.tableArray[sender.tag];
     [self showShieldSuccessful];
-//    [model ShieldPersonWithUid:item.uid];
+//    [model ShieldPersonWithUid:_itemDic[@"uid"]];
 //    [model setBlock:^(id  _Nonnull info) {
 //        if ([info[@"info"] isEqualToString:@"success"]) {
 //            [self showShieldSuccessful];
@@ -599,15 +617,15 @@
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
     [_popView removeFromSuperview];
-    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
-    _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
+    _itemDic = self.tableArray[sender.tag];
+    _reportView.postID = _itemDic[@"post_id"];
     _reportView.delegate = self;
-    [[UIApplication sharedApplication].keyWindow addSubview:_reportView];
+    [self.view.window addSubview:_reportView];
     [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
-        make.left.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_left).mas_offset(SCREEN_WIDTH * 0.1587);
-        make.right.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_right).mas_offset(-SCREEN_WIDTH * 0.1587);
-        make.height.mas_equalTo([UIApplication sharedApplication].keyWindow.width * 0.6827 * 329/256);
+        make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
+        make.left.mas_equalTo(self.view.window.mas_left).mas_offset(SCREEN_WIDTH * 0.1587);
+        make.right.mas_equalTo(self.view.window.mas_right).mas_offset(-SCREEN_WIDTH * 0.1587);
+        make.height.mas_equalTo(self.view.window.width * 0.6827 * 329/256);
     }];
 }
 
@@ -719,17 +737,19 @@
 #pragma mark -发布动态和搜索的跳转
 ///点击了发布按钮，跳转到发布动态的页面
 - (void)clickedPublishBtn {
+    SZHReleaseDynamic *vc = [[SZHReleaseDynamic alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    self.tabBarController.tabBar.hidden = NO;
+    [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"跳转到发布界面");
 }
 
 ///点击了搜索按钮，跳转到搜索页面
 - (void)searchPost {
-    self.hidesBottomBarWhenPushed = YES;
-    [self.tabBarController.tabBar setHidden:YES];
-    self.tabBarController.tabBar.hidden = YES;
     SearchBeginVC *vc = [[SearchBeginVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    self.tabBarController.tabBar.hidden = NO;
     [self.navigationController pushViewController:vc animated:YES];
-   
     NSLog(@"跳转到搜索页面");
 }
 

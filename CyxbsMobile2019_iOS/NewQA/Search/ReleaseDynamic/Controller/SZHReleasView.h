@@ -14,11 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol SZHReleaseDelegate <NSObject>
 
-/// 返回到上一个界面
-- (void)pop;
-
-/// 发布动态
-- (void)releaseDynamic;
+///// 返回到上一个界面
+//- (void)pop;
+//
+///// 发布动态
+//- (void)releaseDynamic;
 
 /// 添加图片
 - (void)addPhotos;
