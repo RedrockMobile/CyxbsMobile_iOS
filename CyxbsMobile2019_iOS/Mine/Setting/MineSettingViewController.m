@@ -25,7 +25,7 @@
 //@property(nonatomic,strong)UIView *titleBar;
 //
 ///// 退出登录按钮
-//@property(nonatomic,strong)UIButton *quitBtn;
+@property(nonatomic,strong)UIButton *quitBtn;
 
 /// 点击“退出登录按钮”后弹出的提示弹窗
 @property(nonatomic,strong)QuitTipView *quitTipView;
@@ -47,7 +47,7 @@
     self.VCTitleStr = @"设置";
 //    [self addTitleBar];
     [self addTableView];
-//    [self addQuitBtn];
+    [self addQuitBtn];
 }
 
 //MARK: - 重写的方法：
@@ -83,7 +83,37 @@
     tableView.dataSource = self;
 }
 
-
+- (void)addQuitBtn {
+    UIButton *btn = [[UIButton alloc] init];
+    self.quitBtn = btn;
+    [self.view addSubview:btn];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(0.2523*SCREEN_WIDTH);
+        make.bottom.equalTo(self.view).offset(-0.2176*SCREEN_HEIGHT);
+        make.width.mas_equalTo(0.4933*SCREEN_WIDTH);
+        make.height.mas_equalTo(0.1067*SCREEN_WIDTH);
+    }];
+    
+    btn.layer.cornerRadius = 0.05335*SCREEN_WIDTH;
+    
+    btn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
+    
+    [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    [btn setTitle:@"退 出 登 录" forState:UIControlStateNormal];
+    
+    if (@available(iOS 11.0, *)) {
+        btn.backgroundColor = [UIColor colorNamed:@"87_86_242&86_86_242"];
+        [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+    } else {
+        btn.backgroundColor = [UIColor colorWithRed:87/255.0 green:86/255.0 blue:242/255.0 alpha:1];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    
+    [btn addTarget:self action:@selector(quitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+}
 
 //MARK:- UITableView代理方法
 

@@ -218,10 +218,20 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 
 ///这里有问题
+static int requestCheckinInfo = 0;
 - (void)RequestCheckinInfo {
     if(![UserDefaultTool getStuNum]){
-        @throw [[NSException alloc] initWithName:NSInvalidArgumentException reason:@"用户学号为空" userInfo:nil];
+        requestCheckinInfo++;
+        if (requestCheckinInfo==5) {
+            requestCheckinInfo = 0;
+            return;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self RequestCheckinInfo];
+        });
+        return;
     }
+    requestCheckinInfo = 0;
     
     NSDictionary *params = @{
         @"stunum": [UserDefaultTool getStuNum],

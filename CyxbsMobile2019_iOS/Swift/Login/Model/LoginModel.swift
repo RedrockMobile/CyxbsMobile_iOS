@@ -46,6 +46,7 @@ class LoginModel: NSObject {
                         let userInfo = try JSON(data: data)
                         UserItem.mj_object(withKeyValues: userInfo.dictionaryObject ?? nil)
                         
+                        success()
                         NotificationCenter.default.postNotificationOnMainThread(withName: "Login_LoginSuceeded", object: nil, userInfo: ["userItem": UserItemTool.defaultItem()])
                         
                     } catch {
@@ -58,7 +59,6 @@ class LoginModel: NSObject {
                 failed()
             }
             
-            success()
             
         }
         
