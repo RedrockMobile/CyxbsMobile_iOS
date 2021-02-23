@@ -57,6 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///整体滑动的ScrollView
 @property (nonatomic, strong) UIScrollView *backScrollView;
 
+@property (nonatomic, strong) PostItem *item;
+
 
 @end
 

@@ -33,7 +33,7 @@
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
         } else {
-            // Fallback on earlier versions
+            self.backgroundColor = [UIColor whiteColor];
         }
         [self BuildUI];
         [self BuildFrame];
@@ -56,7 +56,7 @@
     if (@available(iOS 11.0, *)) {
         _nicknameLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
     } else {
-        // Fallback on earlier versions
+        _nicknameLabel.textColor = [UIColor colorWithRed:11.0/255.0 green:37.0/255.0 blue:81.0/255.0 alpha:1];
     }
     [self.contentView addSubview:_nicknameLabel];
     
@@ -67,7 +67,7 @@
     if (@available(iOS 11.0, *)) {
         _timeLabel.textColor = [UIColor colorNamed:@"CellDateColor"];
     } else {
-        // Fallback on earlier versions
+        _timeLabel.textColor = [UIColor colorWithRed:85.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1];
     }
     [self.contentView addSubview:_timeLabel];
     
@@ -83,7 +83,7 @@
     if (@available(iOS 11.0, *)) {
         _detailLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
     } else {
-        // Fallback on earlier versions
+        _detailLabel.textColor = [UIColor colorWithRed:17.0/255.0 green:44.0/255.0 blue:87.0/255.0 alpha:1];
     }
     self.detailLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:15];
     self.detailLabel.backgroundColor = [UIColor clearColor];
@@ -112,8 +112,9 @@
     if (@available(iOS 11.0, *)) {
         [_groupLabel setTitleColor:[UIColor colorNamed:@"CellGroupColor"] forState:UIControlStateNormal];
     } else {
-        // Fallback on earlier versions
+        [_groupLabel setTitleColor:[UIColor colorWithRed:85.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1] forState:UIControlStateNormal];
     }
+    [_groupLabel addTarget:self action:@selector(ClickedGroupTopicBtn:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_groupLabel];
     
     ///点赞
@@ -187,18 +188,20 @@
     
     [_starBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groupLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 20.75/20.05);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 22.75/20.05);
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.5587);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.1648);
     }];
     
     [_commendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.width.mas_equalTo(self.starBtn);
+        make.top.mas_equalTo(self.groupLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 20.75/20.05);
         make.left.mas_equalTo(self.starBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.01);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.1648);
     }];
     
     [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.mas_equalTo(self.starBtn);
+        make.top.bottom.mas_equalTo(self.commendBtn);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.0547);
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
     }];
