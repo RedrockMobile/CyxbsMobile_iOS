@@ -63,7 +63,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     ///监听按钮
-    _setquestionView.sureBtn.enabled = (_setquestionView.textView.text.length >= 2 && _setquestionView.textView.text.length <= 16) ? YES : NO;
+    _setquestionView.sureBtn.enabled = (_setquestionView.textView.text.length >= 2 && _setquestionView.textView.text.length <= 16) && ![_setquestionView.questionLabel.text isEqualToString: @"请选择一个密保问题"] ? YES : NO;
     ///按钮的背景颜色
     _setquestionView.sureBtn.backgroundColor = _setquestionView.sureBtn.enabled == YES ?[UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1.0] : [UIColor colorWithRed:194/255.0 green:203/255.0 blue:254/255.0 alpha:1.0];
     ///提示文字的出现

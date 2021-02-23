@@ -179,6 +179,7 @@
     nextBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
     [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+    [nextBtn setEnabled:NO];
     nextBtn.backgroundColor = [UIColor colorWithRed:194/255.0 green:203/255.0 blue:254/255.0 alpha:1.0];
     [nextBtn addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextBtn];
