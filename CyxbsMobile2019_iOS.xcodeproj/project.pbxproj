@@ -377,6 +377,15 @@
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
 		AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */; };
+		AAE3304725E2A0D800324750 /* ArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3304625E2A0D700324750 /* ArticleViewController.m */; };
+		AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3304C25E2A1C600324750 /* RemarkViewController.m */; };
+		AAE3305325E2A41900324750 /* ArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3305225E2A41900324750 /* ArticleTableViewCell.m */; };
+		AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3305825E2A42B00324750 /* RemarkTableViewCell.m */; };
+		AAE3307225E367E400324750 /* MainPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3307125E367E400324750 /* MainPageTableViewCell.m */; };
+		AAE3308125E39EBA00324750 /* RedTipBall.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3308025E39EBA00324750 /* RedTipBall.m */; };
+		AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3308625E3AD5E00324750 /* MainPageNumBtn.m */; };
+		AAE3309025E3D59100324750 /* ShareViewPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3308F25E3D59100324750 /* ShareViewPlus.m */; };
+		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
 		B82C451D25DBC09000340C12 /* SearchEndModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C451C25DBC09000340C12 /* SearchEndModel.m */; };
 		B82C452425DBE96200340C12 /* ReleaseDynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C452325DBE96200340C12 /* ReleaseDynamicModel.m */; };
@@ -1279,6 +1288,24 @@
 		AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LessonViewForAWeek.m; sourceTree = "<group>"; };
 		AAAA1D8E24FE39F500DB9A81 /* NextLessonFinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NextLessonFinder.h; sourceTree = "<group>"; };
 		AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextLessonFinder.m; sourceTree = "<group>"; };
+		AAE3304525E2A0D700324750 /* ArticleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleViewController.h; sourceTree = "<group>"; };
+		AAE3304625E2A0D700324750 /* ArticleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleViewController.m; sourceTree = "<group>"; };
+		AAE3304B25E2A1C600324750 /* RemarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemarkViewController.h; sourceTree = "<group>"; };
+		AAE3304C25E2A1C600324750 /* RemarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemarkViewController.m; sourceTree = "<group>"; };
+		AAE3305125E2A41900324750 /* ArticleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleTableViewCell.h; sourceTree = "<group>"; };
+		AAE3305225E2A41900324750 /* ArticleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleTableViewCell.m; sourceTree = "<group>"; };
+		AAE3305725E2A42B00324750 /* RemarkTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemarkTableViewCell.h; sourceTree = "<group>"; };
+		AAE3305825E2A42B00324750 /* RemarkTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemarkTableViewCell.m; sourceTree = "<group>"; };
+		AAE3307025E367E400324750 /* MainPageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainPageTableViewCell.h; sourceTree = "<group>"; };
+		AAE3307125E367E400324750 /* MainPageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainPageTableViewCell.m; sourceTree = "<group>"; };
+		AAE3307F25E39EBA00324750 /* RedTipBall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RedTipBall.h; sourceTree = "<group>"; };
+		AAE3308025E39EBA00324750 /* RedTipBall.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RedTipBall.m; sourceTree = "<group>"; };
+		AAE3308525E3AD5E00324750 /* MainPageNumBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainPageNumBtn.h; sourceTree = "<group>"; };
+		AAE3308625E3AD5E00324750 /* MainPageNumBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainPageNumBtn.m; sourceTree = "<group>"; };
+		AAE3308E25E3D59100324750 /* ShareViewPlus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewPlus.h; sourceTree = "<group>"; };
+		AAE3308F25E3D59100324750 /* ShareViewPlus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewPlus.m; sourceTree = "<group>"; };
+		AAE3309725E4E5CD00324750 /* DeleteArticleTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleteArticleTipView.h; sourceTree = "<group>"; };
+		AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteArticleTipView.m; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
 		B82C451B25DBC09000340C12 /* SearchEndModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchEndModel.h; sourceTree = "<group>"; };
@@ -2762,7 +2789,7 @@
 				18CDF477257F8D9C006E8E5C /* Mine.xcassets */,
 				1AEF3103245BFF3D00487D40 /* MyGoods */,
 				1A344BB123E96AB80014A3B4 /* About */,
-				AA4FA1C025C2DBC9005139BA /* 获赞 */,
+				AAE3306325E3658D00324750 /* 动态评论获赞 */,
 				1A16591423D84AC00039BA46 /* Mine_QA */,
 				1A30F38E23D0574F00FBBD83 /* IntegralStore */,
 				1AFD152C23819505004D9CEA /* CustomTransition */,
@@ -3532,6 +3559,48 @@
 				AA49098824F3BF5A007CB3BC /* TransitionManager.m */,
 			);
 			path = "Tool&Animater";
+			sourceTree = "<group>";
+		};
+		AAE3304325E2A05C00324750 /* 动态 */ = {
+			isa = PBXGroup;
+			children = (
+				AAE3304525E2A0D700324750 /* ArticleViewController.h */,
+				AAE3304625E2A0D700324750 /* ArticleViewController.m */,
+				AAE3305125E2A41900324750 /* ArticleTableViewCell.h */,
+				AAE3305225E2A41900324750 /* ArticleTableViewCell.m */,
+			);
+			path = "动态";
+			sourceTree = "<group>";
+		};
+		AAE3304425E2A07700324750 /* 评论 */ = {
+			isa = PBXGroup;
+			children = (
+				AAE3304B25E2A1C600324750 /* RemarkViewController.h */,
+				AAE3304C25E2A1C600324750 /* RemarkViewController.m */,
+				AAE3305725E2A42B00324750 /* RemarkTableViewCell.h */,
+				AAE3305825E2A42B00324750 /* RemarkTableViewCell.m */,
+			);
+			path = "评论";
+			sourceTree = "<group>";
+		};
+		AAE3306325E3658D00324750 /* 动态评论获赞 */ = {
+			isa = PBXGroup;
+			children = (
+				AAE3307025E367E400324750 /* MainPageTableViewCell.h */,
+				AAE3307125E367E400324750 /* MainPageTableViewCell.m */,
+				AAE3308E25E3D59100324750 /* ShareViewPlus.h */,
+				AAE3308F25E3D59100324750 /* ShareViewPlus.m */,
+				AAE3309725E4E5CD00324750 /* DeleteArticleTipView.h */,
+				AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */,
+				AAE3304325E2A05C00324750 /* 动态 */,
+				AAE3304425E2A07700324750 /* 评论 */,
+				AA4FA1C025C2DBC9005139BA /* 获赞 */,
+				AAE3307F25E39EBA00324750 /* RedTipBall.h */,
+				AAE3308025E39EBA00324750 /* RedTipBall.m */,
+				AAE3308525E3AD5E00324750 /* MainPageNumBtn.h */,
+				AAE3308625E3AD5E00324750 /* MainPageNumBtn.m */,
+			);
+			path = "动态评论获赞";
 			sourceTree = "<group>";
 		};
 		B82C450E25DBB44400340C12 /* Models */ = {
@@ -4628,14 +4697,17 @@
 				D0101F62243587A1004337ED /* UIScrollView+GKGestureHandle.m in Sources */,
 				D0101D5B2433C885004337ED /* SDMaskGuidBGView.m in Sources */,
 				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
+				AAE3307225E367E400324750 /* MainPageTableViewCell.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
 				18CDF6A6257F91BD006E8E5C /* NewsViewController.m in Sources */,
 				18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */,
 				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
+				AAE3308125E39EBA00324750 /* RedTipBall.m in Sources */,
 				B892095425BEC30B00386451 /* SearchTopView.m in Sources */,
 				B82C451D25DBC09000340C12 /* SearchEndModel.m in Sources */,
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
+				AAE3309025E3D59100324750 /* ShareViewPlus.m in Sources */,
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
@@ -4686,6 +4758,7 @@
 				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
 				B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */,
 				18CDF717257F91BE006E8E5C /* ActivityItem.m in Sources */,
+				AAE3304725E2A0D800324750 /* ArticleViewController.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				18CDF6B8257F91BD006E8E5C /* ScoreViewController.m in Sources */,
 				18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */,
@@ -4717,6 +4790,7 @@
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
 				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
 				B845735725C0390A005EFB91 /* SZHHotSearchButton.m in Sources */,
+				AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */,
 				D06AAEDB24AC00BB00EE0892 /* QAReviewModel.m in Sources */,
 				1AD038D123F92F6700D5C90E /* MineQAMyQuestionDraftItem.m in Sources */,
 				18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */,
@@ -4933,6 +5007,7 @@
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				18CDF686257F91BD006E8E5C /* EmptyClassViewController.m in Sources */,
 				1817F0402594D5C500FE1304 /* NewQAMainPageViewController.m in Sources */,
+				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
@@ -4946,6 +5021,7 @@
 				18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
+				AAE3305325E2A41900324750 /* ArticleTableViewCell.m in Sources */,
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				18CDF6CA257F91BE006E8E5C /* SchoolBusModel.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
@@ -4976,8 +5052,10 @@
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				18CDF69D257F91BD006E8E5C /* CQUPTMapSearchResultCell.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
+				AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */,
 				18CDF71D257F91BE006E8E5C /* GestureTableView.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
+				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
 				18CDF70B257F91BE006E8E5C /* HeaderTableViewCell.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */,

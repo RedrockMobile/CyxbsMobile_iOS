@@ -136,7 +136,7 @@
 #define STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height//状态栏高度
 
 //学期开始时间
-#define DateStart @"2020-09-07"
+#define DateStart @"2021-03-01"
 
 
 

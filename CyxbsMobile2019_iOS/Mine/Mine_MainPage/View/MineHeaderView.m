@@ -8,21 +8,13 @@
 
 #import "MineHeaderView.h"
 #import "MineQADataItem.h"
+#import "MainPageNumBtn.h"
 #import <UMPush/UMessage.h>
 
 @interface MineHeaderView ()
 
 /// 签到按钮、动态、评论、获赞、已连续签到天数 label的背景板
 @property (nonatomic, weak) UIView *whiteBoard;
-
-/// @"评论"label
-@property(nonatomic,strong) UILabel *remarkLabel;
-
-/// @"动态"label
-@property(nonatomic,strong) UILabel *articleLabel;
-
-/// @"获赞"Label
-@property (nonatomic, weak) UILabel *praiseLabel;
 
 @end
 
@@ -182,69 +174,32 @@
 
 /// 添加动态、评论、获赞 的   label与按钮
 - (void)addLabelsAndBtns{
-    MineQADataItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[MineQADataItem archivePath]];
-    
+    MineQADataItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[MineQADataItem archivePath]];    
 //        item.askNum
     if (item==nil) {
-        self.articleNumBtn = [self getNumBtnWithStr:@""];
-        self.remarkNumBtn = [self getNumBtnWithStr:@""];
-        self.praiseNumBtn = [self getNumBtnWithStr:@""];
+        self.articleNumBtn = [self getNumBtnWithBtnName:@"动态" msgCount:@"0"];
+        self.remarkNumBtn = [self getNumBtnWithBtnName:@"获赞" msgCount:@"0"];
+        self.praiseNumBtn = [self getNumBtnWithBtnName:@"评论" msgCount:@"0"];
     }else{
-        self.articleNumBtn = [self getNumBtnWithStr:item.answerNum];
-        self.remarkNumBtn = [self getNumBtnWithStr:item.commentNum];
-        self.praiseNumBtn = [self getNumBtnWithStr:item.praiseNum];
+        self.articleNumBtn = [self getNumBtnWithBtnName:@"动态" msgCount:item.answerNum];
+        self.remarkNumBtn = [self getNumBtnWithBtnName:@"获赞" msgCount:item.commentNum];
+        self.praiseNumBtn = [self getNumBtnWithBtnName:@"评论" msgCount:item.praiseNum];
     }
     //代理是个人主页面的控制器
     [self.articleNumBtn addTarget:self.delegate action:@selector(articleNumBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.remarkNumBtn addTarget:self.delegate action:@selector(remarkNumBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.praiseNumBtn addTarget:self.delegate action:@selector(praiseNumBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.articleLabel = [self getLabelWithStr:@"动态"];
-    self.remarkLabel = [self getLabelWithStr:@"评论"];
-    self.praiseLabel = [self getLabelWithStr:@"获赞"];
+
 }
 
 //MARK: - 其他方法:
-- (UILabel*)getLabelWithStr:(NSString*)str{
-    UILabel *label = [[UILabel alloc] init];
-    [self addSubview:label];
-    
-    label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:11];
-    
-    if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
-    } else {
-        label.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
-    }        label.text = @"评论";
-    
-    label.text = str;
-    label.userInteractionEnabled = YES;
-    return label;
-}
-
-- (UIButton*)getNumBtnWithStr:(NSString*)str{
-    UIButton *numBtn = [[UIButton alloc] init];
-    
+- (MainPageNumBtn*)getNumBtnWithBtnName:(NSString*)btnNameStr msgCount:(NSString*)msgCnt{
+    MainPageNumBtn *numBtn = [[MainPageNumBtn alloc] init];
     [self addSubview:numBtn];
-    
-    if (IS_IPHONESE) {
-        numBtn.titleLabel.font = [UIFont fontWithName:@"Impact" size:25];
-    } else {
-        numBtn.titleLabel.font = [UIFont fontWithName:@"Impact" size:35];
-    }
-    
-    if (@available(iOS 11.0, *)) {
-        [numBtn setTitleColor:[UIColor colorNamed:@"Mine_Main_QANumberLabelColor"] forState:UIControlStateNormal];
-    } else {
-        [numBtn setTitleColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1] forState:UIControlStateNormal];
-    }
-    
-    numBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    numBtn.titleLabel.text = str;
-    numBtn.userInteractionEnabled = YES;
+    numBtn.btnNameLabel.text = btnNameStr;
+    [numBtn setTitle:msgCnt forState:UIControlStateNormal];
     return numBtn;
 }
-
 //MARK: - 添加约束的方法:
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -321,22 +276,6 @@
     
     
     
-    [self.articleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.articleNumBtn);
-        make.top.equalTo(self.articleNumBtn.mas_bottom);
-    }];
-
-    [self.remarkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.remarkNumBtn);
-        make.top.equalTo(self.remarkNumBtn.mas_bottom);
-    }];
-
-    [self.praiseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.praiseNumBtn);
-        make.top.equalTo(self.praiseNumBtn.mas_bottom);
-    }];
-
 }
 
 @end
-
