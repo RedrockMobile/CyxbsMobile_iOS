@@ -61,8 +61,11 @@
     self.topBarView.delegate = self;
     [self.view addSubview:self.topBarView];
     [self.topBarView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.view).offset(STATUSBARHEIGHT * 0.5);
         make.bottom.equalTo(self.view.mas_top).offset(STATUSBARHEIGHT + NVGBARHEIGHT);
+//        make.height.mas_equalTo(NVGBARHEIGHT);
+//        make.bottom.equalTo(self.view).offset(MAIN_SCREEN_H * 0.096);
     }];
     
     [self addScrollView];
@@ -582,7 +585,11 @@
 #pragma mark- 添加控件
 - (void)addScrollView{
     self.scrollView = [[UIScrollView alloc] init];
-    self.scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 1.5);
+    if (MAIN_SCREEN_H > 667) {
+        self.scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 1.3);
+    }else{
+        self.scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 1.5);
+    }
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
