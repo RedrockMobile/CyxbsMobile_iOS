@@ -30,6 +30,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = self.view.backgroundColor;
+    [tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topBarView.mas_bottom);
@@ -45,7 +46,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 0.3 * SCREEN_WIDTH;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [[PraiseTableViewCell alloc] init];
+    PraiseTableViewCell *cell = [[PraiseTableViewCell alloc] initWithReuseIdentifier:@"PraiseTableViewCellID"];
+    [cell setModel:[[NSObject alloc]init]];
+    return cell;
 }
 @end

@@ -61,7 +61,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self shareBtClick];
+    [self shareBtnClick];
 }
 
 //// 分享按钮的实现方法
@@ -78,7 +78,7 @@
 //}
 
 // 分享按钮的实现方法
-- (void)shareBtClick
+- (void)shareBtnClick
 {
     // Share Extension 分享入口，需要分享到哪个平台就用哪个平台的id
     NSString *socialType = @"com.apple.Health.HealthShareExtension";

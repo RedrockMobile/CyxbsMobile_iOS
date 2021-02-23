@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) UIButton *articleNumBtn;
 
 /// 获赞数量按钮
-@property (nonatomic, weak) UIButton *praiseNumBtn;
+@property (nonatomic, strong) UIButton *praiseNumBtn;
 
 /// 代理设置成个人主页面的控制器
 @property (nonatomic, weak)id <MineHeaderViewDelegate> delegate;

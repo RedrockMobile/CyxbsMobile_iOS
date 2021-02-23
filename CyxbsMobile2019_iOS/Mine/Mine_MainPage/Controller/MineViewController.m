@@ -16,7 +16,11 @@
 #import "MineQADataItem.h"
 #import "MineAboutController.h"
 //#import "SelfSafeViewController.h"
+
+#import "ArticleViewController.h"
+#import "RemarkViewController.h"
 #import "PraiseViewController.h"
+
 #import "MineModel.h"
 #import "MineSettingViewController.h"
 #import <UserNotifications/UserNotifications.h>
@@ -153,30 +157,37 @@
 
 /// 点击签到框框内的 “动态” 后调用
 - (void)articleNumBtnClicked{
-//    MineQAController *vc = [[MineQAController alloc] init];
-//    vc.title = @"我的提问";
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
-    
-    PraiseViewController *vc = [[PraiseViewController alloc] init];
-    
+    ArticleViewController *vc = [[ArticleViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+    
+    //    MineQAController *vc = [[MineQAController alloc] init];
+    //    vc.title = @"我的提问";
+    //    vc.hidesBottomBarWhenPushed = YES;
+    //    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 点击签到框框内的 “评论” 后调用
 - (void)remarkNumBtnClicked{
-    MineQAController *vc = [[MineQAController alloc] init];
-    vc.title = @"我的回答";
+    RemarkViewController *vc = [[RemarkViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+//    MineQAController *vc = [[MineQAController alloc] init];
+//    vc.title = @"我的回答";
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 点击签到框框内的 “获赞” 后调用
 - (void)praiseNumBtnClicked{
-    MineQAController *vc = [[MineQAController alloc] init];
-    vc.title = @"评论回复";
+    PraiseViewController *vc = [[PraiseViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+    
+//    MineQAController *vc = [[MineQAController alloc] init];
+//    vc.title = @"评论回复";
+//    vc.hidesBottomBarWhenPushed = YES;
+//    vc.hidesBottomBarWhenPushed = YES;
 }
 
 

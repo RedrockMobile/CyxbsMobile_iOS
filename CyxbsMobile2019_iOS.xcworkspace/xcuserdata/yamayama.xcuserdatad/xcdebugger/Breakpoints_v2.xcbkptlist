@@ -385,7 +385,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "-viewWillAppear:"
+            landmarkName = "-loginStatus"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1413,8 +1413,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "205"
             endingLineNumber = "205"
-            landmarkName = "DiscoverViewController"
-            landmarkType = "3">
+            landmarkName = "-presentToLogin"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "5FE06244-A8CA-4F1E-95BE-906981D166FE - 91b84bc32eea9ab1"
@@ -1462,22 +1462,6 @@
             startingLineNumber = "161"
             endingLineNumber = "161"
             landmarkName = "-addBtnClicked"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DB067B34-8BD2-438E-BF90-FA7EC16F37EA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/Mine/Setting/PeopleIgnore/IgnoreViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1571,9 +1555,25 @@
             filePath = "CyxbsMobile2019_iOS/Mine/Mine_MainPage/View/MineHeaderView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08ABDD1D-FC6D-4882-987D-47DD911EA17B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/Mine/&#x52a8;&#x6001;&#x8bc4;&#x8bba;&#x83b7;&#x8d5e;/&#x52a8;&#x6001;/ArticleViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-ClickedCommentBtn:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
