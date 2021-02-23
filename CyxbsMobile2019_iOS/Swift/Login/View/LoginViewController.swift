@@ -34,13 +34,13 @@ class LoginViewController: UIViewController {
     
     private var loginCheck: LoginState {
         
-        if (idNumTextField.text == nil || idNumTextField.text == "") && (stuNumTextField.text == nil || idNumTextField.text == "") {
+        if (idNumTextField.text == nil || idNumTextField.text == "") && (stuNumTextField.text == nil || stuNumTextField.text == "") {
             return .lackAccountAndPassword
         }
         else if idNumTextField.text == nil || idNumTextField.text == "" {
             return .lackPassword
         }
-        else if stuNumTextField.text == nil || idNumTextField.text == "" {
+        else if stuNumTextField.text == nil || stuNumTextField.text == "" {
             return .lackAccount
         }
         else if (!protocolCheckButton.isSelected) {
@@ -112,7 +112,7 @@ class LoginViewController: UIViewController {
                     self.hideHud()
                     self.dismiss(animated: true, completion: nil)
                 } failed: {
-                    self.dismiss(animated: true, completion: nil)
+                    self.hideHud()
                     self.showHud("账号或密码错误", time: 1)
                 }
                 
