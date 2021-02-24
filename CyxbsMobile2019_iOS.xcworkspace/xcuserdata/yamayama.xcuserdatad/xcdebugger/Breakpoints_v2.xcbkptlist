@@ -1591,6 +1591,38 @@
             endingLineNumber = "229"
             landmarkName = "-RequestCheckinInfo"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "429E6904-CD15-4660-B86F-9EB21188BF35 - 2a1e37496187a468"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DiscoverViewController RequestCheckinInfo]"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E7%BC%96%E7%A8%8B/%E6%8E%8C%E9%82%AE/%E7%94%A8%E6%9D%A5%E5%81%9A%E6%8E%8C%E9%82%AE%E9%A1%B9%E7%9B%AE%E7%9A%84git%E4%BB%93%E5%BA%93%E7%9A%84/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_MainPage/Controller/DiscoverViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "229"
+                  endingLineNumber = "229"
+                  offsetFromSymbolStart = "150">
+               </Location>
+               <Location
+                  uuid = "429E6904-CD15-4660-B86F-9EB21188BF35 - 869fd391a10fffd4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[DiscoverViewController RequestCheckinInfo]_block_invoke"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E7%BC%96%E7%A8%8B/%E6%8E%8C%E9%82%AE/%E7%94%A8%E6%9D%A5%E5%81%9A%E6%8E%8C%E9%82%AE%E9%A1%B9%E7%9B%AE%E7%9A%84git%E4%BB%93%E5%BA%93%E7%9A%84/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_MainPage/Controller/DiscoverViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "229"
+                  endingLineNumber = "229"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1606,6 +1638,22 @@
             startingLineNumber = "18"
             endingLineNumber = "18"
             landmarkName = "+requestQADataSucceeded:failed:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B34C8C1-57FB-46CF-873A-13965BCCCC77"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/Discover/Discover_MainPage/Controller/DiscoverViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
