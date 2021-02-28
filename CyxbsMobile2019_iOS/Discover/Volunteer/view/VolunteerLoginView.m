@@ -216,7 +216,7 @@
     [_passwordLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_VolunterLab.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.1823);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.08);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.848);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.826);
         make.height.equalTo(@1);
     }];
     
@@ -254,4 +254,3 @@
 }
 
 @end
-
