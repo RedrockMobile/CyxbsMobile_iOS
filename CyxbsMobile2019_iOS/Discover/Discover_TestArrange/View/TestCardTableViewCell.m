@@ -92,13 +92,13 @@
 - (void) addClockImage {
     UIImageView *clockImageView = [[UIImageView alloc]init];
     self.clockImage = clockImageView;
-    [clockImageView setImage:[UIImage imageNamed:@"clockImage"]];
+    [clockImageView setImage:[UIImage imageNamed:@"nowClassTime"]];//是从课表那边拿过来用的图片
     [self.contentView addSubview:clockImageView];
 }
 - (void) addLocationImage {
     UIImageView *locationImageView = [[UIImageView alloc]init];
     self.locationImage = locationImageView;
-    [locationImageView setImage:[UIImage imageNamed:@"locationImage"]];
+    [locationImageView setImage:[UIImage imageNamed:@"nowLocation"]];//是从课表那边拿过来用的图片
     [self.contentView addSubview:locationImageView];
 }
 - (void) addTestNatureLabel {

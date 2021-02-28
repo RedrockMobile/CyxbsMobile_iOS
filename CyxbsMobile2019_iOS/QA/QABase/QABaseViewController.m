@@ -45,6 +45,7 @@
         titleLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     }
     [backgroundView addSubview:titleLabel];
+    self.titleLabel = titleLabel;
     
     UIView *backButtonView = [[UIView alloc]init];
     backButtonView.backgroundColor = UIColor.clearColor;
@@ -111,6 +112,10 @@
     [self.rightButton setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
 }
 - (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.isPresent) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 @end

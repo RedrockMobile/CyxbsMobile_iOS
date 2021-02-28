@@ -7,13 +7,12 @@
 //
 
 #import "GPA.h"
-#import "GPAItem.h"
 @implementation GPA
 - (void)fetchData {
 
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
-    NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:IDSBINDINGAPI parameters:nil error:nil];
+    NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"GET" URLString:GPAAPI parameters:nil error:nil];
     req.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
     [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [req setValue:@"*/*" forHTTPHeaderField:@"Accept"];
@@ -21,7 +20,13 @@
     [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             //请求成功
-            
+//            NSLog(@"%@",responseObject);
+            GPAItem *item = [[GPAItem alloc]initWithDictionary:responseObject];
+            self.gpaItem = item;
+//            NSLog(@"%@",item.termGrades);
+//            NSLog(@"%@",item.termGrades.termGrades);
+            NSLog(@"GPA请求成功");//发送消息更新tableView
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"GPASucceed" object:nil];
             
     } else {
         NSLog(@"GPA请求失败Error: %@, %@, %@", error, response, responseObject);

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteDataModel : NSObject
-- (instancetype)initWithNotoDataDict:(NSDictionary*)noteDataDict;
+- (instancetype)initWithNoteDataDict:(NSDictionary*)noteDataDict;
 
 
 /// @[@4,@1,@18]代表第4、1、18周的备忘
@@ -30,8 +30,22 @@ NS_ASSUME_NONNULL_BEGIN
 /// 备忘详情
 @property(nonatomic,copy)NSString *noteDetailStr;
 
-/// 提前多分钟提醒，0代表不提醒
+//(
+//                {
+        //        class = 2; 第几节课
+        //        day = 6;
+        //        week = (1,2,3 )
+    //            }
+//);
+
+/// 结构：
+/// @[@{}@{}]
+@property(nonatomic,strong)NSArray *noteTimeDataArr;
+
+/// @"不提醒"，@“提前5分钟”。。
 @property(nonatomic,strong)NSString *notiBeforeTime;
+///5、10、20、30、60
+@property(nonatomic,assign)int notiBeforeTimeLenth;
 
 ///@[@"第一周"，@“第二周”]
 @property(nonatomic,strong)NSArray <NSString*> *weeksStrArray;
@@ -44,13 +58,16 @@ NS_ASSUME_NONNULL_BEGIN
 ///@]
 @property(nonatomic,strong)NSArray <NSDictionary*> *timeStrDictArray;
 
-//init时传入的字典
+/// init时传入的字典
 @property(nonatomic,strong)NSDictionary *noteDataDict;
 
+/// 备忘ID
 @property(nonatomic,copy)NSString *noteID;
-- (NSString*)getNoteID;
 
+/// 点击第x周的空白处进行添加备忘，那么weekNameStr就是@“第x周”
 @property(nonatomic,copy)NSString *weekNameStr;
+
+- (NSString*)getNoteID;
 @end
 
 NS_ASSUME_NONNULL_END

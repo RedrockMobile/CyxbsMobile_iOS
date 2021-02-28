@@ -4,12 +4,19 @@
 //
 //  Created by Stove on 2020/8/16.
 //  Copyright © 2020 Redrock. All rights reserved.
-//显示日期信息的view
+//显示星期、月份、日期信息的view
 
 #import "DayBarView.h"
 @interface DayBarView ()
 @property (nonatomic,strong)NSMutableArray *weekLabelViewArray;
+
+/// 显示月份的View
 @property (nonatomic,strong)UIView *monthView;
+
+/// 数据字典组成的数组@[
+/// @{@"month":@2,    @"day":@24 },
+/// @{},.....
+/// ],7个字典，代表一周七天的日期
 @property (nonatomic,strong)NSArray *dataArray;
 @end
 
@@ -19,9 +26,11 @@
     self = [super init];
     if(self){
         self.dataArray = dataArray;
+        
         NSDictionary *firstDay =[dataArray firstObject];
         self.monthView = [self getMonthViewWithNum:firstDay[@"month"]];
         [self addSubview:self.monthView];
+        
         self.weekLabelViewArray = [NSMutableArray array];
         for (int i=0; i<7; i++) {
             NSDictionary *dayData = [self transferData:@{
@@ -33,6 +42,7 @@
             [self addSubview:weekLabelView];
             [self.weekLabelViewArray addObject:weekLabelView];
         }
+        
         [self updata];
         [self addConstraint];
     }
@@ -66,7 +76,7 @@
     if (@available(iOS 11.0, *)) {
         backView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
-        backView.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
+        backView.backgroundColor = [UIColor whiteColor];
     }
     backView.layer.cornerRadius = 8;
     
@@ -115,20 +125,20 @@
     return backView;
 }
 
-//得到一个显示@“num月”的monthView,如果num==nil那么显示的文字为空
+//得到一个显示@“num月”的monthView,如果num==nil那么显示的文字为@“”
 - (UIView*)getMonthViewWithNum:(NSNumber*)num{
     UIView *backView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
         backView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
-        backView.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.14];
+        backView.backgroundColor = [UIColor whiteColor];
     }
     
     UILabel *month =  [[UILabel alloc] init];
     [backView addSubview:month];
     
     month.backgroundColor = UIColor.clearColor;
-    month.font = [UIFont fontWithName:@".PingFang SC" size: 12];
+    month.font = [UIFont fontWithName:PingFangSCRegular size: 12];
     if(num==nil){
         month.text = @"";
     }else{
@@ -151,7 +161,7 @@
 /// 加约束，调用前需确保：self.weekLabelViewArray、self.monthView初始化完成，且已经加到父控件
 - (void)addConstraint{
     [self.monthView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
+        make.left.equalTo(self).offset(1.4);
         make.bottom.equalTo(self);
         make.top.equalTo(self);
         make.width.mas_equalTo(MONTH_ITEM_W);
@@ -173,6 +183,7 @@
     }];
 }
 
+///字典的键值对转换：
 //@"index":@3, -> @"week":@"周四",
 //@"day":26, -> @"day":@"x日",
 - (NSDictionary*)transferData:(NSDictionary*)dict{
@@ -191,6 +202,8 @@
     };
     
 }
+
+//更新一下，让今日的weekLabelView变一下色
 - (void)updata{
     NSDate *now = [NSDate date];
     NSDateFormatter *formate = [[NSDateFormatter alloc] init];
@@ -199,25 +212,27 @@
     
     NSString *selfMonth = self.dataArray[3][@"month"];
     NSString *selfDay = self.dataArray[3][@"day"];
-    NSString *dataStr = [NSString stringWithFormat:@"%@-%@-%@",year,selfMonth,selfDay];
+    NSString *dataStr = [NSString stringWithFormat:@"%@-%@-%@-%ld-%ld-%ld",year,selfMonth,selfDay,(long)now.hour,(long)now.minute,(long)now.second];
     
-    formate.dateFormat = @"yyyy-M-d";
+    formate.dateFormat = @"yyyy-M-d-H-m-s";
     
     //得到该周周4的日期
     NSDate *Thurs = [formate dateFromString:dataStr];
     
-//    NSString *today = [formate stringFromDate:[NSDate date]];
-    
     NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 
     
-    NSDateComponents *compsday = [calender components:NSCalendarUnitDay fromDate:Thurs toDate:now options:0];
+    NSDateComponents *compsday = [calender components:NSCalendarUnitHour fromDate:Thurs toDate:now options:0];
     
+    long interval;
     //得到周四和今日隔了几天
-    long interval = [compsday day];
-    if(interval<0)return;
+    if(compsday.hour>=0){
+        interval = (int)(compsday.hour/24.0+0.5);
+    }else{
+        interval = (int)(compsday.hour/24.0-0.5);
+    }
     
-    if(interval<4){//时间间隔小于4，代表这个课表是本周课表
+    if(labs(interval)<4){//时间间隔小于4，代表这个课表是本周课表
         [formate setDateFormat:@"d"];
         NSString *day = [formate stringFromDate:[NSDate date]];
         
@@ -226,25 +241,43 @@
         int num2 = day.intValue;
         if(num1==num2){
             view  =  self.weekLabelViewArray[3+interval];
-        }else if(num2==[self.dataArray[3-interval][@"day"] intValue]){
-            view  =  self.weekLabelViewArray[3-interval];
-        }
-
-        if (@available(iOS 11.0, *)) {
-            view.backgroundColor = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
-        } else {
-            view.backgroundColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
-        }
-        
-        for (UILabel *label in view.subviews) {
+            
+            //        添加一个背景长条
+            UIView *tipView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, DAY_BAR_ITEM_W, MAIN_SCREEN_H)];
+            [view.superview addSubview:tipView];
+            [view removeFromSuperview];
+            [tipView addSubview:view];
+            if(@available(iOS 11.0,*)){
+                tipView.backgroundColor = [UIColor colorNamed:@"231_240_255_0.59&1_1_1_0.16"];
+            }else{
+                tipView.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:0.59];
+            }
+            tipView.layer.cornerRadius = 8;
+            [tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(view);
+                make.top.equalTo(view);
+                make.height.mas_equalTo(MAIN_SCREEN_H);
+                make.width.mas_equalTo(MAIN_SCREEN_W*0.1245);
+            }];
+            
+            
             if (@available(iOS 11.0, *)) {
-                label.textColor = [UIColor colorNamed:@"white_51_46_72_dayBar_today_textColor"];
+                view.backgroundColor = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
             } else {
-                label.textColor = [UIColor whiteColor];
+                view.backgroundColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
             }
-            if(label.tag==2){
-                label.alpha = 0.64;
+            
+            for (UILabel *label in view.subviews) {
+                if (@available(iOS 11.0, *)) {
+                    label.textColor = [UIColor colorNamed:@"white_51_46_72_dayBar_today_textColor"];
+                } else {
+                    label.textColor = [UIColor whiteColor];
+                }
+                if(label.tag==2){
+                    label.alpha = 0.64;
+                }
             }
+            
         }
     }
 }

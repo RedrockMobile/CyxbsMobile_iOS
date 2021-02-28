@@ -82,7 +82,7 @@
         make.right.equalTo(weekChooseBtn).offset(-0.03429*MAIN_SCREEN_W);
     }];
     if (@available(iOS 11.0, *)) {
-        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistodayButtonLabelColor"] forState:UIControlStateNormal];
+        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistoryBtnTextColor"] forState:UIControlStateNormal];
     } else {
         [weekChooseBtn setTitleColor:[UIColor colorWithHexString:@"F0F0F2"] forState:UIControlStateNormal];
     }
@@ -145,7 +145,6 @@
             make.right.equalTo(button).offset(-0.0427*MAIN_SCREEN_W);
         }];
         
-        [button initImageConstrains];
         button.delegate = self;
         [self.timebuttonArray addObject:button];
     }
@@ -198,7 +197,9 @@
     self.contentSize = CGSizeMake(0, row*0.1573*MAIN_SCREEN_W+MAIN_SCREEN_W*num);
 }
 
-- (void)deleteButtonWithTag:(NSInteger)tag{
+- (void)deleteButtonWithBtn:(DLTimeSelectedButton*)btn{
+    [btn removeFromSuperview];
+    NSInteger tag = btn.tag;
     NSDictionary *deleteDict = self.timeDateDelegate.timeDictArray[tag];
     [self.timeDateDelegate.timeDictArray removeObject: deleteDict];
     [self reloadSelectedButtonsWithTimeStringArray:self.timeDateDelegate.timeDictArray];
@@ -214,7 +215,7 @@
     [self reloadSelectedButtonsWithTimeStringArray:self.timeDateDelegate.timeDictArray];
     self.timeSelctbtn.hidden = YES;
 }
-
+//添加加号按钮
 - (void)loadAddButton{
     UIButton *btn = [[UIButton alloc] init];
     self.addBtn = btn;

@@ -15,8 +15,10 @@
 
 /// 用这个类来显示课详情，懒加载
 @property(nonatomic,strong)ClassDetailViewShower *detailViewShower;
-
-
+@property(nonatomic,assign)BOOL isNoCourse;
+@property(nonatomic,assign)BOOL isNoNote;
+@property(nonatomic,strong)UIImageView *imgView;
+@property(nonatomic,strong)UILabel *nothingLabel;
 @end
 
 
@@ -30,9 +32,42 @@
         self.weekDataArray = weekDataArray;
         
         self.lessonViewsArray = [NSMutableArray array];
-        
+        self.isNoCourse = YES;
+        self.isNoNote = YES;
+        self.notedLessonViewArray = [NSMutableArray array];
+        [self addBackgroundView];
     }
     return self;
+}
+
+/// 添加一个背景图片和一片寂静的label
+- (void)addBackgroundView{
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"寂静"]];
+    self.imgView = imgView;
+    [self addSubview:imgView];
+    
+    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-0.2294*MAIN_SCREEN_W);
+        make.top.equalTo(self).offset(MAIN_SCREEN_W*0.45);
+        make.width.mas_equalTo(MAIN_SCREEN_W*0.53867);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.34667);
+    }];
+    
+    UILabel *label = [[UILabel alloc] init];
+    self.nothingLabel = label;
+    [self addSubview:label];
+    label.text = @"一片寂静";
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor colorNamed:@"17_44_84&240_240_240"];
+    } else {
+        label.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
+    }
+    label.font = [UIFont fontWithName:PingFangSCLight size: 12];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(imgView);
+        make.top.equalTo(imgView.mas_bottom).offset(0.04267*MAIN_SCREEN_W);
+    }];
+  
 }
 
 /// 把所有按钮的参数都配置好，并加入superView,外界调用，调用前确保self.week、self.schType已赋值
@@ -52,6 +87,7 @@
             if(lessonDateArray.count!=0){//非空课
                 lessonView.isEmptyLesson = NO;
                 lessonView.courseDataDictArray = self.weekDataArray[i][j];
+                self.isNoCourse = NO;
             }else{//空课
                 lessonView.isEmptyLesson = YES;
                 lessonView.emptyClassDate = @{
@@ -69,6 +105,8 @@
         }
         [self.lessonViewsArray addObject:dayLessonViewsArray];
     }
+    
+    [self judgeIfShowEmptyImg];
 }
 //emptyLessonData 结构：
 //@"hash_day":[NSNumber numberWithInt:i],
@@ -91,11 +129,12 @@
     }
     return _detailViewShower;
 }
-//self.lessonViewsArray[i][j]代表(星期i+1)的(第j+1节大课)的LessonView控件
 
+//self.lessonViewsArray[i][j]代表(星期i+1)的(第j+1节大课)的LessonView控件
 /// 由课表控制器调用，调用后根据model的信息在本周课表view的相应位置加备忘
 /// @param model 数据model
 - (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model{
+    self.isNoNote = NO;
     NSNumber *weekNum,*lessonNum;
     LessonView *lv;
     for (NSDictionary *timeDict in model.timeDictArray) {
@@ -104,9 +143,23 @@
         
         //lv是周（weekNum+1），第（lessonNum+1）节大课的LessonView
         lv = self.lessonViewsArray[weekNum.intValue][lessonNum.intValue];
+        [self.notedLessonViewArray addObject:lv];
         [lv.noteDataModelArray addObject:model];
         lv.isNoted = YES;
         [lv setUpData];
+    }
+    [self judgeIfShowEmptyImg];
+}
+
+/// 判断是否显示"一片寂静图片"
+- (void)judgeIfShowEmptyImg{
+    
+    if(self.isNoCourse==YES&&(self.isNoNote==YES)){
+        self.nothingLabel.hidden =
+        self.imgView.hidden = NO;
+    }else{
+        self.nothingLabel.hidden =
+        self.imgView.hidden = YES;
     }
 }
 //NoteDataModel.timeDictArray的结构：

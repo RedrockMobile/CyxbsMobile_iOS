@@ -19,10 +19,14 @@
 @implementation PointAndDottedLineView
 - (instancetype)initWithPointCount:(int)pointCount Spacing:(CGFloat)spacing {
     if(self = [super init]) {
+        self.isNoExam = NO;
         self.backgroundColor = UIColor.clearColor;
         self.pointCount = pointCount;
         self.spacing = spacing;
         [self addCircle];
+        if(self.bigCircleArray.count == 0 || !self.bigCircleArray) {
+            self.isNoExam = YES;
+        }
         
     }
     return self;
@@ -75,6 +79,9 @@
     CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:41/255.0 green:33/255.0 blue:209/255.0 alpha:0.7].CGColor);
     // 开始绘制
     CGContextBeginPath(context);
+    if(self.bigCircleArray.count == 0 || !self.bigCircleArray) {
+        return;
+    }
     // 设置虚线绘制起点
     CGPoint startPoint = CGPointMake(self.bigCircleArray[0].origin.x + self.bigCircleArray[0].size.width/2.0, self.bigCircleArray[0].origin.y + self.bigCircleArray[0].size.width);
     CGPoint endPoint = CGPointMake(self.bigCircleArray.lastObject.origin.x + self.bigCircleArray.lastObject.size.width/2.0, self.bigCircleArray.lastObject.origin.y);

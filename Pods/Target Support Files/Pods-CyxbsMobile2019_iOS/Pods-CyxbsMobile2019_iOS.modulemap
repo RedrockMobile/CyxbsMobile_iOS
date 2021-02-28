@@ -1,0 +1,6 @@
+framework module Pods_CyxbsMobile2019_iOS {
+  umbrella header "Pods-CyxbsMobile2019_iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,7 +1,9 @@
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/UMCShare
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/UMCCommon" "${PODS_ROOT}/UMCShare/UMShare" "${PODS_ROOT}/UMCShare/UMShare/UMSocialUI"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/UMCShare" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/UMCShare"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/UMCShare" "${PODS_ROOT}/Headers/Public"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/QQ" "${PODS_ROOT}/UMCShare/UMShare/SocialLibraries/WeChat"
+OTHER_LDFLAGS = $(inherited) -l"SocialQQ" -l"SocialWeChat" -l"sqlite3" -framework "CoreGraphics" -framework "CoreTelephony" -framework "QuartzCore" -framework "SystemConfiguration"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}

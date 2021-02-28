@@ -18,7 +18,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.clipsToBounds = YES;
+        self.clipsToBounds = NO;
+        self.showRange = YES;
     }
     return self;
 }
@@ -50,7 +51,11 @@
     }else{
         _yValueMin = 0;
     }
-    _yValueMax = max;
+    if (max + 0.3 <= 4) {
+        _yValueMax = max + 0.3;
+    }else {
+        _yValueMax = 4;
+    }
     
     if (_chooseRange.max!=_chooseRange.min) { // 自定义数值范围
         _yValueMax = _chooseRange.max;
@@ -60,13 +65,31 @@
         _yValueMax = [SCTool rangeMaxWithValueMax:_yValueMax] == 0 ? 100 : [SCTool rangeMaxWithValueMax:_yValueMax];
         _yValueMin = 0;
     }
-    
+    //这里再写一遍的原因是自动计算数值范围的时候会覆盖_yValueMin
+    if (self.showRange) {
+        
+        if (max + 0.2 <= 4) {
+            _yValueMax = max + 0.2;
+        }else {
+            _yValueMax = 4;
+        }
+        
+        if(min - 0.2 >= 1) {
+            _yValueMin = min - 0.2;
+        }else {
+            _yValueMin = 1;
+        }
+        
+    }else{
+        _yValueMin = 0;
+    }
+
     float level = (_yValueMax-_yValueMin) /rowCount; // 每个区间的差值
     CGFloat chartCavanHeight = self.frame.size.height - UULabelHeight*3;
     CGFloat levelHeight = chartCavanHeight /rowCount; // 每个区间的高度
     for (int i=0; i<rowCount+1; i++) {
         SCChartLabel * label = [[SCChartLabel alloc] initWithFrame:CGRectMake(0.0,chartCavanHeight-i*levelHeight+5, UUYLabelwidth, UULabelHeight)];
-		label.text = [NSString stringWithFormat:@"%g",level * i+_yValueMin]; // 每个区间的值
+		label.text = [NSString stringWithFormat:@"%.2f",level * i+_yValueMin]; // 每个区间的值
 		[self addSubview:label];
     }
     if ([super respondsToSelector:@selector(setMarkRange:)]) {
@@ -123,7 +146,7 @@
         [path addLineToPoint:CGPointMake(UUYLabelwidth+i*_xLabelWidth,self.frame.size.height-2*UULabelHeight)];
         [path closePath];
         shapeLayer.path = path.CGPath;
-        shapeLayer.strokeColor = [[[UIColor blackColor] colorWithAlphaComponent:0.1] CGColor];
+        shapeLayer.strokeColor = [[[UIColor blackColor] colorWithAlphaComponent:0.0] CGColor];
         shapeLayer.fillColor = [[UIColor whiteColor] CGColor];
         shapeLayer.lineWidth = 1;
         [self.layer addSublayer:shapeLayer];
@@ -178,7 +201,7 @@
         _chartLine.lineCap = kCALineCapRound;
         _chartLine.lineJoin = kCALineJoinBevel;
         _chartLine.fillColor   = [[UIColor whiteColor] CGColor];
-        _chartLine.lineWidth   = 3.0;
+        _chartLine.lineWidth   = 4.0;
         _chartLine.strokeEnd   = 0.0;
         [self.layer addSublayer:_chartLine];
         
@@ -256,11 +279,11 @@
 
 - (void)addPoint:(CGPoint)point index:(NSInteger)index isShow:(BOOL)isHollow value:(CGFloat)value
 {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(5, 5, 8, 8)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(5, 5, 10, 10)];
     view.center = point;
     view.layer.masksToBounds = YES;
-    view.layer.cornerRadius = 4;
-    view.layer.borderWidth = 2;
+    view.layer.cornerRadius = 5;
+    view.layer.borderWidth = 3;
     view.layer.borderColor = [[_colors objectAtIndex:index] CGColor]?[[_colors objectAtIndex:index] CGColor]:SCGreen.CGColor;
     
     if (isHollow) {
@@ -271,7 +294,7 @@
         label.font = [UIFont systemFontOfSize:10];
         label.textAlignment = NSTextAlignmentCenter;
         label.textColor = view.backgroundColor;
-        label.text = [NSString stringWithFormat:@"%d",(int)value];
+        label.text = [NSString stringWithFormat:@"%.2f",(float)value];
         [self addSubview:label];
     }
     

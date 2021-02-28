@@ -49,7 +49,8 @@
     self.titleLab = [[UILabel alloc] init];
     self.titleLab.textAlignment = NSTextAlignmentLeft;
     self.titleLab.numberOfLines = 0;
-    self.titleLab.font = [UIFont fontWithName:@".PingFang SC-Semibold" size: 34*kRateX];
+    
+    self.titleLab.font = [UIFont fontWithName:PingFangSCMedium size: 34];
     if (@available(iOS 11.0, *)) {
         self.titleLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
     } else {
@@ -60,8 +61,6 @@
     [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).mas_offset(168*kRateY);
         make.left.equalTo(self.mas_left).mas_offset(18*kRateX);
-        make.width.mas_equalTo(240*kRateX);
-        make.height.mas_equalTo(100*kRateY);
     }];
 }
 /// 标题
@@ -69,7 +68,7 @@
     self.notoiceLab = [[UILabel alloc] init];
     self.notoiceLab.textAlignment = NSTextAlignmentLeft;
     self.notoiceLab.numberOfLines = 1;
-    self.notoiceLab.font = [UIFont fontWithName:@".PingFang SC-Semibold" size: 15*kRateX];
+    self.notoiceLab.font = [UIFont fontWithName:PingFangSCSemibold size: 15];
     if (@available(iOS 11.0, *)) {
         self.notoiceLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
     } else {
@@ -80,8 +79,6 @@
     [self.notoiceLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.titleLab.mas_top).mas_offset(-6*kRateY);
         make.left.equalTo(self.mas_left).mas_offset(18*kRateX);
-        make.width.mas_equalTo(200*kRateX);
-        make.height.mas_equalTo(23*kRateY);
     }];
 }
 - (void)initTextFiled{

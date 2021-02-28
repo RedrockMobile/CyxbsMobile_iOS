@@ -4,7 +4,7 @@
 //
 //  Created by 王一成 on 2020/1/20.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//答案页的控制器
 
 #import "QADetailViewController.h"
 #import "QAAnswerViewController.h"
@@ -57,6 +57,7 @@
 - (void)setupUI{
     
     NSDictionary *detailData = self.model.detailData;
+    self.titleLabel.text = detailData[@"title"];
     NSArray *answersData = self.model.answersData;
     QADetailView *detailView = [[QADetailView alloc]initWithFrame:CGRectMake(0, TOTAL_TOP_HEIGHT, SCREEN_WIDTH, self.view.height - TOTAL_TOP_HEIGHT)];
     self.detailView = detailView;

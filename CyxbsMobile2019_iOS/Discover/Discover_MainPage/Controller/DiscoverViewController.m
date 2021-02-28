@@ -7,7 +7,7 @@
 //
 
 #import "DiscoverViewController.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
 #import "FinderToolViewController.h"
 #import "FinderView.h"
 #import "EmptyClassViewController.h"
@@ -30,12 +30,10 @@
 #import <MBProgressHUD.h>
 #import "ElectricityView.h"
 #import "VolunteerView.h"
+#import "VolunteerItem.h"
+#import "QueryViewController.h"
+#import "ArchiveTool.h"
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
-#define LIKE_IPHONEXSMAX (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 896.f)
-
-#define LIKE_IPHONEX (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 812.f)
-#define LIKE_IPHONE6plus (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 736.f)
 
 #define ColorWhite  [UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define TextColor [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -63,6 +61,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
 @property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
 @property (nonatomic, weak)UIView *hideTabbarView;//用来遮挡tabbar的View
+@property (nonatomic, weak)UIView *colorView;//用来补充志愿服务页面下方颜色
 //Model
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
@@ -75,6 +74,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, assign)int classTabbarHeight;
 @property(nonatomic, assign)int classTabbarCornerRadius;
 
+@property(nonatomic,strong)UIWindow *window;
+
 @end
 
 @implementation DiscoverViewController
@@ -82,10 +83,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 #pragma mark - Getter
 - (LoginStates)loginStatus {
-    if (![UserItemTool defaultItem]) {
+    if (![UserItemTool defaultItem].token) {
         return DidntLogin;
     } else {
-        if ([[UserItemTool defaultItem].iat integerValue] + 45 * 24 * 3600 < [NSDate nowTimestamp]) {
+        if (![[UserItemTool defaultItem].iat integerValue]
+            && [[UserItemTool defaultItem].iat integerValue] + 45 * 24 * 3600 < [NSDate nowTimestamp]) {
             return LoginTimeOut;
         } else {
             return AlreadyLogin;
@@ -118,28 +120,31 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
         ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
             
-        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]){
+        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]&&classTabBarView.mySchedul!=nil){
             [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
         }
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
     }
 }
-
+- (void)presentMySchedul{
+    ClassScheduleTabBarView *classTabBarView = ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView;
+    [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+    classTabBarView.mySchedul.fakeBar.alpha = 0;
+    [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configDefaults];
     [self requestData];
-//    [self addBackContentView];
     [self addContentView];
-    self.contentView.delegate = self;
     [self addFinderView];
     [self addEleView];
     [self addVolView];
     [self layoutSubviews];
-    
     self.view.backgroundColor = self.finderView.backgroundColor;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"Login_LoginSuceeded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
     //志愿服务绑定完成后重新加载发现主页
@@ -151,15 +156,21 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
 }
-
+-(void)loginSucceed {
+    [self requestData];
+}
 -(void)layoutSubviews {
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-TABBARHEIGHT);
+        if(IS_IPHONEX) {
+            make.top.equalTo(self.view).offset(20);
+        }
+        make.top.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
     }];
     [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(- STATUSBARHEIGHT);
+        make.top.equalTo(self.contentView);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
     }];
@@ -169,15 +180,34 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.height.equalTo(@152);
     }];
     [self.volView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.eleView.mas_bottom).offset(-15);
+        make.top.equalTo(self.eleView.mas_bottom).offset(-20);
         make.left.right.equalTo(self.view);
         make.height.equalTo(@152);
         make.bottom.equalTo(self.contentView).offset(-20);
     }];
+    
+    [self.colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.volView.mas_bottom);
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@600);
+    }];
 }
 - (void)presentToLogin {
+//    LoginViewController *loginVC = [[LoginViewController alloc] init];
+  //  UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
+   // [self presentViewController:nav animated:NO completion:nil];
+//   [self presentViewController:loginVC animated:NO completion:nil];
     LoginViewController *loginVC = [[LoginViewController alloc] init];
-    [self presentViewController:loginVC animated:NO completion:nil];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    navController.modalPresentationStyle = UIModalPresentationFullScreen;
+    UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    if (tabBarVC.presentedViewController) {
+        [tabBarVC dismissViewControllerAnimated:YES completion:^{
+            [tabBarVC presentViewController:navController animated:YES completion:nil];
+        }];
+    } else {
+        [tabBarVC presentViewController:navController animated:YES completion:nil];
+    }
     if (self.loginStatus == LoginTimeOut) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"太久没有登录掌邮了..." message:@"\n重新登录试试吧" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"好哒！" style:UIAlertActionStyleDefault handler:nil];
@@ -187,7 +217,22 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 
+///这里有问题
+static int requestCheckinInfo = 0;
 - (void)RequestCheckinInfo {
+    if(![UserDefaultTool getStuNum]){
+        requestCheckinInfo++;
+        if (requestCheckinInfo==5) {
+            requestCheckinInfo = 0;
+            return;
+        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self RequestCheckinInfo];
+        });
+        return;
+    }
+    requestCheckinInfo = 0;
+    
     NSDictionary *params = @{
         @"stunum": [UserDefaultTool getStuNum],
         @"idnum": [UserDefaultTool getIdNum]
@@ -200,6 +245,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
         [UserItemTool defaultItem].rank_Persent = responseObject[@"data"][@"percent"];
         [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
+        [UserItemTool defaultItem].canCheckIn = [responseObject[@"data"][@"can_check_in"] boolValue];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
@@ -225,6 +271,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]init];
     self.contentView = contentView;
+    self.contentView.delegate = self;
     if (@available(iOS 11.0, *)) {
         self.contentView.backgroundColor = Color242_243_248to000000;
     } else {
@@ -272,12 +319,25 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.volView = volView;
     volView.delegate = self;
     [self.contentView addSubview:volView];
-
+    
+    UIView *view = [[UIView alloc]init];//色块View
+    self.colorView = view;
+    self.colorView.backgroundColor = self.volView.backgroundColor;
+    [self.contentView addSubview:self.colorView];
 }
+
 - (void)bindingVolunteerButton {
-    QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    ///需要在此处判断一下是否已经登陆了志愿者的界面，如果登陆了，则直接跳QueryViewController，如果未登陆的话则跳登陆的viewController
+    if (![self.defaults objectForKey:@"volunteer_information"]) {
+        QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        VolunteerItem *volunteer = [ArchiveTool getPersonalInfo];
+        QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:volunteer];
+        queryVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:queryVC animated:YES];
+    }
 }
 
 - (void)requestData {
@@ -293,7 +353,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
       MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
       [hud setMode:(MBProgressHUDModeText)];
       hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
-      [hud hide:YES afterDelay:1.5];
+    [UserItem defaultItem].building = NULL;
+    [UserItem defaultItem].room = NULL;
+    
+      [hud hide:YES afterDelay:1.2];
       return;
 }
 -(void)requestElectricFeeFailed {
@@ -304,15 +367,16 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     return;
 }
 - (void)updateElectricFeeUI {
-
+    //先写入缓存
+    [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
+    [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
+    [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     self.eleView.electricFeeTime.text = self.elecModel.electricFeeItem.time;
-    //同时写入缓存
-    [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
-    [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
-    [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
+
+
 }
 
 - (void)updateNewsUI {
@@ -434,7 +498,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
     UIButton * button = [[UIButton alloc]init];
     [bindingView addSubview:button];
-    button.backgroundColor = UIColor.blueColor;
+    button.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
     [button setTitle:@"确定" forState:normal];
     button.layer.cornerRadius = 20;
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -467,7 +531,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)bindingDormitory {
     UserItem *item = [UserItem defaultItem];
     if (self.buildingNumberLabel.text != nil) {
-        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+//        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+        NSString *building = [self.buildingNumberLabel.text stringByReplacingOccurrencesOfString:@"栋" withString:@""];
+
         item.building = building;
     }
         NSLog(@"*%@*",self.roomTextField.text);
@@ -537,7 +603,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
        }
     NSInteger row0 = [pickerView selectedRowInComponent:0];
     NSInteger row1 = [pickerView selectedRowInComponent:1];
-    NSLog(@"%@",self.buildingNumberLabel.text = [self.pickerModel getNumberOfDormitoryWith:self.pickerModel.placeArray[row0] andPlace:self.pickerModel.allArray[row0][row1]]);
+    self.buildingNumberLabel.text = [self.pickerModel getNumberOfDormitoryWith:self.pickerModel.placeArray[row0] andPlace:self.pickerModel.allArray[row0][row1]];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
@@ -641,13 +707,15 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 -(void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
-    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":@"陈剑辉",@"stuNum":@"2019211534"}] mutableCopy]];
+    UserItem *item = [[UserItem alloc] init];
+    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":item.realName,@"stuNum":item.stuNum}] mutableCopy]];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchMyTest {
     NSLog(@"点击了我的考试");
     TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchSchoolCalender {

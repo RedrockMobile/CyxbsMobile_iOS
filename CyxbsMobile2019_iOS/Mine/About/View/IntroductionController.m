@@ -4,7 +4,7 @@
 //
 //  Created by 方昱恒 on 2020/8/27.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//关于我们页面 - 功能介绍
 
 #import "IntroductionController.h"
 #import <NudeIn.h>

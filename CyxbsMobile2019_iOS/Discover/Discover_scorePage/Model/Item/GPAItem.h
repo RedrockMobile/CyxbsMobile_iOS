@@ -11,7 +11,7 @@
 #import "Credits.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GPAItem : NSObject
+@interface GPAItem : NSObject<NSCoding>
 @property (nonatomic, copy)NSString *status;
 @property (nonatomic)TermGrades * termGrades;
 @property (nonatomic)Credits *credits;

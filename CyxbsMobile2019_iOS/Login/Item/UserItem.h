@@ -69,6 +69,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 一周内的签到情况
 @property (nonatomic, copy) NSString *week_info;
 
+/// 是否能签到
+@property (nonatomic, assign) BOOL canCheckIn;
+
 /// 楼栋：例如26
 @property (nonatomic, copy) NSString *building;
 
@@ -81,6 +84,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 志愿服务密码
 @property (nonatomic, copy) NSString *volunteerPassword ;
 
+
+/// ids绑定成功
+@property (nonatomic, assign) BOOL idsBindingSuccess;
 /// 获得单例对象
 + (UserItem *)defaultItem;
 

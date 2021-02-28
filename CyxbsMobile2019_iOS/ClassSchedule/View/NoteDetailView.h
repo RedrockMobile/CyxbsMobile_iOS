@@ -11,13 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol NoteDetailViewDelegate <NSObject>
-//点击修改或删除按钮后调用代理方法，代理设置为ClassDetailViewShower
+//点击修改或删除按钮后调用代理方法，让代理隐藏弹窗，代理设置为ClassDetailViewShower
 - (void)hideDetail;
 @end
 
 @interface NoteDetailView : UIView
+
+/// 备忘数据模型
 @property(nonatomic,strong)NoteDataModel *dataModel;
-@property(nonatomic,weak)id<NoteDetailViewDelegate>delegate;
+
+/// 代理，设置为ClassDetailViewShower
+@property(nonatomic,weak)id<NoteDetailViewDelegate>hideDetailDelegate;
 @end
 
 NS_ASSUME_NONNULL_END

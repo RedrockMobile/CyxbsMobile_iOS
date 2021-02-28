@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol CheckInContentViewDelegate <NSObject>
 
 - (void)backButtonClicked;
-- (void)CheckInButtonClicked:(UIButton *)sender;
+- (void)CheckInButtonClicked;
 - (void)myGoodsButtonTouched;
 - (void)presentIntegralStore:(UIPanGestureRecognizer *)pan;
 
@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CheckInContentView : UIView
 
+/// 代理是CheckInViewController
 @property (nonatomic, weak) id<CheckInContentViewDelegate> delegate;
 
 // views

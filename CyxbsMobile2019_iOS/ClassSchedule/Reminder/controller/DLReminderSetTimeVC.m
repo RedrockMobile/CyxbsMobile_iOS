@@ -5,10 +5,7 @@
 //  Created by 丁磊 on 2020/4/10.
 //  Copyright © 2020 Redrock. All rights reserved.
 //最终编辑备忘时间的页面
-/*
- 逻辑错误：
- 1.
- */
+
 
 #import "DLReminderSetTimeVC.h"
 #import "DLReminderView.h"
@@ -20,7 +17,7 @@
 #import "DLHistodyButton.h"
 #import "TimeBtnSelectedBackView.h"
 #import "NoticeWaySelectView.h"
-
+#import "LocalNotiManager.h"
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
@@ -126,7 +123,7 @@
         [hud hide:YES afterDelay:1];
         return;
     }else{
-        NoteDataModel *model = [[NoteDataModel alloc] initWithNotoDataDict:@{
+        NoteDataModel *model = [[NoteDataModel alloc] initWithNoteDataDict:@{
             @"weeksStrArray":self.weekSelectedArray,
             @"timeStrDictArray":self.timeDictArray,
             @"notiBeforeTime":self.notiStr,
@@ -134,6 +131,7 @@
             @"noteDetailStr":self.detailString,
             @"weekNameStr":self.nowWeekBtn.titleLabel.text,
         }];
+        
         if(self.navigationController!=nil){
             //如果nav不是空，那么就是点击没课的空白处后进行添加备忘的，那么：
         [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
@@ -144,12 +142,27 @@
         
         if(self.modelNeedBeDelete!=nil){
             //这个属性存在说明是通过点击修改按钮来的这个页面，所以发一个删除原备忘的通知，
-            //让WYCClassBookViewController删除备忘
+            //让WYCClassBookViewController删除备忘,同时清除本地通知
             [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldDeleteNote" object:self.modelNeedBeDelete];
             
         }
         //删除了旧的再添加新的，否则如果用户点击修改备忘后没做任何改动，但是点击了箭头，就会导致该备忘从文件里被删除
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldAddNote" object:model];
+        //如果是@“不提醒”，那就不加本地通知
+        if([self.notiStr isEqualToString:@"不提醒"])return;
+        if([model.weeksArray firstObject].intValue==0){
+            for (int i=1; i<25; i++) {
+                for (NSDictionary *timeDict in model.timeDictArray) {
+                    [LocalNotiManager setLocalNotiWithWeekNum:i weekDay:[timeDict[@"weekNum"] intValue] lesson:[timeDict[@"lessonNum"] intValue] before:model.notiBeforeTimeLenth titleStr:model.noteTitleStr subTitleStr:nil bodyStr:model.noteDetailStr ID:[NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,i,timeDict[@"weekNum"],timeDict[@"lessonNum"]]];
+                }
+            }
+        }else{
+            for (NSNumber *weekNum in model.weeksArray) {
+                for (NSDictionary *timeDict in model.timeDictArray) {
+                    [LocalNotiManager setLocalNotiWithWeekNum:weekNum.intValue weekDay:[timeDict[@"weekNum"] intValue] lesson:[timeDict[@"lessonNum"] intValue] before:model.notiBeforeTimeLenth titleStr:model.noteTitleStr subTitleStr:nil bodyStr:model.noteDetailStr ID:[NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,weekNum.intValue,timeDict[@"weekNum"],timeDict[@"lessonNum"]]];
+                }
+            }
+        }
     }
 }
 
@@ -169,8 +182,9 @@
         make.left.equalTo(weekChooseBtn).offset(0.03429*MAIN_SCREEN_W);
         make.right.equalTo(weekChooseBtn).offset(-0.03429*MAIN_SCREEN_W);
     }];
+//    HistodayButtonLabelColor
     if (@available(iOS 11.0, *)) {
-        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistodayButtonLabelColor"] forState:UIControlStateNormal];
+        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistoryBtnTextColor"] forState:UIControlStateNormal];
     } else {
         [weekChooseBtn setTitleColor:[UIColor colorWithHexString:@"F0F0F2"] forState:UIControlStateNormal];
     }
@@ -224,9 +238,6 @@
     }];
 }
 
-- (void)addNotiBtn{
-    
-}
 #pragma mark - delegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     return YES;
@@ -361,7 +372,7 @@
     
     //为选择备忘周的控件添加已选周
     [self.weekselectView setWeekBtnsSelectedWithIndexArray:@[dict[@"week"]]];
-    NSArray *transfer = @[@"整学期", @"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周",];
+    NSArray *transfer = @[@"整学期", @"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周",@"第二十二周",@"第二十三周",@"第二十四周",@"第二十五周"];
     
     //记录已选择的备忘周的数组@[@"第一周",@"第三周"...]
     self.weekSelectedArray = @[transfer[[dict[@"week"] intValue]]];

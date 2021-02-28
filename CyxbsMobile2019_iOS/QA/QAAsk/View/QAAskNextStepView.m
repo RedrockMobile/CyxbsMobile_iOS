@@ -8,6 +8,7 @@
 
 #import "QAAskNextStepView.h"
 #import "QAAskIntegralPickerView.h"
+#import "IntegralIntroductionController.h"
 
 #define NAVIGATIONTITLECOLOR [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]
 
@@ -137,8 +138,8 @@
     }
 }
 - (void)displayIntegralInstructions{
-    
-    
+    IntegralIntroductionController *vc = [[IntegralIntroductionController alloc] init];
+    [self.viewController presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -155,7 +156,7 @@
 #pragma mark pickerView内容
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     ((UILabel *)[pickerView.subviews objectAtIndex:1]).hidden = YES;    //隐藏分隔线
-    ((UILabel *)[pickerView.subviews objectAtIndex:2]).hidden = YES;    //隐藏分隔线
+//    ((UILabel *)[pickerView.subviews objectAtIndex:2]).hidden = YES;    //隐藏分隔线
     if (component==0&&row==0) {
         return @"今天";
     }else{

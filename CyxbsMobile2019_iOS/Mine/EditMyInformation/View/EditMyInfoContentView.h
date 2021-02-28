@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)backButtonClicked:(UIButton *)sender;
 - (void)headerImageTapped:(UIImageView *)sender;
 - (void)showUserInformationIntroduction:(UIButton *)sender;
-
+- (void)slideToDismiss:(UIPanGestureRecognizer *)sender;
 @end
 
 @interface EditMyInfoContentView : UIView

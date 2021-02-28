@@ -8,15 +8,12 @@
 
 #import "CheckInViewController.h"
 #import "CheckInProtocol.h"
-#import "CheckInPresenter.h"
 #import "IntegralStoreViewController.h"
 #import "IntegralStoreTransitionAnimator.h"
 #import "IntegralStorePercentDrivenController.h"
 #import "MyGoodsViewController.h"
-
+#import "CheckInModel.h"
 @interface CheckInViewController () <CheckInProtocol, CheckInContentViewDelegate, UIViewControllerTransitioningDelegate>
-
-@property (nonatomic, strong) CheckInPresenter *presenter;
 
 @property (nonatomic, weak) MBProgressHUD *chekingHUD;
 
@@ -36,9 +33,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(integralRefreshSuccess) name:@"IntegralRefreshSuccess" object:nil];
     
-    // 绑定Presenter
-    self.presenter = [[CheckInPresenter alloc] init];
-    [self.presenter attachView:self];
     
     // 添加子视图
     CheckInContentView *contentView = [[CheckInContentView alloc] init];
@@ -65,19 +59,18 @@
     
     NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
     
-    if(nowWeek < 0 || nowWeek >= weekArray.count){
+    if (nowWeek < 0 || nowWeek >= weekArray.count) {
         nowWeek = 0;
     }
 
-    self.contentView.weekLabel.text = [NSString stringWithFormat:@"上学期%@", weekArray[nowWeek]];
+    if ([UserItemTool defaultItem].canCheckIn) {
+        self.contentView.weekLabel.text = [NSString stringWithFormat:@"上学期%@", weekArray[nowWeek]];
+    } else {
+        self.contentView.weekLabel.text = @"假期愉快～";
+    }
     
     // 过场动画
     [self animationForViewWillAppear];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.presenter dettachView];
-    _presenter = nil;
 }
 
 - (void)dealloc
@@ -101,11 +94,14 @@
 
 
 #pragma mark - 代理回调
+//CheckInContentViewDelegate代理方法：
+//点击返回按钮后调用
 - (void)backButtonClicked {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)CheckInButtonClicked:(UIButton *)sender {
+//点击积分商城页面的签到按钮后调用
+- (void)CheckInButtonClicked {
     if ([UserItemTool defaultItem].rank.intValue != 0) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
@@ -118,9 +114,15 @@
         hud.labelText = @"正在签到...";
         self.chekingHUD = hud;
     }
-    [self.presenter checkIn];
+    
+    [CheckInModel CheckInSucceeded:^{
+        [self checkInSucceded];
+    } Failed:^(NSError * _Nonnull err) {
+        [self checkInFailed];
+    }];
 }
 
+//点击积分商城页面的我的商品按钮后调用
 - (void)myGoodsButtonTouched {
     MyGoodsViewController *vc = [[MyGoodsViewController alloc] init];
     [self presentViewController:vc animated:YES completion:nil];
@@ -140,10 +142,10 @@
 }
 
 
-#pragma mark - Presenter回调
+#pragma mark - 签到回调
+//model签到成功后调用
 - (void)checkInSucceded {
     [self.contentView CheckInSucceded];
-    
     [self.chekingHUD hide:YES];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -151,7 +153,7 @@
     hud.labelText = @"签到成功";
     [hud hide:YES afterDelay:1.5];
 }
-
+//model签到失败后调用
 - (void)checkInFailed {
     [self.chekingHUD hide:YES];
     

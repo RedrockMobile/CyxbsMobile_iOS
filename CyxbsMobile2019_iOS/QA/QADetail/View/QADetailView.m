@@ -4,7 +4,7 @@
 //
 //  Created by 王一成 on 2020/2/10.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//答案页
 
 #import "QADetailView.h"
 #import "QADetailAnswerListView.h"
@@ -15,6 +15,8 @@
 @property (nonatomic,strong)NSNumber *page;
 ///是否在加载
 @property (nonatomic,assign)BOOL isLoadingData;
+
+/// 是否没有更多课了
 @property (nonatomic,assign)BOOL isNoMoreAnswer;
 @end
 @implementation QADetailView

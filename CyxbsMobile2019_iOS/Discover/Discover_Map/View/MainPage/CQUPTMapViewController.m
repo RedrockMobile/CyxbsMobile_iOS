@@ -10,8 +10,10 @@
 #import "CQUPTMapPresenter.h"
 #import "CQUPTMapViewProtocol.h"
 #import "CQUPTMapDataItem.h"
+#import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapHotPlaceItem.h"
 #import "CQUPTMapProgressView.h"
+#import "CQUPTVRMapController.h"
 #import <SDImageCache.h>
 
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
@@ -19,10 +21,18 @@
 @property (nonatomic, weak) CQUPTMapProgressView *progressView;
 @property (nonatomic, weak) MBProgressHUD *hud;
 @property (nonatomic, strong) CQUPTMapPresenter *presenter;
+@property (nonatomic, copy) NSString *initialPlaceID;
 
 @end
 
 @implementation CQUPTMapViewController
+
+- (instancetype)initWithInitialPlace:(NSString *)placeID {
+    if (self = [super init]) {
+        self.initialPlaceID = placeID;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,14 +59,13 @@
     self.navigationController.navigationBar.hidden = YES;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)dealloc {
     [self.presenter detachView];
 }
 
 
 #pragma mark - Presenter 回调
 - (void)mapDataRequestSuccessWithMapData:(CQUPTMapDataItem *)mapData hotPlace:(nonnull NSArray<CQUPTMapHotPlaceItem *> *)hotPlaceArray {
-    [self.hud hide:YES];
     
     [mapData archiveItem];
     
@@ -69,7 +78,7 @@
     
     NSURL *mapURL = [NSURL URLWithString:mapData.mapURL];
     
-    [contentView.mapView sd_setImageWithURL:mapURL placeholderImage:nil options:SDWebImageRefreshCached | SDWebImageScaleDownLargeImages progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+    [contentView.mapView sd_setImageWithURL:mapURL placeholderImage:nil options:SDWebImageScaleDownLargeImages progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!self.progressView && ![[SDImageCache sharedImageCache] diskImageDataExistsWithKey:mapData.mapURL]) {
@@ -96,7 +105,20 @@
 
         self.contentView.mapScrollView.contentSize = image.size;
         [self.contentView.mapScrollView scrollToBottom];
+        
+        if (self.initialPlaceID) {
+            for (CQUPTMapPlaceItem *placeItem in mapData.placeList) {
+                if ([placeItem.placeId isEqualToString:self.initialPlaceID]) {
+                    [self.contentView selectedAPlace:placeItem];
+                    [self requestPlaceDataWithPlaceID:self.initialPlaceID];
+                    return;
+                }
+            }
+        }
     }];
+    
+    [self.hud hide:YES];
+    
 }
 
 - (void)starPlaceRequestSuccessWithStarPlace:(CQUPTMapStarPlaceItem *)starPlace {
@@ -114,7 +136,11 @@
 
 #pragma mark - ContentView代理
 - (void)backButtonClicked {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.isPresent) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)requestStarData {
@@ -141,7 +167,8 @@
 }
 
 - (void)vrButtonTapped {
-    NSLog(@"VRMap");
+    CQUPTVRMapController *vrMap = [[CQUPTVRMapController alloc] init];
+    [self.navigationController pushViewController:vrMap animated:YES];
 }
 
 @end

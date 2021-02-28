@@ -69,25 +69,6 @@
     }];
 }
 
-+ (void)searchPlaceWithString:(NSString *)string
-                      success:(nonnull void (^)(NSArray<CQUPTMapSearchItem *> * _Nonnull))success
-                       failed:(nonnull void (^)(NSError * _Nonnull))failed {
-    NSDictionary *params = @{
-        @"code": string
-    };
-    
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPSEARCH method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSMutableArray *tmpArray = [NSMutableArray array];
-        for (int i = 0; i < [responseObject[@"data"] count]; i++) {
-            CQUPTMapSearchItem *item = [[CQUPTMapSearchItem alloc] initWithID:[responseObject[@"data"][i] intValue]];
-            [tmpArray addObject:item];
-        }
-        success(tmpArray);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-    }];
-}
-
 + (void)requestPlaceDataWithPlaceID:(NSString *)placeID success:(nonnull void (^)(CQUPTMapPlaceDetailItem * _Nonnull))success failed:(nonnull void (^)(NSError * _Nonnull))failed {
     NSDictionary *params = @{
         @"place_id": placeID

@@ -7,7 +7,9 @@
 //
 
 #import "UserItemTool.h"
-#import "LoginViewController.h"
+//#import "LoginViewController.h"
+#import <UMPush/UMessage.h>
+#import "ArchiveTool.h"
 
 @interface UserItemTool ()
 
@@ -34,24 +36,30 @@
 
 /// 退出登录（清除用户缓存）
 + (void)logout {
+    
     LoginViewController *loginVC = [[LoginViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    navController.modalPresentationStyle = UIModalPresentationFullScreen;
     UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     if (tabBarVC.presentedViewController) {
         [tabBarVC dismissViewControllerAnimated:YES completion:^{
-            [tabBarVC presentViewController:loginVC animated:YES completion:nil];
+            [tabBarVC presentViewController:navController animated:YES completion:nil];
         }];
     } else {
-        [tabBarVC presentViewController:loginVC animated:YES completion:nil];
+        [tabBarVC presentViewController:navController animated:YES completion:nil];
     }
     
     NSString *filePath = [self userItemPath];
     
     // 删除偏好设置
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     NSDictionary *dic = [defaults dictionaryRepresentation];
+    
     for (id key in dic) {
         [defaults removeObjectForKey:key];
     }
+    
     // 删除归档
     NSFileManager * fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:filePath]) {
@@ -59,22 +67,29 @@
         [fileManager removeItemAtPath:filePath error:&err];
     }
     
-    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    [ArchiveTool deleteFile];
     
-    NSString *lessonPath = [path stringByAppendingPathComponent:@"lesson.plist"];
-    [@[] writeToFile:lessonPath atomically:YES];
     
-    NSString *remindPath = [path stringByAppendingPathComponent: @"remind.plist"];
-    [@[] writeToFile:remindPath atomically:YES];
+    //清除课表数据和备忘数据
+    [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];
     
-    //退出后停止umeng统计发送数据
+    //清除所有已有的本地通知
+    [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+    [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
+    
+    // 退出后停止umeng统计发送数据
     [MobClick profileSignOff];
+    
+    // 退出后移除友盟推送别名
+    [UMessage removeAlias:[UserItemTool defaultItem].stuNum type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+        
+    }];
 }
 
 + (void)refresh {
     __block UserItem *item = [UserItemTool defaultItem];
     
-    if (!item) {
+    if (!item.refreshToken) {
         return;
     }
     

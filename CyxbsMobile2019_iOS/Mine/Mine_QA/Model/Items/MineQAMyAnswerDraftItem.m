@@ -26,9 +26,35 @@
         self.answerDraftID = [NSString stringWithFormat:@"%@", dict[@"draft_answer_id"]];
         self.questionID = [NSString stringWithFormat:@"%@", dict[@"question_id"]];
         self.lastEditTime = dict[@"latest_edit_time"];
-        self.answerDraftContent = dict[@"draft_answer_content"];
+        
+        NSString *encodedString = [dict[@"draft_answer_content"] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
+        NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:encodedString options:0];
+        NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *draftData = [self dictionaryWithJsonString:decodedString];
+        
+        NSLog(@"%@", dict);
+        
+        self.answerDraftContent = draftData[@"title"];
     }
     return self;
+}
+
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString {
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
 }
 
 @end

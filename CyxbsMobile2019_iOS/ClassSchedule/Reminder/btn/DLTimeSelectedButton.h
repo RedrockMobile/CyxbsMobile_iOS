@@ -12,14 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol DLTimeSelectedButtonDelegate <NSObject>
 
-- (void)deleteButtonWithTag:(NSInteger)tag;
+- (void)deleteButtonWithBtn:(UIButton*)btn;
 
 @end
 
 //继承自DLHistoryButton
 @interface DLTimeSelectedButton : DLHistodyButton
 @property (nonatomic, weak) id<DLTimeSelectedButtonDelegate> delegate;
--(void)initImageConstrains;
+//-(void)initImageConstrains;
 @end
 
 NS_ASSUME_NONNULL_END

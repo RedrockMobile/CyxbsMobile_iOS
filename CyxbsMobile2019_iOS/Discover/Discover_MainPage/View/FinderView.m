@@ -52,12 +52,52 @@
 - (void) addWeekTimeLabel {
     UILabel *weekTimeLabel = [[UILabel alloc]init];
     self.weekTime = weekTimeLabel;
-    NSString *weekNum = [WeekAndDay defaultWeekDay].weekNumber;
-    NSString *weekday = [WeekAndDay defaultWeekDay].weekday;
-    weekTimeLabel.text =[NSString stringWithFormat:@"第%@周，周%@",weekNum,weekday];
     
-    if ([weekNum isEqual: @"0"]) {
+    // 从字符串转换日期
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy.MM.d"];
+    NSDate *resDate = [formatter dateFromString:DateStart];
+    // 计算当前是第几周
+    NSInteger beginTime=[resDate timeIntervalSince1970];
+    NSDate *now = [NSDate date];
+    NSInteger nowTime = [now timeIntervalSince1970];
+    double day = (float)(nowTime - beginTime)/(float)86400/(float)7;
+    NSInteger nowWeek = (int)ceil(day) - 1;
+    
+    NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
+    
+    //计算星期几
+    NSArray *weekday = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
+    
+    
+    //阳历节日
+       NSDictionary *lunDic = @{
+                                @"1-1":@"元旦",
+                                @"3-8":@"妇女节",
+                                @"3-12":@"植树节",
+                                @"5-1":@"劳动节",
+                                @"6-1":@"儿童节",
+                                @"8-1":@"建军节",
+                                @"9-10":@"教师节",
+                                @"10-1":@"国庆节",
+                                @"10-24":@"程序员日"
+       };
+    NSString *hoildayString = @"";
+    for (NSString *hoilday in lunDic.allKeys) {
+        NSLog(@"%ld-%ld",(long)now.month,(long)now.day);
+        if([hoilday isEqual:[NSString stringWithFormat:@"%ld-%ld",now.month,now.day]]) {
+            hoildayString = [lunDic objectForKey:hoilday];
+        }
+    }
+    
+    if (nowWeek < 0 || nowWeek >= weekArray.count) {
         weekTimeLabel.text =[NSString stringWithFormat:@"欢迎新同学～"];
+    } else {
+        weekTimeLabel.text = [NSString stringWithFormat:@"%@ %@ %@", weekArray[nowWeek], weekday[components.weekday - 1],hoildayString];
     }
 //    weekTimeLabel.text = @"";
     if (@available(iOS 11.0, *)) {
@@ -156,7 +196,7 @@
         }
         [nameArray addObject:@"更多功能"];
     }else {
-        nameArray = [@[@"空教室", @"校车轨迹", @"空课表", @"更多功能"] mutableCopy];//用来保存图片和名称
+        nameArray = [@[@"空教室", @"校车轨迹", @"查课表", @"更多功能"] mutableCopy];//用来保存图片和名称
     }
         
     NSMutableArray *array = [NSMutableArray array];
@@ -175,7 +215,7 @@
     for (EnterButton *enterButton in self.enterButtonArray) {
         if ([enterButton.label.text isEqual: @"空教室"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchFindClass) forControlEvents:UIControlEventTouchUpInside];
-        }else if([enterButton.label.text isEqual: @"空课表"]) {
+        }else if([enterButton.label.text isEqual: @"查课表"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchSchedule) forControlEvents:UIControlEventTouchUpInside];
         }else if([enterButton.label.text isEqual: @"校车轨迹"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchSchoolCar) forControlEvents:UIControlEventTouchUpInside];
@@ -199,7 +239,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     [self.weekTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(STATUSBARHEIGHT + 1.7);
+        make.top.equalTo(self).offset(1.7);
         make.left.equalTo(self).offset(17);
     }];
     [self.finderTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -271,12 +311,23 @@
 }
 //MARK: - bannerView按钮触发事件
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    URLController * controller = [[URLController alloc]init];
-    controller.hidesBottomBarWhenPushed = YES;
-    controller.toUrl = self.bannerGoToURL[index];
-    [self.viewController.navigationController pushViewController:controller animated:YES];
-//    self.viewController.hidesBottomBarWhenPushed = YES;
-    NSLog(@"点击了第%ld个bannerView", (long)index);
+    
+    // 如果是http或者https协议的URL，用浏览器打开网页，如果是cyxbs协议的URL，打开对应页面
+    if ([self.bannerGoToURL[index] hasPrefix:@"http"]) {
+        URLController * controller = [[URLController alloc]init];
+        controller.hidesBottomBarWhenPushed = YES;
+        controller.toUrl = self.bannerGoToURL[index];
+        [self.viewController.navigationController pushViewController:controller animated:YES];
+
+    } else if ([self.bannerGoToURL[index] hasPrefix:@"cyxbs"]) {
+        
+        NSDictionary *userInfo = @{
+            kMGJNavigationControllerKey: self.viewController.navigationController
+        };
+        
+        [MGJRouter openURL:self.bannerGoToURL[index] withUserInfo:userInfo completion:nil];
+    }
+    
 }
 //MARK: - 按钮触发事件部分实现
 -(void) touchMyTest {

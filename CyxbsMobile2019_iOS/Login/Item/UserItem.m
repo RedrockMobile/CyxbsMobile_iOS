@@ -14,10 +14,12 @@ MJExtensionCodingImplementation
 
 static UserItem *item = nil;
 + (UserItem *)defaultItem {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (!item) {
         item = [NSKeyedUnarchiver unarchiveObjectWithFile:[UserItemTool userItemPath]];
-    });
+        if (!item) {
+            item = [[UserItem alloc] init];
+        }
+    }
     return item;
 }
 
@@ -119,6 +121,11 @@ static UserItem *item = nil;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
+- (void)setCanCheckIn:(BOOL)canCheckIn {
+    _canCheckIn = canCheckIn;
+    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
+
 - (void)setBuilding:(NSString *)building {
     _building = building;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
@@ -135,6 +142,12 @@ static UserItem *item = nil;
 }
 - (void)setVolunteerPassword:(NSString *)volunteerPassword {
     _volunteerPassword = volunteerPassword;
+    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
+
+
+- (void)setIdsBindingSuccess:(BOOL)idsBindingSuccess {
+    _idsBindingSuccess = idsBindingSuccess;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 @end

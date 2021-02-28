@@ -8,6 +8,7 @@
 
 #import "VolunteerView.h"
 #import "VolunteerItem.h"
+#import "ArchiveTool.h"
 ///平方字体部分
 #define PingFangSC @".PingFang SC"
 //Bahnschrift字体部分
@@ -43,8 +44,8 @@
         [self loadUserDefaults];//加载缓存用作视图的初始化
         [self addNoBindingView];
         
-        if ([self.defaults objectForKey:@"volunteer_account"]) {
-            self.volunteerItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[VolunteerItem archivePath]];
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_information"]) {
+            self.volunteerItem = [ArchiveTool getPersonalInfo];
             [self refreshViewIfNeeded];
         }
         [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
@@ -52,12 +53,20 @@
     return self;
 }
 -(void)refreshViewIfNeeded {
-    [self removeUnbindingView];
-    [self addBindingView];
-    [self updateAllHour];//总时长刷新
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_information"]) {
+        [self removeUnbindingView];
+        [self addBindingView];
+        [self updateAllHour];//总时长刷新
+    }else {
+        [self removeAllSubviews];
+        [self addNoBindingView];
+        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
+
+    }
+
 }
 -(void)updateAllHour {
-    self.allTime.text = self.volunteerItem.hour;
+    self.allTime.text = [NSString stringWithFormat:@"%d",[self.volunteerItem.hour intValue]];
 }
 -(void)removeUnbindingView {
     [self.hintLabel removeFromSuperview];
@@ -137,19 +146,19 @@
     self.allTimeBackImage = allTimeBackImage;
     [allTimeBackImage setImage:[UIImage imageNamed:@"志愿时长"]];
     [self addSubview:allTimeBackImage];
-    [self addAllTime];
-    [self addShi];
     [self.allTimeBackImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.volunteerTitle);
         make.top.equalTo(self.volunteerTitle.mas_bottom).offset(16);
         make.width.height.equalTo(@64);
     }];
+    [self addAllTime];
+    [self addShi];
 }
 - (void)addAllTime {
     UILabel *allTime = [[UILabel alloc]init];
     self.allTime = allTime;
     allTime.text = @"0";
-    allTime.font = [UIFont fontWithName:ImpactRegular size:36];
+    allTime.font = [UIFont fontWithName:ImpactRegular size:32];
     if (@available(iOS 11.0, *)) {
         allTime.textColor = Color21_49_91_F0F0F2;
     } else {
@@ -157,7 +166,7 @@
     }
     [self.allTimeBackImage addSubview:allTime];
     [self.allTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.allTimeBackImage);
+        make.centerX.equalTo(self.allTimeBackImage).offset(-5);
         make.centerY.equalTo(self.allTimeBackImage).offset(2);
     }];
 }
@@ -173,7 +182,7 @@
     }
     [self.allTimeBackImage addSubview:shi];
     [self.shi mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.allTimeBackImage).offset(-5.5);
+        make.leading.equalTo(self.allTime.mas_trailing).offset(2);
         make.bottom.equalTo(self.allTime).offset(-7);
     }];
 }
@@ -188,7 +197,7 @@
 - (void)addRecentTitle {
     UILabel *recentTitle = [[UILabel alloc]init];
     self.recentTitle = recentTitle;
-    recentTitle.text = self.volunteerItem.eventsArray.firstObject.eventName;
+    recentTitle.text = self.volunteerItem.eventsArray.firstObject.title;
     recentTitle.font = [UIFont fontWithName: PingFangSCRegular size:15];
     if (@available(iOS 11.0, *)) {
         recentTitle.textColor = Color21_49_91_F0F0F2;
@@ -197,9 +206,9 @@
     }
     [self addSubview:recentTitle];
     [self.recentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.volunteerTitle.mas_right).offset(22);
+        make.left.equalTo(self.allTimeBackImage.mas_right).offset(22);
         make.top.equalTo(self.allTimeBackImage);
-        make.right.equalTo(self).offset(-70);
+        make.right.equalTo(self).offset(-80);
     }];
 }
 - (void)addRecentDate {
@@ -223,7 +232,7 @@
     UILabel *recentTime = [[UILabel alloc]init];
     self.recentTime = recentTime;
     recentTime.text = self.volunteerItem.eventsArray.firstObject.hour;
-    recentTime.font = [UIFont fontWithName:PingFangSCLight size: 13];
+    recentTime.font = [UIFont fontWithName:PingFangSCLight size: 11];
     if (@available(iOS 11.0, *)) {
         recentTime.textColor = Color21_49_91_F0F0F2;
     } else {
@@ -239,7 +248,7 @@
 - (void)addRecentTeam {
     UILabel *recentTeam= [[UILabel alloc]init];
     self.recentTeam = recentTeam;
-    recentTeam.text = self.volunteerItem.eventsArray.firstObject.orgName;
+    recentTeam.text = self.volunteerItem.eventsArray.firstObject.server_group;
     recentTeam.font = [UIFont fontWithName:PingFangSCLight size: 13];
     if (@available(iOS 11.0, *)) {
         recentTeam.textColor = Color21_49_91_F0F0F2;
@@ -251,6 +260,7 @@
     [self.recentTeam mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.recentTime);
         make.top.equalTo(self.recentTime.mas_bottom).offset(4);
+        make.right.equalTo(self).offset(-15);
     }];
 }
 @end

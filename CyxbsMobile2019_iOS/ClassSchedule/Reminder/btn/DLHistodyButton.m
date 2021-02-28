@@ -25,14 +25,20 @@
         
         
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.font = [UIFont fontWithName:@".PingFang SC-Regular" size:12*kRateX];
+        self.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:13];
         
         if (@available(iOS 11.0, *)) {
-            [self setTitleColor:[UIColor colorNamed:@"HistodayButtonLabelColor"] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor colorNamed:@"HistoryBtnTextColor"] forState:UIControlStateNormal];
         } else {
             [self setTitleColor:[UIColor colorWithHexString:@"F0F0F2"] forState:UIControlStateNormal];
         }
     }
     return self;
 }
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+    self.layer.cornerRadius = self.bounds.size.height/2.0;
+}
+
 @end

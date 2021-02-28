@@ -13,12 +13,13 @@
 #import "ExamArrangeModel.h"
 #import "ExamArrangeData.h"
 #import "UserInfoView.h"
+#import "ScorePresentAnimation.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define tableViewColor [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-@interface TestArrangeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TestArrangeViewController ()<UITableViewDelegate,UITableViewDataSource,UIViewControllerTransitioningDelegate>
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak)UILabel *titleLabel;
 @property (nonatomic, strong)ExamArrangeModel *examArrangeModel;
@@ -76,7 +77,11 @@
     [button setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(17);
-        make.top.equalTo(self.view).offset(53);
+        make.top.equalTo(self.view).offset(43);
+        make.width.equalTo(@30);
+        make.height.equalTo(@30);
+    }];
+    [button.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
@@ -87,13 +92,11 @@
 }
 
 - (void)addTableView {
-//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, [[UIApplication sharedApplication] statusBarFrame].size.height + 120, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];//130是底部学分成绩入口按钮
-//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
     UITableView *tableView;
     if (IS_IPHONEX) {
-        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+40, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+40, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 30) style:UITableViewStylePlain];
     }else {
-        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 130) style:UITableViewStylePlain];
+        tableView = [[UITableView alloc]initWithFrame:CGRectMake(53, self.tabBarController.tabBar.height+75, self.view.width - 53 - 19, self.view.height - 87 -  TABBARHEIGHT - 50) style:UITableViewStylePlain];
     }
     self.tableView = tableView;
     tableView.showsVerticalScrollIndicator = NO;
@@ -153,16 +156,20 @@
     }];
     view.layer.cornerRadius = 16;
     view.clipsToBounds = YES;
+    //GPA接口暂时弄不了，所以关闭GPA查询入口
     [scoreEnterButton addTarget:self action:@selector(pushToScoreVC) forControlEvents:UIControlEventTouchUpInside];
 }
+
+
 - (void) pushToScoreVC {
-    //GPA接口暂时弄不了，所以关闭GPA查询入口
-//    ScoreViewController *vc = [[ScoreViewController alloc]init];
-//    [self presentViewController:vc animated:YES completion:^{
-//        NSLog(@"跳转至学分成绩vc");
-//    }];
+    ScoreViewController *vc = [[ScoreViewController alloc]init];
+    vc.transitioningDelegate = self;
+    [self presentViewController:vc animated:YES completion:^{
+        NSLog(@"跳转至学分成绩vc");
+    }];
 
 }
+
 - (void)getExamArrangeData {
     ExamArrangeModel *model = [[ExamArrangeModel alloc]init];
     self.examArrangeModel = model;
@@ -189,9 +196,14 @@
     PointAndDottedLineView *pointAndDottedLineView = [[PointAndDottedLineView alloc]initWithPointCount:pointCount Spacing:spacing];
     [pointAndDottedLineView setFrame:CGRectMake(-30, 7, 11, pointAndDottedLineView.bigCircle.width + spacing * (pointCount - 1))];
     self.tableView.clipsToBounds = NO;
-
-//    NSLog(@"%f",self.titleLabel.origin.y + self.titleLabel.height + 18);
     [self.tableView addSubview:pointAndDottedLineView];
+    if (pointAndDottedLineView.isNoExam) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"您当前没有考试哦～";
+        [hud hide:YES afterDelay:1.5];
+    }
+        
     
 }
 - (void)popController {
@@ -200,7 +212,12 @@
     [self removeBackButtonTitle];
 }
 
-
+//MARK: - translationVC Delegate
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    ScorePresentAnimation *myAnimation = [[ScorePresentAnimation alloc]init];
+    myAnimation.isPresent = YES;
+    return myAnimation;
+}
 //MARK: - tableView代理
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {

@@ -183,6 +183,10 @@
     if (fav == 0) {
         [self.OKButton removeFromSuperview];
         [self.settingButton setHidden:NO];
+        for (FinderToolViewItem*item in self.toolViewItems) {
+            item.isChooingNow = NO;
+            item.isFavorite = NO;
+        }
         return;
     }
     
@@ -225,7 +229,7 @@
     FinderToolViewItem *item2 = [[FinderToolViewItem alloc]initWithIconView:@"校车轨迹" Title:@"校车轨迹" Detail:@"校园观光车轨迹路线实时查看"];
     FinderToolViewItem *item3 = [[FinderToolViewItem alloc]initWithIconView:@"空教室" Title:@"空教室" Detail:@"空余教室及时查询"];
     FinderToolViewItem *item4 = [[FinderToolViewItem alloc]initWithIconView:@"我的考试" Title:@"我的考试" Detail:@"考试安排、成绩学分轻松查询"];
-    FinderToolViewItem *item5 = [[FinderToolViewItem alloc]initWithIconView:@"空课表" Title:@"空课表" Detail:@"同学、老师课表快捷查询"];
+    FinderToolViewItem *item5 = [[FinderToolViewItem alloc]initWithIconView:@"查课表" Title:@"查课表" Detail:@"同学、老师课表快捷查询"];
     FinderToolViewItem *item6 = [[FinderToolViewItem alloc]initWithIconView:@"校历" Title:@"校历" Detail:@"学期安排一目了然"];
     FinderToolViewItem *item7 = [[FinderToolViewItem alloc]initWithIconView:@"重邮地图" Title:@"重邮地图" Detail:@"校园地图，尽收重邮风光"];
     FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"敬请期待"];

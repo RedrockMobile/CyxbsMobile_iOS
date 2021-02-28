@@ -9,6 +9,10 @@
 #ifndef MoblieCQUPT_iOS_PrefixHeader_pch
 #define MoblieCQUPT_iOS_PrefixHeader_pch
 
+
+
+#pragma mark - 自定义Log
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #if DEBUG
@@ -22,8 +26,13 @@
     } while (0)
 #else
     #define DDLog(xx, ...)     ;
-    //#define NSLog(format, ...) ;
+    #define NSLog(format, ...) ;
 #endif
+
+
+
+#pragma mark - 颜色
+
 #define BACK_COLOR [UIColor colorWithRed:246/255.0 green:246/255.0 blue:246/255.0 alpha:1.0]
 #define MAIN_COLOR  [UIColor colorWithRed:84/255.0 green:172/255.0 blue:255/255.0 alpha:1]
 #define FONT_COLOR  [UIColor colorWithRed:89/255.0 green:89/255.0 blue:89/255.0 alpha:1]
@@ -41,6 +50,9 @@
 #define COLOR_NONEED [UIColor colorWithRed:148/255.0 green:148/255.0 blue:148/255.0 alpha:0.6]
 
 
+
+#pragma mark - 头文件
+
 #import <AFNetworking.h>
 #import <MJRefresh.h>
 #import <UIImageView+WebCache.h>
@@ -56,13 +68,17 @@
 #import "BaseViewController.h"
 #import "QABaseViewController.h"
 #import "NSDate+Timestamp.h"
+#import "URLController.h"
 #import <UMAnalytics/MobClick.h>
 #import "SDMask.h"
 #import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
-#import "AESCipher.h"         // AES加密算法
+#import "AESCipher.h"           // AES加密算法
+#import <MGJRouter.h>
+#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
 
-#pragma Group共享
+#pragma mark - Group共享
+
 #define kAPPGroupID @"group.com.redrock.mobile"
 #define kAppGroupShareNowDay @"nowDay"
 #define kAppGroupShareThisWeekArray @"thisWeekArray"
@@ -81,6 +97,15 @@
 #define BACK_GRAY_COLOR [UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]
 
 
+
+#pragma mark - 友盟
+
+// 友盟DeciveToken
+#define kUMDeviceToken @"kUMDeviceToken"
+
+
+
+#pragma mark - 屏幕适配相关
 
 /* 小屏适配 */
 #define IS_IPHONESE (SCREEN_WIDTH == 320.f && SCREEN_HEIGHT == 568.f)
@@ -107,17 +132,29 @@
 
 #define kSegmentViewTitleHeight (SCREEN_HEIGHT * 50 / 667)
 
-//学期开始时间
-#define DateStart @"2020-09-07"
+#define SCREEN_WINDOW_HEIGHT (SCREEN_HEIGHT-(STATUS_HEIGHT+44))
+#define STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height//状态栏高度
 
-/*----------------------------------------------------------------
-｜                              字体                              |
------------------------------------------------------------------*/
+//学期开始时间
+#define DateStart @"2021-03-01"
+
+
+
+#pragma mark - MGJRouter用到的宏
+
+// MGJRouter中用到的一些宏
+// UserInfo的key：
+#define kMGJNavigationControllerKey @"MGJNavigationControllerKey"
+
+
+#pragma mark - 字体
+
 #define PingFangSCRegular @"PingFangSC-Regular"
 #define PingFangSCLight @"PingFangSC-Light"
 #define PingFangSCMedium @"PingFangSC-Medium"
 #define PingFangSCBold @"PingFangSC-Semibold"
 #define PingFangSCHeavy @"PingFangSC-Heavy"
+#define PingFangSCSemibold @"PingFangSC-Semibold"
 // Bahnschrift字体
 #define BahnschriftBold @"Bahnschrift_Bold"
 
@@ -139,9 +176,8 @@
 #define ZOOM(x) x / SCREEN_RATE
 
 
-/*----------------------------------------------------------------
- ｜                            我的接口                            |
- -----------------------------------------------------------------*/
+
+#pragma mark - “我的”接口
 
 /// 登录接口
 #define LOGINAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token"
@@ -150,9 +186,9 @@
 
 
 /// 上传头像
-#define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/app/index.php/Home/Photo/uploadArticle"
+#define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/person/upload/avatar"
 /// 上传用户信息
-#define UPLOADUSERINFOAPI @"http://api-234.redrock.team/magipoke/Person/SetInfo"
+#define UPLOADUSERINFOAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/Person/SetInfo"
 
 
 /// 获取签到信息
@@ -184,10 +220,21 @@
 /// 删除草稿
 #define DELETEDRAFT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/deleteItemInDraft"
 
+#pragma mark - 修改密码 借口
+/// 密保问题列表
+#define QUESTIONLISTAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/question"
+///修改密码
+#define CHANGEPASSWORDAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/password/personal"
+///发送绑定邮箱验证码
+#define SENDEMAILCODEAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/code"
+///验证绑定邮箱验证码
+#define EMAILCODEAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email"
+///是否绑定信息
+#define BINDINGEMAILANDQUESTIONAPI @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/is"
+///上传密保消息
+#define SENDQUESTION @"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/question"
 
-/*----------------------------------------------------------------
-｜                            发现接口                            |
------------------------------------------------------------------*/
+#pragma mark - “发现”接口
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
@@ -198,7 +245,7 @@
 
 /// 电费
 #define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
-//#define ELECREICFEE @"https://cyxbsmobile.redrock.team/wxapi/magipoke-elecquery/getElectric"，这好像也是电费接口
+//#define ELECTRICFEE @"http://api-234.redrock.team/wxapi/magipoke-elecquery/getElectric"   // 这好像也是电费接口
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
@@ -207,54 +254,9 @@
 /// 教务新闻附件下载
 #define NEWSDOWNLOAD @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 
-
-/// 重邮地图历史记录偏好设置Key
-#define CQUPTMAPHISTORYKEY @"MapSearchHistory"
-
-/// 重邮地图主页
-#define CQUPTMAPBASICDATA @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/basic"
-/// 重邮地图热搜
-#define CQUPTMAPHOTPLACE @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/button"
-/// 重邮地图：我的收藏
-#define CQUPTMAPMYSTAR @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/collect"
-/// 重邮地图：搜索地点
-#define CQUPTMAPSEARCH @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/searchtype"
-/// 重邮地图：地点详情
-#define CQUPTMAPPLACEDETAIL @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/detailsite"
-/// 重邮地图：上传图片
-#define CQUPTMAPUPLOADIMAGE @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/upload"
-/// 重邮地图：添加收藏
-#define CQUPTMAPADDCOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/addkeep"
-/// 重邮地图：删除收藏
-#define CQUPTMAPDELETECOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/delete"
-
-/// 课表、备忘接口
-#define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
-
-
-#define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
-
-
-#define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
-
-
-#define EDITREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
-
-
-#define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
-
-
-#define TEAkebiaoAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
-/// 空教室接口
-#define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
-
-/// 同学课表之查找同学
-#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
-/// 查找老师
-#define SEARCHTEACHERAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch"
-
 ///查询绩点需要先绑定ids
 #define IDSBINDINGAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
+
 ///绩点查询
 #define GPAAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/gpa"
 
@@ -268,13 +270,68 @@
 #define BANNERVIEWAPI @"http://api-234.redrock.team/magipoke-text/banner/get"
 
 /// 志愿查询
-#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
-#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer/select"
+#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer-message/binding"
+#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer-message/select"
+#define VOLUNTEERUNBINDING @"https://cyxbsmobile.redrock.team/wxapi/volunteer-message/unbinding"
+#define VOLUNTEERACTIVITY @"https://cyxbsmobile.redrock.team/wxapi/cyb-volunteer/volunteer/activity/info/new"
+
+#pragma mark - ”重邮地图“接口
+
+/// 重邮地图历史记录偏好设置Key
+#define CQUPTMAPHISTORYKEY @"MapSearchHistory"
+
+/// 重邮地图主页
+#define CQUPTMAPBASICDATA @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/basic"
+/// 重邮地图热搜
+#define CQUPTMAPHOTPLACE @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/button"
+/// 重邮地图：我的收藏
+#define CQUPTMAPMYSTAR @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/collect"
+/// 重邮地图：搜索地点
+#define CQUPTMAPSEARCH @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/placesearch"
+/// 重邮地图：地点详情
+#define CQUPTMAPPLACEDETAIL @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/detailsite"
+/// 重邮地图：上传图片
+#define CQUPTMAPUPLOADIMAGE @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/upload"
+/// 重邮地图：添加收藏
+#define CQUPTMAPADDCOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/addkeep"
+/// 重邮地图：删除收藏
+#define CQUPTMAPDELETECOLLECT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-stumap/rockmap/delete"
 
 
-/*----------------------------------------------------------------
-｜                            邮问接口                            |
------------------------------------------------------------------*/
+
+#pragma mark - “课表”、“备忘”接口
+
+//查课表数据，POST，参数：@{@"stu_num":学号}
+#define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
+
+//加备忘，POST
+#define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
+
+//获得备忘，POST
+#define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
+
+//编辑备忘，POST
+#define EDITREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
+
+//删除备忘，POST
+#define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
+
+//查老师课表数据，POST，参数： @{ @"teaName": 姓名, @"tea": 工号？}
+#define TEAkebiaoAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
+
+/// 空教室接口
+#define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
+
+/// 同学课表之查找同学，GET，参数：@{@"stu": 用来搜索的数据}
+#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
+
+/// 查找老师，POST，参数：@{@"teaName": 用来搜索的数据}
+#define SEARCHTEACHERAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch"
+
+
+
+#pragma mark - “邮问”接口
+
 /*
  问题部分
  */
@@ -345,6 +402,41 @@
 //更新草稿箱内容
 #define QA_UPDATE_DRAFT_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/updateItemInDraft"
 
+#pragma mark- “新版邮问”接口
+/*
+ 搜索部分
+ */
+//热词搜索列表（非搜索框内）
+#define NEWQA_HOT_WORDS_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/getSearchHotWord"
+//搜索结果：
+    //相关动态
+#define NEWQA_SEARCH_DYNAMIC_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/searchPost"
+    //重邮知识库
+#define NEWQA_SEARCH_KNOWLEDGE_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/searchKnowledge"
+
+/*
+ 发布动态页
+ */
+//发布动态
+#define NEWQA_RELEASEDYNAMIC_RELEASE_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/releaseDynamic"
+
+// 获取帖子
+#define NEW_QA_POST @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getDynamicList"
+
+// 举报
+#define NEW_QA_REPORT @"http://localhost:8080/new/report"
+
+// 热词搜索
+#define NEW_QA_HOTWORD @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/getSearchHotWord"
+
+// 我的关注
+#define NEW_QA_FOLLOWGROUP @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/getFollowedTopic"
+
+// 点赞帖子
+#define NEW_QA_STAR @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/praise"
+
+// 屏蔽
+#define NEW_QA_SHIELD @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/addIgnoreUid"
 
 typedef NS_ENUM(NSInteger, PeopleType) {
     /**代表传入的是学生相关*/
@@ -379,4 +471,25 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 //显示月份、周几、日期的条内部item的间距；课表view和leftBar的距离
 #define DAYBARVIEW_DISTANCE (MAIN_SCREEN_W*0.0075)
 //0.00885
+
+//课表、备忘数据文件的文件夹
+#define remAndLesDataDirectoryPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les"]
+
+//未解析的课表数据文件路径
+#define rowDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/rowLessonDataArr"]
+
+//已解析的课表数据文件路径
+#define parsedDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/parsedLessonDataArr"]
+
+
+//备忘数据文件夹路径
+#define remDataDirectory [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/remDataDirectory"]
+
+//备忘数据文件路径
+#define remDataArrPath [remDataDirectory stringByAppendingPathComponent:[UserItem defaultItem].stuNum]
+
+//#define remDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/remindDataArr"]
+
+//可以通过NSUserDefaults取出当前周数，类型是NSString
+#define nowWeekKey @"SchedulNowWeek"
 #endif

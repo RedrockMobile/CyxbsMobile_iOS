@@ -10,17 +10,21 @@
 //#import "WYCClassBookViewController.h"
 #import "TransitionManager.h"
 #import "FakeTabBarView.h"
-@interface ClassScheduleTabBarView ()<WYCClassAndRemindDataModelDelegate>
+//#import <UserNotifications/UserNotifications.h>
+#import "LocalNotiManager.h"
+@interface ClassScheduleTabBarView ()
 
 @property (nonatomic, weak) UIView *bottomCoverView;
 @property (nonatomic, strong) NSDictionary *dic;
 @property (nonatomic, weak) UIView *dragHintView;
 @property (nonatomic, assign)BOOL isPresenting;
 @property (nonatomic, strong)UINavigationController *nav;
+@property (nonatomic, assign)BOOL isInitingMySchedul;
 
 /// 上拉弹出课表的手势
 @property (nonatomic,strong)UIPanGestureRecognizer *PGR;
 @property (nonatomic,strong)TransitionManager *TM;
+
 @end
 
 @implementation ClassScheduleTabBarView
@@ -34,6 +38,15 @@
                } else {
                   self.backgroundColor = [UIColor whiteColor];
                }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                            selector:@selector(hideBottom)
+                            name:@"HideBottomClassScheduleTabBarView"
+                            object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                            selector:@selector(showBottom)
+                            name:@"ShowBottomClassScheduleTabBarView"
+                            object:nil];
         
         self.layer.shadowOffset = CGSizeMake(0, -5);
         self.layer.shadowOpacity = 0.05;
@@ -60,7 +73,7 @@
         
         
         FYHCycleLabel *classLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.3*MAIN_SCREEN_W, 50)];
-        classLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
+        classLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:22];
         [self addSubview:classLabel];
         self.classLabel = classLabel;
         
@@ -73,7 +86,7 @@
         
         
         FYHCycleLabel *classTimeLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
-        classTimeLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+        classTimeLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCLight size:12];
         [self addSubview:classTimeLabel];
         self.classTimeLabel = classTimeLabel;
         
@@ -85,7 +98,7 @@
         
         
         FYHCycleLabel *classroomLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.2*MAIN_SCREEN_W, 50)];
-        classroomLabel.cycleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
+        classroomLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCLight size:12];
         [self addSubview:classroomLabel];
         self.classroomLabel = classroomLabel;
         
@@ -114,7 +127,7 @@
         UserItem *item = [UserItem defaultItem];
         
         //如果真实姓名非空，那么已登录
-        if(item.realName!=nil||![item.realName isEqualToString:@""]){
+        if(item.realName!=nil&&![item.realName isEqualToString:@""]){
             [self initMySchedul];
         }
     }
@@ -140,7 +153,7 @@
         make.left.equalTo(self).offset(MAIN_SCREEN_W*0.0774);
         make.centerY.equalTo(self);
         make.width.mas_equalTo(0.3*MAIN_SCREEN_W);
-        make.height.mas_equalTo(0.12*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.13*MAIN_SCREEN_W);
     }];
     
     [self.clockImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -153,7 +166,7 @@
         make.left.equalTo(self).offset(MAIN_SCREEN_W*0.4554);
         make.centerY.equalTo(self.classLabel);
         make.width.mas_equalTo(0.1867*MAIN_SCREEN_W);
-        make.height.mas_equalTo(0.12*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.13*MAIN_SCREEN_W);
     }];
     
     [self.locationImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -166,7 +179,7 @@
         make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.7214);
         make.centerY.equalTo(self.classLabel);
         make.width.mas_equalTo(0.224*MAIN_SCREEN_W);
-        make.height.mas_equalTo(MAIN_SCREEN_W*0.12);
+        make.height.mas_equalTo(MAIN_SCREEN_W*0.13);
     }];
 }
 
@@ -174,16 +187,31 @@
 /// @param paramDict 下节课的数据字典
 - (void)updateSchedulTabBarViewWithDic:(NSDictionary *)paramDict{
     if( [paramDict[@"is"] intValue]==1){//有下一节课
+        [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"remindBeforeCourseBegin"]];
+        
         self.classroomLabel.labelText = paramDict[@"classroomLabel"];
         self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
         self.classLabel.labelText = paramDict[@"classLabel"];
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_RemindBeforeClass"]!=nil){
+            
+            int weekNum,weekday,lesson;
+            weekday = [paramDict[@"hash_day"] intValue];
+            lesson = [paramDict[@"hash_lesson"] intValue];
+            weekNum = [paramDict[@"hash_week"] intValue];
+            NSString *bodyStr = [NSString stringWithFormat:@"课程内容：%@",paramDict[@"classLabel"]];
+            NSString *subTitleStr =[NSString stringWithFormat:@"教室地点：%@",paramDict[@"classroomLabel"]];
+                //在第weekNum周的（星期weekday）的（第lesson节大课）前20提醒
+            [LocalNotiManager setLocalNotiWithWeekNum:weekNum weekDay:weekday lesson:lesson before:20 titleStr:@"老师还有20分钟到达教室" subTitleStr:subTitleStr bodyStr:bodyStr ID:@"remindBeforeCourseBegin"];
+        }else{
+            //移除提醒
+            [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"remindBeforeCourseBegin"]];
+        }
     }else{//无下一节课
-        self.classroomLabel.labelText =
-        self.classTimeLabel.labelText =
+        self.classroomLabel.labelText = @"---";
+        self.classTimeLabel.labelText = @"---";
         self.classLabel.labelText = @"无课了";
     }
 }
-
 /// 添加一个上拉后显示课表的手势和点击后显示课表的手势
 - (void)addGesture{
     //上拉后显示课表
@@ -199,6 +227,7 @@
     [self addGestureRecognizer:TGR];
 }
 
+/// 弹出课表的方法
 - (void)presentMySchedul{
     if(self.PGR.state==UIGestureRecognizerStateBegan){
         self.TM.PGRToInitTransition = self.PGR;
@@ -209,7 +238,11 @@
 }
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
+    if(self.isInitingMySchedul==YES)return;
+    self.isInitingMySchedul = YES;
     self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+    
+    self.mySchedul.schedulTabBar = self;
     
     self.mySchedul.idNum = [UserDefaultTool getIdNum];
     
@@ -223,20 +256,25 @@
     
     model.delegate = self.mySchedul;
     
-    model.writeToFile = YES;
-    
-    [model setValue:@"YES" forKey:@"remindDataLoadFinish"];
-    
-    if (self.mySchedul.stuNum) {
-        [model getPersonalClassBookArrayFromNet:self.mySchedul.stuNum];
-    }
+    [model getPersonalClassBookArrayWithStuNum:self.mySchedul.stuNum];
     
     self.mySchedul.transitioningDelegate = self.TM;
     
     [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
     
-    self.mySchedul.schedulTabBar = self;
-    
     [self addGesture];
+    self.isInitingMySchedul = NO;
 }
+
+
+- (void)hideBottom {
+    self.userInteractionEnabled = NO;
+    self.alpha = 0;
+}
+
+- (void)showBottom {
+    self.userInteractionEnabled = YES;
+    self.alpha = 1;
+}
+
 @end
