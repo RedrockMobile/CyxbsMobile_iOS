@@ -218,7 +218,8 @@
 //MineModel请求QA数据成功后调用
 - (void)QAInfoRequestsSucceededWithItem:(MineQADataItem *)item {
     //item.askNum
-    [self.headerView.articleNumBtn setTitle:item.answerNum forState:UIControlStateNormal];
+    //answerNum
+    [self.headerView.articleNumBtn setTitle:item.askNum forState:UIControlStateNormal];
     [self.headerView.remarkNumBtn setTitle:item.commentNum forState:UIControlStateNormal];
     [self.headerView.praiseNumBtn setTitle:item.praiseNum forState:UIControlStateNormal];
 }

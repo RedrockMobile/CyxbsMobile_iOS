@@ -171,7 +171,8 @@
 }
 
 - (void)sureBtnClicked {
-    
+    [self.delegate sureBtnClicked];
+    [self removeFromSuperview];
 }
 
 @end

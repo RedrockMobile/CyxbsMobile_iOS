@@ -176,14 +176,15 @@
 - (void)addLabelsAndBtns{
     MineQADataItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[MineQADataItem archivePath]];    
 //        item.askNum
+    //answerNum
     if (item==nil) {
         self.articleNumBtn = [self getNumBtnWithBtnName:@"动态" msgCount:@"0"];
-        self.remarkNumBtn = [self getNumBtnWithBtnName:@"获赞" msgCount:@"0"];
-        self.praiseNumBtn = [self getNumBtnWithBtnName:@"评论" msgCount:@"0"];
+        self.remarkNumBtn = [self getNumBtnWithBtnName:@"评论" msgCount:@"0"];
+        self.praiseNumBtn = [self getNumBtnWithBtnName:@"获赞" msgCount:@"0"];
     }else{
-        self.articleNumBtn = [self getNumBtnWithBtnName:@"动态" msgCount:item.answerNum];
-        self.remarkNumBtn = [self getNumBtnWithBtnName:@"获赞" msgCount:item.commentNum];
-        self.praiseNumBtn = [self getNumBtnWithBtnName:@"评论" msgCount:item.praiseNum];
+        self.articleNumBtn = [self getNumBtnWithBtnName:@"动态" msgCount:item.askNum];
+        self.remarkNumBtn = [self getNumBtnWithBtnName:@"评论" msgCount:item.commentNum];
+        self.praiseNumBtn = [self getNumBtnWithBtnName:@"获赞" msgCount:item.praiseNum];
     }
     //代理是个人主页面的控制器
     [self.articleNumBtn addTarget:self.delegate action:@selector(articleNumBtnClicked) forControlEvents:UIControlEventTouchUpInside];

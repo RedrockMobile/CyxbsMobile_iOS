@@ -10,8 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DeleteArticleTipView : UIView
+@protocol DeleteArticleTipViewDelegate <NSObject>
+- (void)sureBtnClicked;
+@end
 
+@interface DeleteArticleTipView : UIView
+@property(nonatomic,weak)id<DeleteArticleTipViewDelegate>delegate;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -118,7 +118,7 @@
         [UserDefaultTool saveToken:responseObject[@"data"][@"token"]];
         [UserDefaultTool saveRefreshToken:responseObject[@"data"][@"refreshToken"]];
         
-        NSLog(@"%@", [UserItemTool defaultItem].token);
+        NSLog(@"token:%@", [UserItemTool defaultItem].token);
 
         if (error) {
             NSLog(@"%@", error);
