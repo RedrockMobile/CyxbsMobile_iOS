@@ -225,8 +225,7 @@
     if (item) {
         _item = item;
         self.iconImageView.image = [UIImage imageNamed:@"圈子图像"];
-//        self.nicknameLabel.text = item.nick_name;
-        self.nicknameLabel.text = @"测试name";
+        self.nicknameLabel.text = item.nick_name;
         self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%@",item.publish_time]];
         self.detailLabel.text = item.content;
         [self.groupLabel setTitle:[NSString stringWithFormat:@"# %@",item.topic] forState:UIControlStateNormal];

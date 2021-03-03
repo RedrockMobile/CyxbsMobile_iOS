@@ -14,7 +14,7 @@
     if ([super init]) {
         self.post_id = dict[@"post_id"];
         self.avatar = dict[@"avatar"];
-        self.nick_name = dict[@"nick_name"];
+        self.nick_name = dict[@"nickname"];
         self.publish_time = dict[@"publish_time"];
         self.content = dict[@"content"];
         self.pics = dict[@"pics"];

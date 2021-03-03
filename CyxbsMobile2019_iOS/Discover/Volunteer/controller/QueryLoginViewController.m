@@ -6,7 +6,7 @@
 //  Copyright © 2019 Orange-W. All rights reserved.
 //
 
-#pragma mark -志愿部分新版（网络相关内容未写完，先不发版，和邮问迭代一起上线）
+#pragma mark -志愿部分新版
 #import "QueryLoginViewController.h"
 #import "QueryViewController.h"
 #import "VolunteeringEventItem.h"
@@ -99,7 +99,7 @@
 #pragma mark - 登陆失败
 - (void)loginFailed {
     [self.loadHud hide:YES];
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"账号或密码错误" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"账号密码错误或网络异常" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleCancel handler:nil];
     [alertC addAction:cancel];
     [self presentViewController:alertC animated:YES completion:nil];

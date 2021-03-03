@@ -22,6 +22,7 @@
 #import "PostArchiveTool.h"
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
+#import "ClassTabBar.h"
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
 
@@ -65,7 +66,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    self.tabBarController.tabBar.hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
 }
 -(void)viewDidLayoutSubviews{
@@ -74,6 +74,7 @@
 //邮问视图消失时显示底部课表
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
 }
 - (void)viewDidLoad {
@@ -319,7 +320,7 @@
     _lineHeight = self.dataArray.count != 0 ? 2 : 0;
     _NavHeight = _topBackView.frame.size.height;
 
-    _tableView = [[RecommendedTableView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT + STATUSBARHEIGHT + SCREEN_WIDTH * 14/375, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_HEIGHT * 0.0165 + NVGBARHEIGHT + STATUSBARHEIGHT + TABBARHEIGHT))];
+    _tableView = [[RecommendedTableView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT + STATUSBARHEIGHT + SCREEN_WIDTH * 14/375, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_HEIGHT * 0.0165 + NVGBARHEIGHT + STATUSBARHEIGHT))];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.contentInset = UIEdgeInsetsMake(_TopViewHeight, 0, 0, 0);
     _tableView.delegate = self;
@@ -739,7 +740,7 @@
 - (void)clickedPublishBtn {
     SZHReleaseDynamic *vc = [[SZHReleaseDynamic alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-    self.tabBarController.tabBar.hidden = NO;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"跳转到发布界面");
 }
@@ -748,7 +749,7 @@
 - (void)searchPost {
     SearchBeginVC *vc = [[SearchBeginVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-    self.tabBarController.tabBar.hidden = NO;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"跳转到搜索页面");
 }
