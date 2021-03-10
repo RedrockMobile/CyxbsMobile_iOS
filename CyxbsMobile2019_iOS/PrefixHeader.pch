@@ -15,8 +15,7 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-#if DEBUG
-    #define DDLog(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#ifdef DEBUG
     #define NSLog(format, ...) do {                                                                          \
     fprintf(stderr, "<%s : %d> | %s\n",                                           \
     [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
@@ -25,9 +24,27 @@
     fprintf(stderr, "-------\n");                                               \
     } while (0)
 #else
-    #define DDLog(xx, ...)     ;
     #define NSLog(format, ...) ;
 #endif
+
+//++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  Begain
+#ifdef DEBUG
+#define CCLog(format,...) do{\
+fprintf(stderr,"Stove[%s - %d˙]:\n",\
+[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\
+__LINE__);\
+\
+for (NSString *CCLogStr__ in [[NSString stringWithFormat:format, ##__VA_ARGS__] componentsSeparatedByString:@"\n"]) {\
+fprintf(stderr,"%s˙\n", [[[[NSString stringWithFormat:@"%@",CCLogStr__] stringByAppendingString:@"                                                                                                    "] substringToIndex:99] UTF8String]);\
+}\
+\
+fprintf(stderr,"\n\n");\
+}while(0)
+
+#else
+#define CCLog(format,...)
+#endif
+//++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  End
 
 
 

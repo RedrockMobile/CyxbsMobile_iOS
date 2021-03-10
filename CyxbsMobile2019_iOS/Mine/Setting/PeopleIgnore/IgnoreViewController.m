@@ -10,14 +10,13 @@
 #import "IgnoreTableViewCell.h"
 #import "IgnoreModel.h"
 #import "IgnoreDataModel.h"
-#import "NewQAHud.h"
-#import "NothingStateView.h"
+
+
 //#import <Social/Social.h>
 
 @interface IgnoreViewController ()<UITableViewDelegate,UITableViewDataSource,MainPageModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)IgnoreModel *model;
-@property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
 @implementation IgnoreViewController
@@ -73,29 +72,30 @@
 }
 
 //MARK:-model的代理方法：
-- (void)mainPageModelLoadDataSuccessWithState:(MainPageModelDataState)state {
-    if (state==StateNoMoreDate) {
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-    }else{
-        [self.tableView.mj_footer endRefreshing];
+- (void)mainPageModelLoadDataFinishWithState:(MainPageModelDataState)state {
+    switch (state) {
+        case StateNoMoreDate:
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            break;
+        case StateEndRefresh:
+            [self.tableView.mj_footer endRefreshing];
+            break;
+        case StateFailure:
+            [self.tableView.mj_footer endRefreshing];
+            [NewQAHud showHudWith:@"加载失败" AddView:self.view];
+            break;
+        default:
+            break;
     }
     
-    if (self.model.dataArr.count==0) {
-        [self addNothingView];
-    }else{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
-    }
-}
-
-- (void)addNothingView {
-    if (self.nothingView==nil) {
-        NothingStateView *view = [[NothingStateView alloc] initWithTitleStr:@"暂时还没有屏蔽的人噢～"];
-        [self.view addSubview:view];
-    }
-}
-
-- (void)mainPageModelLoadDataFailue {
-    [NewQAHud showHudWith:@"加载失败" AddView:self.view];
+        if (self.model.dataArr.count==0) {
+            self.nothingView.alpha = 1;
+        }else {
+            self.nothingView.alpha = 0;
+        }
+    });
 }
 @end
 

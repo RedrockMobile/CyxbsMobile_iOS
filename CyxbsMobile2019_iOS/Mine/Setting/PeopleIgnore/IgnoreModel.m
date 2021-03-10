@@ -18,13 +18,13 @@
     [self.client requestWithPath:url method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.dataArr addObjectsFromArray:responseObject[@"data"]];
         if ([responseObject[@"data"] count] < 10) {
-            [self.delegate mainPageModelLoadDataSuccessWithState:StateNoMoreDate];
+            [self.delegate mainPageModelLoadDataFinishWithState:StateNoMoreDate];
         }else {
-            [self.delegate mainPageModelLoadDataSuccessWithState:StateEndRefresh];
+            [self.delegate mainPageModelLoadDataFinishWithState:StateEndRefresh];
             self.page++;
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [self.delegate mainPageModelLoadDataFailue];
+        [self.delegate mainPageModelLoadDataFinishWithState:StateFailure];
     }];
 }
 @end

@@ -127,7 +127,6 @@
     [self.cancelBtn setEnabled:NO];
     if ([self.cancelBtn.titleLabel.text isEqualToString:@"取消屏蔽"]) {
         [[HttpClient defaultClient] requestWithPath:CJHcancelInorePeopel method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"res%@",responseObject);
             [self.cancelBtn setTitle:@"屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"已成功解除对该用户的屏蔽～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];
@@ -136,7 +135,6 @@
         }];
     }else {
         [[HttpClient defaultClient] requestWithPath:CJHinorePeopel method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"res%@",responseObject);
             [self.cancelBtn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"屏蔽成功～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];

@@ -131,4 +131,12 @@
 - (void)backBtnClicked{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (NothingStateView *)nothingView {
+    if (_nothingView==nil) {
+        _nothingView = [[NothingStateView alloc] initWithTitleStr:@"暂时还没有动态噢～"];
+        [self.view addSubview:_nothingView];
+    }
+    return _nothingView;
+}
 @end

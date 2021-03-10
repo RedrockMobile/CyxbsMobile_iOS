@@ -337,24 +337,24 @@
 
 //MARK:相关动态cell的代理方法
 ///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
-- (void)ClickedStarBtn:(FunctionBtn *)sender {
-    if (sender.selected == YES) {
-        sender.selected = NO;
-        sender.iconView.image = [UIImage imageNamed:@"未点赞"];
-        NSString *count = sender.countLabel.text;
-        sender.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
+- (void)ClickedStarBtn:(PostTableViewCell *)cell {
+    if (cell.starBtn.selected == YES) {
+        cell.starBtn.selected = NO;
+        cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
+        NSString *count = cell.starBtn.countLabel.text;
+        cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
         if (@available(iOS 11.0, *)) {
-            sender.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
         } else {
             // Fallback on earlier versions
         }
     }else {
-        sender.selected = YES;
-        sender.iconView.image = [UIImage imageNamed:@"点赞"];
-        NSString *count = sender.countLabel.text;
-        sender.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
+        cell.starBtn.selected = YES;
+        cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
+        NSString *count = cell.starBtn.countLabel.text;
+        cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
         if (@available(iOS 11.0, *)) {
-            sender.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
             
         } else {
             // Fallback on earlier versions
@@ -362,18 +362,17 @@
         
     }
     StarPostModel *model = [[StarPostModel alloc] init];
-    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
-    [model starPostWithPostID:[NSNumber numberWithString:item.post_id]];
+    [model starPostWithPostID:cell.item.post_id.numberValue];
 }
 
 ///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
-- (void)ClickedCommentBtn:(FunctionBtn *)sender {
+- (void)ClickedCommentBtn:(PostTableViewCell *)cell {
 //    PostItem *item = self.postArray[sender.tag];
 //    int post_id = [item.post_id intValue];
 }
 
 ///分享帖子
-- (void)ClickedShareBtn:(UIButton *)sender{
+- (void)ClickedShareBtn:(PostTableViewCell *)cell {
     [self showBackViewWithGesture];
     _shareView = [[ShareView alloc] init];
     _shareView.delegate = self;
@@ -382,11 +381,11 @@
         make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
         make.left.right.bottom.mas_equalTo([UIApplication sharedApplication].keyWindow);
     }];
-    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    NSString *shareURL = [NSString stringWithFormat:@"%@%@",@"cyxbs://redrock.team/answer_list/qa/entry?question_id=",item.post_id];
+    NSString *shareURL = [NSString stringWithFormat:@"%@%@",@"cyxbs://redrock.team/answer_list/qa/entry?question_id=",cell.item.post_id];
     pasteboard.string = shareURL;
 }
 
@@ -394,15 +393,15 @@
  举报和屏蔽的多能按钮
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
  */
-- (void)ClickedFuncBtn:(UIButton *)sender {
-    UIWindow* desWindow=[UIApplication sharedApplication].keyWindow;
-    CGRect frame = [sender convertRect:sender.bounds toView:desWindow];
+- (void)ClickedFuncBtn:(PostTableViewCell *)cell{
+    UIWindow* desWindow=self.view.window;
+    CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
     _popView = [[FuncView alloc] init];
     _popView.delegate = self;
     _popView.layer.cornerRadius = 3;
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
-    [[UIApplication sharedApplication].keyWindow addSubview:_popView];
+    [self.view.window addSubview:_popView];
 }
 
 //MARK:多功能View代理方法
