@@ -7,8 +7,6 @@
 //个人主页面的tableView顶部的一大块View都是这个类，这个类会被设置成tableView的headview
 
 #import "MineHeaderView.h"
-#import "MineQADataItem.h"
-#import "MainPageNumBtn.h"
 #import <UMPush/UMessage.h>
 
 @interface MineHeaderView ()
@@ -174,17 +172,11 @@
 
 /// 添加动态、评论、获赞 的   label与按钮
 - (void)addLabelsAndBtns{
-    MineQADataItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[MineQADataItem archivePath]];    
-//        item.askNum
-    if (item==nil) {
-        self.articleNumBtn = [self getNumBtnWithBtnName:@"动态" msgCount:@"0"];
-        self.remarkNumBtn = [self getNumBtnWithBtnName:@"获赞" msgCount:@"0"];
-        self.praiseNumBtn = [self getNumBtnWithBtnName:@"评论" msgCount:@"0"];
-    }else{
-        self.articleNumBtn = [self getNumBtnWithBtnName:@"动态" msgCount:item.answerNum];
-        self.remarkNumBtn = [self getNumBtnWithBtnName:@"获赞" msgCount:item.commentNum];
-        self.praiseNumBtn = [self getNumBtnWithBtnName:@"评论" msgCount:item.praiseNum];
-    }
+
+    self.articleNumBtn = [self getNumBtnWithBtnName:@"动态"];
+    self.remarkNumBtn = [self getNumBtnWithBtnName:@"评论"];
+    self.praiseNumBtn = [self getNumBtnWithBtnName:@"获赞"];
+
     //代理是个人主页面的控制器
     [self.articleNumBtn addTarget:self.delegate action:@selector(articleNumBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.remarkNumBtn addTarget:self.delegate action:@selector(remarkNumBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -193,11 +185,10 @@
 }
 
 //MARK: - 其他方法:
-- (MainPageNumBtn*)getNumBtnWithBtnName:(NSString*)btnNameStr msgCount:(NSString*)msgCnt{
+- (MainPageNumBtn*)getNumBtnWithBtnName:(NSString*)btnNameStr{
     MainPageNumBtn *numBtn = [[MainPageNumBtn alloc] init];
     [self addSubview:numBtn];
     numBtn.btnNameLabel.text = btnNameStr;
-    [numBtn setTitle:msgCnt forState:UIControlStateNormal];
     return numBtn;
 }
 //MARK: - 添加约束的方法:

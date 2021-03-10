@@ -75,7 +75,7 @@
     _funcBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     _funcBtn.backgroundColor = [UIColor clearColor];
     [_funcBtn setBackgroundImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
-    [_funcBtn addTarget:self action:@selector(ClickedFuncBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_funcBtn addTarget:self action:@selector(ClickedFuncBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_funcBtn];
     
     ///内容
@@ -114,25 +114,25 @@
     } else {
         [_groupLabel setTitleColor:[UIColor colorWithRed:85.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1] forState:UIControlStateNormal];
     }
-    [_groupLabel addTarget:self action:@selector(ClickedGroupTopicBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_groupLabel addTarget:self action:@selector(ClickedGroupTopicBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_groupLabel];
     
     ///点赞
     _starBtn = [[FunctionBtn alloc] init];
-    [_starBtn addTarget:self action:@selector(ClickedStar:) forControlEvents:UIControlEventTouchUpInside];
+    [_starBtn addTarget:self action:@selector(ClickedStar) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_starBtn];
     
     ///评论
     _commendBtn = [[FunctionBtn alloc] init];
     _commendBtn.iconView.image = [UIImage imageNamed:@"answerIcon"];
-    [_commendBtn addTarget:self action:@selector(ClickedComment:) forControlEvents:UIControlEventTouchUpInside];
+    [_commendBtn addTarget:self action:@selector(ClickedComment) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_commendBtn];
     
     ///分享
     _shareBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     _shareBtn.backgroundColor = [UIColor clearColor];
     [_shareBtn setBackgroundImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
-    [_shareBtn addTarget:self action:@selector(ClickedShare:) forControlEvents:UIControlEventTouchUpInside];
+    [_shareBtn addTarget:self action:@selector(ClickedShare) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_shareBtn];
     
 }
@@ -345,37 +345,37 @@
    return timeStr;
 }
 
-- (void)ClickedFuncBtn:(UIButton *)sender {
+- (void)ClickedFuncBtn {
     if ([self.delegate respondsToSelector:@selector(ClickedFuncBtn:)]) {
-        [self.delegate ClickedFuncBtn:sender];
+        [self.delegate ClickedFuncBtn:self];
     }
 }
 
 ///点赞的逻辑：点赞后，本地改变点赞的数值，然后通过网络请求传入后端
-- (void)ClickedStar:(FunctionBtn *)sender {
+- (void)ClickedStar {
     if ([self.delegate respondsToSelector:@selector(ClickedStarBtn:)]) {
-        [self.delegate ClickedStarBtn:sender];
+        [self.delegate ClickedStarBtn:self];
     }
 }
 
 ///跳转到具体的评论界面
-- (void)ClickedComment:(FunctionBtn *)sender {
+- (void)ClickedComment {
     if ([self.delegate respondsToSelector:@selector(ClickedCommentBtn:)]) {
-        [self.delegate ClickedCommentBtn:sender];
+        [self.delegate ClickedCommentBtn:self];
     }
 }
 
 ///分享
-- (void)ClickedShare:(UIButton *)sender {
+- (void)ClickedShare {
     if ([self.delegate respondsToSelector:@selector(ClickedShareBtn:)]) {
-        [self.delegate ClickedShareBtn:sender];
+        [self.delegate ClickedShareBtn:self];
     }
 }
 
 ///点击标签跳转进相应的圈子
-- (void)ClickedGroupTopicBtn:(UIButton *)sender {
+- (void)ClickedGroupTopicBtn {
     if ([self.delegate respondsToSelector:@selector(ClickedGroupTopicBtn:)]) {
-        [self.delegate ClickedGroupTopicBtn:sender];
+        [self.delegate ClickedGroupTopicBtn:self];
     }
 }
 @end

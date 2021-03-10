@@ -508,24 +508,24 @@
 
 #pragma mark - Cell中的相关事件
 ///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
-- (void)ClickedStarBtn:(FunctionBtn *)sender {
-    if (sender.selected == YES) {
-        sender.selected = NO;
-        sender.iconView.image = [UIImage imageNamed:@"未点赞"];
-        NSString *count = sender.countLabel.text;
-        sender.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
+- (void)ClickedStarBtn:(PostTableViewCell *)cell{
+    if (cell.starBtn.selected == YES) {
+        cell.starBtn.selected = NO;
+        cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
+        NSString *count = cell.starBtn.countLabel.text;
+        cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
         if (@available(iOS 11.0, *)) {
-            sender.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
         } else {
             // Fallback on earlier versions
         }
     }else {
-        sender.selected = YES;
-        sender.iconView.image = [UIImage imageNamed:@"点赞"];
-        NSString *count = sender.countLabel.text;
-        sender.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
+        cell.starBtn.selected = YES;
+        cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
+        NSString *count = cell.starBtn.countLabel.text;
+        cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
         if (@available(iOS 11.0, *)) {
-            sender.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
             
         } else {
             // Fallback on earlier versions
@@ -533,18 +533,18 @@
         
     }
     StarPostModel *model = [[StarPostModel alloc] init];
-    _itemDic = self.tableArray[sender.tag];
+    _itemDic = self.tableArray[cell.starBtn.tag];
     [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
 }
 
 ///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
-- (void)ClickedCommentBtn:(FunctionBtn *)sender {
+- (void)ClickedCommentBtn:(PostTableViewCell *)cell{
 //    _itemDic = self.tableArray[sender.tag];
 //    int post_id = [_itemDic[@"post_id"] intValue];
 }
 
 ///分享帖子
-- (void)ClickedShareBtn:(UIButton *)sender{
+- (void)ClickedShareBtn:(PostTableViewCell *)cell {
     [self showBackViewWithGesture];
     _shareView.delegate = self;
     [self.view.window addSubview:_shareView];
@@ -552,7 +552,7 @@
         make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
         make.left.right.bottom.mas_equalTo(self.view.window);
     }];
-    _itemDic = self.tableArray[sender.tag];
+    _itemDic = self.tableArray[cell.shareBtn.tag];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -564,15 +564,20 @@
  举报和屏蔽的多能按钮
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
  */
-- (void)ClickedFuncBtn:(UIButton *)sender {
+- (void)ClickedFuncBtn:(PostTableViewCell *)cell{
     UIWindow* desWindow=self.view.window;
-    CGRect frame = [sender convertRect:sender.bounds toView:desWindow];
+    CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
     _popView = [[FuncView alloc] init];
     _popView.delegate = self;
     _popView.layer.cornerRadius = 3;
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
     [self.view.window addSubview:_popView];
+}
+
+///点击标签跳转到相应的圈子
+- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
+    
 }
 
 #pragma mark- 配置相关弹出View和其蒙版的操作
@@ -730,10 +735,6 @@
     
 }
 
-///点击标签跳转到相应的圈子
-- (void)ClickedGroupTopicBtn:(UIButton *)sender {
-    
-}
 
 #pragma mark -发布动态和搜索的跳转
 ///点击了发布按钮，跳转到发布动态的页面

@@ -13,20 +13,20 @@
 #import "EditMyInfoPercentDrivenController.h"
 #import "CheckInViewController.h"
 #import "MineQAController.h"
-#import "MineQADataItem.h"
 #import "MineAboutController.h"
 //#import "SelfSafeViewController.h"
 
+#import "MainMsgCntModel.h"
 #import "ArticleViewController.h"
 #import "RemarkViewController.h"
 #import "PraiseViewController.h"
 
-#import "MineModel.h"
+
 #import "MineSettingViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import "CheckInModel.h"
 
-@interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate>
+@interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate>
 
 /// tableView
 @property (nonatomic, weak) UITableView *appSettingTableView;
@@ -36,6 +36,8 @@
 
 /// tabelViewCell的标题数据来源
 @property (nonatomic, copy) NSArray <NSString*> *cellTitleStrArr;
+
+@property (nonatomic, strong)MainMsgCntModel *msgCntModel;
 @end
 
 
@@ -54,6 +56,8 @@
         self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:250/255.0 alpha:1];
     }
 //    248_249_252&0_1_1
+    self.msgCntModel = [[MainMsgCntModel alloc] init];
+    self.msgCntModel.delegate = self;
     
     [self addContentView];
     [self addAppSettingTableView];
@@ -105,11 +109,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // 加载邮问数据
-    [MineModel requestQADataSucceeded:^(MineQADataItem * _Nonnull responseItem) {
-        [self QAInfoRequestsSucceededWithItem:responseItem];
-    } failed:^(NSError * _Nonnull err) {
-        
-    }];
+//    [MineModel requestQADataSucceeded:^(MineQADataItem * _Nonnull responseItem) {
+//        [self.headerView.articleNumBtn setTitle:responseItem.askNum forState:UIControlStateNormal];
+//        [self.headerView.remarkNumBtn setTitle:responseItem.commentNum forState:UIControlStateNormal];
+//        [self.headerView.praiseNumBtn setTitle:responseItem.praiseNum forState:UIControlStateNormal];
+//    } failed:^(NSError * _Nonnull err) {
+//
+//    }];
+    [self.msgCntModel loadData];
     // 隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
     [self loadUserData];
@@ -135,7 +142,25 @@
     
 }
 
+//MARK: - 消息数、动态、评论、获赞数model代理方法
+- (void)loadUncheckedDataSuccess {
+    
+    self.headerView.remarkNumBtn.msgCount = self.msgCntModel.uncheckedCommentCnt;
+    self.headerView.praiseNumBtn.msgCount = self.msgCntModel.uncheckedPraiseCnt;
+}
+- (void)loadUncheckedDataFailure {
+    [NewQAHud showHudWith:@"加载未读消息数失败～" AddView:self.view];
+}
 
+- (void)loadUserCountDataSuccess {
+    [self.headerView.articleNumBtn setTitle:self.msgCntModel.dynamicCnt forState:UIControlStateNormal];
+    [self.headerView.remarkNumBtn setTitle:self.msgCntModel.commentCnt forState:UIControlStateNormal];
+    [self.headerView.praiseNumBtn setTitle:self.msgCntModel.praiseCnt forState:UIControlStateNormal];
+}
+
+- (void)loadUserCountDataFailure {
+    [NewQAHud showHudWith:@"加载个人数据失败～" AddView:self.view];
+}
 
 
 #pragma mark - headView代理方法
@@ -211,16 +236,6 @@
     CheckInViewController *vc = [[CheckInViewController alloc] init];
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
-}
-
-
-#pragma mark - Presenter回调
-//MineModel请求QA数据成功后调用
-- (void)QAInfoRequestsSucceededWithItem:(MineQADataItem *)item {
-    //item.askNum
-    [self.headerView.articleNumBtn setTitle:item.answerNum forState:UIControlStateNormal];
-    [self.headerView.remarkNumBtn setTitle:item.commentNum forState:UIControlStateNormal];
-    [self.headerView.praiseNumBtn setTitle:item.praiseNum forState:UIControlStateNormal];
 }
 
 

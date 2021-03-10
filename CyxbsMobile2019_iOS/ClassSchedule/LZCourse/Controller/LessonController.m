@@ -309,7 +309,7 @@
         dispatch_semaphore_signal(sema);
         NSLog(@"%@",error);
     }];
-    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
 
 - (void)getRemindData{
@@ -340,7 +340,7 @@
         dispatch_semaphore_signal(sema);
         NSLog(@"%@",error);
     }];
-    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
 
 - (void)reTryRequest{

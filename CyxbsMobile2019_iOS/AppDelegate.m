@@ -66,18 +66,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     }
     
     // 打开应用时刷新token
-    AFNetworkReachabilityManager *man = [AFNetworkReachabilityManager sharedManager];
-    //开始监测网络状态
-    [man startMonitoring];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if([man isReachable]){
-            //如果网络可用，刷新token
-            [UserItemTool refresh];
-            //停止监测
-            [man stopMonitoring];
-        }
-    });
- 
+//    AFNetworkReachabilityManager *man = [AFNetworkReachabilityManager sharedManager];
+//    //开始监测网络状态
+//    [man startMonitoring];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        if([man isReachable]){
+//            //如果网络可用，刷新token
+//            [UserItemTool refresh];
+//            //停止监测
+//            [man stopMonitoring];
+//        }
+//    });
+    //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
+    [UserItemTool refresh];
     if ([UserDefaultTool getStuNum] && [UserItemTool defaultItem].token && [ArchiveTool getPersonalInfo]) {
         // 刷新志愿信息
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

@@ -7,6 +7,7 @@
 //个人主页面的tableView顶部的一大块View都是这个类，这个类会被设置成tableView的headview
 
 #import <UIKit/UIKit.h>
+#import "MainPageNumBtn.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -52,13 +53,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 评论数量按钮
-@property(nonatomic,strong) UIButton *remarkNumBtn;
+@property(nonatomic,strong) MainPageNumBtn *remarkNumBtn;
 
 /// 动态数量按钮
-@property(nonatomic,strong) UIButton *articleNumBtn;
+@property(nonatomic,strong) MainPageNumBtn *articleNumBtn;
 
 /// 获赞数量按钮
-@property (nonatomic, strong) UIButton *praiseNumBtn;
+@property (nonatomic, strong) MainPageNumBtn *praiseNumBtn;
 
 /// 代理设置成个人主页面的控制器
 @property (nonatomic, weak)id <MineHeaderViewDelegate> delegate;

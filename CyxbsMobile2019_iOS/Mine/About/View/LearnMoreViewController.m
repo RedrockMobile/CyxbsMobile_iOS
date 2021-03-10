@@ -7,7 +7,7 @@
 //关于我们页面 - 服务协议/隐私条款
 
 #import "LearnMoreViewController.h"
-
+#define GetaboutUsMsg @"https://cyxbsmobile.redrock.team/wxapi/magipoke-text/text/get"
 @interface LearnMoreViewController () <UITextViewDelegate>
 @property(nonatomic,strong)UILabel *subTitleLabel;
 @property(nonatomic,strong)UITextView *mainBodyTextView;
@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self ff];
     // Do any additional setup after loading the view.
 }
 
@@ -91,6 +92,13 @@
     return NO;
 }
 
+- (void)ff{
+    [[HttpClient defaultClient] requestWithPath:GetaboutUsMsg method:HttpRequestGet parameters:@{@"name":@""} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        CCLog(@"%@",responseObject[@"data"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        CCLog(@"%@",error);
+    }];
+}
 @end
 
 

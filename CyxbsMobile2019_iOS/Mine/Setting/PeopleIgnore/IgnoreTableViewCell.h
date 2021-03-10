@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "IgnoreDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IgnoreTableViewCell : UITableViewCell
-@property(nonatomic,strong)NSArray *dataArr;
+- (void)setDataWithDataModel:(IgnoreDataModel*)model;
 @end
 
 NS_ASSUME_NONNULL_END

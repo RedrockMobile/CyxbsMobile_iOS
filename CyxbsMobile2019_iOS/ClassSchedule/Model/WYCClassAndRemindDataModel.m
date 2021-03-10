@@ -226,7 +226,7 @@
                 isAllSuccess = NO;
                 dispatch_semaphore_signal(semaphore);
             }];
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
         });
     }
     
