@@ -350,6 +350,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
 }
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    
+    NSString *urlStr = [url absoluteString];
+    if ([urlStr hasPrefix:@"cyxbs.redrock.share://"]) {
+        //把？号前面的数据替换为空，是方便后续字符串以&符号来分割
+        NSString *parameter = [urlStr stringByReplacingOccurrencesOfString:@"cyxbs.redrock.share://param?" withString:@""];
+        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:parameter, @"parameter", nil];
+        //此处是外部请求后需要处理的事件，将参数传递下去即可
+        NSLog(@"==========>>>>>>%@",dic);
+    }
+    return YES;
+}
+
 //iOS10新增：处理后台点击通知的代理方法
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
     
