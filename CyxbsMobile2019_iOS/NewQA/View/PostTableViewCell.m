@@ -74,7 +74,7 @@
     ///多功能按钮
     _funcBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     _funcBtn.backgroundColor = [UIColor clearColor];
-    [_funcBtn setBackgroundImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
+    [_funcBtn setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
     [_funcBtn addTarget:self action:@selector(ClickedFuncBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_funcBtn];
     
@@ -159,11 +159,19 @@
     }];
     
     [_funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.051);
+        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.89 * 18/343);
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
-        make.width.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.width);
-        make.height.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.height);
+        make.right.mas_equalTo(self.contentView.mas_right);
+        make.height.mas_equalTo((SCREEN_WIDTH * 0.89 * 18/343 + [UIImage imageNamed:@"QAMoreButton"].size.height));
     }];
+    [_funcBtn setImageEdgeInsets:UIEdgeInsetsMake((SCREEN_WIDTH * 0.89 * 18/343 - [UIImage imageNamed:@"QAMoreButton"].size.height), 0, 0, (SCREEN_WIDTH * 0.11 - [UIImage imageNamed:@"QAMoreButton"].size.width))];
+    
+//    [_funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.051);
+//        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
+//        make.width.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.width);
+//        make.height.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.height);
+//    }];
     
     [_detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.021);
@@ -224,7 +232,7 @@
 - (void)setItem:(PostItem *)item {
     if (item) {
         _item = item;
-        self.iconImageView.image = [UIImage imageNamed:@"圈子图像"];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
         self.nicknameLabel.text = item.nick_name;
         self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%@",item.publish_time]];
         self.detailLabel.text = item.content;

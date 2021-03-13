@@ -46,13 +46,12 @@
     
     [_groupBtnImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
-        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0107);
-        make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.032);
-        make.bottom.mas_equalTo(self.groupBtnLabel.mas_top).mas_offset(-SCREEN_HEIGHT * 0.0097);
+        make.bottom.mas_equalTo(self.groupBtnLabel.mas_top).mas_offset(-SCREEN_WIDTH * 0.1293 * 5.5/48.5);
+        make.height.mas_equalTo(self.mas_width);
     }];
     
     [_groupBtnLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.groupBtnImageView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.0082);
+        make.top.mas_equalTo(self.groupBtnImageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.1293 * 5.5/48.5);
         make.centerX.mas_equalTo(_groupBtnImageView);
         make.bottom.mas_equalTo(self.mas_bottom);
     }];
@@ -60,10 +59,9 @@
     [_messageCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
         make.right.mas_equalTo(self.mas_right);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.0707);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.024);
+        make.width.height.mas_equalTo(SCREEN_WIDTH * 0.048);
     }];
-    _messageCountLabel.layer.cornerRadius = SCREEN_HEIGHT * 0.024 * 1/2;
+    _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
     _messageCountLabel.layer.masksToBounds = YES;
 }
 @end

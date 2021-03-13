@@ -63,7 +63,7 @@
                     btn.groupBtnImageView.image = [UIImage imageNamed:@"关注更多"];
                     btn.groupBtnLabel.text = @"关注更多";
                     [btn addTarget:self action:@selector(FollowGroups) forControlEvents:UIControlEventTouchUpInside];
-                    btn.frame = CGRectMake(SCREEN_WIDTH * 0.044, SCREEN_HEIGHT * 0.0307, SCREEN_WIDTH * 0.1627, SCREEN_HEIGHT * 0.0944);
+                    btn.frame = CGRectMake(SCREEN_WIDTH * 0.044, SCREEN_WIDTH * 0.1215 * 20.5/45.55, SCREEN_WIDTH * 0.1293, SCREEN_WIDTH * 0.1293 * 63.45/48.5);
                     btn.messageCountLabel.hidden = YES;
                     MASAttachKeys(btn);
                     [_groupsScrollView addSubview:btn];
@@ -81,8 +81,7 @@
                         btn.messageCountLabel.text = count;
                     }
                     [btn addTarget:self action:@selector(ClickedGroupBtn:) forControlEvents:UIControlEventTouchUpInside];
-                    btn.frame = CGRectMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.2627 * i, SCREEN_HEIGHT * 0.0307, SCREEN_WIDTH * 0.1627, SCREEN_HEIGHT * 0.0944);
-                    MASAttachKeys(btn);
+                    btn.frame = CGRectMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.2627 * i, SCREEN_WIDTH * 0.1215 * 20.5/45.55, SCREEN_WIDTH * 0.1293, SCREEN_WIDTH * 0.1293 * 63.45/48.5);
                     [_groupsScrollView addSubview:btn];
                 }
             }

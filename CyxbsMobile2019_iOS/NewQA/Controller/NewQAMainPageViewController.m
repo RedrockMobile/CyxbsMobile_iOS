@@ -23,6 +23,7 @@
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
 #import "ClassTabBar.h"
+#import "GroupBtn.h"
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
 
@@ -537,9 +538,9 @@
     [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
 }
 
-///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
+///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-//    _itemDic = self.tableArray[sender.tag];
+//    _itemDic = self.tableArray[cell.commendBtn.tag];
 //    int post_id = [_itemDic[@"post_id"] intValue];
 }
 
@@ -560,6 +561,12 @@
     pasteboard.string = shareURL;
 }
 
+///点击标签跳转到相应的圈子
+- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
+//    _itemDic = self.tableArray[cell.groupLabel.tag];
+//    NSString *topicName = _itemDic[@"topic"];
+}
+
 /**
  举报和屏蔽的多能按钮
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
@@ -573,11 +580,6 @@
     _popView.layer.cornerRadius = 3;
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
     [self.view.window addSubview:_popView];
-}
-
-///点击标签跳转到相应的圈子
-- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
-    
 }
 
 #pragma mark- 配置相关弹出View和其蒙版的操作
@@ -731,8 +733,8 @@
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
-- (void)ClickedGroupBtn:(UIButton *)sender {
-    
+- (void)ClickedGroupBtn:(GroupBtn *)sender {
+//    NSString *groupName = sender.groupBtnLabel.text;
 }
 
 

@@ -32,6 +32,7 @@
         
         UITextView *textView = [[UITextView alloc] init];
         textView.backgroundColor = [UIColor clearColor];
+        textView.layer.borderColor = CFBridgingRetain([UIColor clearColor]);
         textView.placeholderTextView.text = @"150字以内(选填)";
         if (@available(iOS 11.0, *)) {
             textView.layer.borderColor = [UIColor colorNamed:@"LineColor"].CGColor;
