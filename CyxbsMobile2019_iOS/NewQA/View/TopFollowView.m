@@ -10,6 +10,7 @@
 #import "GroupFollowBtn.h"
 #import "GroupBtn.h"
 #import "GroupModel.h"
+#import "UIControl+MGD.h"
 
 
 @interface TopFollowView()
@@ -24,6 +25,8 @@
         ///根据后端传回来的数据源数组来判断放哪个控件
         if ([dataArray count] == 0) {
             GroupFollowBtn *followBtn = [[GroupFollowBtn alloc] init];
+            followBtn.ignoreEvent = NO;
+            followBtn.canTapEventInterval = 1.0;
             [followBtn addTarget:self action:@selector(FollowGroups) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:followBtn];
             _followBtn = followBtn;
@@ -31,7 +34,7 @@
                 make.top.mas_equalTo(self.mas_top);
                 make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.04);
                 make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0453);
-                make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 73/343);
+                make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 85/343);
             }];
         }else {
             UILabel *myFollowLab = [[UILabel alloc] init];
@@ -56,23 +59,14 @@
             _groupsScrollView = groupsScrollView;
             
             ///通过for循环创建数组
-            for (int i = 0;i < dataArray.count + 1; i++) {
+            for (int i = 0;i < dataArray.count; i++) {
                 ///创建第一个按钮，没有小蓝点
-                if (i == 0) {
                     GroupBtn *btn = [[GroupBtn alloc] init];
-                    btn.groupBtnImageView.image = [UIImage imageNamed:@"关注更多"];
-                    btn.groupBtnLabel.text = @"关注更多";
-                    [btn addTarget:self action:@selector(FollowGroups) forControlEvents:UIControlEventTouchUpInside];
-                    btn.frame = CGRectMake(SCREEN_WIDTH * 0.044, SCREEN_WIDTH * 0.1215 * 20.5/45.55, SCREEN_WIDTH * 0.1293, SCREEN_WIDTH * 0.1293 * 63.45/48.5);
-                    btn.messageCountLabel.hidden = YES;
-                    MASAttachKeys(btn);
-                    [_groupsScrollView addSubview:btn];
-                }else {
-                    GroupBtn *btn = [[GroupBtn alloc] init];
-                    GroupItem *item = dataArray[i-1];
+                    GroupItem *item = dataArray[i];
                     btn.tag = i;
 //                    btn.groupBtnImageView.image = [UIImage imageNamed:item.topic_logo];
-                    btn.groupBtnImageView.image = [UIImage imageNamed:@"圈子图像"];
+//                    btn.groupBtnImageView.image = [UIImage imageNamed:@"圈子图像"];
+                    [btn.groupBtnImageView sd_setImageWithURL:[NSURL URLWithString:item.topic_logo] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
                     btn.groupBtnLabel.text = item.topic_name;
                     if ([item.message_count intValue] == 0) {
                         btn.messageCountLabel.hidden = YES;
@@ -84,8 +78,7 @@
                     btn.frame = CGRectMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.2627 * i, SCREEN_WIDTH * 0.1215 * 20.5/45.55, SCREEN_WIDTH * 0.1293, SCREEN_WIDTH * 0.1293 * 63.45/48.5);
                     [_groupsScrollView addSubview:btn];
                 }
-            }
-            groupsScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 0.044 + (SCREEN_WIDTH * 0.2627 * (dataArray.count + 1)), CGRectGetHeight(_groupBtn.frame));
+            groupsScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.2627 * dataArray.count, CGRectGetHeight(_groupBtn.frame));
         }
     }
     return self;

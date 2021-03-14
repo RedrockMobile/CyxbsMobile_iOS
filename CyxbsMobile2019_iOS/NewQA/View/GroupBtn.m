@@ -14,6 +14,8 @@
     if ([super init]) {
         self.backgroundColor = [UIColor clearColor];
         UIImageView *groupBtnImageView = [[UIImageView alloc] init];
+        groupBtnImageView.contentMode = UIViewContentModeScaleAspectFill;
+        groupBtnImageView.clipsToBounds = YES;
         [self addSubview:groupBtnImageView];
         _groupBtnImageView = groupBtnImageView;
         
@@ -46,9 +48,9 @@
     
     [_groupBtnImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
-        make.bottom.mas_equalTo(self.groupBtnLabel.mas_top).mas_offset(-SCREEN_WIDTH * 0.1293 * 5.5/48.5);
-        make.height.mas_equalTo(self.mas_width);
+        make.height.width.mas_equalTo(SCREEN_WIDTH * 0.1228);
     }];
+    _groupBtnImageView.layer.cornerRadius = SCREEN_WIDTH * 0.1228 * 1/2;
     
     [_groupBtnLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groupBtnImageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.1293 * 5.5/48.5);
