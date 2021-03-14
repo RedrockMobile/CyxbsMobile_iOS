@@ -73,6 +73,8 @@
     [self addOriginView];
     [self addSZHCircleLabelView];
     
+    [self.view bringSubviewToFront:self.topBarView];
+    
     //初始化图片和图片框数组
     self.imagesAry = [NSMutableArray array];
     self.imageViewArray = [NSMutableArray array];
@@ -143,7 +145,7 @@
         imageView.delegate = self;
         imageView.image = self.imagesAry[i];
         [self.imageViewArray addObject:imageView];
-        [self.view addSubview:imageView];
+        [self.scrollView addSubview:imageView];
         
         //约束图片框
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {

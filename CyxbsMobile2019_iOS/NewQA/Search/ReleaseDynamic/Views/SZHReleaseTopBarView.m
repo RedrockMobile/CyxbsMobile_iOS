@@ -70,7 +70,6 @@
         [_releaseBtn setTitle:@"发布" forState:UIControlStateDisabled];
         _releaseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
         [_releaseBtn addTarget:self.delegate action:@selector(releaseDynamic) forControlEvents:UIControlEventTouchUpInside];
-        _releaseBtn.layer.cornerRadius = MAIN_SCREEN_W * 0.0411;
         if (@available(iOS 11.0, *)) {
             self.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
         } else {
@@ -84,6 +83,7 @@
         make.right.equalTo(self).offset(-MAIN_SCREEN_W *0.0413);
         make.size.mas_equalTo(CGSizeMake(59, 28));
     }];
+    _releaseBtn.layer.cornerRadius = 14;
     
     //底部的分割条
         //1.属性设置
