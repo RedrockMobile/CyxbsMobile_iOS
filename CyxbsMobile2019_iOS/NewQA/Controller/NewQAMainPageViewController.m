@@ -337,6 +337,7 @@
     } else {
         self.topFollowView.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
     }
+    self.topFollowView.delegate = self;
     [self.view addSubview:self.topFollowView];
     if ([self.dataArray count] == 0) {
         [self.view bringSubviewToFront:self.topFollowView.followBtn];
@@ -729,12 +730,13 @@
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
-    
+    NSLog(@"+++++++");
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
 //    NSString *groupName = sender.groupBtnLabel.text;
+    NSLog(@"===========================");
 }
 
 
