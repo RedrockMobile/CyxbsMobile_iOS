@@ -54,13 +54,21 @@
 }
 
 + (void)removePostModel {
-    NSFileManager * fileManager = [NSFileManager defaultManager];
     NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"post.data"];
-    if ([fileManager fileExistsAtPath:perSavedSandPath]) {
-        NSError *err;
-        [fileManager removeItemAtPath:perSavedSandPath error:&err];
-    }
+    [[NSFileManager defaultManager] removeItemAtPath:perSavedSandPath error:nil];
+}
+
++ (void)removeGroupModel {
+    NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"group.data"];
+    [[NSFileManager defaultManager] removeItemAtPath:perSavedSandPath error:nil];
+}
+
++ (void)removeHotWordModel {
+    NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"hotWords.data"];
+    [[NSFileManager defaultManager] removeItemAtPath:perSavedSandPath error:nil];
 }
 
 @end

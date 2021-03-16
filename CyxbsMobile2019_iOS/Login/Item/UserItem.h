@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 志愿服务密码
 @property (nonatomic, copy) NSString *volunteerPassword ;
 
-
+@property (nonatomic, assign) BOOL firstLogin;
 /// ids绑定成功
 @property (nonatomic, assign) BOOL idsBindingSuccess;
 /// 获得单例对象
