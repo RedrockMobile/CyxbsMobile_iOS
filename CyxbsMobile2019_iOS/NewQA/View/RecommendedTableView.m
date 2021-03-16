@@ -19,14 +19,15 @@
 
 @implementation RecommendedTableView
 
-- (instancetype)initWithFrame:(CGRect)frame{
-    if ([super initWithFrame:frame]) {
+- (instancetype)init{
+    if ([super init]) {
         
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-        } else {
-            self.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
-        }
+//        if (@available(iOS 11.0, *)) {
+//            self.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+//        } else {
+//            self.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
+//        }
+//        self.backgroundColor = [UIColor redColor];
         self.rowHeight = UITableViewAutomaticDimension;
         self.estimatedRowHeight = SCREEN_HEIGHT * 0.461;
         if (@available(iOS 11.0, *)) {

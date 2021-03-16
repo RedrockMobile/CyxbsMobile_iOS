@@ -72,6 +72,8 @@
     [self addOriginView];
     [self addSZHCircleLabelView];
     
+    [self.view bringSubviewToFront:self.topBarView];
+    
     //初始化图片和图片框数组
     self.imagesAry = [NSMutableArray array];
     self.imageViewArray = [NSMutableArray array];
@@ -129,12 +131,12 @@
     }
     
     //清除图片数组里面大于9的的那些图片
-    for (int i = 0; i < self.imagesAry.count; i++){
-        if (i > 8) {
-            UIImage *image = self.imagesAry[i];
-            [self.imagesAry removeObject:image];
-        }
-    }
+//    for (int i = 0; i < self.imagesAry.count; i++){
+//        if (i > 8) {
+//            UIImage *image = self.imagesAry[i];
+//            [self.imagesAry removeObject:image];
+//        }
+//    }
     
     //遍历图片数组，创建imageView,并对其进行约束
     for (int i = 0; i < self.imagesAry.count; i++) {
@@ -142,7 +144,7 @@
         imageView.delegate = self;
         imageView.image = self.imagesAry[i];
         [self.imageViewArray addObject:imageView];
-        [self.view addSubview:imageView];
+        [self.scrollView addSubview:imageView];
         
         //约束图片框
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -151,6 +153,8 @@
             make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.296, MAIN_SCREEN_W * 0.296));
         }];
     }
+    
+    printf("cnt=%ld,%ld\n",self.imagesAry.count,self.imageViewArray.count);
     
     //设置添加照片按钮的约束
     [self.releaseView.addPhotosBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -381,7 +385,7 @@
         //设置最多只能选九张图片 如果设置为0，则是无限制选择。默认为1
         configuration.selectionLimit = 9;
         //设定只能选择图片  //设定为nil的时候图片、livePhoto、视频都可以选择
-        configuration.filter = nil;
+        configuration.filter = [PHPickerFilter imagesFilter];
         
         //设置PHPickerController
         PHPickerViewController *pickerCV = [[PHPickerViewController alloc] initWithConfiguration:configuration];
@@ -515,43 +519,42 @@
 - (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results API_AVAILABLE(ios(14)){
     //使图片选择器消失
     [picker dismissViewControllerAnimated:YES completion:nil];
+    //获取图片
+    //利用group确保for里面循环里面的异步获取图片都执行完毕
+    dispatch_group_t getPhotosGroup = dispatch_group_create();
     for (int i = 0; i < results.count; i++) {
         //获取返回的对象
         PHPickerResult *result = results[i];
         //获取图片
+        dispatch_group_enter(getPhotosGroup);
         [result.itemProvider loadObjectOfClass:[UIImage class] completionHandler:^(__kindof id<NSItemProviderReading>  _Nullable object, NSError * _Nullable error) {
             if ([object isKindOfClass:[UIImage class]]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    __weak typeof(self) weakSelf = self;
-                    //如果图片大于九张，就删除掉前面选择的
-                    if (weakSelf.imagesAry.count <= 9) {
-                        [weakSelf.imagesAry addObject:(UIImage *)object];
-                    }
-                    //遍历循环到最后一个时进行图片框的添加约束
-                    if (i == results.count - 1) {
-                        dispatch_async(dispatch_get_main_queue(),^{
-                            [weakSelf imageViewsConstraint];
-                        });
-                    }
-                });
+//                如果图片大于九张，就删除掉前面选择的
+                if (self.imagesAry.count < 9) {
+                    [self.imagesAry addObject:(UIImage *)object];
+                }
+                //完成后离开队列
+                dispatch_group_leave(getPhotosGroup);
             }
         }];
     }
+    //队列组里所有的异步执行操作完成之后回调此方法，进行界面的布局
+    dispatch_group_notify(getPhotosGroup, dispatch_get_main_queue(), ^{
+        [self imageViewsConstraint];
+        NSLog(@"选取图片完成-------end");
+    });
 }
 
 //MARK:图片框的代理方法
 - (void)clearPhotoImageView:(UIImageView *)imageView{
-    UIImage *image = imageView.image;
+//    UIImage *image = imageView.image;
     //1.先删除照片组中的照片
-    NSMutableArray *array = [self.imagesAry mutableCopy];
-    for (UIImage *resultImage in array) {
-        if ([resultImage isEqual:image]) {
-            [array removeObject:resultImage];
-            self.imagesAry = array;
-            break;;
-        }
-    }
+//    NSMutableArray *array = [self.imagesAry mutableCopy];
+    printf("BefCleacnt=%ld,%ld\n",self.imagesAry.count,self.imageViewArray.count);
+    [self.imagesAry  removeObject:imageView.image];
+    [self.imageViewArray removeObject:imageView];
 //    //2.再移除照片框
+    printf("Cleacnt=%ld,%ld\n",self.imagesAry.count,self.imageViewArray.count);
     [imageView removeFromSuperview];
     
     //3.重新布局

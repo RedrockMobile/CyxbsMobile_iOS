@@ -115,8 +115,12 @@
 #import "AESCipher.h"           // AES加密算法
 #import <MGJRouter.h>
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+
 //自定义hud
 #import "NewQAHud.h"
+
+#import "MGDStatusBarHeight.h"
+
 
 #pragma mark - Group共享
 
@@ -163,7 +167,7 @@
 #define TABBARHEIGHT (IS_IPHONEX ? (49.f + SAFE_AREA_BOTTOM) : (49.f))
 
 /* 状态栏高度 */
-#define STATUSBARHEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
+#define STATUSBARHEIGHT [MGDStatusBarHeight getStatusBarHight]
 
 /* NavigationBar高度 */
 #define NVGBARHEIGHT (44.f)

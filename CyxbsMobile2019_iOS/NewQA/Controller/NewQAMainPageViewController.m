@@ -22,6 +22,7 @@
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
 #import "ClassTabBar.h"
+#import "GroupBtn.h"
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
 
@@ -66,16 +67,84 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
+    
+    //我的关注View高度
+    _TopViewHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 202/375 : (SCREEN_WIDTH * 127/375);
+    //推荐Label高度
+    _recommendHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 54/375 : SCREEN_WIDTH * 43/375;
+    _lineHeight = self.dataArray.count != 0 ? 2 : 0;
+    _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
+    
+    // 如果是退出登陆后再次登陆，由于程序还在运行，因此移除原来的界面，重新加载UI
+    if ([UserItemTool defaultItem].firstLogin == YES && self.tableArray != nil && self.dataArray != nil && self.hotWordsArray != nil) {
+        for (UIView *view in [self.view subviews]) {
+            [view removeFromSuperview];
+        }
+        NSLog(@"通过网络请求刷新页面");
+        self.page = 0;
+        self.loadHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.loadHUD.labelText = @"正在加载中...";
+    
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+            dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self loadHotWords];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self loadMyStarGroupList];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self setMainViewUI];
+                    [self loadData];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_semaphore_signal(semaphore);
+            });
+        }
+    self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
+    
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
 }
+
 //邮问视图消失时显示底部课表
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
+    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
+
+// 移除所有控件，重新加载控件并且通过缓存刷新数据，并再次请求新的数据
+- (void)reSetTopFollowUI {
+    NSLog(@"接收到用户关注圈子的操作，刷新此页面");
+    for (UIView *view in [self.view subviews]) {
+        [view removeFromSuperview];
+    }
+    [self setMainViewUI];
+    [self loadHotWords];
+    [self loadMyStarGroupList];
+    [self loadData];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
@@ -83,6 +152,8 @@
     } else {
         
     }
+    [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+
     //设置通知中心
     [self setNotification];
     //设置背景蒙版
@@ -105,54 +176,56 @@
     self.hotWordModel = [[HotSearchModel alloc] init];
     self.groupModel = [[GroupModel alloc] init];
     self.postmodel = [[PostModel alloc] init];
-    if (self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
-        NSLog(@"帖子列表的数据通过缓存");
+    
+    // 如果用户是登陆的状态，再次打开此应用，则直接加载缓存数据，否则为第一次登陆，加载网络请求数据
+    if ([UserItemTool defaultItem].firstLogin == NO && self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
+        NSLog(@"初始化通过缓存加载页面");
         self.page = floor(self.tableArray.count / 6.0);
         [self setMainViewUI];
         [self loadHotWords];
         [self loadMyStarGroupList];
         self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
-        NSLog(@"初始的page:%lu",self.page);
+//        NSLog(@"初始的page:%lu",self.page);
     }else {
-        NSLog(@"帖子列表的数据通过网络请求");
+        NSLog(@"初始化通过网络请求加载页面");
         self.page = 0;
         self.loadHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.loadHUD.labelText = @"正在加载中...";
-        dispatch_group_t group = dispatch_group_create();
-            dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
-            dispatch_group_enter(group);
-            dispatch_group_async(group, queue, ^{
-                NSLog(@"热搜词汇网络请求");
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self loadHotWords];
-                    dispatch_group_leave(group);
-                });
+    
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+        dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
+        dispatch_async(queue, ^{
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            NSLog(@"热搜词汇网络请求");
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self loadHotWords];
+                dispatch_semaphore_signal(semaphore);
             });
-
-            dispatch_group_enter(group);
-            dispatch_group_async(group, queue, ^{
-
-                NSLog(@"我的关注网络请求");
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self loadMyStarGroupList];
-                    dispatch_group_leave(group);
-                });
+        });
+        
+        dispatch_async(queue, ^{
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            NSLog(@"我的关注网络请求");
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self loadMyStarGroupList];
+                dispatch_semaphore_signal(semaphore);
             });
-
-            dispatch_group_enter(group);
-            dispatch_group_async(group, queue, ^{
-
-                NSLog(@"帖子列表网络请求");
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self loadData];
-                    dispatch_group_leave(group);
-                });
+        });
+        
+        dispatch_async(queue, ^{
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            NSLog(@"帖子列表网络请求");
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self loadData];
+                dispatch_semaphore_signal(semaphore);
             });
-
-            dispatch_group_notify(group, queue, ^{
-                self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
-                NSLog(@"所有网络请求完成执行");
-            });
+        });
+        
+        dispatch_async(queue, ^{
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            NSLog(@"执行完成");
+            dispatch_semaphore_signal(semaphore);
+        });
     }
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -194,6 +267,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(topFollowViewLoadError)
                                                  name:@"MyFollowGroupDataLoadError" object:nil];
+    
+    ///通知刷新View
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reSetTopFollowUI)
+                                                 name:@"reSetTopFollowUI" object:nil];
+    
+}
+
+- (void)firstLoginVC {
+    
 }
 
 # pragma mark 初始化功能弹出页面
@@ -254,7 +337,7 @@
 - (void)topFollowViewLoadSuccess {
     self.dataArray = self.groupModel.dataArray;
     [PostArchiveTool saveMyFollowGroupWith:self.groupModel];
-    NSLog(@"我的关注请求成功");
+//    NSLog(@"我的关注请求成功");
 }
 
 ///我的关注请求失败
@@ -266,7 +349,7 @@
 
 ///下拉加载
 - (void)loadData{
-    NSLog(@"此时的page:%ld",(long)self.page);
+//    NSLog(@"此时的page:%ld",(long)self.page);
     self.page += 1;
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
@@ -275,15 +358,15 @@
 - (void)reloadData{
     [self.tableArray removeAllObjects];
     self.page = 1;
-    NSLog(@"此时的page:%ld",(long)self.page);
+//    NSLog(@"此时的page:%ld",(long)self.page);
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
 
 ///成功请求数据
 - (void)NewQAListLoadSuccess {
+    [self.loadHUD removeFromSuperview];
     if (self.page == 1) {
         self.tableArray = self.postmodel.postArray;
-        NSLog(@"%@",self.tableArray);
     }else {
         [self.tableArray addObjectsFromArray:self.postmodel.postArray];
     }
@@ -317,9 +400,9 @@
     //推荐Label高度
     _recommendHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 54/375 : SCREEN_WIDTH * 43/375;
     _lineHeight = self.dataArray.count != 0 ? 2 : 0;
-    _NavHeight = _topBackView.frame.size.height;
-
-    _tableView = [[RecommendedTableView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT + STATUSBARHEIGHT + SCREEN_WIDTH * 14/375, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_HEIGHT * 0.0165 + NVGBARHEIGHT + STATUSBARHEIGHT))];
+    _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
+    
+    _tableView = [[RecommendedTableView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT + STATUSBARHEIGHT + SCREEN_WIDTH * 14/375, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_WIDTH * 14/375 + NVGBARHEIGHT + STATUSBARHEIGHT))];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.contentInset = UIEdgeInsetsMake(_TopViewHeight, 0, 0, 0);
     _tableView.delegate = self;
@@ -329,12 +412,13 @@
     [self.view addSubview:self.tableView];
     [self setUpRefresh];
 
-    self.topFollowView = [[TopFollowView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , _TopViewHeight) And:self.dataArray];
+    self.topFollowView = [[TopFollowView alloc] initWithFrame:CGRectMake(0, _NavHeight, SCREEN_WIDTH , _TopViewHeight) And:self.dataArray];
     if (@available(iOS 11.0, *)) {
         self.topFollowView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
     } else {
         self.topFollowView.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
     }
+    self.topFollowView.delegate = self;
     [self.view addSubview:self.topFollowView];
     if ([self.dataArray count] == 0) {
         [self.view bringSubviewToFront:self.topFollowView.followBtn];
@@ -346,7 +430,7 @@
     } else {
         lineView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:232.0/255.0 blue:238.0/255.0 alpha:1];
     }
-    [self.view addSubview:lineView];
+    [self.topFollowView addSubview:lineView];
     _lineView = lineView;
 
     _recommendedLabel = [[UILabel alloc] init];
@@ -387,23 +471,29 @@
     [self.view addSubview:publishBtn];
     _publishBtn = publishBtn;
     
-    [self layoutSubviews];
+    [self setMainViewFrame];
 }
 
 
-- (void)layoutSubviews {
+- (void)setMainViewFrame {
     [_topBackView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(self.view);
-        make.bottom.mas_equalTo(_searchBtn.mas_bottom).mas_offset(SCREEN_WIDTH * 11/375);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT);
     }];
     
     [_searchBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.view.mas_top).mas_offset(NVGBARHEIGHT + STATUSBARHEIGHT);
+        make.bottom.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT);
         make.left.mas_equalTo(self.view.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
         make.height.mas_equalTo(SCREEN_HEIGHT * 0.0563);
     }];
     _searchBtn.layer.cornerRadius = SCREEN_HEIGHT * 0.0563 * 1/2;
+    
+//    [_topFollowView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.topBackView.mas_bottom);
+//        make.left.right.mas_equalTo(self.view);
+//        make.height.mas_equalTo(_TopViewHeight);
+//    }];
     
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_recommendedLabel.mas_top).mas_offset(-1);
@@ -450,13 +540,13 @@
     if ([keyPath isEqualToString:@"contentOffset"]) {
         CGPoint offset = [change[NSKeyValueChangeNewKey] CGPointValue];
         if (-offset.y >= _TopViewHeight) {
-            self.topFollowView.frame = CGRectMake(0, STATUSBARHEIGHT + NVGBARHEIGHT  +  SCREEN_HEIGHT * 0.0165, SCREEN_WIDTH, _TopViewHeight);
+            self.topFollowView.frame = CGRectMake(0, _NavHeight, SCREEN_WIDTH, _TopViewHeight);
         }
-        else if (-offset.y > _NavHeight +  _recommendedLabel.frame.size.height && -offset.y < _TopViewHeight) {
-            self.topFollowView.frame = CGRectMake(0, -offset.y-_TopViewHeight + STATUSBARHEIGHT + NVGBARHEIGHT + SCREEN_HEIGHT * 0.0165, SCREEN_WIDTH, _TopViewHeight);
+        else if (-offset.y > _recommendHeight && -offset.y < _TopViewHeight) {
+            self.topFollowView.frame = CGRectMake(0, -offset.y - _TopViewHeight + _NavHeight, SCREEN_WIDTH, _TopViewHeight);
         }
-        else if (-offset.y <= _NavHeight +  _recommendedLabel.frame.size.height) {
-            self.topFollowView.frame = CGRectMake(0, _NavHeight -_TopViewHeight + STATUSBARHEIGHT + NVGBARHEIGHT + _recommendedLabel.frame.size.height + SCREEN_HEIGHT * 0.0165, SCREEN_WIDTH, _TopViewHeight);
+        else if (-offset.y <= _NavHeight + _recommendHeight) {
+            self.topFollowView.frame = CGRectMake(0, _NavHeight -_TopViewHeight  + _recommendHeight, SCREEN_WIDTH, _TopViewHeight);
         }
     }
 }
@@ -536,9 +626,9 @@
     [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
 }
 
-///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
+///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-//    _itemDic = self.tableArray[sender.tag];
+//    _itemDic = self.tableArray[cell.commendBtn.tag];
 //    int post_id = [_itemDic[@"post_id"] intValue];
 }
 
@@ -559,6 +649,12 @@
     pasteboard.string = shareURL;
 }
 
+///点击标签跳转到相应的圈子
+- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
+//    _itemDic = self.tableArray[cell.groupLabel.tag];
+//    NSString *topicName = _itemDic[@"topic"];
+}
+
 /**
  举报和屏蔽的多能按钮
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
@@ -572,11 +668,6 @@
     _popView.layer.cornerRadius = 3;
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
     [self.view.window addSubview:_popView];
-}
-
-///点击标签跳转到相应的圈子
-- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
-    
 }
 
 #pragma mark- 配置相关弹出View和其蒙版的操作
@@ -726,11 +817,14 @@
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
-    
+
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
-- (void)ClickedGroupBtn:(UIButton *)sender {
+- (void)ClickedGroupBtn:(GroupBtn *)sender {
+//    NSString *groupName = sender.groupBtnLabel.text;
+    // 通知NewQAMainPageViewController去刷新页面
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
     
 }
 

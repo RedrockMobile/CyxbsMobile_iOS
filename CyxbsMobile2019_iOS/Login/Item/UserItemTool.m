@@ -10,6 +10,8 @@
 //#import "LoginViewController.h"
 #import <UMPush/UMessage.h>
 #import "ArchiveTool.h"
+
+#import "PostArchiveTool.h"
 @interface UserItemTool ()
 
 @property (nonatomic, strong) UserItem *item;
@@ -66,8 +68,11 @@
         [fileManager removeItemAtPath:filePath error:&err];
     }
     
-    [ArchiveTool deleteFile];
     
+    [ArchiveTool deleteFile];
+    [PostArchiveTool removePostModel];
+    [PostArchiveTool removeGroupModel];
+    [PostArchiveTool removeHotWordModel];
     
     //清除课表数据和备忘数据
     [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];

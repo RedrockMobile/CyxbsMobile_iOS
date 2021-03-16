@@ -10,6 +10,7 @@
 #import "MGDImageCollectionViewCell.h"
 #import "PostModel.h"
 #import "StarPostModel.h"
+#import "UIControl+MGD.h"
 #import <YBImageBrowser.h>
 
 
@@ -73,8 +74,10 @@
     
     ///多功能按钮
     _funcBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//    _funcBtn.ignoreEvent = NO;
+//    _funcBtn.canTapEventInterval = 0.5;
     _funcBtn.backgroundColor = [UIColor clearColor];
-    [_funcBtn setBackgroundImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
+    [_funcBtn setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
     [_funcBtn addTarget:self action:@selector(ClickedFuncBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_funcBtn];
     
@@ -105,6 +108,8 @@
     
     ///标签
     _groupLabel = [[UIButton alloc] init];
+//    _groupLabel.ignoreEvent = NO;
+//    _groupLabel.canTapEventInterval = 1.0;
     _groupImage = [UIImage imageNamed:@"标签背景"];
     [_groupLabel setBackgroundImage:_groupImage forState:UIControlStateNormal];
     _groupLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -119,17 +124,23 @@
     
     ///点赞
     _starBtn = [[FunctionBtn alloc] init];
+//    _starBtn.ignoreEvent = NO;
+//    _starBtn.canTapEventInterval = 0.5;
     [_starBtn addTarget:self action:@selector(ClickedStar) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_starBtn];
     
     ///评论
     _commendBtn = [[FunctionBtn alloc] init];
+//    _commendBtn.ignoreEvent = NO;
+//    _commendBtn.canTapEventInterval = 0.7;
     _commendBtn.iconView.image = [UIImage imageNamed:@"answerIcon"];
     [_commendBtn addTarget:self action:@selector(ClickedComment) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_commendBtn];
     
     ///分享
     _shareBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//    _shareBtn.ignoreEvent = NO;
+//    _shareBtn.canTapEventInterval = 0.7;
     _shareBtn.backgroundColor = [UIColor clearColor];
     [_shareBtn setBackgroundImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
     [_shareBtn addTarget:self action:@selector(ClickedShare) forControlEvents:UIControlEventTouchUpInside];
@@ -159,11 +170,19 @@
     }];
     
     [_funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.051);
+        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.89 * 18/343);
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
-        make.width.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.width);
-        make.height.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.height);
+        make.right.mas_equalTo(self.contentView.mas_right);
+        make.height.mas_equalTo((SCREEN_WIDTH * 0.89 * 18/343 + [UIImage imageNamed:@"QAMoreButton"].size.height));
     }];
+    [_funcBtn setImageEdgeInsets:UIEdgeInsetsMake((SCREEN_WIDTH * 0.89 * 18/343 - [UIImage imageNamed:@"QAMoreButton"].size.height), 0, 0, (SCREEN_WIDTH * 0.11 - [UIImage imageNamed:@"QAMoreButton"].size.width))];
+    
+//    [_funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.051);
+//        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
+//        make.width.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.width);
+//        make.height.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.height);
+//    }];
     
     [_detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.021);
@@ -224,7 +243,7 @@
 - (void)setItem:(PostItem *)item {
     if (item) {
         _item = item;
-        self.iconImageView.image = [UIImage imageNamed:@"圈子图像"];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
         self.nicknameLabel.text = item.nick_name;
         self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%@",item.publish_time]];
         self.detailLabel.text = item.content;
