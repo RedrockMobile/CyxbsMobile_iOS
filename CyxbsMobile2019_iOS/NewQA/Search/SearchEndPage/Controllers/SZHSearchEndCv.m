@@ -498,11 +498,10 @@
     if (self.knowlegeAry != nil) {
         NSMutableArray *muteAry = [NSMutableArray array];
         for (NSDictionary *dic in self.knowlegeAry) {
-            NSString *titleStr = dic[@"content"];
+            NSString *titleStr = dic[@"title"];
             [muteAry addObject:titleStr];
         }
         self.searchEndTopView.hotSearchView.buttonTextAry = muteAry;
-        self.searchEndTopView.hotSearchView.buttonTextAry = self.knowlegeAry;
         [self.searchEndTopView.hotSearchView updateBtns];
     }
     
