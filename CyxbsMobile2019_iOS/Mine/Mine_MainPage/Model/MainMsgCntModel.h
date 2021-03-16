@@ -8,14 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    MainMsgCntModelLoadDataStateSuccess_comment,
+    MainMsgCntModelLoadDataStateFailure_comment,
+    MainMsgCntModelLoadDataStateSuccess_praise,
+    MainMsgCntModelLoadDataStateFailure_praise,
+    MainMsgCntModelLoadDataStateSuccess_userCnt,
+    MainMsgCntModelLoadDataStateFailure_userCnt,
+} MainMsgCntModelLoadDataState;
+
+#define praiseLastClickTimeKey @"praiseLastClickTimeKey"
+#define remarkLastClickTimeKey @"remarkLastClickTimeKey"
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol MainMsgCntModelDelegate <NSObject>
-- (void)loadUncheckedDataSuccess;
-- (void)loadUncheckedDataFailure;
-
-- (void)loadUserCountDataSuccess;
-- (void)loadUserCountDataFailure;
+- (void)mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataState)state;
 @end
 
 @interface MainMsgCntModel : NSObject
@@ -25,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *dynamicCnt;
 @property(nonatomic,copy)NSString *praiseCnt;
 @property(nonatomic,weak)id <MainMsgCntModelDelegate> delegate;
-- (void)loadData;
+- (void)mainMsgCntModelLoadMoreData;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,7 +7,6 @@
 //带有一个顶部导航条的基类
 
 #import <UIKit/UIKit.h>
-#import "NewQAHud.h"
 #import "NothingStateView.h"
 
 
@@ -18,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 设置这个属性自动完成顶部自定义导航条的设置
 @property (nonatomic,copy)NSString *VCTitleStr;
 @property (nonatomic,strong)UIView *topBarView;
-@property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
 NS_ASSUME_NONNULL_END

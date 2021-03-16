@@ -12,7 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RemarkParseModel : NSObject
 @property(nonatomic,copy)NSString *avatar;
+
+/// 别人对自己的评论的id
 @property(nonatomic,copy)NSString *comment_id;
+
+/// 别人对自己的评论
 @property(nonatomic,copy)NSString *content;
 @property(nonatomic,copy)NSString *from_nickname;
 @property(nonatomic,copy)NSString *has_more_reply;
@@ -20,13 +24,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *is_self;
 @property(nonatomic,copy)NSString *nick_name;
 @property(nonatomic,copy)NSString *pics;
+
+/// 自己发出的评论/帖子的id
 @property(nonatomic,copy)NSString *post_id;
 @property(nonatomic,copy)NSString *praise_count;
 @property(nonatomic,copy)NSString *publish_time;
 @property(nonatomic,copy)NSString *reply_id;
+
 @property(nonatomic,copy)NSString *reply_list;
 @property(nonatomic,copy)NSString *uid;
+
+//自己发出的评论/帖子的内容
 @property(nonatomic,copy)NSString *from;
+@property(nonatomic,copy)NSString *type;
 - (instancetype)initWithDict:(NSDictionary*)dict;
 @end
 

@@ -23,7 +23,9 @@
             [self.delegate mainPageModelLoadDataFinishWithState:StateEndRefresh];
             self.page++;
         }
+        CCLog(@"igno:%@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        CCLog(@"ignoER:%@",error);
         [self.delegate mainPageModelLoadDataFinishWithState:StateFailure];
     }];
 }

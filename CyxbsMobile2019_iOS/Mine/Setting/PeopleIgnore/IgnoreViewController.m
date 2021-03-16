@@ -17,6 +17,7 @@
 @interface IgnoreViewController ()<UITableViewDelegate,UITableViewDataSource,MainPageModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)IgnoreModel *model;
+@property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
 @implementation IgnoreViewController
@@ -96,6 +97,14 @@
             self.nothingView.alpha = 0;
         }
     });
+}
+
+- (NothingStateView *)nothingView {
+    if (_nothingView==nil) {
+        _nothingView = [[NothingStateView alloc] initWithTitleStr:@"暂时还没有屏蔽的人噢～"];
+        [self.view addSubview:_nothingView];
+    }
+    return _nothingView;
 }
 @end
 

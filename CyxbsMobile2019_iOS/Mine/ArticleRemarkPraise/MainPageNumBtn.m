@@ -29,7 +29,7 @@
         }
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.height.mas_equalTo(MAIN_SCREEN_W * 0.12);
         }];
         [self addBtnNameLabel];
         [self addBall];
@@ -70,5 +70,13 @@
 - (void)setMsgCount:(NSString *)msgCount {
     _msgCount = msgCount;
     self.redBall.msgCount = msgCount;
+}
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state {
+    if (title.longValue>99) {
+        [super setTitle:@"99+" forState:state];
+    }else {
+        [super setTitle:title forState:state];
+    }
 }
 @end

@@ -7,10 +7,7 @@
 //
 
 #import "IgnoreTableViewCell.h"
-#import "NewQAHud.h"
-#define CJHcancelInorePeopel @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/cancelIgnoreUid"
 
-#define CJHinorePeopel @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/addIgnoreUid"
 @interface IgnoreTableViewCell()
 @property(nonatomic, strong)UIView *separateLine;
 @property(nonatomic, strong)IgnoreDataModel *model;
@@ -126,7 +123,7 @@
 - (void)cancelBtnClicked{
     [self.cancelBtn setEnabled:NO];
     if ([self.cancelBtn.titleLabel.text isEqualToString:@"取消屏蔽"]) {
-        [[HttpClient defaultClient] requestWithPath:CJHcancelInorePeopel method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:cancelIgnorePeopleUrl method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self.cancelBtn setTitle:@"屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"已成功解除对该用户的屏蔽～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];
@@ -134,7 +131,7 @@
             [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
         }];
     }else {
-        [[HttpClient defaultClient] requestWithPath:CJHinorePeopel method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:ignorePeopleUrl method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self.cancelBtn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"屏蔽成功～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];

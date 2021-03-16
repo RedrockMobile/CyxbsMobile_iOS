@@ -191,7 +191,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [[UNUserNotificationCenter currentNotificationCenter] removeDeliveredNotificationsWithIdentifiers:@[@"deliverSchedulEverday"]];
     
     //真正的当前周数
-    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] valueForKey:nowWeekKey];
+    NSString *nowWeek = getNowWeek;
     
     //如果没有打开每日推送课表开关，或者当前已配置的推送的周 和 当前真正的周相同，那么return
     if([[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_RemindEveryDay"]==nil || [[NSUserDefaults standardUserDefaults] valueForKey:@"当前每天晚上推送的课表对应的周"]==nowWeek){
@@ -291,7 +291,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 - (NSArray*)getNowWeekSchedul{
-    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] valueForKey:nowWeekKey];
+    NSString *nowWeek = getNowWeek;
     
     //返回orderlySchedulArray[nowWeek],因为：
     //orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）

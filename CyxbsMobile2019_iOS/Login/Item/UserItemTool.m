@@ -10,7 +10,6 @@
 //#import "LoginViewController.h"
 #import <UMPush/UMessage.h>
 #import "ArchiveTool.h"
-#import "NewQAHud.h"
 @interface UserItemTool ()
 
 @property (nonatomic, strong) UserItem *item;

@@ -22,7 +22,7 @@
     self = [super initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_W * 0.776)];
     if (self) {
         /// 添加头像
-        [self addHeaderImageView];
+        [self addHeaderImageBtn];
         /// 添加昵称label
         [self addNicknameLabel];
         /// 添加显示个性签名的label
@@ -54,37 +54,37 @@
 
 //MARK: - 添加子控件的方法：
 /// 添加头像
-- (void)addHeaderImageView{
-    UIImageView *headerImageView = [[UIImageView alloc] init];
-    headerImageView.backgroundColor = [UIColor colorWithRed:247/255.0 green:206/255.0 blue:200/255.0 alpha:1];
-    [self addSubview:headerImageView];
-    self.headerImageView = headerImageView;
+- (void)addHeaderImageBtn{
+    UIButton *btn = [[UIButton alloc] init];
+    self.headerImageBtn = btn;
+    [btn addTarget:self.delegate action:@selector(headImgClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btn];
     
 #ifdef DEBUG
-    {
-        headerImageView.userInteractionEnabled = YES;
-        UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
-            
-            NSString *deviceToken = [UserDefaultTool valueWithKey:kUMDeviceToken];
-            if (deviceToken) {
-                UIAlertController *deviceTokenAlert = [UIAlertController alertControllerWithTitle:@"deviceToken" message:deviceToken preferredStyle:UIAlertControllerStyleAlert];
-                
-                
-                UIAlertAction *copyAction = [UIAlertAction actionWithTitle:@"复制" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-                    pasteboard.string = deviceToken;
-                }];
-                
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-                
-                [deviceTokenAlert addAction:copyAction];
-                [deviceTokenAlert addAction:cancelAction];
-                
-                [self.viewController presentViewController:deviceTokenAlert animated:YES completion:nil];
-            }
-        }];
-        [self.headerImageView addGestureRecognizer:longTap];
-    }
+//    {
+//        headerImageBtn.userInteractionEnabled = YES;
+//        UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
+//
+//            NSString *deviceToken = [UserDefaultTool valueWithKey:kUMDeviceToken];
+//            if (deviceToken) {
+//                UIAlertController *deviceTokenAlert = [UIAlertController alertControllerWithTitle:@"deviceToken" message:deviceToken preferredStyle:UIAlertControllerStyleAlert];
+//
+//
+//                UIAlertAction *copyAction = [UIAlertAction actionWithTitle:@"复制" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//                    pasteboard.string = deviceToken;
+//                }];
+//
+//                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+//
+//                [deviceTokenAlert addAction:copyAction];
+//                [deviceTokenAlert addAction:cancelAction];
+//
+//                [self.viewController presentViewController:deviceTokenAlert animated:YES completion:nil];
+//            }
+//        }];
+//        [self.headerImageBtn addGestureRecognizer:longTap];
+//    }
 #endif
 }
 
@@ -196,17 +196,17 @@
     [super layoutSubviews];
     
     // 所有的约束均根据屏幕的长宽比例与控件所占的比例来计算
-    [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.headerImageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.mas_leading).offset(MAIN_SCREEN_W * 0.042);
         make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_W * 0.16);
         make.height.width.equalTo(@(MAIN_SCREEN_W * 0.1733));
     }];
-    self.headerImageView.clipsToBounds = YES;
-    self.headerImageView.layer.cornerRadius = MAIN_SCREEN_W * 0.1733 * 0.5;
+    self.headerImageBtn.clipsToBounds = YES;
+    self.headerImageBtn.layer.cornerRadius = MAIN_SCREEN_W * 0.1733 * 0.5;
     
     [self.nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.headerImageView.mas_trailing).offset(20);
-        make.top.equalTo(self.headerImageView).offset(8);
+        make.leading.equalTo(self.headerImageBtn.mas_trailing).offset(20);
+        make.top.equalTo(self.headerImageBtn).offset(8);
     }];
     
     [self.introductionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -215,14 +215,14 @@
     }];
     
     [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.headerImageView);
+        make.centerY.equalTo(self.headerImageBtn);
         make.trailing.equalTo(self).offset(-MAIN_SCREEN_W * 0.0437);
         make.height.width.equalTo(@24);
     }];
     
     [self.whiteBoard mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.headerImageView);
-        make.top.equalTo(self.headerImageView.mas_bottom).offset(20);
+        make.leading.equalTo(self.headerImageBtn);
+        make.top.equalTo(self.headerImageBtn.mas_bottom).offset(20);
         make.height.equalTo(@(MAIN_SCREEN_W * 0.336));
         make.width.equalTo(@(MAIN_SCREEN_W * 0.912));
     }];
@@ -248,25 +248,19 @@
     }
     
     [self.articleNumBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
-        make.leading.equalTo(self.whiteBoard).offset(0.1341*SCREEN_WIDTH);
+        make.centerX.equalTo(self.whiteBoard).offset(-0.295*SCREEN_WIDTH);
         make.top.equalTo(self.whiteBoard).offset(h);
     }];
 
     [self.remarkNumBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
         make.centerX.equalTo(self.whiteBoard);
         make.top.equalTo(self.articleNumBtn);
     }];
 
     [self.praiseNumBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
-        make.right.equalTo(self.whiteBoard).offset(-0.1341*SCREEN_WIDTH);
+        make.centerX.equalTo(self.whiteBoard).offset(0.295*SCREEN_WIDTH);
         make.top.equalTo(self.articleNumBtn);
     }];
-    
-    
-    
 }
 
 @end

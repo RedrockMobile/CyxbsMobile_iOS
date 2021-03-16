@@ -47,7 +47,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     // 从字符串转换日期
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy.MM.d"];
+    [formatter setDateFormat:DateFormat];
     NSDate *resDate = [formatter dateFromString:DateStart];
     
     // 计算当前是第几周

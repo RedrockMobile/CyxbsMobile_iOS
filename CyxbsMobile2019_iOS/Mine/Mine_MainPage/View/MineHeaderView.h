@@ -29,12 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 点击签到框框内的 “获赞” 后调用
 - (void)praiseNumBtnClicked;
 
+- (void)headImgClicked;
 @end
 
 @interface MineHeaderView : UIView
 
 /// 头像ImageVIew
-@property (nonatomic, weak) UIImageView *headerImageView;
+@property (nonatomic, weak) UIButton *headerImageBtn;
 
 /// 昵称Label
 @property (nonatomic, weak) UILabel *nicknameLabel;

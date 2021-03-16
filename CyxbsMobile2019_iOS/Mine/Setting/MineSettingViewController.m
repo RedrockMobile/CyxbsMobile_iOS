@@ -40,7 +40,7 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
-    self.cellTitleStrArr = @[@"启动APP时最先显示课表页面", @"上课前提醒我", @"每天晚上推送课表给我", @"自定义桌面小组件", @"账号与安全", @"屏蔽的人"];
+    self.cellTitleStrArr = @[@"启动APP时最先显示课表页面", @"上课前提醒我", @"每天晚上推送课表给我", @"账号与安全", @"屏蔽的人"];
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"zxsd"];
     //父类是TopBarBasicViewController，调用父类的vcTitleStr的set方法，自动完成顶部的bar的设置
@@ -168,12 +168,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 3:
-            
-            break;
-        case 4:
             [self selectedSafeCell];
             break;
-        case 5:
+        case 4:
             [self selectPeopleIgnoreCell];
             break;
         default:

@@ -7,9 +7,7 @@
 //
 
 #import "ArticleModel.h"
-//删除帖子
-#define CJHdeleteArticle @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId"
-#define CJHgetArticle @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/getUserPostList"
+
 @implementation ArticleModel
 
 - (void)loadMoreData {
@@ -18,7 +16,8 @@
         @"page":@(self.page),
         @"size":size,
     };
-    [self.client requestWithPath:CJHgetArticle method:HttpRequestGet parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [NSURL alloc];
+    [self.client requestWithPath:getArticle method:HttpRequestGet parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.dataArr addObjectsFromArray:responseObject[@"data"]];
         if ([responseObject[@"data"] count]<size.integerValue) {
             [self.delegate mainPageModelLoadDataFinishWithState:StateNoMoreDate];
@@ -36,7 +35,7 @@
         @"id":ID,
         @"model":@"0"
     };
-    [self.client requestWithPath:CJHdeleteArticle method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.client requestWithPath:deleteArticle method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dict;
         for (int i=0; i<self.dataArr.count; i++) {
             dict = self.dataArr[i];

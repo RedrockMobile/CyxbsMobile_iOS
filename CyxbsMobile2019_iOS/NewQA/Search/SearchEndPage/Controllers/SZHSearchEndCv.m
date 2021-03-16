@@ -7,7 +7,6 @@
 //
 //工具类
 #import "MGDRefreshTool.h"      //列表刷新工具类
-#import "NewQAHud.h"            //新版邮问提示框
 
 //controller类
 #import "SZHSearchEndCv.h"

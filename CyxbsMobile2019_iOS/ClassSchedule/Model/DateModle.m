@@ -11,17 +11,21 @@
 @implementation DateModle
 +(instancetype)initWithStartDate:(NSString *)startDate{
     DateModle *dateModel = [[DateModle alloc]init];
-    [dateModel initCalculateDate:startDate];
-    return dateModel;
-}
--(void)initCalculateDate:(NSString *)startDate{
-    //从字符串转换日期
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
     
+    //从字符串转换日期
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = DateFormat;
     NSDate *resDate = [formatter dateFromString:startDate];
     
-    [self calculateNowWeek:resDate];
+//    [dateModel calculateNowWeek:resDate];
+    dateModel.nowWeek = getNowWeek.numberValue;
+    
+    [dateModel initCalculateDate:resDate];
+    return dateModel;
+}
+
+-(void)initCalculateDate:(NSDate *)resDate{
+    
     //初始化日期数组
     _dateArray = [[NSMutableArray alloc]init];
     
@@ -60,22 +64,23 @@
         @"day":[NSNumber numberWithLong:d.day]
     };
 }
--(void)calculateNowWeek:(NSDate *)Date{
-    //计算当前是第几周
-    NSTimeInterval beginTime=[Date timeIntervalSinceReferenceDate];
-    NSDate *now = [NSDate date];
-    NSTimeInterval nowTime = [now timeIntervalSinceReferenceDate];
-    
-    double day = (nowTime - beginTime)/604800.0;
-    
-    NSInteger nowWeek = (int)ceil(day);
-    
-    if(nowWeek < 0){
-        nowWeek = 0;
-    }
-    self.nowWeek = [NSNumber numberWithInteger:nowWeek];
-    
-    //把当前的周数存入缓存
-    [[NSUserDefaults standardUserDefaults] setValue:self.nowWeek.stringValue forKey:nowWeekKey];
-}
+
+//-(void)calculateNowWeek:(NSDate *)Date{
+//    //计算当前是第几周
+//    NSTimeInterval beginTime=[Date timeIntervalSinceReferenceDate];
+//    NSDate *now = [NSDate date];
+//    NSTimeInterval nowTime = [now timeIntervalSinceReferenceDate];
+//
+//    double day = (nowTime - beginTime)/604800.0;
+//
+//    NSInteger nowWeek = (int)ceil(day);
+//
+//    if(nowWeek < 0){
+//        nowWeek = 0;
+//    }
+//    self.nowWeek = [NSNumber numberWithInteger:nowWeek];
+//
+//    //把当前的周数存入缓存
+//    [[NSUserDefaults standardUserDefaults] setValue:self.nowWeek.stringValue forKey:nowWeekKey];
+//}
 @end

@@ -17,6 +17,7 @@
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ShareViewPlus *shareView;
 @property(nonatomic,strong)ArticleModel *articleModel;
+@property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
 @implementation ArticleViewController
@@ -62,6 +63,7 @@
     ArticleTableViewCell *cell = [[ArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
     cell.delegate = self;
     PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
+    CCLog(@"post=%@,%@",item.post_id,item.content);
     [cell setItem:item];
     return cell;
 }
@@ -198,5 +200,13 @@
         _shareView.delegate = self;
     }
     return _shareView;
+}
+
+- (NothingStateView *)nothingView {
+    if (_nothingView==nil) {
+        _nothingView = [[NothingStateView alloc] initWithTitleStr:@"暂时还没有发布过动态噢～"];
+        [self.view addSubview:_nothingView];
+    }
+    return _nothingView;
 }
 @end

@@ -14,7 +14,7 @@
 @interface PraiseViewController ()<UITableViewDelegate, UITableViewDataSource, MainPage2RequestModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)PraiseModel *praiseModel;
-
+@property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
 @implementation PraiseViewController
@@ -25,8 +25,9 @@
     [self addPraiseModel];
     [self addTableView];
 }
+
 - (void)addPraiseModel {
-    self.praiseModel = [[PraiseModel alloc] initWithUrl:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/praisedme"];
+    self.praiseModel = [[PraiseModel alloc] initWithUrl:getPraiseAPI];
     self.praiseModel.delegate = self;
     [self.praiseModel loadMoreData];
 }
@@ -56,6 +57,7 @@
                 [self.tableView.mj_footer endRefreshing];
                 break;
             case StateNoMoreDate:
+                [NewQAHud showHudWith:@"没有更多赞了" AddView:self.view];
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 break;
             case StateFailure:
@@ -93,5 +95,11 @@
     return cell;
 }
 
-
+- (NothingStateView *)nothingView {
+    if (_nothingView==nil) {
+        _nothingView = [[NothingStateView alloc] initWithTitleStr:@"暂时还没收到赞噢～"];
+        [self.view addSubview:_nothingView];
+    }
+    return _nothingView;
+}
 @end

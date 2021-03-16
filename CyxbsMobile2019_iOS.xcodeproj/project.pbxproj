@@ -2202,15 +2202,15 @@
 		18CDF52F257F91BC006E8E5C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF530257F91BC006E8E5C /* EmptyClassCollectionViewCell.m */,
-				18CDF531257F91BC006E8E5C /* EmptyClassViewController.h */,
-				18CDF532257F91BC006E8E5C /* EmptyClassContentView.h */,
-				18CDF533257F91BC006E8E5C /* EmptyClassTableViewCell.m */,
 				18CDF534257F91BC006E8E5C /* EmptyClassCollectionViewCell.h */,
+				18CDF530257F91BC006E8E5C /* EmptyClassCollectionViewCell.m */,
+				18CDF532257F91BC006E8E5C /* EmptyClassContentView.h */,
+				18CDF538257F91BC006E8E5C /* EmptyClassContentView.m */,
+				18CDF531257F91BC006E8E5C /* EmptyClassViewController.h */,
 				18CDF535257F91BC006E8E5C /* EmptyClassViewController.m */,
 				18CDF536257F91BC006E8E5C /* EmptyClassTableViewCell.xib */,
 				18CDF537257F91BC006E8E5C /* EmptyClassTableViewCell.h */,
-				18CDF538257F91BC006E8E5C /* EmptyClassContentView.m */,
+				18CDF533257F91BC006E8E5C /* EmptyClassTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

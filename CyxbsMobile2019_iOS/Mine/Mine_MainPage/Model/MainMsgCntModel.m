@@ -7,49 +7,86 @@
 //
 
 #import "MainMsgCntModel.h"
-//动态/点赞/获赞评论数
-#define CJHgetUserCount @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/getUserCount"
-//未读消息数
-#define CJHgetMsgCnt @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/uncheckedMessage"
 
+
+typedef enum : NSUInteger {
+    MainMsgCntModelRequestTypePraise,
+    MainMsgCntModelRequestTypeComment,
+} MainMsgCntModelRequestType;
 
 @implementation MainMsgCntModel
-- (void)loadData {
-    dispatch_queue_t que = dispatch_queue_create("MainMsgCntModelQue", DISPATCH_QUEUE_CONCURRENT);
-        dispatch_async(que, ^{
-            [[HttpClient defaultClient] requestWithPath:CJHgetUserCount method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSDictionary *dataDict = responseObject[@"data"];
-                if (dataDict==nil) {
-                    [self.delegate loadUserCountDataFailure];
-                    return;
-                }
-                self.commentCnt = dataDict[@"comment"];
-                self.dynamicCnt = dataDict[@"dynamic"];
-                self.praiseCnt = dataDict[@"praise"];
-                [self.delegate loadUserCountDataSuccess];
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                [self.delegate loadUserCountDataFailure];
-            }];
-        });
-        
-        dispatch_async(que, ^{
-            [[HttpClient defaultClient] requestWithPath:CJHgetMsgCnt method:HttpRequestGet parameters:@{@"time":[self getTime]} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSDictionary *dataDict = responseObject[@"data"];
-                if (dataDict==nil) {
-                    [self.delegate loadUncheckedDataFailure];
-                    return;
-                }
-                self.uncheckedPraiseCnt = dataDict[@"uncheckedPraise"];
-                self.uncheckedCommentCnt = dataDict[@"uncheckedComment"];
-                [self.delegate loadUncheckedDataSuccess];
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                [self.delegate loadUncheckedDataFailure];
-            }];
-        });
+- (void)mainMsgCntModelLoadMoreData {
+    [[HttpClient defaultClient] requestWithPath:getUserCount method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSDictionary *dataDict = responseObject[@"data"];
+        if (dataDict==nil) {
+            [self.delegate mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataStateFailure_userCnt)];
+            return;
+        }
+        self.commentCnt = dataDict[@"comment"];
+        self.dynamicCnt = dataDict[@"dynamic"];
+        self.praiseCnt = dataDict[@"praise"];
+        CCLog(@"MainMsg:%@,%@,%@",self.commentCnt,self.dynamicCnt,self.praiseCnt);
+        [self.delegate mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataStateSuccess_userCnt)];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataStateFailure_userCnt)];
+    }];
+    [self loadUncheckMsgWithType:MainMsgCntModelRequestTypePraise];
+    [self loadUncheckMsgWithType:MainMsgCntModelRequestTypeComment];
 }
 
-- (NSString*)getTime {
-    return [NSString stringWithFormat:@"%.0f", [NSDate.now timeIntervalSince1970]];
+- (void)loadUncheckMsgWithType:(MainMsgCntModelRequestType)type {
+    NSDictionary *paramDict;
+    MainMsgCntModelLoadDataState stateSuccess,stateFailure;
+    NSString *time;
+    if (type==MainMsgCntModelRequestTypePraise) {
+        stateSuccess = MainMsgCntModelLoadDataStateSuccess_praise;
+        stateFailure = MainMsgCntModelLoadDataStateFailure_praise;
+        time = [[NSUserDefaults standardUserDefaults] stringForKey:praiseLastClickTimeKey];
+        if (time==nil) {
+            time = [self getTime7DayAgo];
+        }
+        paramDict = @{
+            @"time":time,
+            @"type":@"2",
+        };
+    } else {
+        stateSuccess = MainMsgCntModelLoadDataStateSuccess_comment;
+        stateFailure = MainMsgCntModelLoadDataStateFailure_comment;
+        time = [[NSUserDefaults standardUserDefaults] stringForKey:remarkLastClickTimeKey];
+        if (time==nil) {
+            time = [self getTime7DayAgo];
+        }
+        paramDict = @{
+            @"time":time,
+            @"type":@"1",
+        };
+    }
+    
+    [[HttpClient defaultClient] requestWithPath:getMsgCnt method:HttpRequestGet parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSDictionary *dataDict = responseObject[@"data"];
+        if (dataDict==nil) {
+            [self.delegate mainMsgCntModelLoadDataFinishWithState:stateFailure];
+            return;
+        }
+        
+        if (type==MainMsgCntModelRequestTypePraise) {
+            self.uncheckedPraiseCnt = dataDict[@"uncheckedPraise"];
+        }else {
+            self.uncheckedCommentCnt = dataDict[@"uncheckedComment"];
+        }
+        
+        CCLog(@"MainMsg:%@,%@",self.uncheckedPraiseCnt,self.uncheckedCommentCnt);
+        CCLog(@"MainMsgres%@",responseObject);
+        [self.delegate mainMsgCntModelLoadDataFinishWithState:stateSuccess];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.delegate mainMsgCntModelLoadDataFinishWithState:stateFailure];
+    }];
+}
+
+/// 获取七天前的时间戳
+- (NSString*)getTime7DayAgo {
+    //604800正好是7天的秒数
+    return [NSString stringWithFormat:@"%.0f", [NSDate.now timeIntervalSince1970]-604800];
 }
 
 - (void)setUncheckedCommentCnt:(NSString *)uncheckedCommentCnt {

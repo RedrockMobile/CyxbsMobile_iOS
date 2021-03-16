@@ -13,7 +13,7 @@
 @interface RemarkViewController ()<UITableViewDelegate, UITableViewDataSource, MainPage2RequestModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)RemarkModel *remarkModel;
-
+@property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
 @implementation RemarkViewController
@@ -22,11 +22,12 @@
     [super viewDidLoad];
     self.VCTitleStr = @"评论回复";
     
+    //这里因为tableview的刷新是直接绑定remarkModel的加载数据方法，所以remarkModel得比tableview先加载
     [self addRemarkModel];
     [self addTableView];
 }
 - (void)addRemarkModel {
-    self.remarkModel = [[RemarkModel alloc] initWithUrl:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/replyme"];
+    self.remarkModel = [[RemarkModel alloc] initWithUrl:getReplyAPI];
     self.remarkModel.delegate = self;
     [self.remarkModel loadMoreData];
 }
@@ -92,4 +93,11 @@
     return cell;
 }
 
+- (NothingStateView *)nothingView {
+    if (_nothingView==nil) {
+        _nothingView = [[NothingStateView alloc] initWithTitleStr:@"暂时还没收到评论噢～"];
+        [self.view addSubview:_nothingView];
+    }
+    return _nothingView;
+}
 @end

@@ -20,13 +20,13 @@
 #import "ArticleViewController.h"
 #import "RemarkViewController.h"
 #import "PraiseViewController.h"
-
+#import "EditMyInfoModel.h"
 
 #import "MineSettingViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import "CheckInModel.h"
 
-@interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate>
+@interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 /// tableView
 @property (nonatomic, weak) UITableView *appSettingTableView;
@@ -38,6 +38,8 @@
 @property (nonatomic, copy) NSArray <NSString*> *cellTitleStrArr;
 
 @property (nonatomic, strong)MainMsgCntModel *msgCntModel;
+
+@property (nonatomic, assign)BOOL isLoadingMsgCntData;
 @end
 
 
@@ -61,6 +63,7 @@
     
     [self addContentView];
     [self addAppSettingTableView];
+    self.isLoadingMsgCntData = NO;
 }
 
 /// 添加contentView
@@ -116,7 +119,11 @@
 //    } failed:^(NSError * _Nonnull err) {
 //
 //    }];
-    [self.msgCntModel loadData];
+    if (self.isLoadingMsgCntData==YES) {
+        return;
+    }
+    
+    [self.msgCntModel mainMsgCntModelLoadMoreData];
     // 隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
     [self loadUserData];
@@ -135,7 +142,8 @@
     self.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user.checkInDay ? user.checkInDay : @"0"];
     
     NSURL *headerImageURL = [NSURL URLWithString:[UserItemTool defaultItem].headImgUrl];
-    [self.headerView.headerImageView sd_setImageWithURL:headerImageURL placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageRefreshCached];
+    
+    [self.headerView.headerImageBtn setBackgroundImageWithURL:headerImageURL forState:UIControlStateNormal options:(YYWebImageOptionUseNSURLCache)];
 }
 
 - (void)dealloc{
@@ -143,13 +151,28 @@
 }
 
 //MARK: - 消息数、动态、评论、获赞数model代理方法
-- (void)loadUncheckedDataSuccess {
-    
-    self.headerView.remarkNumBtn.msgCount = self.msgCntModel.uncheckedCommentCnt;
-    self.headerView.praiseNumBtn.msgCount = self.msgCntModel.uncheckedPraiseCnt;
-}
-- (void)loadUncheckedDataFailure {
-    [NewQAHud showHudWith:@"加载未读消息数失败～" AddView:self.view];
+- (void)mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataState)state {
+    switch (state) {
+        case MainMsgCntModelLoadDataStateSuccess_praise:
+            self.headerView.praiseNumBtn.msgCount = self.msgCntModel.uncheckedPraiseCnt;
+            break;
+        case MainMsgCntModelLoadDataStateFailure_praise:
+            [NewQAHud showHudWith:@"加载未读获赞数失败～" AddView:self.view];
+            break;
+        case MainMsgCntModelLoadDataStateSuccess_comment:
+            self.headerView.remarkNumBtn.msgCount = self.msgCntModel.uncheckedCommentCnt;
+            break;
+        case MainMsgCntModelLoadDataStateFailure_comment:
+            [NewQAHud showHudWith:@"加载未读评论数失败～" AddView:self.view];
+            break;
+        case MainMsgCntModelLoadDataStateSuccess_userCnt:
+            [self loadUserCountDataSuccess];
+            break;
+        case MainMsgCntModelLoadDataStateFailure_userCnt:
+            [NewQAHud showHudWith:@"加载个人数据失败～" AddView:self.view];
+            break;
+    }
+    self.isLoadingMsgCntData = NO;
 }
 
 - (void)loadUserCountDataSuccess {
@@ -158,9 +181,7 @@
     [self.headerView.praiseNumBtn setTitle:self.msgCntModel.praiseCnt forState:UIControlStateNormal];
 }
 
-- (void)loadUserCountDataFailure {
-    [NewQAHud showHudWith:@"加载个人数据失败～" AddView:self.view];
-}
+
 
 
 #pragma mark - headView代理方法
@@ -194,6 +215,8 @@
 
 /// 点击签到框框内的 “评论” 后调用
 - (void)remarkNumBtnClicked{
+    //存放用户最后一次点击评论按钮的时间，用这个时间在MainMsgCntModel获取用户的未读消息数时要使用
+    [[NSUserDefaults standardUserDefaults] setValue:[self getTime] forKey:remarkLastClickTimeKey];
     RemarkViewController *vc = [[RemarkViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -205,6 +228,9 @@
 
 /// 点击签到框框内的 “获赞” 后调用
 - (void)praiseNumBtnClicked{
+    //存放用户最后一次点击获赞按钮的时间，用这个时间在MainMsgCntModel获取用户的未读消息数时要使用
+    [[NSUserDefaults standardUserDefaults] setValue:[self getTime] forKey:praiseLastClickTimeKey];
+    
     PraiseViewController *vc = [[PraiseViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -215,6 +241,12 @@
 //    vc.hidesBottomBarWhenPushed = YES;
 }
 
+- (void)headImgClicked {
+    UIImagePickerController *ctrler = [[UIImagePickerController alloc] init];
+    ctrler.allowsEditing = YES;
+    ctrler.delegate = self;
+    [self presentViewController:ctrler animated:YES completion:nil];
+}
 
 //MARK: - tabelView代理方法方法:
 /// 点击“关于我们”后调用
@@ -294,6 +326,32 @@
     }
 }
 
+/// 获取时间戳
+- (NSString*)getTime {
+    return [NSString stringWithFormat:@"%.0f", [NSDate.now timeIntervalSince1970]];
+}
+
+//imgPicker的代理方法：
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    UIImage *img = info[UIImagePickerControllerEditedImage];
+    [self.headerView.headerImageBtn setImage:img forState:normal];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [EditMyInfoModel uploadProfile:img success:^(NSDictionary * _Nonnull responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            [UserItemTool defaultItem].headImgUrl = responseObject[@"data"][@"photosrc"];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"上传成功～";
+            [hud hide:YES afterDelay:1];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"上传成功～";
+        [hud hide:YES afterDelay:1];
+    }];
+}
 
 #pragma mark - 转场动画
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {

@@ -41,6 +41,7 @@
     }];
     
 }
+
 - (void)setModel:(PraiseParseModel *)model {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ssZ";
