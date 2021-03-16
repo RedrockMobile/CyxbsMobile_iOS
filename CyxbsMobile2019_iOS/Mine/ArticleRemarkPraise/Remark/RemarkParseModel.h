@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 解析评论页的数据的模型
 @interface RemarkParseModel : NSObject
+
+/// 头像URL
 @property(nonatomic,copy)NSString *avatar;
 
 /// 别人对自己的评论的id
@@ -36,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //自己发出的评论/帖子的内容
 @property(nonatomic,copy)NSString *from;
+
+/// type为@"1"时代表时动态收到了回复，@"2"代表时评论收到评论
 @property(nonatomic,copy)NSString *type;
 - (instancetype)initWithDict:(NSDictionary*)dict;
 @end

@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/2/21.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  评论回复页面的控制器
 
 #import "RemarkViewController.h"
 #import "RemarkTableViewCell.h"
@@ -26,12 +26,15 @@
     [self addRemarkModel];
     [self addTableView];
 }
+
+/// 数据加载模型
 - (void)addRemarkModel {
     self.remarkModel = [[RemarkModel alloc] initWithUrl:getReplyAPI];
     self.remarkModel.delegate = self;
     [self.remarkModel loadMoreData];
 }
 
+/// 添加tableView
 - (void)addTableView{
     UITableView *tableView = [[UITableView alloc] init];
     self.tableView = tableView;
@@ -49,20 +52,26 @@
     }];
 }
 
+/// 数据加载模型的代理方法，数据加载完成后调用
+/// @param state 加载状态
 - (void)MainPage2RequestModelLoadDataFinishWithState:(MainPage2RequestModelState)state {
     dispatch_async(dispatch_get_main_queue(), ^{
         switch (state) {
-            case StateEndRefresh:
+                //加载成功，而且还有数据
+            case MainPage2RequestModelStateEndRefresh:
                 [self.tableView.mj_footer endRefreshing];
                 break;
-            case StateNoMoreDate:
+                //加载成功，而且没有数据了
+            case MainPage2RequestModelStateNoMoreDate:
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 break;
-            case StateFailure:
+                //加载失败
+            case MainPage2RequestModelStateFailure:
                 [self.tableView.mj_footer endRefreshing];
                 [NewQAHud showHudWith:@"加载失败" AddView:self.view];
                 break;
-            case StateFailureAndSuccess:
+                //部分数据加载失败
+            case MainPage2RequestModelStateFailureAndSuccess:
                 [self.tableView.mj_footer endRefreshing];
                 [NewQAHud showHudWith:@"部分数据加载失败" AddView:self.view];
                 break;
@@ -93,6 +102,7 @@
     return cell;
 }
 
+//MARK: - 懒加载
 - (NothingStateView *)nothingView {
     if (_nothingView==nil) {
         _nothingView = [[NothingStateView alloc] initWithTitleStr:@"暂时还没收到评论噢～"];

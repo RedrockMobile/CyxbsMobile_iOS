@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/2/21.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  动态页的控制器
 
 #import "ArticleViewController.h"
 #import "ArticleTableViewCell.h"
@@ -71,27 +71,25 @@
 //MARK:-ArticleModel的代理方法：
 - (void)mainPageModelLoadDataFinishWithState:(MainPageModelDataState)state {
     switch (state) {
-        case StateNoMoreDate:
+        case MainPageModelStateNoMoreDate:
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
             break;
-        case StateEndRefresh:
+        case MainPageModelStateEndRefresh:
             [self.tableView.mj_footer endRefreshing];
             break;
-        case StateFailure:
+        case MainPageModelStateFailure:
             [self mainPageModelLoadDataFailue];
             break;
         default:
             break;
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-        if (self.articleModel.dataArr.count==0) {
-            self.nothingView.alpha = 1;
-        }else {
-            self.nothingView.alpha = 0;
-        }
-    });
+    [self.tableView reloadData];
+    if (self.articleModel.dataArr.count==0) {
+        self.nothingView.alpha = 1;
+    }else {
+        self.nothingView.alpha = 0;
+    }
 }
 
 - (void)mainPageModelLoadDataFailue {

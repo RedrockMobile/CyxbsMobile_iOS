@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/12/18.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//  屏蔽的人页面的控制器
 
 #import "IgnoreViewController.h"
 #import "IgnoreTableViewCell.h"
@@ -12,11 +12,14 @@
 #import "IgnoreDataModel.h"
 
 
-//#import <Social/Social.h>
 
 @interface IgnoreViewController ()<UITableViewDelegate,UITableViewDataSource,MainPageModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
+
+/// 用于网络请求的model
 @property(nonatomic,strong)IgnoreModel *model;
+
+/// 没有屏蔽的人时的背景图
 @property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
@@ -75,13 +78,13 @@
 //MARK:-model的代理方法：
 - (void)mainPageModelLoadDataFinishWithState:(MainPageModelDataState)state {
     switch (state) {
-        case StateNoMoreDate:
+        case MainPageModelStateNoMoreDate:
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
             break;
-        case StateEndRefresh:
+        case MainPageModelStateEndRefresh:
             [self.tableView.mj_footer endRefreshing];
             break;
-        case StateFailure:
+        case MainPageModelStateFailure:
             [self.tableView.mj_footer endRefreshing];
             [NewQAHud showHudWith:@"加载失败" AddView:self.view];
             break;
@@ -89,14 +92,14 @@
             break;
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-        if (self.model.dataArr.count==0) {
-            self.nothingView.alpha = 1;
-        }else {
-            self.nothingView.alpha = 0;
-        }
-    });
+    
+    [self.tableView reloadData];
+    if (self.model.dataArr.count==0) {
+        self.nothingView.alpha = 1;
+    }else {
+        self.nothingView.alpha = 0;
+    }
+    
 }
 
 - (NothingStateView *)nothingView {

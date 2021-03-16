@@ -10,6 +10,7 @@
 #import "IgnoreDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
+/// 屏蔽的人页面的cell
 @interface IgnoreTableViewCell : UITableViewCell
 - (void)setDataWithDataModel:(IgnoreDataModel*)model;
 @end

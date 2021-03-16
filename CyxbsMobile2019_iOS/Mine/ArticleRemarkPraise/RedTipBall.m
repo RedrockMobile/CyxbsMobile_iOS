@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/2/22.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  小红点
 
 #import "RedTipBall.h"
 #define ballRadius  (SCREEN_WIDTH*0.0427)
@@ -40,6 +40,9 @@
 }
 
 - (void)setMsgCount:(NSString*)msgCount{
+    if (![self isPureInt:msgCount]) {
+        return;
+    }
     _msgCount = msgCount;
     if (msgCount.integerValue>99) {
         self.msgLabel.text = @"99+";
@@ -81,5 +84,17 @@
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.top.equalTo(self);
     }];
+}
+
+/// 网上扣的一个操作，用来判断NSString内部是不是int，经过检验发现即使传入的数Long，它也是返回YES
+/// @param string 字符串
+- (BOOL)isPureInt:(NSString*)string{
+
+    NSScanner* scan = [NSScanner scannerWithString:string];
+
+    int val;
+
+    return[scan scanInt:&val] && [scan isAtEnd];
+
 }
 @end

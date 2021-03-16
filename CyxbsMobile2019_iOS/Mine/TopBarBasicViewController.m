@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/12/18.
 //  Copyright © 2020 Redrock. All rights reserved.
-//带有一个顶部导航条的基类
+// 带有一个顶部导航条的基类
 
 #import "TopBarBasicViewController.h"
 
@@ -14,6 +14,7 @@
 @property (nonatomic,strong)UIButton *backBtn;
 @property (nonatomic,strong)UIView *blackLine;
 @end
+
 
 @implementation TopBarBasicViewController
 

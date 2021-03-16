@@ -18,26 +18,18 @@
 {
     self = [super init];
     if (self) {
-//        [self mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.width.mas_equalTo(MAIN_SCREEN_W*0.53867);
-//            make.height.mas_equalTo(MAIN_SCREEN_W*0.38934);
-//        }];
         self.frame = CGRectMake(SCREEN_WIDTH*0.231, MAIN_SCREEN_W*0.5, MAIN_SCREEN_W*0.53867, MAIN_SCREEN_W*0.38934);
         [self addBackgroundViewWithStr:str];
     }
     return self;
 }
 
-/// 添加一个背景图片和一片寂静的label
+/// 添加一个背景图片和一个label
 - (void)addBackgroundViewWithStr:(NSString*)str{
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"寂静"]];
     self.imgView = imgView;
     [self addSubview:imgView];
     
-//    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.height.mas_equalTo(MAIN_SCREEN_W*0.34667);
-//        make.top.width.left.equalTo(self);
-//    }];
     [imgView setFrame:CGRectMake(0, 0, MAIN_SCREEN_W*0.53867, MAIN_SCREEN_W*0.34667)];
     
     UILabel *label = [[UILabel alloc] init];
@@ -52,12 +44,8 @@
     }
     label.font = [UIFont fontWithName:PingFangSCLight size: 12];
     
-//    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(imgView);
-//        make.top.equalTo(imgView.mas_bottom).offset(0.04267*MAIN_SCREEN_W);
-//    }];
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setFrame:CGRectMake(0, MAIN_SCREEN_W*0.39667, MAIN_SCREEN_W*0.53867, 0.04267*MAIN_SCREEN_W)];
-  
 }
+
 @end

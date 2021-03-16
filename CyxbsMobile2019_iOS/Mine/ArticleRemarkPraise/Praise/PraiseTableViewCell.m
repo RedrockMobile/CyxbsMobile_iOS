@@ -4,11 +4,13 @@
 //
 //  Created by Stove on 2021/1/28.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  获赞页面的cell
 
 #import "PraiseTableViewCell.h"
 
 @interface PraiseTableViewCell()
+
+/// 用来显示自己的评论/动态的内容
 @property(nonatomic,strong)UILabel *remarkLabel;
 @end
 
@@ -21,6 +23,7 @@
     return self;
 }
 
+/// 添加用来显示自己的评论/动态的内容
 - (void)addRemarkLabel {
     UILabel *label = [[UILabel alloc] init];
     self.remarkLabel = label;
@@ -42,7 +45,9 @@
     
 }
 
+//MARK: - 重写set方法
 - (void)setModel:(PraiseParseModel *)model {
+    _model = model;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ssZ";
     
@@ -71,14 +76,14 @@
 }
 
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
+//- (void)awakeFromNib {
+//    [super awakeFromNib];
+//}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//
+//    // Configure the view for the selected state
+//}
 @end
 
 

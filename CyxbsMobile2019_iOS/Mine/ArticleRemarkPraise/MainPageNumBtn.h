@@ -10,8 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 带个小红点、标题、显示标题对应的模块的数据个数，标题如@"动态"、@"评论"、@"获赞"
 @interface MainPageNumBtn : UIButton
+
+/// 按钮名称如@"动态"
 @property(nonatomic, strong)UILabel *btnNameLabel;
+
+/// 动态个数是用UIButton的titleLabel来显示的
+
+/// 未读消息数
 @property(nonatomic,assign)NSString* msgCount;
 @end
 

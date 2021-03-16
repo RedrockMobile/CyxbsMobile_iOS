@@ -20,13 +20,13 @@
     [self.client requestWithPath:getArticle method:HttpRequestGet parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.dataArr addObjectsFromArray:responseObject[@"data"]];
         if ([responseObject[@"data"] count]<size.integerValue) {
-            [self.delegate mainPageModelLoadDataFinishWithState:StateNoMoreDate];
+            [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateNoMoreDate];
         }else {
             self.page++;
-            [self.delegate mainPageModelLoadDataFinishWithState:StateEndRefresh];
+            [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateEndRefresh];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [self.delegate mainPageModelLoadDataFinishWithState:StateFailure];
+        [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateFailure];
     }];
 }
 

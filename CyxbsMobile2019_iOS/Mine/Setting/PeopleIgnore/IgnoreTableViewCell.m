@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/12/18.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+//  屏蔽的人页面的cell
 
 #import "IgnoreTableViewCell.h"
 

@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/3/7.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  解析点赞页的网络请求数据
 
 #import "PraiseParseModel.h"
 

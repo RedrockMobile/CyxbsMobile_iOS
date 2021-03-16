@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/3/9.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  解析评论页的数据的模型
 
 #import "RemarkParseModel.h"
 

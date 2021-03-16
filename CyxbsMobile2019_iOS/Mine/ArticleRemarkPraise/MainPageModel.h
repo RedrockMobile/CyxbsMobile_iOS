@@ -12,13 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
     //没有更多数据
-    StateNoMoreDate,
+    MainPageModelStateNoMoreDate,
     //停止刷新(加载成功)
-    StateEndRefresh,
+    MainPageModelStateEndRefresh,
     //加载失败
-    StateFailure,
-    //获赞以及评论页是分两次网络请求的，如果其中一个加载失败，一个成功，那就是这种state
-    StateFailureAndSuccess,
+    MainPageModelStateFailure,
 } MainPageModelDataState;
 
 @protocol MainPageModelDelegate <NSObject>
@@ -26,6 +24,7 @@ typedef enum : NSUInteger {
 @end
 
 
+/// 作为屏蔽的人，以及动态页网络请求model的父类，子类需要自己实现loadMoreData方法
 @interface MainPageModel : NSObject
 @property(nonatomic,strong)NSMutableArray <NSDictionary*> *dataArr;
 @property(nonatomic,assign)long page;

@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/2/21.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  评论页面的cell
 
 #import "RemarkTableViewCell.h"
 
@@ -45,6 +45,8 @@
     }
     return self;
 }
+
+//MARK:-添加子控件
 - (void)addContentLabel {
     UILabel *label = [[UILabel alloc] init];
     self.contentLabel = label;
@@ -122,6 +124,7 @@
     
     [btn addTarget:self action:@selector(praiseBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
+
 - (void)addRemarkBtn {
     UIButton *btn = [[UIButton alloc] init];
     self.remarkBtn = btn;
@@ -139,22 +142,11 @@
     
     [btn addTarget:self action:@selector(remarkBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
-- (void)changePraiseBtnToState:(BOOL)is {
-    self.praiseBtn.selected = is;
-    
-    if (is) {
-        [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
-        [self.praiseBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(0.0675*SCREEN_WIDTH);
-        }];
-    }else {
-        [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"未点赞"] forState:UIControlStateNormal];
-        [self.praiseBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(0.05426*SCREEN_WIDTH);
-        }];
-    }
-}
 
+//MARK:-点击按钮后调用的方法
+/// 点赞按钮点击后调用
+/// 里面有点赞的网络请求操作，为什么没有把网络请求代理给控制器，控制器再用model进行网络请求呢？
+/// 因为从模块化的角度来说，这个点赞的操作是完全适合放在cell内部自己解决
 - (void)praiseBtnClicked {
 //    CCLog(@"%@,%@,%@",self.comment_id,self.type,self.post_id);
     CCLog(@"mmcon=%@,\tcomID=%@,\tform=%@,\tpoID=%@,\ttype=%@,\tisP=t%@",self.model.content,self.model.comment_id,self.model.from,self.model.post_id,self.model.type,self.model.is_praised);
@@ -175,17 +167,17 @@
         }else {
             [self changePraiseBtnToState:YES];
         }
-        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [NewQAHud showHudWith:@"网络错误～～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
     }];
 }
 
+/// 点击评论按钮后调用
 - (void)remarkBtnClicked {
     
 }
 
-
+//MARK: - 重写set方法
 - (void)setModel:(RemarkParseModel *)model {
     _model = model;
     NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:model.publish_time.doubleValue];
@@ -229,6 +221,25 @@
     self.post_id = model.post_id;
     
 }
+
+
+//MARK: - 其他
+//用来改变按钮状态
+ - (void)changePraiseBtnToState:(BOOL)is {
+     self.praiseBtn.selected = is;
+     if (is) {
+         [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
+         [self.praiseBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+             make.height.mas_equalTo(0.0675*SCREEN_WIDTH);
+         }];
+     }else {
+         [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"未点赞"] forState:UIControlStateNormal];
+         [self.praiseBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+             make.height.mas_equalTo(0.05426*SCREEN_WIDTH);
+         }];
+     }
+ }
+
 
 @end
 

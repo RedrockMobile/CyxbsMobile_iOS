@@ -21,10 +21,7 @@
 /// cell标题字符串数组
 @property(nonatomic,strong)NSArray <NSString*>* cellTitleStrArr;
 
-///// 在view顶部显示“设置”两个字的bar
-//@property(nonatomic,strong)UIView *titleBar;
-//
-///// 退出登录按钮
+/// 退出登录按钮
 @property(nonatomic,strong)UIButton *quitBtn;
 
 /// 点击“退出登录按钮”后弹出的提示弹窗
@@ -83,6 +80,7 @@
     tableView.dataSource = self;
 }
 
+/// 添加退出登录按钮
 - (void)addQuitBtn {
     UIButton *btn = [[UIButton alloc] init];
     self.quitBtn = btn;
@@ -114,6 +112,7 @@
     
     [btn addTarget:self action:@selector(quitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
+
 
 //MARK:- UITableView代理方法
 

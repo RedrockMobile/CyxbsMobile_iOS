@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/2/21.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  动态页的cell
 
 #import "ArticleTableViewCell.h"
 

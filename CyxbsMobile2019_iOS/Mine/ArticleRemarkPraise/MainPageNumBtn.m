@@ -4,16 +4,17 @@
 //
 //  Created by Stove on 2021/2/22.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  带个小红点、标题、显示标题对应的模块的数据个数，标题如@"动态"、@"评论"、@"获赞"
 
 #import "MainPageNumBtn.h"
 #import "RedTipBall.h"
 @interface MainPageNumBtn()
+
+/// 小红点
 @property(nonatomic, strong)RedTipBall *redBall;
 @end
 @implementation MainPageNumBtn
-- (instancetype)init
-{
+- (instancetype)init{
     self = [super init];
     if (self) {
         if (IS_IPHONESE) {

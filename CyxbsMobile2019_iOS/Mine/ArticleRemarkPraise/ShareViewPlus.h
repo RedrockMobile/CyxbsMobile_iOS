@@ -4,11 +4,12 @@
 //
 //  Created by Stove on 2021/2/22.
 //  Copyright © 2021 Redrock. All rights reserved.
-//shareView的进一步封装版本
+
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+/// shareView的进一步封装版本
 @protocol ShareViewPlusDelegate <NSObject>
 - (void)ClickedQQZone;
 - (void)ClickedVXGroup;
