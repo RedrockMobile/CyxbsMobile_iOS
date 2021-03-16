@@ -241,6 +241,7 @@
 //MARK:上半部分视图的代理方法以及UITextfield的代理方法
 - (void)jumpBack{
     [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
 ///点击搜索后执行操作
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
