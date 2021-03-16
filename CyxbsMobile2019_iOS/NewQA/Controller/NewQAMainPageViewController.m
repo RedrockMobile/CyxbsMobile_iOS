@@ -78,10 +78,6 @@
     _lineHeight = self.dataArray.count != 0 ? 2 : 0;
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     
-//    self.tableArray = [PostArchiveTool getPostList];
-//    self.dataArray = [PostArchiveTool getMyFollowGroup].dataArray;
-//    self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
-//
     if (self.first == YES && self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
         for (UIView *view in [self.view subviews]) {
             [view removeFromSuperview];
