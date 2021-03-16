@@ -31,22 +31,21 @@
         }else{
             self.hotSearch_KnowledgeLabel.text = @"重邮知识库";
         }
+        
+        //添加到屏幕上面
+        [self addSubview:self.hotSearch_KnowledgeLabel];
+        //此处不需要约束宽与高，自适应
+        [self.hotSearch_KnowledgeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self);
+            make.top.equalTo(self);
+        }];
+        
+        //添加按钮
         [self addbutts];
-        
-        
     }
     return self;
 }
 
-- (void)layoutSubviews{
-    [self addSubview:self.hotSearch_KnowledgeLabel];
-    //此处不需要约束宽与高，自适应
-    [self.hotSearch_KnowledgeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
-        make.top.equalTo(self);
-    }];
-    [self btnsAddConstraints];
-}
 #pragma mark- Private methods
 /// 添加下面的热门搜索或者重邮知识库item
 - (void)addbutts{
@@ -70,12 +69,14 @@
         [array addObject:button];
     }
     self.buttonAry = array;
-    
+    [self btnsAddConstraints];
 }
 
 ///为btns添加约束，让它自动换行等等
 - (void)btnsAddConstraints{
-    if (self.buttonAry.count == 0) return;
+    if (self.buttonAry.count == 0){
+        return;
+    }
     __block int k = 0;
     [self.buttonAry[0] mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.hotSearch_KnowledgeLabel.mas_bottom).offset(LINESPLIT);
@@ -112,7 +113,7 @@
         [self.buttonAry[i] removeFromSuperview];
     }
     [self addbutts];
-    [self layoutIfNeeded];
+//    [self layoutIfNeeded];
 }
 #pragma mark- getter
 - (UILabel *)hotSearch_KnowledgeLabel{
