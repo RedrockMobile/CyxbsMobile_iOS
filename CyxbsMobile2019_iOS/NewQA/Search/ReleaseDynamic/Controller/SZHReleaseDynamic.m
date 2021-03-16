@@ -520,22 +520,17 @@
 - (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results API_AVAILABLE(ios(14)){
     //使图片选择器消失
     [picker dismissViewControllerAnimated:YES completion:nil];
-    printf("resCnt=%ld,%ld\n",results.count,self.imagesAry.count);
     for (int i = 0; i < results.count; i++) {
         //获取返回的对象
         PHPickerResult *result = results[i];
         //获取图片
         [result.itemProvider loadObjectOfClass:[UIImage class] completionHandler:^(__kindof id<NSItemProviderReading>  _Nullable object, NSError * _Nullable error) {
             if ([object isKindOfClass:[UIImage class]]) {
-                printf("a%d,%ld,   ",i,self.imagesAry.count);
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    printf("b%d,%ld,   ",i,self.imagesAry.count);
                     __weak typeof(self) weakSelf = self;
                     //如果图片大于九张，就删除掉前面选择的
                     if (weakSelf.imagesAry.count < 9) {
-                        printf("c%d,%ld   ",i,self.imagesAry.count);
                         [weakSelf.imagesAry addObject:(UIImage *)object];
-                        printf("afT%ld   ",self.imagesAry.count);
                     }
                     //遍历循环到最后一个时进行图片框的添加约束
 #pragma waring 不能使用这种写法，因为这里会在进入主线程前异步操作，可能捕获的i变量值为 results.count-1方法先执行，从而导致方法提前被执行
@@ -543,7 +538,6 @@
 //
 //                    }
                     if (self.imagesAry.count == results.count) {
-                        printf("forCnt=%ld,%ld\n",self.imagesAry.count,self.imageViewArray.count);
                         [weakSelf imageViewsConstraint];
                     }
                 });
@@ -561,14 +555,6 @@
     printf("BefCleacnt=%ld,%ld\n",self.imagesAry.count,self.imageViewArray.count);
     [self.imagesAry  removeObject:imageView.image];
     [self.imageViewArray removeObject:imageView];
-//    self.imagesAry = array;
-//    for (UIImage *resultImage in array) {
-//        if ([resultImage isEqual:image]) {
-//            [array removeObject:resultImage];
-//            self.imagesAry = array;
-//            break;;
-//        }
-//    }
 //    //2.再移除照片框
     printf("Cleacnt=%ld,%ld\n",self.imagesAry.count,self.imageViewArray.count);
     [imageView removeFromSuperview];
