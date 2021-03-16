@@ -33,6 +33,7 @@
 		1817F0572594D5C500FE1304 /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F03F2594D5C500FE1304 /* NewQAHud.m */; };
 		1817F05D259865EA00FE1304 /* ShieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F05C259865EA00FE1304 /* ShieldModel.m */; };
 		1817F0632598672E00FE1304 /* CancelShieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0622598672E00FE1304 /* CancelShieldModel.m */; };
+		1880921C25FF7DE60097DCE4 /* MGDStatusBarHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880921B25FF7DE60097DCE4 /* MGDStatusBarHeight.m */; };
 		18CDF478257F8D9C006E8E5C /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF477257F8D9C006E8E5C /* Mine.xcassets */; };
 		18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */; };
 		18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF487257F8DBD006E8E5C /* setEmailViewController.m */; };
@@ -667,6 +668,8 @@
 		1817F05C259865EA00FE1304 /* ShieldModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShieldModel.m; sourceTree = "<group>"; };
 		1817F0612598672E00FE1304 /* CancelShieldModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelShieldModel.h; sourceTree = "<group>"; };
 		1817F0622598672E00FE1304 /* CancelShieldModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelShieldModel.m; sourceTree = "<group>"; };
+		1880921A25FF7DE60097DCE4 /* MGDStatusBarHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDStatusBarHeight.h; sourceTree = "<group>"; };
+		1880921B25FF7DE60097DCE4 /* MGDStatusBarHeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDStatusBarHeight.m; sourceTree = "<group>"; };
 		18CDF477257F8D9C006E8E5C /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		18CDF482257F8DBD006E8E5C /* SetQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetQuestionViewController.h; sourceTree = "<group>"; };
 		18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetQuestionViewController.m; sourceTree = "<group>"; };
@@ -1775,6 +1778,8 @@
 				1817F03B2594D5C500FE1304 /* PostArchiveTool.m */,
 				1817F03A2594D5C500FE1304 /* NewQAHud.h */,
 				1817F03F2594D5C500FE1304 /* NewQAHud.m */,
+				1880921A25FF7DE60097DCE4 /* MGDStatusBarHeight.h */,
+				1880921B25FF7DE60097DCE4 /* MGDStatusBarHeight.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -5033,6 +5038,7 @@
 				1AEF311F245E927B00487D40 /* MyGoodsTableViewCell.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
 				18CDF6C4257F91BE006E8E5C /* DetailSubjectScoreCell.m in Sources */,
+				1880921C25FF7DE60097DCE4 /* MGDStatusBarHeight.m in Sources */,
 				18CDF71C257F91BE006E8E5C /* YearChooseBar.m in Sources */,
 				18CDF6C2257F91BE006E8E5C /* UserInfoView.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
