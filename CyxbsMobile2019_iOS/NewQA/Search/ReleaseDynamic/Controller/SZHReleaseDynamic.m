@@ -520,31 +520,30 @@
 - (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results API_AVAILABLE(ios(14)){
     //使图片选择器消失
     [picker dismissViewControllerAnimated:YES completion:nil];
+    //获取图片
+    //利用group确保for里面循环里面的异步获取图片都执行完毕
+    dispatch_group_t getPhotosGroup = dispatch_group_create();
     for (int i = 0; i < results.count; i++) {
         //获取返回的对象
         PHPickerResult *result = results[i];
         //获取图片
+        dispatch_group_enter(getPhotosGroup);
         [result.itemProvider loadObjectOfClass:[UIImage class] completionHandler:^(__kindof id<NSItemProviderReading>  _Nullable object, NSError * _Nullable error) {
             if ([object isKindOfClass:[UIImage class]]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    __weak typeof(self) weakSelf = self;
-                    //如果图片大于九张，就删除掉前面选择的
-                    if (weakSelf.imagesAry.count < 9) {
-                        [weakSelf.imagesAry addObject:(UIImage *)object];
-                    }
-                    //遍历循环到最后一个时进行图片框的添加约束
-#pragma waring 不能使用这种写法，因为这里会在进入主线程前异步操作，可能捕获的i变量值为 results.count-1方法先执行，从而导致方法提前被执行
-//                    if(i == results.count - 1){
-//
-//                    }
-                    if (self.imagesAry.count == results.count) {
-                        [weakSelf imageViewsConstraint];
-                    }
-                });
+//                如果图片大于九张，就删除掉前面选择的
+                if (self.imagesAry.count < 9) {
+                    [self.imagesAry addObject:(UIImage *)object];
+                }
+                //完成后离开队列
+                dispatch_group_leave(getPhotosGroup);
             }
         }];
     }
-    
+    //队列组里所有的异步执行操作完成之后回调此方法，进行界面的布局
+    dispatch_group_notify(getPhotosGroup, dispatch_get_main_queue(), ^{
+        [self imageViewsConstraint];
+        NSLog(@"选取图片完成-------end");
+    });
 }
 
 //MARK:图片框的代理方法
