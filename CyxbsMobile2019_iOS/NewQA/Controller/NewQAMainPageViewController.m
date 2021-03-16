@@ -60,8 +60,6 @@
 //获取cell里item数据的NSDictionary
 @property (nonatomic, strong) NSDictionary *itemDic;
 
-@property (nonatomic, assign) BOOL first;
-
 @end
 
 @implementation NewQAMainPageViewController
@@ -78,74 +76,73 @@
     _lineHeight = self.dataArray.count != 0 ? 2 : 0;
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     
-    if (self.first == YES && self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
+    // 如果是退出登陆后再次登陆，由于程序还在运行，因此移除原来的界面，重新加载UI
+    if ([UserItemTool defaultItem].firstLogin == YES && self.tableArray != nil && self.dataArray != nil && self.hotWordsArray != nil) {
         for (UIView *view in [self.view subviews]) {
             [view removeFromSuperview];
         }
-        NSLog(@"帖子列表的数据通过网络请求");
+        NSLog(@"通过网络请求刷新页面");
         self.page = 0;
         self.loadHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.loadHUD.labelText = @"正在加载中...";
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
-        dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"热搜词汇网络请求");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loadHotWords];
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+            dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self loadHotWords];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self loadMyStarGroupList];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self setMainViewUI];
+                    [self loadData];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
                 dispatch_semaphore_signal(semaphore);
             });
-        });
-        
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"我的关注网络请求");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loadMyStarGroupList];
-                dispatch_semaphore_signal(semaphore);
-            });
-        });
-        
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"帖子列表网络请求");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self setMainViewUI];
-                [self loadData];
-                dispatch_semaphore_signal(semaphore);
-            });
-        });
-        
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"执行完成");
-            dispatch_semaphore_signal(semaphore);
-        });
-    }
+        }
+    self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
     
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
 }
+
 //邮问视图消失时显示底部课表
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
-    self.first = NO;
+    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
+// 移除所有控件，重新加载控件并且通过缓存刷新数据，并再次请求新的数据
 - (void)reSetTopFollowUI {
+    NSLog(@"接收到用户关注圈子的操作，刷新此页面");
     for (UIView *view in [self.view subviews]) {
         [view removeFromSuperview];
     }
-    NSLog(@"帖子列表的数据通过缓存");
     [self setMainViewUI];
     [self loadHotWords];
     [self loadMyStarGroupList];
     [self loadData];
-    
 }
 
 
@@ -156,6 +153,8 @@
     } else {
         
     }
+    [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+
     //设置通知中心
     [self setNotification];
     //设置背景蒙版
@@ -179,16 +178,17 @@
     self.groupModel = [[GroupModel alloc] init];
     self.postmodel = [[PostModel alloc] init];
     
-    if (self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
-        NSLog(@"帖子列表的数据通过缓存");
+    // 如果用户是登陆的状态，再次打开此应用，则直接加载缓存数据，否则为第一次登陆，加载网络请求数据
+    if ([UserItemTool defaultItem].firstLogin == NO && self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
+        NSLog(@"初始化通过缓存加载页面");
         self.page = floor(self.tableArray.count / 6.0);
         [self setMainViewUI];
         [self loadHotWords];
         [self loadMyStarGroupList];
         self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
-        NSLog(@"初始的page:%lu",self.page);
+//        NSLog(@"初始的page:%lu",self.page);
     }else {
-        NSLog(@"帖子列表的数据通过网络请求");
+        NSLog(@"初始化通过网络请求加载页面");
         self.page = 0;
         self.loadHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.loadHUD.labelText = @"正在加载中...";
@@ -274,14 +274,10 @@
                                              selector:@selector(reSetTopFollowUI)
                                                  name:@"reSetTopFollowUI" object:nil];
     
-    ///退出后设置为第一次登陆
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(firstLoginVC)
-                                                 name:@"firstLoginVC" object:nil];
 }
 
 - (void)firstLoginVC {
-    self.first = YES;
+    
 }
 
 # pragma mark 初始化功能弹出页面
@@ -342,7 +338,7 @@
 - (void)topFollowViewLoadSuccess {
     self.dataArray = self.groupModel.dataArray;
     [PostArchiveTool saveMyFollowGroupWith:self.groupModel];
-    NSLog(@"我的关注请求成功");
+//    NSLog(@"我的关注请求成功");
 }
 
 ///我的关注请求失败
@@ -354,7 +350,7 @@
 
 ///下拉加载
 - (void)loadData{
-    NSLog(@"此时的page:%ld",(long)self.page);
+//    NSLog(@"此时的page:%ld",(long)self.page);
     self.page += 1;
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
@@ -363,7 +359,7 @@
 - (void)reloadData{
     [self.tableArray removeAllObjects];
     self.page = 1;
-    NSLog(@"此时的page:%ld",(long)self.page);
+//    NSLog(@"此时的page:%ld",(long)self.page);
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
 
@@ -822,12 +818,13 @@
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
 //    NSString *groupName = sender.groupBtnLabel.text;
+    // 通知NewQAMainPageViewController去刷新页面
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
     
 }

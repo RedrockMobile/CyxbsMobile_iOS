@@ -74,7 +74,6 @@
     [PostArchiveTool removeGroupModel];
     [PostArchiveTool removeHotWordModel];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"firstLoginVC" object:nil];
     //清除课表数据和备忘数据
     [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];
     

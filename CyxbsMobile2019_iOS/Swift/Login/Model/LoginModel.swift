@@ -36,6 +36,7 @@ class LoginModel: NSObject {
                 // 保存token、refreshToke、账号、密码
                 UserItemTool.defaultItem().token = token
                 UserItemTool.defaultItem().refreshToken = refreshToken
+                UserItemTool.defaultItem().firstLogin = true
                 UserDefaultTool.saveStuNum(stuNum)
                 UserDefaultTool.saveIdNum(idNum)
                 

@@ -150,4 +150,9 @@ static UserItem *item = nil;
     _idsBindingSuccess = idsBindingSuccess;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
+
+- (void)setFirstLogin:(BOOL)firstLogin {
+    _firstLogin = firstLogin;
+    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
 @end
