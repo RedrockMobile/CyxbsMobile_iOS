@@ -14,8 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)deleteArticleFailure;
 @end
 
+/// 获取动态、删除动态用的model
 @interface ArticleModel : MainPageModel
 @property(nonatomic,weak)id <ArticleModelDelegate> delegate;
+
+/// 删除动态用
+/// @param ID 动态ID
 - (void)deleteArticleWithID:(NSString*)ID;
 @end
 

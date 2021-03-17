@@ -8,7 +8,6 @@
 #import <PhotosUI/PhotosUI.h>      //用于使用PHPicker
 
 #import "SZHArchiveTool.h"
-#import "NewQAHud.h"            //提示框
 
 #import "ReleaseDynamicModel.h"
 

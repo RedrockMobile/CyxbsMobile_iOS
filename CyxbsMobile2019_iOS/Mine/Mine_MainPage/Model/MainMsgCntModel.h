@@ -8,24 +8,33 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    MainMsgCntModelLoadDataStateSuccess_comment,
+    MainMsgCntModelLoadDataStateFailure_comment,
+    MainMsgCntModelLoadDataStateSuccess_praise,
+    MainMsgCntModelLoadDataStateFailure_praise,
+    MainMsgCntModelLoadDataStateSuccess_userCnt,
+    MainMsgCntModelLoadDataStateFailure_userCnt,
+} MainMsgCntModelLoadDataState;
+
+#define praiseLastClickTimeKey @"praiseLastClickTimeKey"
+#define remarkLastClickTimeKey @"remarkLastClickTimeKey"
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol MainMsgCntModelDelegate <NSObject>
-- (void)loadUncheckedDataSuccess;
-- (void)loadUncheckedDataFailure;
-
-- (void)loadUserCountDataSuccess;
-- (void)loadUserCountDataFailure;
+- (void)mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataState)state;
 @end
 
 @interface MainMsgCntModel : NSObject
 @property(nonatomic,copy)NSString *uncheckedCommentCnt;
 @property(nonatomic,copy)NSString *uncheckedPraiseCnt;
-@property(nonatomic,copy)NSString *commentCnt;
-@property(nonatomic,copy)NSString *dynamicCnt;
-@property(nonatomic,copy)NSString *praiseCnt;
+//@property(nonatomic,copy)NSString *commentCnt;
+//@property(nonatomic,copy)NSString *dynamicCnt;
+//@property(nonatomic,copy)NSString *praiseCnt;
 @property(nonatomic,weak)id <MainMsgCntModelDelegate> delegate;
-- (void)loadData;
+- (void)mainMsgCntModelLoadMoreData;
 @end
 
 NS_ASSUME_NONNULL_END

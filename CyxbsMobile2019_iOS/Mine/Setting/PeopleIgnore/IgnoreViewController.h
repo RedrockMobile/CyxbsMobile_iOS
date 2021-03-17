@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 屏蔽的人页面的控制器
 @interface IgnoreViewController : TopBarBasicViewController
 
 @end

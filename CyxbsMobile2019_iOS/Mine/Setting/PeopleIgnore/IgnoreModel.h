@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 获取屏蔽的人的数据的model
 @interface IgnoreModel : MainPageModel
 @property(nonatomic,weak)id <MainPageModelDelegate> delegate;
 @end

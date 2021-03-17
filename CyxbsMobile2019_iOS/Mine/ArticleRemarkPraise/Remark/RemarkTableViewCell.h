@@ -10,8 +10,11 @@
 #import "RemarkParseModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
+/// 评论页面的cell
 @interface RemarkTableViewCell : MainPageTableViewCell
 @property (nonatomic, strong)RemarkParseModel *model;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

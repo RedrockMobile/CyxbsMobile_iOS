@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 点赞页面的控制器
 @interface PraiseViewController : TopBarBasicViewController
 
 @end

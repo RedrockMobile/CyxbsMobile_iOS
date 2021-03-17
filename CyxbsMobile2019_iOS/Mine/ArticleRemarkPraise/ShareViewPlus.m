@@ -13,8 +13,7 @@
 @property(nonatomic,strong)ShareView *shareView;
 @end
 @implementation ShareViewPlus
-- (instancetype)init
-{
+- (instancetype)init{
     self = [super init];
     if (self) {
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -64,10 +63,6 @@
     [self removeFromSuperview];
 }
 
-//- (void)f{
-//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//    NSString *shareURL = [NSString stringWithFormat:@"%@%@",@"cyxbs://redrock.team/answer_list/qa/entry?question_id=",item.post_id];
-//    pasteboard.string = shareURL;
-//}
+
 @end
 

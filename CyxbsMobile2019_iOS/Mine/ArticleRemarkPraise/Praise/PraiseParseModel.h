@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 解析点赞页的网络请求数据
 @interface PraiseParseModel : NSObject
 @property(nonatomic,copy)NSString *avatar;
 @property(nonatomic,copy)NSString *from;

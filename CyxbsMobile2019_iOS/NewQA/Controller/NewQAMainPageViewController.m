@@ -10,7 +10,6 @@
 #import "FuncView.h"
 #import "PostModel.h"
 #import "ReportModel.h"
-#import "NewQAHud.h"
 #import "GroupModel.h"
 #import "FuncView.h"
 #import "PostItem.h"

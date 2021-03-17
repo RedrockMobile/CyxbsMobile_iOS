@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy.MM.d"];
+        [formatter setDateFormat:DateFormat];
         NSDate *resDate = [formatter dateFromString:DateStart];
         
         // 计算当前是第几周
@@ -23,7 +23,7 @@
         NSInteger nowTime = [now timeIntervalSince1970];
         double day = (float)(nowTime - beginTime)/(float)86400/(float)7;
         NSInteger nowWeek = (int)ceil(day) - 1;
-        if(nowWeek < 0 || nowWeek >= (int)ceil(day) - 1){
+        if(nowWeek < 0 ){
             nowWeek = 0;
         }
         self.weekNumber = [NSString stringWithFormat:@"%ld",(long)nowWeek];

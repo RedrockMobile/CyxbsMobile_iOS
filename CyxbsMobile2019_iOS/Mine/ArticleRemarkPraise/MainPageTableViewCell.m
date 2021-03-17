@@ -9,6 +9,8 @@
 #import "MainPageTableViewCell.h"
 
 @interface MainPageTableViewCell()
+
+/// cell间的分割线，为什么不用系统的分割线？为了避免在cell不足的情况下影响美观
 @property (nonatomic, strong)UIView *separateLine;
 @end
 
@@ -28,6 +30,8 @@
     }
     return self;
 }
+
+/// 添加头像
 - (void)addHeadImgView {
     UIImageView *imgView = [[UIImageView alloc] init];
     self.headImgView = imgView;
@@ -84,6 +88,7 @@
     label.font = [UIFont fontWithName:PingFangSCMedium size:11];
 }
 
+/// 添加时间戳label
 - (void)addTimeLabel{
     UILabel *label = [[UILabel alloc] init];
     self.timeLabel = label;
@@ -121,21 +126,13 @@
         view.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
     }
 }
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-////    [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
-////        make.left.equalTo(self.contentView).offset(0.0427*SCREEN_WIDTH);
-////        make.top.equalTo(self.contentView).offset(0.0533*SCREEN_WIDTH);
-////        make.width.height.mas_equalTo(0.128*SCREEN_WIDTH);
-////    }];
-}
+//- (void)awakeFromNib {
+//    [super awakeFromNib];
+//}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//
+//    // Configure the view for the selected state
+//}
 @end

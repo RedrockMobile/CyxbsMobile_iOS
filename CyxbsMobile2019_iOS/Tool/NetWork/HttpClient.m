@@ -52,6 +52,10 @@
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
     NSString *token = [UserItem defaultItem].token;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        CCLog(@"tokenAdd:%p",token);
+    });
     if (token) {
         [self.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }

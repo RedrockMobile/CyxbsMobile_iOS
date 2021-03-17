@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 动态页的cell
 @interface ArticleTableViewCell : PostTableViewCell
 
 @end

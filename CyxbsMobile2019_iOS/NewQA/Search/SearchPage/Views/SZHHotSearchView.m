@@ -87,8 +87,8 @@
     CGFloat originX = self.buttonAry[0].frame.origin.x;
     CGFloat originY = self.buttonAry[0].frame.origin.y;
 
-    CGFloat splite = MAIN_SCREEN_W * 0.0333;    //button之间的间距
-    CGFloat lineSplite = MAIN_SCREEN_H * 0.01649175; //每行之间的间距
+    CGFloat splite = MAIN_SCREEN_W * 0.0334;    //button之间的间距
+    CGFloat lineSplite = MAIN_SCREEN_H * 0.02; //每行之间的间距
 
     //button位置临界值判断变量
     CGFloat positionX = originX;

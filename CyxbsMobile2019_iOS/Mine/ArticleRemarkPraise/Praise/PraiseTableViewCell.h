@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 获赞页面的cell
 @interface PraiseTableViewCell : MainPageTableViewCell
 @property (nonatomic, strong)PraiseParseModel *model;
 @end

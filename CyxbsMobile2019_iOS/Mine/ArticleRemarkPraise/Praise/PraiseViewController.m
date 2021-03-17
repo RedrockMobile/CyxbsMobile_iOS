@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/1/28.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  点赞页面的控制器
 
 #import "PraiseViewController.h"
 #import "PraiseTableViewCell.h"
@@ -14,7 +14,7 @@
 @interface PraiseViewController ()<UITableViewDelegate, UITableViewDataSource, MainPage2RequestModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)PraiseModel *praiseModel;
-
+@property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
 @implementation PraiseViewController
@@ -25,12 +25,15 @@
     [self addPraiseModel];
     [self addTableView];
 }
+
+/// 数据加载模型
 - (void)addPraiseModel {
-    self.praiseModel = [[PraiseModel alloc] initWithUrl:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/praisedme"];
+    self.praiseModel = [[PraiseModel alloc] initWithUrl:getPraiseAPI];
     self.praiseModel.delegate = self;
     [self.praiseModel loadMoreData];
 }
 
+/// 添加tableView
 - (void)addTableView{
     UITableView *tableView = [[UITableView alloc] init];
     self.tableView = tableView;
@@ -48,21 +51,28 @@
     }];
 }
 
+/// 数据加载模型的代理方法，数据加载完成后调用
+/// @param state 加载状态
 - (void)MainPage2RequestModelLoadDataFinishWithState:(MainPage2RequestModelState)state{
     //刷新UI的操作放主线程
     dispatch_async(dispatch_get_main_queue(), ^{
         switch (state) {
-            case StateEndRefresh:
+                //加载成功，而且还有数据
+            case MainPage2RequestModelStateEndRefresh:
                 [self.tableView.mj_footer endRefreshing];
                 break;
-            case StateNoMoreDate:
+                //加载成功，而且没有数据了
+            case MainPage2RequestModelStateNoMoreDate:
+                [NewQAHud showHudWith:@"没有更多赞了" AddView:self.view];
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 break;
-            case StateFailure:
+                //加载失败
+            case MainPage2RequestModelStateFailure:
                 [self.tableView.mj_footer endRefreshing];
                 [NewQAHud showHudWith:@"加载失败" AddView:self.view];
                 break;
-            case StateFailureAndSuccess:
+                //部分数据加载失败
+            case MainPage2RequestModelStateFailureAndSuccess:
                 [self.tableView.mj_footer endRefreshing];
                 [NewQAHud showHudWith:@"部分数据加载失败" AddView:self.view];
                 break;
@@ -93,5 +103,12 @@
     return cell;
 }
 
-
+//MARK: - 懒加载
+- (NothingStateView *)nothingView {
+    if (_nothingView==nil) {
+        _nothingView = [[NothingStateView alloc] initWithTitleStr:@"暂时还没收到赞噢～"];
+        [self.view addSubview:_nothingView];
+    }
+    return _nothingView;
+}
 @end

@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/2/21.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  动态页的控制器
 
 #import "ArticleViewController.h"
 #import "ArticleTableViewCell.h"
@@ -17,6 +17,7 @@
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ShareViewPlus *shareView;
 @property(nonatomic,strong)ArticleModel *articleModel;
+@property(nonatomic,strong)NothingStateView *nothingView;
 @end
 
 @implementation ArticleViewController
@@ -56,12 +57,15 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.articleModel.dataArr.count;
+//    return self.articleModel.dataArr.count;
+    
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ArticleTableViewCell *cell = [[ArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
     cell.delegate = self;
-    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
+//    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
+    PostItem *item = [[PostItem alloc]init];
     [cell setItem:item];
     return cell;
 }
@@ -69,27 +73,25 @@
 //MARK:-ArticleModel的代理方法：
 - (void)mainPageModelLoadDataFinishWithState:(MainPageModelDataState)state {
     switch (state) {
-        case StateNoMoreDate:
+        case MainPageModelStateNoMoreDate:
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
             break;
-        case StateEndRefresh:
+        case MainPageModelStateEndRefresh:
             [self.tableView.mj_footer endRefreshing];
             break;
-        case StateFailure:
+        case MainPageModelStateFailure:
             [self mainPageModelLoadDataFailue];
             break;
         default:
             break;
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-        if (self.articleModel.dataArr.count==0) {
-            self.nothingView.alpha = 1;
-        }else {
-            self.nothingView.alpha = 0;
-        }
-    });
+    [self.tableView reloadData];
+    if (self.articleModel.dataArr.count==0) {
+        self.nothingView.alpha = 1;
+    }else {
+        self.nothingView.alpha = 0;
+    }
 }
 
 - (void)mainPageModelLoadDataFailue {
@@ -198,5 +200,13 @@
         _shareView.delegate = self;
     }
     return _shareView;
+}
+
+- (NothingStateView *)nothingView {
+    if (_nothingView==nil) {
+        _nothingView = [[NothingStateView alloc] initWithTitleStr:@"暂时还没有发布过动态噢～"];
+        [self.view addSubview:_nothingView];
+    }
+    return _nothingView;
 }
 @end

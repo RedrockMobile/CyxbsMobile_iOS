@@ -27,24 +27,47 @@
     #define NSLog(format, ...) ;
 #endif
 
+
 //++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  Begain
 #ifdef DEBUG
-#define CCLog(format,...) do{\
-fprintf(stderr,"Stove[%s - %d˙]:\n",\
-[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\
-__LINE__);\
+#define CCCLLog(line, separator, format, ...) do{\
+    fprintf(stderr,"Stove[%s - %d%s]:\n",\
+        [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\
+        __LINE__,\
+        separator);\
 \
-for (NSString *CCLogStr__ in [[NSString stringWithFormat:format, ##__VA_ARGS__] componentsSeparatedByString:@"\n"]) {\
-fprintf(stderr,"%s˙\n", [[[[NSString stringWithFormat:@"%@",CCLogStr__] stringByAppendingString:@"                                                                                                    "] substringToIndex:99] UTF8String]);\
-}\
+    for (__strong NSString *CCLogStr__ in [[NSString stringWithFormat:format, ##__VA_ARGS__] componentsSeparatedByString:@"\n"]) {\
+        while (CCLogStr__.length > line) {\
+            fprintf(stderr, "%s    %s\n",\
+                [[CCLogStr__ substringToIndex:line] UTF8String],\
+                separator);\
 \
-fprintf(stderr,"\n\n");\
+            CCLogStr__ = [CCLogStr__ substringFromIndex:line];\
+        }\
+        while (CCLogStr__.length < line + 4) {\
+            CCLogStr__ = [CCLogStr__ stringByAppendingString:@"                                                  "];\
+        }\
+        fprintf(stderr,"%s%s\n",\
+            [[[NSString stringWithFormat:@"%@",CCLogStr__] substringToIndex:line+4] UTF8String],\
+            separator);\
+    }\
+\
+    fprintf(stderr,"\n\n");\
 }while(0)
-
+//默认行尾分隔符为"˙"
+#define CCLLog(line, format, ...) CCCLLog(line, "˙", format, ##__VA_ARGS__)
+//默认行尾分隔符为"˙"，且每行长度为77
+#define CCLog77(format, ...) CCLLog(77, format, ##__VA_ARGS__)
+//默认行尾分隔符为"˙"，且每行长度为97
+#define CCLog(format, ...) CCLLog(97, format, ##__VA_ARGS__)
 #else
-#define CCLog(format,...)
+#define CCCLLog(line, separator, format, ...)
+#define CCLLog(line, format, ...)
+#define CCLog77(format, ...)
+#define CCLog(format, ...)
 #endif
 //++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  End
+
 
 
 
@@ -92,6 +115,11 @@ fprintf(stderr,"\n\n");\
 #import "AESCipher.h"           // AES加密算法
 #import <MGJRouter.h>
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+#import <SDWebImage/SDWebImage.h>
+
+//自定义hud
+#import "NewQAHud.h"
+
 #import "MGDStatusBarHeight.h"
 
 
@@ -155,8 +183,22 @@ fprintf(stderr,"\n\n");\
 
 //学期开始时间
 #define DateStart @"2021-03-01"
+#define DateFormat @"yyyy-MM-dd"
+//第一周从1开始，不是从0开始
+#define getNowWeek ^(void) {\
+    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] stringForKey:nowWeekKey];\
+    if (nowWeek==nil) {\
+        return @"0";\
+    }\
+    return nowWeek;\
+}()
 
-
+#define getDateStart ^(void) {\
+    NSString *formateStr = [[NSUserDefaults standardUserDefaults] stringForKey:DateStart];\
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];\
+    [formatter setDateFormat:DateFormat];\
+    return [formatter dateFromString:formateStr];\
+}()
 
 #pragma mark - MGJRouter用到的宏
 
@@ -202,6 +244,30 @@ fprintf(stderr,"\n\n");\
 /// 刷新token
 #define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token/refresh"
 
+//取消屏蔽某人
+#define cancelIgnorePeopleUrl @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/cancelIgnoreUid"
+
+//屏蔽某人
+#define ignorePeopleUrl @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/addIgnoreUid"
+
+//删除帖子
+#define deleteArticle @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId"
+
+//获取自己的帖子
+#define getArticle @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/getUserPostList"
+
+
+//动态/点赞/获赞评论数
+#define getUserCount @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/getUserCount"
+
+//未读消息数
+#define getMsgCnt @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/uncheckedMessage"
+
+//获取收到的评论
+#define getReplyAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/replyme"
+
+//获取收到的赞
+#define getPraiseAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/praisedme"
 
 /// 上传头像
 #define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/person/upload/avatar"
@@ -510,4 +576,10 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 
 //可以通过NSUserDefaults取出当前周数，类型是NSString
 #define nowWeekKey @"SchedulNowWeek"
+//个人页的获赞数的缓存的key
+#define MinePraiseCntStrKey @"MinePraiseCntStrKey"
+//个人页的动态数的缓存的key
+#define MineDynamicCntStrKey @"MineDynamicCntStrKey"
+//个人页的评论数的缓存的key
+#define MineCommentCntStrKey @"MineCommentCntStrKey"
 #endif

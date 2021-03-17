@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 小红点
 @interface RedTipBall : UIView
 @property(nonatomic,assign)NSString *msgCount;
 //- (instancetype)initWithOriginCenter:(CGPoint) originCenter;

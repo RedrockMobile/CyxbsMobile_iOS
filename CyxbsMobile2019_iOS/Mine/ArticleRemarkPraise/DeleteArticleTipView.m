@@ -26,8 +26,7 @@
 
 @implementation DeleteArticleTipView
 
-- (instancetype)initWithDeleteBlock:(void (^)(void))block
-{
+- (instancetype)initWithDeleteBlock:(void (^)(void))block{
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.5];
@@ -175,6 +174,7 @@
 
 - (void)sureBtnClicked {
     self.sureBlock();
+    self.sureBlock = nil;
     [self removeFromSuperview];
 }
 

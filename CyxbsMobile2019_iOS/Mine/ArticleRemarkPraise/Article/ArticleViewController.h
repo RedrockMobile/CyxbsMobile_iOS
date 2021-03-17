@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 动态页的控制器
 @interface ArticleViewController : TopBarBasicViewController
 
 @end

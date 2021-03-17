@@ -4,16 +4,17 @@
 //
 //  Created by Stove on 2021/2/22.
 //  Copyright © 2021 Redrock. All rights reserved.
-//
+//  带个小红点、标题、显示标题对应的模块的数据个数，标题如@"动态"、@"评论"、@"获赞"
 
 #import "MainPageNumBtn.h"
 #import "RedTipBall.h"
 @interface MainPageNumBtn()
+
+/// 小红点
 @property(nonatomic, strong)RedTipBall *redBall;
 @end
 @implementation MainPageNumBtn
-- (instancetype)init
-{
+- (instancetype)init{
     self = [super init];
     if (self) {
         if (IS_IPHONESE) {
@@ -29,7 +30,7 @@
         }
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.width.equalTo(@(MAIN_SCREEN_W * 0.12));
+            make.height.mas_equalTo(MAIN_SCREEN_W * 0.12);
         }];
         [self addBtnNameLabel];
         [self addBall];
@@ -70,5 +71,13 @@
 - (void)setMsgCount:(NSString *)msgCount {
     _msgCount = msgCount;
     self.redBall.msgCount = msgCount;
+}
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state {
+    if (title.longValue>99) {
+        [super setTitle:@"99+" forState:state];
+    }else {
+        [super setTitle:title forState:state];
+    }
 }
 @end

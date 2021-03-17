@@ -10,7 +10,7 @@
 //#import "LoginViewController.h"
 #import <UMPush/UMessage.h>
 #import "ArchiveTool.h"
-#import "NewQAHud.h"
+
 #import "PostArchiveTool.h"
 @interface UserItemTool ()
 
