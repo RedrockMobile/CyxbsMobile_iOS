@@ -24,7 +24,7 @@
         _searchBtnImageView = searchBtnImageView;
         
         UILabel *searchBtnLabel = [[UILabel alloc] init];
-        self.searchBtnLabel.text = @"红岩网校";
+        self.searchBtnLabel.text = @"大家都在搜：红岩网校";
         if (@available(iOS 11.0, *)) {
             searchBtnLabel.textColor = [UIColor colorNamed:@"SearchTitleColor"];
         } else {

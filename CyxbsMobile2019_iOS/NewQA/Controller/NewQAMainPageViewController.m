@@ -63,7 +63,7 @@
 @end
 
 @implementation NewQAMainPageViewController
-//加载邮问时隐藏底部课表
+// 加载邮问时隐藏底部课表
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
@@ -120,7 +120,7 @@
                 dispatch_semaphore_signal(semaphore);
             });
         }
-//    self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
+    self->_searchBtn.searchBtnLabel.text = [NSString stringWithFormat:@"%@:%@",@"大家都在搜", self.hotWordsArray[self->_hotWordIndex]];
     
 }
 -(void)viewDidLayoutSubviews{
@@ -321,7 +321,7 @@
                       duration:0.25f
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
-        self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
+        self->_searchBtn.searchBtnLabel.text = [NSString stringWithFormat:@"%@:%@",@"大家都在搜", self.hotWordsArray[self->_hotWordIndex]];
 
       } completion:nil];
 }
