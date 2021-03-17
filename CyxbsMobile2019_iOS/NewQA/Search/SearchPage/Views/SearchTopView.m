@@ -62,7 +62,8 @@
     [self.searchFieldBackgroundView addSubview:self.searchIcon];
     [self.searchIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.searchFieldBackgroundView.mas_left).offset(MAIN_SCREEN_W * 0.0453);
-        make.top.equalTo(self.searchFieldBackgroundView.mas_top).offset(MAIN_SCREEN_H * 0.0134);
+//        make.top.equalTo(self.searchFieldBackgroundView.mas_top).offset(MAIN_SCREEN_H * 0.0134);
+        make.centerY.mas_equalTo(self.searchFieldBackgroundView.centerY);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0533, MAIN_SCREEN_W * 0.0533));
     }];
         //3.添加搜索框

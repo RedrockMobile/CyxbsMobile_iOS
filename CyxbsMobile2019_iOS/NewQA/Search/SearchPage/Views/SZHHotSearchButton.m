@@ -34,7 +34,7 @@
         
         //圆角
         self.layer.masksToBounds = NO;
-        self.layer.cornerRadius = 10;
+        self.layer.cornerRadius = MAIN_SCREEN_H * 0.0382 * 0.5;
         
         //边框宽度，不设置边框宽度就无法看到边框，以及边框颜色
         self.layer.borderWidth = 1;

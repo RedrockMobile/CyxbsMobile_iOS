@@ -19,7 +19,6 @@
         
         [self addButtonsWithArray:array];
         
-        [self btnsAddConstraints];
     }
     return self;
 }
@@ -77,6 +76,8 @@
         [self addSubview:button];
     }
     
+    //进行布局约束
+    [self btnsAddConstraints];
 }
 
 ///为btns添加约束，让它自动换行等等

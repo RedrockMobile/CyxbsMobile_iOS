@@ -58,16 +58,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addSearchEndTopView];
+   
+    if (self.knowlegeAry.count == 0) {
+        [self.searchEndTopView.hotSearchView setHidden:YES];
+        [self.searchEndTopView.topSeparation setHidden:YES];
+    }else{
+//        [self.searchEndTopView.hotSearchView setHidden:NO];
+//        [self.searchEndTopView.topSeparation setHidden:NO];
+    }
     //如果数据源数组为空，无数据，则不展示下半部分页面
     if (self.tableDataAry != nil) {
         [self addSearchEndBottomView];
         [self dynamicTableReloadData];  //手动调用刷洗一次
     }
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self.tabBarController.tabBar setHidden:YES];
 }
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
     //点属性设置不行，必须用set
@@ -515,42 +525,45 @@
     [self.view addSubview:self.searchEndTopView];
     self.searchEndTopView.frame = self.view.frame;
 }
+
 /// 添加底部视图，主要为一个label和一个table
 - (void)addSearchEndBottomView{
-    //相关动态的label
-    if (self.relevantDynamicLbl == nil) {
-        self.relevantDynamicLbl = [[UILabel alloc] init];
-        self.relevantDynamicLbl.text = @"相关动态";
-        self.relevantDynamicLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
-            //设置字体和背景颜色
-        if (@available(iOS 11.0, *)) {
-            self.relevantDynamicLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
-            self.relevantDynamicLbl.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-        } else {
-            // Fallback on earlier versions
-        }
-        [self.searchEndTopView addSubview:self.relevantDynamicLbl];
-        [self.relevantDynamicLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.searchEndTopView).offset(MAIN_SCREEN_W * 0.0427);
-            make.top.equalTo(self.searchEndTopView).offset(MAIN_SCREEN_H * 0.3613);
-            make.height.mas_equalTo(17);
+    //底部的包含label和table的view
+    UIView *bottomBackGroundView = [[UIView alloc] init];
+    bottomBackGroundView.backgroundColor = self.searchEndTopView.backgroundColor;
+    [self.view addSubview:bottomBackGroundView];
+    //如果上半部分无视图，则上移动，有则保持原位
+    if (self.knowlegeAry.count == 0) {
+        [bottomBackGroundView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.view);
+            make.top.equalTo(self.view).offset(MAIN_SCREEN_H * 0.1364);
+        }];
+    }else{
+        [bottomBackGroundView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.view);
+            make.top.equalTo(self.view.mas_top).offset(MAIN_SCREEN_H * 0.3613);
         }];
     }
     
+    //相关动态的label
+    [bottomBackGroundView addSubview:self.relevantDynamicLbl];
+    [self.relevantDynamicLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bottomBackGroundView).offset(MAIN_SCREEN_W * 0.0427);
+        make.top.equalTo(bottomBackGroundView);
+        make.height.mas_equalTo(17);
+    }];
+    
     //相关动态的table
-    if (self.relevantDynamicTable == nil) {
-        self.relevantDynamicTable = [[RecommendedTableView alloc] init];
-        self.relevantDynamicTable.delegate = self;
-        self.relevantDynamicTable.dataSource = self;
-        [self.view addSubview:self.relevantDynamicTable];
-        [self.relevantDynamicTable mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self.searchEndTopView);
-            make.top.equalTo(self.relevantDynamicLbl.mas_bottom).offset(MAIN_SCREEN_H * 0.0299);
-        }];
-    }
+    [bottomBackGroundView addSubview:self.relevantDynamicTable];
+    [self.relevantDynamicTable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(bottomBackGroundView);
+        make.top.equalTo(self.relevantDynamicLbl.mas_bottom).offset(MAIN_SCREEN_H * 0.0299);
+    }];
     self.page = 1;
+    //设置列表加载菊花
     [self setUpRefresh];
 }
+
 ///设置列表加载菊花
 - (void)setUpRefresh {
     //上滑加载的设置
@@ -565,16 +578,45 @@
 }
 
 #pragma mark- getter
+/// 获取热搜、知识库、相关动态的网络数据的model
 - (SZHSearchDataModel *)searchDataModel{
     if (_searchDataModel == nil) {
         _searchDataModel = [[SZHSearchDataModel alloc] init];
     }
     return _searchDataModel;
 }
+
+/// 获取相关动态列表网络数据的model
 - (SearchEndModel *)searchEndDataModel{
     if (_searchEndDataModel == nil) {
         _searchEndDataModel = [[SearchEndModel alloc] init];
     }
     return _searchEndDataModel;
+}
+///相关动态的label
+- (UILabel *)relevantDynamicLbl{
+    if (!_relevantDynamicLbl) {
+        _relevantDynamicLbl = [[UILabel alloc] init];
+        _relevantDynamicLbl.text = @"相关动态";
+        _relevantDynamicLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
+            //设置字体和背景颜色
+        if (@available(iOS 11.0, *)) {
+            _relevantDynamicLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+            _relevantDynamicLbl.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    return _relevantDynamicLbl;
+}
+
+/// 相关动态的table
+- (RecommendedTableView *)relevantDynamicTable{
+    if (!_relevantDynamicTable) {
+        _relevantDynamicTable = [[RecommendedTableView alloc] init];
+        _relevantDynamicTable.delegate = self;
+        _relevantDynamicTable.dataSource = self;
+    }
+    return _relevantDynamicTable;
 }
 @end

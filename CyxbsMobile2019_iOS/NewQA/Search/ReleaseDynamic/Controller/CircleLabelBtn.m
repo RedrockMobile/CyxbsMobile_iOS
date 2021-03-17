@@ -19,8 +19,8 @@
         }];
         //设置button宽度随title文本长度自适应
         self.titleLabel.adjustsFontSizeToFitWidth = YES;
-        //设置圆角
-        self.layer.cornerRadius = MAIN_SCREEN_W * 0.0333;
+        //设置圆角,此处为全圆角，设置弧度为高度的一半
+        self.layer.cornerRadius = MAIN_SCREEN_H * 0.0382 * 0.5;
         self.layer.masksToBounds = YES;
         //字体
         self.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
