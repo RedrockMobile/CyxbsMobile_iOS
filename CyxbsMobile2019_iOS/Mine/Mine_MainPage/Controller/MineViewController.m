@@ -39,6 +39,7 @@
 
 @property (nonatomic, strong)MainMsgCntModel *msgCntModel;
 
+/// 是否正在加载未读消息数、动态点赞评论的个数
 @property (nonatomic, assign)BOOL isLoadingMsgCntData;
 @end
 
@@ -119,6 +120,7 @@
 //    } failed:^(NSError * _Nonnull err) {
 //
 //    }];
+    [self loadUserData];
     if (self.isLoadingMsgCntData==YES) {
         return;
     }
@@ -126,7 +128,6 @@
     [self.msgCntModel mainMsgCntModelLoadMoreData];
     // 隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
-    [self loadUserData];
 }
 
 - (void)loadUserData {
@@ -143,12 +144,9 @@
     
     NSURL *headerImageURL = [NSURL URLWithString:[UserItemTool defaultItem].headImgUrl];
     
-    [self.headerView.headerImageBtn setBackgroundImageWithURL:headerImageURL forState:UIControlStateNormal options:(YYWebImageOptionUseNSURLCache)];
+    [self.headerView.headerImageBtn sd_setImageWithURL:headerImageURL forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageRefreshCached];
 }
 
-- (void)dealloc{
-    
-}
 
 //MARK: - 消息数、动态、评论、获赞数model代理方法
 - (void)mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataState)state {
@@ -176,9 +174,10 @@
 }
 
 - (void)loadUserCountDataSuccess {
-    [self.headerView.articleNumBtn setTitle:self.msgCntModel.dynamicCnt forState:UIControlStateNormal];
-    [self.headerView.remarkNumBtn setTitle:self.msgCntModel.commentCnt forState:UIControlStateNormal];
-    [self.headerView.praiseNumBtn setTitle:self.msgCntModel.praiseCnt forState:UIControlStateNormal];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self.headerView.articleNumBtn setTitle:[defaults stringForKey:MineDynamicCntStrKey]  forState:UIControlStateNormal];
+    [self.headerView.remarkNumBtn setTitle:[defaults stringForKey:MineCommentCntStrKey]  forState:UIControlStateNormal];
+    [self.headerView.praiseNumBtn setTitle:[defaults stringForKey:MinePraiseCntStrKey]  forState:UIControlStateNormal];
 }
 
 

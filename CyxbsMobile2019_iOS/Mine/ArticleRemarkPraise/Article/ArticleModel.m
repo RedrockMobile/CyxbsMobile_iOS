@@ -16,7 +16,7 @@
         @"page":@(self.page),
         @"size":size,
     };
-    [NSURL alloc];
+    
     [self.client requestWithPath:getArticle method:HttpRequestGet parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.dataArr addObjectsFromArray:responseObject[@"data"]];
         if ([responseObject[@"data"] count]<size.integerValue) {

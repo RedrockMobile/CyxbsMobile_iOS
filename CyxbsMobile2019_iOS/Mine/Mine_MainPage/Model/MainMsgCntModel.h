@@ -30,9 +30,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MainMsgCntModel : NSObject
 @property(nonatomic,copy)NSString *uncheckedCommentCnt;
 @property(nonatomic,copy)NSString *uncheckedPraiseCnt;
-@property(nonatomic,copy)NSString *commentCnt;
-@property(nonatomic,copy)NSString *dynamicCnt;
-@property(nonatomic,copy)NSString *praiseCnt;
+//@property(nonatomic,copy)NSString *commentCnt;
+//@property(nonatomic,copy)NSString *dynamicCnt;
+//@property(nonatomic,copy)NSString *praiseCnt;
 @property(nonatomic,weak)id <MainMsgCntModelDelegate> delegate;
 - (void)mainMsgCntModelLoadMoreData;
 @end

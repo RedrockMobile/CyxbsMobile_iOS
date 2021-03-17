@@ -57,13 +57,15 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.articleModel.dataArr.count;
+//    return self.articleModel.dataArr.count;
+    
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ArticleTableViewCell *cell = [[ArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
     cell.delegate = self;
-    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
-    CCLog(@"post=%@,%@",item.post_id,item.content);
+//    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
+    PostItem *item = [[PostItem alloc]init];
     [cell setItem:item];
     return cell;
 }

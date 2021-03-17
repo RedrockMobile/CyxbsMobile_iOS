@@ -115,6 +115,7 @@
 #import "AESCipher.h"           // AES加密算法
 #import <MGJRouter.h>
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+#import <SDWebImage/SDWebImage.h>
 
 //自定义hud
 #import "NewQAHud.h"
@@ -575,4 +576,10 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 
 //可以通过NSUserDefaults取出当前周数，类型是NSString
 #define nowWeekKey @"SchedulNowWeek"
+//个人页的获赞数的缓存的key
+#define MinePraiseCntStrKey @"MinePraiseCntStrKey"
+//个人页的动态数的缓存的key
+#define MineDynamicCntStrKey @"MineDynamicCntStrKey"
+//个人页的评论数的缓存的key
+#define MineCommentCntStrKey @"MineCommentCntStrKey"
 #endif

@@ -60,7 +60,7 @@
     [btn addTarget:self.delegate action:@selector(headImgClicked) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
     
-#ifdef DEBUG
+//#ifdef DEBUG
 //    {
 //        headerImageBtn.userInteractionEnabled = YES;
 //        UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
@@ -85,7 +85,7 @@
 //        }];
 //        [self.headerImageBtn addGestureRecognizer:longTap];
 //    }
-#endif
+//#endif
 }
 
 /// 添加昵称label
@@ -172,10 +172,9 @@
 
 /// 添加动态、评论、获赞 的   label与按钮
 - (void)addLabelsAndBtns{
-
-    self.articleNumBtn = [self getNumBtnWithBtnName:@"动态"];
-    self.remarkNumBtn = [self getNumBtnWithBtnName:@"评论"];
-    self.praiseNumBtn = [self getNumBtnWithBtnName:@"获赞"];
+    self.articleNumBtn = [self getNumBtnWithBtnName:@"动态" titleCntDefaultKey:MineDynamicCntStrKey];
+    self.remarkNumBtn = [self getNumBtnWithBtnName:@"评论" titleCntDefaultKey:MineCommentCntStrKey];
+    self.praiseNumBtn = [self getNumBtnWithBtnName:@"获赞" titleCntDefaultKey:MinePraiseCntStrKey];
 
     //代理是个人主页面的控制器
     [self.articleNumBtn addTarget:self.delegate action:@selector(articleNumBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -185,9 +184,14 @@
 }
 
 //MARK: - 其他方法:
-- (MainPageNumBtn*)getNumBtnWithBtnName:(NSString*)btnNameStr{
+- (MainPageNumBtn*)getNumBtnWithBtnName:(NSString*)btnNameStr titleCntDefaultKey:(NSString*)key{
     MainPageNumBtn *numBtn = [[MainPageNumBtn alloc] init];
     [self addSubview:numBtn];
+    
+    //按钮标题，用来显示动态/评论/获赞的总数
+    [numBtn setTitle:[[NSUserDefaults standardUserDefaults] stringForKey:key] forState:UIControlStateNormal];
+    
+    //按钮的名字
     numBtn.btnNameLabel.text = btnNameStr;
     return numBtn;
 }

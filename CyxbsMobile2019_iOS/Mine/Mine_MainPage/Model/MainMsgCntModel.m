@@ -22,10 +22,13 @@ typedef enum : NSUInteger {
             [self.delegate mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataStateFailure_userCnt)];
             return;
         }
-        self.commentCnt = dataDict[@"comment"];
-        self.dynamicCnt = dataDict[@"dynamic"];
-        self.praiseCnt = dataDict[@"praise"];
-        CCLog(@"MainMsg:%@,%@,%@",self.commentCnt,self.dynamicCnt,self.praiseCnt);
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+        [defaults setValue:[NSString stringWithFormat:@"%@",dataDict[@"comment"]] forKey:MineCommentCntStrKey];
+        [defaults setValue:[NSString stringWithFormat:@"%@",dataDict[@"dynamic"]] forKey:MineDynamicCntStrKey];
+         [defaults setValue:[NSString stringWithFormat:@"%@",dataDict[@"praise"]] forKey:MinePraiseCntStrKey];
+        [defaults synchronize];
+        
         [self.delegate mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataStateSuccess_userCnt)];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.delegate mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataStateFailure_userCnt)];
@@ -97,15 +100,15 @@ typedef enum : NSUInteger {
     _uncheckedPraiseCnt = [NSString stringWithFormat:@"%@",uncheckedPraiseCnt];
 }
 
-- (void)setCommentCnt:(NSString *)commentCnt {
-    _commentCnt = [NSString stringWithFormat:@"%@",commentCnt];
-}
-
-- (void)setDynamicCnt:(NSString *)dynamicCnt {
-    _dynamicCnt = [NSString stringWithFormat:@"%@",dynamicCnt];
-}
-
-- (void)setPraiseCnt:(NSString *)praiseCnt {
-    _praiseCnt = [NSString stringWithFormat:@"%@",praiseCnt];
-}
+//- (void)setCommentCnt:(NSString *)commentCnt {
+//    _commentCnt = [NSString stringWithFormat:@"%@",commentCnt];
+//}
+//
+//- (void)setDynamicCnt:(NSString *)dynamicCnt {
+//    _dynamicCnt = [NSString stringWithFormat:@"%@",dynamicCnt];
+//}
+//
+//- (void)setPraiseCnt:(NSString *)praiseCnt {
+//    _praiseCnt = [NSString stringWithFormat:@"%@",praiseCnt];
+//}
 @end
