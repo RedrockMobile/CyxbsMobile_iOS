@@ -35,7 +35,7 @@
     [self loadMoreDataWithType:@"1" page:&_page1 state:&_type1State concurrentQue:que];
     [self loadMoreDataWithType:@"2" page:&_page2 state:&_type2State concurrentQue:que];
     
-    dispatch_barrier_sync(que, ^{
+    dispatch_barrier_async(que, ^{
         [self.dataArr addObjectsFromArray:[self.tmpArr sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
             return [obj1[@"comment"][@"publish_time"] longValue] < [obj2[@"comment"][@"publish_time"] longValue];
         }]];
