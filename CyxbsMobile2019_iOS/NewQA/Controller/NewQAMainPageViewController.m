@@ -60,8 +60,6 @@
 //获取cell里item数据的NSDictionary
 @property (nonatomic, strong) NSDictionary *itemDic;
 
-@property (nonatomic, assign) BOOL first;
-
 @end
 
 @implementation NewQAMainPageViewController
@@ -78,74 +76,73 @@
     _lineHeight = self.dataArray.count != 0 ? 2 : 0;
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     
-    if (self.first == YES && self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
-        for (UIView *view in [self.view subviews]) {
-            [view removeFromSuperview];
-        }
-        NSLog(@"帖子列表的数据通过网络请求");
+    // 如果是退出登陆后再次登陆，由于程序还在运行，因此移除原来的界面，重新加载UI，判断用户是否为第一次登陆
+    if ([UserItemTool defaultItem].firstLogin == YES && self.tableArray != nil && self.dataArray != nil && self.hotWordsArray != nil) {
+        NSLog(@"通过网络请求刷新页面");
+        [self releaseView];
         self.page = 0;
         self.loadHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.loadHUD.labelText = @"正在加载中...";
+        _tableView.contentInset = UIEdgeInsetsMake(_TopViewHeight, 0, 0, 0);
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
-        dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"热搜词汇网络请求");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loadHotWords];
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+            dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self loadHotWords];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self loadMyStarGroupList];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self setMainViewUI];
+                    [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.top.mas_equalTo(self.topBackView.mas_bottom);
+                        make.left.right.bottom.mas_equalTo(self.view);
+                    }];
+                    [self loadData];
+                    dispatch_semaphore_signal(semaphore);
+                });
+            });
+            
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
                 dispatch_semaphore_signal(semaphore);
             });
-        });
-        
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"我的关注网络请求");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loadMyStarGroupList];
-                dispatch_semaphore_signal(semaphore);
-            });
-        });
-        
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"帖子列表网络请求");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self setMainViewUI];
-                [self loadData];
-                dispatch_semaphore_signal(semaphore);
-            });
-        });
-        
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"执行完成");
-            dispatch_semaphore_signal(semaphore);
-        });
-    }
+        }
+//    self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
     
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
 }
+
 //邮问视图消失时显示底部课表
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
-    self.first = NO;
+    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
+// 移除所有控件，重新加载控件并且通过缓存刷新数据，并再次请求新的数据
 - (void)reSetTopFollowUI {
-    for (UIView *view in [self.view subviews]) {
-        [view removeFromSuperview];
-    }
-    NSLog(@"帖子列表的数据通过缓存");
+    NSLog(@"接收到用户关注圈子的操作，刷新此页面");
+    [self releaseView];
     [self setMainViewUI];
     [self loadHotWords];
     [self loadMyStarGroupList];
     [self loadData];
-    
 }
 
 
@@ -156,6 +153,8 @@
     } else {
         
     }
+    [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+
     //设置通知中心
     [self setNotification];
     //设置背景蒙版
@@ -179,16 +178,17 @@
     self.groupModel = [[GroupModel alloc] init];
     self.postmodel = [[PostModel alloc] init];
     
-    if (self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
-        NSLog(@"帖子列表的数据通过缓存");
+    // 如果用户是登陆的状态，再次打开此应用，则直接加载缓存数据，否则为第一次登陆，加载网络请求数据
+    if ([UserItemTool defaultItem].firstLogin == NO && self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
+        NSLog(@"初始化通过缓存加载页面");
         self.page = floor(self.tableArray.count / 6.0);
         [self setMainViewUI];
         [self loadHotWords];
         [self loadMyStarGroupList];
         self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
-        NSLog(@"初始的page:%lu",self.page);
+//        NSLog(@"初始的page:%lu",self.page);
     }else {
-        NSLog(@"帖子列表的数据通过网络请求");
+        NSLog(@"初始化通过网络请求加载页面");
         self.page = 0;
         self.loadHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.loadHUD.labelText = @"正在加载中...";
@@ -274,14 +274,13 @@
                                              selector:@selector(reSetTopFollowUI)
                                                  name:@"reSetTopFollowUI" object:nil];
     
-    ///退出后设置为第一次登陆
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(firstLoginVC)
-                                                 name:@"firstLoginVC" object:nil];
 }
 
-- (void)firstLoginVC {
-    self.first = YES;
+- (void)releaseView {
+    [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [_tableView removeObserver:self forKeyPath:@"contentOffset"];
+    _topFollowView = nil;
+    _tableView = nil;
 }
 
 # pragma mark 初始化功能弹出页面
@@ -342,7 +341,7 @@
 - (void)topFollowViewLoadSuccess {
     self.dataArray = self.groupModel.dataArray;
     [PostArchiveTool saveMyFollowGroupWith:self.groupModel];
-    NSLog(@"我的关注请求成功");
+//    NSLog(@"我的关注请求成功");
 }
 
 ///我的关注请求失败
@@ -354,7 +353,7 @@
 
 ///下拉加载
 - (void)loadData{
-    NSLog(@"此时的page:%ld",(long)self.page);
+//    NSLog(@"此时的page:%ld",(long)self.page);
     self.page += 1;
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
@@ -363,7 +362,7 @@
 - (void)reloadData{
     [self.tableArray removeAllObjects];
     self.page = 1;
-    NSLog(@"此时的page:%ld",(long)self.page);
+//    NSLog(@"此时的page:%ld",(long)self.page);
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
 
@@ -398,6 +397,96 @@
     [NewQAHud showHudWith:@"网络异常" AddView:self.view];
 }
 
+- (RecommendedTableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[RecommendedTableView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT + STATUSBARHEIGHT + SCREEN_WIDTH * 14/375, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_WIDTH * 14/375 + NVGBARHEIGHT + STATUSBARHEIGHT))];
+        _tableView.showsVerticalScrollIndicator = NO;
+        //增加Observer，监听列表滑动
+        [_tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+        _tableView.contentInset = UIEdgeInsetsMake(_TopViewHeight, 0, 0, 0);
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+
+- (TopFollowView *)topFollowView {
+    if (!_topFollowView) {
+        self.topFollowView = [[TopFollowView alloc] initWithFrame:CGRectMake(0, _NavHeight, SCREEN_WIDTH , _TopViewHeight) And:self.dataArray];
+        if (@available(iOS 11.0, *)) {
+            self.topFollowView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+        } else {
+            self.topFollowView.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
+        }
+        self.topFollowView.delegate = self;
+    }
+    return _topFollowView;
+}
+
+- (UIView *)lineView {
+    if (!_lineView) {
+        _lineView = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            _lineView.backgroundColor = [UIColor colorNamed:@"ShareLineViewColor"];
+        } else {
+            _lineView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:232.0/255.0 blue:238.0/255.0 alpha:1];
+        }
+    }
+    return _lineView;
+}
+
+- (UILabel *)recommendedLabel {
+    if (!_recommendedLabel) {
+        _recommendedLabel = [[UILabel alloc] init];
+        if (@available(iOS 11.0, *)) {
+            _recommendedLabel.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+        } else {
+            _recommendedLabel.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
+        }
+        _recommendedLabel.text = @"  推荐";
+        _recommendedLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
+        if (@available(iOS 11.0, *)) {
+            _recommendedLabel.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
+        } else {
+            _recommendedLabel.textColor = [UIColor colorWithRed:21.0/255.0 green:49.0/255.0 blue:91.0/255.0 alpha:1];
+        }
+        _recommendedLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    return _recommendedLabel;
+}
+
+- (UIView *)topBackView {
+    if (!_topBackView) {
+        _topBackView = [[UIView alloc] init];
+        if (@available(iOS 11.0, *)) {
+            _topBackView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+        } else {
+            _topBackView.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
+        }
+    }
+    return _topBackView;
+}
+
+- (SearchBtn *)searchBtn {
+    if (!_searchBtn) {
+        _searchBtn = [[SearchBtn alloc] init];
+        [_searchBtn addTarget:self action:@selector(searchPost) forControlEvents:UIControlEventTouchUpInside];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHotWords) name:@"refreshHotWords" object:nil];
+    }
+    return _searchBtn;
+}
+
+- (UIButton *)publishBtn {
+    if (!_publishBtn) {
+        _publishBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _publishBtn.backgroundColor = [UIColor clearColor];
+        [_publishBtn setBackgroundImage:[UIImage imageNamed:@"发布动态"] forState:UIControlStateNormal];
+        [_publishBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [_publishBtn addTarget:self action:@selector(clickedPublishBtn) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _publishBtn;
+}
+
 ///设置UI界面
 - (void)setMainViewUI {
     //我的关注View高度
@@ -407,13 +496,7 @@
     _lineHeight = self.dataArray.count != 0 ? 2 : 0;
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     
-    _tableView = [[RecommendedTableView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT + STATUSBARHEIGHT + SCREEN_WIDTH * 14/375, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_WIDTH * 14/375 + NVGBARHEIGHT + STATUSBARHEIGHT))];
-    _tableView.showsVerticalScrollIndicator = NO;
-    _tableView.contentInset = UIEdgeInsetsMake(_TopViewHeight, 0, 0, 0);
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    //增加Observer，监听列表滑动
-    [_tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+    [self tableView];
     [self.view addSubview:self.tableView];
     [self setUpRefresh];
 
@@ -429,52 +512,20 @@
         [self.view bringSubviewToFront:self.topFollowView.followBtn];
     }
 
-    UIView *lineView = [[UIView alloc] init];
-    if (@available(iOS 11.0, *)) {
-        lineView.backgroundColor = [UIColor colorNamed:@"ShareLineViewColor"];
-    } else {
-        lineView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:232.0/255.0 blue:238.0/255.0 alpha:1];
-    }
-    [self.topFollowView addSubview:lineView];
-    _lineView = lineView;
+    [self lineView];
+    [self.recommendedLabel addSubview:_lineView];
 
-    _recommendedLabel = [[UILabel alloc] init];
-    if (@available(iOS 11.0, *)) {
-        _recommendedLabel.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-    } else {
-        _recommendedLabel.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
-    }
-    _recommendedLabel.text = @"  推荐";
-    _recommendedLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
-    if (@available(iOS 11.0, *)) {
-        _recommendedLabel.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
-    } else {
-        _recommendedLabel.textColor = [UIColor colorWithRed:21.0/255.0 green:49.0/255.0 blue:91.0/255.0 alpha:1];
-    }
-    _recommendedLabel.textAlignment = NSTextAlignmentLeft;
+    [self recommendedLabel];
     [self.topFollowView addSubview:_recommendedLabel];
     
-    _topBackView = [[UIView alloc] init];
-    if (@available(iOS 11.0, *)) {
-        _topBackView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-    } else {
-        _topBackView.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
-    }
+    [self topBackView];
     [self.view addSubview:_topBackView];
 
-    SearchBtn *searchBtn = [[SearchBtn alloc] init];
-    [searchBtn addTarget:self action:@selector(searchPost) forControlEvents:UIControlEventTouchUpInside];
-    [_topBackView addSubview:searchBtn];
-    _searchBtn = searchBtn;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHotWords) name:@"refreshHotWords" object:nil];
+    [self searchBtn];
+    [_topBackView addSubview:_searchBtn];
     
-    UIButton *publishBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    publishBtn.backgroundColor = [UIColor clearColor];
-    [publishBtn setBackgroundImage:[UIImage imageNamed:@"发布动态"] forState:UIControlStateNormal];
-    [publishBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [publishBtn addTarget:self action:@selector(clickedPublishBtn) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:publishBtn];
-    _publishBtn = publishBtn;
+    [self publishBtn];
+    [self.view addSubview:_publishBtn];
     
     [self setMainViewFrame];
 }
@@ -494,14 +545,8 @@
     }];
     _searchBtn.layer.cornerRadius = SCREEN_HEIGHT * 0.0563 * 1/2;
     
-//    [_topFollowView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.topBackView.mas_bottom);
-//        make.left.right.mas_equalTo(self.view);
-//        make.height.mas_equalTo(_TopViewHeight);
-//    }];
-    
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_recommendedLabel.mas_top).mas_offset(-1);
+        make.top.mas_equalTo(_recommendedLabel.mas_top).mas_offset(2);
         make.right.mas_equalTo(self.view.mas_right);
         make.left.mas_equalTo(self.view.mas_left);
         make.height.mas_equalTo(_lineHeight);
@@ -822,12 +867,13 @@
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
 //    NSString *groupName = sender.groupBtnLabel.text;
+    // 通知NewQAMainPageViewController去刷新页面
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
     
 }
