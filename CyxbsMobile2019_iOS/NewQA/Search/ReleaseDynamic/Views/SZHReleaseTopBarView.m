@@ -10,8 +10,7 @@
 
 @implementation SZHReleaseTopBarView
 
-- (instancetype)init
-{
+- (instancetype)init{
     self = [super init];
     if (self) {
         [self addTopBarView];
@@ -81,9 +80,9 @@
     [self.releaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.titleLbl);
         make.right.equalTo(self).offset(-MAIN_SCREEN_W *0.0413);
-        make.size.mas_equalTo(CGSizeMake(59, 28));
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.1573, MAIN_SCREEN_H * 0.042));
     }];
-    _releaseBtn.layer.cornerRadius = 14;
+    _releaseBtn.layer.cornerRadius = MAIN_SCREEN_H * 0.021;
     
     //底部的分割条
         //1.属性设置

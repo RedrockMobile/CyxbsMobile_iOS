@@ -241,6 +241,7 @@
 //MARK:上半部分视图的代理方法以及UITextfield的代理方法
 - (void)jumpBack{
     [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
 ///点击搜索后执行操作
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -385,7 +386,8 @@
     [self.searchBeginTopView addSubview:self.historyTable];
     [self.historyTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.historyLabel);
-        make.top.equalTo(self.historyLabel.mas_bottom).offset(MAIN_SCREEN_H * 0.04);
+//        make.top.equalTo(self.historyLabel.mas_bottom).offset(MAIN_SCREEN_H * 0.03);
+        make.top.equalTo(self.historyLabel.mas_bottom).offset(23.5);
         make.right.equalTo(self.clearAllHistoryRecordbtn);
         make.bottom.equalTo(self.searchBeginTopView);
     }];
