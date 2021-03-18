@@ -49,9 +49,9 @@ PODS:
   - RxSwift (5.1.1)
   - SDCycleScrollView (1.80):
     - SDWebImage (>= 5.0.0)
-  - SDWebImage (5.10.4):
-    - SDWebImage/Core (= 5.10.4)
-  - SDWebImage/Core (5.10.4)
+  - SDWebImage (5.2.3):
+    - SDWebImage/Core (= 5.2.3)
+  - SDWebImage/Core (5.2.3)
   - SnapKit (5.0.1)
   - SwiftyJSON (4.3.0)
   - TZImagePickerController (3.3.2)
@@ -191,7 +191,7 @@ SPEC CHECKSUMS:
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
-  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
+  SDWebImage: 46a7f73228f84ce80990c786e4372cf4db5875ce
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   TZImagePickerController: 36ca728ec681228918aa82e993aaab1962281b72
@@ -208,4 +208,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 0d86bbc72ff4ca3d716902ebc78ff482bfbc71bd
 
-COCOAPODS: 1.10.0.beta.2
+COCOAPODS: 1.9.3

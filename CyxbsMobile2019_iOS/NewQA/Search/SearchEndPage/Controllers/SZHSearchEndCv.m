@@ -23,6 +23,8 @@
 #import "ReportView.h"          //举报界面
 #import "ShareView.h"           //分享界面
 #import "FuncView.h"            //cell上的三个点点击后界面
+#import "GYYDynamicDetailViewController.h"//动态详情
+
 @interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,ShareViewDelegate,FuncViewProtocol,ReportViewDelegate>
 @property (nonatomic, strong) SearchBeiginView *searchEndTopView;   //上半部分视图
     ///顶部搜索逻辑相关
@@ -250,6 +252,7 @@
     _backViewWithGesture.alpha = 0.36;
     UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBackViewWithGesture)];
     [self.backViewWithGesture addGestureRecognizer:dismiss];
+    [self.view addSubview:self.backViewWithGesture];
 }
 - (void)showBackViewWithGesture {
     [[UIApplication sharedApplication].keyWindow addSubview:_backViewWithGesture];
@@ -300,6 +303,7 @@
 //点击重邮知识库按钮 跳转到详细界面，等别人完工
 - (void)touchCQUPTKonwledgeThroughBtn:(UIButton *)btn{
     NSString *str = btn.titleLabel.text;
+    
     NSLog(@"点击重邮知识库---%@",str);
 }
 //点击搜索后执行
@@ -337,7 +341,11 @@
 }
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+        PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[indexPath.row]];
+    dynamicDetailVC.post_id = [item.post_id intValue];
+    dynamicDetailVC.item = item;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 //自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -378,6 +386,11 @@
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell {
 //    PostItem *item = self.postArray[sender.tag];
 //    int post_id = [item.post_id intValue];
+    
+//    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+//    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
+//    dynamicDetailVC.post_id = [item.post_id intValue];
+//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 ///分享帖子
@@ -403,7 +416,8 @@
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
  */
 - (void)ClickedFuncBtn:(PostTableViewCell *)cell{
-    UIWindow* desWindow=self.view.window;
+    [self setBackViewWithGesture];
+    UIWindow* desWindow = self.view.window;
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
     _popView = [[FuncView alloc] init];
@@ -411,6 +425,7 @@
     _popView.layer.cornerRadius = 3;
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
     [self.view.window addSubview:_popView];
+    
 }
 
 //MARK:多功能View代理方法

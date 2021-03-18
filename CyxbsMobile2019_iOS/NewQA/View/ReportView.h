@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface ReportView : UIView
+/**举报类型model 1--评论  0-帖子*/
+@property (nonatomic,assign) NSInteger model;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
@@ -29,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *postID;
 
 @property (nonatomic, weak) id<ReportViewDelegate> delegate;
-
 
 @end
 
