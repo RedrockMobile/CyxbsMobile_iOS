@@ -25,7 +25,7 @@
 #import "GroupBtn.h"
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
-
+#import "GYYDynamicDetailViewController.h"
 
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
 //帖子列表数据源数组
@@ -66,6 +66,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    self.tabBarController.tabBar.hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
     //我的关注View高度
@@ -119,7 +120,13 @@
                 dispatch_semaphore_signal(semaphore);
             });
         }
-    self->_searchBtn.searchBtnLabel.text = [NSString stringWithFormat:@"%@:%@",@"大家都在搜", self.hotWordsArray[self->_hotWordIndex]];
+    
+    if (self.hotWordsArray.count >= self.hotWordIndex && self.hotWordsArray.count >0) {
+        self->_searchBtn.searchBtnLabel.text = [NSString stringWithFormat:@"%@:%@",@"大家都在搜", self.hotWordsArray[self->_hotWordIndex]];
+    }else{
+        self->_searchBtn.searchBtnLabel.text = @"大家都在搜";
+    }
+
     
 }
 -(void)viewDidLayoutSubviews{
@@ -129,6 +136,8 @@
 //邮问视图消失时显示底部课表
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
     [[UserItemTool defaultItem] setFirstLogin:NO];
@@ -620,6 +629,12 @@
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+        PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+    dynamicDetailVC.post_id = [item.post_id intValue];
+    dynamicDetailVC.item = item;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -628,11 +643,11 @@
     NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
-        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+        PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
         //这里
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
-        cell.item = _item;
+        cell.item = item;
         cell.commendBtn.tag = indexPath.row;
         cell.shareBtn.tag = indexPath.row;
         cell.starBtn.tag = indexPath.row;

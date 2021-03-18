@@ -9,9 +9,9 @@
 #import "ReportView.h"
 
 @implementation ReportView
-
-- (instancetype)init{
+- (instancetype)initWithPostID:(NSNumber *)PostID {
     if ([super init]) {
+        self.postID = PostID;
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"ReportViewBackColor"];
         } else {
@@ -32,7 +32,6 @@
         
         UITextView *textView = [[UITextView alloc] init];
         textView.backgroundColor = [UIColor clearColor];
-        textView.layer.borderColor = CFBridgingRetain([UIColor clearColor]);
         textView.placeholderTextView.text = @"150字以内(选填)";
         if (@available(iOS 11.0, *)) {
             textView.layer.borderColor = [UIColor colorNamed:@"LineColor"].CGColor;
@@ -110,5 +109,7 @@
         [self.delegate ClickedCancelBtn];
     }
 }
-
+- (void)setModel:(NSInteger)model{
+    _model = model;
+}
 @end

@@ -35,58 +35,33 @@
 }
 
 - (void)start {
-    @synchronized (self) {
-        if (self.isCancelled) {
-            self.finished = YES;
-            return;
-        }
-        
-        self.finished = NO;
-        self.executing = YES;
-        
-        if (self.executionBlock) {
-            self.executionBlock(self);
-        } else {
-            self.executing = NO;
-            self.finished = YES;
-        }
+    if (self.isCancelled) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@"isExecuting"];
+    self.executing = YES;
+    [self didChangeValueForKey:@"isExecuting"];
+    
+    if (self.executionBlock) {
+        self.executionBlock(self);
+    } else {
+        [self complete];
     }
 }
 
 - (void)cancel {
-    @synchronized (self) {
-        [super cancel];
-        if (self.isExecuting) {
-            self.executing = NO;
-            self.finished = YES;
-        }
-    }
+    [super cancel];
+    [self complete];
 }
 
- 
 - (void)complete {
-    @synchronized (self) {
-        if (self.isExecuting) {
-            self.finished = YES;
-            self.executing = NO;
-        }
-    }
- }
-
-- (void)setFinished:(BOOL)finished {
-    [self willChangeValueForKey:@"isFinished"];
-    _finished = finished;
-    [self didChangeValueForKey:@"isFinished"];
-}
-
-- (void)setExecuting:(BOOL)executing {
     [self willChangeValueForKey:@"isExecuting"];
-    _executing = executing;
+    [self willChangeValueForKey:@"isFinished"];
+    self.executing = NO;
+    self.finished = YES;
     [self didChangeValueForKey:@"isExecuting"];
-}
-
-- (BOOL)isConcurrent {
-    return YES;
+    [self didChangeValueForKey:@"isFinished"];
 }
 
 @end
