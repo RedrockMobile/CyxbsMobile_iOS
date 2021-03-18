@@ -18,7 +18,6 @@
 @property (nonatomic, assign) int i;
 
 
-@property (nonatomic, strong) UIImageView *searchFieldBackgroundView;
 @end
 @implementation SearchTopView
 #pragma mark- life Cycle

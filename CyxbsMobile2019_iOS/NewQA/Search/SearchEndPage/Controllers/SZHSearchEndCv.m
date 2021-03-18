@@ -252,6 +252,7 @@
     _backViewWithGesture.alpha = 0.36;
     UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBackViewWithGesture)];
     [self.backViewWithGesture addGestureRecognizer:dismiss];
+    [self.view addSubview:self.backViewWithGesture];
 }
 - (void)showBackViewWithGesture {
     [[UIApplication sharedApplication].keyWindow addSubview:_backViewWithGesture];
@@ -302,6 +303,7 @@
 //点击重邮知识库按钮 跳转到详细界面，等别人完工
 - (void)touchCQUPTKonwledgeThroughBtn:(UIButton *)btn{
     NSString *str = btn.titleLabel.text;
+    
     NSLog(@"点击重邮知识库---%@",str);
 }
 //点击搜索后执行
@@ -414,7 +416,8 @@
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
  */
 - (void)ClickedFuncBtn:(PostTableViewCell *)cell{
-    UIWindow* desWindow=self.view.window;
+    [self setBackViewWithGesture];
+    UIWindow* desWindow = self.view.window;
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
     _popView = [[FuncView alloc] init];
@@ -422,6 +425,7 @@
     _popView.layer.cornerRadius = 3;
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
     [self.view.window addSubview:_popView];
+    
 }
 
 //MARK:多功能View代理方法

@@ -46,6 +46,11 @@
 
 @implementation GYYSendCommentImageChooseViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //设置背景颜色

@@ -129,11 +129,19 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;  //显示导航栏
+    [self.tabBarController.tabBar setHidden:YES];             //隐藏底部的tabbar
     
     self.pageIndex = 1;
     [self.mainTableView.mj_header beginRefreshing];
     
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    self.navigationController.navigationBar.hidden = YES;
+}
+
 //添加推出查课表页的按钮
 - (void)addBackButton {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -93,12 +93,14 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.tabBarController.tabBar setHidden:YES];
+    self.navigationController.navigationBar.hidden = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     //点属性设置不行，必须用set
 //    [self.tabBarController.tabBar setHidden:NO];
     self.tabBarController.tabBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
 }
 #pragma mark- private methods
 /// 添加的图片框的约束
@@ -130,13 +132,6 @@
         [self.imageViewArray removeAllObjects];
     }
     
-    //清除图片数组里面大于9的的那些图片
-//    for (int i = 0; i < self.imagesAry.count; i++){
-//        if (i > 8) {
-//            UIImage *image = self.imagesAry[i];
-//            [self.imagesAry removeObject:image];
-//        }
-//    }
     
     //遍历图片数组，创建imageView,并对其进行约束
     for (int i = 0; i < self.imagesAry.count; i++) {
