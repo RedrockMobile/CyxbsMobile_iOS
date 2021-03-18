@@ -77,7 +77,6 @@
             self.messageCountLabel.hidden = YES;
         }else if ([item.message_count intValue] > 0 && [item.message_count intValue] <= 9){
             [_messageCountLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                NSLog(@"改变小蓝点的大小");
                 make.top.mas_equalTo(self.mas_top);
                 make.right.mas_equalTo(self.mas_right);
                 make.width.height.mas_equalTo(SCREEN_WIDTH * 0.048);
@@ -86,7 +85,6 @@
             _messageCountLabel.layer.masksToBounds = YES;
             self.messageCountLabel.text = [NSString stringWithFormat:@"%@", item.message_count];
         }else if ([item.message_count intValue] > 9){
-            NSLog(@"未查看消息数为两位数");
             NSString *count = [item.message_count intValue] > 99 ? @"99+":[NSString stringWithFormat:@"%@",item.message_count];
             self.messageCountLabel.text = count;
         }
