@@ -238,7 +238,7 @@
 - (void)setItem:(PostItem *)item {
     if (item) {
         _item = item;
-        self.iconImageView.image = [UIImage imageNamed:@"圈子图像"];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
         self.nicknameLabel.text = item.nick_name;
         self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%@",item.publish_time]];
         self.detailLabel.text = item.content;
