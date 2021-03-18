@@ -31,7 +31,7 @@
         
         UITextView *textView = [[UITextView alloc] init];
         textView.backgroundColor = [UIColor clearColor];
-        textView.placeholder = @"150字以内(选填)";
+        textView.text  = @"150字以内(选填)";
         if (@available(iOS 11.0, *)) {
             textView.layer.borderColor = [UIColor colorNamed:@"LineColor"].CGColor;
             textView.placeholderTextView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
@@ -111,5 +111,15 @@
     if ([self.delegate respondsToSelector:@selector(ClickedCancelBtn)]) {
         [self.delegate ClickedCancelBtn];
     }
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+
+    if ([textView.text isEqualToString:@"150字以内(选填)"]) {
+
+        textView.text = @"";
+
+    }
+
 }
 @end
