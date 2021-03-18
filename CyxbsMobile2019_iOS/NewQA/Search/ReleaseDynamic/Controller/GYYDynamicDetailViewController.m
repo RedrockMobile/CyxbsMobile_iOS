@@ -87,7 +87,7 @@
 }
 - (ReportView *)reportView{
     if (!_reportView) {
-        _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithInt:self.post_id]];
+        _reportView = [[ReportView alloc] init];
         _reportView.frame = CGRectMake(0, 0, SCREEN_WIDTH * (1-0.1587*2),SCREEN_WIDTH * 0.6827 * 329/256);
         _reportView.delegate = self;
     }

@@ -34,8 +34,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithFrame:(CGRect)frame And:(NSMutableArray *)dataArray;
 
-- (void)loadViewWithArray:(NSMutableArray *)dataArray;
-
 @end
 
 NS_ASSUME_NONNULL_END

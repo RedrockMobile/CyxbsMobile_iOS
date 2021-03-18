@@ -42,17 +42,17 @@
     [super layoutSubviews];
     
     [_searchBtnImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0135);
+        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.0453 * 9/17);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0453);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.0656);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-SCREEN_HEIGHT * 0.0127);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.0656 * 20/22.5);
     }];
     
     [_searchBtnLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.0172);
+        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.1373 * 11.5/51/5);
         make.left.mas_equalTo(self.searchBtnImageView.mas_right).mas_offset(SCREEN_WIDTH * 0.032);
         make.right.mas_equalTo(self.mas_right);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-SCREEN_HEIGHT * 0.0187);
+        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-SCREEN_WIDTH * 0.1373 * 12.5/51/5);
     }];
 }
 

@@ -66,7 +66,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    self.tabBarController.tabBar.hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
     //我的关注View高度
@@ -121,13 +120,6 @@
             });
         }
     
-    if (self.hotWordsArray.count >= self.hotWordIndex && self.hotWordsArray.count >0) {
-        self->_searchBtn.searchBtnLabel.text = [NSString stringWithFormat:@"%@:%@",@"大家都在搜", self.hotWordsArray[self->_hotWordIndex]];
-    }else{
-        self->_searchBtn.searchBtnLabel.text = @"大家都在搜";
-    }
-
-    
 }
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
@@ -136,8 +128,6 @@
 //邮问视图消失时显示底部课表
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
     [[UserItemTool defaultItem] setFirstLogin:NO];
@@ -549,9 +539,9 @@
         make.bottom.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT);
         make.left.mas_equalTo(self.view.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0563);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 37.5/343);
     }];
-    _searchBtn.layer.cornerRadius = SCREEN_HEIGHT * 0.0563 * 1/2;
+    _searchBtn.layer.cornerRadius = SCREEN_WIDTH * 0.9147 * 37.5/343 * 1/2;
     
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_recommendedLabel.mas_top).mas_offset(2);
@@ -571,9 +561,9 @@
     [_publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.top).mas_offset(SCREEN_HEIGHT * 0.7256);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
-        make.width.height.mas_equalTo(SCREEN_WIDTH * 0.14);
+        make.width.height.mas_equalTo(SCREEN_WIDTH * 0.17);
     }];
-    _publishBtn.layer.cornerRadius = SCREEN_WIDTH * 0.14 * 1/2;
+    _publishBtn.layer.cornerRadius = SCREEN_WIDTH * 0.17 * 1/2;
     _publishBtn.layer.masksToBounds = YES;
 }
 
@@ -630,9 +620,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-        PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
-    dynamicDetailVC.post_id = [item.post_id intValue];
-    dynamicDetailVC.item = item;
+    _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+    dynamicDetailVC.post_id = [_item.post_id intValue];
+    dynamicDetailVC.item = _item;
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
@@ -643,11 +633,11 @@
     NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
-        PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
         //这里
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
-        cell.item = item;
+        cell.item = _item;
         cell.commendBtn.tag = indexPath.row;
         cell.shareBtn.tag = indexPath.row;
         cell.starBtn.tag = indexPath.row;
@@ -692,8 +682,12 @@
 
 ///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-//    _itemDic = self.tableArray[cell.commendBtn.tag];
-//    int post_id = [_itemDic[@"post_id"] intValue];
+    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+    _item = [[PostItem alloc] initWithDic:self.tableArray[cell.commendBtn.tag]];
+    dynamicDetailVC.post_id = [_item.post_id intValue];
+    dynamicDetailVC.item = _item;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 ///分享帖子
@@ -764,15 +758,14 @@
 #pragma mark -多功能View的代理方法
 ///点击屏蔽按钮
 - (void)ClickedShieldBtn:(UIButton *)sender {
-//    ShieldModel *model = [[ShieldModel alloc] init];
-//    _itemDic = self.tableArray[sender.tag];
-    [self showShieldSuccessful];
-//    [model ShieldPersonWithUid:_itemDic[@"uid"]];
-//    [model setBlock:^(id  _Nonnull info) {
-//        if ([info[@"info"] isEqualToString:@"success"]) {
-//            [self showShieldSuccessful];
-//        }
-//    }];
+    ShieldModel *model = [[ShieldModel alloc] init];
+    _itemDic = self.tableArray[sender.tag];
+    [model ShieldPersonWithUid:_itemDic[@"uid"]];
+    [model setBlock:^(id  _Nonnull info) {
+        if ([info[@"info"] isEqualToString:@"success"]) {
+            [self showShieldSuccessful];
+        }
+    }];
 }
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
@@ -792,15 +785,13 @@
 #pragma mark -举报页面的代理方法
 ///举报页面点击确定按钮
 - (void)ClickedSureBtn {
-//    [self dismissReportBackView];
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [self showReportSuccessful];
-//    ReportModel *model = [[ReportModel alloc] init];
-//    [model ReportWithPostID:_reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:_reportView.textView.text];
-//    [model setBlock:^(id  _Nonnull info) {
-//        [self showReportSuccessful];
-//    }];
+    ReportModel *model = [[ReportModel alloc] init];
+    [model ReportWithPostID:_reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:_reportView.textView.text];
+    [model setBlock:^(id  _Nonnull info) {
+        [self showReportSuccessful];
+    }];
 }
 
 ///举报页面点击取消按钮
@@ -809,29 +800,30 @@
     [self.backViewWithGesture removeFromSuperview];
 }
 
+
 #pragma mark- 配置相关操作成功后的弹窗
 - (void)showShieldSuccessful {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [NewQAHud showHudWith:@"将不再推荐该用户的动态给你" AddView:self.view];
+    [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view];
 }
 
 - (void)showReportSuccessful {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [NewQAHud showHudWith:@"举报成功" AddView:self.view];
+    [NewQAHud showHudWith:@"  举报成功  " AddView:self.view];
 }
 
 - (void)showReportFailure {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [NewQAHud showHudWith:@"网络繁忙，请稍后再试" AddView:self.view];
+    [NewQAHud showHudWith:@"  网络繁忙，请稍后再试  " AddView:self.view];
 }
 
 - (void)shareSuccessful {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
+    [NewQAHud showHudWith:@"  已复制链接，可以去分享给小伙伴了～  " AddView:self.view];
 }
 
 #pragma mark -分享View的代理方法
@@ -881,13 +873,14 @@
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
-
+    // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
 //    NSString *groupName = sender.groupBtnLabel.text;
-    // 通知NewQAMainPageViewController去刷新页面
+    // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
     
 }
