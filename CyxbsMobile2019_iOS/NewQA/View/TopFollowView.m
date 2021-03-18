@@ -66,23 +66,16 @@
         
         ///通过for循环创建数组
         for (int i = 0;i < dataArray.count; i++) {
-            ///创建第一个按钮，没有小蓝点
-                GroupBtn *btn = [[GroupBtn alloc] init];
-                GroupItem *item = dataArray[i];
-                btn.tag = i;
-                [btn.groupBtnImageView sd_setImageWithURL:[NSURL URLWithString:item.topic_logo] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
-                btn.groupBtnLabel.text = item.topic_name;
-                if ([item.message_count intValue] == 0) {
-                    btn.messageCountLabel.hidden = YES;
-                }else {
-                    NSString *count = [item.message_count intValue] > 99 ? @"99+":[NSString stringWithFormat:@"%@",item.message_count];
-                    btn.messageCountLabel.text = count;
-                }
-                [btn addTarget:self action:@selector(ClickedGroupBtn:) forControlEvents:UIControlEventTouchUpInside];
-                btn.frame = CGRectMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.2627 * i, SCREEN_WIDTH * 0.1215 * 20.5/45.55, SCREEN_WIDTH * 0.1293, SCREEN_WIDTH * 0.1293 * 63.45/48.5);
-                [_groupsScrollView addSubview:btn];
-            }
-        groupsScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.2627 * dataArray.count, CGRectGetHeight(_groupBtn.frame));
+        ///创建第一个按钮，没有小蓝点
+            GroupBtn *btn = [[GroupBtn alloc] init];
+            GroupItem *item = dataArray[i];
+            btn.item = item;
+            btn.tag = i;
+            [btn addTarget:self action:@selector(ClickedGroupBtn:) forControlEvents:UIControlEventTouchUpInside];
+            btn.frame = CGRectMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.25 * i, SCREEN_WIDTH * 0.1215 * 20.5/45.55, SCREEN_WIDTH * 0.1293, SCREEN_WIDTH * 0.1293 * 63.45/48.5);
+            [_groupsScrollView addSubview:btn];
+        }
+        groupsScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.25 * dataArray.count, CGRectGetHeight(_groupBtn.frame));
     }
 }
 
