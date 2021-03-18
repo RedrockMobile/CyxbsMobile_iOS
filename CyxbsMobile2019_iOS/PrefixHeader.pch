@@ -294,6 +294,8 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 /// 上传用户信息
 #define UPLOADUSERINFOAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/Person/SetInfo"
 
+// 通过帖子id 获取帖子数据
+#define GETPOSTINFO @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getPostInfo"
 
 /// 获取签到信息
 #define CHECKININFOAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getScoreStatus"

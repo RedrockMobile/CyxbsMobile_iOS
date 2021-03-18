@@ -13,6 +13,8 @@
 #import "ArticleModel.h"
 #import "StarPostModel.h"
 
+//GYY的动态详情页控制器
+#import "GYYDynamicDetailViewController.h"
 @interface ArticleViewController ()<UITableViewDelegate, UITableViewDataSource,PostTableViewCellDelegate,ShareViewPlusDelegate,ArticleModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ShareViewPlus *shareView;
@@ -119,7 +121,11 @@
 //MARK: - cell的代理方法:
 //评论
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell {
-    
+    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+    dynamicDetailVC.post_id = [cell.item.post_id intValue];
+    dynamicDetailVC.item = cell.item;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 //话题标签

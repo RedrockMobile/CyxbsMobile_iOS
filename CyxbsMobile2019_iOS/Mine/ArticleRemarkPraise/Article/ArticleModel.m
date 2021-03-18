@@ -19,6 +19,7 @@
     
     [self.client requestWithPath:getArticle method:HttpRequestGet parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.dataArr addObjectsFromArray:responseObject[@"data"]];
+        CCLog(@"res=%@",responseObject[@"data"]);
         if ([responseObject[@"data"] count]<size.integerValue) {
             [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateNoMoreDate];
         }else {

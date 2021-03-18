@@ -56,7 +56,7 @@
             remindLB.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x15315B) DarkColor:KUIColorFromRGB(0xf0f0f2)];
         }
         remindLB.text = @"回复";
-        remindLB.font = [UIFont fontWithName:PingFangSCHeavy size:18];
+        remindLB.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         [_tableHeadView addSubview:remindLB];
         
         UILabel *lineLB = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 1)];

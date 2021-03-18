@@ -8,6 +8,8 @@
 
 #import "LearnMoreViewController.h"
 #define GetaboutUsMsg @"https://cyxbsmobile.redrock.team/wxapi/magipoke-text/text/get"
+//#define GetaboutUsMsg @"https://be-prod.redrock.team/magipoke-text/text/get"
+
 @interface LearnMoreViewController () <UITextViewDelegate>
 @property(nonatomic,strong)UILabel *subTitleLabel;
 @property(nonatomic,strong)UITextView *mainBodyTextView;
@@ -93,7 +95,7 @@
 }
 
 - (void)ff{
-    [[HttpClient defaultClient] requestWithPath:GetaboutUsMsg method:HttpRequestGet parameters:@{@"name":@""} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:GetaboutUsMsg method:HttpRequestPost parameters:@{@"name":@"zscy-main-userAgreement"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"%@",responseObject[@"data"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         CCLog(@"%@",error);
