@@ -19,7 +19,7 @@
 @implementation MineHeaderView
 //MARK: - 重写的方法:
 - (instancetype)init{
-    self = [super initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_W * 0.776)];
+    self = [super initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_W * 0.75)];
     if (self) {
         /// 添加头像
         [self addHeaderImageBtn];
@@ -134,7 +134,7 @@
     } else {
         whiteBoard.backgroundColor = [UIColor whiteColor];
     }
-    whiteBoard.layer.cornerRadius = 16;
+    whiteBoard.layer.cornerRadius = 10;
     [self addSubview:whiteBoard];
     self.whiteBoard = whiteBoard;
 }
@@ -201,27 +201,28 @@
     
     // 所有的约束均根据屏幕的长宽比例与控件所占的比例来计算
     [self.headerImageBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.mas_leading).offset(MAIN_SCREEN_W * 0.042);
-        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_W * 0.16);
+        make.leading.equalTo(self.mas_leading).offset(MAIN_SCREEN_W * 0.0413);
+        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0652);
         make.height.width.equalTo(@(MAIN_SCREEN_W * 0.1733));
     }];
     self.headerImageBtn.clipsToBounds = YES;
     self.headerImageBtn.layer.cornerRadius = MAIN_SCREEN_W * 0.1733 * 0.5;
     
     [self.nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.headerImageBtn.mas_trailing).offset(20);
-        make.top.equalTo(self.headerImageBtn).offset(8);
+        make.leading.equalTo(self.headerImageBtn.mas_trailing).offset(0.052*SCREEN_WIDTH);
+        make.top.equalTo(self.headerImageBtn).offset(0.018*SCREEN_HEIGHT);
     }];
     
     [self.introductionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.nicknameLabel);
-        make.top.equalTo(self.nicknameLabel.mas_bottom).offset(4);
+        make.top.equalTo(self.nicknameLabel.mas_bottom).offset(0.006*SCREEN_HEIGHT);
     }];
     
     [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.headerImageBtn);
-        make.trailing.equalTo(self).offset(-MAIN_SCREEN_W * 0.0437);
-        make.height.width.equalTo(@24);
+        make.centerY.equalTo(self.nicknameLabel);
+        make.left.equalTo(self.nicknameLabel.mas_right).offset(MAIN_SCREEN_W * 0.0387);
+        make.width.mas_equalTo(0.0453*MAIN_SCREEN_W);
+        make.height.mas_equalTo(0.048*MAIN_SCREEN_W);
     }];
     
     [self.whiteBoard mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -239,9 +240,10 @@
     [self.checkInButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.signinDaysLabel);
         make.trailing.equalTo(self.whiteBoard).offset(-14);
-        make.height.equalTo(@28);
-        make.width.equalTo(@52);
+        make.height.mas_equalTo(0.07467*SCREEN_WIDTH);
+        make.width.mas_equalTo(0.1387*SCREEN_WIDTH);
     }];
+    
     self.checkInButton.layer.cornerRadius = 14;
     
     int h;

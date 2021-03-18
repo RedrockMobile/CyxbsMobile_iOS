@@ -208,13 +208,32 @@
 
 
 #pragma mark - 字体
-
-#define PingFangSCRegular @"PingFangSC-Regular"
+//苹方-简 极细体
+#define PingFangSCUltralight    @"PingFangSC-Ultralight"
+//苹方-简 纤细体
+#define PingFangSCThin @"PingFangSC-Thin"
+//苹方-简 细体
 #define PingFangSCLight @"PingFangSC-Light"
+//苹方-简 常规体
+#define PingFangSCRegular @"PingFangSC-Regular"
+//苹方-简 中黑体
 #define PingFangSCMedium @"PingFangSC-Medium"
-#define PingFangSCBold @"PingFangSC-Semibold"
-#define PingFangSCHeavy @"PingFangSC-Heavy"
+//苹方-简 中粗体
 #define PingFangSCSemibold @"PingFangSC-Semibold"
+/*
+ 下面这个for，可以打印出现有的所有字体
+for(NSString *fontFamilyName in [UIFont familyNames]){
+        NSLog(@"family:'%@'",fontFamilyName);
+        for(NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName]){
+            NSLog(@"\tfont:'%@'",fontName);
+        }
+        NSLog(@"-------------");
+}
+*/
+
+#define PingFangSCBold @"PingFangSC-Semibold"
+
+
 // Bahnschrift字体
 #define BahnschriftBold @"Bahnschrift_Bold"
 

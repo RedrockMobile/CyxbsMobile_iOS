@@ -45,7 +45,7 @@
     label.font = [UIFont fontWithName:PingFangSCLight size: 12];
     
     [label setTextAlignment:NSTextAlignmentCenter];
-    [label setFrame:CGRectMake(0, MAIN_SCREEN_W*0.39667, MAIN_SCREEN_W*0.53867, 0.04267*MAIN_SCREEN_W)];
+    [label setFrame:CGRectMake(0, MAIN_SCREEN_W*0.43667, MAIN_SCREEN_W*0.53867, 0.04267*MAIN_SCREEN_W)];
 }
 
 @end

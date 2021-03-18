@@ -291,7 +291,8 @@
     
     cell.backgroundColor = tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    [cell setAccessoryType:(UITableViewCellAccessoryDisclosureIndicator)];
     if (@available(iOS 11.0, *)) {
         cell.textLabel.textColor = [UIColor colorNamed:@"25_56_102&240_240_242"];
     } else {
@@ -303,7 +304,9 @@
     return  cell;
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 0.065*SCREEN_HEIGHT;
+}
 # pragma mark - TableView代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //代理是MineViewController

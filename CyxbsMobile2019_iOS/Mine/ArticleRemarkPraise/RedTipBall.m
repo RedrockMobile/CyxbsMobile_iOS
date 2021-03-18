@@ -7,8 +7,8 @@
 //  小红点
 
 #import "RedTipBall.h"
-#define ballRadius  (SCREEN_WIDTH*0.0427)
-#define ballRadius99  (SCREEN_WIDTH*0.0707)
+#define ballDiameter  (SCREEN_WIDTH*0.0427)
+#define ballDiameter99  (SCREEN_WIDTH*0.0707)
 
 @interface RedTipBall()
 /// 最开始的位置，只初始化一次
@@ -20,9 +20,9 @@
 {
     self = [super init];
     if (self) {
-        self.layer.cornerRadius = 0.5*ballRadius;
+        self.layer.cornerRadius = 0.5*ballDiameter;
 //        [self mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.width.height.mas_equalTo(ballRadius);
+//            make.width.height.mas_equalTo(ballDiameter);
 //        }];
         self.backgroundColor = [UIColor colorWithRed:236/255.0 green:74/255.0 blue:184/255.0 alpha:1];
         UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(ballMove:)];
@@ -44,12 +44,16 @@
         return;
     }
     _msgCount = msgCount;
-    if (msgCount.integerValue>99) {
-        self.msgLabel.text = @"99+";
-        if (self.frame.size.width!=ballRadius99) {
+    if (msgCount.integerValue>9) {
+        if (msgCount.integerValue>99) {
+            self.msgLabel.text = @"99+";
+        }else {
+            self.msgLabel.text = msgCount;
+        }
+        if (self.frame.size.width!=ballDiameter99) {
             [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo(ballRadius99);
-                make.height.mas_equalTo(ballRadius);
+                make.width.mas_equalTo(ballDiameter99);
+                make.height.mas_equalTo(ballDiameter);
             }];
         }
     }else if(msgCount.integerValue==0){
@@ -61,10 +65,10 @@
         }
     }else {
         self.msgLabel.text = msgCount;
-        if (self.frame.size.width!=ballRadius) {
+        if (self.frame.size.width!=ballDiameter) {
             [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.width.mas_equalTo(ballRadius);
-                make.height.mas_equalTo(ballRadius);
+                make.width.mas_equalTo(ballDiameter);
+                make.height.mas_equalTo(ballDiameter);
             }];
         }
     }

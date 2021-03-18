@@ -82,7 +82,7 @@
         make.top.equalTo(self.mas_top).offset(0.0747*SCREEN_WIDTH);
     }];
     
-    label.font = [UIFont fontWithName:PingFangSCHeavy size:15];
+    label.font = [UIFont fontWithName:PingFangSCSemibold size:15];
 }
 /// 设置用户个性签名label的方法
 - (void)setDetailTextLabel{
