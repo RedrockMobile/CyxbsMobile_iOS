@@ -7,6 +7,7 @@
 //个人主页面的tableView顶部的一大块View都是这个类，这个类会被设置成tableView的headview
 
 #import <UIKit/UIKit.h>
+#import "MainPageNumBtn.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,12 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 点击签到框框内的 “获赞” 后调用
 - (void)praiseNumBtnClicked;
 
+- (void)headImgClicked;
 @end
 
 @interface MineHeaderView : UIView
 
 /// 头像ImageVIew
-@property (nonatomic, weak) UIImageView *headerImageView;
+@property (nonatomic, weak) UIButton *headerImageBtn;
 
 /// 昵称Label
 @property (nonatomic, weak) UILabel *nicknameLabel;
@@ -52,13 +54,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 评论数量按钮
-@property(nonatomic,strong) UIButton *remarkNumBtn;
+@property(nonatomic,strong) MainPageNumBtn *remarkNumBtn;
 
 /// 动态数量按钮
-@property(nonatomic,strong) UIButton *articleNumBtn;
+@property(nonatomic,strong) MainPageNumBtn *articleNumBtn;
 
 /// 获赞数量按钮
-@property (nonatomic, strong) UIButton *praiseNumBtn;
+@property (nonatomic, strong) MainPageNumBtn *praiseNumBtn;
 
 /// 代理设置成个人主页面的控制器
 @property (nonatomic, weak)id <MineHeaderViewDelegate> delegate;

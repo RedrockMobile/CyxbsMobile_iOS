@@ -19,7 +19,6 @@
         
         [self addButtonsWithArray:array];
         
-        [self btnsAddConstraints];
     }
     return self;
 }
@@ -77,20 +76,22 @@
         [self addSubview:button];
     }
     
+    //进行布局约束
+    [self btnsAddConstraints];
 }
 
 ///为btns添加约束，让它自动换行等等
 - (void)btnsAddConstraints{
-    if (self.buttonArray.count == 0) return;
+    if (self.buttonArray.count == 0){
+        return;
+    }
     [self.buttonArray[0] mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.tittleLbl.mas_bottom).offset(MAIN_SCREEN_H * 0.0292);
         make.left.equalTo(self.tittleLbl);
         make.height.mas_equalTo(MAIN_SCREEN_H * 0.0382);
     }];
+    //立即得到masonry约束后的button的Frame，不用等到下一个runloop周期
     [self layoutIfNeeded];
-//NSLog(@"第一个button的x为%f,第一个button的y为%f",self.buttonArray[0].frame.origin.x,self.buttonArray[0].frame.origin.y);
-//    NSLog(@"第一个button的最小x为%f,第一个button的最小y为%f", CGRectGetMinX(self.buttonArray[0].frame),CGRectGetMinY(self.buttonArray[0].frame));
-//    NSLog(@"第一个button的最大x为%f,第一个button的最大y为%f", CGRectGetMaxY(self.buttonArray[0].frame),CGRectGetMaxX(self.buttonArray[0].frame));
     //初始的X、Y值
     CGFloat originX = self.buttonArray[0].frame.origin.x;
     CGFloat originY = self.buttonArray[0].frame.origin.y;
@@ -99,8 +100,8 @@
     //button位置临界值判断变量
     CGFloat positionX = originX;
     CGFloat positionY = originY;
-    //最大X值
-    CGFloat maxX = MAIN_SCREEN_W;
+    
+    CGFloat maxX = MAIN_SCREEN_W;   //最大X值
     for (int i = 1; i < self.buttonArray.count; i++) {
         //button的字符串宽度
         CGFloat titleWidth = [self.buttonArray[i].titleLabel.text boundingRectWithSize:CGSizeMake(1000, MAIN_SCREEN_H * 0.0382) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:12]} context:nil].size.width;

@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 轮播的palceholder数组，里面有三个元素，网络请求获取
 @property (nonatomic, strong) NSArray *placeholderArray;
+
+@property (nonatomic, strong) UIImageView *searchFieldBackgroundView;
 @end
 
 NS_ASSUME_NONNULL_END

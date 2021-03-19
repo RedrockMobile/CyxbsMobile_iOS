@@ -12,6 +12,7 @@
 #import "LessonButton.h"
 #import "LessonMatter.h"
 #import "RemindMatter.h"
+#import "UIControl+MGD.h"
 @interface LessonButtonController ()
 @property (nonatomic, assign) NSInteger beginLesson;
 @property (nonatomic, strong) UIImageView *remindArrow;
@@ -32,6 +33,8 @@
         self.view.frame = CGRectMake(MWIDTH+day*LESSONBTNSIDE+SEGMENT/2, lesson*LESSONBTNSIDE*2+SEGMENT/2, LESSONBTNSIDE-SEGMENT, LESSONBTNSIDE*2-SEGMENT);
         self.btn = [[LessonButton alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         self.btn.tag = day*LONGLESSON+lesson;
+        self.btn.ignoreEvent = NO;
+        self.btn.canTapEventInterval = 0.5;
     }
     return self;
 }

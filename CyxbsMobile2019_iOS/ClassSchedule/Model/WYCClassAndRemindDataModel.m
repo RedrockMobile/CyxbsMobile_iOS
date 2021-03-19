@@ -73,6 +73,9 @@
         //拿到课表数据
         NSArray *rowLessonDataArr = responseObject[@"data"];
         
+        //储存当前周数，计算开学日期
+        [self storeDate:[NSString stringWithFormat:@"%@",responseObject[@"nowWeek"]]];
+        
         //如果没有数据，或者数据和本地数据一样，那么return
         if (rowLessonDataArr==nil||[rowLessonDataArr isEqualToArray:self.rowDataArray]) {
             return;
@@ -226,7 +229,7 @@
                 isAllSuccess = NO;
                 dispatch_semaphore_signal(semaphore);
             }];
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+            dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
         });
     }
     
@@ -298,6 +301,36 @@
         }
     }
 }
+
+//储存当前周数，计算开学日期
+- (void)storeDate:(NSString*)week {
+    NSDate *now = NSDate.now;
+    
+    NSDateComponents *nowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:now];
+//    unit
+    NSInteger weekday = nowComponents.weekday;
+    if (weekday==1) {
+        weekday = 7;
+    }else {
+        weekday--;
+    }
+    
+    NSInteger todaySecond = (((nowComponents.hour*60)+nowComponents.minute)*60)+nowComponents.second;
+    
+    NSInteger ortherDatSecond = ((week.longValue-1)*7+weekday-1)*86400;
+    //startDate指向开学日期那天的凌晨1秒
+//    NSDate *startDate = [now dateByAddingSeconds:1-(todaySecond+ortherDatSecond)];
+        NSDate *startDate = [[NSDate alloc] initWithTimeInterval:1-(todaySecond+ortherDatSecond) sinceDate:now];
+    
+    
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:startDate];
+    
+    [[NSUserDefaults standardUserDefaults]setValue:[NSString stringWithFormat:@"%ld-%ld-%ld",components.year,components.month,components.day] forKey:DateStart];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setValue:week forKey:nowWeekKey];
+}
+
 @end
 
 //    {

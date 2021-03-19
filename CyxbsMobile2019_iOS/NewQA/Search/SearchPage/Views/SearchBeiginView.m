@@ -26,12 +26,14 @@
 - (void)layoutSubviews{
     //最顶部的搜索view
     [self addSubview:_searchTopView];
-    [_searchTopView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.searchTopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
 //        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0352);
         make.bottom.equalTo(self.mas_top).offset(NVGBARHEIGHT + STATUSBARHEIGHT);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.0562));
     }];
+    [self layoutIfNeeded];
+    self.searchTopView.searchFieldBackgroundView.layer.cornerRadius = self.searchTopView.searchFieldBackgroundView.frame.size.height * 0.5;
     
     [self addSubview:self.hotSearchView];
     [self.hotSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,7 +44,7 @@
     
     [self addSubview:self.topSeparation];
     [self.topSeparation mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.hotSearchView.mas_bottom);
+        make.bottom.equalTo(self.mas_bottom);
         make.left.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, 1));
     }];

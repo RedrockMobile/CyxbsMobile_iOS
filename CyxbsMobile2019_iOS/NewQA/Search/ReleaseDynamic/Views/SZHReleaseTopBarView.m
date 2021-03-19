@@ -10,8 +10,7 @@
 
 @implementation SZHReleaseTopBarView
 
-- (instancetype)init
-{
+- (instancetype)init{
     self = [super init];
     if (self) {
         [self addTopBarView];
@@ -33,9 +32,6 @@
     [self addSubview:self.leftBtn];
     [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.0427);
-//        make.top.equalTo(self).offset(MAIN_SCREEN_H * 0.0572);
-//        make.top.equalTo(self);
-//        make.top.equalTo(self).offset(MAIN_SCREEN_H * 0.0286);
         make.bottom.equalTo(self.mas_top).offset(NVGBARHEIGHT);
         make.size.mas_equalTo(CGSizeMake(7, 14));
     }];
@@ -45,7 +41,8 @@
     if (_titleLbl == nil) {
         _titleLbl = [[UILabel alloc] init];
         _titleLbl.text = @"发布动态";
-        _titleLbl.font = [UIFont fontWithName:PingFangSCHeavy size:21];
+//        _titleLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:21];
+        _titleLbl.font = [UIFont fontWithName:PingFangSCSemibold size:21];
         if (@available(iOS 11.0, *)) {
             _titleLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
         } else {
@@ -70,7 +67,6 @@
         [_releaseBtn setTitle:@"发布" forState:UIControlStateDisabled];
         _releaseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
         [_releaseBtn addTarget:self.delegate action:@selector(releaseDynamic) forControlEvents:UIControlEventTouchUpInside];
-        _releaseBtn.layer.cornerRadius = MAIN_SCREEN_W * 0.0411;
         if (@available(iOS 11.0, *)) {
             self.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
         } else {
@@ -82,8 +78,9 @@
     [self.releaseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.titleLbl);
         make.right.equalTo(self).offset(-MAIN_SCREEN_W *0.0413);
-        make.size.mas_equalTo(CGSizeMake(59, 28));
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.1573, MAIN_SCREEN_H * 0.042));
     }];
+    _releaseBtn.layer.cornerRadius = MAIN_SCREEN_H * 0.021;
     
     //底部的分割条
         //1.属性设置

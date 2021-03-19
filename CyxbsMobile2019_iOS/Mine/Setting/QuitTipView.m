@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2020/12/16.
 //  Copyright © 2020 Redrock. All rights reserved.
-//
+// 在设置页面点击 “退出登录按钮” 后弹出的弹窗就是这个类
 
 #import "QuitTipView.h"
 @interface QuitTipView ()
@@ -50,7 +50,7 @@
         make.height.mas_equalTo(0.4655*SCREEN_WIDTH);
     }];
     
-    view.layer.cornerRadius = 25;
+    view.layer.cornerRadius = 12.5;
     
     if (@available(iOS 11.0, *)) {
         view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
@@ -83,7 +83,7 @@
         btn.backgroundColor = [UIColor colorWithRed:87/255.0 green:86/255.0 blue:242/255.0 alpha:1];
     }
     
-    [btn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [btn setTitle:@"退出" forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:15]];
     [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     btn.layer.cornerRadius = 0.0473*SCREEN_WIDTH;

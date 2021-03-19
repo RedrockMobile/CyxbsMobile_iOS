@@ -15,8 +15,7 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-#if DEBUG
-    #define DDLog(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#ifdef DEBUG
     #define NSLog(format, ...) do {                                                                          \
     fprintf(stderr, "<%s : %d> | %s\n",                                           \
     [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
@@ -25,9 +24,50 @@
     fprintf(stderr, "-------\n");                                               \
     } while (0)
 #else
-    #define DDLog(xx, ...)     ;
     #define NSLog(format, ...) ;
 #endif
+
+
+//++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  Begain
+#ifdef DEBUG
+#define CCCLLog(line, separator, format, ...) do{\
+    fprintf(stderr,"Stove[%s - %d%s]:\n",\
+        [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\
+        __LINE__,\
+        separator);\
+\
+    for (__strong NSString *CCLogStr__ in [[NSString stringWithFormat:format, ##__VA_ARGS__] componentsSeparatedByString:@"\n"]) {\
+        while (CCLogStr__.length > line) {\
+            fprintf(stderr, "%s    %s\n",\
+                [[CCLogStr__ substringToIndex:line] UTF8String],\
+                separator);\
+\
+            CCLogStr__ = [CCLogStr__ substringFromIndex:line];\
+        }\
+        while (CCLogStr__.length < line + 4) {\
+            CCLogStr__ = [CCLogStr__ stringByAppendingString:@"                                                  "];\
+        }\
+        fprintf(stderr,"%s%s\n",\
+            [[[NSString stringWithFormat:@"%@",CCLogStr__] substringToIndex:line+4] UTF8String],\
+            separator);\
+    }\
+\
+    fprintf(stderr,"\n\n");\
+}while(0)
+//默认行尾分隔符为"˙"
+#define CCLLog(line, format, ...) CCCLLog(line, "˙", format, ##__VA_ARGS__)
+//默认行尾分隔符为"˙"，且每行长度为77
+#define CCLog77(format, ...) CCLLog(77, format, ##__VA_ARGS__)
+//默认行尾分隔符为"˙"，且每行长度为97
+#define CCLog(format, ...) CCLLog(97, format, ##__VA_ARGS__)
+#else
+#define CCCLLog(line, separator, format, ...)
+#define CCLLog(line, format, ...)
+#define CCLog77(format, ...)
+#define CCLog(format, ...)
+#endif
+//++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  End
+
 
 
 
@@ -75,7 +115,13 @@
 #import "AESCipher.h"           // AES加密算法
 #import <MGJRouter.h>
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+#import <SDWebImage/SDWebImage.h>
 
+//自定义hud
+#import "NewQAHud.h"
+
+#import "MGDStatusBarHeight.h"
+#import "UIColor+SYColor.h"
 
 #pragma mark - Group共享
 
@@ -88,6 +134,7 @@
 
 #define kWidthGrid  (SCREEN_WIDTH/7.5)
 #define RGBColor(r,g,b,a) ([UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a])
+#define KUIColorFromRGB(rgbValue)       [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #define ColorArray [[NSMutableArray alloc]initWithObjects:@"254,145,103",@"120,201,252",@"111,219,188",@"191,161,233",nil]
 
@@ -122,7 +169,7 @@
 #define TABBARHEIGHT (IS_IPHONEX ? (49.f + SAFE_AREA_BOTTOM) : (49.f))
 
 /* 状态栏高度 */
-#define STATUSBARHEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
+#define STATUSBARHEIGHT [MGDStatusBarHeight getStatusBarHight]
 
 /* NavigationBar高度 */
 #define NVGBARHEIGHT (44.f)
@@ -137,8 +184,22 @@
 
 //学期开始时间
 #define DateStart @"2021-03-01"
+#define DateFormat @"yyyy-MM-dd"
+//第一周从1开始，不是从0开始
+#define getNowWeek ^(void) {\
+    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] stringForKey:nowWeekKey];\
+    if (nowWeek==nil) {\
+        return @"0";\
+    }\
+    return nowWeek;\
+}()
 
-
+#define getDateStart ^(void) {\
+    NSString *formateStr = [[NSUserDefaults standardUserDefaults] stringForKey:DateStart];\
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];\
+    [formatter setDateFormat:DateFormat];\
+    return [formatter dateFromString:formateStr];\
+}()
 
 #pragma mark - MGJRouter用到的宏
 
@@ -148,13 +209,32 @@
 
 
 #pragma mark - 字体
-
-#define PingFangSCRegular @"PingFangSC-Regular"
+//苹方-简 极细体
+#define PingFangSCUltralight    @"PingFangSC-Ultralight"
+//苹方-简 纤细体
+#define PingFangSCThin @"PingFangSC-Thin"
+//苹方-简 细体
 #define PingFangSCLight @"PingFangSC-Light"
+//苹方-简 常规体
+#define PingFangSCRegular @"PingFangSC-Regular"
+//苹方-简 中黑体
 #define PingFangSCMedium @"PingFangSC-Medium"
-#define PingFangSCBold @"PingFangSC-Semibold"
-#define PingFangSCHeavy @"PingFangSC-Heavy"
+//苹方-简 中粗体
 #define PingFangSCSemibold @"PingFangSC-Semibold"
+/*
+ 下面这个for，可以打印出现有的所有字体
+for(NSString *fontFamilyName in [UIFont familyNames]){
+        NSLog(@"family:'%@'",fontFamilyName);
+        for(NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName]){
+            NSLog(@"\tfont:'%@'",fontName);
+        }
+        NSLog(@"-------------");
+}
+*/
+
+#define PingFangSCBold @"PingFangSC-Semibold"
+
+
 // Bahnschrift字体
 #define BahnschriftBold @"Bahnschrift_Bold"
 
@@ -184,12 +264,38 @@
 /// 刷新token
 #define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token/refresh"
 
+//取消屏蔽某人
+#define cancelIgnorePeopleUrl @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/cancelIgnoreUid"
+
+//屏蔽某人
+#define ignorePeopleUrl @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ignore/addIgnoreUid"
+
+//删除帖子
+#define deleteArticle @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId"
+
+//获取自己的帖子
+#define getArticle @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/getUserPostList"
+
+
+//动态/点赞/获赞评论数
+#define getUserCount @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/getUserCount"
+
+//未读消息数
+#define getMsgCnt @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/uncheckedMessage"
+
+//获取收到的评论
+#define getReplyAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/replyme"
+
+//获取收到的赞
+#define getPraiseAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/user/praisedme"
 
 /// 上传头像
 #define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/person/upload/avatar"
 /// 上传用户信息
 #define UPLOADUSERINFOAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/Person/SetInfo"
 
+// 通过帖子id 获取帖子数据
+#define GETPOSTINFO @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getPostInfo"
 
 /// 获取签到信息
 #define CHECKININFOAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getScoreStatus"
@@ -492,4 +598,10 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 
 //可以通过NSUserDefaults取出当前周数，类型是NSString
 #define nowWeekKey @"SchedulNowWeek"
+//个人页的获赞数的缓存的key
+#define MinePraiseCntStrKey @"MinePraiseCntStrKey"
+//个人页的动态数的缓存的key
+#define MineDynamicCntStrKey @"MineDynamicCntStrKey"
+//个人页的评论数的缓存的key
+#define MineCommentCntStrKey @"MineCommentCntStrKey"
 #endif

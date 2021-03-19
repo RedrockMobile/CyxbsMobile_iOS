@@ -14,6 +14,8 @@
     if ([super init]) {
         self.backgroundColor = [UIColor clearColor];
         UIImageView *groupBtnImageView = [[UIImageView alloc] init];
+        groupBtnImageView.contentMode = UIViewContentModeScaleAspectFill;
+        groupBtnImageView.clipsToBounds = YES;
         [self addSubview:groupBtnImageView];
         _groupBtnImageView = groupBtnImageView;
         
@@ -46,13 +48,12 @@
     
     [_groupBtnImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
-        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0107);
-        make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.032);
-        make.bottom.mas_equalTo(self.groupBtnLabel.mas_top).mas_offset(-SCREEN_HEIGHT * 0.0097);
+        make.height.width.mas_equalTo(SCREEN_WIDTH * 0.1228);
     }];
+    _groupBtnImageView.layer.cornerRadius = SCREEN_WIDTH * 0.1228 * 1/2;
     
     [_groupBtnLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.groupBtnImageView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.0082);
+        make.top.mas_equalTo(self.groupBtnImageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.1293 * 5.5/48.5);
         make.centerX.mas_equalTo(_groupBtnImageView);
         make.bottom.mas_equalTo(self.mas_bottom);
     }];
@@ -60,10 +61,33 @@
     [_messageCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
         make.right.mas_equalTo(self.mas_right);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.0707);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.024);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.068);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.048);
     }];
-    _messageCountLabel.layer.cornerRadius = SCREEN_HEIGHT * 0.024 * 1/2;
+    _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
     _messageCountLabel.layer.masksToBounds = YES;
+}
+
+- (void)setItem:(GroupItem *)item {
+    if (item) {
+        _item = item;
+        [_groupBtnImageView sd_setImageWithURL:[NSURL URLWithString:item.topic_logo] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
+        _groupBtnLabel.text = item.topic_name;
+        if ([item.message_count intValue] == 0) {
+            self.messageCountLabel.hidden = YES;
+        }else if ([item.message_count intValue] > 0 && [item.message_count intValue] <= 9){
+            [_messageCountLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.mas_top);
+                make.right.mas_equalTo(self.mas_right);
+                make.width.height.mas_equalTo(SCREEN_WIDTH * 0.048);
+            }];
+            _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
+            _messageCountLabel.layer.masksToBounds = YES;
+            self.messageCountLabel.text = [NSString stringWithFormat:@"%@", item.message_count];
+        }else if ([item.message_count intValue] > 9){
+            NSString *count = [item.message_count intValue] > 99 ? @"99+":[NSString stringWithFormat:@"%@",item.message_count];
+            self.messageCountLabel.text = count;
+        }
+    }
 }
 @end

@@ -32,6 +32,7 @@
         self.layer.cornerRadius = 8;
         self.noteDataModelArray = [NSMutableArray array];
         UITapGestureRecognizer *TGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTouched)];
+        self.exclusiveTouch = YES;
         [self addGestureRecognizer:TGR];
     }
     return self;

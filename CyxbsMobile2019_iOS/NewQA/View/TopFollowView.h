@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GroupBtn.h"
+#import "GroupModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @protocol TopFollowViewDelegate <NSObject>
@@ -14,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///点击跳转到圈子广场
 - (void)FollowGroups;
 ///点击跳转到具体的圈子里去
-- (void)ClickedGroupBtn:(UIButton *)sender;
+- (void)ClickedGroupBtn:(GroupBtn *)sender;
 
 @end
 

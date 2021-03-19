@@ -32,8 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //根据传入的字符串决定显示的是热门搜索还是知识库
 - (instancetype)initWithString:(NSString *)string;
+
 /// 更新UI(button排列)
 - (void)updateBtns;
+
+/// 清除知识库button
+- (void)hideKnowledgeBtns;
 @end
 
 NS_ASSUME_NONNULL_END

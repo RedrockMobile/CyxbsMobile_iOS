@@ -10,6 +10,7 @@
 #import "MGDImageCollectionViewCell.h"
 #import "PostModel.h"
 #import "StarPostModel.h"
+#import "UIControl+MGD.h"
 #import <YBImageBrowser.h>
 
 
@@ -72,10 +73,12 @@
     [self.contentView addSubview:_timeLabel];
     
     ///多功能按钮
-    _funcBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    _funcBtn = [[UIButton alloc] init];
+    _funcBtn.ignoreEvent = NO;
+    _funcBtn.canTapEventInterval = 0.5;
     _funcBtn.backgroundColor = [UIColor clearColor];
-    [_funcBtn setBackgroundImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
-    [_funcBtn addTarget:self action:@selector(ClickedFuncBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_funcBtn setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
+    [_funcBtn addTarget:self action:@selector(ClickedFuncBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_funcBtn];
     
     ///内容
@@ -105,34 +108,42 @@
     
     ///标签
     _groupLabel = [[UIButton alloc] init];
-    _groupImage = [UIImage imageNamed:@"标签背景"];
-    [_groupLabel setBackgroundImage:_groupImage forState:UIControlStateNormal];
+    _groupLabel.ignoreEvent = NO;
+    _groupLabel.canTapEventInterval = 1.0;
     _groupLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [_groupLabel.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 12.08]];
+    [_groupLabel.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08]];
     if (@available(iOS 11.0, *)) {
         [_groupLabel setTitleColor:[UIColor colorNamed:@"CellGroupColor"] forState:UIControlStateNormal];
+        _groupLabel.backgroundColor = [UIColor colorNamed:@"CELLTOPICBACKCOLOR"];
     } else {
         [_groupLabel setTitleColor:[UIColor colorWithRed:85.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1] forState:UIControlStateNormal];
+        _groupLabel.backgroundColor = [UIColor colorWithRed:241/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
-    [_groupLabel addTarget:self action:@selector(ClickedGroupTopicBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [_groupLabel addTarget:self action:@selector(ClickedGroupTopicBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_groupLabel];
     
     ///点赞
     _starBtn = [[FunctionBtn alloc] init];
-    [_starBtn addTarget:self action:@selector(ClickedStar:) forControlEvents:UIControlEventTouchUpInside];
+    _starBtn.ignoreEvent = NO;
+    _starBtn.canTapEventInterval = 0.5;
+    [_starBtn addTarget:self action:@selector(ClickedStar) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_starBtn];
     
     ///评论
     _commendBtn = [[FunctionBtn alloc] init];
+    _commendBtn.ignoreEvent = NO;
+    _commendBtn.canTapEventInterval = 0.7;
     _commendBtn.iconView.image = [UIImage imageNamed:@"answerIcon"];
-    [_commendBtn addTarget:self action:@selector(ClickedComment:) forControlEvents:UIControlEventTouchUpInside];
+    [_commendBtn addTarget:self action:@selector(ClickedComment) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_commendBtn];
     
     ///分享
     _shareBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    _shareBtn.ignoreEvent = NO;
+    _shareBtn.canTapEventInterval = 0.7;
     _shareBtn.backgroundColor = [UIColor clearColor];
     [_shareBtn setBackgroundImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
-    [_shareBtn addTarget:self action:@selector(ClickedShare:) forControlEvents:UIControlEventTouchUpInside];
+    [_shareBtn addTarget:self action:@selector(ClickedShare) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_shareBtn];
     
 }
@@ -159,11 +170,13 @@
     }];
     
     [_funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.051);
+        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.89 * 18/343);
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
-        make.width.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.width);
-        make.height.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.height);
+        make.right.mas_equalTo(self.contentView.mas_right);
+        make.height.mas_equalTo((SCREEN_WIDTH * 0.89 * 18/343 + [UIImage imageNamed:@"QAMoreButton"].size.height));
     }];
+    [_funcBtn setImageEdgeInsets:UIEdgeInsetsMake((SCREEN_WIDTH * 0.89 * 18/343 - [UIImage imageNamed:@"QAMoreButton"].size.height), 0, 0, (SCREEN_WIDTH * 0.11 - [UIImage imageNamed:@"QAMoreButton"].size.width))];
+    
     
     [_detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.021);
@@ -178,13 +191,13 @@
         make.height.mas_equalTo(1).priorityLow();
     }];
     
-    [_groupLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.collectView.mas_bottom).mas_offset(11);
+    [_groupLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2707 * 25.5/101.5);
         make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-Pading * 62.5/16);
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
-        make.width.mas_equalTo(_groupImage.size);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.2707);
     }];
-    _groupLabel.layer.cornerRadius = 1/2 * _groupImage.size.height * 1/2;
+    _groupLabel.layer.cornerRadius = SCREEN_WIDTH * 0.2707 * 25.5/101.5 * 1/2;
     
     [_starBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groupLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
@@ -206,6 +219,7 @@
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
     }];
     
+    self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     
 }
 
@@ -224,7 +238,7 @@
 - (void)setItem:(PostItem *)item {
     if (item) {
         _item = item;
-        self.iconImageView.image = [UIImage imageNamed:@"圈子图像"];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
         self.nicknameLabel.text = item.nick_name;
         self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%@",item.publish_time]];
         self.detailLabel.text = item.content;
@@ -242,6 +256,7 @@
             make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
             make.width.mas_equalTo(buttonSize.width + SCREEN_WIDTH * 0.05 * 2);
         }];
+        _groupLabel.layer.cornerRadius = SCREEN_WIDTH * 0.2707 * 25.5/101.5 * 1/2;
         self.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.comment_count];
         self.starBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.praise_count];
         self.starBtn.selected = [item.is_praised intValue] == 1 ? YES : NO;
@@ -345,37 +360,37 @@
    return timeStr;
 }
 
-- (void)ClickedFuncBtn:(UIButton *)sender {
+- (void)ClickedFuncBtn {
     if ([self.delegate respondsToSelector:@selector(ClickedFuncBtn:)]) {
-        [self.delegate ClickedFuncBtn:sender];
+        [self.delegate ClickedFuncBtn:self];
     }
 }
 
 ///点赞的逻辑：点赞后，本地改变点赞的数值，然后通过网络请求传入后端
-- (void)ClickedStar:(FunctionBtn *)sender {
+- (void)ClickedStar {
     if ([self.delegate respondsToSelector:@selector(ClickedStarBtn:)]) {
-        [self.delegate ClickedStarBtn:sender];
+        [self.delegate ClickedStarBtn:self];
     }
 }
 
 ///跳转到具体的评论界面
-- (void)ClickedComment:(FunctionBtn *)sender {
+- (void)ClickedComment {
     if ([self.delegate respondsToSelector:@selector(ClickedCommentBtn:)]) {
-        [self.delegate ClickedCommentBtn:sender];
+        [self.delegate ClickedCommentBtn:self];
     }
 }
 
 ///分享
-- (void)ClickedShare:(UIButton *)sender {
+- (void)ClickedShare {
     if ([self.delegate respondsToSelector:@selector(ClickedShareBtn:)]) {
-        [self.delegate ClickedShareBtn:sender];
+        [self.delegate ClickedShareBtn:self];
     }
 }
 
 ///点击标签跳转进相应的圈子
-- (void)ClickedGroupTopicBtn:(UIButton *)sender {
+- (void)ClickedGroupTopicBtn {
     if ([self.delegate respondsToSelector:@selector(ClickedGroupTopicBtn:)]) {
-        [self.delegate ClickedGroupTopicBtn:sender];
+        [self.delegate ClickedGroupTopicBtn:self];
     }
 }
 @end

@@ -32,7 +32,11 @@
 }
 
 - (void)clear{
-    [self.delegate clearPhotoImageView:self];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(clearPhotoImageView:)]) {
+        [self.delegate clearPhotoImageView:self];
+    }
+    
 }
 
 @end

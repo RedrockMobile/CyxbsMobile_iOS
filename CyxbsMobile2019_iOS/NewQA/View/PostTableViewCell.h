@@ -13,13 +13,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PostTableViewCell;
 @protocol PostTableViewCellDelegate <NSObject>
 
-- (void)ClickedFuncBtn:(UIButton *)sender;
-- (void)ClickedStarBtn:(FunctionBtn *)sender;
-- (void)ClickedCommentBtn:(FunctionBtn *)sender;
-- (void)ClickedShareBtn:(UIButton *)sender;
-- (void)ClickedGroupTopicBtn:(UIButton *)sender;
+- (void)ClickedFuncBtn:(PostTableViewCell *)cell;
+- (void)ClickedStarBtn:(PostTableViewCell *)cell;
+- (void)ClickedCommentBtn:(PostTableViewCell *)cell;
+- (void)ClickedShareBtn:(PostTableViewCell *)cell;
+- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell;
 
 @end
 

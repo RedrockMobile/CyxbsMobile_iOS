@@ -13,20 +13,20 @@
 #import "EditMyInfoPercentDrivenController.h"
 #import "CheckInViewController.h"
 #import "MineQAController.h"
-#import "MineQADataItem.h"
 #import "MineAboutController.h"
 //#import "SelfSafeViewController.h"
 
+#import "MainMsgCntModel.h"
 #import "ArticleViewController.h"
 #import "RemarkViewController.h"
 #import "PraiseViewController.h"
+#import "EditMyInfoModel.h"
 
-#import "MineModel.h"
 #import "MineSettingViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import "CheckInModel.h"
 
-@interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate>
+@interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 /// tableView
 @property (nonatomic, weak) UITableView *appSettingTableView;
@@ -36,6 +36,11 @@
 
 /// tabelViewCell的标题数据来源
 @property (nonatomic, copy) NSArray <NSString*> *cellTitleStrArr;
+
+@property (nonatomic, strong)MainMsgCntModel *msgCntModel;
+
+/// 是否正在加载未读消息数、动态点赞评论的个数
+@property (nonatomic, assign)BOOL isLoadingMsgCntData;
 @end
 
 
@@ -54,9 +59,12 @@
         self.view.backgroundColor = [UIColor colorWithRed:240/255.0 green:242/255.0 blue:250/255.0 alpha:1];
     }
 //    248_249_252&0_1_1
+    self.msgCntModel = [[MainMsgCntModel alloc] init];
+    self.msgCntModel.delegate = self;
     
     [self addContentView];
     [self addAppSettingTableView];
+    self.isLoadingMsgCntData = NO;
 }
 
 /// 添加contentView
@@ -105,14 +113,21 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // 加载邮问数据
-    [MineModel requestQADataSucceeded:^(MineQADataItem * _Nonnull responseItem) {
-        [self QAInfoRequestsSucceededWithItem:responseItem];
-    } failed:^(NSError * _Nonnull err) {
-        
-    }];
+//    [MineModel requestQADataSucceeded:^(MineQADataItem * _Nonnull responseItem) {
+//        [self.headerView.articleNumBtn setTitle:responseItem.askNum forState:UIControlStateNormal];
+//        [self.headerView.remarkNumBtn setTitle:responseItem.commentNum forState:UIControlStateNormal];
+//        [self.headerView.praiseNumBtn setTitle:responseItem.praiseNum forState:UIControlStateNormal];
+//    } failed:^(NSError * _Nonnull err) {
+//
+//    }];
+    [self loadUserData];
+    if (self.isLoadingMsgCntData==YES) {
+        return;
+    }
+    
+    [self.msgCntModel mainMsgCntModelLoadMoreData];
     // 隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
-    [self loadUserData];
 }
 
 - (void)loadUserData {
@@ -128,11 +143,41 @@
     self.headerView.signinDaysLabel.text = [NSString stringWithFormat:@"已连续签到%@天", user.checkInDay ? user.checkInDay : @"0"];
     
     NSURL *headerImageURL = [NSURL URLWithString:[UserItemTool defaultItem].headImgUrl];
-    [self.headerView.headerImageView sd_setImageWithURL:headerImageURL placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageRefreshCached];
+    
+    [self.headerView.headerImageBtn sd_setImageWithURL:headerImageURL forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageRefreshCached];
 }
 
-- (void)dealloc{
-    
+
+//MARK: - 消息数、动态、评论、获赞数model代理方法
+- (void)mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataState)state {
+    switch (state) {
+        case MainMsgCntModelLoadDataStateSuccess_praise:
+            self.headerView.praiseNumBtn.msgCount = self.msgCntModel.uncheckedPraiseCnt;
+            break;
+        case MainMsgCntModelLoadDataStateFailure_praise:
+            [NewQAHud showHudWith:@"加载未读获赞数失败～" AddView:self.view];
+            break;
+        case MainMsgCntModelLoadDataStateSuccess_comment:
+            self.headerView.remarkNumBtn.msgCount = self.msgCntModel.uncheckedCommentCnt;
+            break;
+        case MainMsgCntModelLoadDataStateFailure_comment:
+            [NewQAHud showHudWith:@"加载未读评论数失败～" AddView:self.view];
+            break;
+        case MainMsgCntModelLoadDataStateSuccess_userCnt:
+            [self loadUserCountDataSuccess];
+            break;
+        case MainMsgCntModelLoadDataStateFailure_userCnt:
+            [NewQAHud showHudWith:@"加载个人数据失败～" AddView:self.view];
+            break;
+    }
+    self.isLoadingMsgCntData = NO;
+}
+
+- (void)loadUserCountDataSuccess {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self.headerView.articleNumBtn setTitle:[defaults stringForKey:MineDynamicCntStrKey]  forState:UIControlStateNormal];
+    [self.headerView.remarkNumBtn setTitle:[defaults stringForKey:MineCommentCntStrKey]  forState:UIControlStateNormal];
+    [self.headerView.praiseNumBtn setTitle:[defaults stringForKey:MinePraiseCntStrKey]  forState:UIControlStateNormal];
 }
 
 
@@ -169,6 +214,8 @@
 
 /// 点击签到框框内的 “评论” 后调用
 - (void)remarkNumBtnClicked{
+    //存放用户最后一次点击评论按钮的时间，用这个时间在MainMsgCntModel获取用户的未读消息数时要使用
+    [[NSUserDefaults standardUserDefaults] setValue:[self getTime] forKey:remarkLastClickTimeKey];
     RemarkViewController *vc = [[RemarkViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -180,6 +227,9 @@
 
 /// 点击签到框框内的 “获赞” 后调用
 - (void)praiseNumBtnClicked{
+    //存放用户最后一次点击获赞按钮的时间，用这个时间在MainMsgCntModel获取用户的未读消息数时要使用
+    [[NSUserDefaults standardUserDefaults] setValue:[self getTime] forKey:praiseLastClickTimeKey];
+    
     PraiseViewController *vc = [[PraiseViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -190,6 +240,12 @@
 //    vc.hidesBottomBarWhenPushed = YES;
 }
 
+- (void)headImgClicked {
+    UIImagePickerController *ctrler = [[UIImagePickerController alloc] init];
+    ctrler.allowsEditing = YES;
+    ctrler.delegate = self;
+    [self presentViewController:ctrler animated:YES completion:nil];
+}
 
 //MARK: - tabelView代理方法方法:
 /// 点击“关于我们”后调用
@@ -214,16 +270,6 @@
 }
 
 
-#pragma mark - Presenter回调
-//MineModel请求QA数据成功后调用
-- (void)QAInfoRequestsSucceededWithItem:(MineQADataItem *)item {
-    //item.askNum
-    [self.headerView.articleNumBtn setTitle:item.answerNum forState:UIControlStateNormal];
-    [self.headerView.remarkNumBtn setTitle:item.commentNum forState:UIControlStateNormal];
-    [self.headerView.praiseNumBtn setTitle:item.praiseNum forState:UIControlStateNormal];
-}
-
-
 #pragma mark - 通知中心回调
 // 退出登录后刷新开关，是否折叠等界面信息
 - (void)loginSucceded {
@@ -245,7 +291,8 @@
     
     cell.backgroundColor = tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    [cell setAccessoryType:(UITableViewCellAccessoryDisclosureIndicator)];
     if (@available(iOS 11.0, *)) {
         cell.textLabel.textColor = [UIColor colorNamed:@"25_56_102&240_240_242"];
     } else {
@@ -257,7 +304,9 @@
     return  cell;
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 0.065*SCREEN_HEIGHT;
+}
 # pragma mark - TableView代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //代理是MineViewController
@@ -279,6 +328,32 @@
     }
 }
 
+/// 获取时间戳
+- (NSString*)getTime {
+    return [NSString stringWithFormat:@"%.0f", [NSDate.now timeIntervalSince1970]];
+}
+
+//imgPicker的代理方法：
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
+    UIImage *img = info[UIImagePickerControllerEditedImage];
+    [self.headerView.headerImageBtn setImage:img forState:normal];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [EditMyInfoModel uploadProfile:img success:^(NSDictionary * _Nonnull responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            [UserItemTool defaultItem].headImgUrl = responseObject[@"data"][@"photosrc"];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"上传成功～";
+            [hud hide:YES afterDelay:1];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"上传成功～";
+        [hud hide:YES afterDelay:1];
+    }];
+}
 
 #pragma mark - 转场动画
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {

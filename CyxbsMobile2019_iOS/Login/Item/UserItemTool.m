@@ -11,6 +11,7 @@
 #import <UMPush/UMessage.h>
 #import "ArchiveTool.h"
 
+#import "PostArchiveTool.h"
 @interface UserItemTool ()
 
 @property (nonatomic, strong) UserItem *item;
@@ -67,8 +68,11 @@
         [fileManager removeItemAtPath:filePath error:&err];
     }
     
-    [ArchiveTool deleteFile];
     
+    [ArchiveTool deleteFile];
+    [PostArchiveTool removePostModel];
+    [PostArchiveTool removeGroupModel];
+    [PostArchiveTool removeHotWordModel];
     
     //清除课表数据和备忘数据
     [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];
@@ -118,32 +122,34 @@
         [UserDefaultTool saveToken:responseObject[@"data"][@"token"]];
         [UserDefaultTool saveRefreshToken:responseObject[@"data"][@"refreshToken"]];
         
-        NSLog(@"%@", [UserItemTool defaultItem].token);
+        NSLog(@"token:%@", [UserItemTool defaultItem].token);
 
         if (error) {
-            NSLog(@"%@", error);
+            NSLog(@"tokenError1%@", error);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-        NSLog(@"%@", error);
+        NSLog(@"tokenError2：%@", error);
         
-        // token刷新失败，可能是用户token过期或者出了别的什么问题，提示用户重新登录
-        UIAlertController *loginAlertController = [UIAlertController alertControllerWithTitle:@"登录已过期" message:@"登录验证信息失效，请重新登录" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"重新登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            // 直接退出登录
-            [self logout];
-        }];
-        
-        
-        [loginAlertController addAction:loginAction];
-        
-        UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-        if (tabBarVC.presentedViewController) {
-            [tabBarVC dismissViewControllerAnimated:YES completion:^{
-                [tabBarVC presentViewController:loginAlertController animated:YES completion:nil];
+        if (error.code == NSURLErrorBadServerResponse) {
+            // token刷新失败，可能是用户token过期或者出了别的什么问题，提示用户重新登录
+            UIAlertController *loginAlertController = [UIAlertController alertControllerWithTitle:@"登录已过期" message:@"登录验证信息失效，请重新登录" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"重新登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                // 直接退出登录
+                [self logout];
             }];
-        } else {
-            [tabBarVC presentViewController:loginAlertController animated:YES completion:nil];
+            
+            
+            [loginAlertController addAction:loginAction];
+            
+            UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+            if (tabBarVC.presentedViewController) {
+                [tabBarVC dismissViewControllerAnimated:YES completion:^{
+                    [tabBarVC presentViewController:loginAlertController animated:YES completion:nil];
+                }];
+            } else {
+                [tabBarVC presentViewController:loginAlertController animated:YES completion:nil];
+            }
         }
     }];
 }

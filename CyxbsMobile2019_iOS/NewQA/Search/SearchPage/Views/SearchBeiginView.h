@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 顶部搜索的视图
 @property (nonatomic, strong) SearchTopView *searchTopView;
 @property (nonatomic, strong) SZHHotSearchView *hotSearchView;
-//分割条
+///分割条
 @property (nonatomic, strong) UIView *topSeparation;
 
 //保存传入的str进行热门搜索或者邮问知识库的初始化
