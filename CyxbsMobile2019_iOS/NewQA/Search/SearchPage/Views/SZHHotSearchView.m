@@ -152,7 +152,12 @@
         [self.buttonAry[i] removeFromSuperview];
     }
     [self addbutts];
-//    [self layoutIfNeeded];
+}
+
+- (void)hideKnowledgeBtns{
+    for (UIButton *btn in self.buttonAry) {
+        [btn setHidden:YES];
+    }
 }
 #pragma mark- getter
 - (UILabel *)hotSearch_KnowledgeLabel{

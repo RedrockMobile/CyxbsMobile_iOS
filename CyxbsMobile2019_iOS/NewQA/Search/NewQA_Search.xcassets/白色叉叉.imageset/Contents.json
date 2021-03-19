@@ -1,16 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "删除.png",
+      "filename" : "组 25.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "删除 2.png",
+      "filename" : "组 25@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "组 25@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -44,7 +44,7 @@
     
     [self addSubview:self.topSeparation];
     [self.topSeparation mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.hotSearchView.mas_bottom);
+        make.bottom.equalTo(self.mas_bottom);
         make.left.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, 1));
     }];

@@ -435,6 +435,8 @@
 		B892095425BEC30B00386451 /* SearchTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095325BEC30B00386451 /* SearchTopView.m */; };
 		B892095A25BEDA1A00386451 /* SearchBeiginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B892095925BEDA1A00386451 /* SearchBeiginView.m */; };
 		B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B892096B25BEDEA600386451 /* SearchBeginVC.m */; };
+		B89B8E5D2603928F00497814 /* CYSearchEndKnowledgeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89B8E5C2603928F00497814 /* CYSearchEndKnowledgeDetailView.m */; };
+		B89B8E632603974400497814 /* CYSearchEndKnowledgeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B89B8E622603974400497814 /* CYSearchEndKnowledgeDetailModel.m */; };
 		B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */; };
 		B8C705BF25D7ABC8009B73F7 /* SZHPhotoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C705BE25D7ABC8009B73F7 /* SZHPhotoImageView.m */; };
 		B8C705C525D8018D009B73F7 /* originPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C705C425D8018D009B73F7 /* originPhotoView.m */; };
@@ -1436,6 +1438,10 @@
 		B892095925BEDA1A00386451 /* SearchBeiginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBeiginView.m; sourceTree = "<group>"; };
 		B892096A25BEDEA600386451 /* SearchBeginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBeginVC.h; sourceTree = "<group>"; };
 		B892096B25BEDEA600386451 /* SearchBeginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBeginVC.m; sourceTree = "<group>"; };
+		B89B8E5B2603928F00497814 /* CYSearchEndKnowledgeDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYSearchEndKnowledgeDetailView.h; sourceTree = "<group>"; };
+		B89B8E5C2603928F00497814 /* CYSearchEndKnowledgeDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSearchEndKnowledgeDetailView.m; sourceTree = "<group>"; };
+		B89B8E612603974400497814 /* CYSearchEndKnowledgeDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYSearchEndKnowledgeDetailModel.h; sourceTree = "<group>"; };
+		B89B8E622603974400497814 /* CYSearchEndKnowledgeDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSearchEndKnowledgeDetailModel.m; sourceTree = "<group>"; };
 		B8A981F525E1452B0020CD86 /* SZHCircleLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHCircleLabelView.h; path = CyxbsMobile2019_iOS/SZHCircleLabelView.h; sourceTree = SOURCE_ROOT; };
 		B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SZHCircleLabelView.m; path = CyxbsMobile2019_iOS/SZHCircleLabelView.m; sourceTree = SOURCE_ROOT; };
 		B8C705BD25D7ABC8009B73F7 /* SZHPhotoImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHPhotoImageView.h; path = CyxbsMobile2019_iOS/NewQA/Search/ReleaseDynamic/Controller/SZHPhotoImageView.h; sourceTree = SOURCE_ROOT; };
@@ -3817,6 +3823,8 @@
 			children = (
 				B82C451B25DBC09000340C12 /* SearchEndModel.h */,
 				B82C451C25DBC09000340C12 /* SearchEndModel.m */,
+				B89B8E612603974400497814 /* CYSearchEndKnowledgeDetailModel.h */,
+				B89B8E622603974400497814 /* CYSearchEndKnowledgeDetailModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3839,6 +3847,15 @@
 				B82C454225DC302100340C12 /* SZHArchiveTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		B89B8E5A2603924000497814 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B89B8E5B2603928F00497814 /* CYSearchEndKnowledgeDetailView.h */,
+				B89B8E5C2603928F00497814 /* CYSearchEndKnowledgeDetailView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B8AA53D525B9491700CEE847 /* SearchPage */ = {
@@ -3934,6 +3951,7 @@
 		B8C6757C25D9586100D2598B /* SearchEndPage */ = {
 			isa = PBXGroup;
 			children = (
+				B89B8E5A2603924000497814 /* Views */,
 				B82C450E25DBB44400340C12 /* Models */,
 				B8C6757D25D9588100D2598B /* Controllers */,
 			);
@@ -4982,6 +5000,7 @@
 				B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */,
 				18CDF717257F91BE006E8E5C /* ActivityItem.m in Sources */,
 				AAE3304725E2A0D800324750 /* ArticleViewController.m in Sources */,
+				B89B8E5D2603928F00497814 /* CYSearchEndKnowledgeDetailView.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				18CDF6B8257F91BD006E8E5C /* ScoreViewController.m in Sources */,
 				18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */,
@@ -5307,6 +5326,7 @@
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */,
 				18CDF6BE257F91BE006E8E5C /* SingleGrade.m in Sources */,
+				B89B8E632603974400497814 /* CYSearchEndKnowledgeDetailModel.m in Sources */,
 				1A46C34523DC6F14005DC1F3 /* MyResponseSentCell.m in Sources */,
 				18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
