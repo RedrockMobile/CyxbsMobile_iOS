@@ -25,6 +25,7 @@
 #import "ClassTabBar.h"
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
+#import "YYZTopicGroupVC.h"
 
 
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
@@ -722,7 +723,8 @@
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
-    
+    YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
+    [self.navigationController pushViewController:topVc animated:YES];
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去

@@ -347,6 +347,11 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
+		7F101AA72604AC2300F2034C /* YYZTopicGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101A9C2604AC2300F2034C /* YYZTopicGroupVC.m */; };
+		7F101AA82604AC2300F2034C /* YYZTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101A9D2604AC2300F2034C /* YYZTopicDetailVC.m */; };
+		7F101AA92604AC2300F2034C /* YYZGroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AA12604AC2300F2034C /* YYZGroupItem.m */; };
+		7F101AAA2604AC2300F2034C /* YYZTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AA42604AC2300F2034C /* YYZTopicCell.m */; };
+		7F101AAB2604AC2300F2034C /* YYZTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F101AA52604AC2300F2034C /* YYZTopicCell.xib */; };
 		7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */; };
 		7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39E7257B79F20077494E /* FindPasswordView.swift */; };
 		7FBF39F3257B79F30077494E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EA257B79F20077494E /* LoginViewController.swift */; };
@@ -1230,6 +1235,15 @@
 		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7F101A9C2604AC2300F2034C /* YYZTopicGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicGroupVC.m; sourceTree = "<group>"; };
+		7F101A9D2604AC2300F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
+		7F101A9E2604AC2300F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
+		7F101A9F2604AC2300F2034C /* YYZTopicDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicDetailVC.h; sourceTree = "<group>"; };
+		7F101AA12604AC2300F2034C /* YYZGroupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZGroupItem.m; sourceTree = "<group>"; };
+		7F101AA22604AC2300F2034C /* YYZGroupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZGroupItem.h; sourceTree = "<group>"; };
+		7F101AA42604AC2300F2034C /* YYZTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicCell.m; sourceTree = "<group>"; };
+		7F101AA52604AC2300F2034C /* YYZTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYZTopicCell.xib; sourceTree = "<group>"; };
+		7F101AA62604AC2300F2034C /* YYZTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicCell.h; sourceTree = "<group>"; };
 		7F318CA0257F5ACD009FE4EA /* YYZGetIdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZGetIdVC.h; sourceTree = "<group>"; };
 		7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZGetIdVC.m; sourceTree = "<group>"; };
 		7FBF39E7257B79F20077494E /* FindPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordView.swift; sourceTree = "<group>"; };
@@ -1653,6 +1667,7 @@
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
 			isa = PBXGroup;
 			children = (
+				7F101A9A2604AC2300F2034C /* YYZTopicGroup */,
 				1817F00D2594D5C500FE1304 /* Controller */,
 				1817F0102594D5C500FE1304 /* Model */,
 				1817F0212594D5C500FE1304 /* View */,
@@ -3444,6 +3459,47 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7F101A9A2604AC2300F2034C /* YYZTopicGroup */ = {
+			isa = PBXGroup;
+			children = (
+				7F101A9B2604AC2300F2034C /* Controller */,
+				7F101AA02604AC2300F2034C /* Model */,
+				7F101AA32604AC2300F2034C /* View */,
+			);
+			name = YYZTopicGroup;
+			path = ../../../../1/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/NewQA/YYZTopicGroup;
+			sourceTree = "<group>";
+		};
+		7F101A9B2604AC2300F2034C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7F101A9C2604AC2300F2034C /* YYZTopicGroupVC.m */,
+				7F101A9D2604AC2300F2034C /* YYZTopicDetailVC.m */,
+				7F101A9E2604AC2300F2034C /* YYZTopicGroupVC.h */,
+				7F101A9F2604AC2300F2034C /* YYZTopicDetailVC.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7F101AA02604AC2300F2034C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7F101AA12604AC2300F2034C /* YYZGroupItem.m */,
+				7F101AA22604AC2300F2034C /* YYZGroupItem.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7F101AA32604AC2300F2034C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7F101AA42604AC2300F2034C /* YYZTopicCell.m */,
+				7F101AA52604AC2300F2034C /* YYZTopicCell.xib */,
+				7F101AA62604AC2300F2034C /* YYZTopicCell.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AA4FA1BC25C2A5C2005139BA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -4469,6 +4525,7 @@
 				18CDF705257F91BE006E8E5C /* 2@2x.png in Resources */,
 				DB34EB06239BD4550052B65E /* 左三角@2x.png in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
+				7F101AAB2604AC2300F2034C /* YYZTopicCell.xib in Resources */,
 				18CDF706257F91BE006E8E5C /* 年份圆圈.png in Resources */,
 				18CDF700257F91BE006E8E5C /* 标签矩形@2x.png in Resources */,
 				18CDF6EF257F91BE006E8E5C /* 4@3x.png in Resources */,
@@ -4753,6 +4810,7 @@
 				1817F0532594D5C500FE1304 /* RecommendedTableView.m in Sources */,
 				18CDF66B257F91BD006E8E5C /* BannerData.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
+				7F101AA82604AC2300F2034C /* YYZTopicDetailVC.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				D06AAEDF24AC00BB00EE0892 /* QAReviewView.m in Sources */,
 				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
@@ -4818,6 +4876,7 @@
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
+				7F101AAA2604AC2300F2034C /* YYZTopicCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
 				18CDF6BF257F91BE006E8E5C /* GPA.m in Sources */,
@@ -4875,6 +4934,7 @@
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */,
 				18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
+				7F101AA72604AC2300F2034C /* YYZTopicGroupVC.m in Sources */,
 				18CDF68B257F91BD006E8E5C /* ChoosePeopleListView.m in Sources */,
 				AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */,
 				18CDF6AB257F91BD006E8E5C /* SCLineChart.m in Sources */,
@@ -5025,6 +5085,7 @@
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				18CDF6CA257F91BE006E8E5C /* SchoolBusModel.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
+				7F101AA92604AC2300F2034C /* YYZGroupItem.m in Sources */,
 				18CDF6CD257F91BE006E8E5C /* SchoolBusViewController.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
