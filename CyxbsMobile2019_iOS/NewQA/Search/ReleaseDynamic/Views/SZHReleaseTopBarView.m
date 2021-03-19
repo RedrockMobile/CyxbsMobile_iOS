@@ -32,9 +32,6 @@
     [self addSubview:self.leftBtn];
     [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.0427);
-//        make.top.equalTo(self).offset(MAIN_SCREEN_H * 0.0572);
-//        make.top.equalTo(self);
-//        make.top.equalTo(self).offset(MAIN_SCREEN_H * 0.0286);
         make.bottom.equalTo(self.mas_top).offset(NVGBARHEIGHT);
         make.size.mas_equalTo(CGSizeMake(7, 14));
     }];

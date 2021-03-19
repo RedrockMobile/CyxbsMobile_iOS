@@ -49,9 +49,10 @@
         
         [self addSubview:self.clearBtn];
         [self.clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.contentTextView);
+            make.right.equalTo(self.contentTextView.mas_right);
             make.bottom.equalTo(self.titleLbl);
-            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.04, MAIN_SCREEN_W * 0.04));
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.08, MAIN_SCREEN_W * 0.08));
+            make.size.mas_equalTo(CGSizeMake(30, 30));
         }];
     }
     return self;

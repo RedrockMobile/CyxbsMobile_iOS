@@ -43,11 +43,24 @@
     //返回按钮
     [self addSubview:self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0427);
+//        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0217);
+        make.left.equalTo(self);
+        make.top.equalTo(self);
+        make.bottom.equalTo(self);
+        make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133);
+                //高是宽的两倍
+//        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0186, 2 *MAIN_SCREEN_W * 0.0186 ));
+    }];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageView.image = [UIImage imageNamed:@"返回的小箭头"];
+    [self.backBtn addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0427);
         make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0217);
-                //高是宽的两倍
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0186, 2 *MAIN_SCREEN_W * 0.0186 ));
     }];
+    
     
     //搜索视图
         //1.添加背景view到屏幕上并设置布局
@@ -102,7 +115,7 @@
         //
         _backBtn = [[UIButton alloc] init];
             //设置图片
-        [_backBtn setBackgroundImage:[UIImage imageNamed:@"返回的小箭头"] forState:UIControlStateNormal];
+//        [_backBtn setBackgroundImage:[UIImage imageNamed:@"返回的小箭头"] forState:UIControlStateNormal];
         //添加方法，跳回返回界面
         [_backBtn addTarget:self.delegate action:@selector(jumpBack) forControlEvents:UIControlEventTouchUpInside];
     }

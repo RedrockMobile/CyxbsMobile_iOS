@@ -12,7 +12,6 @@
 #import "SZHSearchEndCv.h"
 #import "SearchEndNoResultCV.h" //搜索无结果vc
 #import "GYYDynamicDetailViewController.h"//动态详情
-#import "SZHReleaseDynamic.h"   //发布动态界面
 
 //模型类
 #import "SZHSearchDataModel.h"  //搜索模型
@@ -35,8 +34,6 @@
 @property (nonatomic, strong) CYSearchEndKnowledgeDetailView *knowledgeDetailView;
 /// 知识库详情页的model数组
 @property (nonatomic, copy) NSArray *knowledgeDetaileModelsAry;
-/// 去提问按钮
-@property (nonatomic, strong) UIButton *askBtn;
     ///顶部搜索逻辑相关
 @property (nonatomic, strong) SZHSearchDataModel *searchDataModel;
 @property (nonatomic, strong) NSDictionary *searchDynamicDic;    //相关动态数组
@@ -303,11 +300,6 @@
     [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
 }
 
-/// 跳转到发布动态界面
-- (void)goAskPage{
-    SZHReleaseDynamic *vc = [[SZHReleaseDynamic alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 #pragma mark- 代理方法
 //MARK:上半部分视图以及UITextField的代理方法
 //返回上一界面
@@ -342,26 +334,6 @@
         }
     }
     
-    //设置底部去提问的按钮
-    _askBtn = [[UIButton alloc] initWithFrame:CGRectZero];
-    [_askBtn setBackgroundImage:[UIImage imageNamed:@"去提问按钮的背景图片"] forState:UIControlStateNormal];
-    [_askBtn setTitle:@"去提问" forState:UIControlStateNormal];
-    _askBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
-    [_askBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_askBtn addTarget:self action:@selector(goAskPage) forControlEvents:UIControlEventTouchUpInside];
-    
-//    if (self.tableDataAry.count == 0) {
-        [self.view addSubview:self.askBtn];
-//    }else{
-//        [self.relevantDynamicTable addSubview:self.askBtn];
-//    }
-    [self.askBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.mas_equalTo(self.view.centerX);
-        make.left.equalTo(self.view).offset(MAIN_SCREEN_W * 0.3413);
-        make.top.equalTo(self.view).offset(MAIN_SCREEN_H * 0.8245);
-        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.3173, MAIN_SCREEN_W * 0.112));
-    }];
-    self.askBtn.layer.cornerRadius = MAIN_SCREEN_H * 0.056;
     
 }
 
@@ -382,8 +354,6 @@
     }];
     //将重邮知识库的button显示出来
     [self.searchEndTopView.hotSearchView updateBtns];
-    
-    [self.askBtn removeFromSuperview];
 }
 
 //MARK:相关动态table的数据源和代理方法
