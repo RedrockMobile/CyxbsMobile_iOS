@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GYYDynamicDetailViewController : UIViewController
+/**以下动态 数据，或post_id 最少填一种。默认取item*/
 @property(nonatomic, strong) PostItem *item;
 @property (nonatomic,assign) int post_id;//帖子ID
 @end

@@ -288,7 +288,7 @@
     // 创建功能页面
     _popView = [[FuncView alloc] init];
     // 创建举报页面
-    _reportView = [[ReportView alloc] init];
+    _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
     
 }
 

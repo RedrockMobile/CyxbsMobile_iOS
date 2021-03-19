@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *postID;
 
 @property (nonatomic, weak) id<ReportViewDelegate> delegate;
+- (instancetype)initWithPostID:(NSNumber *)PostID;
 
 @end
 

@@ -488,7 +488,7 @@
 - (void)ClickedReportBtn:(UIButton *)sender  {
     [_popView removeFromSuperview];
     PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
-//    _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
+    _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
     _reportView.delegate = self;
     [[UIApplication sharedApplication].keyWindow addSubview:_reportView];
     [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {

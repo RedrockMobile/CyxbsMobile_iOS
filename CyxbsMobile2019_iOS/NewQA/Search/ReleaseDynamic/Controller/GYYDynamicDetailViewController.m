@@ -21,8 +21,9 @@
 #import "NewQAHud.h"
 #import "UIScrollView+Empty.h"
 #import "GYYShareView.h"
+#import "shareView.h"
 
-@interface GYYDynamicDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DKSKeyboardDelegate,ReportViewDelegate,PostTableViewCellDelegate,GYYShareViewDelegate>
+@interface GYYDynamicDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DKSKeyboardDelegate,ReportViewDelegate,PostTableViewCellDelegate,GYYShareViewDelegate,ShareViewDelegate>
 @property(nonatomic, strong) RecommendedTableView *mainTableView;
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (nonatomic,assign) NSInteger totalCount;
@@ -37,6 +38,10 @@
 //当前操作的评论
 @property(nonatomic, strong) GYYDynamicCommentModel *actionCommentModel;
 @property(nonatomic, strong) ReportView *reportView;
+
+///分享页面
+@property (nonatomic, strong) ShareView *shareView;
+
 @end
 
 @implementation GYYDynamicDetailViewController
@@ -87,7 +92,7 @@
 }
 - (ReportView *)reportView{
     if (!_reportView) {
-        _reportView = [[ReportView alloc] init];
+        _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithInt:[self.item.post_id intValue]]];
         _reportView.frame = CGRectMake(0, 0, SCREEN_WIDTH * (1-0.1587*2),SCREEN_WIDTH * 0.6827 * 329/256);
         _reportView.delegate = self;
     }
@@ -100,7 +105,7 @@
         self.view.backgroundColor = [UIColor colorNamed:@"SZH发布动态主板颜色"];
     }
     self.title = @"详情";
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:23],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:23],NSForegroundColorAttributeName:[UIColor colorWithLightColor:KUIColorFromRGB(0x15315B) DarkColor:KUIColorFromRGB(0xf0f0f2)]}];
     
     [self addBackButton];
     self.allCommentM = [NSMutableArray array];
@@ -125,6 +130,8 @@
     self.pageIndex = 1;
     [self setUpRefresh];
     [self getPostItem];//获取帖子详情
+    
+    _shareView = [[ShareView alloc] init];
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -215,14 +222,23 @@
 }
 - (void)getPostItem{
     
-    //    NSDictionary *param = @{@"key":str ,@"page":@(page) ,@"size":@6};
-    //    [[HttpClient defaultClient] requestWithPath:NEWQA_SEARCH_DYNAMIC_API method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-    //        NSLog(@"加载动态列表数据成功");
-    //        NSArray *ary = responseObject[@"data"];
-    //
-    //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    //
-    //    }];
+    if (!self.item && self.post_id >0) {
+        
+        [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            if ([responseObject[@"status"] intValue] ==200) {
+                self.item = [PostItem mj_objectWithKeyValues:responseObject[@"data"]];
+                [self updateDynamicViewHeight];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            
+        }];
+        
+    }else{
+        [self updateDynamicViewHeight];
+    }
+    
+}
+- (void)updateDynamicViewHeight{
     
     self.dynamicView.item = self.item;
     //计算帖子的高度
@@ -288,7 +304,7 @@
     GYYDynamicCommentTableViewCell *cell = (GYYDynamicCommentTableViewCell*)[self.mainTableView cellForRowAtIndexPath:indexPath];
     
     SHPopMenu *_menu = [[SHPopMenu alloc]init];
-
+    
     _menu.dimBackground = YES;
     _menu.menuW = SCREEN_WIDTH * 0.4747;
     _menu.contentH = SCREEN_WIDTH*0.0773;
@@ -313,12 +329,13 @@
             }else{//复制
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
                 pab.string = weakSelf.actionCommentModel.content;
-//                [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
+                //                [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
             }
         }else{
             if (self.actionCommentModel.is_self) {//删除
                 [weakSelf deleteAction];
             }else{//举报
+                
                 weakSelf.reportView.postID = [NSNumber numberWithInteger:self.actionCommentModel.comment_id];
                 weakSelf.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeBlackTranslucent];
                 weakSelf.zh_popupController.dismissOnMaskTouched = NO;
@@ -332,14 +349,14 @@
 #pragma mark --
 //删除评论
 - (void)deleteAction{
-
+    
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-       
+        
         if ([responseObject[@"status"] intValue] ==200) {
             [NewQAHud showHudWith:@"删除成功" AddView:self.view];
             [self.mainTableView.mj_header beginRefreshing];
         }
-
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [NewQAHud showHudWith:@"删除失败，请重试" AddView:self.view];
         
@@ -359,7 +376,7 @@
         }else{
             [NewQAHud showHudWith:@"网络错误，请重试" AddView:self.view];
         }
-     
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [NewQAHud showHudWith:@"举报失败，请重试" AddView:self.view];
         
@@ -374,7 +391,7 @@
 - (void)ClickedFuncBtn:(UIButton *)sender{
     
     SHPopMenu *_menu = [[SHPopMenu alloc]init];
-
+    
     _menu.dimBackground = YES;
     _menu.menuW = 132;
     _menu.contentH = 35;
@@ -385,25 +402,25 @@
     
     _menu.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x0C3573) DarkColor:KUIColorFromRGB(0x0C3573)];
     _menu.font = [UIFont fontWithName:PingFangSCMedium size:12];
-//    _menu.layer.cornerRadius = 15;
-//    _menu.layer.masksToBounds = YES;
+    //    _menu.layer.cornerRadius = 15;
+    //    _menu.layer.masksToBounds = YES;
     
     __weak typeof(self)weakSelf = self;
     //显示菜单
-    [_menu showInRectX:sender.frame.origin.x-132 rectY:sender.frame.origin.y+105 block:^(SHPopMenu *menu, NSInteger index) {
-
-            if (index != 0) {//举报
-                weakSelf.reportView.postID =  weakSelf.reportView.postID = [NSNumber numberWithInt:self.post_id];
-                weakSelf.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeBlackTranslucent];
-                weakSelf.zh_popupController.dismissOnMaskTouched = NO;
-                [weakSelf.zh_popupController presentContentView:weakSelf.reportView];
-                
-            }else{//屏蔽此人
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [NewQAHud showHudWith:@"将不再推荐该用户的动态给你" AddView:self.view];
-                });
-                
-            }
+    [_menu showInRectX:CGRectGetWidth(sender.superview.frame)-CGRectGetMinX(sender.frame)-132 rectY:sender.frame.origin.y+105 block:^(SHPopMenu *menu, NSInteger index) {
+        
+        if (index != 0) {//举报
+            weakSelf.reportView.postID =  weakSelf.reportView.postID = [NSNumber numberWithInt:self.post_id];
+            weakSelf.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeBlackTranslucent];
+            weakSelf.zh_popupController.dismissOnMaskTouched = NO;
+            [weakSelf.zh_popupController presentContentView:weakSelf.reportView];
+            
+        }else{//屏蔽此人
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [NewQAHud showHudWith:@"将不再推荐该用户的动态给你" AddView:self.view];
+            });
+            
+        }
         
     }];
     
@@ -435,7 +452,7 @@
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    
+        
     }];
 }
 - (void)ClickedCommentBtn:(FunctionBtn *)sender{
@@ -444,15 +461,74 @@
 }
 - (void)ClickedShareBtn:(UIButton *)sender{
     
-    GYYShareView *shareView = [[GYYShareView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    shareView.delegate = self;
+    //    GYYShareView *shareView = [[GYYShareView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    //    shareView.delegate = self;
+    //    self.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeClear];
+    //    self.zh_popupController.dismissOnMaskTouched = NO;
+    //    [self.zh_popupController presentContentView:shareView];
+    
+    
+    _shareView.delegate = self;
+    _shareView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*(1-0.6897));
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
+    //此处还需要修改
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    NSString *shareURL = [NSString stringWithFormat:@"%@%@",@"cyxbs://redrock.team/answer_list/qa/entry?question_id=",self.item.post_id];
+    pasteboard.string = shareURL;
+    
+    
     self.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeClear];
     self.zh_popupController.dismissOnMaskTouched = NO;
-    [self.zh_popupController presentContentView:shareView];
+    self.zh_popupController.layoutType = zhPopupLayoutTypeBottom;
+    self.zh_popupController.slideStyle = zhPopupSlideStyleFromBottom;
+    [self.zh_popupController presentContentView:_shareView];
+    
 }
 - (void)ClickedGroupTopicBtn:(UIButton *)sender{
     
 }
+
+#pragma mark -分享View的代理方法
+///点击取消
+- (void)ClickedCancel {
+    [self.zh_popupController dismiss];
+}
+
+///点击分享QQ空间
+- (void)ClickedQQZone {
+    [self.zh_popupController dismiss];
+    [self shareSuccessful];
+}
+
+///点击分享朋友圈
+- (void)ClickedVXGroup {
+    [self.zh_popupController dismiss];
+    [self shareSuccessful];
+}
+
+///点击分享QQ
+- (void)ClickedQQ {
+    [self.zh_popupController dismiss];
+    [self shareSuccessful];
+}
+
+///点击分享微信好友
+- (void)ClickedVXFriend {
+    [self.zh_popupController dismiss];
+    [self shareSuccessful];
+}
+
+///点击分享复制链接
+- (void)ClickedUrl {
+    [self.zh_popupController dismiss];
+    [self shareSuccessful];
+}
+- (void)shareSuccessful {
+    
+    [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
+}
+
 
 #pragma mark -- GYYShareViewDelegate
 - (void)shareViewAction{
@@ -485,7 +561,7 @@
     //设置参数
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:textStr forKey:@"content"];
-
+    
     [param setObject:@(self.post_id) forKey:@"post_id"];
     if (self.actionCommentModel.comment_id>0) {
         [param setObject:@(self.actionCommentModel.comment_id) forKey:@"reply_id"];
