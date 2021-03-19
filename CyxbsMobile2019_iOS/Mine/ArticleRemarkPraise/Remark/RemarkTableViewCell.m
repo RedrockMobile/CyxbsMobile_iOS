@@ -8,6 +8,9 @@
 
 #import "RemarkTableViewCell.h"
 
+//GYY的发送评论页面
+#import "GYYSendCommentImageChooseViewController.h"
+
 @interface RemarkTableViewCell()
 
 /// 自己的评论/动态的内容label
@@ -174,7 +177,9 @@
 
 /// 点击评论按钮后调用
 - (void)remarkBtnClicked {
-    
+    GYYSendCommentImageChooseViewController *commentVC = [GYYSendCommentImageChooseViewController new];
+    commentVC.post_id = self.post_id.intValue;
+    [self.viewController.navigationController pushViewController:commentVC animated:YES];
 }
 
 //MARK: - 重写set方法
@@ -188,8 +193,6 @@
         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
         self.timeLabel.text = [NSString stringWithFormat:@"%ld.%ld.%ld",components.year,components.month,components.day];
     }
-    
-//    CCLog(@"mm%@,%@,%@,%@,%@,%@",model.content,model.comment_id,model.from,model.post_id,model.type,model.is_praised);
     
     if (model.nick_name==nil||[model.nick_name isEqualToString:@""]) {
         self.nickNameLabel.text = @"匿名用户";
@@ -239,7 +242,6 @@
          }];
      }
  }
-
 
 @end
 

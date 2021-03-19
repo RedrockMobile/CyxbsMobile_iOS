@@ -9,9 +9,8 @@
 #import "ReportView.h"
 
 @implementation ReportView
-- (instancetype)initWithPostID:(NSNumber *)PostID {
+- (instancetype)init{
     if ([super init]) {
-        self.postID = PostID;
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"ReportViewBackColor"];
         } else {
@@ -20,7 +19,7 @@
         self.layer.cornerRadius = 9.5;
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.text = @"请填写举报理由";
-        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Bold" size: 15];
+        titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 15];
         if (@available(iOS 11.0, *)) {
             titleLabel.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
         } else {
@@ -32,12 +31,20 @@
         
         UITextView *textView = [[UITextView alloc] init];
         textView.backgroundColor = [UIColor clearColor];
-        textView.placeholderTextView.text = @"150字以内(选填)";
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"150字以内(选填)" attributes:
+             @{NSForegroundColorAttributeName:[UIColor colorNamed:@"ReportViewPlaceholderColor"],
+               NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:12]}
+             ];
+        textView.attributedPlaceholder = attrString;
         if (@available(iOS 11.0, *)) {
             textView.layer.borderColor = [UIColor colorNamed:@"LineColor"].CGColor;
+            textView.placeholderTextView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
+            textView.textColor = [UIColor colorNamed:@"ReportTextColor"];
         } else {
-            // Fallback on earlier versions
+            textView.placeholderTextView.textColor = [UIColor colorWithRed:148/255.0 green:166/255.0 blue:196/255.0 alpha:1];
+            textView.textColor = [UIColor colorWithRed:12/255.0 green:53/255.0 blue:115/255.0 alpha:1];
         }
+        [textView setFont:[UIFont fontWithName:PingFangSCMedium size:12]];
         textView.layer.borderWidth =1.0;
         [self addSubview:textView];
         _textView = textView;
@@ -47,7 +54,7 @@
         [sureBtn setBackgroundColor:[UIColor colorWithRed:74.0/255.0 green:67.0/255.0 blue:228.0/255.0 alpha:1]];
         sureBtn.titleLabel.textColor = [UIColor colorWithRed:254.0/255.0 green:254.0/255.0 blue:255.0/255.0 alpha:1];
         [sureBtn setTitleColor:[UIColor colorWithRed:254.0/255.0 green:254.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
-        sureBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
+        sureBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 15];
         [sureBtn addTarget:self action:@selector(ClickedSureBtn) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:sureBtn];
         _sureBtn = sureBtn;
@@ -60,7 +67,7 @@
             // Fallback on earlier versions
         }
         [cancelBtn setTitleColor:[UIColor colorWithRed:254.0/255.0 green:254.0/255.0 blue:255.0/255.0 alpha:1] forState:UIControlStateNormal];
-        cancelBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
+        cancelBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 15];
         [cancelBtn addTarget:self action:@selector(ClickedCancelBtn) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:cancelBtn];
         _cancelBtn = cancelBtn;
@@ -108,8 +115,5 @@
     if ([self.delegate respondsToSelector:@selector(ClickedCancelBtn)]) {
         [self.delegate ClickedCancelBtn];
     }
-}
-- (void)setModel:(NSInteger)model{
-    _model = model;
 }
 @end

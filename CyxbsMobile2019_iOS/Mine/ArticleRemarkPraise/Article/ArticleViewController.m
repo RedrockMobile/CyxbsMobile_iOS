@@ -13,6 +13,8 @@
 #import "ArticleModel.h"
 #import "StarPostModel.h"
 
+//GYY的动态详情页控制器
+#import "GYYDynamicDetailViewController.h"
 @interface ArticleViewController ()<UITableViewDelegate, UITableViewDataSource,PostTableViewCellDelegate,ShareViewPlusDelegate,ArticleModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ShareViewPlus *shareView;
@@ -57,15 +59,13 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return self.articleModel.dataArr.count;
-    
-    return 2;
+    return self.articleModel.dataArr.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ArticleTableViewCell *cell = [[ArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
     cell.delegate = self;
-//    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
-    PostItem *item = [[PostItem alloc]init];
+    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
     [cell setItem:item];
     return cell;
 }
@@ -121,7 +121,11 @@
 //MARK: - cell的代理方法:
 //评论
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell {
-    
+    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+    dynamicDetailVC.post_id = [cell.item.post_id intValue];
+    dynamicDetailVC.item = cell.item;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 //话题标签

@@ -61,9 +61,33 @@
     [_messageCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
         make.right.mas_equalTo(self.mas_right);
-        make.width.height.mas_equalTo(SCREEN_WIDTH * 0.048);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.068);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.048);
     }];
     _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
     _messageCountLabel.layer.masksToBounds = YES;
+}
+
+- (void)setItem:(GroupItem *)item {
+    if (item) {
+        _item = item;
+        [_groupBtnImageView sd_setImageWithURL:[NSURL URLWithString:item.topic_logo] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
+        _groupBtnLabel.text = item.topic_name;
+        if ([item.message_count intValue] == 0) {
+            self.messageCountLabel.hidden = YES;
+        }else if ([item.message_count intValue] > 0 && [item.message_count intValue] <= 9){
+            [_messageCountLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.mas_top);
+                make.right.mas_equalTo(self.mas_right);
+                make.width.height.mas_equalTo(SCREEN_WIDTH * 0.048);
+            }];
+            _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
+            _messageCountLabel.layer.masksToBounds = YES;
+            self.messageCountLabel.text = [NSString stringWithFormat:@"%@", item.message_count];
+        }else if ([item.message_count intValue] > 9){
+            NSString *count = [item.message_count intValue] > 99 ? @"99+":[NSString stringWithFormat:@"%@",item.message_count];
+            self.messageCountLabel.text = count;
+        }
+    }
 }
 @end

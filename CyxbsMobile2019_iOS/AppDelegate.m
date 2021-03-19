@@ -66,19 +66,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     }
     
     // 打开应用时刷新token
-//    AFNetworkReachabilityManager *man = [AFNetworkReachabilityManager sharedManager];
-//    //开始监测网络状态
-//    [man startMonitoring];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        if([man isReachable]){
-//            //如果网络可用，刷新token
-//            [UserItemTool refresh];
-//            //停止监测
-//            [man stopMonitoring];
-//        }
-//    });
+    AFNetworkReachabilityManager *man = [AFNetworkReachabilityManager sharedManager];
+    //开始监测网络状态
+    [man startMonitoring];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if([man isReachable]){
+            //如果网络可用，刷新token
+            [UserItemTool refresh];
+            //停止监测
+            [man stopMonitoring];
+        }
+    });
     //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
-    [UserItemTool refresh];
+//    [UserItemTool refresh];
     if ([UserDefaultTool getStuNum] && [UserItemTool defaultItem].token && [ArchiveTool getPersonalInfo]) {
         // 刷新志愿信息
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -354,9 +354,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     
     NSString *urlStr = [url absoluteString];
-    if ([urlStr hasPrefix:@"cyxbs.redrock.share://"]) {
+    if ([urlStr hasPrefix:@"redrock.zscy.youwen.share://"]) {
         //把？号前面的数据替换为空，是方便后续字符串以&符号来分割
-        NSString *parameter = [urlStr stringByReplacingOccurrencesOfString:@"cyxbs.redrock.share://param?" withString:@""];
+        NSString *parameter = [urlStr stringByReplacingOccurrencesOfString:@"redrock.zscy.youwen.share://param?" withString:@""];
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:parameter, @"parameter", nil];
         //此处是外部请求后需要处理的事件，将参数传递下去即可
         NSLog(@"==========>>>>>>%@",dic);

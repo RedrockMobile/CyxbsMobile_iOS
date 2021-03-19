@@ -110,14 +110,14 @@
     _groupLabel = [[UIButton alloc] init];
     _groupLabel.ignoreEvent = NO;
     _groupLabel.canTapEventInterval = 1.0;
-    _groupImage = [UIImage imageNamed:@"标签背景"];
-    [_groupLabel setBackgroundImage:_groupImage forState:UIControlStateNormal];
     _groupLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [_groupLabel.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 12.08]];
+    [_groupLabel.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08]];
     if (@available(iOS 11.0, *)) {
         [_groupLabel setTitleColor:[UIColor colorNamed:@"CellGroupColor"] forState:UIControlStateNormal];
+        _groupLabel.backgroundColor = [UIColor colorNamed:@"CELLTOPICBACKCOLOR"];
     } else {
         [_groupLabel setTitleColor:[UIColor colorWithRed:85.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1] forState:UIControlStateNormal];
+        _groupLabel.backgroundColor = [UIColor colorWithRed:241/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
     [_groupLabel addTarget:self action:@selector(ClickedGroupTopicBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_groupLabel];
@@ -177,12 +177,6 @@
     }];
     [_funcBtn setImageEdgeInsets:UIEdgeInsetsMake((SCREEN_WIDTH * 0.89 * 18/343 - [UIImage imageNamed:@"QAMoreButton"].size.height), 0, 0, (SCREEN_WIDTH * 0.11 - [UIImage imageNamed:@"QAMoreButton"].size.width))];
     
-//    [_funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.051);
-//        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
-//        make.width.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.width);
-//        make.height.mas_equalTo([UIImage imageNamed:@"QAMoreButton"].size.height);
-//    }];
     
     [_detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.021);
@@ -197,13 +191,13 @@
         make.height.mas_equalTo(1).priorityLow();
     }];
     
-    [_groupLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.collectView.mas_bottom).mas_offset(11);
+    [_groupLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2707 * 25.5/101.5);
         make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-Pading * 62.5/16);
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
-        make.width.mas_equalTo(_groupImage.size);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.2707);
     }];
-    _groupLabel.layer.cornerRadius = 1/2 * _groupImage.size.height * 1/2;
+    _groupLabel.layer.cornerRadius = SCREEN_WIDTH * 0.2707 * 25.5/101.5 * 1/2;
     
     [_starBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groupLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
@@ -225,6 +219,7 @@
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
     }];
     
+    self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
     
 }
 
@@ -261,6 +256,7 @@
             make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
             make.width.mas_equalTo(buttonSize.width + SCREEN_WIDTH * 0.05 * 2);
         }];
+        _groupLabel.layer.cornerRadius = SCREEN_WIDTH * 0.2707 * 25.5/101.5 * 1/2;
         self.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.comment_count];
         self.starBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.praise_count];
         self.starBtn.selected = [item.is_praised intValue] == 1 ? YES : NO;

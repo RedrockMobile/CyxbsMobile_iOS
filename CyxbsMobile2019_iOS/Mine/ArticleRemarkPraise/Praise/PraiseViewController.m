@@ -63,7 +63,6 @@
                 break;
                 //加载成功，而且没有数据了
             case MainPage2RequestModelStateNoMoreDate:
-                [NewQAHud showHudWith:@"没有更多赞了" AddView:self.view];
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 break;
                 //加载失败

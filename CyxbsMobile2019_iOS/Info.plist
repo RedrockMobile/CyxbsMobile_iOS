@@ -25,7 +25,7 @@
 			<string>cyxbs.mredrock.com</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>cyxbs.redrock.share</string>
+				<string>redrock.zscy.youwen.share</string>
 			</array>
 		</dict>
 	</array>

@@ -44,7 +44,8 @@
     if (_titleLbl == nil) {
         _titleLbl = [[UILabel alloc] init];
         _titleLbl.text = @"发布动态";
-        _titleLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:21];
+//        _titleLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:21];
+        _titleLbl.font = [UIFont fontWithName:PingFangSCSemibold size:21];
         if (@available(iOS 11.0, *)) {
             _titleLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
         } else {

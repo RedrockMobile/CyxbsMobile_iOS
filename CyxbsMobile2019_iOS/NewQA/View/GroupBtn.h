@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GroupItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImageView *groupBtnImageView;
 
 @property (nonatomic, strong) UILabel *groupBtnLabel;
+
+@property (nonatomic, strong) GroupItem *item;
 
 ///右上角的数字小圆点（目前的思路是UILabel）
 @property (nonatomic, strong) UILabel *messageCountLabel;
