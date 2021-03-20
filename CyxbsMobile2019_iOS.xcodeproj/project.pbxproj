@@ -1323,7 +1323,6 @@
 		7FBF39EF257B79F30077494E /* ByWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ByWordViewController.m; sourceTree = "<group>"; };
 		7FBF3A11257CBCCC0077494E /* YYZpopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYZpopView.h; sourceTree = "<group>"; };
 		7FBF3A12257CBCCC0077494E /* YYZpopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYZpopView.m; sourceTree = "<group>"; };
-		AA1965DC2605C77A0049F103 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDataModel.h; sourceTree = "<group>"; };
 		AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDataModel.m; sourceTree = "<group>"; };
 		AA289B1024EFC78C00FDF70C /* NoteDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailView.h; sourceTree = "<group>"; };
@@ -1338,6 +1337,12 @@
 		AA3F82DF24E992C000B65042 /* LessonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LessonView.m; sourceTree = "<group>"; };
 		AA3F82E424EA4A8900B65042 /* LeftBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftBar.h; sourceTree = "<group>"; };
 		AA3F82E524EA4A8900B65042 /* LeftBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeftBar.m; sourceTree = "<group>"; };
+		AA4496F7260625B5004B4E1A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		AA4496F8260625B6004B4E1A /* CyxbsMobileLibraryHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsMobileLibraryHeader.h; sourceTree = "<group>"; };
+		AA4496F9260625B6004B4E1A /* CyxbsMobilePathAndKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsMobilePathAndKey.h; sourceTree = "<group>"; };
+		AA4496FA260625B7004B4E1A /* CyxbsMobileURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsMobileURL.h; sourceTree = "<group>"; };
+		AA4496FB260625B7004B4E1A /* CyxbsMobileEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsMobileEnum.h; sourceTree = "<group>"; };
+		AA4496FC260625B8004B4E1A /* CyxbsMobileToolMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsMobileToolMacro.h; sourceTree = "<group>"; };
 		AA49098424F3B6B4007CB3BC /* ClassSchedulInterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassSchedulInterController.h; sourceTree = "<group>"; };
 		AA49098524F3B6B4007CB3BC /* ClassSchedulInterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassSchedulInterController.m; sourceTree = "<group>"; };
 		AA49098724F3BF5A007CB3BC /* TransitionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitionManager.h; sourceTree = "<group>"; };
@@ -3389,7 +3394,12 @@
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				1A9B7679235F50A800725937 /* main.m */,
-				AA1965DC2605C77A0049F103 /* PrefixHeader.pch */,
+				AA4496FB260625B7004B4E1A /* CyxbsMobileEnum.h */,
+				AA4496F8260625B6004B4E1A /* CyxbsMobileLibraryHeader.h */,
+				AA4496F9260625B6004B4E1A /* CyxbsMobilePathAndKey.h */,
+				AA4496FC260625B8004B4E1A /* CyxbsMobileToolMacro.h */,
+				AA4496FA260625B7004B4E1A /* CyxbsMobileURL.h */,
+				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 			);
 			path = CyxbsMobile2019_iOS;
 			sourceTree = "<group>";
