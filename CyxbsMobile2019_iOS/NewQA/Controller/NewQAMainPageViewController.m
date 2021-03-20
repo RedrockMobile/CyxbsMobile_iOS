@@ -25,7 +25,9 @@
 #import "GroupBtn.h"
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
+#import "YYZTopicGroupVC.h"
 #import "GYYDynamicDetailViewController.h"
+
 
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
 //帖子列表数据源数组
@@ -288,7 +290,7 @@
     // 创建功能页面
     _popView = [[FuncView alloc] init];
     // 创建举报页面
-    _reportView = [[ReportView alloc] init];
+    _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
     
 }
 
@@ -873,8 +875,10 @@
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
-    // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
+    [self.navigationController pushViewController:topVc animated:YES];
+    // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去

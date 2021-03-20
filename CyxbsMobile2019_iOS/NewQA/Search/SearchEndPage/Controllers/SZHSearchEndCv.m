@@ -11,11 +11,14 @@
 //controller类
 #import "SZHSearchEndCv.h"
 #import "SearchEndNoResultCV.h" //搜索无结果vc
+#import "GYYDynamicDetailViewController.h"//动态详情
 
 //模型类
 #import "SZHSearchDataModel.h"  //搜索模型
 #import "StarPostModel.h"       //点赞网络请求模型
 #import "SearchEndModel.h"      //搜索结束页网络请求模型
+#import "CYSearchEndKnowledgeDetailModel.h" //知识库详情页的model
+
 //视图类
 #import "SearchBeiginView.h"    //本界面上半部分
 #import "RecommendedTableView.h"//下半部分相关动态表格
@@ -23,10 +26,14 @@
 #import "ReportView.h"          //举报界面
 #import "ShareView.h"           //分享界面
 #import "FuncView.h"            //cell上的三个点点击后界面
-#import "GYYDynamicDetailViewController.h"//动态详情
+#import "CYSearchEndKnowledgeDetailView.h"  //知识库详情页
 
-@interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,ShareViewDelegate,FuncViewProtocol,ReportViewDelegate>
+@interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,ShareViewDelegate,FuncViewProtocol,ReportViewDelegate,CYSearchEndKnowledgeDetailViewDelegate>
 @property (nonatomic, strong) SearchBeiginView *searchEndTopView;   //上半部分视图
+/// 知识库详情页View
+@property (nonatomic, strong) CYSearchEndKnowledgeDetailView *knowledgeDetailView;
+/// 知识库详情页的model数组
+@property (nonatomic, copy) NSArray *knowledgeDetaileModelsAry;
     ///顶部搜索逻辑相关
 @property (nonatomic, strong) SZHSearchDataModel *searchDataModel;
 @property (nonatomic, strong) NSDictionary *searchDynamicDic;    //相关动态数组
@@ -59,7 +66,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addSearchEndTopView];
-   
+    self.view.backgroundColor = self.searchEndTopView.backgroundColor;
     if (self.knowlegeAry.count == 0) {
         [self.searchEndTopView.hotSearchView setHidden:YES];
         [self.searchEndTopView.topSeparation setHidden:YES];
@@ -300,17 +307,53 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
-//点击重邮知识库按钮 跳转到详细界面，等别人完工
+
+//点击重邮知识库按钮 弹出详细界面
 - (void)touchCQUPTKonwledgeThroughBtn:(UIButton *)btn{
-    NSString *str = btn.titleLabel.text;
+    //更改上半部分的view
+    [self.searchEndTopView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.height.mas_equalTo(MAIN_SCREEN_H * 0.4505);
+    }];
     
-    NSLog(@"点击重邮知识库---%@",str);
+    [self.searchEndTopView.hotSearchView hideKnowledgeBtns];    //隐藏热搜view的button们
+    //添加知识库详情页并进行布局
+    [self.searchEndTopView.hotSearchView addSubview:self.knowledgeDetailView];
+    [self.knowledgeDetailView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.searchEndTopView.hotSearchView.hotSearch_KnowledgeLabel);
+        make.right.equalTo(self.searchEndTopView).offset(-MAIN_SCREEN_W * 0.0426);
+        make.top.equalTo(self.searchEndTopView.hotSearchView.hotSearch_KnowledgeLabel.mas_bottom).offset(MAIN_SCREEN_H * 0.02548);
+        make.bottom.equalTo(self.searchEndTopView.topSeparation).offset(- MAIN_SCREEN_H * 0.0375);
+        
+    }];
+    //设置知识库的数据
+    for (CYSearchEndKnowledgeDetailModel *model in self.knowledgeDetaileModelsAry) {
+        if ([model.titleStr isEqualToString:btn.titleLabel.text] ) {
+            self.knowledgeDetailView.model = model;
+            break;
+        }
+    }
+    
+    
 }
+
 //点击搜索后执行
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [self.view endEditing:YES];
     [self searchWithString:textField.text];
     return YES;
+}
+
+//MARK:知识库详情页的代理方法
+- (void)deleteKnowledgeDetaileview:(UIView *)view{
+    [view removeFromSuperview];
+    //更改上半部分视图
+    [self.searchEndTopView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.height.mas_equalTo(MAIN_SCREEN_H * 0.3375);
+    }];
+    //将重邮知识库的button显示出来
+    [self.searchEndTopView.hotSearchView updateBtns];
 }
 
 //MARK:相关动态table的数据源和代理方法
@@ -445,7 +488,7 @@
 - (void)ClickedReportBtn:(UIButton *)sender  {
     [_popView removeFromSuperview];
     PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
-//    _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
+    _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
     _reportView.delegate = self;
     [[UIApplication sharedApplication].keyWindow addSubview:_reportView];
     [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -521,10 +564,13 @@
 //    self.knowlegeAry = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
     if (self.knowlegeAry != nil) {
         NSMutableArray *muteAry = [NSMutableArray array];
+        NSMutableArray *muteDicAry = [NSMutableArray array];
         for (NSDictionary *dic in self.knowlegeAry) {
-            NSString *titleStr = dic[@"title"];
-            [muteAry addObject:titleStr];
+            CYSearchEndKnowledgeDetailModel *knowledgeDetaileModel  = [CYSearchEndKnowledgeDetailModel initWithDict:dic];
+            [muteAry addObject:knowledgeDetaileModel.titleStr];
+            [muteDicAry addObject:knowledgeDetaileModel];
         }
+        self.knowledgeDetaileModelsAry = muteDicAry;
         self.searchEndTopView.hotSearchView.buttonTextAry = muteAry;
         [self.searchEndTopView.hotSearchView updateBtns];
     }
@@ -537,7 +583,11 @@
     [self.searchEndTopView.searchTopView.searchTextfield setReturnKeyType:UIReturnKeySearch];
     //设置frame
     [self.view addSubview:self.searchEndTopView];
-    self.searchEndTopView.frame = self.view.frame;
+//    self.searchEndTopView.frame = self.view.frame;
+    [self.searchEndTopView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.height.mas_equalTo(MAIN_SCREEN_H * 0.3375);
+    }];
 }
 
 /// 添加底部视图，主要为一个label和一个table
@@ -555,7 +605,8 @@
     }else{
         [bottomBackGroundView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.view);
-            make.top.equalTo(self.view.mas_top).offset(MAIN_SCREEN_H * 0.3613);
+//            make.top.equalTo(self.view.mas_top).offset(MAIN_SCREEN_H * 0.3613);
+            make.top.equalTo(self.searchEndTopView.mas_bottom).offset(MAIN_SCREEN_H * 0.0375);
         }];
     }
     
@@ -607,6 +658,17 @@
     }
     return _searchEndDataModel;
 }
+
+/// 知识库详情的View
+- (CYSearchEndKnowledgeDetailView *)knowledgeDetailView{
+    if (!_knowledgeDetailView) {
+        CYSearchEndKnowledgeDetailView *knowlegeDetailView = [[CYSearchEndKnowledgeDetailView alloc] initWithFrame:CGRectZero];
+        _knowledgeDetailView = knowlegeDetailView;
+        _knowledgeDetailView.delegate = self;
+    }
+    return _knowledgeDetailView;
+}
+
 ///相关动态的label
 - (UILabel *)relevantDynamicLbl{
     if (!_relevantDynamicLbl) {

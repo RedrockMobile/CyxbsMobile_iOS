@@ -32,9 +32,6 @@
     [self addSubview:self.leftBtn];
     [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.0427);
-//        make.top.equalTo(self).offset(MAIN_SCREEN_H * 0.0572);
-//        make.top.equalTo(self);
-//        make.top.equalTo(self).offset(MAIN_SCREEN_H * 0.0286);
         make.bottom.equalTo(self.mas_top).offset(NVGBARHEIGHT);
         make.size.mas_equalTo(CGSizeMake(7, 14));
     }];
@@ -44,6 +41,7 @@
     if (_titleLbl == nil) {
         _titleLbl = [[UILabel alloc] init];
         _titleLbl.text = @"发布动态";
+//        _titleLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:21];
         _titleLbl.font = [UIFont fontWithName:PingFangSCSemibold size:21];
         if (@available(iOS 11.0, *)) {
             _titleLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
