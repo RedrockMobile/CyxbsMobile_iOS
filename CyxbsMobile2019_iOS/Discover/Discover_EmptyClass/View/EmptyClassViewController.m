@@ -81,7 +81,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSInteger nowWeek = getNowWeek.integerValue-1;
+    NSInteger nowWeek = getNowWeek_NSString.integerValue-1;
     if(nowWeek < 0){
         nowWeek = 0;
     }

@@ -1573,7 +1573,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "229"
                   endingLineNumber = "229"
-                  offsetFromSymbolStart = "150">
+                  offsetFromSymbolStart = "151">
                </Location>
                <Location
                   uuid = "429E6904-CD15-4660-B86F-9EB21188BF35 - 869fd391a10fffd4"
@@ -1661,7 +1661,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "164BC031-ABA1-4F14-9AA5-F2A892917F14"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInViewController.m"

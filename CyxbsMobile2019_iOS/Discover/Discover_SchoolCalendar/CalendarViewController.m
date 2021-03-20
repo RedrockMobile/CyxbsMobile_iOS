@@ -28,7 +28,7 @@
     [self.view addSubview:scrollView];
     
     UIImageView *imageView = [[UIImageView alloc] init];
-    NSURL *url = [NSURL URLWithString:@"https://cyxbsmobile.redrock.team/234/newapi/schoolCalendar"];
+    NSURL *url = [NSURL URLWithString:schoolCalendar];
     [imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         
         imageView.width = MAIN_SCREEN_W;

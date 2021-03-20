@@ -191,7 +191,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [[UNUserNotificationCenter currentNotificationCenter] removeDeliveredNotificationsWithIdentifiers:@[@"deliverSchedulEverday"]];
     
     //真正的当前周数
-    NSString *nowWeek = getNowWeek;
+    NSString *nowWeek = getNowWeek_NSString;
     
     //如果没有打开每日推送课表开关，或者当前已配置的推送的周 和 当前真正的周相同，那么return
     if([[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_RemindEveryDay"]==nil || [[NSUserDefaults standardUserDefaults] valueForKey:@"当前每天晚上推送的课表对应的周"]==nowWeek){
@@ -202,7 +202,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     //下面的代码，功能是完成一周7天的通知配置
     
     //week[j][k]代表（星期j+1）的（第k+1节大课
-    NSArray *week = [self getNowWeekSchedul];
+    NSArray *week = [self getSchedulToPushAtWeek:nowWeek.intValue];
     
     //配置component
     NSDateComponents *component = [[NSDateComponents alloc] init];
@@ -222,13 +222,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     NSString *str; //某一节课的内容
     NSString *requestIDStr; //本地通知的通知ID
     UNNotificationRequest *request; //通知请求
-    int i=0;
+    int i=1;
     for (NSArray *day in week) {
         bodyStr = @"明天的课程有：";
         requestIDStr = [NSString stringWithFormat:@"每天晚上推送课表%d",i];
         //周几推送
-        component.weekday = i==0 ? 1 : i+1;
-        i++;
+        component.weekday = i++;
+//        i++;
         for (NSArray *course in day) {
             //如果count==0说明该节课是无课
             if(course.count==0)continue;
@@ -290,12 +290,24 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
      */
 }
 
-- (NSArray*)getNowWeekSchedul{
-    NSString *nowWeek = getNowWeek;
+
+/// 获取week周的需要推送的课表数据
+/// @param week 某一周
+- (NSArray*)getSchedulToPushAtWeek:(int)week{
+    //防止数组越界
+    if (week>24) {
+        return nil;
+    }
+    //全部的25周的课表信息
+    NSArray * orderlySchedulArray = [NSArray arrayWithContentsOfFile:parsedDataArrPath];
     
+    //下周一的课
+    NSArray *nextWeekMondySchedulArray = orderlySchedulArray[week+1][0];
+    NSMutableArray *nowWeekSchedulArray = [orderlySchedulArray[week] mutableCopy];
+    nowWeekSchedulArray[0] = nextWeekMondySchedulArray;
     //返回orderlySchedulArray[nowWeek],因为：
     //orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）
-    return [NSArray arrayWithContentsOfFile:parsedDataArrPath][nowWeek.intValue];
+    return nowWeekSchedulArray;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -397,7 +409,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         //0.2秒用于加载UI，不延时会导致发送通知时DiscoverViewController还未加载完成
         //用se2模拟器模拟下只延时0.05s也不会有什么问题，保险起见延时0.2s后发送通知
         BOOL is = [response.notification.request.identifier
-         isEqualToString:@"deliverSchedulEverday"]
+          hasPrefix:@"每天晚上推送课表"]
         ||[response.notification.request.identifier
            isEqualToString:@"remindBeforeCourseBegin"];
         

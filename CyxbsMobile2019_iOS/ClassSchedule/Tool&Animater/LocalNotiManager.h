@@ -13,10 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LocalNotiManager : NSObject
 
 /// 添加本地缓存
-/// @param weekNum 第几周提醒，范围[1, 24]
-/// @param weekDay 星期几
-/// @param lesson 第几节大课
-/// @param minute 提前多少分钟
+/// @param weekNum 第几周提醒，x属于[1, 25]
+/// @param weekDay 星期x，x属于[0, 6]
+/// @param lesson 第x节大课，x属于[0, 5]
+/// @param minute 课前x分钟提醒
 /// @param title 提醒标题
 /// @param subTitleStr 提醒的子标题
 /// @param body 提醒详情

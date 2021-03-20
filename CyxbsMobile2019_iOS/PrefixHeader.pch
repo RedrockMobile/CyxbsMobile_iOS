@@ -185,20 +185,33 @@
 //学期开始时间
 #define DateStart @"2021-03-01"
 #define DateFormat @"yyyy-MM-dd"
+
+//可以用userDefault取出开学日期，格式是@"yyyy-MM-dd"
+#define DateStartKey_NSString @"DateStartKey_NSString"
+
 //第一周从1开始，不是从0开始
-#define getNowWeek ^(void) {\
-    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] stringForKey:nowWeekKey];\
+#define getNowWeek_NSString ^(void) {\
+    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] stringForKey:nowWeekKey_NSString];\
     if (nowWeek==nil) {\
         return @"0";\
     }\
     return nowWeek;\
 }()
 
-#define getDateStart ^(void) {\
-    NSString *formateStr = [[NSUserDefaults standardUserDefaults] stringForKey:DateStart];\
+//返回开学日期的NSDate
+#define getDateStart_NSDate ^(void) {\
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];\
     [formatter setDateFormat:DateFormat];\
-    return [formatter dateFromString:formateStr];\
+    return [formatter dateFromString:getDateStart_NSString];\
+}()
+
+//返回开学日期的NSString
+#define getDateStart_NSString ^(void) {\
+    NSString *dateStr = [[NSUserDefaults standardUserDefaults] stringForKey:DateStartKey_NSString];\
+    if (dateStr==nil) {\
+        return @"1970-01-01";\
+    }\
+    return dateStr;\
 }()
 
 #pragma mark - MGJRouter用到的宏
@@ -381,6 +394,8 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #define VOLUNTEERUNBINDING @"https://cyxbsmobile.redrock.team/wxapi/volunteer-message/unbinding"
 #define VOLUNTEERACTIVITY @"https://cyxbsmobile.redrock.team/wxapi/cyb-volunteer/volunteer/activity/info/new"
 
+
+#define schoolCalendar @"https://be-prod.redrock.team/renewapi/schoolCalendar"
 #pragma mark - ”重邮地图“接口
 
 /// 重邮地图历史记录偏好设置Key
@@ -584,7 +599,9 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 //未解析的课表数据文件路径
 #define rowDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/rowLessonDataArr"]
 
-//已解析的课表数据文件路径
+//已解析的课表数据文件路径,假设取出的数组是orderlySchedulArray，那么：
+//orderlySchedulArray[i][j][k]代表（第i周）的（星期j+1）的（第k+1节大课）
+//ijk的范围：i[0, 25], j[0, 6], k[0, 5]
 #define parsedDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/parsedLessonDataArr"]
 
 
@@ -597,7 +614,7 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 //#define remDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/remindDataArr"]
 
 //可以通过NSUserDefaults取出当前周数，类型是NSString
-#define nowWeekKey @"SchedulNowWeek"
+#define nowWeekKey_NSString @"nowWeekKey_NSString"
 //个人页的获赞数的缓存的key
 #define MinePraiseCntStrKey @"MinePraiseCntStrKey"
 //个人页的动态数的缓存的key

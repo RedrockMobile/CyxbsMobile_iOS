@@ -68,8 +68,8 @@
 - (void)getPersonalClassBookArrayFromNet:(NSString *)stuNum{
     NSDictionary *paramDict = @{@"stu_num":stuNum};
     
-    [self.afhttpSeMan POST:kebiaoAPI parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        
+    [self.afhttpSeMan GET:kebiaoAPI parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        CCLog(@"ke%@",responseObject);
         //拿到课表数据
         NSArray *rowLessonDataArr = responseObject[@"data"];
         
@@ -94,7 +94,7 @@
         [self.delegate ModelDataLoadSuccess:self];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        CCLog(@"ke%@",error);
         //通知代理数据加载失败
         [self.delegate ModelDataLoadFailure];
     }];
@@ -322,13 +322,11 @@
 //    NSDate *startDate = [now dateByAddingSeconds:1-(todaySecond+ortherDatSecond)];
         NSDate *startDate = [[NSDate alloc] initWithTimeInterval:1-(todaySecond+ortherDatSecond) sinceDate:now];
     
-    
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:startDate];
     
-    [[NSUserDefaults standardUserDefaults]setValue:[NSString stringWithFormat:@"%ld-%ld-%ld",components.year,components.month,components.day] forKey:DateStart];
+    [[NSUserDefaults standardUserDefaults]setValue:[NSString stringWithFormat:@"%ld-%02ld-%02ld",components.year,components.month,components.day] forKey:DateStartKey_NSString];
     
-    
-    [[NSUserDefaults standardUserDefaults] setValue:week forKey:nowWeekKey];
+    [[NSUserDefaults standardUserDefaults] setValue:week forKey:nowWeekKey_NSString];
 }
 
 @end

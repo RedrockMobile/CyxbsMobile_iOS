@@ -18,7 +18,7 @@
     NSDate *resDate = [formatter dateFromString:startDate];
     
 //    [dateModel calculateNowWeek:resDate];
-    dateModel.nowWeek = getNowWeek.numberValue;
+    dateModel.nowWeek = getNowWeek_NSString.numberValue;
     
     [dateModel initCalculateDate:resDate];
     return dateModel;
@@ -81,6 +81,6 @@
 //    self.nowWeek = [NSNumber numberWithInteger:nowWeek];
 //
 //    //把当前的周数存入缓存
-//    [[NSUserDefaults standardUserDefaults] setValue:self.nowWeek.stringValue forKey:nowWeekKey];
+//    [[NSUserDefaults standardUserDefaults] setValue:self.nowWeek.stringValue forKey:nowWeekKey_NSString];
 //}
 @end

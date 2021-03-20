@@ -1145,7 +1145,6 @@
 		1A141362235F524B0001417E /* SYCSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYCSegmentView.m; sourceTree = "<group>"; };
 		1A141363235F524B0001417E /* SYCSegmentViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYCSegmentViewButton.h; sourceTree = "<group>"; };
 		1A141364235F524B0001417E /* SYCSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYCSegmentView.h; sourceTree = "<group>"; };
-		1A141379235F52550001417E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		1A15DF95238D03B3005E0843 /* CheckInContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckInContentView.h; sourceTree = "<group>"; };
 		1A15DF96238D03B3005E0843 /* CheckInContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInContentView.m; sourceTree = "<group>"; };
 		1A16591B23D84B560039BA46 /* MineSegmentedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSegmentedView.h; sourceTree = "<group>"; };
@@ -1308,6 +1307,7 @@
 		7FBF39EF257B79F30077494E /* ByWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ByWordViewController.m; sourceTree = "<group>"; };
 		7FBF3A11257CBCCC0077494E /* YYZpopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYZpopView.h; sourceTree = "<group>"; };
 		7FBF3A12257CBCCC0077494E /* YYZpopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYZpopView.m; sourceTree = "<group>"; };
+		AA1965DC2605C77A0049F103 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDataModel.h; sourceTree = "<group>"; };
 		AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDataModel.m; sourceTree = "<group>"; };
 		AA289B1024EFC78C00FDF70C /* NoteDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailView.h; sourceTree = "<group>"; };
@@ -3368,7 +3368,7 @@
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				1A9B7679235F50A800725937 /* main.m */,
-				1A141379235F52550001417E /* PrefixHeader.pch */,
+				AA1965DC2605C77A0049F103 /* PrefixHeader.pch */,
 			);
 			path = CyxbsMobile2019_iOS;
 			sourceTree = "<group>";
