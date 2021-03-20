@@ -49,6 +49,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;//退出时显示tabbar
+    // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

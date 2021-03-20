@@ -78,7 +78,7 @@
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     
     // 如果是退出登陆后再次登陆，由于程序还在运行，因此移除原来的界面，重新加载UI，判断用户是否为第一次登陆
-    if ([UserItemTool defaultItem].firstLogin == YES && self.tableArray != nil && self.dataArray != nil && self.hotWordsArray != nil) {
+    if ([UserItemTool defaultItem].firstLogin == YES) {
         NSLog(@"通过网络请求刷新页面");
         [self releaseView];
         self.page = 0;
@@ -884,8 +884,10 @@
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
 //    NSString *groupName = sender.groupBtnLabel.text;
-    // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    if (sender.tag == 0) {
+        YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
+        [self.navigationController pushViewController:topVc animated:YES];
+    }
     
 }
 

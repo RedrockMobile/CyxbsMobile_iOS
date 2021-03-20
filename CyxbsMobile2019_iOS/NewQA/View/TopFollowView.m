@@ -40,7 +40,7 @@
             make.top.mas_equalTo(self.mas_top);
             make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.04);
             make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0453);
-            make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 85/343);
+            make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 73/343);
         }];
     }else {
         UILabel *myFollowLab = [[UILabel alloc] init];

@@ -15,7 +15,7 @@
 
 
 #define Pading SCREEN_WIDTH*0.0427
-#define Margin 5
+#define Margin 7
 #define item_num 3
 
 @interface PostTableViewCell()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -64,7 +64,7 @@
     ///时间
     _timeLabel = [[UILabel alloc] init];
     _timeLabel.textAlignment = NSTextAlignmentLeft;
-    _timeLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
+    _timeLabel.font = [UIFont fontWithName:PingFangSCMedium size: 11];
     if (@available(iOS 11.0, *)) {
         _timeLabel.textColor = [UIColor colorNamed:@"CellDateColor"];
     } else {
@@ -88,7 +88,7 @@
     } else {
         _detailLabel.textColor = [UIColor colorWithRed:17.0/255.0 green:44.0/255.0 blue:87.0/255.0 alpha:1];
     }
-    self.detailLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:15];
+    self.detailLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
@@ -303,7 +303,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MGDImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellID" forIndexPath:indexPath];
     NSArray *tagsArr = _item.pics;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:tagsArr[indexPath.row]] placeholderImage:[UIImage imageNamed:@"zahnweitu"]];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:tagsArr[indexPath.row]] placeholderImage:[UIImage imageNamed:@"寂静"]];
     
     if (indexPath.row == 2 && tagsArr.count > 3) {
         unsigned long diff = tagsArr.count - 3;

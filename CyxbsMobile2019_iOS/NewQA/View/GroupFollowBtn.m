@@ -20,15 +20,15 @@
         [self addSubview:leftImageView];
         [self addSubview:rightImageView];
         [leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.025);
+            make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.105 * 18/36);
             make.left.mas_equalTo(self.mas_left).mas_equalTo(SCREEN_WIDTH * 0.090);
-            make.width.height.mas_equalTo(SCREEN_WIDTH * 0.0987);
+            make.width.height.mas_equalTo(SCREEN_WIDTH * 0.1079);
         }];
         [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.mas_top);
             make.left.mas_equalTo(SCREEN_WIDTH * 0.6253);
-            make.right.mas_equalTo(self.mas_right);
-            make.bottom.mas_equalTo(self.mas_bottom);
+            make.width.mas_equalTo(SCREEN_WIDTH * 0.2919);
+            make.height.mas_equalTo(SCREEN_WIDTH * 0.2919 * 70.25/109.45);
         }];
         
         UILabel *findGroup = [[UILabel alloc] init];
