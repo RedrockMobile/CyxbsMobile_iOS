@@ -22,8 +22,10 @@
 #import "UIScrollView+Empty.h"
 #import "GYYShareView.h"
 #import "shareView.h"
+#import "StarPostModel.h"
 
 @interface GYYDynamicDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DKSKeyboardDelegate,ReportViewDelegate,PostTableViewCellDelegate,GYYShareViewDelegate,ShareViewDelegate>
+
 @property(nonatomic, strong) RecommendedTableView *mainTableView;
 @property (nonatomic,assign) NSInteger pageIndex;
 @property (nonatomic,assign) NSInteger totalCount;
@@ -240,6 +242,7 @@
 }
 - (void)updateDynamicViewHeight{
     
+    self.post_id = [self.item.post_id intValue];
     self.dynamicView.item = self.item;
     //计算帖子的高度
     CGFloat height = MAIN_SCREEN_W*(0.0427+0.1066+0.021*2)+11+((SCREEN_WIDTH*0.0427)*62.5/16);
@@ -388,7 +391,7 @@
     [self.zh_popupController dismiss];
 }
 #pragma mark -- PostTableViewCellDelegate
-- (void)ClickedFuncBtn:(UIButton *)sender{
+- (void)ClickedFuncBtn:(PostTableViewCell *)cell{
     
     SHPopMenu *_menu = [[SHPopMenu alloc]init];
     
@@ -407,7 +410,7 @@
     
     __weak typeof(self)weakSelf = self;
     //显示菜单
-    [_menu showInRectX:CGRectGetWidth(sender.superview.frame)-CGRectGetMinX(sender.frame)-132 rectY:sender.frame.origin.y+105 block:^(SHPopMenu *menu, NSInteger index) {
+    [_menu showInRectX:CGRectGetWidth(cell.frame)-132 rectY:CGRectGetMinY(cell.frame)+105 block:^(SHPopMenu *menu, NSInteger index) {
         
         if (index != 0) {//举报
             weakSelf.reportView.postID =  weakSelf.reportView.postID = [NSNumber numberWithInt:self.post_id];
@@ -425,41 +428,41 @@
     }];
     
 }
-- (void)ClickedStarBtn:(FunctionBtn *)sender{
-    
-    HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *param = @{@"id":@(self.post_id),@"model":@"1"};
-    [client requestWithPath:NEW_QA_STAR method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        if ([responseObject[@"status"] intValue]==200) {
-            if (sender.selected == YES) {
-                sender.selected = NO;
-                sender.iconView.image = [UIImage imageNamed:@"未点赞"];
-                NSString *count = sender.countLabel.text;
-                sender.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
-                if (@available(iOS 11.0, *)) {
-                    sender.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
-                }
-            }else {
-                sender.selected = YES;
-                sender.iconView.image = [UIImage imageNamed:@"点赞"];
-                NSString *count = sender.countLabel.text;
-                sender.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
-                if (@available(iOS 11.0, *)) {
-                    sender.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
-                }
-            }
+
+///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
+- (void)ClickedStarBtn:(PostTableViewCell *)cell{
+    if (cell.starBtn.selected == YES) {
+        cell.starBtn.selected = NO;
+        cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
+        NSString *count = cell.starBtn.countLabel.text;
+        cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
+        if (@available(iOS 11.0, *)) {
+            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }else {
+        cell.starBtn.selected = YES;
+        cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
+        NSString *count = cell.starBtn.countLabel.text;
+        cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
+        if (@available(iOS 11.0, *)) {
+            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+            
+        } else {
+            // Fallback on earlier versions
         }
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-    }];
+    }
+    StarPostModel *model = [[StarPostModel alloc] init];
+    [model starPostWithPostID:[NSNumber numberWithString:self.item.post_id]];
 }
-- (void)ClickedCommentBtn:(FunctionBtn *)sender{
+
+- (void)ClickedCommentBtn:(PostTableViewCell *)cell{
     self.actionCommentModel = [GYYDynamicCommentModel new];
     [self.inputView startInputAction];
 }
-- (void)ClickedShareBtn:(UIButton *)sender{
+- (void)ClickedShareBtn:(PostTableViewCell *)cell{
     
     //    GYYShareView *shareView = [[GYYShareView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     //    shareView.delegate = self;
@@ -467,6 +470,7 @@
     //    self.zh_popupController.dismissOnMaskTouched = NO;
     //    [self.zh_popupController presentContentView:shareView];
     
+    [self.view endEditing:YES];
     
     _shareView.delegate = self;
     _shareView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*(1-0.6897));
@@ -485,7 +489,7 @@
     [self.zh_popupController presentContentView:_shareView];
     
 }
-- (void)ClickedGroupTopicBtn:(UIButton *)sender{
+- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell{
     
 }
 
