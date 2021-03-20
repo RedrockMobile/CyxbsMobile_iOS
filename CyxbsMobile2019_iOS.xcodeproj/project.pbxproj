@@ -52,6 +52,7 @@
 		187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4B8260310DD000BCDE9 /* FTEmptyView.m */; };
 		187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4C3260310FA000BCDE9 /* UITextView+WZB.m */; };
 		1880921C25FF7DE60097DCE4 /* MGDStatusBarHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880921B25FF7DE60097DCE4 /* MGDStatusBarHeight.m */; };
+		1880EA1F2606345A004E845C /* NewCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880EA1E2606345A004E845C /* NewCountModel.m */; };
 		18CDF478257F8D9C006E8E5C /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF477257F8D9C006E8E5C /* Mine.xcassets */; };
 		18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */; };
 		18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF487257F8DBD006E8E5C /* setEmailViewController.m */; };
@@ -732,6 +733,8 @@
 		187DF4C4260310FA000BCDE9 /* UITextView+WZB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+WZB.h"; sourceTree = "<group>"; };
 		1880921A25FF7DE60097DCE4 /* MGDStatusBarHeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDStatusBarHeight.h; sourceTree = "<group>"; };
 		1880921B25FF7DE60097DCE4 /* MGDStatusBarHeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDStatusBarHeight.m; sourceTree = "<group>"; };
+		1880EA1D2606345A004E845C /* NewCountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewCountModel.h; sourceTree = "<group>"; };
+		1880EA1E2606345A004E845C /* NewCountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewCountModel.m; sourceTree = "<group>"; };
 		18CDF477257F8D9C006E8E5C /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		18CDF482257F8DBD006E8E5C /* SetQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetQuestionViewController.h; sourceTree = "<group>"; };
 		18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetQuestionViewController.m; sourceTree = "<group>"; };
@@ -1817,6 +1820,8 @@
 				1817F05C259865EA00FE1304 /* ShieldModel.m */,
 				1817F0612598672E00FE1304 /* CancelShieldModel.h */,
 				1817F0622598672E00FE1304 /* CancelShieldModel.m */,
+				1880EA1D2606345A004E845C /* NewCountModel.h */,
+				1880EA1E2606345A004E845C /* NewCountModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5260,6 +5265,7 @@
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
 				18CDF6AD257F91BD006E8E5C /* SCCircleChart.m in Sources */,
 				1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */,
+				1880EA1F2606345A004E845C /* NewCountModel.m in Sources */,
 				1A16592023D85CD60039BA46 /* MineQAController.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				187DF4AA26031010000BCDE9 /* UIColor+SYColor.m in Sources */,
