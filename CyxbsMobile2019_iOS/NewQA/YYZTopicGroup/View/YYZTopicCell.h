@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YYZTopicDetailVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *topic_number;
 @property (strong, nonatomic) IBOutlet UILabel *topic_introduce;
 @property (strong, nonatomic) IBOutlet UIButton *topic_isFollow;
+
+
+
 
 @end
 

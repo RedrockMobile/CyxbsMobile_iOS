@@ -39,10 +39,10 @@
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
-        NSLog(@"%@",array);
+        NSLog(@"圈子数据请求成功");
         [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"-------------error");
+            [NewQAHud showHudWith:@"圈子官场网络请求失败" AddView:self.view];
         }];
    
 }
@@ -79,8 +79,7 @@
                 //xib文件
         cell = [nib objectAtIndex:0];
     }*/
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil];
-            //xib文件
+    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
     self.cell = cell;
     for(int i=0;i<self.array.count;i++){
@@ -89,19 +88,27 @@
             cell.topic_id.text = self.array[i][@"topic_name"];
             cell.topic_number.text = [NSString stringWithFormat:@"%@个成员",self.array[i][@"follow_count"]];
             cell.topic_introduce.text = self.array[i][@"introduction"];
-            [cell.topic_logo sd_setImageWithURL:[NSURL URLWithString:self.array[i][@"topic_logo"]]];
+            [cell.topic_logo sd_setImageWithURL:[NSURL URLWithString:dic[@"topic_logo"]]];
             [cell.topic_isFollow setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:173/255.0 green:187/255.0 blue:213/255.0 alpha:1.0]] forState:UIControlStateDisabled];
             if([self.array[i][@"is_follow"] longValue] == 1){
                 cell.topic_isFollow.enabled = NO;
                 cell.topic_isFollow.clipsToBounds = YES;
                 cell.topic_isFollow.layer.cornerRadius = 14;
-
             }
             cell.topic_isFollow.tag = self.array[i][@"topic_id"];
             [cell.topic_isFollow addTarget:self action:@selector(changeFollow:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSIndexPath* indexPath2 = [self.tableView indexPathForSelectedRow];
+    YYZTopicCell *cell = [self.tableView cellForRowAtIndexPath:indexPath2];
+    YYZTopicDetailVC *detailView = [[YYZTopicDetailVC alloc]initWithId:cell.topic_id.text];
+    [self.navigationController pushViewController:detailView animated:YES];
+
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
