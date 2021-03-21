@@ -317,5 +317,8 @@
 // 屏蔽
 #define NEW_QA_SHIELD [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ignore/addIgnoreUid"]
 
+// 查看未读消息
+#define NEW_QA_QUERYNEWCOUNT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/getUnreadCount"]
+
 
 #endif /* CyxbsMobileURL_h */

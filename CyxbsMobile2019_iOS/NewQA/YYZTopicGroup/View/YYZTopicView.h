@@ -1,8 +1,8 @@
 //
-//  YYZTopicDetailVC.h
+//  YYZTopicView.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 杨远舟 on 2021/3/16.
+//  Created by 杨远舟 on 2021/3/20.
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
@@ -10,9 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YYZTopicDetailVC : UIViewController
-
-- (instancetype)initWithId:(NSString *) topicID;
+@interface YYZTopicView : UIView
 
 @end
+
 NS_ASSUME_NONNULL_END

@@ -18,7 +18,8 @@
 #import "StarPostModel.h"       //点赞网络请求模型
 #import "SearchEndModel.h"      //搜索结束页网络请求模型
 #import "CYSearchEndKnowledgeDetailModel.h" //知识库详情页的model
-
+#import "ShieldModel.h"                     //屏蔽数据的model
+#import "ReportModel.h"                     //举报的数据model
 //视图类
 #import "SearchBeiginView.h"    //本界面上半部分
 #import "RecommendedTableView.h"//下半部分相关动态表格
@@ -65,6 +66,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setBackViewWithGesture];
     [self addSearchEndTopView];
     self.view.backgroundColor = self.searchEndTopView.backgroundColor;
     if (self.knowlegeAry.count == 0) {
@@ -259,7 +261,7 @@
     _backViewWithGesture.alpha = 0.36;
     UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBackViewWithGesture)];
     [self.backViewWithGesture addGestureRecognizer:dismiss];
-    [self.view addSubview:self.backViewWithGesture];
+//    [self.view addSubview:self.backViewWithGesture];
 }
 - (void)showBackViewWithGesture {
     [[UIApplication sharedApplication].keyWindow addSubview:_backViewWithGesture];
@@ -427,13 +429,12 @@
 
 ///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell {
-//    PostItem *item = self.postArray[sender.tag];
-//    int post_id = [item.post_id intValue];
-    
-//    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-//    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
-//    dynamicDetailVC.post_id = [item.post_id intValue];
-//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[cell.commendBtn.tag]];
+    dynamicDetailVC.post_id = [item.post_id intValue];
+    dynamicDetailVC.item = item;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 ///分享帖子
@@ -459,7 +460,7 @@
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
  */
 - (void)ClickedFuncBtn:(PostTableViewCell *)cell{
-    [self setBackViewWithGesture];
+//    [self setBackViewWithGesture];
     UIWindow* desWindow = self.view.window;
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
@@ -474,15 +475,15 @@
 //MARK:多功能View代理方法
 ///点击屏蔽按钮
 - (void)ClickedShieldBtn:(UIButton *)sender {
-//    ShieldModel *model = [[ShieldModel alloc] init];
-//    PostItem *item = [[PostItem alloc] initWithDic:self.tableArray[sender.tag]];
-    [self showShieldSuccessful];
-//    [model ShieldPersonWithUid:item.uid];
-//    [model setBlock:^(id  _Nonnull info) {
-//        if ([info[@"info"] isEqualToString:@"success"]) {
-//            [self showShieldSuccessful];
-//        }
-//    }];
+    ShieldModel *model = [[ShieldModel alloc] init];
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
+//    [self showShieldSuccessful];
+    [model ShieldPersonWithUid:item.uid];
+    [model setBlock:^(id  _Nonnull info) {
+        if ([info[@"info"] isEqualToString:@"success"]) {
+            [self showShieldSuccessful];
+        }
+    }];
 }
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
@@ -502,10 +503,17 @@
 //MARK:举报页面代理方法
 ///举报页面点击确定按钮
 - (void)ClickedSureBtn {
-//    [self dismissReportBackView];
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [self showReportSuccessful];
+    ReportModel *model = [[ReportModel alloc] init];
+    [model ReportWithPostID:_reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:_reportView.textView.text];
+    [model setBlock:^(id  _Nonnull info) {
+        [self showReportSuccessful];
+    }];
+//    [self dismissReportBackView];
+//    [_reportView removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+//    [self showReportSuccessful];
 //    ReportModel *model = [[ReportModel alloc] init];
 //    [model ReportWithPostID:_reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:_reportView.textView.text];
 //    [model setBlock:^(id  _Nonnull info) {
