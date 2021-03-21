@@ -226,7 +226,7 @@
     
     if (!self.item && self.post_id >0) {
         
-        [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([responseObject[@"status"] intValue] ==200) {
                 self.item = [PostItem mj_objectWithKeyValues:responseObject[@"data"]];
                 [self updateDynamicViewHeight];

@@ -52,7 +52,7 @@
     ///昵称
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textAlignment = NSTextAlignmentLeft;
-    _nicknameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 15];
+    _nicknameLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 13];
     if (@available(iOS 11.0, *)) {
         _nicknameLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
     } else {
