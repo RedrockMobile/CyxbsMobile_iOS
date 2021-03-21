@@ -197,7 +197,7 @@
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.backButton.mas_trailing).offset(11 - 11); // 减去21的按钮内边距
+        make.centerX.equalTo(self);
         make.centerY.equalTo(self.backButton);
     }];
     
@@ -262,7 +262,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
+    
     cell.textLabel.textColor = self.appNameLabel.textColor;
     cell.backgroundColor = self.tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

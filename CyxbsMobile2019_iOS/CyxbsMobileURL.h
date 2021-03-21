@@ -53,6 +53,11 @@
 //获取用户资料，POST
 #define getPersonData [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/Person/Search"];
 
+//获取屏蔽的人
+#define getIgnoreUid [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/user/getIgnoreUid"]
+
+//获取用户服务协议
+#define GetaboutUsMsg [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-text/text/get"]
 
 // 通过帖子id 获取帖子数据
 #define GETPOSTINFO [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getPostInfo"]
@@ -189,7 +194,7 @@
 //删除备忘，POST
 #define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
-//查老师课表数据，POST，参数： @{ @"teaName"]: 姓名, @"tea"]: 工号？}
+//查老师课表数据，POST，参数： @{ @"teaName": 姓名, @"tea": 工号？}
 #define TEAkebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teaKb/api/teaKb"]
 
 /// 空教室接口
