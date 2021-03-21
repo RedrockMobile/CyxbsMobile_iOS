@@ -41,7 +41,7 @@
     
     //标题alebl
     self.tittleLbl = [[UILabel alloc] init];
-    self.tittleLbl.text = @"请选择圈子";
+    self.tittleLbl.text = @"请选择一个圈子";
     if (@available(iOS 11.0, *)) {
         self.tittleLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
     } else {

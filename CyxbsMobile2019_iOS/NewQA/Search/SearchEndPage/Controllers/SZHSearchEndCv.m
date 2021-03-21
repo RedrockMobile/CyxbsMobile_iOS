@@ -566,7 +566,7 @@
 #pragma mark- 添加界面控件
 /// 添加上半部分视图
 - (void)addSearchEndTopView{
-    self.searchEndTopView = [[SearchBeiginView alloc] initWithString:@"重邮知识库"];
+    self.searchEndTopView = [[SearchBeiginView alloc] initWithString:@"邮问知识库"];
     
     //设置重邮知识库的view
 //    self.knowlegeAry = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
