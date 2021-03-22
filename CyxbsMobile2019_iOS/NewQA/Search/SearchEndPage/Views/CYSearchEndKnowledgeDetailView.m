@@ -42,9 +42,9 @@
         [self.contentTextView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.titleLbl);
 //            make.top.equalTo(self.titleLbl.mas_bottom).offset(MAIN_SCREEN_H * 0.0202);
-            make.top.equalTo(self.titleLbl.mas_bottom).offset(17);
+            make.top.equalTo(self.titleLbl.mas_bottom).offset(14);
             make.right.equalTo(self).offset(- MAIN_SCREEN_W * 0.0427);
-            make.bottom.equalTo(self).offset(- MAIN_SCREEN_H * 0.0375);
+            make.bottom.equalTo(self).offset(- MAIN_SCREEN_H * 0.036);
         }];
         
         [self addSubview:self.clearBtn];
