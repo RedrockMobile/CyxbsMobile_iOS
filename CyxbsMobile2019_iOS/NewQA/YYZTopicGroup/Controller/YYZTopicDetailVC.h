@@ -6,11 +6,12 @@
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
+#import "TopBarBasicViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface YYZTopicDetailVC : UIViewController
+@interface YYZTopicDetailVC : TopBarBasicViewController
 
 - (instancetype)initWithId:(NSString *) topicID;
 

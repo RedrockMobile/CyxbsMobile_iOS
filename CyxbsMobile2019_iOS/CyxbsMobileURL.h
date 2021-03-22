@@ -175,7 +175,7 @@
 #pragma mark - “课表”、“备忘”接口
 
 //查课表数据，GET，参数：@{@"stu_num"]:学号}
-#define kebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/kebiao"]
+#define kebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/kebiao"]
 
 //加备忘，POST
 #define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
