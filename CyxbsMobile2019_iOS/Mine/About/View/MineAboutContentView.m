@@ -180,7 +180,7 @@
     } else {
         [btn setTitleColor:[UIColor colorWithRed:44/255.0 green:223/255.0 blue:255/255.0 alpha:1] forState:UIControlStateNormal];
     }
-    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:11]];
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:11]];
     return btn;
 }
 - (void)layoutSubviews {
@@ -197,7 +197,7 @@
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.backButton.mas_trailing).offset(11 - 11); // 减去21的按钮内边距
+        make.centerX.equalTo(self);
         make.centerY.equalTo(self.backButton);
     }];
     
@@ -262,7 +262,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCRegular size:16];
+    
     cell.textLabel.textColor = self.appNameLabel.textColor;
     cell.backgroundColor = self.tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

@@ -240,6 +240,7 @@ static int requestCheckinInfo = 0;
     
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        CCLog(@"Checkin_resp=%@",responseObject);
         [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
         [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
         [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
@@ -247,7 +248,7 @@ static int requestCheckinInfo = 0;
         [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
         [UserItemTool defaultItem].canCheckIn = [responseObject[@"data"][@"can_check_in"] boolValue];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        CCLog(@"Checkin_err=%@",error);
     }];
 }
 
@@ -363,7 +364,7 @@ static int requestCheckinInfo = 0;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:(MBProgressHUDModeText)];
     hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
-    [hud hide:YES afterDelay:1.5];
+    [hud hide:YES afterDelay:1];
     return;
 }
 - (void)updateElectricFeeUI {

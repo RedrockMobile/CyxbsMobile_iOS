@@ -94,7 +94,6 @@
         [self.delegate ModelDataLoadSuccess:self];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        CCLog(@"ke%@",error);
         //通知代理数据加载失败
         [self.delegate ModelDataLoadFailure];
     }];

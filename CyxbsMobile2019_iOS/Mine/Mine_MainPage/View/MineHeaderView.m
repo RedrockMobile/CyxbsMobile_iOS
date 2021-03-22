@@ -158,14 +158,13 @@
     [self addSubview:signinButton];
     self.checkInButton = signinButton;
     
-    if (@available(iOS 11.0, *)) {
-        signinButton.backgroundColor = [UIColor colorNamed:@"Mine_Main_SignInButtonColor"];
-    } else {
-        signinButton.backgroundColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:209/255.0 alpha:1.0];
-    }
-    signinButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    //夜间和白天两种颜色一样
+    signinButton.backgroundColor = [UIColor colorWithRed:63/255.0 green:64/255.0 blue:225/255.0 alpha:1.0];
+    
+    signinButton.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:13];
+    
     [signinButton setTitle:@"签到" forState:UIControlStateNormal];
-    [signinButton setTintColor:[UIColor whiteColor]];
+    [signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [signinButton addTarget:self.delegate action:@selector(checkInButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -210,12 +209,13 @@
     
     [self.nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.headerImageBtn.mas_trailing).offset(0.052*SCREEN_WIDTH);
-        make.top.equalTo(self.headerImageBtn).offset(0.018*SCREEN_HEIGHT);
+        make.top.equalTo(self.headerImageBtn).offset(0.015*SCREEN_HEIGHT);
     }];
     
     [self.introductionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.nicknameLabel);
         make.top.equalTo(self.nicknameLabel.mas_bottom).offset(0.006*SCREEN_HEIGHT);
+        make.bottom.equalTo(self.headerImageBtn.mas_bottom).offset(-0.0135*SCREEN_HEIGHT);
     }];
     
     [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -244,7 +244,7 @@
         make.width.mas_equalTo(0.1387*SCREEN_WIDTH);
     }];
     
-    self.checkInButton.layer.cornerRadius = 14;
+    self.checkInButton.layer.cornerRadius = 0.037335*SCREEN_WIDTH;
     
     int h;
     if (IS_IPHONESE) {

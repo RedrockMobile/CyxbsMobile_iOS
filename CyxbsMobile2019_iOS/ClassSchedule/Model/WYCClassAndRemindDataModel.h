@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HttpClient.h"
 #import "NoteDataModel.h"
-#define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
+
 @protocol WYCClassAndRemindDataModelDelegate <NSObject>
 //备忘模型加载完毕后调用的两个方法
 - (void)ModelDataLoadSuccess:(id)model;
