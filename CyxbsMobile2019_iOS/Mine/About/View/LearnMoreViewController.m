@@ -83,7 +83,7 @@
     }
     view.backgroundColor = self.view.backgroundColor;
     
-    [view setFont:[UIFont fontWithName:PingFangSCMedium size:13]];
+    [view setFont:[UIFont fontWithName:PingFangSCLight size:13]];
     
     view.delegate = self;
 }

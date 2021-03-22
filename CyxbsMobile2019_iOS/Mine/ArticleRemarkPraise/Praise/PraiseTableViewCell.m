@@ -35,8 +35,7 @@
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     
-    label.font = [UIFont fontWithName:PingFangSCMedium size:15];
-//    label.numberOfLines = 2;
+    label.font = [UIFont fontWithName:PingFangSCRegular size:15];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(0.1867*SCREEN_WIDTH);
         make.top.equalTo(self).offset(0.1987*SCREEN_WIDTH);

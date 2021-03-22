@@ -161,9 +161,10 @@
     //夜间和白天两种颜色一样
     signinButton.backgroundColor = [UIColor colorWithRed:63/255.0 green:64/255.0 blue:225/255.0 alpha:1.0];
     
-    signinButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    signinButton.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:13];
+    
     [signinButton setTitle:@"签到" forState:UIControlStateNormal];
-    [signinButton setTintColor:[UIColor whiteColor]];
+    [signinButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [signinButton addTarget:self.delegate action:@selector(checkInButtonClicked) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -243,7 +244,7 @@
         make.width.mas_equalTo(0.1387*SCREEN_WIDTH);
     }];
     
-    self.checkInButton.layer.cornerRadius = 14;
+    self.checkInButton.layer.cornerRadius = 0.037335*SCREEN_WIDTH;
     
     int h;
     if (IS_IPHONESE) {

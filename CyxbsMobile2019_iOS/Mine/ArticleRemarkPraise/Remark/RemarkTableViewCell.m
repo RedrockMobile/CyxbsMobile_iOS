@@ -50,6 +50,7 @@
 }
 
 //MARK:-添加子控件
+//上
 - (void)addContentLabel {
     UILabel *label = [[UILabel alloc] init];
     self.contentLabel = label;
@@ -61,14 +62,15 @@
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     
-    label.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:17];
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(0.188*MAIN_SCREEN_W);
         make.top.equalTo(self.contentView).offset(0.1987*MAIN_SCREEN_W);
+        make.right.equalTo(self.contentView).offset(-0.05*SCREEN_WIDTH);
     }];
 }
-
+//下
 - (void)addRemarkLabel {
     UILabel *label = [[UILabel alloc] init];
     self.remarkLabel = label;
@@ -80,11 +82,12 @@
         label.textColor = [UIColor colorWithRed:85/255.0 green:108/255.0 blue:139/255.0 alpha:1];
     }
     
-    label.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:13];
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(0.204*MAIN_SCREEN_W);
         make.top.equalTo(self.contentView).offset(0.2627*MAIN_SCREEN_W);
+        make.right.equalTo(self.contentView).offset(-0.05*SCREEN_WIDTH);
     }];
     
     [self addGrayTipView];

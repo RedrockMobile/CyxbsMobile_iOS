@@ -291,7 +291,7 @@
     
     cell.backgroundColor = tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
     [cell setAccessoryType:(UITableViewCellAccessoryDisclosureIndicator)];
     if (@available(iOS 11.0, *)) {
         cell.textLabel.textColor = [UIColor colorNamed:@"25_56_102&240_240_242"];
