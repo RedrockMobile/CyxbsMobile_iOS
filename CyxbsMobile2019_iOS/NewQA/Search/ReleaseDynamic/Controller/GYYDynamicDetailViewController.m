@@ -365,12 +365,12 @@
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"删除成功" AddView:self.view];
+            [NewQAHud showHudWith:@"  删除成功  " AddView:self.view];
             [self.mainTableView.mj_header beginRefreshing];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"删除失败，请重试" AddView:self.view];
+        [NewQAHud showHudWith:@"  删除失败，请重试  " AddView:self.view];
         
     }];
     
