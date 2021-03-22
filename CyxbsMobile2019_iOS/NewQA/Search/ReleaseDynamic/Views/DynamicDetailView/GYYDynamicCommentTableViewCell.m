@@ -52,31 +52,23 @@
     ///昵称
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textAlignment = NSTextAlignmentLeft;
-    _nicknameLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 13];
-    if (@available(iOS 11.0, *)) {
-        _nicknameLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
-    } else {
-        // Fallback on earlier versions
-    }
+    _nicknameLabel.font = [UIFont fontWithName:PingFangSCMedium size: 13];
+    _nicknameLabel.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x15315B) DarkColor:KUIColorFromRGB(0x838384)];
     [self.contentView addSubview:_nicknameLabel];
     
     ///时间
     _timeLabel = [[UILabel alloc] init];
     _timeLabel.textAlignment = NSTextAlignmentLeft;
-    _timeLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
-    if (@available(iOS 11.0, *)) {
-        _timeLabel.textColor = [UIColor colorNamed:@"CellDateColor"];
-    } else {
-        // Fallback on earlier versions
-    }
+    _timeLabel.font = [UIFont fontWithName:PingFangSCMedium size: 11];
+    _timeLabel.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x556C89) DarkColor:KUIColorFromRGB(0x5A5A5A)];
+  
     [self.contentView addSubview:_timeLabel];
     
     ///内容
     _detailLabel = [[UILabel alloc] init];
-    if (@available(iOS 11.0, *)) {
-        _detailLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
-    }
-    self.detailLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:15];
+    _detailLabel.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xF0F0F0)];
+    
+    self.detailLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
@@ -180,12 +172,12 @@
         NSRange rangeOne = NSMakeRange(0, 2);
         NSMutableDictionary *dicOne = [NSMutableDictionary dictionary];
         dicOne[NSFontAttributeName] = [UIFont fontWithName:PingFangSCMedium size:17];
-        dicOne[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xffffff)];
+        dicOne[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xF0F0F0)];
         
         NSRange rangetwo = NSMakeRange(4, self.commentModle.from_nickname.length);
         NSMutableDictionary *dictwo  = [NSMutableDictionary dictionary];
         dictwo[NSFontAttributeName] = [UIFont fontWithName:PingFangSCMedium size:13];
-        dictwo[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x556C89) DarkColor:KUIColorFromRGB(0xffffff)];
+        dictwo[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x556C89) DarkColor:KUIColorFromRGB(0x556C89)];
         
         //赋值
         [attribut addAttributes:dicOne range:rangeOne];
@@ -221,7 +213,7 @@
     }else {
         height_pading = 13.5;
         CGFloat item_height = (SCREEN_WIDTH*(1-0.04)-(self.commentLevel == DynamicCommentType_stair?46:78)-Margin*4-16)/3.0;
-        height_collectionview = imgarr.count/3*item_height;
+        height_collectionview = ceil(imgarr.count/3.0)*item_height;
     }
     [self.collectView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.detailLabel.mas_bottom).mas_offset(height_pading);

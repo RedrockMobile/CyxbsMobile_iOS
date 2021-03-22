@@ -67,7 +67,7 @@
         [_tableHeadView addSubview:remindLB];
         
         UILabel *lineLB = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 1)];
-        lineLB.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x252525) DarkColor:KUIColorFromRGB(0x252525)];
+        lineLB.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xF1F3F8) DarkColor:KUIColorFromRGB(0x252525)];
         
         [_tableHeadView addSubview:lineLB];
         
@@ -212,7 +212,7 @@
             [self.allCommentM addObjectsFromArray:[GYYDynamicCommentModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
         }
         if (self.allCommentM.count <=0) {
-            [self.mainTableView showNoDataStatusWithString:@"还没有评论哦~" imageName:@"图层 11" withOfffset:100];
+            [self.mainTableView showNoDataStatusWithString:@"还没有评论哦~" imageName:@"图层 11" withOfffset:CGRectGetMidY(self.tableHeadView.frame)];
         }
         [self.mainTableView.mj_header endRefreshing];
         [self.mainTableView reloadData];
@@ -226,7 +226,7 @@
     
     if (!self.item && self.post_id >0) {
         
-        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([responseObject[@"status"] intValue] ==200) {
                 self.item = [PostItem mj_objectWithKeyValues:responseObject[@"data"]];
                 [self updateDynamicViewHeight];
@@ -306,6 +306,15 @@
     
     GYYDynamicCommentTableViewCell *cell = (GYYDynamicCommentTableViewCell*)[self.mainTableView cellForRowAtIndexPath:indexPath];
     
+    CGRect rectInTableView = [tableView rectForRowAtIndexPath:indexPath];
+    //获取cell在tableView中的位置
+    CGRect rectInSuperview = [tableView convertRect:rectInTableView toView:[tableView superview]];
+    
+    CGFloat rectYMargin = rectInSuperview.origin.y+40;
+    if (rectYMargin >=SCREEN_HEIGHT-NVGBARHEIGHT-STATUSBARHEIGHT-54) {
+        rectYMargin = rectInSuperview.origin.y-SCREEN_WIDTH*0.0773;
+    }
+    
     SHPopMenu *_menu = [[SHPopMenu alloc]init];
     
     _menu.dimBackground = YES;
@@ -323,7 +332,7 @@
     
     __weak typeof(self)weakSelf = self;
     //显示菜单
-    [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:cell.frame.origin.y+SCREEN_WIDTH*0.0773*2 block:^(SHPopMenu *menu, NSInteger index) {
+    [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:rectYMargin block:^(SHPopMenu *menu, NSInteger index) {
         
         NSLog(@"点击了 --- %ld",(long)index);
         if (index <=1) {
@@ -332,7 +341,7 @@
             }else{//复制
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
                 pab.string = weakSelf.actionCommentModel.content;
-                //                [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
+                // [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
             }
         }else{
             if (self.actionCommentModel.is_self) {//删除
@@ -576,6 +585,7 @@
         if ([responseObject[@"status"] intValue] ==200) {
             [NewQAHud showHudWith:@"发布评论成功" AddView:self.view];
             [self.inputView clearCurrentInput];
+            [self.view endEditing:YES];
             [self.mainTableView.mj_header beginRefreshing];
         }
         
