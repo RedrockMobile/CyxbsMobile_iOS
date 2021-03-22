@@ -28,7 +28,7 @@
         if ([string isEqualToString:@"热门搜索"]) {
             self.hotSearch_KnowledgeLabel.text = @"热门搜索";
         }else{
-            self.hotSearch_KnowledgeLabel.text = @"重邮知识库";
+            self.hotSearch_KnowledgeLabel.text = @"邮问知识库";
         }
         
         //添加到屏幕上面
@@ -59,7 +59,7 @@
         //判断创建的是哪一个页面，决定按钮触碰后会执行什么方法
         if ([self.hotSearch_KnowledgeLabel.text isEqualToString:@"热门搜索"]) {
             [button addTarget:self.delegate action:@selector(touchHotSearchBtnsThroughBtn:) forControlEvents:UIControlEventTouchUpInside];
-        }else if ([self.hotSearch_KnowledgeLabel.text isEqualToString:@"重邮知识库"]){
+        }else if ([self.hotSearch_KnowledgeLabel.text isEqualToString:@"邮问知识库"]){
             [button addTarget:self.delegate action:@selector(touchCQUPTKonwledgeThroughBtn:) forControlEvents:UIControlEventTouchUpInside];
         }
         
