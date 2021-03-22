@@ -166,6 +166,7 @@
     self.timeLabel.hidden = (self.commentLevel == DynamicCommentType_secondLevel?YES:NO);
     
     if (self.commentLevel == DynamicCommentType_secondLevel) {
+
         NSString *tampStr = [NSString stringWithFormat:@"回复 %@：%@",self.commentModle.from_nickname,self.commentModle.content];
         
         NSMutableAttributedString *attribut = [[NSMutableAttributedString alloc]initWithString:tampStr];
@@ -173,17 +174,25 @@
         NSMutableDictionary *dicOne = [NSMutableDictionary dictionary];
         dicOne[NSFontAttributeName] = [UIFont fontWithName:PingFangSCMedium size:17];
         dicOne[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xF0F0F0)];
-        
-        NSRange rangetwo = NSMakeRange(4, self.commentModle.from_nickname.length);
-        NSMutableDictionary *dictwo  = [NSMutableDictionary dictionary];
-        dictwo[NSFontAttributeName] = [UIFont fontWithName:PingFangSCMedium size:13];
-        dictwo[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x556C89) DarkColor:KUIColorFromRGB(0x556C89)];
-        
-        //赋值
         [attribut addAttributes:dicOne range:rangeOne];
-        [attribut addAttributes:dicOne range:rangetwo];
-        self.detailLabel.attributedText = attribut;
         
+        CGFloat detailLength = 3;
+        if (self.commentModle.from_nickname.length >0) {
+            NSRange rangetwo = NSMakeRange(3, self.commentModle.from_nickname.length+1);
+            NSMutableDictionary *dictwo  = [NSMutableDictionary dictionary];
+            dictwo[NSFontAttributeName] = [UIFont fontWithName:PingFangSCMedium size:13];
+            dictwo[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x556C89) DarkColor:KUIColorFromRGB(0x556C89)];
+            [attribut addAttributes:dictwo range:rangetwo];
+            detailLength += (self.commentModle.from_nickname.length+1);
+        }
+        
+        NSRange rangethree = NSMakeRange(detailLength, self.commentModle.content.length);
+        NSMutableDictionary *dicthree = [NSMutableDictionary dictionary];
+        dicthree[NSFontAttributeName] = [UIFont fontWithName:PingFangSCMedium size:15];
+        dicthree[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xF0F0F0)];
+        [attribut addAttributes:dicthree range:rangethree];
+        
+        self.detailLabel.attributedText = attribut;
         
     }else{
         self.detailLabel.text = self.commentModle.content;
