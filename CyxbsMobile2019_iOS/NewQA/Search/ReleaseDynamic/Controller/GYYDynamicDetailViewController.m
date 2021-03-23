@@ -158,7 +158,7 @@
 - (void)addBackButton {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(0, 0, 40, 40);
-    [backButton setImage:[UIImage imageNamed:@"icon_close"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"轮播右箭头"] forState:UIControlStateNormal];
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
 }
@@ -396,14 +396,14 @@
     
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/report" method:HttpRequestPost parameters:@{@"id":self.reportView.postID,@"model":@(self.reportView.model),@"content":self.reportView.textView.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"举报成功" AddView:self.view];
+            [NewQAHud showHudWith:@"  举报成功  " AddView:self.view];
             [self.zh_popupController dismiss];
         }else{
-            [NewQAHud showHudWith:@"网络错误，请重试" AddView:self.view];
+            [NewQAHud showHudWith:@"  网络错误，请重试  " AddView:self.view];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"举报失败，请重试" AddView:self.view];
+        [NewQAHud showHudWith:@"  举报失败，请重试  " AddView:self.view];
         
     }];
     
@@ -442,7 +442,7 @@
             
         }else{//屏蔽此人
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [NewQAHud showHudWith:@"将不再推荐该用户的动态给你" AddView:self.view];
+                [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view];
             });
             
         }
@@ -552,7 +552,7 @@
 }
 - (void)shareSuccessful {
     
-    [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
+    [NewQAHud showHudWith:@"  已复制链接，可以去分享给小伙伴了～  " AddView:self.view];
 }
 
 
