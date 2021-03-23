@@ -92,6 +92,9 @@
     [_starBtn addTarget:self action:@selector(ClickedStar:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_starBtn];
     
+    self.lineLB = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 1)];
+    self.lineLB.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xF1F3F8) DarkColor:KUIColorFromRGB(0x252525)];
+    [self.contentView addSubview:self.lineLB];
 }
 
 - (void)BuildFrame {
@@ -135,7 +138,10 @@
         make.height.mas_equalTo(1).priorityLow();
         make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-2);
     }];
-    
+    [self.lineLB mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.contentView);
+        make.height.mas_offset(1);
+    }];
 }
 
 - (void)awakeFromNib {
@@ -163,6 +169,7 @@
         self.timeLabel.hidden = YES;
     }
     
+    self.lineLB.hidden = (self.commentLevel == DynamicCommentType_secondLevel?YES:NO);
     self.timeLabel.hidden = (self.commentLevel == DynamicCommentType_secondLevel?YES:NO);
     
     if (self.commentLevel == DynamicCommentType_secondLevel) {

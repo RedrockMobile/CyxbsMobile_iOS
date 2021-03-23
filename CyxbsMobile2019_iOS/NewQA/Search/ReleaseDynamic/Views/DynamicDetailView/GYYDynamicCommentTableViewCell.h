@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *detailLabel;
 ///图片列表
 @property (nonatomic, strong) UICollectionView *collectView;
+@property(nonatomic, strong) UILabel *lineLB;
+
 ///圈子标签
 //@property (nonatomic, strong) UIButton *groupLabel;
 ///点赞
