@@ -23,6 +23,7 @@
 #import "GYYShareView.h"
 #import "shareView.h"
 #import "StarPostModel.h"
+#import "DeleteArticleTipView.h"
 
 @interface GYYDynamicDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DKSKeyboardDelegate,ReportViewDelegate,PostTableViewCellDelegate,GYYShareViewDelegate,ShareViewDelegate>
 
@@ -120,6 +121,8 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.tableHeaderView = self.tableHeadView;
     self.mainTableView.tableFooterView = [UIView new];
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [self.view addSubview:self.mainTableView];
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -289,6 +292,9 @@
     }else{
         cell.commentModle = commentModel.reply_list[indexPath.row-1];
     }
+//    NSInteger rowNum = [tableView numberOfRowsInSection:indexPath.section];
+//    cell.lineLB.hidden = (rowNum == indexPath.row+1 ?NO:YES);
+
     return cell;
     
 }
@@ -362,17 +368,24 @@
 //删除评论
 - (void)deleteAction{
     
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         
-        if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"  删除成功  " AddView:self.view];
-            [self.mainTableView.mj_header beginRefreshing];
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"  删除失败，请重试  " AddView:self.view];
+        [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            if ([responseObject[@"status"] intValue] ==200) {
+                [NewQAHud showHudWith:@"删除成功" AddView:self.view];
+                [self.mainTableView.mj_header beginRefreshing];
+            }
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NewQAHud showHudWith:@"删除失败，请重试" AddView:self.view];
+            
+        }];
         
     }];
+    tipView.titleLabel.text = @"确定删除此条评论？";
+    [self.view addSubview:tipView];
     
 }
 #pragma mark -举报页面的代理方法
