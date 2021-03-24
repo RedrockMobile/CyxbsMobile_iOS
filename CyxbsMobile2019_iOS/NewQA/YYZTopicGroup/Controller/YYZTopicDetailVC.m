@@ -99,7 +99,7 @@
 }
 
 - (void) setMiddleView {
-    UIView *middleView = [[UIView alloc]initWithFrame:CGRectMake(0, 140, SCREEN_WIDTH, SCREEN_HEIGHT-140)];
+    UIView *middleView = [[UIView alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, SCREEN_HEIGHT-130)];
     middleView.backgroundColor = [UIColor whiteColor];
     [self.backgroundScrollView addSubview:middleView];
 }
@@ -112,17 +112,17 @@
 }
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    NSLog(@"%@",stringIsFollow);
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
-            //改变button状态
+                        //改变button状态
         if([btn.titleLabel.text isEqualToString:@"已关注"]){
+            [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
             [btn setTitle:@"+关注" forState:UIControlStateNormal];
             btn.backgroundColor = RGBColor(93, 94, 247, 1);
         }
         else{
+            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
             [btn setTitle:@"已关注" forState:UIControlStateNormal];
