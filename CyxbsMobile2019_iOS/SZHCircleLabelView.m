@@ -47,7 +47,7 @@
     } else {
         // Fallback on earlier versions
     }
-    self.tittleLbl.font = [UIFont fontWithName:@"PingFangSC-Bold" size:15];
+    self.tittleLbl.font = [UIFont fontWithName:PingFangSCBold size:15];
     [self addSubview:self.tittleLbl];
     [self.tittleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.04);

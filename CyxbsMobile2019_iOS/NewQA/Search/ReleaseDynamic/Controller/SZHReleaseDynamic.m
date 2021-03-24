@@ -116,7 +116,7 @@
         //圈子标签view
         [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.equalTo(self.releaseView);
-            make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
+            make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(20);
         }];
         [self.originView setHidden:YES];    //为0时隐藏原图的view
         return;
@@ -169,7 +169,7 @@
     //设置圈子标签的view
     [self.circleLabelView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.releaseView);
-        make.top.equalTo(self.originView.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
+        make.top.equalTo(self.originView.mas_bottom).offset(20);
     }];
     
     //如果图片框为9时，使添加图片按钮透明度为0,同时更新圈子标签view的约束
@@ -328,7 +328,7 @@
         }];
         
             //取消
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             [view removeFromSuperview];     //移除遮罩层
         }];
         
@@ -637,7 +637,8 @@
     [self.scrollView addSubview:self.circleLabelView];
     [self.circleLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.releaseView);
-        make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
+//        make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
+        make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(20);
     }];
     
 }
