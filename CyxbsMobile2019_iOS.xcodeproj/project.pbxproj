@@ -3694,8 +3694,8 @@
 			isa = PBXGroup;
 			children = (
 				7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */,
-				7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */,
 				7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */,
+				7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */,
 				7F101ABA260613E800F2034C /* YYZTopicDetailVC.h */,
 			);
 			path = Controller;
@@ -5622,7 +5622,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 19;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = QM475FB4ML;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5632,7 +5632,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -5651,7 +5651,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 19;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = QM475FB4ML;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5661,7 +5661,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
