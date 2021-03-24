@@ -504,14 +504,11 @@
     pasteboard.string = shareURL;
     
     
-    self.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeClear];
+    self.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeBlackTranslucent];
     self.zh_popupController.dismissOnMaskTouched = NO;
     self.zh_popupController.layoutType = zhPopupLayoutTypeBottom;
     self.zh_popupController.slideStyle = zhPopupSlideStyleFromBottom;
     [self.zh_popupController presentContentView:_shareView];
-    
-}
-- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell{
     
 }
 
