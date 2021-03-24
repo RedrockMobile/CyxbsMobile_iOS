@@ -28,8 +28,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
-//        self.backgroundColor = [UIColor whiteColor];
-        
+        self.layer.cornerRadius = 10;
+        self.layer.masksToBounds = YES;
         //titleLbl
         [self addSubview:self.titleLbl];
         [self.titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,6 +54,7 @@
             make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.08, MAIN_SCREEN_W * 0.08));
             make.size.mas_equalTo(CGSizeMake(30, 30));
         }];
+        
     }
     return self;
 }

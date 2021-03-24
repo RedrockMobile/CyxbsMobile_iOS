@@ -65,7 +65,12 @@
         _releaseBtn.userInteractionEnabled = NO;
         [_releaseBtn setTitle:@"发布" forState:UIControlStateNormal];
         [_releaseBtn setTitle:@"发布" forState:UIControlStateDisabled];
-        _releaseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
+        //设置字体，如果机型是全面屏，则字号放大
+        if(MAIN_SCREEN_H > 667){
+            _releaseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+        }else{
+            _releaseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
+        }
         [_releaseBtn addTarget:self.delegate action:@selector(releaseDynamic) forControlEvents:UIControlEventTouchUpInside];
         if (@available(iOS 11.0, *)) {
             self.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
