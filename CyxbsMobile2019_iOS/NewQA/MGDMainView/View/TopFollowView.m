@@ -72,10 +72,10 @@
             btn.item = item;
             btn.tag = i;
             [btn addTarget:self action:@selector(ClickedGroupBtn:) forControlEvents:UIControlEventTouchUpInside];
-            btn.frame = CGRectMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.25 * i, SCREEN_WIDTH * 0.1215 * 20.5/45.55, SCREEN_WIDTH * 0.1293, SCREEN_WIDTH * 0.1293 * 63.45/48.5);
+            btn.frame = CGRectMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.24 * i, SCREEN_WIDTH * 0.1215 * 20.5/45.55, SCREEN_WIDTH * 0.1293, SCREEN_WIDTH * 0.1293 * 63.45/48.5);
             [_groupsScrollView addSubview:btn];
         }
-        groupsScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.25 * dataArray.count, CGRectGetHeight(_groupBtn.frame));
+        groupsScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 0.044 + SCREEN_WIDTH * 0.24 * dataArray.count, CGRectGetHeight(_groupBtn.frame));
     }
 }
 
@@ -85,14 +85,14 @@
         make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.0427 * 11/16);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
         make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0255);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.1947 * 17/73);
     }];
     
     [_groupsScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.myFollowLab.mas_bottom);
         make.left.mas_equalTo(self.mas_left);
         make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.1619);
+        make.height.mas_equalTo(SCREEN_WIDTH * 108/375);
     }];
 }
 

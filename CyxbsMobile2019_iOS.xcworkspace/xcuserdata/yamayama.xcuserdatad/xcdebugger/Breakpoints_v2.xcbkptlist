@@ -184,22 +184,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "82D516A8-2E7F-4FB2-BD97-937B2D6E21F2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "CheckInViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "0D990434-D4E6-41F6-9694-A41613979629"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1452,22 +1436,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1C6E8B4F-4B03-44D1-9C6E-578083EAFF55"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/Mine/CheckIn/View/CheckInViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-presentIntegralStore:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "98BBDA83-FC46-4EFA-8F54-9C70CD2A96F0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -1539,58 +1507,10 @@
             filePath = "CyxbsMobile2019_iOS/Mine/Mine_MainPage/View/MineHeaderView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "-layoutSubviews"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "429E6904-CD15-4660-B86F-9EB21188BF35"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/Discover/Discover_MainPage/Controller/DiscoverViewController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "-RequestCheckinInfo"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "429E6904-CD15-4660-B86F-9EB21188BF35 - 2a1e37496187a468"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DiscoverViewController RequestCheckinInfo]"
-                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yamayama/%E7%BC%96%E7%A8%8B/%E6%8E%8C%E9%82%AE/%E7%94%A8%E6%9D%A5%E5%81%9A%E6%8E%8C%E9%82%AE%E9%A1%B9%E7%9B%AE%E7%9A%84git%E4%BB%93%E5%BA%93%E7%9A%84/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_MainPage/Controller/DiscoverViewController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "229"
-                  endingLineNumber = "229"
-                  offsetFromSymbolStart = "151">
-               </Location>
-               <Location
-                  uuid = "429E6904-CD15-4660-B86F-9EB21188BF35 - 869fd391a10fffd4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__44-[DiscoverViewController RequestCheckinInfo]_block_invoke"
-                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yamayama/%E7%BC%96%E7%A8%8B/%E6%8E%8C%E9%82%AE/%E7%94%A8%E6%9D%A5%E5%81%9A%E6%8E%8C%E9%82%AE%E9%A1%B9%E7%9B%AE%E7%9A%84git%E4%BB%93%E5%BA%93%E7%9A%84/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Discover/Discover_MainPage/Controller/DiscoverViewController.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "229"
-                  endingLineNumber = "229"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

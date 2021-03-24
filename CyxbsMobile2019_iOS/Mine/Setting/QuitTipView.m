@@ -20,7 +20,7 @@
 /// 显示@“退出登录” 的标题label
 @property(nonatomic,strong)UILabel *titleLabel;
 
-/// 显示@"是否确定退出当前账号"的字标题label
+/// 显示@"是否退出当前账号"的字标题label
 @property(nonatomic,strong)UILabel *subTitleLabel;
 @end
 
@@ -53,7 +53,7 @@
     view.layer.cornerRadius = 12.5;
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
+        view.backgroundColor = [UIColor colorNamed:@"248_249_252&44_44_44"];
     } else {
         view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
@@ -112,7 +112,7 @@
     label.font = [UIFont fontWithName:PingFangSCSemibold size:18];
 }
 
-/// 添加 显示@"是否确定退出当前账号"的字标题label 的方法
+/// 添加 显示@"是否退出当前账号"的字标题label 的方法
 - (void)addSubTitleLabel{
     UILabel *label = [[UILabel alloc] init];
     self.subTitleLabel = label;
@@ -123,7 +123,7 @@
         make.top.equalTo(self.tipView).offset(0.184*SCREEN_WIDTH);
     }];
     
-    label.text = @"是否确定退出当前账号";
+    label.text = @"是否退出当前账号";
     
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];

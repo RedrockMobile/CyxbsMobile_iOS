@@ -8,6 +8,10 @@
 
 #import "ReportView.h"
 
+@interface ReportView()<UITextViewDelegate>
+
+@end
+
 @implementation ReportView
 - (instancetype)initWithPostID:(NSNumber *)PostID {
     if ([super init]) {
@@ -31,18 +35,15 @@
         _titleLabel = titleLabel;
         
         UITextView *textView = [[UITextView alloc] init];
+        textView.delegate = self;
         textView.backgroundColor = [UIColor clearColor];
-        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:@"150字以内(选填)" attributes:
-             @{NSForegroundColorAttributeName:[UIColor colorNamed:@"ReportViewPlaceholderColor"],
-               NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:12]}
-             ];
-        textView.attributedPlaceholder = attrString;
+        textView.textContainerInset = UIEdgeInsetsMake(13.5, 8, 0, 0);
+        textView.text = @"150字以内(选填)";
         if (@available(iOS 11.0, *)) {
+            textView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
+            textView.font = [UIFont fontWithName:PingFangSCMedium size:12];
             textView.layer.borderColor = [UIColor colorNamed:@"LineColor"].CGColor;
-            textView.placeholderTextView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
-            textView.textColor = [UIColor colorNamed:@"ReportTextColor"];
         } else {
-            textView.placeholderTextView.textColor = [UIColor colorWithRed:148/255.0 green:166/255.0 blue:196/255.0 alpha:1];
             textView.textColor = [UIColor colorWithRed:12/255.0 green:53/255.0 blue:115/255.0 alpha:1];
         }
         [textView setFont:[UIFont fontWithName:PingFangSCMedium size:12]];
@@ -115,6 +116,29 @@
 - (void)ClickedCancelBtn {
     if ([self.delegate respondsToSelector:@selector(ClickedCancelBtn)]) {
         [self.delegate ClickedCancelBtn];
+    }
+}
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if(textView.text.length < 1){
+        textView.text = @"150字以内(选填)";
+        textView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
+    }
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if([textView.text isEqualToString:@"150字以内(选填)"]){
+        textView.text=@"";
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if ([textView.text isEqualToString:@"150字以内(选填)"]) {
+        textView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
+    }else {
+        textView.textColor = [UIColor colorNamed:@"ReportTextColor"];
     }
 }
 @end

@@ -13,8 +13,6 @@
 /// 弹窗
 @property(nonatomic,strong)UIView *tipWindow;
 
-@property(nonatomic,strong)UILabel *titleLabel;
-
 @property(nonatomic,strong)UIButton *cancelBtn;
 
 @property(nonatomic,strong)UIButton *sureBtn;
@@ -179,3 +177,4 @@
 }
 
 @end
+

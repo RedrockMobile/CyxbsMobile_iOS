@@ -12,8 +12,8 @@
 #import "ClassmatesList.h"
 #import "WYCClassBookViewController.h"
 
-#define URL @"https://cyxbsmobile.redrock.team/api/kebiao"
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+
+#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2"]
 @interface WeDateViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateDelete,PeopleListTableViewCellDelegateAdd,WYCClassAndRemindDataModelDelegate>
 /**推出没课约的按钮*/
 @property (nonatomic, strong)UIButton *backButton;

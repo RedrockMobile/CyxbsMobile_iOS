@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 点击删除动态后跳出的弹窗(包含背景蒙板，self就是蒙板)
 @interface DeleteArticleTipView : UIView
+@property(nonatomic,strong)UILabel *titleLabel;
 
 /// 唯一测试方法
 /// @param block 点击删除按钮后执行的操作

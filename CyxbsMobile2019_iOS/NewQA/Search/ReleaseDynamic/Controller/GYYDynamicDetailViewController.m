@@ -23,6 +23,7 @@
 #import "GYYShareView.h"
 #import "shareView.h"
 #import "StarPostModel.h"
+#import "DeleteArticleTipView.h"
 
 @interface GYYDynamicDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DKSKeyboardDelegate,ReportViewDelegate,PostTableViewCellDelegate,GYYShareViewDelegate,ShareViewDelegate>
 
@@ -67,7 +68,7 @@
         [_tableHeadView addSubview:remindLB];
         
         UILabel *lineLB = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 1)];
-        lineLB.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x252525) DarkColor:KUIColorFromRGB(0x252525)];
+        lineLB.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xF1F3F8) DarkColor:KUIColorFromRGB(0x252525)];
         
         [_tableHeadView addSubview:lineLB];
         
@@ -120,6 +121,8 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.tableHeaderView = self.tableHeadView;
     self.mainTableView.tableFooterView = [UIView new];
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [self.view addSubview:self.mainTableView];
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -155,7 +158,7 @@
 - (void)addBackButton {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(0, 0, 40, 40);
-    [backButton setImage:[UIImage imageNamed:@"icon_close"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"轮播右箭头"] forState:UIControlStateNormal];
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
 }
@@ -212,7 +215,7 @@
             [self.allCommentM addObjectsFromArray:[GYYDynamicCommentModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
         }
         if (self.allCommentM.count <=0) {
-            [self.mainTableView showNoDataStatusWithString:@"还没有评论哦~" imageName:@"图层 11" withOfffset:100];
+            [self.mainTableView showNoDataStatusWithString:@"还没有评论哦~" imageName:@"图层 11" withOfffset:CGRectGetMidY(self.tableHeadView.frame)];
         }
         [self.mainTableView.mj_header endRefreshing];
         [self.mainTableView reloadData];
@@ -226,7 +229,7 @@
     
     if (!self.item && self.post_id >0) {
         
-        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([responseObject[@"status"] intValue] ==200) {
                 self.item = [PostItem mj_objectWithKeyValues:responseObject[@"data"]];
                 [self updateDynamicViewHeight];
@@ -289,6 +292,9 @@
     }else{
         cell.commentModle = commentModel.reply_list[indexPath.row-1];
     }
+//    NSInteger rowNum = [tableView numberOfRowsInSection:indexPath.section];
+//    cell.lineLB.hidden = (rowNum == indexPath.row+1 ?NO:YES);
+
     return cell;
     
 }
@@ -305,6 +311,15 @@
     }
     
     GYYDynamicCommentTableViewCell *cell = (GYYDynamicCommentTableViewCell*)[self.mainTableView cellForRowAtIndexPath:indexPath];
+    
+    CGRect rectInTableView = [tableView rectForRowAtIndexPath:indexPath];
+    //获取cell在tableView中的位置
+    CGRect rectInSuperview = [tableView convertRect:rectInTableView toView:[tableView superview]];
+    
+    CGFloat rectYMargin = rectInSuperview.origin.y+40;
+    if (rectYMargin >=SCREEN_HEIGHT-NVGBARHEIGHT-STATUSBARHEIGHT-54) {
+        rectYMargin = rectInSuperview.origin.y-SCREEN_WIDTH*0.0773;
+    }
     
     SHPopMenu *_menu = [[SHPopMenu alloc]init];
     
@@ -323,7 +338,7 @@
     
     __weak typeof(self)weakSelf = self;
     //显示菜单
-    [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:cell.frame.origin.y+SCREEN_WIDTH*0.0773*2 block:^(SHPopMenu *menu, NSInteger index) {
+    [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:rectYMargin block:^(SHPopMenu *menu, NSInteger index) {
         
         NSLog(@"点击了 --- %ld",(long)index);
         if (index <=1) {
@@ -332,7 +347,7 @@
             }else{//复制
                 UIPasteboard *pab = [UIPasteboard generalPasteboard];
                 pab.string = weakSelf.actionCommentModel.content;
-                //                [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
+                // [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
             }
         }else{
             if (self.actionCommentModel.is_self) {//删除
@@ -353,17 +368,24 @@
 //删除评论
 - (void)deleteAction{
     
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         
-        if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"删除成功" AddView:self.view];
-            [self.mainTableView.mj_header beginRefreshing];
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"删除失败，请重试" AddView:self.view];
+        [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            if ([responseObject[@"status"] intValue] ==200) {
+                [NewQAHud showHudWith:@"删除成功" AddView:self.view];
+                [self.mainTableView.mj_header beginRefreshing];
+            }
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NewQAHud showHudWith:@"删除失败，请重试" AddView:self.view];
+            
+        }];
         
     }];
+    tipView.titleLabel.text = @"确定删除此条评论？";
+    [self.view addSubview:tipView];
     
 }
 #pragma mark -举报页面的代理方法
@@ -374,14 +396,14 @@
     
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/report" method:HttpRequestPost parameters:@{@"id":self.reportView.postID,@"model":@(self.reportView.model),@"content":self.reportView.textView.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"举报成功" AddView:self.view];
+            [NewQAHud showHudWith:@"  举报成功  " AddView:self.view];
             [self.zh_popupController dismiss];
         }else{
-            [NewQAHud showHudWith:@"网络错误，请重试" AddView:self.view];
+            [NewQAHud showHudWith:@"  网络错误，请重试  " AddView:self.view];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"举报失败，请重试" AddView:self.view];
+        [NewQAHud showHudWith:@"  举报失败，请重试  " AddView:self.view];
         
     }];
     
@@ -420,7 +442,7 @@
             
         }else{//屏蔽此人
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [NewQAHud showHudWith:@"将不再推荐该用户的动态给你" AddView:self.view];
+                [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view];
             });
             
         }
@@ -530,7 +552,7 @@
 }
 - (void)shareSuccessful {
     
-    [NewQAHud showHudWith:@"已复制链接，可以去分享给小伙伴了～" AddView:self.view];
+    [NewQAHud showHudWith:@"  已复制链接，可以去分享给小伙伴了～  " AddView:self.view];
 }
 
 
@@ -576,6 +598,7 @@
         if ([responseObject[@"status"] intValue] ==200) {
             [NewQAHud showHudWith:@"发布评论成功" AddView:self.view];
             [self.inputView clearCurrentInput];
+            [self.view endEditing:YES];
             [self.mainTableView.mj_header beginRefreshing];
         }
         

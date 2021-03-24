@@ -81,6 +81,8 @@ static float viewHeight = 38.0f; //按钮视图高度
 #pragma mark ====== 改变输入框大小 ======
 - (void)changeFrame:(CGFloat)height {
     
+    self.moreBtn.highlighted = (self.textView.text.length >=1?YES:NO);
+    
     CGRect frame = self.textView.frame;
     frame.size.height = height;
     self.textView.frame = frame; //改变输入框的frame
@@ -215,10 +217,14 @@ static float viewHeight = 38.0f; //按钮视图高度
 - (UIButton *)moreBtn {
     if (!_moreBtn) {
         _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _moreBtn.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xABBCD8) DarkColor:KUIColorFromRGB(0x5A5A5A)];
+
         [_moreBtn setTitle:@"发送" forState:UIControlStateNormal];
         _moreBtn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size:13];
-        [_moreBtn setTitleColor:[UIColor colorWithLightColor:KUIColorFromRGB(0xFFFFFF) DarkColor:KUIColorFromRGB(0xffffff)] forState:UIControlStateNormal];
+        [_moreBtn setTitleColor:[UIColor colorWithLightColor:KUIColorFromRGB(0xFFFFFF) DarkColor:KUIColorFromRGB(0xFFFFFF)] forState:UIControlStateNormal];
+        
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"icon_more_nomal"] forState:UIControlStateNormal];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"icon_more_hig"] forState:UIControlStateHighlighted];
+        
         [_moreBtn addTarget:self action:@selector(moreBtn:) forControlEvents:UIControlEventTouchUpInside];
         _moreBtn.layer.cornerRadius = 14;
         _moreBtn.layer.masksToBounds = YES;

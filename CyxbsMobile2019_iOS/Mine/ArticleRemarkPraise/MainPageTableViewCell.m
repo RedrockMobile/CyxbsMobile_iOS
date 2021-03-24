@@ -62,9 +62,10 @@
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(0.188*SCREEN_WIDTH);
         make.top.equalTo(self.contentView.mas_top).offset(0.0747*SCREEN_WIDTH);
+        make.width.mas_equalTo(0.7*SCREEN_WIDTH);
     }];
     
-    label.font = [UIFont fontWithName:PingFangSCSemibold size:15];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:15];
 }
 
 /// 设置互动信息label方法
@@ -85,7 +86,7 @@
         make.top.equalTo(self.contentView.mas_top).offset(0.1373*SCREEN_WIDTH);
     }];
     
-    label.font = [UIFont fontWithName:PingFangSCMedium size:11];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
 }
 
 /// 添加时间戳label
@@ -106,7 +107,7 @@
         make.top.equalTo(self.contentView.mas_top).offset(0.1373*SCREEN_WIDTH);
     }];
     
-    label.font = [UIFont fontWithName:PingFangSCMedium size:11];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
 }
 
 /// 添加 底部分隔线 的方法

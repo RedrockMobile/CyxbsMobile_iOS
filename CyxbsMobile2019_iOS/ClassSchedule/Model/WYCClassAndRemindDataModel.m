@@ -68,7 +68,7 @@
 - (void)getPersonalClassBookArrayFromNet:(NSString *)stuNum{
     NSDictionary *paramDict = @{@"stu_num":stuNum};
     
-    [self.afhttpSeMan GET:kebiaoAPI parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [self.afhttpSeMan POST:kebiaoAPI parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         CCLog(@"ke%@",responseObject);
         //拿到课表数据
         NSArray *rowLessonDataArr = responseObject[@"data"];
@@ -94,7 +94,6 @@
         [self.delegate ModelDataLoadSuccess:self];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        CCLog(@"ke%@",error);
         //通知代理数据加载失败
         [self.delegate ModelDataLoadFailure];
     }];

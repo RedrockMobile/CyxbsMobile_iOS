@@ -32,7 +32,6 @@
 		1817F0562594D5C500FE1304 /* MGDRefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F03D2594D5C500FE1304 /* MGDRefreshTool.m */; };
 		1817F0572594D5C500FE1304 /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F03F2594D5C500FE1304 /* NewQAHud.m */; };
 		1817F05D259865EA00FE1304 /* ShieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F05C259865EA00FE1304 /* ShieldModel.m */; };
-		1817F0632598672E00FE1304 /* CancelShieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0622598672E00FE1304 /* CancelShieldModel.m */; };
 		187DF49226030F7F000BCDE9 /* SHPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF47F26030F7F000BCDE9 /* SHPopMenu.m */; };
 		187DF49326030F7F000BCDE9 /* pop_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 187DF48126030F7F000BCDE9 /* pop_arrow.png */; };
 		187DF49426030F7F000BCDE9 /* UIView+FrameTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF48426030F7F000BCDE9 /* UIView+FrameTool.m */; };
@@ -53,6 +52,7 @@
 		187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4C3260310FA000BCDE9 /* UITextView+WZB.m */; };
 		1880921C25FF7DE60097DCE4 /* MGDStatusBarHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880921B25FF7DE60097DCE4 /* MGDStatusBarHeight.m */; };
 		1880EA1F2606345A004E845C /* NewCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880EA1E2606345A004E845C /* NewCountModel.m */; };
+		1880EA65260894D5004E845C /* RecommentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880EA64260894D5004E845C /* RecommentLabel.m */; };
 		18CDF478257F8D9C006E8E5C /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF477257F8D9C006E8E5C /* Mine.xcassets */; };
 		18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */; };
 		18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF487257F8DBD006E8E5C /* setEmailViewController.m */; };
@@ -694,8 +694,6 @@
 		1817F03F2594D5C500FE1304 /* NewQAHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAHud.m; sourceTree = "<group>"; };
 		1817F05B259865EA00FE1304 /* ShieldModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShieldModel.h; sourceTree = "<group>"; };
 		1817F05C259865EA00FE1304 /* ShieldModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShieldModel.m; sourceTree = "<group>"; };
-		1817F0612598672E00FE1304 /* CancelShieldModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CancelShieldModel.h; sourceTree = "<group>"; };
-		1817F0622598672E00FE1304 /* CancelShieldModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CancelShieldModel.m; sourceTree = "<group>"; };
 		187DF47F26030F7F000BCDE9 /* SHPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPopMenu.m; sourceTree = "<group>"; };
 		187DF48026030F7F000BCDE9 /* SHPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPopMenu.h; sourceTree = "<group>"; };
 		187DF48126030F7F000BCDE9 /* pop_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_arrow.png; sourceTree = "<group>"; };
@@ -736,6 +734,8 @@
 		1880921B25FF7DE60097DCE4 /* MGDStatusBarHeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDStatusBarHeight.m; sourceTree = "<group>"; };
 		1880EA1D2606345A004E845C /* NewCountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewCountModel.h; sourceTree = "<group>"; };
 		1880EA1E2606345A004E845C /* NewCountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewCountModel.m; sourceTree = "<group>"; };
+		1880EA63260894D5004E845C /* RecommentLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecommentLabel.h; sourceTree = "<group>"; };
+		1880EA64260894D5004E845C /* RecommentLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecommentLabel.m; sourceTree = "<group>"; };
 		18CDF477257F8D9C006E8E5C /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
 		18CDF482257F8DBD006E8E5C /* SetQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetQuestionViewController.h; sourceTree = "<group>"; };
 		18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetQuestionViewController.m; sourceTree = "<group>"; };
@@ -1780,12 +1780,9 @@
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
 			isa = PBXGroup;
 			children = (
+				1880EA5626088EE6004E845C /* MGDMainView */,
 				7F101AB5260613E800F2034C /* YYZTopicGroup */,
-				1817F00D2594D5C500FE1304 /* Controller */,
-				1817F0102594D5C500FE1304 /* Model */,
-				1817F0212594D5C500FE1304 /* View */,
 				1817F0382594D5C500FE1304 /* NewQA.xcassets */,
-				1817F0392594D5C500FE1304 /* Tool */,
 				B8EFF3CC259C61B3003753DD /* Search */,
 			);
 			path = NewQA;
@@ -1821,8 +1818,6 @@
 				1817F01E2594D5C500FE1304 /* FollowGroupModel.m */,
 				1817F05B259865EA00FE1304 /* ShieldModel.h */,
 				1817F05C259865EA00FE1304 /* ShieldModel.m */,
-				1817F0612598672E00FE1304 /* CancelShieldModel.h */,
-				1817F0622598672E00FE1304 /* CancelShieldModel.m */,
 				1880EA1D2606345A004E845C /* NewCountModel.h */,
 				1880EA1E2606345A004E845C /* NewCountModel.m */,
 			);
@@ -1856,6 +1851,8 @@
 				1817F02B2594D5C500FE1304 /* TopFollowView.m */,
 				1817F0362594D5C500FE1304 /* GroupBtn.h */,
 				1817F02C2594D5C500FE1304 /* GroupBtn.m */,
+				1880EA63260894D5004E845C /* RecommentLabel.h */,
+				1880EA64260894D5004E845C /* RecommentLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1958,6 +1955,17 @@
 				187DF4C4260310FA000BCDE9 /* UITextView+WZB.h */,
 			);
 			path = UITextView;
+			sourceTree = "<group>";
+		};
+		1880EA5626088EE6004E845C /* MGDMainView */ = {
+			isa = PBXGroup;
+			children = (
+				1817F0392594D5C500FE1304 /* Tool */,
+				1817F0212594D5C500FE1304 /* View */,
+				1817F0102594D5C500FE1304 /* Model */,
+				1817F00D2594D5C500FE1304 /* Controller */,
+			);
+			path = MGDMainView;
 			sourceTree = "<group>";
 		};
 		18CDF47F257F8DBD006E8E5C /* Safe */ = {
@@ -5275,7 +5283,6 @@
 				1A16592023D85CD60039BA46 /* MineQAController.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				187DF4AA26031010000BCDE9 /* UIColor+SYColor.m in Sources */,
-				1817F0632598672E00FE1304 /* CancelShieldModel.m in Sources */,
 				B892095A25BEDA1A00386451 /* SearchBeiginView.m in Sources */,
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				AAC7CA0125F5130900E6B5D5 /* PraiseParseModel.m in Sources */,
@@ -5439,6 +5446,7 @@
 				D0011A6E23F082FD009A242C /* QAExitView.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				18CDF667257F91BD006E8E5C /* OneNewsItem.m in Sources */,
+				1880EA65260894D5004E845C /* RecommentLabel.m in Sources */,
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
 				18CDF68E257F91BD006E8E5C /* CQUPTMapModel.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
@@ -5614,7 +5622,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 19;
-				DEVELOPMENT_TEAM = MYTHW8X62N;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5624,7 +5632,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -5643,7 +5651,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 19;
-				DEVELOPMENT_TEAM = MYTHW8X62N;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5653,7 +5661,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.123;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";

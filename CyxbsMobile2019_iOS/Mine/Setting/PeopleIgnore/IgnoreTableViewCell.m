@@ -99,7 +99,7 @@
         make.top.equalTo(self.mas_top).offset(0.1373*SCREEN_WIDTH);
     }];
     
-    label.font = [UIFont fontWithName:PingFangSCMedium size:11];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
 }
 /// 添加 底部分隔线 的方法
 - (void)addSeparateLine{

@@ -53,6 +53,11 @@
 //获取用户资料，POST
 #define getPersonData [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/Person/Search"];
 
+//获取屏蔽的人
+#define getIgnoreUid [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/user/getIgnoreUid"]
+
+//获取用户服务协议
+#define GetaboutUsMsg [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-text/text/get"]
 
 // 通过帖子id 获取帖子数据
 #define GETPOSTINFO [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getPostInfo"]
@@ -175,7 +180,7 @@
 #pragma mark - “课表”、“备忘”接口
 
 //查课表数据，GET，参数：@{@"stu_num"]:学号}
-#define kebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/kebiao"]
+#define kebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/kebiao"]
 
 //加备忘，POST
 #define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
@@ -189,7 +194,7 @@
 //删除备忘，POST
 #define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
-//查老师课表数据，POST，参数： @{ @"teaName"]: 姓名, @"tea"]: 工号？}
+//查老师课表数据，POST，参数： @{ @"teaName": 姓名, @"tea": 工号？}
 #define TEAkebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teaKb/api/teaKb"]
 
 /// 空教室接口
@@ -315,5 +320,7 @@
 // 查看未读消息
 #define NEW_QA_QUERYNEWCOUNT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/getUnreadCount"]
 
+// 关注圈子
+#define NEW_QA_STARGROUP [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/followTopicGround"]
 
 #endif /* CyxbsMobileURL_h */

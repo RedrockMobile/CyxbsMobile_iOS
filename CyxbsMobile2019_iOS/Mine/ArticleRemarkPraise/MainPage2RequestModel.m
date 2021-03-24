@@ -76,8 +76,6 @@
                 (*page)++;
                 *state = MainPage2RequestModelStateEndRefresh;
             }
-            CCLog(@"cnt=%ld",[responseObject[@"data"] count]);
-            CCLog(@"res=%@",responseObject);
             
             [self.tmpArr addObjectsFromArray:responseObject[@"data"]];
             

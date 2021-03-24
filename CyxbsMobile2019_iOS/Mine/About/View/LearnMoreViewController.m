@@ -7,8 +7,6 @@
 //关于我们页面 - 服务协议/隐私条款
 
 #import "LearnMoreViewController.h"
-#define GetaboutUsMsg @"https://cyxbsmobile.redrock.team/wxapi/magipoke-text/text/get"
-//#define GetaboutUsMsg @"https://be-prod.redrock.team/magipoke-text/text/get"
 
 @interface LearnMoreViewController () <UITextViewDelegate>
 @property(nonatomic,strong)UILabel *subTitleLabel;
@@ -85,7 +83,7 @@
     }
     view.backgroundColor = self.view.backgroundColor;
     
-    [view setFont:[UIFont fontWithName:PingFangSCMedium size:13]];
+    [view setFont:[UIFont fontWithName:PingFangSCLight size:13]];
     
     view.delegate = self;
 }
