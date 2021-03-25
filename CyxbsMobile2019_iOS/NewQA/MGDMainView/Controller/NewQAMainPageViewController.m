@@ -40,7 +40,6 @@
 @property (nonatomic, assign) CGFloat lineHeight;
 //headerView控件
 @property (nonatomic, strong) UIView *topBackView;
-@property (nonatomic, strong) UIView *lineView;
 //列表顶部底部刷新控件
 @property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
 @property (nonatomic, strong) MJRefreshNormalHeader *header;
@@ -75,9 +74,7 @@
     _TopViewHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 191/375 : (SCREEN_WIDTH * 116/375);
     //推荐Label高度
     _recommendHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 54/375 : SCREEN_WIDTH * 43/375;
-    _lineHeight = self.dataArray.count != 0 ? 2 : 0;
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
-    _recommendLabelSmall.hidden = self.dataArray.count != 0 ? YES : NO;
     
     // 如果是退出登陆后再次登陆，由于程序还在运行，因此移除原来的界面，重新加载UI，判断用户是否为第一次登陆
     if ([UserItemTool defaultItem].firstLogin == YES) {
@@ -123,6 +120,7 @@
                 dispatch_semaphore_signal(semaphore);
             });
         }
+    [[UserItemTool defaultItem] setFirstLogin:NO];
     
 }
 -(void)viewDidLayoutSubviews{
@@ -134,7 +132,6 @@
     [super viewWillDisappear:animated];
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
-    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
 // 移除所有控件，重新加载控件并且通过缓存刷新数据，并再次请求新的数据
@@ -180,7 +177,6 @@
     self.groupModel = [[GroupModel alloc] init];
     self.postmodel = [[PostModel alloc] init];
     
-    NSLog(@"================>>>>>>>>>>>>>%d",[UserItemTool defaultItem].firstLogin);
     
     // 如果用户是登陆的状态，再次打开此应用，则直接加载缓存数据，否则为第一次登陆，加载网络请求数据
     if ([UserItemTool defaultItem].firstLogin == NO && self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
@@ -427,48 +423,9 @@
     return _topFollowView;
 }
 
-- (UIView *)lineView {
-    if (!_lineView) {
-        _lineView = [[UIView alloc] init];
-        if (@available(iOS 11.0, *)) {
-            _lineView.backgroundColor = [UIColor colorNamed:@"ShareLineViewColor"];
-        } else {
-            _lineView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:232.0/255.0 blue:238.0/255.0 alpha:1];
-        }
-    }
-    return _lineView;
-}
-
-- (UILabel *)recommendLabelSmall {
-    if (!_recommendLabelSmall) {
-        _recommendLabelSmall = [[UILabel alloc] init];
-        if (@available(iOS 11.0, *)) {
-            _recommendLabelSmall.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-            _recommendLabelSmall.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
-        } else {
-            _recommendLabelSmall.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
-            _recommendLabelSmall.textColor = [UIColor colorWithRed:21.0/255.0 green:49.0/255.0 blue:91.0/255.0 alpha:1];
-        }
-        _recommendLabelSmall.text = @"  推荐";
-        _recommendLabelSmall.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
-        _recommendLabelSmall.textAlignment = NSTextAlignmentLeft;
-    }
-    return _recommendLabelSmall;
-}
-
 - (RecommentLabel *)recommendedLabel {
     if (!_recommendedLabel) {
         _recommendedLabel = [[RecommentLabel alloc] init];
-        if (@available(iOS 11.0, *)) {
-            _recommendedLabel.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-            _recommendedLabel.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
-        } else {
-            _recommendedLabel.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
-            _recommendedLabel.textColor = [UIColor colorWithRed:21.0/255.0 green:49.0/255.0 blue:91.0/255.0 alpha:1];
-        }
-        _recommendedLabel.text = @"推荐";
-        _recommendedLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
-        _recommendedLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _recommendedLabel;
 }
@@ -511,10 +468,11 @@
     _TopViewHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 191/375 : (SCREEN_WIDTH * 116/375);
     //推荐Label高度
     _recommendHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 54/375 : SCREEN_WIDTH * 43/375;
-    _lineHeight = self.dataArray.count != 0 ? 2 : 0;
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
-    _recommendLabelSmall.hidden = self.dataArray.count != 0 ? YES : NO;
     
+    NSLog(@"=============>>>>>>>>%lu",(unsigned long)self.dataArray.count);
+    
+    NSLog(@">>>>>>>>>>>>>========%f",_recommendHeight);
     [self tableView];
     [self.view addSubview:self.tableView];
     [self setUpRefresh];
@@ -531,14 +489,11 @@
         [self.view bringSubviewToFront:self.topFollowView.followBtn];
     }
 
-    [self lineView];
-    [self.recommendedLabel addSubview:_lineView];
+//    [self lineView];
+//    [self.recommendedLabel addSubview:_lineView];
 
     [self recommendedLabel];
     [self.topFollowView addSubview:_recommendedLabel];
-    
-    [self recommendLabelSmall];
-    [self.topFollowView addSubview:_recommendLabelSmall];
     
     [self topBackView];
     [self.view addSubview:_topBackView];
@@ -550,6 +505,8 @@
     [self.view addSubview:_publishBtn];
     
     [self setMainViewFrame];
+    
+    _recommendedLabel.lineView.hidden = self.dataArray.count == 0 ? YES : NO;
 }
 
 
@@ -567,21 +524,7 @@
     }];
     _searchBtn.layer.cornerRadius = SCREEN_WIDTH * 0.9147 * 37.5/343 * 1/2;
     
-    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_recommendedLabel.mas_top);
-        make.right.mas_equalTo(self.view.mas_right);
-        make.left.mas_equalTo(self.view.mas_left);
-        make.height.mas_equalTo(_lineHeight);
-    }];
-    
     [_recommendedLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_topFollowView.mas_bottom);
-        make.right.mas_equalTo(self.view.mas_right);
-        make.left.mas_equalTo(self.view.mas_left);
-        make.height.mas_equalTo(_recommendHeight);
-    }];
-    
-    [_recommendLabelSmall mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(_topFollowView.mas_bottom);
         make.right.mas_equalTo(self.view.mas_right);
         make.left.mas_equalTo(self.view.mas_left);
@@ -726,7 +669,7 @@
     _shareView.delegate = self;
     [self.view.window addSubview:_shareView];
     [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
+        make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 460/667);
         make.left.right.bottom.mas_equalTo(self.view.window);
     }];
     _itemDic = self.tableArray[cell.shareBtn.tag];
@@ -903,17 +846,20 @@
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场
 - (void)FollowGroups {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
     YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
+    topVc.hidesBottomBarWhenPushed = YES;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:topVc animated:YES];
     // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
-    NSString *groupName = sender.groupBtnLabel.text;
+//    NSString *groupName = sender.groupBtnLabel.text;
     if (sender.tag == 0) {
         YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
+        topVc.hidesBottomBarWhenPushed = YES;
+        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
         [self.navigationController pushViewController:topVc animated:YES];
     }else {
 //        YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:groupName];

@@ -142,7 +142,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;  //显示导航栏
-    [self.tabBarController.tabBar setHidden:YES];             //隐藏底部的tabbar
     
     self.pageIndex = 1;
     [self.mainTableView.mj_header beginRefreshing];
@@ -593,14 +592,14 @@
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"发布评论成功" AddView:self.view];
+            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
             [self.inputView clearCurrentInput];
             [self.view endEditing:YES];
             [self.mainTableView.mj_header beginRefreshing];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"发布评论失败，请重试" AddView:self.view];
+        [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
     }];
     
 }
