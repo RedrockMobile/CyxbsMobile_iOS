@@ -17,13 +17,17 @@
 #import "SZHPhotoImageView.h"       //图片框
 #import "originPhotoView.h"         //原图的view
 #import "SZHCircleLabelView.h"      //标签的view
+#import "CYRleaseDynamicAlertView.h"    //保存草稿时的警告视图
+
 #define MAX_LIMT_NUM 500  //textview限制输入的最大字数
 
-@interface SZHReleaseDynamic ()<SZHReleaseTopBarViewDelegate,SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate,SZHCircleLabelViewDelegate>
+@interface SZHReleaseDynamic ()<SZHReleaseTopBarViewDelegate,SZHReleaseDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate,SZHCircleLabelViewDelegate,CYRleaseDynamicAlertViewDelegate>
 ///视图相关
 @property (nonatomic, strong) SZHReleaseTopBarView *topBarView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) SZHReleasView *releaseView;
+@property (nonatomic, strong) CYRleaseDynamicAlertView *saveDraftAlertView;
+@property (nonatomic, strong) UIView *maskView; //保存草稿时黑色的背景
 
 /// 从相册中获取到的图片
 @property (nonatomic, strong) NSMutableArray <UIImage *>* imagesAry;
@@ -283,62 +287,16 @@
     else{
         [self.view endEditing:YES];
         //遮罩层
-        UIView *view = [[UIView alloc] initWithFrame:self.view.frame];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H * (1 - 0.3))];
         view.backgroundColor = [UIColor blackColor];
-        view.userInteractionEnabled = NO;               //设置禁用
         view.alpha = 0.5;
-        [self.view addSubview:view];
+        self.maskView = view;
+        [self.view addSubview:self.maskView];
+        UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismisAlertViews)];
+        [self.maskView addGestureRecognizer:dismiss];
         
-        //警告提示列表 是否需要保存草稿
-        UIAlertController *alertCv = [UIAlertController alertControllerWithTitle:@"是否保存草稿" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        
-        //定义警告活动列表的按钮方法
-            //草稿归档，发送网络请求，并且回到上一个界面
-        UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [view removeFromSuperview];     //移除遮罩层
-            [NewQAHud showHudWith:@"正在保存" AddView:self.view];
-            //异步执行归档耗时操作
-            NSString *draftStr = self.releaseView.releaseTextView.text;
-            
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                NSMutableArray *imageDataAry = [NSMutableArray array];
-                for (UIImage *image in self.imagesAry) {
-                    NSData *data = UIImagePNGRepresentation(image);
-                    [imageDataAry addObject:data];
-                }
-                [SZHArchiveTool saveDraftsImagesAry:imageDataAry];
-                [SZHArchiveTool saveDraftsStr:draftStr];
-            });
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            
-            //保存有草稿的信号
-            NSString *string = @"yes";
-            [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"isSaveDrafts"];
-            
-        }];
-        
-            //不保存草稿，清除之前保存的草稿 回到“圈子”界面
-        UIAlertAction *noSaveAction = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [view removeFromSuperview];     //移除遮罩层
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            [SZHArchiveTool removeDrafts];      //删除之前的草稿缓存
-            //保存无草稿的信号
-            [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"isSaveDrafts"];
-        }];
-        
-            //取消
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [view removeFromSuperview];     //移除遮罩层
-        }];
-        
-        //为警告活动列表添加方法
-        [alertCv addAction:saveAction];
-        [alertCv addAction:noSaveAction];
-        [alertCv addAction:cancelAction];
-        
-        //弹出警告活动列表
-        [self presentViewController:alertCv animated:YES completion:nil];
+        //警告视图
+        [self.view addSubview:self.saveDraftAlertView];
     }
 }
 /**
@@ -355,10 +313,11 @@
         //显示提示
         if (self.clickReleaseDynamicBtnNumber == 1) {
             //显示提示框
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            [hud setMode:(MBProgressHUDModeText)];
-            hud.labelText = @"未添加标签";
-            [hud hide:YES afterDelay:1];    //延迟一秒后消失
+//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            [hud setMode:(MBProgressHUDModeText)];
+//            hud.labelText = @"未添加标签";
+//            [hud hide:YES afterDelay:1];    //延迟一秒后消失
+            [NewQAHud showHudWith:@"未添加标签" AddView:self.view];
         }else{
             self.circleLabelText = @"其他";
             [self updateDynamic];
@@ -394,6 +353,47 @@
         hud.labelText = @"请将系统升级至ios14.0再使用本功能";
         [hud hide:YES afterDelay:1.5];  //延迟1.5秒后消失
     }
+}
+
+//MARK:保存草稿的警告视图的代理方法
+/// 保存草稿
+- (void)saveDrafts{
+    [self.saveDraftAlertView removeFromSuperview];  //移除警告视图
+    [self.maskView removeFromSuperview];     //移除遮罩层
+    [NewQAHud showHudWith:@"正在保存" AddView:self.view];
+    //异步执行归档耗时操作
+    NSString *draftStr = self.releaseView.releaseTextView.text;
+
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSMutableArray *imageDataAry = [NSMutableArray array];
+        for (UIImage *image in self.imagesAry) {
+            NSData *data = UIImagePNGRepresentation(image);
+            [imageDataAry addObject:data];
+        }
+        [SZHArchiveTool saveDraftsImagesAry:imageDataAry];
+        [SZHArchiveTool saveDraftsStr:draftStr];
+    });
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
+    //保存有草稿的信号
+    NSString *string = @"yes";
+    [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"isSaveDrafts"];
+}
+
+/// 不保存草稿
+- (void)notSaveDrafts{
+    [self.saveDraftAlertView removeFromSuperview];  //移除警告视图
+    [self.maskView removeFromSuperview];     //移除遮罩层
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [SZHArchiveTool removeDrafts];      //删除之前的草稿缓存
+    //保存无草稿的信号
+    [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"isSaveDrafts"];
+}
+
+/// 取消
+- (void)dismisAlertViews{
+    [self.saveDraftAlertView removeFromSuperview];
+    [self.maskView removeFromSuperview];
 }
 
 //MARK:UITExteView代理方法
@@ -649,5 +649,12 @@
         _releaseDynamicModel = [[ReleaseDynamicModel alloc] init];
     }
     return _releaseDynamicModel;
+}
+
+- (CYRleaseDynamicAlertView *)saveDraftAlertView{
+    if (!_saveDraftAlertView) {
+        _saveDraftAlertView = [[CYRleaseDynamicAlertView alloc] initWithFrame:CGRectMake(0, MAIN_SCREEN_H * (1-0.3171), MAIN_SCREEN_W, MAIN_SCREEN_H * 0.3171)];
+    }
+    return _saveDraftAlertView;
 }
 @end

@@ -46,6 +46,7 @@
     [super viewDidLoad];
     
     [self addSearchBeginTopView];
+    self.view.backgroundColor = self.searchBeginTopView.backgroundColor;
     
     self.historyRecordsAry = [NSMutableArray array];
     NSMutableArray *array = [[[NSUserDefaults standardUserDefaults] objectForKey:@"historyRecords"] mutableCopy];
@@ -315,7 +316,11 @@
         textfield.delegate = self;
         [textfield setReturnKeyType:UIReturnKeySearch];
         [self.view addSubview:_searchBeginTopView];
-        _searchBeginTopView.frame = self.view.frame;
+//        _searchBeginTopView.frame = self.view.frame;
+        [_searchBeginTopView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.equalTo(self.view);
+            make.height.mas_equalTo(MAIN_SCREEN_H * 0.3);
+        }];
         
         //设置热搜词汇
         NSMutableArray *muteAry = [NSMutableArray arrayWithArray:[PostArchiveTool getHotWords].hotWordsArray];
@@ -342,16 +347,16 @@
 - (void)addSearchBottomView{
     //历史记录按钮
     _historyLabel = [[UILabel alloc] init];
-    _historyLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
+    _historyLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
     _historyLabel.text = @"历史记录";
     if (@available(iOS 11.0, *)) {
         _historyLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
     } else {
         // Fallback on earlier versions
     }
-    [self.searchBeginTopView addSubview:self.historyLabel];
+    [self.view addSubview:self.historyLabel];
     [self.historyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.searchBeginTopView).offset(MAIN_SCREEN_H * 0.3613);
+        make.top.equalTo(self.searchBeginTopView).offset(MAIN_SCREEN_H * 0.3313);
         make.left.equalTo(self.searchBeginTopView).offset(MAIN_SCREEN_W * 0.0426);
         make.height.mas_equalTo(17);
     }];
@@ -368,9 +373,9 @@
     [_clearAllHistoryRecordbtn addTarget:self action:@selector(clearAllrecords) forControlEvents:UIControlEventTouchUpInside];
     //button宽度随title字数自适应
     _clearAllHistoryRecordbtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [self.searchBeginTopView addSubview:self.clearAllHistoryRecordbtn];
+    [self.view addSubview:self.clearAllHistoryRecordbtn];
     [self.clearAllHistoryRecordbtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.searchBeginTopView.mas_right).offset(-MAIN_SCREEN_W * 0.0426);
+        make.right.equalTo(self.view.mas_right).offset(-MAIN_SCREEN_W * 0.0426);
         make.bottom.equalTo(self.historyLabel);
         make.height.mas_equalTo(15.5);
     }];
@@ -385,13 +390,13 @@
     _historyTable.dataSource = self;
     //设置tableView可以被选中，如果不设置的话，点击cell无反应
     _historyTable.allowsSelection = YES;
-    [self.searchBeginTopView addSubview:self.historyTable];
+    [self.view addSubview:self.historyTable];
     [self.historyTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.historyLabel);
 //        make.top.equalTo(self.historyLabel.mas_bottom).offset(MAIN_SCREEN_H * 0.03);
         make.top.equalTo(self.historyLabel.mas_bottom).offset(23.5);
         make.right.equalTo(self.clearAllHistoryRecordbtn);
-        make.bottom.equalTo(self.searchBeginTopView);
+        make.bottom.equalTo(self.view);
     }];
 
 }
