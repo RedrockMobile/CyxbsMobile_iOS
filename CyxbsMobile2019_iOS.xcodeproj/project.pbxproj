@@ -3693,10 +3693,10 @@
 		7F101AB6260613E800F2034C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */,
 				7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */,
-				7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */,
+				7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */,
 				7F101ABA260613E800F2034C /* YYZTopicDetailVC.h */,
+				7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

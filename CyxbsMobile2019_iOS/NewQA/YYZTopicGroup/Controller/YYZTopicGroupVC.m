@@ -16,10 +16,8 @@
 @property(nonatomic,strong) YYZTopicCell *cell;
 @end
 
-
 @implementation YYZTopicGroupVC
 
-//加载邮问时隐藏底部课表
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     [super viewWillAppear:animated];
@@ -40,7 +38,6 @@
         NSArray *array = responseObject[@"data"];
         self.array = array;
         NSLog(@"圈子数据请求成功");
-        NSLog(@"%@",responseObject);
         [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"圈子广场网络请求失败" AddView:self.view];
@@ -106,8 +103,8 @@
             });
          */
             [cell.topic_isFollow setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:173/255.0 green:187/255.0 blue:213/255.0 alpha:1.0]] forState:UIControlStateDisabled];
+            //如果已经关注，更改关注按钮的状态
             if([self.array[i][@"is_follow"] longValue] == 1){
-                //cell.topic_isFollow.enabled = NO;
                 cell.topic_isFollow.clipsToBounds = YES;
                 cell.topic_isFollow.layer.cornerRadius = 14;
                 [cell.topic_isFollow setTitle:@"已关注" forState:UIControlStateNormal];
@@ -121,17 +118,17 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     NSIndexPath* indexPath2 = [self.tableView indexPathForSelectedRow];
     YYZTopicCell *cell = [self.tableView cellForRowAtIndexPath:indexPath2];
     YYZTopicDetailVC *detailView = [[YYZTopicDetailVC alloc]initWithId:cell.topic_id.text];
     [self.navigationController pushViewController:detailView animated:YES];
-
 }
+#pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;
 }
+
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {

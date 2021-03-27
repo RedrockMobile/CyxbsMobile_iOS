@@ -9,7 +9,6 @@
 #import "YYZTopicGroupVC.h"
 #import "YYZTopicCell.h"
 
-
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
 @property(nonatomic,strong) UITableView *tableView;
@@ -73,7 +72,6 @@
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
     self.cell = cell;
-    NSLog(@"-------------11---------%@",self.array);
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
         if([dic[@"topic_name"]isEqualToString:self.topicIdString]){
@@ -94,8 +92,6 @@
         }
     }
     [self.backgroundScrollView addSubview:cell];
-    
-    
 }
 
 - (void) setMiddleView {
