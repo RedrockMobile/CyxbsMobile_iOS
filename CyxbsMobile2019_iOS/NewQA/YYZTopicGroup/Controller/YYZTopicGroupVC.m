@@ -19,8 +19,8 @@
 @implementation YYZTopicGroupVC
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;
     //设置nav
     self.navigationItem.title = @"圈子广场";
@@ -41,7 +41,8 @@
         [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"圈子广场网络请求失败" AddView:self.view];
-        }];
+        }
+     ];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

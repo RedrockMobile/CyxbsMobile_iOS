@@ -15,6 +15,7 @@
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;
+@property(nonatomic,strong) UIScrollView *topicScrollView;
 @end
 
 @implementation YYZTopicDetailVC
@@ -29,6 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //网络请求
+    /*
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
@@ -39,8 +41,10 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"圈子详情页请求失败" AddView:self.view];
         }];
+     */
     //设置导航栏
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
+    self.navigationController.navigationBar.hidden = NO;//显示nav_bar
     self.navigationItem.title = @"";
     self.navigationController.navigationBar.translucent=NO;//导航栏不透明
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
@@ -56,22 +60,36 @@
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
     [self setScroll];
     [self setCell];
-    [self setMiddleView];
+    [self setMiddleLable];
     [self setFrame];
+    
+    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:self.backgroundScrollView.frame style:UITableViewStylePlain];
+    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:self.backgroundScrollView.frame style:UITableViewStylePlain];
+    
 }
 
+- (void) setlll{
+    ;
+}
 - (void) setScroll {
     UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
     self.backgroundScrollView = backgroundScrollView;
     backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
     backgroundScrollView.contentSize = CGSizeMake(0,0);//先设置禁止滑动，以后适配动画效果
     [self.view addSubview:backgroundScrollView];
+    
+    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, SCREEN_HEIGHT-130)];
+    self.topicScrollView = topicScrollView;
+    topicScrollView.backgroundColor = [UIColor lightGrayColor];
+    [self.backgroundScrollView addSubview:topicScrollView];
+    topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-130);
 }
 //设置顶部cell
 - (void)setCell {
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
     self.cell = cell;
+    /*
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
         if([dic[@"topic_name"]isEqualToString:self.topicIdString]){
@@ -91,13 +109,17 @@
             break;
         }
     }
+     */
     [self.backgroundScrollView addSubview:cell];
 }
 
-- (void) setMiddleView {
-    UIView *middleView = [[UIView alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, SCREEN_HEIGHT-130)];
-    middleView.backgroundColor = [UIColor whiteColor];
-    [self.backgroundScrollView addSubview:middleView];
+- (void) setMiddleLable {
+    UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 55)];
+    middleLable.backgroundColor = [UIColor whiteColor];
+    middleLable.text = @"   最新     热门";
+    middleLable.font = [UIFont fontWithName:PingFangSCBold size:18];
+    middleLable.textColor = [UIColor colorNamed:@"YYZColor2"];
+    [self.backgroundScrollView addSubview:middleLable];
 }
 
 - (void) setFrame {
@@ -128,6 +150,5 @@
             [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
         }];
 }
-
 
 @end

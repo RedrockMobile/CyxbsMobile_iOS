@@ -49,8 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///推荐文字
 @property (nonatomic, strong) RecommentLabel *recommendedLabel;
 
-@property (nonatomic, strong) UILabel *recommendLabelSmall;
-
 ///推荐tableView
 @property (nonatomic, strong) RecommendedTableView *tableView;
 

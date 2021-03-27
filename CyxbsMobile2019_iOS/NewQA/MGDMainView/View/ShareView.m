@@ -39,7 +39,7 @@
         _titleLabel.layer.masksToBounds = YES;
         _titleLabel.text = @"分享";
         _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 12];
+        _titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 14];
         if (@available(iOS 11.0, *)) {
             _titleLabel.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
         } else {
@@ -104,7 +104,7 @@
 - (void)layoutSubviews {
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(self);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.075);
+        make.height.mas_equalTo(SCREEN_WIDTH * 50/375);
     }];
     
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,7 +118,7 @@
         if (button == self.btnArray[0]) {
             [button mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self).offset(LeftAndRightGap);
-                make.top.equalTo(self.lineView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.0367);
+                make.top.equalTo(self.lineView.mas_bottom).mas_offset(SCREEN_WIDTH * 24.5/375);
                 make.height.mas_equalTo(ButtonHeigth);
                 make.width.mas_equalTo(ButtonWidth);
             }];
