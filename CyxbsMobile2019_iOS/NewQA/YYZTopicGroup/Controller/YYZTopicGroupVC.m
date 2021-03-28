@@ -21,8 +21,8 @@
 
 //加载邮问时隐藏底部课表
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;
     //设置nav
     self.navigationItem.title = @"圈子广场";

@@ -87,7 +87,7 @@
     CGFloat originX = self.buttonAry[0].frame.origin.x;
     CGFloat originY = self.buttonAry[0].frame.origin.y;
 
-    CGFloat splite = MAIN_SCREEN_W * 0.0334;    //button之间的间距
+    CGFloat splite = MAIN_SCREEN_W * 0.02;    //button之间的间距
     CGFloat lineSplite = MAIN_SCREEN_H * 0.02; //每行之间的间距
 
     //button位置临界值判断变量
@@ -118,29 +118,6 @@
         }
         self.buttonAry[i].frame = CGRectMake(buttonX, positionY, buttonWidth, MAIN_SCREEN_H * 0.0382);
     }
-    
-//    __block int k = 0;
-
-//    __block float lastBtnW,lastBtnX;
-//    for (int i = 1; i < self.buttonAry.count; i++) {
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self layoutIfNeeded];
-//            lastBtnW = self.buttonAry[i-1].frame.size.width;
-//            lastBtnX = self.buttonAry[i-1].frame.origin.x;
-//            if(lastBtnX + lastBtnW*2 > self.frame.size.width) {
-//                k++;
-//                [self.buttonAry[i] mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                    make.top.equalTo(self.hotSearch_KnowledgeLabel.mas_bottom).offset(k*MAIN_SCREEN_W*0.1147 + LINESPLIT);
-//                    make.left.equalTo(self);
-//                }];
-//            }else {
-//                [self.buttonAry[i] mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                    make.left.equalTo(self).offset(SPLIT+lastBtnW+lastBtnX);
-//                    make.top.equalTo(self.hotSearch_KnowledgeLabel.mas_bottom).offset(k*MAIN_SCREEN_W*0.1147 + LINESPLIT);
-//                }];
-//            }
-//        });
-//    }
 }
 
 //更新UI
@@ -163,7 +140,7 @@
 - (UILabel *)hotSearch_KnowledgeLabel{
     if (_hotSearch_KnowledgeLabel == nil) {
         _hotSearch_KnowledgeLabel = [[UILabel alloc] init];
-        _hotSearch_KnowledgeLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
+        _hotSearch_KnowledgeLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
         if (@available(iOS 11.0, *)) {
             _hotSearch_KnowledgeLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
         } else {

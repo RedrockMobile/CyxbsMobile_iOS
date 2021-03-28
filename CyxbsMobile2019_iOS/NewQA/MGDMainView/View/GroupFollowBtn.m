@@ -25,7 +25,7 @@
             make.width.height.mas_equalTo(SCREEN_WIDTH * 0.1079);
         }];
         [rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.mas_top);
+            make.bottom.mas_equalTo(self.mas_bottom);
             make.left.mas_equalTo(SCREEN_WIDTH * 0.6253);
             make.width.mas_equalTo(SCREEN_WIDTH * 0.2919);
             make.height.mas_equalTo(SCREEN_WIDTH * 0.2919 * 70.25/109.45);
