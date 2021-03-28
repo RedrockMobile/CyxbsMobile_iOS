@@ -84,7 +84,7 @@
     }
     
     [btn setTitle:@"退出" forState:UIControlStateNormal];
-    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:15]];
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:15*fontSizeScaleRate_SE]];
     [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     btn.layer.cornerRadius = 0.0473*SCREEN_WIDTH;
     
@@ -109,7 +109,7 @@
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
-    label.font = [UIFont fontWithName:PingFangSCSemibold size:18];
+    label.font = [UIFont fontWithName:PingFangSCSemibold size:18*fontSizeScaleRate_SE];
 }
 
 /// 添加 显示@"是否退出当前账号"的字标题label 的方法
@@ -131,7 +131,7 @@
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     
-    label.font = [UIFont fontWithName:PingFangSCRegular size:13];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:13*fontSizeScaleRate_SE];
 
 }
 

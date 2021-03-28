@@ -55,7 +55,7 @@
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     
-    label.font = [UIFont fontWithName:PingFangSCBold size:15];
+    label.font = [UIFont fontWithName:PingFangSCBold size:15*fontSizeScaleRate_SE];
     
     [self addMainBodyTextView];
 }
@@ -83,7 +83,7 @@
     }
     view.backgroundColor = self.view.backgroundColor;
     
-    [view setFont:[UIFont fontWithName:PingFangSCLight size:13]];
+    [view setFont:[UIFont fontWithName:PingFangSCLight size:13*fontSizeScaleRate_SE]];
     
     view.delegate = self;
 }

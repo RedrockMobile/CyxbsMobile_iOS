@@ -45,7 +45,7 @@
         
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.text = @"关于我们";
-        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
+        titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:21*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
             titleLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
         } else {
@@ -66,7 +66,7 @@
         
         UILabel *appNameLabel = [[UILabel alloc] init];
         appNameLabel.text = @"掌上重邮";
-        appNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20];
+        appNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
             appNameLabel.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
         } else {
@@ -78,7 +78,7 @@
         UILabel *appVersionLabel = [[UILabel alloc] init];
         NSString *version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
         appVersionLabel.text = [NSString stringWithFormat:@"Version %@", version];
-        appVersionLabel.font = [UIFont systemFontOfSize:13];
+        appVersionLabel.font = [UIFont systemFontOfSize:13*fontSizeScaleRate_SE];
         appVersionLabel.textColor = self.appNameLabel.textColor;
         appVersionLabel.alpha = 0.57;
         [self addSubview:appVersionLabel];
@@ -102,7 +102,7 @@
         
         UILabel *corporationLabel = [[UILabel alloc] init];
         corporationLabel.text = @"红岩网校工作站出品";
-        corporationLabel.font = [UIFont systemFontOfSize:11];
+        corporationLabel.font = [UIFont systemFontOfSize:11*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
             corporationLabel.textColor = [UIColor colorNamed:@"Mine_About_CopyrightColor"];
         } else {
@@ -114,7 +114,7 @@
         UILabel *copyrightLabel = [[UILabel alloc] init];
         copyrightLabel.text = @"Copyright © 2015-2020 All Rights Reserverd";
         copyrightLabel.textAlignment = NSTextAlignmentCenter;
-        copyrightLabel.font = [UIFont systemFontOfSize:11];
+        copyrightLabel.font = [UIFont systemFontOfSize:11*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
             copyrightLabel.textColor = [UIColor colorNamed:@"Mine_About_CopyrightColor"];
         } else {
@@ -180,7 +180,7 @@
     } else {
         [btn setTitleColor:[UIColor colorWithRed:44/255.0 green:223/255.0 blue:255/255.0 alpha:1] forState:UIControlStateNormal];
     }
-    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:11]];
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:11*fontSizeScaleRate_SE]];
     return btn;
 }
 - (void)layoutSubviews {
@@ -262,7 +262,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont fontWithName:PingFangSCRegular size:16];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCRegular size:16*fontSizeScaleRate_SE];
     
     cell.textLabel.textColor = self.appNameLabel.textColor;
     cell.backgroundColor = self.tableView.backgroundColor;

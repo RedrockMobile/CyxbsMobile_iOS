@@ -38,6 +38,8 @@
 //个人页的评论数的缓存的key
 #define MineCommentCntStrKey @"MineCommentCntStrKey"
 
+//个人页面最后一次签到的签到时间缓存，取出来是NSDate类型
+#define MineLastCheckInTime_NSDate @"MineLastCheckInTime_NSDate"
 
 //可以用userDefault取出开学日期，格式是@"yyyy-MM-dd"
 #define DateStartKey_NSString @"DateStartKey_NSString"
