@@ -68,7 +68,7 @@
     _detailLabel = [[UILabel alloc] init];
     _detailLabel.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xF0F0F0)];
     
-    self.detailLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    self.detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
@@ -92,6 +92,9 @@
     [_starBtn addTarget:self action:@selector(ClickedStar:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_starBtn];
     
+    self.lineLB = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 1)];
+    self.lineLB.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xF1F3F8) DarkColor:KUIColorFromRGB(0x252525)];
+    [self.contentView addSubview:self.lineLB];
 }
 
 - (void)BuildFrame {
@@ -135,7 +138,10 @@
         make.height.mas_equalTo(1).priorityLow();
         make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-2);
     }];
-    
+    [self.lineLB mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.contentView);
+        make.height.mas_offset(1);
+    }];
 }
 
 - (void)awakeFromNib {
@@ -163,6 +169,7 @@
         self.timeLabel.hidden = YES;
     }
     
+    self.lineLB.hidden = (self.commentLevel == DynamicCommentType_secondLevel?YES:NO);
     self.timeLabel.hidden = (self.commentLevel == DynamicCommentType_secondLevel?YES:NO);
     
     if (self.commentLevel == DynamicCommentType_secondLevel) {
@@ -188,7 +195,7 @@
         
         NSRange rangethree = NSMakeRange(detailLength, self.commentModle.content.length);
         NSMutableDictionary *dicthree = [NSMutableDictionary dictionary];
-        dicthree[NSFontAttributeName] = [UIFont fontWithName:PingFangSCMedium size:15];
+        dicthree[NSFontAttributeName] = [UIFont fontWithName:PingFangSCRegular size:15];
         dicthree[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xF0F0F0)];
         [attribut addAttributes:dicthree range:rangethree];
         

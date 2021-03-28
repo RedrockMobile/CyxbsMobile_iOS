@@ -23,6 +23,7 @@
 #import "GYYShareView.h"
 #import "shareView.h"
 #import "StarPostModel.h"
+#import "DeleteArticleTipView.h"
 
 @interface GYYDynamicDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DKSKeyboardDelegate,ReportViewDelegate,PostTableViewCellDelegate,GYYShareViewDelegate,ShareViewDelegate>
 
@@ -108,6 +109,7 @@
     }
     self.title = @"详情";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:23],NSForegroundColorAttributeName:[UIColor colorWithLightColor:KUIColorFromRGB(0x15315B) DarkColor:KUIColorFromRGB(0xf0f0f2)]}];
+    [self.navigationController.navigationBar setBarTintColor: [UIColor colorWithLightColor:KUIColorFromRGB(0xFFFFFF) DarkColor:KUIColorFromRGB(0x000000)]];
     
     [self addBackButton];
     self.allCommentM = [NSMutableArray array];
@@ -120,6 +122,8 @@
     self.mainTableView.dataSource = self;
     self.mainTableView.tableHeaderView = self.tableHeadView;
     self.mainTableView.tableFooterView = [UIView new];
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [self.view addSubview:self.mainTableView];
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -139,7 +143,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;  //显示导航栏
-    [self.tabBarController.tabBar setHidden:YES];             //隐藏底部的tabbar
     
     self.pageIndex = 1;
     [self.mainTableView.mj_header beginRefreshing];
@@ -157,6 +160,7 @@
     backButton.frame = CGRectMake(0, 0, 40, 40);
     [backButton setImage:[UIImage imageNamed:@"icon_close"] forState:UIControlStateNormal];
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setContentHorizontalAlignment:1];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
 }
 
@@ -289,6 +293,9 @@
     }else{
         cell.commentModle = commentModel.reply_list[indexPath.row-1];
     }
+//    NSInteger rowNum = [tableView numberOfRowsInSection:indexPath.section];
+//    cell.lineLB.hidden = (rowNum == indexPath.row+1 ?NO:YES);
+
     return cell;
     
 }
@@ -362,17 +369,24 @@
 //删除评论
 - (void)deleteAction{
     
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         
-        if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"删除成功" AddView:self.view];
-            [self.mainTableView.mj_header beginRefreshing];
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"删除失败，请重试" AddView:self.view];
+        [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            if ([responseObject[@"status"] intValue] ==200) {
+                [NewQAHud showHudWith:@"删除成功" AddView:self.view];
+                [self.mainTableView.mj_header beginRefreshing];
+            }
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NewQAHud showHudWith:@"删除失败，请重试" AddView:self.view];
+            
+        }];
         
     }];
+    tipView.titleLabel.text = @"确定删除此条评论？";
+    [self.view addSubview:tipView];
     
 }
 #pragma mark -举报页面的代理方法
@@ -491,7 +505,7 @@
     pasteboard.string = shareURL;
     
     
-    self.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeClear];
+    self.zh_popupController = [zhPopupController popupControllerWithMaskType:zhPopupMaskTypeBlackTranslucent];
     self.zh_popupController.dismissOnMaskTouched = NO;
     self.zh_popupController.layoutType = zhPopupLayoutTypeBottom;
     self.zh_popupController.slideStyle = zhPopupSlideStyleFromBottom;
@@ -583,14 +597,14 @@
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"发布评论成功" AddView:self.view];
+            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
             [self.inputView clearCurrentInput];
             [self.view endEditing:YES];
             [self.mainTableView.mj_header beginRefreshing];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"发布评论失败，请重试" AddView:self.view];
+        [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
     }];
     
 }

@@ -320,5 +320,7 @@
 // 查看未读消息
 #define NEW_QA_QUERYNEWCOUNT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/getUnreadCount"]
 
+// 关注圈子
+#define NEW_QA_STARGROUP [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/followTopicGround"]
 
 #endif /* CyxbsMobileURL_h */

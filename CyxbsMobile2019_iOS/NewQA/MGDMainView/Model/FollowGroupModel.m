@@ -13,7 +13,7 @@
 - (void)FollowGroupWithName:(NSString *)name {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *dic = @{@"topic_name":name};
-    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:dic prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEW_QA_STARGROUP method:HttpRequestPost parameters:dic prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"关注圈子成功");
         NSDictionary *dict = @{@"GroupName":name};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedFollowGroupBtn" object:nil userInfo:dict];

@@ -26,7 +26,7 @@
             // Fallback on earlier versions
         }
         groupBtnLabel.textAlignment = NSTextAlignmentCenter;
-        groupBtnLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 12];
+        groupBtnLabel.font = [UIFont fontWithName:PingFangSCRegular size: 12];
         [self addSubview:groupBtnLabel];
         _groupBtnLabel = groupBtnLabel;
         

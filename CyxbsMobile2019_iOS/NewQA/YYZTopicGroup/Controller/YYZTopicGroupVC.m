@@ -11,7 +11,7 @@
 #import "NewQAHud.h"
 
 @interface YYZTopicGroupVC ()<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong ) NSArray *array;
+@property(nonatomic,strong ) NSArray *array; //存储网络请求数据
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) YYZTopicCell *cell;
 @end
@@ -21,8 +21,8 @@
 
 //加载邮问时隐藏底部课表
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;
     //设置nav
     self.navigationItem.title = @"圈子广场";
@@ -45,7 +45,6 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"圈子广场网络请求失败" AddView:self.view];
         }];
-   
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -108,9 +107,11 @@
          */
             [cell.topic_isFollow setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:173/255.0 green:187/255.0 blue:213/255.0 alpha:1.0]] forState:UIControlStateDisabled];
             if([self.array[i][@"is_follow"] longValue] == 1){
-                cell.topic_isFollow.enabled = NO;
+                //cell.topic_isFollow.enabled = NO;
                 cell.topic_isFollow.clipsToBounds = YES;
                 cell.topic_isFollow.layer.cornerRadius = 14;
+                [cell.topic_isFollow setTitle:@"已关注" forState:UIControlStateNormal];
+                cell.topic_isFollow.backgroundColor = RGBColor(171, 189, 215, 1);
             }
             cell.topic_isFollow.tag = self.array[i][@"topic_id"];
             [cell.topic_isFollow addTarget:self action:@selector(changeFollow:) forControlEvents:UIControlEventTouchUpInside];
@@ -132,14 +133,26 @@
     return cell.frame.size.height;
 }
 - (void)changeFollow:(UIButton *) btn {
-    [NewQAHud showHudWith:@"已关注" AddView:self.view];
-    NSString *stringIsFollow = [NSString stringWithFormat:@"%ld",(long)btn.tag];
+    NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@ 关注成功",btn.tag);
+            //改变button状态
+        if([btn.titleLabel.text isEqualToString:@"已关注"]){
+            [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
+            btn.clipsToBounds = YES;
+            btn.layer.cornerRadius = 14;
+            [btn setTitle:@"+关注" forState:UIControlStateNormal];
+            btn.backgroundColor = RGBColor(93, 94, 247, 1);
+        }
+        else{
+            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
+            btn.clipsToBounds = YES;
+            btn.layer.cornerRadius = 14;
+            [btn setTitle:@"已关注" forState:UIControlStateNormal];
+            btn.backgroundColor = RGBColor(171, 189, 215, 1);
+        }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"-----------error\n");
+            [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
         }];
 }
-
 
 @end

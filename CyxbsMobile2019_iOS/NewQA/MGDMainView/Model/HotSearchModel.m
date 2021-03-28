@@ -14,7 +14,7 @@ MJCodingImplementation
 
 - (void)getHotSearchArray {
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/getSearchHotWord" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEW_QA_HOTWORD method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self.hotWordsArray = [NSMutableArray array];
         NSDictionary *dic = responseObject[@"data"];
         NSArray *tmpArray = dic[@"hot_words"];

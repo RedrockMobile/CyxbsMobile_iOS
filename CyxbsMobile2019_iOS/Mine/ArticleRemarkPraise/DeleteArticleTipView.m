@@ -13,8 +13,6 @@
 /// 弹窗
 @property(nonatomic,strong)UIView *tipWindow;
 
-@property(nonatomic,strong)UILabel *titleLabel;
-
 @property(nonatomic,strong)UIButton *cancelBtn;
 
 @property(nonatomic,strong)UIButton *sureBtn;
@@ -88,7 +86,7 @@
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     
-    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    label.font = [UIFont fontWithName:PingFangSCMedium size:11];
 
 }
 - (void)addCancelBtn {
@@ -179,3 +177,4 @@
 }
 
 @end
+

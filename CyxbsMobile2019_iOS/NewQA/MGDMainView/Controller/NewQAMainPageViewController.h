@@ -18,6 +18,7 @@
 #import "ReportView.h"
 #import "ShareView.h"
 #import "FuncView.h"
+#import "RecommentLabel.h"
 #import "PostItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -46,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) RecommendedTableView *recommendedTableView;
 
 ///推荐文字
-@property (nonatomic, strong) UILabel *recommendedLabel;
+@property (nonatomic, strong) RecommentLabel *recommendedLabel;
 
 ///推荐tableView
 @property (nonatomic, strong) RecommendedTableView *tableView;
