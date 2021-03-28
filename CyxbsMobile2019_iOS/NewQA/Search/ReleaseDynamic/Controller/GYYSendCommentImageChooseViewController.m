@@ -59,11 +59,13 @@
     }
     self.title = @"评论";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:23],NSForegroundColorAttributeName:[UIColor colorWithLightColor:KUIColorFromRGB(0x15315B) DarkColor:KUIColorFromRGB(0xf0f0f2)]}];
+    [self.navigationController.navigationBar setBarTintColor: [UIColor colorWithLightColor:KUIColorFromRGB(0xFFFFFF) DarkColor:KUIColorFromRGB(0x000000)]];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(0, 0, 44, 44);
     [backButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setContentHorizontalAlignment:1];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
     
     UIImage *sendImage = [UIImage imageNamed:@"发送"];

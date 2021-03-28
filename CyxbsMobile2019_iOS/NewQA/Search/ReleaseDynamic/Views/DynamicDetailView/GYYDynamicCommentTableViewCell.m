@@ -68,7 +68,7 @@
     _detailLabel = [[UILabel alloc] init];
     _detailLabel.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xF0F0F0)];
     
-    self.detailLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    self.detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
@@ -195,7 +195,7 @@
         
         NSRange rangethree = NSMakeRange(detailLength, self.commentModle.content.length);
         NSMutableDictionary *dicthree = [NSMutableDictionary dictionary];
-        dicthree[NSFontAttributeName] = [UIFont fontWithName:PingFangSCMedium size:15];
+        dicthree[NSFontAttributeName] = [UIFont fontWithName:PingFangSCRegular size:15];
         dicthree[NSForegroundColorAttributeName] = [UIColor colorWithLightColor:KUIColorFromRGB(0x112C57) DarkColor:KUIColorFromRGB(0xF0F0F0)];
         [attribut addAttributes:dicthree range:rangethree];
         
