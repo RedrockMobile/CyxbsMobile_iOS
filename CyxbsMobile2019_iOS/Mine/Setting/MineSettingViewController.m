@@ -90,26 +90,22 @@
         make.left.equalTo(self.view).offset(0.2523*SCREEN_WIDTH);
         make.bottom.equalTo(self.view).offset(-0.2176*SCREEN_HEIGHT);
         make.width.mas_equalTo(0.4933*SCREEN_WIDTH);
-        make.height.mas_equalTo(0.1067*SCREEN_WIDTH);
+        make.height.mas_equalTo(40.0125*HScaleRate_SE);
     }];
     
-    btn.layer.cornerRadius = 0.05335*SCREEN_WIDTH;
+    btn.layer.cornerRadius = 20.006*HScaleRate_SE;
     
-    btn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
+    btn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18*fontSizeScaleRate_SE];
     
     [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     
     
     [btn setTitle:@"退 出 登 录" forState:UIControlStateNormal];
     
-    if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"87_86_242&86_86_242"];
-        [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-    } else {
-        btn.backgroundColor = [UIColor colorWithRed:87/255.0 green:86/255.0 blue:242/255.0 alpha:1];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    }
-    
+   
+    btn.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+
     [btn addTarget:self action:@selector(quitButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -125,7 +121,8 @@
     
     cell.textLabel.text = self.cellTitleStrArr[indexPath.row];
     cell.backgroundColor = tableView.backgroundColor;
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCRegular size:15*fontSizeScaleRate_SE];
+//    [UIFont systemFontOfSize:15*fontSizeScaleRate_SE];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     if (@available(iOS 11.0, *)) {
@@ -164,6 +161,19 @@
     return cell;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    float h;
+//    if (IS_IPHONEX) {
+//        h = 90*fontSizeScaleRate_SE;
+//    }else {
+//        h = 60;
+//    }
+//    CCLog(@"%.2f",h);
+//    return 200;
+//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60* HScaleRate_SE;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 3:

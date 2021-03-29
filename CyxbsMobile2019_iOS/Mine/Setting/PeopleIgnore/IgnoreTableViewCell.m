@@ -12,63 +12,56 @@
 @property(nonatomic, strong)UIView *separateLine;
 @property(nonatomic, strong)IgnoreDataModel *model;
 @property(nonatomic, strong)UIButton *cancelBtn;
+@property(nonatomic, strong)UIImageView *headImgView;
+@property(nonatomic, strong)UILabel *nickNameLabel;
+@property(nonatomic, strong)UILabel *mottoLabel;
+
 @end
 @implementation IgnoreTableViewCell
 
 - (instancetype)init{
     self = [self initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"IgnoreTableViewCell"];
     if (self) {
-        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(0.0427*SCREEN_WIDTH);
-            make.top.equalTo(self).offset(0.0533*SCREEN_WIDTH);
-            make.width.height.mas_equalTo(0.128*SCREEN_WIDTH);
-        }];
-        self.imageView.layer.cornerRadius = 0.064*SCREEN_WIDTH;
-        self.imageView.clipsToBounds = YES;
         self.backgroundColor = UIColor.clearColor;
-        
-        [self addCancelBtn];
-        [self setTextLabel];
-        [self setDetailTextLabel];
-        [self addSeparateLine];
         [self setSelectionStyle:(UITableViewCellSelectionStyleNone)];
+        [self addHeadImgView];
+        [self addCancelBtn];
+        [self addNickNameAndMottoLabel];
+        [self addSeparateLine];
     }
     return self;
 }
+
 - (void)setDataWithDataModel:(IgnoreDataModel *)model {
     self.model = model;
-    self.textLabel.text = model.nickName;
-    self.detailTextLabel.text = model.introduction;
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
+    self.nickNameLabel.text = model.nickName;
+    self.mottoLabel.text = model.introduction;
+    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:model.avatar]];
 }
-- (void)addCancelBtn{
-    UIButton *btn = [[UIButton alloc] init];
-    [self.contentView addSubview:btn];
-    self.cancelBtn = btn;
+
+- (void)addHeadImgView {
+    UIImageView *imgView = [[UIImageView alloc] init];
+    self.headImgView = imgView;
+    [self.contentView addSubview:imgView];
     
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-0.0427*MAIN_SCREEN_W);
-        make.top.equalTo(self.contentView).offset(0.084*MAIN_SCREEN_W);
-        make.width.mas_equalTo(0.2387*SCREEN_WIDTH);
-        make.height.mas_equalTo(0.0747*SCREEN_WIDTH);
+    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(0.0427*SCREEN_WIDTH);
+        make.top.equalTo(self).offset(0.0533*SCREEN_WIDTH);
+        make.width.height.mas_equalTo(0.128*SCREEN_WIDTH);
     }];
-    
-    [btn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
-    [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-    
-    if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"93_93_247&85_77_250"];
-    } else {
-        btn.backgroundColor = [UIColor colorWithRed:93/255.0 green:93/255.0 blue:247/255.0 alpha:1];
-    }
-    
-    btn.layer.cornerRadius = 0.03735*SCREEN_WIDTH;
-    
-    [btn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    imgView.layer.cornerRadius = 0.064*SCREEN_WIDTH;
+    imgView.clipsToBounds = YES;
 }
-/// 设置用户昵称label的方法
-- (void)setTextLabel{
-    UILabel *label = self.textLabel;
+
+- (void)addNickNameAndMottoLabel {
+    UILabel *label;
+    UIView *backView = [[UIView alloc] init];
+    [self.contentView addSubview:backView];
+    
+    //++++++++++++++++++设置用户昵称label++++++++++++++++++++  Begain
+    label = [[UILabel alloc] init];
+    [backView addSubview:label];
+    self.nickNameLabel = label;
     
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
@@ -78,15 +71,19 @@
     
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(0.188*SCREEN_WIDTH);
-        make.top.equalTo(self.mas_top).offset(0.0747*SCREEN_WIDTH);
+        make.left.equalTo(backView);
+        make.top.equalTo(backView);
     }];
     
-    label.font = [UIFont fontWithName:PingFangSCSemibold size:15];
-}
-/// 设置用户个性签名label的方法
-- (void)setDetailTextLabel{
-    UILabel *label = self.detailTextLabel;
+    label.font = [UIFont fontWithName:PingFangSCMedium size:15*fontSizeScaleRate_SE];
+    
+    //++++++++++++++++++设置用户昵称label++++++++++++++++++++  End
+    
+    
+    //++++++++++++++++++设置用户个性签名labe++++++++++++++++++++  Begain
+    label = [[UILabel alloc] init];
+    self.mottoLabel = label;
+    [backView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor colorNamed:@"116_139_176&131_131_132"];
@@ -95,12 +92,50 @@
     }
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(0.1867*SCREEN_WIDTH);
-        make.top.equalTo(self.mas_top).offset(0.1373*SCREEN_WIDTH);
+        make.left.equalTo(backView);
+        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(2*HScaleRate_SE);
+        make.bottom.equalTo(backView);
     }];
     
-    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:11*fontSizeScaleRate_SE];
+    
+    //++++++++++++++++++设置用户个性签名label++++++++++++++++++++  End
+    
+    [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(0.188*SCREEN_WIDTH);
+        make.centerY.equalTo(self.headImgView);
+        make.width.mas_equalTo(30);
+    }];
+    
+//    backView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
 }
+- (void)addCancelBtn{
+    UIButton *btn = [[UIButton alloc] init];
+    [self.contentView addSubview:btn];
+    self.cancelBtn = btn;
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView).offset(-0.0427*MAIN_SCREEN_W);
+        make.top.equalTo(self.contentView).offset(0.084*MAIN_SCREEN_W);
+        make.width.mas_equalTo(0.2387*SCREEN_WIDTH*WScaleRate_SE);
+        make.height.mas_equalTo(0.0747*SCREEN_WIDTH*HScaleRate_SE);
+    }];
+    
+    btn.layer.cornerRadius = 0.03735*SCREEN_WIDTH*HScaleRate_SE;
+    
+    [btn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
+    
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:13*fontSizeScaleRate_SE]];
+    
+    [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+   
+    btn.backgroundColor = [UIColor colorWithRed:93/255.0 green:94/255.0 blue:246/255.0 alpha:1];
+    
+    
+    [btn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
+
 /// 添加 底部分隔线 的方法
 - (void)addSeparateLine{
     UIView *view = [[UIView alloc] init];
@@ -142,8 +177,8 @@
     
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//}
 
 @end

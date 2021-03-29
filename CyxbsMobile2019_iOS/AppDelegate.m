@@ -73,9 +73,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         if([man isReachable]){
             //如果网络可用，刷新token
             [UserItemTool refresh];
-            //停止监测
-            [man stopMonitoring];
         }
+        //停止监测
+        [man stopMonitoring];
     });
     //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
 //    [UserItemTool refresh];
