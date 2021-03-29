@@ -16,6 +16,8 @@
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;
 @property(nonatomic,strong) UIScrollView *topicScrollView;
+@property(nonatomic,strong) UITableView *topicLeftTableView;
+@property(nonatomic,strong) UITableView *topicRightTableView;
 @end
 
 @implementation YYZTopicDetailVC
@@ -62,15 +64,9 @@
     [self setCell];
     [self setMiddleLable];
     [self setFrame];
-    
-    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:self.backgroundScrollView.frame style:UITableViewStylePlain];
-    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:self.backgroundScrollView.frame style:UITableViewStylePlain];
-    
+
 }
 
-- (void) setlll{
-    ;
-}
 - (void) setScroll {
     UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
     self.backgroundScrollView = backgroundScrollView;
@@ -78,11 +74,23 @@
     backgroundScrollView.contentSize = CGSizeMake(0,0);//先设置禁止滑动，以后适配动画效果
     [self.view addSubview:backgroundScrollView];
     
-    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, SCREEN_HEIGHT-130)];
+    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 185, SCREEN_WIDTH, SCREEN_HEIGHT-185)];
     self.topicScrollView = topicScrollView;
     topicScrollView.backgroundColor = [UIColor lightGrayColor];
     [self.backgroundScrollView addSubview:topicScrollView];
     topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-130);
+}
+- (void) setBackTableView{
+    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:self.backgroundScrollView.frame style:UITableViewStylePlain];
+    self.topicLeftTableView = topicLeftTableView;
+    topicLeftTableView.delegate = self;
+    topicLeftTableView.dataSource = self;
+    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 185, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
+    self.topicRightTableView = topicRightTableView;
+    topicRightTableView.delegate = self;
+    topicRightTableView.dataSource = self;
+    [self.topicScrollView addSubview:topicLeftTableView];
+    [self.topicScrollView addSubview:topicRightTableView];
 }
 //设置顶部cell
 - (void)setCell {
