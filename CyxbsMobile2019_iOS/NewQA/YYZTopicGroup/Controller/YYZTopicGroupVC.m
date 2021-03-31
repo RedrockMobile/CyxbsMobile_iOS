@@ -35,12 +35,12 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
 
     //网络请求
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
         NSLog(@"圈子数据请求成功");
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"圈子广场网络请求失败" AddView:self.view];
@@ -134,17 +134,22 @@
 }
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    NSLog(@"%@",stringIsFollow);
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             //改变button状态
         if([btn.titleLabel.text isEqualToString:@"已关注"]){
-            [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
+            [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view AndToDo:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+            }];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
             [btn setTitle:@"+关注" forState:UIControlStateNormal];
             btn.backgroundColor = RGBColor(93, 94, 247, 1);
         }
         else{
-            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
+            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view AndToDo:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+            }];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
             [btn setTitle:@"已关注" forState:UIControlStateNormal];
@@ -153,6 +158,11 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
         }];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMyStarGroupList" object:nil];
+}
+
+- (void)topFollowViewLoadSuccess {
+    
 }
 
 @end
