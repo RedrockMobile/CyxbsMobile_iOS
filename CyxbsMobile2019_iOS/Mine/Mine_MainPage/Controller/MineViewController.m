@@ -26,6 +26,8 @@
 #import <UserNotifications/UserNotifications.h>
 #import "CheckInModel.h"
 
+
+
 @interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 /// tableView
@@ -41,6 +43,10 @@
 
 /// 是否正在加载未读消息数、动态点赞评论的个数
 @property (nonatomic, assign)BOOL isLoadingMsgCntData;
+
+@property (nonatomic, assign)float cellHeight;
+
+@property (nonatomic, assign)int cellHeigh;
 @end
 
 
@@ -112,20 +118,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // 加载邮问数据
-//    [MineModel requestQADataSucceeded:^(MineQADataItem * _Nonnull responseItem) {
-//        [self.headerView.articleNumBtn setTitle:responseItem.askNum forState:UIControlStateNormal];
-//        [self.headerView.remarkNumBtn setTitle:responseItem.commentNum forState:UIControlStateNormal];
-//        [self.headerView.praiseNumBtn setTitle:responseItem.praiseNum forState:UIControlStateNormal];
-//    } failed:^(NSError * _Nonnull err) {
-//
-//    }];
     [self loadUserData];
     if (self.isLoadingMsgCntData==YES) {
         return;
     }
     
     [self.msgCntModel mainMsgCntModelLoadMoreData];
+    
+    self.isLoadingMsgCntData = YES;
     // 隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
 }
@@ -150,27 +150,43 @@
 
 //MARK: - 消息数、动态、评论、获赞数model代理方法
 - (void)mainMsgCntModelLoadDataFinishWithState:(MainMsgCntModelLoadDataState)state {
+    BOOL isSuccess = NO;
     switch (state) {
         case MainMsgCntModelLoadDataStateSuccess_praise:
+            isSuccess = YES;
             self.headerView.praiseNumBtn.msgCount = self.msgCntModel.uncheckedPraiseCnt;
             break;
         case MainMsgCntModelLoadDataStateFailure_praise:
             [NewQAHud showHudWith:@"加载未读获赞数失败～" AddView:self.view];
             break;
         case MainMsgCntModelLoadDataStateSuccess_comment:
+            isSuccess = YES;
             self.headerView.remarkNumBtn.msgCount = self.msgCntModel.uncheckedCommentCnt;
             break;
         case MainMsgCntModelLoadDataStateFailure_comment:
             [NewQAHud showHudWith:@"加载未读评论数失败～" AddView:self.view];
             break;
         case MainMsgCntModelLoadDataStateSuccess_userCnt:
+            isSuccess = YES;
             [self loadUserCountDataSuccess];
             break;
         case MainMsgCntModelLoadDataStateFailure_userCnt:
             [NewQAHud showHudWith:@"加载个人数据失败～" AddView:self.view];
             break;
     }
-    self.isLoadingMsgCntData = NO;
+    
+    
+    if (self.isLoadingMsgCntData==NO) {
+        return;
+    }
+    //如果没有没有加载成功，那么多半是后端出问题了，这种情况下，降低刷新未读消息会比较好
+    if (isSuccess==NO) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.isLoadingMsgCntData = NO;
+        });
+    }else {
+        self.isLoadingMsgCntData = NO;
+    }
 }
 
 - (void)loadUserCountDataSuccess {
@@ -291,7 +307,7 @@
     
     cell.backgroundColor = tableView.backgroundColor;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCRegular size:15*fontSizeScaleRate_SE];
     [cell setAccessoryType:(UITableViewCellAccessoryDisclosureIndicator)];
     if (@available(iOS 11.0, *)) {
         cell.textLabel.textColor = [UIColor colorNamed:@"25_56_102&240_240_242"];
@@ -300,12 +316,13 @@
     }
     
     cell.textLabel.text = self.cellTitleStrArr[indexPath.row];
+    CCLog(@"height=%f, width=%f",SCREEN_HEIGHT,SCREEN_WIDTH);
     
     return  cell;
 }
-
+//1.483
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 0.065*SCREEN_HEIGHT;
+    return 43.355*fontSizeScaleRate_SE;
 }
 # pragma mark - TableView代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

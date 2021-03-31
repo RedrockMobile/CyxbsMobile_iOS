@@ -57,7 +57,7 @@
     [self.backBtn addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0427);
-        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0217);
+        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0157);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0186, 2 *MAIN_SCREEN_W * 0.0186 ));
     }];
     
@@ -98,7 +98,12 @@
                           duration:0.25f
                            options:UIViewAnimationOptionTransitionCrossDissolve
                         animations:^{
-            self.searchTextfield.placeholder = [NSString stringWithFormat:@"大家都在搜%@",self.placeholderArray[self.i]];
+            NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"大家都在搜%@",self.placeholderArray[self.i]] attributes:
+                @{NSForegroundColorAttributeName:self.searchTextfield.textColor,
+                  NSFontAttributeName:self.searchTextfield.font
+                     }];
+            self.searchTextfield.attributedPlaceholder = attrString;
+//            self.searchTextfield.placeholder = [NSString stringWithFormat:@"大家都在搜%@",self.placeholderArray[self.i]];
           } completion:nil];
         //以此不断循环轮播内容
         if (self.i == 2) {
@@ -134,15 +139,20 @@
     if (_searchTextfield == nil) {
         _searchTextfield = [[UITextField alloc] init];
         //设置字体
-        self.searchTextfield.font = [UIFont fontWithName:PingFangSCMedium size:14];
+        _searchTextfield.font = [UIFont fontWithName:PingFangSCMedium size:14];
         
             //字体颜色
         if (@available(iOS 11.0, *)) {
             _searchTextfield.textColor = [UIColor colorNamed:@"SZHSearchTextColor"];
+            
         } else {
             // Fallback on earlier versions
         }
-       _searchTextfield.backgroundColor = [UIColor clearColor];
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@"大家都在搜红岩" attributes:
+            @{NSForegroundColorAttributeName:_searchTextfield.textColor,
+              NSFontAttributeName:_searchTextfield.font
+                 }];
+        _searchTextfield.attributedPlaceholder = attrString;
     }
     return _searchTextfield;
 }

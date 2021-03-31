@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 关于我们页面 - 主控制器
 @interface MineAboutController : UIViewController
 
 @end

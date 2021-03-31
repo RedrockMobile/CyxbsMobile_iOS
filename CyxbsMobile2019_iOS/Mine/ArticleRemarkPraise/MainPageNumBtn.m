@@ -17,12 +17,8 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        if (IS_IPHONESE) {
-            self.titleLabel.font = [UIFont fontWithName:@"Impact" size:25];
-        } else {
-            self.titleLabel.font = [UIFont fontWithName:@"Impact" size:35];
-        }
-        CCLog(@"font=%@",self.titleLabel.font.fontName);
+        self.titleLabel.font = [UIFont fontWithName:@"Impact" size:35*fontSizeScaleRate_SE];
+        CCLog(@"pointSize=%f\n",self.titleLabel.font.pointSize);
         if (@available(iOS 11.0, *)) {
             [self setTitleColor:[UIColor colorNamed:@"Mine_Main_QANumberLabelColor"] forState:UIControlStateNormal];
         } else {
@@ -43,7 +39,7 @@
     [self addSubview:label];
     self.btnNameLabel = label;
     
-    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
+    label.font = [UIFont fontWithName:PingFangSCRegular size:11*fontSizeScaleRate_SE];
     
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];

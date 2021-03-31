@@ -151,6 +151,6 @@ WYCClassBookViewControllerGetNextLessonDataBreak:;
         default:
             break;
     }
-    return @[str12,@"10:15 - 11:55",str56,@"16:15 - 18:55",str910,@"20:50 - 22:30"];
+    return @[str12,@"10:15 - 11:55",str56,@"16:15 - 17:55",str910,@"20:50 - 22:30"];
 }
 @end

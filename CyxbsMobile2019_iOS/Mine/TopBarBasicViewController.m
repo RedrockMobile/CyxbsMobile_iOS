@@ -84,7 +84,7 @@
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     
-    label.font = [UIFont fontWithName:PingFangSCSemibold size:21];
+    label.font = [UIFont fontWithName:PingFangSCSemibold size:21*fontSizeScaleRate_SE];
     
     label.text = str;
     
@@ -96,15 +96,15 @@
     self.backBtn = btn;
     [self.topBarView addSubview:btn];
     
+    
+    float unitSize = 4*fontSizeScaleRate_SE;
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.topBarView).offset(0.0427*SCREEN_WIDTH);;
         make.centerY.equalTo(self.VCTitleLabel);
-        make.height.mas_equalTo(16);
-        make.width.mas_equalTo(8);
+        make.height.width.mas_equalTo(6*unitSize);
     }];
-    
-    [btn setBackgroundImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
-    
+    [btn setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
+    btn.imageEdgeInsets = UIEdgeInsetsMake(unitSize, 1.5*unitSize, unitSize, 2.5*unitSize);
     [btn addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
