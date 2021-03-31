@@ -8,6 +8,7 @@
 #import "YYZTopicDetailVC.h"
 #import "YYZTopicGroupVC.h"
 #import "YYZTopicCell.h"
+#import "PostTableViewCell.h"
 
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
@@ -31,9 +32,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //网络请求
-    /*
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
@@ -43,7 +42,6 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"圈子详情页请求失败" AddView:self.view];
         }];
-     */
     //设置导航栏
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar
@@ -63,8 +61,8 @@
     [self setScroll];
     [self setCell];
     [self setMiddleLable];
+    [self setBackTableView];
     [self setFrame];
-
 }
 
 - (void) setScroll {
@@ -77,27 +75,51 @@
     UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 185, SCREEN_WIDTH, SCREEN_HEIGHT-185)];
     self.topicScrollView = topicScrollView;
     topicScrollView.backgroundColor = [UIColor lightGrayColor];
+    topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-185);
+    topicScrollView.pagingEnabled = YES;
     [self.backgroundScrollView addSubview:topicScrollView];
-    topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-130);
 }
 - (void) setBackTableView{
-    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:self.backgroundScrollView.frame style:UITableViewStylePlain];
+    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
+    topicLeftTableView.backgroundColor = [UIColor redColor];
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
-    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 185, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
+    
+    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
+    topicRightTableView.backgroundColor = [UIColor greenColor];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
     [self.topicScrollView addSubview:topicLeftTableView];
     [self.topicScrollView addSubview:topicRightTableView];
 }
+
+- (NSInteger)numberOfSectionsInTableView: (UITableView *)tableView{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.array.count;
+}
+#pragma mark 设置cell自适应高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostTableViewCell"];
+    if(cell == nil){
+        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"PostTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+        return cell;
+}
+
 //设置顶部cell
 - (void)setCell {
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
     self.cell = cell;
-    /*
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
         if([dic[@"topic_name"]isEqualToString:self.topicIdString]){
@@ -117,7 +139,7 @@
             break;
         }
     }
-     */
+     
     [self.backgroundScrollView addSubview:cell];
 }
 
@@ -138,7 +160,7 @@
 }
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                         //改变button状态
         if([btn.titleLabel.text isEqualToString:@"已关注"]){
             [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];

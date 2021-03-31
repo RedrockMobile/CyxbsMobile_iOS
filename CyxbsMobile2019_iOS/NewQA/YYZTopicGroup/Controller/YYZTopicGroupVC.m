@@ -33,7 +33,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
 
     //网络请求
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
@@ -87,22 +87,6 @@
             cell.topic_number.text = [NSString stringWithFormat:@"%@个成员",self.array[i][@"follow_count"]];
             cell.topic_introduce.text = self.array[i][@"introduction"];
             [cell.topic_logo sd_setImageWithURL:[NSURL URLWithString:self.array[i][@"topic_logo"]]];
-        /*    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSString *str = [NSString stringWithString:@"http://cdn.redrock.team/%7B%7Bproject%7D%7D_maigpoke-loop_7.png"];
-                NSURL *url = [NSURL URLWithString:str];
-                //http://cdn.redrock.team/%7B%7Bproject%7D%7D_maigpoke-loop_7.png
-                //http://cdn.redrock.team/{{project}}_maigpoke-loop_6.png
-                NSData *data = [[NSData alloc]initWithContentsOfURL:url];
-                UIImage *TopicImage = [[UIImage alloc]initWithData:data];
-                    if
-                     (data != nil) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                    //在这里做UI操作(UI操作都要放在主线程中执行)
-                        cell.topic_logo.image = TopicImage;
-                    });
-                    }
-            });
-         */
             [cell.topic_isFollow setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:173/255.0 green:187/255.0 blue:213/255.0 alpha:1.0]] forState:UIControlStateDisabled];
             //如果已经关注，更改关注按钮的状态
             if([self.array[i][@"is_follow"] longValue] == 1){
@@ -132,7 +116,7 @@
 
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             //改变button状态
         if([btn.titleLabel.text isEqualToString:@"已关注"]){
             [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];

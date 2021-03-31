@@ -39,7 +39,6 @@
         [self BuildUI];
         [self BuildFrame];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-
     }
     return self;
 }
