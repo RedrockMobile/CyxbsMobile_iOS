@@ -70,6 +70,10 @@
     self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
+    self.tableArray = [PostArchiveTool getPostList];
+    self.dataArray = [PostArchiveTool getMyFollowGroup].dataArray;
+    self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
+    
     //我的关注View高度
     _TopViewHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 191/375 : (SCREEN_WIDTH * 116/375);
     //推荐Label高度
@@ -122,9 +126,8 @@
         }
     [[UserItemTool defaultItem] setFirstLogin:NO];
     
-}
--(void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
+    // 视图将要展示时
+//    [self loadMyStarGroupList];
 }
 
 //邮问视图消失时显示底部课表
@@ -138,10 +141,11 @@
 - (void)reSetTopFollowUI {
     NSLog(@"接收到用户关注圈子的操作，刷新此页面");
     [self releaseView];
+    self.tableArray = [PostArchiveTool getPostList];
+    self.dataArray = [PostArchiveTool getMyFollowGroup].dataArray;
+    self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
     [self setMainViewUI];
-    [self loadHotWords];
-    [self loadMyStarGroupList];
-    [self loadData];
+    [self.tableView reloadData];
 }
 
 
@@ -274,6 +278,10 @@
                                              selector:@selector(reSetTopFollowUI)
                                                  name:@"reSetTopFollowUI" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reLoadGroupList)
+                                                 name:@"reLoadGroupList" object:nil];
+    
 }
 
 - (void)releaseView {
@@ -287,10 +295,15 @@
 - (void)funcPopViewinit {
     // 创建分享页面
     _shareView = [[ShareView alloc] init];
+    _shareView.delegate = self;
+    
     // 创建功能页面
     _popView = [[FuncView alloc] init];
+    _popView.delegate = self;
+    
     // 创建举报页面
     _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
+    _reportView.delegate = self;
     
 }
 
@@ -304,7 +317,6 @@
 - (void)howWordsLoadSuccess {
     self.hotWordsArray = self.hotWordModel.hotWordsArray;
     [PostArchiveTool saveHotWordsWith:self.hotWordModel];
-    NSLog(@"热词请求成功");
 }
 
 ///3s刷新热搜词汇
@@ -341,12 +353,17 @@
 - (void)topFollowViewLoadSuccess {
     self.dataArray = self.groupModel.dataArray;
     [PostArchiveTool saveMyFollowGroupWith:self.groupModel];
-//    NSLog(@"我的关注请求成功");
+    NSLog(@"我的关注请求成功");
 }
 
 ///我的关注请求失败
 - (void)topFollowViewLoadError {
-    [NewQAHud showHudWith:@"我的关注请求失败～" AddView:self.view];
+    [NewQAHud showHudWith:@"  我的关注请求失败～  " AddView:self.view];
+}
+
+- (void)reLoadGroupList {
+    [self.groupModel loadMyFollowGroup];
+    [self refreshData];
 }
 
 #pragma mark- 帖子列表的网络请求
@@ -359,7 +376,7 @@
 }
 
 ///上拉刷新
-- (void)reloadData{
+- (void)refreshData{
     [self.tableArray removeAllObjects];
     self.page = 1;
 //    NSLog(@"此时的page:%ld",(long)self.page);
@@ -375,18 +392,20 @@
         [self.tableArray addObjectsFromArray:self.postmodel.postArray];
     }
     
-    [PostArchiveTool savePostListWith:self.tableArray];
+    [PostArchiveTool savePostListWith:self.postmodel.postArray];
     if(!self.tableView){
         [self setMainViewUI];
     }
     //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
     if (self.page == 1) {
+        self.tableArray = [PostArchiveTool getPostList];
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }else{
         [self.tableView reloadData];
         [self.tableView.mj_footer endRefreshing];
     }
+    NSLog(@"成功请求列表数据");
 }
 
 ///请求失败
@@ -470,9 +489,6 @@
     _recommendHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 54/375 : SCREEN_WIDTH * 43/375;
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     
-    NSLog(@"=============>>>>>>>>%lu",(unsigned long)self.dataArray.count);
-    
-    NSLog(@">>>>>>>>>>>>>========%f",_recommendHeight);
     [self tableView];
     [self.view addSubview:self.tableView];
     [self setUpRefresh];
@@ -488,9 +504,6 @@
     if ([self.dataArray count] == 0) {
         [self.view bringSubviewToFront:self.topFollowView.followBtn];
     }
-
-//    [self lineView];
-//    [self.recommendedLabel addSubview:_lineView];
 
     [self recommendedLabel];
     [self.topFollowView addSubview:_recommendedLabel];
@@ -547,7 +560,7 @@
     self.tableView.mj_footer = _footer;
     
     //下拉刷新的设置
-    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadData)];
+    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.tableView.mj_header = _header;
     
     [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
@@ -619,6 +632,8 @@
             cell.layer.cornerRadius = 10;
         }
     }
+    [cell layoutSubviews];
+    [cell layoutIfNeeded];
     return cell;
 }
 
@@ -666,7 +681,6 @@
 ///分享帖子
 - (void)ClickedShareBtn:(PostTableViewCell *)cell {
     [self showBackViewWithGesture];
-    _shareView.delegate = self;
     [self.view.window addSubview:_shareView];
     [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 460/667);
@@ -694,10 +708,17 @@
     UIWindow* desWindow=self.view.window;
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
-    _popView = [[FuncView alloc] init];
-    _popView.delegate = self;
+
+    _itemDic = self.tableArray[cell.tag];
+    if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
+        NSLog(@"取消关注");
+        [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+    }else {
+        NSLog(@"关注圈子");
+        [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+    }
     _popView.layer.cornerRadius = 3;
-    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
+    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
     [self.view.window addSubview:_popView];
 }
 
@@ -729,6 +750,34 @@
 }
 
 #pragma mark -多功能View的代理方法
+///点击关注按钮
+- (void)ClickedStarGroupBtn:(UIButton *)sender {
+    _itemDic = self.tableArray[sender.tag];
+    FollowGroupModel *model = [[FollowGroupModel alloc] init];
+    [model FollowGroupWithName:_itemDic[@"topic"]];
+    if ([sender.titleLabel.text isEqualToString:@"关注圈子"]) {
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                [self showStarSuccessful];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+//                [self reSetTableListStarGroupWithGroup:self->_itemDic[@"topic"]];
+            }else  {
+                [self funcViewFailure];
+            }
+        }];
+    } else if ([sender.titleLabel.text isEqualToString:@"取消关注"]) {
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                [self showUnStarSuccessful];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+//                [self reSetTableListStarGroupWithGroup:self->_itemDic[@"topic"]];
+            }else  {
+                [self funcViewFailure];
+            }
+        }];
+    }
+}
+
 ///点击屏蔽按钮
 - (void)ClickedShieldBtn:(UIButton *)sender {
     ShieldModel *model = [[ShieldModel alloc] init];
@@ -745,7 +794,6 @@
     [_popView removeFromSuperview];
     _itemDic = self.tableArray[sender.tag];
     _reportView.postID = _itemDic[@"post_id"];
-    _reportView.delegate = self;
     [self.view.window addSubview:_reportView];
     [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
@@ -775,6 +823,28 @@
 
 
 #pragma mark- 配置相关操作成功后的弹窗
+- (void)showStarSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }];
+}
+
+- (void)showUnStarSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }];
+}
+
+- (void)funcViewFailure {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
+}
+
 - (void)showShieldSuccessful {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
