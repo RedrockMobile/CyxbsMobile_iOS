@@ -9,6 +9,8 @@
 #import "YYZTopicGroupVC.h"
 #import "YYZTopicCell.h"
 #import "PostTableViewCell.h"
+#import "PostArchiveTool.h"
+#import "PostItem.h"
 
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
@@ -19,6 +21,11 @@
 @property(nonatomic,strong) UIScrollView *topicScrollView;
 @property(nonatomic,strong) UITableView *topicLeftTableView;
 @property(nonatomic,strong) UITableView *topicRightTableView;
+//帖子数据
+@property (nonatomic, strong) NSMutableArray *tableArray;
+@property (nonatomic, strong) PostItem *item;
+@property (nonatomic, strong) PostModel *postmodel;
+
 @end
 
 @implementation YYZTopicDetailVC
@@ -58,6 +65,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+    
+    self.tableArray = [NSMutableArray arrayWithArray:[PostArchiveTool getPostList]];
+    self.postmodel = [[PostModel alloc] init];
     [self setScroll];
     [self setCell];
     [self setMiddleLable];
@@ -74,20 +84,20 @@
     
     UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 185, SCREEN_WIDTH, SCREEN_HEIGHT-185)];
     self.topicScrollView = topicScrollView;
-    topicScrollView.backgroundColor = [UIColor lightGrayColor];
+    topicScrollView.backgroundColor         = [UIColor lightGrayColor];
     topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-185);
     topicScrollView.pagingEnabled = YES;
     [self.backgroundScrollView addSubview:topicScrollView];
 }
 - (void) setBackTableView{
     UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
-    topicLeftTableView.backgroundColor = [UIColor redColor];
+    //topicLeftTableView.backgroundColor = [UIColor redColor];
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
     
     UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
-    topicRightTableView.backgroundColor = [UIColor greenColor];
+    //topicRightTableView.backgroundColor = [UIColor greenColor];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
@@ -103,16 +113,32 @@
 }
 #pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;
+    /*UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;*/
+    return UITableViewAutomaticDimension;
+
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostTableViewCell"];
-    if(cell == nil){
-        NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"PostTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+    //创建单元格（用复用池）
+    ///给每一个cell的identifier设置为唯一的
+    NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
+    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if(cell == nil) {
+        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+        //这里
+        cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell.delegate = self;
+        cell.item = _item;
+        cell.commendBtn.tag = indexPath.row;
+        cell.shareBtn.tag = indexPath.row;
+        cell.starBtn.tag = indexPath.row;
+        cell.tag = indexPath.row;
+        if (cell.tag == 0) {
+            cell.layer.cornerRadius = 10;
+        }
     }
-        return cell;
+    return cell;
+
 }
 
 //设置顶部cell
