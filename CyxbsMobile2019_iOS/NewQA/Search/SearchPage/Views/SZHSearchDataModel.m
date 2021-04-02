@@ -11,7 +11,7 @@
 @implementation SZHSearchDataModel
 - (void)getHotArayWithProgress:(void (^)(NSArray * _Nonnull))progress{
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/search/getSearchHotWord" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/search/getSearchHotWord" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"-----热词请求成功");
         NSMutableArray *array = [NSMutableArray array];
         NSDictionary *dic = responseObject[@"data"];

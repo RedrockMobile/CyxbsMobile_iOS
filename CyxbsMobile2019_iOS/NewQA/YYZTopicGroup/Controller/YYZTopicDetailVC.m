@@ -12,7 +12,7 @@
 #import "PostArchiveTool.h"
 #import "PostItem.h"
 
-@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate>
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
@@ -109,7 +109,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.array.count;
+    return self.tableArray.count;
 }
 #pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
