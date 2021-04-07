@@ -170,7 +170,7 @@
 -(void) jumpTOset{
     
     NSNumber *codeNum = [NSNumber numberWithString:self.tf.text];
-    [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/valid/email" method:HttpRequestPost parameters:@{@"stu_num":self.idString ,@"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/user-secret/user/valid/email" method:HttpRequestPost parameters:@{@"stu_num":self.idString ,@"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
      //   NSLog(@"%@",responseObject);
         if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
             ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
@@ -234,7 +234,7 @@
         num = self.idString;
     else
         num = stuNum;
-    [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/email/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/user-secret/user/bind/email/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *email = responseObject[@"data"][@"email"];
         self.lable3.text = email;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -244,7 +244,7 @@
 
 -(void) getMailCode{
     [self openCountdown];
-    [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/valid/email/code" method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/user-secret/user/valid/email/code" method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             printf("error\n");

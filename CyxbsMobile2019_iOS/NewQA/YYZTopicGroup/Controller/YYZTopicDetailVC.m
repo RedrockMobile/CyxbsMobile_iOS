@@ -171,11 +171,25 @@
 
 - (void) setMiddleLable {
     UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 55)];
-    middleLable.backgroundColor = [UIColor whiteColor];
-    middleLable.text = @"   最新     热门";
-    middleLable.font = [UIFont fontWithName:PingFangSCBold size:18];
-    middleLable.textColor = [UIColor colorNamed:@"YYZColor2"];
+    middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
+    middleLable.layer.cornerRadius = 15;
+    middleLable.clipsToBounds = YES;
+    
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    //leftButton.backgroundColor = [UIColor redColor];
+    [leftButton setTitle:@"最新" forState:UIControlStateNormal];
+    [rightButton setTitle:@"热门" forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateHighlighted];
+    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateHighlighted];
+    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor3"] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor3"] forState:UIControlStateNormal];
+    leftButton.frame = CGRectMake(15, 133, 40, 45);
+    rightButton.frame = CGRectMake(70, 133, 40, 45);
     [self.backgroundScrollView addSubview:middleLable];
+    [self.backgroundScrollView addSubview:leftButton];
+    [self.backgroundScrollView addSubview:rightButton];
+
 }
 
 - (void) setFrame {
