@@ -28,6 +28,7 @@
 #import "YYZTopicGroupVC.h"
 #import "GYYDynamicDetailViewController.h"
 #import "YYZTopicDetailVC.h"
+#import "NewCountModel.h"
 
 
 @interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
@@ -60,6 +61,8 @@
 @property (nonatomic, strong) MBProgressHUD *loadHUD;
 //获取cell里item数据的NSDictionary
 @property (nonatomic, strong) NSDictionary *itemDic;
+
+@property (nonatomic, strong) NewCountModel *countModel;
 
 @end
 
@@ -114,7 +117,6 @@
                         make.top.mas_equalTo(self.topBackView.mas_bottom);
                         make.left.right.bottom.mas_equalTo(self.view);
                     }];
-                    [self loadData];
                     dispatch_semaphore_signal(semaphore);
                 });
             });
@@ -125,9 +127,6 @@
             });
         }
     [[UserItemTool defaultItem] setFirstLogin:NO];
-    
-    // 视图将要展示时
-//    [self loadMyStarGroupList];
 }
 
 //邮问视图消失时显示底部课表
@@ -180,6 +179,7 @@
     self.hotWordModel = [[HotSearchModel alloc] init];
     self.groupModel = [[GroupModel alloc] init];
     self.postmodel = [[PostModel alloc] init];
+    self.countModel = [[NewCountModel alloc] init];
     
     
     // 如果用户是登陆的状态，再次打开此应用，则直接加载缓存数据，否则为第一次登陆，加载网络请求数据
@@ -189,8 +189,11 @@
         [self setMainViewUI];
         [self loadHotWords];
         [self loadMyStarGroupList];
-        self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
-//        NSLog(@"初始的page:%lu",self.page);
+        if ([self.hotWordsArray count] != 0) {
+            self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
+        } else {
+            self->_searchBtn.searchBtnLabel.text = @"大家都在搜：红岩网校";
+        }
     }else {
         NSLog(@"初始化通过网络请求加载页面");
         self.page = 0;
@@ -370,7 +373,7 @@
 
 ///下拉加载
 - (void)loadData{
-//    NSLog(@"此时的page:%ld",(long)self.page);
+    NSLog(@"此时的page:%ld",(long)self.page);
     self.page += 1;
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
@@ -379,7 +382,7 @@
 - (void)refreshData{
     [self.tableArray removeAllObjects];
     self.page = 1;
-//    NSLog(@"此时的page:%ld",(long)self.page);
+    NSLog(@"此时的page:%ld",(long)self.page);
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
 
@@ -392,13 +395,12 @@
         [self.tableArray addObjectsFromArray:self.postmodel.postArray];
     }
     
-    [PostArchiveTool savePostListWith:self.postmodel.postArray];
+    [PostArchiveTool savePostListWith:self.tableArray];
     if(!self.tableView){
         [self setMainViewUI];
     }
     //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
     if (self.page == 1) {
-        self.tableArray = [PostArchiveTool getPostList];
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
     }else{
@@ -610,6 +612,7 @@
     dynamicDetailVC.post_id = [_item.post_id intValue];
     dynamicDetailVC.item = _item;
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
@@ -696,8 +699,12 @@
 
 ///点击标签跳转到相应的圈子
 - (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
-//    _itemDic = self.tableArray[cell.groupLabel.tag];
-//    NSString *topicName = _itemDic[@"topic"];
+    _itemDic = self.tableArray[cell.groupLabel.tag];
+    NSString *groupName = _itemDic[@"topic"];
+    YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:groupName];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 /**
@@ -760,7 +767,6 @@
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 [self showStarSuccessful];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
-//                [self reSetTableListStarGroupWithGroup:self->_itemDic[@"topic"]];
             }else  {
                 [self funcViewFailure];
             }
@@ -770,7 +776,6 @@
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 [self showUnStarSuccessful];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
-//                [self reSetTableListStarGroupWithGroup:self->_itemDic[@"topic"]];
             }else  {
                 [self funcViewFailure];
             }
@@ -925,14 +930,17 @@
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
-//    NSString *groupName = sender.groupBtnLabel.text;
+    NSString *groupName = sender.groupBtnLabel.text;
     if (sender.tag == 0) {
         YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
         topVc.hidesBottomBarWhenPushed = YES;
         ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
         [self.navigationController pushViewController:topVc animated:YES];
     }else {
-    YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:@"QA"];
+        [_countModel queryNewCountWithTimestamp:[self currentTimeStr]];
+        YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:groupName];
+        detailVC.hidesBottomBarWhenPushed = YES;
+        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
         [self.navigationController pushViewController:detailVC animated:YES];
     }
 }
@@ -955,6 +963,14 @@
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"跳转到搜索页面");
+}
+
+// 获取当前时间戳
+- (NSString *)currentTimeStr{
+    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval time=[date timeIntervalSince1970];
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+    return timeString;
 }
 
 @end

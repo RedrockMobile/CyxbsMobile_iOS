@@ -11,8 +11,11 @@
 #import "PostTableViewCell.h"
 #import "PostArchiveTool.h"
 #import "PostItem.h"
+#import "GYYDynamicDetailViewController.h"
+#import "ClassTabBar.h"
+#import "StarPostModel.h"
 
-@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate>
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
@@ -25,6 +28,9 @@
 @property (nonatomic, strong) NSMutableArray *tableArray;
 @property (nonatomic, strong) PostItem *item;
 @property (nonatomic, strong) PostModel *postmodel;
+
+//获取cell里item数据的NSDictionary
+@property (nonatomic, strong) NSDictionary *itemDic;
 
 @end
 
@@ -61,6 +67,9 @@
     self.navigationController.navigationBar.topItem.title = self.topicIdString;//设置返回按钮文字
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
     self.navigationItem.leftBarButtonItem.width = -1000;
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -109,7 +118,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.array.count;
+    return self.tableArray.count;
 }
 #pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -138,8 +147,111 @@
         }
     }
     return cell;
-
 }
+///点击跳转到具体的帖子（与下方commentBtn的事件相同）
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+    _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+    dynamicDetailVC.post_id = [_item.post_id intValue];
+    dynamicDetailVC.item = _item;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+}
+#pragma mark - Cell中的相关事件
+- (void)showBackViewWithGesture {
+    [self.view.window addSubview:_backViewWithGesture];
+}
+
+///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
+- (void)ClickedStarBtn:(PostTableViewCell *)cell{
+    if (cell.starBtn.selected == YES) {
+        cell.starBtn.selected = NO;
+        cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
+        NSString *count = cell.starBtn.countLabel.text;
+        cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
+        if (@available(iOS 11.0, *)) {
+            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }else {
+        cell.starBtn.selected = YES;
+        cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
+        NSString *count = cell.starBtn.countLabel.text;
+        cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
+        if (@available(iOS 11.0, *)) {
+            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+            
+        } else {
+            // Fallback on earlier versions
+        }
+        
+    }
+    StarPostModel *model = [[StarPostModel alloc] init];
+    _itemDic = self.tableArray[cell.starBtn.tag];
+    [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
+}
+
+///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
+- (void)ClickedCommentBtn:(PostTableViewCell *)cell{
+    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+    _item = [[PostItem alloc] initWithDic:self.tableArray[cell.commendBtn.tag]];
+    dynamicDetailVC.post_id = [_item.post_id intValue];
+    dynamicDetailVC.item = _item;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+}
+
+///分享帖子
+- (void)ClickedShareBtn:(PostTableViewCell *)cell {
+    [self showBackViewWithGesture];
+    [self.view.window addSubview:_shareView];
+    [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 460/667);
+        make.left.right.bottom.mas_equalTo(self.view.window);
+    }];
+    _itemDic = self.tableArray[cell.shareBtn.tag];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
+    //此处还需要修改
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    NSString *shareURL = [NSString stringWithFormat:@"redrock.zscy.youwen.share://token=%@&id=%@",[UserDefaultTool getToken],_itemDic[@"post_id"]];
+    pasteboard.string = shareURL;
+}
+
+///点击标签跳转到相应的圈子
+- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
+    _itemDic = self.tableArray[cell.groupLabel.tag];
+    NSString *groupName = _itemDic[@"topic"];
+    YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:groupName];
+    detailVC.hidesBottomBarWhenPushed = YES;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+/**
+ 举报和屏蔽的多能按钮
+ 此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
+ */
+- (void)ClickedFuncBtn:(PostTableViewCell *)cell{
+    UIWindow* desWindow=self.view.window;
+    CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
+    [self showBackViewWithGesture];
+
+    _itemDic = self.tableArray[cell.tag];
+    if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
+        NSLog(@"取消关注");
+        [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+    }else {
+        NSLog(@"关注圈子");
+        [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+    }
+    _popView.layer.cornerRadius = 3;
+    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+    [self.view.window addSubview:_popView];
+}
+
 
 //设置顶部cell
 - (void)setCell {
