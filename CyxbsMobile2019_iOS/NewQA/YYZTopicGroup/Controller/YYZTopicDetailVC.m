@@ -14,8 +14,9 @@
 #import "GYYDynamicDetailViewController.h"
 #import "ClassTabBar.h"
 #import "StarPostModel.h"
+#import "NewQAMainPageViewController.h"
 
-@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate>
+@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
@@ -24,6 +25,9 @@
 @property(nonatomic,strong) UIScrollView *topicScrollView;
 @property(nonatomic,strong) UITableView *topicLeftTableView;
 @property(nonatomic,strong) UITableView *topicRightTableView;
+
+@property(nonatomic,strong) UIButton *leftButton;
+@property(nonatomic,strong) UIButton *rightButton;
 //帖子数据
 @property (nonatomic, strong) NSMutableArray *tableArray;
 @property (nonatomic, strong) PostItem *item;
@@ -45,13 +49,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    //网络请求
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
         NSLog(@"圈子数据请求成功");
-        [self setCell];//设置cell
-        NSLog(@"%@",array);
+        [self setCell];//设置cell;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"圈子详情页请求失败" AddView:self.view];
         }];
@@ -93,11 +97,33 @@
     
     UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 185, SCREEN_WIDTH, SCREEN_HEIGHT-185)];
     self.topicScrollView = topicScrollView;
-    topicScrollView.backgroundColor         = [UIColor lightGrayColor];
+    topicScrollView.backgroundColor = [UIColor whiteColor];
     topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-185);
     topicScrollView.pagingEnabled = YES;
     [self.backgroundScrollView addSubview:topicScrollView];
 }
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    NSLog(@"11111111111");
+    if([scrollView isEqual:self.topicScrollView]){
+        NSLog(@"222222222222");
+        // 得到每页宽度
+        CGFloat pageWidth = scrollView.frame.size.width;
+        // 根据当前的x坐标和页宽度计算出当前页数
+        int currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        NSLog(@"%d",currentPage);
+        if(currentPage == 1){
+            self.leftButton.highlighted = YES;
+            self.rightButton.highlighted = NO;
+        }
+        else{ 
+            self.leftButton.highlighted = NO;
+            self.rightButton.highlighted = YES;
+        }
+    }
+}
+
+
 - (void) setBackTableView{
     UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
     //topicLeftTableView.backgroundColor = [UIColor redColor];
@@ -148,6 +174,21 @@
     }
     return cell;
 }
+# pragma mark 初始化功能弹出页面
+- (void)funcPopViewinit {
+    // 创建分享页面
+    _shareView = [[ShareView alloc] init];
+    _shareView.delegate = self;
+    
+    // 创建功能页面
+    _popView = [[FuncView alloc] init];
+    _popView.delegate = self;
+    
+    // 创建举报页面
+    _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
+    _reportView.delegate = self;
+    
+}
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -158,6 +199,28 @@
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+}
+#pragma mark- 配置相关弹出View和其蒙版的操作
+///设置相关蒙版
+
+- (void)setBackViewWithGesture {
+    _backViewWithGesture = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _backViewWithGesture.backgroundColor = [UIColor blackColor];
+    _backViewWithGesture.alpha = 0.36;
+    UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBackViewWithGesture)];
+    [self.backViewWithGesture addGestureRecognizer:dismiss];
+}
+
+- (void)dismissBackViewWithGestureAnd:(UIView *)view {
+    [view removeFromSuperview];
+    [_backViewWithGesture removeFromSuperview];
+}
+
+- (void)dismissBackViewWithGesture {
+    [_popView removeFromSuperview];
+    [_shareView removeFromSuperview];
+    [_reportView removeFromSuperview];
+    [_backViewWithGesture removeFromSuperview];
 }
 #pragma mark - Cell中的相关事件
 - (void)showBackViewWithGesture {
@@ -289,6 +352,8 @@
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.leftButton = leftButton;
+    self.rightButton = rightButton;
     //leftButton.backgroundColor = [UIColor redColor];
     [leftButton setTitle:@"最新" forState:UIControlStateNormal];
     [rightButton setTitle:@"热门" forState:UIControlStateNormal];
@@ -298,6 +363,7 @@
     [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor3"] forState:UIControlStateNormal];
     leftButton.frame = CGRectMake(15, 133, 40, 45);
     rightButton.frame = CGRectMake(70, 133, 40, 45);
+    leftButton.highlighted = YES;
     [self.backgroundScrollView addSubview:middleLable];
     [self.backgroundScrollView addSubview:leftButton];
     [self.backgroundScrollView addSubview:rightButton];

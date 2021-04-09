@@ -139,7 +139,6 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
         }];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadMyStarGroupList" object:nil];
 }
 
 - (void)topFollowViewLoadSuccess {

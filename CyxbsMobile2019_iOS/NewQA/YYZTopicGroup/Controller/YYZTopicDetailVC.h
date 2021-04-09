@@ -8,12 +8,25 @@
 
 //#import <UIKit/UIKit.h>
 #import "TopBarBasicViewController.h"
-
+#import "ReportView.h"
+#import "ShareView.h"
+#import "FuncView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYZTopicDetailVC : TopBarBasicViewController
 
 - (instancetype)initWithId:(NSString *) topicID;
+///背景蒙版
+@property (nonatomic, strong) UIView *backViewWithGesture;
+
+///多功能View
+@property (nonatomic, strong) FuncView *popView;
+
+///举报页面
+@property (nonatomic, strong) ReportView *reportView;
+
+///分享页面
+@property (nonatomic, strong) ShareView *shareView;
 
 @end
 NS_ASSUME_NONNULL_END
