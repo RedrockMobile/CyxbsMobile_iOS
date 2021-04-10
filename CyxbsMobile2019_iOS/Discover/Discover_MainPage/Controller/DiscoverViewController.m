@@ -33,6 +33,10 @@
 #import "VolunteerItem.h"
 #import "QueryViewController.h"
 #import "ArchiveTool.h"
+
+//Tool
+#import "NewQAHud.h"
+
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define ColorWhite  [UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -361,11 +365,12 @@ static int requestCheckinInfo = 0;
       return;
 }
 -(void)requestElectricFeeFailed {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [hud setMode:(MBProgressHUDModeText)];
-    hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
-    [hud hide:YES afterDelay:1];
-    return;
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [hud setMode:(MBProgressHUDModeText)];
+//    hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
+//    [hud hide:YES afterDelay:1];
+//    return;
+//    [NewQAHud showHudWith:@"电费查询服务器开小差了哦，请稍后重试" AddView:self.view];
 }
 - (void)updateElectricFeeUI {
     //先写入缓存
