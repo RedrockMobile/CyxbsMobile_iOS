@@ -127,6 +127,42 @@
             });
         }
     [[UserItemTool defaultItem] setFirstLogin:NO];
+    
+    if ([self.tableArray count] == 0) {
+        [self noDataInList];
+    }
+}
+
+- (void)noDataInList {
+    UIView *noListBackView = [[UIView alloc] init];
+    noListBackView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+    
+    self.tableView.separatorStyle = UITableViewCellAccessoryNone;
+    
+    noListBackView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-(_TopViewHeight));
+    [self.tableView addSubview:noListBackView];
+    
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    UILabel *noticeLabel = [[UILabel alloc] init];
+    noticeLabel.text = @"还没有相关动态哦～";
+    noticeLabel.font = [UIFont fontWithName:PingFangSCLight size:12];
+    noticeLabel.textColor = [UIColor colorNamed:@"CellDateColor"];
+    [noListBackView addSubview:imageView];
+    [noListBackView addSubview:noticeLabel];
+    imageView.image = [UIImage imageNamed:@"图层 11"];
+    CGSize size = [UIImage imageNamed:@"图层 11"].size;
+    noticeLabel.textAlignment = NSTextAlignmentCenter;
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(noListBackView.top).mas_offset(SCREEN_WIDTH * 0.28 * 45.5/105);
+        make.left.mas_equalTo(noListBackView.left).mas_equalTo(SCREEN_WIDTH * 0.28);
+        make.size.mas_equalTo(size);
+    }];
+    [noticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(noListBackView);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2387 * 11.5/89.5);
+        make.top.mas_equalTo(imageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.38 * 33/142.5);
+    }];
 }
 
 //邮问视图消失时显示底部课表
@@ -145,6 +181,9 @@
     self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
     [self setMainViewUI];
     [self.tableView reloadData];
+    if ([self.tableArray count] == 0) {
+        [self noDataInList];
+    }
 }
 
 
@@ -183,7 +222,7 @@
     
     
     // 如果用户是登陆的状态，再次打开此应用，则直接加载缓存数据，否则为第一次登陆，加载网络请求数据
-    if ([UserItemTool defaultItem].firstLogin == NO && self.tableArray != nil && [self.tableArray count] != 0 && self.dataArray != nil && self.hotWordsArray != nil) {
+    if ([UserItemTool defaultItem].firstLogin == NO && self.tableArray != nil && self.dataArray != nil && self.hotWordsArray != nil) {
         NSLog(@"初始化通过缓存加载页面");
         self.page = floor(self.tableArray.count / 6.0);
         [self setMainViewUI];
@@ -376,6 +415,7 @@
     NSLog(@"此时的page:%ld",(long)self.page);
     self.page += 1;
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
+    NSLog(@"此时数据源数组的count===%lu",(unsigned long)[self.tableArray count]);
 }
 
 ///上拉刷新
@@ -724,7 +764,7 @@
         NSLog(@"关注圈子");
         [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
     }
-    _popView.layer.cornerRadius = 3;
+    _popView.layer.cornerRadius = 6;
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
     [self.view.window addSubview:_popView];
 }
