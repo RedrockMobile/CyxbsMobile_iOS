@@ -1898,8 +1898,8 @@
 		187DF47E26030F7F000BCDE9 /* SHPopMenu */ = {
 			isa = PBXGroup;
 			children = (
-				187DF47F26030F7F000BCDE9 /* SHPopMenu.m */,
 				187DF48026030F7F000BCDE9 /* SHPopMenu.h */,
+				187DF47F26030F7F000BCDE9 /* SHPopMenu.m */,
 				187DF48126030F7F000BCDE9 /* pop_arrow.png */,
 			);
 			path = SHPopMenu;
