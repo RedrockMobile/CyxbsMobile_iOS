@@ -20,6 +20,7 @@
 #import "CYSearchEndKnowledgeDetailModel.h" //知识库详情页的model
 #import "ShieldModel.h"                     //屏蔽数据的model
 #import "ReportModel.h"                     //举报的数据model
+#import "FollowGroupModel.h"                //关注圈子的数据model
 //视图类
 #import "SearchBeiginView.h"    //本界面上半部分
 #import "RecommendedTableView.h"//下半部分相关动态表格
@@ -467,12 +468,46 @@
     _popView = [[FuncView alloc] init];
     _popView.delegate = self;
     _popView.layer.cornerRadius = 3;
-    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5 * 2/3);
+    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.tableDataAry[cell.tag]];
+    if ([dic[@"is_follow_topic"] intValue] == 1) {
+        NSLog(@"取消关注");
+        [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+    }else {
+        NSLog(@"关注圈子");
+        [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+    }
+    
     [self.view.window addSubview:_popView];
     
 }
 
 //MARK:多功能View代理方法
+///点击关注按钮
+- (void)ClickedStarGroupBtn:(UIButton *)sender {
+    NSDictionary * _itemDic = self.tableDataAry[sender.tag];
+    FollowGroupModel *model = [[FollowGroupModel alloc] init];
+    [model FollowGroupWithName:_itemDic[@"topic"]];
+    if ([sender.titleLabel.text isEqualToString:@"关注圈子"]) {
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                [self showStarSuccessful];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+            }else  {
+                [self funcViewFailure];
+            }
+        }];
+    } else if ([sender.titleLabel.text isEqualToString:@"取消关注"]) {
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                [self showUnStarSuccessful];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+            }else  {
+                [self funcViewFailure];
+            }
+        }];
+    }
+}
 ///点击屏蔽按钮
 - (void)ClickedShieldBtn:(UIButton *)sender {
     ShieldModel *model = [[ShieldModel alloc] init];
@@ -561,6 +596,31 @@
     [self.shareView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     [self shareSuccessful];
+}
+
+//关注圈子成功后提示
+- (void)showStarSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }];
+}
+
+//取消关注圈子成功后提示
+- (void)showUnStarSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }];
+}
+
+//操作失败的提示
+- (void)funcViewFailure {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
 }
 
 #pragma mark- 添加界面控件

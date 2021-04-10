@@ -6,7 +6,7 @@
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 /**
- 搜索结果页
+ 搜索结果页，主要是知识库、搜索结果table
  */
 #import <UIKit/UIKit.h>
 
