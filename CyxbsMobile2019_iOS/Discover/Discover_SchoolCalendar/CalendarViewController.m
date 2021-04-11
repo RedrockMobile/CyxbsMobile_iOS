@@ -30,7 +30,10 @@
     UIImageView *imageView = [[UIImageView alloc] init];
     NSURL *url = [NSURL URLWithString:schoolCalendar];
     [imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        
+        if (image==nil) {
+            [NewQAHud showHudWith:@"加载失败～" AddView:self.view];
+            return;
+        }
         imageView.width = MAIN_SCREEN_W;
         imageView.height = image.size.height / image.size.width * MAIN_SCREEN_W;
         
