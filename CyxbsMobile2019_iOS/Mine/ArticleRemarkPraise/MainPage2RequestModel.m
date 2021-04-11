@@ -70,7 +70,6 @@
 //            @"type":type,
         };
         [self.client requestWithPath:self.url method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            CCLog(@"resp=%@",responseObject);
             if ([responseObject[@"data"] count] < 7) {
                 *state = MainPage2RequestModelStateNoMoreDate;
             }else {

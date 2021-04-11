@@ -155,7 +155,7 @@
 /// 因为从模块化的角度来说，这个点赞的操作是完全适合放在cell内部自己解决
 - (void)praiseBtnClicked {
 //    CCLog(@"%@,%@,%@",self.comment_id,self.type,self.post_id);
-    CCLog(@"mmcon=%@,\tcomID=%@,\tform=%@,\tpoID=%@,\ttype=%@,\tisP=t%@",self.model.content,self.model.comment_id,self.model.from,self.model.post_id,self.model.type,self.model.is_praised);
+//    CCLog(@"mmcon=%@,\tcomID=%@,\tform=%@,\tpoID=%@,\ttype=%@,\tisP=t%@",self.model.content,self.model.comment_id,self.model.from,self.model.post_id,self.model.type,self.model.is_praised);
     
     if (self.comment_id==nil||self.type==nil) {
         [NewQAHud showHudWith:@"网络错误～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];

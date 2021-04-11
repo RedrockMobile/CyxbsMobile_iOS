@@ -316,7 +316,7 @@
     }
     
     cell.textLabel.text = self.cellTitleStrArr[indexPath.row];
-    CCLog(@"height=%f, width=%f",SCREEN_HEIGHT,SCREEN_WIDTH);
+//    CCLog(@"height=%f, width=%f",SCREEN_HEIGHT,SCREEN_WIDTH);
     
     return  cell;
 }

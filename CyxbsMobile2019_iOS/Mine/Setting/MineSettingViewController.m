@@ -161,16 +161,6 @@
     return cell;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    float h;
-//    if (IS_IPHONEX) {
-//        h = 90*fontSizeScaleRate_SE;
-//    }else {
-//        h = 60;
-//    }
-//    CCLog(@"%.2f",h);
-//    return 200;
-//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60* HScaleRate_SE;
 }
