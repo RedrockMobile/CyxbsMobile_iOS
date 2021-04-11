@@ -13,7 +13,7 @@
 - (void)queryNewCountWithTimestamp:(NSString *)timestamp {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"last":timestamp};
-    [client requestWithPath:NEW_QA_QUERYNEWCOUNT method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEW_QA_QUERYNEWCOUNT method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = [NSArray arrayWithArray:responseObject[@"data"]];
         NSLog(@"未查看消息数%lu",(unsigned long)array.count);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

@@ -34,6 +34,17 @@
         self.second = 0;
         self.i = 0;
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(cycle) userInfo:nil repeats:YES];
+        
+        //设置一个透明的fanhuibutton
+        UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+        backBtn.backgroundColor = [UIColor clearColor];
+//        backBtn.backgroundColor = [UIColor redColor];
+        [backBtn addTarget:self.delegate action:@selector(jumpBack) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:backBtn];
+        [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.left.equalTo(self);
+            make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133 * 2);
+        }];
     }
     return self;
 }
@@ -43,18 +54,15 @@
     //返回按钮
     [self addSubview:self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0427);
-//        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0217);
         make.left.equalTo(self);
         make.top.equalTo(self);
         make.bottom.equalTo(self);
         make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133);
-                //高是宽的两倍
-//        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0186, 2 *MAIN_SCREEN_W * 0.0186 ));
     }];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     imageView.image = [UIImage imageNamed:@"返回的小箭头"];
-    [self.backBtn addSubview:imageView];
+//    [self.backBtn addSubview:imageView];
+    [self addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0427);
         make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0157);
@@ -74,7 +82,6 @@
     [self.searchFieldBackgroundView addSubview:self.searchIcon];
     [self.searchIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.searchFieldBackgroundView.mas_left).offset(MAIN_SCREEN_W * 0.0453);
-//        make.top.equalTo(self.searchFieldBackgroundView.mas_top).offset(MAIN_SCREEN_H * 0.0134);
         make.centerY.mas_equalTo(self.searchFieldBackgroundView.centerY);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0533, MAIN_SCREEN_W * 0.0533));
     }];
@@ -117,10 +124,7 @@
 #pragma mark- getter
 - (UIButton *)backBtn{
     if (_backBtn == nil) {
-        //
         _backBtn = [[UIButton alloc] init];
-            //设置图片
-//        [_backBtn setBackgroundImage:[UIImage imageNamed:@"返回的小箭头"] forState:UIControlStateNormal];
         //添加方法，跳回返回界面
         [_backBtn addTarget:self.delegate action:@selector(jumpBack) forControlEvents:UIControlEventTouchUpInside];
     }

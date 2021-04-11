@@ -20,20 +20,29 @@
 
 /// 添加顶部的bar的视图控件：包括左边返回按钮、中间标题，右边发布按钮
 - (void)addTopBarView{
-    //左边的按钮
-        //1.属性设置
-    if (_leftBtn == nil) {
-        _leftBtn = [[UIButton alloc] init];
-        [_leftBtn setBackgroundImage:[UIImage imageNamed:@"返回的小箭头"] forState:UIControlStateNormal];
-            //让代理跳回到上一个界面
-        [_leftBtn addTarget:self.delegate action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
-    }
-        //2.frame
-    [self addSubview:self.leftBtn];
-    [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    //左边的按钮：此处由按钮和图片构成
+        //图片
+    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    backImage.image = [UIImage imageNamed:@"返回的小箭头"];
+    [self addSubview:backImage];
+    [backImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.0427);
         make.bottom.equalTo(self.mas_top).offset(NVGBARHEIGHT);
         make.size.mas_equalTo(CGSizeMake(7, 14));
+    }];
+    
+        //按钮
+    if (_leftBtn == nil) {
+        _leftBtn = [[UIButton alloc] init];
+//        _leftBtn.backgroundColor = [UIColor redColor];
+            //让代理跳回到上一个界面
+        [_leftBtn addTarget:self.delegate action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self addSubview:self.leftBtn];
+    [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.equalTo(self);
+        make.bottom.equalTo(self).offset(-MAIN_SCREEN_W * 0.0427);
+        make.width.mas_equalTo(MAIN_SCREEN_W * 0.0427 * 4);
     }];
     
     //标题label
@@ -53,7 +62,7 @@
     [self addSubview:self.titleLbl];
     [self.titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.centerY.equalTo(self.leftBtn);
+        make.centerY.equalTo(backImage);
         make.height.mas_equalTo(20);
     }];
     

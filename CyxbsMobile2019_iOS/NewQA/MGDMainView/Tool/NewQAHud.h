@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showHudWith:(NSString *)title AddView:(UIView *)view;
 
++ (void)showHudWith:(NSString *)title AddView:(UIView *)view AndToDo:(void(^)(void))block;
+
 @end
 
 NS_ASSUME_NONNULL_END

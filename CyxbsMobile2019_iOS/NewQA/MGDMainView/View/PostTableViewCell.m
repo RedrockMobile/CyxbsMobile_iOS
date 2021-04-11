@@ -39,7 +39,6 @@
         [self BuildUI];
         [self BuildFrame];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-
     }
     return self;
 }
@@ -88,7 +87,7 @@
     } else {
         _detailLabel.textColor = [UIColor colorWithRed:17.0/255.0 green:44.0/255.0 blue:87.0/255.0 alpha:1];
     }
-    self.detailLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+    self.detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置

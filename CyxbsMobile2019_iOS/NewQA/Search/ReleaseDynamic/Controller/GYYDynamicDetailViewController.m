@@ -145,7 +145,7 @@
     self.navigationController.navigationBar.hidden = NO;  //显示导航栏
     
     self.pageIndex = 1;
-    [self.mainTableView.mj_header beginRefreshing];
+//    [self.mainTableView.mj_header beginRefreshing];
     
 }
 
@@ -188,7 +188,7 @@
 - (void)dynamicTableLoadData{
     self.pageIndex +=1;
     
-    [[HttpClient defaultClient] requestWithPath:[NSString stringWithFormat:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/getallcomment?post_id=%d",self.post_id] method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:[NSString stringWithFormat:@"https://be-prod.redrock.team/magipoke-loop/comment/getallcomment?post_id=%d",self.post_id] method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"加载动态列表数据成功");
         if ([responseObject[@"status"]intValue] ==200) {
             [self.allCommentM addObjectsFromArray:[GYYDynamicCommentModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
@@ -208,7 +208,7 @@
 - (void)dynamicTableReloadData{
     self.pageIndex = 1;
     
-    [[HttpClient defaultClient] requestWithPath:[NSString stringWithFormat:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/getallcomment?post_id=%d",self.post_id] method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:[NSString stringWithFormat:@"https://be-prod.redrock.team/magipoke-loop/comment/getallcomment?post_id=%d",self.post_id] method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject[@"status"]intValue] ==200) {
             [self.allCommentM removeAllObjects];
@@ -230,7 +230,7 @@
     
     if (!self.item && self.post_id >0) {
         
-        [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([responseObject[@"status"] intValue] ==200) {
                 self.item = [PostItem mj_objectWithKeyValues:responseObject[@"data"]];
                 [self updateDynamicViewHeight];
@@ -372,7 +372,7 @@
     
     DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         
-        [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             
             if ([responseObject[@"status"] intValue] ==200) {
                 [NewQAHud showHudWith:@"删除成功" AddView:self.view];
@@ -395,7 +395,7 @@
     
     if (self.reportView.textView.text.length <=0 || [self.reportView.textView.text isEqualToString:@""]) return;
     
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/report" method:HttpRequestPost parameters:@{@"id":self.reportView.postID,@"model":@(self.reportView.model),@"content":self.reportView.textView.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/report" method:HttpRequestPost parameters:@{@"id":self.reportView.postID,@"model":@(self.reportView.model),@"content":self.reportView.textView.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] ==200) {
             [NewQAHud showHudWith:@"举报成功" AddView:self.view];
             [self.zh_popupController dismiss];
@@ -594,7 +594,7 @@
         [param setObject:@(self.actionCommentModel.comment_id) forKey:@"reply_id"];
     }
     
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject[@"status"] intValue] ==200) {
             [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];

@@ -18,6 +18,16 @@
             // Fallback on earlier versions
         }
         
+        _starGroupBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _starGroupBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 14];
+        if (@available(iOS 11.0, *)) {
+            [_starGroupBtn setTitleColor:[UIColor colorNamed:@"ReportTextColor"] forState:UIControlStateNormal];
+        } else {
+            // Fallback on earlier versions
+        }
+        [_starGroupBtn addTarget:self action:@selector(ClickedStarGroupBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_starGroupBtn];
+        
         UIButton *shieldBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [shieldBtn setTitle:@"屏蔽此人" forState:UIControlStateNormal];
         shieldBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 14];
@@ -48,17 +58,30 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [_shieldBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_starGroupBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
         make.left.mas_equalTo(self.mas_left);
         make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(self.frame.size.height * 1/2);
+        make.height.mas_equalTo(self.frame.size.height * 1/3);
+    }];
+    
+    [_shieldBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.starGroupBtn.mas_bottom);
+        make.left.mas_equalTo(self.mas_left);
+        make.right.mas_equalTo(self.mas_right);
+        make.height.mas_equalTo(self.frame.size.height * 1/3);
     }];
     
     [_reportBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self);
         make.top.mas_equalTo(_shieldBtn.mas_bottom);
     }];
+}
+
+- (void)ClickedStarGroupBtn:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(ClickedStarGroupBtn:)]) {
+        [self.delegate ClickedStarGroupBtn:sender];
+    }
 }
 
 - (void)ClickedShieldBtn:(UIButton *)sender {

@@ -24,7 +24,7 @@
         
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-//            self.separatorColor = [UIColor colorNamed:@"CELLSEPARATORCOLOR"];
+            self.separatorColor = [UIColor colorNamed:@"ShareLineViewColor"];
         } else {
             self.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
         }
