@@ -86,7 +86,7 @@
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     
-    label.font = [UIFont fontWithName:PingFangSCMedium size:11];
+    label.font = [UIFont fontWithName:PingFangSCMedium size:11*fontSizeScaleRate_SE];
 
 }
 - (void)addCancelBtn {
@@ -172,7 +172,6 @@
 
 - (void)sureBtnClicked {
     self.sureBlock();
-    self.sureBlock = nil;
     [self removeFromSuperview];
 }
 

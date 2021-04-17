@@ -48,6 +48,8 @@ class LoginModel: NSObject {
                         UserItem.mj_object(withKeyValues: userInfo.dictionaryObject ?? nil)
                         
                         success()
+                        //
+                        UserDefaults.standard.setValue(getLastLogInTime(), forKey: LastLogInTimeKey_double)
                         NotificationCenter.default.postNotificationOnMainThread(withName: "Login_LoginSuceeded", object: nil, userInfo: ["userItem": UserItemTool.defaultItem()])
                         
                     } catch {
@@ -63,6 +65,9 @@ class LoginModel: NSObject {
             
         }
         
+    }
+    class func getLastLogInTime() -> TimeInterval {
+        return Date.timeIntervalSinceReferenceDate + Date.timeIntervalBetween1970AndReferenceDate
     }
 
 }

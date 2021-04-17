@@ -44,4 +44,6 @@
 //可以用userDefault取出开学日期，格式是@"yyyy-MM-dd"
 #define DateStartKey_NSString @"DateStartKey_NSString"
 
+//记录最后一次登陆的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
+#define LastLogInTimeKey_double @"LastLogInTimeKey_TimeInterval"
 #endif /* CyxbsMobilePathAndKey_h */

@@ -392,3 +392,7 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 //显示月份、周几、日期的条内部item的间距；课表view和leftBar的距离
 #define DAYBARVIEW_DISTANCE (MAIN_SCREEN_W*0.0075)
 //0.00885
+
+//记录最后一次登陆的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
+#define LastLogInTimeKey_double @"LastLogInTimeKey_TimeInterval"
+
