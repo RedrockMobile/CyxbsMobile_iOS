@@ -10,15 +10,17 @@
 #import "YYZTopicCell.h"
 #import "PostTableViewCell.h"
 #import "PostArchiveTool.h"
-#import "PostItem.h"
 #import "GYYDynamicDetailViewController.h"
 #import "ClassTabBar.h"
 #import "StarPostModel.h"
-#import "NewQAMainPageViewController.h"
+#import "YYZTopicModel.h"
+#import "PostItem.h"
+#import "MGDRefreshTool.h"
 
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
-@property(nonatomic,strong) UITableView *tableView;
+@property(nonatomic,assign) NSInteger topicID;//当前圈子编号
+//@property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;
@@ -29,12 +31,14 @@
 @property(nonatomic,strong) UIButton *leftButton;
 @property(nonatomic,strong) UIButton *rightButton;
 //帖子数据
+@property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) NSMutableArray *tableArray;
-@property (nonatomic, strong) PostItem *item;
-@property (nonatomic, strong) PostModel *postmodel;
-
+@property (nonatomic, strong) YYZTopicModel *postmodel;
 //获取cell里item数据的NSDictionary
 @property (nonatomic, strong) NSDictionary *itemDic;
+//列表顶部底部刷新控件
+@property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
+@property (nonatomic, strong) MJRefreshNormalHeader *header;
 
 @end
 
@@ -49,12 +53,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.page = 0;//初始化当前页数
     //网络请求
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
-        NSLog(@"圈子数据请求成功");
         [self setCell];//设置cell;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"圈子详情页请求失败" AddView:self.view];
@@ -77,17 +80,34 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNotification];
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+    YYZTopicModel *postmodel = [[YYZTopicModel alloc]init];
+    self.postmodel = postmodel;
+    self.tableArray = [PostArchiveTool getPostList];
+
     
-    self.tableArray = [NSMutableArray arrayWithArray:[PostArchiveTool getPostList]];
-    self.postmodel = [[PostModel alloc] init];
+    //[self setCell];
     [self setScroll];
-    [self setCell];
+    
     [self setMiddleLable];
     [self setBackTableView];
-    [self setFrame];
+    [self loadData];
+   
+    NSLog(@"------3333333---------%@",self.postmodel.postArray);
+   // [self setFrame];
 }
-
+- (void)setNotification{
+    ///帖子列表请求成功
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(TopicLoadSuccess)
+                                                 name:@"TopicDataLoadSuccess" object:nil];
+    ///帖子列表请求失败
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(TopicLoadError)
+                                                 name:@"TopicDataLoadFailure" object:nil];
+    
+}
 - (void) setScroll {
     UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
     self.backgroundScrollView = backgroundScrollView;
@@ -104,9 +124,9 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    NSLog(@"11111111111");
+    //NSLog(@"11111111111");
     if([scrollView isEqual:self.topicScrollView]){
-        NSLog(@"222222222222");
+       // NSLog(@"222222222222");
         // 得到每页宽度
         CGFloat pageWidth = scrollView.frame.size.width;
         // 根据当前的x坐标和页宽度计算出当前页数
@@ -116,23 +136,75 @@
             self.leftButton.highlighted = YES;
             self.rightButton.highlighted = NO;
         }
-        else{ 
+        else{
             self.leftButton.highlighted = NO;
             self.rightButton.highlighted = YES;
         }
     }
 }
+#pragma mark- 帖子列表的网络请求
+- (void)loadData{
+    NSLog(@"此时的page:%ld",(long)self.page);
+    self.page += 1;
+    [self.postmodel loadTopicWithLoop:self.topicID+1 AndPage:self.page AndSize:6 AndType:@"hot"];
+}
+///上拉刷新
+- (void)refreshData{
+    [self.tableArray removeAllObjects];
+    self.page = 1;
+    NSLog(@"此时的page:%ld",(long)self.page);
+    [self.postmodel loadTopicWithLoop:self.topicID+1 AndPage:self.page AndSize:6 AndType:@"hot"];
+}
 
+///成功请求数据
+- (void)TopicLoadSuccess {
+    
+    if (self.page == 1) {
+        self.tableArray = self.postmodel.postArray;
+    }else {
+        [self.tableArray addObjectsFromArray:self.postmodel.postArray];
+    }
+    
+    [PostArchiveTool savePostListWith:self.tableArray];
+    //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+    if (self.page == 1) {
+        [self.topicLeftTableView reloadData];
+        [self.topicLeftTableView.mj_header endRefreshing];
+    }else{
+        [self.topicLeftTableView reloadData];
+        [self.topicLeftTableView.mj_footer endRefreshing];
+    }
+   // [self setBackTableView];
+    NSLog(@"成功请求列表数据");
+    
+}
 
+///请求失败
+- (void)TopicLoadError {
+    [self.topicLeftTableView.mj_header endRefreshing];
+    [self.topicLeftTableView.mj_footer endRefreshing];
+    [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+}
+
+///设置列表加载菊花
+- (void)setUpRefresh {
+    //上滑加载的设置
+    _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.topicLeftTableView.mj_footer = _footer;
+    
+    //下拉刷新的设置
+    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    self.topicLeftTableView.mj_header = _header;
+    
+    [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
+}
 - (void) setBackTableView{
     UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
-    //topicLeftTableView.backgroundColor = [UIColor redColor];
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
     
     UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
-    //topicRightTableView.backgroundColor = [UIColor greenColor];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
@@ -172,6 +244,8 @@
             cell.layer.cornerRadius = 10;
         }
     }
+    [cell layoutSubviews];
+    [cell layoutIfNeeded];
     return cell;
 }
 # pragma mark 初始化功能弹出页面
@@ -324,6 +398,7 @@
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
         if([dic[@"topic_name"]isEqualToString:self.topicIdString]){
+            self.topicID = i;
             cell.topic_id.text = self.array[i][@"topic_name"];
             cell.topic_number.text = [NSString stringWithFormat:@"%@个成员",self.array[i][@"follow_count"]];
             cell.topic_introduce.text = self.array[i][@"introduction"];
@@ -371,10 +446,10 @@
 }
 
 - (void) setFrame {
-    [self.cell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        //make.right.equalTo(self.backgroundScrollView.right).offset(0);
-    }];
+//    [self.cell mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.view);
+//        //make.right.equalTo(self.backgroundScrollView.right).offset(0);
+//    }];
 }
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];

@@ -368,11 +368,11 @@
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		7F101AC2260613E800F2034C /* YYZTopicGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */; };
 		7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */; };
-		7F101AC4260613E800F2034C /* YYZGroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101ABC260613E800F2034C /* YYZGroupItem.m */; };
 		7F101AC5260613E800F2034C /* YYZTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101ABF260613E800F2034C /* YYZTopicCell.m */; };
 		7F101AC6260613E800F2034C /* YYZTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F101AC0260613E800F2034C /* YYZTopicCell.xib */; };
 		7F101B2926063F3200F2034C /* YYZTopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101B2826063F3100F2034C /* YYZTopicView.m */; };
 		7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */; };
+		7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A212626218E8800CA86B2 /* YYZTopicModel.m */; };
 		7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39E7257B79F20077494E /* FindPasswordView.swift */; };
 		7FBF39F3257B79F30077494E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EA257B79F20077494E /* LoginViewController.swift */; };
 		7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EB257B79F20077494E /* ByPasswordViewController.m */; };
@@ -1314,8 +1314,6 @@
 		7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
 		7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
 		7F101ABA260613E800F2034C /* YYZTopicDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicDetailVC.h; sourceTree = "<group>"; };
-		7F101ABC260613E800F2034C /* YYZGroupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZGroupItem.m; sourceTree = "<group>"; };
-		7F101ABD260613E800F2034C /* YYZGroupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZGroupItem.h; sourceTree = "<group>"; };
 		7F101ABF260613E800F2034C /* YYZTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicCell.m; sourceTree = "<group>"; };
 		7F101AC0260613E800F2034C /* YYZTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYZTopicCell.xib; sourceTree = "<group>"; };
 		7F101AC1260613E800F2034C /* YYZTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicCell.h; sourceTree = "<group>"; };
@@ -1323,6 +1321,8 @@
 		7F101B2826063F3100F2034C /* YYZTopicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYZTopicView.m; sourceTree = "<group>"; };
 		7F318CA0257F5ACD009FE4EA /* YYZGetIdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZGetIdVC.h; sourceTree = "<group>"; };
 		7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZGetIdVC.m; sourceTree = "<group>"; };
+		7F9A212526218E8800CA86B2 /* YYZTopicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYZTopicModel.h; sourceTree = "<group>"; };
+		7F9A212626218E8800CA86B2 /* YYZTopicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYZTopicModel.m; sourceTree = "<group>"; };
 		7FBF39E7257B79F20077494E /* FindPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordView.swift; sourceTree = "<group>"; };
 		7FBF39E8257B79F20077494E /* ByWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByWordViewController.h; sourceTree = "<group>"; };
 		7FBF39E9257B79F20077494E /* ByPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByPasswordViewController.h; sourceTree = "<group>"; };
@@ -3710,8 +3710,8 @@
 		7F101ABB260613E800F2034C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7F101ABC260613E800F2034C /* YYZGroupItem.m */,
-				7F101ABD260613E800F2034C /* YYZGroupItem.h */,
+				7F9A212526218E8800CA86B2 /* YYZTopicModel.h */,
+				7F9A212626218E8800CA86B2 /* YYZTopicModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5203,6 +5203,7 @@
 				187DF49626030F7F000BCDE9 /* DKSKeyboardView.m in Sources */,
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
 				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
+				7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */,
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
 				1817F04E2594D5C500FE1304 /* ReportView.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
@@ -5345,7 +5346,6 @@
 				D06AAEDE24AC00BB00EE0892 /* QAReviewReportView.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */,
-				7F101AC4260613E800F2034C /* YYZGroupItem.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
 				18CDF720257F91BE006E8E5C /* VolunteerLabel.m in Sources */,

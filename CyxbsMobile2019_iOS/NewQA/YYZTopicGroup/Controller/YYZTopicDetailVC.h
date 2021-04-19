@@ -11,6 +11,8 @@
 #import "ReportView.h"
 #import "ShareView.h"
 #import "FuncView.h"
+#import "PostItem.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYZTopicDetailVC : TopBarBasicViewController
@@ -27,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///分享页面
 @property (nonatomic, strong) ShareView *shareView;
+
+@property (nonatomic, strong) PostItem *item;
 
 @end
 NS_ASSUME_NONNULL_END
