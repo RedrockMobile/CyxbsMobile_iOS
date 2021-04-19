@@ -113,12 +113,18 @@
 
 #pragma mark - 屏幕适配相关
 
-/* 小屏适配 */
+//判断是否是iPhone8比例的屏幕（375 * 667）
+#define IS_IPHONE8 (fabs(SCREEN_HEIGHT*0.56235945-SCREEN_WIDTH) < 40)
+
+//判断是否是iPhoneSE 1代的比例
 #define IS_IPHONESE (SCREEN_WIDTH == 320.f && SCREEN_HEIGHT == 568.f)
 
 /* 全面屏相关 */
-#define IS_IPHONEX ((SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f) || (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 896.f)? YES : NO)
+#define IS_IPHONEX (fabs(SCREEN_HEIGHT*0.46193812-SCREEN_WIDTH) < 30)
+//#define IS_IPHONEX ((SCREEN_WIDTH == 375.f && SCREEN_HEIGHT == 812.f) || (SCREEN_WIDTH == 414.f && SCREEN_HEIGHT == 896.f)? YES : NO)
+
 #define SAFE_AREA_BOTTOM (IS_IPHONEX ? (34.f) : (0.f))
+
 
 /* 屏幕宽高 */
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
@@ -129,6 +135,19 @@
 
 /* 状态栏高度 */
 #define STATUSBARHEIGHT [MGDStatusBarHeight getStatusBarHight]
+
+//状态栏高度
+#define getStatusBarHeight_Double ^(void){\
+    double statusBarH;\
+    if (@available(iOS 13.0, *)) {\
+        statusBarH = [[UIApplication sharedApplication].windows objectAtIndex:0].windowScene.statusBarManager.statusBarFrame.size.height;\
+    } else {\
+        statusBarH = [UIApplication sharedApplication].statusBarFrame.size.height;\
+    }\
+    return statusBarH;\
+}()
+
+
 
 /* NavigationBar高度 */
 #define NVGBARHEIGHT (44.f)
@@ -145,6 +164,7 @@
 //1.293517  414-896，(宽/375)*(高/667/2 + 0.5)
 //375*667状态的字号、宽高乘上这个比例，大概可以适配其他尺寸的比例
 #define fontSizeScaleRate_SE (SCREEN_WIDTH*(0.001333333333333+SCREEN_HEIGHT/500250.0))
+
 
 //1.1717
 //高度放缩比，(高/667/2 + 0.5)

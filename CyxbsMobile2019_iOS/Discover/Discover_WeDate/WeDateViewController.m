@@ -69,7 +69,7 @@
     
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(17);
-        make.top.equalTo(self.view).offset(53);
+        make.centerY.equalTo(self.view.mas_top).offset(22+getStatusBarHeight_Double);
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
@@ -80,6 +80,8 @@
 - (void)addTitleLabel {
     UILabel *label = [[UILabel alloc]init];
     self.titleLabel = label;
+    [self.view addSubview:label];
+    
     self.titleLabel.text = @"没课约";
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
     //蓝白
@@ -88,7 +90,6 @@
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     };
-    [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backButton).offset(14);
         make.centerY.equalTo(self.backButton);

@@ -140,8 +140,9 @@
 
 //点击删除按钮后调用(父类是三个点点图标的按钮，子类重写为垃圾桶图标了)
 - (void)ClickedFuncBtn:(PostTableViewCell *)cell {
+    __weak typeof(self) weakSelf = self;
     DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
-        [self.articleModel deleteArticleWithID:cell.item.post_id];
+        [weakSelf.articleModel deleteArticleWithID:cell.item.post_id];
     }];
     [self.view addSubview:tipView];
 }

@@ -50,15 +50,12 @@
     self.topBarView = view;
     [self.view addSubview:view];
     
-    int h;
-    if (IS_IPHONEX) {
-        h = 55;
-    }else{
-        h = 25;
-    }
+    //12：47
+    //获取状态栏高度    
+    double statusBarH = getStatusBarHeight_Double;
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(h);
+        make.top.equalTo(self.view).offset(statusBarH);
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(44);
     }];

@@ -67,6 +67,7 @@
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
     [backButton setContentHorizontalAlignment:1];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
     
     UIImage *sendImage = [UIImage imageNamed:@"发送"];
     self.sendButton= [UIButton buttonWithType:UIButtonTypeCustom];
@@ -382,7 +383,7 @@
             }
         }
     }
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject[@"status"] intValue] ==200) {
             [NewQAHud showHudWith:@"发布评论成功" AddView:self.view];

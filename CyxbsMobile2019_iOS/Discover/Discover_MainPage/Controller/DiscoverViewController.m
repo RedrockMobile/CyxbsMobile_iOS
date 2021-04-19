@@ -33,6 +33,10 @@
 #import "VolunteerItem.h"
 #import "QueryViewController.h"
 #import "ArchiveTool.h"
+
+//Tool
+#import "NewQAHud.h"
+
 #define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define ColorWhite  [UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -240,7 +244,6 @@ static int requestCheckinInfo = 0;
     
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        CCLog(@"Checkin_resp=%@",responseObject);
         [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
         [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
         [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
@@ -248,7 +251,6 @@ static int requestCheckinInfo = 0;
         [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
         [UserItemTool defaultItem].canCheckIn = [responseObject[@"data"][@"can_check_in"] boolValue];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        CCLog(@"Checkin_err=%@",error);
     }];
 }
 
@@ -361,11 +363,12 @@ static int requestCheckinInfo = 0;
       return;
 }
 -(void)requestElectricFeeFailed {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [hud setMode:(MBProgressHUDModeText)];
-    hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
-    [hud hide:YES afterDelay:1];
-    return;
+//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [hud setMode:(MBProgressHUDModeText)];
+//    hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
+//    [hud hide:YES afterDelay:1];
+//    return;
+//    [NewQAHud showHudWith:@"电费查询服务器开小差了哦，请稍后重试" AddView:self.view];
 }
 - (void)updateElectricFeeUI {
     //先写入缓存

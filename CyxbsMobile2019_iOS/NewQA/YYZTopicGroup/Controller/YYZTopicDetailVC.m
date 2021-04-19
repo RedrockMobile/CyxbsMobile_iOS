@@ -21,7 +21,7 @@
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
 @property(nonatomic,assign) NSInteger topicID;//当前圈子编号
 //@property(nonatomic,strong) UITableView *tableView;
-@property(nonatomic,strong ) NSArray *array;  //所有圈子信息
+@property(nonatomic,strong ) NSArray *array;  //所有圈子信息https://www.zhihu.com/people/yang-yuan-zhou/following/questions
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;
 @property(nonatomic,strong) UIScrollView *topicScrollView;

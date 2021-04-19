@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         self.titleLabel.font = [UIFont fontWithName:@"Impact" size:35*fontSizeScaleRate_SE];
-        CCLog(@"pointSize=%f\n",self.titleLabel.font.pointSize);
+//        CCLog(@"pointSize=%f\n",self.titleLabel.font.pointSize);
         if (@available(iOS 11.0, *)) {
             [self setTitleColor:[UIColor colorNamed:@"Mine_Main_QANumberLabelColor"] forState:UIControlStateNormal];
         } else {

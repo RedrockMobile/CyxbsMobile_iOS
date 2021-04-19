@@ -78,8 +78,8 @@ typedef enum : NSUInteger {
             self.uncheckedCommentCnt = dataDict[@"uncheckedComment"];
         }
         
-        CCLog(@"MainMsg:%@,%@",self.uncheckedPraiseCnt,self.uncheckedCommentCnt);
-        CCLog(@"MainMsgres%@",responseObject);
+//        CCLog(@"MainMsg:%@,%@",self.uncheckedPraiseCnt,self.uncheckedCommentCnt);
+//        CCLog(@"MainMsgres%@",responseObject);
         [self.delegate mainMsgCntModelLoadDataFinishWithState:stateSuccess];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.delegate mainMsgCntModelLoadDataFinishWithState:stateFailure];

@@ -130,8 +130,14 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"tokenError2：%@", error);
+//        if (error.code == NSURLErrorBadServerResponse) {
         
-        if (error.code == NSURLErrorBadServerResponse) {
+        //获取上次登录的时间戳(和1970.1.1的秒间隔)
+        double lastLogInTime = [[NSUserDefaults standardUserDefaults] doubleForKey:LastLogInTimeKey_double];
+        
+        //如果错误码是400或者403，并且上次登录的时间是30天前(2592000秒)，那么提示需要重新登录
+        if (([error.localizedDescription hasSuffix:@"(400)"]||[error.localizedDescription hasSuffix:@"(403)"])&&(NSDate.nowTimestamp - lastLogInTime > 2592000)) {
+            
             // token刷新失败，可能是用户token过期或者出了别的什么问题，提示用户重新登录
             UIAlertController *loginAlertController = [UIAlertController alertControllerWithTitle:@"登录已过期" message:@"登录验证信息失效，请重新登录" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"重新登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
