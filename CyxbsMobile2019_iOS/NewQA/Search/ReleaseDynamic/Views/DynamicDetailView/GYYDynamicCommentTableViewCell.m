@@ -73,7 +73,7 @@
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
     self.detailLabel.numberOfLines = 0;
-    self.detailLabel.preferredMaxLayoutWidth = (SCREEN_WIDTH - Pading * 2);
+//    self.detailLabel.preferredMaxLayoutWidth = (SCREEN_WIDTH - Pading * 2);
     [self.detailLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.contentView addSubview:_detailLabel];
     
