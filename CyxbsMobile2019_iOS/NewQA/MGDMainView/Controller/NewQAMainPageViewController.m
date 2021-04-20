@@ -319,7 +319,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reSetTopFollowUI)
                                                  name:@"reSetTopFollowUI" object:nil];
-    
+    ///通知刷新我的关注列表
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reLoadGroupList)
                                                  name:@"reLoadGroupList" object:nil];
