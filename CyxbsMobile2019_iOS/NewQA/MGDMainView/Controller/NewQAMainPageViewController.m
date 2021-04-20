@@ -67,10 +67,11 @@
 @end
 
 @implementation NewQAMainPageViewController
+
 // 加载邮问时隐藏底部课表
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+        self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
     self.tableArray = [PostArchiveTool getPostList];
