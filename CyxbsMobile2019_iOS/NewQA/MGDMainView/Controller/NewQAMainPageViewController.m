@@ -48,8 +48,6 @@
 @property (nonatomic, strong) HotSearchModel *hotWordModel;
 @property (nonatomic, strong) NSMutableArray *hotWordsArray;
 @property (nonatomic, assign) int hotWordIndex;
-
-@property (nonatomic, strong) NSNumber *pageNumber;
 //帖子模型
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) PostModel *postmodel;
