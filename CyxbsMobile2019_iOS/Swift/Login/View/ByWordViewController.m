@@ -150,7 +150,7 @@
     printf("跳转至修改密码页面\n");
     if(_tf.text.length>=2)
     {
-        [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/valid/question" method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
+        [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/user-secret/user/valid/question" method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
         {
             if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
             {
@@ -202,7 +202,7 @@
         num = self.idString;
     else
         num = stuNum;
-    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/bind/question/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/user-secret/user/bind/question/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSLog(@"%@",responseObject);
 //            NSString *questWord = responseObject[@"data"][@"content"];

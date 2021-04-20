@@ -20,6 +20,7 @@
 
 static float viewMargin = 8.0f; //按钮距离上边距
 static float viewHeight = 38.0f; //按钮视图高度
+static const int CJHtoolBarHeight = 44; //陈剑辉所定义的toolbar的高度
 
 @interface DKSKeyboardView ()<UITextViewDelegate>
 

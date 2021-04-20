@@ -24,6 +24,7 @@
 #import "shareView.h"
 #import "StarPostModel.h"
 #import "DeleteArticleTipView.h"
+#import "LYEmptyView.h"
 
 @interface GYYDynamicDetailViewController ()<UITableViewDelegate,UITableViewDataSource,DKSKeyboardDelegate,ReportViewDelegate,PostTableViewCellDelegate,GYYShareViewDelegate,ShareViewDelegate>
 
@@ -44,6 +45,7 @@
 
 ///分享页面
 @property (nonatomic, strong) ShareView *shareView;
+@property(nonatomic, strong) UIView *tableFooterView;
 
 @end
 
@@ -51,9 +53,10 @@
 - (UIView *)tableHeadView{
     if (!_tableHeadView) {
         _tableHeadView = [[UIView alloc]initWithFrame:CGRectZero];
-        _tableHeadView.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
+        _tableHeadView.backgroundColor = [UIColor clearColor];
         
         self.dynamicView = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"identifier"];
+        self.dynamicView.backgroundColor = [UIColor clearColor];
         self.dynamicView.item = self.item;
         self.dynamicView.frame = CGRectZero;
         self.dynamicView.delegate = self;
@@ -85,6 +88,16 @@
     }
     return _tableHeadView;
 }
+- (UIView *)tableFooterView{
+    if (!_tableFooterView) {
+        _tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 219)];
+        LYEmptyView *emptyView = [LYEmptyView emptyViewWithImageStr:@"图层 11" titleStr:@"还没有评论哦~" detailStr:@""];
+        emptyView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 219);
+        [_tableFooterView addSubview:emptyView];
+    }
+    return _tableFooterView;
+}
+
 - (DKSKeyboardView *)inputView{
     if (!_inputView) {
         _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-54, SCREEN_WIDTH, 54)];
@@ -115,7 +128,7 @@
     self.allCommentM = [NSMutableArray array];
     
     self.mainTableView = [[RecommendedTableView alloc] initWithFrame:CGRectZero];
-    self.mainTableView.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xffffff) DarkColor:KUIColorFromRGB(0x000000)];
+    self.mainTableView.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xFFFFFF) DarkColor:KUIColorFromRGB(0x000000)];
     self.mainTableView.showsVerticalScrollIndicator = NO;
     self.mainTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.mainTableView.delegate = self;
@@ -143,9 +156,10 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;  //显示导航栏
+    [self.tabBarController.tabBar setHidden:YES];             //隐藏底部的tabbar
     
     self.pageIndex = 1;
-//    [self.mainTableView.mj_header beginRefreshing];
+    [self.mainTableView.mj_header beginRefreshing];
     
 }
 
@@ -162,6 +176,7 @@
     [backButton addTarget:self action: @selector(back) forControlEvents:UIControlEventTouchUpInside];
     [backButton setContentHorizontalAlignment:1];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
 }
 
 //跳出查课表页的方法
@@ -188,13 +203,15 @@
 - (void)dynamicTableLoadData{
     self.pageIndex +=1;
     
-    [[HttpClient defaultClient] requestWithPath:[NSString stringWithFormat:@"https://be-prod.redrock.team/magipoke-loop/comment/getallcomment?post_id=%d",self.post_id] method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:[NSString stringWithFormat:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/getallcomment?post_id=%d",self.post_id] method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"加载动态列表数据成功");
         if ([responseObject[@"status"]intValue] ==200) {
             [self.allCommentM addObjectsFromArray:[GYYDynamicCommentModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
         }
         if (self.allCommentM.count <=0) {
-            [self.mainTableView showNoDataStatusWithString:@"还没有评论哦~" imageName:@"图层 11" withOfffset:100];
+            self.mainTableView.tableFooterView = self.tableFooterView;
+        }else{
+            self.mainTableView.tableFooterView = [UIView new];
         }
         
         [self.mainTableView.mj_footer endRefreshing];
@@ -208,7 +225,7 @@
 - (void)dynamicTableReloadData{
     self.pageIndex = 1;
     
-    [[HttpClient defaultClient] requestWithPath:[NSString stringWithFormat:@"https://be-prod.redrock.team/magipoke-loop/comment/getallcomment?post_id=%d",self.post_id] method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:[NSString stringWithFormat:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/getallcomment?post_id=%d",self.post_id] method:HttpRequestGet parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject[@"status"]intValue] ==200) {
             [self.allCommentM removeAllObjects];
@@ -216,7 +233,9 @@
             [self.allCommentM addObjectsFromArray:[GYYDynamicCommentModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
         }
         if (self.allCommentM.count <=0) {
-            [self.mainTableView showNoDataStatusWithString:@"还没有评论哦~" imageName:@"图层 11" withOfffset:CGRectGetMidY(self.tableHeadView.frame)];
+            self.mainTableView.tableFooterView = self.tableFooterView;
+        }else{
+            self.mainTableView.tableFooterView = [UIView new];
         }
         [self.mainTableView.mj_header endRefreshing];
         [self.mainTableView reloadData];
@@ -230,7 +249,7 @@
     
     if (!self.item && self.post_id >0) {
         
-        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/post/getPostInfo" method:HttpRequestGet parameters:@{@"id":@(self.post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             if ([responseObject[@"status"] intValue] ==200) {
                 self.item = [PostItem mj_objectWithKeyValues:responseObject[@"data"]];
                 [self updateDynamicViewHeight];
@@ -286,6 +305,7 @@
     GYYDynamicCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
         cell = [[GYYDynamicCommentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier commentType:(indexPath.row ==0 ?DynamicCommentType_stair:DynamicCommentType_secondLevel)];
+        cell.backgroundColor = [UIColor clearColor];
     }
     GYYDynamicCommentModel *commentModel = self.allCommentM[indexPath.section];
     if (indexPath.row ==0) {
@@ -372,7 +392,7 @@
     
     DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         
-        [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:@{@"id":@(self.actionCommentModel.comment_id),@"model":@"1"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             
             if ([responseObject[@"status"] intValue] ==200) {
                 [NewQAHud showHudWith:@"删除成功" AddView:self.view];
@@ -395,7 +415,7 @@
     
     if (self.reportView.textView.text.length <=0 || [self.reportView.textView.text isEqualToString:@""]) return;
     
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/report" method:HttpRequestPost parameters:@{@"id":self.reportView.postID,@"model":@(self.reportView.model),@"content":self.reportView.textView.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/report" method:HttpRequestPost parameters:@{@"id":self.reportView.postID,@"model":@(self.reportView.model),@"content":self.reportView.textView.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] ==200) {
             [NewQAHud showHudWith:@"举报成功" AddView:self.view];
             [self.zh_popupController dismiss];
@@ -594,17 +614,17 @@
         [param setObject:@(self.actionCommentModel.comment_id) forKey:@"reply_id"];
     }
     
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
+            [NewQAHud showHudWith:@"发布评论成功" AddView:self.view];
             [self.inputView clearCurrentInput];
             [self.view endEditing:YES];
             [self.mainTableView.mj_header beginRefreshing];
         }
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
+        [NewQAHud showHudWith:@"发布评论失败，请重试" AddView:self.view];
     }];
     
 }

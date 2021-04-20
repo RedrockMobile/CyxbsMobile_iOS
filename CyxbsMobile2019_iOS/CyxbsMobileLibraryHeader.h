@@ -4,7 +4,7 @@
 //
 //  Created by Stove on 2021/3/20.
 //  Copyright © 2021 Redrock. All rights reserved.
-//这里面放倒入第三方库的touwenjian
+//这里面放导入的第三方库的头文件
 
 #ifndef CyxbsMobileLibraryHeader_h
 #define CyxbsMobileLibraryHeader_h
