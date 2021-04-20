@@ -32,5 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) PostItem *item;
 
+@property(nonatomic,strong) NSString *topicIdString; //当前圈子名
+
+@property(nonatomic,assign) NSInteger topicID;//当前圈子编号
+
 @end
 NS_ASSUME_NONNULL_END

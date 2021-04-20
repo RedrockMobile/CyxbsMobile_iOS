@@ -18,9 +18,6 @@
 #import "MGDRefreshTool.h"
 
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate>
-@property(nonatomic,strong) NSString *topicIdString; //当前圈子名
-@property(nonatomic,assign) NSInteger topicID;//当前圈子编号
-//@property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息https://www.zhihu.com/people/yang-yuan-zhou/following/questions
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;
@@ -45,15 +42,10 @@
 @implementation YYZTopicDetailVC
 
 #pragma mark  获取当前圈子ID
-- (instancetype)initWithId:(NSString *) topicID{
-    self.topicIdString = topicID;
-    NSLog(@"%@",self.topicIdString);
-    return self;
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.page = 0;//初始化当前页数
+    self.page = 1;//初始化当前页数
     //网络请求
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
@@ -66,7 +58,6 @@
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar
     self.navigationItem.title = @"";
-    self.navigationController.navigationBar.translucent=NO;//导航栏不透明
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
     [self.navigationController.navigationBar setTitleTextAttributes:attributes];
     self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
@@ -81,15 +72,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNotification];
+    
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+    //self.tableArray = [NSMutableArray arrayWithArray:[PostArchiveTool getPostList]];
+    self.tableArray = [[NSMutableArray alloc]init];
     YYZTopicModel *postmodel = [[YYZTopicModel alloc]init];
     self.postmodel = postmodel;
-    self.tableArray = [PostArchiveTool getPostList];
-
-    
-    //[self setCell];
     [self setScroll];
-    
     [self setMiddleLable];
     [self setBackTableView];
     [self loadData];
@@ -146,14 +135,14 @@
 - (void)loadData{
     NSLog(@"此时的page:%ld",(long)self.page);
     self.page += 1;
-    [self.postmodel loadTopicWithLoop:self.topicID+1 AndPage:self.page AndSize:6 AndType:@"hot"];
+    [self.postmodel loadTopicWithLoop:self.topicID AndPage:self.page AndSize:6 AndType:@"hot"];
 }
 ///上拉刷新
 - (void)refreshData{
     [self.tableArray removeAllObjects];
     self.page = 1;
     NSLog(@"此时的page:%ld",(long)self.page);
-    [self.postmodel loadTopicWithLoop:self.topicID+1 AndPage:self.page AndSize:6 AndType:@"hot"];
+    [self.postmodel loadTopicWithLoop:self.topicID AndPage:self.page AndSize:6 AndType:@"hot"];
 }
 
 ///成功请求数据
@@ -176,7 +165,6 @@
     }
    // [self setBackTableView];
     NSLog(@"成功请求列表数据");
-    
 }
 
 ///请求失败
@@ -203,11 +191,14 @@
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
+    [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
     
     UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
+    [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.topicScrollView addSubview:topicLeftTableView];
     [self.topicScrollView addSubview:topicRightTableView];
 }
@@ -398,7 +389,6 @@
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
         if([dic[@"topic_name"]isEqualToString:self.topicIdString]){
-            self.topicID = i;
             cell.topic_id.text = self.array[i][@"topic_name"];
             cell.topic_number.text = [NSString stringWithFormat:@"%@个成员",self.array[i][@"follow_count"]];
             cell.topic_introduce.text = self.array[i][@"introduction"];
@@ -410,7 +400,7 @@
                 [cell.topic_isFollow setTitle:@"已关注" forState:UIControlStateNormal];
                 cell.topic_isFollow.backgroundColor = RGBColor(171, 189, 215, 1);
             }
-            cell.topic_isFollow.tag = self.array[i][@"topic_id"];
+             cell.topic_isFollow.tag = self.array[i][@"topic_id"];
             [cell.topic_isFollow addTarget:self action:@selector(changeFollow:) forControlEvents:UIControlEventTouchUpInside];
             break;
         }
@@ -473,5 +463,8 @@
             [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
         }];
 }
-
+- (void)dealloc
+{
+    NSLog(@"bhbybyhbbb");
+}
 @end

@@ -19,6 +19,7 @@
 @implementation YYZTopicGroupVC
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"%@", NSStringFromCGRect(self.tableView.frame));
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;
@@ -31,7 +32,6 @@
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
     self.navigationItem.leftBarButtonItem.width = -1000;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
-
     //网络请求
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
@@ -50,13 +50,14 @@
     // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTableView];
 }
 
 - (void)setTableView {
-    UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     self.tableView = tableView;
     self.tableView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
     tableView.delegate = self;
@@ -105,7 +106,16 @@
 {
     NSIndexPath* indexPath2 = [self.tableView indexPathForSelectedRow];
     YYZTopicCell *cell = [self.tableView cellForRowAtIndexPath:indexPath2];
-    YYZTopicDetailVC *detailView = [[YYZTopicDetailVC alloc]initWithId:cell.topic_id.text];
+    //获取当前圈子编号
+    int topicID;
+    for(int i=0;i<self.array.count;i++){
+        NSDictionary *dic = self.array[i];
+        if([dic[@"topic_name"]isEqualToString:cell.topic_id.text])
+            topicID = i+1;
+    }
+    YYZTopicDetailVC *detailView = [[YYZTopicDetailVC alloc]init];
+    detailView.topicID = topicID;
+    detailView.topicIdString = cell.topic_id.text;
     [self.navigationController pushViewController:detailView animated:YES];
 }
 #pragma mark 设置cell自适应高度
