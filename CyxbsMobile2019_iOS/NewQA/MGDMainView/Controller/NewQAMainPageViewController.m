@@ -127,9 +127,6 @@
         }
     [[UserItemTool defaultItem] setFirstLogin:NO];
     
-    if ([self.tableArray count] == 0) {
-        [self noDataInList];
-    }
 }
 
 - (void)noDataInList {
@@ -964,13 +961,13 @@
     topVc.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:topVc animated:YES];
-    // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
     NSString *groupName = sender.groupBtnLabel.text;
     if (sender.tag == 0) {
+        [_countModel queryNewCountWithTimestamp:[self currentTimeStr]];
         YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
         topVc.hidesBottomBarWhenPushed = YES;
         ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
@@ -1008,7 +1005,7 @@
 - (NSString *)currentTimeStr{
     NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval time=[date timeIntervalSince1970];
-    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+    NSString *timeString = [NSString stringWithFormat:@"%", time];
     return timeString;
 }
 
