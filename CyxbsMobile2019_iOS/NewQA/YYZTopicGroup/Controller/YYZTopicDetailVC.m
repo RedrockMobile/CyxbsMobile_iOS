@@ -16,12 +16,12 @@
 #import "YYZTopicModel.h"
 #import "PostItem.h"
 #import "MGDRefreshTool.h"
-
+    
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate>
-@property(nonatomic,strong ) NSArray *array;  //所有圈子信息https://www.zhihu.com/people/yang-yuan-zhou/following/questions
+@property(nonatomic,strong ) NSArray *array;  //所有圈子信息
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
-@property(nonatomic,strong) UIScrollView *backgroundScrollView;
-@property(nonatomic,strong) UIScrollView *topicScrollView;
+@property(nonatomic,strong) UIScrollView *backgroundScrollView;//最底部的scrollview
+@property(nonatomic,strong) UIScrollView *topicScrollView;//在tableview下面的scrollview
 @property(nonatomic,strong) UITableView *topicLeftTableView;
 @property(nonatomic,strong) UITableView *topicRightTableView;
 
@@ -385,6 +385,7 @@
 - (void)setCell {
     NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
+    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH, 130);
     self.cell = cell;
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
@@ -405,7 +406,6 @@
             break;
         }
     }
-     
     [self.backgroundScrollView addSubview:cell];
 }
 
