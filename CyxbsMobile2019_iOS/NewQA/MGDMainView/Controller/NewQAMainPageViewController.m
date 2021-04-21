@@ -48,8 +48,6 @@
 @property (nonatomic, strong) HotSearchModel *hotWordModel;
 @property (nonatomic, strong) NSMutableArray *hotWordsArray;
 @property (nonatomic, assign) int hotWordIndex;
-
-@property (nonatomic, strong) NSNumber *pageNumber;
 //帖子模型
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) PostModel *postmodel;
@@ -129,9 +127,6 @@
         }
     [[UserItemTool defaultItem] setFirstLogin:NO];
     
-    if ([self.tableArray count] == 0) {
-        [self noDataInList];
-    }
 }
 
 - (void)noDataInList {
@@ -320,7 +315,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reSetTopFollowUI)
                                                  name:@"reSetTopFollowUI" object:nil];
-    
+    ///通知刷新我的关注列表
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reLoadGroupList)
                                                  name:@"reLoadGroupList" object:nil];
@@ -966,20 +961,22 @@
     topVc.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:topVc animated:YES];
-    // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
 }
 
 ///点击我的关注中的已关注的圈子跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender {
     NSString *groupName = sender.groupBtnLabel.text;
     if (sender.tag == 0) {
+        [_countModel queryNewCountWithTimestamp:[self currentTimeStr]];
         YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
         topVc.hidesBottomBarWhenPushed = YES;
         ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
         [self.navigationController pushViewController:topVc animated:YES];
     }else {
         [_countModel queryNewCountWithTimestamp:[self currentTimeStr]];
-        YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:groupName];
+        YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc]init];
+        detailVC.topicID = [sender.item.topic_id intValue];
+        detailVC.topicIdString = groupName;
         detailVC.hidesBottomBarWhenPushed = YES;
         ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
         [self.navigationController pushViewController:detailVC animated:YES];
@@ -1010,7 +1007,7 @@
 - (NSString *)currentTimeStr{
     NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval time=[date timeIntervalSince1970];
-    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+    NSString *timeString = [NSString stringWithFormat:@"%", time];
     return timeString;
 }
 

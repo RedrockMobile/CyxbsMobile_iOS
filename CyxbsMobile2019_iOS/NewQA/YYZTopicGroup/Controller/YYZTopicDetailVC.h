@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YYZTopicDetailVC : TopBarBasicViewController
 
-- (instancetype)initWithId:(NSString *) topicID;
 ///背景蒙版
 @property (nonatomic, strong) UIView *backViewWithGesture;
 

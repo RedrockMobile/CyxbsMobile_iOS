@@ -107,7 +107,7 @@
     NSIndexPath* indexPath2 = [self.tableView indexPathForSelectedRow];
     YYZTopicCell *cell = [self.tableView cellForRowAtIndexPath:indexPath2];
     //获取当前圈子编号
-    int topicID;
+    int topicID = 0;
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
         if([dic[@"topic_name"]isEqualToString:cell.topic_id.text])

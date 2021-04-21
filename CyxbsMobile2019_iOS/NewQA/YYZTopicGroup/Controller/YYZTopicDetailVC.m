@@ -28,9 +28,9 @@
 @property(nonatomic,strong) UIButton *leftButton;
 @property(nonatomic,strong) UIButton *rightButton;
 //帖子数据
-@property (nonatomic, assign) NSInteger page;
-@property (nonatomic, strong) NSMutableArray *tableArray;
-@property (nonatomic, strong) YYZTopicModel *postmodel;
+@property (nonatomic, assign) NSInteger leftPage;
+@property (nonatomic, strong) NSMutableArray *leftTableArray;
+@property (nonatomic, strong) YYZTopicModel *leftpPostmodel;
 //获取cell里item数据的NSDictionary
 @property (nonatomic, strong) NSDictionary *itemDic;
 //列表顶部底部刷新控件
@@ -45,7 +45,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.page = 1;//初始化当前页数
+    self.leftPage = 1;//初始化当前页数
     //网络请求
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
@@ -66,25 +66,19 @@
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
     self.navigationItem.leftBarButtonItem.width = -1000;
 }
-- (void)viewWillDisappear:(BOOL)animated{
-    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNotification];
-    
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    //self.tableArray = [NSMutableArray arrayWithArray:[PostArchiveTool getPostList]];
-    self.tableArray = [[NSMutableArray alloc]init];
-    YYZTopicModel *postmodel = [[YYZTopicModel alloc]init];
-    self.postmodel = postmodel;
+    
+    self.leftTableArray = [[NSMutableArray alloc]init];
+    self.leftpPostmodel = [[YYZTopicModel alloc]init];
+    
     [self setScroll];
     [self setMiddleLable];
     [self setBackTableView];
     [self loadData];
-   
-    NSLog(@"------3333333---------%@",self.postmodel.postArray);
-   // [self setFrame];
 }
 - (void)setNotification{
     ///帖子列表请求成功
@@ -133,30 +127,27 @@
 }
 #pragma mark- 帖子列表的网络请求
 - (void)loadData{
-    NSLog(@"此时的page:%ld",(long)self.page);
-    self.page += 1;
-    [self.postmodel loadTopicWithLoop:self.topicID AndPage:self.page AndSize:6 AndType:@"hot"];
+    self.leftPage += 1;
+    [self.leftpPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"hot"];
 }
 ///上拉刷新
 - (void)refreshData{
-    [self.tableArray removeAllObjects];
-    self.page = 1;
-    NSLog(@"此时的page:%ld",(long)self.page);
-    [self.postmodel loadTopicWithLoop:self.topicID AndPage:self.page AndSize:6 AndType:@"hot"];
+    [self.leftTableArray removeAllObjects];
+    self.leftPage = 1;
+    [self.leftpPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"hot"];
 }
 
 ///成功请求数据
 - (void)TopicLoadSuccess {
     
-    if (self.page == 1) {
-        self.tableArray = self.postmodel.postArray;
+    if (self.leftPage == 1) {
+        self.leftTableArray = self.leftpPostmodel.postArray;
     }else {
-        [self.tableArray addObjectsFromArray:self.postmodel.postArray];
+        [self.leftTableArray addObjectsFromArray:self.leftpPostmodel.postArray];
     }
     
-    [PostArchiveTool savePostListWith:self.tableArray];
     //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
-    if (self.page == 1) {
+    if (self.leftPage == 1) {
         [self.topicLeftTableView reloadData];
         [self.topicLeftTableView.mj_header endRefreshing];
     }else{
@@ -201,13 +192,14 @@
     [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.topicScrollView addSubview:topicLeftTableView];
     [self.topicScrollView addSubview:topicRightTableView];
+    [self setUpRefresh];
 }
 
 - (NSInteger)numberOfSectionsInTableView: (UITableView *)tableView{
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.tableArray.count;
+    return self.leftTableArray.count;
 }
 #pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -222,7 +214,7 @@
     NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
-        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+        _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
         //这里
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
@@ -244,11 +236,9 @@
     // 创建分享页面
     _shareView = [[ShareView alloc] init];
     _shareView.delegate = self;
-    
     // 创建功能页面
     _popView = [[FuncView alloc] init];
     _popView.delegate = self;
-    
     // 创建举报页面
     _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
     _reportView.delegate = self;
@@ -258,7 +248,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-    _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+    _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
     dynamicDetailVC.post_id = [_item.post_id intValue];
     dynamicDetailVC.item = _item;
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
@@ -291,7 +281,6 @@
 - (void)showBackViewWithGesture {
     [self.view.window addSubview:_backViewWithGesture];
 }
-
 ///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
 - (void)ClickedStarBtn:(PostTableViewCell *)cell{
     if (cell.starBtn.selected == YES) {
@@ -318,14 +307,14 @@
         
     }
     StarPostModel *model = [[StarPostModel alloc] init];
-    _itemDic = self.tableArray[cell.starBtn.tag];
+    _itemDic = self.leftTableArray[cell.starBtn.tag];
     [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
 }
 
 ///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
     GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-    _item = [[PostItem alloc] initWithDic:self.tableArray[cell.commendBtn.tag]];
+    _item = [[PostItem alloc] initWithDic:self.leftTableArray[cell.commendBtn.tag]];
     dynamicDetailVC.post_id = [_item.post_id intValue];
     dynamicDetailVC.item = _item;
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
@@ -340,22 +329,12 @@
         make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 460/667);
         make.left.right.bottom.mas_equalTo(self.view.window);
     }];
-    _itemDic = self.tableArray[cell.shareBtn.tag];
+    _itemDic = self.leftTableArray[cell.shareBtn.tag];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     NSString *shareURL = [NSString stringWithFormat:@"redrock.zscy.youwen.share://token=%@&id=%@",[UserDefaultTool getToken],_itemDic[@"post_id"]];
     pasteboard.string = shareURL;
-}
-
-///点击标签跳转到相应的圈子
-- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
-    _itemDic = self.tableArray[cell.groupLabel.tag];
-    NSString *groupName = _itemDic[@"topic"];
-    YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:groupName];
-    detailVC.hidesBottomBarWhenPushed = YES;
-    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 /**
@@ -367,7 +346,7 @@
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
 
-    _itemDic = self.tableArray[cell.tag];
+    _itemDic = self.leftTableArray[cell.tag];
     if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
         NSLog(@"取消关注");
         [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
@@ -383,7 +362,7 @@
 
 //设置顶部cell
 - (void)setCell {
-    NSArray * nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
     cell.frame = CGRectMake(0, 0, SCREEN_WIDTH, 130);
     self.cell = cell;
@@ -419,7 +398,6 @@
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.leftButton = leftButton;
     self.rightButton = rightButton;
-    //leftButton.backgroundColor = [UIColor redColor];
     [leftButton setTitle:@"最新" forState:UIControlStateNormal];
     [rightButton setTitle:@"热门" forState:UIControlStateNormal];
     [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateHighlighted];
@@ -435,12 +413,6 @@
 
 }
 
-- (void) setFrame {
-//    [self.cell mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.view);
-//        //make.right.equalTo(self.backgroundScrollView.right).offset(0);
-//    }];
-}
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -463,8 +435,5 @@
             [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
         }];
 }
-- (void)dealloc
-{
-    NSLog(@"bhbybyhbbb");
-}
+
 @end
