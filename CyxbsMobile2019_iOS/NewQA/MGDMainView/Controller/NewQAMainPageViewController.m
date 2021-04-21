@@ -69,7 +69,7 @@
 // 加载邮问时隐藏底部课表
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-        self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
     self.tableArray = [PostArchiveTool getPostList];
@@ -191,7 +191,7 @@
         
     }
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
-
+    ((ClassTabBar *)self.tabBarController.tabBar).backgroundColor = [UIColor colorNamed:@"TABBARCOLOR"];
     //设置通知中心
     [self setNotification];
     //设置背景蒙版
@@ -1007,7 +1007,7 @@
 - (NSString *)currentTimeStr{
     NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval time=[date timeIntervalSince1970];
-    NSString *timeString = [NSString stringWithFormat:@"%", time];
+    NSString *timeString = [NSString stringWithFormat:@"%@", time];
     return timeString;
 }
 
