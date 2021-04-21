@@ -974,7 +974,9 @@
         [self.navigationController pushViewController:topVc animated:YES];
     }else {
         [_countModel queryNewCountWithTimestamp:[self currentTimeStr]];
-        YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:groupName];
+        YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc]init];
+        detailVC.topicID = [sender.item.topic_id intValue];
+        detailVC.topicIdString = groupName;
         detailVC.hidesBottomBarWhenPushed = YES;
         ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
         [self.navigationController pushViewController:detailVC animated:YES];

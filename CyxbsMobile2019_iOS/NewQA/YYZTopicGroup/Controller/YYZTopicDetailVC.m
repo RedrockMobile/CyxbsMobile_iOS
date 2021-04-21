@@ -154,7 +154,6 @@
         [self.tableArray addObjectsFromArray:self.postmodel.postArray];
     }
     
-    [PostArchiveTool savePostListWith:self.tableArray];
     //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
     if (self.page == 1) {
         [self.topicLeftTableView reloadData];
