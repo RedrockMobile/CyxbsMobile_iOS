@@ -67,8 +67,6 @@
         make.left.right.equalTo(self.view);
         make.top.equalTo(self.view).offset(STATUSBARHEIGHT * 0.5);
         make.bottom.equalTo(self.view.mas_top).offset(STATUSBARHEIGHT + NVGBARHEIGHT);
-//        make.height.mas_equalTo(NVGBARHEIGHT);
-//        make.bottom.equalTo(self.view).offset(MAIN_SCREEN_H * 0.096);
     }];
     
     [self addScrollView];
@@ -201,16 +199,27 @@
 
 /// 网络上传动态
 - (void)updateDynamic{
-
+    MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"正在上传数据，请稍等～";
+//    hud.margin = 8;
+//    [hud setYOffset:-SCREEN_HEIGHT * 0.26];
+    hud.labelFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
+    [hud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+//    hud.height = SCREEN_WIDTH * 0.3147 * 29/118;
+//    hud.cornerRadius = hud.frame.size.height * 1/2;
+    
     [self.releaseDynamicModel sumitDynamicDataWithContent:self.releaseView.releaseTextView.text TopicID:self.circleLabelText ImageAry:self.imagesAry IsOriginPhoto:self.isSumitOriginPhoto Sucess:^{
-            [NewQAHud showHudWith:@"发布动态成功" AddView:self.view];
+//            [NewQAHud showHudWith:@"发布动态成功" AddView:self.view];
         dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            [hud hide:YES];
+            [NewQAHud showHudWith:@"评论成功" AddView:self.view];
             [self.navigationController popToRootViewControllerAnimated:YES];
         });
-//        [self.navigationController popToRootViewControllerAnimated:YES];
         } Failure:^{
-            [NewQAHud showHudWith:@"请检查你的网络设置" AddView:self.releaseView.releaseTextView];
+            [hud hide:YES];
+            [NewQAHud showHudWith:@"请检查你的网络设置" AddView:self.view];
         }];
    
     
@@ -312,17 +321,13 @@
         self.clickReleaseDynamicBtnNumber++;
         //显示提示
         if (self.clickReleaseDynamicBtnNumber == 1) {
-            //显示提示框
-//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//            [hud setMode:(MBProgressHUDModeText)];
-//            hud.labelText = @"未添加标签";
-//            [hud hide:YES afterDelay:1];    //延迟一秒后消失
             [NewQAHud showHudWith:@"未添加标签" AddView:self.view];
         }else{
             self.circleLabelText = @"其他";
             [self updateDynamic];
         }
     }else{
+        
         [self updateDynamic];
     }
 }

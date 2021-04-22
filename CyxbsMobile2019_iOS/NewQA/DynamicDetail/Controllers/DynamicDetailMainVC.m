@@ -186,6 +186,7 @@
         [self buildFrame];
         } Failure:^{
             self.isGetDynamicDataFailure = YES;
+            [self getDataFailure];
         }];
     
     //请求评论的数据
@@ -203,7 +204,18 @@
         [self buildFrame];
     } Failure:^{
         self.isGetCommentDtaFailure = YES;
+        [self getDataFailure];
     }];
+}
+
+///第一次进入页面网络请求失败
+- (void)getDataFailure{
+    [self.waiLoadHud hide:YES];
+    MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"请检查网络";
+    [hud hide:YES afterDelay:1];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 ///下拉刷新界面  重新网络请求并重新布置界面
@@ -227,9 +239,8 @@
         }
         
         [self.commentTable reloadData];
-//        self.noCommentView.hidden = self.commentTableDataAry.count == 0 ? NO : YES;
         //添加无评论时的图层
-        if (self.commentTableDataAry.count <=0) {
+        if (self.commentTableDataAry.count <= 0) {
             [self.commentTable showNoDataStatusWithString:@"还没有评论哦~" imageName:@"图层 11" withOfffset:CGRectGetMidY(self.dynamicSpecifiCell.frame)];
         }
         

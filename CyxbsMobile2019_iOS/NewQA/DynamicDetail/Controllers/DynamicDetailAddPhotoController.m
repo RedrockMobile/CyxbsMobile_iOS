@@ -7,6 +7,12 @@
 //
 #import <PhotosUI/PhotosUI.h>
 
+
+//tool
+#import "UIImage+Helper.h"
+#import "NSDate+Timestamp.h"
+
+//VC
 #import "DynamicDetailAddPhotoController.h"
 
 //Views
@@ -119,52 +125,40 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)releaseDynamic{
-    //设置参数
+//    //设置参数
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:self.releaseView.releaseTextView.text forKey:@"content"];
     [param setObject:@(self.post_id) forKey:@"post_id"];
     if (self.isFirstCommentLevel != YES) {
         [param setObject:@(self.reply_id) forKey:@"reply_id"];
     }
-    
-    if (self.imagesAry != 0) {
-//        NSMutableArray *imageNameAry = [NSMutableArray array];
-        for (int i = 0; i < self.imagesAry.count; i++) {
-//            [imageNameAry addObject:[NSString stringWithFormat:@"photo%d",i+1]];
-            [param setObject:self.imagesAry[i] forKey:[NSString stringWithFormat:@"photo%d",i+1]];
+//
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
+    [client.httpRequestOperationManager POST:@"https://be-prod.redrock.team/magipoke-loop/comment/releaseComment" parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            NSMutableArray *imageNames = [NSMutableArray array];
+        for (int i = 0; i < self.imagesAry.count; i++)  {
+            [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
         }
-        
-//        //如果上传原图，将图片进行无损压缩
-//        if (self.isSumitOriginPhoto == YES) {
-//            [param setObject:@"content-type" forKey:@"image/png"];
-//            for (int i = 0; i < self.imagesAry.count; i++) {
-//                UIImage *image = self.imagesAry[i];
-//                NSData *data = UIImagePNGRepresentation(image);
-//                [param setObject:data forKey:imageNameAry[i]];
-//            }
-//        }else{
-//        //如果不上传原图，将图片进行有损压缩
-//            [param setObject:@"content-type" forKey:@"image/jpeg"];
-//            for (int i = 0; i < self.imagesAry.count; i++) {
-//                UIImage *image = self.imagesAry[i];
-//                NSData *data = UIImageJPEGRepresentation(image, 0.4);
-//                [param setObject:data forKey:imageNameAry[i]];
-//            }
-//        }
-    }
-    
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"上传的参数字典为---------%@",param);
-        if ([responseObject[@"status"] intValue] ==200) {
-            [NewQAHud showHudWith:@"发布评论成功" AddView:self.view];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            for (int i = 0; i < self.imagesAry.count; i++) {
+                UIImage *image = self.imagesAry[i];
+                UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+                NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+                [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/jpeg"];
+            }
+            
+        } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            if ([responseObject[@"status"] intValue] == 200) {
+                [NewQAHud showHudWith:@"评论成功" AddView:self.view];
                 [self.navigationController popViewControllerAnimated:YES];
-            });
-        }
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-    }];
+            }else{
+                [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
+            }
+            
+        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+            [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
+        }];
     
 }
 

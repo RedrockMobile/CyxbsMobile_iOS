@@ -1798,7 +1798,6 @@
 			isa = PBXGroup;
 			children = (
 				B82CA6552631580C00786685 /* DynamicDetail */,
-				B82CA69526315A5D00786685 /* DynamicDetail.xcassets */,
 				1880EA5626088EE6004E845C /* MGDMainView */,
 				7F101AB5260613E800F2034C /* YYZTopicGroup */,
 				1817F0382594D5C500FE1304 /* NewQA.xcassets */,
@@ -3895,6 +3894,7 @@
 		B82CA6552631580C00786685 /* DynamicDetail */ = {
 			isa = PBXGroup;
 			children = (
+				B82CA69526315A5D00786685 /* DynamicDetail.xcassets */,
 				B82CA6582631584400786685 /* Models */,
 				B82CA6572631583700786685 /* Views */,
 				B82CA6562631582900786685 /* Controllers */,
@@ -3905,10 +3905,10 @@
 		B82CA6562631582900786685 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B82CA68E26315A4200786685 /* DynamicDetailAddPhotoController.h */,
-				B82CA68F26315A4200786685 /* DynamicDetailAddPhotoController.m */,
 				B82CA68C26315A4100786685 /* DynamicDetailMainVC.h */,
 				B82CA68D26315A4200786685 /* DynamicDetailMainVC.m */,
+				B82CA68E26315A4200786685 /* DynamicDetailAddPhotoController.h */,
+				B82CA68F26315A4200786685 /* DynamicDetailAddPhotoController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3920,12 +3920,12 @@
 				B82CA671263159B900786685 /* SHPopMenu */,
 				B82CA669263159B900786685 /* UIColor */,
 				B82CA677263159BA00786685 /* DKSKeyBoard */,
-				B82CA675263159BA00786685 /* DynamicDetailComentTableCell.h */,
-				B82CA666263159B800786685 /* DynamicDetailComentTableCell.m */,
 				B82CA665263159B800786685 /* DynamicDetailTopBarView.h */,
 				B82CA667263159B800786685 /* DynamicDetailTopBarView.m */,
 				B82CA66F263159B900786685 /* DynamicSpecificCell.h */,
 				B82CA676263159BA00786685 /* DynamicSpecificCell.m */,
+				B82CA675263159BA00786685 /* DynamicDetailComentTableCell.h */,
+				B82CA666263159B800786685 /* DynamicDetailComentTableCell.m */,
 				B82CA670263159B900786685 /* GYYImageChooseCollectionViewCell.h */,
 				B82CA668263159B900786685 /* GYYImageChooseCollectionViewCell.m */,
 			);

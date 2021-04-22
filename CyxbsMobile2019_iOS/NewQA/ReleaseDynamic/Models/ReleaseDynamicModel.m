@@ -7,10 +7,11 @@
 //
 
 #import "ReleaseDynamicModel.h"
-
+//tool
+#import "UIImage+Helper.h"
+#import "NSDate+Timestamp.h"
 @implementation ReleaseDynamicModel
 - (void)sumitDynamicDataWithContent:(NSString *)content TopicID:(NSString *)topic_id ImageAry:(NSArray *)imageAry IsOriginPhoto:(BOOL)isOriginPhoto Sucess:(void (^)(void))sucess Failure:(void (^)(void))failure{
-    HttpClient *client = [HttpClient defaultClient];
    
     //获取学号
     UserItem *item = [[UserItem alloc] init];
@@ -22,37 +23,33 @@
     [param setObject:userid forKey:@"stuNum"];
     [param setObject:topic_id forKey:@"topic_id"];
     
-    //如果有图片，将图片加入到参数字典中
-    if (imageAry != 0) {
-        NSMutableArray *imageNameAry = [NSMutableArray array];
-        for (int i = 0; i < imageAry.count; i++) {
-            [imageNameAry addObject:[NSString stringWithFormat:@"photo%d",i+1]];
-        }
-        //如果上传原图，将图片进行无损压缩
-        if (isOriginPhoto == YES) {
-            for (int i = 0; i < imageAry.count; i++) {
-                UIImage *image = imageAry[i];
-                NSData *data = UIImagePNGRepresentation(image);
-                [param setObject:data forKey:imageNameAry[i]];
-            }
-        }else{
-        //如果不上传原图，将图片进行有损压缩
-            for (int i = 0; i < imageAry.count; i++) {
-                UIImage *image = imageAry[i];
-                NSData *data = UIImageJPEGRepresentation(image, 0.4);
-                [param setObject:data forKey:imageNameAry[i]];
-            }
-        }
-    }
     
-    //网络请求
-    [client requestWithPath:NEWQA_RELEASEDYNAMIC_RELEASE_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"发布动态成功----%@",responseObject);
-        sucess();
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"发布动态失败----%@",error);
-            failure();
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
+    [client.httpRequestOperationManager POST:NEWQA_RELEASEDYNAMIC_RELEASE_API parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            NSMutableArray *imageNames = [NSMutableArray array];
+        for (int i = 0; i < imageAry.count; i++)  {
+            [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
+        }
+            for (int i = 0; i < imageAry.count; i++) {
+                UIImage *image = imageAry[i];
+                UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+                NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+                [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/jpeg"];
+            }
+        } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                sucess();
+        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+            NSLog(@"-----%@",error);
+            if (error.code == -1001) {
+                sucess();
+            }else{
+                failure();
+            }
         }];
+    
+    
 }
 
 - (void)getAllTopicsSucess:(void (^)(NSArray * _Nonnull))sucess{
@@ -68,7 +65,7 @@
         NSArray *ary = muteAry;
         sucess(ary);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"获取圈子广场失败-----%@",error);
+//            NSLog(@"获取圈子广场失败-----%@",error);
         }];
 }
 @end

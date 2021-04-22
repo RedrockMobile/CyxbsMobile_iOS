@@ -131,8 +131,12 @@
         [self.contentView addSubview:self.imageCollectionView];
         [self.imageCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.detailLabel.mas_bottom).mas_offset(Pading * 13.5/16);
-            make.left.mas_equalTo(self.detailLabel);
-            make.width.mas_equalTo(SCREEN_WIDTH - Pading * 2);
+            if (self.dataModel.pics.count > 2) {
+                make.left.equalTo(self.contentView).offset(Pading);
+            }else{
+                make.left.equalTo(self.detailLabel);
+            }
+            make.width.mas_equalTo(MAIN_SCREEN_W - 2*Pading);
             if(self.imageDataArray.count == 0){
                 make.height.mas_equalTo(1);
             }else{
