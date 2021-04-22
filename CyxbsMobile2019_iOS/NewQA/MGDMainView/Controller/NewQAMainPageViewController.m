@@ -26,7 +26,7 @@
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
 #import "YYZTopicGroupVC.h"
-#import "GYYDynamicDetailViewController.h"
+
 #import "YYZTopicDetailVC.h"
 #import "NewCountModel.h"
 
@@ -643,13 +643,7 @@
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-    _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
-    dynamicDetailVC.post_id = [_item.post_id intValue];
-    dynamicDetailVC.item = _item;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+   
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -709,12 +703,7 @@
 
 ///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-    _item = [[PostItem alloc] initWithDic:self.tableArray[cell.commendBtn.tag]];
-    dynamicDetailVC.post_id = [_item.post_id intValue];
-    dynamicDetailVC.item = _item;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+   
 }
 
 ///分享帖子
@@ -1007,7 +996,7 @@
 - (NSString *)currentTimeStr{
     NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval time=[date timeIntervalSince1970];
-    NSString *timeString = [NSString stringWithFormat:@"%@", time];
+    NSString *timeString = [NSString stringWithFormat:@"%f", time];
     return timeString;
 }
 

@@ -11,7 +11,6 @@
 //controller类
 #import "SZHSearchEndCv.h"
 #import "SearchEndNoResultCV.h" //搜索无结果vc
-#import "GYYDynamicDetailViewController.h"//动态详情
 
 //模型类
 #import "SZHSearchDataModel.h"  //搜索模型
@@ -21,6 +20,7 @@
 #import "ShieldModel.h"                     //屏蔽数据的model
 #import "ReportModel.h"                     //举报的数据model
 #import "FollowGroupModel.h"                //关注圈子的数据model
+
 //视图类
 #import "SearchBeiginView.h"    //本界面上半部分
 #import "RecommendedTableView.h"//下半部分相关动态表格
@@ -265,7 +265,7 @@
 //    [self.view addSubview:self.backViewWithGesture];
 }
 - (void)showBackViewWithGesture {
-    [[UIApplication sharedApplication].keyWindow addSubview:_backViewWithGesture];
+    [self.view.window addSubview:_backViewWithGesture];
 }
 - (void)dismissBackViewWithGestureAnd:(UIView *)view {
     [view removeFromSuperview];
@@ -359,7 +359,7 @@
     [self.searchEndTopView.hotSearchView updateBtns];
 }
 
-//MARK:相关动态table的数据源和代理方法
+//MARK:==============================相关动态table的数据源和代理方法=====================================
 ///数据源
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.tableDataAry.count;
@@ -387,18 +387,13 @@
 }
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-        PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[indexPath.row]];
-    dynamicDetailVC.post_id = [item.post_id intValue];
-    dynamicDetailVC.item = item;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 //自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
 }
 
-//MARK:相关动态cell的代理方法
+//MARK:==============================相关动态cell的代理方法==============================
 ///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
 - (void)ClickedStarBtn:(PostTableViewCell *)cell {
     if (cell.starBtn.selected == YES) {
@@ -430,12 +425,7 @@
 
 ///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell {
-    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[cell.commendBtn.tag]];
-    dynamicDetailVC.post_id = [item.post_id intValue];
-    dynamicDetailVC.item = item;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+   
 }
 
 ///分享帖子
@@ -443,10 +433,10 @@
     [self showBackViewWithGesture];
     _shareView = [[ShareView alloc] init];
     _shareView.delegate = self;
-    [[UIApplication sharedApplication].keyWindow addSubview:_shareView];
+    [self.view.window addSubview:_shareView];
     [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
-        make.left.right.bottom.mas_equalTo([UIApplication sharedApplication].keyWindow);
+        make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 0.6897);
+        make.left.right.bottom.mas_equalTo(self.view.window);
     }];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
@@ -482,7 +472,7 @@
     
 }
 
-//MARK:多功能View代理方法
+//MARK:==============================多功能View代理方法==============================
 ///点击关注按钮
 - (void)ClickedStarGroupBtn:(UIButton *)sender {
     NSDictionary * _itemDic = self.tableDataAry[sender.tag];
@@ -526,16 +516,15 @@
     PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
     _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
     _reportView.delegate = self;
-    [[UIApplication sharedApplication].keyWindow addSubview:_reportView];
-    [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
-        make.left.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_left).mas_offset(SCREEN_WIDTH * 0.1587);
-        make.right.mas_equalTo([UIApplication sharedApplication].keyWindow.mas_right).mas_offset(-SCREEN_WIDTH * 0.1587);
-        make.height.mas_equalTo([UIApplication sharedApplication].keyWindow.width * 0.6827 * 329/256);
-    }];
+    _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+    [self.view.window addSubview:_reportView];
+   
 }
-
-//MARK:举报页面代理方法
+/// 点击标签，进入对应的圈子
+- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell{
+   
+}
+//MARK:==============================举报页面代理方法==============================
 ///举报页面点击确定按钮
 - (void)ClickedSureBtn {
     [_reportView removeFromSuperview];
@@ -545,15 +534,6 @@
     [model setBlock:^(id  _Nonnull info) {
         [self showReportSuccessful];
     }];
-//    [self dismissReportBackView];
-//    [_reportView removeFromSuperview];
-//    [self.backViewWithGesture removeFromSuperview];
-//    [self showReportSuccessful];
-//    ReportModel *model = [[ReportModel alloc] init];
-//    [model ReportWithPostID:_reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:_reportView.textView.text];
-//    [model setBlock:^(id  _Nonnull info) {
-//        [self showReportSuccessful];
-//    }];
 }
 ///举报页面点击取消按钮
 - (void)ClickedCancelBtn {
@@ -561,7 +541,7 @@
     [self.backViewWithGesture removeFromSuperview];
 }
 
-//MARK:分享view的代理方法
+//MARK:==============================分享view的代理方法==============================
 ///点击取消
 - (void)ClickedCancel {
     [self.shareView removeFromSuperview];
@@ -623,7 +603,7 @@
     [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
 }
 
-#pragma mark- 添加界面控件
+#pragma mark- ==============================添加界面控件==============================
 /// 添加上半部分视图
 - (void)addSearchEndTopView{
     self.searchEndTopView = [[SearchBeiginView alloc] initWithString:@"邮问知识库"];

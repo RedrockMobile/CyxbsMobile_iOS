@@ -11,13 +11,13 @@
 #import "RemarkModel.h"
 
 //GYY的动态详情页控制器
-#import "GYYDynamicDetailViewController.h"
+//#import "GYYDynamicDetailViewController.h"
 
 @interface RemarkViewController ()<UITableViewDelegate, UITableViewDataSource, MainPage2RequestModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)RemarkModel *remarkModel;
 @property(nonatomic,strong)NothingStateView *nothingView;
-@property(nonatomic,weak)GYYDynamicDetailViewController *vc;
+//@property(nonatomic,weak)GYYDynamicDetailViewController *vc;
 @end
 
 @implementation RemarkViewController
@@ -107,15 +107,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-    
-    NSDictionary *dict = self.remarkModel.dataArr[indexPath.row];
-    NSString *post_id = [NSString stringWithFormat:@"%@",dict[@"comment"][@"post_id"]];
-    dynamicDetailVC.post_id = post_id.intValue;
-    
-    self.vc = dynamicDetailVC;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+//    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+//
+//    NSDictionary *dict = self.remarkModel.dataArr[indexPath.row];
+//    NSString *post_id = [NSString stringWithFormat:@"%@",dict[@"comment"][@"post_id"]];
+//    dynamicDetailVC.post_id = post_id.intValue;
+//
+//    self.vc = dynamicDetailVC;
+//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 //MARK: - 懒加载
 - (NothingStateView *)nothingView {
