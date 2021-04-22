@@ -26,7 +26,7 @@
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
 #import "YYZTopicGroupVC.h"
-
+#import "DynamicDetailMainVC.h" //动态详情页
 #import "YYZTopicDetailVC.h"
 #import "NewCountModel.h"
 
@@ -642,8 +642,12 @@
 
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-   
+    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+    _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+    dynamicDetailVC.post_id = _item.post_id;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -703,7 +707,11 @@
 
 ///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-   
+    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+    _item = [[PostItem alloc] initWithDic:self.tableArray[cell.commendBtn.tag]];
+    dynamicDetailVC.post_id = _item.post_id;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 ///分享帖子
@@ -824,13 +832,14 @@
     [_popView removeFromSuperview];
     _itemDic = self.tableArray[sender.tag];
     _reportView.postID = _itemDic[@"post_id"];
+    _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
     [self.view.window addSubview:_reportView];
-    [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
-        make.left.mas_equalTo(self.view.window.mas_left).mas_offset(SCREEN_WIDTH * 0.1587);
-        make.right.mas_equalTo(self.view.window.mas_right).mas_offset(-SCREEN_WIDTH * 0.1587);
-        make.height.mas_equalTo(self.view.window.width * 0.6827 * 329/256);
-    }];
+//    [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 0.2309);
+//        make.left.mas_equalTo(self.view.window.mas_left).mas_offset(SCREEN_WIDTH * 0.1587);
+//        make.right.mas_equalTo(self.view.window.mas_right).mas_offset(-SCREEN_WIDTH * 0.1587);
+//        make.height.mas_equalTo(self.view.window.width * 0.6827 * 329/256);
+//    }];
 }
 
 #pragma mark -举报页面的代理方法

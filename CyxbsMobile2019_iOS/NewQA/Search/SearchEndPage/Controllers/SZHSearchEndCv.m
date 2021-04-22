@@ -11,6 +11,8 @@
 //controller类
 #import "SZHSearchEndCv.h"
 #import "SearchEndNoResultCV.h" //搜索无结果vc
+#import "DynamicDetailMainVC.h" //动态详情页的vc
+#import "YYZTopicDetailVC.h"    //圈子详情页
 
 //模型类
 #import "SZHSearchDataModel.h"  //搜索模型
@@ -91,9 +93,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
-    //点属性设置不行，必须用set
-    [self.tabBarController.tabBar setHidden:NO];
 }
+
 #pragma mark- event response
 /// 点击搜索按钮之后去进行的逻辑操作
 /// @param searchString 搜索的文本
@@ -387,6 +388,11 @@
 }
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[indexPath.row]];
+    dynamicDetailVC.post_id = item.post_id;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 //自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -422,12 +428,13 @@
     StarPostModel *model = [[StarPostModel alloc] init];
     [model starPostWithPostID:cell.item.post_id.numberValue];
 }
-
 ///跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell {
-   
+    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+    dynamicDetailVC.post_id = cell.item.post_id;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
-
 ///分享帖子
 - (void)ClickedShareBtn:(PostTableViewCell *)cell {
     [self showBackViewWithGesture];
@@ -445,7 +452,6 @@
     NSString *shareURL = [NSString stringWithFormat:@"%@%@",@"cyxbs://redrock.team/answer_list/qa/entry?question_id=",cell.item.post_id];
     pasteboard.string = shareURL;
 }
-
 /**
  举报和屏蔽的多能按钮
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
@@ -470,6 +476,12 @@
     
     [self.view.window addSubview:_popView];
     
+}
+/// 点击标签，进入到圈子详情页
+- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell{
+    YYZTopicDetailVC *vc = [[YYZTopicDetailVC alloc] init];
+    vc.topicIdString = cell.item.topic;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //MARK:==============================多功能View代理方法==============================
@@ -520,10 +532,7 @@
     [self.view.window addSubview:_reportView];
    
 }
-/// 点击标签，进入对应的圈子
-- (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell{
-   
-}
+
 //MARK:==============================举报页面代理方法==============================
 ///举报页面点击确定按钮
 - (void)ClickedSureBtn {

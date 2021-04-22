@@ -28,7 +28,6 @@
 #import "SearchBeginVC.h"   //搜索初始界面
 #import "SZHReleaseDynamic.h" // 发布动态界面
 #import "YYZTopicGroupVC.h"
-#import "GYYDynamicDetailViewController.h"
 @implementation YYZTopicView
 
 
