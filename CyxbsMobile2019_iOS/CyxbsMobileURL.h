@@ -322,10 +322,14 @@
 
 // 关注圈子
 #define NEW_QA_STARGROUP [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/followTopicGround"]
+/**
+ 圈子广场
+ 圈子详情页
+ */
 
 //圈子页帖子内容
 #define NEW_QA_TOPICCONTENT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getLoopPage"]
-
+#define NEW_QA_TOPICGROUP [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/getTopicGround"]
 /**
  动态详情页
  */

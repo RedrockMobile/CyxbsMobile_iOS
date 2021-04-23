@@ -62,6 +62,8 @@
 
 @property (nonatomic, strong) NewCountModel *countModel;
 
+@property(nonatomic,strong ) NSArray *topicArray;  //所有圈子信息
+
 @end
 
 @implementation NewQAMainPageViewController
@@ -126,13 +128,12 @@
             });
         }
     [[UserItemTool defaultItem] setFirstLogin:NO];
-    
+    [self getTopicID];
 }
 
 - (void)noDataInList {
     UIView *noListBackView = [[UIView alloc] init];
     noListBackView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-    
     self.tableView.separatorStyle = UITableViewCellAccessoryNone;
     
     noListBackView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-(_TopViewHeight));
@@ -735,11 +736,27 @@
     _itemDic = self.tableArray[cell.groupLabel.tag];
     NSString *groupName = _itemDic[@"topic"];
     YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
+    detailVC.topicIdString = groupName;
+    int topicID;
+    for(int i=0;i<self.topicArray.count;i++){
+        NSDictionary *dic = self.topicArray[i];
+        if([dic[@"topic_name"]isEqualToString:groupName])
+            topicID = i+1;
+    }
+    detailVC.topicID = topicID;
     detailVC.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
+- (void)getTopicID {
+    [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSArray *array = responseObject[@"data"];
+        self.topicArray = array;
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
+        }];
+}
 /**
  举报和屏蔽的多能按钮
  此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版

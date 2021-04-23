@@ -412,6 +412,7 @@
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
         if([dic[@"topic_name"]isEqualToString:self.topicIdString]){
+            //self.topicID = i+1;
             cell.topic_id.text = self.array[i][@"topic_name"];
             cell.topic_number.text = [NSString stringWithFormat:@"%@个成员",self.array[i][@"follow_count"]];
             cell.topic_introduce.text = self.array[i][@"introduction"];
