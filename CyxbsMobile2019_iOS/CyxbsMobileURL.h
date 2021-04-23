@@ -326,4 +326,21 @@
 //圈子页帖子内容
 #define NEW_QA_TOPICCONTENT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getLoopPage"]
 
+/**
+ 动态详情页
+ */
+//根据帖子id获取帖子的具体信息
+#define NEW_QA_DynamicDetail [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getPostInfo"]
+
+//根据id获取评论/回复
+#define NEW_QA_Comment_Reply [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/getallcomment"]
+
+/*
+ 删除帖子或评论（POST）     说明：
+ 参数：
+ id                 动态的id
+ model              0为动态，1为评论
+ */
+#define NEW_QA_Dynamic_OR_Comment_Deleted [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/deleteId"]
+
 #endif /* CyxbsMobileURL_h */

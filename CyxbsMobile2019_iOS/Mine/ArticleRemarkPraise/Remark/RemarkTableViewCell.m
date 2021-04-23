@@ -8,8 +8,8 @@
 
 #import "RemarkTableViewCell.h"
 
-//GYY的发送评论页面
-#import "GYYSendCommentImageChooseViewController.h"
+//动态评论内容
+#import "DynamicDetailAddPhotoController.h"
 
 @interface RemarkTableViewCell()
 
@@ -180,7 +180,7 @@
 
 /// 点击评论按钮后调用
 - (void)remarkBtnClicked {
-    GYYSendCommentImageChooseViewController *commentVC = [GYYSendCommentImageChooseViewController new];
+    DynamicDetailAddPhotoController *commentVC = [DynamicDetailAddPhotoController new];
     commentVC.post_id = self.post_id.intValue;
     [self.viewController.navigationController pushViewController:commentVC animated:YES];
 }

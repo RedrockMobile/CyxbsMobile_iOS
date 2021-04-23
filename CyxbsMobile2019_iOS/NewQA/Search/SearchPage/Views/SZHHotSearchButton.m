@@ -7,6 +7,7 @@
 //
 
 #import "SZHHotSearchButton.h"
+#import "UIControl+MGD.h"
 @interface SZHHotSearchButton()<UITraitEnvironment>
 
 @end
@@ -14,6 +15,8 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
+        self.ignoreEvent = NO;
+        self.canTapEventInterval = 0.5;
         self.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:13];
         
         //设置title颜色

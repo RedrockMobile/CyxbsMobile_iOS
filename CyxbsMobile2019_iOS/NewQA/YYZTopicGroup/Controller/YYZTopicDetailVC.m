@@ -10,7 +10,7 @@
 #import "YYZTopicCell.h"
 #import "PostTableViewCell.h"
 #import "PostArchiveTool.h"
-#import "GYYDynamicDetailViewController.h"
+#import "DynamicDetailMainVC.h"
 #import "ClassTabBar.h"
 #import "StarPostModel.h"
 #import "YYZTopicModel.h"
@@ -291,10 +291,9 @@
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
     _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
-    dynamicDetailVC.post_id = [_item.post_id intValue];
-    dynamicDetailVC.item = _item;
+    dynamicDetailVC.post_id = _item.post_id;
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
@@ -357,10 +356,10 @@
 
 ///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
+
+    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
     _item = [[PostItem alloc] initWithDic:self.leftTableArray[cell.commendBtn.tag]];
-    dynamicDetailVC.post_id = [_item.post_id intValue];
-    dynamicDetailVC.item = _item;
+    dynamicDetailVC.post_id = _item.post_id;
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
