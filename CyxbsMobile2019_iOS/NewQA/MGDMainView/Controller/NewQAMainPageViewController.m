@@ -129,6 +129,7 @@
         }
     [[UserItemTool defaultItem] setFirstLogin:NO];
     [self getTopicID];
+    
 }
 
 - (void)noDataInList {
