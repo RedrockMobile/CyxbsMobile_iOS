@@ -40,7 +40,7 @@
         NSLog(@"圈子数据请求成功");
         [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"圈子广场网络请求失败" AddView:self.view];
+            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
         }
      ];
 }
@@ -60,6 +60,8 @@
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     self.tableView = tableView;
     self.tableView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+    self.tableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    self.tableView.separatorInset = UIEdgeInsetsMake(0,0,0,0);
     tableView.delegate = self;
     tableView.dataSource = self;
     [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

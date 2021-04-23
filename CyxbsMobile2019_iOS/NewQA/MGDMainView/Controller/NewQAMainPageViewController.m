@@ -737,7 +737,7 @@
 - (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
     _itemDic = self.tableArray[cell.groupLabel.tag];
     NSString *groupName = _itemDic[@"topic"];
-    YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] initWithId:groupName];
+    YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
     detailVC.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:detailVC animated:YES];
@@ -985,7 +985,7 @@
 
 
 #pragma mark -发布动态和搜索的跳转
-///点击了发布按钮，跳转到发布动态的页面
+///点击了发布按钮，跳转到发布动态的页面8i7k
 - (void)clickedPublishBtn {
     SZHReleaseDynamic *vc = [[SZHReleaseDynamic alloc] init];
     vc.hidesBottomBarWhenPushed = YES;

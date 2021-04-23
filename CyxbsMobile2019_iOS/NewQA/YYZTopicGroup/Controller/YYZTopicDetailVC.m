@@ -27,10 +27,13 @@
 
 @property(nonatomic,strong) UIButton *leftButton;
 @property(nonatomic,strong) UIButton *rightButton;
-//帖子数据
+//帖子数据,left为"最新",right为"热门"
 @property (nonatomic, assign) NSInteger leftPage;
 @property (nonatomic, strong) NSMutableArray *leftTableArray;
-@property (nonatomic, strong) YYZTopicModel *leftpPostmodel;
+@property (nonatomic, strong) YYZTopicModel *leftPostmodel;
+@property (nonatomic, assign) NSInteger rightPage;
+@property (nonatomic, strong) NSMutableArray *rightTableArray;
+@property (nonatomic, strong) YYZTopicModel *rightPostmodel;
 //获取cell里item数据的NSDictionary
 @property (nonatomic, strong) NSDictionary *itemDic;
 //列表顶部底部刷新控件
@@ -46,13 +49,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.leftPage = 1;//初始化当前页数
+    self.rightPage = 1;
     //网络请求
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
         self.array = array;
         [self setCell];//设置cell;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"圈子详情页请求失败" AddView:self.view];
+            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
         }];
     //设置导航栏
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
@@ -73,7 +77,9 @@
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
     
     self.leftTableArray = [[NSMutableArray alloc]init];
-    self.leftpPostmodel = [[YYZTopicModel alloc]init];
+    self.leftPostmodel = [[YYZTopicModel alloc]init];
+    self.rightTableArray = [[NSMutableArray alloc]init];
+    self.rightPostmodel = [[YYZTopicModel alloc]init];
     
     [self setScroll];
     [self setMiddleLable];
@@ -106,46 +112,38 @@
     [self.backgroundScrollView addSubview:topicScrollView];
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    //NSLog(@"11111111111");
-    if([scrollView isEqual:self.topicScrollView]){
-       // NSLog(@"222222222222");
-        // 得到每页宽度
-        CGFloat pageWidth = scrollView.frame.size.width;
-        // 根据当前的x坐标和页宽度计算出当前页数
-        int currentPage = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        NSLog(@"%d",currentPage);
-        if(currentPage == 1){
-            self.leftButton.highlighted = YES;
-            self.rightButton.highlighted = NO;
-        }
-        else{
-            self.leftButton.highlighted = NO;
-            self.rightButton.highlighted = YES;
-        }
-    }
-}
+
 #pragma mark- 帖子列表的网络请求
+//下拉刷新
 - (void)loadData{
+//    CGFloat pageWidth = _topicScrollView.frame.size.width;
+//    int page = floor((_topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    //NSLog(@"Image: %d",page);
     self.leftPage += 1;
-    [self.leftpPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"hot"];
+    [self.leftPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"latest"];
+    
+    self.rightPage += 1;
+    [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
 }
 ///上拉刷新
 - (void)refreshData{
     [self.leftTableArray removeAllObjects];
     self.leftPage = 1;
-    [self.leftpPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"hot"];
+    [self.leftPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"latest"];
+    
+    [self.rightTableArray removeAllObjects];
+    self.rightPage = 1;
+    [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
 }
 
 ///成功请求数据
 - (void)TopicLoadSuccess {
     
     if (self.leftPage == 1) {
-        self.leftTableArray = self.leftpPostmodel.postArray;
+        self.leftTableArray = self.leftPostmodel.postArray;
     }else {
-        [self.leftTableArray addObjectsFromArray:self.leftpPostmodel.postArray];
+        [self.leftTableArray addObjectsFromArray:self.leftPostmodel.postArray];
     }
-    
     //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
     if (self.leftPage == 1) {
         [self.topicLeftTableView reloadData];
@@ -154,14 +152,29 @@
         [self.topicLeftTableView reloadData];
         [self.topicLeftTableView.mj_footer endRefreshing];
     }
-   // [self setBackTableView];
-    NSLog(@"成功请求列表数据");
+    
+    if (self.rightPage == 1) {
+        self.rightTableArray = self.rightPostmodel.postArray;
+    }else {
+        [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
+    }
+    //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+    if (self.rightPage == 1) {
+        [self.topicRightTableView reloadData];
+        [self.topicRightTableView.mj_header endRefreshing];
+    }else{
+        [self.topicRightTableView reloadData];
+        [self.topicRightTableView.mj_footer endRefreshing];
+    }
 }
 
 ///请求失败
 - (void)TopicLoadError {
     [self.topicLeftTableView.mj_header endRefreshing];
     [self.topicLeftTableView.mj_footer endRefreshing];
+    
+    [self.topicRightTableView.mj_header endRefreshing];
+    [self.topicRightTableView.mj_footer endRefreshing];
     [NewQAHud showHudWith:@"网络异常" AddView:self.view];
 }
 
@@ -182,17 +195,20 @@
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
+    topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
-    
+  
     UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
+    topicRightTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     [self.topicScrollView addSubview:topicLeftTableView];
     [self.topicScrollView addSubview:topicRightTableView];
     [self setUpRefresh];
+
 }
 
 - (NSInteger)numberOfSectionsInTableView: (UITableView *)tableView{
@@ -209,28 +225,56 @@
 
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //创建单元格（用复用池）
-    ///给每一个cell的identifier设置为唯一的
-    NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
-    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if(cell == nil) {
-        _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
-        //这里
-        cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.delegate = self;
-        cell.item = _item;
-        cell.commendBtn.tag = indexPath.row;
-        cell.shareBtn.tag = indexPath.row;
-        cell.starBtn.tag = indexPath.row;
-        cell.tag = indexPath.row;
-        if (cell.tag == 0) {
-            cell.layer.cornerRadius = 10;
+    
+    if ([tableView isEqual:self.topicLeftTableView]){
+        [self.topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        //创建单元格（用复用池）,给每一个cell的identifier设置为唯一的
+        NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
+        PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if(cell == nil) {
+            _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
+            //这里
+            cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.delegate = self;
+            cell.item = _item;
+            cell.commendBtn.tag = indexPath.row;
+            cell.shareBtn.tag = indexPath.row;
+            cell.starBtn.tag = indexPath.row;
+            cell.tag = indexPath.row;
+            if (cell.tag == 0) {
+                cell.layer.cornerRadius = 10;
+            }
         }
+        [cell layoutSubviews];
+        [cell layoutIfNeeded];
+        return cell;
     }
-    [cell layoutSubviews];
-    [cell layoutIfNeeded];
-    return cell;
+    else if ([tableView isEqual:self.topicRightTableView]){
+        [self.topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+
+        NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
+        PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if(cell == nil) {
+            _item = [[PostItem alloc] initWithDic:self.rightTableArray[indexPath.row]];
+            //这里
+            cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.delegate = self;
+            cell.item = _item;
+            cell.commendBtn.tag = indexPath.row;
+            cell.shareBtn.tag = indexPath.row;
+            cell.starBtn.tag = indexPath.row;
+            cell.tag = indexPath.row;
+            if (cell.tag == 0) {
+                cell.layer.cornerRadius = 10;
+            }
+        }
+        [cell layoutSubviews];
+        [cell layoutIfNeeded];
+        return cell;
+    }
+    return nil;
 }
+
 # pragma mark 初始化功能弹出页面
 - (void)funcPopViewinit {
     // 创建分享页面
@@ -400,19 +444,35 @@
     self.rightButton = rightButton;
     [leftButton setTitle:@"最新" forState:UIControlStateNormal];
     [rightButton setTitle:@"热门" forState:UIControlStateNormal];
-    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateHighlighted];
-    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateHighlighted];
-    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor3"] forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor3"] forState:UIControlStateNormal];
+    [leftButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
+    [rightButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
+    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
     leftButton.frame = CGRectMake(15, 133, 40, 45);
     rightButton.frame = CGRectMake(70, 133, 40, 45);
-    leftButton.highlighted = YES;
+    //leftButton.highlighted = YES;//默认显示最新
+    [leftButton addTarget:self action:@selector(leftBtnJump) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(rightBtnJump) forControlEvents:UIControlEventTouchUpInside];
     [self.backgroundScrollView addSubview:middleLable];
     [self.backgroundScrollView addSubview:leftButton];
     [self.backgroundScrollView addSubview:rightButton];
 
 }
 
+- (void)leftBtnJump {
+    [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+    [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+    CGFloat imageW = self.topicScrollView.frame.size.width;
+    CGPoint position = CGPointMake(0*imageW, 0);
+    [self.topicScrollView setContentOffset:position animated:YES];
+}
+- (void)rightBtnJump {
+    [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+    [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+    CGFloat imageW = self.topicScrollView.frame.size.width;
+    CGPoint position = CGPointMake(1*imageW, 0);
+    [self.topicScrollView setContentOffset:position animated:YES];
+}
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
