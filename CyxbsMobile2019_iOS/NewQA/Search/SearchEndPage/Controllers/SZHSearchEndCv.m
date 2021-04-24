@@ -479,9 +479,9 @@
 }
 /// 点击标签，进入到圈子详情页
 - (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell{
-    YYZTopicDetailVC *vc = [[YYZTopicDetailVC alloc] init];
-    vc.topicIdString = cell.item.topic;
-    [self.navigationController pushViewController:vc animated:YES];
+//    YYZTopicDetailVC *vc = [[YYZTopicDetailVC alloc] init];
+//    vc.topicIdString = cell.item.topic;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //MARK:==============================多功能View代理方法==============================

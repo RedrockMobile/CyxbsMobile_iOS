@@ -336,7 +336,7 @@
         [_groupBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08 * fontSizeScaleRate_SE]];
         [_groupBtn setTitleColor:[UIColor colorNamed:@"CellGroupColor"] forState:UIControlStateNormal];
         _groupBtn.backgroundColor = [UIColor colorNamed:@"CELLTOPICBACKCOLOR"];
-        [_groupBtn addTarget:self.delegate action:@selector(clickedGroupTopicBtn:) forControlEvents:UIControlEventTouchUpInside];
+//        [_groupBtn addTarget:self.delegate action:@selector(clickedGroupTopicBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _groupBtn;
 }

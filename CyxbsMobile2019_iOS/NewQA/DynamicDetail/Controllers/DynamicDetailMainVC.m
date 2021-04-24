@@ -174,16 +174,15 @@
     DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
     
     //动态信息
-    DynamicSpecificCell *cell = [[DynamicSpecificCell alloc] init];     //动态信息的cell
-    DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];  //动态信息的数据model
+    //动态信息的数据model
+    DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
         //网络请求
     [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
         //数据请求成功先进行赋值
         [model setValuesForKeysWithDictionary:dic];
         //获取该cell的缓存高度
         [model getModelHeight];
-        cell.dynamicDataModel = model;
-        self.dynamicSpecifiCell = cell;
+        self.dynamicSpecifiCell.dynamicDataModel = model;
         self.dynamicDataModel = model;
         self.isGetDynamicDataFailure = NO;
         [self buildFrame];
@@ -267,8 +266,7 @@
     [self.backViewWithGesture removeFromSuperview];
     [NewQAHud showHudWith:@"  已复制链接，可以去分享给小伙伴了～  " AddView:self.view];
 }
-
-//删除评论
+///删除评论
 - (void)deleteAction:(int)comment_id{
     DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         DynamicDetailRequestDataModel *model = [[DynamicDetailRequestDataModel alloc] init];
@@ -283,6 +281,13 @@
     tipView.titleLabel.text = @"确定删除此条评论？";
     [self.view addSubview:tipView];
     
+}
+/// 收回键盘
+- (void)dismissBottomKeyBoard{
+//    [self.view endEditing:YES];
+    [self.inputView.textView resignFirstResponder];
+    [self.view removeAllSubviews];
+    [self buildFrame];
 }
 #pragma mark- Delegate
 
@@ -341,13 +346,6 @@
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     NSString *shareURL = [NSString stringWithFormat:@"redrock.zscy.youwen.share://token=%@&id=%@",[UserDefaultTool getToken],self.post_id];
     pasteboard.string = shareURL;
-}
-///点击标签，跳转到对应的圈子界面
-- (void)clickedGroupTopicBtn:(UIButton *)btn{
-    YYZTopicDetailVC *vc = [[YYZTopicDetailVC alloc] init];
-    vc.topicIdString = self.dynamicDataModel.topic;
-//    vc.topicID = self.dynamicDataModel.is_follow_topic;
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //MARK:======================================多功能View的代理方法======================================
@@ -602,6 +600,7 @@
    
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.view endEditing:YES];
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
     if (indexPath.row !=0 ) {
         model = model.reply_list[indexPath.row-1];
@@ -669,10 +668,21 @@
 #pragma mark- getter
 - (DynamicDetailTopBarView *)topBarView{
     if (!_topBarView) {
-        _topBarView.delegate = self;
         _topBarView = [[DynamicDetailTopBarView alloc] initWithFrame:CGRectMake(0, STATUSBARHEIGHT, MAIN_SCREEN_W, 45 * HScaleRate_SE)];
+        _topBarView.delegate = self;
+        UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBottomKeyBoard)];
+        [_topBarView addGestureRecognizer:dismiss];
     }
     return _topBarView;
+}
+
+- (DynamicSpecificCell *)dynamicSpecifiCell{
+    if (!_dynamicSpecifiCell) {
+        _dynamicSpecifiCell = [[DynamicSpecificCell alloc] init];
+        UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBottomKeyBoard)];
+        [_dynamicSpecifiCell addGestureRecognizer:dismiss];
+    }
+    return _dynamicSpecifiCell;
 }
 
 - (UITableView *)commentTable{
@@ -749,7 +759,14 @@
 
 - (DKSKeyboardView *)inputView{
     if (!_inputView) {
-        _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-54, SCREEN_WIDTH, 54)];
+        if (IS_IPHONEX) {
+            _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-70, SCREEN_WIDTH, 70)];
+        }else{
+            _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-54, SCREEN_WIDTH, 54)];
+        }
+        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 0)];
+        _inputView.textView.inputAccessoryView = toolbar;
+        
         //设置代理方法
         _inputView.delegate = self;
     }

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)clickedShareBtn:(FunctionBtn *)btn;
 
 ///点击标签，跳转到对应的圈子界面
-- (void)clickedGroupTopicBtn:(UIButton *)btn;
+//- (void)clickedGroupTopicBtn:(UIButton *)btn;
 
 @end
 /**
