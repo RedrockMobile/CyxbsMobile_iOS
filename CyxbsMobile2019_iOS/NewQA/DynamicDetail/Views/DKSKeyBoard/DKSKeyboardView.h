@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DKSTextView.h"
 @protocol DKSKeyboardDelegate <NSObject>
 
 @optional //非必实现的方法
@@ -30,6 +30,7 @@
  *  设置关联的表
  */
 @property (nonatomic, weak) UITableView *associateTableView;
+@property (nonatomic, strong) DKSTextView *textView;
 - (void)startInputAction;
 - (void)clearCurrentInput;
 @end

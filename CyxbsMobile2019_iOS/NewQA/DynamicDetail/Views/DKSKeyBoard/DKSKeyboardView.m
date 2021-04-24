@@ -26,7 +26,6 @@ static float viewHeight = 38.0f; //按钮视图高度
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIButton *emojiBtn;
 @property (nonatomic, strong) UIButton *moreBtn;
-@property (nonatomic, strong) DKSTextView *textView;
 
 @property (nonatomic, assign) CGFloat totalYOffset;
 @property (nonatomic, assign) float keyboardHeight; //键盘高度
@@ -69,6 +68,7 @@ static float viewHeight = 38.0f; //按钮视图高度
     [self.emojiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(viewMargin);
         make.centerY.equalTo(self);
+//        make.top.equalTo(self.mas_top).offset(14*WScaleRate_SE);
         make.size.mas_equalTo(CGSizeMake(20*WScaleRate_SE, 20*WScaleRate_SE));
     }];
     
@@ -76,7 +76,7 @@ static float viewHeight = 38.0f; //按钮视图高度
 //    self.textView.frame = CGRectMake(CGRectGetMaxX(self.emojiBtn.frame) + viewMargin, viewMargin+5, K_Width - CGRectGetMaxX(self.emojiBtn.frame)-84, viewHeight);
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.emojiBtn.mas_right).offset(viewMargin);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.emojiBtn);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W*0.7, viewHeight));
     }];
     
@@ -84,7 +84,7 @@ static float viewHeight = 38.0f; //按钮视图高度
 //    self.moreBtn.frame = CGRectMake(CGRectGetMaxX(self.textView.frame)+viewMargin, self.height-12-28+5, 59, 28);
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.textView.mas_right).offset(viewMargin);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.textView);
         make.size.mas_equalTo(CGSizeMake(59*WScaleRate_SE, 28*HScaleRate_SE));
     }];
 }

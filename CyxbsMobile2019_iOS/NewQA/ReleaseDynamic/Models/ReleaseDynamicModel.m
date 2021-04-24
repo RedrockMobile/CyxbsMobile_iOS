@@ -54,7 +54,7 @@
 
 - (void)getAllTopicsSucess:(void (^)(NSArray * _Nonnull))sucess{
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSLog(@"圈子广场请求成功------%@",responseObject);
         NSArray *dataAry = responseObject[@"data"];
         NSMutableArray *muteAry = [NSMutableArray array];

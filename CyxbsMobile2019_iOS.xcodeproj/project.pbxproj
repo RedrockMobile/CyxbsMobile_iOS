@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18083DE22632E6A200D33DBC /* MGDCurrentTimeStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 18083DE12632E6A200D33DBC /* MGDCurrentTimeStr.m */; };
+		18083DE32632E6A200D33DBC /* MGDCurrentTimeStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 18083DE12632E6A200D33DBC /* MGDCurrentTimeStr.m */; };
 		1817F0402594D5C500FE1304 /* NewQAMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */; };
 		1817F0412594D5C500FE1304 /* PostItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0112594D5C500FE1304 /* PostItem.m */; };
 		1817F0422594D5C500FE1304 /* GroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817F0122594D5C500FE1304 /* GroupItem.m */; };
@@ -651,6 +653,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18083DE02632E6A200D33DBC /* MGDCurrentTimeStr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDCurrentTimeStr.h; sourceTree = "<group>"; };
+		18083DE12632E6A200D33DBC /* MGDCurrentTimeStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDCurrentTimeStr.m; sourceTree = "<group>"; };
 		1817F00E2594D5C500FE1304 /* NewQAMainPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainPageViewController.m; sourceTree = "<group>"; };
 		1817F00F2594D5C500FE1304 /* NewQAMainPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainPageViewController.h; sourceTree = "<group>"; };
 		1817F0112594D5C500FE1304 /* PostItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostItem.m; sourceTree = "<group>"; };
@@ -1887,6 +1891,8 @@
 				1817F03F2594D5C500FE1304 /* NewQAHud.m */,
 				1880921A25FF7DE60097DCE4 /* MGDStatusBarHeight.h */,
 				1880921B25FF7DE60097DCE4 /* MGDStatusBarHeight.m */,
+				18083DE02632E6A200D33DBC /* MGDCurrentTimeStr.h */,
+				18083DE12632E6A200D33DBC /* MGDCurrentTimeStr.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -5289,6 +5295,7 @@
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				18CDF6B5257F91BD006E8E5C /* SCBar.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
+				18083DE22632E6A200D33DBC /* MGDCurrentTimeStr.m in Sources */,
 				1817F0452594D5C500FE1304 /* ReportModel.m in Sources */,
 				18CDF6C5257F91BE006E8E5C /* IdsBindingView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
@@ -5519,6 +5526,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
+				18083DE32632E6A200D33DBC /* MGDCurrentTimeStr.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
