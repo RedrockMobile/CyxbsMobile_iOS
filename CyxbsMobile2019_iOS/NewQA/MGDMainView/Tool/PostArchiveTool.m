@@ -27,10 +27,10 @@
 }
 
 
-+ (GroupModel *)getMyFollowGroup {
++ (NSMutableArray *)getMyFollowGroup {
     NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"group.data"];
-    GroupModel *group = [NSKeyedUnarchiver unarchiveObjectWithFile:perSavedSandPath];
+    NSMutableArray *group = [NSKeyedUnarchiver unarchiveObjectWithFile:perSavedSandPath];
     return group;
 }
 

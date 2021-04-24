@@ -16,6 +16,7 @@
 #import "YYZTopicModel.h"
 #import "PostItem.h"
 #import "MGDRefreshTool.h"
+#import "MGDCurrentTimeStr.h"
     
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
@@ -51,7 +52,7 @@
     self.leftPage = 1;//初始化当前页数
     self.rightPage = 1;
     //网络请求
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
         self.array = array;
         [self setCell];//设置cell;
@@ -86,6 +87,15 @@
     [self setBackTableView];
     [self loadData];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *GroupLastLeaveTime = [NSString stringWithFormat:@"%ld%@",(long)self.topicID,@"LastLeaveTimeStr"];
+    [defaults setValue:[MGDCurrentTimeStr currentTimeStr] forKey:GroupLastLeaveTime];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+}
+
 - (void)setNotification{
     ///帖子列表请求成功
     [[NSNotificationCenter defaultCenter] addObserver:self

@@ -40,7 +40,7 @@
         NSLog(@"圈子数据请求成功");
         [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
+            [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
         }
      ];
 }
@@ -131,8 +131,9 @@
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             //改变button状态
         if([btn.titleLabel.text isEqualToString:@"已关注"]){
-            [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view AndToDo:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+            [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
+                NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
             }];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
@@ -140,8 +141,9 @@
             btn.backgroundColor = RGBColor(93, 94, 247, 1);
         }
         else{
-            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view AndToDo:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+            [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
+                NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
             }];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
@@ -149,12 +151,8 @@
             btn.backgroundColor = RGBColor(171, 189, 215, 1);
         }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
+            [NewQAHud showHudWith:@"  关注失败,请检查网络  " AddView:self.view];
         }];
-}
-
-- (void)topFollowViewLoadSuccess {
-    
 }
 
 @end

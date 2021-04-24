@@ -21,9 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)savePostListWith:(NSMutableArray *)post;
 
-+ (GroupModel *)getMyFollowGroup;
++ (NSMutableArray *)getMyFollowGroup;
 
-+ (void)saveMyFollowGroupWith:(GroupModel *)group;
++ (void)saveMyFollowGroupWith:(NSMutableArray *)group;
 
 + (HotSearchModel *)getHotWords;
 
