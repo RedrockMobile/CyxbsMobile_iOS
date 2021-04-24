@@ -109,16 +109,36 @@
     topicScrollView.backgroundColor = [UIColor whiteColor];
     topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-185);
     topicScrollView.pagingEnabled = YES;
+    //设置kvo监听
+    [topicScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
     [self.backgroundScrollView addSubview:topicScrollView];
 }
 
+#pragma mark KVO方法
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"contentOffset"]){
+        CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
+        int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+        if(currentPage == 0){
+            [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+            [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+        }
+        else if(currentPage == 1){
+            [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+            [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+        }
+    }
+    else
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
 
+- (void)dealloc{
+    [self.topicScrollView removeObserver:self forKeyPath:@"contentOffset"];
+}
 #pragma mark- 帖子列表的网络请求
 //下拉刷新
 - (void)loadData{
-//    CGFloat pageWidth = _topicScrollView.frame.size.width;
-//    int page = floor((_topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    //NSLog(@"Image: %d",page);
     self.leftPage += 1;
     [self.leftPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"latest"];
     
@@ -434,7 +454,7 @@
 
 - (void) setMiddleLable {
     UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 55)];
-    middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
+    middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
     middleLable.layer.cornerRadius = 15;
     middleLable.clipsToBounds = YES;
     
