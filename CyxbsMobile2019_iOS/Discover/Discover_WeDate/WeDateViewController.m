@@ -359,7 +359,7 @@
     [hud hide:YES afterDelay:1];
 }
 - (void)ModelDataLoadSuccess:(id)model{
-    WYCClassBookViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+    WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] init];
 
     //对model赋值
     vc.model = model;

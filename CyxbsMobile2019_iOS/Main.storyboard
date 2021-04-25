@@ -45,22 +45,6 @@
             </objects>
             <point key="canvasLocation" x="-704" y="555"/>
         </scene>
-        <!--Class Book View Controller-->
-        <scene sceneID="mTE-un-9R5">
-            <objects>
-                <viewController storyboardIdentifier="WYCClassBookViewController" id="34x-6y-pIg" customClass="WYCClassBookViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bPD-i5-flf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="a3Z-WI-fjF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="YRA-gF-Sul"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sl7-j5-H3e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1523" y="1284"/>
-        </scene>
         <!--发现-->
         <scene sceneID="Qwi-p1-FIi">
             <objects>
@@ -143,23 +127,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPi-Cn-8gQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="954" y="554"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="wnP-uc-9gz">
-            <objects>
-                <navigationController id="4db-qy-Dko" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="JYe-1G-u0L"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PoG-cs-cuL">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="34x-6y-pIg" kind="relationship" relationship="rootViewController" id="iDp-Ne-2K0"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K0D-la-XLf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1522" y="554"/>
         </scene>
     </scenes>
     <resources>

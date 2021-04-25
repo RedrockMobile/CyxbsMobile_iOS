@@ -238,9 +238,13 @@
                 [tmp addObjectsFromArray:arr];
             }
             [self parseClassBookData:tmp];
-            [self.delegate ModelDataLoadSuccess:self];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate ModelDataLoadSuccess:self];
+            });
         }else{
-            [self.delegate ModelDataLoadFailure];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate ModelDataLoadFailure];
+            });
         }
     });
 }

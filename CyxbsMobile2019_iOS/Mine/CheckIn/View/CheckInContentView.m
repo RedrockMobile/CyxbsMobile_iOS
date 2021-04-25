@@ -436,6 +436,12 @@
     self.checkInRankPercentLabel.text = [NSString stringWithFormat:@"超过%d%%的邮子", [UserItemTool defaultItem].rank_Persent.intValue];
     self.daysLabel.text = [NSString stringWithFormat:@"已连续打卡%@天", [UserItemTool defaultItem].checkInDay];
     self.scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
+    
+    if (@available(iOS 11.0, *)) {
+        _checkInButton.backgroundColor = [UIColor colorNamed:@"Mine_CanNotCheckInColor"];
+    } else {
+        _checkInButton.backgroundColor = [UIColor colorWithHexString:@"DDDDEE"];
+    }
 }
 
 #pragma mark - 按钮

@@ -240,7 +240,7 @@
 - (void)initMySchedul{
     if(self.isInitingMySchedul==YES)return;
     self.isInitingMySchedul = YES;
-    self.mySchedul = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+    self.mySchedul = [[WYCClassBookViewController alloc] init];
     
     self.mySchedul.schedulTabBar = self;
     

@@ -115,9 +115,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
-    WYCClassBookViewController *vc = [mainStoryBoard instantiateViewControllerWithIdentifier:@"WYCClassBookViewController"];
+    WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] init];
     
     ClassmateItem *item = self.classmatesList.classmatesArray[indexPath.row];
     
