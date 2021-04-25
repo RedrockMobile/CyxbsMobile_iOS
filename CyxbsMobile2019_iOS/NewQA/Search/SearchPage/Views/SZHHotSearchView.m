@@ -55,6 +55,10 @@
     for (NSString *text in self.buttonTextAry) {
         SZHHotSearchButton *button = [[SZHHotSearchButton alloc] init];
         [button setTitle:text forState:UIControlStateNormal];   //设置btn的标题文本
+        [button.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(button).offset(MAIN_SCREEN_W * 0.03467);
+            make.right.equalTo(button).offset(-MAIN_SCREEN_W * 0.03467);
+        }];
         
         //判断创建的是哪一个页面，决定按钮触碰后会执行什么方法
         if ([self.hotSearch_KnowledgeLabel.text isEqualToString:@"热门搜索"]) {
@@ -100,15 +104,16 @@
     for (int i = 1; i < self.buttonAry.count; i++) {
         //获取button的字符串的宽度
         CGFloat titleWidth = [self.buttonAry[i].titleLabel.text boundingRectWithSize:CGSizeMake(1000, MAIN_SCREEN_H * 0.0382) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:13]} context:nil].size.width;
-        //button宽度 = 字符串长度 + 两边的间隔
-        CGFloat buttonWidth = titleWidth + MAIN_SCREEN_W * 0.0666;
-        CGFloat buttonX = CGRectGetMaxX(self.buttonAry[i-1].frame) + splite;
-        positionX = buttonX + buttonWidth;
+        
+        CGFloat buttonWidth = titleWidth + MAIN_SCREEN_W * 0.07 ;  //button宽度
+        CGFloat buttonX = CGRectGetMaxX(self.buttonAry[i-1].frame) + splite;//button最左边的frame
+        positionX = buttonX + buttonWidth ;
 
         //如果下一个button的x值值超越了边界，则跳行
         if (positionX > maxX) {
             positionX = originX;
             buttonX = originX;
+            self.buttonAry[i].frame = CGRectMake(originX, positionY, buttonWidth, MAIN_SCREEN_H * 0.0382);
             positionY = positionY + MAIN_SCREEN_H * 0.0254 + lineSplite;
         }
 
