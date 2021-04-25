@@ -63,9 +63,9 @@
 #define GETPOSTINFO [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getPostInfo"]
 
 /// 获取签到信息
-#define CHECKININFOAPI [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/User/getScoreStatus"]
+#define CHECKININFOAPI [CyxbsMobileBaseURL_2 stringByAppendingString:@"magipoke-intergral/QA/User/getScoreStatus"]
 /// 签到
-#define CHECKINAPI [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Integral/checkIn"]
+#define CHECKINAPI [CyxbsMobileBaseURL_2 stringByAppendingString:@"magipoke-intergral/QA/Integral/checkIn"]
 /// 积分商城
 #define INTEGRALSTORELISTAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/QA/Integral/getItemList"]
 /// 兑换商品

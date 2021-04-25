@@ -193,6 +193,7 @@
         [self.topicLeftTableView.mj_footer endRefreshing];
     }
     
+    
     if (self.rightPage == 1) {
         self.rightTableArray = self.rightPostmodel.postArray;
     }else {
@@ -227,6 +228,14 @@
     //下拉刷新的设置
     _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicLeftTableView.mj_header = _header;
+    
+    //上滑加载的设置
+    _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.topicRightTableView.mj_footer = _footer;
+    
+    //下拉刷新的设置
+    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    self.topicRightTableView.mj_header = _header;
     
     [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
 }
