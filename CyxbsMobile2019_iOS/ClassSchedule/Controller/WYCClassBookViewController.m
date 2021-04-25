@@ -44,10 +44,6 @@
     self.lessonViewArray = [NSMutableArray array];
     self.backViewArray = [NSMutableArray array];
     
-//    for (int i=0; i<self.dateModel.dateArray.count+1; i++) {
-//        [self.backViewArray addObject:[[UIView alloc]init]];
-//    }
-
     //添加备忘信息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNoteWithModel:) name:@"LessonViewShouldAddNote" object:nil];
     

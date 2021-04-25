@@ -111,7 +111,7 @@
     textField.backgroundColor = UIColor.clearColor;
     [self addKeyBoardToolBarforTextField:textField];
 }
-
+/// 给textfield加一个自定义toolBar
 - (void)addKeyBoardToolBarforTextField:(UITextField*)textField{
     UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 44)];
     
@@ -166,7 +166,7 @@
     }];
 }
 
-//MARK: - 点击类某按钮后调用
+//MARK: - 点击按钮后调用
 //点击键盘上的搜索按钮后调用
 - (void)touchSearchButton {
     //判断输入内容是否为空
@@ -200,7 +200,7 @@
     [self.view endEditing:YES];
     
     
-    __block MBProgressHUD *loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *loading = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
        loading.mode = MBProgressHUDModeIndeterminate;
        loading.labelText = @"加载中";
        

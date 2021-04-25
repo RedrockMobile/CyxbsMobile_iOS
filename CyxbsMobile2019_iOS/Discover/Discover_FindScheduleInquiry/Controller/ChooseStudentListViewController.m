@@ -121,8 +121,6 @@
     
     ClassmateItem *item = self.classmatesList.classmatesArray[indexPath.row];
     
-    NSLog(@"%@,%@,%@",item.major,item.stuNum,item.name);
-    
     WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc]init];
     
     model.delegate = vc;

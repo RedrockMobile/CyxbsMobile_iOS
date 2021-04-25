@@ -2347,9 +2347,9 @@
 			isa = PBXGroup;
 			children = (
 				18CDF51B257F91BC006E8E5C /* ClassmatesList.h */,
-				18CDF51C257F91BC006E8E5C /* ClassmateItem.m */,
 				18CDF51D257F91BC006E8E5C /* ClassmatesList.m */,
 				18CDF51E257F91BC006E8E5C /* ClassmateItem.h */,
+				18CDF51C257F91BC006E8E5C /* ClassmateItem.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2357,10 +2357,10 @@
 		18CDF51F257F91BC006E8E5C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF520257F91BC006E8E5C /* PeopleListCellTableViewCell.m */,
-				18CDF521257F91BC006E8E5C /* HistoryView.m */,
 				18CDF522257F91BC006E8E5C /* HistoryView.h */,
+				18CDF521257F91BC006E8E5C /* HistoryView.m */,
 				18CDF523257F91BC006E8E5C /* PeopleListCellTableViewCell.h */,
+				18CDF520257F91BC006E8E5C /* PeopleListCellTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

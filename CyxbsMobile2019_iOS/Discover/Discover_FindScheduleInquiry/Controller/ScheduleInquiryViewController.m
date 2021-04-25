@@ -12,7 +12,6 @@
 #define STU_FIND_HISTORY @"FindStudentSchedule_historyArray"
 #define TEA_FIND_HISTORY @"FindTeacherSchedule_historyArray"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define navigationbarColor  [UIColor colorNamed:@"Color#FFFFFF&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
 @interface ScheduleInquiryViewController () <ScheduleViewControllerDelegate>
@@ -27,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = navigationbarColor;
+        self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&29_29_29"];
     } else {
         self.view.backgroundColor = UIColor.whiteColor;
     }
@@ -52,7 +51,7 @@
     }
     self.backgroundView = backgroundView;
     if (@available(iOS 11.0, *)) {
-        backgroundView.backgroundColor = navigationbarColor;
+        backgroundView.backgroundColor = [UIColor colorNamed:@"255_255_255&29_29_29"];
     } else {
         backgroundView.backgroundColor = UIColor.whiteColor;
     }
