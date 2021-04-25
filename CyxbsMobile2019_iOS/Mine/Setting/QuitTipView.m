@@ -29,7 +29,7 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.2];
+        self.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.5];
         [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [self addTipView];
     }

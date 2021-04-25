@@ -43,6 +43,7 @@
             [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
         }
      ];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

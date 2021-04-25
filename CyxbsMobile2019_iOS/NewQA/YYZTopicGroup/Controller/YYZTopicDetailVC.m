@@ -17,6 +17,9 @@
 #import "PostItem.h"
 #import "MGDRefreshTool.h"
 #import "MGDCurrentTimeStr.h"
+#import "FollowGroupModel.h"
+#import "ShieldModel.h"
+#import "ReportModel.h"
     
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
@@ -25,9 +28,9 @@
 @property(nonatomic,strong) UIScrollView *topicScrollView;//在tableview下面的scrollview
 @property(nonatomic,strong) UITableView *topicLeftTableView;
 @property(nonatomic,strong) UITableView *topicRightTableView;
-
-@property(nonatomic,strong) UIButton *leftButton;
-@property(nonatomic,strong) UIButton *rightButton;
+@property(nonatomic,strong) UIButton *leftButton; //最新按钮
+@property(nonatomic,strong) UIButton *rightButton; //热门按钮
+@property(nonatomic,strong) UIImageView *changeImageView; //按钮下面的蓝绿色提示线
 //帖子数据,left为"最新",right为"热门"
 @property (nonatomic, assign) NSInteger leftPage;
 @property (nonatomic, strong) NSMutableArray *leftTableArray;
@@ -75,6 +78,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNotification];
+    [self setBackViewWithGesture];
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
     
     self.leftTableArray = [[NSMutableArray alloc]init];
@@ -86,6 +90,7 @@
     [self setMiddleLable];
     [self setBackTableView];
     [self loadData];
+    [self funcPopViewinit];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -125,9 +130,10 @@
 }
 
 #pragma mark KVO方法
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    
     if ([keyPath isEqualToString:@"contentOffset"]){
+        //改变字体状态
         CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
         int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         if(currentPage == 0){
@@ -138,6 +144,10 @@
             [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
             [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
         }
+        
+        //改变提示线位置
+        double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
+        self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -320,13 +330,24 @@
 }
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-    _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
-    dynamicDetailVC.post_id = _item.post_id;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+    CGFloat pageWidth = self.topicScrollView.frame.size.width;
+    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    if(currentPage == 0){
+        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+        _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
+        dynamicDetailVC.post_id = _item.post_id;
+        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+    }
+    else{
+        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+        _item = [[PostItem alloc] initWithDic:self.rightTableArray[indexPath.row]];
+        dynamicDetailVC.post_id = _item.post_id;
+        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+    }
 }
 #pragma mark- 配置相关弹出View和其蒙版的操作
 ///设置相关蒙版
@@ -373,25 +394,42 @@
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
         if (@available(iOS 11.0, *)) {
             cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
-            
         } else {
             // Fallback on earlier versions
         }
         
     }
+    CGFloat pageWidth = self.topicScrollView.frame.size.width;
+    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     StarPostModel *model = [[StarPostModel alloc] init];
-    _itemDic = self.leftTableArray[cell.starBtn.tag];
-    [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
+    if(currentPage == 0){
+        _itemDic = self.leftTableArray[cell.starBtn.tag];
+        [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
+    }
+    else{
+        _itemDic = self.rightTableArray[cell.starBtn.tag];
+        [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
+    }
 }
 
 ///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-
-    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+    CGFloat pageWidth = self.topicScrollView.frame.size.width;
+    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    if(currentPage == 0){
+        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
     _item = [[PostItem alloc] initWithDic:self.leftTableArray[cell.commendBtn.tag]];
     dynamicDetailVC.post_id = _item.post_id;
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+    }
+    else{
+        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+    _item = [[PostItem alloc] initWithDic:self.rightTableArray[cell.commendBtn.tag]];
+    dynamicDetailVC.post_id = _item.post_id;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+    }
 }
 
 ///分享帖子
@@ -463,6 +501,7 @@
 }
 
 - (void) setMiddleLable {
+    //现在是我自己写的，以后重构直接用HMSegmentedControl简单一点
     UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 55)];
     middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
     middleLable.layer.cornerRadius = 15;
@@ -478,14 +517,20 @@
     [rightButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
     [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(15, 133, 40, 45);
-    rightButton.frame = CGRectMake(70, 133, 40, 45);
+    leftButton.frame = CGRectMake(15, 140, 40, 25);
+    rightButton.frame = CGRectMake(70, 140, 40, 25);
     //leftButton.highlighted = YES;//默认显示最新
     [leftButton addTarget:self action:@selector(leftBtnJump) forControlEvents:UIControlEventTouchUpInside];
     [rightButton addTarget:self action:@selector(rightBtnJump) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *changeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(13,170,40,3)];
+    self.changeImageView = changeImageView;
+    changeImageView.image = [UIImage imageNamed:@"btnChange"];
+    
     [self.backgroundScrollView addSubview:middleLable];
     [self.backgroundScrollView addSubview:leftButton];
     [self.backgroundScrollView addSubview:rightButton];
+    [self.backgroundScrollView addSubview:changeImageView];
 
 }
 
@@ -524,6 +569,184 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
         }];
+}
+
+#pragma mark -多功能View的代理方法
+///点击关注按钮
+- (void)ClickedStarGroupBtn:(UIButton *)sender {
+    _itemDic = self.leftTableArray[sender.tag];
+    FollowGroupModel *model = [[FollowGroupModel alloc] init];
+    [model FollowGroupWithName:_itemDic[@"topic"]];
+    if ([sender.titleLabel.text isEqualToString:@"关注圈子"]) {
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                [self showStarSuccessful];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+            }else  {
+                [self funcViewFailure];
+            }
+        }];
+    } else if ([sender.titleLabel.text isEqualToString:@"取消关注"]) {
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                [self showUnStarSuccessful];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+            }else  {
+                [self funcViewFailure];
+            }
+        }];
+    }
+}
+
+///点击屏蔽按钮
+- (void)ClickedShieldBtn:(UIButton *)sender {
+    ShieldModel *model = [[ShieldModel alloc] init];
+    CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
+    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    if(currentPage == 0){
+        _itemDic = self.leftTableArray[sender.tag];
+        [model ShieldPersonWithUid:_itemDic[@"uid"]];
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"info"] isEqualToString:@"success"]) {
+                [self showShieldSuccessful];
+            }
+        }];
+    }
+    else{
+        _itemDic = self.rightTableArray[sender.tag];
+        [model ShieldPersonWithUid:_itemDic[@"uid"]];
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"info"] isEqualToString:@"success"]) {
+                [self showShieldSuccessful];
+            }
+        }];
+    }
+}
+///点击举报按钮
+- (void)ClickedReportBtn:(UIButton *)sender  {
+    [_popView removeFromSuperview];
+    CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
+    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    if(currentPage == 0){
+        _itemDic = self.leftTableArray[sender.tag];
+        _reportView.postID = _itemDic[@"post_id"];
+        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W -     MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+        [self.view.window addSubview:_reportView];
+    }
+    else{
+        _itemDic = self.rightTableArray[sender.tag];
+        _reportView.postID = _itemDic[@"post_id"];
+        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W -     MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+        [self.view.window addSubview:_reportView];
+    }
+}
+
+#pragma mark -举报页面的代理方法
+///举报页面点击确定按钮
+- (void)ClickedSureBtn {
+    [_reportView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    ReportModel *model = [[ReportModel alloc] init];
+    [model ReportWithPostID:_reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:_reportView.textView.text];
+    [model setBlock:^(id  _Nonnull info) {
+        [self showReportSuccessful];
+    }];
+}
+
+///举报页面点击取消按钮
+- (void)ClickedCancelBtn {
+    [_reportView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+}
+
+
+#pragma mark- 配置相关操作成功后的弹窗
+- (void)showStarSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }];
+}
+
+- (void)showUnStarSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }];
+}
+
+- (void)funcViewFailure {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
+}
+
+- (void)showShieldSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view];
+}
+
+- (void)showReportSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  举报成功  " AddView:self.view];
+}
+
+- (void)showReportFailure {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  网络繁忙，请稍后再试  " AddView:self.view];
+}
+
+- (void)shareSuccessful {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  已复制链接，可以去分享给小伙伴了～  " AddView:self.view];
+}
+
+#pragma mark -分享View的代理方法
+///点击取消
+- (void)ClickedCancel {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+}
+
+///点击分享QQ空间
+- (void)ClickedQQZone {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
+
+///点击分享朋友圈
+- (void)ClickedVXGroup {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
+
+///点击分享QQ
+- (void)ClickedQQ {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
+
+///点击分享微信好友
+- (void)ClickedVXFriend {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
+}
+
+///点击分享复制链接
+- (void)ClickedUrl {
+    [self.shareView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [self shareSuccessful];
 }
 
 @end
