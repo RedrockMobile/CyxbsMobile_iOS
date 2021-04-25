@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "点赞-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +11,11 @@
           "value" : "dark"
         }
       ],
-      "filename" : "点赞.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "点赞@2x-1.png",
+      "filename" : "点赞@3x-2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,7 +26,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "点赞@2x.png",
+      "filename" : "点赞@3x-3.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
