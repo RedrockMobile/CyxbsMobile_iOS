@@ -57,6 +57,7 @@
         make.left.equalTo(self);
         make.top.equalTo(self);
         make.bottom.equalTo(self);
+//        make.centerY.equalTo(self);
         make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133);
     }];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -65,7 +66,8 @@
     [self addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0427);
-        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0157);
+//        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0157);
+        make.centerY.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0186, 2 *MAIN_SCREEN_W * 0.0186 ));
     }];
     

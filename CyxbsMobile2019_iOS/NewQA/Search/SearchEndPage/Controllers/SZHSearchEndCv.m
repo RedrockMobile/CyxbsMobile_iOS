@@ -69,6 +69,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //初始化设置
+    self.searchDynamicDic = nil;
+    self.searchKnowledgeDic = nil;
+    
     [self setBackViewWithGesture];
     [self addSearchEndTopView];
     self.view.backgroundColor = self.searchEndTopView.backgroundColor;
@@ -101,14 +105,12 @@
 - (void)searchWithString:(NSString *)searchString{
     //1.如果内容为空仅提示
     if ([searchString isEqualToString:@""]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [hud setMode:(MBProgressHUDModeText)];
-        hud.labelText = @"输入为空";
-        [hud hide:YES afterDelay:1];  //延迟一秒后消失
+        [NewQAHud showHudWith:@"输入为空" AddView:self.view];
         return;                 //直接返回
     }
     
     //2.内容不为空
+    [NewQAHud showHudWith:@"加载中" AddView:self.view];
     /*
      进行网络请求获取数据
      先将搜索帖子和搜索知识库的网络请求全部获取后再进行后续逻辑判断
@@ -122,6 +124,7 @@
         [weakSelf processData];
         } Failure:^{
             weakSelf.getDynamicFailure = YES;
+            weakSelf.searchDynamicDic = [NSDictionary dictionary];
             [weakSelf processData];
         }];
     //请求帖子
@@ -130,9 +133,10 @@
         [weakSelf processData];
         } Failure:^{
             weakSelf.getKnowledgeFailure = YES;
+            weakSelf.searchKnowledgeDic = [NSDictionary dictionary];
             [weakSelf processData];
         }];
-    
+
     //清除缓存
     self.searchDynamicDic = nil;
     self.searchKnowledgeDic = nil;
@@ -222,10 +226,7 @@
     }else{
         //1.无网络连接
         if (self.getKnowledgeFailure == YES && self.getDynamicFailure == YES) {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            [hud setMode:MBProgressHUDModeText];
-            hud.labelText = @"无网络连接";
-            [hud hide:YES afterDelay:1];  //延迟一秒后消失
+            [NewQAHud showHudWith:@"无网络连接" AddView:self.view];
             return;
         }
         //2.有网络连接
@@ -235,13 +236,10 @@
         NSArray *knowledgeAry = knowledgeDic[@"data"];
 //        NSArray *knowledgeAry = self.knowledgeDic[@"data"];
             //2.1加载提示
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [hud setMode:MBProgressHUDModeText];
-        hud.labelText = @"加载中";
-        [hud hide:YES afterDelay:1];  //延迟一秒后消失
+        [NewQAHud showHudWith:@"加载中" AddView:self.view];
     
             //2.1无搜索内容，跳转到搜索无结果页
-        if (dynamicAry == nil && knowledgeAry == nil) {
+        if (dynamicAry.count == 0 && knowledgeAry.count == 0) {
             SearchEndNoResultCV *vc = [[SearchEndNoResultCV alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         }else{//2.2 有搜索内容进行赋值，跳转到搜索结果页
@@ -249,8 +247,6 @@
             vc.tableDataAry = dynamicAry;
             vc.knowlegeAry = knowledgeAry;
             [self.navigationController pushViewController:vc animated:YES];
-            NSLog(@"跳转时搜索帖子-----%@",dynamicAry);
-            NSLog(@"跳转时搜索知识库-----%@",knowledgeAry);
         }
     }
     
