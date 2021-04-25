@@ -177,7 +177,6 @@
         color = [UIColor colorWithRed:63/255.0 green:64/255.0 blue:225/255.0 alpha:1.0];
     }
     
-    //4.Code Expression:函数或方法内部:定义名字，访问属性，访问成员变量 时都会出现
     [signinButton setTitle:title forState:UIControlStateNormal];
     signinButton.backgroundColor = color;
 }

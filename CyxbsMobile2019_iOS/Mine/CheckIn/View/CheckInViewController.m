@@ -105,7 +105,7 @@
     if ([UserItemTool defaultItem].rank.intValue != 0) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"今天签过到了哦～";
+        hud.labelText = @"今天签到过了哦～";
         [hud hide:YES afterDelay:1.5];
         return;
     } else {

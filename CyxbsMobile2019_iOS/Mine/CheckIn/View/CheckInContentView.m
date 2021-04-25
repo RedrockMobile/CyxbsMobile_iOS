@@ -34,7 +34,6 @@
 @end
 
 @implementation CheckInContentView
-
 - (instancetype)init
 {
     self = [super init];
@@ -47,15 +46,23 @@
         self.backgroundImageView = backgroundImageView;
         
         // 返回
+        float unitSize = 4*fontSizeScaleRate_SE;
         UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        backBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-        [backBtn setImage:[UIImage imageNamed:@"我的返回-白色"] forState:UIControlStateNormal];
+        [backBtn setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
+        backBtn.imageEdgeInsets = UIEdgeInsetsMake(unitSize, 1.5*unitSize, unitSize, 2.5*unitSize);
         [backBtn addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:backBtn];
         self.backBtn = backBtn;
-
+        
+        NSString *yearStr;
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:NSDate.now];
+        if (components.month > 6) {
+            yearStr = [NSString stringWithFormat:@"%ld-%ld",components.year, components.year+1];
+        }else {
+            yearStr = [NSString stringWithFormat:@"%ld-%ld",components.year-1, components.year];
+        }
         UILabel *yearsLabel = [[UILabel alloc] init];
-        yearsLabel.text = @"2020-2021";
+        yearsLabel.text = yearStr;
         yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
         if (IS_IPHONESE) {
             yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
@@ -169,31 +176,47 @@
     }
 
     UIButton *checkInButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [checkInView addSubview:checkInButton];
+    self.checkInButton = checkInButton;
     if (@available(iOS 11.0, *)) {
         checkInButton.backgroundColor = [UIColor colorNamed:@"93_93_247&85_77_250"];
     } else {
         checkInButton.backgroundColor = [UIColor colorWithRed:93/255.0 green:93/255.0 blue:247/255.0 alpha:1];
     }
-    
     [checkInButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     checkInButton.titleLabel.font = [UIFont systemFontOfSize:18];
-    [checkInButton setTitle:@"签 到" forState:UIControlStateNormal];
     [checkInButton addTarget:self action:@selector(CheckInButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    [checkInView addSubview:checkInButton];
-    self.checkInButton = checkInButton;
-
     
-    
-    
+    UIColor *backColor;
+    NSString *titleStr;
+    BOOL canCheckIn;
     if (![UserItemTool defaultItem].canCheckIn) {
-        checkInRankLabel.text = @"假期不能签到哟O(∩_∩)O~~";
-        checkInButton.enabled = NO;
-        if (@available(iOS 11.0, *)) {
-            checkInButton.backgroundColor = [UIColor colorNamed:@"Mine_CanNotCheckInColor"];
-        } else {
-            checkInButton.backgroundColor = [UIColor colorWithHexString:@"DDDDEE"];
+        titleStr = @"假期不能签到哟O(∩_∩)O~~";
+        canCheckIn = NO;
+    }else {
+        NSDate *lastCheckInDate = [[NSUserDefaults standardUserDefaults] valueForKey:MineLastCheckInTime_NSDate];
+        if (lastCheckInDate!=nil&&[lastCheckInDate isToday]) {
+            titleStr = @"已签到";
+            canCheckIn = NO;
+        }else {
+            titleStr = @"签 到";
+            canCheckIn = YES;
         }
     }
+    
+    checkInButton.enabled = canCheckIn;
+    if (canCheckIn) {
+        backColor = [UIColor colorWithRed:63/255.0 green:64/255.0 blue:225/255.0 alpha:1.0];
+    }else {
+        if (@available(iOS 11.0, *)) {
+            backColor = [UIColor colorNamed:@"Mine_CanNotCheckInColor"];
+        } else {
+            backColor = [UIColor colorWithHexString:@"DDDDEE"];
+        }
+    }
+    
+    [checkInButton setTitle:titleStr forState:UIControlStateNormal];
+    checkInButton.backgroundColor = backColor;
 }
 
 - (void)addStoreView{
@@ -269,21 +292,15 @@
     
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.yearsLabel);
-        make.bottom.equalTo(self.yearsLabel.mas_top).offset(-5);
-        make.height.width.equalTo(@19);
+        make.bottom.equalTo(self.yearsLabel.mas_top);//.offset(0);
+        make.height.width.mas_equalTo(24*fontSizeScaleRate_SE);
     }];
     
-    if (IS_IPHONEX) {
-        [self.yearsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.backgroundImageView).offset(101);
-            make.leading.equalTo(self).offset(15);
-        }];
-    } else {
-        [self.yearsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.backgroundImageView).offset(57);
-            make.leading.equalTo(self).offset(15);
-        }];
-    }
+    
+    [self.yearsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView).offset(57*HScaleRate_SE);
+        make.leading.equalTo(self).offset(15);
+    }];
     
     [self.weekLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.yearsLabel);
