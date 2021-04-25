@@ -14,6 +14,7 @@
     if ([super init]) {
         self.backgroundColor = [UIColor clearColor];
         _iconView = [[UIImageView alloc] init];
+        _iconView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_iconView];
         
         _countLabel = [[UILabel alloc] init];

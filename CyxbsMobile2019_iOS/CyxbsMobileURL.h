@@ -63,9 +63,9 @@
 #define GETPOSTINFO [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getPostInfo"]
 
 /// 获取签到信息
-#define CHECKININFOAPI [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/User/getScoreStatus"]
+#define CHECKININFOAPI [CyxbsMobileBaseURL_2 stringByAppendingString:@"magipoke-intergral/QA/User/getScoreStatus"]
 /// 签到
-#define CHECKINAPI [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Integral/checkIn"]
+#define CHECKINAPI [CyxbsMobileBaseURL_2 stringByAppendingString:@"magipoke-intergral/QA/Integral/checkIn"]
 /// 积分商城
 #define INTEGRALSTORELISTAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/QA/Integral/getItemList"]
 /// 兑换商品
@@ -322,5 +322,30 @@
 
 // 关注圈子
 #define NEW_QA_STARGROUP [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/followTopicGround"]
+/**
+ 圈子广场
+ 圈子详情页
+ */
+
+//圈子页帖子内容
+#define NEW_QA_TOPICCONTENT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getLoopPage"]
+//圈子广场
+#define NEW_QA_TOPICGROUP [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/getTopicGround"]
+/**
+ 动态详情页
+ */
+//根据帖子id获取帖子的具体信息
+#define NEW_QA_DynamicDetail [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getPostInfo"]
+
+//根据id获取评论/回复
+#define NEW_QA_Comment_Reply [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/getallcomment"]
+
+/*
+ 删除帖子或评论（POST）     说明：
+ 参数：
+ id                 动态的id
+ model              0为动态，1为评论
+ */
+#define NEW_QA_Dynamic_OR_Comment_Deleted [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/deleteId"]
 
 #endif /* CyxbsMobileURL_h */

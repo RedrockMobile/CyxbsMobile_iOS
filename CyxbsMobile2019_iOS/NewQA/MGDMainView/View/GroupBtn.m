@@ -83,10 +83,10 @@
             }];
             _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
             _messageCountLabel.layer.masksToBounds = YES;
-            self.messageCountLabel.text = [NSString stringWithFormat:@"%@", item.message_count];
+            _messageCountLabel.text = [NSString stringWithFormat:@"%@", item.message_count];
         }else if ([item.message_count intValue] > 9){
             NSString *count = [item.message_count intValue] > 99 ? @"99+":[NSString stringWithFormat:@"%@",item.message_count];
-            self.messageCountLabel.text = count;
+            _messageCountLabel.text = count;
         }
     }
 }

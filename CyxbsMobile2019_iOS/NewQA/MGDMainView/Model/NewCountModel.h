@@ -12,8 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NewCountModel : NSObject
 
+@property (nonatomic, strong) NSArray *PostCountArray;
+
 - (void)queryNewCountWithTimestamp:(NSString *)timestamp;
 
+- (void)firstQueryWithTimestamp:(NSString *)timestamp;
 @end
 
 NS_ASSUME_NONNULL_END
