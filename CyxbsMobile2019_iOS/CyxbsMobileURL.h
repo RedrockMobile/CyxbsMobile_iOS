@@ -44,7 +44,7 @@
 //获取收到的赞
 #define getPraiseAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/user/praisedme"]
 
-/// 上传头像
+/// 上传头像	
 #define UPLOADPROFILEAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/person/upload/avatar"]
 
 /// 上传用户信息
@@ -107,6 +107,21 @@
 #define BINDINGEMAILANDQUESTIONAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/bind/is"]
 ///上传密保消息
 #define SENDQUESTION [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/bind/question"]
+
+//找回密码
+
+///获取密保问题
+#define GETQUESTION [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/bind/question/detail"]
+///判断密保是否正确
+#define CHECKQUESTION [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/valid/question"]
+
+///判断验证码是否正确
+#define CHECKEMAILCODE [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/valid/email"]
+///发送验证码请求
+#define GETEMAILCODE [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/valid/email/code"]
+///请求密保邮箱账号
+#define GETEMAILDETAIL [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/bind/email/detail"]
+
 
 #pragma mark - “发现”接口
 //校历接口
@@ -331,6 +346,8 @@
 #define NEW_QA_TOPICCONTENT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getLoopPage"]
 //圈子广场
 #define NEW_QA_TOPICGROUP [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/getTopicGround"]
+//关注和取消圈子
+#define FOLLOWTOPIC [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/followTopicGround"]
 /**
  动态详情页
  */
@@ -349,3 +366,5 @@
 #define NEW_QA_Dynamic_OR_Comment_Deleted [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/deleteId"]
 
 #endif /* CyxbsMobileURL_h */
+
+

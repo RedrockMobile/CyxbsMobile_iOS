@@ -108,14 +108,12 @@ class FindPasswordView: UIView {
         let bywordVC = ByWordViewController()
         bywordVC.idString = id2
         self.viewController?.navigationController?.pushViewController(bywordVC, animated: true)
-        
     }
     
     @objc func findByEmail() {
-        let bypassVC = ByPasswordViewController()
-        bypassVC.idString = id2
-        self.viewController?.navigationController?.pushViewController(bypassVC, animated: true)
-
+        let bywordVC = ByWordViewController()
+        bywordVC.idString = id2
+        self.viewController?.navigationController?.pushViewController(bywordVC, animated: true)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         

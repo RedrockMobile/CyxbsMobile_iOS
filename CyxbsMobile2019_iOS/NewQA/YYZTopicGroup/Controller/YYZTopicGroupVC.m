@@ -33,7 +33,7 @@
     self.navigationItem.leftBarButtonItem.width = -1000;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     //网络请求
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/getTopicGround" method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
@@ -129,7 +129,7 @@
 
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:FOLLOWTOPIC method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             //改变button状态
         if([btn.titleLabel.text isEqualToString:@"已关注"]){
             [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{

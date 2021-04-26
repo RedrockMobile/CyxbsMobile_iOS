@@ -27,7 +27,6 @@
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIView *popView;
 
-
 @end
 
 @implementation ChangePwdViewController

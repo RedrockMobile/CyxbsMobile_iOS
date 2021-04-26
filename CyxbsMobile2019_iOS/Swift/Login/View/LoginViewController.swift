@@ -96,8 +96,6 @@ class LoginViewController: UIViewController {
             self.stuNumTextField.textColor = UIColor(red: 28/255.0, green: 48/255.0, blue: 88/255.0, alpha: 1)
             self.idNumTextField.textColor = UIColor(red: 28/255.0, green: 48/255.0, blue: 88/255.0, alpha: 1)
         }
-
-        
     }
     
     

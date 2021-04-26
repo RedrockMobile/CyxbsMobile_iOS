@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ByWordViewController : UIViewController
 
-@property(nonatomic, strong)NSString *idString;
+@property(nonatomic, strong)NSString *idString;//学号
 
 @end
 
