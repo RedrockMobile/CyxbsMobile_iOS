@@ -4004,10 +4004,10 @@
 			isa = PBXGroup;
 			children = (
 				B82CA678263159BA00786685 /* DKSTextView.h */,
-				B82CA679263159BA00786685 /* UIView+FrameTool.m */,
-				B82CA67A263159BA00786685 /* DKSKeyboardView.h */,
 				B82CA67B263159BA00786685 /* DKSTextView.m */,
 				B82CA67C263159BA00786685 /* UIView+FrameTool.h */,
+				B82CA679263159BA00786685 /* UIView+FrameTool.m */,
+				B82CA67A263159BA00786685 /* DKSKeyboardView.h */,
 				B82CA67D263159BA00786685 /* DKSKeyboardView.m */,
 			);
 			path = DKSKeyBoard;

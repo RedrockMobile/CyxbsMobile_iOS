@@ -109,7 +109,7 @@
     self.isCommentFirstLevel = YES;
     self.isFirstEnter = NO;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.commentTableDataAry = [NSMutableArray array];
     self.oneLeveCommentHeight = [NSMutableArray array];
     self.twoLevelCommentHeight = [NSMutableArray array];
@@ -688,7 +688,7 @@
 - (UITableView *)commentTable{
     if (!_commentTable) {
         _commentTable = [[UITableView alloc] initWithFrame:CGRectZero];
-        _commentTable.backgroundColor = self.topBarView.backgroundColor;
+        _commentTable.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
         _commentTable.delegate = self;
         _commentTable.dataSource = self;
         //设置预加载高度
@@ -766,7 +766,7 @@
         }
         UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 0)];
         _inputView.textView.inputAccessoryView = toolbar;
-        
+        _inputView.textView.textColor = [UIColor colorNamed:@"CellDetailColor"];
         //设置代理方法
         _inputView.delegate = self;
     }

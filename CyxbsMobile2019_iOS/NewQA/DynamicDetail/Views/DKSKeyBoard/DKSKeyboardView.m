@@ -12,9 +12,9 @@
 #import "UITextView+WZB.h"
 #import "UIColor+SYColor.h"
 //状态栏和导航栏的总高度
-#define StatusNav_Height (isIphoneX ? 88 : 64)
+#define StatusNav_Height (IS_IPHONEX ? 88 : 64)
 //判断是否是iPhoneX
-#define isIphoneX (K_Width == 375.f && K_Height == 812.f ? YES : NO)
+#define IS_IPHONEX (fabs(SCREEN_HEIGHT*0.46193812-SCREEN_WIDTH) < 30)
 #define K_Width [UIScreen mainScreen].bounds.size.width
 #define K_Height [UIScreen mainScreen].bounds.size.height
 
@@ -62,31 +62,50 @@ static float viewHeight = 38.0f; //按钮视图高度
 - (void)creatView {
     
     self.backView.frame = CGRectMake(0, 0, self.width, self.height);
-    
-    //表情按钮
-//    self.emojiBtn.frame = CGRectMake(0, self.height-40-5, 20,20);
-    [self.emojiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(viewMargin);
-        make.centerY.equalTo(self);
-//        make.top.equalTo(self.mas_top).offset(14*WScaleRate_SE);
-        make.size.mas_equalTo(CGSizeMake(20*WScaleRate_SE, 20*WScaleRate_SE));
-    }];
-    
-    //输入视图
-//    self.textView.frame = CGRectMake(CGRectGetMaxX(self.emojiBtn.frame) + viewMargin, viewMargin+5, K_Width - CGRectGetMaxX(self.emojiBtn.frame)-84, viewHeight);
-    [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.emojiBtn.mas_right).offset(viewMargin);
-        make.centerY.equalTo(self.emojiBtn);
-        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W*0.7, viewHeight));
-    }];
-    
-    //加号按钮
-//    self.moreBtn.frame = CGRectMake(CGRectGetMaxX(self.textView.frame)+viewMargin, self.height-12-28+5, 59, 28);
-    [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.textView.mas_right).offset(viewMargin);
-        make.centerY.equalTo(self.textView);
-        make.size.mas_equalTo(CGSizeMake(59*WScaleRate_SE, 28*HScaleRate_SE));
-    }];
+    if (!IS_IPHONEX) {
+        //表情按钮
+        [self.emojiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(viewMargin);
+            make.centerY.equalTo(self);
+            make.size.mas_equalTo(CGSizeMake(20*WScaleRate_SE, 20*WScaleRate_SE));
+        }];
+        
+        //输入视图
+        [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.emojiBtn.mas_right).offset(viewMargin);
+            make.centerY.equalTo(self.emojiBtn);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W*0.7, viewHeight));
+        }];
+        
+        //加号按钮
+        [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.textView.mas_right).offset(viewMargin);
+            make.centerY.equalTo(self.textView);
+            make.size.mas_equalTo(CGSizeMake(59*WScaleRate_SE, 28*HScaleRate_SE));
+        }];
+    }else{
+        //表情按钮
+        [self.emojiBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(viewMargin + MAIN_SCREEN_W*0.015);
+            make.centerY.equalTo(self);
+            make.size.mas_equalTo(CGSizeMake(20*WScaleRate_SE, 20*WScaleRate_SE));
+        }];
+        
+        //输入视图
+        [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.emojiBtn.mas_right).offset(viewMargin+ MAIN_SCREEN_W*0.015);
+            make.centerY.equalTo(self.emojiBtn);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W*0.655, viewHeight));
+        }];
+        
+        //加号按钮
+        [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.textView.mas_right).offset(viewMargin+ MAIN_SCREEN_W*0.015);
+            make.centerY.equalTo(self.textView);
+            make.size.mas_equalTo(CGSizeMake(59*WScaleRate_SE, 28*HScaleRate_SE));
+        }];
+    }
+  
 }
 - (void)startInputAction{
     [self.textView becomeFirstResponder];
