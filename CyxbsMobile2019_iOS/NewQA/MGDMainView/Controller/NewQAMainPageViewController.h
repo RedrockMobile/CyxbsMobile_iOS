@@ -20,6 +20,7 @@
 #import "FuncView.h"
 #import "RecommentLabel.h"
 #import "PostItem.h"
+#import "SelfFuncView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,8 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///背景蒙版
 @property (nonatomic, strong) UIView *backViewWithGesture;
 
-///多功能View
+///多功能View -- 他人
 @property (nonatomic, strong) FuncView *popView;
+
+///多功能View -- 自己
+@property (nonatomic, strong) SelfFuncView *selfPopView;
 
 ///举报页面
 @property (nonatomic, strong) ReportView *reportView;
