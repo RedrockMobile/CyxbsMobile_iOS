@@ -167,9 +167,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         if(IS_IPHONEX) {
+            make.top.equalTo(self.view).offset(34);
+        }else {
             make.top.equalTo(self.view).offset(20);
         }
-        make.top.equalTo(self.view);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
@@ -555,7 +556,6 @@ static int requestCheckinInfo = 0;
     [self.bindingDormitoryContentView removeFromSuperview];
     [self.hideTabbarView removeFromSuperview];
     [self reloadElectricViewIfNeeded];
-
 }
 -(void)getPickerViewData {
     PickerModel *pickerModel = [[PickerModel alloc]init];

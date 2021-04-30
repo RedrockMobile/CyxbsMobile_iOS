@@ -14,19 +14,9 @@
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"last":timestamp};
     [client requestWithPath:NEW_QA_QUERYNEWCOUNT method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        self->_PostCountArray = [NSArray arrayWithArray:responseObject[@"data"]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-NewPostQuerySuccessful" object:nil];
+        self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-    }];
-}
-
-- (void)firstQueryWithTimestamp:(NSString *)timestamp {
-    HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *param = @{@"last":timestamp};
-    [client requestWithPath:NEW_QA_QUERYNEWCOUNT method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        self->_PostCountArray = [NSArray arrayWithArray:responseObject[@"data"]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FirstPostQuerySuccessful" object:nil];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"查询新消息数失败");
     }];
 }
 

@@ -679,8 +679,6 @@
 - (DynamicSpecificCell *)dynamicSpecifiCell{
     if (!_dynamicSpecifiCell) {
         _dynamicSpecifiCell = [[DynamicSpecificCell alloc] init];
-        UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBottomKeyBoard)];
-        [_dynamicSpecifiCell addGestureRecognizer:dismiss];
     }
     return _dynamicSpecifiCell;
 }

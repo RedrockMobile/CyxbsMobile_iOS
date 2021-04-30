@@ -63,7 +63,7 @@
             [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
         }];
     //设置导航栏
-    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
+//    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar
     self.navigationItem.title = @"";
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
@@ -98,6 +98,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GroupLastLeaveTime = [NSString stringWithFormat:@"%ld%@",(long)self.topicID,@"LastLeaveTimeStr"];
     [defaults setValue:[MGDCurrentTimeStr currentTimeStr] forKey:GroupLastLeaveTime];
+    [defaults synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
 

@@ -21,7 +21,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     NSLog(@"%@", NSStringFromCGRect(self.tableView.frame));
     [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
+//    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;
     //设置nav
     self.navigationItem.title = @"圈子广场";
@@ -130,30 +130,25 @@
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:FOLLOWTOPIC method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
             //改变button状态
         if([btn.titleLabel.text isEqualToString:@"已关注"]){
-            [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
-                NSDictionary *dic = @{@"topic_ID":stringIsFollow};
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
-            }];
+            [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
             [btn setTitle:@"+关注" forState:UIControlStateNormal];
             btn.backgroundColor = RGBColor(93, 94, 247, 1);
-        }
-        else{
-            [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
-                NSDictionary *dic = @{@"topic_ID":stringIsFollow};
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
-            }];
+        } else{
+            [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
             [btn setTitle:@"已关注" forState:UIControlStateNormal];
             btn.backgroundColor = RGBColor(171, 189, 215, 1);
         }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"  关注失败,请检查网络  " AddView:self.view];
-        }];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [NewQAHud showHudWith:@"  关注失败,请检查网络  " AddView:self.view];
+    }];
 }
 
 @end
