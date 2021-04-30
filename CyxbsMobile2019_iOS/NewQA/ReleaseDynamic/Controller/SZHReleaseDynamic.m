@@ -482,6 +482,9 @@
         //截取到最大位置的字符(由于超出截部分在should时被处理了所在这里这了提高效率不再判断)
         NSString *s = [nsTextContent substringToIndex:MAX_LIMT_NUM];
         
+        //当字数大于最大值时，字数label直接显示最大字数
+        self.releaseView.numberOfTextLbl.text = [NSString stringWithFormat:@"%d/%d",MAX_LIMT_NUM,MAX_LIMT_NUM];
+        
         [textView setText:s];
     }
     
@@ -612,10 +615,6 @@
     //2.frame
     [self.scrollView addSubview:self.releaseView];
     self.releaseView.frame = self.view.frame;
-//    [self.releaseView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.bottom.equalTo(self.view);
-//        make.top.equalTo(self.topView.mas_bottom);
-//    }];
 }
 //添加原图view
 - (void)addOriginView{
