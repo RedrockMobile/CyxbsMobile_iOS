@@ -90,6 +90,8 @@
         
     }
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+    [[NSUserDefaults standardUserDefaults] setValue:[MGDCurrentTimeStr currentTimeStr] forKey:@"NewQAMainPageFirstLoginTime"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     ((ClassTabBar *)self.tabBarController.tabBar).backgroundColor = [UIColor colorNamed:@"TABBARCOLOR"];
     //设置通知中心
@@ -125,6 +127,7 @@
     if ([UserItemTool defaultItem].firstLogin == NO && self.tableArray != nil && self.dataArray != nil && self.hotWordsArray != nil) {
         NSLog(@"初始化通过缓存加载页面");
         self.page = floor(self.tableArray.count / 6.0);
+        [self queryEveryGroupMessageCount];
         [self setMainViewUI];
         if ([self.hotWordsArray count] != 0) {
             self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
@@ -137,16 +140,16 @@
         self.loadHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.loadHUD.labelText = @"正在加载中...";
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
-        dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"热搜词汇网络请求");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loadHotWords];
-                dispatch_semaphore_signal(semaphore);
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+            dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                NSLog(@"热搜词汇网络请求");
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self loadHotWords];
+                    dispatch_semaphore_signal(semaphore);
+                });
             });
-        });
         
         dispatch_async(queue, ^{
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
@@ -240,19 +243,13 @@
                     dispatch_semaphore_signal(semaphore);
                 });
             });
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.4f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loadData];
-                dispatch_semaphore_signal(semaphore);
-            });
-        });
             dispatch_async(queue, ^{
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
                 dispatch_semaphore_signal(semaphore);
             });
         }
-    [[UserItemTool defaultItem] setFirstLogin:NO];
+//    [[UserItemTool defaultItem] setFirstLogin:NO];
+    [self queryEveryGroupMessageCount];
 }
 
 //邮问视图消失时显示底部课表
@@ -260,7 +257,6 @@
     [super viewWillDisappear:animated];
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
-    [self queryEveryGroupMessageCount];
 }
 
 
@@ -323,9 +319,6 @@
     self.tableArray = [PostArchiveTool getPostList];
     self.dataArray = [PostArchiveTool getMyFollowGroup];
     self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
-    for (int i = 1;i < [self.dataArray count]; i++) {
-        NSLog(@"%@",self.dataArray[i].message_count);
-    }
     _TopViewHeight = self.dataArray.count != 0 ? (SCREEN_WIDTH * 191/375) : (SCREEN_WIDTH * 116/375);
     [self setMainViewUI];
     [self.tableView reloadData];
@@ -396,25 +389,30 @@
 - (void)topFollowViewLoadSuccess {
     self.dataArray = self.groupModel.dataArray;
     NSLog(@"进行消息数初始化赋值");
-    if ([self.dataArray count] != 0) {
-        NSMutableArray *tmpArray = [PostArchiveTool getMyFollowGroup];
-        GroupItem *tmpItem = [[GroupItem alloc] init];
-        for (int i = 1;i < [tmpArray count]; i++) {
-            tmpItem = tmpArray[i];
-            for (int j = 1;j < [self.dataArray count]; j++) {
-                if ([self.dataArray[j].topic_id intValue] == [tmpItem.topic_id intValue]) {
-                    self.dataArray[j].message_count = tmpItem.message_count;
+    if ([UserItemTool defaultItem].firstLogin == YES) {
+        [self firstLoginToSetGroupMessageCount];
+    } else {
+        if ([self.dataArray count] != 0) {
+            NSMutableArray *tmpArray = [PostArchiveTool getMyFollowGroup];
+            GroupItem *tmpItem = [[GroupItem alloc] init];
+            for (int i = 1;i < [tmpArray count]; i++) {
+                tmpItem = tmpArray[i];
+                for (int j = 1;j < [self.dataArray count]; j++) {
+                    if ([self.dataArray[j].topic_id intValue] == [tmpItem.topic_id intValue]) {
+                        self.dataArray[j].message_count = tmpItem.message_count;
+                    }
                 }
             }
-        }
-        for (int i = 1;i < [self.dataArray count]; i++) {
-            if ([self.dataArray[i].topic_id intValue] == [_topicID intValue]) {
-                self.dataArray[i].message_count = [NSNumber numberWithInt:0];
+            for (int i = 1;i < [self.dataArray count]; i++) {
+                if ([self.dataArray[i].topic_id intValue] == [_topicID intValue]) {
+                    self.dataArray[i].message_count = [NSNumber numberWithInt:0];
+                }
             }
         }
     }
     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
     [self refreshData];
+    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
 ///我的关注请求失败
@@ -451,7 +449,7 @@
 
 ///成功请求数据
 - (void)NewQAListLoadSuccess {
-    [self.loadHUD removeFromSuperview];
+//    [self.loadHUD removeFromSuperview];
     if (self.page == 1) {
         self.tableArray = self.postmodel.postArray;
     }else {
@@ -483,13 +481,13 @@
 
 # pragma mark -UI的设置及控件的懒加载
 ///列表的懒加载
-- (RecommendedTableView *)tableView {
+- (RecommendedTableView *)tableViewWith:(CGFloat)height {
     if (!_tableView) {
         _tableView = [[RecommendedTableView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT + STATUSBARHEIGHT + SCREEN_WIDTH * 14/375, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_WIDTH * 14/375 + NVGBARHEIGHT + STATUSBARHEIGHT))];
         _tableView.showsVerticalScrollIndicator = NO;
         //增加Observer，监听列表滑动
         [_tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-        _tableView.contentInset = UIEdgeInsetsMake(_TopViewHeight, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(height, 0, 0, 0);
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -559,8 +557,7 @@
     _TopViewHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 191/375 : (SCREEN_WIDTH * 116/375);
     //推荐Label高度
     _recommendHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 54/375 : SCREEN_WIDTH * 43/375;
-    
-    [self tableView];
+    [self tableViewWith:_TopViewHeight];
     [self.view addSubview:self.tableView];
     [self setUpRefresh];
     self.topFollowView = [[TopFollowView alloc] initWithFrame:CGRectMake(0, _NavHeight, SCREEN_WIDTH , _TopViewHeight) And:self.dataArray];
@@ -1145,6 +1142,13 @@
             }
         }
     }
+}
+
+- (void)firstLoginToSetGroupMessageCount {
+    for (int i = 1;i < [self.dataArray count]; i++) {
+        self.dataArray[i].message_count = [NSNumber numberWithInt:0];
+    }
+    [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
 }
 
 @end
