@@ -44,6 +44,8 @@
 @property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
 @property (nonatomic, strong) MJRefreshNormalHeader *header;
 
+@property (nonatomic, assign) NSInteger cnt;
+
 @end
 
 @implementation YYZTopicDetailVC
@@ -52,6 +54,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.cnt=0;
     self.leftPage = 1;//初始化当前页数
     self.rightPage = 1;
     //网络请求
@@ -63,7 +66,7 @@
             [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
         }];
     //设置导航栏
-//    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
+    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar
     self.navigationItem.title = @"";
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
@@ -77,10 +80,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNotification];
-    [self setBackViewWithGesture];
+    [self setNotification];//设置通知中心
+    [self setBackViewWithGesture];//设置弹出view
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    
+
     self.leftTableArray = [[NSMutableArray alloc]init];
     self.leftPostmodel = [[YYZTopicModel alloc]init];
     self.rightTableArray = [[NSMutableArray alloc]init];
@@ -89,8 +92,8 @@
     [self setScroll];
     [self setMiddleLable];
     [self setBackTableView];
-    [self loadData];
     [self funcPopViewinit];
+    [self loadData];//初始化数据
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -120,8 +123,9 @@
     backgroundScrollView.contentSize = CGSizeMake(0,0);//先设置禁止滑动，以后适配动画效果
     [self.view addSubview:backgroundScrollView];
     
-    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 185, SCREEN_WIDTH, SCREEN_HEIGHT-185)];
+    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, SCREEN_HEIGHT-180)];
     self.topicScrollView = topicScrollView;
+    topicScrollView.delegate = self;
     topicScrollView.backgroundColor = [UIColor whiteColor];
     topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-185);
     topicScrollView.pagingEnabled = YES;
@@ -145,7 +149,6 @@
             [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
             [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
         }
-        
         //改变提示线位置
         double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
         self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
@@ -157,56 +160,91 @@
 - (void)dealloc{
     [self.topicScrollView removeObserver:self forKeyPath:@"contentOffset"];
 }
+//检查当前在第几页，返回当前页数
+- (int)checkPage{
+    CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
+    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    return currentPage;
+}
 #pragma mark- 帖子列表的网络请求
 //下拉刷新
 - (void)loadData{
+    if([self checkPage] == 0){
     self.leftPage += 1;
     [self.leftPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"latest"];
-    
+    }
+    else{
     self.rightPage += 1;
     [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
+    }
+    if(self.cnt<2){
+        self.cnt++;
+        self.rightPage += 1;
+        [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
+    }
 }
+
 ///上拉刷新
 - (void)refreshData{
+    if([self checkPage] == 0){
     [self.leftTableArray removeAllObjects];
     self.leftPage = 1;
     [self.leftPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"latest"];
-    
+    }
+    else{
     [self.rightTableArray removeAllObjects];
     self.rightPage = 1;
     [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
+    }
 }
 
 ///成功请求数据
 - (void)TopicLoadSuccess {
-    
-    if (self.leftPage == 1) {
-        self.leftTableArray = self.leftPostmodel.postArray;
-    }else {
-        [self.leftTableArray addObjectsFromArray:self.leftPostmodel.postArray];
+    if([self checkPage] == 0){
+        if (self.leftPage == 1) {
+            self.leftTableArray = self.leftPostmodel.postArray;
+        }else {
+            [self.leftTableArray addObjectsFromArray:self.leftPostmodel.postArray];
+        }
+        //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+        if (self.leftPage == 1) {
+            [self.topicLeftTableView reloadData];
+            [self.topicLeftTableView.mj_header endRefreshing];
+        }else{
+            [self.topicLeftTableView reloadData];
+            [self.topicLeftTableView.mj_footer endRefreshing];
+        }
     }
-    //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
-    if (self.leftPage == 1) {
-        [self.topicLeftTableView reloadData];
-        [self.topicLeftTableView.mj_header endRefreshing];
-    }else{
-        [self.topicLeftTableView reloadData];
-        [self.topicLeftTableView.mj_footer endRefreshing];
+    else{
+        if (self.rightPage == 1) {
+            self.rightTableArray = self.rightPostmodel.postArray;
+        }else {
+            [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
+        }
+        //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+        if (self.rightPage == 1) {
+            [self.topicRightTableView reloadData];
+            [self.topicRightTableView.mj_header endRefreshing];
+        }else{
+            [self.topicRightTableView reloadData];
+            [self.topicRightTableView.mj_footer endRefreshing];
+        }
     }
-    
-    
-    if (self.rightPage == 1) {
-        self.rightTableArray = self.rightPostmodel.postArray;
-    }else {
-        [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
-    }
-    //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
-    if (self.rightPage == 1) {
-        [self.topicRightTableView reloadData];
-        [self.topicRightTableView.mj_header endRefreshing];
-    }else{
-        [self.topicRightTableView reloadData];
-        [self.topicRightTableView.mj_footer endRefreshing];
+    if(self.cnt<2){
+        self.cnt++;
+        if (self.rightPage == 1) {
+            self.rightTableArray = self.rightPostmodel.postArray;
+        }else {
+            [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
+        }
+        //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+        if (self.rightPage == 1) {
+            [self.topicRightTableView reloadData];
+            [self.topicRightTableView.mj_header endRefreshing];
+        }else{
+            [self.topicRightTableView reloadData];
+            [self.topicRightTableView.mj_footer endRefreshing];
+        }
     }
 }
 
@@ -225,30 +263,23 @@
     //上滑加载的设置
     _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     self.topicLeftTableView.mj_footer = _footer;
-    
+    self.topicRightTableView.mj_footer = _footer;
     //下拉刷新的设置
     _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicLeftTableView.mj_header = _header;
-    
-    //上滑加载的设置
-    _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    self.topicRightTableView.mj_footer = _footer;
-    
-    //下拉刷新的设置
-    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicRightTableView.mj_header = _header;
-    
+
     [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
 }
 - (void) setBackTableView{
-    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
+    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-180) style:UITableViewStylePlain];
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
     topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   
-    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-185) style:UITableViewStylePlain];
+    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-180) style:UITableViewStylePlain];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
@@ -479,8 +510,6 @@
     _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
     [self.view.window addSubview:_popView];
 }
-
-
 //设置顶部cell
 - (void)setCell {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
@@ -512,7 +541,7 @@
 
 - (void) setMiddleLable {
     //现在是我自己写的，以后重构直接用HMSegmentedControl简单一点
-    UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 55)];
+    UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 50)];
     middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
     middleLable.layer.cornerRadius = 15;
     middleLable.clipsToBounds = YES;
@@ -668,8 +697,6 @@
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
 }
-
-
 #pragma mark- 配置相关操作成功后的弹窗
 - (void)showStarSuccessful {
     [self.popView removeFromSuperview];
