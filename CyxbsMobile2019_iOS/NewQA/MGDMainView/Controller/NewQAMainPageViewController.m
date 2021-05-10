@@ -300,6 +300,10 @@
                                              selector:@selector(reLoadGroupList)
                                                  name:@"reLoadGroupList" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshData)
+                                                 name:@"shieldReloadNEWQAList" object:nil];
+    
     
 }
 
@@ -839,7 +843,6 @@
 
 #pragma mark- 配置相关弹出View和其蒙版的操作
 ///设置相关蒙版
-
 - (void)setBackViewWithGesture {
     _backViewWithGesture = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _backViewWithGesture.backgroundColor = [UIColor blackColor];
@@ -899,7 +902,7 @@
     NSLog(@"%@",_itemDic[@"uid"]);
     [model ShieldPersonWithUid:_itemDic[@"uid"]];
     [model setBlock:^(id  _Nonnull info) {
-        if ([info[@"info"] isEqualToString:@"200"]) {
+        if ([info[@"info"] isEqualToString:@"success"]) {
             [self showShieldSuccessful];
         }else if ([info[@"info"] isEqualToString:@"该用户已屏蔽"]) {
             [self showShieldAlready];
@@ -912,7 +915,7 @@
 - (void)ClickedReportBtn:(UIButton *)sender  {
     [_popView removeFromSuperview];
     _itemDic = self.tableArray[sender.tag];
-    NSLog(@"点击多举报按钮时打印的帖子ID：%@",_itemDic[@"post_id"]);
+//    NSLog(@"点击多举报按钮时打印的帖子ID：%@",_itemDic[@"post_id"]);
     _reportView.postID = _itemDic[@"post_id"];
     _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
     [self.view.window addSubview:_reportView];
@@ -985,7 +988,10 @@
 - (void)showShieldSuccessful {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view];
+    [self refreshData];
+    [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view AndToDo:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }];
 }
 
 - (void)showShieldAlready {
@@ -1136,7 +1142,7 @@
                     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
                 }];
             } else {
-                NSLog(@"缓存中并没有记录上次离开圈子的时间");
+//                NSLog(@"缓存中并没有记录上次离开圈子的时间");
                 self.dataArray[i].message_count = [NSNumber numberWithInt:0];
                 [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
             }

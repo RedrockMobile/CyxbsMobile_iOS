@@ -157,6 +157,12 @@
 - (void)dealloc{
     [self.topicScrollView removeObserver:self forKeyPath:@"contentOffset"];
 }
+//检查当前在第几页，返回当前页数
+- (int)checkPage{
+    CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
+    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    return currentPage;
+}
 #pragma mark- 帖子列表的网络请求
 //下拉刷新
 - (void)loadData{
@@ -168,45 +174,49 @@
 }
 ///上拉刷新
 - (void)refreshData{
+    if([self checkPage] == 0){
     [self.leftTableArray removeAllObjects];
     self.leftPage = 1;
     [self.leftPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"latest"];
-    
+    }
+    else{
     [self.rightTableArray removeAllObjects];
     self.rightPage = 1;
     [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
+    }
 }
 
 ///成功请求数据
 - (void)TopicLoadSuccess {
-    
-    if (self.leftPage == 1) {
-        self.leftTableArray = self.leftPostmodel.postArray;
-    }else {
-        [self.leftTableArray addObjectsFromArray:self.leftPostmodel.postArray];
+    if([self checkPage] == 0){
+        if (self.leftPage == 1) {
+            self.leftTableArray = self.leftPostmodel.postArray;
+        }else {
+            [self.leftTableArray addObjectsFromArray:self.leftPostmodel.postArray];
+        }
+        //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+        if (self.leftPage == 1) {
+            [self.topicLeftTableView reloadData];
+            [self.topicLeftTableView.mj_header endRefreshing];
+        }else{
+            [self.topicLeftTableView reloadData];
+            [self.topicLeftTableView.mj_footer endRefreshing];
+        }
     }
-    //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
-    if (self.leftPage == 1) {
-        [self.topicLeftTableView reloadData];
-        [self.topicLeftTableView.mj_header endRefreshing];
-    }else{
-        [self.topicLeftTableView reloadData];
-        [self.topicLeftTableView.mj_footer endRefreshing];
-    }
-    
-    
-    if (self.rightPage == 1) {
-        self.rightTableArray = self.rightPostmodel.postArray;
-    }else {
-        [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
-    }
-    //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
-    if (self.rightPage == 1) {
-        [self.topicRightTableView reloadData];
-        [self.topicRightTableView.mj_header endRefreshing];
-    }else{
-        [self.topicRightTableView reloadData];
-        [self.topicRightTableView.mj_footer endRefreshing];
+    else{
+        if (self.rightPage == 1) {
+            self.rightTableArray = self.rightPostmodel.postArray;
+        }else {
+            [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
+        }
+        //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+        if (self.rightPage == 1) {
+            [self.topicRightTableView reloadData];
+            [self.topicRightTableView.mj_header endRefreshing];
+        }else{
+            [self.topicRightTableView reloadData];
+            [self.topicRightTableView.mj_footer endRefreshing];
+        }
     }
 }
 
@@ -230,11 +240,9 @@
     _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicLeftTableView.mj_header = _header;
     
-    //上滑加载的设置
     _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     self.topicRightTableView.mj_footer = _footer;
     
-    //下拉刷新的设置
     _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicRightTableView.mj_header = _header;
     
