@@ -47,6 +47,11 @@
     [self addQuitBtn];
 }
 
+// 通知邮问主页刷新页面
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+}
+
 //MARK: - 重写的方法：
 - (UIView *)quitTipView{
     if(_quitTipView==nil){
