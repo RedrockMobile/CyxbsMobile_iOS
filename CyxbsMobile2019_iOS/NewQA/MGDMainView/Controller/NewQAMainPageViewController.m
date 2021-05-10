@@ -78,12 +78,16 @@
 // 记录新增了哪个圈子
 @property (nonatomic, strong) NSString *topicID;
 
+/// 举报view是否已经显示
+@property (nonatomic, assign) BOOL isShowedReportView;
 @end
 
 @implementation NewQAMainPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //初始化
+    self.isShowedReportView = NO;
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
     } else {
@@ -300,6 +304,40 @@
                                              selector:@selector(reLoadGroupList)
                                                  name:@"reLoadGroupList" object:nil];
     
+    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+#pragma mark- 监听键盘将要出现、消失的方法
+///键盘将要出现时，若举报页面已经显示则上移
+- (void)reportViewKeyboardWillShow:(NSNotification *)notification{
+    //如果举报页面已经出现，就将举报View上移动
+    if (self.isShowedReportView == YES) {
+        //获取键盘高度
+        NSDictionary *userInfo = notification.userInfo;
+        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat keyBoardHeight = endFrame.size.height;
+        
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+            //这里如果是设置成距离self.view的底部，会高出一截
+            make.bottom.equalTo(self.view.window).offset( IS_IPHONEX ? -(keyBoardHeight+20) : -keyBoardHeight);
+//            make.bottom.equalTo(self.view.window).offset(-keyBoardHeight);
+
+        }];
+    }
+}
+///键盘将要消失，若举报页面已经显示则使其下移
+- (void)reportViewKeyboardWillHide:(NSNotification *)notification{
+    if (self.isShowedReportView == YES) {
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
+    }
     
 }
 
@@ -860,6 +898,7 @@
 - (void)dismissBackViewWithGesture {
     [_popView removeFromSuperview];
     [_shareView removeFromSuperview];
+    self.isShowedReportView = NO;
     [_reportView removeFromSuperview];
     [_selfPopView removeFromSuperview];
     [_backViewWithGesture removeFromSuperview];
@@ -911,11 +950,16 @@
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
     [_popView removeFromSuperview];
+    self.isShowedReportView = YES;
     _itemDic = self.tableArray[sender.tag];
     NSLog(@"点击多举报按钮时打印的帖子ID：%@",_itemDic[@"post_id"]);
     _reportView.postID = _itemDic[@"post_id"];
-    _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+//    _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
     [self.view.window addSubview:_reportView];
+    [self.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+    }];
 }
 
 #pragma mark -多功能View--自己的代理方法
@@ -943,6 +987,7 @@
 #pragma mark -举报页面的代理方法
 ///举报页面点击确定按钮
 - (void)ClickedSureBtn {
+    self.isShowedReportView = NO;
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     ReportModel *model = [[ReportModel alloc] init];
@@ -954,6 +999,7 @@
 
 ///举报页面点击取消按钮
 - (void)ClickedCancelBtn {
+    self.isShowedReportView = NO;
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
 }
