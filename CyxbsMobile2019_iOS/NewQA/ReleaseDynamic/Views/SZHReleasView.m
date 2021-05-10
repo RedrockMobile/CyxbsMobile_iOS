@@ -55,7 +55,7 @@
         //2.frame
     [self addSubview:self.releaseTextView];
     [self.releaseTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
+        make.left.equalTo(self).offset(16);
         make.top.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.1574));
     }];
@@ -75,7 +75,8 @@
         //2.frame
     [self.releaseTextView addSubview:self.placeHolderLabel];
     [self.placeHolderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.releaseTextView).offset(MAIN_SCREEN_W * 0.0413);
+//        make.left.equalTo(self.releaseTextView).offset(MAIN_SCREEN_W * 0.0413);
+        make.left.equalTo(self.releaseTextView);
         make.top.equalTo(self.releaseTextView).offset(MAIN_SCREEN_H * 0.0225);
         make.height.mas_equalTo(15.5);
     }];
