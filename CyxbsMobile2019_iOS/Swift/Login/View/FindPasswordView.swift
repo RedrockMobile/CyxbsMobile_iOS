@@ -111,7 +111,7 @@ class FindPasswordView: UIView {
     }
     
     @objc func findByEmail() {
-        let bywordVC = ByWordViewController()
+        let bywordVC = ByPasswordViewController()
         bywordVC.idString = id2
         self.viewController?.navigationController?.pushViewController(bywordVC, animated: true)
     }

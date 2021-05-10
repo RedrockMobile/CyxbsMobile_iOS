@@ -47,8 +47,10 @@
     self.navigationItem.leftBarButtonItem =leftButton;
     
     //获取学号
-    UserItem *item = [[UserItem alloc] init];
-    self.idString= item.stuNum;
+    if(self.idString==nil){
+        UserItem *item = [[UserItem alloc] init];
+        self.idString= item.stuNum;
+    }
     
     [self setLable];
     [self setTextView];
