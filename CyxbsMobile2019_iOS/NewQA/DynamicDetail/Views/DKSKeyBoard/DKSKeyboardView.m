@@ -156,6 +156,7 @@ static float viewHeight = 38.0f; //按钮视图高度
     [UIView animateWithDuration:duration delay:0 options:[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue] animations:^{
         self.frame = CGRectMake(0, endFrame.origin.y - self.backView.height, K_Width, self.height);
         [self updateAssociateTableViewFrame];
+//        [self.delegate riseReportViewWithY:CGRectGetMaxY(self.frame) AndDictionnary:userInfo];
         
     } completion:nil];
 }

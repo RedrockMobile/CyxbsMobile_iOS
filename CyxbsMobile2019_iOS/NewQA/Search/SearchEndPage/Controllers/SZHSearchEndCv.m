@@ -57,6 +57,8 @@
     //cell相关
 @property (nonatomic, strong) FuncView *popView;    //多功能View（点击cell上的三个小点后出来的view）
 @property (nonatomic, strong) ReportView *reportView;   //举报页面
+/// 是否已经显示reportView
+@property (nonatomic, assign) BOOL isShowedReportView;
 @property (nonatomic, strong) ShareView *shareView; //分享页面
 
 
@@ -72,6 +74,7 @@
     //初始化设置
     self.searchDynamicDic = nil;
     self.searchKnowledgeDic = nil;
+    self.isShowedReportView = NO;
     
     [self setBackViewWithGesture];
     [self addSearchEndTopView];
@@ -88,6 +91,10 @@
         [self addSearchEndBottomView];
         [self dynamicTableReloadData];  //手动调用刷洗一次
     }
+    
+    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -193,6 +200,34 @@
     [self.relevantDynamicTable.mj_header endRefreshing];
     [NewQAHud showHudWith:@"网络异常" AddView:self.view];
 }
+
+///键盘将要出现时，若举报页面已经显示则上移
+- (void)reportViewKeyboardWillShow:(NSNotification *)notification{
+    //如果举报页面已经出现，就将举报View上移动
+    if (self.isShowedReportView == YES) {
+        //获取键盘高度
+        NSDictionary *userInfo = notification.userInfo;
+        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat keyBoardHeight = endFrame.size.height;
+        
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+            make.bottom.equalTo(self.view).offset( IS_IPHONEX ? -(keyBoardHeight+20) : -keyBoardHeight);
+        }];
+    }
+}
+///键盘将要消失，若举报页面已经显示则使其下移
+- (void)reportViewKeyboardWillHide:(NSNotification *)notification{
+    if (self.isShowedReportView == YES) {
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
+    }
+    
+}
+
 #pragma mark- private methonds
 /// 将搜索的内容添加到历史记录
 /// @param string 搜索的内容
@@ -271,7 +306,8 @@
 - (void)dismissBackViewWithGesture {
     [_popView removeFromSuperview];
     [_shareView removeFromSuperview];
-    [_reportView removeFromSuperview];
+    [self.reportView removeFromSuperview];
+    self.isShowedReportView = NO;
     [_backViewWithGesture removeFromSuperview];
 }
 
@@ -521,28 +557,34 @@
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
     [_popView removeFromSuperview];
+    //已经显示举报
+    self.isShowedReportView = YES;
+    
     PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[sender.tag]];
-    _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithString:item.post_id]];
-    _reportView.delegate = self;
-    _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
-    [self.view.window addSubview:_reportView];
-   
+    self.reportView.postID = [NSNumber numberWithString:item.post_id];
+    [self.view.window addSubview:self.reportView];
+    [self.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+    }];
 }
 
 //MARK:==============================举报页面代理方法==============================
 ///举报页面点击确定按钮
 - (void)ClickedSureBtn {
-    [_reportView removeFromSuperview];
+    self.isShowedReportView = NO;   //未显示举报页面
+    [self.reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     ReportModel *model = [[ReportModel alloc] init];
-    [model ReportWithPostID:_reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:_reportView.textView.text];
+    [model ReportWithPostID:self.reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:self.reportView.textView.text];
     [model setBlock:^(id  _Nonnull info) {
         [self showReportSuccessful];
     }];
 }
 ///举报页面点击取消按钮
 - (void)ClickedCancelBtn {
-    [_reportView removeFromSuperview];
+    self.isShowedReportView = NO;
+    [self.reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
 }
 
@@ -747,5 +789,14 @@
         _relevantDynamicTable.dataSource = self;
     }
     return _relevantDynamicTable;
+}
+
+- (ReportView *)reportView{
+    if (!_reportView) {
+        //最开始默认输入为0，后面再进行赋值
+        _reportView = [[ReportView alloc] initWithPostID:@0];
+        _reportView.delegate = self;
+    }
+    return _reportView;
 }
 @end

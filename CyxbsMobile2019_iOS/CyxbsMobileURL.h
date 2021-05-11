@@ -96,7 +96,7 @@
 #define QUESTIONLISTAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/question"]
 
 ///修改密码
-#define CHANGEPASSWORDAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/Person/password"]
+#define CHANGEPASSWORDAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/password/personal"]
 
 ///发送绑定邮箱验证码
 #define SENDEMAILCODEAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/bind/email/code"]
