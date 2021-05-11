@@ -279,6 +279,8 @@
 - (void)dismissBackViewWithGesture {
     [self.popView removeFromSuperview];
     [self.shareView removeFromSuperview];
+    self.isShowedReportView = NO;
+    [self.reportView.textView resignFirstResponder];
     self.reportView.alpha = 0;
     self.backViewWithGesture.alpha = 0;
     [self.inputView.textView resignFirstResponder]; //收回键盘
@@ -322,12 +324,12 @@
         }];
     }else{
         //否则出现一个透明的View，点击后就可以让键盘收回
+//        self.hideKeyBoardView.backgroundColor = [UIColor redColor];
+        NSDictionary *userInfo = notification.userInfo;
+        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat keyBoardHeight = endFrame.size.height;
+        self.hideKeyBoardView.frame = CGRectMake(0, 0, MAIN_SCREEN_W ,  IS_IPHONEX ? (MAIN_SCREEN_W+60) : (MAIN_SCREEN_W-25));
         [self.view.window addSubview:self.hideKeyBoardView];
-        [self.hideKeyBoardView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view);
-            make.bottom.equalTo(self.inputView.mas_top).offset(self.inputView.size.height);
-            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
-        }];
        
     }
     
@@ -463,6 +465,10 @@
 }
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
+    [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+    }];
     self.isShowedReportView = YES;  //标记转为已经显示举报
     [self.popView removeFromSuperview];
 
@@ -575,6 +581,7 @@
 }
 //选择图片
 - (void)leftButtonClick:(NSString *)textStr{
+    [self.hideKeyBoardView removeFromSuperview];
     [self.view endEditing:YES];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -596,6 +603,7 @@
 }
 //发送按钮
 - (void)rightButtonClick:(NSString *)textStr{
+    [self.hideKeyBoardView removeFromSuperview];
     [self.view endEditing:YES];
     [self reportComment:textStr];
 }
