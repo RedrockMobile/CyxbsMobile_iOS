@@ -1,8 +1,8 @@
 //
-//  NewCountModel.h
+//  DeletePostModel.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 阿栋 on 2021/3/20.
+//  Created by 阿栋 on 2021/4/27.
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
@@ -12,13 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^Netblock)(id info);
 
-@interface NewCountModel : NSObject
+@interface DeletePostModel : NSObject
 
 @property (nonatomic, copy) Netblock Block;
 
-@property (nonatomic, strong) NSMutableArray *PostCountArray;
-
-- (void)queryNewCountWithTimestamp:(NSString *)timestamp;
+- (void)deletePostWithID:(NSNumber *)postID AndModel:(NSNumber *)model;
 
 @end
 

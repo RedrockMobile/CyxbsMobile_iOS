@@ -20,6 +20,9 @@
 - (void)leftButtonClick:(NSString *)textStr;
 - (void)rightButtonClick:(NSString *)textStr;
 
+//让举报的view
+- (void)riseReportViewWithY:(CGFloat)y AndDictionnary:(NSDictionary *)userInfo;
+
 @end
 
 @interface DKSKeyboardView : UIView <UITextViewDelegate>

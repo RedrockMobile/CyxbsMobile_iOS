@@ -63,6 +63,8 @@
 /// 输入框
 @property(nonatomic, strong) DKSKeyboardView *inputView;
 
+/// 回收键盘的view
+@property (nonatomic, strong) UIView *hideKeyBoardView;
 /// 网络请求完成前的加载的Hud
 @property (nonatomic, strong) MBProgressHUD *waiLoadHud;
 
@@ -91,6 +93,8 @@
 /// 请求评论数据信息失败
 @property (nonatomic, assign) BOOL isGetCommentDtaFailure;
 
+/// 是否已经显示举报的View
+@property (nonatomic, assign) BOOL isShowedReportView;
 /// 是否举报评论
 @property (nonatomic, assign) BOOL isReportComment;
 /// 发布评论时是否是一级评论
@@ -109,7 +113,7 @@
     self.isCommentFirstLevel = YES;
     self.isFirstEnter = NO;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.commentTableDataAry = [NSMutableArray array];
     self.oneLeveCommentHeight = [NSMutableArray array];
     self.twoLevelCommentHeight = [NSMutableArray array];
@@ -117,6 +121,12 @@
     self.waiLoadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.waiLoadHud.labelText = @"正在加载中...";
     [self getDataFirst];
+    
+    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    self.isShowedReportView = NO;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -158,11 +168,23 @@
     }
     
     //输入框
-    self.inputView.associateTableView = self.commentTable;
+//    self.inputView.associateTableView = self.commentTable;
     [self.view addSubview:self.inputView];
     
     //一些标识
     self.isFirstEnter = YES;
+    
+    //蒙板
+    [self.view.window addSubview:self.backViewWithGesture];
+    self.backViewWithGesture.alpha = 0;
+    
+    //举报的界面，在点击时透明度为1，其余时刻透明度为0
+    [self.view.window addSubview:self.reportView];
+    [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+    }];
+    self.reportView.alpha = 0;
 }
 
 
@@ -257,13 +279,17 @@
 - (void)dismissBackViewWithGesture {
     [self.popView removeFromSuperview];
     [self.shareView removeFromSuperview];
-    [self.reportView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+    self.isShowedReportView = NO;
+    [self.reportView.textView resignFirstResponder];
+    self.reportView.alpha = 0;
+    self.backViewWithGesture.alpha = 0;
+    [self.inputView.textView resignFirstResponder]; //收回键盘
 }
 /// 分享成功后调用
 - (void)shareSuccessful {
     [self.popView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+    self.backViewWithGesture.alpha = 0;
     [NewQAHud showHudWith:@"  已复制链接，可以去分享给小伙伴了～  " AddView:self.view];
 }
 ///删除评论
@@ -284,10 +310,40 @@
 }
 /// 收回键盘
 - (void)dismissBottomKeyBoard{
-//    [self.view endEditing:YES];
     [self.inputView.textView resignFirstResponder];
-    [self.view removeAllSubviews];
-    [self buildFrame];
+    [self.hideKeyBoardView removeFromSuperview];
+}
+///键盘将要出现时，若举报页面已经显示则上移
+- (void)reportViewKeyboardWillShow:(NSNotification *)notification{
+    //如果举报页面已经出现，就将举报View上移动
+    if (self.isShowedReportView == YES) {
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.bottom.equalTo(self.inputView.mas_top).offset(self.inputView.size.height);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
+    }else{
+        //否则出现一个透明的View，点击后就可以让键盘收回
+//        self.hideKeyBoardView.backgroundColor = [UIColor redColor];
+        NSDictionary *userInfo = notification.userInfo;
+        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat keyBoardHeight = endFrame.size.height;
+//        self.hideKeyBoardView.frame = CGRectMake(0, 0, MAIN_SCREEN_W ,  IS_IPHONEX ? (MAIN_SCREEN_W+60) : (MAIN_SCREEN_W-25));
+        self.hideKeyBoardView.frame = CGRectMake(0, 0, MAIN_SCREEN_W , MAIN_SCREEN_H - keyBoardHeight - 70);
+        [self.view.window addSubview:self.hideKeyBoardView];
+       
+    }
+    
+}
+///键盘将要消失，若举报页面已经显示则使其下移
+- (void)reportViewKeyboardWillHide:(NSNotification *)notification{
+    if (self.isShowedReportView) {
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
+    }
+    
 }
 #pragma mark- Delegate
 
@@ -305,7 +361,8 @@
     UIWindow *desWindow = self.view.window;
     CGRect frame = [btn convertRect:btn.bounds toView:desWindow];
     //添加背景蒙版
-    [desWindow addSubview:self.backViewWithGesture];
+//    [desWindow addSubview:self.backViewWithGesture];
+    self.backViewWithGesture.alpha = 0.36;
     self.popView.frame =  CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
     //添加弹出的view
     [self.view.window addSubview:self.popView];
@@ -358,7 +415,8 @@
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 //关注圈子成功后的操作
                 [self.popView removeFromSuperview];
-                [self.backViewWithGesture removeFromSuperview];
+//                [self.backViewWithGesture removeFromSuperview];
+                self.backViewWithGesture.alpha = 0;
                 [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
                 }];
@@ -366,7 +424,8 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
             }else  {
                 [self.popView removeFromSuperview];
-                [self.backViewWithGesture removeFromSuperview];
+//                [self.backViewWithGesture removeFromSuperview];
+                self.backViewWithGesture.alpha = 0;
                 [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
             }
         }];
@@ -375,7 +434,8 @@
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 //取消关注成功的操作
                 [self.popView removeFromSuperview];
-                [self.backViewWithGesture removeFromSuperview];
+//                [self.backViewWithGesture removeFromSuperview];
+                self.backViewWithGesture.alpha = 0;
                 [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
                     //重新设置邮问首页的圈子关注列表
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
@@ -384,7 +444,8 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
             }else  {
                 [self.popView removeFromSuperview];
-                [self.backViewWithGesture removeFromSuperview];
+//                [self.backViewWithGesture removeFromSuperview];
+                self.backViewWithGesture.alpha = 0;
                 [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
             }
         }];
@@ -397,26 +458,37 @@
     [model setBlock:^(id  _Nonnull info) {
         if ([info[@"info"] isEqualToString:@"success"]) {
             [self.popView removeFromSuperview];
-            [self.backViewWithGesture removeFromSuperview];
+//            [self.backViewWithGesture removeFromSuperview];
+            self.backViewWithGesture.alpha = 0;
             [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view];
         }
     }];
 }
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
+    [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+    }];
+    self.isShowedReportView = YES;  //标记转为已经显示举报
     [self.popView removeFromSuperview];
+
     //此方式进入创建举报view为从动态的多功能按钮进入，只能是举报动态
     self.isReportComment = NO;
-//    self.reportView.postID = [NSNumber numberWithString:self.post_id];
-//    self.reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
-    [self.view.window addSubview:self.reportView];
+    self.reportView.alpha = 1;
 }
 
 //MARK:======================================举报页面的代理方法======================================
 /// 举报页面点击确定按钮
 - (void)ClickedSureBtn {
-    [self.reportView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+    //隐藏视图
+    self.reportView.alpha = 0;
+    self.backViewWithGesture.alpha = 0;
+    
+    self.isShowedReportView = NO; //标记转为未显示
+    //收回键盘
+    [self.reportView.textView resignFirstResponder];
+    
     //如果不是举报评论，此时举报的id为chushihuaid：动态的id
     if (self.isReportComment == NO) {
         ReportModel *model = [[ReportModel alloc] init];
@@ -441,8 +513,6 @@
         self.reportView.postID = [NSNumber numberWithInt:[self.post_id intValue]];;
     }
     self.reportView.textView.text = @"";
-//    [self.commentTable.mj_header beginRefreshing];
-    
 }
 ///举报页面点击取消按钮
 - (void)ClickedCancelBtn {
@@ -452,44 +522,56 @@
         self.reportView.postID = [NSNumber numberWithInt:[self.post_id intValue]];
     }
     self.reportView.textView.text = @"";
-    [self.reportView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+    
+    //隐藏视图
+    self.reportView.alpha = 0;
+    self.backViewWithGesture.alpha = 0;
+    
+    self.isShowedReportView = NO; //标记转为未显示
+    //收回键盘
+    [self.reportView.textView resignFirstResponder];
 }
 
 //MARK:======================================分享View的代理方法======================================
 ///点击取消
 - (void)ClickedCancel {
     [self.shareView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+    self.backViewWithGesture.alpha = 0;
 }
 ///点击分享QQ空间
 - (void)ClickedQQZone {
     [self.shareView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+    self.backViewWithGesture.alpha = 0;
     [self shareSuccessful];
 }
 ///点击分享朋友圈
 - (void)ClickedVXGroup {
     [self.shareView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+    self.backViewWithGesture.alpha = 0;
     [self shareSuccessful];
 }
 ///点击分享QQ
 - (void)ClickedQQ {
     [self.shareView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+    self.backViewWithGesture.alpha = 0;
     [self shareSuccessful];
 }
 ///点击分享微信好友
 - (void)ClickedVXFriend {
     [self.shareView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+    self.backViewWithGesture.alpha = 0;
     [self shareSuccessful];
 }
 ///点击分享复制链接
 - (void)ClickedUrl {
     [self.shareView removeFromSuperview];
-    [self.backViewWithGesture removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+    self.backViewWithGesture.alpha = 0;
     [self shareSuccessful];
 }
 
@@ -500,6 +582,7 @@
 }
 //选择图片
 - (void)leftButtonClick:(NSString *)textStr{
+    [self.hideKeyBoardView removeFromSuperview];
     [self.view endEditing:YES];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -521,6 +604,7 @@
 }
 //发送按钮
 - (void)rightButtonClick:(NSString *)textStr{
+    [self.hideKeyBoardView removeFromSuperview];
     [self.view endEditing:YES];
     [self reportComment:textStr];
 }
@@ -550,6 +634,15 @@
     //初始化设置
     self.isCommentFirstLevel = YES;
 }
+- (void)riseReportViewWithY:(CGFloat)y AndDictionnary:(NSDictionary *)userInfo{
+    //动画键盘时长
+//    CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+//    [UIView animateWithDuration:duration delay:0 options:[userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue] animations:^{
+        
+        self.reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, y - 50, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+        
+//    } completion:nil];
+}
 
 //MARK:====================================表格的数据源方法============================================
 - (NSInteger )numberOfSectionsInTableView:(UITableView *)tableView{
@@ -565,7 +658,9 @@
     
     NSString *identifier = @"commentCell";
         DynamicDetailComentTableCell *cell = [[DynamicDetailComentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier commentType:(indexPath.row == 0 ? DynamicCommentType_stair : DynamicCommentType_secondLevel)];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
         DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
         if (indexPath.row == 0) {
             cell.dataModel = model;
@@ -590,12 +685,18 @@
 
 //MARK:====================================表格的代理方法==============================================
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
     
     if (indexPath.row == 0) {
-        return [self.oneLeveCommentHeight[indexPath.section] doubleValue];
+        NSString *height = [NSString stringWithFormat:@"%f",[model getCellHeight]];
+//        return [self.oneLeveCommentHeight[indexPath.section] doubleValue];
+        return [height doubleValue];
     }else{
-        NSMutableArray *muteAry = self.twoLevelCommentHeight[indexPath.section];
-        return [muteAry[indexPath.row - 1] doubleValue];
+        DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
+        NSString *height = [NSString stringWithFormat:@"%f",[secondCommentModel getCellHeight]];
+        return [height doubleValue];
+//        NSMutableArray *muteAry =  self.twoLevelCommentHeight[indexPath.section];
+//        return [muteAry[indexPath.row - 1] doubleValue];
     }
    
 }
@@ -670,8 +771,6 @@
     if (!_topBarView) {
         _topBarView = [[DynamicDetailTopBarView alloc] initWithFrame:CGRectMake(0, STATUSBARHEIGHT, MAIN_SCREEN_W, 45 * HScaleRate_SE)];
         _topBarView.delegate = self;
-        UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBottomKeyBoard)];
-        [_topBarView addGestureRecognizer:dismiss];
     }
     return _topBarView;
 }
@@ -679,8 +778,6 @@
 - (DynamicSpecificCell *)dynamicSpecifiCell{
     if (!_dynamicSpecifiCell) {
         _dynamicSpecifiCell = [[DynamicSpecificCell alloc] init];
-        UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBottomKeyBoard)];
-        [_dynamicSpecifiCell addGestureRecognizer:dismiss];
     }
     return _dynamicSpecifiCell;
 }
@@ -688,7 +785,7 @@
 - (UITableView *)commentTable{
     if (!_commentTable) {
         _commentTable = [[UITableView alloc] initWithFrame:CGRectZero];
-        _commentTable.backgroundColor = self.topBarView.backgroundColor;
+        _commentTable.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
         _commentTable.delegate = self;
         _commentTable.dataSource = self;
         //设置预加载高度
@@ -741,7 +838,7 @@
 - (ReportView *)reportView{
     if (!_reportView) {
         _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithInt:[self.post_id intValue]]];
-        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+//        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
         _reportView.delegate = self;
         _reportView.postID = [NSNumber numberWithString:self.post_id];
     }
@@ -766,12 +863,22 @@
         }
         UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 0)];
         _inputView.textView.inputAccessoryView = toolbar;
-        
+        _inputView.textView.textColor = [UIColor colorNamed:@"CellDetailColor"];
         //设置代理方法
         _inputView.delegate = self;
     }
     return _inputView;
 }
 
+- (UIView *)hideKeyBoardView{
+    if (!_hideKeyBoardView) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+        view.backgroundColor = [UIColor clearColor];
+        UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBottomKeyBoard)];
+        [view addGestureRecognizer:dismiss];
+        _hideKeyBoardView = view;
+    }
+    return _hideKeyBoardView;
+}
 
 @end

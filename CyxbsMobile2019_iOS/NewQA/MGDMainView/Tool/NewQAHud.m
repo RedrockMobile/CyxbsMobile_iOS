@@ -14,7 +14,7 @@
     MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = title;
-    [hud hide:YES afterDelay:1.2];
+    [hud hide:YES afterDelay:1.4];
     hud.margin = 8;
     [hud setYOffset:-SCREEN_HEIGHT * 0.26];
     hud.labelFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
@@ -27,7 +27,7 @@
     MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = title;
-    [hud hide:YES afterDelay:1.2];
+    [hud hide:YES afterDelay:1.4];
     hud.margin = 8;
     [hud setYOffset:-SCREEN_HEIGHT * 0.26];
     hud.labelFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];

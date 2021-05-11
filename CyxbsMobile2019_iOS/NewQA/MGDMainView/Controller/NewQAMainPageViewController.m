@@ -30,9 +30,10 @@
 #import "YYZTopicDetailVC.h"
 #import "NewCountModel.h"
 #import "MGDCurrentTimeStr.h"
+#import "DeletePostModel.h"
 
 
-@interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate>
+@interface NewQAMainPageViewController ()<ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,TopFollowViewDelegate,SelfFuncViewProtocol>
 //帖子列表数据源数组
 @property (nonatomic, strong) NSMutableArray *tableArray;
 //headerView的控件高度
@@ -60,6 +61,8 @@
 @property (nonatomic, strong) MBProgressHUD *loadHUD;
 //获取cell里item数据的NSDictionary
 @property (nonatomic, strong) NSDictionary *itemDic;
+//删除帖子的model
+@property (nonatomic, strong) DeletePostModel *deleteModel;
 //查询圈子中新消息数量模型
 @property (nonatomic, strong) NewCountModel *countModel;
 //所有圈子信息数组
@@ -75,18 +78,24 @@
 // 记录新增了哪个圈子
 @property (nonatomic, strong) NSString *topicID;
 
+/// 举报view是否已经显示
+@property (nonatomic, assign) BOOL isShowedReportView;
 @end
 
 @implementation NewQAMainPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //初始化
+    self.isShowedReportView = NO;
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
     } else {
         
     }
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+    [[NSUserDefaults standardUserDefaults] setValue:[MGDCurrentTimeStr currentTimeStr] forKey:@"NewQAMainPageFirstLoginTime"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     _NavHeight = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     ((ClassTabBar *)self.tabBarController.tabBar).backgroundColor = [UIColor colorNamed:@"TABBARCOLOR"];
     //设置通知中心
@@ -123,7 +132,6 @@
         NSLog(@"初始化通过缓存加载页面");
         self.page = floor(self.tableArray.count / 6.0);
         [self queryEveryGroupMessageCount];
-        [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
         [self setMainViewUI];
         if ([self.hotWordsArray count] != 0) {
             self->_searchBtn.searchBtnLabel.text = self.hotWordsArray[self->_hotWordIndex];
@@ -136,16 +144,16 @@
         self.loadHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.loadHUD.labelText = @"正在加载中...";
     
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
-        dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            NSLog(@"热搜词汇网络请求");
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loadHotWords];
-                dispatch_semaphore_signal(semaphore);
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+            dispatch_queue_t queue = dispatch_queue_create(0, DISPATCH_QUEUE_SERIAL);
+            dispatch_async(queue, ^{
+                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+                NSLog(@"热搜词汇网络请求");
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self loadHotWords];
+                    dispatch_semaphore_signal(semaphore);
+                });
             });
-        });
         
         dispatch_async(queue, ^{
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
@@ -231,7 +239,6 @@
             dispatch_async(queue, ^{
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self queryAllGroupMessageCount];
                     [self setMainViewUI];
                     [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
                         make.top.mas_equalTo(self.topBackView.mas_bottom);
@@ -240,19 +247,13 @@
                     dispatch_semaphore_signal(semaphore);
                 });
             });
-        dispatch_async(queue, ^{
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.4f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self loadData];
-                dispatch_semaphore_signal(semaphore);
-            });
-        });
             dispatch_async(queue, ^{
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
                 dispatch_semaphore_signal(semaphore);
             });
         }
-    [[UserItemTool defaultItem] setFirstLogin:NO];
+//    [[UserItemTool defaultItem] setFirstLogin:NO];
+    [self queryEveryGroupMessageCount];
 }
 
 //邮问视图消失时显示底部课表
@@ -296,13 +297,52 @@
                                                  name:@"reSetTopFollowUI" object:nil];
     ///通知刷新我的关注列表
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(reLoadGroupList:)
+                                             selector:@selector(FollowNewGroup:)
                                                  name:@"MGD-FollowGroup" object:nil];
-    
-    ///通知刷新新的圈子的消息数成功
+    ///通知刷新我的关注列表
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(setMyFollowGroupNewPostCount)
-                                                 name:@"MGD-NewPostQuerySuccessful" object:nil];
+                                             selector:@selector(reLoadGroupList)
+                                                 name:@"reLoadGroupList" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshData)
+                                                 name:@"shieldReloadNEWQAList" object:nil];
+    
+    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+#pragma mark- 监听键盘将要出现、消失的方法
+///键盘将要出现时，若举报页面已经显示则上移
+- (void)reportViewKeyboardWillShow:(NSNotification *)notification{
+    //如果举报页面已经出现，就将举报View上移动
+    if (self.isShowedReportView == YES) {
+        //获取键盘高度
+        NSDictionary *userInfo = notification.userInfo;
+        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat keyBoardHeight = endFrame.size.height;
+        
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+            //这里如果是设置成距离self.view的底部，会高出一截
+            make.bottom.equalTo(self.view.window).offset( IS_IPHONEX ? -(keyBoardHeight+20) : -keyBoardHeight);
+//            make.bottom.equalTo(self.view.window).offset(-keyBoardHeight);
+
+        }];
+    }
+}
+///键盘将要消失，若举报页面已经显示则使其下移
+- (void)reportViewKeyboardWillHide:(NSNotification *)notification{
+    if (self.isShowedReportView == YES) {
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
+    }
+    
     
 }
 
@@ -322,46 +362,9 @@
     self.tableArray = [PostArchiveTool getPostList];
     self.dataArray = [PostArchiveTool getMyFollowGroup];
     self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
-    [self queryEveryGroupMessageCount];
-    [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
     _TopViewHeight = self.dataArray.count != 0 ? (SCREEN_WIDTH * 191/375) : (SCREEN_WIDTH * 116/375);
     [self setMainViewUI];
     [self.tableView reloadData];
-    if ([self.tableArray count] == 0) {
-        [self noDataInList];
-    }
-}
-
-// 列表无数据时的处理
-- (void)noDataInList {
-    UIView *noListBackView = [[UIView alloc] init];
-    noListBackView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-    self.tableView.separatorStyle = UITableViewCellAccessoryNone;
-    
-    noListBackView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-(_TopViewHeight));
-    [self.tableView addSubview:noListBackView];
-    
-    
-    UIImageView *imageView = [[UIImageView alloc] init];
-    UILabel *noticeLabel = [[UILabel alloc] init];
-    noticeLabel.text = @"还没有相关动态哦～";
-    noticeLabel.font = [UIFont fontWithName:PingFangSCLight size:12];
-    noticeLabel.textColor = [UIColor colorNamed:@"CellDateColor"];
-    [noListBackView addSubview:imageView];
-    [noListBackView addSubview:noticeLabel];
-    imageView.image = [UIImage imageNamed:@"图层 11"];
-    CGSize size = [UIImage imageNamed:@"图层 11"].size;
-    noticeLabel.textAlignment = NSTextAlignmentCenter;
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(noListBackView.top).mas_offset(SCREEN_WIDTH * 0.28 * 45.5/105);
-        make.left.mas_equalTo(noListBackView.left).mas_equalTo(SCREEN_WIDTH * 0.28);
-        make.size.mas_equalTo(size);
-    }];
-    [noticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(noListBackView);
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.2387 * 11.5/89.5);
-        make.top.mas_equalTo(imageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.38 * 33/142.5);
-    }];
 }
 
 # pragma mark 初始化功能弹出页面
@@ -370,9 +373,13 @@
     _shareView = [[ShareView alloc] init];
     _shareView.delegate = self;
     
-    // 创建功能页面
+    // 创建多功能--别人页面
     _popView = [[FuncView alloc] init];
     _popView.delegate = self;
+    
+    // 创建多功能--自己页面
+    _selfPopView = [[SelfFuncView alloc] init];
+    _selfPopView.delegate = self;
     
     // 创建举报页面
     _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
@@ -412,7 +419,7 @@
 }
 
 - (void)howWordsLoadError {
-    [NewQAHud showHudWith:@"热搜词汇请求失败～" AddView:self.view];
+    [NewQAHud showHudWith:@"  热搜词汇请求失败～  " AddView:self.view];
 }
 
 #pragma mark -我的关注相关请求
@@ -424,13 +431,31 @@
 ///我的关注网络请求成功后数据源数组赋值
 - (void)topFollowViewLoadSuccess {
     self.dataArray = self.groupModel.dataArray;
-    for (int i = 0;i < [self.dataArray count]; i++) {
-        if ([self.dataArray[i].topic_id intValue] == [_topicID intValue]) {
-            self.dataArray[[_topicID intValue]].message_count = [NSNumber numberWithInt:0];
+    NSLog(@"进行消息数初始化赋值");
+    if ([UserItemTool defaultItem].firstLogin == YES) {
+        [self firstLoginToSetGroupMessageCount];
+    } else {
+        if ([self.dataArray count] != 0) {
+            NSMutableArray *tmpArray = [PostArchiveTool getMyFollowGroup];
+            GroupItem *tmpItem = [[GroupItem alloc] init];
+            for (int i = 1;i < [tmpArray count]; i++) {
+                tmpItem = tmpArray[i];
+                for (int j = 1;j < [self.dataArray count]; j++) {
+                    if ([self.dataArray[j].topic_id intValue] == [tmpItem.topic_id intValue]) {
+                        self.dataArray[j].message_count = tmpItem.message_count;
+                    }
+                }
+            }
+            for (int i = 1;i < [self.dataArray count]; i++) {
+                if ([self.dataArray[i].topic_id intValue] == [_topicID intValue]) {
+                    self.dataArray[i].message_count = [NSNumber numberWithInt:0];
+                }
+            }
         }
     }
     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
-    NSLog(@"我的关注请求成功");
+    [self refreshData];
+    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
 ///我的关注请求失败
@@ -439,10 +464,13 @@
 }
 
 ///刷新我的关注数组
-- (void)reLoadGroupList:(NSNotification *)dict {
+- (void)FollowNewGroup:(NSNotification *)dict {
     _topicID = [NSString stringWithString:dict.userInfo[@"topic_ID"]];
     [self.groupModel loadMyFollowGroup];
-    [self refreshData];
+}
+
+- (void)reLoadGroupList {
+    [self.groupModel loadMyFollowGroup];
 }
 
 #pragma mark- 帖子列表的网络请求
@@ -464,7 +492,7 @@
 
 ///成功请求数据
 - (void)NewQAListLoadSuccess {
-    [self.loadHUD removeFromSuperview];
+//    [self.loadHUD removeFromSuperview];
     if (self.page == 1) {
         self.tableArray = self.postmodel.postArray;
     }else {
@@ -477,11 +505,11 @@
     }
     //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
     if (self.page == 1) {
-        [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
-    }else{
         [self.tableView reloadData];
+    }else{
         [self.tableView.mj_footer endRefreshing];
+        [self.tableView reloadData];
     }
     NSLog(@"成功请求列表数据");
 }
@@ -496,13 +524,13 @@
 
 # pragma mark -UI的设置及控件的懒加载
 ///列表的懒加载
-- (RecommendedTableView *)tableView {
+- (RecommendedTableView *)tableViewWith:(CGFloat)height {
     if (!_tableView) {
         _tableView = [[RecommendedTableView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT + STATUSBARHEIGHT + SCREEN_WIDTH * 14/375, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_WIDTH * 14/375 + NVGBARHEIGHT + STATUSBARHEIGHT))];
         _tableView.showsVerticalScrollIndicator = NO;
         //增加Observer，监听列表滑动
         [_tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
-        _tableView.contentInset = UIEdgeInsetsMake(_TopViewHeight, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(height, 0, 0, 0);
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -572,8 +600,7 @@
     _TopViewHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 191/375 : (SCREEN_WIDTH * 116/375);
     //推荐Label高度
     _recommendHeight = self.dataArray.count != 0 ? SCREEN_WIDTH * 54/375 : SCREEN_WIDTH * 43/375;
-    
-    [self tableView];
+    [self tableViewWith:_TopViewHeight];
     [self.view addSubview:self.tableView];
     [self setUpRefresh];
     self.topFollowView = [[TopFollowView alloc] initWithFrame:CGRectMake(0, _NavHeight, SCREEN_WIDTH , _TopViewHeight) And:self.dataArray];
@@ -706,6 +733,7 @@
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
         cell.item = _item;
+        cell.funcBtn.tag = indexPath.row;
         cell.commendBtn.tag = indexPath.row;
         cell.shareBtn.tag = indexPath.row;
         cell.starBtn.tag = indexPath.row;
@@ -746,14 +774,16 @@
         
     }
     StarPostModel *model = [[StarPostModel alloc] init];
-    _itemDic = self.tableArray[cell.starBtn.tag];
+    NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
+    _itemDic = self.tableArray[indexPath.row];
     [model starPostWithPostID:[NSNumber numberWithString:_itemDic[@"post_id"]]];
 }
 
 ///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell{
     DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-    _item = [[PostItem alloc] initWithDic:self.tableArray[cell.commendBtn.tag]];
+    NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
+    _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
     dynamicDetailVC.post_id = _item.post_id;
     dynamicDetailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
@@ -767,7 +797,8 @@
         make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 460/667);
         make.left.right.bottom.mas_equalTo(self.view.window);
     }];
-    _itemDic = self.tableArray[cell.shareBtn.tag];
+    NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
+    _itemDic = self.tableArray[indexPath.row];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -777,7 +808,8 @@
 
 ///点击标签跳转到相应的圈子
 - (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
-    _itemDic = self.tableArray[cell.groupLabel.tag];
+    NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
+    _itemDic = self.tableArray[indexPath.row];
     NSString *groupName = _itemDic[@"topic"];
     YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
     int topicID = 0;
@@ -787,8 +819,9 @@
             topicID = i+1;
     }
     bool flag = false;
+    GroupItem *item = [[GroupItem alloc] init];
     for (int i = 1;i < self.dataArray.count; i++) {
-        GroupItem *item = self.dataArray[i];
+        item = self.dataArray[i];
         if([item.topic_name isEqualToString:groupName]) {
             _queryGroupTopicIndex = i;
             flag = true;
@@ -814,31 +847,41 @@
             [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
         }];
 }
-/**
- 举报和屏蔽的多能按钮
- 此处的逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
- */
+
+# pragma mark - 关注，举报和屏蔽的多功能按钮
 - (void)ClickedFuncBtn:(PostTableViewCell *)cell{
     UIWindow* desWindow=self.view.window;
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
-
-    _itemDic = self.tableArray[cell.tag];
-    if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
-        NSLog(@"取消关注");
-        [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-    }else {
-        NSLog(@"关注圈子");
-        [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+     
+    NSIndexPath *indexPath = [_tableView indexPathForCell:cell];
+    _itemDic = self.tableArray[indexPath.row];
+    NSLog(@"%@",_itemDic);
+    if ([_itemDic[@"is_self"] intValue] == 1) {
+        self.selfPopView.deleteBtn.tag = indexPath.row;
+        _selfPopView.postID = _itemDic[@"post_id"];
+        _selfPopView.layer.cornerRadius = 8;
+        _selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+        [self.view.window addSubview:_selfPopView];
+    } else {
+        self.popView.starGroupBtn.tag = indexPath.row;
+        self.popView.shieldBtn.tag = indexPath.row;
+        self.popView.reportBtn.tag = indexPath.row;
+        if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
+            NSLog(@"取消关注");
+            [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+        }else {
+            NSLog(@"关注圈子");
+            [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+        }
+        _popView.layer.cornerRadius = 8;
+        _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+        [self.view.window addSubview:_popView];
     }
-    _popView.layer.cornerRadius = 6;
-    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
-    [self.view.window addSubview:_popView];
 }
 
 #pragma mark- 配置相关弹出View和其蒙版的操作
 ///设置相关蒙版
-
 - (void)setBackViewWithGesture {
     _backViewWithGesture = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _backViewWithGesture.backgroundColor = [UIColor blackColor];
@@ -859,7 +902,9 @@
 - (void)dismissBackViewWithGesture {
     [_popView removeFromSuperview];
     [_shareView removeFromSuperview];
+    self.isShowedReportView = NO;
     [_reportView removeFromSuperview];
+    [_selfPopView removeFromSuperview];
     [_backViewWithGesture removeFromSuperview];
 }
 
@@ -873,7 +918,7 @@
         [model setBlock:^(id  _Nonnull info) {
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 [self showStarSuccessful];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil userInfo:self->_itemDic[@"topic"]];
             }else  {
                 [self funcViewFailure];
             }
@@ -882,7 +927,7 @@
         [model setBlock:^(id  _Nonnull info) {
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 [self showUnStarSuccessful];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil userInfo:self->_itemDic[@"topic"]];
             }else  {
                 [self funcViewFailure];
             }
@@ -894,25 +939,59 @@
 - (void)ClickedShieldBtn:(UIButton *)sender {
     ShieldModel *model = [[ShieldModel alloc] init];
     _itemDic = self.tableArray[sender.tag];
+    NSLog(@"%@",_itemDic[@"uid"]);
     [model ShieldPersonWithUid:_itemDic[@"uid"]];
     [model setBlock:^(id  _Nonnull info) {
         if ([info[@"info"] isEqualToString:@"success"]) {
             [self showShieldSuccessful];
+        }else if ([info[@"info"] isEqualToString:@"该用户已屏蔽"]) {
+            [self showShieldAlready];
+        } else {
+            [self showShieldError];
         }
     }];
 }
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
     [_popView removeFromSuperview];
+    self.isShowedReportView = YES;
     _itemDic = self.tableArray[sender.tag];
+//    NSLog(@"点击多举报按钮时打印的帖子ID：%@",_itemDic[@"post_id"]);
     _reportView.postID = _itemDic[@"post_id"];
-    _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+//    _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
     [self.view.window addSubview:_reportView];
+    [self.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+    }];
+}
+
+#pragma mark -多功能View--自己的代理方法
+- (void)ClickedDeletePostBtn:(UIButton *)sender {
+    [_selfPopView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    _itemDic = self.tableArray[sender.tag];
+    DeletePostModel *model = [[DeletePostModel alloc] init];
+    [model deletePostWithID:_itemDic[@"post_id"] AndModel:[NSNumber numberWithInt:0]];
+    [model setBlock:^(id  _Nonnull info) {
+        for (int i = 0;i < [self.tableArray count]; i++) {
+            if ([self.tableArray[i][@"post_id"] isEqualToString:self->_itemDic[@"post_id"]]) {
+                [self.tableArray removeObjectAtIndex:i];
+                break;
+            }
+        }
+        [PostArchiveTool savePostListWith:self.tableArray];
+        [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view AndToDo:^{
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 #pragma mark -举报页面的代理方法
 ///举报页面点击确定按钮
 - (void)ClickedSureBtn {
+    self.isShowedReportView = NO;
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     ReportModel *model = [[ReportModel alloc] init];
@@ -924,6 +1003,7 @@
 
 ///举报页面点击取消按钮
 - (void)ClickedCancelBtn {
+    self.isShowedReportView = NO;
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
 }
@@ -955,7 +1035,22 @@
 - (void)showShieldSuccessful {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view];
+    [self refreshData];
+    [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view AndToDo:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }];
+}
+
+- (void)showShieldAlready {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  该用户已经屏蔽了  " AddView:self.view];
+}
+
+- (void)showShieldError {
+    [self.popView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    [NewQAHud showHudWith:@"  屏蔽失败了～  " AddView:self.view];
 }
 
 - (void)showReportSuccessful {
@@ -1036,7 +1131,6 @@
         ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
         [self.navigationController pushViewController:topVc animated:YES];
     }else {
-        _GroupLastLeaveTime = [NSString stringWithFormat:@"%ld%@",(long)[sender.item.topic_id intValue],@"LastLeaveTimeStr"];
         _queryGroupTopicIndex = sender.tag;
         _queryGroupTopicID = [sender.item.topic_id intValue];
         [self removeGroupMessageCount];
@@ -1068,14 +1162,6 @@
 }
 
 # pragma mark -我的关注圈子中的新帖子数查询
-// 首次登陆时，所有圈子的新帖子数为0
-- (void) queryAllGroupMessageCount {
-    for (int i = 1;i < [self.dataArray count]; i++) {
-        self.dataArray[i].message_count = [NSNumber numberWithInt:0];
-        [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
-    }
-}
-
 // 点击进某个具体的圈子后，此圈子的消息数变为0
 - (void)removeGroupMessageCount {
     NSLog(@"点击某个圈子后，将此圈子的新消息数直接设置为0");
@@ -1085,29 +1171,36 @@
 
 // 通过缓存加载时，调用此方法，查询每一个圈子的新消息数
 - (void)queryEveryGroupMessageCount {
-    NSLog(@"通过缓存初始化，根据记录的每个圈子的最后离开的时间来更新各个圈子的新帖子数");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    for (int i = 1;i < [self.dataArray count]; i++) {
-        _queryGroupTopicIndex = i;
-        _queryGroupTopicID = [self.dataArray[i].topic_id intValue];
-        NSString *queryString = [NSString stringWithFormat:@"%ld%@",(long)_queryGroupTopicID,[defaults valueForKey:@"LastLeaveTimeStr"]];
-        // 如果缓存中并没有记录上次离开圈子的时间，则显示其为0（因为无上次离开圈子的时间）
-        if ([defaults valueForKey:queryString] != nil) {
-            [_countModel queryNewCountWithTimestamp:[defaults valueForKey:queryString]];
-        } else {
-            self.dataArray[i].message_count = [NSNumber numberWithInt:0];
-            [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
+    if ([self.dataArray count] != 0) {
+        for (int i = 1;i < [self.dataArray count]; i++) {
+            _queryGroupTopicIndex = i-1;
+            _queryGroupTopicID = [self.dataArray[i].topic_id intValue];
+            NSString *queryString = [NSString stringWithFormat:@"%ld%@",(long)_queryGroupTopicID,@"LastLeaveTimeStr"];
+            NewCountModel *model = [[NewCountModel alloc] init];
+            if ([defaults valueForKey:queryString] != nil) {
+                [model queryNewCountWithTimestamp:[defaults valueForKey:queryString]];
+                // 如果缓存中并没有记录上次离开圈子的时间，则显示其为0（因为无上次离开圈子的时间）
+                [model setBlock:^(id  _Nonnull info) {
+                    NSArray *countArray = info[@"data"];
+                    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:countArray[self->_queryGroupTopicIndex]];
+                    int newCount = [dic[@"post_count"] intValue];
+                    self.dataArray[self->_queryGroupTopicIndex+1].message_count = [NSNumber numberWithInt:newCount];
+                    [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
+                }];
+            } else {
+//                NSLog(@"缓存中并没有记录上次离开圈子的时间");
+                self.dataArray[i].message_count = [NSNumber numberWithInt:0];
+                [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
+            }
         }
     }
 }
 
-// 查询圈子中新的帖子数成功，更新点击的圈子的消失数
-- (void)setMyFollowGroupNewPostCount {
-    NSLog(@"查询圈子中新的帖子数成功");
-    self.GroupNewPostCountArray = self.countModel.PostCountArray;
-    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.GroupNewPostCountArray[_queryGroupTopicIndex]];
-    int newCount = [dic[@"post_count"] intValue];
-    self.dataArray[_queryGroupTopicIndex].message_count = [NSNumber numberWithInt:newCount];
+- (void)firstLoginToSetGroupMessageCount {
+    for (int i = 1;i < [self.dataArray count]; i++) {
+        self.dataArray[i].message_count = [NSNumber numberWithInt:0];
+    }
     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
 }
 

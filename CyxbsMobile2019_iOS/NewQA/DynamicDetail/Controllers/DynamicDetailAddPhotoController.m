@@ -124,8 +124,24 @@
 - (void)pop{
     [self.navigationController popViewControllerAnimated:YES];
 }
+//发布动态
 - (void)releaseDynamic{
-//    //设置参数
+    //出现正在发送的提示框
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
+//    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"正在上传数据...";
+//    [hud hide:YES afterDelay:1.4];
+    hud.margin = 8;
+    [hud setYOffset:-SCREEN_HEIGHT * 0.26];
+    hud.labelFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
+    [hud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+    hud.height = SCREEN_WIDTH * 0.3147 * 29/118;
+    hud.cornerRadius = hud.frame.size.height * 1/2;
+    
+    //设置发布按钮禁用
+    self.topBarView.releaseBtn.enabled = NO;
+    
+    //设置参数
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
     [param setObject:self.releaseView.releaseTextView.text forKey:@"content"];
     [param setObject:@(self.post_id) forKey:@"post_id"];
@@ -149,14 +165,21 @@
             }
             
         } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            [hud hide:YES];
             if ([responseObject[@"status"] intValue] == 200) {
                 [NewQAHud showHudWith:@"评论成功" AddView:self.view];
                 [self.navigationController popViewControllerAnimated:YES];
             }else{
+                [hud hide:YES];
+                //设置发布按钮恢复正常
+                self.topBarView.releaseBtn.enabled = YES;
                 [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
             }
             
         } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+            [hud hide:YES];
+            //设置发布按钮恢复正常
+            self.topBarView.releaseBtn.enabled = YES;
             [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
         }];
     

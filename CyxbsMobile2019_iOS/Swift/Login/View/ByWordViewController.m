@@ -14,9 +14,10 @@
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
 
-@interface ByWordViewController ()
+@interface ByWordViewController () <UITextViewDelegate>
 @property(nonatomic, weak)UITextView *tf;
 @property(nonatomic, weak) UIButton *saveBtn;
+@property(nonatomic, weak) UIButton *btn;
 @property(nonatomic, weak)UILabel *placeHolder;
 @property(nonatomic, strong)UILabel *label3;
 @property(nonatomic,strong) NSNumber *questNum;
@@ -34,13 +35,18 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
     //设置导航栏
-    
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ找回密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
-    [UIColor colorWithRed:21/255.0 green:49/255.0 blue:88/255.0 alpha:1.0], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    [UIColor colorNamed:@"YYZColor2"], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
+    
+    //获取学号
+    if(self.idString==nil){
+        UserItem *item = [[UserItem alloc] init];
+        self.idString= item.stuNum;
+    }
     
     [self setLable];
     [self setTextView];
@@ -59,7 +65,7 @@
     [self.view addSubview:label1];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"你的密保问题是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label1.attributedText = string;
-    label1.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    label1.textColor = [UIColor colorNamed:@"YYZColor8"];
     label1.alpha = 0.64;
     
     UILabel *label2 = [[UILabel alloc] init];
@@ -68,7 +74,7 @@
     [self.view addSubview:label2];
     NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:@"你的问题答案是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label2.attributedText = string2;
-    label2.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    label2.textColor = [UIColor colorNamed:@"YYZColor2"];
     label2.alpha = 0.64;
 
     UILabel *label3 = [[UILabel alloc] init];
@@ -78,7 +84,7 @@
     [self.view addSubview:label3];
     NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:@" " attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 16], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label3.attributedText = string3;
-    label3.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    label3.textColor = [UIColor colorNamed:@"YYZColor2"];
     label3.alpha = 1.0;
 }
 -(void) dismissKeyBoard{
@@ -88,12 +94,12 @@
 -(void) setTextView{
     UITextView *tf = [[UITextView alloc]initWithFrame:(CGRectMake(20,218-100 + TOTAL_TOP_HEIGHT,339,100))];
     self.tf = tf;
+    tf.delegate = tf;
     tf.layer.cornerRadius = 13;//设置边框圆角
     tf.layer.masksToBounds = YES;
     tf.textContainerInset = UIEdgeInsetsMake(15, 10, 10, 10);//设置边界间距
     tf.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:1.0];
     [self.view addSubview:tf];
-      self.tf=tf;
       
       UIToolbar * topView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
          [topView setBarStyle:UIBarStyleDefault];
@@ -123,9 +129,19 @@
         
     }];
 }
-
+//在该代理方法中实现实时监听uitextview的输入
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length>16 || textView.text.length<2 ) {
+        [NewQAHud showHudWith:@" 请输入正确长度的答案 " AddView:self.view];
+        self.btn.enabled = NO;
+    }
+    else if(textView.text.length>2){
+        self.btn.enabled = YES;
+    }
+}
 -(void) setBtn{
     UIButton *btn =[UIButton buttonWithType:UIButtonTypeSystem];
+    self.btn = btn;
     btn.frame = CGRectMake(48*kRateX, (407-110)*kRateY, 280*kRateX, 52*kRateY);
     [btn.layer setMasksToBounds:YES];
     [btn.layer setCornerRadius:25.0];
@@ -145,12 +161,12 @@
     }];
 }
 
+//跳转下个页面 判断密保答案是否正确
 -(void) jumpTOset
 {
-    printf("跳转至修改密码页面\n");
     if(_tf.text.length>=2)
     {
-        [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/user-secret/user/valid/question" method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
+        [[HttpClient defaultClient]requestWithPath:CHECKQUESTION method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
         {
             if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
             {
@@ -166,15 +182,15 @@
                 [self.view addSubview:tipsLable];
                 [tipsLable mas_makeConstraints:^(MASConstraintMaker *make)
                 {
-                            make.top.mas_equalTo(self.view).mas_offset(SCREEN_HEIGHT * 0.27 + TOTAL_TOP_HEIGHT);
+                            make.top.mas_equalTo(self.view).mas_offset(SCREEN_HEIGHT * 0.29 + TOTAL_TOP_HEIGHT);
                             make.left.mas_equalTo(self.view).mas_offset(SCREEN_WIDTH * 0.053);
                             make.width.mas_equalTo(SCREEN_WIDTH * 0.31);
                 }];
+                [NewQAHud showHudWith:@" 密保答案错误 " AddView:self.view];
         }
         }
-        failure:^(NSURLSessionDataTask *task, NSError *error)
-            {
-                    NSLog(@"-----------%@",error);
+        failure:^(NSURLSessionDataTask *task, NSError *error){
+            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
         }
             ];
         }
@@ -195,6 +211,7 @@
     
 }
 
+//获取密保问题
 -(void) get1{
     NSString *num = [[NSString alloc] init];
     NSString *stuNum = [UserDefaultTool getStuNum];
@@ -202,10 +219,9 @@
         num = self.idString;
     else
         num = stuNum;
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/user-secret/user/bind/question/detail" method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        NSLog(@"%@",responseObject);
-//            NSString *questWord = responseObject[@"data"][@"content"];
+    
+    [[HttpClient defaultClient] requestWithPath:GETQUESTION method:HttpRequestPost  parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSString *questWord = responseObject[@"data"][@"content"];
 //        NSString *questWord = responseObject[@"data"][@"content"];
         NSArray *array = responseObject[@"data"];
         NSDictionary *dic = array[0];
@@ -214,17 +230,7 @@
         self.label3.text = str;
             
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"-------------%@",error);
+            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
         }];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewControlTOsetr].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
