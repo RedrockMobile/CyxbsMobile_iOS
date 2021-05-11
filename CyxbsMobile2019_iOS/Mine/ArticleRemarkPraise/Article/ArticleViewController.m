@@ -43,6 +43,8 @@
     tableView.dataSource = self;
     tableView.backgroundColor = self.view.backgroundColor;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self.articleModel refreshingAction:@selector(loadMoreData)];
+    [tableView.mj_footer setState:MJRefreshStateRefreshing];
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topBarView.mas_bottom);
@@ -53,9 +55,6 @@
 
 //MARK: - TableView代理方法:
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    if (tableView.mj_footer==nil) {
-        tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self.articleModel refreshingAction:@selector(loadMoreData)];
-    }
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

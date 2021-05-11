@@ -497,7 +497,7 @@
     if ([textField isEqual:self.nicknameTextField]) {
         if (textField.text.length + string.length > 10) {
             [NewQAHud showHudWith:@" 昵称长度不能超过10哟～ " AddView:self];
-            //截取，当用户粘贴了一个长度大于10的名字时，在交换上体验更好(个人觉得)
+            //截取，当用户粘贴了一个长度大于10的名字时，在交互上体验更好(个人觉得)
             textField.text = [[textField.text stringByAppendingString:string] substringToIndex:10];
             return NO;
         }else {

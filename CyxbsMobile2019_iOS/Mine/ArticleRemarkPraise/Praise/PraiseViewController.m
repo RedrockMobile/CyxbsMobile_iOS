@@ -44,6 +44,7 @@
     tableView.backgroundColor = self.view.backgroundColor;
     [tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self.praiseModel refreshingAction:@selector(loadMoreData)];
+    [tableView.mj_footer setState:MJRefreshStateRefreshing];
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topBarView.mas_bottom);
