@@ -328,7 +328,8 @@
         NSDictionary *userInfo = notification.userInfo;
         CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
         CGFloat keyBoardHeight = endFrame.size.height;
-        self.hideKeyBoardView.frame = CGRectMake(0, 0, MAIN_SCREEN_W ,  IS_IPHONEX ? (MAIN_SCREEN_W+60) : (MAIN_SCREEN_W-25));
+//        self.hideKeyBoardView.frame = CGRectMake(0, 0, MAIN_SCREEN_W ,  IS_IPHONEX ? (MAIN_SCREEN_W+60) : (MAIN_SCREEN_W-25));
+        self.hideKeyBoardView.frame = CGRectMake(0, 0, MAIN_SCREEN_W , MAIN_SCREEN_H - keyBoardHeight - 70);
         [self.view.window addSubview:self.hideKeyBoardView];
        
     }
@@ -657,7 +658,9 @@
     
     NSString *identifier = @"commentCell";
         DynamicDetailComentTableCell *cell = [[DynamicDetailComentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier commentType:(indexPath.row == 0 ? DynamicCommentType_stair : DynamicCommentType_secondLevel)];
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
         DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
         if (indexPath.row == 0) {
             cell.dataModel = model;
@@ -682,12 +685,18 @@
 
 //MARK:====================================表格的代理方法==============================================
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
     
     if (indexPath.row == 0) {
-        return [self.oneLeveCommentHeight[indexPath.section] doubleValue];
+        NSString *height = [NSString stringWithFormat:@"%f",[model getCellHeight]];
+//        return [self.oneLeveCommentHeight[indexPath.section] doubleValue];
+        return [height doubleValue];
     }else{
-        NSMutableArray *muteAry = self.twoLevelCommentHeight[indexPath.section];
-        return [muteAry[indexPath.row - 1] doubleValue];
+        DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
+        NSString *height = [NSString stringWithFormat:@"%f",[secondCommentModel getCellHeight]];
+        return [height doubleValue];
+//        NSMutableArray *muteAry =  self.twoLevelCommentHeight[indexPath.section];
+//        return [muteAry[indexPath.row - 1] doubleValue];
     }
    
 }
