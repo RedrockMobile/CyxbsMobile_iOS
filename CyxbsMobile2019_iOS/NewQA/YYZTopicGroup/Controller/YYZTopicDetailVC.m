@@ -50,8 +50,6 @@
 
 @implementation YYZTopicDetailVC
 
-#pragma mark  获取当前圈子ID
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.cnt=0;
@@ -119,11 +117,14 @@
 - (void) setScroll {
     UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
     self.backgroundScrollView = backgroundScrollView;
+    backgroundScrollView.bounces = NO;
+    backgroundScrollView.showsVerticalScrollIndicator = FALSE;
+    backgroundScrollView.showsHorizontalScrollIndicator = FALSE;
     backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    backgroundScrollView.contentSize = CGSizeMake(0,0);//先设置禁止滑动，以后适配动画效果
+    backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+68);//先设置禁止滑动，以后适配动画效果
     [self.view addSubview:backgroundScrollView];
     
-    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, SCREEN_HEIGHT-180)];
+    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, SCREEN_HEIGHT-112)];
     self.topicScrollView = topicScrollView;
     topicScrollView.delegate = self;
     topicScrollView.backgroundColor = [UIColor whiteColor];
@@ -272,17 +273,19 @@
     [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
 }
 - (void) setBackTableView{
-    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-180) style:UITableViewStylePlain];
+    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
+    topicLeftTableView.scrollEnabled = NO;
     topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   
-    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-180) style:UITableViewStylePlain];
+    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
+    topicRightTableView.scrollEnabled = NO;
     topicRightTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
@@ -514,7 +517,7 @@
 - (void)setCell {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
-    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH, 130);
+    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH, 125);
     self.cell = cell;
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];

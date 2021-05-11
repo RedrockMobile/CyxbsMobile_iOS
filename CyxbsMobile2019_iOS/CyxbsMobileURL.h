@@ -134,8 +134,7 @@
 #define NEWSFILE @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 
 /// 电费
-#define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
-//#define ELECTRICFEE @"http://api-234.redrock.team/wxapi/magipoke-elecquery/getElectric"]   // 这好像也是电费接口
+#define ELECTRICFEE @"https://be-prod.redrock.team/magipoke-elecquery/getElectric"
 
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
