@@ -12,7 +12,7 @@
 
 @protocol WYCClassAndRemindDataModelDelegate <NSObject>
 //备忘模型加载完毕后调用的两个方法
-- (void)ModelDataLoadSuccess:(id)model;
+- (void)ModelDataLoadSuccess;
 - (void)ModelDataLoadFailure;
 @end
 
@@ -27,8 +27,8 @@
 @property (nonatomic,strong)NSMutableArray *orderlySchedulArray;
 
 /// 备忘模型数组
-@property (nonatomic, strong)NSMutableArray <NoteDataModel*>*noteDataModelArray;
-//- (void)getClassBookArray:(NSString *)stu_Num;
+@property (nonatomic, strong)NSMutableArray <NSMutableArray <NoteDataModel*>*> *noteDataModelArray;
+- (instancetype)initWithType:(ScheduleType)type;
 
 /// 网络请求获取他人课表，不把课表数据存入本地
 /// @param stu_Num 学号

@@ -54,7 +54,7 @@
 //MARK: - TableView代理方法:
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (tableView.mj_footer==nil) {
-        tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self.articleModel refreshingAction:@selector(loadMoreData)];
+        tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self.articleModel refreshingAction:@selector(loadMoreData)];
     }
     return 1;
 }

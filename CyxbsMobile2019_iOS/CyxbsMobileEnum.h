@@ -22,11 +22,13 @@ typedef NS_ENUM(NSInteger, PeopleType) {
 //} weekData;
 
 typedef NS_ENUM(NSInteger, ScheduleType) {
-    /**代表是用户自己的课表*/
+    //用户自己的课表
     ScheduleTypePersonal,
-    /**代表是在查课表处显示的课表*/
+    //同学课表
     ScheduleTypeClassmate,
-    /**代表是在没课约显示的课表*/
+    //老师课表
+    ScheduleTypeTeacher,
+    //没课约的课表
     ScheduleTypeWeDate,
 };
 

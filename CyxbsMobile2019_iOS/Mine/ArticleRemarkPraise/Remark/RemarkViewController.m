@@ -48,7 +48,7 @@
     tableView.dataSource = self;
     tableView.backgroundColor = self.view.backgroundColor;
     [tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
-    tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self.remarkModel refreshingAction:@selector(loadMoreData)];
+    tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self.remarkModel refreshingAction:@selector(loadMoreData)];
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topBarView.mas_bottom);
@@ -73,11 +73,6 @@
             case MainPage2RequestModelStateFailure:
                 [self.tableView.mj_footer endRefreshing];
                 [NewQAHud showHudWith:@"加载失败" AddView:self.view];
-                break;
-                //部分数据加载失败
-            case MainPage2RequestModelStateFailureAndSuccess:
-                [self.tableView.mj_footer endRefreshing];
-                [NewQAHud showHudWith:@"部分数据加载失败" AddView:self.view];
                 break;
         }
         
@@ -106,17 +101,6 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    GYYDynamicDetailViewController *dynamicDetailVC = [[GYYDynamicDetailViewController alloc]init];
-//
-//    NSDictionary *dict = self.remarkModel.dataArr[indexPath.row];
-//    NSString *post_id = [NSString stringWithFormat:@"%@",dict[@"comment"][@"post_id"]];
-//    dynamicDetailVC.post_id = post_id.intValue;
-//
-//    self.vc = dynamicDetailVC;
-//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-}
 //MARK: - 懒加载
 - (NothingStateView *)nothingView {
     if (_nothingView==nil) {

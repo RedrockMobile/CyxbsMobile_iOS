@@ -53,18 +53,7 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)selectedFeedBack {
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = @"570919844";
-    
-    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
-    
-    [feedBackGroupAllert addAction:certainAction];
-    
-    [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
-}
+
 
 - (void)selectedUpdateCheck {
     [self p_versionUpdateButtonAction];

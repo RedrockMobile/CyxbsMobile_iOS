@@ -94,8 +94,7 @@
 
 /// 添加tableView
 - (void)addAppSettingTableView{
-    self.cellTitleStrArr = @[@"积分商城",@"设置",@"关于我们"];
-    
+    self.cellTitleStrArr = @[@"积分商城",@"设置",@"关于我们",@"意见与反馈"];
     
     UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H) style:UITableViewStyleGrouped];
     [self.contentView addSubview: appSettingTabelView];
@@ -285,6 +284,18 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+- (void)selectedFeedBack {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = @"570919844";
+    
+    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
+    
+    [feedBackGroupAllert addAction:certainAction];
+    
+    [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
+}
 
 #pragma mark - 通知中心回调
 // 退出登录后刷新开关，是否折叠等界面信息
@@ -339,6 +350,10 @@
         case 2:
             //点击关于我们
             [self selectedAboutCell];
+            break;
+        case 3:
+            //意见反馈
+            [self selectedFeedBack];
             break;
         default:
             break;

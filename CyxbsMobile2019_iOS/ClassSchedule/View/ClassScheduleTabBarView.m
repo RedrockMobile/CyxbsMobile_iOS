@@ -238,6 +238,7 @@
 }
 /// 初始化课表，课表控制器是这个类的一个属性
 - (void)initMySchedul{
+    /*
     if(self.isInitingMySchedul==YES)return;
     self.isInitingMySchedul = YES;
     self.mySchedul = [[WYCClassBookViewController alloc] init];
@@ -262,6 +263,18 @@
     
     [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
     
+    [self addGesture];
+    self.isInitingMySchedul = NO;
+     */
+    
+    if(self.isInitingMySchedul==YES)return;
+    self.isInitingMySchedul = YES;
+    self.mySchedul = [[WYCClassBookViewController alloc] initWithType:ScheduleTypePersonal andInfo:[[UserItem defaultItem] stuNum]];
+    
+    self.mySchedul.schedulTabBar = self;
+    
+    self.mySchedul.transitioningDelegate = self.TM;
+    [self.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
     [self addGesture];
     self.isInitingMySchedul = NO;
 }

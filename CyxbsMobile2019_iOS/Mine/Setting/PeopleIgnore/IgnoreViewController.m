@@ -52,7 +52,7 @@
         make.top.equalTo(self.topBarView.mas_bottom);
     }];
     
-    tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self.model refreshingAction:@selector(loadMoreData)];
+    tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self.model refreshingAction:@selector(loadMoreData)];
     [tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     tableView.delegate = self;
     tableView.dataSource = self;

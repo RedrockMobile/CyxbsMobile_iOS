@@ -17,11 +17,13 @@
     }
     return self;
 }
+//[CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/examSchedule"]
 - (void)fetchData {
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:EXAMARRANGEAPI method:HttpRequestPost parameters:@{@"stuNum":[UserItem defaultItem].stuNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         ExamArrangeData *data = [[ExamArrangeData alloc]initWithDic:responseObject];
         self.examArrangeData = data;
+        CCLog(@"%@",responseObject);
                 NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
                 [center postNotificationName:@"getExamArrangeSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

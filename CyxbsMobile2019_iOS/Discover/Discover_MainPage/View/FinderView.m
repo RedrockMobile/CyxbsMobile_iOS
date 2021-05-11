@@ -88,7 +88,6 @@
        };
     NSString *hoildayString = @"";
     for (NSString *hoilday in lunDic.allKeys) {
-        NSLog(@"%ld-%ld",(long)now.month,(long)now.day);
         if([hoilday isEqual:[NSString stringWithFormat:@"%ld-%ld",now.month,now.day]]) {
             hoildayString = [lunDic objectForKey:hoilday];
         }
