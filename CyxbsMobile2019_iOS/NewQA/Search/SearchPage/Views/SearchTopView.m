@@ -61,6 +61,8 @@
         make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133);
     }];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageView.contentMode = UIViewContentModeCenter;    //设置图片不被拉伸压缩
+    imageView.clipsToBounds = YES;  //让图片超过图片框的frame的部分隐藏
     imageView.image = [UIImage imageNamed:@"返回的小箭头"];
 //    [self.backBtn addSubview:imageView];
     [self addSubview:imageView];
