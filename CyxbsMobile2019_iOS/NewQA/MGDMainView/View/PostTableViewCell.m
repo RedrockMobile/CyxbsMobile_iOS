@@ -218,9 +218,7 @@
         make.width.mas_equalTo(SCREEN_WIDTH * 0.0547);
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
     }];
-    
     self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    
 }
 
 - (void)awakeFromNib {
@@ -283,6 +281,12 @@
     }else {
         height_pading = 13.5;
         height_collectionview = self.collectView.collectionViewLayout.collectionViewContentSize.height;
+    }
+    
+    if ([self needLinesWithWidth:self.contentView.frame.size.width-20 currentLabel:_detailLabel] > 5)  {
+        self.detailLabel.numberOfLines = 5;
+    }else{
+        self.detailLabel.numberOfLines = 0;
     }
     [self.collectView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.detailLabel.mas_bottom).mas_offset(height_pading);
@@ -350,6 +354,24 @@
 }
 
 
+//获取文字所需行数
+- (NSInteger)needLinesWithWidth:(CGFloat)width currentLabel:(UILabel *)currentLabel {
+    UILabel *label = [[UILabel alloc] init];
+    label.font = currentLabel.font;
+    NSString *text = currentLabel.text;
+    NSInteger sum = 0;
+    //加上换行符
+    NSArray *rowType = [text componentsSeparatedByString:@"\n"];
+    for (NSString *currentText in rowType) {
+        label.text = currentText;
+        //获取需要的size
+        CGSize textSize = [label systemLayoutSizeFittingSize:CGSizeZero];
+        NSInteger lines = ceil(textSize.width/width);
+        lines = lines == 0 ? 1 : lines;
+        sum += lines;
+    }
+    return sum;
+}
 
 ///时间戳转具体日期
 - (NSString *)getDateStringWithTimeStr:(NSString *)str{

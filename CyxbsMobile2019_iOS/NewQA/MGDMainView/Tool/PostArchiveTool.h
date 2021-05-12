@@ -35,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)removeHotWordModel;
 
++ (void)removeNewMessageCountDictionary;
+
 @end
 
 NS_ASSUME_NONNULL_END
