@@ -35,8 +35,7 @@
 @property (nonatomic, strong) UIButton *funcBtn;
 ///点赞
 @property (nonatomic, strong) FunctionBtn *starBtn;
-///评论
-@property (nonatomic, strong) FunctionBtn *commendBtn;
+
 ///分享
 @property (nonatomic, strong) UIButton *shareBtn;
 ///圈子标签的背景图片
@@ -128,7 +127,11 @@
     [self.contentView addSubview:self.groupBtn];
     [self.groupBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(SCREEN_WIDTH * 0.2707 * 25.5/101.5);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-( (69 + 25)*HScaleRate_SE + 18 * fontSizeScaleRate_SE));
+        if (self.imageDataArray.count == 0) {
+            make.top.equalTo(self.detailLabel.mas_bottom).offset(SCREEN_HEIGHT * 0.018);
+        }else{
+            make.top.equalTo(self.imageCollectionView.mas_bottom).offset(SCREEN_HEIGHT * 0.018);
+        }
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
     }];
    
