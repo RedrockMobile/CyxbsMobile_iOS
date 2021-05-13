@@ -42,8 +42,8 @@
             filePath = "CyxbsMobile2019_iOS/NewQA/DynamicDetail/Controllers/DynamicDetailMainVC.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "718"
-            endingLineNumber = "718"
+            startingLineNumber = "672"
+            endingLineNumber = "672"
             landmarkName = "-reportComment:"
             landmarkType = "7">
          </BreakpointContent>

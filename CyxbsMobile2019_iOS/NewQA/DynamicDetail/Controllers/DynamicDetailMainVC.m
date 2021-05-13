@@ -277,50 +277,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-///下拉刷新界面  重新网络请求并重新布置界面
-- (void)dynamicTableReloadData{
-    DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
-
-    //请求评论的数据
-    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
-
-        //移除原所有数据
-        [self.commentTableDataAry removeAllObjects];
-        [self.oneLeveCommentHeight removeAllObjects];
-        [self.twoLevelCommentHeight removeAllObjects];
-        //向评论列表数据源数组添加元素
-        [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
-
-        //高度数组
-        for (int i = 0; i < commentAry.count; i++) {
-            NSMutableArray *muteAry = [NSMutableArray array];
-            [self.twoLevelCommentHeight addObject:muteAry];
-        }
-        [self.commentTable.mj_header endRefreshing];
-        [self.commentTable reloadData];
-        
-        //重新设置评论个数
-        self.dynamicSpecifiCell.commendBtn.countLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.commentTableDataAry.count];
-
-    } Failure:^{
-        [self.commentTable.mj_header endRefreshing];
-        [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
-        }];
-    //请求动态信息的数据,更新评论数量
-    DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
-    [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
-        //数据请求成功先进行赋值
-        [model setValuesForKeysWithDictionary:dic];
-        //获取该cell的缓存高度
-        [model getModelHeight];
-        self.dynamicSpecifiCell.dynamicDataModel = model;
-        self.dynamicDataModel = model;
-        self.dynamicSpecifiCell.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",model.comment_count];
-        } Failure:^{
-        }];
-    
-}
-
 ///添加或者删除评论后调用的方法
 - (void)rebuildFrameByComentCount{
     DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
@@ -385,8 +341,6 @@
     DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         DynamicDetailRequestDataModel *model = [[DynamicDetailRequestDataModel alloc] init];
         [model deleteCommentWithId:comment_id Sucess:^{
-//            [self.commentTable.mj_header beginRefreshing];
-//            [self dynamicTableReloadData];
             [NewQAHud showHudWith:@"删除成功" AddView:self.view];
             [self rebuildFrameByComentCount];
             
@@ -894,10 +848,6 @@
         //分割线样式为无
         _commentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_commentTable registerClass:[DynamicDetailComentTableCell class] forCellReuseIdentifier:@"commentCell"];
-        //给评论table添加刷新控件
-        MJRefreshNormalHeader *_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(dynamicTableReloadData)];
-        _commentTable.mj_header = _header;
-        [MGDRefreshTool setUPHeader:_header];
     }
     return _commentTable;
 }
