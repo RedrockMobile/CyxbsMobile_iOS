@@ -19,18 +19,18 @@
             // Fallback on earlier versions
         }
         self.hotTitleStr = str;
+        [self buildFrame];
     }
     return self;
 }
 
-- (void)layoutSubviews{
+//设置UI
+- (void)buildFrame{
     //最顶部的搜索view
-    [self addSubview:_searchTopView];
+    [self addSubview:self.searchTopView];
     [self.searchTopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
-//        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0352);
         make.bottom.equalTo(self.mas_top).offset(NVGBARHEIGHT + STATUSBARHEIGHT);
-//        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.0562));
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.0462));
         
     }];
@@ -41,7 +41,9 @@
     [self.hotSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.searchTopView.mas_bottom).offset(MAIN_SCREEN_H * 0.0449);
         make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0426);
-        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.8506, MAIN_SCREEN_H * 0.1874));
+//        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.8506, MAIN_SCREEN_H * 0.1874));
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.8506, [self.hotSearchView ViewHeight]));
+//        make.bottom.equalTo(self.mas_bottom).offset(-1);
     }];
     
     [self addSubview:self.topSeparation];
@@ -50,8 +52,13 @@
         make.left.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, 1));
     }];
-    
 }
+
+- (CGFloat)searchBeginViewHeight{
+    //topView高度 + 热搜距顶部高度 + 热搜View高度
+    return (NVGBARHEIGHT+STATUSBARHEIGHT)  + MAIN_SCREEN_H * 0.0449 + [self.hotSearchView ViewHeight];
+}
+
 #pragma mark- getter
 - (SearchTopView *)searchTopView{
     if (_searchTopView == nil) {

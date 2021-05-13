@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 热搜界面的按钮的文本内容
 @property (nonatomic, strong) NSArray *hotWordsList;
 
-/// 获取热搜词汇
+/// 获取热搜词汇（非搜索框）
 /// @param progress 获取到热搜词组后进行的代码操作
 - (void)getHotArayWithProgress:(void (^)(NSArray *ary))progress;
 

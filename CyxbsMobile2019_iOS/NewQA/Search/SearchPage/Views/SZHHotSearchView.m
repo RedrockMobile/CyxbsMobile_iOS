@@ -12,6 +12,8 @@
 #define LINESPLIT 10//行间距
 @interface SZHHotSearchView()
 @property (nonatomic, strong) NSArray <UIButton *>* buttonAry;
+/// 热搜或者知识库的按钮行数。根据这个去动态设置知识库页面高度
+@property (nonatomic, assign) int btnLine;
 @end
 
 @implementation SZHHotSearchView
@@ -20,11 +22,12 @@
 - (instancetype)initWithString:(NSString *)string{
     self = [super init];
     if (self) {
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
-        } else {
-            // Fallback on earlier versions
-        }
+        self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
+        
+        //一些初始化
+        self.btnLine = 1;
+        
+        //根据传入的字符串初始化界面
         if ([string isEqualToString:@"热门搜索"]) {
             self.hotSearch_KnowledgeLabel.text = @"热门搜索";
         }else{
@@ -97,10 +100,10 @@
     //button位置临界值判断变量
     CGFloat positionX = originX;
     CGFloat positionY = originY;
-
-    CGFloat maxX = MAIN_SCREEN_W;   //最大的x值
-    CGFloat maxY = MAIN_SCREEN_H * 0.1874;  //最大的Y值
-
+    //最大的x值
+    CGFloat maxX = MAIN_SCREEN_W;
+    
+    //循环设置Btn们的frame
     for (int i = 1; i < self.buttonAry.count; i++) {
         //获取button的字符串的宽度
         CGFloat titleWidth = [self.buttonAry[i].titleLabel.text boundingRectWithSize:CGSizeMake(1000, MAIN_SCREEN_H * 0.0382) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:13]} context:nil].size.width;
@@ -111,15 +114,11 @@
 
         //如果下一个button的x值值超越了边界，则跳行
         if (positionX > maxX) {
+            self.btnLine++; //按钮行数增加
             positionX = originX;
             buttonX = originX;
             self.buttonAry[i].frame = CGRectMake(originX, positionY, buttonWidth, MAIN_SCREEN_H * 0.0382);
             positionY = positionY + MAIN_SCREEN_H * 0.0254 + lineSplite;
-        }
-
-        //如果重邮知识库的buttton数量过多，超过长度，则不再显示后面的
-        if (positionY - originY > maxY - CGRectGetMaxY(self.hotSearch_KnowledgeLabel.frame)) {
-            break;
         }
         self.buttonAry[i].frame = CGRectMake(buttonX, positionY, buttonWidth, MAIN_SCREEN_H * 0.0382);
     }
@@ -136,10 +135,28 @@
     [self addbutts];
 }
 
+
 - (void)hideKnowledgeBtns{
     for (UIButton *btn in self.buttonAry) {
         [btn setHidden:YES];
     }
+}
+
+//获取这个View的高都
+- (CGFloat)ViewHeight{
+    CGFloat viewHeight = 0;
+    //获取标题的高度
+    NSDictionary *attr = @{NSFontAttributeName : [UIFont fontWithName:PingFangSCBold size:18]};
+    CGFloat titleHeight = [self.hotSearch_KnowledgeLabel.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size.height;
+    //按钮的高度
+    CGFloat btnsHeight = self.btnLine * MAIN_SCREEN_H * 0.0382;
+    //按钮的行距高总和
+    CGFloat btnMarginHeight = (self.btnLine - 1) * MAIN_SCREEN_H * 0.02;
+    
+    // 标题高度 + 按钮行间距和 + 按钮本身高度 + 第一行按钮距离标题的高度 + 容错距离
+    viewHeight = titleHeight + btnMarginHeight + btnsHeight + MAIN_SCREEN_H * 0.0254 + 10;
+    
+    return viewHeight;
 }
 #pragma mark- getter
 - (UILabel *)hotSearch_KnowledgeLabel{
