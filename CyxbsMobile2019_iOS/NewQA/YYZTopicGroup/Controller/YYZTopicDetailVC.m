@@ -98,10 +98,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *GroupLastLeaveTime = [NSString stringWithFormat:@"%ld%@",(long)self.topicID,@"LastLeaveTimeStr"];
-    [defaults setValue:[MGDCurrentTimeStr currentTimeStr] forKey:GroupLastLeaveTime];
-    [defaults synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
 

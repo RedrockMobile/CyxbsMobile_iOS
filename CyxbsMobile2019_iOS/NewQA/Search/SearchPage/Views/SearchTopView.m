@@ -35,38 +35,32 @@
         self.i = 0;
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(cycle) userInfo:nil repeats:YES];
         
-        //设置一个透明的fanhuibutton
-        UIButton *backBtn = [[UIButton alloc] initWithFrame:CGRectZero];
-        backBtn.backgroundColor = [UIColor clearColor];
-//        backBtn.backgroundColor = [UIColor redColor];
-        [backBtn addTarget:self.delegate action:@selector(jumpBack) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:backBtn];
-        [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.left.equalTo(self);
-            make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133 * 2);
-        }];
+        [self buildFrame];
+        
     }
     return self;
 }
 
 /// 将这些控件添加到屏幕上并为这些控件设置布局
-- (void)layoutSubviews{
-    //返回按钮
+- (void)buildFrame{
+    
+    //返回按钮。
+        //在这里按钮和图标分开，按钮透明，实际范围比图标大
     [self addSubview:self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.top.equalTo(self);
         make.bottom.equalTo(self);
-//        make.centerY.equalTo(self);
         make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133);
     }];
+        //返回的图标
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageView.contentMode = UIViewContentModeCenter;    //设置图片不被拉伸压缩
+    imageView.clipsToBounds = YES;  //让图片超过图片框的frame的部分隐藏
     imageView.image = [UIImage imageNamed:@"返回的小箭头"];
-//    [self.backBtn addSubview:imageView];
     [self addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0427);
-//        make.top.equalTo(self.mas_top).offset(MAIN_SCREEN_H * 0.0157);
         make.centerY.equalTo(self);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0186, 2 *MAIN_SCREEN_W * 0.0186 ));
     }];

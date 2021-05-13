@@ -36,7 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
   2.图片排列使用UIImageView装载，利用九宫格方式动态创建UIImageView的数量。不使用collectionView可以减少很多工作量
   3.图片浏览功能利用第三方库 YBImageBrowser 实现。图片的imageView的tag值为图片url在modelpic数组中的位置，图片浏览器当前展示的图片就是点击的imageView的tag值序列
   */
-@interface DynamicSpecificCell : UITableViewCell
+@interface DynamicSpecificCell : UIView
+///评论
+@property (nonatomic, strong) FunctionBtn *commendBtn;
 
 /// 拥有动态的具体信息的数据model
 @property (nonatomic, strong) DynamicDetailViewModel *dynamicDataModel;
