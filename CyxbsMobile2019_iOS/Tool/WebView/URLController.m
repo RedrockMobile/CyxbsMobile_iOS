@@ -37,7 +37,7 @@
     self.webView.navigationDelegate = self;
     NSURL * url = [NSURL URLWithString:_toUrl];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
-    
+//    NSLog(@"_toUrl = %@",_toUrl);
     [webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.view addSubview:webView];

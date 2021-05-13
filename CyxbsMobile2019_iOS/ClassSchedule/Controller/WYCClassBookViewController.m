@@ -61,15 +61,10 @@
     self.lessonViewArray = [NSMutableArray array];
     self.scBackViewDict = [[NSMutableDictionary alloc] init];
     
-    
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
-    }
-    //如果是自己的课表，那就加假的tabBar
-    if(self.schedulType==ScheduleTypePersonal){
-        [self addFakeBar];
     }
     
     [self showHud];
@@ -94,8 +89,11 @@
     //添加周选择条、显示本周的条
     [self addTopBarView];
     
-    //如果是自己的课表，那就加上下拉dismiss手势
-    if(self.schedulType==ScheduleTypePersonal)[self addGesture];
+    //如果是自己的课表，那就加上下拉dismiss手势、假的tabBar
+    if(self.schedulType==ScheduleTypePersonal) {
+        [self addFakeBar];
+        [self addGesture];
+    }
 }
 
 //MARK:- 添加控件
@@ -157,8 +155,6 @@
     scrollView.delegate = self;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
-    
-    [scrollView layoutIfNeeded];
 }
 
 -(void)reloadView{
@@ -260,19 +256,11 @@
     //调一下set方法
     self.index = self.index;
 }
+
 /// WYCClassAndRemindDataModel模型加载失败后调用
 - (void)ModelDataLoadFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-   
-    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"数据加载失败" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    [controller addAction:act1];
-    
-    [self presentViewController:controller animated:YES completion:nil];
-    
+    [NewQAHud showHudWith:@"数据加载失败了～" AddView:self.view];
     [self ModelDataLoadSuccess];
 }
 
@@ -420,7 +408,7 @@
 
 
 //MARK: - 其他
-/// 根据课表类型来加载数据
+/// 根据课表类型来加载课表数据
 /// @param info 包含了发送网络请求时的参数，具体参数格式看课表.h的init方法处的说明
 - (void)modelLoadDataWithInfo:(id)info{
     if (info==nil) {

@@ -152,6 +152,8 @@
 
 /// 考试安排接口
 #define EXAMARRANGEAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/examSchedule"]
+                   
+#define EXAM_MODEL [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/nowStatus"]
 
 /// 校车位置
 #define SCHOOLBUSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"schoolbus/status"]
@@ -213,7 +215,7 @@
 #define TEAkebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teaKb/api/teaKb"]
 
 /// 空教室接口
-#define EMPTYCLASSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/roomEmpty"]
+#define EMPTYCLASSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/roomEmpty"]
 
 /// 同学课表之查找同学，GET，参数：@{@"stu"]: 用来搜索的数据}
 #define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"

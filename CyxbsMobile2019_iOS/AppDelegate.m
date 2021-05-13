@@ -252,7 +252,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         content.body = bodyStr;
         
         //配置trigger
-        trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:component repeats:YES];
+        trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:component repeats:NO];
         
         //通过trigger和content配置request
         request = [UNNotificationRequest requestWithIdentifier:requestIDStr content:content trigger:trigger];

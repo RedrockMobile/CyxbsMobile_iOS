@@ -14,7 +14,8 @@
 @property (nonatomic, strong) NSMutableArray *dateArray;
 
 /**当前是第几周*/
-@property (nonatomic, strong) NSNumber *nowWeek;
+@property (nonatomic, strong, readonly) NSNumber *nowWeek;
+
 +(instancetype)initWithStartDate:(NSString *)startDate;
 
 @end
