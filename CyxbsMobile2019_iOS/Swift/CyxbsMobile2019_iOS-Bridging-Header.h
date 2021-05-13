@@ -217,7 +217,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 ///查询绩点需要先绑定ids
 #define IDSBINDINGAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
 ///绩点查询
-#define GPAAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/gpa"
+//#define GPAAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/gpa"
 
 /// 考试安排接口
 #define EXAMARRANGEAPI @"https://cyxbsmobile.redrock.team/api/examSchedule"

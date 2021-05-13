@@ -481,7 +481,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    NSString *shareURL = [NSString stringWithFormat:@"redrock.zscy.youwen.share://token=%@&id=%@",[UserDefaultTool getToken],_itemDic[@"post_id"]];
+    NSString *shareURL = [NSString stringWithFormat:@"https://fe-prod.redrock.team/zscy-youwen-share/#/dynamic?id=%@",_itemDic[@"post_id"]];
     pasteboard.string = shareURL;
 }
 
