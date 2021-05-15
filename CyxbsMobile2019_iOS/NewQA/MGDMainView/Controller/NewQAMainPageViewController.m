@@ -201,7 +201,7 @@
     self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
-    self.tableArray = [PostArchiveTool getPostList];
+    self.tableArray = [NSMutableArray arrayWithArray:[PostArchiveTool getPostList]];
     self.dataArray = [PostArchiveTool getMyFollowGroup];
     self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
     
@@ -252,6 +252,10 @@
                 dispatch_semaphore_signal(semaphore);
             });
         }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    [self.tableView reloadData];
 //    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
@@ -273,6 +277,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NewQAListLoadError)
                                                  name:@"NewQAListDataLoadFailure" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(NewQAListLoadError)
+                                                 name:@"NewQAListPageDataLoadError" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(NewQAListLoadError)
+                                                 name:@"NewQAListDataLoadError" object:nil];
     ///热搜词汇请求成功
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(howWordsLoadSuccess)
@@ -341,8 +353,6 @@
             make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
         }];
     }
-    
-    
 }
 
 #pragma mark -刷新视图的相关操作
@@ -475,15 +485,14 @@
 #pragma mark- 帖子列表的网络请求
 ///下拉加载
 - (void)loadData{
-    NSLog(@"此时的page:%ld",(long)self.page);
+    NSLog(@"此时数据源数组的count===%lu",(unsigned long)[self.tableArray count]);
     self.page += 1;
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
-    NSLog(@"此时数据源数组的count===%lu",(unsigned long)[self.tableArray count]);
 }
 
 ///上拉刷新
 - (void)refreshData{
-    [self.tableArray removeAllObjects];
+    NSLog(@"此时数据源数组的count===%lu",(unsigned long)[self.tableArray count]);
     self.page = 1;
     NSLog(@"此时的page:%ld",(long)self.page);
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
@@ -492,7 +501,9 @@
 ///成功请求数据
 - (void)NewQAListLoadSuccess {
 //    [self.loadHUD removeFromSuperview];
+    NSLog(@"请求列表数据成功");
     if (self.page == 1) {
+        [self.tableArray removeAllObjects];
         self.tableArray = self.postmodel.postArray;
     }else {
         [self.tableArray addObjectsFromArray:self.postmodel.postArray];
@@ -519,6 +530,7 @@
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+    NSLog(@"%lu",(unsigned long)[self.tableArray count]);
 }
 
 # pragma mark -UI的设置及控件的懒加载
@@ -726,8 +738,9 @@
     ///给每一个cell的identifier设置为唯一的
     NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
     if(cell == nil) {
-        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+//        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
         //这里
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
@@ -740,6 +753,8 @@
         if (cell.tag == 0) {
             cell.layer.cornerRadius = 10;
         }
+    }else if([cell.commendBtn.countLabel.text intValue] != [_item.comment_count intValue]){
+        cell.commendBtn.countLabel.text = [_item.comment_count stringValue];
     }
     [cell layoutSubviews];
     [cell layoutIfNeeded];
@@ -801,7 +816,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    NSString *shareURL = [NSString stringWithFormat:@"redrock.zscy.youwen.share://token=%@&id=%@",[UserDefaultTool getToken],_itemDic[@"post_id"]];
+    NSString *shareURL = [NSString stringWithFormat:@"https://fe-prod.redrock.team/zscy-youwen-share/#/dynamic?id=%@",_itemDic[@"post_id"]];
     pasteboard.string = shareURL;
 }
 

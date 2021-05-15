@@ -14,6 +14,7 @@
 #import <UMCommonLog/UMCommonLogHeaders.h>
 #import "VolunteeringEventItem.h"
 #import "VolunteerItem.h"
+#import "DynamicDetailMainVC.h"
 #import <Bagel.h>
 #import "QADetailViewController.h"
 #import <AFNetworkReachabilityManager.h>
@@ -370,12 +371,18 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     
     NSString *urlStr = [url absoluteString];
+    NSLog(@"%@",urlStr);
+    UINavigationController *navigationController = ((UITabBarController *)(self.window.rootViewController)).selectedViewController;
     if ([urlStr hasPrefix:@"redrock.zscy.youwen.share://"]) {
-        //把？号前面的数据替换为空，是方便后续字符串以&符号来分割
-        NSString *parameter = [urlStr stringByReplacingOccurrencesOfString:@"redrock.zscy.youwen.share://param?" withString:@""];
-        NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:parameter, @"parameter", nil];
-        //此处是外部请求后需要处理的事件，将参数传递下去即可
-        NSLog(@"==========>>>>>>%@",dic);
+        NSCharacterSet *nonDigitCharacterSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+        NSString *str = [[urlStr componentsSeparatedByCharactersInSet:nonDigitCharacterSet] componentsJoinedByString:@""];
+        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+//        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+        dynamicDetailVC.post_id = str;
+        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+//        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+        [navigationController pushViewController:dynamicDetailVC animated:YES];
     }
     return YES;
 }
