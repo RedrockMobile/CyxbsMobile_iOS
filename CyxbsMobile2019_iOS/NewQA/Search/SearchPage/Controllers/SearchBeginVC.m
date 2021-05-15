@@ -128,20 +128,20 @@
     //请求相关动态
     [self.searchDataModel getSearchDynamicWithStr:searchString Sucess:^(NSDictionary * _Nonnull dynamicDic) {
         weakSelf.searchDynamicDic = dynamicDic;
-        [weakSelf processData];
+        [weakSelf processData:searchString];
         } Failure:^{
             weakSelf.getDynamicFailure = YES;
             weakSelf.searchDynamicDic = [NSDictionary dictionary];
-            [weakSelf processData];
+            [weakSelf processData:searchString];
         }];
     //请求帖子
     [self.searchDataModel getSearchKnowledgeWithStr:searchString Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
         weakSelf.searchKnowledgeDic = knowledgeDic;
-        [weakSelf processData];
+        [weakSelf processData:searchString];
         } Failure:^{
             weakSelf.getKnowledgeFailure = YES;
             weakSelf.searchKnowledgeDic = [NSDictionary dictionary];
-            [weakSelf processData];
+            [weakSelf processData:searchString];
         }];
 
     //清除缓存
@@ -193,15 +193,13 @@
         NSLog(@"%@",array);
     }
 }
-
 /// 刷新历史记录表格
 - (void)reloadHistoryRecord{
     self.historyRecordsAry = [[NSUserDefaults standardUserDefaults] objectForKey:@"historyRecords"];
     [self.historyTable reloadData];
 }
-
 /// 处理网络请求的数据，进行逻辑判断跳转界面
-- (void)processData{
+- (void)processData:(NSString *)str{
     //如果两个返回的response均有值，则可进行逻辑判断，否则直接返回
     if (self.searchDynamicDic == nil || self.searchKnowledgeDic == nil) {
         return;
@@ -227,12 +225,12 @@
             SZHSearchEndCv *vc = [[SZHSearchEndCv alloc] init];
             vc.tableDataAry = dynamicAry;
             vc.knowlegeAry = knowledgeAry;
+            vc.searchStr = str;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
     
 }
-
 //添加上半部分视图
 - (void)setTopFrame{
     [self.view addSubview:self.searchBeginTopView];
@@ -241,7 +239,6 @@
         make.height.mas_equalTo([self.searchBeginTopView searchBeginViewHeight]);
     }];
 }
-
 ///添加下半部分视图
 -  (void)setBottomView{
     //历史记录的label
@@ -362,6 +359,7 @@
         //设置热搜列表
         _searchBeginTopView.hotSearchView.buttonTextAry = [SZHArchiveTool getHotWordsListAry];
         [_searchBeginTopView.hotSearchView updateBtns];
+        [_searchBeginTopView updateHotSearchViewFrame];
        
         //如果热搜列表无缓存，网络请求之后再归档
         if (_searchBeginTopView.hotSearchView.buttonTextAry.count == 0) {

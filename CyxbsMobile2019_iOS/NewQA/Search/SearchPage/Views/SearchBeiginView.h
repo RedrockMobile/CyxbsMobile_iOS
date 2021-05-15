@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param str 传入的字符串
 - (instancetype)initWithString:(NSString *)str;
 
+/// 重新约束热搜view的高度
+- (void)updateHotSearchViewFrame;
+
 - (CGFloat)searchBeginViewHeight;
 @end
 

@@ -4032,15 +4032,6 @@
 			path = DKSKeyBoard;
 			sourceTree = "<group>";
 		};
-		B89B8E5A2603924000497814 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B89B8E5B2603928F00497814 /* CYSearchEndKnowledgeDetailView.h */,
-				B89B8E5C2603928F00497814 /* CYSearchEndKnowledgeDetailView.m */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		B8AA53D525B9491700CEE847 /* SearchPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -4133,7 +4124,6 @@
 		B8C6757C25D9586100D2598B /* SearchEndPage */ = {
 			isa = PBXGroup;
 			children = (
-				B89B8E5A2603924000497814 /* Views */,
 				B82C450E25DBB44400340C12 /* Models */,
 				B8C6757D25D9588100D2598B /* Controllers */,
 			);
@@ -4145,6 +4135,8 @@
 			children = (
 				B83766F125C150C000A8666A /* SZHSearchEndCv.h */,
 				B83766F225C150C000A8666A /* SZHSearchEndCv.m */,
+				B89B8E5B2603928F00497814 /* CYSearchEndKnowledgeDetailView.h */,
+				B89B8E5C2603928F00497814 /* CYSearchEndKnowledgeDetailView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

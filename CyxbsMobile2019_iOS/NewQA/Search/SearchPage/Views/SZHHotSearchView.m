@@ -114,7 +114,7 @@
 
         //如果下一个button的x值值超越了边界，则跳行
         if (positionX > maxX) {
-            self.btnLine++; //按钮行数增加
+            self.btnLine = self.btnLine + 1; //按钮行数增加
             positionX = originX;
             buttonX = originX;
             self.buttonAry[i].frame = CGRectMake(originX, positionY, buttonWidth, MAIN_SCREEN_H * 0.0382);
@@ -138,7 +138,7 @@
 
 - (void)hideKnowledgeBtns{
     for (UIButton *btn in self.buttonAry) {
-        [btn setHidden:YES];
+        [btn removeFromSuperview];
     }
 }
 
