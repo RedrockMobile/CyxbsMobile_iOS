@@ -127,21 +127,15 @@
 //校历接口
 #define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/schoolCalendar"]
 /// 教务新闻列表
-#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
+#define NEWSLIST @"be-prod.redrock.team/magipoke-jwzx/jwNews/list"//参数page，方法Get
 /// 教务新闻详情
-#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
+#define NEWSDETAIL @"be-prod.redrock.team/magipoke-jwzx/jwNews/content"
 /// 教务新闻附件
-#define NEWSFILE @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
-
+#define NEWSFILE @"be-prod.redrock.team/magipoke-jwzx/jwNews/file"
+//在NewDetailViewController要单独改一下
 /// 电费
 #define ELECTRICFEE @"https://be-prod.redrock.team/magipoke-elecquery/getElectric"
 
-/// 教务新闻列表
-#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
-/// 教务新闻详情
-#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
-/// 教务新闻附件下载
-#define NEWSDOWNLOAD @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 
 ///查询绩点需要先绑定ids
 #define IDSBINDINGAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/ids/bind"]
