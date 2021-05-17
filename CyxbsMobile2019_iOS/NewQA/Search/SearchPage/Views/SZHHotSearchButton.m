@@ -52,7 +52,6 @@
                 } else {
                     NSLog(@"未知模式");
                 }
-            
         }
     } else {
         // Fallback on earlier versions

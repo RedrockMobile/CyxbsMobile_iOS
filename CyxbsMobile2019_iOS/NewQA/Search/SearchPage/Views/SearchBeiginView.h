@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 重新约束热搜view的高度
 - (void)updateHotSearchViewFrame;
 
+///获取这个View的高度
 - (CGFloat)searchBeginViewHeight;
 @end
 

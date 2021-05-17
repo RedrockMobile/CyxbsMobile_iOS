@@ -31,6 +31,7 @@
 #import "ShareView.h"           //分享界面
 #import "FuncView.h"            //cell上的三个点点击后界面
 #import "CYSearchEndKnowledgeDetailView.h"  //知识库详情页
+#import "SearchTopView.h"
 
 @interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,ShareViewDelegate,FuncViewProtocol,ReportViewDelegate>
 @property (nonatomic, strong) SearchBeiginView *searchEndTopView;   //上半部分视图
@@ -241,12 +242,25 @@
     [self.view addSubview:self.relevantDynamicTable];
     //当无知识库的情况
     if (self.knowlegeAry.count == 0){
-        self.relevantDynamicTable.contentInset = UIEdgeInsetsMake(MAIN_SCREEN_H*0.1633 + 17, 0, 0, 0);
+        SearchTopView *topView = [[SearchTopView alloc] init];
+        topView.searchTextfield.delegate = self;
+        topView.delegate = self;
+        [self.view addSubview:topView];
+        [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.view.mas_top).offset(STATUSBARHEIGHT + NVGBARHEIGHT);
+            make.left.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.0462));
+        }];
         [self.view addSubview:self.relevantDynamicLbl];
         [self.relevantDynamicLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view).offset(MAIN_SCREEN_H * 0.1364);
+            make.top.equalTo(topView.mas_bottom).offset(MAIN_SCREEN_H * 0.0375);
             make.left.equalTo(self.view).offset(MAIN_SCREEN_W * 0.0427);
         }];
+        [self.relevantDynamicTable mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.relevantDynamicLbl.mas_bottom).offset(MAIN_SCREEN_H*0.0462);
+            make.left.right.bottom.equalTo(self.view);
+        }];
+//        self.relevantDynamicTable.contentInset = UIEdgeInsetsMake(MAIN_SCREEN_H * 0.0462 + MAIN_SCREEN_H*0.1633 + 17, 0, 0, 0);
     }else{
     //有知识库的情况
         [self.view addSubview:self.topView];

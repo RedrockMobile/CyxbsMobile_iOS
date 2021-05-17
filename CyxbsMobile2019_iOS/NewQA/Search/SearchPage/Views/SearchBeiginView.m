@@ -53,6 +53,7 @@
 }
 
 - (CGFloat)searchBeginViewHeight{
+    //动态高度 + 固定高度
     //topView高度 + 热搜距顶部高度 + 热搜View高度
     return (NVGBARHEIGHT+STATUSBARHEIGHT)  + MAIN_SCREEN_H * 0.0449 + [self.hotSearchView ViewHeight];
 }

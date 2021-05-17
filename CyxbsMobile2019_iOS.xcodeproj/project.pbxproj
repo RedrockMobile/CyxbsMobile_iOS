@@ -4065,14 +4065,14 @@
 		B8AA53D925B9496900CEE847 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B892095825BEDA1A00386451 /* SearchBeiginView.h */,
-				B892095925BEDA1A00386451 /* SearchBeiginView.m */,
 				B892095225BEC30B00386451 /* SearchTopView.h */,
 				B892095325BEC30B00386451 /* SearchTopView.m */,
 				B845735525C0390A005EFB91 /* SZHHotSearchButton.h */,
 				B845735625C0390A005EFB91 /* SZHHotSearchButton.m */,
 				B845737125C03A9E005EFB91 /* SZHHotSearchView.h */,
 				B845737225C03A9E005EFB91 /* SZHHotSearchView.m */,
+				B892095825BEDA1A00386451 /* SearchBeiginView.h */,
+				B892095925BEDA1A00386451 /* SearchBeiginView.m */,
 				B83766E525C13E0E00A8666A /* SZHSearchTableViewCell.h */,
 				B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */,
 			);

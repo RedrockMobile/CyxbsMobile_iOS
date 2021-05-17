@@ -47,12 +47,13 @@
     [self.view addSubview:self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
-        make.centerX.equalTo(label);
+        make.centerY.equalTo(label);
 //        MAIN_SCREEN_W * 0.06133
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.1, 45 * HScaleRate_SE));
     }];
         //返回的图标
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imageView.userInteractionEnabled = YES;
     imageView.image = [UIImage imageNamed:@"返回的小箭头"];
     [self.view addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
