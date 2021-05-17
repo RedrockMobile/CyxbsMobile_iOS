@@ -61,12 +61,32 @@
     [btn addTarget:self.delegate action:@selector(headImgClicked) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btn];
 }
-
+//避免昵称过长时，将编辑资料按钮顶出屏幕
+- (void)addObserverForNickNameLabel {
+    [self.nicknameLabel addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:@selector(addObserverForNickNameLabel)];
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (context == @selector(addObserverForNickNameLabel)) {
+        NSString *tittle = change[NSKeyValueChangeNewKey];
+        double width = [self getLabelSizeWith:tittle font:self.nicknameLabel.font].width;
+        if (width > 0.6*SCREEN_WIDTH) {
+            [self.nicknameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(0.6*SCREEN_WIDTH);
+            }];
+        }else {
+            [self.nicknameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.top.equalTo(self.backView);
+            }];
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
 - (void)addBackview {
     UIView *backView = [[UIView alloc] init];
     [self addSubview:backView];
     self.backView = backView;
-//    backView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.7];
+    
     //++++++++++++++++++添加昵称label++++++++++++++++++++  Begain
     UILabel *nicknameLabel = [[UILabel alloc] init];
     [backView addSubview:nicknameLabel];
@@ -78,9 +98,11 @@
         nicknameLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
     }
     
+    [self addObserverForNickNameLabel];
     [nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(backView);
     }];
+    
     //++++++++++++++++++添加昵称label++++++++++++++++++++  End
     
     
@@ -165,20 +187,13 @@
     
     [signinButton addTarget:self.delegate action:@selector(checkInButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    NSDate *lastCheckInDate = [[NSUserDefaults standardUserDefaults] valueForKey:MineLastCheckInTime_NSDate];
-    
-    NSString *title;
-    UIColor *color;
-    if (lastCheckInDate!=nil&&[lastCheckInDate isToday]) {
-        title = @"已签到";
-        color = RGBColor(225, 223, 224, 1);
+    if (isTodayCheckedIn_BOOL) {
+        [signinButton setTitle:@"已签到" forState:UIControlStateNormal];
+        signinButton.backgroundColor = RGBColor(225, 223, 224, 1);
     }else {
-        title = @"签到";
-        color = [UIColor colorWithRed:63/255.0 green:64/255.0 blue:225/255.0 alpha:1.0];
+        [signinButton setTitle:@"签到" forState:UIControlStateNormal];
+        signinButton.backgroundColor = RGBColor(63, 64, 225, 1.0);
     }
-    
-    [signinButton setTitle:title forState:UIControlStateNormal];
-    signinButton.backgroundColor = color;
 }
 
 /// 添加动态、评论、获赞 的   label与按钮
@@ -268,6 +283,11 @@
         make.centerX.equalTo(self.whiteBoard).offset(0.295*SCREEN_WIDTH);
         make.top.equalTo(self.articleNumBtn);
     }];
+}
+- (CGSize)getLabelSizeWith:(NSString*)tittle font:(UIFont*)font {
+    NSDictionary *attr = @{NSFontAttributeName:font};
+    
+    return [tittle boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
 }
 
 @end

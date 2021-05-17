@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         self.ignoreEvent = NO;
-        self.canTapEventInterval = 0.5;
+        self.canTapEventInterval = 0.5; //0.5秒内重复点击无效
         self.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:13];
         
         //设置title颜色
@@ -26,27 +26,14 @@
             // Fallback on earlier versions
         }
         
-        //设置button宽度随title文本长度自适应
-//        self.titleLabel.adjustsFontSizeToFitWidth = YES;
-        
-//        /**约束会报警告，但是不影响显示*/
-//        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.03467);
-//            make.right.equalTo(self).offset(-MAIN_SCREEN_W * 0.04267);
-//        }];
-        
         //圆角
         self.layer.masksToBounds = NO;
         self.layer.cornerRadius = MAIN_SCREEN_H * 0.0382 * 0.5;
         
         //边框宽度，不设置边框宽度就无法看到边框，以及边框颜色
         self.layer.borderWidth = 1;
-        //设置边框颜色
-        if (@available(iOS 11.0, *)) {
-            self.layer.borderColor = [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
-        } else {
-            // Fallback on earlier versions
-        }
+        //设置边框颜色。边框颜深色模式需要手动调。见下方的代理方法
+        self.layer.borderColor = [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
     }
     return self;
 }
@@ -65,7 +52,6 @@
                 } else {
                     NSLog(@"未知模式");
                 }
-            
         }
     } else {
         // Fallback on earlier versions

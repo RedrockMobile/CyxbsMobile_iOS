@@ -201,7 +201,7 @@
     self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
-    self.tableArray = [PostArchiveTool getPostList];
+    self.tableArray = [NSMutableArray arrayWithArray:[PostArchiveTool getPostList]];
     self.dataArray = [PostArchiveTool getMyFollowGroup];
     self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
     
@@ -252,8 +252,11 @@
                 dispatch_semaphore_signal(semaphore);
             });
         }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    [self.tableView reloadData];
 //    [[UserItemTool defaultItem] setFirstLogin:NO];
-    [self queryEveryGroupMessageCount];
 }
 
 //邮问视图消失时显示底部课表
@@ -274,6 +277,14 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(NewQAListLoadError)
                                                  name:@"NewQAListDataLoadFailure" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(NewQAListLoadError)
+                                                 name:@"NewQAListPageDataLoadError" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(NewQAListLoadError)
+                                                 name:@"NewQAListDataLoadError" object:nil];
     ///热搜词汇请求成功
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(howWordsLoadSuccess)
@@ -342,8 +353,6 @@
             make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
         }];
     }
-    
-    
 }
 
 #pragma mark -刷新视图的相关操作
@@ -476,15 +485,14 @@
 #pragma mark- 帖子列表的网络请求
 ///下拉加载
 - (void)loadData{
-    NSLog(@"此时的page:%ld",(long)self.page);
+    NSLog(@"此时数据源数组的count===%lu",(unsigned long)[self.tableArray count]);
     self.page += 1;
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
-    NSLog(@"此时数据源数组的count===%lu",(unsigned long)[self.tableArray count]);
 }
 
 ///上拉刷新
 - (void)refreshData{
-    [self.tableArray removeAllObjects];
+    NSLog(@"此时数据源数组的count===%lu",(unsigned long)[self.tableArray count]);
     self.page = 1;
     NSLog(@"此时的page:%ld",(long)self.page);
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
@@ -493,7 +501,9 @@
 ///成功请求数据
 - (void)NewQAListLoadSuccess {
 //    [self.loadHUD removeFromSuperview];
+    NSLog(@"请求列表数据成功");
     if (self.page == 1) {
+        [self.tableArray removeAllObjects];
         self.tableArray = self.postmodel.postArray;
     }else {
         [self.tableArray addObjectsFromArray:self.postmodel.postArray];
@@ -520,6 +530,7 @@
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+    NSLog(@"%lu",(unsigned long)[self.tableArray count]);
 }
 
 # pragma mark -UI的设置及控件的懒加载
@@ -727,8 +738,9 @@
     ///给每一个cell的identifier设置为唯一的
     NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
     if(cell == nil) {
-        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+//        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
         //这里
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
@@ -741,6 +753,8 @@
         if (cell.tag == 0) {
             cell.layer.cornerRadius = 10;
         }
+    }else if([cell.commendBtn.countLabel.text intValue] != [_item.comment_count intValue]){
+        cell.commendBtn.countLabel.text = [_item.comment_count stringValue];
     }
     [cell layoutSubviews];
     [cell layoutIfNeeded];
@@ -802,7 +816,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    NSString *shareURL = [NSString stringWithFormat:@"redrock.zscy.youwen.share://token=%@&id=%@",[UserDefaultTool getToken],_itemDic[@"post_id"]];
+    NSString *shareURL = [NSString stringWithFormat:@"https://fe-prod.redrock.team/zscy-youwen-share/#/dynamic?id=%@",_itemDic[@"post_id"]];
     pasteboard.string = shareURL;
 }
 
@@ -831,7 +845,7 @@
     detailVC.topicID = topicID;
     if (flag) {
         _queryGroupTopicID = topicID;
-        [self removeGroupMessageCount];
+        [self queryGroupNewMessageCountWithTopicID:_queryGroupTopicID AndIndex:_queryGroupTopicIndex];
     }
     detailVC.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
@@ -956,9 +970,7 @@
     [_popView removeFromSuperview];
     self.isShowedReportView = YES;
     _itemDic = self.tableArray[sender.tag];
-//    NSLog(@"点击多举报按钮时打印的帖子ID：%@",_itemDic[@"post_id"]);
     _reportView.postID = _itemDic[@"post_id"];
-//    _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
     [self.view.window addSubview:_reportView];
     [self.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
@@ -1133,7 +1145,9 @@
     }else {
         _queryGroupTopicIndex = sender.tag;
         _queryGroupTopicID = [sender.item.topic_id intValue];
-        [self removeGroupMessageCount];
+//    queryGroupNewMessageCountWithTopicID:(NSNumber *)topicID AndIndex:(int)index
+        [self queryGroupNewMessageCountWithTopicID:_queryGroupTopicID AndIndex:_queryGroupTopicID];
+//        [self removeGroupMessageCount];
         YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc]init];
         detailVC.topicID = [sender.item.topic_id intValue];
         detailVC.topicIdString = groupName;
@@ -1162,13 +1176,6 @@
 }
 
 # pragma mark -我的关注圈子中的新帖子数查询
-// 点击进某个具体的圈子后，此圈子的消息数变为0
-- (void)removeGroupMessageCount {
-    NSLog(@"点击某个圈子后，将此圈子的新消息数直接设置为0");
-    self.dataArray[_queryGroupTopicIndex].message_count = [NSNumber numberWithInt:0];
-    [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
-}
-
 // 通过缓存加载时，调用此方法，查询每一个圈子的新消息数
 - (void)queryEveryGroupMessageCount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -1189,7 +1196,6 @@
                     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
                 }];
             } else {
-//                NSLog(@"缓存中并没有记录上次离开圈子的时间");
                 self.dataArray[i].message_count = [NSNumber numberWithInt:0];
                 [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
             }
@@ -1201,6 +1207,16 @@
     for (int i = 1;i < [self.dataArray count]; i++) {
         self.dataArray[i].message_count = [NSNumber numberWithInt:0];
     }
+    [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
+}
+
+// 点击了圈子后，传入对应圈子的ID和其在self.dataArray中的下标，修改其新的消息数为0，并通过偏好设置记录进入该圈子的时间
+- (void)queryGroupNewMessageCountWithTopicID:(NSInteger)topicID AndIndex:(NSInteger)index {
+//    NewCountModel *model = [[NewCountModel alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *queryString = [NSString stringWithFormat:@"%ld%@",(long)topicID,@"LastLeaveTimeStr"];
+    [defaults setValue:queryString forKey:[MGDCurrentTimeStr currentTimeStr]];
+    self.dataArray[index].message_count = [NSNumber numberWithInt:0];
     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
 }
 

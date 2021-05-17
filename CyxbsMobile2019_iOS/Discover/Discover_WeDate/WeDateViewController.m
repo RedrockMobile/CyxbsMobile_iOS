@@ -14,7 +14,7 @@
 
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2"]
-@interface WeDateViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateDelete,PeopleListTableViewCellDelegateAdd,WYCClassAndRemindDataModelDelegate>
+@interface WeDateViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateDelete,PeopleListTableViewCellDelegateAdd>
 /**推出没课约的按钮*/
 @property (nonatomic, strong)UIButton *backButton;
 /**显示“没课约”3个字的label*/
@@ -277,18 +277,22 @@
 //点击紫色的那个查询后调用
 
 - (void)enquiry{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [hud setMode:(MBProgressHUDModeText)];
     if(self.infoDictArray.count==0){
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
         hud.labelText = @"没有添加同学";
         [hud hide:YES afterDelay:1];
         return;
     }else{
-        hud.labelText = @"加载中";
+//        hud.labelText = @"加载中";
+        WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] initWithType:ScheduleTypeWeDate andInfo:self.infoDictArray];
+        [self presentViewController:vc animated:YES completion:nil];
+        /*
         WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
         model.delegate = self;
         [model getClassBookArrayFromNetWithInfoDictArr:self.infoDictArray];
         [hud hide:YES afterDelay:0.3];
+         */
     }
 }
 
@@ -352,25 +356,5 @@
     }
     return YES;
 }
-- (void)ModelDataLoadFailure{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [hud setMode:(MBProgressHUDModeText)];
-    hud.labelText = @"加载数据失败";
-    [hud hide:YES afterDelay:1];
-}
-- (void)ModelDataLoadSuccess:(id)model{
-    WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] init];
 
-    //对model赋值
-    vc.model = model;
-    
-    //设置课表类型为WeDate
-    vc.schedulType = ScheduleTypeWeDate;
-    
-    //present这种刷新UI的操作得放主线程，不然会报错
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [vc ModelDataLoadSuccess:model];
-        [self presentViewController:vc animated:YES completion:nil];
-    });
-}
 @end

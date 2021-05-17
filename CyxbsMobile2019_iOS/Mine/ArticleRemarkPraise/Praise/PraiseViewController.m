@@ -43,7 +43,8 @@
     tableView.dataSource = self;
     tableView.backgroundColor = self.view.backgroundColor;
     [tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
-    tableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self.praiseModel refreshingAction:@selector(loadMoreData)];
+    tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self.praiseModel refreshingAction:@selector(loadMoreData)];
+    [tableView.mj_footer setState:MJRefreshStateRefreshing];
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topBarView.mas_bottom);
@@ -69,11 +70,6 @@
             case MainPage2RequestModelStateFailure:
                 [self.tableView.mj_footer endRefreshing];
                 [NewQAHud showHudWith:@"加载失败" AddView:self.view];
-                break;
-                //部分数据加载失败
-            case MainPage2RequestModelStateFailureAndSuccess:
-                [self.tableView.mj_footer endRefreshing];
-                [NewQAHud showHudWith:@"部分数据加载失败" AddView:self.view];
                 break;
         }
         

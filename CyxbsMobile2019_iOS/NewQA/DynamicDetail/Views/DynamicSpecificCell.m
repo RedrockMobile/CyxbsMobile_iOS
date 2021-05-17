@@ -35,8 +35,7 @@
 @property (nonatomic, strong) UIButton *funcBtn;
 ///点赞
 @property (nonatomic, strong) FunctionBtn *starBtn;
-///评论
-@property (nonatomic, strong) FunctionBtn *commendBtn;
+
 ///分享
 @property (nonatomic, strong) UIButton *shareBtn;
 ///圈子标签的背景图片
@@ -70,38 +69,38 @@
 //将各个控件添加到屏幕上,设置控件的frame
 - (void)buildFrame{
     //头像
-    [self.contentView addSubview:self.iconImageView];
+    [self addSubview:self.iconImageView];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.0427);
-        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
+        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.0427);
+        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
         make.width.height.mas_equalTo(SCREEN_WIDTH * 0.1066);
     }];
     
     //昵称
-    [self.contentView addSubview:self.nicknameLabel];
+    [self addSubview:self.nicknameLabel];
     [self.nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.iconImageView).mas_offset(3 * HScaleRate_SE);
         make.left.mas_equalTo(self.iconImageView.mas_right).mas_offset(15 * HScaleRate_SE);
     }];
     
     //日期
-    [self.contentView addSubview:self.timeLabel];
+    [self addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(-3 * HScaleRate_SE);
         make.left.mas_equalTo(self.nicknameLabel);
     }];
     
     //多功能按钮
-    [self.contentView addSubview:self.funcBtn];
+    [self addSubview:self.funcBtn];
     [self.funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.89 * 18/343);
-        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
-        make.right.mas_equalTo(self.contentView.mas_right);
+        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.89 * 18/343);
+        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
+        make.right.mas_equalTo(self.mas_right);
         make.height.mas_equalTo((SCREEN_WIDTH * 0.89 * 18/343 + [UIImage imageNamed:@"QAMoreButton"].size.height));
     }];
     
     //内容label
-    [self.contentView addSubview:self.detailLabel];
+    [self addSubview:self.detailLabel];
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(14.5*HScaleRate_SE);
         make.left.mas_equalTo(self.iconImageView);
@@ -109,11 +108,11 @@
     }];
     
     //图片的collectionView
-    [self.contentView addSubview:self.imageCollectionView];
+    [self addSubview:self.imageCollectionView];
     [self.imageCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_detailLabel.mas_bottom).mas_offset(Pading * 13.5/16);
         if (self.dynamicDataModel.pics.count > 2) {
-            make.left.equalTo(self.contentView).offset(Pading);
+            make.left.equalTo(self).offset(Pading);
         }else{
             make.left.equalTo(self.detailLabel);
         }
@@ -125,15 +124,19 @@
         }
     }];
     
-    [self.contentView addSubview:self.groupBtn];
+    [self addSubview:self.groupBtn];
     [self.groupBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(SCREEN_WIDTH * 0.2707 * 25.5/101.5);
-        make.bottom.mas_equalTo(self.mas_bottom).mas_offset(-( (69 + 25)*HScaleRate_SE + 18 * fontSizeScaleRate_SE));
+        if (self.imageDataArray.count == 0) {
+            make.top.equalTo(self.detailLabel.mas_bottom).offset(SCREEN_HEIGHT * 0.018);
+        }else{
+            make.top.equalTo(self.imageCollectionView.mas_bottom).offset(SCREEN_HEIGHT * 0.018);
+        }
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
     }];
    
     //点赞按钮
-    [self.contentView addSubview:self.starBtn];
+    [self addSubview:self.starBtn];
     [self.starBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groupBtn.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 22.75/20.05);
@@ -142,7 +145,7 @@
     }];
     
     //评论按钮
-    [self.contentView addSubview:self.commendBtn];
+    [self addSubview:self.commendBtn];
     [self.commendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groupBtn.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 20.75/20.05);
@@ -151,7 +154,7 @@
     }];
     
     //分享按钮
-    [self.contentView addSubview:self.shareBtn];
+    [self addSubview:self.shareBtn];
     [self.shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.mas_equalTo(self.commendBtn);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.0547);
@@ -159,7 +162,7 @@
     }];
     
     //分割线
-    [self.contentView addSubview:self.bottomDividerView];
+    [self addSubview:self.bottomDividerView];
     [self.bottomDividerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
         make.top.equalTo(self.shareBtn.mas_bottom).offset(21.5 * HScaleRate_SE);
@@ -170,7 +173,7 @@
     replyLbl.text = @"回复";
     replyLbl.font = [UIFont fontWithName:PingFangSCSemibold size:18 * fontSizeScaleRate_SE];
     replyLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-    [self.contentView addSubview:replyLbl];
+    [self addSubview:replyLbl];
     [replyLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconImageView);
         make.top.equalTo(self.bottomDividerView.mas_bottom).offset(25 * HScaleRate_SE);

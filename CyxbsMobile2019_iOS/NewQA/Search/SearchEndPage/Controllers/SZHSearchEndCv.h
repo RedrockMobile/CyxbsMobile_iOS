@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 重邮知识库的内容数组
 @property (nonatomic, strong) NSArray *knowlegeAry;
+
+/// 搜索的文字
+@property (nonatomic, copy) NSString *searchStr;
 @end
 
 NS_ASSUME_NONNULL_END

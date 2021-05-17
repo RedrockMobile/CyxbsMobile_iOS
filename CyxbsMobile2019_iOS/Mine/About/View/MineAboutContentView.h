@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)selectedIntroduction;
 - (void)selectedProductWebsite;
-- (void)selectedFeedBack;
 - (void)selectedUpdateCheck;
 
 @end

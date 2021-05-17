@@ -26,6 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 根据传入的标题进行初始化为热搜或者邮问知识库
 /// @param str 传入的字符串
 - (instancetype)initWithString:(NSString *)str;
+
+/// 重新约束热搜view的高度
+- (void)updateHotSearchViewFrame;
+
+///获取这个View的高度
+- (CGFloat)searchBeginViewHeight;
 @end
 
 NS_ASSUME_NONNULL_END

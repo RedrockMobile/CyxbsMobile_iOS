@@ -152,8 +152,6 @@
     hud.mode = MBProgressHUDModeText;
     hud.labelText = @"签到成功";
     [hud hide:YES afterDelay:1.5];
-    
-    [[NSUserDefaults standardUserDefaults] setValue:NSDate.now forKey:MineLastCheckInTime_NSDate];
 }
 //model签到失败后调用
 - (void)checkInFailed {

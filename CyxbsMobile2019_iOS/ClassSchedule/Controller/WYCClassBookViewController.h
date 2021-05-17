@@ -31,10 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak)id <updateSchedulTabBarViewProtocol>schedulTabBar;
 
 /// 学号
-@property (nonatomic, copy) NSString *stuNum;
+//@property (nonatomic, copy) NSString *stuNum;
 
 /// 身份证后六位
-@property (nonatomic, copy) NSString *idNum;
+//@property (nonatomic, copy) NSString *idNum;
 
 /// 假的tabbar，用来模拟真的tabbar，达到tabbar跟随课表运动的假象
 @property (nonatomic,strong)FakeTabBarView *fakeBar;
@@ -45,7 +45,13 @@ NS_ASSUME_NONNULL_BEGIN
 //如果WYCClassAndRemindDataModel的代理是课表控制器，那么模型加载操作完毕后无需外界调这两个方法
 //但是如果代理不是课表控制器，那么外界需要调用一下这两个方法
 - (void)ModelDataLoadFailure;
-- (void)ModelDataLoadSuccess:(id)modal;
+- (void)ModelDataLoadSuccess;
+
+//type是ScheduleTypePersonal时, 要求info是学号
+//type是ScheduleTypeClassmate时, 要求info是学号
+//type是ScheduleTypeTeacher时, 要求info是这种结构@{ @"teaName": name, @"tea": teaNum }
+//type是ScheduleTypeWeDate时, 要求info是这种结构@[@{@"stuNum":学号}, @{@"stuNum":学号}...]
+- (instancetype)initWithType:(ScheduleType)type andInfo:(id)info;
 @end
 
 NS_ASSUME_NONNULL_END

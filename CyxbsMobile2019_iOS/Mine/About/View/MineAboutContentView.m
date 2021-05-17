@@ -256,7 +256,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -278,10 +278,6 @@
             break;
             
         case 2:
-            cell.textLabel.text = @"意见与反馈";
-            break;
-            
-        case 3:
             cell.textLabel.text = @"版本更新";
             break;
             
@@ -299,25 +295,16 @@
                 [self.delegate selectedIntroduction];
             }
             break;
-            
         case 1:
             if ([self.delegate respondsToSelector:@selector(selectedProductWebsite)]) {
                 [self.delegate selectedProductWebsite];
             }
             break;
-            
         case 2:
-            if ([self.delegate respondsToSelector:@selector(selectedFeedBack)]) {
-                [self.delegate selectedFeedBack];
-            }
-            break;
-            
-        case 3:
             if ([self.delegate respondsToSelector:@selector(selectedUpdateCheck)]) {
                 [self.delegate selectedUpdateCheck];
             }
             break;
-            
         default:
             break;
     }

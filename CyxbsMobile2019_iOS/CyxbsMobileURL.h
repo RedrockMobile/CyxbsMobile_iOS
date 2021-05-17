@@ -125,7 +125,7 @@
 
 #pragma mark - “发现”接口
 //校历接口
-#define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/schoolCalendar"]
+#define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/schoolCalendar"]
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
 /// 教务新闻详情
@@ -150,7 +150,7 @@
 #define GPAAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/gpa"]
 
 /// 考试安排接口
-#define EXAMARRANGEAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/examSchedule"]
+#define EXAMARRANGEAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/examSchedule"]
 
 /// 校车位置
 #define SCHOOLBUSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"schoolbus/status"]
@@ -212,7 +212,7 @@
 #define TEAkebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teaKb/api/teaKb"]
 
 /// 空教室接口
-#define EMPTYCLASSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/roomEmpty"]
+#define EMPTYCLASSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/roomEmpty"]
 
 /// 同学课表之查找同学，GET，参数：@{@"stu"]: 用来搜索的数据}
 #define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"

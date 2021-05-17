@@ -24,7 +24,7 @@
 //备忘数据文件夹路径
 #define remDataDirectory [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/remDataDirectory"]
 
-//备忘数据文件路径
+//备忘数据文件路径，取出来是一个数组，数组内放着 初始化备忘模型时传入的字典
 #define remDataArrPath [remDataDirectory stringByAppendingPathComponent:[UserItem defaultItem].stuNum]
 
 //#define remDataArrPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les/remindDataArr"]

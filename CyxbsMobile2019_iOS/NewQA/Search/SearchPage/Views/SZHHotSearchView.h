@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, strong) NSMutableArray <UIButton*>*buttonArray;//每一个button
 @property (nonatomic, strong) NSArray *buttonTextAry;
 
+
+
 //根据传入的字符串决定显示的是热门搜索还是知识库
 - (instancetype)initWithString:(NSString *)string;
 
@@ -38,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 清除知识库button
 - (void)hideKnowledgeBtns;
+
+/// 获取这个View应有的高度
+- (CGFloat)ViewHeight;
 @end
 
 NS_ASSUME_NONNULL_END

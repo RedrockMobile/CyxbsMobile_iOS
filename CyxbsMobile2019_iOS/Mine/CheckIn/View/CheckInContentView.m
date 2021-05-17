@@ -193,20 +193,17 @@
     if (![UserItemTool defaultItem].canCheckIn) {
         titleStr = @"假期不能签到哟O(∩_∩)O~~";
         canCheckIn = NO;
+    }else if (isTodayCheckedIn_BOOL) { //今天是否签到过了
+        titleStr = @"已签到";
+        canCheckIn = NO;
     }else {
-        NSDate *lastCheckInDate = [[NSUserDefaults standardUserDefaults] valueForKey:MineLastCheckInTime_NSDate];
-        if (lastCheckInDate!=nil&&[lastCheckInDate isToday]) {
-            titleStr = @"已签到";
-            canCheckIn = NO;
-        }else {
-            titleStr = @"签 到";
-            canCheckIn = YES;
-        }
+        titleStr = @"签 到";
+        canCheckIn = YES;
     }
     
     checkInButton.enabled = canCheckIn;
     if (canCheckIn) {
-        backColor = [UIColor colorWithRed:63/255.0 green:64/255.0 blue:225/255.0 alpha:1.0];
+        backColor = RGBColor(63, 64, 225, 1);
     }else {
         if (@available(iOS 11.0, *)) {
             backColor = [UIColor colorNamed:@"Mine_CanNotCheckInColor"];

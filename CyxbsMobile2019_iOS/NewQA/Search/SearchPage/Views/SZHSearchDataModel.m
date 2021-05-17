@@ -9,9 +9,10 @@
 #import "SZHSearchDataModel.h"
 
 @implementation SZHSearchDataModel
+//搜索热词（非搜索框内）
 - (void)getHotArayWithProgress:(void (^)(NSArray * _Nonnull))progress{
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/search/getSearchHotWord" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEWQA_HOT_WORDS_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"-----热词请求成功");
         NSMutableArray *array = [NSMutableArray array];
         NSDictionary *dic = responseObject[@"data"];
@@ -27,6 +28,7 @@
     }];
 }
 
+//搜索动态
 - (void)getSearchDynamicWithStr:(NSString *)string Sucess:(void (^)(NSDictionary * _Nonnull))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parama = @{@"key":string ,@"page":@1 ,@"size":@6};
@@ -39,6 +41,7 @@
         }];
 }
 
+//搜索重游知识库
 - (void)getSearchKnowledgeWithStr:(NSString *)string Sucess:(void (^)(NSDictionary * _Nonnull))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parama = @{@"key":string ,@"page":@1 ,@"size":@6};

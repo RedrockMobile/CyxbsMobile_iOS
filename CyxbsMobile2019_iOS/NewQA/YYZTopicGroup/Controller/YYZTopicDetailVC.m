@@ -106,12 +106,16 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+<<<<<<< HEAD
     self.cnt=0;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *GroupLastLeaveTime = [NSString stringWithFormat:@"%ld%@",(long)self.topicID,@"LastLeaveTimeStr"];
     [defaults setValue:[MGDCurrentTimeStr currentTimeStr] forKey:GroupLastLeaveTime];
     [defaults synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"" object:nil];
+=======
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+>>>>>>> e719ce3c90f4326bd161bd0d1c267bfa14f9f8ee
 }
 
 - (void)setNotification{
@@ -511,7 +515,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ClickedShareBtn" object:nil userInfo:nil];
     //此处还需要修改
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    NSString *shareURL = [NSString stringWithFormat:@"redrock.zscy.youwen.share://token=%@&id=%@",[UserDefaultTool getToken],_itemDic[@"post_id"]];
+    NSString *shareURL = [NSString stringWithFormat:@"https://fe-prod.redrock.team/zscy-youwen-share/#/dynamic?id=%@",_itemDic[@"post_id"]];
     pasteboard.string = shareURL;
 }
 

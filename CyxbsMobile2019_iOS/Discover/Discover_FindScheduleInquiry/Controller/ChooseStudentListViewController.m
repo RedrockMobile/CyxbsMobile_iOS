@@ -114,19 +114,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    /*
+    ClassmateItem *item = self.classmatesList.classmatesArray[indexPath.row];
     
     WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] init];
     
-    ClassmateItem *item = self.classmatesList.classmatesArray[indexPath.row];
-    
     WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc]init];
-    
-    model.delegate = vc;
     
     vc.schedulType = ScheduleTypeClassmate;
     
+    model.delegate = vc;
+    
     vc.model = model;
-        
+    
     if(self.peopleType==PeopleTypeStudent){
         [model getClassBookArrayFromNet:item.stuNum];
     }else{
@@ -136,7 +136,19 @@
         }];
     }
     [self presentViewController:vc animated:YES completion:nil];
-    
+     */
+    ClassmateItem *item = self.classmatesList.classmatesArray[indexPath.row];
+    id info;
+    if(self.peopleType==PeopleTypeStudent){
+        info = item.stuNum;
+    }else{
+        info = @{
+            @"teaName":item.name,
+            @"tea":item.teaNum
+        };
+    }
+    WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] initWithType:ScheduleTypeClassmate andInfo:info];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 

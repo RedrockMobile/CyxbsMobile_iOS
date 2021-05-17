@@ -20,6 +20,7 @@
 /// 上半部分视图
 @property (nonatomic, strong) SearchBeiginView *searchBeginTopView;
 
+///请求数据的model
 @property (nonatomic, strong) SZHSearchDataModel *searchDataModel;
 
 /// 历史记录的label
@@ -49,24 +50,23 @@
     self.searchDynamicDic = nil;
     self.searchKnowledgeDic = nil;
     
-    [self addSearchBeginTopView];
+    [self setTopFrame];
     self.view.backgroundColor = self.searchBeginTopView.backgroundColor;
-    
+//
     self.historyRecordsAry = [NSMutableArray array];
     NSMutableArray *array = [[[NSUserDefaults standardUserDefaults] objectForKey:@"historyRecords"] mutableCopy];
     if (array != nil) {
-        _historyRecordsAry = array;
+        self.historyRecordsAry = array;
     }
     //如果有历史记录就添加下半部分视图，否则就不添加
     if (self.historyRecordsAry.count != 0) {
-        [self addSearchBottomView];
+        [self setBottomView];
     }
-   
+//   
     //网络请求热搜列表并归档
     [self.searchDataModel getHotArayWithProgress:^(NSArray * _Nonnull ary) {
         [SZHArchiveTool saveHotWordsList:ary];
         NSLog(@"成功解档-----%@",[SZHArchiveTool getHotWordsListAry]);
-//        [self saveHotWordsListWithAry:ary];
     }];
 }
 
@@ -128,20 +128,20 @@
     //请求相关动态
     [self.searchDataModel getSearchDynamicWithStr:searchString Sucess:^(NSDictionary * _Nonnull dynamicDic) {
         weakSelf.searchDynamicDic = dynamicDic;
-        [weakSelf processData];
+        [weakSelf processData:searchString];
         } Failure:^{
             weakSelf.getDynamicFailure = YES;
             weakSelf.searchDynamicDic = [NSDictionary dictionary];
-            [weakSelf processData];
+            [weakSelf processData:searchString];
         }];
     //请求帖子
     [self.searchDataModel getSearchKnowledgeWithStr:searchString Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
         weakSelf.searchKnowledgeDic = knowledgeDic;
-        [weakSelf processData];
+        [weakSelf processData:searchString];
         } Failure:^{
             weakSelf.getKnowledgeFailure = YES;
             weakSelf.searchKnowledgeDic = [NSDictionary dictionary];
-            [weakSelf processData];
+            [weakSelf processData:searchString];
         }];
 
     //清除缓存
@@ -164,7 +164,7 @@
         //此时已经有历史记录，添加下半部分视图
             //延迟0.5秒后执行
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self addSearchBottomView];
+            [self setBottomView];
         });
     }
     else{
@@ -193,15 +193,13 @@
         NSLog(@"%@",array);
     }
 }
-
 /// 刷新历史记录表格
 - (void)reloadHistoryRecord{
     self.historyRecordsAry = [[NSUserDefaults standardUserDefaults] objectForKey:@"historyRecords"];
     [self.historyTable reloadData];
 }
-
 /// 处理网络请求的数据，进行逻辑判断跳转界面
-- (void)processData{
+- (void)processData:(NSString *)str{
     //如果两个返回的response均有值，则可进行逻辑判断，否则直接返回
     if (self.searchDynamicDic == nil || self.searchKnowledgeDic == nil) {
         return;
@@ -216,7 +214,6 @@
         NSDictionary *knowledgeDic = self.searchKnowledgeDic;
         NSArray *dynamicAry = dynamicDic[@"data"];
         NSArray *knowledgeAry = knowledgeDic[@"data"];
-//        NSArray *knowledgeAry = self.knowledgeDic[@"data"];
             //2.1加载提示
         [NewQAHud showHudWith:@"加载中" AddView:self.view];
     
@@ -228,10 +225,45 @@
             SZHSearchEndCv *vc = [[SZHSearchEndCv alloc] init];
             vc.tableDataAry = dynamicAry;
             vc.knowlegeAry = knowledgeAry;
+            vc.searchStr = str;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
     
+}
+//添加上半部分视图
+- (void)setTopFrame{
+    [self.view addSubview:self.searchBeginTopView];
+    [self.searchBeginTopView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.view);
+        make.height.mas_equalTo([self.searchBeginTopView searchBeginViewHeight]);
+    }];
+}
+///添加下半部分视图
+-  (void)setBottomView{
+    //历史记录的label
+    [self.view addSubview:self.historyLabel];
+    [self.historyLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.searchBeginTopView.mas_bottom).offset(MAIN_SCREEN_H * 0.0374);
+        make.left.equalTo(self.view).offset(MAIN_SCREEN_W * 0.0426);
+    }];
+    
+    //清除历史按钮
+    [self.view addSubview:self.clearAllHistoryRecordbtn];
+    [self.clearAllHistoryRecordbtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view.mas_right).offset(-MAIN_SCREEN_W * 0.0426);
+        make.bottom.equalTo(self.historyLabel);
+        make.height.mas_equalTo(15.5);
+    }];
+
+    //历史记录的table
+    [self.view addSubview:self.historyTable];
+    [self.historyTable mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.historyLabel);
+        make.top.equalTo(self.historyLabel.mas_bottom).offset(MAIN_SCREEN_H * 0.0352);
+        make.right.equalTo(self.clearAllHistoryRecordbtn);
+        make.bottom.equalTo(self.view);
+    }];
 }
 
 #pragma mark- delegate
@@ -247,7 +279,7 @@
     return YES;
 }
 
-//MARK:热门搜索视图
+//MARK:热门搜索视图的代理方法
 - (void)touchHotSearchBtnsThroughBtn:(UIButton *)btn{
     NSString *string = btn.titleLabel.text;
     [self searchWithString:string];
@@ -279,7 +311,7 @@
 //MARK:TableViewDelegate
 //当历史记录cell被点中时，进行数据请求
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self searchWithString:_historyRecordsAry[indexPath.row]];
+    [self searchWithString:self.historyRecordsAry[indexPath.row]];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 30;
@@ -299,110 +331,99 @@
 }
 
 
-
-#pragma mark- 添加控件
-/// 添加上半部分视图
-- (void)addSearchBeginTopView{
-    if (_searchBeginTopView == nil) {
-        _searchBeginTopView = [[SearchBeiginView alloc] initWithString:@"热门搜索"];
-        //设置顶部搜索视图的代理
-        _searchBeginTopView.searchTopView.delegate = self;
-        _searchBeginTopView.hotSearchView.delegate = self;
-        UITextField *textfield = _searchBeginTopView.searchTopView.searchTextfield;
-        textfield.delegate = self;
-        [textfield setReturnKeyType:UIReturnKeySearch];
-        [self.view addSubview:_searchBeginTopView];
-//        _searchBeginTopView.frame = self.view.frame;
-        [_searchBeginTopView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.top.equalTo(self.view);
-            make.height.mas_equalTo(MAIN_SCREEN_H * 0.3);
-        }];
-        
-        //设置热搜词汇
-        NSMutableArray *muteAry = [NSMutableArray arrayWithArray:[PostArchiveTool getHotWords].hotWordsArray];
-        self.searchBeginTopView.searchTopView.placeholderArray = muteAry;
-        
-        //设置热搜列表
-        self.searchBeginTopView.hotSearchView.buttonTextAry = [SZHArchiveTool getHotWordsListAry];
-        [self.searchBeginTopView.hotSearchView updateBtns];
-       
-        //如果热搜列表无缓存，网络请求之后再归档
-        if (self.searchBeginTopView.hotSearchView.buttonTextAry == nil) {
-            //model与View的数据支持
-            [self.searchDataModel getHotArayWithProgress:^(NSArray * _Nonnull ary) {
-                //赋值
-                self.searchBeginTopView.hotSearchView.buttonTextAry = ary;
-                [self.searchBeginTopView.hotSearchView updateBtns];
-                //缓存
-                [SZHArchiveTool saveHotWordsList:ary];
-            }];
-        }
-    }
-}
-/// 添加下半部分视图，如果有历史记录就展示，否则就不展示
-- (void)addSearchBottomView{
-    //历史记录按钮
-    _historyLabel = [[UILabel alloc] init];
-    _historyLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
-    _historyLabel.text = @"历史记录";
-    if (@available(iOS 11.0, *)) {
-        _historyLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
-    } else {
-        // Fallback on earlier versions
-    }
-    [self.view addSubview:self.historyLabel];
-    [self.historyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.searchBeginTopView).offset(MAIN_SCREEN_H * 0.3313);
-        make.left.equalTo(self.searchBeginTopView).offset(MAIN_SCREEN_W * 0.0426);
-        make.height.mas_equalTo(17);
-    }];
-
-    //清除历史记录按钮
-    _clearAllHistoryRecordbtn = [[UIButton alloc] init];
-    [_clearAllHistoryRecordbtn setTitle:@"清除全部" forState:UIControlStateNormal];
-    if (@available(iOS 11.0, *)) {
-        [_clearAllHistoryRecordbtn setTitleColor:[UIColor colorNamed:@"SZHClearBtnTextColor"] forState:UIControlStateNormal];
-    } else {
-        // Fallback on earlier versions
-    }
-    _clearAllHistoryRecordbtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
-    [_clearAllHistoryRecordbtn addTarget:self action:@selector(clearAllrecords) forControlEvents:UIControlEventTouchUpInside];
-    //button宽度随title字数自适应
-    _clearAllHistoryRecordbtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [self.view addSubview:self.clearAllHistoryRecordbtn];
-    [self.clearAllHistoryRecordbtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view.mas_right).offset(-MAIN_SCREEN_W * 0.0426);
-        make.bottom.equalTo(self.historyLabel);
-        make.height.mas_equalTo(15.5);
-    }];
-
-    //显示历史记录的table
-    _historyTable = [[UITableView alloc] init];
-    _historyTable.backgroundColor = [UIColor clearColor];
-    [_historyTable setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
-    _historyTable.showsHorizontalScrollIndicator = NO;
-    _historyTable.showsVerticalScrollIndicator = NO;
-    _historyTable.delegate = self;
-    _historyTable.dataSource = self;
-    //设置tableView可以被选中，如果不设置的话，点击cell无反应
-    _historyTable.allowsSelection = YES;
-    [self.view addSubview:self.historyTable];
-    [self.historyTable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.historyLabel);
-//        make.top.equalTo(self.historyLabel.mas_bottom).offset(MAIN_SCREEN_H * 0.03);
-        make.top.equalTo(self.historyLabel.mas_bottom).offset(23.5);
-        make.right.equalTo(self.clearAllHistoryRecordbtn);
-        make.bottom.equalTo(self.view);
-    }];
-
-}
-
 #pragma mark- getter
 - (SZHSearchDataModel *)searchDataModel{
     if (_searchDataModel == nil) {
         _searchDataModel = [[SZHSearchDataModel alloc] init];
     }
     return _searchDataModel;
+}
+
+- (SearchBeiginView *)searchBeginTopView{
+    if (!_searchBeginTopView) {
+        _searchBeginTopView = [[SearchBeiginView alloc] initWithString:@"热门搜索"];
+        //设置顶部搜索视图的代理
+        _searchBeginTopView.searchTopView.delegate = self;
+        _searchBeginTopView.hotSearchView.delegate = self;
+        
+        _searchBeginTopView.userInteractionEnabled = YES;
+        //设置键盘的返回键为搜索的样式
+        UITextField *textfield = _searchBeginTopView.searchTopView.searchTextfield;
+        textfield.delegate = self;
+        [textfield setReturnKeyType:UIReturnKeySearch];
+        
+        //设置热搜词汇
+        NSMutableArray *muteAry = [NSMutableArray arrayWithArray:[PostArchiveTool getHotWords].hotWordsArray];
+        _searchBeginTopView.searchTopView.placeholderArray = muteAry;
+        
+        //设置热搜列表
+        _searchBeginTopView.hotSearchView.buttonTextAry = [SZHArchiveTool getHotWordsListAry];
+        [_searchBeginTopView.hotSearchView updateBtns];
+        [_searchBeginTopView updateHotSearchViewFrame];
+       
+        //如果热搜列表无缓存，网络请求之后再归档
+        if (_searchBeginTopView.hotSearchView.buttonTextAry.count == 0) {
+            //model与View的数据支持
+            [self.searchDataModel getHotArayWithProgress:^(NSArray * _Nonnull ary) {
+                //赋值
+                self->_searchBeginTopView.hotSearchView.buttonTextAry = ary;
+                [self->_searchBeginTopView.hotSearchView updateBtns];
+                //缓存
+                [SZHArchiveTool saveHotWordsList:ary];
+            }];
+        }
+    }
+    return _searchBeginTopView;
+}
+
+//显示历史记录的table
+- (UITableView *)historyTable{
+    if (!_historyTable) {
+        _historyTable = [[UITableView alloc] initWithFrame:CGRectZero];
+        _historyTable.backgroundColor = [UIColor clearColor];
+        [_historyTable setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
+        _historyTable.showsHorizontalScrollIndicator = NO;
+        _historyTable.showsVerticalScrollIndicator = NO;
+        _historyTable.delegate = self;
+        _historyTable.dataSource = self;
+        //设置tableView可以被选中，如果不设置的话，点击cell无反应
+        _historyTable.allowsSelection = YES;
+    }
+    return _historyTable;
+}
+
+//历史记录的label
+- (UILabel *)historyLabel{
+    if (!_historyLabel) {
+        _historyLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _historyLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
+        _historyLabel.text = @"历史记录";
+        if (@available(iOS 11.0, *)) {
+            _historyLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    return _historyLabel;
+}
+
+//清除历史记录按钮
+- (UIButton *)clearAllHistoryRecordbtn{
+    if (!_clearAllHistoryRecordbtn) {
+        //清除历史记录按钮
+        _clearAllHistoryRecordbtn = [[UIButton alloc] init];
+        [_clearAllHistoryRecordbtn setTitle:@"清除全部" forState:UIControlStateNormal];
+        if (@available(iOS 11.0, *)) {
+            [_clearAllHistoryRecordbtn setTitleColor:[UIColor colorNamed:@"SZHClearBtnTextColor"] forState:UIControlStateNormal];
+        } else {
+            // Fallback on earlier versions
+        }
+        _clearAllHistoryRecordbtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
+        [_clearAllHistoryRecordbtn addTarget:self action:@selector(clearAllrecords) forControlEvents:UIControlEventTouchUpInside];
+        //button宽度随title字数自适应
+        _clearAllHistoryRecordbtn.titleLabel.adjustsFontSizeToFitWidth = YES;
+    }
+    return _clearAllHistoryRecordbtn;
 }
 
 @end

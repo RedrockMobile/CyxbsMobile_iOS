@@ -48,12 +48,12 @@
     
         //图片的collectionView的高度 + 到底部的距离一级评论才有，二级无
     CGFloat height4 = 0;
-    if (self.reply_list.count == 0) {
+//    if (self.reply_list.count == 0) {
         if (self.pics > 0) {
             //内容框底部到collectionView的高度 + collectionView的高度
             height4 = (11.5*HScaleRate_SE + (self.pics.count-1)/3 * 10*HScaleRate_SE + ((self.pics.count-1)/3 + 1)* (SCREEN_WIDTH-(2 * Margin + Pading * 2))/item_num) + 10*HScaleRate_SE ;
         }
-    }
+//    }
         //最后的5是容错处理
     return height1 + height2 + height3 + height4 + 5*HScaleRate_SE;
 }

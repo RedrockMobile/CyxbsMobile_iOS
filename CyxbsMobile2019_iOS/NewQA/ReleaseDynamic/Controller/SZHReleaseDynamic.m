@@ -18,6 +18,7 @@
 #import "originPhotoView.h"         //原图的view
 #import "SZHCircleLabelView.h"      //标签的view
 #import "CYRleaseDynamicAlertView.h"    //保存草稿时的警告视图
+#import "YYZTopicDetailVC.h"
 
 #define MAX_LIMT_NUM 500  //textview限制输入的最大字数
 
@@ -42,7 +43,6 @@
 @property (nonatomic, strong) SZHCircleLabelView *circleLabelView;
 @property (nonatomic, strong) NSArray *topicAry;
 @property (nonatomic, copy) NSString *circleLabelText;  //添加的文本标签
-
 /// 点击发布按钮相关
 //点击发布按钮的次数
 @property int clickReleaseDynamicBtnNumber;
@@ -202,20 +202,30 @@
     MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    hud.mode = MBProgressHUDModeText;
     hud.labelText = @"正在上传数据，请稍等～";
-//    hud.margin = 8;
-//    [hud setYOffset:-SCREEN_HEIGHT * 0.26];
     hud.labelFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
     [hud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
-//    hud.height = SCREEN_WIDTH * 0.3147 * 29/118;
-//    hud.cornerRadius = hud.frame.size.height * 1/2;
     
     [self.releaseDynamicModel sumitDynamicDataWithContent:self.releaseView.releaseTextView.text TopicID:self.circleLabelText ImageAry:self.imagesAry IsOriginPhoto:self.isSumitOriginPhoto Sucess:^{
 //            [NewQAHud showHudWith:@"发布动态成功" AddView:self.view];
         dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{
             [hud hide:YES];
-            [NewQAHud showHudWith:@"评论成功" AddView:self.view];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [NewQAHud showHudWith:@"发布动态成功" AddView:self.view];
+            
+            //跳转vc
+            int topicID = 0;
+            for (int i = 0; i < self.topicAry.count; i++) {
+                if ([self.circleLabelText isEqualToString:self.topicAry[i]]) {
+                    topicID = i + 1;
+                    break;;
+                }
+            }
+            YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
+            detailVC.topicID = topicID;
+            detailVC.topicIdString = self.circleLabelText;
+//            [self.navigationController popToRootViewControllerAnimated:NO];
+            [self.navigationController pushViewController:detailVC animated:YES];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
         });
         } Failure:^{
             [hud hide:YES];
@@ -265,6 +275,7 @@
         }
     }
 }
+
 
 #pragma mark- respose events
 //设置点击空白处收回键盘
@@ -318,14 +329,8 @@
     NSLog(@"发布动态");
     //如果未添加标签，则第一次提示未添加标签，第二次就直接归类到其他
     if ([self.circleLabelText isEqualToString:@"未添加标签"]) {
-        self.clickReleaseDynamicBtnNumber++;
         //显示提示
-        if (self.clickReleaseDynamicBtnNumber == 1) {
-            [NewQAHud showHudWith:@"未添加标签" AddView:self.view];
-        }else{
-            self.circleLabelText = @"其他";
-            [self updateDynamic];
-        }
+        [NewQAHud showHudWith:@"请添加添加标签～" AddView:self.view];
     }else{
         
         [self updateDynamic];
@@ -626,12 +631,13 @@
 }
 //添加标签view
 - (void)addSZHCircleLabelView{
-    //先从缓存中读取数据，如果缓存中没有则进行网络请求
+    //先从缓存中读取数据，如果缓存中没有则进行网络请求。
     self.topicAry = [SZHArchiveTool getTopicsAry];
     if (self.topicAry == nil ) {
         [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
-            [self.circleLabelView updateViewWithAry:topicsAry];
+//            [self.circleLabelView updateViewWithAry:topicsAry];
 //            NSLog(@"得到全部标签----%@",topicsAry);
+            self.topicAry = topicsAry;
             [SZHArchiveTool saveTopicsAry:topicsAry];
         }];
     }
@@ -645,6 +651,10 @@
         make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(20);
     }];
     
+    //网络请求然后归档，作为数据更新
+    [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+        [SZHArchiveTool saveTopicsAry:topicsAry];
+    }];
 }
 
 #pragma mark- getter
