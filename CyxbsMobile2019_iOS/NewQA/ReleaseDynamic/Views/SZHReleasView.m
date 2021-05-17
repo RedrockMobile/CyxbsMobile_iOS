@@ -57,7 +57,7 @@
     [self.releaseTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(16);
         make.top.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.1574));
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - 32, MAIN_SCREEN_H * 0.1574));
     }];
     
     //placeHolder

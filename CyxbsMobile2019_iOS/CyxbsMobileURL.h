@@ -125,7 +125,7 @@
 
 #pragma mark - “发现”接口
 //校历接口
-#define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/schoolCalendar"]
+#define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/schoolCalendar"]
 /// 教务新闻列表
 #define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
 /// 教务新闻详情

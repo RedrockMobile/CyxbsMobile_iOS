@@ -41,9 +41,7 @@
     [self.hotSearchView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.searchTopView.mas_bottom).offset(MAIN_SCREEN_H * 0.0449);
         make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0426);
-//        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.8506, MAIN_SCREEN_H * 0.1874));
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.8506, [self.hotSearchView ViewHeight]));
-//        make.bottom.equalTo(self.mas_bottom).offset(-1);
     }];
     
     [self addSubview:self.topSeparation];
@@ -55,8 +53,17 @@
 }
 
 - (CGFloat)searchBeginViewHeight{
+    //动态高度 + 固定高度
     //topView高度 + 热搜距顶部高度 + 热搜View高度
     return (NVGBARHEIGHT+STATUSBARHEIGHT)  + MAIN_SCREEN_H * 0.0449 + [self.hotSearchView ViewHeight];
+}
+
+- (void)updateHotSearchViewFrame{
+    [self.hotSearchView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.searchTopView.mas_bottom).offset(MAIN_SCREEN_H * 0.0449);
+        make.left.equalTo(self.mas_left).offset(MAIN_SCREEN_W * 0.0426);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.8506, [self.hotSearchView ViewHeight]));
+    }];
 }
 
 #pragma mark- getter

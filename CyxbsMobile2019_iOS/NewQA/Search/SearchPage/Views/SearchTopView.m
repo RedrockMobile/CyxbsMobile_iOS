@@ -55,8 +55,8 @@
     }];
         //返回的图标
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    imageView.contentMode = UIViewContentModeCenter;    //设置图片不被拉伸压缩
-    imageView.clipsToBounds = YES;  //让图片超过图片框的frame的部分隐藏
+//    imageView.contentMode = UIViewContentModeCenter;    //设置图片不被拉伸压缩
+//    imageView.clipsToBounds = YES;  //让图片超过图片框的frame的部分隐藏
     imageView.image = [UIImage imageNamed:@"返回的小箭头"];
     [self addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -131,6 +131,8 @@
     if (_searchIcon == nil) {
         _searchIcon = [[UIImageView alloc] init];
         _searchIcon.image = [UIImage imageNamed:@"放大镜"];
+        _searchIcon.contentMode = UIViewContentModeCenter;    //设置图片不被拉伸压缩
+        _searchIcon.clipsToBounds = YES;  //让图片超过图片框的frame的部分隐藏
     }
     return _searchIcon;
 }

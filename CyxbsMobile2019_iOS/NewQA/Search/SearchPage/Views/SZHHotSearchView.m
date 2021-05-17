@@ -106,7 +106,7 @@
     //循环设置Btn们的frame
     for (int i = 1; i < self.buttonAry.count; i++) {
         //获取button的字符串的宽度
-        CGFloat titleWidth = [self.buttonAry[i].titleLabel.text boundingRectWithSize:CGSizeMake(1000, MAIN_SCREEN_H * 0.0382) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:13]} context:nil].size.width;
+        CGFloat titleWidth = [self.buttonAry[i].titleLabel.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, MAIN_SCREEN_H * 0.0382) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:13]} context:nil].size.width;
         
         CGFloat buttonWidth = titleWidth + MAIN_SCREEN_W * 0.07 ;  //button宽度
         CGFloat buttonX = CGRectGetMaxX(self.buttonAry[i-1].frame) + splite;//button最左边的frame
@@ -114,7 +114,7 @@
 
         //如果下一个button的x值值超越了边界，则跳行
         if (positionX > maxX) {
-            self.btnLine++; //按钮行数增加
+            self.btnLine = self.btnLine + 1; //按钮行数增加
             positionX = originX;
             buttonX = originX;
             self.buttonAry[i].frame = CGRectMake(originX, positionY, buttonWidth, MAIN_SCREEN_H * 0.0382);
@@ -138,7 +138,7 @@
 
 - (void)hideKnowledgeBtns{
     for (UIButton *btn in self.buttonAry) {
-        [btn setHidden:YES];
+        [btn removeFromSuperview];
     }
 }
 
@@ -161,7 +161,7 @@
 #pragma mark- getter
 - (UILabel *)hotSearch_KnowledgeLabel{
     if (_hotSearch_KnowledgeLabel == nil) {
-        _hotSearch_KnowledgeLabel = [[UILabel alloc] init];
+        _hotSearch_KnowledgeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _hotSearch_KnowledgeLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
         if (@available(iOS 11.0, *)) {
             _hotSearch_KnowledgeLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];

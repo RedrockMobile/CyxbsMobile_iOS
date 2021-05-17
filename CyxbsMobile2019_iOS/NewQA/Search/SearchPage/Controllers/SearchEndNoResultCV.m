@@ -41,6 +41,7 @@
     } else {
         // Fallback on earlier versions
     }
+    [self buildFrame];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -52,14 +53,14 @@
     //点属性设置不行，必须用set
     [self.tabBarController.tabBar setHidden:NO];
 }
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
+
+- (void)buildFrame{
     //顶部搜索框
     [self.view addSubview:self.searchTopView];
     [self.searchTopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).offset(MAIN_SCREEN_H * 0.0352);
-        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.0562));
+        make.bottom.equalTo(self.view.mas_top).offset(NVGBARHEIGHT + STATUSBARHEIGHT);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 0.0462));
     }];
     
     //屏幕正中间的图片框
@@ -128,20 +129,20 @@
     //请求相关动态
     [self.searchDataModel getSearchDynamicWithStr:searchString Sucess:^(NSDictionary * _Nonnull dynamicDic) {
         weakSelf.searchDynamicDic = dynamicDic;
-        [weakSelf processData];
+        [weakSelf processDataWithString:searchString];
         } Failure:^{
             weakSelf.getDynamicFailure = YES;
             weakSelf.searchDynamicDic = [NSDictionary dictionary];
-            [weakSelf processData];
+            [weakSelf processDataWithString:searchString];
         }];
     //请求帖子
     [self.searchDataModel getSearchKnowledgeWithStr:searchString Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
         weakSelf.searchKnowledgeDic = knowledgeDic;
-        [weakSelf processData];
+        [weakSelf processDataWithString:searchString];
         } Failure:^{
             weakSelf.getKnowledgeFailure = YES;
             weakSelf.searchKnowledgeDic = [NSDictionary dictionary];
-            [weakSelf processData];
+            [weakSelf processDataWithString:searchString];
         }];
 
     //清除缓存
@@ -178,7 +179,7 @@
 }
 
 /// 处理网络请求的数据，进行逻辑判断跳转界面
-- (void)processData{
+- (void)processDataWithString:(NSString *)str{
     //如果两个返回的response均有值，则可进行逻辑判断，否则直接返回
     if (self.searchDynamicDic == nil || self.searchKnowledgeDic == nil) {
         return;
@@ -205,6 +206,7 @@
             SZHSearchEndCv *vc = [[SZHSearchEndCv alloc] init];
             vc.tableDataAry = dynamicAry;
             vc.knowlegeAry = knowledgeAry;
+            vc.searchStr = str;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

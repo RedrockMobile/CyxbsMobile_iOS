@@ -26,15 +26,6 @@
             // Fallback on earlier versions
         }
         
-        //设置button宽度随title文本长度自适应
-//        self.titleLabel.adjustsFontSizeToFitWidth = YES;
-        
-//        /**约束会报警告，但是不影响显示*/
-//        [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(self).offset(MAIN_SCREEN_W * 0.03467);
-//            make.right.equalTo(self).offset(-MAIN_SCREEN_W * 0.04267);
-//        }];
-        
         //圆角
         self.layer.masksToBounds = NO;
         self.layer.cornerRadius = MAIN_SCREEN_H * 0.0382 * 0.5;
@@ -61,7 +52,6 @@
                 } else {
                     NSLog(@"未知模式");
                 }
-            
         }
     } else {
         // Fallback on earlier versions
