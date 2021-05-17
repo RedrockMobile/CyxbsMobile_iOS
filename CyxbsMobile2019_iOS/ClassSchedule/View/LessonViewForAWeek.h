@@ -20,8 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,assign)ScheduleType schType;
 /// 代表是第week周的课，0就是整学期
 @property(nonatomic,assign)int week;
+
+/// 带有备忘的课的数组
 @property(nonatomic,strong)NSMutableArray *notedLessonViewArray;
+
+- (void)deleteNoteWithNoteDataModel:(NoteDataModel*)model;
+
 - (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model;
+
+- (void)eidtNoteLabelWithNoteDataModelDict:(NSDictionary*)modelDict;
 //调用前确保self.week、self.schType已赋值
 - (void)setUpUI;
 @end

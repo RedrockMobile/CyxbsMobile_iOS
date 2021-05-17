@@ -152,7 +152,6 @@
             //noteShowerDelegate设置为那节长度过长的大课
             [self.noteShowerDelegate.noteDataModelArray addObject:model];
             [self.noteShowerDelegate setUpData];
-            self.noteShowerDelegate.isNoted = YES;
             return;
         }
         //如果是无课而有备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
@@ -162,6 +161,8 @@
         //如果是无课而无备忘，那么选取self.emptyClassDate来设置这节课的位置、时长、view的frame
         [self setFrameAndLessonLocationWithInfoDict:self.emptyClassDate];
         self.backgroundColor = UIColor.clearColor;
+        [self.titleLable removeFromSuperview];
+        [self.detailLable removeFromSuperview];
         self.titleLable = nil;
         self.detailLable = nil;
     }
@@ -287,6 +288,9 @@
         //否则判断是否要跳转到添加备忘页，如果是自己的课表，那就跳转
         [self.addNoteDelegate addNoteWithEmptyLessonData:self.emptyClassDate];
     }
+}
+- (BOOL)isNoted {
+    return _noteDataModelArray.count!=0;
 }
 @end
 

@@ -26,7 +26,7 @@
 /// ,orderlySchedulArray[i][j][k]是一个数组
 @property (nonatomic,strong)NSMutableArray *orderlySchedulArray;
 
-/// 备忘模型数组
+/// 备忘模型数组，noteDataModelArray[0]为整学期的备忘模型，noteDataModelArray[1]为第一周
 @property (nonatomic, strong)NSMutableArray <NSMutableArray <NoteDataModel*>*> *noteDataModelArray;
 - (instancetype)initWithType:(ScheduleType)type;
 

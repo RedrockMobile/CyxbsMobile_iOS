@@ -16,7 +16,6 @@
 /// 用这个类来显示课详情，懒加载
 @property(nonatomic,strong)ClassDetailViewShower *detailViewShower;
 @property(nonatomic,assign)BOOL isNoCourse;
-@property(nonatomic,assign)BOOL isNoNote;
 @property(nonatomic,strong)UIImageView *imgView;
 @property(nonatomic,strong)UILabel *nothingLabel;
 @end
@@ -33,7 +32,6 @@
         
         self.lessonViewsArray = [NSMutableArray array];
         self.isNoCourse = YES;
-        self.isNoNote = YES;
         self.notedLessonViewArray = [NSMutableArray array];
         [self addBackgroundView];
     }
@@ -134,7 +132,6 @@
 /// 由课表控制器调用，调用后根据model的信息在本周课表view的相应位置加备忘
 /// @param model 数据model
 - (void)addNoteLabelWithNoteDataModel:(NoteDataModel*)model{
-    self.isNoNote = NO;
     NSNumber *weekNum,*lessonNum;
     LessonView *lv;
     for (NSDictionary *timeDict in model.timeDictArray) {
@@ -143,9 +140,15 @@
         
         //lv是周（weekNum+1），第（lessonNum+1）节大课的LessonView
         lv = self.lessonViewsArray[weekNum.intValue][lessonNum.intValue];
-        [self.notedLessonViewArray addObject:lv];
+        
+        if (![self.notedLessonViewArray containsObject:lv]) {
+            [self.notedLessonViewArray addObject:lv];
+        }
+        
+        //配置数据
         [lv.noteDataModelArray addObject:model];
-        lv.isNoted = YES;
+        
+        //根据数据设置UI
         [lv setUpData];
     }
     [self judgeIfShowEmptyImg];
@@ -153,8 +156,7 @@
 
 /// 判断是否显示"一片寂静图片"
 - (void)judgeIfShowEmptyImg{
-    
-    if(self.isNoCourse==YES&&(self.isNoNote==YES)){
+    if(self.isNoCourse==YES&&(self.notedLessonViewArray.count==0)){
         self.nothingLabel.hidden =
         self.imgView.hidden = NO;
     }else{
@@ -168,4 +170,33 @@
 ///     @{@"weekNum":@1,  @"lessonNum":@0}
 /// ]
 ///代表某周的周一 第3节大课和周二的第一节大课的备忘
+
+
+- (void)deleteNoteWithNoteDataModel:(NoteDataModel*)model {
+    NSNumber *weekNum,*lessonNum;
+    LessonView *lv;
+    for (NSDictionary *timeDict in model.timeDictArray) {
+        weekNum = timeDict[@"weekNum"];//星期weekNum
+        lessonNum = timeDict[@"lessonNum"];//第lessonNum节大课
+        
+        //lv是周（weekNum+1），第（lessonNum+1）节大课的LessonView
+        lv = self.lessonViewsArray[weekNum.intValue][lessonNum.intValue];
+        
+        //配置数据
+        [lv.noteDataModelArray removeObject:model];
+        if (lv.isNoted==NO) {
+            [self.notedLessonViewArray removeObject:lv];
+        }
+        //根据数据设置UI
+        [lv setUpData];
+    }
+    [self judgeIfShowEmptyImg];
+}
+
+- (void)eidtNoteLabelWithNoteDataModelDict:(NSDictionary*)modelDict {
+    NoteDataModel *new = modelDict[@"new"];
+    NoteDataModel *old = modelDict[@"new"];
+    [self deleteNoteWithNoteDataModel:old];
+    [self addNoteLabelWithNoteDataModel:new];
+}
 @end

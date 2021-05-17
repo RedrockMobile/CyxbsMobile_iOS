@@ -126,6 +126,28 @@
     writeButton.imageView.contentMode = UIViewContentModeScaleToFill;
     [writeButton setImage:[UIImage imageNamed:@"writeDiscover"] forState:normal];
     [self addSubview:writeButton];
+    
+    //++++++++++++++++++检测刷新token的接口是否有问题的代码++++++++++++++++++++  Begain
+    //在掌邮主页签到按钮附近有个小点，正常为绿色，未知状态(一般是刚刚登录)为黄色，不正常为红色
+    UIView *ball = [[UIView alloc] init];
+    [self addSubview:ball];
+    switch ([[NSUserDefaults standardUserDefaults] integerForKey:IS_TOKEN_URL_ERROR_INTEGER]) {
+        case -1:
+            ball.backgroundColor = UIColor.greenColor;
+            break;
+        case 1:
+            ball.backgroundColor = UIColor.redColor;
+            break;
+        default:
+            ball.backgroundColor = UIColor.yellowColor;
+            break;
+    }
+    [ball mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.equalTo(self.writeButton);
+        make.height.width.equalTo(@2);
+    }];
+    ball.layer.cornerRadius = 1;
+    //++++++++++++++++++检测刷新token的接口是否有问题的代码++++++++++++++++++++  End
 }
 - (void) addBannerView {
 
