@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong)NSDictionary *emptyClassDate;
 
 /// 是否已经添加备忘
-@property(nonatomic,assign)BOOL isNoted;
+@property(nonatomic,readonly)BOOL isNoted;
 
 ///self初始化的那个地方会判断上一节课的period是不是大于2，如果是那么self.noteShowerDelegate就会被设置成上一节课
 ///然后在LessonViewForAWeek的addNoteLabelWithNoteDataModel里面有一个判断：如果noteShowerDelegate非空，

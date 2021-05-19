@@ -145,6 +145,8 @@
 
 /// 考试安排接口
 #define EXAMARRANGEAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/examSchedule"]
+                   
+#define EXAM_MODEL [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/nowStatus"]
 
 /// 校车位置
 #define SCHOOLBUSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"schoolbus/status"]

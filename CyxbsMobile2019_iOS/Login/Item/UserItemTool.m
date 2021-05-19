@@ -106,6 +106,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     [manager POST:REFRESHTOKENAPI parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
         NSString *token = responseObject[@"data"][@"token"];
         NSString *payload_BASE64 = [token componentsSeparatedByString:@"."][0];
         
@@ -128,7 +129,7 @@
             NSLog(@"tokenError1%@", error);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
         NSLog(@"tokenError2：%@", error);
 //        if (error.code == NSURLErrorBadServerResponse) {
         

@@ -46,4 +46,8 @@
 
 //记录最后一次登陆的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
 #define LastLogInTimeKey_double @"LastLogInTimeKey_TimeInterval"
+
+//缓存的键，用来确定刷新token的接口是否出问题了，ToolMacro里面有定义了相关block，1代表error，-1正常
+#define IS_TOKEN_URL_ERROR_INTEGER @"IS_TOKEN_URL_ERROR_INTEGER"
+
 #endif /* CyxbsMobilePathAndKey_h */

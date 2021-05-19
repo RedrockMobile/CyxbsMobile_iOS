@@ -128,40 +128,19 @@
             @"timeStrDictArray":self.timeDictArray,
             @"notiBeforeTime":self.notiStr,
             @"noteTitleStr":self.noticeString,
-            @"noteDetailStr":self.detailString,
+            @"noteDetailStr":self.reminderView.textFiled.text,
             @"weekNameStr":self.nowWeekBtn.titleLabel.text,
         }];
         
         if(self.navigationController!=nil){
             //如果nav不是空，那么就是点击没课的空白处后进行添加备忘的，那么：
-        [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            [self.navigationController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldAddNote" object:model];
         }else{
             //否则就是通过点击备忘详情弹窗的修改按钮后来到这个控制器的，那么：
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        }
-        
-        if(self.modelNeedBeDelete!=nil){
-            //这个属性存在说明是通过点击修改按钮来的这个页面，所以发一个删除原备忘的通知，
-            //让WYCClassBookViewController删除备忘,同时清除本地通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldDeleteNote" object:self.modelNeedBeDelete];
-            
-        }
-        //删除了旧的再添加新的，否则如果用户点击修改备忘后没做任何改动，但是点击了箭头，就会导致该备忘从文件里被删除
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldAddNote" object:model];
-        //如果是@“不提醒”，那就不加本地通知
-        if([self.notiStr isEqualToString:@"不提醒"])return;
-        if([model.weeksArray firstObject].intValue==0){
-            for (int i=1; i<25; i++) {
-                for (NSDictionary *timeDict in model.timeDictArray) {
-                    [LocalNotiManager setLocalNotiWithWeekNum:i weekDay:[timeDict[@"weekNum"] intValue] lesson:[timeDict[@"lessonNum"] intValue] before:model.notiBeforeTimeLenth titleStr:model.noteTitleStr subTitleStr:nil bodyStr:model.noteDetailStr ID:[NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,i,timeDict[@"weekNum"],timeDict[@"lessonNum"]]];
-                }
-            }
-        }else{
-            for (NSNumber *weekNum in model.weeksArray) {
-                for (NSDictionary *timeDict in model.timeDictArray) {
-                    [LocalNotiManager setLocalNotiWithWeekNum:weekNum.intValue weekDay:[timeDict[@"weekNum"] intValue] lesson:[timeDict[@"lessonNum"] intValue] before:model.notiBeforeTimeLenth titleStr:model.noteTitleStr subTitleStr:nil bodyStr:model.noteDetailStr ID:[NSString stringWithFormat:@"%@.%d.%@.%@",model.noteID,weekNum.intValue,timeDict[@"weekNum"],timeDict[@"lessonNum"]]];
-                }
-            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LessonViewShouldEditNote" object:@{@"new":model, @"old":self.modelNeedBeDelete}];
         }
     }
 }
@@ -242,9 +221,7 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     return YES;
 }
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    self.detailString = textField.text;
-}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];
 }

@@ -17,11 +17,13 @@
     formatter.dateFormat = DateFormat;
     NSDate *resDate = [formatter dateFromString:startDate];
     
-//    [dateModel calculateNowWeek:resDate];
-    dateModel.nowWeek = getNowWeek_NSString.numberValue;
     
     [dateModel initCalculateDate:resDate];
     return dateModel;
+}
+
+- (NSNumber *)nowWeek {
+    return getNowWeek_NSString.numberValue;
 }
 
 -(void)initCalculateDate:(NSDate *)resDate{

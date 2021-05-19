@@ -29,15 +29,19 @@
 //日期数据模型
 @property (nonatomic, strong) DateModle *dateModel;
 
-//20几张LessonViewForAWeek课表组成的数组，lessonViewArray[0]是整学期
-@property (nonatomic, strong)NSMutableArray <LessonViewForAWeek*> *lessonViewArray;
+
 //拖动手势，下拉弹回课表
 @property (nonatomic, strong)UIPanGestureRecognizer *PGR;
 
 @property (nonatomic, assign)BOOL isReloading;
 /// 用来存储课表信息的，如学号、老师的数据等
 @property (nonatomic, strong)id schedulInfo;
+
+/// 已经添加到scrollView的课表的backView字典，scBackViewDict[@"0"]代表整学期页
 @property (nonatomic, strong)NSMutableDictionary *scBackViewDict;
+
+/// lessonViewDict[0]代表整学期页的课表，lessonViewDict[x]代表第x周
+@property (nonatomic, strong)NSMutableDictionary <NSString*, LessonViewForAWeek*>* lessonViewDict;
 @end
 
 @implementation WYCClassBookViewController
@@ -50,6 +54,12 @@
         model.delegate = self;
         self.model = model;
         self.schedulInfo = info;
+        //要延迟一点再调用，确保：
+        //个人课表状态下，调用modelLoadDataWithInfo方法时self.schedulTabBar已经有值
+        //第一次登录时，不会显示在第一周
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self modelLoadDataWithInfo: self->_schedulInfo];
+        });
     }
     return self;
 }
@@ -58,18 +68,13 @@
     [super viewDidLoad];
     //添加对通知中心的监听
     [self addNoti];
-    self.lessonViewArray = [NSMutableArray array];
+    self.lessonViewDict = [[NSMutableDictionary alloc] init];
     self.scBackViewDict = [[NSMutableDictionary alloc] init];
-    
     
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
-    }
-    //如果是自己的课表，那就加假的tabBar
-    if(self.schedulType==ScheduleTypePersonal){
-        [self addFakeBar];
     }
     
     [self showHud];
@@ -89,13 +94,14 @@
     
     _index = self.dateModel.nowWeek;
     
-    [self modelLoadDataWithInfo: _schedulInfo];
-    
     //添加周选择条、显示本周的条
     [self addTopBarView];
     
-    //如果是自己的课表，那就加上下拉dismiss手势
-    if(self.schedulType==ScheduleTypePersonal)[self addGesture];
+    //如果是自己的课表，那就加上下拉dismiss手势、假的tabBar
+    if(self.schedulType==ScheduleTypePersonal) {
+        [self addFakeBar];
+        [self addGesture];
+    }
 }
 
 //MARK:- 添加控件
@@ -157,8 +163,6 @@
     scrollView.delegate = self;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
-    
-    [scrollView layoutIfNeeded];
 }
 
 -(void)reloadView{
@@ -222,6 +226,7 @@
             self.topBarView.correctIndex = self.index;
         }
     }else if(scrollView.contentOffset.y<-100&&self.isReloading==NO&&self.schedulType==ScheduleTypePersonal){
+        //下拉刷新
         self.isReloading = YES;
         [self showHud];
         [UIView animateWithDuration:0.5 animations:^{
@@ -251,7 +256,7 @@
 /// WYCClassAndRemindDataModel模型加载成功后调用
 - (void)ModelDataLoadSuccess{
     [self.scrollView removeAllSubviews];
-    [self.lessonViewArray removeAllObjects];
+    [self.lessonViewDict removeAllObjects];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     //让tabBar和假的tabBar更新一下下节课信息
     [self.schedulTabBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
@@ -260,19 +265,11 @@
     //调一下set方法
     self.index = self.index;
 }
+
 /// WYCClassAndRemindDataModel模型加载失败后调用
 - (void)ModelDataLoadFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-   
-    UIAlertController *controller=[UIAlertController alertControllerWithTitle:@"网络错误" message:@"数据加载失败" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *act1=[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    
-    [controller addAction:act1];
-    
-    [self presentViewController:controller animated:YES completion:nil];
-    
+    [NewQAHud showHudWith:@"数据加载失败了～" AddView:self.view];
     [self ModelDataLoadSuccess];
 }
 
@@ -282,13 +279,13 @@
 /// 添加对通知中心的监听
 - (void)addNoti {
     //添加备忘信息
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNoteWithModel:) name:@"LessonViewShouldAddNote" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addNoteWithNoti:) name:@"LessonViewShouldAddNote" object:nil];
     
     //删除备忘信息
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNoteWithModel:) name:@"shouldDeleteNote" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNoteWithNoti:) name:@"shouldDeleteNote" object:nil];
     
     //编辑备忘
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editNoteWithModel:) name:@"DLReminderSetTimeVCShouldEditNote" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editNoteWithNoti:) name:@"DLReminderSetTimeVCShouldEditNote" object:nil];
     
     //课前提醒开关打开时，MineViewController发送通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(remindBeforeClass) name:@"remindBeforeClass" object:nil];
@@ -299,6 +296,7 @@
     //收到通知后，课表会present通知里面的VC，ClassDetailView发通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldPresentVC:) name:@"WYCClassBookVCShouldPresentVC" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editNoteDataWithNoti:) name:@"LessonViewShouldEditNote" object:nil];
 }
 
 ///通过通知中心调用，调用后全屏presentVC
@@ -325,14 +323,16 @@
 
 /// DLReminderSetTimeVC发送通知后调用
 /// @param noti 内部的object是备忘数据对应的NoteDataModel
-- (void)addNoteWithModel:(NSNotification*)noti{
+- (void)addNoteWithNoti:(NSNotification*)noti{
     //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
     //这里也做一次判断：如果课表类型不是自己的，那么return
     if(self.schedulType!=ScheduleTypePersonal)return;
     NoteDataModel *model = noti.object;
+    [self addNoteWithModel:model];
+}
+- (void)addNoteWithModel:(NoteDataModel*)model {
     [self.model addNoteDataWithModel:model];
     /// 若model.weeksArray==@[@4,@1,@18],代表第4、1、18周的备忘
-    
     
     //添加本地通知
     if(![model.notiBeforeTime isEqual:@"不提醒"]){
@@ -356,28 +356,29 @@
     
     for (NSNumber *weekNum in model.weeksArray) {
         if(weekNum.intValue==0){
-            for (LessonViewForAWeek *lvfw in self.lessonViewArray) {
-                [lvfw addNoteLabelWithNoteDataModel:model];
-            }
+            [self.lessonViewDict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, LessonViewForAWeek * _Nonnull obj, BOOL * _Nonnull stop) {
+                [obj addNoteLabelWithNoteDataModel:model];
+            }];
         }else{
-            for (LessonViewForAWeek *lvfw in self.lessonViewArray) {
-                if (lvfw.week==weekNum.intValue) {
-                    [lvfw addNoteLabelWithNoteDataModel:model];
-                }
-            }
+            [self.lessonViewDict[weekNum.stringValue] addNoteLabelWithNoteDataModel:model];
         }
     }
 }
 
+
 /// 接收要删除/修改备忘的通知时调用，由NoteDetailView、DLReminderSetTimeVC发送通知，
 /// @param noti 通知
-- (void)deleteNoteWithModel:(NSNotification*)noti{
+- (void)deleteNoteWithNoti:(NSNotification*)noti{
     //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
     //这里也做一次判断：如果课表类型不是自己的，那么return
     if(self.schedulType!=ScheduleTypePersonal)return;
     NoteDataModel *model = noti.object;
+    [self deleteNoteWithModel:model];
+}
+
+- (void)deleteNoteWithModel:(NoteDataModel*)model {
     //  如果不是@“不提醒”，那就去除本地通知,
-    if(![model.notiBeforeTime isEqualToString:@"不提醒"]){
+    if(![model.notiBeforeTime isEqualToString:@"不提醒"]) {
         if([model.weeksArray firstObject].intValue==0){
             for (int i=1; i<25; i++) {
                 for (NSDictionary *timeDict in model.timeDictArray) {
@@ -394,21 +395,21 @@
             }
         }
     }
+    //移除备忘数据
     [self.model deleteNoteDataWithModel:model];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"加载数据中...";
-    hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
-    [self ModelDataLoadSuccess];
+    //更新UI
+    for (NSNumber *weekNum in model.weeksArray) {
+        [self.lessonViewDict[weekNum.stringValue] deleteNoteWithNoteDataModel:model];
+    }
 }
+
 
 /// 接收要修改备忘的通知时调用，由NoteDetailView发送通知
 /// @param noti 通知
-- (void)editNoteWithModel:(NSNotification*)noti{
+- (void)editNoteWithNoti:(NSNotification*)noti{
     //虽然其他地方也会作判断以避免在没课约、查课表页使用了个人课表才有的操作，但是这是为了以防疏忽
     //这里也做一次判断：如果课表类型不是自己的，那么return
     if(self.schedulType!=ScheduleTypePersonal)return;
-    
     NoteDataModel *model = noti.object;
     DLReminderSetTimeVC *vc = [[DLReminderSetTimeVC alloc] init];
     [vc setModalPresentationStyle:(UIModalPresentationCustom)];
@@ -417,10 +418,19 @@
     [vc initDataForEditNoteWithMode:model];
 }
 
+- (void)editNoteDataWithNoti:(NSNotification*)noti {
+    NSDictionary *modelDict = noti.object;
+    NoteDataModel *new = modelDict[@"new"];
+    NoteDataModel *old = modelDict[@"old"];
+    
+    [self deleteNoteWithModel:old];
+    
+    [self addNoteWithModel:new];
+}
 
 
 //MARK: - 其他
-/// 根据课表类型来加载数据
+/// 根据课表类型来加载课表数据
 /// @param info 包含了发送网络请求时的参数，具体参数格式看课表.h的init方法处的说明
 - (void)modelLoadDataWithInfo:(id)info{
     if (info==nil) {
@@ -455,7 +465,7 @@
     }
 }
 
-/// 自己课表页下拉后调用
+/// 自己课表页下拉收回后调用
 - (void)dissMissSelf{
     if(self.PGR.state==UIGestureRecognizerStateBegan){
         TransitionManager *TM =  (TransitionManager*)self.transitioningDelegate;
@@ -494,7 +504,7 @@
     hud.labelText = @"加载数据中...";
     hud.color = [UIColor colorWithWhite:0.f alpha:0.4f];
 }
-
+/// 为第index添加课表，index等0时代表整学期页
 - (void)addSchedulWithIndex:(int)index{
     NSString *indexStr = [NSString stringWithFormat:@"%d",index];
     UIView *scBackView = self.scBackViewDict[indexStr];
@@ -545,7 +555,7 @@
     //课表
     LessonViewForAWeek *lessonViewForAWeek = [[LessonViewForAWeek alloc] initWithDataArray:self.model.orderlySchedulArray[index]];
     [scrollView addSubview:lessonViewForAWeek];
-    [self.lessonViewArray addObject:lessonViewForAWeek];
+    self.lessonViewDict[indexStr] = lessonViewForAWeek;
     lessonViewForAWeek.week = index;
     lessonViewForAWeek.schType = self.schedulType;
     [lessonViewForAWeek setUpUI];
@@ -560,7 +570,6 @@
 //程序回到前台时调用，在这里更新显示下节课信息的tabBar的信息
 - (void)applicationWillEnterForeground:(UIApplication *)application{
     NSLog(@"-----back---");
-    
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
         //让tabBar和假的tabBar更新一下下节课信息
         [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];
