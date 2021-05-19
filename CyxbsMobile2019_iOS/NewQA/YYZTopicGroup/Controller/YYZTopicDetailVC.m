@@ -45,12 +45,14 @@
 @property (nonatomic, strong) MJRefreshNormalHeader *header;
 
 @property (nonatomic, assign) NSInteger cnt;
+@property (nonatomic, assign) NSInteger offestInt;
+@property (nonatomic, assign) NSInteger stausHeight;
+@property (nonatomic, assign) NSInteger navHeight;
+
 
 @end
 
 @implementation YYZTopicDetailVC
-
-#pragma mark  获取当前圈子ID
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -76,10 +78,18 @@
     self.navigationController.navigationBar.topItem.title = self.topicIdString;//设置返回按钮文字
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
     self.navigationItem.leftBarButtonItem.width = -1000;
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 状态栏(statusbar)
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    self.stausHeight = rectStatus.size.height;  // 高度
+   // 导航栏（navigationbar）
+    CGRect rectNav = self.navigationController.navigationBar.frame;
+    self.navHeight = rectNav.size.height;  // 高度
+    
     [self setNotification];//设置通知中心
     [self setBackViewWithGesture];//设置弹出view
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
@@ -93,7 +103,9 @@
     [self setMiddleLable];
     [self setBackTableView];
     [self funcPopViewinit];
+    
     [self loadData];//初始化数据
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -115,39 +127,52 @@
 - (void) setScroll {
     UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
     self.backgroundScrollView = backgroundScrollView;
+    backgroundScrollView.bounces = NO;
+    backgroundScrollView.showsVerticalScrollIndicator = FALSE;
+    backgroundScrollView.showsHorizontalScrollIndicator = FALSE;
     backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    backgroundScrollView.contentSize = CGSizeMake(0,0);//先设置禁止滑动，以后适配动画效果
+    backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125-self.navHeight-self.stausHeight);
+    //设置kvo监听
+    [backgroundScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"2"];
     [self.view addSubview:backgroundScrollView];
     
-    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, SCREEN_HEIGHT-180)];
+    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, SCREEN_HEIGHT-112)];
     self.topicScrollView = topicScrollView;
     topicScrollView.delegate = self;
     topicScrollView.backgroundColor = [UIColor whiteColor];
     topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-185);
     topicScrollView.pagingEnabled = YES;
     //设置kvo监听
-    [topicScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+    [topicScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"1"];
     [self.backgroundScrollView addSubview:topicScrollView];
+    
 }
 
-#pragma mark KVO方法
+#pragma mark- KVO方法
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    
     if ([keyPath isEqualToString:@"contentOffset"]){
-        //改变字体状态
-        CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
-        int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        if(currentPage == 0){
-            [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-            [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+        if(context ==  @"1"){
+            CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
+            int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+            if(currentPage == 0){
+                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+            }
+            else if(currentPage == 1){
+                [self.topicRightTableView reloadData];
+                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+            }
+            //改变提示线位置
+            double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
+            self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
         }
-        else if(currentPage == 1){
-            [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
-            [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+        if(context ==  @"2"){
+            if(self.backgroundScrollView.contentOffset.y >= 125-self.navHeight-self.stausHeight){
+                self.topicLeftTableView.scrollEnabled = YES;
+                self.topicRightTableView.scrollEnabled = YES;
+            }
         }
-        //改变提示线位置
-        double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
-        self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -198,48 +223,52 @@
 - (void)TopicLoadSuccess {
     if([self checkPage] == 0){
         if (self.leftPage == 1) {
+            //[self.leftTableArray removeAllObjects];
             self.leftTableArray = self.leftPostmodel.postArray;
         }else {
             [self.leftTableArray addObjectsFromArray:self.leftPostmodel.postArray];
         }
         //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
         if (self.leftPage == 1) {
-            [self.topicLeftTableView reloadData];
             [self.topicLeftTableView.mj_header endRefreshing];
-        }else{
             [self.topicLeftTableView reloadData];
+        }else{
             [self.topicLeftTableView.mj_footer endRefreshing];
+            [self.topicLeftTableView reloadData];
         }
     }
     else{
         if (self.rightPage == 1) {
+            //[self.rightTableArray removeAllObjects];
             self.rightTableArray = self.rightPostmodel.postArray;
         }else {
             [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
         }
+
         //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
         if (self.rightPage == 1) {
-            [self.topicRightTableView reloadData];
             [self.topicRightTableView.mj_header endRefreshing];
-        }else{
             [self.topicRightTableView reloadData];
+        }else{
             [self.topicRightTableView.mj_footer endRefreshing];
+            [self.topicRightTableView reloadData];
         }
     }
     if(self.cnt<2){
         self.cnt++;
         if (self.rightPage == 1) {
+            //[self.rightTableArray removeAllObjects];
             self.rightTableArray = self.rightPostmodel.postArray;
         }else {
             [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
         }
         //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
         if (self.rightPage == 1) {
-            [self.topicRightTableView reloadData];
             [self.topicRightTableView.mj_header endRefreshing];
-        }else{
             [self.topicRightTableView reloadData];
+        }else{
             [self.topicRightTableView.mj_footer endRefreshing];
+            [self.topicRightTableView reloadData];
         }
     }
 }
@@ -259,40 +288,46 @@
     //上滑加载的设置
     _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     self.topicLeftTableView.mj_footer = _footer;
+    _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     self.topicRightTableView.mj_footer = _footer;
     //下拉刷新的设置
     _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicLeftTableView.mj_header = _header;
+    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicRightTableView.mj_header = _header;
 
     [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
 }
 - (void) setBackTableView{
-    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-180) style:UITableViewStylePlain];
+    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
+    topicLeftTableView.scrollEnabled = NO;
     topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   
-    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-180) style:UITableViewStylePlain];
+    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
+    topicRightTableView.scrollEnabled = NO;
     topicRightTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     [self.topicScrollView addSubview:topicLeftTableView];
     [self.topicScrollView addSubview:topicRightTableView];
     [self setUpRefresh];
-
 }
 
 - (NSInteger)numberOfSectionsInTableView: (UITableView *)tableView{
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.leftTableArray.count;
+    if([self checkPage] == 0)
+        return self.leftTableArray.count;
+    else
+        return self.rightTableArray.count;
 }
 #pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -328,7 +363,6 @@
     }
     else if ([tableView isEqual:self.topicRightTableView]){
         [self.topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-
         NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
         PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if(cell == nil) {
@@ -510,7 +544,7 @@
 - (void)setCell {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
-    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH, 130);
+    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH,125);
     self.cell = cell;
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
@@ -570,15 +604,11 @@
 }
 
 - (void)leftBtnJump {
-    [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-    [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
     CGFloat imageW = self.topicScrollView.frame.size.width;
     CGPoint position = CGPointMake(0*imageW, 0);
     [self.topicScrollView setContentOffset:position animated:YES];
 }
 - (void)rightBtnJump {
-    [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
-    [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
     CGFloat imageW = self.topicScrollView.frame.size.width;
     CGPoint position = CGPointMake(1*imageW, 0);
     [self.topicScrollView setContentOffset:position animated:YES];
