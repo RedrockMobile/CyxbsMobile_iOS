@@ -20,8 +20,10 @@
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
 #import "ReportModel.h"
+#import "DeletePostModel.h"
+
     
-@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate>
+@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate,SelfFuncViewProtocol>
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;//最底部的scrollview
@@ -89,7 +91,10 @@
    // 导航栏（navigationbar）
     CGRect rectNav = self.navigationController.navigationBar.frame;
     self.navHeight = rectNav.size.height;  // 高度
-    
+    // 如果是刘海屏
+        if ([self isNotchScreen] == YES) {
+            self.navHeight  += 35;
+        }
     [self setNotification];//设置通知中心
     [self setBackViewWithGesture];//设置弹出view
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
@@ -99,6 +104,7 @@
     self.rightTableArray = [[NSMutableArray alloc]init];
     self.rightPostmodel = [[YYZTopicModel alloc]init];
     
+    //[self setCell];//设置cell;
     [self setScroll];
     [self setMiddleLable];
     [self setBackTableView];
@@ -125,13 +131,13 @@
     
 }
 - (void) setScroll {
-    UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+    UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.backgroundScrollView = backgroundScrollView;
     backgroundScrollView.bounces = NO;
     backgroundScrollView.showsVerticalScrollIndicator = FALSE;
     backgroundScrollView.showsHorizontalScrollIndicator = FALSE;
     backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125-self.navHeight-self.stausHeight);
+    backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125-self.navHeight-self.stausHeight+4);
     //设置kvo监听
     [backgroundScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"2"];
     [self.view addSubview:backgroundScrollView];
@@ -168,10 +174,15 @@
             self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
         }
         if(context ==  @"2"){
-            if(self.backgroundScrollView.contentOffset.y >= 125-self.navHeight-self.stausHeight){
+            if(self.backgroundScrollView.contentOffset.y >= 125-self.navHeight-self.stausHeight+4){
                 self.topicLeftTableView.scrollEnabled = YES;
                 self.topicRightTableView.scrollEnabled = YES;
             }
+            if(self.backgroundScrollView.contentOffset.y <= 1){
+                            self.topicLeftTableView.scrollEnabled = NO;
+                            self.topicRightTableView.scrollEnabled = NO;
+            }
+
         }
     }
     else
@@ -180,6 +191,7 @@
 
 - (void)dealloc{
     [self.topicScrollView removeObserver:self forKeyPath:@"contentOffset"];
+    [self.backgroundScrollView removeObserver:self forKeyPath:@"contentOffset"];
 }
 //检查当前在第几页，返回当前页数
 - (int)checkPage{
@@ -391,9 +403,12 @@
     // 创建分享页面
     _shareView = [[ShareView alloc] init];
     _shareView.delegate = self;
-    // 创建功能页面
+    // 创建多功能--别人页面
     _popView = [[FuncView alloc] init];
     _popView.delegate = self;
+    // 创建多功能--自己页面
+    _selfPopView = [[SelfFuncView alloc] init];
+    _selfPopView.delegate = self;
     // 创建举报页面
     _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
     _reportView.delegate = self;
@@ -440,8 +455,51 @@
     [_popView removeFromSuperview];
     [_shareView removeFromSuperview];
     [_reportView removeFromSuperview];
+    [_selfPopView removeFromSuperview];
     [_backViewWithGesture removeFromSuperview];
 }
+#pragma mark -多功能View--自己的代理方法
+- (void)ClickedDeletePostBtn:(UIButton *)sender {
+    [_selfPopView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    if([self checkPage] == 0){
+        _itemDic = self.leftTableArray[sender.tag];
+        DeletePostModel *model = [[DeletePostModel alloc] init];
+        [model deletePostWithID:_itemDic[@"post_id"] AndModel:[NSNumber numberWithInt:0]];
+        [model setBlock:^(id  _Nonnull info) {
+            for (int i = 0;i < [self.leftTableArray count]; i++) {
+                if ([self.leftTableArray[i][@"post_id"] isEqualToString:self->_itemDic[@"post_id"]]) {
+                    [self.leftTableArray removeObjectAtIndex:i];
+                    break;
+                }
+            }
+            [PostArchiveTool savePostListWith:self.leftTableArray];
+            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view AndToDo:^{
+                [self.topicLeftTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+                [self.topicLeftTableView reloadData];
+            }];
+        }];
+    }
+    else{
+        _itemDic = self.rightTableArray[sender.tag];
+        DeletePostModel *model = [[DeletePostModel alloc] init];
+        [model deletePostWithID:_itemDic[@"post_id"] AndModel:[NSNumber numberWithInt:0]];
+        [model setBlock:^(id  _Nonnull info) {
+            for (int i = 0;i < [self.rightTableArray count]; i++) {
+                if ([self.rightTableArray[i][@"post_id"] isEqualToString:self->_itemDic[@"post_id"]]) {
+                    [self.rightTableArray removeObjectAtIndex:i];
+                    break;
+                }
+            }
+            [PostArchiveTool savePostListWith:self.rightTableArray];
+            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view AndToDo:^{
+                [self.topicRightTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+                [self.topicRightTableView reloadData];
+            }];
+        }];
+    }
+}
+
 #pragma mark - Cell中的相关事件
 - (void)showBackViewWithGesture {
     [self.view.window addSubview:_backViewWithGesture];
@@ -502,7 +560,6 @@
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
     }
 }
-
 ///分享帖子
 - (void)ClickedShareBtn:(PostTableViewCell *)cell {
     [self showBackViewWithGesture];
@@ -527,18 +584,57 @@
     UIWindow* desWindow=self.view.window;
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
-
-    _itemDic = self.leftTableArray[cell.tag];
-    if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
-        NSLog(@"取消关注");
-        [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-    }else {
-        NSLog(@"关注圈子");
-        [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+    if([self checkPage] == 0){
+        NSIndexPath *indexPath = [_topicLeftTableView indexPathForCell:cell];
+        _itemDic = self.leftTableArray[indexPath.row];
+        if ([_itemDic[@"is_self"] intValue] == 1) {
+            self.selfPopView.deleteBtn.tag = indexPath.row;
+            _selfPopView.postID = _itemDic[@"post_id"];
+            _selfPopView.layer.cornerRadius = 8;
+            _selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+            [self.view.window addSubview:_selfPopView];
+        } else {
+            self.popView.starGroupBtn.tag = indexPath.row;
+            self.popView.shieldBtn.tag = indexPath.row;
+            self.popView.reportBtn.tag = indexPath.row;
+            if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
+                NSLog(@"取消关注");
+                [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+            }else {
+                NSLog(@"关注圈子");
+                [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+            }
+            _popView.layer.cornerRadius = 8;
+            _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+            [self.view.window addSubview:_popView];
+        }
     }
-    _popView.layer.cornerRadius = 3;
-    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
-    [self.view.window addSubview:_popView];
+    else{
+        NSIndexPath *indexPath = [_topicLeftTableView indexPathForCell:cell];
+            _itemDic = self.leftTableArray[indexPath.row];
+        if ([_itemDic[@"is_self"] intValue] == 1) {
+            self.selfPopView.deleteBtn.tag = indexPath.row;
+            _selfPopView.postID = _itemDic[@"post_id"];
+            _selfPopView.layer.cornerRadius = 8;
+            _selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+            [self.view.window addSubview:_selfPopView];
+        } else {
+            self.popView.starGroupBtn.tag = indexPath.row;
+            self.popView.shieldBtn.tag = indexPath.row;
+            self.popView.reportBtn.tag = indexPath.row;
+            if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
+                NSLog(@"取消关注");
+                [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+            }else {
+                NSLog(@"关注圈子");
+                [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+            }
+            _popView.layer.cornerRadius = 8;
+            _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+            [self.view.window addSubview:_popView];
+        }
+    }
+
 }
 //设置顶部cell
 - (void)setCell {
@@ -810,6 +906,21 @@
     [self.shareView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     [self shareSuccessful];
+}
+// 判断刘海屏，返回YES表示是刘海屏
+- (BOOL)isNotchScreen {
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        return NO;
+    }
+    
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    NSInteger notchValue = size.width / size.height * 100;
+    
+    if (216 == notchValue || 46 == notchValue) {
+        return YES;
+    }
+    return NO;
 }
 
 @end
