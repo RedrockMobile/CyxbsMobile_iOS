@@ -76,12 +76,33 @@
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar
     self.navigationItem.title = @"";
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
-    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
+//    //按钮标题的宽度
+    CGFloat stringWidth = [self.topicIdString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:21]} context:0].size.width;
+    
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, stringWidth + 40 + 5, 40)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 13, 7, 14)];
+    imageView.image = [UIImage imageNamed:@"返回的小箭头"];
+    [view addSubview:imageView];
+    UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, stringWidth, 40)];
+    titleLbl.text = self.topicIdString;
+    titleLbl.textColor = [UIColor colorNamed:@"21_49_91&131_131_132"];
+    [view addSubview:titleLbl];
+    view.userInteractionEnabled = YES;
+    //添加返回的手势
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jumpRootViewController)];
+    [view addGestureRecognizer:gesture];
+    UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithCustomView:view];
+    UIBarButtonItem *spacebutton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spacebutton.width = -1000;//这个数值可以调整
+    self.navigationItem.leftBarButtonItems = @[spacebutton,leftBarItem];
+    
+//    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
     self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
     self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    self.navigationController.navigationBar.topItem.title = self.topicIdString;//设置返回按钮文字
+//    self.navigationController.navigationBar.topItem.title = self.topicIdString;//设置返回按钮文字
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
-    self.navigationItem.leftBarButtonItem.width = -1000;
+//    self.navigationItem.leftBarButtonItem.width = -1000;
     
 }
 
@@ -162,6 +183,13 @@
     
 }
 
+- (void)jumpRootViewController{
+    if (self.isFromSub == 1) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 #pragma mark- 监听键盘移动的通知方法
 ///键盘将要出现时，若举报页面已经显示则上移
 - (void)reportViewKeyboardWillShow:(NSNotification *)notification{

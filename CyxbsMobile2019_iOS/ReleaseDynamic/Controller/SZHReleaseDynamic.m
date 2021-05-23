@@ -96,6 +96,7 @@
     [super viewWillAppear:animated];
     [self.tabBarController.tabBar setHidden:YES];
     self.navigationController.navigationBar.hidden = YES;
+   
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -230,8 +231,6 @@
             [hud hide:YES];
             [NewQAHud showHudWith:@"请检查你的网络设置" AddView:self.view];
         }];
-   
-    
 }
 
 /// 显示草稿
