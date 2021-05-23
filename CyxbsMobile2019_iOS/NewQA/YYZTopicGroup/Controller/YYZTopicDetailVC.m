@@ -21,6 +21,7 @@
 #import "ShieldModel.h"
 #import "ReportModel.h"
 #import "DeletePostModel.h"
+
     
 @interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate,SelfFuncViewProtocol>
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
@@ -94,7 +95,6 @@
         if ([self isNotchScreen] == YES) {
             self.navHeight  += 35;
         }
-    
     [self setNotification];//设置通知中心
     [self setBackViewWithGesture];//设置弹出view
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
@@ -104,6 +104,7 @@
     self.rightTableArray = [[NSMutableArray alloc]init];
     self.rightPostmodel = [[YYZTopicModel alloc]init];
     
+    //[self setCell];//设置cell;
     [self setScroll];
     [self setMiddleLable];
     [self setBackTableView];
@@ -130,7 +131,7 @@
     
 }
 - (void) setScroll {
-    UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+    UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.backgroundScrollView = backgroundScrollView;
     backgroundScrollView.bounces = NO;
     backgroundScrollView.showsVerticalScrollIndicator = FALSE;
@@ -181,6 +182,7 @@
                             self.topicLeftTableView.scrollEnabled = NO;
                             self.topicRightTableView.scrollEnabled = NO;
             }
+
         }
     }
     else
@@ -558,7 +560,6 @@
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
     }
 }
-
 ///分享帖子
 - (void)ClickedShareBtn:(PostTableViewCell *)cell {
     [self showBackViewWithGesture];
@@ -633,7 +634,7 @@
             [self.view.window addSubview:_popView];
         }
     }
-    
+
 }
 //设置顶部cell
 - (void)setCell {
@@ -906,7 +907,6 @@
     [self.backViewWithGesture removeFromSuperview];
     [self shareSuccessful];
 }
-
 // 判断刘海屏，返回YES表示是刘海屏
 - (BOOL)isNotchScreen {
     
@@ -922,4 +922,5 @@
     }
     return NO;
 }
+
 @end
