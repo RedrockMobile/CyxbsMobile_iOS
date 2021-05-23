@@ -303,12 +303,12 @@
 - (UILabel *)detailLabel{
     if (!_detailLabel) {
         _detailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        self.detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
-        self.detailLabel.backgroundColor = [UIColor clearColor];
-        self.detailLabel.textAlignment = NSTextAlignmentLeft;
+        _detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
+        _detailLabel.backgroundColor = [UIColor clearColor];
+        _detailLabel.textAlignment = NSTextAlignmentLeft;
         _detailLabel.textColor = [UIColor colorNamed:@"17_44_87&240_240_242"];
         // 多行设置
-        self.detailLabel.numberOfLines = 0;
+        _detailLabel.numberOfLines = 0;
         //文字宽度为多少时换行
         _detailLabel.preferredMaxLayoutWidth = self.commentLevel == DynamicCommentType_stair ? (MAIN_SCREEN_W - 100*WScaleRate_SE) : (MAIN_SCREEN_W - 130*WScaleRate_SE);
         [_detailLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];

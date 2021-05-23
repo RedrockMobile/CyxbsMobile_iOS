@@ -52,7 +52,10 @@
 @property (nonatomic, assign) NSInteger stausHeight;
 @property (nonatomic, assign) NSInteger navHeight;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ccad2367305081679115cd23b45a92bf21266ba
 
 @end
 
@@ -93,11 +96,15 @@
    // 导航栏（navigationbar）
     CGRect rectNav = self.navigationController.navigationBar.frame;
     self.navHeight = rectNav.size.height;  // 高度
+<<<<<<< HEAD
     // 如果是刘海屏
     if ([self isNotchScreen] == YES) {
         self.navHeight  += 35;
     }
 
+=======
+    
+>>>>>>> 2ccad2367305081679115cd23b45a92bf21266ba
     [self setNotification];//设置通知中心
     [self setBackViewWithGesture];//设置弹出view
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
@@ -140,7 +147,11 @@
     backgroundScrollView.showsVerticalScrollIndicator = FALSE;
     backgroundScrollView.showsHorizontalScrollIndicator = FALSE;
     backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+<<<<<<< HEAD
     backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125 -self.navHeight-self.stausHeight+4);
+=======
+    backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125-self.navHeight-self.stausHeight);
+>>>>>>> 2ccad2367305081679115cd23b45a92bf21266ba
     //设置kvo监听
     [backgroundScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"2"];
     [self.view addSubview:backgroundScrollView];
@@ -177,6 +188,7 @@
             self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
         }
         if(context ==  @"2"){
+<<<<<<< HEAD
             if(self.backgroundScrollView.contentOffset.y >= 125-self.navHeight-self.stausHeight+4){
                 self.topicLeftTableView.scrollEnabled = YES;
                 self.topicRightTableView.scrollEnabled = YES;
@@ -185,6 +197,12 @@
                 self.topicLeftTableView.scrollEnabled = NO;
                 self.topicRightTableView.scrollEnabled = NO;
             }
+=======
+            if(self.backgroundScrollView.contentOffset.y >= 125-self.navHeight-self.stausHeight){
+                self.topicLeftTableView.scrollEnabled = YES;
+                self.topicRightTableView.scrollEnabled = YES;
+            }
+>>>>>>> 2ccad2367305081679115cd23b45a92bf21266ba
         }
     }
     else
