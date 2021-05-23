@@ -24,7 +24,9 @@
     return self;
 }
 - (NSString *)getNumberOfDormitoryWith:(NSString *)building andPlace:(NSString *)place {
-    int num = [place substringToIndex:1].intValue;
+    int num = [place substringToIndex:2].intValue;
+    if(num != 10)
+        num = [place substringToIndex:1].intValue;
     if ([building isEqual: @"宁静苑"]) {
         if (num >= 1 && num <= 5) {
             num += 7;
@@ -73,7 +75,10 @@
         return @[@3,@7];
     }
     int num = dormitoryNumber.intValue;
-    if (num>=1 && num <= 6) {//知行苑1-6舍
+    if (num == 40) {//宁静苑10舍
+        return @[@0,@10];
+    }
+    else if (num>=1 && num <= 6) {//知行苑1-6舍
         return @[@2,@(num-1)];
     }else if (num>=8 && num <=12) {//宁静苑1-5舍
         return @[@0,@(num-8)];
@@ -90,9 +95,7 @@
     }else if (num == 39) {//明理苑9舍
         return @[@1,@8];
     }
-    else if (num == 40) {//宁静苑10舍
-        return @[@0,@10];
-    }
+    
     
     return @[@0,@0];
 }

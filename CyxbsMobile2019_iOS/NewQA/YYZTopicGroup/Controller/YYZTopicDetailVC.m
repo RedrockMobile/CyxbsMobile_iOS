@@ -46,7 +46,8 @@
 @property (nonatomic, strong) MJRefreshBackNormalFooter *footer;
 @property (nonatomic, strong) MJRefreshNormalHeader *header;
 
-@property (nonatomic, assign) NSInteger cnt;
+@property (nonatomic, assign) NSInteger cnt1;
+@property (nonatomic, assign) NSInteger cnt2;
 @property (nonatomic, assign) NSInteger offestInt;
 @property (nonatomic, assign) NSInteger stausHeight;
 @property (nonatomic, assign) NSInteger navHeight;
@@ -58,7 +59,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.cnt=0;
     self.leftPage = 1;//初始化当前页数
     self.rightPage = 1;
     //网络请求
@@ -85,6 +85,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.cnt1=0;
+    self.cnt2=0;
     // 状态栏(statusbar)
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     self.stausHeight = rectStatus.size.height;  // 高度
@@ -103,6 +105,7 @@
     self.leftPostmodel = [[YYZTopicModel alloc]init];
     self.rightTableArray = [[NSMutableArray alloc]init];
     self.rightPostmodel = [[YYZTopicModel alloc]init];
+    
     
     //[self setCell];//设置cell;
     [self setScroll];
@@ -210,8 +213,8 @@
     self.rightPage += 1;
     [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
     }
-    if(self.cnt<2){
-        self.cnt++;
+    if(self.cnt1 <4){
+        self.cnt1++;
         self.rightPage += 1;
         [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
     }
@@ -266,8 +269,8 @@
             [self.topicRightTableView reloadData];
         }
     }
-    if(self.cnt<2){
-        self.cnt++;
+    if(self.cnt1 < 4){
+        self.cnt1++;
         if (self.rightPage == 1) {
             //[self.rightTableArray removeAllObjects];
             self.rightTableArray = self.rightPostmodel.postArray;
@@ -610,8 +613,8 @@
         }
     }
     else{
-        NSIndexPath *indexPath = [_topicLeftTableView indexPathForCell:cell];
-            _itemDic = self.leftTableArray[indexPath.row];
+        NSIndexPath *indexPath = [_topicRightTableView indexPathForCell:cell];
+            _itemDic = self.rightTableArray[indexPath.row];
         if ([_itemDic[@"is_self"] intValue] == 1) {
             self.selfPopView.deleteBtn.tag = indexPath.row;
             _selfPopView.postID = _itemDic[@"post_id"];
