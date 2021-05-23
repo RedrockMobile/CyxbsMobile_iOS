@@ -2971,6 +2971,7 @@
 		1A0AC602252B259B00221514 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				7FA2499F265A4FC6001B49FC /* Controller */,
 				1A79956A252B5B3B00603253 /* Model */,
 				1A799569252B5B3400603253 /* View */,
 				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
@@ -3301,14 +3302,8 @@
 		1A799569252B5B3400603253 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7FBF39E9257B79F20077494E /* ByPasswordViewController.h */,
-				7FBF39EB257B79F20077494E /* ByPasswordViewController.m */,
-				7FBF39E8257B79F20077494E /* ByWordViewController.h */,
-				7FBF39EF257B79F30077494E /* ByWordViewController.m */,
 				7FBF39E7257B79F20077494E /* FindPasswordView.swift */,
 				7FBF39EA257B79F20077494E /* LoginViewController.swift */,
-				7F318CA0257F5ACD009FE4EA /* YYZGetIdVC.h */,
-				7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */,
 				7FBF3A11257CBCCC0077494E /* YYZpopView.h */,
 				7FBF3A12257CBCCC0077494E /* YYZpopView.m */,
 			);
@@ -3676,6 +3671,19 @@
 				7F101B2826063F3100F2034C /* YYZTopicView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7FA2499F265A4FC6001B49FC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7FBF39E9257B79F20077494E /* ByPasswordViewController.h */,
+				7FBF39EB257B79F20077494E /* ByPasswordViewController.m */,
+				7FBF39E8257B79F20077494E /* ByWordViewController.h */,
+				7FBF39EF257B79F30077494E /* ByWordViewController.m */,
+				7F318CA0257F5ACD009FE4EA /* YYZGetIdVC.h */,
+				7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		AA4FA1BC25C2A5C2005139BA /* Controller */ = {

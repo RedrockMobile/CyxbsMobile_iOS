@@ -10,7 +10,7 @@
 #import "YYZGetIdVC.h"
 #import "ByWordViewController.h"
 #import "ByPasswordViewController.h"
-#import "YYZSendVC.h"
+//#import "YYZSendVC.h"
 #import "YYZpopView.h"
 
 
