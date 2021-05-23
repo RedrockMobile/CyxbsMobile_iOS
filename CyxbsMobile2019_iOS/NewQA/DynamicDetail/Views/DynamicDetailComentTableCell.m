@@ -25,8 +25,6 @@
 ///内容
 @property (nonatomic, strong) UILabel *detailLabel;
 
-
-
 ///点赞按钮
 @property (nonatomic, strong) FunctionBtn *starBtn;
 

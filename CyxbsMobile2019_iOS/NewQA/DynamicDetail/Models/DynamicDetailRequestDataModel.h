@@ -11,12 +11,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 动态详情页用来请求数据的model，包括以下请求：
- 评论点赞
- 请求帖子的详情
- 添加/回复评论
- 举报评论
- 删除评论
+ *动态详情页用来请求数据的model，包括以下请求：
+ *
+ *评论点赞
+ *
+ *请求帖子的详情
+ *
+ *添加/回复评论
+ *
+ *举报评论
+ *
+ *删除评论
  */
 @interface DynamicDetailRequestDataModel : NSObject
 /// 点赞评论的网络请求
