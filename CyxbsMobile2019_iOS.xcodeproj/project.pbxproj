@@ -363,7 +363,6 @@
 		7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */; };
 		7F101AC5260613E800F2034C /* YYZTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101ABF260613E800F2034C /* YYZTopicCell.m */; };
 		7F101AC6260613E800F2034C /* YYZTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F101AC0260613E800F2034C /* YYZTopicCell.xib */; };
-		7F101B2926063F3200F2034C /* YYZTopicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101B2826063F3100F2034C /* YYZTopicView.m */; };
 		7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */; };
 		7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A212626218E8800CA86B2 /* YYZTopicModel.m */; };
 		7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39E7257B79F20077494E /* FindPasswordView.swift */; };
@@ -1312,8 +1311,6 @@
 		7F101ABF260613E800F2034C /* YYZTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicCell.m; sourceTree = "<group>"; };
 		7F101AC0260613E800F2034C /* YYZTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YYZTopicCell.xib; sourceTree = "<group>"; };
 		7F101AC1260613E800F2034C /* YYZTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicCell.h; sourceTree = "<group>"; };
-		7F101B2726063F3100F2034C /* YYZTopicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYZTopicView.h; sourceTree = "<group>"; };
-		7F101B2826063F3100F2034C /* YYZTopicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYZTopicView.m; sourceTree = "<group>"; };
 		7F318CA0257F5ACD009FE4EA /* YYZGetIdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZGetIdVC.h; sourceTree = "<group>"; };
 		7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZGetIdVC.m; sourceTree = "<group>"; };
 		7F9A212526218E8800CA86B2 /* YYZTopicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYZTopicModel.h; sourceTree = "<group>"; };
@@ -1821,7 +1818,6 @@
 				1880EA5626088EE6004E845C /* MGDMainView */,
 				7F101AB5260613E800F2034C /* YYZTopicGroup */,
 				1817F0382594D5C500FE1304 /* NewQA.xcassets */,
-				B8AA53DB25B9499A00CEE847 /* ReleaseDynamic */,
 				B8EFF3CC259C61B3003753DD /* Search */,
 			);
 			path = NewQA;
@@ -3673,8 +3669,6 @@
 				7F101ABF260613E800F2034C /* YYZTopicCell.m */,
 				7F101AC0260613E800F2034C /* YYZTopicCell.xib */,
 				7F101AC1260613E800F2034C /* YYZTopicCell.h */,
-				7F101B2726063F3100F2034C /* YYZTopicView.h */,
-				7F101B2826063F3100F2034C /* YYZTopicView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4144,6 +4138,7 @@
 		B8EFF3CC259C61B3003753DD /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				B8AA53DB25B9499A00CEE847 /* ReleaseDynamic */,
 				B82C454025DC2FBF00340C12 /* Tool */,
 				B8AA53D525B9491700CEE847 /* SearchPage */,
 				B8C6757C25D9586100D2598B /* SearchEndPage */,
@@ -5131,7 +5126,6 @@
 				1817F0562594D5C500FE1304 /* MGDRefreshTool.m in Sources */,
 				AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
-				7F101B2926063F3200F2034C /* YYZTopicView.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */,
 				B83766ED25C14FD600A8666A /* SearchEndNoResultCV.m in Sources */,
@@ -5728,7 +5722,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 26;
-				DEVELOPMENT_TEAM = RT6PQ9CYD3;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5738,7 +5732,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.mgd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -5757,7 +5751,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 26;
-				DEVELOPMENT_TEAM = RT6PQ9CYD3;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5767,7 +5761,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.mgd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.yyz4869;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";

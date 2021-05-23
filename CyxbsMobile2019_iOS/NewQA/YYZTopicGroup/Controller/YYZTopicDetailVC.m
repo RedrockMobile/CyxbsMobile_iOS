@@ -20,8 +20,11 @@
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
 #import "ReportModel.h"
+//#import "DeletePostModel.h
+#import "SelfFuncView.h"
+
     
-@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate>
+@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate,SelfFuncViewProtocol>
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;//最底部的scrollview
@@ -45,12 +48,15 @@
 @property (nonatomic, strong) MJRefreshNormalHeader *header;
 
 @property (nonatomic, assign) NSInteger cnt;
+@property (nonatomic, assign) NSInteger offestInt;
+@property (nonatomic, assign) NSInteger stausHeight;
+@property (nonatomic, assign) NSInteger navHeight;
+
+
 
 @end
 
 @implementation YYZTopicDetailVC
-
-#pragma mark  获取当前圈子ID
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -76,10 +82,22 @@
     self.navigationController.navigationBar.topItem.title = self.topicIdString;//设置返回按钮文字
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
     self.navigationItem.leftBarButtonItem.width = -1000;
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 状态栏(statusbar)
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    self.stausHeight = rectStatus.size.height;  // 高度
+   // 导航栏（navigationbar）
+    CGRect rectNav = self.navigationController.navigationBar.frame;
+    self.navHeight = rectNav.size.height;  // 高度
+    // 如果是刘海屏
+    if ([self isNotchScreen] == YES) {
+        self.navHeight  += 35;
+    }
+
     [self setNotification];//设置通知中心
     [self setBackViewWithGesture];//设置弹出view
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
@@ -89,11 +107,14 @@
     self.rightTableArray = [[NSMutableArray alloc]init];
     self.rightPostmodel = [[YYZTopicModel alloc]init];
     
+    //[self setCell];//设置cell;
     [self setScroll];
     [self setMiddleLable];
     [self setBackTableView];
     [self funcPopViewinit];
+    
     [self loadData];//初始化数据
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -113,41 +134,58 @@
     
 }
 - (void) setScroll {
-    UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
+    UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.backgroundScrollView = backgroundScrollView;
+    backgroundScrollView.bounces = NO;
+    backgroundScrollView.showsVerticalScrollIndicator = FALSE;
+    backgroundScrollView.showsHorizontalScrollIndicator = FALSE;
     backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    backgroundScrollView.contentSize = CGSizeMake(0,0);//先设置禁止滑动，以后适配动画效果
+    backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125 -self.navHeight-self.stausHeight+4);
+    //设置kvo监听
+    [backgroundScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"2"];
     [self.view addSubview:backgroundScrollView];
     
-    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, SCREEN_HEIGHT-180)];
+    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 180, SCREEN_WIDTH, SCREEN_HEIGHT-112)];
     self.topicScrollView = topicScrollView;
     topicScrollView.delegate = self;
     topicScrollView.backgroundColor = [UIColor whiteColor];
     topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-185);
     topicScrollView.pagingEnabled = YES;
     //设置kvo监听
-    [topicScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+    [topicScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"1"];
     [self.backgroundScrollView addSubview:topicScrollView];
+    
 }
 
-#pragma mark KVO方法
+#pragma mark- KVO方法
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    
     if ([keyPath isEqualToString:@"contentOffset"]){
-        //改变字体状态
-        CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
-        int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        if(currentPage == 0){
-            [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-            [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+        if(context ==  @"1"){
+            CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
+            int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+            if(currentPage == 0){
+                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+            }
+            else if(currentPage == 1){
+                [self.topicRightTableView reloadData];
+                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+            }
+            //改变提示线位置
+            double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
+            self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
         }
-        else if(currentPage == 1){
-            [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
-            [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+        if(context ==  @"2"){
+            if(self.backgroundScrollView.contentOffset.y >= 125-self.navHeight-self.stausHeight+4){
+                self.topicLeftTableView.scrollEnabled = YES;
+                self.topicRightTableView.scrollEnabled = YES;
+            }
+            if(self.backgroundScrollView.contentOffset.y <= 1){
+                self.topicLeftTableView.scrollEnabled = NO;
+                self.topicRightTableView.scrollEnabled = NO;
+            }
         }
-        //改变提示线位置
-        double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
-        self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -198,48 +236,52 @@
 - (void)TopicLoadSuccess {
     if([self checkPage] == 0){
         if (self.leftPage == 1) {
+            //[self.leftTableArray removeAllObjects];
             self.leftTableArray = self.leftPostmodel.postArray;
         }else {
             [self.leftTableArray addObjectsFromArray:self.leftPostmodel.postArray];
         }
         //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
         if (self.leftPage == 1) {
-            [self.topicLeftTableView reloadData];
             [self.topicLeftTableView.mj_header endRefreshing];
-        }else{
             [self.topicLeftTableView reloadData];
+        }else{
             [self.topicLeftTableView.mj_footer endRefreshing];
+            [self.topicLeftTableView reloadData];
         }
     }
     else{
         if (self.rightPage == 1) {
+            //[self.rightTableArray removeAllObjects];
             self.rightTableArray = self.rightPostmodel.postArray;
         }else {
             [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
         }
+
         //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
         if (self.rightPage == 1) {
-            [self.topicRightTableView reloadData];
             [self.topicRightTableView.mj_header endRefreshing];
-        }else{
             [self.topicRightTableView reloadData];
+        }else{
             [self.topicRightTableView.mj_footer endRefreshing];
+            [self.topicRightTableView reloadData];
         }
     }
     if(self.cnt<2){
         self.cnt++;
         if (self.rightPage == 1) {
+            //[self.rightTableArray removeAllObjects];
             self.rightTableArray = self.rightPostmodel.postArray;
         }else {
             [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
         }
         //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
         if (self.rightPage == 1) {
-            [self.topicRightTableView reloadData];
             [self.topicRightTableView.mj_header endRefreshing];
-        }else{
             [self.topicRightTableView reloadData];
+        }else{
             [self.topicRightTableView.mj_footer endRefreshing];
+            [self.topicRightTableView reloadData];
         }
     }
 }
@@ -259,40 +301,46 @@
     //上滑加载的设置
     _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     self.topicLeftTableView.mj_footer = _footer;
+    _footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     self.topicRightTableView.mj_footer = _footer;
     //下拉刷新的设置
     _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicLeftTableView.mj_header = _header;
+    _header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
     self.topicRightTableView.mj_header = _header;
 
     [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
 }
 - (void) setBackTableView{
-    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-180) style:UITableViewStylePlain];
+    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
     self.topicLeftTableView = topicLeftTableView;
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
+    topicLeftTableView.scrollEnabled = NO;
     topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   
-    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-180) style:UITableViewStylePlain];
+    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
     self.topicRightTableView = topicRightTableView;
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
+    topicRightTableView.scrollEnabled = NO;
     topicRightTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
     [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     [self.topicScrollView addSubview:topicLeftTableView];
     [self.topicScrollView addSubview:topicRightTableView];
     [self setUpRefresh];
-
 }
 
 - (NSInteger)numberOfSectionsInTableView: (UITableView *)tableView{
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.leftTableArray.count;
+    if([self checkPage] == 0)
+        return self.leftTableArray.count;
+    else
+        return self.rightTableArray.count;
 }
 #pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -328,7 +376,6 @@
     }
     else if ([tableView isEqual:self.topicRightTableView]){
         [self.topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-
         NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
         PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if(cell == nil) {
@@ -360,6 +407,9 @@
     // 创建功能页面
     _popView = [[FuncView alloc] init];
     _popView.delegate = self;
+    // 创建多功能--自己页面
+    _selfPopView = [[SelfFuncView alloc] init];
+    _selfPopView.delegate = self;
     // 创建举报页面
     _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
     _reportView.delegate = self;
@@ -406,6 +456,7 @@
     [_popView removeFromSuperview];
     [_shareView removeFromSuperview];
     [_reportView removeFromSuperview];
+    [_selfPopView removeFromSuperview];
     [_backViewWithGesture removeFromSuperview];
 }
 #pragma mark - Cell中的相关事件
@@ -468,7 +519,6 @@
     [self.navigationController pushViewController:dynamicDetailVC animated:YES];
     }
 }
-
 ///分享帖子
 - (void)ClickedShareBtn:(PostTableViewCell *)cell {
     [self showBackViewWithGesture];
@@ -493,24 +543,94 @@
     UIWindow* desWindow=self.view.window;
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
-
-    _itemDic = self.leftTableArray[cell.tag];
-    if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
-        NSLog(@"取消关注");
-        [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-    }else {
-        NSLog(@"关注圈子");
-        [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+    if([self checkPage] == 0){
+        NSIndexPath *indexPath = [_topicLeftTableView indexPathForCell:cell];
+        _itemDic = self.leftTableArray[indexPath.row];
     }
-    _popView.layer.cornerRadius = 3;
-    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
-    [self.view.window addSubview:_popView];
+   
+    if ([_itemDic[@"is_self"] intValue] == 1) {
+        self.selfPopView.deleteBtn.tag = indexPath.row;
+        _selfPopView.postID = _itemDic[@"post_id"];
+        _selfPopView.layer.cornerRadius = 8;
+        _selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+        [self.view.window addSubview:_selfPopView];
+    } else {
+        self.popView.starGroupBtn.tag = indexPath.row;
+        self.popView.shieldBtn.tag = indexPath.row;
+        self.popView.reportBtn.tag = indexPath.row;
+        if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
+            NSLog(@"取消关注");
+            [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+        }else {
+            NSLog(@"关注圈子");
+            [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+        }
+        _popView.layer.cornerRadius = 8;
+        _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+        [self.view.window addSubview:_popView];
+    }
+
+}
+
+//#pragma mark- 配置相关弹出View和其蒙版的操作
+/////设置相关蒙版
+//- (void)setBackViewWithGesture {
+//    _backViewWithGesture = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//    _backViewWithGesture.backgroundColor = [UIColor blackColor];
+//    _backViewWithGesture.alpha = 0.36;
+//    UITapGestureRecognizer *dismiss = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissBackViewWithGesture)];
+//    [self.backViewWithGesture addGestureRecognizer:dismiss];
+//}
+//
+//- (void)showBackViewWithGesture {
+//    [self.view.window addSubview:_backViewWithGesture];
+//}
+//
+//- (void)dismissBackViewWithGestureAnd:(UIView *)view {
+//    [view removeFromSuperview];
+//    [_backViewWithGesture removeFromSuperview];
+//}
+//
+//- (void)dismissBackViewWithGesture {
+//    [_popView removeFromSuperview];
+//    [_shareView removeFromSuperview];
+//    self.isShowedReportView = NO;
+//    [_reportView removeFromSuperview];
+//    [_selfPopView removeFromSuperview];
+//    [_backViewWithGesture removeFromSuperview];
+//}
+
+#pragma mark -多功能View的代理方法
+///点击关注按钮
+- (void)ClickedStarGroupBtn:(UIButton *)sender {
+    _itemDic = self.tableArray[sender.tag];
+    FollowGroupModel *model = [[FollowGroupModel alloc] init];
+    [model FollowGroupWithName:_itemDic[@"topic"]];
+    if ([sender.titleLabel.text isEqualToString:@"关注圈子"]) {
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                [self showStarSuccessful];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil userInfo:self->_itemDic[@"topic"]];
+            }else  {
+                [self funcViewFailure];
+            }
+        }];
+    } else if ([sender.titleLabel.text isEqualToString:@"取消关注"]) {
+        [model setBlock:^(id  _Nonnull info) {
+            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                [self showUnStarSuccessful];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil userInfo:self->_itemDic[@"topic"]];
+            }else  {
+                [self funcViewFailure];
+            }
+        }];
+    }
 }
 //设置顶部cell
 - (void)setCell {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
     YYZTopicCell *cell = [nib objectAtIndex:0];
-    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH, 130);
+    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH,125);
     self.cell = cell;
     for(int i=0;i<self.array.count;i++){
         NSDictionary *dic = self.array[i];
@@ -570,15 +690,11 @@
 }
 
 - (void)leftBtnJump {
-    [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-    [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
     CGFloat imageW = self.topicScrollView.frame.size.width;
     CGPoint position = CGPointMake(0*imageW, 0);
     [self.topicScrollView setContentOffset:position animated:YES];
 }
 - (void)rightBtnJump {
-    [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
-    [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
     CGFloat imageW = self.topicScrollView.frame.size.width;
     CGPoint position = CGPointMake(1*imageW, 0);
     [self.topicScrollView setContentOffset:position animated:YES];
@@ -780,6 +896,23 @@
     [self.shareView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     [self shareSuccessful];
+}
+
+// iPhoneX、iPhoneXR、iPhoneXs、iPhoneXs Max等
+// 判断刘海屏，返回YES表示是刘海屏
+- (BOOL)isNotchScreen {
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        return NO;
+    }
+    
+    CGSize size = [UIScreen mainScreen].bounds.size;
+    NSInteger notchValue = size.width / size.height * 100;
+    
+    if (216 == notchValue || 46 == notchValue) {
+        return YES;
+    }
+    return NO;
 }
 
 @end
