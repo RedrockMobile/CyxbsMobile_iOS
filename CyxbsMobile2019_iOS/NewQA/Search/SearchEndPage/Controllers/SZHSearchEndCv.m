@@ -22,6 +22,7 @@
 #import "ShieldModel.h"                     //屏蔽数据的model
 #import "ReportModel.h"                     //举报的数据model
 #import "FollowGroupModel.h"                //关注圈子的数据model
+#import "DeletePostModel.h"                 //删除动态的model
 
 //视图类
 #import "SearchBeiginView.h"    //本界面上半部分
@@ -32,8 +33,10 @@
 #import "FuncView.h"            //cell上的三个点点击后界面
 #import "CYSearchEndKnowledgeDetailView.h"  //知识库详情页
 #import "SearchTopView.h"
+#import "SelfFuncView.h"    //动态是自己的时候的多功能View
+#import "LYEmptyView.h"
 
-@interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,ShareViewDelegate,FuncViewProtocol,ReportViewDelegate>
+@interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,ShareViewDelegate,FuncViewProtocol,ReportViewDelegate,SelfFuncViewProtocol>
 @property (nonatomic, strong) SearchBeiginView *searchEndTopView;   //上半部分视图
 /// 知识库详情页View
 @property (nonatomic, strong) CYSearchEndKnowledgeDetailView *knowledgeDetailView;
@@ -56,8 +59,12 @@
 @property (nonatomic, strong) MJRefreshNormalHeader *header;        //列表顶部刷新控件
 @property (nonatomic, assign) NSInteger page;   //列表分页展示
     //cell相关
-@property (nonatomic, strong) FuncView *popView;    //多功能View（点击cell上的三个小点后出来的view）
-@property (nonatomic, strong) ReportView *reportView;   //举报页面
+///多功能View（点击cell上的三个小点后出来的view）
+@property (nonatomic, strong) FuncView *popView;
+///自己动态的多功能View
+@property (nonatomic, strong) SelfFuncView *selfPopView;
+///举报页面
+@property (nonatomic, strong) ReportView *reportView;
 /// 是否已经显示reportView
 @property (nonatomic, assign) BOOL isShowedReportView;
 @property (nonatomic, strong) ShareView *shareView; //分享页面
@@ -353,7 +360,8 @@
     [_backViewWithGesture removeFromSuperview];
 }
 - (void)dismissBackViewWithGesture {
-    [_popView removeFromSuperview];
+    [self.popView removeFromSuperview];
+    [self.selfPopView removeFromSuperview];
     [_shareView removeFromSuperview];
     [self.reportView removeFromSuperview];
     self.isShowedReportView = NO;
@@ -515,21 +523,20 @@
     UIWindow* desWindow = self.view.window;
     CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
-    _popView = [[FuncView alloc] init];
-    _popView.delegate = self;
-    _popView.layer.cornerRadius = 3;
-    _popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+    
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:self.tableDataAry[cell.tag]];
-    if ([dic[@"is_follow_topic"] intValue] == 1) {
-        NSLog(@"取消关注");
-        [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
-    }else {
-        NSLog(@"关注圈子");
-        [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+    if ([dic[@"is_self"] intValue] == 1) {
+        self.selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+        [self.view.window addSubview:self.selfPopView];
+    }else{
+        if ([dic[@"is_follow_topic"] intValue] == 1) {
+            [self.popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
+        }else {
+            [self.popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
+        }
+        self.popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+        [self.view.window addSubview:self.popView];
     }
-    
-    [self.view.window addSubview:_popView];
-    
 }
 /// 点击标签，进入到圈子详情页
 - (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell{
@@ -588,6 +595,31 @@
     [self.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+    }];
+}
+
+//MARK:===========================自己动态的多功能View代理方法=========================
+- (void)ClickedDeletePostBtn:(UIButton *)sender{
+    [self.selfPopView removeFromSuperview];
+    [self.backViewWithGesture removeFromSuperview];
+    NSDictionary *dic = self.tableDataAry[sender.tag];
+    DeletePostModel *model = [[DeletePostModel alloc] init];
+    [model deletePostWithID:dic[@"post_id"] AndModel:[NSNumber numberWithInt:0]];
+    [model setBlock:^(id  _Nonnull info) {
+        NSMutableArray *muteAry = [NSMutableArray arrayWithArray:self.tableDataAry];
+        for (int i = 0;i < self.tableDataAry.count; i++) {
+            if ([muteAry[i][@"post_id"] isEqualToString:dic[@"post_id"]]) {
+                [muteAry removeObjectAtIndex:i];
+                self.tableDataAry = muteAry;
+                [self.relevantDynamicTable reloadData];
+                if (self.tableDataAry.count == 0) {
+                    LYEmptyView *emptyView = [LYEmptyView emptyViewWithImageStr:@"图层 11" titleStr:@"还没有评论哦~" detailStr:@""];
+                    self.relevantDynamicTable.tableFooterView = emptyView;
+                    [self.relevantDynamicTable addSubview:emptyView];
+                }
+                break;
+            }
+        }
     }];
 }
 
@@ -762,6 +794,23 @@
 //        [self setUpRefresh];
     }
     return _relevantDynamicTable;
+}
+
+- (FuncView *)popView{
+    if (!_popView) {
+        _popView = [[FuncView alloc] init];
+        _popView.delegate = self;
+        _popView.layer.cornerRadius = 3;
+    }
+    return _popView;
+}
+
+- (SelfFuncView *)selfPopView{
+    if (!_selfPopView) {
+        _selfPopView = [[SelfFuncView alloc] init];
+        _selfPopView.delegate = self;
+    }
+    return _selfPopView;
 }
 
 - (ReportView *)reportView{

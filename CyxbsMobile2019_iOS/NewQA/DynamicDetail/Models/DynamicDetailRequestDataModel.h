@@ -55,6 +55,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param sucess 成功后的操作
 /// @param failure 失败后的操作
 - (void)deleteCommentWithId:(int)post_id Sucess:(void(^)(void))sucess Failure:(void(^)(void))failure;
+
+///删除动态信息
+- (void)deletSelfDynamicWithID:(int)post_id Success:(void(^)(void))success Failure:(void(^)(void))failure;
 @end
 
 NS_ASSUME_NONNULL_END

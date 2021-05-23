@@ -51,6 +51,8 @@
 @property (nonatomic, assign) NSInteger stausHeight;
 @property (nonatomic, assign) NSInteger navHeight;
 
+/// 是否已经显示reportView
+@property (nonatomic, assign) BOOL isShowedReportView;
 
 @end
 
@@ -112,6 +114,7 @@
     
     [self loadData];//初始化数据
     
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -128,7 +131,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(TopicLoadError)
                                                  name:@"TopicDataLoadFailure" object:nil];
-    
+    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 - (void) setScroll {
     UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -151,6 +156,34 @@
     //设置kvo监听
     [topicScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"1"];
     [self.backgroundScrollView addSubview:topicScrollView];
+    
+}
+
+#pragma mark- 监听键盘移动的通知方法
+///键盘将要出现时，若举报页面已经显示则上移
+- (void)reportViewKeyboardWillShow:(NSNotification *)notification{
+    //如果举报页面已经出现，就将举报View上移动
+    if (self.isShowedReportView == YES) {
+        //获取键盘高度
+        NSDictionary *userInfo = notification.userInfo;
+        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat keyBoardHeight = endFrame.size.height;
+        
+        [_reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+            make.bottom.equalTo(self.view).offset( IS_IPHONEX ? -(keyBoardHeight+20) : -keyBoardHeight);
+        }];
+    }
+}
+///键盘将要消失，若举报页面已经显示则使其下移
+- (void)reportViewKeyboardWillHide:(NSNotification *)notification{
+    if (self.isShowedReportView == YES) {
+        [_reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
+    }
     
 }
 
@@ -455,6 +488,7 @@
     [_popView removeFromSuperview];
     [_shareView removeFromSuperview];
     [_reportView removeFromSuperview];
+    self.isShowedReportView = NO;
     [_selfPopView removeFromSuperview];
     [_backViewWithGesture removeFromSuperview];
 }
@@ -786,25 +820,35 @@
 ///点击举报按钮
 - (void)ClickedReportBtn:(UIButton *)sender  {
     [_popView removeFromSuperview];
+    self.isShowedReportView = YES;
     CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
     int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     if(currentPage == 0){
         _itemDic = self.leftTableArray[sender.tag];
         _reportView.postID = _itemDic[@"post_id"];
-        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W -     MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+//        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W -     MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
         [self.view.window addSubview:_reportView];
+        [_reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
     }
     else{
         _itemDic = self.rightTableArray[sender.tag];
         _reportView.postID = _itemDic[@"post_id"];
-        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W -     MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
+//        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W -     MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
         [self.view.window addSubview:_reportView];
+        [_reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
     }
 }
 
 #pragma mark -举报页面的代理方法
 ///举报页面点击确定按钮
 - (void)ClickedSureBtn {
+    self.isShowedReportView = NO;
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     ReportModel *model = [[ReportModel alloc] init];
@@ -816,6 +860,7 @@
 
 ///举报页面点击取消按钮
 - (void)ClickedCancelBtn {
+    self.isShowedReportView = NO;
     [_reportView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
 }

@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///评论∫
 @property (nonatomic, strong) FunctionBtn *commendBtn;
 
+
+
 /// 拥有动态的具体信息的数据model
 @property (nonatomic, strong) DynamicDetailViewModel *dynamicDataModel;
 

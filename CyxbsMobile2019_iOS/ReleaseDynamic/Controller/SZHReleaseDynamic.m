@@ -223,9 +223,8 @@
             YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
             detailVC.topicID = topicID;
             detailVC.topicIdString = self.circleLabelText;
-//            [self.navigationController popToRootViewControllerAnimated:NO];
+            detailVC.isFromSub = 1;
             [self.navigationController pushViewController:detailVC animated:YES];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
         });
         } Failure:^{
             [hud hide:YES];

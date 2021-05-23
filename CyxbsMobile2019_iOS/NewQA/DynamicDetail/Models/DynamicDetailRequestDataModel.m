@@ -80,4 +80,18 @@
             failure();
         }];
 }
+
+- (void)deletSelfDynamicWithID:(int)post_id Success:(void(^)(void))success Failure:(void(^)(void))failure{
+    HttpClient *client = [HttpClient defaultClient];
+    NSDictionary *param = @{@"id":@(post_id),@"model":@0};
+    [client requestWithPath:NEW_QA_DELETEPOST method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            success();
+        }else{
+            failure();
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure();
+    }];
+}
 @end

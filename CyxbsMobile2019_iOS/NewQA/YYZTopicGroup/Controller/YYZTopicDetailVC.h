@@ -39,5 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic,assign) NSInteger topicID;//当前圈子编号
 
+@property(nonatomic,assign) NSInteger isFromSub;//是否从发布页跳转
+
 @end
 NS_ASSUME_NONNULL_END
