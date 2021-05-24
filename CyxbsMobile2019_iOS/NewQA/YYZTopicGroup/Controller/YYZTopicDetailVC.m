@@ -75,17 +75,16 @@
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar
     self.navigationItem.title = @"";
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
 //    //按钮标题的宽度
     CGFloat stringWidth = [self.topicIdString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:21]} context:0].size.width;
     
-    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, stringWidth + 40 + 5, 40)];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 13, 7, 14)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(1, 13, 7, 14)];
     imageView.image = [UIImage imageNamed:@"返回的小箭头"];
     [view addSubview:imageView];
     UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, stringWidth, 40)];
     titleLbl.text = self.topicIdString;
+    [titleLbl setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
     titleLbl.textColor = [UIColor colorNamed:@"21_49_91&131_131_132"];
     [view addSubview:titleLbl];
     view.userInteractionEnabled = YES;
@@ -96,14 +95,13 @@
     UIBarButtonItem *spacebutton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spacebutton.width = -1000;//这个数值可以调整
     self.navigationItem.leftBarButtonItems = @[spacebutton,leftBarItem];
-    
-//    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
+        self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
     self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-//    self.navigationController.navigationBar.topItem.title = self.topicIdString;//设置返回按钮文字
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
-//    self.navigationItem.leftBarButtonItem.width = -1000;
-    
+    //self.navigationController.interactivePopGestureRecognizer.delegate=(id)self;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
 }
 
 - (void)viewDidLoad {
@@ -129,13 +127,10 @@
     self.rightTableArray = [[NSMutableArray alloc]init];
     self.rightPostmodel = [[YYZTopicModel alloc]init];
     
-    
-    //[self setCell];//设置cell;
     [self setScroll];
     [self setMiddleLable];
     [self setBackTableView];
     [self funcPopViewinit];
-    
     [self loadData];//初始化数据
     
     
@@ -177,6 +172,7 @@
     topicScrollView.backgroundColor = [UIColor whiteColor];
     topicScrollView.contentSize = CGSizeMake(SCREEN_WIDTH*2, SCREEN_HEIGHT-185);
     topicScrollView.pagingEnabled = YES;
+    topicScrollView.bounces = NO;
     //设置kvo监听
     [topicScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"1"];
     [self.backgroundScrollView addSubview:topicScrollView];

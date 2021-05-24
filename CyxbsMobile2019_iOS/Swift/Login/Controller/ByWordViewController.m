@@ -21,6 +21,7 @@
 @property(nonatomic, weak)UILabel *placeHolder;
 @property(nonatomic, strong)UILabel *label3;
 @property(nonatomic,strong) NSNumber *questNum;
+@property (nonatomic, assign) NSString* code;
 
 @end
 
@@ -170,7 +171,10 @@
         {
             if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
             {
+                self.code = responseObject[@"data"][@"code"];
                 ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
+                rView.stuID = self.idString;
+                rView.changeCode = self.code;
                 [self.navigationController pushViewController:rView animated:YES];
             }
             else

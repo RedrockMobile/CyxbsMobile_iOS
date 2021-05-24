@@ -95,8 +95,11 @@
 /// 密保问题列表
 #define QUESTIONLISTAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/question"]
 
-///修改密码
+///修改密码(个人界面)
 #define CHANGEPASSWORDAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/password/personal"]
+
+///修改密码(登录界面)
+#define RESSETPASSWORDAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/password/valid"]
 
 ///发送绑定邮箱验证码
 #define SENDEMAILCODEAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/bind/email/code"]

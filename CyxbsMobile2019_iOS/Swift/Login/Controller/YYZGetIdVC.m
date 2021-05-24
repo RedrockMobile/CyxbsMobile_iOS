@@ -34,18 +34,20 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     NSUserDefaults *userdfa = [NSUserDefaults standardUserDefaults];
     [userdfa setBool:0 forKey:@"isLogin"];
     //设置导航栏
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ忘记密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
-    [UIColor colorWithRed:21/255.0 green:49/255.0 blue:88/255.0 alpha:1.0], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    [UIColor colorNamed:@"YYZColor2"], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorNamed:@"YYZColor5"]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorNamed:@"YYZColor5"]];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
     [self setBtn];
     [self setText];
     [self setImage];

@@ -86,7 +86,7 @@
 ///将新密码传到后端，并更新缓存
 - (void)changePasswordWithNewPwd:(NSString *)password {
     changePassword *model = [[changePassword alloc] init];
-    [model changePasswordWithNewPassword:password];
+    [model changePasswordWithNewPassword:password :self.stuID :self.changeCode];
     [model setBlock:^(id  _Nonnull info) {
         if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
             ///修改密码成功
