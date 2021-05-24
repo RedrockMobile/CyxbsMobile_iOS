@@ -132,8 +132,7 @@
     [self setBackTableView];
     [self funcPopViewinit];
     [self loadData];//初始化数据
-    
-    
+    [NSTimer scheduledTimerWithTimeInterval:1.8f target:self selector:@selector(checkContent) userInfo:nil repeats:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -186,33 +185,6 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-#pragma mark- 监听键盘移动的通知方法
-///键盘将要出现时，若举报页面已经显示则上移
-- (void)reportViewKeyboardWillShow:(NSNotification *)notification{
-    //如果举报页面已经出现，就将举报View上移动
-    if (self.isShowedReportView == YES) {
-        //获取键盘高度
-        NSDictionary *userInfo = notification.userInfo;
-        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-        CGFloat keyBoardHeight = endFrame.size.height;
-        
-        [_reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view);
-            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
-            make.bottom.equalTo(self.view).offset( IS_IPHONEX ? -(keyBoardHeight+20) : -keyBoardHeight);
-        }];
-    }
-}
-///键盘将要消失，若举报页面已经显示则使其下移
-- (void)reportViewKeyboardWillHide:(NSNotification *)notification{
-    if (self.isShowedReportView == YES) {
-        [_reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self.view);
-            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
-        }];
-    }
-    
-}
 
 #pragma mark- KVO方法
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
@@ -262,6 +234,11 @@
 #pragma mark- 帖子列表的网络请求
 //下拉刷新
 - (void)loadData{
+    if(self.cnt1 <4){
+        self.cnt1++;
+        self.rightPage += 1;
+        [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
+    }
     if([self checkPage] == 0){
     self.leftPage += 1;
     [self.leftPostmodel loadTopicWithLoop:self.topicID AndPage:self.leftPage AndSize:6 AndType:@"latest"];
@@ -270,11 +247,7 @@
     self.rightPage += 1;
     [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
     }
-    if(self.cnt1 <4){
-        self.cnt1++;
-        self.rightPage += 1;
-        [self.rightPostmodel loadTopicWithLoop:self.topicID AndPage:self.rightPage AndSize:6 AndType:@"hot"];
-    }
+    
 }
 
 ///上拉刷新
@@ -293,6 +266,23 @@
 
 ///成功请求数据
 - (void)TopicLoadSuccess {
+    if(self.cnt1 < 4){
+        self.cnt1++;
+        if (self.rightPage == 1) {
+            //[self.rightTableArray removeAllObjects];
+            self.rightTableArray = self.rightPostmodel.postArray;
+        }else {
+            [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
+        }
+        //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
+        if (self.rightPage == 1) {
+            [self.topicRightTableView.mj_header endRefreshing];
+            [self.topicRightTableView reloadData];
+        }else{
+            [self.topicRightTableView.mj_footer endRefreshing];
+            [self.topicRightTableView reloadData];
+        }
+    }
     if([self checkPage] == 0){
         if (self.leftPage == 1) {
             //[self.leftTableArray removeAllObjects];
@@ -326,23 +316,6 @@
             [self.topicRightTableView reloadData];
         }
     }
-    if(self.cnt1 < 4){
-        self.cnt1++;
-        if (self.rightPage == 1) {
-            //[self.rightTableArray removeAllObjects];
-            self.rightTableArray = self.rightPostmodel.postArray;
-        }else {
-            [self.rightTableArray addObjectsFromArray:self.rightPostmodel.postArray];
-        }
-        //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
-        if (self.rightPage == 1) {
-            [self.topicRightTableView.mj_header endRefreshing];
-            [self.topicRightTableView reloadData];
-        }else{
-            [self.topicRightTableView.mj_footer endRefreshing];
-            [self.topicRightTableView reloadData];
-        }
-    }
 }
 
 ///请求失败
@@ -355,6 +328,21 @@
     [NewQAHud showHudWith:@"网络异常" AddView:self.view];
 }
 
+- (void)checkContent {
+    NSInteger rows1 = [_topicLeftTableView numberOfRowsInSection:0];
+    NSInteger rows2 = [_topicRightTableView numberOfRowsInSection:0];
+    if(rows1 == 0 || rows2 == 0){
+        UIImageView *leftImageview = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-83, 250, 167,127)];
+        UIImage *image = [UIImage imageNamed:@"没有动态"];
+        UILabel *noneLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-83+40, 330, 167,127)];
+        noneLable.text = @"还没有动态哦~";
+        noneLable.font = [UIFont fontWithName:nil size:13];
+        noneLable.textColor = [UIColor colorNamed:@"YYZColor2"];;
+        leftImageview.image = image;
+        [self.backgroundScrollView addSubview:leftImageview];
+        [self.backgroundScrollView addSubview:noneLable];
+    }
+}
 ///设置列表加载菊花
 - (void)setUpRefresh {
     //上滑加载的设置
@@ -994,5 +982,30 @@
     }
     return NO;
 }
-
+#pragma mark- 监听键盘移动的通知方法
+///键盘将要出现时，若举报页面已经显示则上移
+- (void)reportViewKeyboardWillShow:(NSNotification *)notification{
+    //如果举报页面已经出现，就将举报View上移动
+    if (self.isShowedReportView == YES) {
+        //获取键盘高度
+        NSDictionary *userInfo = notification.userInfo;
+        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat keyBoardHeight = endFrame.size.height;
+        
+        [_reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+            make.bottom.equalTo(self.view).offset( IS_IPHONEX ? -(keyBoardHeight+20) : -keyBoardHeight);
+        }];
+    }
+}
+///键盘将要消失，若举报页面已经显示则使其下移
+- (void)reportViewKeyboardWillHide:(NSNotification *)notification{
+    if (self.isShowedReportView == YES) {
+        [_reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
+    }
+}
 @end
