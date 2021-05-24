@@ -1257,7 +1257,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *queryString = [NSString stringWithFormat:@"%ld%@",(long)topicID,@"LastLeaveTimeStr"];
     [defaults setValue:queryString forKey:[MGDCurrentTimeStr currentTimeStr]];
-    self.dataArray[index].message_count = [NSNumber numberWithInt:0];
     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
 }
 
