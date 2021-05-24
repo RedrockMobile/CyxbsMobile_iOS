@@ -764,6 +764,8 @@
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                         //改变button状态
+        NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
         if([btn.titleLabel.text isEqualToString:@"已关注"]){
             [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
             btn.clipsToBounds = YES;

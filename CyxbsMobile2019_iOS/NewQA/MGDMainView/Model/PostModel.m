@@ -24,7 +24,6 @@ MJCodingImplementation
                 NSArray *dataArray = [responseObject objectForKey:@"data"];
                 self.postArray = [NSMutableArray arrayWithArray:dataArray];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NewQAListPageDataLoadSuccess" object:nil];
-                NSLog(@"11111111");
             }else{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"NewQAListPageDataLoadError" object:nil];
                 NSLog(@"22222222");

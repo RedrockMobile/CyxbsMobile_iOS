@@ -118,7 +118,6 @@
     [[HttpClient defaultClient]requestWithPath :@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/judge/origin" method:HttpRequestPost parameters:@{@"stu_num":self.testF.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         //如果是默认密码，弹出提示框
         if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
-            NSLog(@"111111111");
             self->_popView.alpha = 1.0;
             [self.view addSubview:self->_backView];
             [self.view addSubview:self.popView];
