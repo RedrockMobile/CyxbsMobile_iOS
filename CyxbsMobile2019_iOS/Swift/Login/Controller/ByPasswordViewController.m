@@ -9,7 +9,7 @@
 #import "ByPasswordViewController.h"
 #import "Masonry.h"
 #import "ResetPwdViewController.h"
-#import "YYZSendVC.h"
+//#import "YYZSendVC.h"
 #import "YYZGetIdVC.h"
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
@@ -23,6 +23,7 @@
 @property(nonatomic, weak) UIButton *btn2;
 @property(nonatomic, weak) UIButton *btn;
 @property(nonatomic, weak) UILabel *lable3;
+@property (nonatomic, assign) NSString* code;
 
 @end
 
@@ -187,7 +188,10 @@
     NSNumber *codeNum = [NSNumber numberWithString:self.tf.text];
     [[HttpClient defaultClient] requestWithPath:CHECKEMAILCODE method:HttpRequestPost parameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
+            self.code = responseObject[@"data"][@"code"];
             ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
+            rView.stuID = self.idString;
+            rView.changeCode = self.code;
             rView.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:rView animated:YES];
         }

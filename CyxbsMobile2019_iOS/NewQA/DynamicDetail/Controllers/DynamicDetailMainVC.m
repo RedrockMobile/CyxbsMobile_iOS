@@ -29,6 +29,7 @@
 #import "DKSKeyboardView.h"             //评论输入框
 #import "SHPopMenu.h"                   //点击评论cell的弹窗
 #import "DeleteArticleTipView.h"
+#import "SelfFuncView.h"                //如果cell是自己的弹出的View
 
 //Models
 #import "DynamicDetailRequestDataModel.h"
@@ -39,7 +40,7 @@
 #import "FollowGroupModel.h"//关注圈子的网络请求的model
 #import "ShieldModel.h"     //屏蔽的网络请求的model
 
-@interface DynamicDetailMainVC ()<DynamicDetailTopBarViewDelegate,UITableViewDelegate,UITableViewDataSource,DynamicSpecificCellDelegate,FuncViewProtocol,ReportViewDelegate,ShareViewDelegate,UITextFieldDelegate,DKSKeyboardDelegate
+@interface DynamicDetailMainVC ()<DynamicDetailTopBarViewDelegate,UITableViewDelegate,UITableViewDataSource,DynamicSpecificCellDelegate,FuncViewProtocol,ReportViewDelegate,ShareViewDelegate,UITextFieldDelegate,DKSKeyboardDelegate,SelfFuncViewProtocol
 
 >
 ///替代navigationBar的视图
@@ -58,6 +59,8 @@
 @property (nonatomic, strong) UIView *noCommentView;
 
 
+/// 如果动态是自己的多能功View
+@property (nonatomic, strong) SelfFuncView *selfPopView;
 ///多功能View
 @property (nonatomic, strong) FuncView *popView;
 /// 点击多功能view后会出现的背景蒙版
@@ -311,7 +314,6 @@
             self.dynamicSpecifiCell.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",model.comment_count];
             } Failure:^{
             }];
-    
     } Failure:^{
         [self.commentTable.mj_header endRefreshing];
         [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
@@ -323,6 +325,7 @@
 - (void)dismissBackViewWithGesture {
     [self.popView removeFromSuperview];
     [self.shareView removeFromSuperview];
+    [self.selfPopView removeFromSuperview];
     self.isShowedReportView = NO;
     [self.reportView.textView resignFirstResponder];
     [self.reportView removeFromSuperview];
@@ -404,11 +407,16 @@
 - (void)clickedFuncBtn:(UIButton *)btn{
     UIWindow *desWindow = self.view.window;
     CGRect frame = [btn convertRect:btn.bounds toView:desWindow];
-    //添加背景蒙版
     [self.view.window addSubview:self.backViewWithGesture];
-    self.popView.frame =  CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
-    //添加弹出的view
-    [self.view.window addSubview:self.popView];
+    //添加背景蒙版
+    if (self.dynamicDataModel.is_self.intValue == 1) {
+        self.selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+        [self.view.window addSubview:self.selfPopView];
+    }else{
+        self.popView.frame =  CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
+        //添加弹出的view
+        [self.view.window addSubview:self.popView];
+    }
 }
 ///点击点赞按钮 先在本地改变UI，再将数据传入后端
 - (void)clickedStarBtn:(FunctionBtn *)btn{
@@ -501,7 +509,6 @@
         if ([info[@"info"] isEqualToString:@"success"]) {
             [self.popView removeFromSuperview];
             [self.backViewWithGesture removeFromSuperview];
-//            self.backViewWithGesture.alpha = 0;
             [NewQAHud showHudWith:@"  将不再推荐该用户的动态给你  " AddView:self.view];
         }
     }];
@@ -518,6 +525,19 @@
 
     //此方式进入创建举报view为从动态的多功能按钮进入，只能是举报动态
     self.isReportComment = NO;
+}
+
+//MARK:=====================是自己的动态的多功能View的代理方法================
+- (void)ClickedDeletePostBtn:(UIButton *)sender{
+//    [self.selfPopView removeFromSuperview];
+//    [self.backViewWithGesture removeFromSuperview];
+//    [[DynamicDetailRequestDataModel new] deletSelfDynamicWithID:self.dynamicDataModel.post_id.intValue Success:^{
+//            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view];
+////            [self.navigationController popToRootViewControllerAnimated:YES];
+//        [self.navigationController popViewControllerAnimated:YES];
+//        } Failure:^{
+//            [NewQAHud showHudWith:@" 网络开小差了 " AddView:self.view];
+//        }];
 }
 
 //MARK:======================================举报页面的代理方法======================================
@@ -903,6 +923,13 @@
         _popView.layer.cornerRadius = 6;
     }
     return _popView;
+}
+- (SelfFuncView *)selfPopView{
+    if (!_selfPopView) {
+        _selfPopView = [[SelfFuncView alloc] init];
+        _selfPopView.delegate = self;
+    }
+    return _selfPopView;
 }
 
 ///点击多功能按钮后出现的蒙板

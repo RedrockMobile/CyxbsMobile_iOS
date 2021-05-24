@@ -12,6 +12,7 @@
 #import "ShareView.h"
 #import "FuncView.h"
 #import "PostItem.h"
+#import "SelfFuncView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,8 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///背景蒙版
 @property (nonatomic, strong) UIView *backViewWithGesture;
 
-///多功能View
+///多功能View -- 他人
 @property (nonatomic, strong) FuncView *popView;
+
+///多功能View -- 自己
+@property (nonatomic, strong) SelfFuncView *selfPopView;
 
 ///举报页面
 @property (nonatomic, strong) ReportView *reportView;
@@ -34,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,strong) NSString *topicIdString; //当前圈子名
 
 @property(nonatomic,assign) NSInteger topicID;//当前圈子编号
+
+@property(nonatomic,assign) NSInteger isFromSub;//是否从发布页跳转
 
 @end
 NS_ASSUME_NONNULL_END

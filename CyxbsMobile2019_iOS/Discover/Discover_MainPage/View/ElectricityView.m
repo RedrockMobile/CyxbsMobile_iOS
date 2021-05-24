@@ -142,7 +142,11 @@
     UILabel *time = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = time;
     if ([self.defaults objectForKey:@"ElectricFee_time"]!= NULL) {
-        time.text = [self.defaults objectForKey:@"ElectricFee_time"];
+        NSRange range = {5,2};
+        NSString *strMonth = [[self.defaults objectForKey:@"ElectricFee_time"] substringWithRange:range];
+        NSString *strDay = [[self.defaults objectForKey:@"ElectricFee_time"] substringFromIndex:7];
+        time.text =[NSString stringWithFormat:@"%@月%@日抄表",strMonth,strDay];
+;
     }else {
         time.text = @"加载失败";
     }
@@ -154,7 +158,6 @@
     time.alpha = 0.54;
     time.font = [UIFont fontWithName:PingFangSCLight size: 10];
     [self addSubview:time];
-
 }
 
 - (void)addMoney {

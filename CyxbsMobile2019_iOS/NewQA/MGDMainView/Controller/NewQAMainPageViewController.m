@@ -78,6 +78,7 @@
 // 记录新增了哪个圈子
 @property (nonatomic, strong) NSString *topicID;
 
+@property (nonatomic, strong) UIView *noListBackView;
 /// 举报view是否已经显示
 @property (nonatomic, assign) BOOL isShowedReportView;
 @end
@@ -256,6 +257,9 @@
         [self.tableView reloadData];
     });
     [self.tableView reloadData];
+    if ([self.tableArray count] == 0 && !self.noListBackView.window) {
+        [self noDataInList];
+    }
 //    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
@@ -374,6 +378,40 @@
     _TopViewHeight = self.dataArray.count != 0 ? (SCREEN_WIDTH * 191/375) : (SCREEN_WIDTH * 116/375);
     [self setMainViewUI];
     [self.tableView reloadData];
+    if ([self.tableArray count] == 0 && !self.noListBackView.window) {
+        [self noDataInList];
+    }
+}
+
+// 列表无数据时的处理
+- (void)noDataInList {
+    _noListBackView = [[UIView alloc] init];
+    _noListBackView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+    self.tableView.separatorStyle = UITableViewCellAccessoryNone;
+    
+    _noListBackView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-(_TopViewHeight));
+    [self.tableView addSubview:_noListBackView];
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    UILabel *noticeLabel = [[UILabel alloc] init];
+    noticeLabel.text = @"还没有相关动态哦～";
+    noticeLabel.font = [UIFont fontWithName:PingFangSCLight size:12];
+    noticeLabel.textColor = [UIColor colorNamed:@"CellDateColor"];
+    [_noListBackView addSubview:imageView];
+    [_noListBackView addSubview:noticeLabel];
+    imageView.image = [UIImage imageNamed:@"图层 11"];
+    CGSize size = [UIImage imageNamed:@"图层 11"].size;
+    noticeLabel.textAlignment = NSTextAlignmentCenter;
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_noListBackView.top).mas_offset(SCREEN_WIDTH * 0.28 * 45.5/105);
+        make.left.mas_equalTo(_noListBackView.left).mas_equalTo(SCREEN_WIDTH * 0.28);
+        make.size.mas_equalTo(size);
+    }];
+    [noticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(_noListBackView);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.2387 * 11.5/89.5);
+        make.top.mas_equalTo(imageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.38 * 33/142.5);
+    }];
 }
 
 # pragma mark 初始化功能弹出页面
@@ -520,6 +558,9 @@
     }else{
         [self.tableView.mj_footer endRefreshing];
         [self.tableView reloadData];
+    }
+    if ([self.tableArray count] == 0 && !self.noListBackView.window) {
+        [self noDataInList];
     }
     NSLog(@"成功请求列表数据");
 }
@@ -1216,7 +1257,6 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *queryString = [NSString stringWithFormat:@"%ld%@",(long)topicID,@"LastLeaveTimeStr"];
     [defaults setValue:queryString forKey:[MGDCurrentTimeStr currentTimeStr]];
-    self.dataArray[index].message_count = [NSNumber numberWithInt:0];
     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
 }
 

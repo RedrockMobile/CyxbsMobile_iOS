@@ -95,8 +95,11 @@
 /// 密保问题列表
 #define QUESTIONLISTAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/question"]
 
-///修改密码
+///修改密码(个人界面)
 #define CHANGEPASSWORDAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/password/personal"]
+
+///修改密码(登录界面)
+#define RESSETPASSWORDAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/password/valid"]
 
 ///发送绑定邮箱验证码
 #define SENDEMAILCODEAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/bind/email/code"]
@@ -127,22 +130,22 @@
 //校历接口
 #define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/schoolCalendar"]
 /// 教务新闻列表
-#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
+///参数：page
+///方法：Get
+#define NEWSLIST @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/list"
+
 /// 教务新闻详情
-#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
+///方法：Get
+///参数：新闻id
+#define NEWSDETAIL @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/content"
 /// 教务新闻附件
-#define NEWSFILE @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
-
+/// 方法：Get
+///参数：附件的id
+#define NEWSFILE @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/file"
+//在NewDetailViewController要单独改一下
 /// 电费
-#define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
-//#define ELECTRICFEE @"http://api-234.redrock.team/wxapi/magipoke-elecquery/getElectric"]   // 这好像也是电费接口
+#define ELECTRICFEE @"https://be-prod.redrock.team/magipoke-elecquery/getElectric"
 
-/// 教务新闻列表
-#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
-/// 教务新闻详情
-#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
-/// 教务新闻附件下载
-#define NEWSDOWNLOAD @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 
 ///查询绩点需要先绑定ids
 #define IDSBINDINGAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/ids/bind"]

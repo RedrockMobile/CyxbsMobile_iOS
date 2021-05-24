@@ -29,16 +29,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 /**
-  概述：    1. 动态详情页中展示动态的具体信息的view，是对新版邮问主页推荐列表的自定义cell的一个优化
-         2.本页主要对 DynamicDetailViewModel 的数据进行处理并显示
-  构成思路：
-  1.需要点击触碰等事件一律通过协议让controller处理
-  2.图片排列使用UIImageView装载，利用九宫格方式动态创建UIImageView的数量。不使用collectionView可以减少很多工作量
-  3.图片浏览功能利用第三方库 YBImageBrowser 实现。图片的imageView的tag值为图片url在modelpic数组中的位置，图片浏览器当前展示的图片就是点击的imageView的tag值序列
-  */
+ *概述：
+ *1. 动态详情页中展示动态的具体信息的view，是对新版邮问主页推荐列表的自定义cell的一个优化
+ *2.本页主要对 DynamicDetailViewModel 的数据进行处理并显示
+ *
+ * 构成思路：
+ *
+ *1.需要点击触碰等事件一律通过协议让controller处理
+ *
+ *2.图片排列使用UIImageView装载，利用九宫格方式动态创建UIImageView的数量。不使用collectionView可以减少很多工作量
+ *
+ *3.图片浏览功能利用第三方库 YBImageBrowser 实现。图片的imageView的tag值为图片url在modelpic数组中的位置，图片浏览器当前展示的图片就是点击的imageView的tag值序列
+ *
+ */
 @interface DynamicSpecificCell : UIView
-///评论
+///评论∫
 @property (nonatomic, strong) FunctionBtn *commendBtn;
+
+
 
 /// 拥有动态的具体信息的数据model
 @property (nonatomic, strong) DynamicDetailViewModel *dynamicDataModel;

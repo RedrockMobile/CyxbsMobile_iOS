@@ -15,7 +15,7 @@
     if (self) {
         self.placeArray = @[@"宁静苑",@"明理苑",@"知行苑",@"兴业苑",@"四海苑"];
         self.siHaiPlace = @[@"1舍",@"2舍"];
-        self.ningJingPlace = @[@"1舍",@"2舍",@"3舍",@"4舍",@"5舍",@"6舍",@"7舍",@"8舍",@"9舍"];
+        self.ningJingPlace = @[@"1舍",@"2舍",@"3舍",@"4舍",@"5舍",@"6舍",@"7舍",@"8舍",@"9舍",@"10舍"];
         self.mingLiPlace = @[@"1舍",@"2舍",@"3舍",@"4舍",@"5舍",@"6舍",@"7舍",@"8舍",@"9舍"];
         self.zhiXingPlace = @[@"1舍",@"2舍",@"3舍",@"4舍",@"5舍",@"6舍",@"7舍",@"8舍",@"9舍"];
         self.xingYePlace = @[@"1舍",@"2舍",@"3舍",@"4舍",@"5舍",@"6舍",@"7舍",@"8舍"];
@@ -24,11 +24,17 @@
     return self;
 }
 - (NSString *)getNumberOfDormitoryWith:(NSString *)building andPlace:(NSString *)place {
-    int num = [place substringToIndex:1].intValue;
+    int num = [place substringToIndex:2].intValue;
+    if(num != 10)
+        num = [place substringToIndex:1].intValue;
     if ([building isEqual: @"宁静苑"]) {
         if (num >= 1 && num <= 5) {
             num += 7;
-        }else if (num>=6) {
+        }
+        else if(num == 10){
+            num = 40;
+        }
+        else if (num>=6) {
             num += 26;
         }else {
             
@@ -69,7 +75,10 @@
         return @[@3,@7];
     }
     int num = dormitoryNumber.intValue;
-    if (num>=1 && num <= 6) {//知行苑1-6舍
+    if (num == 40) {//宁静苑10舍
+        return @[@0,@10];
+    }
+    else if (num>=1 && num <= 6) {//知行苑1-6舍
         return @[@2,@(num-1)];
     }else if (num>=8 && num <=12) {//宁静苑1-5舍
         return @[@0,@(num-8)];
@@ -86,6 +95,8 @@
     }else if (num == 39) {//明理苑9舍
         return @[@1,@8];
     }
+    
+    
     return @[@0,@0];
 }
 @end

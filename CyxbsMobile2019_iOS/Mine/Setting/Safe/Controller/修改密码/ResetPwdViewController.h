@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) ResetPwdView *resetView;
 
+@property (nonatomic, assign) NSString *stuID;
 
+@property (nonatomic, assign) NSString *changeCode;
 @end
 
 NS_ASSUME_NONNULL_END

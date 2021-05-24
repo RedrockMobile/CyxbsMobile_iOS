@@ -91,13 +91,19 @@
     }];
     
     //多功能按钮
-    [self addSubview:self.funcBtn];
-    [self.funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.89 * 18/343);
-        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
-        make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo((SCREEN_WIDTH * 0.89 * 18/343 + [UIImage imageNamed:@"QAMoreButton"].size.height));
-    }];
+        //如果是自己的动态就先什么都不添加
+    if (self.dynamicDataModel.is_self.intValue == 1) {
+        
+    }else{
+        [self addSubview:self.funcBtn];
+        [self.funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.89 * 18/343);
+            make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
+            make.right.mas_equalTo(self.mas_right);
+            make.height.mas_equalTo((SCREEN_WIDTH * 0.89 * 18/343 + [UIImage imageNamed:@"QAMoreButton"].size.height));
+        }];
+    }
+   
     
     //内容label
     [self addSubview:self.detailLabel];

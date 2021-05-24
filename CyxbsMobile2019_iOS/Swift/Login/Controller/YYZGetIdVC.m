@@ -10,7 +10,7 @@
 #import "YYZGetIdVC.h"
 #import "ByWordViewController.h"
 #import "ByPasswordViewController.h"
-#import "YYZSendVC.h"
+//#import "YYZSendVC.h"
 #import "YYZpopView.h"
 
 
@@ -34,18 +34,20 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     NSUserDefaults *userdfa = [NSUserDefaults standardUserDefaults];
     [userdfa setBool:0 forKey:@"isLogin"];
     //设置导航栏
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ忘记密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
-    [UIColor colorWithRed:21/255.0 green:49/255.0 blue:88/255.0 alpha:1.0], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    [UIColor colorNamed:@"YYZColor2"], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar setTintColor:[UIColor colorNamed:@"YYZColor5"]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorNamed:@"YYZColor5"]];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
     [self setBtn];
     [self setText];
     [self setImage];
@@ -116,7 +118,6 @@
     [[HttpClient defaultClient]requestWithPath :@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/judge/origin" method:HttpRequestPost parameters:@{@"stu_num":self.testF.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         //如果是默认密码，弹出提示框
         if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
-            NSLog(@"111111111");
             self->_popView.alpha = 1.0;
             [self.view addSubview:self->_backView];
             [self.view addSubview:self.popView];

@@ -21,13 +21,13 @@
                 self.postArray = [NSMutableArray arrayWithArray:dataArray];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"TopicDataLoadSuccess" object:nil];
             }else{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"TopicDataLoadError" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"TopicDataLoadFailure" object:nil];
             }
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"TopicLoadError"] object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"TopicDataLoadFailure"] object:nil];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"TopicLoadFailure"] object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"TopicDataLoadFailure"] object:nil];
     }];
 }
 

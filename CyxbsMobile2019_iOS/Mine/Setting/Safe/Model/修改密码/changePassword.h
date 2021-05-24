@@ -16,7 +16,7 @@ typedef void(^Netblock)(id info);
 
 @property (nonatomic, copy) Netblock Block;
 
-- (void)changePasswordWithNewPassword:(NSString *)password;
+- (void)changePasswordWithNewPassword:(NSString *)password :(NSString *)stuId :(NSString *) code;
 
 @end
 

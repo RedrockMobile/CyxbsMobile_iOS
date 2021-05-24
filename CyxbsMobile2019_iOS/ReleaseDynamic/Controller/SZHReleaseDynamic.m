@@ -96,6 +96,7 @@
     [super viewWillAppear:animated];
     [self.tabBarController.tabBar setHidden:YES];
     self.navigationController.navigationBar.hidden = YES;
+   
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -223,16 +224,13 @@
             YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
             detailVC.topicID = topicID;
             detailVC.topicIdString = self.circleLabelText;
-//            [self.navigationController popToRootViewControllerAnimated:NO];
+            detailVC.isFromSub = 1;
             [self.navigationController pushViewController:detailVC animated:YES];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
         });
         } Failure:^{
             [hud hide:YES];
             [NewQAHud showHudWith:@"请检查你的网络设置" AddView:self.view];
         }];
-   
-    
 }
 
 /// 显示草稿

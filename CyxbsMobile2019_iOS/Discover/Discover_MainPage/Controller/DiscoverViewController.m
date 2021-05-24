@@ -378,10 +378,8 @@ static int requestCheckinInfo = 0;
     [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
-    self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
-    self.eleView.electricFeeTime.text = self.elecModel.electricFeeItem.time;
-
-
+    //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
+    //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }
 
 - (void)updateNewsUI {
