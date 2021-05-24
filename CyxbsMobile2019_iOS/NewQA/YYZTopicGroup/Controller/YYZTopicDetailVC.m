@@ -132,7 +132,7 @@
     [self setBackTableView];
     [self funcPopViewinit];
     [self loadData];//初始化数据
-    [NSTimer scheduledTimerWithTimeInterval:1.8f target:self selector:@selector(checkContent) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(checkContent) userInfo:nil repeats:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -329,9 +329,9 @@
 }
 
 - (void)checkContent {
-    NSInteger rows1 = [_topicLeftTableView numberOfRowsInSection:0];
-    NSInteger rows2 = [_topicRightTableView numberOfRowsInSection:0];
-    if(rows1 == 0 || rows2 == 0){
+//    NSInteger rows1 = [_topicLeftTableView numberOfRowsInSection:0];
+//    NSInteger rows2 = [_topicRightTableView numberOfRowsInSection:0];
+    if(self.cnt2 != 1){
         UIImageView *leftImageview = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-83, 250, 167,127)];
         UIImage *image = [UIImage imageNamed:@"没有动态"];
         UILabel *noneLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-83+40, 330, 167,127)];
@@ -419,6 +419,7 @@
         }
         [cell layoutSubviews];
         [cell layoutIfNeeded];
+        self.cnt2 = 1;
         return cell;
     }
     else if ([tableView isEqual:self.topicRightTableView]){
@@ -441,6 +442,7 @@
         }
         [cell layoutSubviews];
         [cell layoutIfNeeded];
+        self.cnt2 = 1;
         return cell;
     }
     return nil;
