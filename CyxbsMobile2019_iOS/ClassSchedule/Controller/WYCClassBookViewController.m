@@ -67,6 +67,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //添加对通知中心的监听
+    CCLog(@"loading..........");
     [self addNoti];
     self.lessonViewDict = [[NSMutableDictionary alloc] init];
     self.scBackViewDict = [[NSMutableDictionary alloc] init];

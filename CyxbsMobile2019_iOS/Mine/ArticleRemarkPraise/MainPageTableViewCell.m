@@ -10,7 +10,7 @@
 
 @interface MainPageTableViewCell()
 
-/// cell间的分割线，为什么不用系统的分割线？为了避免在cell不足的情况下影响美观
+/// cell间的分割线，为什么不用原生的分割线？为了避免在cell不足的情况下影响美观
 @property (nonatomic, strong)UIView *separateLine;
 @end
 

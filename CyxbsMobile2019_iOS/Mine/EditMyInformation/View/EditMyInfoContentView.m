@@ -188,6 +188,11 @@
 
 - (void)addIntroductionTextField{
     MineEditTextField *introductionField = [[MineEditTextField alloc] init];
+    [self.contentScrollView addSubview:introductionField];
+    self.introductionTextField = introductionField;
+    
+    introductionField.delegate = self;
+    
     NSString *oldIntroduction = [UserItemTool defaultItem].introduction;
     if (oldIntroduction==nil || [oldIntroduction isEqualToString:@""]) {
         if (@available(iOS 11.0, *)) {
@@ -206,8 +211,7 @@
             introductionField.attributedPlaceholder = string;
         }
     }
-    [self.contentScrollView addSubview:introductionField];
-    self.introductionTextField = introductionField;
+    
 }
 
 - (void)addQQLabel{
@@ -494,15 +498,23 @@
 
 //MARK: - 代理方法：
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    long len;
+    NSString *tipStr;
     if ([textField isEqual:self.nicknameTextField]) {
-        if (textField.text.length + string.length > 10) {
-            [NewQAHud showHudWith:@" 昵称长度不能超过10哟～ " AddView:self];
-            //截取，当用户粘贴了一个长度大于10的名字时，在交互上体验更好(个人觉得)
-            textField.text = [[textField.text stringByAppendingString:string] substringToIndex:10];
-            return NO;
-        }else {
-            return YES;
-        }
+        len = 10;
+        tipStr = @" 昵称长度不能超过10哟～ ";
+    }else if ([textField isEqual:self.introductionTextField]) {
+        len = 20;
+        tipStr = @" 个性签名长度不能超过20哟～ ";
+    }else {
+        return YES;
+    }
+    
+    if (textField.text.length + string.length > len) {
+        [NewQAHud showHudWith:tipStr AddView:self];
+        //截取，当用户粘贴了一个长度大于10的名字时，在交互上体验更好(个人觉得)
+        textField.text = [[textField.text stringByAppendingString:string] substringToIndex:len];
+        return NO;
     }else {
         return YES;
     }

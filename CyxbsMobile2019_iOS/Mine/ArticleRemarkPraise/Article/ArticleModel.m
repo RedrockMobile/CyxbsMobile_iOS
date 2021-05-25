@@ -22,9 +22,9 @@
         if ([responseObject[@"data"] count]<size.integerValue) {
             [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateNoMoreDate];
         }else {
-            self.page++;
             [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateEndRefresh];
         }
+        self.page++;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateFailure];
     }];

@@ -30,7 +30,7 @@
 - (void)addPraiseModel {
     self.praiseModel = [[PraiseModel alloc] initWithUrl:getPraiseAPI];
     self.praiseModel.delegate = self;
-    [self.praiseModel loadMoreData];
+//    [self.praiseModel loadMoreData];
 }
 
 /// 添加tableView
@@ -55,31 +55,28 @@
 /// 数据加载模型的代理方法，数据加载完成后调用
 /// @param state 加载状态
 - (void)MainPage2RequestModelLoadDataFinishWithState:(MainPage2RequestModelState)state{
-    //刷新UI的操作放主线程
-    dispatch_async(dispatch_get_main_queue(), ^{
-        switch (state) {
-                //加载成功，而且还有数据
-            case MainPage2RequestModelStateEndRefresh:
-                [self.tableView.mj_footer endRefreshing];
-                break;
-                //加载成功，而且没有数据了
-            case MainPage2RequestModelStateNoMoreDate:
-                [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                break;
-                //加载失败
-            case MainPage2RequestModelStateFailure:
-                [self.tableView.mj_footer endRefreshing];
-                [NewQAHud showHudWith:@"加载失败" AddView:self.view];
-                break;
-        }
-        
-        [self.tableView reloadData];
-        if (self.praiseModel.dataArr.count==0) {
-            self.nothingView.alpha = 1;
-        }else {
-            self.nothingView.alpha = 0;
-        }
-    });
+    switch (state) {
+            //加载成功，而且还有数据
+        case MainPage2RequestModelStateEndRefresh:
+            [self.tableView.mj_footer endRefreshing];
+            break;
+            //加载成功，而且没有数据了
+        case MainPage2RequestModelStateNoMoreDate:
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            break;
+            //加载失败
+        case MainPage2RequestModelStateFailure:
+            [self.tableView.mj_footer endRefreshing];
+            [NewQAHud showHudWith:@"加载失败" AddView:self.view];
+            break;
+    }
+    
+    [self.tableView reloadData];
+    if (self.praiseModel.dataArr.count==0) {
+        self.nothingView.alpha = 1;
+    }else {
+        self.nothingView.alpha = 0;
+    }
 }
 
 //MARK: - TableView代理方法:
@@ -92,8 +89,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 0.3 * SCREEN_WIDTH;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PraiseTableViewCell *cell = [[PraiseTableViewCell alloc] initWithReuseIdentifier:@"PraiseTableViewCellID"];
+    PraiseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PraiseTableViewCellID"];
+    if (cell==nil) {
+        cell = [[PraiseTableViewCell alloc] initWithReuseIdentifier:@"PraiseTableViewCellID"];
+    }
     [cell setModel:[[PraiseParseModel alloc]initWithDict:self.praiseModel.dataArr[indexPath.row]]];
     return cell;
 }
