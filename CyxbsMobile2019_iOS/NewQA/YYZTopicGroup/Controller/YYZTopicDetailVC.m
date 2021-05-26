@@ -54,6 +54,7 @@
 
 /// 是否已经显示reportView
 @property (nonatomic, assign) BOOL isShowedReportView;
+@property (nonatomic, assign) BOOL isChanged;
 
 @end
 
@@ -108,6 +109,7 @@
     [super viewDidLoad];
     self.cnt1=0;
     self.cnt2=0;
+    _isChanged = NO;
     // 状态栏(statusbar)
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     self.stausHeight = rectStatus.size.height;  // 高度
@@ -137,7 +139,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    if (_isChanged) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
 
 - (void)setNotification{
@@ -761,6 +766,7 @@
     [self.topicScrollView setContentOffset:position animated:YES];
 }
 - (void)changeFollow:(UIButton *) btn {
+    _isChanged = YES;
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                         //改变button状态
@@ -772,8 +778,7 @@
             btn.layer.cornerRadius = 14;
             [btn setTitle:@"+关注" forState:UIControlStateNormal];
             btn.backgroundColor = RGBColor(93, 94, 247, 1);
-        }
-        else{
+        } else{
             [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
@@ -782,7 +787,7 @@
         }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
-        }];
+    }];
 }
 
 #pragma mark -多功能View的代理方法
