@@ -24,8 +24,7 @@ static float viewHeight = 38.0f; //按钮视图高度
 
 /// 添加图片按钮
 @property (nonatomic, strong) UIButton *emojiBtn;
-/// 发送按钮
-@property (nonatomic, strong) UIButton *moreBtn;
+
 
 @property (nonatomic, assign) CGFloat totalYOffset;
 @property (nonatomic, assign) float keyboardHeight; //键盘高度

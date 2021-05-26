@@ -29,6 +29,9 @@
 
 @property (nonatomic, strong) UITextView *textView;
 
+/// 发送按钮
+@property (nonatomic, strong) UIButton *moreBtn;
+
 /// textView的最大高度
 @property (nonatomic, assign) double maxTextViewheight;
 

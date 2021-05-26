@@ -750,8 +750,59 @@
 }
 
 //MARK:UITextViewDelegate
-//实现return按钮的方法
+//实现return按钮的方法 + 限制输入字数
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    //限制字数
+    UITextRange *selectedRange = [textView markedTextRange];
+    //获取高部分
+    UITextPosition *pos = [textView positionFromPosition:selectedRange offset:0];
+    //如果有高亮部分，并且字数小于最大限制时允许输入
+    if (selectedRange && pos) {
+        NSInteger startOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRange.start];
+        NSInteger endOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRange.end];
+        NSRange offsetRange = NSMakeRange(startOffset, endOffset - startOffset);
+        if (offsetRange.location < 200) {
+            return YES;
+        }else{
+            return NO;
+        }
+    }
+    NSString *comcatstr = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    NSInteger caninputlen = 200 - comcatstr.length;
+    if (caninputlen >= 0) {
+        return YES;
+    }else{
+        NSInteger len = text.length + caninputlen;
+        //防止当text.length + caninputlen < 0时，使得rg.length为一个非法最大正数出错
+        NSRange rg = {0,MAX(len,0)};
+        if (rg.length > 0) {
+            NSString *s = @"";
+            //判断是否只普通的字符或asc码(对于中文和表情返回NO)
+            BOOL asc = [text canBeConvertedToEncoding:NSASCIIStringEncoding];
+            if (asc) {
+                s = [text substringWithRange:rg];//因为是ascii码直接取就可以了不会错
+            }else{
+                __block NSInteger idx = 0;
+                __block NSString  *trimString = @"";//截取出的字串
+                //使用字符串遍历，这个方法能准确知道每个emoji是占一个unicode还是两个
+                [text enumerateSubstringsInRange:NSMakeRange(0, [text length])
+                                         options:NSStringEnumerationByComposedCharacterSequences
+                                      usingBlock: ^(NSString* substring, NSRange substringRange, NSRange enclosingRange, BOOL* stop) {
+                    NSInteger steplen = substring.length;
+                    if (idx >= rg.length) {
+                        *stop = YES; //取出所需要就break，提高效率
+                        return ;
+                    }
+                    trimString = [trimString stringByAppendingString:substring];
+                    
+                    idx = idx + steplen;    //使用字串占的长度来作为步长
+                }];
+                s = trimString;
+            }
+            //rang是指从当前光标处进行替换处理(注意如果执行此句后面返回的是YES会触发didchange事件)
+            [textView setText:[textView.text stringByReplacingCharactersInRange:range withString:s]];
+        }
+    }
     //判断最后输入的那一个字是否是回车
     if ([text isEqualToString:@"\n"]) {
         [self rightButtonClick:textView.text];
@@ -760,8 +811,31 @@
     }
     return YES;
 }
-//
+//根据textView字数动态增加textview高度
 - (void)textViewDidChange:(UITextView *)textView{
+    //限制字数
+    UITextRange *selectedRange = [textView markedTextRange];
+    //获取高亮部分
+    UITextPosition *pos = [textView positionFromPosition:selectedRange offset:0];
+    //如果在变化中是高亮部分，就不计算字符
+    if (selectedRange && pos) {
+        return;
+    }
+    NSString  *nsTextContent = textView.text;
+    NSInteger existTextNum = nsTextContent.length;
+    if(existTextNum > 0){
+        [self.inputView.moreBtn setHighlighted:YES];
+        if (existTextNum > 200){
+            //截取到最大位置的字符(由于超出截部分在should时被处理了所在这里这了提高效率不再判断)
+            NSString *s = [nsTextContent substringToIndex:200];
+            [textView setText:s];
+            [NewQAHud showHudWith:@"最多只能评论两百字哦～" AddView:self.view];
+        }
+    }else{
+        [self.inputView.moreBtn setHighlighted:NO];
+    }
+    
+    //根据textView计算高度呀
     CGFloat height = ceilf([self.inputView.textView sizeThatFits:CGSizeMake(self.inputView.textView.bounds.size.width, MAXFLOAT)].height);
     //如果高度变化了
     if (height != self.inputView.oldTextViewHeight) {
@@ -834,7 +908,8 @@
     }else{
         DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
         NSString *height = [NSString stringWithFormat:@"%f",[secondCommentModel getCellHeight]];
-        return [height doubleValue];
+        //后面的20是回复的label的高度
+        return [height doubleValue] + 22;
 //        NSMutableArray *muteAry =  self.twoLevelCommentHeight[indexPath.section];
 //        return [muteAry[indexPath.row - 1] doubleValue];
     }

@@ -42,7 +42,7 @@
         //内容label的高度
     CGFloat height3 = 0;
     CGFloat preferredMaxLayoutWidth = self.reply_list.count == 0 ? (MAIN_SCREEN_W - 100*WScaleRate_SE) : (MAIN_SCREEN_W - 130*WScaleRate_SE);
-    NSDictionary *attr = @{NSFontAttributeName:[UIFont fontWithName:PingFangSCRegular size:15]};
+    NSDictionary *attr = @{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:15]};
     CGSize detaileLblSize = [self.content boundingRectWithSize:CGSizeMake(preferredMaxLayoutWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
     height3 = detaileLblSize.height + 3*HScaleRate_SE;
     
