@@ -40,7 +40,7 @@
 #import "FollowGroupModel.h"//关注圈子的网络请求的model
 #import "ShieldModel.h"     //屏蔽的网络请求的model
 
-@interface DynamicDetailMainVC ()<DynamicDetailTopBarViewDelegate,UITableViewDelegate,UITableViewDataSource,DynamicSpecificCellDelegate,FuncViewProtocol,ReportViewDelegate,ShareViewDelegate,UITextFieldDelegate,DKSKeyboardDelegate,SelfFuncViewProtocol
+@interface DynamicDetailMainVC ()<DynamicDetailTopBarViewDelegate,UITableViewDelegate,UITableViewDataSource,DynamicSpecificCellDelegate,FuncViewProtocol,ReportViewDelegate,ShareViewDelegate,UITextFieldDelegate,DKSKeyboardDelegate,SelfFuncViewProtocol,UITextViewDelegate
 
 >
 ///替代navigationBar的视图
@@ -110,6 +110,8 @@
 @property (nonatomic, assign) BOOL isCommentFirstLevel;
 /// 是否是第一次网络请求后进入这个界面
 @property (nonatomic, assign) BOOL isFirstEnter;
+/// 是否是动态详情页
+@property (nonatomic, assign) BOOL isDynamicDetailVC;
 @end
 
 @implementation DynamicDetailMainVC
@@ -121,6 +123,8 @@
     self.isReportComment = YES;
     self.isCommentFirstLevel = YES;
     self.isFirstEnter = NO;
+    self.isDynamicDetailVC = YES;
+    self.isShowedReportView = NO;
     
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.commentTableDataAry = [NSMutableArray array];
@@ -130,21 +134,24 @@
     self.waiLoadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.waiLoadHud.labelText = @"正在加载中...";
     [self getDataFirst];
-    
-    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    self.isShowedReportView = NO;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = YES;//隐藏nav_bar
-    if (self.isFirstEnter == YES) {
-        [self.commentTable.mj_header beginRefreshing];
+    if (self.isFirstEnter != YES) {
+        [self rebuildFrameByComentCount];
     }
+    //注册通知中心
+    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+//移除通知中心，防止其在其他界面被调用
+- (void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark- private methonds
@@ -165,12 +172,6 @@
         [self setFrameWhenHaveComents];
     }
 
-    //一些标识
-    self.isFirstEnter = YES;
-    
-//    //为数组添加观察者
-//    [self.commentTableDataAry addObserver:self forKeyPath:@"count" options:NSKeyValueObservingOptionNew context:nil];
-    
 }
 
 ///当有评论的时候设置UI
@@ -193,6 +194,11 @@
     [self.commentTable addSubview:self.dynamicSpecifiCell];
     
     [self.view addSubview:self.inputView];  //输入框
+    [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(IS_IPHONE8 ? 54 : 70);
+        make.bottom.equalTo(self.view);
+    }];
 }
 ///当没有评论的时候设置UI
 - (void)setFrameWhenNoComent{
@@ -224,6 +230,11 @@
     }];
     
     [self.view addSubview:self.inputView];  //输入框
+    [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(IS_IPHONE8 ? 54 : 70);
+        make.bottom.equalTo(self.view);
+    }];
 }
 
 #pragma mark- 网络请求
@@ -362,35 +373,69 @@
 }
 ///键盘将要出现时，若举报页面已经显示则上移
 - (void)reportViewKeyboardWillShow:(NSNotification *)notification{
+    //获取键盘上移时长
+    CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    //获取键盘的高度
+    CGRect keyBoardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat keyboardHeitht = keyBoardFrame.size.height;
+    //仅仅是动态详情页才会使用下方法
+    if (self.isDynamicDetailVC == YES) {
+        [UIView animateWithDuration:duration animations:^{
+            [self.inputView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.view);
+                make.height.mas_equalTo(IS_IPHONE8 ? (54-28 + self.inputView.originTextViewSize.height) : (70-28 + self.inputView.originTextViewSize.height));
+                make.bottom.equalTo(self.view).offset(-keyboardHeitht);
+            }];
+            [self.view layoutIfNeeded];
+        }];
+    }
     //如果举报页面已经出现，就将举报View上移动
     if (self.isShowedReportView == YES) {
-        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view);
-            make.bottom.equalTo(self.inputView.mas_top).offset(self.inputView.size.height);
-            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        
+        [UIView animateWithDuration:duration animations:^{
+            [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.view);
+                make.bottom.equalTo(self.inputView.mas_top).offset(self.inputView.size.height);
+                make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+            }];
+            [self.view layoutIfNeeded];
         }];
     }else{
         //否则出现一个透明的View，点击后就可以让键盘收回
-//        self.hideKeyBoardView.backgroundColor = [UIColor redColor];
         NSDictionary *userInfo = notification.userInfo;
         CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
         CGFloat keyBoardHeight = endFrame.size.height;
-//        self.hideKeyBoardView.frame = CGRectMake(0, 0, MAIN_SCREEN_W ,  IS_IPHONEX ? (MAIN_SCREEN_W+60) : (MAIN_SCREEN_W-25));
         self.hideKeyBoardView.frame = CGRectMake(0, 0, MAIN_SCREEN_W , MAIN_SCREEN_H - keyBoardHeight - 70);
         [self.view.window addSubview:self.hideKeyBoardView];
-       
     }
     
 }
 ///键盘将要消失，若举报页面已经显示则使其下移
 - (void)reportViewKeyboardWillHide:(NSNotification *)notification{
-    if (self.isShowedReportView) {
-        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self.view);
-            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+    //获取键盘上移时长
+    CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    
+    if (self.isDynamicDetailVC == YES) {
+        [UIView animateWithDuration:duration animations:^{
+            [self.inputView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.equalTo(self.view);
+                make.height.mas_equalTo(IS_IPHONE8 ? (54-28 + self.inputView.originTextViewSize.height) : (70-28 + self.inputView.originTextViewSize.height));
+                make.bottom.equalTo(self.view);
+            }];
+            [self.view layoutIfNeeded];
         }];
     }
-    
+   
+    //如果举报页面已经出现，让其浮动
+    if (self.isShowedReportView == YES) {
+        [UIView animateWithDuration:duration animations:^{
+            [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(self.view);
+                make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+            }];
+            [self.view layoutIfNeeded];
+        }];
+    }
 }
 #pragma mark- Delegate
 
@@ -641,34 +686,32 @@
 //发送的文案
 - (void)textViewContentText:(NSString *)textStr {
     [self reportComment:textStr];
+    [self.hideKeyBoardView removeFromSuperview];
+    [self.inputView.textView resignFirstResponder];
 }
 ///选择图片
 - (void)leftButtonClick:(NSString *)textStr{
     [self.hideKeyBoardView removeFromSuperview];
     [self.view endEditing:YES];
+    self.isFirstEnter = NO;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        DynamicDetailAddPhotoController *commentVC = [[DynamicDetailAddPhotoController alloc] init];
-        if (self.isCommentFirstLevel != YES) {
-//            commentVC.reply_id = 0;
-            commentVC.isFirstCommentLevel = NO;
-        }else{
-            commentVC.isFirstCommentLevel = YES;
-            
-        }
-        commentVC.post_id = [self.post_id intValue];
-        if (self.actionCommentModel.comment_id > 0) {
-            commentVC.reply_id = self.actionCommentModel.comment_id;
-        }
-        commentVC.tampComment = textStr;
-        [self.navigationController pushViewController:commentVC animated:YES];
-    });
+    DynamicDetailAddPhotoController *commentVC = [[DynamicDetailAddPhotoController alloc] init];
+    if (self.isCommentFirstLevel != YES) {
+        commentVC.isFirstCommentLevel = NO;
+    }else{
+        commentVC.isFirstCommentLevel = YES;
+    }
+    commentVC.post_id = [self.post_id intValue];
+    if (self.actionCommentModel.comment_id > 0) {
+        commentVC.reply_id = self.actionCommentModel.comment_id;
+    }
+    commentVC.tampComment = textStr;
+    [self.navigationController pushViewController:commentVC animated:YES];
 }
 ///发送按钮
 - (void)rightButtonClick:(NSString *)textStr{
-    [self.hideKeyBoardView removeFromSuperview];
-    [self.view endEditing:YES];
     [self reportComment:textStr];
+    [self.hideKeyBoardView removeFromSuperview];
 }
 - (void)reportComment:(NSString *)textStr{
     
@@ -684,8 +727,15 @@
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
-            [self.inputView clearCurrentInput];
-            [self.view endEditing:YES];
+            
+            //清除文字内容，收回键盘
+            self.inputView.textView.text = @"";
+            self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
+            //更新textView的高度
+            [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(self.inputView.originTextViewSize);
+            }];
+            [self.inputView.textView resignFirstResponder];
             
             [self rebuildFrameByComentCount];
             
@@ -698,16 +748,42 @@
     //初始化设置
     self.isCommentFirstLevel = YES;
 }
-- (void)riseReportViewWithY:(CGFloat)y AndDictionnary:(NSDictionary *)userInfo{
-    //动画键盘时长
-//    CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-//    [UIView animateWithDuration:duration delay:0 options:[userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue] animations:^{
-        
-        self.reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, y - 50, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
-        
-//    } completion:nil];
-}
 
+//MARK:UITextViewDelegate
+//实现return按钮的方法
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    //判断最后输入的那一个字是否是回车
+    if ([text isEqualToString:@"\n"]) {
+        [self rightButtonClick:textView.text];
+        [self textViewDidChange:textView];
+        return NO;
+    }
+    return YES;
+}
+//
+- (void)textViewDidChange:(UITextView *)textView{
+    CGFloat height = ceilf([self.inputView.textView sizeThatFits:CGSizeMake(self.inputView.textView.bounds.size.width, MAXFLOAT)].height);
+    //如果高度变化了
+    if (height != self.inputView.oldTextViewHeight) {
+        //当高度小于最大高度才可以滑动
+        self.inputView.textView.scrollEnabled = self.inputView.maxTextViewheight < height;
+        
+        if (self.inputView.textView.scrollEnabled == NO) {
+            
+            self.inputView.originTextViewSize = CGSizeMake(self.inputView.originTextViewSize.width, height + 10);
+            //布局textView
+            [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(self.inputView.originTextViewSize);
+            }];
+            //布局view
+            [self.inputView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(IS_IPHONE8 ? (54 - 38 + height+10) : (70 - 38 + height+10));
+            }];
+            [self.view layoutIfNeeded];
+        }
+    }
+    self.inputView.oldTextViewHeight = height;
+}
 //MARK:====================================表格的数据源方法============================================
 - (NSInteger )numberOfSectionsInTableView:(UITableView *)tableView{
     return self.commentTableDataAry.count;
@@ -948,7 +1024,6 @@
 - (ReportView *)reportView{
     if (!_reportView) {
         _reportView = [[ReportView alloc] initWithPostID:[NSNumber numberWithInt:[self.post_id intValue]]];
-//        _reportView.frame = CGRectMake(MAIN_SCREEN_W * 0.1587, SCREEN_HEIGHT * 0.1, MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587,MAIN_SCREEN_W * 0.6827 * 329/256);
         _reportView.delegate = self;
         _reportView.postID = [NSNumber numberWithString:self.post_id];
     }
@@ -966,16 +1041,13 @@
 
 - (DKSKeyboardView *)inputView{
     if (!_inputView) {
-        if (IS_IPHONEX) {
-            _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-70, SCREEN_WIDTH, 70)];
-        }else{
-            _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-54, SCREEN_WIDTH, 54)];
-        }
+        _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectZero];
         UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
         _inputView.textView.inputAccessoryView = toolbar;
         _inputView.textView.textColor = [UIColor colorNamed:@"CellDetailColor"];
         //设置代理方法
         _inputView.delegate = self;
+        _inputView.textView.delegate = self;
     }
     return _inputView;
 }

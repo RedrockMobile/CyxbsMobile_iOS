@@ -7,33 +7,36 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DKSTextView.h"
 @protocol DKSKeyboardDelegate <NSObject>
 
 @optional //非必实现的方法
 
-/**
- 点击发送时输入框内的文案
- @param textStr 文案
- */
+
 - (void)textViewContentText:(NSString *)textStr;
+
 - (void)leftButtonClick:(NSString *)textStr;
+///点击发送按钮调用的方法
 - (void)rightButtonClick:(NSString *)textStr;
 
 //让举报的view
-- (void)riseReportViewWithY:(CGFloat)y AndDictionnary:(NSDictionary *)userInfo;
+//- (void)riseReportViewWithY:(CGFloat)y AndDictionnary:(NSDictionary *)userInfo;
 
 @end
 
 @interface DKSKeyboardView : UIView <UITextViewDelegate>
 
 @property (nonatomic, weak) id <DKSKeyboardDelegate>delegate;
-/**
- *
- *  设置关联的表
- */
-@property (nonatomic, weak) UITableView *associateTableView;
-@property (nonatomic, strong) DKSTextView *textView;
+
+@property (nonatomic, strong) UITextView *textView;
+
+/// textView的最大高度
+@property (nonatomic, assign) double maxTextViewheight;
+
+/// TextView的旧时高度
+@property (nonatomic, assign) CGFloat oldTextViewHeight;
+
+/// 原始的textView的size
+@property (nonatomic, assign) CGSize originTextViewSize;
 - (void)startInputAction;
 - (void)clearCurrentInput;
 @end

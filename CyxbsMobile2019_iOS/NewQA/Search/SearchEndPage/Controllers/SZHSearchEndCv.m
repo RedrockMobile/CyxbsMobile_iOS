@@ -103,18 +103,23 @@
     
     [self setUpRefresh];
     [self.relevantDynamicTable.mj_header endRefreshing];
-    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self.tabBarController.tabBar setHidden:YES];
+    
+    //注册通知中心
+    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+//移除通知中心，防止在其他页面调用本页面方法
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)dealloc
 {

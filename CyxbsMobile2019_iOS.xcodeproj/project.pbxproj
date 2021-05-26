@@ -433,7 +433,6 @@
 		B82CA684263159BA00786685 /* pop_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = B82CA674263159B900786685 /* pop_arrow.png */; };
 		B82CA685263159BA00786685 /* DynamicSpecificCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B82CA676263159BA00786685 /* DynamicSpecificCell.m */; };
 		B82CA686263159BA00786685 /* UIView+FrameTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B82CA679263159BA00786685 /* UIView+FrameTool.m */; };
-		B82CA687263159BA00786685 /* DKSTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82CA67B263159BA00786685 /* DKSTextView.m */; };
 		B82CA688263159BA00786685 /* DKSKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82CA67D263159BA00786685 /* DKSKeyboardView.m */; };
 		B82CA69026315A4200786685 /* DynamicDetailMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B82CA68D26315A4200786685 /* DynamicDetailMainVC.m */; };
 		B82CA69126315A4200786685 /* DynamicDetailAddPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82CA68F26315A4200786685 /* DynamicDetailAddPhotoController.m */; };
@@ -1452,10 +1451,8 @@
 		B82CA674263159B900786685 /* pop_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_arrow.png; sourceTree = "<group>"; };
 		B82CA675263159BA00786685 /* DynamicDetailComentTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailComentTableCell.h; sourceTree = "<group>"; };
 		B82CA676263159BA00786685 /* DynamicSpecificCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicSpecificCell.m; sourceTree = "<group>"; };
-		B82CA678263159BA00786685 /* DKSTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKSTextView.h; sourceTree = "<group>"; };
 		B82CA679263159BA00786685 /* UIView+FrameTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FrameTool.m"; sourceTree = "<group>"; };
 		B82CA67A263159BA00786685 /* DKSKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKSKeyboardView.h; sourceTree = "<group>"; };
-		B82CA67B263159BA00786685 /* DKSTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKSTextView.m; sourceTree = "<group>"; };
 		B82CA67C263159BA00786685 /* UIView+FrameTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FrameTool.h"; sourceTree = "<group>"; };
 		B82CA67D263159BA00786685 /* DKSKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKSKeyboardView.m; sourceTree = "<group>"; };
 		B82CA68C26315A4100786685 /* DynamicDetailMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailMainVC.h; sourceTree = "<group>"; };
@@ -4025,8 +4022,6 @@
 		B82CA677263159BA00786685 /* DKSKeyBoard */ = {
 			isa = PBXGroup;
 			children = (
-				B82CA678263159BA00786685 /* DKSTextView.h */,
-				B82CA67B263159BA00786685 /* DKSTextView.m */,
 				B82CA67C263159BA00786685 /* UIView+FrameTool.h */,
 				B82CA679263159BA00786685 /* UIView+FrameTool.m */,
 				B82CA67A263159BA00786685 /* DKSKeyboardView.h */,
@@ -5415,7 +5410,6 @@
 				1880921C25FF7DE60097DCE4 /* MGDStatusBarHeight.m in Sources */,
 				18CDF71C257F91BE006E8E5C /* YearChooseBar.m in Sources */,
 				18F67CF02637EFE600E45A8E /* DeletePostModel.m in Sources */,
-				B82CA687263159BA00786685 /* DKSTextView.m in Sources */,
 				18CDF6C2257F91BE006E8E5C /* UserInfoView.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
