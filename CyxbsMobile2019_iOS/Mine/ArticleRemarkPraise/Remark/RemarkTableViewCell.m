@@ -156,7 +156,7 @@
 - (void)praiseBtnClicked {
 //    CCLog(@"%@,%@,%@",self.comment_id,self.type,self.post_id);
 //    CCLog(@"mmcon=%@,\tcomID=%@,\tform=%@,\tpoID=%@,\ttype=%@,\tisP=t%@",self.model.content,self.model.comment_id,self.model.from,self.model.post_id,self.model.type,self.model.is_praised);
-    
+    self.praiseBtn.enabled = NO;
     if (self.comment_id==nil||self.type==nil) {
         [NewQAHud showHudWith:@"网络错误～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
         return;
@@ -173,8 +173,10 @@
         }else {
             [self changePraiseBtnToState:YES];
         }
+        self.praiseBtn.enabled = YES;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [NewQAHud showHudWith:@"网络错误～～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
+        self.praiseBtn.enabled = YES;
     }];
 }
 

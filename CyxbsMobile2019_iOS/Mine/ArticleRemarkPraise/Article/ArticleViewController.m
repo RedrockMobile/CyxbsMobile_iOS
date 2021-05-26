@@ -29,7 +29,7 @@
     self.VCTitleStr = @"动态";
     self.articleModel = [[ArticleModel alloc] init];
     self.articleModel.delegate = self;
-    [self.articleModel loadMoreData];
+//    [self.articleModel loadMoreData];
     [self addTableView];
 }
 
@@ -62,7 +62,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ArticleTableViewCell *cell = [[ArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    ArticleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ArticleTableViewCellID"];
+    if (cell==nil) {
+        cell = [[ArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ArticleTableViewCellID"];
+    }
     cell.delegate = self;
     PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
     [cell setItem:item];

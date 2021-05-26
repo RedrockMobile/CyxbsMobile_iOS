@@ -33,6 +33,8 @@
     };
     [[HttpClient defaultClient] requestWithPath:_url method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *dataArr = responseObject[@"data"];
+        [self.dataArr addObjectsFromArray:dataArr];
+        self.page++;
         if (dataArr.count < 10) {
             self.state = MainPage2RequestModelStateNoMoreDate;
             [self.delegate MainPage2RequestModelLoadDataFinishWithState:MainPage2RequestModelStateNoMoreDate];
@@ -40,9 +42,6 @@
             self.state = MainPage2RequestModelStateEndRefresh;
             [self.delegate MainPage2RequestModelLoadDataFinishWithState:MainPage2RequestModelStateEndRefresh];
         }
-        
-        [self.dataArr addObjectsFromArray:dataArr];
-        self.page++;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         self.state = MainPage2RequestModelStateFailure;
         [self.delegate MainPage2RequestModelLoadDataFinishWithState:(MainPage2RequestModelStateFailure)];

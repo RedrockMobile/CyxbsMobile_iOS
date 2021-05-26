@@ -85,6 +85,7 @@
         .paraSpacing(0, rowSpace)
         .attach();
         
+        
         make.text(@"\t欢迎您使用“掌上重邮”手机 app 相关服务，为了您可以方便、顺利地使用本产品相 关服务，特列出本协议条款，请您在开始使用“掌上重邮”前，认真阅读并充分理解 本协议。若您不同意本协议，意味着我们无法为您提供本产品的相关功能和服务。在 接受本协议条款且符合登录资格后，您方可登录、使用本产品的相关功能和服务。\n")
         .fontName(PingFangSCRegular, textFontSize)
         .paraSpacing(0, rowSpace)

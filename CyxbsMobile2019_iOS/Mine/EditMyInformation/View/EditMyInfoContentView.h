@@ -30,9 +30,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 @property (nonatomic, weak) UIImageView *headerImageView;
+
+/// 编辑昵称的TextField
 @property (nonatomic, weak) MineEditTextField *nicknameTextField;
+
+/// 编辑个性签名的TextField
 @property (nonatomic, weak) MineEditTextField *introductionTextField;
+
+/// 编辑QQ的TextField
 @property (nonatomic, weak) MineEditTextField *QQTextField;
+
+/// 编辑手机号码的TextField
 @property (nonatomic, weak) MineEditTextField *phoneNumberTextField;
 @property (nonatomic, weak) UILabel *myAcademyLabel;
 @property (nonatomic, weak) UIButton *saveButton;

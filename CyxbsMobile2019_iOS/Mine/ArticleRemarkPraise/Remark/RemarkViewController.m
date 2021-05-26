@@ -35,7 +35,7 @@
 - (void)addRemarkModel {
     self.remarkModel = [[RemarkModel alloc] initWithUrl:getReplyAPI];
     self.remarkModel.delegate = self;
-    [self.remarkModel loadMoreData];
+//    [self.remarkModel loadMoreData];
 }
 
 /// 添加tableView
@@ -60,30 +60,28 @@
 /// 数据加载模型的代理方法，数据加载完成后调用
 /// @param state 加载状态
 - (void)MainPage2RequestModelLoadDataFinishWithState:(MainPage2RequestModelState)state {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        switch (state) {
-                //加载成功，而且还有数据
-            case MainPage2RequestModelStateEndRefresh:
-                [self.tableView.mj_footer endRefreshing];
-                break;
-                //加载成功，而且没有数据了
-            case MainPage2RequestModelStateNoMoreDate:
-                [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                break;
-                //加载失败
-            case MainPage2RequestModelStateFailure:
-                [self.tableView.mj_footer endRefreshing];
-                [NewQAHud showHudWith:@"加载失败" AddView:self.view];
-                break;
-        }
-        
-        [self.tableView reloadData];
-        if (self.remarkModel.dataArr.count==0) {
-            self.nothingView.alpha = 1;
-        }else {
-            self.nothingView.alpha = 0;
-        }
-    });
+    switch (state) {
+            //加载成功，而且还有数据
+        case MainPage2RequestModelStateEndRefresh:
+            [self.tableView.mj_footer endRefreshing];
+            break;
+            //加载成功，而且没有数据了
+        case MainPage2RequestModelStateNoMoreDate:
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            break;
+            //加载失败
+        case MainPage2RequestModelStateFailure:
+            [self.tableView.mj_footer endRefreshing];
+            [NewQAHud showHudWith:@"加载失败" AddView:self.view];
+            break;
+    }
+    
+    [self.tableView reloadData];
+    if (self.remarkModel.dataArr.count==0) {
+        self.nothingView.alpha = 1;
+    }else {
+        self.nothingView.alpha = 0;
+    }
 }
 
 //MARK: - TableView代理方法:
@@ -97,7 +95,10 @@
     return 0.4733* SCREEN_WIDTH;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    RemarkTableViewCell *cell = [[RemarkTableViewCell alloc] initWithReuseIdentifier:@"PraiseTableViewCellID"];
+    RemarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PraiseTableViewCellID"];
+    if (cell==nil) {
+        cell = [[RemarkTableViewCell alloc] initWithReuseIdentifier:@"PraiseTableViewCellID"];
+    }
     [cell setModel:[[RemarkParseModel alloc]initWithDict:self.remarkModel.dataArr[indexPath.row]]];
     return cell;
 }
