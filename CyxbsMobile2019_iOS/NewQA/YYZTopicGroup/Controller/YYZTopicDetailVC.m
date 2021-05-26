@@ -98,7 +98,6 @@
         self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
     self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
-    //self.navigationController.interactivePopGestureRecognizer.delegate=(id)self;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
 
@@ -132,7 +131,8 @@
     [self setBackTableView];
     [self funcPopViewinit];
     [self loadData];//初始化数据
-    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(checkContent) userInfo:nil repeats:NO];
+    
+    //[NSTimer scheduledTimerWithTimeInterval:4.0f target:self selector:@selector(checkContent) userInfo:nil repeats:NO];//判断有无数据，如果没有加载相应图片
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -206,15 +206,17 @@
             self.changeImageView.frame = CGRectMake(13+55*currentLocation,170,40,3);
         }
         if(context ==  @"2"){
-            if(self.backgroundScrollView.contentOffset.y >= 125-self.navHeight-self.stausHeight+4){
-                self.topicLeftTableView.scrollEnabled = YES;
-                self.topicRightTableView.scrollEnabled = YES;
-            }
             if(self.backgroundScrollView.contentOffset.y <= 1){
-                            self.topicLeftTableView.scrollEnabled = NO;
-                            self.topicRightTableView.scrollEnabled = NO;
+                    self.topicLeftTableView.scrollEnabled = NO;
+                    self.topicRightTableView.scrollEnabled = NO;
             }
-
+            if(self.backgroundScrollView.contentOffset.y >= 125-self.navHeight-self.stausHeight+4){
+                    self.topicLeftTableView.scrollEnabled = YES;
+                    self.topicRightTableView.scrollEnabled = YES;
+            }
+        }
+        if(context == @"3"){
+            //
         }
     }
     else
@@ -231,6 +233,170 @@
     int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     return currentPage;
 }
+- (void) setBackTableView{
+    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
+    self.topicLeftTableView = topicLeftTableView;
+    topicLeftTableView.delegate = self;
+    topicLeftTableView.dataSource = self;
+    topicLeftTableView.scrollEnabled = NO;
+    topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    topicLeftTableView.tableFooterView = [[UIView alloc]init];
+    //[topicLeftTableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"3"];
+  
+    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
+    self.topicRightTableView = topicRightTableView;
+    topicRightTableView.delegate = self;
+    topicRightTableView.dataSource = self;
+    topicRightTableView.scrollEnabled = NO;
+    topicRightTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    topicRightTableView.tableFooterView = [[UIView alloc]init];
+    //[topicRightTableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"3"];
+    
+    [self.topicScrollView addSubview:topicLeftTableView];
+    [self.topicScrollView addSubview:topicRightTableView];
+    [self setUpRefresh];
+}
+
+- (NSInteger)numberOfSectionsInTableView: (UITableView *)tableView{
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if([self checkPage] == 0)
+        return self.leftTableArray.count;
+    else
+        return self.rightTableArray.count;
+}
+#pragma mark 设置cell自适应高度
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    /*UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;*/
+    return UITableViewAutomaticDimension;
+
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([tableView isEqual:self.topicLeftTableView]){
+        [self.topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        //创建单元格（用复用池）,给每一个cell的identifier设置为唯一的
+        NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
+        PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if(cell == nil) {
+            _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
+            //这里
+            cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.layer.cornerRadius = 0;
+            cell.delegate = self;
+            cell.item = _item;
+            cell.commendBtn.tag = indexPath.row;
+            cell.shareBtn.tag = indexPath.row;
+            cell.starBtn.tag = indexPath.row;
+            cell.tag = indexPath.row;
+            if (cell.tag == 0) {
+                cell.layer.cornerRadius = 10;
+            }
+        }
+        [cell layoutSubviews];
+        [cell layoutIfNeeded];
+        self.cnt2 = 1;
+        return cell;
+    }
+    else if ([tableView isEqual:self.topicRightTableView]){
+        [self.topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+        NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
+        PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if(cell == nil) {
+            _item = [[PostItem alloc] initWithDic:self.rightTableArray[indexPath.row]];
+            //这里
+            cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.delegate = self;
+            cell.item = _item;
+            cell.commendBtn.tag = indexPath.row;
+            cell.shareBtn.tag = indexPath.row;
+            cell.starBtn.tag = indexPath.row;
+            cell.tag = indexPath.row;
+            if (cell.tag == 0) {
+                cell.layer.cornerRadius = 10;
+            }
+        }
+        [cell layoutSubviews];
+        [cell layoutIfNeeded];
+        self.cnt2 = 1;
+        return cell;
+    }
+    return nil;
+}
+
+//设置顶部cell
+- (void)setCell {
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
+    YYZTopicCell *cell = [nib objectAtIndex:0];
+    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH,125);
+    self.cell = cell;
+    for(int i=0;i<self.array.count;i++){
+        NSDictionary *dic = self.array[i];
+        if([dic[@"topic_name"]isEqualToString:self.topicIdString]){
+            //self.topicID = i+1;
+            cell.topic_id.text = self.array[i][@"topic_name"];
+            cell.topic_number.text = [NSString stringWithFormat:@"%@个成员",self.array[i][@"follow_count"]];
+            cell.topic_introduce.text = self.array[i][@"introduction"];
+            [cell.topic_logo sd_setImageWithURL:[NSURL URLWithString:self.array[i][@"topic_logo"]]];
+            [cell.topic_isFollow setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:173/255.0 green:187/255.0 blue:213/255.0 alpha:1.0]] forState:UIControlStateDisabled];
+            if([self.array[i][@"is_follow"] longValue] == 1){
+                cell.topic_isFollow.clipsToBounds = YES;
+                cell.topic_isFollow.layer.cornerRadius = 14;
+                [cell.topic_isFollow setTitle:@"已关注" forState:UIControlStateNormal];
+                cell.topic_isFollow.backgroundColor = RGBColor(171, 189, 215, 1);
+            }
+             cell.topic_isFollow.tag = self.array[i][@"topic_id"];
+            [cell.topic_isFollow addTarget:self action:@selector(changeFollow:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+    }
+    [self.backgroundScrollView addSubview:cell];
+}
+
+- (void) setMiddleLable {
+    //现在是我自己写的，以后重构直接用HMSegmentedControl简单一点
+    UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 50)];
+    middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    middleLable.layer.cornerRadius = 15;
+    middleLable.clipsToBounds = YES;
+    UILabel *middleLeftLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 165, 15, 20)];
+    middleLeftLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    UILabel *middleRightLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-15, 165, 15, 20)];
+    middleRightLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.leftButton = leftButton;
+    self.rightButton = rightButton;
+    [leftButton setTitle:@"最新" forState:UIControlStateNormal];
+    [rightButton setTitle:@"热门" forState:UIControlStateNormal];
+    [leftButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
+    [rightButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
+    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+    leftButton.frame = CGRectMake(15, 140, 40, 25);
+    rightButton.frame = CGRectMake(70, 140, 40, 25);
+    //leftButton.highlighted = YES;//默认显示最新
+    [leftButton addTarget:self action:@selector(leftBtnJump) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(rightBtnJump) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *changeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(13,170,40,3)];
+    self.changeImageView = changeImageView;
+    changeImageView.image = [UIImage imageNamed:@"btnChange"];
+    
+    [self.backgroundScrollView addSubview:middleLable];
+    [self.backgroundScrollView addSubview:middleLeftLable];
+    [self.backgroundScrollView addSubview:middleRightLable];
+    [self.backgroundScrollView addSubview:leftButton];
+    [self.backgroundScrollView addSubview:rightButton];
+    [self.backgroundScrollView addSubview:changeImageView];
+
+}
+
 #pragma mark- 帖子列表的网络请求
 //下拉刷新
 - (void)loadData{
@@ -357,95 +523,6 @@
     self.topicRightTableView.mj_header = _header;
 
     [MGDRefreshTool setUPHeader:_header AndFooter:_footer];
-}
-- (void) setBackTableView{
-    UITableView *topicLeftTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
-    self.topicLeftTableView = topicLeftTableView;
-    topicLeftTableView.delegate = self;
-    topicLeftTableView.dataSource = self;
-    topicLeftTableView.scrollEnabled = NO;
-    topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
-    [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  
-    UITableView *topicRightTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-112) style:UITableViewStylePlain];
-    self.topicRightTableView = topicRightTableView;
-    topicRightTableView.delegate = self;
-    topicRightTableView.dataSource = self;
-    topicRightTableView.scrollEnabled = NO;
-    topicRightTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
-    [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    [self.topicScrollView addSubview:topicLeftTableView];
-    [self.topicScrollView addSubview:topicRightTableView];
-    [self setUpRefresh];
-}
-
-- (NSInteger)numberOfSectionsInTableView: (UITableView *)tableView{
-    return 1;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if([self checkPage] == 0)
-        return self.leftTableArray.count;
-    else
-        return self.rightTableArray.count;
-}
-#pragma mark 设置cell自适应高度
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    /*UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;*/
-    return UITableViewAutomaticDimension;
-
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if ([tableView isEqual:self.topicLeftTableView]){
-        [self.topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-        //创建单元格（用复用池）,给每一个cell的identifier设置为唯一的
-        NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
-        PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if(cell == nil) {
-            _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
-            //这里
-            cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            cell.delegate = self;
-            cell.item = _item;
-            cell.commendBtn.tag = indexPath.row;
-            cell.shareBtn.tag = indexPath.row;
-            cell.starBtn.tag = indexPath.row;
-            cell.tag = indexPath.row;
-            if (cell.tag == 0) {
-                cell.layer.cornerRadius = 10;
-            }
-        }
-        [cell layoutSubviews];
-        [cell layoutIfNeeded];
-        self.cnt2 = 1;
-        return cell;
-    }
-    else if ([tableView isEqual:self.topicRightTableView]){
-        [self.topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-        NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
-        PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-        if(cell == nil) {
-            _item = [[PostItem alloc] initWithDic:self.rightTableArray[indexPath.row]];
-            //这里
-            cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-            cell.delegate = self;
-            cell.item = _item;
-            cell.commendBtn.tag = indexPath.row;
-            cell.shareBtn.tag = indexPath.row;
-            cell.starBtn.tag = indexPath.row;
-            cell.tag = indexPath.row;
-            if (cell.tag == 0) {
-                cell.layer.cornerRadius = 10;
-            }
-        }
-        [cell layoutSubviews];
-        [cell layoutIfNeeded];
-        self.cnt2 = 1;
-        return cell;
-    }
-    return nil;
 }
 
 # pragma mark 初始化功能弹出页面
@@ -685,68 +762,6 @@
             [self.view.window addSubview:_popView];
         }
     }
-
-}
-//设置顶部cell
-- (void)setCell {
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YYZTopicCell" owner:self options:nil]; //xib文件
-    YYZTopicCell *cell = [nib objectAtIndex:0];
-    cell.frame = CGRectMake(0, 0, SCREEN_WIDTH,125);
-    self.cell = cell;
-    for(int i=0;i<self.array.count;i++){
-        NSDictionary *dic = self.array[i];
-        if([dic[@"topic_name"]isEqualToString:self.topicIdString]){
-            //self.topicID = i+1;
-            cell.topic_id.text = self.array[i][@"topic_name"];
-            cell.topic_number.text = [NSString stringWithFormat:@"%@个成员",self.array[i][@"follow_count"]];
-            cell.topic_introduce.text = self.array[i][@"introduction"];
-            [cell.topic_logo sd_setImageWithURL:[NSURL URLWithString:self.array[i][@"topic_logo"]]];
-            [cell.topic_isFollow setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:173/255.0 green:187/255.0 blue:213/255.0 alpha:1.0]] forState:UIControlStateDisabled];
-            if([self.array[i][@"is_follow"] longValue] == 1){
-                cell.topic_isFollow.clipsToBounds = YES;
-                cell.topic_isFollow.layer.cornerRadius = 14;
-                [cell.topic_isFollow setTitle:@"已关注" forState:UIControlStateNormal];
-                cell.topic_isFollow.backgroundColor = RGBColor(171, 189, 215, 1);
-            }
-             cell.topic_isFollow.tag = self.array[i][@"topic_id"];
-            [cell.topic_isFollow addTarget:self action:@selector(changeFollow:) forControlEvents:UIControlEventTouchUpInside];
-            break;
-        }
-    }
-    [self.backgroundScrollView addSubview:cell];
-}
-
-- (void) setMiddleLable {
-    //现在是我自己写的，以后重构直接用HMSegmentedControl简单一点
-    UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 50)];
-    middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
-    middleLable.layer.cornerRadius = 15;
-    middleLable.clipsToBounds = YES;
-    
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.leftButton = leftButton;
-    self.rightButton = rightButton;
-    [leftButton setTitle:@"最新" forState:UIControlStateNormal];
-    [rightButton setTitle:@"热门" forState:UIControlStateNormal];
-    [leftButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
-    [rightButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
-    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(15, 140, 40, 25);
-    rightButton.frame = CGRectMake(70, 140, 40, 25);
-    //leftButton.highlighted = YES;//默认显示最新
-    [leftButton addTarget:self action:@selector(leftBtnJump) forControlEvents:UIControlEventTouchUpInside];
-    [rightButton addTarget:self action:@selector(rightBtnJump) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIImageView *changeImageView = [[UIImageView alloc]initWithFrame:CGRectMake(13,170,40,3)];
-    self.changeImageView = changeImageView;
-    changeImageView.image = [UIImage imageNamed:@"btnChange"];
-    
-    [self.backgroundScrollView addSubview:middleLable];
-    [self.backgroundScrollView addSubview:leftButton];
-    [self.backgroundScrollView addSubview:rightButton];
-    [self.backgroundScrollView addSubview:changeImageView];
 
 }
 
