@@ -501,7 +501,6 @@
         }
     }
     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
-    [self refreshData];
     [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
@@ -796,6 +795,14 @@
         }
     }else if([cell.commendBtn.countLabel.text intValue] != [_item.comment_count intValue]){
         cell.commendBtn.countLabel.text = [_item.comment_count stringValue];
+    }else if([cell.starBtn.countLabel.text intValue] != [_item.praise_count intValue]) {
+        if (cell.starBtn.selected == YES) {
+            cell.starBtn.selected = NO;
+        } else {
+            cell.starBtn.selected = YES;
+        }
+        [cell.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
+        cell.starBtn.countLabel.text = [_item.praise_count stringValue];
     }
     [cell layoutSubviews];
     [cell layoutIfNeeded];

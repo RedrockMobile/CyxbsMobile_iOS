@@ -171,7 +171,7 @@
 
 #define VOLUNTEERUNBINDING [CyxbsMobileBaseURL_1 stringByAppendingString:@"volunteer-message/unbinding"]
 
-#define VOLUNTEERACTIVITY [CyxbsMobileBaseURL_1 stringByAppendingString:@"cyb-volunteer/volunteer/activity/info/new"]
+#define VOLUNTEERACTIVITY [CyxbsMobileBaseURL_1 stringByAppendingString:@"/cyb-volunteer/volunteer/activity/info/new"]
 
 #pragma mark - ”重邮地图“接口
 
