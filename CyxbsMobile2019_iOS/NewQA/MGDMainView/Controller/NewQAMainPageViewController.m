@@ -501,7 +501,6 @@
         }
     }
     [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
-    [self refreshData];
     [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 

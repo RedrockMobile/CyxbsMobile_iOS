@@ -14,6 +14,7 @@
 @property(nonatomic,strong ) NSArray *array; //存储网络请求数据
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) YYZTopicCell *cell;
+@property(nonatomic,assign) BOOL isChanged;
 @end
 
 @implementation YYZTopicGroupVC
@@ -49,11 +50,14 @@
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;//退出时显示tabbar
     // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    if (_isChanged) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _isChanged = NO;
     [self setTableView];
 }
 
@@ -128,6 +132,7 @@
 }
 
 - (void)changeFollow:(UIButton *) btn {
+    _isChanged = YES;
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:FOLLOWTOPIC method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = @{@"topic_ID":stringIsFollow};
