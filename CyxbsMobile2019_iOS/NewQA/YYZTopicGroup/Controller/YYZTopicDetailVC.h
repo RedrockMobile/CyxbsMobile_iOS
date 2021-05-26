@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///举报页面
 @property (nonatomic, strong) ReportView *reportView;
 
-///分享页面
+///分享页
 @property (nonatomic, strong) ShareView *shareView;
 
 @property (nonatomic, strong) PostItem *item;
