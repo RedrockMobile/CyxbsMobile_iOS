@@ -122,7 +122,7 @@
     //初始化设置
     self.isReportComment = YES;
     self.isCommentFirstLevel = YES;
-    self.isFirstEnter = NO;
+    self.isFirstEnter = YES;
     self.isDynamicDetailVC = YES;
     self.isShowedReportView = NO;
     

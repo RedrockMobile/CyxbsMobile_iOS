@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *nick_name;
 @property(nonatomic,copy)NSString *time;
 @property(nonatomic,copy)NSString *type;
+@property(nonatomic,copy)NSString *post_id;
 
 - (instancetype)initWithDict:(NSDictionary*)dict;
 @end

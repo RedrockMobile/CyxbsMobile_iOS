@@ -17,6 +17,7 @@
         self.nick_name = dict[@"nick_name"];
         self.time = dict[@"time"];
         self.type = [NSString stringWithFormat:@"%@",dict[@"type"]];
+        self.post_id = [NSString stringWithFormat:@"%@",dict[@"post_id"]];
     }
     return self;
 }
