@@ -54,7 +54,7 @@
             height4 = (11.5*HScaleRate_SE + (self.pics.count-1)/3 * 10*HScaleRate_SE + ((self.pics.count-1)/3 + 1)* (SCREEN_WIDTH-(2 * Margin + Pading * 2))/item_num) + 10*HScaleRate_SE ;
         }
 //    }
-        //最后的5是容错处理
-    return height1 + height2 + height3 + height4 + 5*HScaleRate_SE;
+        //最后的5是容错处理 10是发布时间距离昵称的高度
+    return height1 + height2 + height3 + height4 + 5*HScaleRate_SE + 10;
 }
 @end
