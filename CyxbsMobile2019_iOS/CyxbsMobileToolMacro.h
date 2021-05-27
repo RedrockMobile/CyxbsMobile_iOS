@@ -163,9 +163,9 @@ fprintf(stderr,"\n");\
 #define STATUS_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height//状态栏高度
 
 
-//1.293517  414-896，(宽/375)*(高/667/2 + 0.5)
+//如果是414-896尺寸的话大概就是1.2325907  ，(宽/375/2 + 0.5)*(高/667/2 + 0.5)
 //375*667状态的字号、宽高乘上这个比例，大概可以适配其他尺寸的比例
-#define fontSizeScaleRate_SE (SCREEN_WIDTH*(0.001333333333333+SCREEN_HEIGHT/500250.0))
+#define fontSizeScaleRate_SE ((SCREEN_WIDTH/750.0 + 0.5)*(SCREEN_HEIGHT/1334.0+ 0.5 ))
 
 
 //1.1717

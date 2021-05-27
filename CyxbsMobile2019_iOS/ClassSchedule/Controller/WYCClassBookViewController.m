@@ -42,6 +42,9 @@
 
 /// lessonViewDict[0]代表整学期页的课表，lessonViewDict[x]代表第x周
 @property (nonatomic, strong)NSMutableDictionary <NSString*, LessonViewForAWeek*>* lessonViewDict;
+
+/// 记录课表的加载个数
+@property (nonatomic, assign, readonly)int schedulLoadCnt;
 @end
 
 @implementation WYCClassBookViewController
@@ -67,8 +70,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //添加对通知中心的监听
-    CCLog(@"loading..........");
     [self addNoti];
+    
     self.lessonViewDict = [[NSMutableDictionary alloc] init];
     self.scBackViewDict = [[NSMutableDictionary alloc] init];
     
@@ -194,20 +197,35 @@
     int count = (int)self.dateModel.dateArray.count + 1;
     
     if(count==0)return;
-    if(0<index.intValue&&index.intValue<count-1){
-        [self addSchedulWithIndex:index.intValue];
-        [self addSchedulWithIndex:index.intValue-1];
-        [self addSchedulWithIndex:index.intValue+1];
-    }else if(index.intValue==0){
-        [self addSchedulWithIndex:index.intValue];
-        [self addSchedulWithIndex:index.intValue+1];
-    }else if(index.intValue==count-1){
-        [self addSchedulWithIndex:index.intValue];
-        [self addSchedulWithIndex:index.intValue-1];
+    int start = index.intValue - self.schedulLoadCnt;
+    int end = index.intValue + self.schedulLoadCnt + 1;
+    if (start<0) {
+        start = 0;
     }
+    if (end>count) {
+        end = count;
+    }
+    for (int i=start; i<end; i++) {
+        [self addSchedulWithIndex:i];
+    }
+//    if(0<index.intValue&&index.intValue<count-1){
+//        [self addSchedulWithIndex:index.intValue];
+//        [self addSchedulWithIndex:index.intValue-1];
+//        [self addSchedulWithIndex:index.intValue+1];
+//    }else if(index.intValue==0){
+//        [self addSchedulWithIndex:index.intValue];
+//        [self addSchedulWithIndex:index.intValue+1];
+//    }else if(index.intValue==count-1){
+//        [self addSchedulWithIndex:index.intValue];
+//        [self addSchedulWithIndex:index.intValue-1];
+//    }
 }
 
+- (int)schedulLoadCnt {
 
+    
+    return 0;
+}
 
 //MARK:-代理方法：
 //scrollView的代理方法：
@@ -516,7 +534,7 @@
         }
         return;
     }
-//    CLog(@"add2 %d",index);
+    CLog(@"add2 %d",index);
     scBackView = [[UIView alloc] init];
     [self.scrollView addSubview:scBackView];
     self.scBackViewDict[indexStr] = scBackView;
@@ -563,8 +581,10 @@
     lessonViewForAWeek.frame = CGRectMake(MONTH_ITEM_W+DAYBARVIEW_DISTANCE,0, lessonViewForAWeek.frame.size.width, lessonViewForAWeek.frame.size.height);
     
     //如果是自己的课表,那就添加备忘
-    for (NoteDataModel *model in self.model.noteDataModelArray[index]) {
-        [lessonViewForAWeek addNoteLabelWithNoteDataModel:model];
+    if (self.schedulType==ScheduleTypePersonal) {
+        for (NoteDataModel *model in self.model.noteDataModelArray[index]) {
+            [lessonViewForAWeek addNoteLabelWithNoteDataModel:model];
+        }
     }
 }
 
