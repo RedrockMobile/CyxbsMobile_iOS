@@ -86,7 +86,7 @@
     //日期
     [self addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(-3 * HScaleRate_SE);
+        make.top.equalTo(self.nicknameLabel.mas_bottom).offset(5);
         make.left.mas_equalTo(self.nicknameLabel);
     }];
     

@@ -39,6 +39,6 @@
     }
     
 //    self.cellHeight = height1 + height2 + height3 + height4;
-    return height1 + height2 + height3 + height4;
+    return height1 + height2 + height3 + height4 + 10;
 }
 @end

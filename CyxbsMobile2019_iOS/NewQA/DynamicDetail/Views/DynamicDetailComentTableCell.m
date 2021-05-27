@@ -104,7 +104,7 @@
     //发布时间
     [self.contentView addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.iconImageView);
+        make.top.equalTo(self.nicknameLabel.mas_bottom).offset(5);
         make.left.mas_equalTo(self.nicknameLabel);
     }];
     self.timeLabel.hidden = (self.commentLevel == DynamicCommentType_stair ? NO : YES);
