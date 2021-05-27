@@ -637,17 +637,23 @@
 //            NSLog(@"得到全部标签----%@",topicsAry);
             self.topicAry = topicsAry;
             [SZHArchiveTool saveTopicsAry:topicsAry];
+            self.circleLabelView = [[SZHCircleLabelView alloc] initWithArrays:self.topicAry];
+            self.circleLabelView.delegate = self;
+            [self.scrollView addSubview:self.circleLabelView];
+            [self.circleLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.equalTo(self.releaseView);
+                make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(20);
+            }];
+        }];
+    }else{
+        self.circleLabelView = [[SZHCircleLabelView alloc] initWithArrays:self.topicAry];
+        self.circleLabelView.delegate = self;
+        [self.scrollView addSubview:self.circleLabelView];
+        [self.circleLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.releaseView);
+            make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(20);
         }];
     }
-    
-    self.circleLabelView = [[SZHCircleLabelView alloc] initWithArrays:self.topicAry];
-    self.circleLabelView.delegate = self;
-    [self.scrollView addSubview:self.circleLabelView];
-    [self.circleLabelView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.releaseView);
-//        make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(MAIN_SCREEN_H * 0.0569);
-        make.top.equalTo(self.releaseView.addPhotosBtn.mas_bottom).offset(20);
-    }];
     
     //网络请求然后归档，作为数据更新
     [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {

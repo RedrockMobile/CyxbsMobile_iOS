@@ -22,6 +22,8 @@
 @property (nonatomic, strong) UILabel *nicknameLabel;
 ///时间
 @property (nonatomic, strong) UILabel *timeLabel;
+/// 展示回复,以及被回复人昵称的labl
+@property (nonatomic, strong) UILabel *replyLbl;
 ///内容
 @property (nonatomic, strong) UILabel *detailLabel;
 
@@ -102,7 +104,7 @@
     //发布时间
     [self.contentView addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.iconImageView);
+        make.top.equalTo(self.nicknameLabel.mas_bottom).offset(5);
         make.left.mas_equalTo(self.nicknameLabel);
     }];
     self.timeLabel.hidden = (self.commentLevel == DynamicCommentType_stair ? NO : YES);
@@ -110,18 +112,34 @@
     //点赞按钮
     [self.contentView addSubview:self.starBtn];
     [self.starBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.051);
+        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_HEIGHT * 0.04);
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.86);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 20.75/20.05);
         make.width.mas_equalTo(SCREEN_WIDTH * 0.1648);
     }];
     
     //内容的label
-    [self.contentView addSubview:self.detailLabel];
-    [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(10 * HScaleRate_SE);
-        make.left.mas_equalTo(self.nicknameLabel);
-    }];
+    if (self.commentLevel == DynamicCommentType_stair) {
+        [self.contentView addSubview:self.detailLabel];
+        [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(10 * HScaleRate_SE);
+            make.left.mas_equalTo(self.nicknameLabel);
+        }];
+    }else{
+        [self.contentView addSubview:self.replyLbl];
+        [self.replyLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.nicknameLabel);
+            make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(8 * HScaleRate_SE);
+            make.height.mas_equalTo(17);
+        }];
+        
+        [self.contentView addSubview:self.detailLabel];
+        [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(27 * HScaleRate_SE);
+            make.left.mas_equalTo(self.nicknameLabel);
+        }];
+    }
+    
     
 //    //如果是一级评论就展示图片，否则就不展示
     if (self.commentLevel == DynamicCommentType_stair){
@@ -219,8 +237,8 @@
         //内容，根据几级评论设置内容
             //如果是二级评论，对内容进行处理
         if (self.commentLevel == DynamicCommentType_secondLevel) {
-            //总的内容
-            NSString *tampStr = [NSString stringWithFormat:@"回复 %@：%@",dataModel.from_nickname,dataModel.content];
+            //回复label的内容
+            NSString *tampStr = [NSString stringWithFormat:@"回复 %@：",dataModel.from_nickname];
             NSMutableAttributedString *attribut = [[NSMutableAttributedString alloc]initWithString:tampStr];
             //”回复“的文字处理
             NSRange rangeOne = NSMakeRange(0, 2);
@@ -240,14 +258,17 @@
                 detailLength += (dataModel.from_nickname.length+1);
             }
             
-            //回复内容的文字处理
-            NSRange rangethree = NSMakeRange(detailLength, dataModel.content.length);
-            NSMutableDictionary *dicthree = [NSMutableDictionary dictionary];
-            dicthree[NSFontAttributeName] = [UIFont fontWithName:PingFangSCRegular size:15 ];
-            dicthree[NSForegroundColorAttributeName] = [UIColor colorNamed:@"17_44_87&240_240_242"];
-            [attribut addAttributes:dicthree range:rangethree];
+//            //回复内容的文字处理
+//            NSRange rangethree = NSMakeRange(detailLength, dataModel.content.length);
+//            NSMutableDictionary *dicthree = [NSMutableDictionary dictionary];
+//            dicthree[NSFontAttributeName] = [UIFont fontWithName:PingFangSCRegular size:15 ];
+//            dicthree[NSForegroundColorAttributeName] = [UIColor colorNamed:@"17_44_87&240_240_242"];
+//            [attribut addAttributes:dicthree range:rangethree];
             
-            self.detailLabel.attributedText = attribut;
+            self.replyLbl.attributedText = attribut;
+            
+            //内容的label
+            self.detailLabel.text = dataModel.content;
             
         }else{
             //一级评论就直接展示
@@ -297,6 +318,13 @@
     return _timeLabel;
 }
 
+- (UILabel *)replyLbl{
+    if (!_replyLbl) {
+        _replyLbl = [[UILabel alloc] initWithFrame:CGRectZero];
+        _replyLbl.backgroundColor = [UIColor clearColor];
+    }
+    return _replyLbl;
+}
 ///内容
 - (UILabel *)detailLabel{
     if (!_detailLabel) {

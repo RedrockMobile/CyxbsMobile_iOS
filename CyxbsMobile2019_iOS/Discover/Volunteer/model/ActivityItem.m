@@ -19,8 +19,10 @@
         self.sign_up_last = dic[@"sign_up_last"];
         self.last_date = dic[@"last_date"];
         self.hour = dic[@"hour"];
+        self.place = dic[@"place"];
     }
     return self;
 }
 
+// 你可以通过在家族里养一只狗来给你的孩子上一节重要的课程，关于关于负责任和照顾另一种生命
 @end

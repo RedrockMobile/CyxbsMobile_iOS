@@ -42,7 +42,7 @@
         //内容label的高度
     CGFloat height3 = 0;
     CGFloat preferredMaxLayoutWidth = self.reply_list.count == 0 ? (MAIN_SCREEN_W - 100*WScaleRate_SE) : (MAIN_SCREEN_W - 130*WScaleRate_SE);
-    NSDictionary *attr = @{NSFontAttributeName:[UIFont fontWithName:PingFangSCRegular size:15]};
+    NSDictionary *attr = @{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:15]};
     CGSize detaileLblSize = [self.content boundingRectWithSize:CGSizeMake(preferredMaxLayoutWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size;
     height3 = detaileLblSize.height + 3*HScaleRate_SE;
     
@@ -54,7 +54,7 @@
             height4 = (11.5*HScaleRate_SE + (self.pics.count-1)/3 * 10*HScaleRate_SE + ((self.pics.count-1)/3 + 1)* (SCREEN_WIDTH-(2 * Margin + Pading * 2))/item_num) + 10*HScaleRate_SE ;
         }
 //    }
-        //最后的5是容错处理
-    return height1 + height2 + height3 + height4 + 5*HScaleRate_SE;
+        //最后的5是容错处理 10是发布时间距离昵称的高度
+    return height1 + height2 + height3 + height4 + 5*HScaleRate_SE + 10;
 }
 @end

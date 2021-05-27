@@ -128,9 +128,8 @@
 - (void)releaseDynamic{
     //出现正在发送的提示框
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view.window animated:YES];
-//    hud.mode = MBProgressHUDModeText;
+
     hud.labelText = @"正在上传数据...";
-//    [hud hide:YES afterDelay:1.4];
     hud.margin = 8;
     [hud setYOffset:-SCREEN_HEIGHT * 0.26];
     hud.labelFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];

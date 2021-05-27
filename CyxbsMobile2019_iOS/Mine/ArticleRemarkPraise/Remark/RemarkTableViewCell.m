@@ -187,7 +187,9 @@
 /// 点击评论按钮后调用
 - (void)remarkBtnClicked {
     DynamicDetailAddPhotoController *commentVC = [DynamicDetailAddPhotoController new];
+    commentVC.isFirstCommentLevel = NO;
     commentVC.post_id = self.post_id.intValue;
+    commentVC.reply_id = self.comment_id.intValue;
     [self.viewController.navigationController pushViewController:commentVC animated:YES];
 }
 

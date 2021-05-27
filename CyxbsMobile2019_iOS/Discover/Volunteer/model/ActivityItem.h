@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *sign_up_last;
 @property (nonatomic, strong) NSString *last_date;
 @property (nonatomic, strong) NSString *hour;
+@property (nonatomic, strong) NSString *place;
 
 - (instancetype)initWithDic:(NSDictionary *)dic;
 

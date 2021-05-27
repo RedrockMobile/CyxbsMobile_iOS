@@ -14,6 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
  概述：添加图片的conttroller
  
  根据几级评论标识来确定要不要添加图片
+ 
+ 需要传入的参数：
+ 1.post_id 动态id
+ 2.reply_id 回复的评论id，用以回复评论
  */
 @interface DynamicDetailAddPhotoController : UIViewController
 /// 几级评论的标识
