@@ -10,9 +10,16 @@
 #import "RemarkParseModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
+@class RemarkTableViewCell;
+
+@protocol RemarkTableViewCellDelegate <NSObject>
+- (void)praiseBtnClicked:(RemarkTableViewCell*)cell;
+@end
+
 /// 评论页面的cell
 @interface RemarkTableViewCell : MainPageTableViewCell
 @property (nonatomic, strong)RemarkParseModel *model;
+@property (nonatomic, weak)id <RemarkTableViewCellDelegate>delegate;
 
 
 @end
