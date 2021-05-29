@@ -167,7 +167,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         if(IS_IPHONEX) {
-            make.top.equalTo(self.view).offset(34);
+            make.top.equalTo(self.view).offset(44);
         }else {
             make.top.equalTo(self.view).offset(20);
         }
