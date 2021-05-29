@@ -43,6 +43,11 @@
     return self;
 }
 
+-(void)reloadCellView{
+    [self BuildUI];
+    [self BuildFrame];
+}
+
 - (void)BuildUI {
     ///头像
     _iconImageView = [[UIImageView alloc] init];

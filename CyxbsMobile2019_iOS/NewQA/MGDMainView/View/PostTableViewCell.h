@@ -52,6 +52,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) PostItem *item;
 
+-(void)reloadCellView;
+
 @property (nonatomic, weak) id <PostTableViewCellDelegate> delegate;
 
 @end

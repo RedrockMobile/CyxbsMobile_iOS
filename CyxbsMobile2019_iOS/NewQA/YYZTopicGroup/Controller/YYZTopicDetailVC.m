@@ -21,9 +21,11 @@
 #import "ShieldModel.h"
 #import "ReportModel.h"
 #import "DeletePostModel.h"
+#import <objc/runtime.h>
+
 
     
-@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate,SelfFuncViewProtocol>
+@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate,SelfFuncViewProtocol,UIGestureRecognizerDelegate>
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;//最底部的scrollview
@@ -101,7 +103,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
-
+    
 }
 
 - (void)viewDidLoad {
@@ -142,8 +144,9 @@
     if (_isChanged) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
     }
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
+
+
 
 - (void)setNotification{
     ///帖子列表请求成功
@@ -1032,4 +1035,6 @@
         }];
     }
 }
+
 @end
+ 

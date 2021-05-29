@@ -241,6 +241,7 @@
                 dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self setMainViewUI];
+                    [self loadData];
                     [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
                         make.top.mas_equalTo(self.topBackView.mas_bottom);
                         make.left.right.bottom.mas_equalTo(self.view);
@@ -256,11 +257,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
-    [self.tableView reloadData];
-    if ([self.tableArray count] == 0 && !self.noListBackView.window) {
-        [self noDataInList];
-    }
-//    [[UserItemTool defaultItem] setFirstLogin:NO];
 }
 
 //邮问视图消失时显示底部课表
@@ -377,41 +373,9 @@
     self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
     _TopViewHeight = self.dataArray.count != 0 ? (SCREEN_WIDTH * 191/375) : (SCREEN_WIDTH * 116/375);
     [self setMainViewUI];
-    [self.tableView reloadData];
-    if ([self.tableArray count] == 0 && !self.noListBackView.window) {
-        [self noDataInList];
-    }
-}
-
-// 列表无数据时的处理
-- (void)noDataInList {
-    _noListBackView = [[UIView alloc] init];
-    _noListBackView.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-    self.tableView.separatorStyle = UITableViewCellAccessoryNone;
-    
-    _noListBackView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-(_TopViewHeight));
-    [self.tableView addSubview:_noListBackView];
-    
-    UIImageView *imageView = [[UIImageView alloc] init];
-    UILabel *noticeLabel = [[UILabel alloc] init];
-    noticeLabel.text = @"还没有相关动态哦～";
-    noticeLabel.font = [UIFont fontWithName:PingFangSCLight size:12];
-    noticeLabel.textColor = [UIColor colorNamed:@"CellDateColor"];
-    [_noListBackView addSubview:imageView];
-    [_noListBackView addSubview:noticeLabel];
-    imageView.image = [UIImage imageNamed:@"图层 11"];
-    CGSize size = [UIImage imageNamed:@"图层 11"].size;
-    noticeLabel.textAlignment = NSTextAlignmentCenter;
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_noListBackView.top).mas_offset(SCREEN_WIDTH * 0.28 * 45.5/105);
-        make.left.mas_equalTo(_noListBackView.left).mas_equalTo(SCREEN_WIDTH * 0.28);
-        make.size.mas_equalTo(size);
-    }];
-    [noticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(_noListBackView);
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.2387 * 11.5/89.5);
-        make.top.mas_equalTo(imageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.38 * 33/142.5);
-    }];
+    [NewQAHud showHudWith:@" 正在刷新  " AddView:self.view];
+    [self refreshData];
+//    [self.tableView reloadData];
 }
 
 # pragma mark 初始化功能弹出页面
@@ -557,9 +521,6 @@
     }else{
         [self.tableView.mj_footer endRefreshing];
         [self.tableView reloadData];
-    }
-    if ([self.tableArray count] == 0 && !self.noListBackView.window) {
-        [self noDataInList];
     }
     NSLog(@"成功请求列表数据");
 }
@@ -776,11 +737,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     //创建单元格（用复用池）
     ///给每一个cell的identifier设置为唯一的
-    NSString *identifier = [NSString stringWithFormat:@"post%ldcell",indexPath.row];
-    PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    NSString *identifier = [NSString stringWithFormat:@"postcell"];
     _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+    PostTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if(cell == nil) {
-//        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
         //这里
         cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.delegate = self;
@@ -793,16 +753,8 @@
         if (cell.tag == 0) {
             cell.layer.cornerRadius = 10;
         }
-    }else if([cell.commendBtn.countLabel.text intValue] != [_item.comment_count intValue]){
-        cell.commendBtn.countLabel.text = [_item.comment_count stringValue];
-    }else if([cell.starBtn.countLabel.text intValue] != [_item.praise_count intValue]) {
-        if (cell.starBtn.selected == YES) {
-            cell.starBtn.selected = NO;
-        } else {
-            cell.starBtn.selected = YES;
-        }
-        [cell.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
-        cell.starBtn.countLabel.text = [_item.praise_count stringValue];
+    }else if (_item.post_id != cell.item.post_id){
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:indexPath.row inSection:0],nil] withRowAnimation:UITableViewRowAnimationNone];
     }
     [cell layoutSubviews];
     [cell layoutIfNeeded];

@@ -13,11 +13,11 @@
 
 @interface RemarkTableViewCell()
 
-/// 自己的评论/动态的内容label
-@property(nonatomic,strong)UILabel * contentLabel;
-
 /// 别人对自己的评论的内容label
 @property(nonatomic,strong)UILabel * remarkLabel;
+
+/// 自己的评论/动态的内容label
+@property(nonatomic,strong)UILabel * contentLabel;
 
 /// 点赞按钮
 @property(nonatomic,strong)UIButton *praiseBtn;
@@ -28,8 +28,10 @@
 /// 别人对自己的评论的内容label的左边的那个灰色view
 @property(nonatomic,strong)UIView *grayTipView;
 
+/// 应该是动态id
 @property(nonatomic,copy)NSString *post_id;
 
+/// 应该是评论id
 @property(nonatomic,copy)NSString *comment_id;
 
 /// type 为@"1"为动态被评论，为@"2"为评论被评论
@@ -41,8 +43,8 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
-        [self addContentLabel];
-        [self addRemarkLabel];
+        [self addremarkLabel];
+        [self addcontentLabel];
         [self addRemarkBtn];
         [self addPraiseBtn];
     }
@@ -51,9 +53,9 @@
 
 //MARK:-添加子控件
 //上
-- (void)addContentLabel {
+- (void)addremarkLabel {
     UILabel *label = [[UILabel alloc] init];
-    self.contentLabel = label;
+    self.remarkLabel = label;
     [self.contentView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
@@ -71,9 +73,9 @@
     }];
 }
 //下
-- (void)addRemarkLabel {
+- (void)addcontentLabel {
     UILabel *label = [[UILabel alloc] init];
-    self.remarkLabel = label;
+    self.contentLabel = label;
     [self.contentView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
@@ -107,7 +109,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(0.18*MAIN_SCREEN_W);
-        make.centerY.equalTo(self.remarkLabel);
+        make.centerY.equalTo(self.contentLabel);
         make.width.mas_equalTo(3);
         make.height.mas_equalTo(0.0347*SCREEN_WIDTH);
     }];
@@ -170,8 +172,10 @@
     [[HttpClient defaultClient] requestWithPath:NEW_QA_STAR method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (self.praiseBtn.selected) {
             [self changePraiseBtnToState:NO];
+            self.model.is_praised = @"0";
         }else {
             [self changePraiseBtnToState:YES];
+            self.model.is_praised = @"1";
         }
         self.praiseBtn.enabled = YES;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -224,12 +228,10 @@
         [self changePraiseBtnToState:NO];
     }
     
-    self.remarkLabel.text = model.content;
     self.contentLabel.text = model.from;
-    
+    self.remarkLabel.text = model.content;
     self.comment_id = model.comment_id;
     self.post_id = model.post_id;
-    
 }
 
 

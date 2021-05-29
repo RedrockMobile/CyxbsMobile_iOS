@@ -34,12 +34,6 @@
                         <color key="textColor" name="YYZColor3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="圈子的具体介绍" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIp-t4-zxa">
-                        <rect key="frame" x="18" y="98" width="339" height="16"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                        <color key="textColor" name="YYZColor4"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="圈子名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfq-nn-Igb">
                         <rect key="frame" x="76" y="25" width="138" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -61,11 +55,17 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="圈子的具体介绍" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIp-t4-zxa">
+                        <rect key="frame" x="18" y="95" width="339" height="16"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                        <color key="textColor" name="YYZColor4"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" name="YYZColor1"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="EIp-t4-zxa" secondAttribute="trailing" constant="18" id="E09-BT-TXl"/>
-                    <constraint firstAttribute="bottom" secondItem="EIp-t4-zxa" secondAttribute="bottom" constant="11" id="Hun-AN-ouG"/>
+                    <constraint firstAttribute="bottom" secondItem="EIp-t4-zxa" secondAttribute="bottom" constant="14" id="eMZ-q7-fHb"/>
                     <constraint firstItem="EIp-t4-zxa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="eRY-ol-ibY"/>
                 </constraints>
             </tableViewCellContentView>

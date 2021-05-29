@@ -403,6 +403,7 @@
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
 		AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */; };
+		AAC0DA3B265DFA740039A099 /* DeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC0DA3A265DFA740039A099 /* DeviceUtils.m */; };
 		AAC7CA0125F5130900E6B5D5 /* PraiseParseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7CA0025F5130900E6B5D5 /* PraiseParseModel.m */; };
 		AAC7CA0B25F7725200E6B5D5 /* MainPage2RequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7CA0A25F7725200E6B5D5 /* MainPage2RequestModel.m */; };
 		AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7CA1025F7753E00E6B5D5 /* PraiseModel.m */; };
@@ -1394,6 +1395,8 @@
 		AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LessonViewForAWeek.m; sourceTree = "<group>"; };
 		AAAA1D8E24FE39F500DB9A81 /* NextLessonFinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NextLessonFinder.h; sourceTree = "<group>"; };
 		AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextLessonFinder.m; sourceTree = "<group>"; };
+		AAC0DA39265DFA740039A099 /* DeviceUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceUtils.h; sourceTree = "<group>"; };
+		AAC0DA3A265DFA740039A099 /* DeviceUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceUtils.m; sourceTree = "<group>"; };
 		AAC7C9FF25F5130900E6B5D5 /* PraiseParseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PraiseParseModel.h; sourceTree = "<group>"; };
 		AAC7CA0025F5130900E6B5D5 /* PraiseParseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PraiseParseModel.m; sourceTree = "<group>"; };
 		AAC7CA0925F7725200E6B5D5 /* MainPage2RequestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainPage2RequestModel.h; sourceTree = "<group>"; };
@@ -3349,6 +3352,7 @@
 				1A5A5ED423600BA300543BAE /* Login */,
 				1A141319235F521C0001417E /* Base */,
 				1A141339235F524B0001417E /* Tool */,
+				AAC0DA35265DF65B0039A099 /* Other */,
 				1A9B766A235F50A600725937 /* AppDelegate.h */,
 				1A9B766B235F50A600725937 /* AppDelegate.m */,
 				DB34EB3E239BD4850052B65E /* Main.storyboard */,
@@ -3850,6 +3854,15 @@
 				AA49098824F3BF5A007CB3BC /* TransitionManager.m */,
 			);
 			path = "Tool&Animater";
+			sourceTree = "<group>";
+		};
+		AAC0DA35265DF65B0039A099 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				AAC0DA39265DFA740039A099 /* DeviceUtils.h */,
+				AAC0DA3A265DFA740039A099 /* DeviceUtils.m */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		AAE3304325E2A05C00324750 /* Article */ = {
@@ -5512,6 +5525,7 @@
 				AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */,
 				18CDF71D257F91BE006E8E5C /* GestureTableView.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
+				AAC0DA3B265DFA740039A099 /* DeviceUtils.m in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
 				18CDF70B257F91BE006E8E5C /* HeaderTableViewCell.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
@@ -5724,8 +5738,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
-				DEVELOPMENT_TEAM = 92469DFD6U;
+				CURRENT_PROJECT_VERSION = 30;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -5753,8 +5767,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
-				DEVELOPMENT_TEAM = 92469DFD6U;
+				CURRENT_PROJECT_VERSION = 30;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;

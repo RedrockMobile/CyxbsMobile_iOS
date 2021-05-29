@@ -17,7 +17,7 @@
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)RemarkModel *remarkModel;
 @property(nonatomic,strong)NothingStateView *nothingView;
-//@property(nonatomic,weak)GYYDynamicDetailViewController *vc;
+@property(nonatomic,strong)NSMutableDictionary <NSString*,RemarkParseModel*>* parseModelDict;
 @end
 
 @implementation RemarkViewController
@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.VCTitleStr = @"评论回复";
-    
+    self.parseModelDict = [[NSMutableDictionary alloc] init];
     //这里因为tableview的刷新是直接绑定remarkModel的加载数据方法，所以remarkModel得比tableview先加载
     [self addRemarkModel];
     [self addTableView];
@@ -99,7 +99,16 @@
     if (cell==nil) {
         cell = [[RemarkTableViewCell alloc] initWithReuseIdentifier:@"PraiseTableViewCellID"];
     }
-    [cell setModel:[[RemarkParseModel alloc]initWithDict:self.remarkModel.dataArr[indexPath.row]]];
+    
+    RemarkParseModel *model = self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]];
+    if(model==nil) {
+        model = [[RemarkParseModel alloc]initWithDict:self.remarkModel.dataArr[indexPath.row]];
+        self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]] = model;
+        CLog(@"1%ld,,%@",indexPath.row,self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]]);
+    }else {
+        CLog(@"2%ld,,%@",indexPath.row,model);
+    }
+    [cell setModel:model];
     return cell;
 }
 
