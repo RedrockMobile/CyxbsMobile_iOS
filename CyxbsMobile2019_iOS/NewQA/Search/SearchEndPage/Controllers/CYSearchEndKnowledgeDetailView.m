@@ -40,17 +40,9 @@
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.view).offset(STATUSBARHEIGHT);
-//        make.bottom.equalTo(self.view.mas_top).offset(STATUSBARHEIGHT + NVGBARHEIGHT);
     }];
     
-    //返回按钮
-    [self.view addSubview:self.backBtn];
-    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view);
-        make.centerY.equalTo(label);
-//        MAIN_SCREEN_W * 0.06133
-        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.1, 45 * HScaleRate_SE));
-    }];
+   
         //返回的图标
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     imageView.userInteractionEnabled = YES;
@@ -61,6 +53,15 @@
 //        make.bottom.equalTo(self.view.mas_top).offset(STATUSBARHEIGHT + NVGBARHEIGHT);
         make.centerY.equalTo(label);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.0186, 2 *MAIN_SCREEN_W * 0.0186 ));
+    }];
+    
+    //返回按钮
+//    self.backBtn.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.backBtn];
+    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.centerY.equalTo(label);
+        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.1, 45 * HScaleRate_SE));
     }];
     
     //底部的分割线

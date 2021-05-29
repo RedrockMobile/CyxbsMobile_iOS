@@ -108,7 +108,8 @@
         //获取button的字符串的宽度
         CGFloat titleWidth = [self.buttonAry[i].titleLabel.text boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, MAIN_SCREEN_H * 0.0382) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:13]} context:nil].size.width;
         
-        CGFloat buttonWidth = titleWidth + MAIN_SCREEN_W * 0.07 ;  //button宽度
+        //button宽度 = 标题的长度 + 距离两边宽度 + 边框宽度（这里改为-2）
+        CGFloat buttonWidth = titleWidth + MAIN_SCREEN_W * 0.07 + 2 ;
         CGFloat buttonX = CGRectGetMaxX(self.buttonAry[i-1].frame) + splite;//button最左边的frame
         positionX = buttonX + buttonWidth ;
 

@@ -39,11 +39,6 @@
         make.center.equalTo(self);
     }];
     
-    [self addSubview:self.backbtn];
-    [self.backbtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.bottom.equalTo(self);
-        make.width.mas_equalTo(MAIN_SCREEN_W * 0.0427 * 4);
-    }];
     
     [self addSubview:self.backIconImageView];
     [self.backIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -51,6 +46,14 @@
         make.centerY.mas_equalTo(self);
         make.size.mas_equalTo(CGSizeMake(7 * WScaleRate_SE, 14 * HScaleRate_SE));
     }];
+    
+//    self.backbtn.backgroundColor = [UIColor redColor];
+    [self addSubview:self.backbtn];
+    [self.backbtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.equalTo(self);
+        make.width.mas_equalTo(MAIN_SCREEN_W * 0.0427 * 4);
+    }];
+    
     
     [self addSubview:self.bottomDividerView];
     [self.bottomDividerView mas_makeConstraints:^(MASConstraintMaker *make) {
