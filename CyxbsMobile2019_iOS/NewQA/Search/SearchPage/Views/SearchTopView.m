@@ -46,12 +46,14 @@
     
     //返回按钮。
         //在这里按钮和图标分开，按钮透明，实际范围比图标大
+//    self.backBtn.backgroundColor = [UIColor redColor];
     [self addSubview:self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.top.equalTo(self);
         make.bottom.equalTo(self);
-        make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133);
+//        make.width.mas_equalTo(MAIN_SCREEN_W * 0.06133);
+        make.width.mas_equalTo(MAIN_SCREEN_W * 0.1);
     }];
         //返回的图标
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];

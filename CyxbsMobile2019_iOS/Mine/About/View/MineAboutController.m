@@ -49,7 +49,7 @@
 - (void)selectedProductWebsite {
     URLController * controller = [[URLController alloc]init];
     controller.hidesBottomBarWhenPushed = YES;
-    controller.toUrl = @"https://wx.redrock.team/game/handheldcqupt-pc/#/";
+    controller.toUrl = @"https://app.redrock.team/#/";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
