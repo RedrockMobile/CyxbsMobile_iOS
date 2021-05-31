@@ -33,7 +33,7 @@
 #import "VolunteerItem.h"
 #import "QueryViewController.h"
 #import "ArchiveTool.h"
-
+#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 //Tool
 #import "NewQAHud.h"
 

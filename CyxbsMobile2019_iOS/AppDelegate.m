@@ -171,12 +171,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     // 完成每天晚上推送课表的相关操作
     [self pushSchedulEveryday];
-    [self test];
     return YES;
-}
-- (void)test {
-//    NSDate.nowTimestamp;
-    CCLog(@"nowTimestamp=%ld",NSDate.nowTimestamp);
 }
 /// 完成创建文件/文件夹的操作
 - (void)setFile{

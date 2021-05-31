@@ -12,6 +12,7 @@
 #import "ArchiveTool.h"
 
 #import "PostArchiveTool.h"
+#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 @interface UserItemTool ()
 
 @property (nonatomic, strong) UserItem *item;
