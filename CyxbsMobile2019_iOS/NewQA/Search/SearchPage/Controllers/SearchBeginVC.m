@@ -37,6 +37,10 @@
 
 @property (nonatomic, strong) NSDictionary *searchDynamicDic;    //相关动态数组
 @property (nonatomic, strong) NSDictionary *searchKnowledgeDic;    //知识库数组
+
+/// 热门搜索的临时变量btn
+@property (nonatomic, strong) UIButton *tempBtn;
+
 @property (nonatomic, assign) BOOL getDynamicFailure;   //获取动态失败
 @property (nonatomic, assign) BOOL getKnowledgeFailure; //获取知识库失败
 @end
@@ -148,6 +152,10 @@
     self.searchDynamicDic = nil;
     self.searchKnowledgeDic = nil;
     
+    //设置热搜按钮可用
+    if (self.tempBtn != nil) {
+        self.tempBtn.enabled = YES;
+    }
     //3.添加历史记录
     [self wirteHistoryRecord:searchString];
 }
@@ -282,6 +290,8 @@
 //MARK:热门搜索视图的代理方法
 - (void)touchHotSearchBtnsThroughBtn:(UIButton *)btn{
     NSString *string = btn.titleLabel.text;
+    self.tempBtn = btn;
+    self.tempBtn.enabled = NO; //设置此按钮禁用
     [self searchWithString:string];
 }
 

@@ -15,8 +15,6 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.ignoreEvent = NO;
-        self.canTapEventInterval = 0.5; //0.5秒内重复点击无效
         self.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:13];
         
         //设置title颜色
