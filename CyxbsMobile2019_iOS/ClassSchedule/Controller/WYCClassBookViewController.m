@@ -18,6 +18,7 @@
 #import "LocalNotiManager.h"
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
+#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
 @interface WYCClassBookViewController ()<UIScrollViewDelegate,TopBarScrollViewDelegate>
 /**课表顶部的小拖拽条*/
@@ -42,9 +43,6 @@
 
 /// lessonViewDict[0]代表整学期页的课表，lessonViewDict[x]代表第x周
 @property (nonatomic, strong)NSMutableDictionary <NSString*, LessonViewForAWeek*>* lessonViewDict;
-
-/// 记录课表的加载个数
-@property (nonatomic, assign, readonly)int schedulLoadCnt;
 @end
 
 @implementation WYCClassBookViewController
@@ -196,9 +194,27 @@
     self.topBarView.correctIndex = _index;
     int count = (int)self.dateModel.dateArray.count + 1;
     
-    if(count==0)return;
-    int start = index.intValue - self.schedulLoadCnt;
-    int end = index.intValue + self.schedulLoadCnt + 1;
+    if(count==0) return;
+    int start, end;
+    DeviceUtil *u = [[DeviceUtil alloc] init];
+    switch (u.hardwareLevel) {
+        case DeviceHardwareLevelLow:
+            //加2张
+            start = index.intValue;
+            end = index.intValue + 2;
+            break;
+        case DeviceHardwareLevelMedium:
+            //加4张
+            start = index.intValue - 1;
+            end = index.intValue + 3;
+            break;
+        case DeviceHardwareLevelHigh:
+            //加6张
+            start = index.intValue - 2;
+            end = index.intValue + 4;
+            break;
+    }
+    
     if (start<0) {
         start = 0;
     }
@@ -208,24 +224,8 @@
     for (int i=start; i<end; i++) {
         [self addSchedulWithIndex:i];
     }
-//    if(0<index.intValue&&index.intValue<count-1){
-//        [self addSchedulWithIndex:index.intValue];
-//        [self addSchedulWithIndex:index.intValue-1];
-//        [self addSchedulWithIndex:index.intValue+1];
-//    }else if(index.intValue==0){
-//        [self addSchedulWithIndex:index.intValue];
-//        [self addSchedulWithIndex:index.intValue+1];
-//    }else if(index.intValue==count-1){
-//        [self addSchedulWithIndex:index.intValue];
-//        [self addSchedulWithIndex:index.intValue-1];
-//    }
 }
 
-- (int)schedulLoadCnt {
-
-    
-    return 0;
-}
 
 //MARK:-代理方法：
 //scrollView的代理方法：
@@ -534,7 +534,7 @@
         }
         return;
     }
-    CLog(@"add2 %d",index);
+//    UIDevice.currentDevice.name
     scBackView = [[UIView alloc] init];
     [self.scrollView addSubview:scBackView];
     self.scBackViewDict[indexStr] = scBackView;

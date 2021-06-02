@@ -12,6 +12,7 @@
 #import "ByPasswordViewController.h"
 //#import "YYZSendVC.h"
 #import "YYZpopView.h"
+#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
 
 @interface YYZGetIdVC ()

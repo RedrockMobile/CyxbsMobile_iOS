@@ -254,7 +254,6 @@
         }
         
         NSArray *rowData = [NSMutableArray arrayWithContentsOfFile:remDataArrPath];
-        CLog(@"initRowData = %@",rowData);
         for (NSDictionary *noteDataDict in rowData) {
             NoteDataModel *model = [[NoteDataModel alloc]initWithNoteDataDict:noteDataDict];
             for (NSNumber *weekNum in model.weeksArray) {

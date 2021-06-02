@@ -171,7 +171,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     // 完成每天晚上推送课表的相关操作
     [self pushSchedulEveryday];
-    [self test];
     [self checkVersion];
     return YES;
 }
@@ -194,10 +193,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
         }];
 }
-- (void)test {
-//    NSDate.nowTimestamp;
-    CCLog(@"nowTimestamp=%ld",NSDate.nowTimestamp);
-}
+
 /// 完成创建文件/文件夹的操作
 - (void)setFile{
     //如果存储备忘/课表 数据的目录不存在那么创建一个

@@ -20,6 +20,7 @@
 #import "RemindMatter.h"
 #import "LessonBtnModel.h"
 #import "LessonButton.h"
+#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
 @interface LessonController ()<LZWeekScrollViewDelegate>
 @property (nonatomic, strong) MainView *mainView;

@@ -32,7 +32,6 @@
 #import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
 #import "AESCipher.h"           // AES加密算法
 #import <MGJRouter.h>
-#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 #import <SDWebImage/SDWebImage.h>
 
 //自定义hud
