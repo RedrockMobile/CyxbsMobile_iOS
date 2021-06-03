@@ -370,6 +370,7 @@
 		7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EB257B79F20077494E /* ByPasswordViewController.m */; };
 		7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EF257B79F30077494E /* ByWordViewController.m */; };
 		7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF3A12257CBCCC0077494E /* YYZpopView.m */; };
+		AA0DEF6A2668C88D00284112 /* 掌邮工具类.md in Resources */ = {isa = PBXBuildFile; fileRef = AA0DEF692668C88D00284112 /* 掌邮工具类.md */; };
 		AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA19FCB72663A266004E9F5D /* DeviceUtils.swift */; };
 		AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */; };
 		AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1124EFC78C00FDF70C /* NoteDetailView.m */; };
@@ -1323,6 +1324,7 @@
 		7FBF39EF257B79F30077494E /* ByWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ByWordViewController.m; sourceTree = "<group>"; };
 		7FBF3A11257CBCCC0077494E /* YYZpopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYZpopView.h; sourceTree = "<group>"; };
 		7FBF3A12257CBCCC0077494E /* YYZpopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYZpopView.m; sourceTree = "<group>"; };
+		AA0DEF692668C88D00284112 /* 掌邮工具类.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌邮工具类.md"; sourceTree = "<group>"; };
 		AA19FCB72663A266004E9F5D /* DeviceUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceUtils.swift; sourceTree = "<group>"; };
 		AA289B0D24EF9CFA00FDF70C /* NoteDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDataModel.h; sourceTree = "<group>"; };
 		AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDataModel.m; sourceTree = "<group>"; };
@@ -3325,6 +3327,7 @@
 				1A9B7668235F50A600725937 /* Products */,
 				31CAD973D4E3B19C047677AE /* Pods */,
 				2CDC888D97D2E7657DB18FB6 /* Frameworks */,
+				AA0DEF682668C7D400284112 /* Introduction */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3680,6 +3683,14 @@
 				7F318CA1257F5ACD009FE4EA /* YYZGetIdVC.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		AA0DEF682668C7D400284112 /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				AA0DEF692668C88D00284112 /* 掌邮工具类.md */,
+			);
+			name = Introduction;
 			sourceTree = "<group>";
 		};
 		AA4FA1BC25C2A5C2005139BA /* Controller */ = {
@@ -4978,6 +4989,7 @@
 				DB34EB0E239BD4550052B65E /* 删除@2x.png in Resources */,
 				D0101F67243587A1004337ED /* GKPhotoBrowser.bundle in Resources */,
 				DB34EAED239BD4550052B65E /* remind_image_remind@2x.png in Resources */,
+				AA0DEF6A2668C88D00284112 /* 掌邮工具类.md in Resources */,
 				DB34EB0D239BD4550052B65E /* remind@2x.png in Resources */,
 				18CDF6E7257F91BE006E8E5C /* login_number@3x.png in Resources */,
 				18CDF6D6257F91BE006E8E5C /* 7@2x.png in Resources */,
