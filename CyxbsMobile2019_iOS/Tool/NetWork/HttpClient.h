@@ -59,4 +59,6 @@ typedef void (^PrepareExecuteBlock)(void);
                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 - (void)cancelRequest;
+///获取baseURL
+- (void)baseUrlRequestSuccess:(void(^)(NSString *str))success;
 @end

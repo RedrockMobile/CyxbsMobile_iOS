@@ -176,6 +176,15 @@
             }
 }
 
+- (void)baseUrlRequestSuccess:(void (^)(NSString *))success{
+    [self.httpRequestOperationManager GET:@"https://be-prod.tx.redrock.team/cloud-manager/check" parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSDictionary *dic = responseObject[@"data"];
+        NSString *basURl = [NSString stringWithFormat:@"https://%@/",dic[@"base_url"]];
+        success(basURl);
+        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+            
+        }];
+}
 //- (BOOL)isReachability{
 //    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
 //    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {

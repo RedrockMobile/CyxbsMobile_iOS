@@ -172,9 +172,23 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     // 完成每天晚上推送课表的相关操作
     [self pushSchedulEveryday];
     [self checkVersion];
+    //设置存储、更换baseURL的操作
+    [self settingBaseURL];
     return YES;
 }
-/////检查是否有最新的掌邮，并提示用户获取
+///设置存储、更换baseURL
+- (void)settingBaseURL{
+    //如果最开始无baseURL，则设置为学校服务器
+    NSString *baseURL= [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
+    if ([baseURL isEqualToString:@""]) {
+        baseURL = @"https://be-prod.redrock.team/";
+        [[NSUserDefaults standardUserDefaults] setObject:baseURL forKey:@"baseURL"];
+    }
+    [[HttpClient defaultClient] baseUrlRequestSuccess:^(NSString *str) {
+        [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"baseURL"];
+    }];
+}
+///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{
     //获取当前发布的版本的Version
     NSString *version = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
