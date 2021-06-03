@@ -11,7 +11,8 @@
 
 #pragma mark - “我的”接口
 
-#define CyxbsMobileBaseURL_1 @"https://be-prod.redrock.team/"
+//#define CyxbsMobileBaseURL_1 @"https://be-prod.redrock.team/"
+#define CyxbsMobileBaseURL_1 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
 #define CyxbsMobileBaseURL_2 @"https://be-prod.redrock.team/"
 
 /// 登录接口
