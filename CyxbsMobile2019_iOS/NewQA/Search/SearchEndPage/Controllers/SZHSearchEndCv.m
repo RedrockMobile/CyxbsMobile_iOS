@@ -136,7 +136,7 @@
     }
     
     //2.内容不为空
-    [NewQAHud showHudWith:@"   加载中   " AddView:self.view];
+    [NewQAHud showHudWith:@"  加载中  " AddView:self.view];
     /*
      进行网络请求获取数据
      先将搜索帖子和搜索知识库的网络请求全部获取后再进行后续逻辑判断
@@ -331,7 +331,7 @@
         NSArray *knowledgeAry = knowledgeDic[@"data"];
 //        NSArray *knowledgeAry = self.knowledgeDic[@"data"];
             //2.1加载提示
-        [NewQAHud showHudWith:@"   加载中   " AddView:self.view];
+        [NewQAHud showHudWith:@"  加载中  " AddView:self.view];
     
             //2.1无搜索内容，跳转到搜索无结果页
         if (dynamicAry.count == 0 && knowledgeAry.count == 0) {

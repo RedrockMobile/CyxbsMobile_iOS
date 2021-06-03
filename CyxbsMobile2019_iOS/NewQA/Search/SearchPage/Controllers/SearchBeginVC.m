@@ -37,6 +37,10 @@
 
 @property (nonatomic, strong) NSDictionary *searchDynamicDic;    //相关动态数组
 @property (nonatomic, strong) NSDictionary *searchKnowledgeDic;    //知识库数组
+
+/// 热门搜索的临时变量btn
+@property (nonatomic, strong) UIButton *tempBtn;
+
 @property (nonatomic, assign) BOOL getDynamicFailure;   //获取动态失败
 @property (nonatomic, assign) BOOL getKnowledgeFailure; //获取知识库失败
 @end
@@ -117,7 +121,7 @@
     }
     
     //2.内容不为空
-    [NewQAHud showHudWith:@"   加载中   " AddView:self.view];
+    [NewQAHud showHudWith:@"  加载中  " AddView:self.view];
     /*
      进行网络请求获取数据
      先将搜索帖子和搜索知识库的网络请求全部获取后再进行后续逻辑判断
@@ -148,6 +152,10 @@
     self.searchDynamicDic = nil;
     self.searchKnowledgeDic = nil;
     
+    //设置热搜按钮可用
+    if (self.tempBtn != nil) {
+        self.tempBtn.enabled = YES;
+    }
     //3.添加历史记录
     [self wirteHistoryRecord:searchString];
 }
@@ -215,7 +223,7 @@
         NSArray *dynamicAry = dynamicDic[@"data"];
         NSArray *knowledgeAry = knowledgeDic[@"data"];
             //2.1加载提示
-        [NewQAHud showHudWith:@"   加载中   " AddView:self.view];
+        [NewQAHud showHudWith:@"  加载中  " AddView:self.view];
     
             //2.1无搜索内容，跳转到搜索无结果页
         if (dynamicAry.count == 0 && knowledgeAry.count == 0) {
@@ -282,6 +290,8 @@
 //MARK:热门搜索视图的代理方法
 - (void)touchHotSearchBtnsThroughBtn:(UIButton *)btn{
     NSString *string = btn.titleLabel.text;
+    self.tempBtn = btn;
+    self.tempBtn.enabled = NO; //设置此按钮禁用
     [self searchWithString:string];
 }
 

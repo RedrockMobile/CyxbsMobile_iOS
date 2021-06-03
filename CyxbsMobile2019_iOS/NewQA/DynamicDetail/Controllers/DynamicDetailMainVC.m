@@ -472,6 +472,7 @@
         btn.countLabel.text = [NSString stringWithFormat:@"%d",[btn.countLabel.text intValue] - 1];
         btn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
     }else{
+        btn.enabled = NO;
         btn.selected = YES;
         btn.iconView.image = [UIImage imageNamed:@"点赞"];
         btn.countLabel.text = [NSString stringWithFormat:@"%d",[btn.countLabel.text intValue] + 1];
@@ -480,6 +481,11 @@
     //数据传入后端
     StarPostModel *model = [[StarPostModel alloc] init];
     [model starPostWithPostID:[NSNumber numberWithString:self.post_id]];
+    
+    //延迟0.5秒后将按钮设置为可用
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        btn.enabled = YES;
+    });
 }
 ///点击评论按钮，直接添加一级评论
 - (void)clickedCommentBtn{

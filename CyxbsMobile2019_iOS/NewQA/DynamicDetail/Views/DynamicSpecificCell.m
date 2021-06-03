@@ -303,8 +303,6 @@
 - (UIButton *)funcBtn{
     if (!_funcBtn) {
         _funcBtn = [[UIButton alloc] initWithFrame:CGRectZero];
-        _funcBtn.ignoreEvent = NO;
-        _funcBtn.canTapEventInterval = 0.5;
         _funcBtn.backgroundColor = [UIColor clearColor];
         [_funcBtn setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
         [_funcBtn setImageEdgeInsets:UIEdgeInsetsMake((SCREEN_WIDTH * 0.89 * 18/343 - [UIImage imageNamed:@"QAMoreButton"].size.height), 0, 0, (SCREEN_WIDTH * 0.11 - [UIImage imageNamed:@"QAMoreButton"].size.width))];
@@ -331,9 +329,6 @@
 - (UIButton *)groupBtn{
     if (!_groupBtn) {
         _groupBtn = [[UIButton alloc] initWithFrame:CGRectZero];
-        //防抖动处理
-        _groupBtn.ignoreEvent = NO;
-        _groupBtn.canTapEventInterval = 1.0;
         _groupBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         [_groupBtn.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(_groupBtn).offset(15 * WScaleRate_SE);
@@ -354,8 +349,6 @@
 - (FunctionBtn *)starBtn{
     if (!_starBtn) {
         _starBtn = [[FunctionBtn alloc] init];
-        _starBtn.ignoreEvent = NO;
-        _starBtn.canTapEventInterval = 0.5;
         [_starBtn addTarget:self.delegate action:@selector(clickedStarBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _starBtn;
@@ -365,8 +358,6 @@
 - (FunctionBtn *)commendBtn{
     if (!_commendBtn) {
         _commendBtn = [[FunctionBtn alloc] init];
-        _commendBtn.ignoreEvent = NO;
-        _commendBtn.canTapEventInterval = 0.7;
         _commendBtn.iconView.image = [UIImage imageNamed:@"answerIcon"];
         [_commendBtn addTarget:self.delegate action:@selector(clickedCommentBtn) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -377,8 +368,6 @@
 - (UIButton *)shareBtn{
     if (!_shareBtn) {
         _shareBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        _shareBtn.ignoreEvent = NO;
-        _shareBtn.canTapEventInterval = 0.7;
         _shareBtn.backgroundColor = [UIColor clearColor];
         [_shareBtn setBackgroundImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
         [_shareBtn addTarget:self.delegate action:@selector(clickedShareBtn:) forControlEvents:UIControlEventTouchUpInside];
