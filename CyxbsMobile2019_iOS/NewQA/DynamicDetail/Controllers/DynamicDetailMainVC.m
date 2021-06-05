@@ -730,7 +730,7 @@
         [param setObject:@(self.actionCommentModel.comment_id) forKey:@"reply_id"];
     }
 
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/releaseComment" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:New_QA_Comment_Release method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
             

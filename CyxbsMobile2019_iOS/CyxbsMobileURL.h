@@ -13,7 +13,8 @@
 
 //#define CyxbsMobileBaseURL_1 @"https://be-prod.redrock.team/"
 #define CyxbsMobileBaseURL_1 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
-#define CyxbsMobileBaseURL_2 @"https://be-prod.redrock.team/"
+//#define CyxbsMobileBaseURL_2 @"https://be-prod.redrock.team/"
+#define CyxbsMobileBaseURL_2 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
 
 /// 登录接口
 #define LOGINAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/token"]
@@ -133,19 +134,21 @@
 /// 教务新闻列表
 ///参数：page
 ///方法：Get
-#define NEWSLIST @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/list"
-
+//#define NEWSLIST @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/list"
+#define NEWSLIST [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/list"]
 /// 教务新闻详情
 ///方法：Get
 ///参数：新闻id
-#define NEWSDETAIL @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/content"
+//#define NEWSDETAIL @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/content"
+#define NEWSDETAIL [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/content"]
 /// 教务新闻附件
 /// 方法：Get
 ///参数：附件的id
-#define NEWSFILE @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/file"
+#define NEWSFILE [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/file"]
+
 //在NewDetailViewController要单独改一下
 /// 电费
-#define ELECTRICFEE @"https://be-prod.redrock.team/magipoke-elecquery/getElectric"
+#define ELECTRICFEE [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-elecquery/getElectric"]
 
 
 ///查询绩点需要先绑定ids
@@ -163,7 +166,7 @@
 #define SCHOOLBUSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"schoolbus/status"]
 
 /// banner
-#define BANNERVIEWAPI @"http://be-prod.redrock.team/magipoke-text/banner/get"
+#define BANNERVIEWAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-text/banner/get"]
 
 /// 志愿查询
 #define VOLUNTEERBIND [CyxbsMobileBaseURL_1 stringByAppendingString:@"volunteer-message/binding"]
@@ -366,6 +369,8 @@
 //根据id获取评论/回复
 #define NEW_QA_Comment_Reply [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/getallcomment"]
 
+//回复评论
+#define New_QA_Comment_Release [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/releaseComment"] 
 /*
  删除帖子或评论（POST）     说明：
  参数：
