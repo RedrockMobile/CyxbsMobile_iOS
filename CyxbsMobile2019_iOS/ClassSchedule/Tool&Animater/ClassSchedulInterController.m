@@ -32,17 +32,48 @@
 }
 
 - (void)updateAnimation:(UIPanGestureRecognizer *)sender {
+    CGFloat rate = [sender translationInView:self.transitionContext.containerView].y/(0.824*SCREEN_HEIGHT);
+    rate = fabs(rate)/4;
+    if (rate<0.02) {
+        rate = 0.02;
+    }
+    if (rate > 0.1) {
+        rate *= (rate/0.1);
+    }
+    CCLog(@"%.2f",rate);
+    switch (sender.state) {
+        case UIGestureRecognizerStateChanged:
+            //更新转场动画进度
+            [self updateInteractiveTransition:rate];
+            if (rate > 0.8) {
+                [self finishInteractiveTransition];
+            }
+            break;
+        case UIGestureRecognizerStateEnded:
+            if (rate > 0.1) {
+                //完成转场动画
+                [self finishInteractiveTransition];
+            } else {
+                //取消转场
+                [self cancelInteractiveTransition];
+            }
+            break;
+        
+        default:
+            //取消转场
+            [self cancelInteractiveTransition];
+            break;
+    }
+}
+
+- (void)updateAnimation1:(UIPanGestureRecognizer *)sender {
     CGFloat percent = [self gesturePercent:sender];
     
     switch (sender.state) {
-        case UIGestureRecognizerStateBegan:
-            break;
-            
         case UIGestureRecognizerStateChanged:
             //更新转场动画进度
             [self updateInteractiveTransition:percent / 4];
             break;
-            
         case UIGestureRecognizerStateEnded:
             if (percent > 0.1) {
                 //完成转场动画
@@ -64,7 +95,7 @@
 - (CGFloat)gesturePercent:(UIPanGestureRecognizer *)sender {
     //获取手势再横坐标上、纵坐标上拖动的像素
     CGPoint translation = [sender translationInView:self.transitionContext.containerView];
-    
+    CCLog(@"%.2f",translation.y);
     // 如果是下拉
     if ([[self.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isMemberOfClass:[UINavigationController class]]) {
         CGFloat percent = translation.y / 667;

@@ -175,10 +175,7 @@
     }
     
     
-    if (self.isLoadingMsgCntData==NO) {
-        return;
-    }
-    //如果没有没有加载成功，那么多半是后端出问题了，这种情况下，降低刷新未读消息会比较好
+    //如果没有没有加载成功，那么多半是后端出问题了，这种情况下，降低刷新未读消息的频率会比较好
     if (isSuccess==NO) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.isLoadingMsgCntData = NO;
@@ -284,7 +281,10 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
+/// 点击意见反馈后调用
 - (void)selectedFeedBack {
+    //UIPasteboard相关文章
+    //https://www.jianshu.com/p/52153c9fca99
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = @"570919844";
     

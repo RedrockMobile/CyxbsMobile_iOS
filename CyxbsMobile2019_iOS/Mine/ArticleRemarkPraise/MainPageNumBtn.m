@@ -29,7 +29,6 @@
             make.height.mas_equalTo(MAIN_SCREEN_W * 0.12);
         }];
         [self addBtnNameLabel];
-        [self addBall];
     }
     return self;
 }
@@ -52,16 +51,18 @@
         make.top.equalTo(self.mas_bottom);
     }];
 }
-
-- (void)addBall {
-    RedTipBall *redBall = [[RedTipBall alloc] init];
-    self.redBall = redBall;
-    [self addSubview:redBall];
-    
-    [redBall mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.titleLabel.mas_right).offset(-5);
-        make.centerY.equalTo(self.titleLabel.mas_top).offset(8);
-    }];
+- (RedTipBall *)redBall {
+    if (_redBall==nil) {
+        RedTipBall *redBall = [[RedTipBall alloc] init];
+        _redBall = redBall;
+        [self.superview addSubview:redBall];
+        
+        [redBall mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.titleLabel.mas_right).offset(-5);
+            make.centerY.equalTo(self.titleLabel.mas_top).offset(8);
+        }];
+    }
+    return _redBall;
 }
 
 - (void)setMsgCount:(NSString *)msgCount {
@@ -77,3 +78,26 @@
     }
 }
 @end
+
+/*
+ int MainPageNumBtnCnt = 0;
+ - (void)setMsgCount:(NSString *)msgCount {
+     switch (MainPageNumBtnCnt) {
+         case 0:
+             msgCount = @"198";
+             break;
+         case 1:
+             msgCount = @"1";
+             break;
+         case 2:
+             msgCount = @"2";
+             break;
+         default:
+             msgCount = @"10";
+             break;
+     }MainPageNumBtnCnt++;
+     [self setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
+     _msgCount = msgCount;
+     self.redBall.msgCount = msgCount;
+ }
+ */

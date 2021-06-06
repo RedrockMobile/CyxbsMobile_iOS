@@ -94,7 +94,7 @@
     [self.topBarView addSubview:btn];
     
     
-    float unitSize = 4*fontSizeScaleRate_SE;
+    float unitSize = 5*fontSizeScaleRate_SE;
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.topBarView).offset(0.0427*SCREEN_WIDTH);;
         make.centerY.equalTo(self.VCTitleLabel);
@@ -127,7 +127,11 @@
 //MARK: - 点击按钮后调用方法:
 /// 点击 返回按钮 后调用的方法
 - (void)backBtnClicked{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController!=nil) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (self.presentingViewController!=nil) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 

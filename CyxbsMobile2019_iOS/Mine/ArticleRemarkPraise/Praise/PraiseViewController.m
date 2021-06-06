@@ -11,7 +11,11 @@
 #import "PraiseModel.h"
 #import "PraiseParseModel.h"
 #import "DynamicDetailMainVC.h"  //动态详情页
-@interface PraiseViewController ()<UITableViewDelegate, UITableViewDataSource, MainPage2RequestModelDelegate>
+@interface PraiseViewController ()<
+    UITableViewDelegate,
+    UITableViewDataSource,
+    MainPage2RequestModelDelegate
+>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)PraiseModel *praiseModel;
 @property(nonatomic,strong)NothingStateView *nothingView;
@@ -62,6 +66,9 @@
             break;
             //加载成功，而且没有数据了
         case MainPage2RequestModelStateNoMoreDate:
+            if (self.praiseModel.dataArr.count==0) {
+                [self.tableView.mj_footer setHidden:YES];
+            }
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
             break;
             //加载失败

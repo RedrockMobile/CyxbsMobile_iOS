@@ -15,7 +15,13 @@
 
 //动态详情页控制器
 #import "DynamicDetailMainVC.h"
-@interface ArticleViewController ()<UITableViewDelegate, UITableViewDataSource,PostTableViewCellDelegate,ShareViewPlusDelegate,ArticleModelDelegate>
+@interface ArticleViewController ()<
+    UITableViewDelegate,
+    UITableViewDataSource,
+    PostTableViewCellDelegate,
+    ShareViewPlusDelegate,
+    ArticleModelDelegate
+>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ShareViewPlus *shareView;
 @property(nonatomic,strong)ArticleModel *articleModel;
@@ -77,6 +83,9 @@
     switch (state) {
         case MainPageModelStateNoMoreDate:
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            if (self.articleModel.dataArr.count==0) {
+                [self.tableView.mj_footer setHidden:YES];
+            }
             break;
         case MainPageModelStateEndRefresh:
             [self.tableView.mj_footer endRefreshing];

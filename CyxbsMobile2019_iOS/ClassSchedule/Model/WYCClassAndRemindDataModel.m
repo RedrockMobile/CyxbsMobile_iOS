@@ -28,7 +28,7 @@
             //清除旧的课表数据，等过几版后，去掉这个代码
             [self clear];
         }
-        self.afhttpSeMan = [AFHTTPSessionManager manager];
+        self.afhttpSeMan = [HttpClient defaultClient].httpSessionManager;
     }
     return self;
 }
@@ -131,6 +131,8 @@
 /// 查老师课表用这个方法来网络请求
 /// @param parameters 参数结构： @{ @"teaName": name, @"tea": teaNum }
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
+//    TEAkebiaoAPI
+//    @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
     [self.afhttpSeMan POST:TEAkebiaoAPI parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
         //拿到课表数据

@@ -43,8 +43,9 @@
     
     NSDictionary *parameters = @{@"teaName": name};
     HttpClient *client = [HttpClient defaultClient];
-    
-    [client requestWithPath:SEARCHTEACHERAPI method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    //https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch
+//    SEARCHTEACHERAPI
+    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch" method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSMutableArray *tmpArray = [NSMutableArray array];
         for (NSDictionary *classmateInfo in responseObject[@"data"]) {
             ClassmateItem *classmate = [ClassmateItem teaItemWithDictionary:classmateInfo];
