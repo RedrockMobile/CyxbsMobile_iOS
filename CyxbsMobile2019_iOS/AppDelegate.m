@@ -187,6 +187,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [[HttpClient defaultClient] baseUrlRequestSuccess:^(NSString *str) {
         [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"baseURL"];
     }];
+    NSLog(@"%@",CyxbsMobileBaseURL_1);
 }
 ///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{

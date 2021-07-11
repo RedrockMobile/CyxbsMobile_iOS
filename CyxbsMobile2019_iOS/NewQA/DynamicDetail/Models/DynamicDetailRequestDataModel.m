@@ -33,7 +33,7 @@
 
 - (void)getCommentDataWithPost_id:(int)post_id Sucess:(void (^)(NSArray * _Nonnull))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/comment/getallcomment" method:HttpRequestGet parameters:@{@"post_id":@(post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEW_QA_Comment_Reply method:HttpRequestGet parameters:@{@"post_id":@(post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
 //        NSLog(@"请求评论数据成功,内容为%@",responseObject);
         sucess(array);
@@ -61,7 +61,8 @@
 - (void)deleteCommentWithId:(int)post_id Sucess:(void (^)(void))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"id":@(post_id),@"model":@1};
-    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId" method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//    @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId"
+    [client requestWithPath:NEW_QA_Dynamic_OR_Comment_Deleted method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"删除评论后得到的数据为%@",responseObject);
         if ([responseObject[@"status"] intValue] == 200) {
             NSLog(@"删除成功");

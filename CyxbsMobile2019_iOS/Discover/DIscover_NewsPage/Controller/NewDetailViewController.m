@@ -260,6 +260,7 @@
     return self.fileNameArray.count;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://be-prod.redrock.team/magipoke-jwzx/jwNews/file?id=%@",self.fileIDArray[indexPath.row]]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?id=%@", [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/file"],self.fileIDArray[indexPath.row]]]];
+   
 }
 @end

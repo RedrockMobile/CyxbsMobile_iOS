@@ -150,7 +150,7 @@
 //
     HttpClient *client = [HttpClient defaultClient];
     [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
-    [client.httpRequestOperationManager POST:@"https://be-prod.redrock.team/magipoke-loop/comment/releaseComment" parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpRequestOperationManager POST:New_QA_Comment_Release parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             NSMutableArray *imageNames = [NSMutableArray array];
         for (int i = 0; i < self.imagesAry.count; i++)  {
             [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
