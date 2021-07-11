@@ -338,6 +338,7 @@
         URLController * controller = [[URLController alloc]init];
         controller.hidesBottomBarWhenPushed = YES;
         controller.toUrl = self.bannerGoToURL[index];
+        CCLog(@"toUrl = %@",controller.toUrl);
         [self.viewController.navigationController pushViewController:controller animated:YES];
 
     } else if ([self.bannerGoToURL[index] hasPrefix:@"cyxbs"]) {

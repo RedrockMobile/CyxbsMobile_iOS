@@ -35,6 +35,7 @@
 
 @implementation TestArrangeViewController
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    printf("h5挂了");
     [self testArrangeFailed];
 }
 
@@ -60,11 +61,13 @@
     [self addBackButtonTitle];
     [self addBottomBar];//添加下方学分成绩入口的按钮
     
-    
+   
     [[HttpClient defaultClient] requestWithPath:EXAM_MODEL method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *type = responseObject[@"data"][@"ExamModel"];
+        CCLog(@"responseObjectk%@",responseObject);
         if ([type isEqualToString:@"magipoke"]) {//掌邮显示
             [self displayByAPP];
+            printf("AppDis\n");
         }else {//h5显示
             int mode = 0;
             if (@available(iOS 13.0, *)) {
@@ -73,6 +76,7 @@
                     mode = 1;
                 }
             }
+            printf("h5555\n");
             //考试h5:https://fe-prod.redrock.team/zscy-exam/
             //2020迎新h5:https://fe-prod.redrock.team/welcome-2020/
             NSString *h5UrlStr = responseObject[@"data"][@"Redirect"];
@@ -83,8 +87,9 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self testArrangeFailed];
     }];
-    //修改考试的展示模式
+    
     /*
+//    修改考试的展示模式，改为h5:model=h5，改为客户端：model=magipoke
     [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/magipoke-jwzx/changExamModel?model=magipoke" method:HttpRequestPost parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"kkksuccess%@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

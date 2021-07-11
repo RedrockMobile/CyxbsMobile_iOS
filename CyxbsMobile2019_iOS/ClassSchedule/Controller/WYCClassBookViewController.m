@@ -34,7 +34,7 @@
 @property (nonatomic, strong) DateModle *dateModel;
 
 
-//拖动手势，下拉弹回课表
+/// 拖动手势，下拉弹回课表
 @property (nonatomic, strong)UIPanGestureRecognizer *PGR;
 
 @property (nonatomic, assign)BOOL isReloading;
