@@ -11,41 +11,58 @@
 
 @implementation UIControl (MGD)
 
-static const char *UIControl_canTapEventInterval = "UIControl-canTapEventInterval";
+static const char *UIControl_acceptEventInterval = "UIControl_acceptEventInterval";
 
-static const char *UIControl_ignoreEvent = "UIControl_ignoreEvent";
+static const char *UIcontrol_ignoreEvent = "UIcontrol_ignoreEvent";
 
-- (NSTimeInterval)canTapEventInterval {
-    return [objc_getAssociatedObject(self, UIControl_canTapEventInterval) doubleValue];
+- (NSTimeInterval)mgd_acceptEventInterval {
+
+    return [objc_getAssociatedObject(self, UIControl_acceptEventInterval) doubleValue];
+
 }
 
-- (void)setCanTapEventInterval:(NSTimeInterval)canTapEventInterval {
-    objc_setAssociatedObject(self, UIControl_canTapEventInterval, @(canTapEventInterval), OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setMgd_acceptEventInterval:(NSTimeInterval)mgd_acceptEventInterval {
+
+    objc_setAssociatedObject(self, UIControl_acceptEventInterval, @(mgd_acceptEventInterval), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
 }
 
-- (BOOL)ignoreEvent {
-    return [objc_getAssociatedObject(self, UIControl_ignoreEvent) boolValue];
+- (BOOL)mgd_ignoreEvent {
+
+    return [objc_getAssociatedObject(self, UIcontrol_ignoreEvent) boolValue];
+
 }
 
-- (void)setIgnoreEvent:(BOOL)ignoreEvent {
-    objc_setAssociatedObject(self, UIControl_ignoreEvent, @(ignoreEvent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setMgd_ignoreEvent:(BOOL)mgd_ignoreEvent {
+
+    objc_setAssociatedObject(self, UIcontrol_ignoreEvent, @(mgd_ignoreEvent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
 }
 
 + (void)load {
-    Method A = class_getInstanceMethod(self, @selector(sendAction:to:forEvent:));
-    Method B = class_getInstanceMethod(self, @selector(__BanRepeated_sendAction:to:forEvent:));
-    
-    method_exchangeImplementations(A, B);
+
+    Method a = class_getInstanceMethod(self, @selector(sendAction:to:forEvent:));
+
+    Method b = class_getInstanceMethod(self, @selector(__mgd_sendAction:to:forEvent:));
+
+    method_exchangeImplementations(a, b);
+
 }
 
-- (void)__BanRepeated_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
-    if (self.ignoreEvent) return;
-    if (self.canTapEventInterval > 0) {
-        self.ignoreEvent = YES;
-        [self performSelector:@selector(setIgnoreEvent:) withObject:@(NO) afterDelay:self.canTapEventInterval];
+- (void)__mgd_sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event {
+
+    if (self.mgd_ignoreEvent) return;
+
+    if (self.mgd_acceptEventInterval > 0) {
+
+        self.mgd_ignoreEvent = YES;
+
+        [self performSelector:@selector(setMgd_ignoreEvent:) withObject:@(NO) afterDelay:self.mgd_acceptEventInterval];
+
     }
-    
-    [self __BanRepeated_sendAction:action to:target forEvent:event];
+
+    [self __mgd_sendAction:action to:target forEvent:event];
+
 }
 
 @end

@@ -74,6 +74,7 @@
     [PostArchiveTool removePostModel];
     [PostArchiveTool removeGroupModel];
     [PostArchiveTool removeHotWordModel];
+    [PostArchiveTool removePostCellHeight];
     
     //清除课表数据和备忘数据
     [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];
