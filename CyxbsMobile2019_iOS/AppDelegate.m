@@ -182,6 +182,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     NSString *baseURL= [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
     if (baseURL == nil || [baseURL isEqualToString:@""]) {
         baseURL = @"https://be-prod.redrock.team/";
+//        baseURL = @"https://be/fe-prod.redrock.cqupt.edu.cn/";
         [[NSUserDefaults standardUserDefaults] setObject:baseURL forKey:@"baseURL"];
     }
     //更新baseURL
