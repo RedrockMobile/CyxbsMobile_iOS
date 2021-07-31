@@ -14,23 +14,31 @@
 @property(nonatomic,strong ) NSArray *array; //存储网络请求数据
 @property(nonatomic,strong) UITableView *tableView;
 @property(nonatomic,strong) YYZTopicCell *cell;
+@property (nonatomic, assign) BOOL isChanged;
 @end
 
 @implementation YYZTopicGroupVC
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"%@", NSStringFromCGRect(self.tableView.frame));
     [super viewWillAppear:animated];
+    _isChanged = NO;
 //    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;
     //设置nav
-    self.navigationItem.title = @"圈子广场";
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
     [self.navigationController.navigationBar setTitleTextAttributes:attributes];
     self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
-    self.navigationController.navigationBar.topItem.title = @"";//设置返回按钮只保留箭头
-    self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
-    self.navigationItem.leftBarButtonItem.width = -1000;
+
+    // 自定义返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0, 0, 30, 30);
+    [backButton setTitle:@"" forState:UIControlStateNormal];
+    [backButton setImage:[[UIImage imageNamed:@"返回的小箭头"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     //网络请求
     [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -45,15 +53,26 @@
      ];
     
 }
+// 自定义返回方法
+- (void)back {
+    UIViewController *frontVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+    if ([frontVC isKindOfClass:[NewQAMainPageMainController class]]) {
+        NewQAMainPageMainController * QAMainVC = (NewQAMainPageMainController *)frontVC;
+        QAMainVC.isNeedFresh = _isChanged;
+        [self.navigationController popToViewController:QAMainVC animated:YES];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 - (void)viewWillDisappear:(BOOL)animated{
     self.tabBarController.tabBar.hidden = NO;//退出时显示tabbar
     // 再你的popback的方法前加上这句话，通知NewQAMainPageViewController去刷新页面
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"圈子广场";
     [self setTableView];
 }
 
@@ -146,6 +165,7 @@
             [btn setTitle:@"已关注" forState:UIControlStateNormal];
             btn.backgroundColor = RGBColor(171, 189, 215, 1);
         }
+        self->_isChanged = YES;
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [NewQAHud showHudWith:@"  关注失败,请检查网络  " AddView:self.view];
     }];

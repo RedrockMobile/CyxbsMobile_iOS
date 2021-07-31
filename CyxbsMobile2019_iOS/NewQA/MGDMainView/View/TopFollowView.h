@@ -18,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///点击跳转到具体的圈子里去
 - (void)ClickedGroupBtn:(GroupBtn *)sender;
 
+@optional
+- (void) reloadTopFollowViewWithArray:(NSMutableArray *)array;
+
+- (void)removeTopFollowView;
+
 @end
 
 @interface TopFollowView : UIView
@@ -32,7 +37,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<TopFollowViewDelegate> delegate;
 
-- (instancetype)initWithFrame:(CGRect)frame And:(NSMutableArray *)dataArray;
+- (void)loadViewWithArray:(NSMutableArray *)dataArray;
+
+- (void)loadTopFollowViewWithGroup:(NSMutableArray *)dataArray;
+
+- (void)loadTopFollowViewWithoutGroup:(NSMutableArray *)dataArray;
+
+- (void)startAnimationWith:(NSMutableArray *)dataArray;
+
+//- (instancetype)initWithFrame:(CGRect)frame And:(NSMutableArray *)dataArray;
 
 @end
 

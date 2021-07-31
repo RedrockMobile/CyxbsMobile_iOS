@@ -57,7 +57,6 @@
     ///昵称
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textAlignment = NSTextAlignmentLeft;
-//    _nicknameLabel.font = [UIFont fontWithName:@"PingFangSC-Heavy" size: 15];
     _nicknameLabel.font = [UIFont fontWithName:PingFangSCSemibold size: 15];
     if (@available(iOS 11.0, *)) {
         _nicknameLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
@@ -79,15 +78,15 @@
     
     ///多功能按钮
     _funcBtn = [[UIButton alloc] init];
-    _funcBtn.ignoreEvent = NO;
-    _funcBtn.canTapEventInterval = 0.5;
+    _funcBtn.mgd_ignoreEvent = NO;
+    _funcBtn.mgd_acceptEventInterval = 0.5;
     _funcBtn.backgroundColor = [UIColor clearColor];
     [_funcBtn setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
     [_funcBtn addTarget:self action:@selector(ClickedFuncBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_funcBtn];
     
     ///内容
-    _detailLabel = [[UILabel alloc] init];
+    _detailLabel = [[NewQAPostDetailLabel alloc] initWithFrame:self.bounds];
     if (@available(iOS 11.0, *)) {
         _detailLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
     } else {
@@ -97,7 +96,7 @@
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
-    self.detailLabel.numberOfLines = 0;
+    self.detailLabel.numberOfLines = 5;
     self.detailLabel.preferredMaxLayoutWidth = (SCREEN_WIDTH - Pading * 2);
     [self.detailLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.contentView addSubview:_detailLabel];
@@ -108,13 +107,14 @@
     _collectView.backgroundColor = [UIColor clearColor];
     _collectView.delegate=self;
     _collectView.dataSource=self;
+    _collectView.scrollEnabled = NO;
     [_collectView registerClass:[MGDImageCollectionViewCell class] forCellWithReuseIdentifier:@"cellID"];
     [self.contentView addSubview:_collectView];
     
     ///标签
     _groupLabel = [[UIButton alloc] init];
-    _groupLabel.ignoreEvent = NO;
-    _groupLabel.canTapEventInterval = 1.0;
+    _groupLabel.mgd_ignoreEvent = NO;
+    _groupLabel.mgd_acceptEventInterval = 0.5;
     _groupLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_groupLabel.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08]];
     if (@available(iOS 11.0, *)) {
@@ -129,23 +129,29 @@
     
     ///点赞
     _starBtn = [[FunctionBtn alloc] init];
-    _starBtn.ignoreEvent = NO;
-    _starBtn.canTapEventInterval = 0.5;
+    _starBtn.mgd_ignoreEvent = NO;
+    _starBtn.mgd_acceptEventInterval = 0.8;
     [_starBtn addTarget:self action:@selector(ClickedStar) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_starBtn];
     
+    MGDClickParams *params = [[MGDClickParams alloc] init];
+    params.circleCount = 10;    // 周围外层圈圈个数
+    params.animationDuration = 1.6;   // 动画持续时间
+    params.smallCircleOffsetAngle = -2;
+    _starBtn.params = params;
+    
     ///评论
     _commendBtn = [[FunctionBtn alloc] init];
-    _commendBtn.ignoreEvent = NO;
-    _commendBtn.canTapEventInterval = 0.7;
+    _commendBtn.mgd_ignoreEvent = NO;
+    _commendBtn.mgd_acceptEventInterval = 2;
     _commendBtn.iconView.image = [UIImage imageNamed:@"answerIcon"];
     [_commendBtn addTarget:self action:@selector(ClickedComment) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_commendBtn];
     
     ///分享
     _shareBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _shareBtn.ignoreEvent = NO;
-    _shareBtn.canTapEventInterval = 0.7;
+    _starBtn.mgd_ignoreEvent = NO;
+    _starBtn.mgd_acceptEventInterval = 2;
     _shareBtn.backgroundColor = [UIColor clearColor];
     [_shareBtn setBackgroundImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
     [_shareBtn addTarget:self action:@selector(ClickedShare) forControlEvents:UIControlEventTouchUpInside];
@@ -184,7 +190,7 @@
     
     
     [_detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.021);
+        make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.0427 * 14.5/16);
         make.left.mas_equalTo(self.iconImageView);
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
     }];
@@ -269,7 +275,9 @@
         } else {
             // Fallback on earlier versions
         }
+        self.starBtn.isFirst = YES;
         [self.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
+//        self.starBtn.isSelected = self.starBtn.selected;
         [self reloadCell:item.pics];
     }
 }
@@ -288,11 +296,6 @@
         height_collectionview = self.collectView.collectionViewLayout.collectionViewContentSize.height;
     }
     
-    if ([self needLinesWithWidth:self.contentView.frame.size.width-20 currentLabel:_detailLabel] > 5)  {
-        self.detailLabel.numberOfLines = 5;
-    }else{
-        self.detailLabel.numberOfLines = 0;
-    }
     [self.collectView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.detailLabel.mas_bottom).mas_offset(height_pading);
         make.left.mas_equalTo(_detailLabel);

@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///右上角的数字小圆点（目前的思路是UILabel）
 @property (nonatomic, strong) UILabel *messageCountLabel;
 
+@property (nonatomic, assign) CGFloat btnWeight;
+
+- (CGFloat)widthOfString:(NSString *)string;
+
 @end
 
 NS_ASSUME_NONNULL_END

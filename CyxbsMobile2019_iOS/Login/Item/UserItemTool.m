@@ -53,13 +53,13 @@
     
     NSString *filePath = [self userItemPath];
     
-    // 删除偏好设置
+    // 删除偏好设置，删除时保留baseURL的偏好信息
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     NSDictionary *dic = [defaults dictionaryRepresentation];
-    
     for (id key in dic) {
-        [defaults removeObjectForKey:key];
+        if (![key  isEqual: @"baseURL"]) {
+            [defaults removeObjectForKey:key];
+        }
     }
     
     // 删除归档
@@ -74,6 +74,7 @@
     [PostArchiveTool removePostModel];
     [PostArchiveTool removeGroupModel];
     [PostArchiveTool removeHotWordModel];
+    [PostArchiveTool removePostCellHeight];
     
     //清除课表数据和备忘数据
     [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];

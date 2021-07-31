@@ -64,6 +64,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    _isChanged = NO;
     self.leftPage = 1;//初始化当前页数
     self.rightPage = 1;
     //网络请求
@@ -139,14 +140,6 @@
     //[NSTimer scheduledTimerWithTimeInterval:4.0f target:self selector:@selector(checkContent) userInfo:nil repeats:NO];//判断有无数据，如果没有加载相应图片
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (_isChanged) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
-    }
-}
-
-
 
 - (void)setNotification{
     ///帖子列表请求成功
@@ -190,7 +183,14 @@
     if (self.isFromSub == 1) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
-        [self.navigationController popViewControllerAnimated:YES];
+        UIViewController *frontVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
+        if ([frontVC isKindOfClass:[NewQAMainPageMainController class]]) {
+            NewQAMainPageMainController * QAMainVC = (NewQAMainPageMainController *)frontVC;
+            QAMainVC.isNeedFresh = _isChanged;
+            [self.navigationController popToViewController:QAMainVC animated:YES];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -784,25 +784,25 @@
     [self.topicScrollView setContentOffset:position animated:YES];
 }
 - (void)changeFollow:(UIButton *) btn {
-    _isChanged = YES;
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
     [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                         //改变button状态
-        NSDictionary *dic = @{@"topic_ID":stringIsFollow};
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
-        if([btn.titleLabel.text isEqualToString:@"已关注"]){
-            [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
-            btn.clipsToBounds = YES;
-            btn.layer.cornerRadius = 14;
-            [btn setTitle:@"+关注" forState:UIControlStateNormal];
-            btn.backgroundColor = RGBColor(93, 94, 247, 1);
-        } else{
-            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
-            btn.clipsToBounds = YES;
-            btn.layer.cornerRadius = 14;
-            [btn setTitle:@"已关注" forState:UIControlStateNormal];
-            btn.backgroundColor = RGBColor(171, 189, 215, 1);
-        }
+            NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
+            if([btn.titleLabel.text isEqualToString:@"已关注"]){
+                [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
+                btn.clipsToBounds = YES;
+                btn.layer.cornerRadius = 14;
+                [btn setTitle:@"+关注" forState:UIControlStateNormal];
+                btn.backgroundColor = RGBColor(93, 94, 247, 1);
+            } else{
+                [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
+                btn.clipsToBounds = YES;
+                btn.layer.cornerRadius = 14;
+                [btn setTitle:@"已关注" forState:UIControlStateNormal];
+                btn.backgroundColor = RGBColor(171, 189, 215, 1);
+            }
+            self->_isChanged = YES;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
     }];
@@ -818,7 +818,6 @@
         [model setBlock:^(id  _Nonnull info) {
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 [self showStarSuccessful];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
             }else  {
                 [self funcViewFailure];
             }
@@ -827,7 +826,7 @@
         [model setBlock:^(id  _Nonnull info) {
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 [self showUnStarSuccessful];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshNewQAMainViewController" object:nil userInfo:nil];
             }else  {
                 [self funcViewFailure];
             }
@@ -910,17 +909,13 @@
 - (void)showStarSuccessful {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
-    }];
+    [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view];
 }
 
 - (void)showUnStarSuccessful {
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
-    }];
+    [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view];
 }
 
 - (void)funcViewFailure {
@@ -1037,4 +1032,3 @@
 }
 
 @end
- 
