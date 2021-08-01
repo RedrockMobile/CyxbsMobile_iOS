@@ -31,22 +31,24 @@
     [super startInteractiveTransition:transitionContext];
 }
 
+//这个方法里面的所有魔法数据的来源：根据屏幕信息计算 + 手动调教修改(使用SE2调教)
 - (void)updateAnimation:(UIPanGestureRecognizer *)sender {
-    CGFloat rate = [sender translationInView:self.transitionContext.containerView].y/(0.824*SCREEN_HEIGHT);
-    rate = fabs(rate)/4;
+    CGFloat rate = [sender translationInView:self.transitionContext.containerView].y/(3.296*SCREEN_HEIGHT);
+    rate = fabs(rate);
     if (rate > 0.1) {
         rate *= (rate/0.1);
     }
+//    CCLog(@"%.3f",rate);
     switch (sender.state) {
         case UIGestureRecognizerStateChanged:
             //更新转场动画进度
             [self updateInteractiveTransition:rate];
-            if (rate > 0.8) {
+            if (rate > 0.5) {
                 [self finishInteractiveTransition];
             }
             break;
         case UIGestureRecognizerStateEnded:
-            if (rate > 0.1) {
+            if (rate > 0.025) {
                 //完成转场动画
                 [self finishInteractiveTransition];
             } else {
