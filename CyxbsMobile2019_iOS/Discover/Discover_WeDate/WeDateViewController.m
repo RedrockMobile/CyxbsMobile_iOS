@@ -256,9 +256,7 @@
         ChoosePeopleListView *listView = [[ChoosePeopleListView alloc] initWithInfoDictArray:classmatesList.infoDicts];
         listView.frame = [UIScreen mainScreen].bounds;
         listView.delegate = self;
-        CCLog(@"222222222");
         [self.view addSubview:listView];
-        CCLog(@"33333333");
         [listView showPeopleListView];
         CCLog(@"currentThread = %@",NSThread.currentThread);
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {

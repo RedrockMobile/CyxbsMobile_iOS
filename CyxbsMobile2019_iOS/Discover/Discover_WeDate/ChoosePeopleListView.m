@@ -168,7 +168,6 @@
     }
     [cell updataWithDict:self.infoDictArray[indexPath.row]];
     cell.delegateAdd = self;
-    CCLog(@"11111111");
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
