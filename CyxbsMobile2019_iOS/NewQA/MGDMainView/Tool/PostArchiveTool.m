@@ -53,6 +53,19 @@
     [NSKeyedArchiver archiveRootObject:hotWords toFile:perSavedSandPath];
 }
 
++ (void)savePostCellHeightWith:(NSMutableArray *)array {
+    NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"PostCellHeight.data"];
+    [NSKeyedArchiver archiveRootObject:array toFile:perSavedSandPath];
+}
+
++ (NSMutableArray *)getPostCellHeight {
+    NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"PostCellHeight.data"];
+    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:perSavedSandPath];
+    return array;
+}
+
 + (void)removePostModel {
     NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"post.data"];
@@ -68,6 +81,12 @@
 + (void)removeHotWordModel {
     NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
     NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"hotWords.data"];
+    [[NSFileManager defaultManager] removeItemAtPath:perSavedSandPath error:nil];
+}
+
++ (void)removePostCellHeight {
+    NSString *docSandPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *perSavedSandPath = [docSandPath stringByAppendingPathComponent:@"PostCellHeight.data"];
     [[NSFileManager defaultManager] removeItemAtPath:perSavedSandPath error:nil];
 }
 

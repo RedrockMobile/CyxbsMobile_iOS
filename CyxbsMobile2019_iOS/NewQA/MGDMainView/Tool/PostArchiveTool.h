@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (HotSearchModel *)getHotWords;
 
++ (void)savePostCellHeightWith:(NSMutableArray *)array;
+
++ (NSMutableArray *)getPostCellHeight;
+
 + (void)saveHotWordsWith:(HotSearchModel *)hotWords;
 
 + (void)removePostModel;
@@ -34,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeGroupModel;
 
 + (void)removeHotWordModel;
+
++ (void)removePostCellHeight;
 
 + (void)removeNewMessageCountDictionary;
 

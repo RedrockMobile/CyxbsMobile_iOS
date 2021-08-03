@@ -17,6 +17,7 @@
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"关注圈子失败");
+        self->_Block(error);
     }];
 }
 

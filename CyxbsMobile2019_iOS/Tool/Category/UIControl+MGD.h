@@ -15,10 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIControl (MGD)
 
 // 点击事件的间隔
-@property (nonatomic, assign) NSTimeInterval canTapEventInterval;
+@property (nonatomic, assign) NSTimeInterval mgd_acceptEventInterval;//添加点击事件的间隔时间
 
-// 是否忽略点击事件，不响应
-@property (nonatomic, assign) BOOL ignoreEvent;
+@property (nonatomic, assign) BOOL mgd_ignoreEvent;//是否忽略点击事件,不响应点击事件
 
 @end
 

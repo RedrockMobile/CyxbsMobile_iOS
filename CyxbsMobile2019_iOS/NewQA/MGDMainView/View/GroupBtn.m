@@ -48,20 +48,21 @@
     
     [_groupBtnImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
+        make.centerX.mas_equalTo(self.groupBtnLabel);
         make.height.width.mas_equalTo(SCREEN_WIDTH * 0.1228);
     }];
     _groupBtnImageView.layer.cornerRadius = SCREEN_WIDTH * 0.1228 * 1/2;
     
     [_groupBtnLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groupBtnImageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.1293 * 5.5/48.5);
-        make.centerX.mas_equalTo(_groupBtnImageView);
+        make.width.mas_equalTo(self.width);
         make.bottom.mas_equalTo(self.mas_bottom);
     }];
     
     [_messageCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top);
-        make.right.mas_equalTo(self.mas_right);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.068);
+        make.right.mas_equalTo(self.groupBtnImageView.mas_right);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.048);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.048);
     }];
     _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
@@ -73,21 +74,36 @@
         _item = item;
         [_groupBtnImageView sd_setImageWithURL:[NSURL URLWithString:item.topic_logo] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
         _groupBtnLabel.text = item.topic_name;
-        if ([item.message_count intValue] == 0) {
-            self.messageCountLabel.hidden = YES;
-        }else if ([item.message_count intValue] > 0 && [item.message_count intValue] <= 9){
-            [_messageCountLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(self.mas_top);
-                make.right.mas_equalTo(self.mas_right);
-                make.width.height.mas_equalTo(SCREEN_WIDTH * 0.048);
-            }];
-            _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
-            _messageCountLabel.layer.masksToBounds = YES;
-            _messageCountLabel.text = [NSString stringWithFormat:@"%@", item.message_count];
-        }else if ([item.message_count intValue] > 9){
-            NSString *count = [item.message_count intValue] > 99 ? @"99+":[NSString stringWithFormat:@"%@",item.message_count];
-            _messageCountLabel.text = count;
+        if (SCREEN_WIDTH * 0.1228 >= [self widthOfString:_groupBtnLabel.text]) {
+            _btnWeight = SCREEN_WIDTH * 0.1228;
+        } else {
+            _btnWeight = [self widthOfString:_groupBtnLabel.text];
         }
+        self.messageCountLabel.hidden = YES;
+//        if ([item.message_count intValue] == 0) {
+//            self.messageCountLabel.hidden = YES;
+//        }else if ([item.message_count intValue] > 0 && [item.message_count intValue] <= 9){
+//            _messageCountLabel.height = SCREEN_WIDTH * 0.048;
+//            _messageCountLabel.layer.cornerRadius = SCREEN_WIDTH * 0.048 * 1/2;
+//            _messageCountLabel.layer.masksToBounds = YES;
+//            _messageCountLabel.text = [NSString stringWithFormat:@"%@", item.message_count];
+//        }else if ([item.message_count intValue] > 9){
+//            [_messageCountLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+//                make.top.mas_equalTo(self.mas_top);
+//                make.right.mas_equalTo(self.groupBtnImageView.mas_right);
+//                make.width.mas_equalTo(SCREEN_WIDTH * 0.068);
+//                make.height.mas_equalTo(SCREEN_WIDTH * 0.048);
+//            }];
+//            NSString *count = [item.message_count intValue] > 99 ? @"99+":[NSString stringWithFormat:@"%@",item.message_count];
+//            _messageCountLabel.text = count;
+//        }
     }
+}
+
+- (CGFloat)widthOfString:(NSString *)string{
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:PingFangSCRegular size: 12]};     //字体属性，设置字体的font
+    CGSize maxSize = CGSizeMake(MAXFLOAT,0);
+    CGSize size = [string boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    return ceil(size.width);
 }
 @end

@@ -560,7 +560,7 @@
         [model setBlock:^(id  _Nonnull info) {
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 [self showStarSuccessful];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshNewQAMainViewController" object:nil userInfo:nil];
             }else  {
                 [self funcViewFailure];
             }
@@ -569,7 +569,7 @@
         [model setBlock:^(id  _Nonnull info) {
             if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
                 [self showUnStarSuccessful];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshNewQAMainViewController" object:nil userInfo:nil];
             }else  {
                 [self funcViewFailure];
             }
@@ -689,7 +689,8 @@
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshNewQAMainViewController" object:nil userInfo:nil];
     }];
 }
 
@@ -698,7 +699,8 @@
     [self.popView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
     [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshNewQAMainViewController" object:nil userInfo:nil];
     }];
 }
 

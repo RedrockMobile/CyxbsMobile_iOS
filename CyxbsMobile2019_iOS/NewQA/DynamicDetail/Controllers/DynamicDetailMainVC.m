@@ -514,39 +514,41 @@
     [model FollowGroupWithName:self.dynamicDataModel.topic];
     if ([sender.titleLabel.text isEqualToString:@"关注圈子"]) {
         [model setBlock:^(id  _Nonnull info) {
-            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
-                //关注圈子成功后的操作
+            if (![info isKindOfClass:[NSError class]]) {
+                if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                    //关注圈子成功后的操作
+                    [self.popView removeFromSuperview];
+                    [self.backViewWithGesture removeFromSuperview];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshNewQAMainViewController" object:nil userInfo:nil];
+                    [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view];
+                }else  {
+                    [self.popView removeFromSuperview];
+                    [self.backViewWithGesture removeFromSuperview];
+                    [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
+                }
+            }else {
                 [self.popView removeFromSuperview];
                 [self.backViewWithGesture removeFromSuperview];
-                [NewQAHud showHudWith:@"  关注圈子成功  " AddView:self.view AndToDo:^{
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
-                }];
-                //重新设置圈子列表
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
-            }else  {
-                [self.popView removeFromSuperview];
-                [self.backViewWithGesture removeFromSuperview];
-//                self.backViewWithGesture.alpha = 0;
                 [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
             }
         }];
     } else if ([sender.titleLabel.text isEqualToString:@"取消关注"]) {
         [model setBlock:^(id  _Nonnull info) {
-            if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
-                //取消关注成功的操作
+            if (![info isKindOfClass:[NSError class]]) {
+                if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:200]]) {
+                    //取消关注成功的操作
+                    [self.popView removeFromSuperview];
+                    [self.backViewWithGesture removeFromSuperview];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"RefreshNewQAMainViewController" object:nil userInfo:nil];
+                    [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view];
+                }else  {
+                    [self.popView removeFromSuperview];
+                    [self.backViewWithGesture removeFromSuperview];
+                    [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
+                }
+            }else {
                 [self.popView removeFromSuperview];
                 [self.backViewWithGesture removeFromSuperview];
-//                self.backViewWithGesture.alpha = 0;
-                [NewQAHud showHudWith:@"  取消关注圈子成功  " AddView:self.view AndToDo:^{
-                    //重新设置邮问首页的圈子关注列表
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reSetTopFollowUI" object:nil];
-                }];
-                //重新设置圈子列表
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reLoadGroupList" object:nil];
-            }else  {
-                [self.popView removeFromSuperview];
-                [self.backViewWithGesture removeFromSuperview];
-//                self.backViewWithGesture.alpha = 0;
                 [NewQAHud showHudWith:@"  操作失败  " AddView:self.view];
             }
         }];

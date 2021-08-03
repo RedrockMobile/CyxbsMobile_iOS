@@ -10,6 +10,8 @@
 #import "FunctionBtn.h"
 #import "FuncView.h"
 #import "PostItem.h"
+#import "MGDClickParams.h"
+#import "NewQAPostDetailLabel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///举报，屏蔽等多功能按钮
 @property (nonatomic, strong) UIButton *funcBtn;
 ///内容
-@property (nonatomic, strong) UILabel *detailLabel;
+@property (nonatomic, strong) NewQAPostDetailLabel *detailLabel;
 ///图片列表
 @property (nonatomic, strong) UICollectionView *collectView;
 ///圈子标签
