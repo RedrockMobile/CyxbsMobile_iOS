@@ -2487,8 +2487,8 @@
 			isa = PBXGroup;
 			children = (
 				18CDF545257F91BC006E8E5C /* CQUPTMapViewProtocol.h */,
-				18CDF546257F91BC006E8E5C /* CQUPTMapPresenter.m */,
 				18CDF547257F91BC006E8E5C /* CQUPTMapPresenter.h */,
+				18CDF546257F91BC006E8E5C /* CQUPTMapPresenter.m */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";

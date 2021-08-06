@@ -877,7 +877,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+//    UITableViewCell *cell = [UITableViewCell alloc] initWithStyle:<#(UITableViewCellStyle)#> reuseIdentifier:<#(nullable NSString *)#>
     NSString *identifier = @"commentCell";
         DynamicDetailComentTableCell *cell = [[DynamicDetailComentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier commentType:(indexPath.row == 0 ? DynamicCommentType_stair : DynamicCommentType_secondLevel)];
     
