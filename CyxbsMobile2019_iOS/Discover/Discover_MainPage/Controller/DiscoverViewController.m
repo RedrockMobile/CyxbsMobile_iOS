@@ -56,25 +56,45 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //View
 @property (nonatomic, weak) UIScrollView * backView;
 @property (nonatomic, weak) UIScrollView *contentView;
-@property(nonatomic, weak) FinderView *finderView;//上方发现页面
-@property (nonatomic, weak) ElectricityView *eleView;//电费相关View
-@property (nonatomic, weak)VolunteerView *volView;//志愿服务View
 
-@property (nonatomic, weak) UIButton * bindingDormitoryContentView;//绑定宿舍页面的contentView，他是一个button，用来保证点击空白处可以取消设置宿舍
-@property (nonatomic, weak)UIView *bindingView;//用来绑定宿舍的View
-@property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
-@property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
-@property (nonatomic, weak)UIView *hideTabbarView;//用来遮挡tabbar的View
-@property (nonatomic, weak)UIView *colorView;//用来补充志愿服务页面下方颜色
-//Model
+/// 上方发现页面
+@property(nonatomic, weak) FinderView *finderView;
+
+/// 电费相关View
+@property (nonatomic, weak) ElectricityView *eleView;
+
+/// 志愿服务View
+@property (nonatomic, weak)VolunteerView *volView;
+
+/// 绑定宿舍页面的contentView，他是一个button，用来保证点击空白处可以取消设置宿舍
+@property (nonatomic, weak) UIButton * bindingDormitoryContentView;
+
+/// 用来绑定宿舍的View
+@property (nonatomic, weak)UIView *bindingView;
+
+/// 选择宿舍时候的宿舍号label
+@property (nonatomic, weak)UILabel *buildingNumberLabel;
+
+/// 填写房间号的框框
+@property (nonatomic, weak)UITextField *roomTextField;
+
+/// 用来遮挡tabbar的View
+@property (nonatomic, weak)UIView *hideTabbarView;
+
+/// 用来补充志愿服务页面下方颜色
+@property (nonatomic, weak)UIView *colorView;
+
+/// Model
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
 @property NSUserDefaults *defaults;
 @property BannerModel *bannerModel;
 @property PickerModel *pickerModel;
-//pickerView
+
+/// pickerView
 @property (nonatomic)NSInteger selectedArrays;
-//Data
+
+/// Data
 @property (nonatomic, assign)int classTabbarHeight;
 @property(nonatomic, assign)int classTabbarCornerRadius;
 
@@ -160,10 +180,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
 }
--(void)loginSucceed {
+- (void)loginSucceed {
     [self requestData];
 }
--(void)layoutSubviews {
+- (void)layoutSubviews {
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         if(IS_IPHONEX) {
@@ -295,12 +315,12 @@ static int requestCheckinInfo = 0;
     [self refreshBannerViewIfNeeded];
 
 }
--(void) refreshBannerViewIfNeeded {
+- (void) refreshBannerViewIfNeeded {
     //更新bannerView
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(UpdateBannerViewUI) name:@"BannerModel_Success" object:nil];
 }
--(void)UpdateBannerViewUI {
+- (void)UpdateBannerViewUI {
     NSMutableArray *urlStrings = [NSMutableArray array];
     NSMutableArray *bannerGoToURL = [NSMutableArray array];
     for(BannerItem *item in self.bannerModel.bannerData.bannerItems) {
@@ -311,7 +331,7 @@ static int requestCheckinInfo = 0;
     self.finderView.bannerURLStrings = urlStrings;
     [self.finderView updateBannerViewIfNeeded];
 }
--(void)addEleView {
+- (void)addEleView {
     ElectricityView *eleView = [[ElectricityView alloc]init];
     self.eleView = eleView;
     eleView.delegate = self;
@@ -354,16 +374,14 @@ static int requestCheckinInfo = 0;
     self.bannerModel = bannerModel;
 }
 - (void)bindingRoomFailed {
-      MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-      [hud setMode:(MBProgressHUDModeText)];
-      hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
-    [UserItem defaultItem].building = NULL;
-    [UserItem defaultItem].room = NULL;
-    
-      [hud hide:YES afterDelay:1.2];
-      return;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:(MBProgressHUDModeText)];
+    hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
+    [UserItem defaultItem].building = nil;
+    [UserItem defaultItem].room = nil;
+    [hud hide:YES afterDelay:1.2];
 }
--(void)requestElectricFeeFailed {
+- (void)requestElectricFeeFailed {
 //    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    [hud setMode:(MBProgressHUDModeText)];
 //    hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
@@ -512,14 +530,13 @@ static int requestCheckinInfo = 0;
     }];
     [button addTarget:self action:@selector(bindingDormitory) forControlEvents:UIControlEventTouchUpInside];
 }
--(void)cancelSettingDormitory {
+- (void)cancelSettingDormitory {
 //    self.tabBarController.tabBar.hidden=NO;
     [self.bindingDormitoryContentView removeFromSuperview];
     [self.hideTabbarView removeFromSuperview];
 
 }
-- (UIToolbar *)addToolbar
-{
+- (UIToolbar *)addToolbar {
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 35)];
     toolbar.tintColor = [UIColor blueColor];
 //    toolbar.backgroundColor = [UIColor sy_grayColor];
@@ -528,7 +545,7 @@ static int requestCheckinInfo = 0;
     toolbar.items = @[space, bar];
     return toolbar;
 }
--(void)textFieldDone {
+- (void)textFieldDone {
     [self.view endEditing:YES];
 }
 - (void)bindingDormitory {
@@ -555,17 +572,16 @@ static int requestCheckinInfo = 0;
     [self.hideTabbarView removeFromSuperview];
     [self reloadElectricViewIfNeeded];
 }
--(void)getPickerViewData {
+- (void)getPickerViewData {
     PickerModel *pickerModel = [[PickerModel alloc]init];
     self.pickerModel = pickerModel;
 }
 //MARK: - PickerViewDataSourse
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView
-{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView {
     return 2; // 返回2表明该控件只包含2列
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component  {
     if (component == 0) {
         return self.pickerModel.allArray.count;
     }else {
@@ -586,7 +602,6 @@ static int requestCheckinInfo = 0;
         }
     }
 }
-
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
        if (component == 0) {
@@ -616,8 +631,7 @@ static int requestCheckinInfo = 0;
     }
     
 }
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
     if (component == 0) {
         return 45;
     }else{
@@ -625,17 +639,17 @@ static int requestCheckinInfo = 0;
     }
 }
 
--(void)updateFinderViewUI {
+- (void)updateFinderViewUI {
     [self.finderView remoreAllEnters];
     [self.finderView addSomeEnters];
     [self layoutSubviews];
 }
--(void)reloadElectricViewIfNeeded {
+- (void)reloadElectricViewIfNeeded {
 //    NSLog(@"%@",[UserItem defaultItem].room);
 //    NSLog(@"%@",[UserItem defaultItem].building);
     [self reloadViewController:self];
 }
--(void)reloadVolViewIdNeeded {
+- (void)reloadVolViewIdNeeded {
     [self reloadViewController:self];
 }
 - (void)reloadViewController:(UIViewController *)viewController {
@@ -653,6 +667,7 @@ static int requestCheckinInfo = 0;
     [viewController viewDidAppear:YES];
     [viewController viewWillLayoutSubviews];
 }
+
 //MARK: FinderView代理
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
@@ -707,41 +722,41 @@ static int requestCheckinInfo = 0;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchNoClassAppointment {
+- (void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
     UserItem *item = [[UserItem alloc] init];
     WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":item.realName,@"stuNum":item.stuNum}] mutableCopy]];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchMyTest {
+- (void)touchMyTest {
     NSLog(@"点击了我的考试");
     TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchSchoolCalender {
+- (void)touchSchoolCalender {
     NSLog(@"点击了校历");
     CalendarViewController *vc = [[CalendarViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchMap {
+- (void)touchMap {
     NSLog(@"点击了重邮地图");
     CQUPTMapViewController * vc = [[CQUPTMapViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchEmptyClass {
+- (void)touchEmptyClass {
     NSLog(@"点击了空教室");
     EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 //MARK: - 监听键盘事件
  //当键盘出现或改变时调用
-- (void)keyboardWillShow:(NSNotification *)aNotification
-{
+- (void)keyboardWillShow:(NSNotification *)aNotification {
     //获取键盘的高度
     NSDictionary *userInfo = [aNotification userInfo];
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -755,7 +770,7 @@ static int requestCheckinInfo = 0;
 - (void)touchElectrictyView {
     [self bindingBuildingAndRoom];
 }
--(void)touchVolunteerView {
+- (void)touchVolunteerView {
     [self bindingVolunteerButton];
 }
 @end

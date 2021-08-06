@@ -73,10 +73,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL canCheckIn;
 
 /// 楼栋：例如26
-@property (nonatomic, copy) NSString *building;
+@property (nonatomic, copy, nullable) NSString *building;
 
 /// 房间号：例如413
-@property (nonatomic, copy) NSString *room;
+@property (nonatomic, copy, nullable) NSString *room;
 
 /// 志愿服务账号
 @property (nonatomic, copy) NSString *volunteerUserName;
