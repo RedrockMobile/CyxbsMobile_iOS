@@ -13,14 +13,16 @@
 - (void)drawRect:(CGRect)rect {
     CGFloat backgroundWidth = self.frame.size.width * 0.85;
     CGFloat backgroundHeight = self.frame.size.height * 0.7;
+    // 设置 backgroundView 在一个合理的位置（不依赖第三方库，也可以使用autolayout）
     UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake((self.frame.size.width - backgroundWidth) / 2.0, (self.frame.size.height - backgroundHeight) / 2.0, backgroundWidth, backgroundHeight)];
     backgroundView.backgroundColor = [UIColor whiteColor];
+    // core animation
     backgroundView.layer.cornerRadius = 6.0;
     backgroundView.layer.shadowOffset = CGSizeMake(0, 2);
     backgroundView.layer.shadowOpacity = 0.05;
     backgroundView.layer.shadowColor = [UIColor grayColor].CGColor;
     
-    
+    // 文字，代替 self.titleLabel
     CGFloat labelWidth = backgroundWidth * 0.9;
     CGFloat labelHeight = backgroundHeight * 0.8;
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.frame.size.width - labelWidth) / 2.0, (self.frame.size.height - labelHeight) / 2.0, labelWidth, labelHeight)];

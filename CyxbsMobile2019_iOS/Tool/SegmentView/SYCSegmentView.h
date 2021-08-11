@@ -48,7 +48,9 @@ typedef NS_ENUM(NSUInteger, SYCSegmentViewType){
  @param type SegmentView的样式类型，
  @return 初始化方法
  */
-- (instancetype)initWithFrame:(CGRect)frame controllers:(NSArray <UIViewController *> *)controllers type:(SYCSegmentViewType)type;
+- (instancetype)initWithFrame:(CGRect)frame
+                  controllers:(NSArray <UIViewController *> *)controllers
+                         type:(SYCSegmentViewType)type;
 
 /**
  设置SegmentView上方标签栏的字体颜色

@@ -26,7 +26,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "CheckInModel.h"
 
-
+#import "DetailsMainViewController.h"
 
 @interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -282,6 +282,9 @@
     CheckInViewController *vc = [[CheckInViewController alloc] init];
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
+//    DetailsMainViewController * vc = [[DetailsMainViewController alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)selectedFeedBack {

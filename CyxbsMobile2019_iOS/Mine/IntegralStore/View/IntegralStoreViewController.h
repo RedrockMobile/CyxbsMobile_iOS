@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class IntegralStorePresenter;
+/// 老版积分商城
 @interface IntegralStoreViewController : UIViewController
 
 @property (nonatomic, strong) IntegralStorePresenter *presenter;

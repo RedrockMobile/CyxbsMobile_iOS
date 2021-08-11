@@ -127,6 +127,7 @@
     return self;
 }
 
+/// 第二个层视图，签到视图
 - (void)addCheckInView{
     UIView *checkInView = [[UIView alloc] init];
     [self addSubview:checkInView];
@@ -216,6 +217,7 @@
     checkInButton.backgroundColor = backColor;
 }
 
+/// 添加底部的商城入口
 - (void)addStoreView{
     UIView *storeView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
@@ -228,8 +230,10 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(presentIntegralStore:)];
     [storeView addGestureRecognizer:pan];
     self.storeView = storeView;
+    self.storeView.hidden = YES;
 }
 
+/// 商城的 title
 - (void)addStoreTitlelabel{
     UILabel *storeTitlelabel = [[UILabel alloc] init];
     storeTitlelabel.text = @"积分商城";
@@ -244,6 +248,7 @@
     
 }
 
+/// 商城title 右侧 的 我的商品
 - (void)addMyGoodsButton{
     UIButton *myGoodsButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [myGoodsButton setTitle:@"我的商品" forState:UIControlStateNormal];
@@ -255,6 +260,7 @@
     self.myGoodsButton = myGoodsButton;
 }
 
+/// 商城顶部右侧的积分数量
 - (void)addScoreLabel{
     UILabel *scoreLabel = [[UILabel alloc] init];
     scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
@@ -263,10 +269,12 @@
         scoreLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
     } else {
         scoreLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    }        [self.storeView addSubview:scoreLabel];
+    }
+    [self.storeView addSubview:scoreLabel];
     self.scoreLabel = scoreLabel;
 }
 
+/// 商城顶部的那个小灰块
 - (void)addDragHintView{
     // 提醒用户该view可拖拽
     UIView *dragHintView = [[UIView alloc] init];
