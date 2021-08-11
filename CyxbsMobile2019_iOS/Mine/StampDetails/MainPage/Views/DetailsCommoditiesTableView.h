@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * 任务记录的视图
+ * 兑换详情的table
+ * 用来展示用户兑换的商品明细
  * 使用 dataAry的setter方法更新数据
  */
 @interface DetailsCommoditiesTableView : UITableView

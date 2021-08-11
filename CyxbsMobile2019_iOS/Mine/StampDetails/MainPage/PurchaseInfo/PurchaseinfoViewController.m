@@ -7,15 +7,11 @@
 
 #import "PurchaseinfoViewController.h"
 // views
-#import "DetailsCustomizeNavigationBar.h"
 #import "PurchaseInfoCommodityInfoView.h"
 #import "PurchaseInfoOrderIDView.h"
 
 @interface PurchaseinfoViewController ()
-<CustomizeNavigationItemsDelegate>
 
-/// 导航栏
-@property (nonatomic, strong) DetailsCustomizeNavigationBar * navBar;
 /// 商品详情
 @property (nonatomic, strong) PurchaseInfoCommodityInfoView * PurchaseInfoCommodityInfoView;
 /// 订单编号视图
@@ -61,9 +57,8 @@
 
 - (void)configureView {
     self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
-    
-    // navBar
-    [self.view addSubview:self.navBar];
+    self.VCTitleStr = @"兑换详情";
+    self.splitLineHidden = YES;
     
     // PurchaseInfoOrderIDView
     [self.view addSubview:self.PurchaseInfoOrderIDView];
@@ -71,7 +66,7 @@
         [NSLayoutConstraint constraintWithItem:_PurchaseInfoOrderIDView
                                      attribute:(NSLayoutAttributeTop)
                                      relatedBy:(NSLayoutRelationEqual)
-                                        toItem:_navBar
+                                        toItem:self.topBarView
                                      attribute:(NSLayoutAttributeBottom)
                                     multiplier:1.f
                                       constant:40],
@@ -137,27 +132,9 @@
                              tradingTime:[NSString stringWithFormat:@"%@ %@", _date, _moment]
                                 received:_received];
     
-    [self.view bringSubviewToFront:self.navBar];
 }
-
-#pragma mark - delegate
-//MARK:CustomizeNavigationItemsDelegate
-- (void)DetailsCustomizeNavigationBarDidClickBack:(DetailsCustomizeNavigationBar *)DetailsCustomizeNavigationBar {
-    NSLog(@"ss");
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 #pragma mark - getter
-
-- (DetailsCustomizeNavigationBar *)navBar {
-    if (_navBar == nil) {
-        _navBar = [[DetailsCustomizeNavigationBar alloc] initWithTitle:@"兑换详情"];
-        _navBar.splitLineHidden = YES;
-        _navBar.delegate = self;
-    }
-    return _navBar;
-}
 
 - (PurchaseInfoOrderIDView *)PurchaseInfoOrderIDView {
     if (_PurchaseInfoOrderIDView == nil) {

@@ -10,9 +10,12 @@
 
 @interface TopBarBasicViewController ()
 
+/// 控制器标题
 @property (nonatomic,strong)UILabel *VCTitleLabel;
+/// 返回按钮
 @property (nonatomic,strong)UIButton *backBtn;
-@property (nonatomic,strong)UIView *blackLine;
+/// 导航条底部的黑线
+@property (nonatomic,strong)UIView *splitLine;
 @end
 
 
@@ -28,20 +31,11 @@
     
 }
 
-//MARK: -重写的方法:
-//调用这个方法自动完成顶部自定义导航条的设置
-- (void)setVCTitleStr:(NSString *)VCTitleStr{
-    _VCTitleStr = VCTitleStr;
-    if(self.topBarView==nil){
-        [self addTopBarView];
-        [self addVCTitleWithStr:VCTitleStr];
-        [self addBackBtn];
-        [self addBlackLine];
-    }else{
-        self.VCTitleLabel.text = _VCTitleStr;
-    }
-}
+#pragma mark - private
 
+- (CGFloat)getTopBarViewHeight {
+    return self.topBarView.frame.size.height + self.topBarView.frame.origin.y;
+}
 
 //MARK: - UI布局方法:
 /// 添加 顶部条 的方法
@@ -59,6 +53,7 @@
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(44);
     }];
+    
     
     view.backgroundColor = self.view.backgroundColor;
     
@@ -108,7 +103,7 @@
 /// 添加 顶部条的底部黑线 的方法
 - (void)addBlackLine{
     UIView *blackLine = [[UIView alloc] init];
-    self.blackLine = blackLine;
+    self.splitLine = blackLine;
     [self.topBarView addSubview:blackLine];
     
     if (@available(iOS 11.0, *)) {
@@ -130,5 +125,31 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+#pragma mark - setter
+
+// 子类设置这个属性，自动完成顶部自定义导航条的设置
+- (void)setVCTitleStr:(NSString *)VCTitleStr {
+    _VCTitleStr = VCTitleStr;
+    if(self.topBarView==nil){
+        [self addTopBarView];
+        [self addVCTitleWithStr:VCTitleStr];
+        [self addBackBtn];
+        [self addBlackLine];
+    }else{
+        self.VCTitleLabel.text = _VCTitleStr;
+    }
+    [self.view layoutIfNeeded];
+}
+
+- (void)setSplitLineHidden:(BOOL)splitLineHidden {
+    _splitLineHidden = splitLineHidden;
+    self.splitLine.hidden = _splitLineHidden;
+}
+
+- (void)setFont:(UIFont *)font {
+    _font = font;
+    self.VCTitleLabel.font = font;
+}
 
 @end

@@ -27,6 +27,7 @@
     if (self) {
         [self setupView];
         self.title = title;
+        self.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
     }
     return self;
 }
@@ -43,7 +44,6 @@
     
     // configure self
     self.frame = CGRectMake(0, 0, size.width, size.height);
-    self.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
     
     // configur splitLine
     [self addSubview:self.splitLine];

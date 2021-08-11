@@ -5,6 +5,10 @@
 //  Created by Edioth Jin on 2021/8/5.
 //
 
+/**
+ 已经被废弃！！！
+ */
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

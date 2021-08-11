@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * 任务记录的视图
+ * 获取详情的table
+ * 用来展示用户完成的任务明细
  * 使用 dataMAry的setter方法更新数据
  */
 @interface DetailsTasksTableView : UITableView

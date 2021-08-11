@@ -32,24 +32,8 @@
     return [[self alloc] initWithFrame:frame titles:titles];
 }
 
-#pragma mark - setter
 
-- (void)setFrame:(CGRect)frame {
-    [super setFrame:frame];
-    [self configureView];
-}
-
-- (void)setSelectedIndex:(NSInteger)selectedIndex {
-    _selectedIndex = selectedIndex;
-    for (UIButton * button in self.subviews) {
-        button.selected = (button.tag == [self tagWithIndex:selectedIndex])? YES: NO;
-        [UIView animateWithDuration:0.5 animations:^{
-            button.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:(button.tag == [self tagWithIndex:selectedIndex]? 16: 14)];
-        }];
-    }
-}
-
-#pragma mark - action
+#pragma mark - eventResponse action
 
 - (void)clickButton:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(segmentView:alertWithIndex:)]) {
@@ -80,6 +64,7 @@
                action:@selector(clickButton:)
      forControlEvents:(UIControlEventTouchUpInside)];
     
+    //设置button的frame
     CGFloat buttonWidth = [UIScreen mainScreen].bounds.size.width / _titles.count;
     button.width = buttonWidth;
     button.height = self.height;
@@ -96,5 +81,21 @@
     return tag - 1000;
 }
 
+#pragma mark - setter
+
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    [self configureView];
+}
+
+- (void)setSelectedIndex:(NSInteger)selectedIndex {
+    _selectedIndex = selectedIndex;
+    for (UIButton * button in self.subviews) {
+        button.selected = (button.tag == [self tagWithIndex:selectedIndex])? YES: NO;
+        [UIView animateWithDuration:0.5 animations:^{
+            button.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:(button.tag == [self tagWithIndex:selectedIndex] ? 16 : 14)];
+        }];
+    }
+}
 
 @end

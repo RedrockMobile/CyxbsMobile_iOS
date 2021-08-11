@@ -19,8 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * 分隔栏视图
- * 初始化输入 titles
- * 或者先传入 titles 再设置 frame
+ * 必须使用初始化方法
+ * 1. segmentViewWithFrame:titles:
+ * 2. initWithFrame:(CGRect)frame titles:(NSArray <NSString *> *)titles;
  */
 @interface SegmentView : UIView
 

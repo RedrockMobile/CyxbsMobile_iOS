@@ -5,7 +5,7 @@
 //  Created by Edioth Jin on 2021/8/3.
 //
 
-#import <Foundation/Foundation.h>
+#import "TopBarBasicViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 选择控制器控制一个横向滑动，界面对应的 scrollView，用户可以看到不同的数据
  * scrollView包含两个界面，"DetailsTasksTableView.h", "DetailsCommoditiesTableView.h",分别对应任务记录和兑换记录
  */
-@interface DetailsMainViewController : UIViewController
+@interface DetailsMainViewController : TopBarBasicViewController
 
 @end
 

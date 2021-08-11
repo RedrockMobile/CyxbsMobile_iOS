@@ -35,12 +35,6 @@
     self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
-#pragma mark - setter
-
-- (void)setDataMAry:(NSArray *)dataAry {
-   _dataAry = dataAry;
-   [self reloadData];
-}
 
 #pragma mark - delegate
 //MARK:table view delegate & data source
@@ -63,4 +57,10 @@
     return cell;
 }
 
+#pragma mark - setter
+
+- (void)setDataMAry:(NSArray *)dataAry {
+   _dataAry = dataAry;
+   [self reloadData];
+}
 @end

@@ -7,7 +7,7 @@
 
 #import "DetailsMainViewController.h"
 // views
-#import "DetailsCustomizeNavigationBar.h"
+//#import "DetailsCustomizeNavigationBar.h"
 #import "SegmentView.h"
 #import "DetailsCommoditiesTableView.h"
 #import "DetailsCommodityTableViewCell.h"
@@ -20,10 +20,10 @@
 #import "PurchaseinfoViewController.h"
 
 @interface DetailsMainViewController ()
-<UITableViewDelegate, CustomizeNavigationItemsDelegate, SegmentViewDelegate>
+<UITableViewDelegate, SegmentViewDelegate>
 
 /// 自定义导航栏
-@property (nonatomic, strong) DetailsCustomizeNavigationBar * navBar;
+//@property (nonatomic, strong) DetailsCustomizeNavigationBar * navBar;
 /// 分隔栏
 @property (nonatomic, strong) SegmentView * segmentView;
 /// 水平滑动背景
@@ -49,6 +49,11 @@
     [self configureView];
 }
 
+- (void)dealloc {
+    // 移除KVO，否则会导致错误
+    [self.horizontalScrollView removeObserver:self forKeyPath:@"contentOffset"];
+}
+
 #pragma mark - configure
 
 - (void)configureData {
@@ -58,14 +63,13 @@
 
 - (void)configureView {
     self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
-
+    self.VCTitleStr = @"邮票明细";
+    
     CGSize size = self.view.frame.size;
-    // navBar
-    [self.view addSubview:self.navBar];
 
     // segmentView
     [self.view addSubview:self.segmentView];
-    self.segmentView.frame = CGRectMake(0, self.navBar.height, size.width, 56);
+    self.segmentView.frame = CGRectMake(0, [self getTopBarViewHeight], size.width, 56);
     
     // horizontalScrollView
     [self.view addSubview:self.horizontalScrollView];
@@ -85,10 +89,9 @@
     self.DetailsTasksTableView.frame = bounds;
     self.DetailsTasksTableView.dataAry = self.tasksAry;
 
-    [self.view bringSubviewToFront:self.navBar];
 }
 
-#pragma mark - observer
+#pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -99,13 +102,6 @@
 }
 
 #pragma mark - delegate & data source
-//MARK:CustomizeNavigationItemsDelegate
-- (void)DetailsCustomizeNavigationBarDidClickBack:(DetailsCustomizeNavigationBar *)DetailsCustomizeNavigationBar {
-    // 删除 KVO 否则会导致错误
-    [self.horizontalScrollView removeObserver:self forKeyPath:@"contentOffset"];
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 //MARK:SegmentViewDelegate
 - (void)segmentView:(SegmentView *)segmentView alertWithIndex:(NSInteger)index {
     NSLog(@"%zd", index);
@@ -114,7 +110,7 @@
     }];
 }
 
-//MARK:table view delegate & data source
+//MARK:table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -128,14 +124,6 @@
 
 
 #pragma mark - getter
-
-- (DetailsCustomizeNavigationBar *)navBar {
-    if (_navBar == nil) {
-        _navBar = [[DetailsCustomizeNavigationBar alloc] initWithTitle:@"邮票明细"];
-        _navBar.delegate = self;
-    }
-    return _navBar;
-}
 
 - (SegmentView *)segmentView {
     if (_segmentView == nil) {
