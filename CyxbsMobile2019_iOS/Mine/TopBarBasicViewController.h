@@ -6,6 +6,22 @@
 //  Modified by Edioth on 2021/8/12
 //  Copyright © 2020 Redrock. All rights reserved.
 //
+/**
+ * 直接继承使用
+ * 在控制器的 viewDidLoad 方法中写:
+ * // 控制器视图的背景颜色，设置这个属性
+ * self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
+ * // 标题文字
+ * self.VCTitleStr = @"邮票明细";
+ * // 修改标题的位置，设置这个属性
+ * self.titlePosition = TopBarViewTitlePositionLeft;
+ * // 修改分割线颜色，设置这个属性
+ * self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1"];
+ * // 修改标题的字体、大小，设置这个属性
+ * self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+ * // 分割线的隐藏于否，设置这个属性
+ * self.splitLineHidden = YES;
+ */
 
 #import <UIKit/UIKit.h>
 #import "NothingStateView.h"

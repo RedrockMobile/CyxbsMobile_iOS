@@ -42,6 +42,8 @@
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(44);
     }];
+    // 立即将导航栏布局，将 frame 的值所固定
+    // 以便在不使用 autoLayout/masonry 的情况下也可以得到导航栏的位置信息
     [self.view layoutIfNeeded];
     
     // configure backBtn
@@ -59,7 +61,7 @@
         make.centerX.centerY.equalTo(self.topBarView);
     }];
 
-    // configure
+    // configure splitLine
     [self.topBarView addSubview:self.splitLine];
     [self.splitLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.topBarView);
@@ -78,7 +80,12 @@
 
 /// 点击 返回按钮 后调用的方法
 - (void)backBtnClicked{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController != nil) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.presentingViewController != nil) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark - setter
@@ -122,9 +129,15 @@
 }
 
 - (void)setTitlePosition:(TopBarViewTitlePosition)titlePosition {
+    // 如果设置前后没有改变，就不进行任何操作
+    if (self.titlePosition == titlePosition) {
+        return;
+    }
     _titlePosition = titlePosition;
     if (titlePosition == TopBarViewTitlePositionCenter) {
-        return;
+        [self.VCTitleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.centerX.centerY.equalTo(self.topBarView);
+        }];
     } else {
         [self.VCTitleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.topBarView);

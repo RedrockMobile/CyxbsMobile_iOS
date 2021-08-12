@@ -16,7 +16,9 @@
 @interface   SYCSegmentView() <UIScrollViewDelegate>
 
 //内容视图
+/// 保存视图的数组
 @property (nonatomic, copy) NSArray <UIViewController *> *controllers;
+/// 标签栏下方的不同页面的视图
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, assign) SYCSegmentViewType type;
@@ -44,6 +46,7 @@
     if (self) {
         _type = type;
         _controllers = controllers;
+        // 不同的样式不同的计算宽度的方法
         if (_type == SYCSegmentViewTypeButton) {
             _titleBtnWidth = controllers.count > 3 ? self.frame.size.width / 4 : self.frame.size.width / controllers.count;
         }else if(_type == SYCSegmentViewTypeNormal || _type == SYCSegmentViewTypeHiddenLine){
