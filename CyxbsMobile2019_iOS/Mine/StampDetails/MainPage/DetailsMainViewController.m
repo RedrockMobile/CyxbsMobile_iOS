@@ -64,6 +64,9 @@
 - (void)configureView {
     self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
     self.VCTitleStr = @"邮票明细";
+    self.titlePosition = TopBarViewTitlePositionLeft;
+    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1"];
+    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     
     CGSize size = self.view.frame.size;
 

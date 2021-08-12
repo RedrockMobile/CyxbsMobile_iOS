@@ -3,8 +3,8 @@
 //  CyxbsMobile2019_iOS
 //
 //  Created by Stove on 2020/12/18.
+//  Modified by Edioth on 2021/8/12
 //  Copyright © 2020 Redrock. All rights reserved.
-// 带有一个顶部导航条的基类
 
 #import "TopBarBasicViewController.h"
 
@@ -16,6 +16,7 @@
 @property (nonatomic,strong)UIButton *backBtn;
 /// 导航条底部的黑线
 @property (nonatomic,strong)UIView *splitLine;
+
 @end
 
 
@@ -23,12 +24,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
-    } else {
-        self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
-    }
+    // Do any additional setup after loading the view.
+    [self setupView];
+}
+
+- (void)setupView {
+    // configure self
+    self.view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
     
+    // configure topBarView
+    [self.view addSubview:self.topBarView];
+    //12：47
+    //获取状态栏高度
+    double statusBarH = getStatusBarHeight_Double;
+    [self.topBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(statusBarH);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(44);
+    }];
+    // 立即将导航栏布局，将 frame 的值所固定
+    // 以便在不使用 autoLayout/masonry 的情况下也可以得到导航栏的位置信息
+    [self.view layoutIfNeeded];
+    
+    // configure backBtn
+    // 左侧原距离 0.0427*SCREEN_WIDTH
+    [self.topBarView addSubview:self.backBtn];
+    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.topBarView).offset(10);
+        make.centerY.equalTo(self.topBarView);
+        make.height.width.mas_equalTo(44);
+    }];
+    
+    // configure VCTitlelabel
+    [self.topBarView addSubview:self.VCTitleLabel];
+    [_VCTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.equalTo(self.topBarView);
+    }];
+
+    // configure splitLine
+    [self.topBarView addSubview:self.splitLine];
+    [self.splitLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.topBarView);
+        make.left.right.equalTo(self.topBarView);
+        make.height.mas_equalTo(1);
+    }];
 }
 
 #pragma mark - private
@@ -37,109 +76,26 @@
     return self.topBarView.frame.size.height + self.topBarView.frame.origin.y;
 }
 
-//MARK: - UI布局方法:
-/// 添加 顶部条 的方法
-- (void)addTopBarView{
-    UIView *view = [[UIView alloc] init];
-    self.topBarView = view;
-    [self.view addSubview:view];
-    
-    //12：47
-    //获取状态栏高度    
-    double statusBarH = getStatusBarHeight_Double;
-    
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(statusBarH);
-        make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(44);
-    }];
-    
-    
-    view.backgroundColor = self.view.backgroundColor;
-    
-}
+#pragma mark - event response
 
-/// 添加 控制器标题 的方法
-- (void)addVCTitleWithStr:(NSString*)str {
-    UILabel *label = [[UILabel alloc] init];
-    self.VCTitleLabel = label;
-    [self.topBarView addSubview:label];
-    
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.topBarView);
-        make.bottom.equalTo(self.topBarView).offset(-10);
-    }];
-    
-    if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-    } else {
-        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
-    }
-    
-    label.font = [UIFont fontWithName:PingFangSCSemibold size:21];
-    
-    label.text = str;
-    
-}
-
-/// 添加 返回按钮 的方法
-- (void)addBackBtn{
-    UIButton *btn = [[UIButton alloc] init];
-    self.backBtn = btn;
-    [self.topBarView addSubview:btn];
-    
-    
-    float unitSize = 4*fontSizeScaleRate_SE;
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.topBarView).offset(0.0427*SCREEN_WIDTH);;
-        make.centerY.equalTo(self.VCTitleLabel);
-        make.height.width.mas_equalTo(6*unitSize);
-    }];
-    [btn setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
-    btn.imageEdgeInsets = UIEdgeInsetsMake(unitSize, 1.5*unitSize, unitSize, 2.5*unitSize);
-    [btn addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-}
-
-/// 添加 顶部条的底部黑线 的方法
-- (void)addBlackLine{
-    UIView *blackLine = [[UIView alloc] init];
-    self.splitLine = blackLine;
-    [self.topBarView addSubview:blackLine];
-    
-    if (@available(iOS 11.0, *)) {
-        blackLine.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
-    } else {
-        blackLine.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
-    }
-    
-    [blackLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.topBarView);
-        make.left.right.equalTo(self.topBarView);
-        make.height.mas_equalTo(0.5);
-    }];
-}
-
-//MARK: - 点击按钮后调用方法:
 /// 点击 返回按钮 后调用的方法
 - (void)backBtnClicked{
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController != nil) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.presentingViewController != nil) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
-
 
 #pragma mark - setter
 
-// 子类设置这个属性，自动完成顶部自定义导航条的设置
 - (void)setVCTitleStr:(NSString *)VCTitleStr {
     _VCTitleStr = VCTitleStr;
-    if(self.topBarView==nil){
-        [self addTopBarView];
-        [self addVCTitleWithStr:VCTitleStr];
-        [self addBackBtn];
-        [self addBlackLine];
-    }else{
+    if(self.topBarView){
         self.VCTitleLabel.text = _VCTitleStr;
+        self.topBarBackgroundColor = self.view.backgroundColor;
     }
-    [self.view layoutIfNeeded];
 }
 
 - (void)setSplitLineHidden:(BOOL)splitLineHidden {
@@ -147,9 +103,84 @@
     self.splitLine.hidden = _splitLineHidden;
 }
 
-- (void)setFont:(UIFont *)font {
-    _font = font;
-    self.VCTitleLabel.font = font;
+- (void)setSplitLineColor:(UIColor *)splitLineColor {
+    _splitLineColor = splitLineColor;
+    self.splitLine.backgroundColor = splitLineColor;
+}
+
+- (void)setTitleFont:(UIFont *)titleFont {
+    _titleFont = titleFont;
+    self.VCTitleLabel.font = titleFont;
+}
+
+- (void)setTitleColor:(UIColor *)titleColor {
+    _titleColor = titleColor;
+    self.VCTitleLabel.textColor = titleColor;
+}
+
+- (void)setTopBarBackgroundColor:(UIColor *)topBarBackgroundColor {
+    _topBarBackgroundColor = topBarBackgroundColor;
+    self.topBarView.backgroundColor = topBarBackgroundColor;
+}
+
+- (void)setTopBarViewHidden:(BOOL)topBarViewHidden {
+    _topBarViewHidden = topBarViewHidden;
+    self.topBarView.hidden = topBarViewHidden;
+}
+
+- (void)setTitlePosition:(TopBarViewTitlePosition)titlePosition {
+    // 如果设置前后没有改变，就不进行任何操作
+    if (self.titlePosition == titlePosition) {
+        return;
+    }
+    _titlePosition = titlePosition;
+    if (titlePosition == TopBarViewTitlePositionCenter) {
+        [self.VCTitleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.centerY.mas_equalTo(self.topBarView);
+        }];
+    } else {
+        [self.VCTitleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(self.topBarView);
+            make.left.mas_equalTo(self.backBtn.mas_right).mas_offset(10);
+        }];
+    }
+}
+
+#pragma mark - getter
+
+- (UIView *)topBarView {
+    if (_topBarView == nil) {
+        _topBarView = [[UIView alloc] initWithFrame:(CGRectZero)];
+    }
+    return _topBarView;
+}
+
+- (UIButton *)backBtn {
+    if (_backBtn == nil) {
+        _backBtn = [[UIButton alloc] initWithFrame:(CGRectZero)];
+        [_backBtn setImage:[UIImage imageNamed:@"navBar_back"] forState:UIControlStateNormal];
+        [_backBtn addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [_backBtn sizeToFit];
+    }
+    return _backBtn;
+}
+
+- (UILabel *)VCTitleLabel {
+    if (_VCTitleLabel == nil) {
+        _VCTitleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
+        _VCTitleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:22];
+        _VCTitleLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        [_VCTitleLabel sizeToFit];
+    }
+    return _VCTitleLabel;
+}
+
+- (UIView *)splitLine {
+    if (_splitLine == nil) {
+        _splitLine = [[UIView alloc] initWithFrame:(CGRectZero)];
+        _splitLine.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
+    }
+    return _splitLine;
 }
 
 @end
