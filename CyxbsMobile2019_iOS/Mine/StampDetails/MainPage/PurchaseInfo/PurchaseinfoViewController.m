@@ -59,6 +59,10 @@
     self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
     self.VCTitleStr = @"兑换详情";
     self.splitLineHidden = YES;
+    self.titlePosition = TopBarViewTitlePositionLeft;
+    self.titlePosition = TopBarViewTitlePositionLeft;
+    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1"];
+    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     
     // PurchaseInfoOrderIDView
     [self.view addSubview:self.PurchaseInfoOrderIDView];
