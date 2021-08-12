@@ -135,11 +135,11 @@
     }
     _titlePosition = titlePosition;
     if (titlePosition == TopBarViewTitlePositionCenter) {
-        [self.VCTitleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.centerX.centerY.equalTo(self.topBarView);
+        [self.VCTitleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.centerY.mas_equalTo(self.topBarView);
         }];
     } else {
-        [self.VCTitleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        [self.VCTitleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.topBarView);
             make.left.mas_equalTo(self.backBtn.mas_right).mas_offset(10);
         }];
