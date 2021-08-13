@@ -26,13 +26,15 @@
 @property (nonatomic, strong)UILabel* nothingLabel;
 
 @end
+
 @implementation DiscoverTodoView
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(SCREEN_WIDTH);
-//            make.height.mas_equalTo(0.1822660099*SCREEN_HEIGHT);
+            make.height.mas_equalTo(0.32*SCREEN_HEIGHT);
         }];
         
         if (@available(iOS 11.0, *)) {
@@ -47,11 +49,14 @@
         [self addAddBtn];
         self.nothingLabel.alpha = 1;
         [self addTodoListTableView];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            CCLog(@"%@, %@",NSStringFromCGSize(self.todoListTableView.contentSize), RectToString(self.todoListTableView.frame));
+        });
     }
     return self;
 }
-/// 添加 底部分隔线 的方法
 
+//MARK: - 初始化UI的操作：
 /// 添加一个View遮住底部多出来的圆角
 - (void)addMaskView {
     UIView* view = [[UIView alloc] init];
@@ -63,9 +68,8 @@
         make.bottom.left.right.equalTo(self);
         make.height.equalTo(@20);
     }];
-    
 }
-
+/// 添加显示“邮子清单”四个字的label
 - (void)addTitleLabel {
     UILabel* label = [[UILabel alloc] init];
     [self addSubview:label];
@@ -84,7 +88,7 @@
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
 }
-
+/// 添加一个加号按钮，点击这个加号按钮后调用代理方法，来添加事项，代理是DiscoverViewController
 - (void)addAddBtn {
     UIButton* btn = [[UIButton alloc] init];
     self.addBtn = btn;
@@ -101,6 +105,7 @@
     
     [btn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
+/// 没有事项时，用来占位
 - (UILabel*)nothingLabel {
     if (_nothingLabel==nil) {
         UILabel* label = [[UILabel alloc] init];
@@ -117,7 +122,7 @@
     }
     return _nothingLabel;
 }
-
+/// 添加tableView
 - (void)addTodoListTableView {
     UITableView* tableView = [[UITableView alloc] init];
     self.todoListTableView = tableView;
@@ -130,23 +135,25 @@
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self);
         make.top.equalTo(self.addBtn.mas_bottom).offset(0.03078817734*SCREEN_HEIGHT);
-        make.height.mas_equalTo(0.2795566502*SCREEN_HEIGHT);
+//        make.height.mas_equalTo(0.2795566502*SCREEN_HEIGHT);
     }];
-//    [tableView reloadData];
+    tableView.showsVerticalScrollIndicator = NO;
 }
+
+/// MARK: - tableviwe的代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DiscoverTodoTableViewCell* cell = [[DiscoverTodoTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"idd"];
-//    cell.backgroundColor = [UIColor grayColor];
-    CCLog(@"cc = %@",cell);
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 0.07142857143*SCREEN_HEIGHT;
 }
 
+//MARK: - 点击按钮后调用：
+/// 加号按钮点击后调用
 - (void)addBtnClicked {
     [self.delegate addBtnClicked];
 }

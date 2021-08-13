@@ -1,5 +1,5 @@
 //
-//  DiscoverTodoTableViewCell.h
+//  TodoTitleInputTextField.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by Stove on 2021/8/7.
@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DiscoverTodoTableViewCell : UITableViewCell
+/// DiscoverTodoSheetView中用来输入事项标题的textfield
+@interface TodoTitleInputTextField : UITextField
 
 @end
 

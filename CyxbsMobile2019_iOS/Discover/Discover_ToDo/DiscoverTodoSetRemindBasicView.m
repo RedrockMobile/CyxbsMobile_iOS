@@ -19,6 +19,8 @@
     }
     return self;
 }
+//MARK: - 初始化UI：
+/// 添加紫色的TipView
 - (void)addTipView {
     UIImageView* view = [[UIImageView alloc] init];
     [self addSubview:view];
@@ -30,7 +32,7 @@
         make.height.mas_equalTo(0.02057142857*SCREEN_WIDTH);
     }];
 }
-
+/// 添加底部的取消按钮
 - (void)addCancelBtn {
     UIButton* btn = [[UIButton alloc] init];
     [self addSubview:btn];
@@ -50,7 +52,7 @@
         make.height.mas_equalTo(0.1066666667*SCREEN_WIDTH);
     }];
 }
-
+/// 添加确定的取消按钮
 - (void)addSureBtn {
     UIButton* btn = [[UIButton alloc] init];
     [self addSubview:btn];

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 设置提醒时间、和重复提醒的View的superView，包含一个紫色三角形、一个取消按钮、一个确定按钮、一个分割线
+/// 设置提醒时间、和重复提醒的View的superclass，包含一个紫色三角形、一个取消按钮、一个确定按钮、一个分割线
 @interface DiscoverTodoSetRemindBasicView : UIView
 
 /// 紫色三角形

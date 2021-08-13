@@ -15,9 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)sheetViewCancelBtnClicked;
 @end
 
-/// 点击发现页的DiscoverTodoView的加号按钮后出来的弹窗
+/// 点击发现页的DiscoverTodoView的加号按钮后出来的弹窗，self是灰色的背景，
+/// 内部有个属性backView是承载大部分view的白色背景
 @interface DiscoverTodoSheetView : UIView
+
+/// 代理会设置成DiscoverViewController
 @property(nonatomic, weak)id <DiscoverTodoSheetViewDelegate> delegate;
+
+/// 外界调用，调用后用动画的方式弹出
 - (void)show;
 @end
 

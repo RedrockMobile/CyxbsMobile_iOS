@@ -8,11 +8,9 @@
 
 #import "TodoTitleInputTextField.h"
 
-#define RectToString(r) ^(CGRect rect){\
-    return [NSString stringWithFormat:@"%.2f,%.2f,  %.2f,%.2f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];\
-}(r)
 
 @interface TodoTitleInputTextField () {
+    //光标的偏移量
     double offset;
 }
 @end
@@ -31,9 +29,13 @@
     }
     return self;
 }
+
+/// 重写后可以改变非编辑状态时光标的位置
 - (CGRect)textRectForBounds:(CGRect)bounds {
     return CGRectInset(bounds, offset, 0);
 }
+
+/// 重写后可以改变编辑时光标的位置
 - (CGRect)editingRectForBounds:(CGRect)bounds {
     return CGRectInset(bounds, offset, 0);
 }

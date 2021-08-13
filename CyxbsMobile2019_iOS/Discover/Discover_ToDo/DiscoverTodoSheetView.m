@@ -10,6 +10,7 @@
 #import "TodoTitleInputTextField.h"
 #import "DiscoverTodoSelectTimeView.h"
 #import "DiscoverTodoSelectRepeatView.h"
+
 @interface DiscoverTodoSheetView ()
 
 /// 白色背景板
@@ -38,7 +39,10 @@
     if (self) {
         UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancel)];
         [self addGestureRecognizer:tgr];
+        //最开始一定要设置一个clearColor的背景颜色，
+        //否则外界调用show方法弹出self时，背景的颜色渐变动画就没了。
         self.backgroundColor = [UIColor clearColor];
+        
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, 1.7389162562*SCREEN_HEIGHT));
         }];
@@ -54,6 +58,8 @@
     return self;
 }
 
+//MARK: - 初始化UI的方法：
+/// 承载大部分view的白色背景
 - (void)addBackView {
     UIView* view = [[UIView alloc] init];
     self.backView = view;
@@ -75,7 +81,7 @@
         make.height.mas_equalTo(0.7389162562*SCREEN_HEIGHT);
     }];
 }
-
+/// 添加取消按钮
 - (void)addCancelBtn {
     UIButton *btn = [[UIButton alloc] init];
     self.cancelBtn = btn;
@@ -92,6 +98,7 @@
     [btn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     
 }
+/// 添加保存按钮
 - (void)addSaveBtn {
     UIButton *btn = [[UIButton alloc] init];
     self.saveBtn = btn;
@@ -107,13 +114,12 @@
     [btn setTitle:@"保存" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(saveBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
+/// 这里面会完成选择提醒时间、重复时间的按钮的一些相同的设置
 - (UIButton*)getStdBtn {
     UIButton* btn = [[UIButton alloc] init];
     [btn setTitleColor:[UIColor colorNamed:@"21_49_91_40&#F0F0F2_40"] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor colorNamed:@"21_49_91_80&#F0F0F2_80"] forState:UIControlStateHighlighted];
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:15]];
-//    [btn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0.02666666667*SCREEN_WIDTH)];
-    
     return btn;
 }
 - (void)addTitleInputTextfield {
@@ -176,6 +182,9 @@
     [btn addTarget:self action:@selector(repeatModelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     
 }
+
+//MARK: - 点击按钮后调用的方法：
+/// 取消按钮点击后调用
 - (void)cancel {
     [UIView animateWithDuration:0.5 animations:^{
         self.transform = CGAffineTransformIdentity;
@@ -185,7 +194,7 @@
     }];
     [self.delegate sheetViewCancelBtnClicked];
 }
-
+/// 保存按钮点击后调用
 - (void)saveBtnClicked {
     [UIView animateWithDuration:0.5 animations:^{
         self.transform = CGAffineTransformIdentity;
@@ -195,14 +204,7 @@
     }];
     [self.delegate sheetViewSaveBtnClicked];
 }
-
-- (void)show {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.transform = CGAffineTransformTranslate(self.transform, 0, -0.7389162562*SCREEN_HEIGHT);
-        self.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
-    }];
-}
-
+/// 选择提醒时间的按钮点击后调用
 - (void)remindTimeBtnClicked {
     DiscoverTodoSelectTimeView* view = [[DiscoverTodoSelectTimeView alloc] init];
     [self.backView addSubview:view];
@@ -218,7 +220,7 @@
         view.alpha = 1;
     }];
 }
-
+/// 选择重复提醒的按钮点击后调用
 - (void)repeatModelBtnClicked {
     DiscoverTodoSelectRepeatView* view = [[DiscoverTodoSelectRepeatView alloc] init];
     [self.backView addSubview:view];
@@ -234,6 +236,13 @@
     }];
 }
 
-
+//MARK: - 其他
+/// 外界调用，点击后以动画的形式弹出
+- (void)show {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.transform = CGAffineTransformTranslate(self.transform, 0, -0.7389162562*SCREEN_HEIGHT);
+        self.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.3];
+    }];
+}
 @end
 

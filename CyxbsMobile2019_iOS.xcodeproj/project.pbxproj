@@ -2207,6 +2207,7 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
+				AA60641126C657A500D67A41 /* Discover_ToDo */,
 				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
 				18CDF525257F91BC006E8E5C /* Discover_EmptyClass */,
@@ -2333,20 +2334,6 @@
 				18CDF4FC257F91BC006E8E5C /* LQQFinderView.h */,
 				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
 				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
-				AA5F7EB826BD23E700A1FE25 /* DiscoverTodoView.h */,
-				AA5F7EB926BD23E700A1FE25 /* DiscoverTodoView.m */,
-				AA6063CF26BE1BC000D67A41 /* DiscoverTodoTableViewCell.h */,
-				AA6063D026BE1BC000D67A41 /* DiscoverTodoTableViewCell.m */,
-				AA5F7EE126BD6CAF00A1FE25 /* DiscoverTodoSheetView.h */,
-				AA5F7EE226BD6CAF00A1FE25 /* DiscoverTodoSheetView.m */,
-				AA6063E826BFD5A200D67A41 /* DiscoverTodoSelectTimeView.h */,
-				AA6063E926BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m */,
-				AA6063EE26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.h */,
-				AA6063EF26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m */,
-				AA6063F426BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.h */,
-				AA6063F526BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m */,
-				AA6063D926BE903A00D67A41 /* TodoTitleInputTextField.h */,
-				AA6063DA26BE903A00D67A41 /* TodoTitleInputTextField.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3835,6 +3822,27 @@
 				AA5F7EDC26BD6BC500A1FE25 /* DiscoverTodoModel.m */,
 			);
 			path = Todo;
+			sourceTree = "<group>";
+		};
+		AA60641126C657A500D67A41 /* Discover_ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				AA5F7EB826BD23E700A1FE25 /* DiscoverTodoView.h */,
+				AA5F7EB926BD23E700A1FE25 /* DiscoverTodoView.m */,
+				AA6063CF26BE1BC000D67A41 /* DiscoverTodoTableViewCell.h */,
+				AA6063D026BE1BC000D67A41 /* DiscoverTodoTableViewCell.m */,
+				AA5F7EE126BD6CAF00A1FE25 /* DiscoverTodoSheetView.h */,
+				AA5F7EE226BD6CAF00A1FE25 /* DiscoverTodoSheetView.m */,
+				AA6063D926BE903A00D67A41 /* TodoTitleInputTextField.h */,
+				AA6063DA26BE903A00D67A41 /* TodoTitleInputTextField.m */,
+				AA6063F426BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.h */,
+				AA6063F526BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m */,
+				AA6063E826BFD5A200D67A41 /* DiscoverTodoSelectTimeView.h */,
+				AA6063E926BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m */,
+				AA6063EE26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.h */,
+				AA6063EF26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m */,
+			);
+			path = Discover_ToDo;
 			sourceTree = "<group>";
 		};
 		AA86E38F2635B33F00756F05 /* Category */ = {

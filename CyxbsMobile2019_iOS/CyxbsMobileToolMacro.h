@@ -216,6 +216,10 @@ printf("%s\n\n",[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]);
     NSString *is = [str substringWithRange:NSMakeRange(day, 1)];\
     return is.boolValue;\
 }()
+//OC自带的CGRect转NSString不好使，所以自己写了这个，只保留两位小数的版本
+#define RectToString(r) ^(CGRect rect){\
+    return [NSString stringWithFormat:@"%.2f,%.2f,  %.2f,%.2f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];\
+}(r)
 
 #pragma mark - 字体
 //苹方-简 极细体

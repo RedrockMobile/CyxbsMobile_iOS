@@ -329,7 +329,7 @@ static int requestCheckinInfo = 0;
     [self refreshBannerViewIfNeeded];
 
 }
-- (void) refreshBannerViewIfNeeded {
+- (void)refreshBannerViewIfNeeded {
     //更新bannerView
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(UpdateBannerViewUI) name:@"BannerModel_Success" object:nil];
@@ -363,6 +363,7 @@ static int requestCheckinInfo = 0;
     self.colorView.backgroundColor = self.volView.backgroundColor;
     [self.contentView addSubview:self.colorView];
 }
+/// 添加todo的view
 - (void)addTodoView {
     DiscoverTodoView* todoView = [[DiscoverTodoView alloc] init];
     [self.contentView addSubview:todoView];
@@ -697,8 +698,10 @@ static int requestCheckinInfo = 0;
     [self.view addSubview:sheetView];
     
     sheetView.delegate = self;
+    //调用show方法让它弹出来
     [sheetView show];
 }
+
 //MARK: - DiscoverTodoSheetView的代理方法：
 - (void)sheetViewSaveBtnClicked {
     //显示底部课表的tabBar
@@ -706,7 +709,6 @@ static int requestCheckinInfo = 0;
         self.tabBarController.tabBar.alpha = 1;
     }];
 }
-
 - (void)sheetViewCancelBtnClicked {
     //显示底部课表的tabBar
     [UIView animateWithDuration:0.5 animations:^{

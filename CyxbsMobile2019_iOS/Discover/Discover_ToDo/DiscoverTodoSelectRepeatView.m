@@ -7,7 +7,7 @@
 //
 
 #import "DiscoverTodoSelectRepeatView.h"
-
+/// 当前的重复提醒类型的枚举
 typedef enum : NSUInteger {
     DiscoverTodoSelectRepeatTypeDay,
     DiscoverTodoSelectRepeatTypeWeek,
@@ -26,8 +26,6 @@ typedef enum : NSUInteger {
 /// 当前的重复类型
 @property(nonatomic, assign)DiscoverTodoSelectRepeatType currentType;
 
-
-
 /// 第二列选择的数据，重复类型为每年时，代表选择的月份，0代表1月；重复类型为每月时，代表选择的日，0代表1日；
 /// 重复类型为每周时，代表选择的周几，0代表周日，1代表周一。
 @property(nonatomic, assign)int com2Selected;
@@ -35,11 +33,15 @@ typedef enum : NSUInteger {
 /// 第三列选择的数据，重复类型为每年时，代表选择的日，0代表1日。
 @property(nonatomic, assign)int com3Selected;
 
+/// 周数按钮
 @property (nonatomic, copy)NSArray* week;
 
+/// 月份最大值的数组
 @property (nonatomic, copy)NSArray <NSNumber*>* days;
 
+/// 加号按钮
 @property (nonatomic, strong)UIButton* addBtn;
+
 @end
 
 @implementation DiscoverTodoSelectRepeatView
@@ -66,7 +68,7 @@ typedef enum : NSUInteger {
     return self;
 }
 
-
+//MARK: - 初始化UI：
 - (void)addPickerView {
     UIPickerView* pickerView = [[UIPickerView alloc] init];
     self.pickerView = pickerView;
@@ -80,10 +82,28 @@ typedef enum : NSUInteger {
         make.bottom.equalTo(self).offset(-0.1477832512*SCREEN_HEIGHT);
     }];
 }
-- (void)resetDateSelected {
-    self.com3Selected =
-    self.com2Selected = 0;
+- (void)layoutTipView {
+    [self.tipView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.pickerView);
+        make.right.equalTo(self.pickerView.mas_left);
+    }];
 }
+- (void)addAddBtn {
+    UIButton* btn = [[UIButton alloc] init];
+    self.addBtn = btn;
+    [self addSubview:btn];
+    
+    [btn setImage:[UIImage imageNamed:@"加号"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.pickerView.mas_right);
+        make.centerY.equalTo(self.pickerView);
+        make.width.height.mas_equalTo(0.048*SCREEN_WIDTH);
+    }];
+}
+
+//MARK: - pickerView的代理方法：
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     switch (component) {
         case 0:
@@ -99,7 +119,6 @@ typedef enum : NSUInteger {
     
     return [@(row+1) stringValue];
 }
-
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     switch (self.currentType) {
         case DiscoverTodoSelectRepeatTypeDay:
@@ -116,7 +135,6 @@ typedef enum : NSUInteger {
             break;
     }
 }
-
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (component==0) {
         return 4;
@@ -140,7 +158,6 @@ typedef enum : NSUInteger {
             break;
     }
 }
-
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     switch (component) {
         case 0:
@@ -167,34 +184,29 @@ typedef enum : NSUInteger {
     //每月选择一个大于12的日期，然后模式换成每年，就会崩溃
 }
 
-- (void)layoutTipView {
-    [self.tipView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.pickerView);
-        make.right.equalTo(self.pickerView.mas_left);
-    }];
-}
-- (void)addAddBtn {
-    UIButton* btn = [[UIButton alloc] init];
-    self.addBtn = btn;
-    [self addSubview:btn];
-    
-    [btn setImage:[UIImage imageNamed:@"加号"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.pickerView.mas_right);
-        make.centerY.equalTo(self.pickerView);
-        make.width.height.mas_equalTo(0.048*SCREEN_WIDTH);
-    }];
-}
+//MARK: - 点击按钮后调用
 - (void)cancelBtnClicked {
-    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
 }
-
+- (void)sureBtnClicked {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
 - (void)addBtnClicked {
         
 }
-- (void)sureBtnClicked {
-    
+
+//MARK: - 其他
+//把已选择的日期重置
+- (void)resetDateSelected {
+    self.com3Selected =
+    self.com2Selected = 0;
 }
 @end

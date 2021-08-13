@@ -9,9 +9,17 @@
 #import "DiscoverTodoTableViewCell.h"
 
 @interface DiscoverTodoTableViewCell ()
+
+/// 右侧的圆形复选框
 @property(nonatomic, strong)UIButton* checkMarkBtn;
+
+/// 事项标题
 @property(nonatomic, strong)UILabel* titleLabel;
+
+/// 铃铛按钮
 @property(nonatomic, strong)UIImageView* bellImgView;
+
+/// 提醒时间label
 @property(nonatomic, strong)UILabel* notiTimeLabel;
 @end
 
@@ -50,6 +58,8 @@
 
 }
 
+//MARK: - 懒加载
+//因为有些事项，不需要提醒，所以选择懒加载
 - (UIImageView*)bellImgView {
     if (_bellImgView==nil) {
         UIImageView* imgView = [[UIImageView alloc] init];
@@ -67,7 +77,6 @@
     }
     return _bellImgView;
 }
-
 - (UILabel*)notiTimeLabel {
     if (_notiTimeLabel==nil) {
         UILabel* label = [[UILabel alloc] init];
@@ -85,6 +94,7 @@
     return _notiTimeLabel;
 }
 
+/// 点击复选框后调用，修改是否已完成的状态，连带改变UI效果
 - (void)checkMarkBtnClicked {
     self.checkMarkBtn.selected = !self.checkMarkBtn.isSelected;
     NSDictionary* dict;
@@ -104,6 +114,7 @@
     self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:dict];
 }
 
+/// 完成部分UI布局，bellImgView、notiTimeLabel的布局在其对应的getter方法内
 - (void)layoutSubviews {
     [self.checkMarkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.04*SCREEN_WIDTH);

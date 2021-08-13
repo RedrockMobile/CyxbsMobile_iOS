@@ -11,13 +11,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 发现页的todo，上面显示了会显示三个事项
 @protocol DiscoverTodoViewDelegate <NSObject>
-
+/// 加号按钮点击后调用
 - (void)addBtnClicked;
 
 @end
 
 @interface DiscoverTodoView : UIView
+
+/// 代理会设置成DiscoverViewController
 @property(nonatomic, weak)id <DiscoverTodoViewDelegate> delegate;
 
 @end
