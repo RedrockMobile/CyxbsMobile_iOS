@@ -3458,6 +3458,7 @@
 				1A5A5ED423600BA300543BAE /* Login */,
 				1A141319235F521C0001417E /* Base */,
 				1A141339235F524B0001417E /* Tool */,
+				642FFAD226C6617D00F6A722 /* StampStore */,
 				1A9B766A235F50A600725937 /* AppDelegate.h */,
 				1A9B766B235F50A600725937 /* AppDelegate.m */,
 				DB34EB3E239BD4850052B65E /* Main.storyboard */,
@@ -3734,6 +3735,21 @@
 				F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		642FFAD226C6617D00F6A722 /* StampStore */ = {
+			isa = PBXGroup;
+			children = (
+				642FFAD626C661DD00F6A722 /* ExchangeCenter */,
+			);
+			path = StampStore;
+			sourceTree = "<group>";
+		};
+		642FFAD626C661DD00F6A722 /* ExchangeCenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ExchangeCenter;
 			sourceTree = "<group>";
 		};
 		73A1585726C2250D00287C9F /* StampDetails */ = {
