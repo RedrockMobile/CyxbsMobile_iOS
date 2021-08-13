@@ -34,19 +34,19 @@
             [self addNoBindingView];
         }
         [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
+        [self addSeparateLine];
     }
     return self;
 }
 -(void)setUIDefaults {
      if (@available(iOS 11.0, *)) {
-        self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D"];
     } else {
         // Fallback on earlier versions
     }
     self.layer.shadowOpacity = 0.16f;
     self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
     self.layer.shadowOffset = CGSizeMake(0, 5);
-    self.layer.cornerRadius = 25;
     self.clipsToBounds = YES;
 }
 -(void)addNoBindingView {
@@ -274,6 +274,23 @@
     [self addSubview:hintRight];
 
 }
+/// 添加 顶分隔线 的方法
+- (void)addSeparateLine{
+    UIView *view = [[UIView alloc] init];
+    [self addSubview:view];
+    
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self);
+        make.height.mas_equalTo(1);
+    }];
+    
+    if (@available(iOS 11.0, *)) {
+        view.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
+    } else {
+        view.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
+    }
+}
+
 - (void)layoutSubviews {
     [self.clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self);

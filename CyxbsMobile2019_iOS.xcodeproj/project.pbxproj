@@ -407,6 +407,14 @@
 		AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588824EE739F002F6F6D /* TimeBtnSelectedBackView.m */; };
 		AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */; };
 		AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */; };
+		AA5F7EBA26BD23E700A1FE25 /* DiscoverTodoView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5F7EB926BD23E700A1FE25 /* DiscoverTodoView.m */; };
+		AA5F7EDD26BD6BC500A1FE25 /* DiscoverTodoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5F7EDC26BD6BC500A1FE25 /* DiscoverTodoModel.m */; };
+		AA5F7EE326BD6CAF00A1FE25 /* DiscoverTodoSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5F7EE226BD6CAF00A1FE25 /* DiscoverTodoSheetView.m */; };
+		AA6063D126BE1BC000D67A41 /* DiscoverTodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063D026BE1BC000D67A41 /* DiscoverTodoTableViewCell.m */; };
+		AA6063DB26BE903A00D67A41 /* TodoTitleInputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063DA26BE903A00D67A41 /* TodoTitleInputTextField.m */; };
+		AA6063EA26BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063E926BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m */; };
+		AA6063F026BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063EF26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m */; };
+		AA6063F626BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063F526BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m */; };
 		AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E38A2635B04A00756F05 /* ColorManager.m */; };
 		AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E3B72636630800756F05 /* ScheduleInfoModel.m */; };
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
@@ -1413,6 +1421,22 @@
 		AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeWaySelectView.m; sourceTree = "<group>"; };
 		AA5D39B624F74A9800AB2DF5 /* LocalNotiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotiManager.h; sourceTree = "<group>"; };
 		AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotiManager.m; sourceTree = "<group>"; };
+		AA5F7EB826BD23E700A1FE25 /* DiscoverTodoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoView.h; sourceTree = "<group>"; };
+		AA5F7EB926BD23E700A1FE25 /* DiscoverTodoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoView.m; sourceTree = "<group>"; };
+		AA5F7EDB26BD6BC500A1FE25 /* DiscoverTodoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoModel.h; sourceTree = "<group>"; };
+		AA5F7EDC26BD6BC500A1FE25 /* DiscoverTodoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoModel.m; sourceTree = "<group>"; };
+		AA5F7EE126BD6CAF00A1FE25 /* DiscoverTodoSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSheetView.h; sourceTree = "<group>"; };
+		AA5F7EE226BD6CAF00A1FE25 /* DiscoverTodoSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSheetView.m; sourceTree = "<group>"; };
+		AA6063CF26BE1BC000D67A41 /* DiscoverTodoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoTableViewCell.h; sourceTree = "<group>"; };
+		AA6063D026BE1BC000D67A41 /* DiscoverTodoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoTableViewCell.m; sourceTree = "<group>"; };
+		AA6063D926BE903A00D67A41 /* TodoTitleInputTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoTitleInputTextField.h; sourceTree = "<group>"; };
+		AA6063DA26BE903A00D67A41 /* TodoTitleInputTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoTitleInputTextField.m; sourceTree = "<group>"; };
+		AA6063E826BFD5A200D67A41 /* DiscoverTodoSelectTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSelectTimeView.h; sourceTree = "<group>"; };
+		AA6063E926BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSelectTimeView.m; sourceTree = "<group>"; };
+		AA6063EE26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSelectRepeatView.h; sourceTree = "<group>"; };
+		AA6063EF26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSelectRepeatView.m; sourceTree = "<group>"; };
+		AA6063F426BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSetRemindBasicView.h; sourceTree = "<group>"; };
+		AA6063F526BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSetRemindBasicView.m; sourceTree = "<group>"; };
 		AA86E3892635B04A00756F05 /* ColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
 		AA86E38A2635B04A00756F05 /* ColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		AA86E3B62636630800756F05 /* ScheduleInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleInfoModel.h; sourceTree = "<group>"; };
@@ -2232,6 +2256,7 @@
 		18CDF4DC257F91BC006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA5F7EDA26BD6B9C00A1FE25 /* Todo */,
 				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
 				18CDF4E2257F91BC006E8E5C /* PickerView */,
 				18CDF4E5257F91BC006E8E5C /* News */,
@@ -2299,15 +2324,29 @@
 		18CDF4F6257F91BC006E8E5C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF4F7257F91BC006E8E5C /* ElectricityView.m */,
-				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
+				18CDF4FF257F91BC006E8E5C /* FinderView.h */,
 				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
 				18CDF4FA257F91BC006E8E5C /* VolunteerView.h */,
+				18CDF4FE257F91BC006E8E5C /* VolunteerView.m */,
 				18CDF4FB257F91BC006E8E5C /* ElectricityView.h */,
+				18CDF4F7257F91BC006E8E5C /* ElectricityView.m */,
 				18CDF4FC257F91BC006E8E5C /* LQQFinderView.h */,
 				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
-				18CDF4FE257F91BC006E8E5C /* VolunteerView.m */,
-				18CDF4FF257F91BC006E8E5C /* FinderView.h */,
+				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
+				AA5F7EB826BD23E700A1FE25 /* DiscoverTodoView.h */,
+				AA5F7EB926BD23E700A1FE25 /* DiscoverTodoView.m */,
+				AA6063CF26BE1BC000D67A41 /* DiscoverTodoTableViewCell.h */,
+				AA6063D026BE1BC000D67A41 /* DiscoverTodoTableViewCell.m */,
+				AA5F7EE126BD6CAF00A1FE25 /* DiscoverTodoSheetView.h */,
+				AA5F7EE226BD6CAF00A1FE25 /* DiscoverTodoSheetView.m */,
+				AA6063E826BFD5A200D67A41 /* DiscoverTodoSelectTimeView.h */,
+				AA6063E926BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m */,
+				AA6063EE26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.h */,
+				AA6063EF26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m */,
+				AA6063F426BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.h */,
+				AA6063F526BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m */,
+				AA6063D926BE903A00D67A41 /* TodoTitleInputTextField.h */,
+				AA6063DA26BE903A00D67A41 /* TodoTitleInputTextField.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3789,6 +3828,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		AA5F7EDA26BD6B9C00A1FE25 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				AA5F7EDB26BD6BC500A1FE25 /* DiscoverTodoModel.h */,
+				AA5F7EDC26BD6BC500A1FE25 /* DiscoverTodoModel.m */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
 		AA86E38F2635B33F00756F05 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -5209,6 +5257,7 @@
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
+				AA6063EA26BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
 				AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
@@ -5272,6 +5321,7 @@
 				18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
+				AA6063DB26BE903A00D67A41 /* TodoTitleInputTextField.m in Sources */,
 				180DA98C26B440640094B8DC /* NewQAMainPageTableViewController.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
@@ -5288,6 +5338,7 @@
 				18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
 				18CDF6B6257F91BD006E8E5C /* SCPieChartDataItem.m in Sources */,
+				AA5F7EBA26BD23E700A1FE25 /* DiscoverTodoView.m in Sources */,
 				187DF4BC260310DD000BCDE9 /* UIView+LYExtension.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
@@ -5314,6 +5365,7 @@
 				18CDF67B257F91BD006E8E5C /* ClassmateItem.m in Sources */,
 				18CDF6AE257F91BD006E8E5C /* SCChart.m in Sources */,
 				18CDF672257F91BD006E8E5C /* ExamArrangeData.m in Sources */,
+				AA6063F626BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
@@ -5337,6 +5389,7 @@
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
+				AA5F7EDD26BD6BC500A1FE25 /* DiscoverTodoModel.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
 				18CDF71B257F91BE006E8E5C /* VolunteerLoginView.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
@@ -5389,6 +5442,7 @@
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
+				AA6063F026BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */,
 				18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
@@ -5529,6 +5583,7 @@
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				180DA98F26B440640094B8DC /* NewQAMainPageMainView.m in Sources */,
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
+				AA6063D126BE1BC000D67A41 /* DiscoverTodoTableViewCell.m in Sources */,
 				18CDF4C7257F8DBD006E8E5C /* sendCodeView.m in Sources */,
 				1AEF3122245E9D5300487D40 /* MyGoodsItem.m in Sources */,
 				18CDF697257F91BD006E8E5C /* CQUPTVRMapController.m in Sources */,
@@ -5571,6 +5626,7 @@
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				18CDF6CA257F91BE006E8E5C /* SchoolBusModel.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
+				AA5F7EE326BD6CAF00A1FE25 /* DiscoverTodoSheetView.m in Sources */,
 				18CDF6CD257F91BE006E8E5C /* SchoolBusViewController.m in Sources */,
 				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
@@ -5744,7 +5800,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -5798,7 +5854,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -5819,7 +5875,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5848,7 +5904,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
