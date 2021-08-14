@@ -11,6 +11,9 @@
 
 @interface SegmentView ()
 
+/// 存放按钮的数组
+@property (nonatomic, strong) NSMutableArray <UIButton *> * buttonMAry;
+
 @end
 
 @implementation SegmentView
@@ -32,22 +35,22 @@
     return [[self alloc] initWithFrame:frame titles:titles];
 }
 
+- (void)configureView {
+    self.buttonMAry = [NSMutableArray array];
+    for (int i = 0; i < _titles.count; i++) {
+        UIButton * button = [self getNewButtonWithIndex:i];
+        [button setTitle:_titles[i] forState:(UIControlStateNormal)];
+        [self addSubview:button];
+        [self.buttonMAry addObject:button];
+    }
+}
+
 
 #pragma mark - eventResponse action
 
 - (void)clickButton:(UIButton *)sender {
     if ([self.delegate respondsToSelector:@selector(segmentView:alertWithIndex:)]) {
         [self.delegate segmentView:self alertWithIndex:[self indexWithTag:sender.tag]];
-    }
-}
-
-#pragma mark - configure
-
-- (void)configureView {
-    for (int i = 0; i < _titles.count; i++) {
-        UIButton * button = [self getNewButtonWithIndex:i];
-        [button setTitle:_titles[i] forState:(UIControlStateNormal)];
-        [self addSubview:button];
     }
 }
 
@@ -71,6 +74,7 @@
     button.y = 0;
     button.x = buttonWidth * index;
     
+    
     return button;
 }
 
@@ -89,13 +93,17 @@
 }
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
+    self.buttonMAry[_selectedIndex].selected = NO;
     _selectedIndex = selectedIndex;
-    for (UIButton * button in self.subviews) {
-        button.selected = (button.tag == [self tagWithIndex:selectedIndex])? YES: NO;
-        [UIView animateWithDuration:0.5 animations:^{
-            button.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:(button.tag == [self tagWithIndex:selectedIndex] ? 16 : 14)];
-        }];
-    }
+    self.buttonMAry[_selectedIndex].selected = YES;
+    // 增加动画效果
+    CAKeyframeAnimation *scale = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    NSArray *shapes = @[@1.1, @1.2, @1.2, @1.2, @1.1, @1];
+    [scale setDuration:0.5];
+    [scale setValues:shapes];
+    [scale setRemovedOnCompletion:NO];
+    [scale setFillMode:kCAFillModeBoth];
+    [self.buttonMAry[_selectedIndex].layer addAnimation:scale forKey:@"transform.scale"];
 }
 
 @end

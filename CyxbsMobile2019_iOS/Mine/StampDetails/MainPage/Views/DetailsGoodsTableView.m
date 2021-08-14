@@ -28,7 +28,7 @@
 
 - (void)configureView {
     self.dataSource = self;
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
     self.rowHeight = 74;
     
     [self registerClass:[DetailsGoodsTableViewCell class] forCellReuseIdentifier:NSStringFromClass([DetailsGoodsTableViewCell class])];

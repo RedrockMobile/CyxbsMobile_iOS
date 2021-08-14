@@ -99,7 +99,11 @@
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context {
     CGPoint offset = [[change objectForKey:NSKeyValueChangeNewKey] CGPointValue];
-    self.segmentView.selectedIndex = (NSInteger)offset.x / self.horizontalScrollView.frame.size.width + 0.5;
+    NSInteger currentIndex = (NSInteger)offset.x / self.horizontalScrollView.frame.size.width + 0.5;
+    if (self.segmentView.selectedIndex == currentIndex) {
+        return;
+    }
+    self.segmentView.selectedIndex = currentIndex;
 }
 
 #pragma mark - delegate & data source
