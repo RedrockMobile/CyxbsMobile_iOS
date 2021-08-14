@@ -56,9 +56,9 @@
 - (UIButton *)getNewButtonWithIndex:(NSInteger)index {
     UIButton * button = [[UIButton alloc] initWithFrame:(CGRectZero)];
     button.tag = [self tagWithIndex:index];
-    [button setTitleColor:[UIColor colorNamed:@"21_49_91_0.8"]
+    [button setTitleColor:[UIColor colorNamed:@"21_49_91_0.8&240_240_242_0.8"]
                  forState:(UIControlStateNormal)];
-    [button setTitleColor:[UIColor colorNamed:@"95_117_228_1"]
+    [button setTitleColor:[UIColor colorNamed:@"95_117_228_1&119_142_255_1"]
                  forState:(UIControlStateSelected)];
     [button addTarget:self
                action:@selector(clickButton:)

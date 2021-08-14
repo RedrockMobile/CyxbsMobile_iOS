@@ -7,21 +7,20 @@
 
 #import "PurchaseinfoViewController.h"
 // views
-#import "PurchaseInfoCommodityInfoView.h"
+#import "PurchaseInfoGoodsInfoView.h"
 #import "PurchaseInfoOrderIDView.h"
 
 @interface PurchaseinfoViewController ()
 
 /// 商品详情
-@property (nonatomic, strong) PurchaseInfoCommodityInfoView * PurchaseInfoCommodityInfoView;
+@property (nonatomic, strong) PurchaseInfoGoodsInfoView * PurchaseInfoGoodsInfoView;
 /// 订单编号视图
 @property (nonatomic, strong) PurchaseInfoOrderIDView * PurchaseInfoOrderIDView;
 
 // 数据信息，和传入的init方法传入的参数对应
-@property (nonatomic, copy) NSString * commodity_name;
+@property (nonatomic, copy) NSString * goods_name;
 @property (nonatomic, assign) NSInteger price; // 改成 price 比较好
-@property (nonatomic, copy) NSString * date;
-@property (nonatomic, strong) NSString * moment;
+@property (nonatomic, assign) long date;
 @property (nonatomic, assign) BOOL received;
 @property (nonatomic, copy) NSString * order_id;
 
@@ -31,18 +30,16 @@
 
 #pragma mark - life cycle
 
-- (instancetype)initWithcommodityName:(NSString *)commodityName
+- (instancetype)initWithgoodsName:(NSString *)goodsName
                               orderID:(NSString *)orderID
-                                 date:(NSString *)date
-                               moment:(NSString *)moment
+                                 date:(long)date
                                 price:(NSInteger)price
                              received:(BOOL)isReceived {
     self = [super init];
     if (self) {
-        _commodity_name = commodityName;
+        _goods_name = goodsName;
         _price = price;
         _date = date;
-        _moment = moment;
         _order_id = orderID;
         _received = isReceived;
     }
@@ -56,11 +53,11 @@
 }
 
 - (void)configureView {
-    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
+    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&0_0_0_1"];
     self.VCTitleStr = @"兑换详情";
     self.splitLineHidden = YES;
     self.titlePosition = TopBarViewTitlePositionLeft;
-    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1"];
+    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1&0_0_0_1"];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     
     // PurchaseInfoOrderIDView
@@ -98,31 +95,31 @@
     [_PurchaseInfoOrderIDView layoutIfNeeded];
     [_PurchaseInfoOrderIDView setOrderID:_order_id received:_received];
     
-    // PurchaseInfoCommodityInfoView
-    [self.view addSubview:self.PurchaseInfoCommodityInfoView];
+    // PurchaseInfoGoodsInfoView
+    [self.view addSubview:self.PurchaseInfoGoodsInfoView];
     [self.view addConstraints:@[
-        [NSLayoutConstraint constraintWithItem:_PurchaseInfoCommodityInfoView
+        [NSLayoutConstraint constraintWithItem:_PurchaseInfoGoodsInfoView
                                      attribute:(NSLayoutAttributeLeft)
                                      relatedBy:(NSLayoutRelationEqual)
                                         toItem:_PurchaseInfoOrderIDView
                                      attribute:(NSLayoutAttributeLeft)
                                     multiplier:1.f
                                       constant:10],
-        [NSLayoutConstraint constraintWithItem:_PurchaseInfoCommodityInfoView
+        [NSLayoutConstraint constraintWithItem:_PurchaseInfoGoodsInfoView
                                      attribute:(NSLayoutAttributeRight)
                                      relatedBy:(NSLayoutRelationEqual)
                                         toItem:_PurchaseInfoOrderIDView
                                      attribute:(NSLayoutAttributeRight)
                                     multiplier:1.f
                                       constant:-10],
-        [NSLayoutConstraint constraintWithItem:_PurchaseInfoCommodityInfoView
+        [NSLayoutConstraint constraintWithItem:_PurchaseInfoGoodsInfoView
                                      attribute:(NSLayoutAttributeTop)
                                      relatedBy:(NSLayoutRelationEqual)
                                         toItem:_PurchaseInfoOrderIDView
                                      attribute:(NSLayoutAttributeBottom)
                                     multiplier:1.f
                                       constant:40],
-        [NSLayoutConstraint constraintWithItem:_PurchaseInfoCommodityInfoView
+        [NSLayoutConstraint constraintWithItem:_PurchaseInfoGoodsInfoView
                                      attribute:(NSLayoutAttributeBottom)
                                      relatedBy:(NSLayoutRelationLessThanOrEqual)
                                         toItem:self.view
@@ -130,9 +127,9 @@
                                     multiplier:1.f
                                       constant:0]
     ]];
-    [_PurchaseInfoCommodityInfoView setCommodityName:_commodity_name
-                          commodityPrice:_price
-                             tradingTime:[NSString stringWithFormat:@"%@ %@", _date, _moment]
+    [_PurchaseInfoGoodsInfoView setgoodsName:_goods_name
+                          goodsPrice:_price
+                             tradingTime:_date
                                 received:_received];
     
 }
@@ -147,12 +144,12 @@
     return _PurchaseInfoOrderIDView;
 }
 
-- (PurchaseInfoCommodityInfoView *)PurchaseInfoCommodityInfoView {
-    if (_PurchaseInfoCommodityInfoView == nil) {
-        _PurchaseInfoCommodityInfoView = [[PurchaseInfoCommodityInfoView alloc] initWithFrame:(CGRectZero)];
-        _PurchaseInfoCommodityInfoView.translatesAutoresizingMaskIntoConstraints = NO;
+- (PurchaseInfoGoodsInfoView *)PurchaseInfoGoodsInfoView {
+    if (_PurchaseInfoGoodsInfoView == nil) {
+        _PurchaseInfoGoodsInfoView = [[PurchaseInfoGoodsInfoView alloc] initWithFrame:(CGRectZero)];
+        _PurchaseInfoGoodsInfoView.translatesAutoresizingMaskIntoConstraints = NO;
     }
-    return _PurchaseInfoCommodityInfoView;
+    return _PurchaseInfoGoodsInfoView;
 }
 
 @end

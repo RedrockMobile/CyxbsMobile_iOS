@@ -21,7 +21,7 @@
 }
 
 - (void)configureView {
-    self.rightTitleLabel.textColor = [UIColor colorNamed:@"255_169_47_1"];
+    self.rightTitleLabel.textColor = [UIColor colorNamed:@"255_169_47_1&*"];
     self.rightIndicatorHidden = YES;
     self.titleImgHidden = YES;
 }
@@ -31,8 +31,8 @@
 - (void)setCellModel:(DetailsTaskModel *)cellModel {
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.task_name;
-    self.subtitleLabel.text = cellModel.date;
-    self.rightTitleLabel.text = [NSString stringWithFormat:@"+%zd", cellModel.gain_stamp];
+    self.subtitleLabel.text = [self getTimeFromTimestamp:cellModel.date];
+    self.rightTitleLabel.text = [NSString stringWithFormat:@"+%zd", cellModel.task_income];
 }
 
 @end

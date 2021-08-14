@@ -15,7 +15,7 @@
         DetailsTaskModel * model = [[DetailsTaskModel alloc] init];
         model.task_name = [NSString stringWithFormat:@"卷卷鼠标垫%d", i];
         model.date = [NSString stringWithFormat:@"2021-7-%d", i];
-        model.gain_stamp = 40 + i;
+        model.task_income = 40 + i;
         [mAry addObject:model];
     }
     return mAry.copy;

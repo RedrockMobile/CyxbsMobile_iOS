@@ -9,34 +9,32 @@
 // views
 //#import "DetailsCustomizeNavigationBar.h"
 #import "SegmentView.h"
-#import "DetailsCommoditiesTableView.h"
-#import "DetailsCommodityTableViewCell.h"
+#import "DetailsGoodsTableView.h"
+#import "DetailsGoodsTableViewCell.h"
 #import "DetailsTasksTableView.h"
 #import "DetailsTaskTableViewCell.h"
 // models
 #import "DetailsTaskModel.h"
-#import "DetailsCommodityModel.h"
+#import "DetailsgoodsModel.h"
 // controller
 #import "PurchaseinfoViewController.h"
 
 @interface DetailsMainViewController ()
 <UITableViewDelegate, SegmentViewDelegate>
 
-/// 自定义导航栏
-//@property (nonatomic, strong) DetailsCustomizeNavigationBar * navBar;
 /// 分隔栏
 @property (nonatomic, strong) SegmentView * segmentView;
 /// 水平滑动背景
 @property (nonatomic, strong) UIScrollView * horizontalScrollView;
 /// 兑换记录
-@property (nonatomic, strong) DetailsCommoditiesTableView * DetailsCommoditiesTableView;
+@property (nonatomic, strong) DetailsGoodsTableView * DetailsGoodsTableView;
 /// 获取记录
 @property (nonatomic, strong) DetailsTasksTableView * DetailsTasksTableView;
 
 /// 任务
 @property (nonatomic, copy) NSArray * tasksAry;
 /// 兑换记录
-@property (nonatomic, copy) NSArray * commoditiesAry;
+@property (nonatomic, copy) NSArray * goodsAry;
 
 @end
 
@@ -58,14 +56,14 @@
 
 - (void)configureData {
     self.tasksAry = [DetailsTaskModel getDatalist];
-    self.commoditiesAry = [DetailsCommodityModel getDataList];
+    self.goodsAry = [DetailsGoodsModel getDataList];
 }
 
 - (void)configureView {
-    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
+    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&0_0_0_1"];
     self.VCTitleStr = @"邮票明细";
     self.titlePosition = TopBarViewTitlePositionLeft;
-    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1"];
+    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1&0_0_0_1"];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     
     CGSize size = self.view.frame.size;
@@ -81,10 +79,10 @@
     self.horizontalScrollView.contentOffset = CGPointMake(0, 0);
     
     CGRect bounds = self.horizontalScrollView.bounds;
-    // DetailsCommoditiesTableView
-    [self.horizontalScrollView addSubview:self.DetailsCommoditiesTableView];
-    self.DetailsCommoditiesTableView.frame = bounds;
-    self.DetailsCommoditiesTableView.dataAry = self.commoditiesAry;
+    // DetailsGoodsTableView
+    [self.horizontalScrollView addSubview:self.DetailsGoodsTableView];
+    self.DetailsGoodsTableView.frame = bounds;
+    self.DetailsGoodsTableView.dataAry = self.goodsAry;
     
     // DetailsTasksTableView
     [self.horizontalScrollView addSubview:self.DetailsTasksTableView];
@@ -120,8 +118,8 @@
     if ([tableView isEqual:self.DetailsTasksTableView]) {
         return;
     }
-    DetailsCommodityModel * model = self.commoditiesAry[indexPath.row];
-    PurchaseinfoViewController * VC = [[PurchaseinfoViewController alloc] initWithcommodityName:model.commodity_name orderID:model.order_id date:model.date moment:model.moment price:model.price received:model.isCollected];
+    DetailsGoodsModel * model = self.goodsAry[indexPath.row];
+    PurchaseinfoViewController * VC = [[PurchaseinfoViewController alloc] initWithgoodsName:model.goods_name orderID:model.order_id date:model.date  price:model.goods_price received:model.is_received];
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -131,7 +129,7 @@
 - (SegmentView *)segmentView {
     if (_segmentView == nil) {
         _segmentView = [[SegmentView alloc] initWithFrame:(CGRectZero)];
-        _segmentView.titles = @[@"兑换详情", @"获取详情"];
+        _segmentView.titles = @[@"兑换记录", @"获取记录"];
         _segmentView.delegate = self;
     }
     return _segmentView;
@@ -149,13 +147,13 @@
     return _horizontalScrollView;
 }
 
-- (DetailsCommoditiesTableView *)DetailsCommoditiesTableView {
-    if (_DetailsCommoditiesTableView == nil) {
-        _DetailsCommoditiesTableView = [[DetailsCommoditiesTableView alloc] initWithFrame:(CGRectZero) style:(UITableViewStylePlain)];
-        _DetailsCommoditiesTableView.delegate = self;
-        _DetailsCommoditiesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+- (DetailsGoodsTableView *)DetailsGoodsTableView {
+    if (_DetailsGoodsTableView == nil) {
+        _DetailsGoodsTableView = [[DetailsGoodsTableView alloc] initWithFrame:(CGRectZero) style:(UITableViewStylePlain)];
+        _DetailsGoodsTableView.delegate = self;
+        _DetailsGoodsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
-    return _DetailsCommoditiesTableView;
+    return _DetailsGoodsTableView;
 }
 
 - (DetailsTasksTableView *)DetailsTasksTableView {
