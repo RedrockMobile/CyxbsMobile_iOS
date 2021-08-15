@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL is_received;
 @property (nonatomic, copy) NSString * order_id;
 
-+ (NSArray *)getDataList;
+
 
 /// 网络请求
 /// @param success 成功之后执行的block
