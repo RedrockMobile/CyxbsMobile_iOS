@@ -91,7 +91,13 @@
     bounds.origin.x += bounds.size.width;
     self.DetailsTasksTableView.frame = bounds;
     self.DetailsTasksTableView.dataAry = self.tasksAry;
-
+    
+    // animation 转场动画
+    self.horizontalScrollView.layer.affineTransform = CGAffineTransformMakeTranslation(0, size.height);
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:1 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.horizontalScrollView.layer.affineTransform = CGAffineTransformMakeTranslation(0, 0);
+    } completion:nil];
+    
 }
 
 #pragma mark - KVO
