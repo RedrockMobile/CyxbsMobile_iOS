@@ -59,7 +59,7 @@
 
 #pragma mark - setter
 
-- (void)setDataMAry:(NSArray *)dataAry {
+- (void)setDataAry:(NSArray *)dataAry {
    _dataAry = dataAry;
    [self reloadData];
 }

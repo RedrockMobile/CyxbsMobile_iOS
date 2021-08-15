@@ -16,6 +16,8 @@
 // models
 #import "DetailsTaskModel.h"
 #import "DetailsgoodsModel.h"
+// pod
+#import <MJRefresh.h> // 用作下拉刷新和上拉加载更多
 // controller
 #import "PurchaseinfoViewController.h"
 
@@ -27,9 +29,15 @@
 /// 水平滑动背景
 @property (nonatomic, strong) UIScrollView * horizontalScrollView;
 /// 兑换记录
-@property (nonatomic, strong) DetailsGoodsTableView * DetailsGoodsTableView;
+@property (nonatomic, strong) DetailsGoodsTableView * detailsGoodsTableView;
+/// 兑换记录界面的下拉刷新
+@property (nonatomic, strong) MJRefreshStateHeader * goodsRefreshHeader;
 /// 获取记录
-@property (nonatomic, strong) DetailsTasksTableView * DetailsTasksTableView;
+@property (nonatomic, strong) DetailsTasksTableView * detailsTasksTableView;
+/// 获取记录界面的下拉刷新
+@property (nonatomic, strong) MJRefreshStateHeader * tasksRefreshHeader;
+/// 获取记录界面的上拉加载更多
+@property (nonatomic, strong) MJRefreshAutoStateFooter * tasksLoadMoreFooter;
 
 /// 任务
 @property (nonatomic, copy) NSArray * tasksAry;
@@ -43,7 +51,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self configureData];
     [self configureView];
 }
 
@@ -53,11 +60,6 @@
 }
 
 #pragma mark - configure
-
-- (void)configureData {
-    self.tasksAry = [DetailsTaskModel getDatalist];
-    self.goodsAry = [DetailsGoodsModel getDataList];
-}
 
 - (void)configureView {
     self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&0_0_0_1"];
@@ -80,16 +82,21 @@
     
     CGRect bounds = self.horizontalScrollView.bounds;
     // DetailsGoodsTableView
-    [self.horizontalScrollView addSubview:self.DetailsGoodsTableView];
-    self.DetailsGoodsTableView.frame = bounds;
-    self.DetailsGoodsTableView.dataAry = self.goodsAry;
+    [self.horizontalScrollView addSubview:self.detailsGoodsTableView];
+    self.detailsGoodsTableView.frame = bounds;
+    [self.detailsGoodsTableView.mj_header beginRefreshing];
     
     // DetailsTasksTableView
-    [self.horizontalScrollView addSubview:self.DetailsTasksTableView];
+    [self.horizontalScrollView addSubview:self.detailsTasksTableView];
     bounds.origin.x += bounds.size.width;
-    self.DetailsTasksTableView.frame = bounds;
-    self.DetailsTasksTableView.dataAry = self.tasksAry;
-
+    self.detailsTasksTableView.frame = bounds;
+    [self.detailsTasksTableView.mj_header beginRefreshing];
+    
+    // 一个向上滑的动画
+    self.horizontalScrollView.layer.affineTransform = CGAffineTransformMakeTranslation(0, size.height);
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:1 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.horizontalScrollView.layer.affineTransform = CGAffineTransformMakeTranslation(0, 0);
+    } completion:nil];
 }
 
 #pragma mark - KVO
@@ -119,7 +126,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([tableView isEqual:self.DetailsTasksTableView]) {
+    if ([tableView isEqual:self.detailsTasksTableView]) {
         return;
     }
     DetailsGoodsModel * model = self.goodsAry[indexPath.row];
@@ -127,6 +134,45 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 
+#pragma mark - MJRefresh
+
+- (void)refreshGoods {
+    // 兑换记录的数据
+    [DetailsGoodsModel getDataArySuccess:^(NSArray * _Nonnull array) {
+        self.goodsAry = array;
+        self.detailsGoodsTableView.dataAry = self.goodsAry;
+        [self.goodsRefreshHeader endRefreshing];
+    } failure:^(NSString * _Nonnull failureStr) {
+            
+        [self.goodsRefreshHeader endRefreshing];
+    }];
+}
+
+- (void)refreshTasks {
+    // 获取记录的数据
+    [DetailsTaskModel getDataAryWithPage:1 Size:10 Success:^(NSArray * _Nonnull array) {
+        self.tasksAry = array;
+        self.detailsTasksTableView.dataAry = self.tasksAry;
+        [self.tasksRefreshHeader endRefreshing];
+    } failure:^(void) {
+        
+        [self.tasksRefreshHeader endRefreshing];
+    }];
+}
+
+- (void)loadMoreTasks {
+    [DetailsTaskModel getDataAryWithPage:self.tasksAry.count / 10 + 1 Size:10 Success:^(NSArray * _Nonnull array) {
+        NSMutableArray * mAry = [self.tasksAry mutableCopy];
+        [mAry addObjectsFromArray:array];
+        self.tasksAry = [mAry copy];
+        self.detailsTasksTableView.dataAry = self.tasksAry;
+        [self.tasksLoadMoreFooter endRefreshing];
+    } failure:^{
+            
+    }];
+    
+    NSLog(@"上拉加载更多");
+}
 
 #pragma mark - getter
 
@@ -151,22 +197,51 @@
     return _horizontalScrollView;
 }
 
-- (DetailsGoodsTableView *)DetailsGoodsTableView {
-    if (_DetailsGoodsTableView == nil) {
-        _DetailsGoodsTableView = [[DetailsGoodsTableView alloc] initWithFrame:(CGRectZero) style:(UITableViewStylePlain)];
-        _DetailsGoodsTableView.delegate = self;
-        _DetailsGoodsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+- (DetailsGoodsTableView *)detailsGoodsTableView {
+    if (_detailsGoodsTableView == nil) {
+        _detailsGoodsTableView = [[DetailsGoodsTableView alloc] initWithFrame:(CGRectZero) style:(UITableViewStylePlain)];
+        _detailsGoodsTableView.delegate = self;
+        _detailsGoodsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _detailsGoodsTableView.mj_header = self.goodsRefreshHeader;
     }
-    return _DetailsGoodsTableView;
+    return _detailsGoodsTableView;
 }
 
-- (DetailsTasksTableView *)DetailsTasksTableView {
-    if (_DetailsTasksTableView == nil) {
-        _DetailsTasksTableView = [[DetailsTasksTableView alloc] initWithFrame:(CGRectZero) style:(UITableViewStylePlain)];
-        _DetailsTasksTableView.delegate = self;
-        _DetailsTasksTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+- (MJRefreshStateHeader *)goodsRefreshHeader {
+    if (_goodsRefreshHeader == nil) {
+        _goodsRefreshHeader = [MJRefreshStateHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshGoods)];
+        [_goodsRefreshHeader setTitle:@"松开手刷新兑换记录" forState:MJRefreshStatePulling];
+        _goodsRefreshHeader.automaticallyChangeAlpha = YES;
     }
-    return _DetailsTasksTableView;
+    return _goodsRefreshHeader;
+}
+
+- (DetailsTasksTableView *)detailsTasksTableView {
+    if (_detailsTasksTableView == nil) {
+        _detailsTasksTableView = [[DetailsTasksTableView alloc] initWithFrame:(CGRectZero) style:(UITableViewStylePlain)];
+        _detailsTasksTableView.delegate = self;
+        _detailsTasksTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _detailsTasksTableView.mj_footer = self.tasksLoadMoreFooter;
+        _detailsTasksTableView.mj_header = self.tasksRefreshHeader;
+    }
+    return _detailsTasksTableView;
+}
+
+- (MJRefreshStateHeader *)tasksRefreshHeader {
+    if (_tasksRefreshHeader == nil) {
+        _tasksRefreshHeader = [MJRefreshStateHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshTasks)];
+        [_tasksRefreshHeader setTitle:@"松开手刷新获取记录" forState:MJRefreshStatePulling];
+        _tasksRefreshHeader.automaticallyChangeAlpha = YES;
+    }
+    return _tasksRefreshHeader;
+}
+
+- (MJRefreshAutoStateFooter *)tasksLoadMoreFooter {
+    if (_tasksLoadMoreFooter == nil) {
+        _tasksLoadMoreFooter = [MJRefreshAutoStateFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTasks)];
+        _tasksLoadMoreFooter.automaticallyChangeAlpha = YES;
+    }
+    return _tasksLoadMoreFooter;
 }
 
 @end

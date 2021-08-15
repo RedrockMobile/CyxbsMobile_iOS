@@ -230,6 +230,7 @@
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(presentIntegralStore:)];
     [storeView addGestureRecognizer:pan];
     self.storeView = storeView;
+    // 商店入口隐藏
     self.storeView.hidden = YES;
 }
 

@@ -94,8 +94,10 @@
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     self.buttonMAry[_selectedIndex].selected = NO;
+    self.buttonMAry[_selectedIndex].titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:14];
     _selectedIndex = selectedIndex;
     self.buttonMAry[_selectedIndex].selected = YES;
+    self.buttonMAry[_selectedIndex].titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
     // 增加动画效果
     CAKeyframeAnimation *scale = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
     NSArray *shapes = @[@1.1, @1.2, @1.2, @1.2, @1.1, @1];
