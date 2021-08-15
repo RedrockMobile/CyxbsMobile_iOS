@@ -188,7 +188,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
-        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91_1"];
+        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
         [_titleLabel sizeToFit];
     }
     return _titleLabel;
@@ -198,7 +198,7 @@
     if (_subtitleLabel == nil) {
         _subtitleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _subtitleLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        _subtitleLabel.textColor = [UIColor colorNamed:@"21_49_91_0.4"];
+        _subtitleLabel.textColor = [UIColor colorNamed:@"21_49_91_0.4&*"];
     }
     return _subtitleLabel;
 }
@@ -217,6 +217,7 @@
     if (_rightIndicatorImgView == nil) {
         _rightIndicatorImgView = [[UIImageView alloc] initWithFrame:(CGRectZero)];
         _rightIndicatorImgView.image = [UIImage imageNamed:@"tableCell_rightIndicator"];
+        
         [_rightIndicatorImgView sizeToFit];
     }
     return _rightIndicatorImgView;
@@ -233,12 +234,23 @@
 - (UIView *)separateLine {
     if (_separateLine == nil) {
         _separateLine = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _separateLine.backgroundColor = [UIColor colorNamed:@"221_230_244_1"];
+        _separateLine.backgroundColor = [UIColor colorNamed:@"221_230_244_1&43_44_45_1"];
     }
     return _separateLine;
 }
 
 #pragma mark - private
+
+- (NSString *)getTimeFromTimestamp:(long)time {
+    //将对象类型的时间转换为NSDate类型
+    NSDate * myDate = [NSDate dateWithTimeIntervalSince1970:time];
+    //设置时间格式
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY.MM.dd"];
+    //将时间转换为字符串
+    NSString * timeStr = [formatter stringFromDate:myDate];
+    return timeStr;
+}
 
 + (NSString *)reuseIdentifier {
     return NSStringFromClass([self class]);

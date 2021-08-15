@@ -11,6 +11,9 @@
 
 @interface SegmentView ()
 
+/// 存放按钮的数组
+@property (nonatomic, strong) NSMutableArray <UIButton *> * buttonMAry;
+
 @end
 
 @implementation SegmentView
@@ -32,6 +35,16 @@
     return [[self alloc] initWithFrame:frame titles:titles];
 }
 
+- (void)configureView {
+    self.buttonMAry = [NSMutableArray array];
+    for (int i = 0; i < _titles.count; i++) {
+        UIButton * button = [self getNewButtonWithIndex:i];
+        [button setTitle:_titles[i] forState:(UIControlStateNormal)];
+        [self addSubview:button];
+        [self.buttonMAry addObject:button];
+    }
+}
+
 
 #pragma mark - eventResponse action
 
@@ -41,24 +54,14 @@
     }
 }
 
-#pragma mark - configure
-
-- (void)configureView {
-    for (int i = 0; i < _titles.count; i++) {
-        UIButton * button = [self getNewButtonWithIndex:i];
-        [button setTitle:_titles[i] forState:(UIControlStateNormal)];
-        [self addSubview:button];
-    }
-}
-
 #pragma mark - private
 
 - (UIButton *)getNewButtonWithIndex:(NSInteger)index {
     UIButton * button = [[UIButton alloc] initWithFrame:(CGRectZero)];
     button.tag = [self tagWithIndex:index];
-    [button setTitleColor:[UIColor colorNamed:@"21_49_91_0.8"]
+    [button setTitleColor:[UIColor colorNamed:@"21_49_91_0.8&240_240_242_0.8"]
                  forState:(UIControlStateNormal)];
-    [button setTitleColor:[UIColor colorNamed:@"95_117_228_1"]
+    [button setTitleColor:[UIColor colorNamed:@"95_117_228_1&119_142_255_1"]
                  forState:(UIControlStateSelected)];
     [button addTarget:self
                action:@selector(clickButton:)
@@ -70,6 +73,7 @@
     button.height = self.height;
     button.y = 0;
     button.x = buttonWidth * index;
+    
     
     return button;
 }
@@ -89,13 +93,19 @@
 }
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
+    self.buttonMAry[_selectedIndex].selected = NO;
+    self.buttonMAry[_selectedIndex].titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:14];
     _selectedIndex = selectedIndex;
-    for (UIButton * button in self.subviews) {
-        button.selected = (button.tag == [self tagWithIndex:selectedIndex])? YES: NO;
-        [UIView animateWithDuration:0.5 animations:^{
-            button.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:(button.tag == [self tagWithIndex:selectedIndex] ? 16 : 14)];
-        }];
-    }
+    self.buttonMAry[_selectedIndex].selected = YES;
+    self.buttonMAry[_selectedIndex].titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+    // 增加动画效果
+    CAKeyframeAnimation *scale = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    NSArray *shapes = @[@1.1, @1.2, @1.2, @1.2, @1.1, @1];
+    [scale setDuration:0.5];
+    [scale setValues:shapes];
+    [scale setRemovedOnCompletion:NO];
+    [scale setFillMode:kCAFillModeBoth];
+    [self.buttonMAry[_selectedIndex].layer addAnimation:scale forKey:@"transform.scale"];
 }
 
 @end
