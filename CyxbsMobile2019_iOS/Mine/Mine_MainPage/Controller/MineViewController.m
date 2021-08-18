@@ -26,7 +26,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "CheckInModel.h"
 
-#import "DetailsMainViewController.h"
+#import "StampCenterVC.h"
 
 @interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -279,12 +279,17 @@
 
 /// 点击“积分商城”后调用
 - (void)selectedShopCell {
-    CheckInViewController *vc = [[CheckInViewController alloc] init];
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:vc animated:YES completion:nil];
+////    CheckInViewController *vc = [[CheckInViewController alloc] init];
+////    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+////    [self presentViewController:vc animated:YES completion:nil];
 //    DetailsMainViewController * vc = [[DetailsMainViewController alloc] init];
 //    vc.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:vc animated:YES];
+    
+    StampCenterVC * vc = [[StampCenterVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)selectedFeedBack {
