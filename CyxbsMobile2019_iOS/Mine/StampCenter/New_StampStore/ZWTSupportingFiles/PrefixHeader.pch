@@ -1,0 +1,20 @@
+//
+//  PrefixHeader.pch
+//  Demo5
+//
+//  Created by 钟文韬 on 2021/8/13.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define HEADER_H 259   //303-44
+
+#define STATUSBAR_H [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager.statusBarFrame.size.height
+
+#define COLLECTIONHEADER_H 65
+
+#define SCALE_VALUE 160
+#define ALPHA_VALUE 139
+
+#endif /* PrefixHeader_pch */
