@@ -43,6 +43,8 @@
         [self addSubview:button];
         [self.buttonMAry addObject:button];
     }
+    // 随便设置一个在索引范围内的数字, 只要不是0就可以
+    _selectedIndex = 1;
 }
 
 
@@ -74,7 +76,6 @@
     button.y = 0;
     button.x = buttonWidth * index;
     
-    
     return button;
 }
 
@@ -86,11 +87,6 @@
 }
 
 #pragma mark - setter
-
-- (void)setFrame:(CGRect)frame {
-    [super setFrame:frame];
-    [self configureView];
-}
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     self.buttonMAry[_selectedIndex].selected = NO;

@@ -1351,7 +1351,7 @@
 		73AAA1AD26C918240084E44D /* DetailsTaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsTaskModel.m; sourceTree = "<group>"; };
 		73AAA1AE26C918240084E44D /* DetailsGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsGoodsModel.h; sourceTree = "<group>"; };
 		73AAA1AF26C918240084E44D /* DetailsTaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTaskModel.h; sourceTree = "<group>"; };
-		73AAA1B026C918240084E44D /* DetailsGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsGoodsModel.m; sourceTree = "<group>"; };
+		73AAA1B026C918240084E44D /* DetailsGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsGoodsModel.m; sourceTree = "<group>"; wrapsLines = 1; };
 		73AAA1B126C918240084E44D /* DetailsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsMainViewController.m; sourceTree = "<group>"; };
 		73AAA1B326C918240084E44D /* DetailsTasksTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTasksTableView.h; sourceTree = "<group>"; };
 		73AAA1B426C918240084E44D /* DetailsTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsTaskTableViewCell.h; sourceTree = "<group>"; };
@@ -3458,7 +3458,6 @@
 				1A5A5ED423600BA300543BAE /* Login */,
 				1A141319235F521C0001417E /* Base */,
 				1A141339235F524B0001417E /* Tool */,
-				642FFAD226C6617D00F6A722 /* StampStore */,
 				1A9B766A235F50A600725937 /* AppDelegate.h */,
 				1A9B766B235F50A600725937 /* AppDelegate.m */,
 				DB34EB3E239BD4850052B65E /* Main.storyboard */,
@@ -3735,21 +3734,6 @@
 				F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		642FFAD226C6617D00F6A722 /* StampStore */ = {
-			isa = PBXGroup;
-			children = (
-				642FFAD626C661DD00F6A722 /* ExchangeCenter */,
-			);
-			path = StampStore;
-			sourceTree = "<group>";
-		};
-		642FFAD626C661DD00F6A722 /* ExchangeCenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ExchangeCenter;
 			sourceTree = "<group>";
 		};
 		73AAA1A826C918240084E44D /* StampDetails */ = {

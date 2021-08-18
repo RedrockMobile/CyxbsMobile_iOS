@@ -50,7 +50,7 @@
     // 左侧原距离 0.0427*SCREEN_WIDTH
     [self.topBarView addSubview:self.backBtn];
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.topBarView).offset(10);
+        make.left.equalTo(self.topBarView);
         make.centerY.equalTo(self.topBarView);
         make.height.width.mas_equalTo(44);
     }];
@@ -79,13 +79,20 @@
 #pragma mark - event response
 
 /// 点击 返回按钮 后调用的方法
-- (void)backBtnClicked{
+- (void)backBtnClicked:(UIButton *)sender {
     if (self.navigationController != nil) {
         [self.navigationController popViewControllerAnimated:YES];
     }
     else if (self.presentingViewController != nil) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
+    // 添加一个小动画
+    CABasicAnimation * animation = [CABasicAnimation animation];
+    animation.keyPath = @"backgroundColor";
+    animation.toValue = (__bridge id)[UIColor lightGrayColor].CGColor;
+    animation.duration = 0.1;
+    animation.autoreverses = YES;
+    [sender.layer addAnimation:animation forKey:@"backgroundColor"];
 }
 
 #pragma mark - setter
@@ -141,7 +148,7 @@
     } else {
         [self.VCTitleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.topBarView);
-            make.left.mas_equalTo(self.backBtn.mas_right).mas_offset(10);
+            make.left.mas_equalTo(self.backBtn.mas_right);
         }];
     }
 }
@@ -159,7 +166,9 @@
     if (_backBtn == nil) {
         _backBtn = [[UIButton alloc] initWithFrame:(CGRectZero)];
         [_backBtn setImage:[UIImage imageNamed:@"navBar_back"] forState:UIControlStateNormal];
-        [_backBtn addTarget:self action:@selector(backBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [_backBtn addTarget:self action:@selector(backBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        _backBtn.layer.cornerRadius = 10;
+        _backBtn.backgroundColor = [UIColor clearColor];
         [_backBtn sizeToFit];
     }
     return _backBtn;

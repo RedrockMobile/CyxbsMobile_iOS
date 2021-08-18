@@ -116,7 +116,6 @@
 #pragma mark - delegate & data source
 //MARK:SegmentViewDelegate
 - (void)segmentView:(SegmentView *)segmentView alertWithIndex:(NSInteger)index {
-    NSLog(@"%zd", index);
     [UIView animateWithDuration:0.5 animations:^{
         self.horizontalScrollView.contentOffset = CGPointMake(self.view.frame.size.width * index, 0);
     }];
@@ -142,7 +141,7 @@
         self.goodsAry = array;
         self.detailsGoodsTableView.dataAry = self.goodsAry;
         [self.goodsRefreshHeader endRefreshing];
-    } failure:^(NSString * _Nonnull failureStr) {
+    } failure:^(void) {
             
         [self.goodsRefreshHeader endRefreshing];
     }];
@@ -169,9 +168,8 @@
         [self.tasksLoadMoreFooter endRefreshing];
     } failure:^{
             
+        [self.tasksLoadMoreFooter endRefreshing];
     }];
-    
-    NSLog(@"上拉加载更多");
 }
 
 #pragma mark - getter
