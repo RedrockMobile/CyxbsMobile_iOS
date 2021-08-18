@@ -3911,9 +3911,9 @@
 			isa = PBXGroup;
 			children = (
 				7311323126CCEC0600EF88C1 /* StampCenterVC.h */,
-				7311323226CCEC0600EF88C1 /* ViewController.m */,
 				7311323326CCEC0600EF88C1 /* StampCenterVC.m */,
 				7311323426CCEC0600EF88C1 /* ViewController.h */,
+				7311323226CCEC0600EF88C1 /* ViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 自定义的导航栏
  * 注意在控制器中将导航栏设置为图层最上方
+ * [self.view bringSubviewToFront:self.navBar];
  * 需要添加子视图可以继承
  */
 @interface DetailsCustomizeNavigationBar : UIView
