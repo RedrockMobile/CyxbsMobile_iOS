@@ -3877,7 +3877,27 @@
 			path = StampStoreGoodsDataModel;
 			sourceTree = "<group>";
 		};
-		493162E326CD7B6800140412 /* Views */ = {
+feature/StampStore/details
+		7311322F26CCEC0600EF88C1 /* ToolModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ToolModels;
+			sourceTree = "<group>";
+		};
+		7311323026CCEC0600EF88C1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7311323126CCEC0600EF88C1 /* StampCenterVC.h */,
+				7311323326CCEC0600EF88C1 /* StampCenterVC.m */,
+				7311323426CCEC0600EF88C1 /* ViewController.h */,
+				7311323226CCEC0600EF88C1 /* ViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7311323626CCEC0600EF88C1 /* Views */ = {
+develop
 			isa = PBXGroup;
 			children = (
 				493162E426CD7B6800140412 /* TableViewVells */,

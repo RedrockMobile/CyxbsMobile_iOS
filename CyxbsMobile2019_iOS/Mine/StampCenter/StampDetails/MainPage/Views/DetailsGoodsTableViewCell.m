@@ -36,10 +36,10 @@
     self.subtitleLabel.text = [self getTimeFromTimestamp: cellModel.date];
     self.rightTitleLabel.text = [NSString stringWithFormat:@"-%zd", cellModel.goods_price];
     
-    /// 在代理方法中给 cell 赋值, 需要先将图片设置为隐藏, 否则动画的延后性会导致图片来不及隐藏
+    // 在代理方法中给 cell 赋值, 需要先将图片设置为隐藏, 否则动画的延后性会导致图片来不及隐藏
     self.titleImgHidden = YES;
     // 等待一下再执行动画
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.titleImgHidden = cellModel.is_received;
         [self titleImgAnimation];
     });

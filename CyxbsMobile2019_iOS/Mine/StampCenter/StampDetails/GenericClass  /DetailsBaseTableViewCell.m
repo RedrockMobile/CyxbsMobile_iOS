@@ -203,7 +203,7 @@
     if (_subtitleLabel == nil) {
         _subtitleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _subtitleLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        _subtitleLabel.textColor = [UIColor colorNamed:@"21_49_91_0.4&*"];
+        _subtitleLabel.textColor = [UIColor colorNamed:@"21_49_91_0.4&240_240_242_0.4"];
     }
     return _subtitleLabel;
 }
