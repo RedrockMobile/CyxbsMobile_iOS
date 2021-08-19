@@ -366,6 +366,7 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
+		492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */; };
 		493162C526CD7B4900140412 /* stampcenter.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 493162C426CD7B4900140412 /* stampcenter.xcassets */; };
 		493162CE26CD7B5D00140412 /* UIView+XYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162CA26CD7B5D00140412 /* UIView+XYView.m */; };
 		493162DD26CD7B6300140412 /* StampCountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162D526CD7B6300140412 /* StampCountData.m */; };
@@ -1370,6 +1371,7 @@
 		1AFE534F24F7571300F42A74 /* IntroductionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroductionController.h; sourceTree = "<group>"; };
 		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bauhaus-93.ttf"; sourceTree = "<group>"; };
 		493162C426CD7B4900140412 /* stampcenter.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = stampcenter.xcassets; sourceTree = "<group>"; };
 		493162CA26CD7B5D00140412 /* UIView+XYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYView.m"; sourceTree = "<group>"; };
 		493162CB26CD7B5D00140412 /* UIView+XYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XYView.h"; sourceTree = "<group>"; };
@@ -3575,6 +3577,7 @@
 		1AAFAD41236DC96300E854A3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */,
 				1A310630237711A800A56468 /* Impact.ttf */,
 				EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */,
 				73A1588926C2475A00287C9F /* DIN-Medium.otf */,
@@ -5493,6 +5496,7 @@
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				DB34EAEE239BD4550052B65E /* remind_image_content@2x.png in Resources */,
 				1A16593123D984840039BA46 /* Assets.xcassets in Resources */,
+				492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */,
 				DB34EAE2239BD4550052B65E /* 书@3x.png in Resources */,
 				DB34EB13239BD4550052B65E /* 提醒@2x.png in Resources */,
 				18CDF6D7257F91BE006E8E5C /* 5@3x.png in Resources */,
