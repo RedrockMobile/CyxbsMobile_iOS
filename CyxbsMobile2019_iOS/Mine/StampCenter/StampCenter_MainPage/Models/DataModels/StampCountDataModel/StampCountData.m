@@ -11,9 +11,9 @@
 @implementation StampCountData
 
 + (void)getStampCountData:(void (^)(NSNumber * _Nonnull))success{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-    [manager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSNumber *n = responseObject[@"data"][@"user_amonut"];
         NSLog(@"%@",n);
         success(n);
