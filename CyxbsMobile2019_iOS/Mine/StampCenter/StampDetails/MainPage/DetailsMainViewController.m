@@ -91,7 +91,7 @@
     self.detailsTasksTableView.frame = bounds;
     
     // 一个向上滑的动画
-    CGFloat animationTime = 0.5f;
+    CGFloat animationTime = 0.4f;
     self.horizontalScrollView.layer.affineTransform = CGAffineTransformMakeTranslation(0, size.height - [self getTopBarViewHeight]);
     [UIView animateWithDuration:animationTime animations:^{
         self.horizontalScrollView.layer.affineTransform = CGAffineTransformMakeTranslation(0, 0);
