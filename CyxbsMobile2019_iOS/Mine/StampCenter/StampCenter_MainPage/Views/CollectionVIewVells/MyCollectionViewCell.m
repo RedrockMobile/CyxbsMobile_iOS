@@ -30,7 +30,7 @@
         [self.contentView addSubview:self.stampRequirementLbl];
         [self.contentView addSubview:self.stampImageView];
         [self.contentView addSubview:self.stockLbl];
-        [self.contentView addSubview:self.mainnLbl];
+        [self.contentView addSubview:self.mainLbl];
         [self.contentView addSubview:self.showBtn];
     }
     return self;
@@ -39,7 +39,7 @@
 
 #pragma mark - setter
 - (void)setData:(GoodsData *)data{
-    self.mainnLbl.text = data.title;
+    self.mainLbl.text = data.title;
     self.stampRequirementLbl.text = [NSString stringWithFormat:@"%d",data.price];
     self.stockLbl.text = [NSString stringWithFormat:@"库存: %d",data.amount];
     [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:data.url]];
@@ -67,14 +67,14 @@
     return _goodsImageView;
 }
 
-- (UILabel *)mainnLbl{
-    if (!_mainnLbl) {
-        _mainnLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.071*W, 0.65*H, 0.85*W, 20)];
-        _mainnLbl.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
-        _mainnLbl.textColor = [UIColor colorNamed:@"#15315B"];
-        _mainnLbl.text = @"挂件";
+- (UILabel *)mainLbl{
+    if (!_mainLbl) {
+        _mainLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.071*W, 0.65*H, 0.85*W, 20)];
+        _mainLbl.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
+        _mainLbl.textColor = [UIColor colorNamed:@"#15315B"];
+        _mainLbl.text = @"挂件";
     }
-    return _mainnLbl;
+    return _mainLbl;
 }
 
 - (UILabel *)stockLbl{

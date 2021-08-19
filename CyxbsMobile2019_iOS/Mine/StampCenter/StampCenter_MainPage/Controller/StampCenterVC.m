@@ -244,7 +244,6 @@
     }
     
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
-        NSLog(@"%f",_collectionCorrectHeaderY);
         if (scrollView.contentOffset.y <= 0) {
             self.topView.bannerImage.y = 0;
            _collectionCorrectHeaderY = Bar_H;
@@ -276,7 +275,6 @@
     }
 
     if ([scrollView isKindOfClass:[UITableView class]]){
-        NSLog(@"%f",scrollView.contentOffset.y); // 215
         if (scrollView.contentOffset.y <= -215) {
             _tableCorrectHeaderY = Bar_H;
             self.topView.bannerImage.y = 0;

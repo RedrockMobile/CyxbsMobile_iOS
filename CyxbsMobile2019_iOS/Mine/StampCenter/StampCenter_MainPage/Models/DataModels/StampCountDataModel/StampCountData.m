@@ -15,7 +15,6 @@
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
     [client.httpSessionManager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSNumber *n = responseObject[@"data"][@"user_amonut"];
-        NSLog(@"%@",n);
         success(n);
     } failure:nil];
 }

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///图片
 @property (nonatomic,strong) UIImageView *goodsImageView;
 ///介绍
-@property (nonatomic,strong) UILabel *mainnLbl;
+@property (nonatomic,strong) UILabel *mainLbl;
 ///库存
 @property (nonatomic,strong) UILabel *stockLbl;
 ///邮票icon
