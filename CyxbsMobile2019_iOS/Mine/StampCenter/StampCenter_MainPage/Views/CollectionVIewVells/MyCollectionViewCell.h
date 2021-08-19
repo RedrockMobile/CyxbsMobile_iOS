@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///图片
 @property (nonatomic,strong) UIImageView *goodsImageView;
 ///介绍
-@property (nonatomic,strong) UILabel *mianLbl;
+@property (nonatomic,strong) UILabel *mainLbl;
 ///库存
 @property (nonatomic,strong) UILabel *stockLbl;
 ///邮票icon
@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) GoodsData *data;
 ///整体按钮
 @property (nonatomic,strong) UIButton *showBtn;
+///frame
+@property (nonatomic,assign) CGRect myFrame;
 
 
 @end

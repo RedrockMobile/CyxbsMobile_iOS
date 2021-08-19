@@ -70,7 +70,7 @@
         _bigStampCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(16,26, 200, 66)];
         _bigStampCountLbl.font = [UIFont fontWithName:@"Bauhaus93" size:45];
         _bigStampCountLbl.textColor = [UIColor colorNamed:@"数字"];
-        _bigStampCountLbl.text = @"正在加载";
+        _bigStampCountLbl.text = @"000000";
         _alertLbl = [[UILabel alloc]initWithFrame:CGRectMake(16, 93, 180, 18)];
         _alertLbl.font = [UIFont fontWithName:@"Bauhaus93" size:12];
         _alertLbl.textColor = [UIColor colorNamed:@"#FFFFFFE5"];
