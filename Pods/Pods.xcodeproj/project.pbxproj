@@ -5677,9 +5677,9 @@
 				0846528E84D92E35F6D52C469CB6C1C3 /* NUDAttachment.h in Headers */,
 				F0B909111F481F8D16FD7C3A4E097FC1 /* NUDAttribute.h in Headers */,
 				A835530CAFDA9BBCF5AEB6C81E8B3D17 /* NUDAttributeSet.h in Headers */,
+				55A2D7FB668891D2A22E473FC874E401 /* NudeIn.h in Headers */,
 				C2BACBB4158802F10FB32CD2A1D6EB24 /* NudeIn-Prefix.h in Headers */,
 				BA7B6460F8BB3E23E3614F121D7BE76F /* NudeIn-umbrella.h in Headers */,
-				55A2D7FB668891D2A22E473FC874E401 /* NudeIn.h in Headers */,
 				A7475BC1A8C2416F36A49756823BF83C /* NUDParagraphStyle.h in Headers */,
 				303EAE08386DFC7CFD65E362E40809C0 /* NUDText.h in Headers */,
 				46D4F2F59FE2023689A7578B84FD8C5D /* NUDTextMaker.h in Headers */,
@@ -5695,8 +5695,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5F741924D26FBF0403B284AED21EDCB /* IQBarButtonItem.h in Headers */,
-				12C6E46A5E0FD04DBF7866649491D5F7 /* IQKeyboardManager-umbrella.h in Headers */,
 				6BF82ADE657E689F4F4D4FB0C1D27248 /* IQKeyboardManager.h in Headers */,
+				12C6E46A5E0FD04DBF7866649491D5F7 /* IQKeyboardManager-umbrella.h in Headers */,
 				2B3C65EB96B8237408B8CFC1586F406E /* IQKeyboardManagerConstants.h in Headers */,
 				1B41AC54E11CACC13E07B06EC6D17919 /* IQKeyboardManagerConstantsInternal.h in Headers */,
 				8839DA33B5164E66F5730317AE92546E /* IQKeyboardReturnKeyHandler.h in Headers */,
@@ -5730,12 +5730,12 @@
 				F4E3FBD47DAB4C56146E2B338CFC30EF /* YBIBDefaultWebImageMediator.h in Headers */,
 				36D14EB81E6DD0D0879FE7062A960522 /* YBIBGetBaseInfoProtocol.h in Headers */,
 				1ED69C351354211BA17543C8C06AEF97 /* YBIBIconManager.h in Headers */,
-				E0A4D10D5737DEE385E14E0F516CEA25 /* YBIBImageCache+Internal.h in Headers */,
 				FC9DC95A760BAABD37FF2E548CF2862C /* YBIBImageCache.h in Headers */,
-				E584EB089D7804F029B17C40D6E3982D /* YBIBImageCell+Internal.h in Headers */,
+				E0A4D10D5737DEE385E14E0F516CEA25 /* YBIBImageCache+Internal.h in Headers */,
 				55276192909AB679DB029142D1D21290 /* YBIBImageCell.h in Headers */,
-				1BC000CA5B58AADD7EE6FFF37343ACB8 /* YBIBImageData+Internal.h in Headers */,
+				E584EB089D7804F029B17C40D6E3982D /* YBIBImageCell+Internal.h in Headers */,
 				97A199A6CB03507F40166014023396D7 /* YBIBImageData.h in Headers */,
+				1BC000CA5B58AADD7EE6FFF37343ACB8 /* YBIBImageData+Internal.h in Headers */,
 				1580C52CBFF9DBF761B63B5F6A30F640 /* YBIBImageLayout.h in Headers */,
 				BD9E9672B67B6CC5B41992EAE19D1611 /* YBIBImageScrollView.h in Headers */,
 				4BA1CD03676E75E1F8FACA987E3D2D67 /* YBIBInteractionProfile.h in Headers */,
@@ -5752,9 +5752,9 @@
 				E5C861DED4F0F9822285AD069084BE7C /* YBIBUtilities.h in Headers */,
 				15A99A828A867B38B671B2F3F0E96C42 /* YBIBWebImageMediator.h in Headers */,
 				A444FC1975E4FBF942415419BA45B544 /* YBImage.h in Headers */,
+				4FE6DCC4FDE97B65115B282B342FCFE3 /* YBImageBrowser.h in Headers */,
 				260BDCD4BF1757974C2CCC41B716AF32 /* YBImageBrowser+Internal.h in Headers */,
 				815476A24C03949B98BE2D8C1D933811 /* YBImageBrowser-umbrella.h in Headers */,
-				4FE6DCC4FDE97B65115B282B342FCFE3 /* YBImageBrowser.h in Headers */,
 				C9FE8D247144910DCC40C38D5165B9B6 /* YBImageBrowserDataSource.h in Headers */,
 				1A917DFD772793D60523498795E09030 /* YBImageBrowserDelegate.h in Headers */,
 			);
@@ -5791,8 +5791,8 @@
 				E4A0C3ED259B21A3EE41C5FF225CD749 /* NSImage+Compatibility.h in Headers */,
 				E0E9F5D18002467A4BE4C4501EC4E217 /* SDAnimatedImage.h in Headers */,
 				E8A8FD1EE80C857E38B6EE20B60A2D66 /* SDAnimatedImageRep.h in Headers */,
-				68CE0D5C2956755FFA322B6C1461C96B /* SDAnimatedImageView+WebCache.h in Headers */,
 				2A42D0615FEADAE66C686DDAADA0717F /* SDAnimatedImageView.h in Headers */,
+				68CE0D5C2956755FFA322B6C1461C96B /* SDAnimatedImageView+WebCache.h in Headers */,
 				1DBFBE9D588ED8BA364190E256ED8119 /* SDAsyncBlockOperation.h in Headers */,
 				0DEEC74AAF0570D3BC9FE8725A3981FB /* SDDiskCache.h in Headers */,
 				3A57FF2085213282C490C42FD3B73074 /* SDImageAPNGCoder.h in Headers */,
@@ -5820,8 +5820,8 @@
 				212C8FA7FEDB45FD7D1B95D358835410 /* SDMemoryCache.h in Headers */,
 				2C7F2BBA6619BEBF9B95E1BD42A54ABF /* SDmetamacros.h in Headers */,
 				5DC57D4BED62D4D48C0F069AFF41A85E /* SDWeakProxy.h in Headers */,
-				D0B4056836176F08BAA1219CED387B1B /* SDWebImage-umbrella.h in Headers */,
 				85763D005672FF8FA06F3EAF07EE606D /* SDWebImage.h in Headers */,
+				D0B4056836176F08BAA1219CED387B1B /* SDWebImage-umbrella.h in Headers */,
 				5A2BD5934320176E2714FA92F943B3E6 /* SDWebImageCacheKeyFilter.h in Headers */,
 				CD1AE2DC887302C8C5E86F0BC905809A /* SDWebImageCacheSerializer.h in Headers */,
 				C522D7336B863A44F3295103E6CC1ABA /* SDWebImageCompat.h in Headers */,
@@ -5862,8 +5862,8 @@
 				AF52BFAAB46EAF17D4515D29C80E0ADC /* TZGifPhotoPreviewController.h in Headers */,
 				BCEB7B9AB2CEF0B70880E0C0394AC18A /* TZImageCropManager.h in Headers */,
 				4C4DF30060236DF458EF943E81B807C1 /* TZImageManager.h in Headers */,
-				98E40232999156895AF379D76455325F /* TZImagePickerController-umbrella.h in Headers */,
 				31E8EB3C4C66ABCEE989505C4032E9DB /* TZImagePickerController.h in Headers */,
+				98E40232999156895AF379D76455325F /* TZImagePickerController-umbrella.h in Headers */,
 				706A826B30BA83DF287478428F472F32 /* TZImageRequestOperation.h in Headers */,
 				01AE6779C422D08E62A1D4EF69A6EAA8 /* TZLocationManager.h in Headers */,
 				3CA235484AAB94206010BCD619971E53 /* TZPhotoPickerController.h in Headers */,
@@ -5880,8 +5880,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E10546ED6C6BD4275F6AAE3EC1B81C2 /* SDCollectionViewCell.h in Headers */,
-				7B2618B72E2081E10CDC5C673345E364 /* SDCycleScrollView-umbrella.h in Headers */,
 				75316D24F21E10059A913983826BA4A7 /* SDCycleScrollView.h in Headers */,
+				7B2618B72E2081E10CDC5C673345E364 /* SDCycleScrollView-umbrella.h in Headers */,
 				8CE55DE75F40080140AD743ADE1352A5 /* TAAbstractDotView.h in Headers */,
 				E82E946985D81C50218E4657B476AAEA /* TAAnimatedDotView.h in Headers */,
 				1D1486092D3E4C734E9A7558F0FC63B4 /* TADotView.h in Headers */,
@@ -5946,8 +5946,8 @@
 				3333DBC64B3EECDEFFF8D9B4152FFBF4 /* YYImageCache.h in Headers */,
 				A785723BD29F67BE3C2B6DE3E97AA0C9 /* YYImageCoder.h in Headers */,
 				DCECD62E0F2DE70F2D77D287E1F70C1B /* YYKeychain.h in Headers */,
-				109DAD919A3DED23C15246DB9985A967 /* YYKit-umbrella.h in Headers */,
 				686E792F3D9DF9B07B3631840DCEBB48 /* YYKit.h in Headers */,
+				109DAD919A3DED23C15246DB9985A967 /* YYKit-umbrella.h in Headers */,
 				AE8CD4DA4600ACEF338667CA3F285D02 /* YYKitMacro.h in Headers */,
 				95229FC7488784F1DA3EAFF479CBBF5B /* YYKVStorage.h in Headers */,
 				9327B5B5F927A9528040E49B32162E3E /* YYLabel.h in Headers */,
@@ -5986,12 +5986,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D65CE579E516BDD5FB36CAA21D693F6 /* MASCompositeConstraint.h in Headers */,
-				9D546E1168C04B0B2EAE005D9275D18B /* MASConstraint+Private.h in Headers */,
 				941955A19C40899D275604E6E9C21A6D /* MASConstraint.h in Headers */,
+				9D546E1168C04B0B2EAE005D9275D18B /* MASConstraint+Private.h in Headers */,
 				FAFBFA90F7BC3E7CF50F8A5CF0A8B264 /* MASConstraintMaker.h in Headers */,
 				8D4D1F6E4709EBB13974E95DC1059DDC /* MASLayoutConstraint.h in Headers */,
-				6A6AD3A5BBDBFD0B4AF936BD518EC0B1 /* Masonry-umbrella.h in Headers */,
 				346080C0D1CA23399ADD739D722D7CEF /* Masonry.h in Headers */,
+				6A6AD3A5BBDBFD0B4AF936BD518EC0B1 /* Masonry-umbrella.h in Headers */,
 				280D36330BAC5715615FF4A8B42D60D6 /* MASUtilities.h in Headers */,
 				3DA5F1D8E51CDD102A871C2F37770C7B /* MASViewAttribute.h in Headers */,
 				EAE8B0895956885A752B173683A0D889 /* MASViewConstraint.h in Headers */,
@@ -6024,8 +6024,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26ED63DE829FB788E8AE393681CE1437 /* MGJRouter-umbrella.h in Headers */,
 				0DCCE7BCE109023B7E8E3E8E3E4BA780 /* MGJRouter.h in Headers */,
+				26ED63DE829FB788E8AE393681CE1437 /* MGJRouter-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6037,8 +6037,8 @@
 				95A903FF7AB1A1BA9D09D37DF81A8AB0 /* _RXDelegateProxy.h in Headers */,
 				805EEDF5A59400ABD8379567AACA849E /* _RXKVOObserver.h in Headers */,
 				87DA86D77902ACF17437E16E77A0D6E0 /* _RXObjCRuntime.h in Headers */,
-				23A4EF746AB64504DEB5EFDBA5450492 /* RxCocoa-umbrella.h in Headers */,
 				2A8FD3A693CCE3F0B20522C1DD4F82B3 /* RxCocoa.h in Headers */,
+				23A4EF746AB64504DEB5EFDBA5450492 /* RxCocoa-umbrella.h in Headers */,
 				45AFB5D51C5929C8AB5858D694572F91 /* RxCocoaRuntime.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6057,8 +6057,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4228EA069538DD40CD3ABE26985BAB1B /* MBProgressHUD-umbrella.h in Headers */,
 				2C568D4824B4DB3A642A05EAEE6F1587 /* MBProgressHUD.h in Headers */,
+				4228EA069538DD40CD3ABE26985BAB1B /* MBProgressHUD-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6066,8 +6066,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F57BA25385E6996D6EC18EDD97E596FE /* MJRefresh-umbrella.h in Headers */,
 				8638BD5B0012059ABB8B3C588633667C /* MJRefresh.h in Headers */,
+				F57BA25385E6996D6EC18EDD97E596FE /* MJRefresh-umbrella.h in Headers */,
 				050A189DF0B4F405E9D3389F24EDF835 /* MJRefreshAutoFooter.h in Headers */,
 				696BEC58A027BCCDFB378637C75C78A5 /* MJRefreshAutoGifFooter.h in Headers */,
 				B545FC64504EB25999F30CFC1E27E702 /* MJRefreshAutoNormalFooter.h in Headers */,
@@ -6099,8 +6099,8 @@
 				AB565EB68978B75B6C9DB5C1D7F08CB3 /* AFHTTPRequestOperationManager.h in Headers */,
 				FD60361A9747B3F17C03B93AE38BA757 /* AFHTTPSessionManager.h in Headers */,
 				BB9B2D29DA04BA1091BBEDAD7D562FD0 /* AFNetworkActivityIndicatorManager.h in Headers */,
-				C042BFE4C74963858050D1203325A713 /* AFNetworking-umbrella.h in Headers */,
 				755FE43EE3FE1C861AC9D1E8D2068003 /* AFNetworking.h in Headers */,
+				C042BFE4C74963858050D1203325A713 /* AFNetworking-umbrella.h in Headers */,
 				B32A9905FF4A4187B27FA3071C816EEB /* AFNetworkReachabilityManager.h in Headers */,
 				9221CA83726EA07B896798EB22B9FC52 /* AFSecurityPolicy.h in Headers */,
 				5CA47919DEDF013063261157F9B4D215 /* AFURLConnectionOperation.h in Headers */,
@@ -6122,8 +6122,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA576F5F9E317C0E0DFEEE33A7963249 /* Bagel-umbrella.h in Headers */,
 				0DD7D282E734ADC6D16E7675BF3557ED /* Bagel.h in Headers */,
+				AA576F5F9E317C0E0DFEEE33A7963249 /* Bagel-umbrella.h in Headers */,
 				3A4581260DD43F88270D004C20FCD160 /* BagelBaseModel.h in Headers */,
 				692F5A99E3717B13BF8F1A10AEE15FAF /* BagelBrowser.h in Headers */,
 				E0A7AD3C09C758CDC0CA6EC2DBBA1B7E /* BagelConfiguration.h in Headers */,
@@ -6144,8 +6144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				92E75039F31F4E4423CA6EBA9036DBA6 /* FloatConversion.h in Headers */,
-				D876AF0E21B19FE9663CB15B39FAEECD /* pop-umbrella.h in Headers */,
 				013BBE37C89875DB598CDD90A8F6FCDC /* POP.h in Headers */,
+				D876AF0E21B19FE9663CB15B39FAEECD /* pop-umbrella.h in Headers */,
 				BA8D04DC94FC382DEF785290F37830DB /* POPAction.h in Headers */,
 				DE5EB3834763A6B936D09ED5215C9884 /* POPAnimatableProperty.h in Headers */,
 				A16D4B91C52905DABAA8A2026DAF8B3C /* POPAnimatablePropertyTypes.h in Headers */,
@@ -6185,8 +6185,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41BBD20F99D3D0EFD9D38337503D4C1F /* MJExtension-umbrella.h in Headers */,
 				9796F9FAC1941A992E8B17F31D62B2E4 /* MJExtension.h in Headers */,
+				41BBD20F99D3D0EFD9D38337503D4C1F /* MJExtension-umbrella.h in Headers */,
 				912758556B9AB1DEEABE189955C5B8F2 /* MJExtensionConst.h in Headers */,
 				CAD2539BE3C4AB2F1FD1DF30D7629238 /* MJFoundation.h in Headers */,
 				FAB7CF107E7E3EE6FA7949CF18B8BA12 /* MJProperty.h in Headers */,
@@ -6208,8 +6208,8 @@
 				538F74CC22D0D13E9D79AC3ECC6DFFE7 /* FMDatabaseAdditions.h in Headers */,
 				0F72AA9F03EC61C6D857941E0B45811A /* FMDatabasePool.h in Headers */,
 				7394E123FBD9832A5D6FD726D5D9470C /* FMDatabaseQueue.h in Headers */,
-				219BADA8C55CF72273F5A734AA0E0EF6 /* FMDB-umbrella.h in Headers */,
 				A92CDCFE2DC0D002DE1F208C2FEAB545 /* FMDB.h in Headers */,
+				219BADA8C55CF72273F5A734AA0E0EF6 /* FMDB-umbrella.h in Headers */,
 				BB7ECF4DBE8D4BB38E6F2F08C326922A /* FMResultSet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6228,8 +6228,8 @@
 			files = (
 				5DB706657AA9D8A59B0C5D0380EA4253 /* YYAnimatedImageView.h in Headers */,
 				05CD6CCB84CB0566330C9FBCEEF25AD3 /* YYFrameImage.h in Headers */,
-				9DDED63A98FDC56AFF11244CD87BAB6E /* YYImage-umbrella.h in Headers */,
 				5AD153A0A5CC1531F02CFC4D550E9D90 /* YYImage.h in Headers */,
+				9DDED63A98FDC56AFF11244CD87BAB6E /* YYImage-umbrella.h in Headers */,
 				9A91562CA6ABC3093DC9D67B1C5D13A9 /* YYImageCoder.h in Headers */,
 				1BE04347B0060A4C1B672330AB55F2FA /* YYSpriteSheetImage.h in Headers */,
 			);
@@ -6762,8 +6762,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -7168,20 +7168,20 @@
 				A3ECBD6B6A21745E9C792BD7F68F5604 /* AsyncLock.swift in Sources */,
 				232E8864E0BC18D61B70F78808F906EC /* AsyncSubject.swift in Sources */,
 				A2AD875D1FDD8A9298A54E5989A3F6A1 /* AtomicInt.swift in Sources */,
-				9BECFF7AF64100E078F3A527CE26BEEC /* Bag+Rx.swift in Sources */,
 				88131D9B8B047E404F4DAAF5FFE5E05D /* Bag.swift in Sources */,
+				9BECFF7AF64100E078F3A527CE26BEEC /* Bag+Rx.swift in Sources */,
 				A208F14A71DA1106A2ED7B228F35F260 /* BehaviorSubject.swift in Sources */,
 				6A9A57D8E1D9671954CC84153ABC76BD /* BinaryDisposable.swift in Sources */,
 				743F4D8159234C6C592F419E5C1A856E /* BooleanDisposable.swift in Sources */,
 				66D8511C2B33799906C71EB6A68731EB /* Buffer.swift in Sources */,
 				A430C8CFAC343CE87B6A84BC01A7E1D5 /* Cancelable.swift in Sources */,
 				B02E3A651F1B316AA197C5967DBE7602 /* Catch.swift in Sources */,
+				81B66F5D9F9079A0152601EC983B0A39 /* CombineLatest.swift in Sources */,
 				25468ADF5B58D11E41C3BD7B5224F440 /* CombineLatest+arity.swift in Sources */,
 				2CFF46766A03D40855E9A3122E7AC0B7 /* CombineLatest+Collection.swift in Sources */,
-				81B66F5D9F9079A0152601EC983B0A39 /* CombineLatest.swift in Sources */,
 				15DEF06D76E36F36A35E15275B24C4FA /* CompactMap.swift in Sources */,
-				0EF220D9D940A06EDFAA49AA9E0D7EEE /* Completable+AndThen.swift in Sources */,
 				44A88C0BCF2F551A745FBB3ABD710D01 /* Completable.swift in Sources */,
+				0EF220D9D940A06EDFAA49AA9E0D7EEE /* Completable+AndThen.swift in Sources */,
 				9DB32F1AAD5260E6FDD36DC42F3DFE94 /* CompositeDisposable.swift in Sources */,
 				8F49A462D76CAAC4211EF97F6C40EC04 /* Concat.swift in Sources */,
 				F1CD9606E2E5643477C14C47731566C0 /* ConcurrentDispatchQueueScheduler.swift in Sources */,
@@ -7236,9 +7236,9 @@
 				6F0946D38F4EDB8305C8FE2754CB270F /* NopDisposable.swift in Sources */,
 				27358593160574E78CA6F6F308F165F2 /* Observable.swift in Sources */,
 				4931FD7F49B28B2C96932FFD91FAB392 /* ObservableConvertibleType.swift in Sources */,
+				A27DD93C2C59BF02E960364656914836 /* ObservableType.swift in Sources */,
 				B3352D4AC0EF3D2BF7F11C60B1381FE9 /* ObservableType+Extensions.swift in Sources */,
 				23DD346D20262CC642E1601F40A6E2CE /* ObservableType+PrimitiveSequence.swift in Sources */,
-				A27DD93C2C59BF02E960364656914836 /* ObservableType.swift in Sources */,
 				6B6671B8EA4940EED54D383961AC150E /* ObserveOn.swift in Sources */,
 				EE303B1E80AAD95E5D1E25624C6284F2 /* ObserverBase.swift in Sources */,
 				F1B5867C6FBCFFDB91E0662BEAC7B817 /* ObserverType.swift in Sources */,
@@ -7246,8 +7246,8 @@
 				804B17B1C3AAB591E70B959649912C0E /* Optional.swift in Sources */,
 				44BC0C53254E44EAD708B5D7133BD9A4 /* Platform.Darwin.swift in Sources */,
 				C09211F9035872ABB91212B7882D48A7 /* Platform.Linux.swift in Sources */,
-				7FE654470681670728D5BB6993D70435 /* PrimitiveSequence+Zip+arity.swift in Sources */,
 				1395B1DEC303468A1A5A9D425A2CE792 /* PrimitiveSequence.swift in Sources */,
+				7FE654470681670728D5BB6993D70435 /* PrimitiveSequence+Zip+arity.swift in Sources */,
 				56B7B2198D6C89BBB300D52C26D2CC26 /* PriorityQueue.swift in Sources */,
 				8FC7F1F2B7BBEA834D510DB94AC6FCC2 /* Producer.swift in Sources */,
 				B64368CFFC0206DAB71533E9D28E9538 /* PublishSubject.swift in Sources */,
@@ -7306,9 +7306,9 @@
 				EC7A1F547742ABF8514B17F70C3AC2EB /* VirtualTimeScheduler.swift in Sources */,
 				39FA3360DDE0AC042A52956B99814CD5 /* Window.swift in Sources */,
 				4299632D68A83503E645881301D053B1 /* WithLatestFrom.swift in Sources */,
+				86D964BEECB617F1D01BFC2A71125C22 /* Zip.swift in Sources */,
 				763EDC254CD1325A37DB3B31939663B1 /* Zip+arity.swift in Sources */,
 				540A9208C79D343C65E6D6A54DD51363 /* Zip+Collection.swift in Sources */,
-				86D964BEECB617F1D01BFC2A71125C22 /* Zip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7322,8 +7322,8 @@
 				490D0542385B61F9F8A19A5538ED8CE2 /* TZGifPhotoPreviewController.m in Sources */,
 				E7C0547EA652801207CA04BDF2471733 /* TZImageCropManager.m in Sources */,
 				56D5D63E40EA5DBEEB0AE9D3E24D2722 /* TZImageManager.m in Sources */,
-				DAE2D9B4EC9994E0F1F35CBA883A90D6 /* TZImagePickerController-dummy.m in Sources */,
 				2ED2B4A0AE672E15070A3823B15673E8 /* TZImagePickerController.m in Sources */,
+				DAE2D9B4EC9994E0F1F35CBA883A90D6 /* TZImagePickerController-dummy.m in Sources */,
 				332E25EF61466B0220F927CDE819C93B /* TZImageRequestOperation.m in Sources */,
 				2CF2E8D7B94054BB49B88F1A80E6CE09 /* TZLocationManager.m in Sources */,
 				0A633752EEF6A637E626F3237C01D1FF /* TZPhotoPickerController.m in Sources */,
@@ -7339,8 +7339,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BF6FBC0A64BF107C5D64C61F1397770 /* SwiftyJSON-dummy.m in Sources */,
 				7B4CE5C84161E2BFE477F42DFD634382 /* SwiftyJSON.swift in Sources */,
+				2BF6FBC0A64BF107C5D64C61F1397770 /* SwiftyJSON-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7348,8 +7348,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95F63E693F9F4900BE8D25A2B20C17EF /* MBProgressHUD-dummy.m in Sources */,
 				6E1E402CB13DFE722897DA3E77DEBD51 /* MBProgressHUD.m in Sources */,
+				95F63E693F9F4900BE8D25A2B20C17EF /* MBProgressHUD-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7386,8 +7386,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1208E81DA8B532D0646D627B50290EB6 /* AFError.swift in Sources */,
-				C6D5A4B4028B2C43380C9FA58BD5C8CA /* Alamofire-dummy.m in Sources */,
 				C1F1DB6A9CBDE584D09BA1613AAD4F9D /* Alamofire.swift in Sources */,
+				C6D5A4B4028B2C43380C9FA58BD5C8CA /* Alamofire-dummy.m in Sources */,
 				72EC2712926E6D28B52360D9AC41668F /* AlamofireExtended.swift in Sources */,
 				DC627AFC5B585686898B014184AFCABD /* AuthenticationInterceptor.swift in Sources */,
 				ABA85887A41495358C83CE3F3030EDEA /* CachedResponseHandler.swift in Sources */,
@@ -7514,8 +7514,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				19AC0EF8CA4B5505DCDE704D10A2230D /* SDCollectionViewCell.m in Sources */,
-				FA930D7C857F46E397518FF66767EDBC /* SDCycleScrollView-dummy.m in Sources */,
 				83971AF11693AEDA3A730FD11D07FC73 /* SDCycleScrollView.m in Sources */,
+				FA930D7C857F46E397518FF66767EDBC /* SDCycleScrollView-dummy.m in Sources */,
 				56B4FDAA3C5D6ACD0CF3BBE1A886D688 /* TAAbstractDotView.m in Sources */,
 				468222CE56A21C933B4C5D70AB190896 /* TAAnimatedDotView.m in Sources */,
 				4363C043032BDA78B693161FEDF0612A /* TADotView.m in Sources */,
@@ -7539,8 +7539,8 @@
 				21AB1101BBE4D28D74ED4EDF0D59025A /* ConstraintInsets.swift in Sources */,
 				2C06F2E972444D359754D21AC46BFFE2 /* ConstraintInsetTarget.swift in Sources */,
 				99B5296A5EDECE0557B9DA53D9E19CA1 /* ConstraintItem.swift in Sources */,
-				1AFB1E9136716C0B61D6C700FF1E60FD /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				A270CD9EC3C541FE86E65AEDCEF500CF /* ConstraintLayoutGuide.swift in Sources */,
+				1AFB1E9136716C0B61D6C700FF1E60FD /* ConstraintLayoutGuide+Extensions.swift in Sources */,
 				77C9889055A3B32EA13A9616824DB0ED /* ConstraintLayoutGuideDSL.swift in Sources */,
 				57B1876F2BE4168E5BFDB63D8CC849A0 /* ConstraintLayoutSupport.swift in Sources */,
 				01C550A53C9E2047C83F8E85BBB558E6 /* ConstraintLayoutSupportDSL.swift in Sources */,
@@ -7556,8 +7556,8 @@
 				E8F2429683B3015CBD39CE883770BCA7 /* ConstraintPriorityTarget.swift in Sources */,
 				69E3A06BBDFDC7D06A9D4BDC4E895E73 /* ConstraintRelatableTarget.swift in Sources */,
 				CE62FEABA57B2B53EABF8C7DCCC6B2C4 /* ConstraintRelation.swift in Sources */,
-				3E5285F4F36EAD77ECABBFB7F36BB1BB /* ConstraintView+Extensions.swift in Sources */,
 				BECA67DFB5E0984DFAEFCB775C31972E /* ConstraintView.swift in Sources */,
+				3E5285F4F36EAD77ECABBFB7F36BB1BB /* ConstraintView+Extensions.swift in Sources */,
 				EB1726F5E0D0EEBA20E4528B1E37A8FA /* ConstraintViewDSL.swift in Sources */,
 				B780B272106411CBE258BB60FFC45410 /* Debugging.swift in Sources */,
 				039EAFE7935113805F3FC21BF1B7C9D5 /* LayoutConstraint.swift in Sources */,
@@ -7572,8 +7572,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE63C5BB884FE069818B45C96770745 /* Bagel-dummy.m in Sources */,
 				F7E865846F46DB657968DB225AB74AF2 /* Bagel.m in Sources */,
+				DBE63C5BB884FE069818B45C96770745 /* Bagel-dummy.m in Sources */,
 				28386030B6705C92B4B688B819557881 /* BagelBaseModel.m in Sources */,
 				AA43A4CBD75A7FCF464C7360547483E5 /* BagelBrowser.m in Sources */,
 				965A6BA3FCB08E444588119AA5083331 /* BagelConfiguration.m in Sources */,
@@ -7604,8 +7604,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C253F868600B259CA4FD39A9A5D7D025 /* IQBarButtonItem.m in Sources */,
-				BFCFD1B6E83BED8638290D9F0FB58E7C /* IQKeyboardManager-dummy.m in Sources */,
 				4D009BF653F1C9AB12CA9DECED6CAAB0 /* IQKeyboardManager.m in Sources */,
+				BFCFD1B6E83BED8638290D9F0FB58E7C /* IQKeyboardManager-dummy.m in Sources */,
 				FCEC05C4AD02A79F3F1B4B859186F401 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				25ED403997DCA16626CB15246ACEB3D7 /* IQNSArray+Sort.m in Sources */,
 				0E8B87FA998C7178EBEE0D8A3F6C0A98 /* IQPreviousNextView.m in Sources */,
@@ -7631,33 +7631,33 @@
 				52C0835254BE9A54C26C05E8B7AC7448 /* Bag.swift in Sources */,
 				439197DD2AAEE0595B8DA4474C4595CA /* BehaviorRelay+Driver.swift in Sources */,
 				59A6B0D9EEDC697D0013B02572F0FD7F /* Binder.swift in Sources */,
+				0C2AEEA5C30032AF2F9EC02C0128ED13 /* ControlEvent.swift in Sources */,
 				D64EA6E18B6AC4114BE0CB29B70B7739 /* ControlEvent+Driver.swift in Sources */,
 				06504FFE7AB5C57B2E1626C35E42023A /* ControlEvent+Signal.swift in Sources */,
-				0C2AEEA5C30032AF2F9EC02C0128ED13 /* ControlEvent.swift in Sources */,
-				73D4B8DBAA4775FA576C6E99DA74E9F5 /* ControlProperty+Driver.swift in Sources */,
 				2550B408EF306E05ED36C6AAB6837BF1 /* ControlProperty.swift in Sources */,
+				73D4B8DBAA4775FA576C6E99DA74E9F5 /* ControlProperty+Driver.swift in Sources */,
 				74872B2FC64CC6125CCEF48562B0671E /* ControlTarget.swift in Sources */,
 				D437A93503211D776CC61B0A8A8A71F8 /* DelegateProxy.swift in Sources */,
 				E86B0E0D913346ACDF5F2D69A0A98833 /* DelegateProxyType.swift in Sources */,
 				6467FE4BA8A61320C4A98A4478485ECB /* Deprecated.swift in Sources */,
 				5B26550079AB783C657ECDBF80F3713F /* DispatchQueue+Extensions.swift in Sources */,
-				CB952FD2F737FE25DC95579065296BB6 /* Driver+Subscription.swift in Sources */,
 				27E37AE40D404DFA7A4B0FE122789204 /* Driver.swift in Sources */,
+				CB952FD2F737FE25DC95579065296BB6 /* Driver+Subscription.swift in Sources */,
 				8117470A6E1CF87DF2049262E34119F3 /* InfiniteSequence.swift in Sources */,
 				C2D5D09CEC440A4621B5CAFB67B3A5B5 /* ItemEvents.swift in Sources */,
 				FCB07678FF31509D157300B7DC1240D6 /* KeyPathBinder.swift in Sources */,
+				9C6D19CA62E67E73FF98774FCEA080A1 /* KVORepresentable.swift in Sources */,
 				B0528F277050656E75ADE1D065FC37B8 /* KVORepresentable+CoreGraphics.swift in Sources */,
 				8EFE85C5F1EB7D1C1173AFCEF47DAC45 /* KVORepresentable+Swift.swift in Sources */,
-				9C6D19CA62E67E73FF98774FCEA080A1 /* KVORepresentable.swift in Sources */,
 				0A15F6D793421163A92E18ED9E911F87 /* Logging.swift in Sources */,
 				5823BCC5E382DE702FBE07784AF8FC08 /* NotificationCenter+Rx.swift in Sources */,
 				44B0BF2665B93BA05D05FBE47BEF7B1B /* NSButton+Rx.swift in Sources */,
 				8D347BF3B80C9984DB0930C3F6683A18 /* NSControl+Rx.swift in Sources */,
 				6464287695ECCBB4CA2CB81462BF1178 /* NSImageView+Rx.swift in Sources */,
 				D15DC3BE7C68691D743B1908ABB91E07 /* NSLayoutConstraint+Rx.swift in Sources */,
+				5441B6F9D99E964B9DEF28E22DA186C3 /* NSObject+Rx.swift in Sources */,
 				FD121E214251E5B388161FA787E9399C /* NSObject+Rx+KVORepresentable.swift in Sources */,
 				15D0D8EE39393B4628502414BD95C248 /* NSObject+Rx+RawRepresentable.swift in Sources */,
-				5441B6F9D99E964B9DEF28E22DA186C3 /* NSObject+Rx.swift in Sources */,
 				3E7E4A485F70C759DBC3CF975C4FEA27 /* NSSlider+Rx.swift in Sources */,
 				B805454BD4733A2BD5D1E9927781C61C /* NSTextField+Rx.swift in Sources */,
 				9592A59DA2AB14603C0A164DE99AE989 /* NSTextStorage+Rx.swift in Sources */,
@@ -7673,8 +7673,8 @@
 				00FA1801533D853DDBCE33A57D28D648 /* PublishRelay+Signal.swift in Sources */,
 				9B36BB2683F3628ECD5960E9619EB19B /* Queue.swift in Sources */,
 				C92EE1C8771E4BA17872F7B9BF534787 /* RecursiveLock.swift in Sources */,
-				17B9CEBBD5764D362F71128009E4469A /* RxCocoa-dummy.m in Sources */,
 				3492924BB6DC68CCAED4C1142E7739A3 /* RxCocoa.swift in Sources */,
+				17B9CEBBD5764D362F71128009E4469A /* RxCocoa-dummy.m in Sources */,
 				9210C710EBF1CB237EA930A8A3C09556 /* RxCocoaObjCRuntimeError+Extensions.swift in Sources */,
 				C5A5AEEF77FA6E9297696D7130306BCF /* RxCollectionViewDataSourcePrefetchingProxy.swift in Sources */,
 				303E0C92168D1B45A96EB56FA114AAB4 /* RxCollectionViewDataSourceProxy.swift in Sources */,
@@ -7702,11 +7702,11 @@
 				A25F6B7BE0481113031DF749FE9D40C4 /* RxWKNavigationDelegateProxy.swift in Sources */,
 				E3B8690153448DB7BB199D4FB8F1E90F /* SchedulerType+SharedSequence.swift in Sources */,
 				86FB0771E04ED3CCAF7DB95BA8B3D910 /* SectionedViewDataSourceType.swift in Sources */,
-				1F6B55D049CA4A0F17091F158365273E /* SharedSequence+Operators+arity.swift in Sources */,
-				F0F7F7EB66C233DD559474AFEA7C10DF /* SharedSequence+Operators.swift in Sources */,
 				E94D94EF789DCBC511115EBC4F6B85C2 /* SharedSequence.swift in Sources */,
-				5CDE9F4B6E5C2CA57B28D5040F03F8CF /* Signal+Subscription.swift in Sources */,
+				F0F7F7EB66C233DD559474AFEA7C10DF /* SharedSequence+Operators.swift in Sources */,
+				1F6B55D049CA4A0F17091F158365273E /* SharedSequence+Operators+arity.swift in Sources */,
 				72521FC1A240438582D88313DA2F71B3 /* Signal.swift in Sources */,
+				5CDE9F4B6E5C2CA57B28D5040F03F8CF /* Signal+Subscription.swift in Sources */,
 				D83C68850F8A3C76DE97A0551A818F31 /* TextInput.swift in Sources */,
 				747BFC432635738E49B29E86EF568F32 /* UIActivityIndicatorView+Rx.swift in Sources */,
 				37F572B1D4C35D5DE1AE90659641C34F /* UIAlertAction+Rx.swift in Sources */,
@@ -7755,8 +7755,8 @@
 				924277436F9AA6CCCAA84D53DEF2B62D /* NSImage+Compatibility.m in Sources */,
 				CA595F2E42B0F543F85054AC24E63C3C /* SDAnimatedImage.m in Sources */,
 				6C1E09B629DBF318F2BD31ADFE11ACEE /* SDAnimatedImageRep.m in Sources */,
-				D561675F024C364558F017A67EBC5E9C /* SDAnimatedImageView+WebCache.m in Sources */,
 				81110978F4EF4B04C6E187B4E8BF1DBC /* SDAnimatedImageView.m in Sources */,
+				D561675F024C364558F017A67EBC5E9C /* SDAnimatedImageView+WebCache.m in Sources */,
 				2622C074059839D678C9F165510702A4 /* SDAsyncBlockOperation.m in Sources */,
 				C9FB294BFEAF0298FEB568C88B5887E4 /* SDDiskCache.m in Sources */,
 				07D2E10F17C66720E780BF17F1BEB2FB /* SDImageAPNGCoder.m in Sources */,
@@ -7862,8 +7862,8 @@
 				15CDA78644CA06BC6399CA6EDCAD093B /* YBIBTopView.m in Sources */,
 				3B2DACE6A8D64525E023423468861FD3 /* YBIBUtilities.m in Sources */,
 				CC62BEBD4A28D67104DEC247819418EC /* YBImage.m in Sources */,
-				9E78EB0215FE0E6377AC38E1CF911E78 /* YBImageBrowser-dummy.m in Sources */,
 				550234B4F70CD6C479C991DB48D68A63 /* YBImageBrowser.m in Sources */,
+				9E78EB0215FE0E6377AC38E1CF911E78 /* YBImageBrowser-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7873,8 +7873,8 @@
 			files = (
 				80567334D5EB3E70A7EA249769EE5A96 /* YYAnimatedImageView.m in Sources */,
 				47974691E6DF0B72CA34DA4B785A238D /* YYFrameImage.m in Sources */,
-				79A7F251EBEC50F487966CB7E91FDE0D /* YYImage-dummy.m in Sources */,
 				95AF6D34626ED98FA5020E5F785F092D /* YYImage.m in Sources */,
+				79A7F251EBEC50F487966CB7E91FDE0D /* YYImage-dummy.m in Sources */,
 				4B70E27C69E3D0F9A5E214AA5180A699 /* YYImageCoder.m in Sources */,
 				5C47DD6969951A53ECA522579115A992 /* YYSpriteSheetImage.m in Sources */,
 			);
@@ -7884,8 +7884,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E70B7F07A5C449BB2470BAAF382DEE8 /* MGJRouter-dummy.m in Sources */,
 				0B88CB510523DB5A794ED7B919A518EC /* MGJRouter.m in Sources */,
+				7E70B7F07A5C449BB2470BAAF382DEE8 /* MGJRouter-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
