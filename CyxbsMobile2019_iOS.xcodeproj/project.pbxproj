@@ -366,26 +366,22 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
-		7311325C26CCEC0700EF88C1 /* UIView+XYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311321F26CCEC0600EF88C1 /* UIView+XYView.m */; };
-		7311325D26CCEC0700EF88C1 /* Bauhaus-93.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7311322126CCEC0600EF88C1 /* Bauhaus-93.ttf */; };
-		7311325E26CCEC0700EF88C1 /* StampCountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311322726CCEC0600EF88C1 /* StampCountData.m */; };
-		7311325F26CCEC0700EF88C1 /* TaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311322A26CCEC0600EF88C1 /* TaskData.m */; };
-		7311326026CCEC0700EF88C1 /* GoodsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311322D26CCEC0600EF88C1 /* GoodsData.m */; };
-		7311326126CCEC0700EF88C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311323226CCEC0600EF88C1 /* ViewController.m */; };
-		7311326226CCEC0700EF88C1 /* StampCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311323326CCEC0600EF88C1 /* StampCenterVC.m */; };
-		7311326326CCEC0700EF88C1 /* stampcenter.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7311323526CCEC0600EF88C1 /* stampcenter.xcassets */; };
-		7311326426CCEC0700EF88C1 /* MyTableViewCellWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311323A26CCEC0600EF88C1 /* MyTableViewCellWithProgress.m */; };
-		7311326526CCEC0700EF88C1 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311323C26CCEC0600EF88C1 /* MyTableViewCell.m */; };
-		7311326626CCEC0700EF88C1 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311324026CCEC0600EF88C1 /* MyCollectionViewCell.m */; };
-		7311326726CCEC0700EF88C1 /* GotoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311324326CCEC0600EF88C1 /* GotoButton.m */; };
-		7311326826CCEC0700EF88C1 /* CollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311324726CCEC0600EF88C1 /* CollectionHeaderView.m */; };
-		7311326926CCEC0700EF88C1 /* SecondHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311324826CCEC0600EF88C1 /* SecondHeaderView.m */; };
-		7311326A26CCEC0700EF88C1 /* PageOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311324C26CCEC0600EF88C1 /* PageOne.m */; };
-		7311326B26CCEC0700EF88C1 /* StampCenterTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311324F26CCEC0600EF88C1 /* StampCenterTopView.m */; };
-		7311326C26CCEC0700EF88C1 /* StampCenterTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311325126CCEC0600EF88C1 /* StampCenterTopBar.m */; };
-		7311326D26CCEC0700EF88C1 /* MainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311325526CCEC0600EF88C1 /* MainScrollView.m */; };
-		7311326E26CCEC0700EF88C1 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311325726CCEC0600EF88C1 /* TableHeaderView.m */; };
-		7311326F26CCEC0700EF88C1 /* PageTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311325A26CCEC0600EF88C1 /* PageTwo.m */; };
+		492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */; };
+		493162C526CD7B4900140412 /* stampcenter.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 493162C426CD7B4900140412 /* stampcenter.xcassets */; };
+		493162CE26CD7B5D00140412 /* UIView+XYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162CA26CD7B5D00140412 /* UIView+XYView.m */; };
+		493162DD26CD7B6300140412 /* StampCountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162D526CD7B6300140412 /* StampCountData.m */; };
+		493162DE26CD7B6300140412 /* TaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162D826CD7B6300140412 /* TaskData.m */; };
+		493162DF26CD7B6300140412 /* GoodsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162DB26CD7B6300140412 /* GoodsData.m */; };
+		4931630926CD7B6800140412 /* MyTableViewCellWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162E726CD7B6800140412 /* MyTableViewCellWithProgress.m */; };
+		4931630A26CD7B6800140412 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162E926CD7B6800140412 /* MyTableViewCell.m */; };
+		4931630B26CD7B6800140412 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162ED26CD7B6800140412 /* MyCollectionViewCell.m */; };
+		4931630C26CD7B6800140412 /* GotoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F026CD7B6800140412 /* GotoButton.m */; };
+		4931630D26CD7B6800140412 /* CollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F426CD7B6800140412 /* CollectionHeaderView.m */; };
+		4931630E26CD7B6800140412 /* SecondHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F526CD7B6800140412 /* SecondHeaderView.m */; };
+		4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162FC26CD7B6800140412 /* StampCenterTopView.m */; };
+		4931631226CD7B6800140412 /* MainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630226CD7B6800140412 /* MainScrollView.m */; };
+		4931631326CD7B6800140412 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630426CD7B6800140412 /* TableHeaderView.m */; };
+		4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931631B26CD7B7900140412 /* StampCenterVC.m */; };
 		7311328426CCEC2400EF88C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7311327126CCEC2400EF88C1 /* Media.xcassets */; };
 		7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311327326CCEC2400EF88C1 /* ExchangeCenterViewController.m */; };
 		7311328626CCEC2400EF88C1 /* Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311327726CCEC2400EF88C1 /* Goods.m */; };
@@ -1372,47 +1368,39 @@
 		1AFE534F24F7571300F42A74 /* IntroductionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroductionController.h; sourceTree = "<group>"; };
 		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bauhaus-93.ttf"; sourceTree = "<group>"; };
+		493162C426CD7B4900140412 /* stampcenter.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = stampcenter.xcassets; sourceTree = "<group>"; };
+		493162CA26CD7B5D00140412 /* UIView+XYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYView.m"; sourceTree = "<group>"; };
+		493162CB26CD7B5D00140412 /* UIView+XYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XYView.h"; sourceTree = "<group>"; };
+		493162CC26CD7B5D00140412 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		493162CD26CD7B5D00140412 /* ZWTMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWTMacro.h; sourceTree = "<group>"; };
+		493162D526CD7B6300140412 /* StampCountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCountData.m; sourceTree = "<group>"; };
+		493162D626CD7B6300140412 /* StampCountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCountData.h; sourceTree = "<group>"; };
+		493162D826CD7B6300140412 /* TaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskData.m; sourceTree = "<group>"; };
+		493162D926CD7B6300140412 /* TaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskData.h; sourceTree = "<group>"; };
+		493162DB26CD7B6300140412 /* GoodsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsData.m; sourceTree = "<group>"; };
+		493162DC26CD7B6300140412 /* GoodsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsData.h; sourceTree = "<group>"; };
+		493162E626CD7B6800140412 /* MyTableViewCellWithProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCellWithProgress.h; sourceTree = "<group>"; };
+		493162E726CD7B6800140412 /* MyTableViewCellWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCellWithProgress.m; sourceTree = "<group>"; };
+		493162E926CD7B6800140412 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		493162EA26CD7B6800140412 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		493162EC26CD7B6800140412 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
+		493162ED26CD7B6800140412 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
+		493162F026CD7B6800140412 /* GotoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GotoButton.m; sourceTree = "<group>"; };
+		493162F126CD7B6800140412 /* GotoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GotoButton.h; sourceTree = "<group>"; };
+		493162F326CD7B6800140412 /* SecondHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondHeaderView.h; sourceTree = "<group>"; };
+		493162F426CD7B6800140412 /* CollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHeaderView.m; sourceTree = "<group>"; };
+		493162F526CD7B6800140412 /* SecondHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondHeaderView.m; sourceTree = "<group>"; };
+		493162F626CD7B6800140412 /* CollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHeaderView.h; sourceTree = "<group>"; };
+		493162FB26CD7B6800140412 /* StampCenterTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterTopView.h; sourceTree = "<group>"; };
+		493162FC26CD7B6800140412 /* StampCenterTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterTopView.m; sourceTree = "<group>"; };
+		4931630126CD7B6800140412 /* MainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScrollView.h; sourceTree = "<group>"; };
+		4931630226CD7B6800140412 /* MainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScrollView.m; sourceTree = "<group>"; };
+		4931630426CD7B6800140412 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
+		4931630526CD7B6800140412 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
+		4931631926CD7B7900140412 /* StampCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterVC.h; sourceTree = "<group>"; };
+		4931631B26CD7B7900140412 /* StampCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterVC.m; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		7311321F26CCEC0600EF88C1 /* UIView+XYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYView.m"; sourceTree = "<group>"; };
-		7311322026CCEC0600EF88C1 /* UIView+XYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XYView.h"; sourceTree = "<group>"; };
-		7311322126CCEC0600EF88C1 /* Bauhaus-93.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bauhaus-93.ttf"; sourceTree = "<group>"; };
-		7311322226CCEC0600EF88C1 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		7311322326CCEC0600EF88C1 /* ZWTMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWTMacro.h; sourceTree = "<group>"; };
-		7311322726CCEC0600EF88C1 /* StampCountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCountData.m; sourceTree = "<group>"; };
-		7311322826CCEC0600EF88C1 /* StampCountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCountData.h; sourceTree = "<group>"; };
-		7311322A26CCEC0600EF88C1 /* TaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskData.m; sourceTree = "<group>"; };
-		7311322B26CCEC0600EF88C1 /* TaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskData.h; sourceTree = "<group>"; };
-		7311322D26CCEC0600EF88C1 /* GoodsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsData.m; sourceTree = "<group>"; };
-		7311322E26CCEC0600EF88C1 /* GoodsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsData.h; sourceTree = "<group>"; };
-		7311323126CCEC0600EF88C1 /* StampCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterVC.h; sourceTree = "<group>"; };
-		7311323226CCEC0600EF88C1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		7311323326CCEC0600EF88C1 /* StampCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterVC.m; sourceTree = "<group>"; };
-		7311323426CCEC0600EF88C1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7311323526CCEC0600EF88C1 /* stampcenter.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = stampcenter.xcassets; sourceTree = "<group>"; };
-		7311323926CCEC0600EF88C1 /* MyTableViewCellWithProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCellWithProgress.h; sourceTree = "<group>"; };
-		7311323A26CCEC0600EF88C1 /* MyTableViewCellWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCellWithProgress.m; sourceTree = "<group>"; };
-		7311323C26CCEC0600EF88C1 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
-		7311323D26CCEC0600EF88C1 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
-		7311323F26CCEC0600EF88C1 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
-		7311324026CCEC0600EF88C1 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
-		7311324326CCEC0600EF88C1 /* GotoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GotoButton.m; sourceTree = "<group>"; };
-		7311324426CCEC0600EF88C1 /* GotoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GotoButton.h; sourceTree = "<group>"; };
-		7311324626CCEC0600EF88C1 /* SecondHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondHeaderView.h; sourceTree = "<group>"; };
-		7311324726CCEC0600EF88C1 /* CollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHeaderView.m; sourceTree = "<group>"; };
-		7311324826CCEC0600EF88C1 /* SecondHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondHeaderView.m; sourceTree = "<group>"; };
-		7311324926CCEC0600EF88C1 /* CollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHeaderView.h; sourceTree = "<group>"; };
-		7311324B26CCEC0600EF88C1 /* PageOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageOne.h; sourceTree = "<group>"; };
-		7311324C26CCEC0600EF88C1 /* PageOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageOne.m; sourceTree = "<group>"; };
-		7311324E26CCEC0600EF88C1 /* StampCenterTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterTopView.h; sourceTree = "<group>"; };
-		7311324F26CCEC0600EF88C1 /* StampCenterTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterTopView.m; sourceTree = "<group>"; };
-		7311325126CCEC0600EF88C1 /* StampCenterTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterTopBar.m; sourceTree = "<group>"; };
-		7311325226CCEC0600EF88C1 /* StampCenterTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterTopBar.h; sourceTree = "<group>"; };
-		7311325426CCEC0600EF88C1 /* MainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScrollView.h; sourceTree = "<group>"; };
-		7311325526CCEC0600EF88C1 /* MainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScrollView.m; sourceTree = "<group>"; };
-		7311325726CCEC0600EF88C1 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
-		7311325826CCEC0600EF88C1 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
-		7311325A26CCEC0600EF88C1 /* PageTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageTwo.m; sourceTree = "<group>"; };
-		7311325B26CCEC0600EF88C1 /* PageTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageTwo.h; sourceTree = "<group>"; };
 		7311327126CCEC2400EF88C1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		7311327326CCEC2400EF88C1 /* ExchangeCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeCenterViewController.m; sourceTree = "<group>"; };
 		7311327426CCEC2400EF88C1 /* ExchangeCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeCenterViewController.h; sourceTree = "<group>"; };
@@ -3580,6 +3568,7 @@
 		1AAFAD41236DC96300E854A3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */,
 				1A310630237711A800A56468 /* Impact.ttf */,
 				EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */,
 				73A1588926C2475A00287C9F /* DIN-Medium.otf */,
@@ -3820,86 +3809,75 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		7311321C26CCEB9C00EF88C1 /* StampCenter */ = {
+		493162C326CD7B0F00140412 /* StampCenter_MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				7311327026CCEC2400EF88C1 /* ExchangeCenter */,
-				7311321D26CCEC0600EF88C1 /* New_StampStore */,
-				73AAA1A826C918240084E44D /* StampDetails */,
+				493162C926CD7B5D00140412 /* ZWTSupportingFiles */,
+				493162D226CD7B6300140412 /* Models */,
+				493162E326CD7B6800140412 /* Views */,
+				4931631826CD7B7900140412 /* Controller */,
+				493162C426CD7B4900140412 /* stampcenter.xcassets */,
 			);
-			path = StampCenter;
+			path = StampCenter_MainPage;
 			sourceTree = "<group>";
 		};
-		7311321D26CCEC0600EF88C1 /* New_StampStore */ = {
+		493162C926CD7B5D00140412 /* ZWTSupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				7311321E26CCEC0600EF88C1 /* ZWTSupportingFiles */,
-				7311322426CCEC0600EF88C1 /* Models */,
-				7311323026CCEC0600EF88C1 /* Controller */,
-				7311323526CCEC0600EF88C1 /* stampcenter.xcassets */,
-				7311323626CCEC0600EF88C1 /* Views */,
-			);
-			path = New_StampStore;
-			sourceTree = "<group>";
-		};
-		7311321E26CCEC0600EF88C1 /* ZWTSupportingFiles */ = {
-			isa = PBXGroup;
-			children = (
-				7311321F26CCEC0600EF88C1 /* UIView+XYView.m */,
-				7311322026CCEC0600EF88C1 /* UIView+XYView.h */,
-				7311322126CCEC0600EF88C1 /* Bauhaus-93.ttf */,
-				7311322226CCEC0600EF88C1 /* PrefixHeader.pch */,
-				7311322326CCEC0600EF88C1 /* ZWTMacro.h */,
+				493162CA26CD7B5D00140412 /* UIView+XYView.m */,
+				493162CB26CD7B5D00140412 /* UIView+XYView.h */,
+				493162CC26CD7B5D00140412 /* PrefixHeader.pch */,
+				493162CD26CD7B5D00140412 /* ZWTMacro.h */,
 			);
 			path = ZWTSupportingFiles;
 			sourceTree = "<group>";
 		};
-		7311322426CCEC0600EF88C1 /* Models */ = {
+		493162D226CD7B6300140412 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7311322526CCEC0600EF88C1 /* DataModels */,
-				7311322F26CCEC0600EF88C1 /* ToolModels */,
+				493162D326CD7B6300140412 /* DataModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		7311322526CCEC0600EF88C1 /* DataModels */ = {
+		493162D326CD7B6300140412 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				7311322626CCEC0600EF88C1 /* StampCountDataModel */,
-				7311322926CCEC0600EF88C1 /* StampTaskDataModel */,
-				7311322C26CCEC0600EF88C1 /* StampStoreGoodsDataModel */,
+				493162D426CD7B6300140412 /* StampCountDataModel */,
+				493162D726CD7B6300140412 /* StampTaskDataModel */,
+				493162DA26CD7B6300140412 /* StampStoreGoodsDataModel */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
 		};
-		7311322626CCEC0600EF88C1 /* StampCountDataModel */ = {
+		493162D426CD7B6300140412 /* StampCountDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				7311322726CCEC0600EF88C1 /* StampCountData.m */,
-				7311322826CCEC0600EF88C1 /* StampCountData.h */,
+				493162D526CD7B6300140412 /* StampCountData.m */,
+				493162D626CD7B6300140412 /* StampCountData.h */,
 			);
 			path = StampCountDataModel;
 			sourceTree = "<group>";
 		};
-		7311322926CCEC0600EF88C1 /* StampTaskDataModel */ = {
+		493162D726CD7B6300140412 /* StampTaskDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				7311322A26CCEC0600EF88C1 /* TaskData.m */,
-				7311322B26CCEC0600EF88C1 /* TaskData.h */,
+				493162D826CD7B6300140412 /* TaskData.m */,
+				493162D926CD7B6300140412 /* TaskData.h */,
 			);
 			path = StampTaskDataModel;
 			sourceTree = "<group>";
 		};
-		7311322C26CCEC0600EF88C1 /* StampStoreGoodsDataModel */ = {
+		493162DA26CD7B6300140412 /* StampStoreGoodsDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				7311322D26CCEC0600EF88C1 /* GoodsData.m */,
-				7311322E26CCEC0600EF88C1 /* GoodsData.h */,
+				493162DB26CD7B6300140412 /* GoodsData.m */,
+				493162DC26CD7B6300140412 /* GoodsData.h */,
 			);
 			path = StampStoreGoodsDataModel;
 			sourceTree = "<group>";
 		};
+feature/StampStore/details
 		7311322F26CCEC0600EF88C1 /* ToolModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -3919,138 +3897,128 @@
 			sourceTree = "<group>";
 		};
 		7311323626CCEC0600EF88C1 /* Views */ = {
+develop
 			isa = PBXGroup;
 			children = (
-				7311323726CCEC0600EF88C1 /* TableViewVells */,
-				7311323E26CCEC0600EF88C1 /* CollectionVIewVells */,
-				7311324126CCEC0600EF88C1 /* CustomViews */,
+				493162E426CD7B6800140412 /* TableViewVells */,
+				493162EB26CD7B6800140412 /* CollectionVIewVells */,
+				493162EE26CD7B6800140412 /* CustomViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		7311323726CCEC0600EF88C1 /* TableViewVells */ = {
+		493162E426CD7B6800140412 /* TableViewVells */ = {
 			isa = PBXGroup;
 			children = (
-				7311323826CCEC0600EF88C1 /* MyTableViewCellWithProgress */,
-				7311323B26CCEC0600EF88C1 /* MyTableViewCell */,
+				493162E526CD7B6800140412 /* MyTableViewCellWithProgress */,
+				493162E826CD7B6800140412 /* MyTableViewCell */,
 			);
 			path = TableViewVells;
 			sourceTree = "<group>";
 		};
-		7311323826CCEC0600EF88C1 /* MyTableViewCellWithProgress */ = {
+		493162E526CD7B6800140412 /* MyTableViewCellWithProgress */ = {
 			isa = PBXGroup;
 			children = (
-				7311323926CCEC0600EF88C1 /* MyTableViewCellWithProgress.h */,
-				7311323A26CCEC0600EF88C1 /* MyTableViewCellWithProgress.m */,
+				493162E626CD7B6800140412 /* MyTableViewCellWithProgress.h */,
+				493162E726CD7B6800140412 /* MyTableViewCellWithProgress.m */,
 			);
 			path = MyTableViewCellWithProgress;
 			sourceTree = "<group>";
 		};
-		7311323B26CCEC0600EF88C1 /* MyTableViewCell */ = {
+		493162E826CD7B6800140412 /* MyTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				7311323C26CCEC0600EF88C1 /* MyTableViewCell.m */,
-				7311323D26CCEC0600EF88C1 /* MyTableViewCell.h */,
+				493162E926CD7B6800140412 /* MyTableViewCell.m */,
+				493162EA26CD7B6800140412 /* MyTableViewCell.h */,
 			);
 			path = MyTableViewCell;
 			sourceTree = "<group>";
 		};
-		7311323E26CCEC0600EF88C1 /* CollectionVIewVells */ = {
+		493162EB26CD7B6800140412 /* CollectionVIewVells */ = {
 			isa = PBXGroup;
 			children = (
-				7311323F26CCEC0600EF88C1 /* MyCollectionViewCell.h */,
-				7311324026CCEC0600EF88C1 /* MyCollectionViewCell.m */,
+				493162EC26CD7B6800140412 /* MyCollectionViewCell.h */,
+				493162ED26CD7B6800140412 /* MyCollectionViewCell.m */,
 			);
 			path = CollectionVIewVells;
 			sourceTree = "<group>";
 		};
-		7311324126CCEC0600EF88C1 /* CustomViews */ = {
+		493162EE26CD7B6800140412 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				7311324226CCEC0600EF88C1 /* GotoButton */,
-				7311324526CCEC0600EF88C1 /* CollectionHeaderView */,
-				7311324A26CCEC0600EF88C1 /* PageOne (要改) */,
-				7311324D26CCEC0600EF88C1 /* TopView */,
-				7311325026CCEC0600EF88C1 /* TopBar（不要） */,
-				7311325326CCEC0600EF88C1 /* MainScrollView */,
-				7311325626CCEC0600EF88C1 /* TableHeader */,
-				7311325926CCEC0600EF88C1 /* PageTwo （要改） */,
+				493162EF26CD7B6800140412 /* GotoButton */,
+				493162F226CD7B6800140412 /* CollectionHeaderView */,
+				493162FA26CD7B6800140412 /* TopView */,
+				4931630026CD7B6800140412 /* MainScrollView */,
+				4931630326CD7B6800140412 /* TableHeader */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		7311324226CCEC0600EF88C1 /* GotoButton */ = {
+		493162EF26CD7B6800140412 /* GotoButton */ = {
 			isa = PBXGroup;
 			children = (
-				7311324326CCEC0600EF88C1 /* GotoButton.m */,
-				7311324426CCEC0600EF88C1 /* GotoButton.h */,
+				493162F026CD7B6800140412 /* GotoButton.m */,
+				493162F126CD7B6800140412 /* GotoButton.h */,
 			);
 			path = GotoButton;
 			sourceTree = "<group>";
 		};
-		7311324526CCEC0600EF88C1 /* CollectionHeaderView */ = {
+		493162F226CD7B6800140412 /* CollectionHeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				7311324626CCEC0600EF88C1 /* SecondHeaderView.h */,
-				7311324726CCEC0600EF88C1 /* CollectionHeaderView.m */,
-				7311324826CCEC0600EF88C1 /* SecondHeaderView.m */,
-				7311324926CCEC0600EF88C1 /* CollectionHeaderView.h */,
+				493162F326CD7B6800140412 /* SecondHeaderView.h */,
+				493162F426CD7B6800140412 /* CollectionHeaderView.m */,
+				493162F526CD7B6800140412 /* SecondHeaderView.m */,
+				493162F626CD7B6800140412 /* CollectionHeaderView.h */,
 			);
 			path = CollectionHeaderView;
 			sourceTree = "<group>";
 		};
-		7311324A26CCEC0600EF88C1 /* PageOne (要改) */ = {
+		493162FA26CD7B6800140412 /* TopView */ = {
 			isa = PBXGroup;
 			children = (
-				7311324B26CCEC0600EF88C1 /* PageOne.h */,
-				7311324C26CCEC0600EF88C1 /* PageOne.m */,
-			);
-			path = "PageOne (要改)";
-			sourceTree = "<group>";
-		};
-		7311324D26CCEC0600EF88C1 /* TopView */ = {
-			isa = PBXGroup;
-			children = (
-				7311324E26CCEC0600EF88C1 /* StampCenterTopView.h */,
-				7311324F26CCEC0600EF88C1 /* StampCenterTopView.m */,
+				493162FB26CD7B6800140412 /* StampCenterTopView.h */,
+				493162FC26CD7B6800140412 /* StampCenterTopView.m */,
 			);
 			path = TopView;
 			sourceTree = "<group>";
 		};
-		7311325026CCEC0600EF88C1 /* TopBar（不要） */ = {
+		4931630026CD7B6800140412 /* MainScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				7311325126CCEC0600EF88C1 /* StampCenterTopBar.m */,
-				7311325226CCEC0600EF88C1 /* StampCenterTopBar.h */,
-			);
-			path = "TopBar（不要）";
-			sourceTree = "<group>";
-		};
-		7311325326CCEC0600EF88C1 /* MainScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				7311325426CCEC0600EF88C1 /* MainScrollView.h */,
-				7311325526CCEC0600EF88C1 /* MainScrollView.m */,
+				4931630126CD7B6800140412 /* MainScrollView.h */,
+				4931630226CD7B6800140412 /* MainScrollView.m */,
 			);
 			path = MainScrollView;
 			sourceTree = "<group>";
 		};
-		7311325626CCEC0600EF88C1 /* TableHeader */ = {
+		4931630326CD7B6800140412 /* TableHeader */ = {
 			isa = PBXGroup;
 			children = (
-				7311325726CCEC0600EF88C1 /* TableHeaderView.m */,
-				7311325826CCEC0600EF88C1 /* TableHeaderView.h */,
+				4931630426CD7B6800140412 /* TableHeaderView.m */,
+				4931630526CD7B6800140412 /* TableHeaderView.h */,
 			);
 			path = TableHeader;
 			sourceTree = "<group>";
 		};
-		7311325926CCEC0600EF88C1 /* PageTwo （要改） */ = {
+		4931631826CD7B7900140412 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7311325A26CCEC0600EF88C1 /* PageTwo.m */,
-				7311325B26CCEC0600EF88C1 /* PageTwo.h */,
+				4931631926CD7B7900140412 /* StampCenterVC.h */,
+				4931631B26CD7B7900140412 /* StampCenterVC.m */,
 			);
-			path = "PageTwo （要改）";
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7311321C26CCEB9C00EF88C1 /* StampCenter */ = {
+			isa = PBXGroup;
+			children = (
+				493162C326CD7B0F00140412 /* StampCenter_MainPage */,
+				7311327026CCEC2400EF88C1 /* ExchangeCenter */,
+				73AAA1A826C918240084E44D /* StampDetails */,
+			);
+			path = StampCenter;
 			sourceTree = "<group>";
 		};
 		7311327026CCEC2400EF88C1 /* ExchangeCenter */ = {
@@ -5509,6 +5477,7 @@
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				DB34EAEE239BD4550052B65E /* remind_image_content@2x.png in Resources */,
 				1A16593123D984840039BA46 /* Assets.xcassets in Resources */,
+				492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */,
 				DB34EAE2239BD4550052B65E /* 书@3x.png in Resources */,
 				DB34EB13239BD4550052B65E /* 提醒@2x.png in Resources */,
 				18CDF6D7257F91BE006E8E5C /* 5@3x.png in Resources */,
@@ -5561,7 +5530,6 @@
 				DB34EAE7239BD4550052B65E /* timeTable_image_pull@3x.png in Resources */,
 				DB34EB19239BD4550052B65E /* 周数@2x.png in Resources */,
 				DB34EB02239BD4550052B65E /* 多课0@3x.png in Resources */,
-				7311325D26CCEC0700EF88C1 /* Bauhaus-93.ttf in Resources */,
 				DB34EAEF239BD4550052B65E /* remind_image_editing@3x.png in Resources */,
 				DB34EAE1239BD4550052B65E /* 箭头@3x.png in Resources */,
 				D05C04CF23E5E047009A2E63 /* QAAskNextStepView.xib in Resources */,
@@ -5578,7 +5546,7 @@
 				DB34EAF5239BD4550052B65E /* 椭圆@2x.png in Resources */,
 				DB34EB1E239BD4550052B65E /* timeTable_image_add@3x.png in Resources */,
 				DB34EB0F239BD4550052B65E /* 编辑箭头@3x.png in Resources */,
-				7311326326CCEC0700EF88C1 /* stampcenter.xcassets in Resources */,
+				493162C526CD7B4900140412 /* stampcenter.xcassets in Resources */,
 				18CDF6E2257F91BE006E8E5C /* 3@3x.png in Resources */,
 				DB34EAF7239BD4550052B65E /* remind_image_content@3x.png in Resources */,
 				DB34EB17239BD4550052B65E /* 提醒@3x.png in Resources */,
@@ -5677,7 +5645,6 @@
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
-				7311326D26CCEC0700EF88C1 /* MainScrollView.m in Sources */,
 				1AD038DA23FA775600D5C90E /* MineQACommentItem.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				D03E59D223DB30AA00E0F34D /* QAAskNextStepView.m in Sources */,
@@ -5695,7 +5662,6 @@
 				73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
-				7311326A26CCEC0700EF88C1 /* PageOne.m in Sources */,
 				D0C5BC4523F14CF90022CC34 /* QADetailAnswerListView.m in Sources */,
 				18CDF6A6257F91BD006E8E5C /* NewsViewController.m in Sources */,
 				18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */,
@@ -5742,6 +5708,7 @@
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				AA4CD61925F13757002D9394 /* MainMsgCntModel.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
+				4931630D26CD7B6800140412 /* CollectionHeaderView.m in Sources */,
 				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
 				180DAA7026B442B60094B8DC /* ReportView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
@@ -5765,7 +5732,6 @@
 				D06AAEDF24AC00BB00EE0892 /* QAReviewView.m in Sources */,
 				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
 				B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */,
-				7311325F26CCEC0700EF88C1 /* TaskData.m in Sources */,
 				18CDF717257F91BE006E8E5C /* ActivityItem.m in Sources */,
 				AAE3304725E2A0D800324750 /* ArticleViewController.m in Sources */,
 				B89B8E5D2603928F00497814 /* CYSearchEndKnowledgeDetailView.m in Sources */,
@@ -5777,7 +5743,6 @@
 				180DA98C26B440640094B8DC /* NewQAMainPageTableViewController.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
-				7311326E26CCEC0700EF88C1 /* TableHeaderView.m in Sources */,
 				18CDF661257F91BD006E8E5C /* WeekAndDay.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
@@ -5803,7 +5768,6 @@
 				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
 				1A46C33F23DC65C2005DC1F3 /* MyAnswerReleasedCell.m in Sources */,
 				D026A81B23D5C119001A4774 /* QAListModel.m in Sources */,
-				7311326826CCEC0700EF88C1 /* CollectionHeaderView.m in Sources */,
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
 				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
 				B845735725C0390A005EFB91 /* SZHHotSearchButton.m in Sources */,
@@ -5816,6 +5780,7 @@
 				18CDF713257F91BE006E8E5C /* ArchiveTool.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
+				4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */,
 				AA3F82E624EA4A8900B65042 /* LeftBar.m in Sources */,
 				18CDF67B257F91BD006E8E5C /* ClassmateItem.m in Sources */,
 				18CDF6AE257F91BD006E8E5C /* SCChart.m in Sources */,
@@ -5828,7 +5793,6 @@
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
-				7311326926CCEC0700EF88C1 /* SecondHeaderView.m in Sources */,
 				AA4CD68325F28A32002D9394 /* NSArray+ChineseCharacterLog.m in Sources */,
 				D026A80523D4E054001A4774 /* QAListViewController.m in Sources */,
 				18CDF6A5257F91BD006E8E5C /* CQUPTMapDetailView.m in Sources */,
@@ -5837,12 +5801,14 @@
 				B82CA681263159BA00786685 /* UIColor+SYColor.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
+				4931630B26CD7B6800140412 /* MyCollectionViewCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
 				18CDF6BF257F91BE006E8E5C /* GPA.m in Sources */,
 				AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */,
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
+				4931630E26CD7B6800140412 /* SecondHeaderView.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
 				18CDF71B257F91BE006E8E5C /* VolunteerLoginView.m in Sources */,
@@ -5856,7 +5822,6 @@
 				18CDF71E257F91BE006E8E5C /* LogOutView.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				18CDF4BE257F8DBD006E8E5C /* questionItem.m in Sources */,
-				7311326226CCEC0700EF88C1 /* StampCenterVC.m in Sources */,
 				18CDF69C257F91BD006E8E5C /* CQUPTMapViewController.m in Sources */,
 				D0101F61243587A1004337ED /* GKLoadingView.m in Sources */,
 				180DAA6F26B442B60094B8DC /* MGDImageCollectionViewCell.m in Sources */,
@@ -5872,14 +5837,13 @@
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
+				4931630926CD7B6800140412 /* MyTableViewCellWithProgress.m in Sources */,
 				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
 				7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */,
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
-				7311325E26CCEC0700EF88C1 /* StampCountData.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				180DA9B526B440900094B8DC /* FollowGroupModel.m in Sources */,
 				180DAA6726B442B60094B8DC /* ShareView.m in Sources */,
-				7311326126CCEC0700EF88C1 /* ViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
@@ -5895,11 +5859,11 @@
 				AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */,
 				18CDF4BD257F8DBD006E8E5C /* questionModel.m in Sources */,
 				7311328926CCEC2400EF88C1 /* PopupView.m in Sources */,
-				7311326B26CCEC0700EF88C1 /* StampCenterTopView.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				180DAA7126B442B60094B8DC /* SearchBtn.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
+				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
@@ -5908,9 +5872,7 @@
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */,
 				18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
-				7311326726CCEC0700EF88C1 /* GotoButton.m in Sources */,
 				18CDF68B257F91BD006E8E5C /* ChoosePeopleListView.m in Sources */,
-				7311326426CCEC0700EF88C1 /* MyTableViewCellWithProgress.m in Sources */,
 				AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */,
 				18CDF6AB257F91BD006E8E5C /* SCLineChart.m in Sources */,
 				180DAA3C26B442B20094B8DC /* NewQATool.m in Sources */,
@@ -5919,6 +5881,7 @@
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
 				18CDF707257F91BE006E8E5C /* AllYearsViewController.m in Sources */,
 				B82CA6B726315CA100786685 /* ReleaseDynamicModel.m in Sources */,
+				493162DE26CD7B6300140412 /* TaskData.m in Sources */,
 				180DA9B026B440900094B8DC /* PostModel.m in Sources */,
 				18CDF683257F91BD006E8E5C /* EmptyClassModel.m in Sources */,
 				7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */,
@@ -5944,7 +5907,6 @@
 				D069799023D737800007E479 /* QADetailModel.m in Sources */,
 				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
-				7311326C26CCEC0700EF88C1 /* StampCenterTopBar.m in Sources */,
 				B83766E725C13E0E00A8666A /* SZHSearchTableViewCell.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
@@ -5963,6 +5925,7 @@
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
+				4931630A26CD7B6800140412 /* MyTableViewCell.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
@@ -5978,6 +5941,7 @@
 				18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */,
 				7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
+				493162CE26CD7B5D00140412 /* UIView+XYView.m in Sources */,
 				180DAA6A26B442B60094B8DC /* MGDClickLayer.m in Sources */,
 				18CDF6AD257F91BD006E8E5C /* SCCircleChart.m in Sources */,
 				1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */,
@@ -5987,12 +5951,12 @@
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				180DA9B126B440900094B8DC /* NewCountModel.m in Sources */,
 				180DAA7426B442B60094B8DC /* ShareBtn.m in Sources */,
-				7311326526CCEC0700EF88C1 /* MyTableViewCell.m in Sources */,
 				B892095A25BEDA1A00386451 /* SearchBeiginView.m in Sources */,
 				1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */,
 				180DA98E26B440640094B8DC /* NewQAPostDetailLabel.m in Sources */,
 				AAC7CA0125F5130900E6B5D5 /* PraiseParseModel.m in Sources */,
 				18CDF69F257F91BD006E8E5C /* CQUPTMapSearchView.m in Sources */,
+				4931630C26CD7B6800140412 /* GotoButton.m in Sources */,
 				AA4CD67D25F28A24002D9394 /* NSDictionary+ChineseCharacterLog.m in Sources */,
 				18CDF693257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
@@ -6015,6 +5979,7 @@
 				1AEF311F245E927B00487D40 /* MyGoodsTableViewCell.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
 				18CDF6C4257F91BE006E8E5C /* DetailSubjectScoreCell.m in Sources */,
+				493162DF26CD7B6300140412 /* GoodsData.m in Sources */,
 				18CDF71C257F91BE006E8E5C /* YearChooseBar.m in Sources */,
 				18CDF6C2257F91BE006E8E5C /* UserInfoView.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
@@ -6033,9 +5998,7 @@
 				AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */,
 				18CDF696257F91BD006E8E5C /* FYHCycleLabel.m in Sources */,
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
-				7311325C26CCEC0700EF88C1 /* UIView+XYView.m in Sources */,
 				18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */,
-				7311326026CCEC0700EF88C1 /* GoodsData.m in Sources */,
 				180DAA6C26B442B60094B8DC /* MGDCircleLayer.m in Sources */,
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
@@ -6079,7 +6042,6 @@
 				180DAA6D26B442B60094B8DC /* TopFollowView.m in Sources */,
 				B82CA680263159BA00786685 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
-				7311326626CCEC0700EF88C1 /* MyCollectionViewCell.m in Sources */,
 				18CDF6C6257F91BE006E8E5C /* ScoreTwoTitleView.m in Sources */,
 				18CDF6BB257F91BD006E8E5C /* GPAItem.m in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
@@ -6107,6 +6069,7 @@
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */,
 				180DA9AF26B440900094B8DC /* DeletePostModel.m in Sources */,
+				4931631226CD7B6800140412 /* MainScrollView.m in Sources */,
 				18CDF4BC257F8DBD006E8E5C /* selfSafeViewController.m in Sources */,
 				18CDF698257F91BD006E8E5C /* CQUPTMapHotPlaceButton.m in Sources */,
 				B82CA67F263159BA00786685 /* DynamicDetailTopBarView.m in Sources */,
@@ -6134,6 +6097,7 @@
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				7311328626CCEC2400EF88C1 /* Goods.m in Sources */,
 				AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */,
+				493162DD26CD7B6300140412 /* StampCountData.m in Sources */,
 				18CDF71D257F91BE006E8E5C /* GestureTableView.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
@@ -6154,10 +6118,10 @@
 				73AAA1D426C918250084E44D /* PurchaseInfoGoodsInfoView.m in Sources */,
 				18CDF66A257F91BD006E8E5C /* BannerItem.m in Sources */,
 				187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */,
+				4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */,
 				18CDF695257F91BD006E8E5C /* CQUPTMapPlaceItem.m in Sources */,
 				1AD038DD23FA7B0E00D5C90E /* MineQARecommentItem.m in Sources */,
 				18CDF69A257F91BD006E8E5C /* CQUPTMapProgressView.m in Sources */,
-				7311326F26CCEC0700EF88C1 /* PageTwo.m in Sources */,
 				18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */,
 				18CDF6CE257F91BE006E8E5C /* SchoolBusContentView.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
