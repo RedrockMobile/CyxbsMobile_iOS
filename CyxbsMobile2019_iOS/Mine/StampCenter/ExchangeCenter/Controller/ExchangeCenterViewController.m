@@ -31,6 +31,11 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+    self.tabBarController.tabBar.hidden = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorNamed:@"White&Black"];
@@ -45,6 +50,9 @@
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    self.tabBarController.tabBar.hidden = NO;
+}
 #pragma mark - configure
 ///顶部
 - (void)addTopView {
@@ -73,6 +81,7 @@
     }else{
         contentView.contentSize = CGSizeMake(iPhoneScreenWidth, contentView.tipsContentLabel.frame.origin.y + contentView.tipsContentLabel.frame.size.height + 10);
     }
+    self.isDirect = 1;
 ///开始计时器
     [self startTimer];
 }
@@ -115,7 +124,7 @@
         }];
     
 }
-#pragma mark - delegate 
+#pragma mark - delegate
 //MARK:UIScrollViewDelegate
 ///实现UIScrollView的滚动方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -138,10 +147,14 @@
 #pragma mark - 计时器
 ///自动播放到下一页
 - (void)nextPage {
-    NSInteger page = self.contentView.pageControl.currentPage + 1;
-    if (page == 3) {
-        page = 0;
+    if (self.contentView.pageControl.currentPage == 0) {
+        self.isDirect = 1;
     }
+    if (self.contentView.pageControl.currentPage == 2) {
+        self.isDirect = -1;
+    }
+    NSInteger page = self.contentView.pageControl.currentPage + 1 * self.isDirect;
+    
     [self.contentView.picScrollView setContentOffset:CGPointMake(page * self.contentView.picScrollView.frame.size.width, 0) animated:YES];
 }
 ///
@@ -173,11 +186,10 @@
 #pragma mark - private
 ///是否兑换
 - (void)isExchange {
-    PopupView *popupView = [[PopupView alloc]initWithFrame:CGRectMake(0, 0, 414, 900)];
+    PopupView *popupView = [[PopupView alloc]initWithFrame:CGRectMake(0, 0, 414, 900) AndID:_goodsID];
     [self.view addSubview:popupView];
     _popupView = popupView;
-    [popupView.cancleBtn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
-    [popupView.comfirmBtn addTarget:self action:@selector(comfirm) forControlEvents:UIControlEventTouchUpInside];
+    
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTapBehind:)];
     UITapGestureRecognizer *whitegesture = [[UITapGestureRecognizer alloc]init];
 //    [gesture setNumberOfTapsRequired:1];
@@ -189,19 +201,12 @@
 - (void)returnindex {
     [self.navigationController popViewControllerAnimated:YES];
 }
-///移除弹窗
-- (void)remove {
-    [self.popupView removeFromSuperview];
-}
-///确定
-- (void)comfirm {
-        
-}
 ///击其他区域关闭弹窗
 - (void)handleTapBehind:(UIGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded) {
         [self.popupView removeFromSuperview];
     }
 }
+
 
 @end

@@ -74,6 +74,11 @@
     }];
     NSString *s = self.goodsID;
     [Goods getDataDictWithId:s Success:^(NSDictionary * _Nonnull dict) {
+        int amount = [dict[@"amount"] intValue];
+        if (amount <= 0) {
+            self.exchangeBtn.enabled = NO;
+            self.exchangeBtn.backgroundColor = [UIColor colorNamed:@"170_187_255_1"];
+        }
         self->_priceLabel.text = [NSString stringWithFormat:@"%@",dict[@"price"]];
         
         } failure:^{

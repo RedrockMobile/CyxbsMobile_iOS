@@ -22,7 +22,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *comfirmBtn;
 ///文字框
 @property (nonatomic, strong) UILabel *textLabel;
+///商品ID
+@property (nonatomic,copy) NSString *goodsID;
+///库存不够确认按钮
+@property (nonatomic, strong) UIButton *noamountComfirmBtn;
 
+@property (nonatomic, assign) int is;
+
+- (instancetype)initWithFrame:(CGRect)frame AndID:(NSString *)ID;
 @end
 
 NS_ASSUME_NONNULL_END
