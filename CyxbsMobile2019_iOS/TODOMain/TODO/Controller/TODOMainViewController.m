@@ -255,7 +255,16 @@ typedef enum : NSUInteger {
                 NSMutableArray <TODOModel *>*firstDataSource = self.dataSource.firstObject;
                 [firstDataSource removeObjectAtIndex:indexPath.row];
                 NSMutableArray <TODOModel *>*lastDataSource = self.dataSource.lastObject;
-                [lastDataSource addObject:todoCell.model];
+               // [lastDataSource addObject:todoCell.model];
+                [lastDataSource insertObject:todoCell.model atIndex:0];
+                NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:1];
+                //此处应当注意，一定要判断，数据源数组非空的情况下，再进行这个动画操作，再tableview侧滑删除cell的时候也是如此，因为此处有空cell一定删除完数据源数组的内容，系统就会默认table已空，但实际上还有一承载imageview的空cell，所以一定要加上这个逻辑判断
+                if(firstDataSource.count!=0){
+                    [self.tableview beginUpdates];
+                    [self.tableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                    [self.tableview insertRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationRight];
+                    [self.tableview endUpdates];
+                }
                 [self.tableview reloadData];
             }
 }
@@ -366,6 +375,10 @@ typedef enum : NSUInteger {
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         [dataList removeObjectAtIndex:indexPath.row];
         completionHandler (YES);
+        if(dataList.count!=0){
+            [tableView beginUpdates];
+            [tableView  deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationRight];
+        }
         [self.tableview reloadData];
     }];
     deleteRowAction.image = [UIImage imageNamed:@"垃圾桶图"];
