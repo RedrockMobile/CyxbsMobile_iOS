@@ -1887,6 +1887,8 @@
 		0999162426CD75CE00C185EB /* TODOMain */ = {
 			isa = PBXGroup;
 			children = (
+				AA60649C26C91AA000D67A41 /* Tool */,
+				AA60641126C657A500D67A41 /* Discover_ToDo */,
 				0999163826CD75F300C185EB /* Assets.xcassets */,
 				0999162526CD75DE00C185EB /* TODO */,
 			);
@@ -2280,7 +2282,6 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
-				AA60641126C657A500D67A41 /* Discover_ToDo */,
 				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
 				18CDF525257F91BC006E8E5C /* Discover_EmptyClass */,
@@ -3901,7 +3902,6 @@
 		AA60641126C657A500D67A41 /* Discover_ToDo */ = {
 			isa = PBXGroup;
 			children = (
-				AA60649C26C91AA000D67A41 /* Tool */,
 				AA5F7EB826BD23E700A1FE25 /* DiscoverTodoView.h */,
 				AA5F7EB926BD23E700A1FE25 /* DiscoverTodoView.m */,
 				AA6063CF26BE1BC000D67A41 /* DiscoverTodoTableViewCell.h */,
