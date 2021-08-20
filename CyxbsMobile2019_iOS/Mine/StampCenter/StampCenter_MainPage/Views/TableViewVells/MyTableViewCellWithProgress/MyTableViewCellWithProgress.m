@@ -96,20 +96,5 @@
 
 - (void)test:(GotoButton *)sender{
     NSLog(@"%@",sender.target);
-    
-//    HttpClient *client = [HttpClient defaultClient];
-//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-//
-////    client.httpSessionManager POST:TASK_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-////            formData = @{
-////                @"stuNum": @"2020211618",
-////                @"idNum": @"669725"
-////            };
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//        NSLog(@"==========================成功了");
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        NSLog(@"==========================失败了");
-//    }
-
 }
 @end
