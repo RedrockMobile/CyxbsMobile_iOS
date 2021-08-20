@@ -10,9 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class DLTimeSelectedButton;
+
 @protocol DLTimeSelectedButtonDelegate <NSObject>
 
-- (void)deleteButtonWithBtn:(UIButton*)btn;
+- (void)deleteButtonWithBtn:(DLTimeSelectedButton*)btn;
 
 @end
 

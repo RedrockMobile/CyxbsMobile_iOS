@@ -7,6 +7,7 @@
 //
 
 #import "DiscoverTodoTableViewCell.h"
+#import "TodoSyncTool.h"
 
 @interface DiscoverTodoTableViewCell ()
 
@@ -32,12 +33,17 @@
         [self addTitleLabel];
         self.bellImgView.alpha = 1;
         self.notiTimeLabel.alpha = 1;
-        self.titleLabel.text = @"回家吃饭，回家吃饭，回家吃饭，回家吃饭";
-        self.notiTimeLabel.text = @"2019.07.01";
+        self.backgroundColor = RGBColor(248, 248, 251, 1);
     }
     return self;
 }
 
+- (void)setDataModel:(TodoDataModel *)dataModel {
+    _dataModel = dataModel;
+    self.checkMarkBtn.selected = dataModel.isDone;
+    self.titleLabel.text = dataModel.titleStr;
+    self.notiTimeLabel.text = dataModel.timeStr;
+}
 - (void)addCheckMarkBtn {
     UIButton* btn = [[UIButton alloc] init];
     self.checkMarkBtn = btn;
@@ -55,7 +61,7 @@
     
     label.font = [UIFont fontWithName:PingFangSCMedium size:15];
     label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-
+    
 }
 
 //MARK: - 懒加载
@@ -112,6 +118,16 @@
     }
     self.titleLabel.alpha = self.bellImgView.alpha = self.notiTimeLabel.alpha = alpha;
     self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:dict];
+    self.dataModel.isDone = !self.dataModel.isDone;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self drawImg];
+    });
+}
+
+- (void)drawImg {
+    //通知DiscoverTodoView，开始动画
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverTodoTableViewCellCheckMarkBtnClicked" object:self];
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0);
 }
 
 /// 完成部分UI布局，bellImgView、notiTimeLabel的布局在其对应的getter方法内

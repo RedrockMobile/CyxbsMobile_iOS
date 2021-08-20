@@ -421,6 +421,8 @@
 		AA6063EA26BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063E926BFD5A200D67A41 /* DiscoverTodoSelectTimeView.m */; };
 		AA6063F026BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063EF26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m */; };
 		AA6063F626BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063F526BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m */; };
+		AA60649F26C91B1300D67A41 /* TodoSyncTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AA60649E26C91B1300D67A41 /* TodoSyncTool.m */; };
+		AA6064A826C91E6200D67A41 /* TodoDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6064A726C91E6200D67A41 /* TodoDataModel.m */; };
 		AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E38A2635B04A00756F05 /* ColorManager.m */; };
 		AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E3B72636630800756F05 /* ScheduleInfoModel.m */; };
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
@@ -1455,6 +1457,10 @@
 		AA6063EF26BFD5EB00D67A41 /* DiscoverTodoSelectRepeatView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSelectRepeatView.m; sourceTree = "<group>"; };
 		AA6063F426BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSetRemindBasicView.h; sourceTree = "<group>"; };
 		AA6063F526BFD6C400D67A41 /* DiscoverTodoSetRemindBasicView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSetRemindBasicView.m; sourceTree = "<group>"; };
+		AA60649D26C91B1300D67A41 /* TodoSyncTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoSyncTool.h; sourceTree = "<group>"; };
+		AA60649E26C91B1300D67A41 /* TodoSyncTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoSyncTool.m; sourceTree = "<group>"; };
+		AA6064A626C91E6200D67A41 /* TodoDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoDataModel.h; sourceTree = "<group>"; };
+		AA6064A726C91E6200D67A41 /* TodoDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoDataModel.m; sourceTree = "<group>"; };
 		AA86E3892635B04A00756F05 /* ColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
 		AA86E38A2635B04A00756F05 /* ColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		AA86E3B62636630800756F05 /* ScheduleInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleInfoModel.h; sourceTree = "<group>"; };
@@ -1884,6 +1890,8 @@
 		0999162426CD75CE00C185EB /* TODOMain */ = {
 			isa = PBXGroup;
 			children = (
+				AA60649C26C91AA000D67A41 /* Tool */,
+				AA60641126C657A500D67A41 /* Discover_ToDo */,
 				0999163826CD75F300C185EB /* Assets.xcassets */,
 				0999162526CD75DE00C185EB /* TODO */,
 			);
@@ -2279,7 +2287,6 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
-				AA60641126C657A500D67A41 /* Discover_ToDo */,
 				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
 				18CDF525257F91BC006E8E5C /* Discover_EmptyClass */,
@@ -3918,6 +3925,17 @@
 			path = Discover_ToDo;
 			sourceTree = "<group>";
 		};
+		AA60649C26C91AA000D67A41 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				AA6064A626C91E6200D67A41 /* TodoDataModel.h */,
+				AA6064A726C91E6200D67A41 /* TodoDataModel.m */,
+				AA60649D26C91B1300D67A41 /* TodoSyncTool.h */,
+				AA60649E26C91B1300D67A41 /* TodoSyncTool.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		AA86E38F2635B33F00756F05 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -5540,6 +5558,7 @@
 				18CDF66D257F91BD006E8E5C /* ElectricityView.m in Sources */,
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
 				18CDF707257F91BE006E8E5C /* AllYearsViewController.m in Sources */,
+				AA6064A826C91E6200D67A41 /* TodoDataModel.m in Sources */,
 				B82CA6B726315CA100786685 /* ReleaseDynamicModel.m in Sources */,
 				180DA9B026B440900094B8DC /* PostModel.m in Sources */,
 				18CDF683257F91BD006E8E5C /* EmptyClassModel.m in Sources */,
@@ -5587,6 +5606,7 @@
 				B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
 				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
+				AA60649F26C91B1300D67A41 /* TodoSyncTool.m in Sources */,
 				18CDF6B2257F91BD006E8E5C /* SCColor.m in Sources */,
 				18CDF6D3257F91BE006E8E5C /* HeaderGifRefresh.m in Sources */,
 				7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */,

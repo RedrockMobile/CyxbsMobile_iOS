@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TodoDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol DiscoverTodoSheetViewDelegate <NSObject>
-- (void)sheetViewSaveBtnClicked;
+- (void)sheetViewSaveBtnClicked:(TodoDataModel*)dataModel;
 - (void)sheetViewCancelBtnClicked;
 @end
 

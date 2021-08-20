@@ -11,7 +11,11 @@
 #import "DiscoverTodoSelectTimeView.h"
 #import "DiscoverTodoSelectRepeatView.h"
 
-@interface DiscoverTodoSheetView ()
+
+@interface DiscoverTodoSheetView ()<
+    DiscoverTodoSelectTimeViewDelegate,
+    DiscoverTodoSelectRepeatViewDelegate
+>
 
 /// 白色背景板
 @property (nonatomic, strong)UIView* backView;
@@ -29,7 +33,14 @@
 @property (nonatomic, strong)UIButton* repeatModelBtn;
 
 /// 输入标题的按钮
-@property (nonatomic, strong)UITextField* titleInputTextfield;
+@property (nonatomic, strong)TodoTitleInputTextField* titleInputTextfield;
+
+@property (nonatomic, strong)DiscoverTodoSelectTimeView* selectTimeView;
+
+@property (nonatomic, strong)TodoDataModel* dataModel;
+
+/// 是否处于选择时间/重复模式的状态
+@property (nonatomic, assign)BOOL isSelecting;
 @end
 
 @implementation DiscoverTodoSheetView
@@ -42,6 +53,8 @@
         //最开始一定要设置一个clearColor的背景颜色，
         //否则外界调用show方法弹出self时，背景的颜色渐变动画就没了。
         self.backgroundColor = [UIColor clearColor];
+        
+        self.dataModel = [[TodoDataModel alloc] init];
         
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, 1.7389162562*SCREEN_HEIGHT));
@@ -162,7 +175,7 @@
 - (void)addRepeatModelBtn {
     UIButton* btn = [self getStdBtn];
     [self.backView addSubview:btn];
-    self.remindTimeBtn = btn;
+    self.repeatModelBtn = btn;
     
     [btn setTitle:@"设置重复提醒" forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"todo的小闹钟"] forState:UIControlStateNormal];
@@ -202,14 +215,26 @@
     }completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
-    [self.delegate sheetViewSaveBtnClicked];
+    TodoDataModel* model = self.dataModel;
+    model.todoIDStr = [NSString stringWithFormat:@"%ld", model.getNowStamp];
+    model.titleStr = self.titleInputTextfield.text;
+    model.isDone = NO;
+    [self.delegate sheetViewSaveBtnClicked:model];
 }
+
 /// 选择提醒时间的按钮点击后调用
 - (void)remindTimeBtnClicked {
+    // 如果这个属性为YES，说明在选择重复模式/重复时间，那么此时应当不允许进行选择提醒时间，所以return
+    if (self.isSelecting) {
+        return;
+    }
+    self.isSelecting = YES;
+    [self endEditing:YES];
     DiscoverTodoSelectTimeView* view = [[DiscoverTodoSelectTimeView alloc] init];
     [self.backView addSubview:view];
-    
+    self.selectTimeView = view;
     view.alpha = 0;
+    view.delegate = self;
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self);
@@ -220,12 +245,21 @@
         view.alpha = 1;
     }];
 }
+
 /// 选择重复提醒的按钮点击后调用
 - (void)repeatModelBtnClicked {
+    // 如果这个属性为YES，说明在选择重复模式/重复时间，那么此时应当不允许进行选择重复模式，所以return
+    if (self.isSelecting) {
+        return;
+    }
+    self.isSelecting = YES;
+    [self endEditing:YES];
     DiscoverTodoSelectRepeatView* view = [[DiscoverTodoSelectRepeatView alloc] init];
     [self.backView addSubview:view];
     
+    
     view.alpha = 0;
+    view.delegate = self;
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self);
@@ -235,6 +269,40 @@
         view.alpha = 1;
     }];
 }
+
+- (void)selectTimeViewSureBtnClicked:(NSDateComponents *)components {
+    self.isSelecting = NO;
+    [self.remindTimeBtn setTitle:[NSString stringWithFormat:@"%ld月%ld日%02ld:%02ld", components.month, components.day, components.hour, components.minute] forState:UIControlStateNormal];
+    self.dataModel.timeStr = [NSString stringWithFormat:@"%ld年%02ld月%02ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+}
+
+- (void)selectRepeatViewSureBtnClicked:(DiscoverTodoSelectRepeatView*)view {
+    self.isSelecting = NO;
+    self.dataModel.repeatMode = view.repeatMode;
+    switch (view.repeatMode) {
+        case TodoDataModelRepeatModeWeek:
+            self.dataModel.weekArr = view.dateArr;
+            break;
+        case TodoDataModelRepeatModeMonth:
+            self.dataModel.dayArr = view.dateArr;
+            break;
+        case TodoDataModelRepeatModeYear:
+            self.dataModel.dateArr = view.dateArr;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)selectTimeViewCancelBtnClicked {
+    self.isSelecting = NO;
+}
+
+- (void)selectRepeatViewCancelBtnClicked {
+    self.isSelecting = NO;
+}
+
+
 
 //MARK: - 其他
 /// 外界调用，点击后以动画的形式弹出
