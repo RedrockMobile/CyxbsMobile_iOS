@@ -8,6 +8,7 @@
 
 #import "DiscoverTodoView.h"
 #import "DiscoverTodoTableViewCell.h"
+#import "TodoSyncTool.h"
 @interface DiscoverTodoView ()<
     UITableViewDelegate,
     UITableViewDataSource
@@ -25,6 +26,7 @@
 /// 没有任何todo时显示“还没有待做事项哦～块去添加吧！”的提示文字
 @property (nonatomic, strong)UILabel* nothingLabel;
 
+@property (nonatomic, strong)NSArray<TodoDataModel*>* dataModelArr;
 @end
 
 @implementation DiscoverTodoView
@@ -32,9 +34,10 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.dataModelArr = @[];
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(SCREEN_WIDTH);
-            make.height.mas_equalTo(0.32*SCREEN_HEIGHT);
+            make.height.mas_equalTo(0.315*SCREEN_HEIGHT);
         }];
         
         if (@available(iOS 11.0, *)) {
@@ -49,13 +52,81 @@
         [self addAddBtn];
         self.nothingLabel.alpha = 1;
         [self addTodoListTableView];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            CCLog(@"%@, %@",NSStringFromCGSize(self.todoListTableView.contentSize), RectToString(self.todoListTableView.frame));
-        });
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shouldDrawImg:) name:@"DiscoverTodoTableViewCellCheckMarkBtnClicked" object:nil];
     }
     return self;
 }
 
+- (void)shouldDrawImg:(NSNotification*)noti {
+    DiscoverTodoTableViewCell* cell = noti.object;
+    [[TodoSyncTool share] alterTodoWithModel:cell.dataModel needRecord:YES];
+    
+    CGRect cellFrame = [cell convertRect:cell.bounds toView:self.todoListTableView];
+    CGFloat bottomImgY = cellFrame.origin.y+cellFrame.size.height;
+    
+    UIImageView* cellImgView = [self addImgViewOfView:self.todoListTableView clip:cellFrame];
+    UIImageView* bottomImgView = [self addImgViewOfView:self.todoListTableView clip:CGRectMake(0, bottomImgY, self.todoListTableView.width, self.todoListTableView.height-bottomImgY)];
+    
+    cellImgView.layer.anchorPoint = CGPointMake(0.5, 0);
+    cellImgView.layer.position = CGPointMake(cellImgView.layer.position.x, cellImgView.layer.position.y-cellImgView.frame.size.height/2);
+    [UIView animateWithDuration:1 animations:^{
+        cellImgView.transform = CGAffineTransformMakeScale(1, 0.01);
+        bottomImgView.transform = CGAffineTransformMakeTranslation(0, -cellFrame.size.height);
+    }completion:^(BOOL finished) {
+        [self reloadData];
+        [cellImgView removeFromSuperview];
+        [bottomImgView removeFromSuperview];
+    }];
+    
+}
+
+- (UIImageView*)addImgViewOfView:(UIView*)view clip:(CGRect)rect {
+    UIImageView* imgView = [[UIImageView alloc] initWithImage:[self getImgOfView:view clip:rect]];
+    imgView.frame = rect;
+    [self.todoListTableView addSubview:imgView];
+    [imgView sizeToFit];
+    return imgView;
+}
+/// 在view表示的矩形区域内，截取frame为rect的矩形区域的图片
+- (UIImage*)getImgOfView:(UIView*)view clip:(CGRect)rect {
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    
+    //得先剪裁，再渲染
+//    UIBezierPath* path = [UIBezierPath bezierPathWithRect:rect];
+//    [path addClip];
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(ctx, -rect.origin.x, -rect.origin.y);
+    [view.layer renderInContext:ctx];
+    
+    UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    static int cnt = 0;
+    cnt++;
+    [UIImagePNGRepresentation(img) writeToFile:[NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%d.png",cnt]] atomically:YES];
+    if (cnt%2==0) {
+        cnt = 0;
+    }
+    return img;
+}
+
+
+- (void)reloadData {
+    self.dataModelArr = [self.dataSource dataModelToShowForDiscoverTodoView:self];
+    [self.todoListTableView reloadData];
+    [UIView animateWithDuration:1 animations:^{
+        if (self.dataModelArr.count==0) {
+            self.nothingLabel.alpha = 1;
+            self.todoListTableView.alpha = 0;
+        }else {
+            self.nothingLabel.alpha = 0;
+            self.todoListTableView.alpha = 1;
+        }
+    }];
+    
+}
 //MARK: - 初始化UI的操作：
 /// 添加一个View遮住底部多出来的圆角
 - (void)addMaskView {
@@ -133,19 +204,22 @@
     tableView.dataSource = self;
     tableView.backgroundColor = self.backgroundColor;
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self);
+        make.left.right.equalTo(self);
         make.top.equalTo(self.addBtn.mas_bottom).offset(0.03078817734*SCREEN_HEIGHT);
 //        make.height.mas_equalTo(0.2795566502*SCREEN_HEIGHT);
+        make.bottom.equalTo(self).offset(0.07142857143*SCREEN_HEIGHT);
     }];
     tableView.showsVerticalScrollIndicator = NO;
 }
 
 /// MARK: - tableviwe的代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+//    return self.dataModelArr.count;
+    return self.dataModelArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DiscoverTodoTableViewCell* cell = [[DiscoverTodoTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"idd"];
+    [cell setDataModel:self.dataModelArr[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -65,7 +65,7 @@
         [invocation setArgument:&no atIndex:2];
         [invocation invokeWithTarget:datePicker];
      */
-    [datePicker addTarget:self action:@selector(touchDatePicker:) forControlEvents:(UIControlEventValueChanged)];
+//    [datePicker addTarget:self action:@selector(touchDatePicker:) forControlEvents:(UIControlEventValueChanged)];
 }
 //为紫色的tipView布局
 - (void)layoutTipView {
@@ -77,11 +77,12 @@
 
 //MARK: - 响应事件
 //滚动datePicker时调用
-- (void)touchDatePicker:(UIDatePicker*)datePicker {
-    NSDateComponents* components = [[NSCalendar currentCalendar] components:252 fromDate:datePicker.date];
-    components.timeZone = NSTimeZone.localTimeZone;
-    CCLog(@"%@",components);
-}
+//- (void)touchDatePicker:(UIDatePicker*)datePicker {
+//    NSDateComponents* components = [[NSCalendar currentCalendar] components:252 fromDate:datePicker.date];
+//    components.timeZone = NSTimeZone.localTimeZone;
+//    self.components = components;
+//    CCLog(@"%@",components);
+//}
 /// 下方的取消按钮点击后调用
 - (void)cancelBtnClicked {
     [UIView animateWithDuration:0.5 animations:^{
@@ -89,6 +90,7 @@
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+    [self.delegate selectTimeViewCancelBtnClicked];
 }
 /// 下方的确定按钮点击后调用
 - (void)sureBtnClicked {
@@ -97,6 +99,9 @@
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+    NSDateComponents* components = [[NSCalendar currentCalendar] components:252 fromDate:self.datePicker.date];
+    components.timeZone = NSTimeZone.localTimeZone;
+    [self.delegate selectTimeViewSureBtnClicked:components];
 }
 
 @end

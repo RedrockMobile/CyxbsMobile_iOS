@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TodoDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,11 +18,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@class DiscoverTodoView;
+
+@protocol DiscoverTodoViewDataSource <NSObject>
+
+- (NSArray<TodoDataModel*>*)dataModelToShowForDiscoverTodoView:(DiscoverTodoView*)view;
+
+@end
+
 @interface DiscoverTodoView : UIView
 
 /// 代理会设置成DiscoverViewController
 @property(nonatomic, weak)id <DiscoverTodoViewDelegate> delegate;
+@property(nonatomic, weak)id <DiscoverTodoViewDataSource> dataSource;
 
+- (void)reloadData;
 @end
 
 NS_ASSUME_NONNULL_END

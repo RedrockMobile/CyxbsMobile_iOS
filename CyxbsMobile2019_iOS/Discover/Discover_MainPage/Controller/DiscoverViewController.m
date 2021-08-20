@@ -38,6 +38,7 @@
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 //Tool
 #import "NewQAHud.h"
+#import "TodoSyncTool.h"
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
@@ -53,12 +54,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     ElectricityViewDelegate,
     VolunteerViewDelegate,
     DiscoverTodoViewDelegate,
-    DiscoverTodoSheetViewDelegate
+    DiscoverTodoSheetViewDelegate,
+    DiscoverTodoViewDataSource
 >
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
-//View
-@property (nonatomic, weak) UIScrollView * backView;
+
 @property (nonatomic, weak) UIScrollView *contentView;
 
 /// 上方发现页面
@@ -104,6 +105,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 @property(nonatomic,strong)UIWindow *window;
 @property(nonatomic, strong)DiscoverTodoView* todoView;
+@property(nonatomic, strong)TodoSyncTool* todoSyncTool;
 @end
 
 @implementation DiscoverViewController
@@ -165,6 +167,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.todoSyncTool = [TodoSyncTool share];
     [self configDefaults];
     [self requestData];
     [self addContentView];
@@ -173,7 +176,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addEleView];
     [self addVolView];
     [self layoutSubviews];
+    [self addNotifications];
     self.view.backgroundColor = self.finderView.backgroundColor;
+}
+
+- (void)addNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"Login_LoginSuceeded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
@@ -185,8 +192,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(todoSyncToolDidSync:) name:TodoSyncToolSyncNotification object:nil];
 }
-
 - (void)loginSucceed {
     [self requestData];
 }
@@ -370,6 +377,8 @@ static int requestCheckinInfo = 0;
     self.todoView = todoView;
     
     todoView.delegate = self;
+    todoView.dataSource = self;
+    [todoView reloadData];
 }
 - (void)bindingVolunteerButton {
     ///需要在此处判断一下是否已经登陆了志愿者的界面，如果登陆了，则直接跳QueryViewController，如果未登陆的话则跳登陆的viewController
@@ -703,11 +712,31 @@ static int requestCheckinInfo = 0;
 }
 
 //MARK: - DiscoverTodoSheetView的代理方法：
-- (void)sheetViewSaveBtnClicked {
+- (void)sheetViewSaveBtnClicked:(TodoDataModel *)dataModel {
     //显示底部课表的tabBar
     [UIView animateWithDuration:0.5 animations:^{
         self.tabBarController.tabBar.alpha = 1;
     }];
+    
+    [self.todoSyncTool saveTodoWithModel:dataModel needRecord:YES];
+    
+}
+- (void)todoSyncToolDidSync:(NSNotification*)noti {
+    NSString* state = noti.object;
+    if ([state isEqualToString:TodoSyncToolSyncNotificationSuccess]) {
+        [NewQAHud showHudWith:@" 和服务器数据同步成功 " AddView:self.view];
+    }else if([state isEqualToString:TodoSyncToolSyncNotificationFailure]){
+        [NewQAHud showHudWith:@" 网络错误，待接入网络时，再和服务器同步数据 " AddView:self.view];
+    }else {
+        [NewQAHud showHudWith:@" 产生了冲突 " AddView:self.view];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.todoView reloadData];
+    });
+        
+}
+- (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
+    return [self.todoSyncTool getTodoForDiscoverMainPage];
 }
 - (void)sheetViewCancelBtnClicked {
     //显示底部课表的tabBar

@@ -7,31 +7,17 @@
 //
 
 #import "DiscoverTodoSelectRepeatView.h"
-/// 当前的重复提醒类型的枚举
-typedef enum : NSUInteger {
-    DiscoverTodoSelectRepeatTypeDay,
-    DiscoverTodoSelectRepeatTypeWeek,
-    DiscoverTodoSelectRepeatTypeMonth,
-    DiscoverTodoSelectRepeatTypeYear
-} DiscoverTodoSelectRepeatType;
+#import "DLTimeSelectedButton.h"
+
 
 @interface DiscoverTodoSelectRepeatView() <
     UIPickerViewDelegate,
-    UIPickerViewDataSource
+    UIPickerViewDataSource,
+    DLTimeSelectedButtonDelegate
 >
 
 /// 数据选择器
 @property(nonatomic, strong)UIPickerView* pickerView;
-
-/// 当前的重复类型
-@property(nonatomic, assign)DiscoverTodoSelectRepeatType currentType;
-
-/// 第二列选择的数据，重复类型为每年时，代表选择的月份，0代表1月；重复类型为每月时，代表选择的日，0代表1日；
-/// 重复类型为每周时，代表选择的周几，0代表周日，1代表周一。
-@property(nonatomic, assign)int com2Selected;
-
-/// 第三列选择的数据，重复类型为每年时，代表选择的日，0代表1日。
-@property(nonatomic, assign)int com3Selected;
 
 /// 周数按钮
 @property (nonatomic, copy)NSArray* week;
@@ -42,6 +28,21 @@ typedef enum : NSUInteger {
 /// 加号按钮
 @property (nonatomic, strong)UIButton* addBtn;
 
+@property (nonatomic, strong)UIScrollView* scrollView;
+
+@property (nonatomic, strong)UIView* scrContenView;;
+
+@property (nonatomic, strong)NSMutableArray<DLTimeSelectedButton*>* btnArr;
+
+
+/// selectedCntOfcom[0]：当前的重复类型
+/// selectedCntOfcom[1]：
+/// 第二列选择的数据，重复类型为每年时，代表选择的月份，0代表1月；重复类型为每月时，代表选择的日，0代表1日；
+/// 重复类型为每周时，代表选择的周几，0代表周日，1代表周一。
+/// selectedCntOfcom[2]：
+/// 第三列选择的数据，重复类型为每年时，代表选择的日，0代表1日。
+@property (nonatomic, assign)NSInteger* selectedCntOfcom;
+
 @end
 
 @implementation DiscoverTodoSelectRepeatView
@@ -49,18 +50,22 @@ typedef enum : NSUInteger {
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self addPickerView];
+        self.btnArr = [NSMutableArray arrayWithCapacity:4];
+        self.dateArr = [NSMutableArray arrayWithCapacity:4];
+        self.repeatMode = TodoDataModelRepeatModeNO;
         self.week = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
-//        NSArray* month = @[@""]
-//        NSArray* rowCntFowYear = @[@12, @31];
         self.days = @[
             @31, @29, @31,
             @30, @31, @30,
             @31, @31, @30,
             @31, @30, @31
         ];
+        self.selectedCntOfcom = calloc(3, sizeof(NSInteger));
+        
+        [self addPickerView];
         [self layoutTipView];
         [self addAddBtn];
+        [self addScrollView];
         
         [self.cancelBtn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [self.sureBtn addTarget:self action:@selector(sureBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -102,7 +107,31 @@ typedef enum : NSUInteger {
         make.width.height.mas_equalTo(0.048*SCREEN_WIDTH);
     }];
 }
-
+- (void)addScrollView {
+    UIScrollView* scrollView = [[UIScrollView alloc] init];
+    self.scrollView = scrollView;
+    [self addSubview:scrollView];
+    
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+//    scrollView.backgroundColor = [UIColor lightGrayColor];
+    
+    [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self);
+        make.top.equalTo(self).offset(0.01724137931*SCREEN_HEIGHT);
+        make.height.mas_equalTo(0.04433497537*SCREEN_HEIGHT);
+    }];
+    
+    
+    UIView* scrContenView = [[UIView alloc] init];
+    self.scrContenView = scrContenView;
+    [scrollView addSubview:scrContenView];
+    
+    
+    [scrContenView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(scrollView);
+    }];
+}
 //MARK: - pickerView的代理方法：
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     switch (component) {
@@ -110,80 +139,68 @@ typedef enum : NSUInteger {
             return @[@"每天", @"每周", @"每月", @"每年"][row];
             break;
         case 1:
-            if (self.currentType==DiscoverTodoSelectRepeatTypeWeek) {
-                return @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"][row];
+            if (self.selectedCntOfcom[0]==1) {
+                return self.week[row];
             }
         default:
+            return [@(row+1) stringValue];
             break;
     }
-    
-    return [@(row+1) stringValue];
 }
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-    switch (self.currentType) {
-        case DiscoverTodoSelectRepeatTypeDay:
-            return 1;
-            break;
-        case DiscoverTodoSelectRepeatTypeWeek:
-            return 2;
-            break;
-        case DiscoverTodoSelectRepeatTypeMonth:
-            return 2;
-            break;
-        case DiscoverTodoSelectRepeatTypeYear:
-            return 3;
-            break;
+    if (self.selectedCntOfcom[0] > 1) {
+        return self.selectedCntOfcom[0];
+    }else {
+        return self.selectedCntOfcom[0] + 1;
     }
 }
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     if (component==0) {
         return 4;
     }
-    switch (self.currentType) {
-        case DiscoverTodoSelectRepeatTypeDay:
+    switch (self.selectedCntOfcom[0]) {
+        case 0:
             return 4;
             break;
-        case DiscoverTodoSelectRepeatTypeWeek:
+        case 1:
             return 7;
             break;
-        case DiscoverTodoSelectRepeatTypeMonth:
+        case 2:
             return 31;
             break;
-        case DiscoverTodoSelectRepeatTypeYear:
+        case 3:
             if (component==1) {
                 return 12;
             }else {
-                return [self.days[self.com2Selected] intValue];
+                return [self.days[self.selectedCntOfcom[1]] intValue];
             }
+            break;
+        default:
+            return 0;
             break;
     }
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    switch (component) {
-        case 0:
-            self.currentType = (int)row;
-            //①
-            [self resetDateSelected];
-            break;
-        case 1:
-            self.com2Selected = (int)row;
-        default:
-            self.com3Selected = (int)row;
-            break;
-    }
-    [self.pickerView reloadAllComponents];
-    //②
-    if (component==0) {
-        NSInteger cnt = [self numberOfComponentsInPickerView:self.pickerView];
-        for (int i=1; i<cnt; i++) {
-            [pickerView selectRow:0 inComponent:i animated:YES];
+    self.selectedCntOfcom[component] = row;
+    [self resetData];
+}
+- (void)resetData {
+    NSInteger componentCnt = [self numberOfComponentsInPickerView:self.pickerView];
+    NSInteger rowCnt;
+    for (int i=0; i<componentCnt; i++) {
+        rowCnt = [self pickerView:self.pickerView numberOfRowsInComponent:i];
+        if (self.selectedCntOfcom[i] >= rowCnt) {
+            self.selectedCntOfcom[i] = rowCnt-1;
         }
     }
-    //上面的①+②的代码，可以确保一写bug不发生，bug的出现方式：
-    //每月选择一个大于7的日期，然后模式换成每周，这时候显示的时间和实际的不符。
-    //每月选择一个大于12的日期，然后模式换成每年，就会崩溃
+    
+    [self.pickerView reloadAllComponents];
+    
+    for (int i=0; i<componentCnt; i++) {
+        [self.pickerView selectRow:self.selectedCntOfcom[i] inComponent:i animated:YES];
+    }
 }
-
 //MARK: - 点击按钮后调用
 - (void)cancelBtnClicked {
     [UIView animateWithDuration:0.5 animations:^{
@@ -191,6 +208,7 @@ typedef enum : NSUInteger {
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+    [self.delegate selectRepeatViewCancelBtnClicked];
 }
 - (void)sureBtnClicked {
     [UIView animateWithDuration:0.5 animations:^{
@@ -198,15 +216,132 @@ typedef enum : NSUInteger {
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
-}
-- (void)addBtnClicked {
-        
+    [self.delegate selectRepeatViewSureBtnClicked:self];
 }
 
-//MARK: - 其他
-//把已选择的日期重置
-- (void)resetDateSelected {
-    self.com3Selected =
-    self.com2Selected = 0;
+//从[1, 2, ... 7]转化为[2, 3, ... 1]
+static inline int ChinaWeekToForeignWeek(int week) {
+    return week%7+1;
+}
+//从[2, 3, ... 1]转化为[1, 2, ... 7]
+static inline int ForeignWeekToChinaWeek(int week) {
+    return (week+5)%7+1;
+}
+
+- (void)addBtnClicked {
+    NSString* titleStr;
+    switch (self.selectedCntOfcom[0]) {
+        case 0:
+            self.repeatMode = TodoDataModelRepeatModeDay;
+            return;
+        case 1:
+            self.repeatMode = TodoDataModelRepeatModeWeek;
+            titleStr = self.week[self.selectedCntOfcom[1]];
+            [self.dateArr addObject:[NSString stringWithFormat:@"%d", ForeignWeekToChinaWeek((int)self.selectedCntOfcom[1]+1)]];
+            break;
+        case 2:
+            self.repeatMode = TodoDataModelRepeatModeMonth;
+            titleStr = [NSString stringWithFormat:@"每月%ld日",self.selectedCntOfcom[1]+1];
+            [self.dateArr addObject:[NSString stringWithFormat:@"%ld",self.selectedCntOfcom[1]+1]];
+            break;
+        case 3:
+            self.repeatMode = TodoDataModelRepeatModeYear;
+            titleStr = [NSString stringWithFormat:@"每年%ld月%ld日",self.selectedCntOfcom[1]+1, self.selectedCntOfcom[2]+1];
+            [self.dateArr addObject:@{
+                TodoDataModelKeyMonth:[NSString stringWithFormat:@"%02ld",self.selectedCntOfcom[1]+1],
+                TodoDataModelKeyDay:[NSString stringWithFormat:@"%02ld",self.selectedCntOfcom[2]+1]
+            }];
+            break;
+    }
+    DLTimeSelectedButton* btn = [[DLTimeSelectedButton alloc] init];
+    [self.btnArr addObject:btn];
+    [self.scrContenView addSubview:btn];
+    
+    [btn setTitle:titleStr forState:UIControlStateNormal];
+    btn.delegate = self;
+    
+    //有待性能优化
+    [self reLayoutAllBtn];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        CGFloat x = self.scrollView.contentSize.width-SCREEN_WIDTH;
+        if (x>60) {
+            [UIView animateWithDuration:0.6 animations:^{
+                self.scrollView.contentOffset = CGPointMake(x+4, 0);
+            }completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.4 animations:^{
+                    self.scrollView.contentOffset = CGPointMake(x, 0);
+                }];
+            }];
+        }
+    });
+}
+
+- (void)reLayoutAllBtn {
+    MASViewAttribute* last = self.scrContenView.mas_left;
+    for (UIButton* btn in self.btnArr) {
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0.04433497537*SCREEN_HEIGHT);
+            make.top.bottom.equalTo(self.scrContenView);
+            make.left.equalTo(last).offset(0.03733333333*SCREEN_WIDTH);
+        }];
+        last = btn.mas_right;
+    }
+    if (self.btnArr.count==0) {
+        return;
+    }
+    [[self.btnArr lastObject] mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.scrContenView).offset(-0.03733333333*SCREEN_WIDTH);
+    }];
+}
+
+- (void)deleteButtonWithBtn:(DLTimeSelectedButton*)btn {
+    //有待性能优化
+    [btn removeFromSuperview];
+    [self.dateArr removeObjectAtIndex:[self.btnArr indexOfObject:btn]];
+    [self.btnArr removeObject:btn];
+    [self reLayoutAllBtn];
+}
+
+- (void)dealloc {
+    free(self.selectedCntOfcom);
+    self.selectedCntOfcom = nil;
 }
 @end
+
+/*
+ return;
+ NSUInteger index = [self.btnArr indexOfObject:btn];
+ if (index==0) {
+     [btn mas_remakeConstraints:^(MASConstraintMaker *make) {}];
+     [btn removeFromSuperview];
+     
+     if (self.btnArr.count!=1) {
+         UIButton* rightBtn = self.btnArr[1];
+         [rightBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+             make.left.equalTo(self.scrContenView).offset(0.03733333333*SCREEN_WIDTH);
+         }];
+     }
+ }else if (index==self.btnArr.count-1) {
+     [btn mas_remakeConstraints:^(MASConstraintMaker *make) {}];
+     [btn removeFromSuperview];
+     
+     UIButton* leftBtn = self.btnArr[self.btnArr.count-2];
+     [leftBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+         make.right.equalTo(self.scrContenView).offset(-0.03733333333*SCREEN_WIDTH);
+     }];
+ }else {
+     [btn mas_remakeConstraints:^(MASConstraintMaker *make) {}];
+     [btn removeFromSuperview];
+     
+     UIButton* leftBtn = self.btnArr[index-1];
+     UIButton* rightBtn = self.btnArr[index+1];
+     [leftBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+         make.right.equalTo(rightBtn.mas_left).offset(-0.03733333333*SCREEN_WIDTH);
+     }];
+     [rightBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+         make.left.equalTo(rightBtn.mas_right).offset(0.03733333333*SCREEN_WIDTH);
+     }];
+ }
+ [self.btnArr removeObject:btn];
+ */

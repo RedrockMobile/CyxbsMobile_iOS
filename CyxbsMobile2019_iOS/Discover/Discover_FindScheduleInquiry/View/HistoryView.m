@@ -122,7 +122,7 @@
     self.clearHistoryItemBtn.enabled = YES;
 }
 
-- (void)deleteButtonWithBtn:(UIButton *)btn{
+- (void)deleteButtonWithBtn:(DLTimeSelectedButton *)btn{
     [self.buttonArray removeObject:btn];
     [self.dataArray removeObject:btn.titleLabel.text];
     [self remove:btn.titleLabel.text fromDataArrayWithUserDefaultKey:self.UserDefaultKey];

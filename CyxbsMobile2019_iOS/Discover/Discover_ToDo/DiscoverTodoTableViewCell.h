@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TodoDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /// 发现页todo的cell
 @interface DiscoverTodoTableViewCell : UITableViewCell
-
+@property (nonatomic, strong)TodoDataModel* dataModel;
 @end
 
 NS_ASSUME_NONNULL_END
