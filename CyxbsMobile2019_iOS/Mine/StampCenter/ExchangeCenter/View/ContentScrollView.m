@@ -75,8 +75,8 @@
                 imgeView.backgroundColor = self->_color1[i];
 
                 self->_urls = dict[@"urls"];
-                NSLog(@"%@", self->_urls);
                 NSString *imgurl = self->_urls[0];
+                NSLog(@"2312312%@", self->_urls[0]);
                 NSURL *url = [NSURL URLWithString: imgurl];
                 NSData *imageData = [NSData dataWithContentsOfURL:url];
                 UIImage *image = [UIImage imageWithData:imageData];
@@ -88,7 +88,6 @@
     [self addPageController];
     NSLog(@"%@", _urls);
 }
-
 
 ///分页控制器
 - (void)addPageController {

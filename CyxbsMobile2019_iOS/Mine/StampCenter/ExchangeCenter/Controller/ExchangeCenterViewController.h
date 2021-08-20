@@ -38,7 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *goodsID;
 ///计时器
 @property (nonatomic) NSTimer *timer;
-
+///滑动方向
+@property (nonatomic, assign) int isDirect;
 ///传商品ID
 - (instancetype)initWithID:(NSString *)ID;
 
