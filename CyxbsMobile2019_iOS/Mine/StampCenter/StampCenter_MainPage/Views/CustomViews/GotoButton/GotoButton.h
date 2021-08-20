@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///去完成（兑换）按钮
 @interface GotoButton : UIButton
 
+@property (nonatomic,copy) NSString *target;
+
 - (instancetype)initWithFrame:(CGRect)frame AndTitle:(NSString *)title;
 
 @end
