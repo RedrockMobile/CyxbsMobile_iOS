@@ -112,7 +112,8 @@
         self.contentView.amountLabel.text = [@"库存量：" stringByAppendingString: [NSString stringWithFormat:@"%@",self.goodsDict[@"amount"]]];
         self.contentView.textLabel.text = self.goodsDict[@"description" ];
         self.contentView.lastdayLabel.text = [[@"有效期：" stringByAppendingString: [NSString stringWithFormat:@"%@",self.goodsDict[@"life"]]] stringByAppendingString:@"天"];
-        if (self.goodsDict[@"type"] == 0) {
+        int type = [self.goodsDict[@"type"]intValue];
+        if (type == 1) {
             self.topView.titleLabel.text = @"邮货详情";
             self.contentView.tipsContentLabel.text = @"1、每个实物商品每人限兑换一次，已经兑换的商品不能退货换货也不予折现。\n2、在法律允许的范围内，本活动的最终解释权归红岩网校工作站所有。";
         }else{

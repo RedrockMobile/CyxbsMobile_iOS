@@ -124,6 +124,6 @@
 }
 ///确定
 - (void)comfirm {
-        
+    [self removeFromSuperview];
 }
 @end
