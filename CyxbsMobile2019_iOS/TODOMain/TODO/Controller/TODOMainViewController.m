@@ -104,6 +104,10 @@ typedef enum : NSUInteger {
     self.tableview.separatorStyle = UITableViewCellSelectionStyleNone;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
 -(void)viewWillDisappear:(BOOL)animated{
     _txt.text = @"";
     [self.datepicker removeFromSuperview];

@@ -181,8 +181,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     //如果最开始无baseURL，则设置为学校服务器
     NSString *baseURL= [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
     if (baseURL == nil || [baseURL isEqualToString:@""]) {
-        baseURL = @"https://be-prod.redrock.team/";
-//        baseURL = @"https://be/fe-prod.redrock.cqupt.edu.cn/";
+//        baseURL = @"https://be-prod.redrock.team/";
+        baseURL = @"https://be/fe-prod.redrock.cqupt.edu.cn/";
         [[NSUserDefaults standardUserDefaults] setObject:baseURL forKey:@"baseURL"];
     }
     //更新baseURL
@@ -190,7 +190,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"baseURL"];
     }];
     
-//    NSLog(@"baseURL%@",CyxbsMobileBaseURL_1);
+//    NS，，，，，，，，Log(@"baseURL%@",CyxbsMobileBaseURL_1);
 }
 ///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{
