@@ -4073,10 +4073,10 @@
 		73AAA1AC26C918240084E44D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				73AAA1AD26C918240084E44D /* DetailsTaskModel.m */,
 				73AAA1AE26C918240084E44D /* DetailsGoodsModel.h */,
-				73AAA1AF26C918240084E44D /* DetailsTaskModel.h */,
 				73AAA1B026C918240084E44D /* DetailsGoodsModel.m */,
+				73AAA1AF26C918240084E44D /* DetailsTaskModel.h */,
+				73AAA1AD26C918240084E44D /* DetailsTaskModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";

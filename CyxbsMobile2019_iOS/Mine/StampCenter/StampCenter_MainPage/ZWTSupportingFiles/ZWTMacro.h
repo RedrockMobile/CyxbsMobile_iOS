@@ -22,4 +22,7 @@
 ///首页 API
 #define MAIN_PAGE_API [NewBaseURL stringByAppendingString:@"magipoke-intergral/User/info"]
 
+///任务 API
+#define TASK_API [NewBaseURL stringByAppendingString:@"magipoke-intergral/Integral/progress"]
+
 #endif /* ZWTMacro_h */
