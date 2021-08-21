@@ -24,6 +24,7 @@
 
 ///邮票中心主界面
 @interface StampCenterVC () <UITableViewDelegate,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UICollectionViewDataSource,TopViewDelegate>
+
 ///当前table高度
 @property (nonatomic,assign) CGFloat tableCorrectHeaderY;
 ///当前collection高度
@@ -46,6 +47,8 @@
 @property (nonatomic,strong) NSNumber *number;
 ///小型邮票Lbl
 @property (nonatomic,strong) UILabel *smallcountLbl;
+///正确的小型邮票View的X坐标
+@property (nonatomic,assign) CGFloat stampCountView_X;
 
 @end
 
@@ -81,6 +84,28 @@
 //邮票数量
 - (void)setNumber:(NSNumber *)number{
     _number = number;
+    int j = [number intValue];
+    if (j < 10) {
+        self.stampCountView.width = 65;
+        self.stampCountView_X = 0.78*SCREEN_WIDTH;
+    }
+    if (j >= 10 && j < 100) {
+        self.stampCountView_X = 0.76*SCREEN_WIDTH;
+    }
+    if (j >= 100 && j <1000) {
+        self.stampCountView_X = 0.74*SCREEN_WIDTH;
+        self.stampCountView.width = 80;
+    }
+    if (j >= 1000 && j < 10000) {
+        self.stampCountView_X = 0.72*SCREEN_WIDTH;
+        self.smallcountLbl.width = 40;
+        self.stampCountView.width = 90;
+    }
+    if (j >= 10000 && j < 100000) {
+        self.stampCountView_X = 0.70*SCREEN_WIDTH;
+        self.smallcountLbl.width = 50;
+        self.stampCountView.width = 100;
+    }
     self.smallcountLbl.text = [NSString stringWithFormat:@"%@",_number];
 }
 
@@ -200,7 +225,7 @@
                         self.detailBtn.hidden = NO;
                     }
                     if (self->_collectionCorrectHeaderY != Bar_H) {
-                        self->_stampCountView.x = 0.746*SCREEN_WIDTH;
+                        self->_stampCountView.x = self.stampCountView_X;
                         self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
                         self.topView.bannerImage.y = 28;
                         self.topView.bannerImage.alpha = 0;
@@ -219,7 +244,7 @@
                         self.detailBtn.hidden = NO;
                     }
                     if (self->_tableCorrectHeaderY != Bar_H) {
-                        self->_stampCountView.x = 0.746*SCREEN_WIDTH;
+                        self->_stampCountView.x = self.stampCountView_X;
                         self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
                         self.topView.bannerImage.y = 28;
                         self.topView.bannerImage.alpha = 0;
@@ -257,7 +282,7 @@
         if (scrollView.contentOffset.y > 0 && scrollView.contentOffset.y <= 138) {
             _collectionCorrectHeaderY = -scrollView.contentOffset.y+Bar_H;
             [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self->_stampCountView.x = 0.746*SCREEN_WIDTH;
+                self->_stampCountView.x = self.stampCountView_X;
                 self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
                 self.topView.bannerImage.y = 28;
                 self.detailBtn.hidden = YES;
@@ -268,7 +293,7 @@
         }
         if (scrollView.contentOffset.y >= 138) {
             _collectionCorrectHeaderY = -138+Bar_H;
-            _stampCountView.x = 0.746*SCREEN_WIDTH;
+            _stampCountView.x = self.stampCountView_X;
         }
         _topView.y = _collectionCorrectHeaderY;
     }
@@ -288,7 +313,7 @@
         if (scrollView.contentOffset.y > -215 && scrollView.contentOffset.y <= -215+138) {
             _tableCorrectHeaderY = Bar_H-(215+scrollView.contentOffset.y);
             [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self->_stampCountView.x = 0.746*SCREEN_WIDTH;
+                self->_stampCountView.x = self.stampCountView_X;
                 self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
                 self.topView.bannerImage.y = 28;
                 self.detailBtn.hidden = YES;
@@ -299,7 +324,7 @@
         }
         if (scrollView.contentOffset.y > -77){
             _tableCorrectHeaderY = -138+Bar_H;
-            _stampCountView.x = 0.746*SCREEN_WIDTH;
+            _stampCountView.x = self.stampCountView_X;
         }
         _topView.y = _tableCorrectHeaderY;
     }

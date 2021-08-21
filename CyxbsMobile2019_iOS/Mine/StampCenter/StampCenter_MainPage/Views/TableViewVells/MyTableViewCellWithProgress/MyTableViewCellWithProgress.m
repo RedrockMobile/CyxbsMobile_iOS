@@ -88,15 +88,9 @@
     self.mainLabel.text = data.title;
     self.detailLabel.text = data.Description;
     float f = (float)data.current_progress/(float)data.max_progress;//必须强转float，不然全都是0
-    [UIView animateWithDuration:0.5 animations:^{
-            self.progressBarHaveDone.size = CGSizeMake(f*150, 8);
-    }];
+    self.progressBarHaveDone.size = CGSizeMake(f*150, 8);
     self.progressNumberLabel.text = [NSString stringWithFormat:@"%d/%d",data.current_progress,data.max_progress];
-    
-    
     self.gotoButton.target = data.title;
-    
-    
     [self.gotoButton addTarget:self action:@selector(test:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -105,7 +99,6 @@
 - (void)test:(GotoButton *)sender{
     NSLog(@"%@",sender.target);
     HttpClient *client = [HttpClient defaultClient];
-    
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
     [client.httpSessionManager POST:TASK_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSDictionary *taskDict = @{
