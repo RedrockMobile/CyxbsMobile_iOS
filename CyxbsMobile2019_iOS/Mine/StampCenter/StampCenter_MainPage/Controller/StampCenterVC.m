@@ -62,8 +62,10 @@
         for (int i = 0; i < goodsAry.count; i++) {
             GoodsData *data = goodsAry[i];
             if (data.type == 1) {
+                //第二分区数据
                 [mArray2 addObject:data];
             }
+            //第一分区数据
             if(data.type == 0){
                 [mArray addObject:data];
             }
@@ -112,27 +114,29 @@
 #pragma mark - viewDidLoad
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    //加载数据
     [self setupData];
-    
+    //加载TopBar
     [self setupBar];
-    
+    //加载横向Scroll
     [self.view addSubview:self.mainScrollView];
-    
+    //加载TopView
     [self.view addSubview:self.topView];
-    
+    //加载邮票数量View
     [self.topBarView addSubview:self.stampCountView];
-    
+    //topBar优先级最高
     [self.view bringSubviewToFront:self.topBarView];
-    
+    //设置小点
     [self setupPoint];
 }
 
 #pragma mark - table数据源
+//数量
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.taskAry.count;
 }
 
+//Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TaskData *data = self.taskAry[indexPath.row];
         MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
@@ -141,13 +145,15 @@
 }
 
 #pragma mark - table代理
+//高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 75; //高度
+    return 75;
 }
 
 #pragma mark - collection数据源
+//组数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2; //组数
+    return 2;
 }
 
 //每组的个数
@@ -212,11 +218,16 @@
 //后面有时间详细说明滚动逻辑（核心）
 #pragma mark - 滚动代理
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//====================================================横向
     if (scrollView.tag == 123) {
+        //判断如果两边高度如果不相等
         if (_tableCorrectHeaderY != _collectionCorrectHeaderY) {
+            //往右滑时
             if (scrollView.contentOffset.x < SCREEN_WIDTH*0.5) {
                 [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    //topView的Y值以Collection为主
                     self->_topView.y = self->_collectionCorrectHeaderY;
+                    //如果在最底部
                     if (self->_collectionCorrectHeaderY == Bar_H) {
                         self->_stampCountView.x = SCREEN_WIDTH;
                         self.topView.bannerImage.transform = CGAffineTransformMakeScale(1, 1);
@@ -224,6 +235,7 @@
                         self.topView.bannerImage.y = 28;
                         self.detailBtn.hidden = NO;
                     }
+                    //如果不在底部
                     if (self->_collectionCorrectHeaderY != Bar_H) {
                         self->_stampCountView.x = self.stampCountView_X;
                         self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
@@ -233,9 +245,12 @@
                     }
                 } completion:nil];
             }
+            //往左滑时
             if (scrollView.contentOffset.x >= SCREEN_WIDTH*0.5) {
                 [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    //topView的Y值以Table为主
                     self->_topView.y = self->_tableCorrectHeaderY;
+                    //如果在最底部
                     if (self->_tableCorrectHeaderY == Bar_H) {
                         self->_stampCountView.x = SCREEN_WIDTH;
                         self.topView.bannerImage.transform = CGAffineTransformMakeScale(1, 1);
@@ -243,6 +258,7 @@
                         self.topView.bannerImage.y = 28;
                         self.detailBtn.hidden = NO;
                     }
+                    //如果不在最底部
                     if (self->_tableCorrectHeaderY != Bar_H) {
                         self->_stampCountView.x = self.stampCountView_X;
                         self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
@@ -253,6 +269,7 @@
                 } completion:nil];
             }
         }
+        //滑到任务界面时，小圆点消失，并将日期写入NSUserdefualt
         if (scrollView.contentOffset.x == SCREEN_WIDTH) {
             NSDate *date = [NSDate date];
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -262,12 +279,14 @@
             [defaults setObject:str forKey:@"NowDate"];
             self.topView.point.hidden = YES;
         }
+        //滑动条
         CGFloat x = self.topView.stampStoreLbl.x+3 + (scrollView.contentOffset.x * ((self.topView.stampTaskLbl.x-self.topView.stampStoreLbl.x)/SCREEN_WIDTH));
         self.topView.switchbar.x = x;
         self.topView.swithPoint.x = x+63;
     }
-    
+    //====================================================CollectionView
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
+        //当未滑动时
         if (scrollView.contentOffset.y <= 0) {
             self.topView.bannerImage.y = 0;
            _collectionCorrectHeaderY = Bar_H;
@@ -279,6 +298,7 @@
                 self.detailBtn.hidden = NO;
             } completion:nil];
         }
+        //当正在滑动时
         if (scrollView.contentOffset.y > 0 && scrollView.contentOffset.y <= 138) {
             _collectionCorrectHeaderY = -scrollView.contentOffset.y+Bar_H;
             [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -291,14 +311,16 @@
                             self.topView.bannerImage.alpha = 0;
             }];
         }
+        //到顶了
         if (scrollView.contentOffset.y >= 138) {
             _collectionCorrectHeaderY = -138+Bar_H;
             _stampCountView.x = self.stampCountView_X;
         }
         _topView.y = _collectionCorrectHeaderY;
     }
-
+    //====================================================TableView
     if ([scrollView isKindOfClass:[UITableView class]]){
+        //未滑动时
         if (scrollView.contentOffset.y <= -215) {
             _tableCorrectHeaderY = Bar_H;
             self.topView.bannerImage.y = 0;
@@ -310,6 +332,7 @@
                 self.detailBtn.hidden = NO;
             } completion:nil];
         }
+        //正在滑动
         if (scrollView.contentOffset.y > -215 && scrollView.contentOffset.y <= -215+138) {
             _tableCorrectHeaderY = Bar_H-(215+scrollView.contentOffset.y);
             [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -322,6 +345,7 @@
                             self.topView.bannerImage.alpha = 0;
             }];
         }
+        //到顶了
         if (scrollView.contentOffset.y > -77){
             _tableCorrectHeaderY = -138+Bar_H;
             _stampCountView.x = self.stampCountView_X;
