@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel *stampStoreLbl;
 ///邮票任务
 @property (nonatomic,strong) UILabel *stampTaskLbl;
-///小点
+///任务提示小点
 @property (nonatomic,strong) UIImageView *point;
 ///大图片
 @property (nonatomic,strong) UIImageView *bigStampImage;
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIImageView *bannerImage;
 ///滑动条
 @property (nonatomic,strong) UIImageView *switchbar;
-///部分滑动条
+///滑动条小圆点
 @property (nonatomic,strong) UIImageView *swithPoint;
 ///页面1按钮
 @property (nonatomic,strong) UIButton *page1btn;

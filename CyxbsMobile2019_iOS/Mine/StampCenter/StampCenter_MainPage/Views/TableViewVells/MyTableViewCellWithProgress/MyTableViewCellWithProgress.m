@@ -88,33 +88,29 @@
     self.mainLabel.text = data.title;
     self.detailLabel.text = data.Description;
     float f = (float)data.current_progress/(float)data.max_progress;//必须强转float，不然全都是0
-    [UIView animateWithDuration:0.5 animations:^{
-            self.progressBarHaveDone.size = CGSizeMake(f*150, 8);
-    }];
+    self.progressBarHaveDone.size = CGSizeMake(f*150, 8);
     self.progressNumberLabel.text = [NSString stringWithFormat:@"%d/%d",data.current_progress,data.max_progress];
     self.gotoButton.target = data.title;
     [self.gotoButton addTarget:self action:@selector(test:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+
+//完成任务 （测试版）
 - (void)test:(GotoButton *)sender{
     NSLog(@"%@",sender.target);
-    
-//    HttpClient *client = [HttpClient defaultClient];
-//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-//    [client.httpSessionManager POST:TASK_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        
-//        NSDictionary *taskDict = @{
-//            @"title":sender.target,
-//            @"current_progress":@2
-//        };
-//        
-//        NSData *data = [NSJSONSerialization dataWithJSONObject:taskDict options:NSJSONWritingPrettyPrinted error:nil];
-//        
-//        [formData appendPartWithFormData:data name:@"test"];
-//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//            NSLog(@"成功了");
-//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//            NSLog(@"失败了");
-//        }];
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:TASK_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSDictionary *taskDict = @{
+            @"title":sender.target,
+            @"current_progress":@5
+        };
+        NSData *data = [NSJSONSerialization dataWithJSONObject:taskDict options:NSJSONWritingPrettyPrinted error:nil]; 
+        [formData appendPartWithFormData:data name:@"test"];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            NSLog(@"成功了");
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"失败了");
+        }];
 }
 @end

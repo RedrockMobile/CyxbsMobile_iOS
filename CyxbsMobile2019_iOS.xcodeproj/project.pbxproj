@@ -1372,7 +1372,6 @@
 		493162C426CD7B4900140412 /* stampcenter.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = stampcenter.xcassets; sourceTree = "<group>"; };
 		493162CA26CD7B5D00140412 /* UIView+XYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYView.m"; sourceTree = "<group>"; };
 		493162CB26CD7B5D00140412 /* UIView+XYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XYView.h"; sourceTree = "<group>"; };
-		493162CC26CD7B5D00140412 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		493162CD26CD7B5D00140412 /* ZWTMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWTMacro.h; sourceTree = "<group>"; };
 		493162D526CD7B6300140412 /* StampCountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCountData.m; sourceTree = "<group>"; };
 		493162D626CD7B6300140412 /* StampCountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCountData.h; sourceTree = "<group>"; };
@@ -3826,7 +3825,6 @@
 			children = (
 				493162CA26CD7B5D00140412 /* UIView+XYView.m */,
 				493162CB26CD7B5D00140412 /* UIView+XYView.h */,
-				493162CC26CD7B5D00140412 /* PrefixHeader.pch */,
 				493162CD26CD7B5D00140412 /* ZWTMacro.h */,
 			);
 			path = ZWTSupportingFiles;
