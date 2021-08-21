@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface StampCenterVC : TopBarBasicViewController
 
 - (void)setupBar;
+- (void)setupPoint;
+- (void)setupData;
 
 @end
 

@@ -82,12 +82,13 @@
 - (void)setNumber:(NSNumber *)number{
     _number = number;
     self.smallcountLbl.text = [NSString stringWithFormat:@"%@",_number];
-//    self.stampCountView.width = 60;
 }
 
 #pragma mark - viewDidLoad
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    [self setupData];
     
     [self setupBar];
     
@@ -98,19 +99,8 @@
     [self.topBarView addSubview:self.stampCountView];
     
     [self.view bringSubviewToFront:self.topBarView];
-
-    //获取数据
-    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
-        self.taskAry = array;
-    } error:^{
-        NSLog(@"!");
-    }];
-    //获取数据
-    [GoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
-        self.goodsAry = array;
-    } error:^{
-        NSLog(@"!");
-    }];
+    
+    [self setupPoint];
 }
 
 #pragma mark - table数据源
@@ -237,6 +227,15 @@
                     }
                 } completion:nil];
             }
+        }
+        if (scrollView.contentOffset.x == SCREEN_WIDTH) {
+            NSDate *date = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            formatter.dateFormat = @"yyyy-MM-dd";
+            NSString *str = [formatter stringFromDate:date];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:str forKey:@"NowDate"];
+            self.topView.point.hidden = YES;
         }
         CGFloat x = self.topView.stampStoreLbl.x+3 + (scrollView.contentOffset.x * ((self.topView.stampTaskLbl.x-self.topView.stampStoreLbl.x)/SCREEN_WIDTH));
         self.topView.switchbar.x = x;
@@ -415,5 +414,34 @@
         [_stampCountView addSubview:_smallcountLbl];
     }
     return _stampCountView;
+}
+
+//设置小圆点的状态
+- (void)setupPoint{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"yyyy-MM-dd";
+    NSString *str = [formatter stringFromDate:date];
+    if ([str isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"NowDate"]]) {
+        self.topView.point.hidden = YES;
+    }
+    else{
+        self.topView.point.hidden = NO;
+    }
+}
+
+//获取数据
+- (void)setupData{
+    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+        self.taskAry = array;
+    } error:^{
+        NSLog(@"!");
+    }];
+    
+    [GoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
+        self.goodsAry = array;
+    } error:^{
+        NSLog(@"!");
+    }];
 }
 @end

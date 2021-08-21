@@ -157,8 +157,6 @@
     if (!_holder) {
         _holder = [[UIView alloc]initWithFrame:CGRectMake(0, 138, SCREEN_WIDTH, 77)];
         _holder.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
-//                _holder.backgroundColor = [UIColor redColor];
-
     }
     return _holder;
 }
