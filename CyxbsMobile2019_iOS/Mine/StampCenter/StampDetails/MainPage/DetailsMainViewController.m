@@ -227,6 +227,7 @@
     if (_goodsRefreshHeader == nil) {
         _goodsRefreshHeader = [MJRefreshStateHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshGoods)];
         [_goodsRefreshHeader setTitle:@"松开手刷新兑换记录" forState:MJRefreshStatePulling];
+        _goodsRefreshHeader.lastUpdatedTimeLabel.hidden = YES;
         _goodsRefreshHeader.automaticallyChangeAlpha = YES;
     }
     return _goodsRefreshHeader;
@@ -247,6 +248,7 @@
     if (_tasksRefreshHeader == nil) {
         _tasksRefreshHeader = [MJRefreshStateHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshTasks)];
         [_tasksRefreshHeader setTitle:@"松开手刷新获取记录" forState:MJRefreshStatePulling];
+        _tasksRefreshHeader.lastUpdatedTimeLabel.hidden = YES;
         _tasksRefreshHeader.automaticallyChangeAlpha = YES;
     }
     return _tasksRefreshHeader;
