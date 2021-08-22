@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) touchSchoolCalender;
 -(void) touchMap;
 -(void) touchEmptyClass;
+/// 点击“邮子清单”的itten
+- (void) touchToDOList;
 @end
 
 @interface FinderView : UIView

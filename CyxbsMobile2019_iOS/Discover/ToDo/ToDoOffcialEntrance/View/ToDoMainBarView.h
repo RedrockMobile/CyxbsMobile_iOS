@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ToDoMainBarViewDelegate <NSObject>
 
 /// 跳回到上一个界面
-- (void)pop;
+- (void)popVC;
 
 /// 添加待办事项
 - (void)addMatter;

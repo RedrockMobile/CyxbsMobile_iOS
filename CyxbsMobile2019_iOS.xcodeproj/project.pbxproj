@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0999163326CD75DE00C185EB /* TODOMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999162726CD75DE00C185EB /* TODOMainViewController.m */; };
-		0999163426CD75DE00C185EB /* TODODetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999162826CD75DE00C185EB /* TODODetailViewController.m */; };
 		0999163526CD75DE00C185EB /* TODOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999162C26CD75DE00C185EB /* TODOModel.m */; };
 		0999163626CD75DE00C185EB /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999162F26CD75DE00C185EB /* TodoTableViewCell.m */; };
 		0999163726CD75DE00C185EB /* ToDoEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999163026CD75DE00C185EB /* ToDoEmptyCell.m */; };
@@ -469,6 +467,8 @@
 		B82CA6B726315CA100786685 /* ReleaseDynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82CA6B626315CA100786685 /* ReleaseDynamicModel.m */; };
 		B82D115525E35FF400690FA6 /* SZHReleaseTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82D115425E35FF400690FA6 /* SZHReleaseTopBarView.m */; };
 		B82FA68526D022BE008814CD /* ToDoMainBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FA68426D022BE008814CD /* ToDoMainBarView.m */; };
+		B82FA68826D05226008814CD /* ToDoEditDetailContentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FA68726D05226008814CD /* ToDoEditDetailContentsView.m */; };
+		B82FA68B26D213CC008814CD /* TODOMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82FA68A26D213CC008814CD /* TODOMainViewController.m */; };
 		B83766E725C13E0E00A8666A /* SZHSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */; };
 		B83766ED25C14FD600A8666A /* SearchEndNoResultCV.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766EC25C14FD600A8666A /* SearchEndNoResultCV.m */; };
 		B83766F325C150C000A8666A /* SZHSearchEndCv.m in Sources */ = {isa = PBXBuildFile; fileRef = B83766F225C150C000A8666A /* SZHSearchEndCv.m */; };
@@ -683,10 +683,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0999162726CD75DE00C185EB /* TODOMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TODOMainViewController.m; sourceTree = "<group>"; };
-		0999162826CD75DE00C185EB /* TODODetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TODODetailViewController.m; sourceTree = "<group>"; };
-		0999162926CD75DE00C185EB /* TODOMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TODOMainViewController.h; sourceTree = "<group>"; };
-		0999162A26CD75DE00C185EB /* TODODetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TODODetailViewController.h; sourceTree = "<group>"; };
 		0999162C26CD75DE00C185EB /* TODOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TODOModel.m; sourceTree = "<group>"; };
 		0999162D26CD75DE00C185EB /* TODOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TODOModel.h; sourceTree = "<group>"; };
 		0999162F26CD75DE00C185EB /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
@@ -1551,6 +1547,10 @@
 		B82D115425E35FF400690FA6 /* SZHReleaseTopBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHReleaseTopBarView.m; sourceTree = "<group>"; };
 		B82FA68326D022BE008814CD /* ToDoMainBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoMainBarView.h; sourceTree = "<group>"; };
 		B82FA68426D022BE008814CD /* ToDoMainBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoMainBarView.m; sourceTree = "<group>"; };
+		B82FA68626D05226008814CD /* ToDoEditDetailContentsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoEditDetailContentsView.h; sourceTree = "<group>"; };
+		B82FA68726D05226008814CD /* ToDoEditDetailContentsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoEditDetailContentsView.m; sourceTree = "<group>"; };
+		B82FA68926D213CC008814CD /* TODOMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TODOMainViewController.h; sourceTree = "<group>"; };
+		B82FA68A26D213CC008814CD /* TODOMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TODOMainViewController.m; sourceTree = "<group>"; };
 		B83766E525C13E0E00A8666A /* SZHSearchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SZHSearchTableViewCell.h; sourceTree = "<group>"; };
 		B83766E625C13E0E00A8666A /* SZHSearchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZHSearchTableViewCell.m; sourceTree = "<group>"; };
 		B83766EB25C14FD600A8666A /* SearchEndNoResultCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchEndNoResultCV.h; sourceTree = "<group>"; };
@@ -1887,34 +1887,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0999162426CD75CE00C185EB /* TODOMain */ = {
+		0999162426CD75CE00C185EB /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
 				AA60649C26C91AA000D67A41 /* Tool */,
 				AA60641126C657A500D67A41 /* Discover_ToDo */,
+				0999162526CD75DE00C185EB /* ToDoOffcialEntrance */,
 				0999163826CD75F300C185EB /* Assets.xcassets */,
-				0999162526CD75DE00C185EB /* TODO */,
 			);
-			path = TODOMain;
+			path = ToDo;
 			sourceTree = "<group>";
 		};
-		0999162526CD75DE00C185EB /* TODO */ = {
+		0999162526CD75DE00C185EB /* ToDoOffcialEntrance */ = {
 			isa = PBXGroup;
 			children = (
-				0999162626CD75DE00C185EB /* Controller */,
 				0999162B26CD75DE00C185EB /* Model */,
 				0999162E26CD75DE00C185EB /* View */,
+				0999162626CD75DE00C185EB /* Controller */,
 			);
-			path = TODO;
+			path = ToDoOffcialEntrance;
 			sourceTree = "<group>";
 		};
 		0999162626CD75DE00C185EB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0999162926CD75DE00C185EB /* TODOMainViewController.h */,
-				0999162726CD75DE00C185EB /* TODOMainViewController.m */,
-				0999162A26CD75DE00C185EB /* TODODetailViewController.h */,
-				0999162826CD75DE00C185EB /* TODODetailViewController.m */,
+				B82FA68926D213CC008814CD /* TODOMainViewController.h */,
+				B82FA68A26D213CC008814CD /* TODOMainViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1933,6 +1931,8 @@
 			children = (
 				B82FA68326D022BE008814CD /* ToDoMainBarView.h */,
 				B82FA68426D022BE008814CD /* ToDoMainBarView.m */,
+				B82FA68626D05226008814CD /* ToDoEditDetailContentsView.h */,
+				B82FA68726D05226008814CD /* ToDoEditDetailContentsView.m */,
 				0999163126CD75DE00C185EB /* TodoTableViewCell.h */,
 				0999162F26CD75DE00C185EB /* TodoTableViewCell.m */,
 				0999163226CD75DE00C185EB /* ToDoEmptyCell.h */,
@@ -2287,6 +2287,7 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
+				0999162426CD75CE00C185EB /* ToDo */,
 				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
 				18CDF525257F91BC006E8E5C /* Discover_EmptyClass */,
@@ -3508,14 +3509,13 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				0999162426CD75CE00C185EB /* TODOMain */,
 				1817F00C2594D5C500FE1304 /* NewQA */,
 				18CDF4D4257F91BC006E8E5C /* Discover */,
+				1A14132A235F523B0001417E /* Mine */,
+				DB34EA28239BD4540052B65E /* ClassSchedule */,
 				1A0AC5F5252B234700221514 /* Swift */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
-				DB34EA28239BD4540052B65E /* ClassSchedule */,
 				1AAFAD41236DC96300E854A3 /* Fonts */,
-				1A14132A235F523B0001417E /* Mine */,
 				1A141331235F52440001417E /* QA */,
 				1A5A5ED423600BA300543BAE /* Login */,
 				1A141319235F521C0001417E /* Base */,
@@ -5398,6 +5398,7 @@
 				B82CA69126315A4200786685 /* DynamicDetailAddPhotoController.m in Sources */,
 				1A46C34223DC6CE2005DC1F3 /* MyAnswerDraftCell.m in Sources */,
 				18CDF6D1257F91BE006E8E5C /* MGDSliderBar.m in Sources */,
+				B82FA68B26D213CC008814CD /* TODOMainViewController.m in Sources */,
 				180DA9B326B440900094B8DC /* HotSearchModel.m in Sources */,
 				B82CA683263159BA00786685 /* SHPopMenu.m in Sources */,
 				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
@@ -5702,11 +5703,11 @@
 				AA4CD60425EF6311002D9394 /* IgnoreModel.m in Sources */,
 				18CDF70A257F91BE006E8E5C /* ActivityTableViewCell.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
+				B82FA68826D05226008814CD /* ToDoEditDetailContentsView.m in Sources */,
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				18CDF686257F91BD006E8E5C /* EmptyClassViewController.m in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
-				0999163326CD75DE00C185EB /* TODOMainViewController.m in Sources */,
 				B82CA688263159BA00786685 /* DKSKeyboardView.m in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
@@ -5783,7 +5784,6 @@
 				AA536DFC258C544800F69E73 /* IgnoreTableViewCell.m in Sources */,
 				18CDF4C5257F8DBD006E8E5C /* QuestionView.m in Sources */,
 				AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */,
-				0999163426CD75DE00C185EB /* TODODetailViewController.m in Sources */,
 				18CDF6B9257F91BD006E8E5C /* Credit.m in Sources */,
 				18CDF673257F91BD006E8E5C /* ExamArrangeDataItem.m in Sources */,
 				18CDF66A257F91BD006E8E5C /* BannerItem.m in Sources */,

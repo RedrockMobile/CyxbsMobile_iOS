@@ -234,7 +234,7 @@
     FinderToolViewItem *item6 = [[FinderToolViewItem alloc]initWithIconView:@"校历" Title:@"校历" Detail:@"学期安排一目了然"];
     FinderToolViewItem *item7 = [[FinderToolViewItem alloc]initWithIconView:@"重邮地图" Title:@"重邮地图" Detail:@"校园地图，尽收重邮风光"];
     FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"敬请期待"];
-    FinderToolViewItem *item9 = [[FinderToolViewItem alloc] initWithIconView:@"To Do" Title:@"To Do List" Detail:@"查看待办事项"];
+    FinderToolViewItem *item9 = [[FinderToolViewItem alloc] initWithIconView:@"邮子清单" Title:@"邮子清单" Detail:@"查看待办事项"];
     
     [item1 addTarget:self action:@selector(chooseWeDate:) forControlEvents:UIControlEventTouchUpInside];
     [item2 addTarget:self action:@selector(chooseSchoolBus:) forControlEvents:UIControlEventTouchUpInside];
