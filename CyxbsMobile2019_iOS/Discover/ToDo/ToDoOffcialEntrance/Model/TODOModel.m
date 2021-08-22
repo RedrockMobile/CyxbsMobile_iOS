@@ -23,4 +23,7 @@
     }
     return  self;
 }
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    NSLog(@"找不到值");
+}
 @end

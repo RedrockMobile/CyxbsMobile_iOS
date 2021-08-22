@@ -10,7 +10,6 @@
 
 @interface TodoTableViewCell ()
 @property(nonatomic, strong) UIButton *circlebtn;
-@property(nonatomic, strong) TODOModel *model;
 @property(nonatomic, strong) UIView *lineV;
 @end
 
@@ -69,13 +68,11 @@
     [super layoutSubviews];
     self.lineV.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1);
 }
-
-- (void)configTODOModel:(TODOModel *)model {
+- (void)setModel:(TODOModel *)model{
     self.model = model;
     
     self.nameL.text = model.modeltodo_thing;
     if (model.isDone) {
-        
         self.nameL.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
         self.timeL.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
     } else {

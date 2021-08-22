@@ -19,9 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TodoTableViewCell : UITableViewCell
 @property(nonatomic, strong) UILabel *nameL;
 @property(nonatomic, strong) UILabel *timeL;
-@property(nonatomic, strong, readonly) TODOModel *model;
+@property(nonatomic, strong) TODOModel *model;
 @property(nonatomic, weak) id<TodoTableViewCellDelegate> delegate;
-- (void)configTODOModel:(TODOModel *)model;
 
 @end
 

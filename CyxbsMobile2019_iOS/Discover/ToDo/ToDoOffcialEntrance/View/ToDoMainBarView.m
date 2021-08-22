@@ -24,6 +24,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        
         [self setFrame];
     }
     return self;
@@ -65,6 +67,25 @@
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, 1));
     }];
     
+    //添加两个图标
+        //返回按钮的图标
+    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    backImageView.image = [UIImage imageNamed:@"todo返回按钮"];
+    [self addSubview:backImageView];
+    [backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(SCREEN_WIDTH * 0.0409);
+        make.centerY.equalTo(self.backBtn);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.0256, SCREEN_WIDTH * 0.0512));
+    }];
+        //添加待办事项的icon
+    UIImageView *addIconImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    addIconImageView.image = [UIImage imageNamed:@"todo添加待办icon"];
+    [self addSubview:addIconImageView];
+    [addIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-SCREEN_WIDTH * 0.04);
+        make.centerY.equalTo(backImageView);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.048, SCREEN_WIDTH * 0.048));
+    }];
 }
 
 #pragma mark- event response
@@ -86,7 +107,7 @@
 - (UIButton *)backBtn{
     if (!_backBtn) {
         _backBtn = [[UIButton alloc] initWithFrame:CGRectZero];
-        _backBtn.backgroundColor = [UIColor redColor];
+        _backBtn.backgroundColor = [UIColor clearColor];
         [_backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backBtn;
@@ -105,7 +126,7 @@
 - (UIButton *)addMatterBtn{
     if (!_addMatterBtn) {
         _addMatterBtn = [[UIButton alloc] initWithFrame:CGRectZero];
-        _addMatterBtn.backgroundColor = [UIColor redColor];
+        _addMatterBtn.backgroundColor = [UIColor clearColor];
         [_addMatterBtn addTarget:self action:@selector(addThing) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addMatterBtn;
@@ -115,6 +136,7 @@
     if (!_spliteLine) {
         _spliteLine = [[UIView alloc] initWithFrame:CGRectZero];
         _spliteLine.backgroundColor = [UIColor colorNamed:@"42_78_132&223_223_227"];
+        _spliteLine.alpha = 0.1;
     }
     return _spliteLine;
 }
