@@ -1,16 +1,50 @@
 {
   "images" : [
     {
+      "filename" : "Ellipse 28.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "circle@2x.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Ellipse 28-1.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Ellipse 28 (1).png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "circle@3x.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Ellipse 28 (1)-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Ellipse 28 (2).png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Ellipse 28 (2)-1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
