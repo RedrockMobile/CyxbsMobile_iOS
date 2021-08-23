@@ -269,7 +269,7 @@
     
     if(self.isInitingMySchedul==YES)return;
     self.isInitingMySchedul = YES;
-    self.mySchedul = [[WYCClassBookViewController alloc] initWithType:ScheduleTypePersonal andInfo:[[UserItem defaultItem] stuNum]];
+    self.mySchedul = [[WYCClassBookViewController alloc] initWithType:ScheduleTypePersonal andInfo:[UserDefaultTool getStuNum]];
     
     self.mySchedul.schedulTabBar = self;
     
