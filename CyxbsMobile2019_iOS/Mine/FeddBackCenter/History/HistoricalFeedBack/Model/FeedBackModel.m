@@ -10,4 +10,17 @@
 
 @implementation FeedBackModel
 
++ (NSArray *)getFeedBackAry {
+    NSMutableArray * mAry = [NSMutableArray array];
+    for (int i = 0; i < 4; i++) {
+        FeedBackModel * model = [[FeedBackModel alloc] init];
+        model.title = [NSString stringWithFormat:@"标题表头多好我的%d", i];
+        model.date = 1628845560 + i * 100;
+        model.isRead = i % 2;
+        model.isReplied = i % 2;
+        [mAry addObject:model];
+    }
+    return [mAry copy];
+}
+
 @end

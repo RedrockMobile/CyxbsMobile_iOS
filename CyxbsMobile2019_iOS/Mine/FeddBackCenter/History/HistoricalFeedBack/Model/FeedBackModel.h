@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用户是否阅读了这条反馈的回复
 @property (nonatomic, assign) BOOL isRead;
 
-+ (NSArray *)getFeedBacksAry;
++ (NSArray *)getFeedBackAry;
 
 @end
 

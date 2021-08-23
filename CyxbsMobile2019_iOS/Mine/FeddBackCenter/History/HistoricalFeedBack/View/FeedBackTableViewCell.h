@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+// model
+#import "FeedBackModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,10 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel * titleLabel;
 /// 小标题
 @property (nonatomic, strong) UILabel * subtitleLabel;
-/// 右侧的小箭头
+/// 右侧的图片
 @property (nonatomic, strong) UIImageView * rightImgView;
 /// separator
 @property (nonatomic, strong) UIView * separateLine;
+/// 小红点
+@property (nonatomic, strong) UIView * redSpotView;
+
+@property (nonatomic, strong) FeedBackModel * cellModel;
 
 /// 复用标识
 + (NSString *)reuseIdentifier;

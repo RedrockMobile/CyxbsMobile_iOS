@@ -7,8 +7,6 @@
 //
 
 #import "HistoricalFeedBackTableView.h"
-// view
-#import "FeedBackTableViewCell.h"
 
 @interface HistoricalFeedBackTableView ()
 <UITableViewDataSource>
@@ -36,6 +34,13 @@
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+#pragma mark - setter
+
+- (void)setRow:(NSInteger)row {
+    _row = row;
+    [self reloadData];
+}
+
 #pragma mark - data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -44,7 +49,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return self.row;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView

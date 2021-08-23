@@ -17,7 +17,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setupView];
-        [self setupFrame];
     }
     return self;
 }
@@ -27,11 +26,55 @@
     [self.contentView addSubview:self.subtitleLabel];
     [self.contentView addSubview:self.rightImgView];
     [self.contentView addSubview:self.separateLine];
+    [self.contentView addSubview:self.redSpotView];
+    
+    // config self
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setupFrame {
+    // configure rightImgView
+    [self.rightImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.contentView).offset(-20);
+        make.centerY.mas_equalTo(self.contentView);
+    }];
     
+    // configure titleLabel
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.contentView).offset(20);
+        make.bottom.mas_equalTo(self.contentView.mas_centerY);
+    }];
+    
+    // configure subtitleLabel
+    [self.subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.titleLabel);
+        make.top.mas_equalTo(self.contentView.mas_centerY).offset(4);
+    }];
+    
+    //config separateLine
+    [self.separateLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self.contentView);
+        make.height.mas_equalTo(1);
+    }];
+    
+    // configure redSpotView
+    [self.redSpotView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.top.mas_equalTo(self.rightImgView);
+        make.height.width.mas_equalTo(4);
+    }];
 }
+
+#pragma mark - setter
+
+- (void)setCellModel:(FeedBackModel *)cellModel {
+    _cellModel = cellModel;
+    self.titleLabel.text = cellModel.title;
+    self.subtitleLabel.text = [self getTimeFromTimestamp:cellModel.date];
+    self.rightImgView.image = [UIImage imageNamed:cellModel.isReplied ? @"标签-已回复" : @"标签-未回复"];
+    self.redSpotView.hidden = cellModel.isReplied;
+    [self setupFrame];
+}
+
 #pragma mark - getter
 
 - (UILabel *)titleLabel {
@@ -67,6 +110,15 @@
         _separateLine.backgroundColor = [UIColor colorNamed:@"221_230_244_1&43_44_45_1"];
     }
     return _separateLine;
+}
+
+- (UIView *)redSpotView {
+    if (_redSpotView == nil) {
+        _redSpotView = [[UIView alloc] init];
+        _redSpotView.backgroundColor = [UIColor redColor];
+        _redSpotView.layer.cornerRadius = 2;
+    }
+    return _redSpotView;
 }
 
 #pragma mark - private
