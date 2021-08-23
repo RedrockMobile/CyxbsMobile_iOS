@@ -279,16 +279,13 @@
 
 /// 点击“积分商城”后调用
 - (void)selectedShopCell {
-////    CheckInViewController *vc = [[CheckInViewController alloc] init];
-////    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-////    [self presentViewController:vc animated:YES completion:nil];
-//    DetailsMainViewController * vc = [[DetailsMainViewController alloc] init];
+    CheckInViewController *vc = [[CheckInViewController alloc] init];
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:vc animated:YES completion:nil];
+
+//    StampCenterVC * vc = [[StampCenterVC alloc] init];
 //    vc.hidesBottomBarWhenPushed = YES;
 //    [self.navigationController pushViewController:vc animated:YES];
-    
-    StampCenterVC * vc = [[StampCenterVC alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
