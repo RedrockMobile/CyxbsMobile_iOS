@@ -8,8 +8,6 @@
 #import "ToDoEmptyCell.h"
 //Controllers
 #import "TODOMainViewController.h"
-//Models
-#import "TODOModel.h"
 
 #define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -36,12 +34,19 @@
 
 /// 配置UI
 - (void)configUI{
-    
     [self.contentView addSubview:self.toDoImageView];
-    [self.contentView addSubview:self.todoLbl];
     [self.contentView addSubview:self.doneImageView];
+    
+    [self.contentView addSubview:self.todoLbl];
+    [self.todoLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.top.equalTo(self.toDoImageView.mas_bottom).offset(SCREEN_HEIGHT * 0.0239);
+    }];
+    
     [self.contentView addSubview:self.doneLbl];
-
+    [self.doneLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.todoLbl);
+    }];
 }
 
 #pragma mark - setter方法
@@ -69,7 +74,7 @@
 #pragma mark- getter
 - (UIImageView *)toDoImageView{
     if (!_toDoImageView) {
-        _toDoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.23466, SCREEN_HEIGHT * 0.0449,SCREEN_WIDTH * 0.6133, SCREEN_WIDTH * 0.3466)];
+        _toDoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.23466, SCREEN_HEIGHT * 0.0449,SCREEN_WIDTH * 0.533, SCREEN_WIDTH * 0.3893)];
        _toDoImageView.image = [UIImage imageNamed:@"待办图"];
        
     }
@@ -87,19 +92,20 @@
 
 - (UILabel *)todoLbl{
     if (!_todoLbl) {
-        _todoLbl = [[UILabel alloc] initWithFrame:CGRectMake(61, 184, 300, 17)];
+        _todoLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _todoLbl.text = @"还没有待做事项哦，快去添加吧！";
         _todoLbl.textColor = [UIColor colorNamed:@"17_44_84&223_223_227"];
+        _todoLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
     }
     return _todoLbl;
 }
 
 - (UILabel *)doneLbl{
     if (!_doneLbl) {
-        _doneLbl = [[UILabel alloc] initWithFrame:CGRectMake(50, 184, 350, 17)];
+        _doneLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _doneLbl.text = @"还没有已完成事项哦，期待你的好消息！";
         _doneLbl.textColor = [UIColor colorNamed:@"17_44_84&223_223_227"];
-        _doneLbl.font = [UIFont fontWithName:@"PingFangSC-Noraml" size:8];
+        _doneLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
     }
     return _doneLbl;
 }

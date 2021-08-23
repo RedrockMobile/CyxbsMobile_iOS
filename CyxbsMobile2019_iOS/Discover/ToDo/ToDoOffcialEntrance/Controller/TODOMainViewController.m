@@ -10,12 +10,11 @@
 #import "TODOMainViewController.h"
 
 //Model
-#import "TODOModel.h"
+#import "TodoDataModel.h"
 
 //Views
 #import "ToDoMainBarView.h"
 #import "ToDoTableView.h"
-
 
 @interface TODOMainViewController ()<ToDoMainBarViewDelegate,UITableViewDelegate>
 /// 顶层的View
@@ -46,7 +45,6 @@
     [self.view addSubview:self.barView];
     [self.barView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
-//        make.top.equalTo(self.view).offset(SCREEN_HEIGHT * 0.0142);
         make.bottom.equalTo(self.view.mas_top).offset(NVGBARHEIGHT + STATUSBARHEIGHT);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT * 0.0637));
     }];
@@ -120,8 +118,8 @@
     if (sectionAry.count == 0) {
         return 220;
     }
-    TODOModel *model = sectionAry[indexPath.row];
-    if(model.timestamp > 0){
+    TodoDataModel *model = sectionAry[indexPath.row];
+    if(model.timeStr.doubleValue > 0){
         return 110;
     }else{
         return 64;

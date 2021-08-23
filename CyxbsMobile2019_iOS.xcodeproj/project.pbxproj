@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0999163526CD75DE00C185EB /* TODOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999162C26CD75DE00C185EB /* TODOModel.m */; };
 		0999163626CD75DE00C185EB /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999162F26CD75DE00C185EB /* TodoTableViewCell.m */; };
 		0999163726CD75DE00C185EB /* ToDoEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0999163026CD75DE00C185EB /* ToDoEmptyCell.m */; };
 		0999163926CD75F300C185EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0999163826CD75F300C185EB /* Assets.xcassets */; };
@@ -684,8 +683,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0999162C26CD75DE00C185EB /* TODOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TODOModel.m; sourceTree = "<group>"; };
-		0999162D26CD75DE00C185EB /* TODOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TODOModel.h; sourceTree = "<group>"; };
 		0999162F26CD75DE00C185EB /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
 		0999163026CD75DE00C185EB /* ToDoEmptyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoEmptyCell.m; sourceTree = "<group>"; };
 		0999163126CD75DE00C185EB /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
@@ -1905,7 +1902,6 @@
 			isa = PBXGroup;
 			children = (
 				0999162626CD75DE00C185EB /* Controller */,
-				0999162B26CD75DE00C185EB /* Model */,
 				0999162E26CD75DE00C185EB /* View */,
 			);
 			path = ToDoOffcialEntrance;
@@ -1918,15 +1914,6 @@
 				B82FA68A26D213CC008814CD /* TODOMainViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		0999162B26CD75DE00C185EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				0999162D26CD75DE00C185EB /* TODOModel.h */,
-				0999162C26CD75DE00C185EB /* TODOModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		0999162E26CD75DE00C185EB /* View */ = {
@@ -5482,7 +5469,6 @@
 				1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */,
 				18CDF69E257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m in Sources */,
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
-				0999163526CD75DE00C185EB /* TODOModel.m in Sources */,
 				7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				AA4CD68325F28A32002D9394 /* NSArray+ChineseCharacterLog.m in Sources */,

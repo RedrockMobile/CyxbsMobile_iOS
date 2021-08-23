@@ -208,8 +208,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     //如果最开始无baseURL，则设置为学校服务器
     NSString *baseURL= [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
     if (baseURL == nil || [baseURL isEqualToString:@""]) {
-//        baseURL = @"https://be-prod.redrock.team/";
-        baseURL = @"https://be/fe-prod.redrock.cqupt.edu.cn/";
+        baseURL = @"https://be-prod.redrock.team/";
+//        baseURL = @"https://be/fe-prod.redrock.cqupt.edu.cn/";
         [[NSUserDefaults standardUserDefaults] setObject:baseURL forKey:@"baseURL"];
     }
     //更新baseURL

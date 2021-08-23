@@ -6,7 +6,7 @@
 //
 
 #import "TodoTableViewCell.h"
-#import "TODOModel.h"
+#import "TodoDataModel.h"
 
 @interface TodoTableViewCell ()
 @property(nonatomic, strong) UIButton *circlebtn;
@@ -33,9 +33,9 @@
     }
      
     self.model.isDone = true;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(todoCellDidClickedDoneButton:)]) {
-        [self.delegate todoCellDidClickedDoneButton:self];
-    }
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(todoCellDidClickedDoneButton:)]) {
+//        [self.delegate todoCellDidClickedDoneButton:self];
+//    }
 }
 
 /// 配置UI
@@ -68,10 +68,10 @@
     [super layoutSubviews];
     self.lineV.frame = CGRectMake(0, self.frame.size.height - 1, self.frame.size.width, 1);
 }
-- (void)setModel:(TODOModel *)model{
+- (void)setModel:(TodoDataModel *)model{
     self.model = model;
     
-    self.nameL.text = model.modeltodo_thing;
+    self.nameL.text = model.titleStr;
     if (model.isDone) {
         self.nameL.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
         self.timeL.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
@@ -83,8 +83,8 @@
     self.circlebtn.selected = model.isDone;
     self.circlebtn.userInteractionEnabled = !model.isDone;
     
-    if (model.timestamp > 0) {
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.timestamp];
+    if (model.timeStr.doubleValue > 0) {
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.timeStr.doubleValue];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"MM-dd HH:mm";
         self.timeL.text = [formatter stringFromDate:date];

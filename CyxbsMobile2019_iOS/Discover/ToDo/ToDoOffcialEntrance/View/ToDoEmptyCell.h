@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TODOModel.h"
+#import "TodoDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ToDoEmptyCell : UITableViewCell

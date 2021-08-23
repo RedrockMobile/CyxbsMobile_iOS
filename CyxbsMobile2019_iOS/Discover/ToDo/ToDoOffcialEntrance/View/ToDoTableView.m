@@ -7,7 +7,7 @@
 //
 
 //Model
-#import "TODOModel.h"
+#import "TodoDataModel.h"
 
 //View
 #import "ToDoTableView.h"
@@ -56,7 +56,7 @@
         return cell;
     }
     TodoTableViewCell *cell = [[TodoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ToDoCell"];
-    TODOModel *model = sectionAry[indexPath.row];
+    TodoDataModel *model = sectionAry[indexPath.row];
     cell.model = model;
     return cell;
 }
