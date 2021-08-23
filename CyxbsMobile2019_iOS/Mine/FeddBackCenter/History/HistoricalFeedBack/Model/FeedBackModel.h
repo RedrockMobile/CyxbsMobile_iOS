@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+/**
+ 每一个 model 对应一个反馈
+ */
 @interface FeedBackModel : NSObject
 
 @property (nonatomic, copy) NSString * title;

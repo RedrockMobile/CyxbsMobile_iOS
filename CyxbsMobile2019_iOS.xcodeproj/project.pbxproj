@@ -395,6 +395,13 @@
 		735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53126D38EA600F22678 /* HistoricalFeedBackTableView.m */; };
 		735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53426D392D400F22678 /* FeedBackTableViewCell.m */; };
 		735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53726D399DB00F22678 /* FeedBackModel.m */; };
+		735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53B26D3B33E00F22678 /* FeedBackDetailsViewController.m */; };
+		735BC54126D3B61000F22678 /* FeedBackDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54026D3B61000F22678 /* FeedBackDetailsTableView.m */; };
+		735BC54426D3B64500F22678 /* FeedBackDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54326D3B64500F22678 /* FeedBackDetailsTableViewCell.m */; };
+		735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54626D3BF3000F22678 /* FeedBackDetailsModel.m */; };
+		735BC54A26D3BF6400F22678 /* FeedBackReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54926D3BF6400F22678 /* FeedBackReplyModel.m */; };
+		735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54C26D3C05900F22678 /* FeedBackReplyTableViewCell.m */; };
+		735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54F26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m */; };
 		73A1588A26C2475A00287C9F /* DIN-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 73A1588926C2475A00287C9F /* DIN-Medium.otf */; };
 		73AAA1CA26C918250084E44D /* details.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73AAA1A926C918240084E44D /* details.xcassets */; };
 		73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1AD26C918240084E44D /* DetailsTaskModel.m */; };
@@ -1430,6 +1437,20 @@
 		735BC53426D392D400F22678 /* FeedBackTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackTableViewCell.m; sourceTree = "<group>"; };
 		735BC53626D399DB00F22678 /* FeedBackModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackModel.h; sourceTree = "<group>"; };
 		735BC53726D399DB00F22678 /* FeedBackModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackModel.m; sourceTree = "<group>"; };
+		735BC53A26D3B33E00F22678 /* FeedBackDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsViewController.h; sourceTree = "<group>"; };
+		735BC53B26D3B33E00F22678 /* FeedBackDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsViewController.m; sourceTree = "<group>"; };
+		735BC53F26D3B61000F22678 /* FeedBackDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsTableView.h; sourceTree = "<group>"; };
+		735BC54026D3B61000F22678 /* FeedBackDetailsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsTableView.m; sourceTree = "<group>"; };
+		735BC54226D3B64500F22678 /* FeedBackDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsTableViewCell.h; sourceTree = "<group>"; };
+		735BC54326D3B64500F22678 /* FeedBackDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsTableViewCell.m; sourceTree = "<group>"; };
+		735BC54526D3BF3000F22678 /* FeedBackDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsModel.h; sourceTree = "<group>"; };
+		735BC54626D3BF3000F22678 /* FeedBackDetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsModel.m; sourceTree = "<group>"; };
+		735BC54826D3BF6400F22678 /* FeedBackReplyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackReplyModel.h; sourceTree = "<group>"; };
+		735BC54926D3BF6400F22678 /* FeedBackReplyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackReplyModel.m; sourceTree = "<group>"; };
+		735BC54B26D3C05900F22678 /* FeedBackReplyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackReplyTableViewCell.h; sourceTree = "<group>"; };
+		735BC54C26D3C05900F22678 /* FeedBackReplyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackReplyTableViewCell.m; sourceTree = "<group>"; };
+		735BC54E26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsRequestDataModel.h; sourceTree = "<group>"; };
+		735BC54F26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsRequestDataModel.m; sourceTree = "<group>"; };
 		73A1588926C2475A00287C9F /* DIN-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Medium.otf"; sourceTree = "<group>"; };
 		73AAA1A926C918240084E44D /* details.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = details.xcassets; sourceTree = "<group>"; };
 		73AAA1AB26C918240084E44D /* DetailsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsMainViewController.h; sourceTree = "<group>"; };
@@ -4085,6 +4106,7 @@
 				735BC52926D387C200F22678 /* HistoricalFeedBackViewController.m */,
 				735BC52F26D38E4C00F22678 /* Model */,
 				735BC52E26D38E3B00F22678 /* View */,
+				735BC53926D3B2CE00F22678 /* FeedBackDetails */,
 			);
 			path = HistoricalFeedBack;
 			sourceTree = "<group>";
@@ -4105,6 +4127,43 @@
 			children = (
 				735BC53626D399DB00F22678 /* FeedBackModel.h */,
 				735BC53726D399DB00F22678 /* FeedBackModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		735BC53926D3B2CE00F22678 /* FeedBackDetails */ = {
+			isa = PBXGroup;
+			children = (
+				735BC53A26D3B33E00F22678 /* FeedBackDetailsViewController.h */,
+				735BC53B26D3B33E00F22678 /* FeedBackDetailsViewController.m */,
+				735BC53E26D3B37500F22678 /* Model */,
+				735BC53D26D3B36F00F22678 /* View */,
+			);
+			path = FeedBackDetails;
+			sourceTree = "<group>";
+		};
+		735BC53D26D3B36F00F22678 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				735BC53F26D3B61000F22678 /* FeedBackDetailsTableView.h */,
+				735BC54026D3B61000F22678 /* FeedBackDetailsTableView.m */,
+				735BC54226D3B64500F22678 /* FeedBackDetailsTableViewCell.h */,
+				735BC54326D3B64500F22678 /* FeedBackDetailsTableViewCell.m */,
+				735BC54B26D3C05900F22678 /* FeedBackReplyTableViewCell.h */,
+				735BC54C26D3C05900F22678 /* FeedBackReplyTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		735BC53E26D3B37500F22678 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				735BC54526D3BF3000F22678 /* FeedBackDetailsModel.h */,
+				735BC54626D3BF3000F22678 /* FeedBackDetailsModel.m */,
+				735BC54826D3BF6400F22678 /* FeedBackReplyModel.h */,
+				735BC54926D3BF6400F22678 /* FeedBackReplyModel.m */,
+				735BC54E26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.h */,
+				735BC54F26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5715,6 +5774,7 @@
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				AAE3309025E3D59100324750 /* ShareViewPlus.m in Sources */,
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
+				735BC54126D3B61000F22678 /* FeedBackDetailsTableView.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
@@ -5765,6 +5825,7 @@
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
 				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
+				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
 				B85675FC260D7C960022605C /* CYRleaseSaveDraftAlertBtn.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
@@ -5783,6 +5844,7 @@
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
 				180DA98C26B440640094B8DC /* NewQAMainPageTableViewController.m in Sources */,
+				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
 				18CDF661257F91BD006E8E5C /* WeekAndDay.m in Sources */,
@@ -5818,6 +5880,7 @@
 				1AD038D123F92F6700D5C90E /* MineQAMyQuestionDraftItem.m in Sources */,
 				18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */,
 				180DA9AE26B440900094B8DC /* GroupItem.m in Sources */,
+				735BC54A26D3BF6400F22678 /* FeedBackReplyModel.m in Sources */,
 				1A4A467724D16A810033734E /* UserInformationIntorductionView.m in Sources */,
 				18CDF713257F91BE006E8E5C /* ArchiveTool.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
@@ -5959,6 +6022,7 @@
 				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
 				18CDF6BC257F91BE006E8E5C /* TermGrades.m in Sources */,
 				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
+				735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */,
 				18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */,
 				180DAA3D26B442B20094B8DC /* MGDRefreshTool.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
@@ -6027,6 +6091,7 @@
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				180DAA6526B442B60094B8DC /* PostTableViewCell.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
+				735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */,
 				180DAA6826B442B60094B8DC /* MGDClickCoreLayer.m in Sources */,
 				180DA98B26B440640094B8DC /* NewQAMainPageMainController.m in Sources */,
 				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
@@ -6182,6 +6247,7 @@
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				18CDF667257F91BD006E8E5C /* OneNewsItem.m in Sources */,
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
+				735BC54426D3B64500F22678 /* FeedBackDetailsTableViewCell.m in Sources */,
 				18CDF68E257F91BD006E8E5C /* CQUPTMapModel.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
 				7311328726CCEC2400EF88C1 /* Balance.m in Sources */,

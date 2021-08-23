@@ -1,5 +1,5 @@
 //
-//  FeedBackTableViewCell.h
+//  FeedBackDetailsTableViewCell.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by Edioth Jin on 2021/8/23.
@@ -8,26 +8,26 @@
 
 #import <UIKit/UIKit.h>
 // model
-#import "FeedBackModel.h"
+#import "FeedBackDetailsModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /**
- 展示历史反馈的 cell
+ 反馈详情的 cell
  */
-@interface FeedBackTableViewCell : UITableViewCell
+@interface FeedBackDetailsTableViewCell : UITableViewCell
 
 /// 标题
 @property (nonatomic, strong) UILabel * titleLabel;
-/// 小标题
+/// 正文
 @property (nonatomic, strong) UILabel * subtitleLabel;
-/// 右侧的图片
-@property (nonatomic, strong) UIImageView * rightImgView;
 /// separator
 @property (nonatomic, strong) UIView * separateLine;
-/// 小红点
-@property (nonatomic, strong) UIView * redSpotView;
+/// 问题类型
+@property (nonatomic, strong) UILabel * typeLabel;
+/// 图片
+@property (nonatomic, strong) UICollectionView * picturesCollectionView;
 
-@property (nonatomic, strong) FeedBackModel * cellModel;
+@property (nonatomic, strong) FeedBackDetailsModel * cellModel;
 
 /// 复用标识
 + (NSString *)reuseIdentifier;

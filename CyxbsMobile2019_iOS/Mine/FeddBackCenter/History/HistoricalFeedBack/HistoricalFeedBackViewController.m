@@ -10,12 +10,17 @@
 // view
 #import "HistoricalFeedBackTableView.h"
 
+// controller
+#import "FeedBackDetailsViewController.h"
+
 @interface HistoricalFeedBackViewController ()
 <UITableViewDelegate>
 
 /// 展示历史记录的 table
 @property (nonatomic, strong) HistoricalFeedBackTableView * historicalFeedBackTableView;
-
+/// table 的头视图刷新
+@property (nonatomic, strong) MJRefreshStateHeader * feedBackStateHeader;
+/// 储存数据的数组
 @property (nonatomic, copy) NSArray * feedBackAry;
 
 @end
@@ -25,12 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self configureData];
     [self configureView];
-}
-
-- (void)configureData {
-    self.feedBackAry = [FeedBackModel getFeedBackAry];
 }
 
 - (void)configureView {
@@ -48,8 +48,16 @@
         make.left.right.bottom.mas_equalTo(self.view);
         make.top.mas_equalTo(self.topBarView.mas_bottom);
     }];
-    self.historicalFeedBackTableView.row = self.feedBackAry.count;
+    [self.historicalFeedBackTableView.mj_header beginRefreshing];
     
+}
+
+#pragma mark - mj_refresh
+
+- (void)refreshHistoricalFeedBack {
+    self.feedBackAry = [FeedBackModel getFeedBackAry];
+    self.historicalFeedBackTableView.row = self.feedBackAry.count;
+    [self.historicalFeedBackTableView.mj_header endRefreshing];
 }
 
 #pragma mark - table delegate
@@ -59,14 +67,30 @@
     feedBackCell.cellModel = self.feedBackAry[indexPath.row];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    FeedBackDetailsViewController * vc = [[FeedBackDetailsViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - getter
 
 - (HistoricalFeedBackTableView *)historicalFeedBackTableView {
     if (_historicalFeedBackTableView == nil) {
         _historicalFeedBackTableView = [[HistoricalFeedBackTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _historicalFeedBackTableView.delegate = self;
+        _historicalFeedBackTableView.mj_header = self.feedBackStateHeader;
     }
     return _historicalFeedBackTableView;
+}
+
+- (MJRefreshStateHeader *)feedBackStateHeader {
+    if (_feedBackStateHeader == nil) {
+        _feedBackStateHeader = [MJRefreshStateHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHistoricalFeedBack)];
+        _feedBackStateHeader.lastUpdatedTimeLabel.hidden = YES;
+    }
+    return _feedBackStateHeader;
 }
 
 @end
