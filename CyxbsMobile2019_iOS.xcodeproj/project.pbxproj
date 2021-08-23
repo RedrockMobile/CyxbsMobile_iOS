@@ -3181,7 +3181,7 @@
 		1A14132A235F523B0001417E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				735BC52626D3875B00F22678 /* FeddBackCenter */,
+				735BC52626D3875B00F22678 /* FeedBackCenter */,
 				7311321C26CCEB9C00EF88C1 /* StampCenter */,
 				AA536DD8258C3F7C00F69E73 /* TopBarBasicViewController.h */,
 				AA536DD9258C3F7C00F69E73 /* TopBarBasicViewController.m */,
@@ -4061,12 +4061,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		735BC52626D3875B00F22678 /* FeddBackCenter */ = {
+		735BC52626D3875B00F22678 /* FeedBackCenter */ = {
 			isa = PBXGroup;
 			children = (
 				735BC52726D3876900F22678 /* History */,
 			);
-			path = FeddBackCenter;
+			path = FeedBackCenter;
 			sourceTree = "<group>";
 		};
 		735BC52726D3876900F22678 /* History */ = {
