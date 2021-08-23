@@ -10,8 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString* const _Nonnull TodoDataModelKeyMonth = @"TodoDataModelKeyMonth";
-static NSString* const _Nonnull TodoDataModelKeyDay = @"TodoDataModelKeyDay";
+typedef NSString* TodoDataModelKey;
+
+static TodoDataModelKey const _Nonnull TodoDataModelKeyMonth = @"TodoDataModelKeyMonth";
+static TodoDataModelKey const _Nonnull TodoDataModelKeyDay = @"TodoDataModelKeyDay";
 
 typedef enum : NSUInteger {
     TodoDataModelRepeatModeNO = 0,  //不重复
@@ -38,7 +40,7 @@ typedef enum : NSUInteger {
 ///         TodoDataModelKeyDay:@"6"
 ///     }
 /// ] 代表2月6日，TodoDataModelKeyMonth是定义好的NSString常量，详见TodoDataModel.h的最上方。
-@property (nonatomic, copy)NSArray<NSDictionary*>* dateArr;
+@property (nonatomic, copy)NSArray<NSDictionary<TodoDataModelKey, NSString*>*>* dateArr;
 
 /// 每周提醒的星期数。[1, 2, 7]代表周日，周一，周六
 @property (nonatomic, copy)NSArray<NSString*>* weekArr;
@@ -49,7 +51,7 @@ typedef enum : NSUInteger {
 /// todo的detail
 @property (nonatomic, copy)NSString* detailStr;
 
-/// 具体的提醒时间
+/// 具体的提醒时间，格式为@"yyyy年M月d日HH:mm"，如果设置为@""，则表示不提醒
 @property (nonatomic, copy)NSString* timeStr;
 
 /// 是否已完成
@@ -58,7 +60,9 @@ typedef enum : NSUInteger {
 - (void)setDataWithDict:(NSDictionary*)dict;
 - (NSDictionary*)getDataDict;
 - (long)getNowStamp;
-- (NSDateComponents*)getNextRemindTime;
+- (NSDateComponents* _Nullable)getNextRemindTime;
+
+- (int*)copyIntWeekArr;
 @end
 
 NS_ASSUME_NONNULL_END

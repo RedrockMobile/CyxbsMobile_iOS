@@ -168,6 +168,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.todoSyncTool = [TodoSyncTool share];
+//    [self.todoSyncTool resetDB];
     [self configDefaults];
     [self requestData];
     [self addContentView];
@@ -392,7 +393,6 @@ static int requestCheckinInfo = 0;
         queryVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:queryVC animated:YES];
     }
-    CCLog(@"heyy");
 }
 
 - (void)requestData {
@@ -710,6 +710,12 @@ static int requestCheckinInfo = 0;
     //调用show方法让它弹出来
     [sheetView show];
 }
+- (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
+    return [self.todoSyncTool getTodoForDiscoverMainPage];
+}
+- (void)todoDidAlterWithModel:(TodoDataModel*)model {
+    [self.todoSyncTool alterTodoWithModel:model needRecord:YES];
+}
 
 //MARK: - DiscoverTodoSheetView的代理方法：
 - (void)sheetViewSaveBtnClicked:(TodoDataModel *)dataModel {
@@ -719,8 +725,20 @@ static int requestCheckinInfo = 0;
     }];
     
     [self.todoSyncTool saveTodoWithModel:dataModel needRecord:YES];
-    
+    [self.todoSyncTool logTodoData];
+    [self.todoSyncTool logRecordDataWithTableName:@"addTodoIDTable"];
+    [self.todoSyncTool logRecordDataWithTableName:@"alterTodoIDTable"];
+    [self.todoSyncTool logRecordDataWithTableName:@"deleteTodoIDTable"];
 }
+- (void)sheetViewCancelBtnClicked {
+    //显示底部课表的tabBar
+    [UIView animateWithDuration:0.5 animations:^{
+        self.tabBarController.tabBar.alpha = 1;
+    }];
+}
+
+
+//MARK: - 监听TodoSyncTool的通知
 - (void)todoSyncToolDidSync:(NSNotification*)noti {
     NSString* state = noti.object;
     if ([state isEqualToString:TodoSyncToolSyncNotificationSuccess]) {
@@ -735,15 +753,7 @@ static int requestCheckinInfo = 0;
     });
         
 }
-- (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
-    return [self.todoSyncTool getTodoForDiscoverMainPage];
-}
-- (void)sheetViewCancelBtnClicked {
-    //显示底部课表的tabBar
-    [UIView animateWithDuration:0.5 animations:^{
-        self.tabBarController.tabBar.alpha = 1;
-    }];
-}
+
 
 //MARK: - FinderView代理
 - (void)touchWriteButton {

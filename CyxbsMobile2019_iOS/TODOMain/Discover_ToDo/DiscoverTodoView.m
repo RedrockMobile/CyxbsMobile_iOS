@@ -59,7 +59,7 @@
 
 - (void)shouldDrawImg:(NSNotification*)noti {
     DiscoverTodoTableViewCell* cell = noti.object;
-    [[TodoSyncTool share] alterTodoWithModel:cell.dataModel needRecord:YES];
+    [self.delegate todoDidAlterWithModel:cell.dataModel];
     
     CGRect cellFrame = [cell convertRect:cell.bounds toView:self.todoListTableView];
     CGFloat bottomImgY = cellFrame.origin.y+cellFrame.size.height;
@@ -203,6 +203,8 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = self.backgroundColor;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
         make.top.equalTo(self.addBtn.mas_bottom).offset(0.03078817734*SCREEN_HEIGHT);

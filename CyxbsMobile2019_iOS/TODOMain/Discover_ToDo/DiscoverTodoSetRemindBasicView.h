@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 确定按钮
 @property(nonatomic, strong)UIButton* sureBtn;
 
+@property(nonatomic, strong)UIView* separatorLine;
+
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 @end
 

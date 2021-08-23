@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol DiscoverTodoViewDelegate <NSObject>
 /// 加号按钮点击后调用
 - (void)addBtnClicked;
-
+- (void)todoDidAlterWithModel:(TodoDataModel*)model;
 @end
 
 @class DiscoverTodoView;

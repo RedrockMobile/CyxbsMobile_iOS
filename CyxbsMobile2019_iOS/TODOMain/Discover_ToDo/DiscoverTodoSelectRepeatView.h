@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)TodoDataModelRepeatMode repeatMode;
 
 @property (nonatomic, weak)id <DiscoverTodoSelectRepeatViewDelegate> delegate;
+
+/// 外界调用，调用后显示出来
+- (void)show;
 @end
 
 NS_ASSUME_NONNULL_END
