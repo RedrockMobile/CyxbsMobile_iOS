@@ -6,18 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TODOModel.h"
+#import "TodoDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ToDoEmptyCell : UITableViewCell
 @property(nonatomic,assign)NSInteger type;
-///cell里的事件
-@property (nonatomic,strong) UILabel *todo_thing;
-///cell里的时间
-@property (nonatomic,strong) UILabel *todo_time;
-
-@property (nonatomic,strong) TODOModel *model;
-
 @end
 
 NS_ASSUME_NONNULL_END

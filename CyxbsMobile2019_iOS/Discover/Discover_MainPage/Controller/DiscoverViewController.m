@@ -6,6 +6,7 @@
 //  Copyright © 2019 Redrock. All rights reserved.
 //
 
+#import "TODOMainViewController.h"  //邮子清单
 #import "DiscoverViewController.h"
 //#import "LoginViewController.h"
 #import "FinderToolViewController.h"
@@ -837,6 +838,12 @@ static int requestCheckinInfo = 0;
 - (void)touchEmptyClass {
     NSLog(@"点击了空教室");
     EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)touchToDOList{
+    NSLog(@"点击了邮子清单");
+    TODOMainViewController *vc = [[TODOMainViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
