@@ -390,6 +390,11 @@
 		7311328926CCEC2400EF88C1 /* PopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311327F26CCEC2400EF88C1 /* PopupView.m */; };
 		7311328A26CCEC2400EF88C1 /* TopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311328026CCEC2400EF88C1 /* TopView.m */; };
 		7311328B26CCEC2400EF88C1 /* BottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311328126CCEC2400EF88C1 /* BottomView.m */; };
+		735BC52A26D387C200F22678 /* HistoricalFeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC52926D387C200F22678 /* HistoricalFeedBackViewController.m */; };
+		735BC52D26D38A9800F22678 /* HistoricalFeedBack.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 735BC52C26D38A9800F22678 /* HistoricalFeedBack.xcassets */; };
+		735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53126D38EA600F22678 /* HistoricalFeedBackTableView.m */; };
+		735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53426D392D400F22678 /* FeedBackTableViewCell.m */; };
+		735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53726D399DB00F22678 /* FeedBackModel.m */; };
 		73A1588A26C2475A00287C9F /* DIN-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 73A1588926C2475A00287C9F /* DIN-Medium.otf */; };
 		73AAA1CA26C918250084E44D /* details.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73AAA1A926C918240084E44D /* details.xcassets */; };
 		73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1AD26C918240084E44D /* DetailsTaskModel.m */; };
@@ -1416,6 +1421,15 @@
 		7311328126CCEC2400EF88C1 /* BottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomView.m; sourceTree = "<group>"; };
 		7311328226CCEC2400EF88C1 /* ContentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentScrollView.h; sourceTree = "<group>"; };
 		7311328326CCEC2400EF88C1 /* PopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupView.h; sourceTree = "<group>"; };
+		735BC52826D387C200F22678 /* HistoricalFeedBackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoricalFeedBackViewController.h; sourceTree = "<group>"; };
+		735BC52926D387C200F22678 /* HistoricalFeedBackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoricalFeedBackViewController.m; sourceTree = "<group>"; };
+		735BC52C26D38A9800F22678 /* HistoricalFeedBack.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = HistoricalFeedBack.xcassets; sourceTree = "<group>"; };
+		735BC53026D38EA600F22678 /* HistoricalFeedBackTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoricalFeedBackTableView.h; sourceTree = "<group>"; };
+		735BC53126D38EA600F22678 /* HistoricalFeedBackTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoricalFeedBackTableView.m; sourceTree = "<group>"; };
+		735BC53326D392D400F22678 /* FeedBackTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackTableViewCell.h; sourceTree = "<group>"; };
+		735BC53426D392D400F22678 /* FeedBackTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackTableViewCell.m; sourceTree = "<group>"; };
+		735BC53626D399DB00F22678 /* FeedBackModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackModel.h; sourceTree = "<group>"; };
+		735BC53726D399DB00F22678 /* FeedBackModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackModel.m; sourceTree = "<group>"; };
 		73A1588926C2475A00287C9F /* DIN-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Medium.otf"; sourceTree = "<group>"; };
 		73AAA1A926C918240084E44D /* details.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = details.xcassets; sourceTree = "<group>"; };
 		73AAA1AB26C918240084E44D /* DetailsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsMainViewController.h; sourceTree = "<group>"; };
@@ -3167,6 +3181,7 @@
 		1A14132A235F523B0001417E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				735BC52626D3875B00F22678 /* FeddBackCenter */,
 				7311321C26CCEB9C00EF88C1 /* StampCenter */,
 				AA536DD8258C3F7C00F69E73 /* TopBarBasicViewController.h */,
 				AA536DD9258C3F7C00F69E73 /* TopBarBasicViewController.m */,
@@ -4044,6 +4059,54 @@
 				7311328326CCEC2400EF88C1 /* PopupView.h */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		735BC52626D3875B00F22678 /* FeddBackCenter */ = {
+			isa = PBXGroup;
+			children = (
+				735BC52726D3876900F22678 /* History */,
+			);
+			path = FeddBackCenter;
+			sourceTree = "<group>";
+		};
+		735BC52726D3876900F22678 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				735BC52B26D389A100F22678 /* HistoricalFeedBack */,
+				735BC52C26D38A9800F22678 /* HistoricalFeedBack.xcassets */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		735BC52B26D389A100F22678 /* HistoricalFeedBack */ = {
+			isa = PBXGroup;
+			children = (
+				735BC52826D387C200F22678 /* HistoricalFeedBackViewController.h */,
+				735BC52926D387C200F22678 /* HistoricalFeedBackViewController.m */,
+				735BC52F26D38E4C00F22678 /* Model */,
+				735BC52E26D38E3B00F22678 /* View */,
+			);
+			path = HistoricalFeedBack;
+			sourceTree = "<group>";
+		};
+		735BC52E26D38E3B00F22678 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				735BC53026D38EA600F22678 /* HistoricalFeedBackTableView.h */,
+				735BC53126D38EA600F22678 /* HistoricalFeedBackTableView.m */,
+				735BC53326D392D400F22678 /* FeedBackTableViewCell.h */,
+				735BC53426D392D400F22678 /* FeedBackTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		735BC52F26D38E4C00F22678 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				735BC53626D399DB00F22678 /* FeedBackModel.h */,
+				735BC53726D399DB00F22678 /* FeedBackModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		73AAA1A826C918240084E44D /* StampDetails */ = {
@@ -5439,6 +5502,7 @@
 				DB4064FF2466D889006CE5BC /* Reminder.xcassets in Resources */,
 				18CDF6F9257F91BE006E8E5C /* 展开后@3x.png in Resources */,
 				DB34EAF1239BD4550052B65E /* 椭圆@3x.png in Resources */,
+				735BC52D26D38A9800F22678 /* HistoricalFeedBack.xcassets in Resources */,
 				DB34EAE8239BD4550052B65E /* 多课1@2x.png in Resources */,
 				DB34EAE3239BD4550052B65E /* 书@2x.png in Resources */,
 				DB34EAF3239BD4550052B65E /* courseMengbi.jpg in Resources */,
@@ -6010,6 +6074,7 @@
 				D03E59D723DB30D100E0F34D /* QAAnswerModel.m in Sources */,
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				18CDF686257F91BD006E8E5C /* EmptyClassViewController.m in Sources */,
+				735BC52A26D387C200F22678 /* HistoricalFeedBackViewController.m in Sources */,
 				73AAA1D126C918250084E44D /* DetailsTasksTableView.m in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
 				B82CA688263159BA00786685 /* DKSKeyboardView.m in Sources */,
@@ -6022,6 +6087,7 @@
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
 				18CDF6C6257F91BE006E8E5C /* ScoreTwoTitleView.m in Sources */,
 				18CDF6BB257F91BD006E8E5C /* GPAItem.m in Sources */,
+				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
 				18CDF666257F91BD006E8E5C /* OneNewsModel.m in Sources */,
 				180DAA3926B442B20094B8DC /* MGDStatusBarHeight.m in Sources */,
@@ -6031,6 +6097,7 @@
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
 				180DAA3A26B442B20094B8DC /* PostArchiveTool.m in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
+				735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				180DA9B626B440900094B8DC /* GroupModel.m in Sources */,
 				AAE3305325E2A41900324750 /* ArticleTableViewCell.m in Sources */,
@@ -6058,6 +6125,7 @@
 				18CDF709257F91BE006E8E5C /* segmentTableViewCell.m in Sources */,
 				B82CA6612631599900786685 /* DynamicDetailViewModel.m in Sources */,
 				7FBF39F3257B79F30077494E /* LoginViewController.swift in Sources */,
+				735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */,
 				AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */,
 				B82CA69C26315BB700786685 /* SZHReleasView.m in Sources */,
 				73AAA1CC26C918250084E44D /* DetailsGoodsModel.m in Sources */,
