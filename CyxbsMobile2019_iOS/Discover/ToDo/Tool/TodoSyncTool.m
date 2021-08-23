@@ -47,7 +47,8 @@ NSString* const TodoSyncToolKeyIsModified = @"TodoSyncToolKeyIsModified";
 @property(nonatomic, assign, readonly) AFNetworkReachabilityStatus netWorkStatus;
 @end
 
-//https://be-prod.redrock.cqupt.edu.cn/magipoke-todo
+//生产环境：https://be-prod.redrock.cqupt.edu.cn/magipoke-todo
+//测试环境：https://be-dev.redrock.cqupt.edu.cn/magipoke-todo
 @implementation TodoSyncTool
 static TodoSyncTool* _instance;
 
@@ -61,12 +62,12 @@ static TodoSyncTool* _instance;
     }
     //获取上次同步时间
     [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        CCLog(@"%@",responseObject);
+        CCLog(@"%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
             return;
         }
-        long syncTime = [responseObject[@"data"] longValue];
+        long syncTime = [responseObject[@"data"][@"sync_time"] longValue];
         if (syncTime!=self.lastSyncTimeStamp) {
             //时间不相等，代表需要下载数据
             if (self.needSynchronize) {
@@ -91,7 +92,7 @@ static TodoSyncTool* _instance;
             }
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        CCLog(@"%@",error);
+        CCLog(@"%@",error);
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
     }];
 }
@@ -153,8 +154,8 @@ static TodoSyncTool* _instance;
 - (void)firstPush {
     NSDictionary* paramDict = @{
         @"data":[self getAddAndAlterDataToPush],
-        @"sync_time":@0,
-        @"first_push":@1
+        @"sync_time":@"0",
+        @"first_push":@"1"
     };
     [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/batch-create" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString* state = responseObject[@"info"];
@@ -884,7 +885,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
     [self.db executeUpdate:code];
 }
 - (void)resetDB {
-    //得先删除其他的，再删除todoTable，不然可能有约束保存
+    //得先删除其他的，再删除todoTable，不然可能有约束报错
     NSArray* tableNameArr = @[@"remindModeTable", @"addTodoIDTable", @"alterTodoIDTable", @"deleteTodoIDTable", @"todoTable"];
     for (NSString* tableName in tableNameArr) {
         [self dropTable:tableName];

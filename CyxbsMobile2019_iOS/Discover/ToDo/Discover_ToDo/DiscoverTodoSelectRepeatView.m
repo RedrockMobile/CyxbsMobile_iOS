@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong)UIScrollView* scrollView;
 
-@property (nonatomic, strong)UIView* scrContenView;;
+@property (nonatomic, strong)UIView* scrContenView;
 
 @property (nonatomic, strong)NSMutableArray<DLTimeSelectedButton*>* btnArr;
 
@@ -43,6 +43,7 @@
 /// 第三列选择的数据，重复类型为每年时，代表选择的日，0代表1日。
 @property (nonatomic, assign)NSInteger* selectedCntOfcom;
 
+@property (nonatomic, assign)NSInteger increseCnt;
 @end
 
 @implementation DiscoverTodoSelectRepeatView
@@ -61,7 +62,7 @@
             @31, @30, @31
         ];
         self.selectedCntOfcom = calloc(3, sizeof(NSInteger));
-        
+        self.alpha = 0;
         [self addPickerView];
         [self layoutTipView];
         [self addAddBtn];
@@ -181,7 +182,13 @@
             break;
     }
 }
+
+
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    if (component==0&&self.btnArr.count!=0&&row!=self.selectedCntOfcom[component]) {
+        [pickerView selectRow:self.selectedCntOfcom[component] inComponent:0 animated:YES];
+        return;
+    }
     self.selectedCntOfcom[component] = row;
     [self resetData];
 }
@@ -203,18 +210,29 @@
 }
 //MARK: - 点击按钮后调用
 - (void)cancelBtnClicked {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.addBtn.alpha =
+        self.tipView.alpha =
+        self.pickerView.alpha =
+        self.sureBtn.alpha =
+        self.cancelBtn.alpha =
+        self.separatorLine.alpha = 0;
     }];
+    for (NSInteger i=0; i<_increseCnt; i++) {
+        [[self.btnArr popLastObject] removeFromSuperview];
+        [self.dateArr removeLastObject];
+    }
+    [self reLayoutAllBtn];
     [self.delegate selectRepeatViewCancelBtnClicked];
 }
 - (void)sureBtnClicked {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.addBtn.alpha =
+        self.tipView.alpha =
+        self.pickerView.alpha =
+        self.sureBtn.alpha =
+        self.cancelBtn.alpha =
+        self.separatorLine.alpha = 0;
     }];
     [self.delegate selectRepeatViewSureBtnClicked:self];
 }
@@ -234,25 +252,41 @@ static inline int ForeignWeekToChinaWeek(int week) {
         case 0:
             self.repeatMode = TodoDataModelRepeatModeDay;
             return;
-        case 1:
+        case 1: {
+            NSString* dateStr = [NSString stringWithFormat:@"%d", ForeignWeekToChinaWeek((int)self.selectedCntOfcom[1]+1)];
+            if ([self.dateArr containsObject:dateStr]) {
+                return;
+            }
+            [self.dateArr addObject: dateStr];
             self.repeatMode = TodoDataModelRepeatModeWeek;
             titleStr = self.week[self.selectedCntOfcom[1]];
-            [self.dateArr addObject:[NSString stringWithFormat:@"%d", ForeignWeekToChinaWeek((int)self.selectedCntOfcom[1]+1)]];
             break;
-        case 2:
+        }
+        case 2: {
+            NSString* dateStr = [NSString stringWithFormat:@"%ld",self.selectedCntOfcom[1]+1];
+            if ([self.dateArr containsObject:dateStr]) {
+                return;
+            }
+            [self.dateArr addObject:dateStr];
             self.repeatMode = TodoDataModelRepeatModeMonth;
             titleStr = [NSString stringWithFormat:@"每月%ld日",self.selectedCntOfcom[1]+1];
-            [self.dateArr addObject:[NSString stringWithFormat:@"%ld",self.selectedCntOfcom[1]+1]];
             break;
-        case 3:
-            self.repeatMode = TodoDataModelRepeatModeYear;
-            titleStr = [NSString stringWithFormat:@"每年%ld月%ld日",self.selectedCntOfcom[1]+1, self.selectedCntOfcom[2]+1];
-            [self.dateArr addObject:@{
+        }
+        case 3: {
+            NSDictionary* dateDict = @{
                 TodoDataModelKeyMonth:[NSString stringWithFormat:@"%02ld",self.selectedCntOfcom[1]+1],
                 TodoDataModelKeyDay:[NSString stringWithFormat:@"%02ld",self.selectedCntOfcom[2]+1]
-            }];
+            };
+            if ([self.dateArr containsObject:dateDict]) {
+                return;
+            }
+            [self.dateArr addObject:dateDict];
+            self.repeatMode = TodoDataModelRepeatModeYear;
+            titleStr = [NSString stringWithFormat:@"每年%ld月%ld日",self.selectedCntOfcom[1]+1, self.selectedCntOfcom[2]+1];
             break;
+        }
     }
+    
     DLTimeSelectedButton* btn = [[DLTimeSelectedButton alloc] init];
     [self.btnArr addObject:btn];
     [self.scrContenView addSubview:btn];
@@ -275,6 +309,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
             }];
         }
     });
+    self.increseCnt++;
 }
 
 - (void)reLayoutAllBtn {
@@ -301,12 +336,26 @@ static inline int ForeignWeekToChinaWeek(int week) {
     [self.dateArr removeObjectAtIndex:[self.btnArr indexOfObject:btn]];
     [self.btnArr removeObject:btn];
     [self reLayoutAllBtn];
+    self.increseCnt--;
 }
 
 - (void)dealloc {
     free(self.selectedCntOfcom);
     self.selectedCntOfcom = nil;
 }
+
+/// 外界调用，调用后显示出来
+- (void)show {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.alpha = 1;
+        for (UIView* subView in self.subviews) {
+            subView.alpha = 1;
+        }
+    }];
+    self.increseCnt = 0;
+}
+
+/// 外界调用，调用把除了scrContenView、scrollView意外的所有view隐藏起来
 @end
 
 /*

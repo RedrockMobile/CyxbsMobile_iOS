@@ -37,10 +37,14 @@
 
 @property (nonatomic, strong)DiscoverTodoSelectTimeView* selectTimeView;
 
+@property (nonatomic, strong) DiscoverTodoSelectRepeatView* selectRepeatView;
+
 @property (nonatomic, strong)TodoDataModel* dataModel;
 
 /// 是否处于选择时间/重复模式的状态
 @property (nonatomic, assign)BOOL isSelecting;
+
+
 @end
 
 @implementation DiscoverTodoSheetView
@@ -147,6 +151,7 @@
         make.height.mas_equalTo(0.1173333333*SCREEN_WIDTH);
     }];
 }
+
 //这边约束好像有warming
 - (void)addRemindTimeBtn {
     UIButton* btn = [self getStdBtn];
@@ -207,6 +212,7 @@
     }];
     [self.delegate sheetViewCancelBtnClicked];
 }
+
 /// 保存按钮点击后调用
 - (void)saveBtnClicked {
     [UIView animateWithDuration:0.5 animations:^{
@@ -254,26 +260,28 @@
     }
     self.isSelecting = YES;
     [self endEditing:YES];
-    DiscoverTodoSelectRepeatView* view = [[DiscoverTodoSelectRepeatView alloc] init];
-    [self.backView addSubview:view];
-    
-    
-    view.alpha = 0;
-    view.delegate = self;
-    
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self);
-        make.height.equalTo(@(0.4729064039*SCREEN_HEIGHT));
-    }];
-    [UIView animateWithDuration:0.3 animations:^{
-        view.alpha = 1;
-    }];
+    [self.selectRepeatView show];
+}
+
+- (DiscoverTodoSelectRepeatView *)selectRepeatView {
+    if (_selectRepeatView==nil) {
+        DiscoverTodoSelectRepeatView* view = [[DiscoverTodoSelectRepeatView alloc] init];
+        [self.backView addSubview:view];
+        _selectRepeatView = view;
+        
+        view.delegate = self;
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self);
+            make.height.equalTo(@(0.4729064039*SCREEN_HEIGHT));
+        }];
+    }
+    return _selectRepeatView;
 }
 
 - (void)selectTimeViewSureBtnClicked:(NSDateComponents *)components {
     self.isSelecting = NO;
     [self.remindTimeBtn setTitle:[NSString stringWithFormat:@"%ld月%ld日%02ld:%02ld", components.month, components.day, components.hour, components.minute] forState:UIControlStateNormal];
-    self.dataModel.timeStr = [NSString stringWithFormat:@"%ld年%02ld月%02ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+    self.dataModel.timeStr = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
 }
 
 - (void)selectRepeatViewSureBtnClicked:(DiscoverTodoSelectRepeatView*)view {

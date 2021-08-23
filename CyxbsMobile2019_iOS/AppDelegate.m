@@ -30,12 +30,12 @@ extern CFAbsoluteTime StartTime;
     AFNetworkReachabilityManager* man = [AFNetworkReachabilityManager sharedManager];
     self.reaManager = man;
     [man setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        //发送网络发送变化的通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"AFNetworkReachabilityStatusChanges" object:@(status)];
-        
         //把网络状态写入缓存
         [[NSUserDefaults standardUserDefaults] setInteger:status forKey:@"AFNetworkReachabilityStatus"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //发送网络发送变化的通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AFNetworkReachabilityStatusChanges" object:@(status)];
     }];
     [man startMonitoring];
 }

@@ -12,6 +12,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
         [self addTipView];
         [self addCancelBtn];
         [self addSureBtn];
@@ -76,7 +77,7 @@
 - (void)addSeparateLine{
     UIView *view = [[UIView alloc] init];
     [self addSubview:view];
-    
+    self.separatorLine = view;
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self);
         make.height.mas_equalTo(0.5);
