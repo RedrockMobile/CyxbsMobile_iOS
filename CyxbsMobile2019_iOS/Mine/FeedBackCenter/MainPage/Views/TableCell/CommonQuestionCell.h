@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CommonQuestionCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *mainLabel;
 
 @end
 

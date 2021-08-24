@@ -11,6 +11,8 @@
 #import "UIView+XYView.h"
 #import "HintView.h"
 #import "HistoricalFeedBackViewController.h"
+#import "CommonQuestionCell.h"
+
 @interface FeedBackMainPageViewController ()<UITableViewDelegate,UITableViewDataSource>
 ///常见问题标题
 @property (nonatomic,strong) UILabel *commonQuestionsLbl;
@@ -47,9 +49,12 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
-    cell.contentView.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
+    CommonQuestionCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"CommonQuestionCell" owner:nil options:nil]firstObject];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 55;
 }
 
 #pragma mark - getter
