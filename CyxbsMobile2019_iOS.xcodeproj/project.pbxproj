@@ -383,6 +383,8 @@
 		4931631226CD7B6800140412 /* MainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630226CD7B6800140412 /* MainScrollView.m */; };
 		4931631326CD7B6800140412 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630426CD7B6800140412 /* TableHeaderView.m */; };
 		4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931631B26CD7B7900140412 /* StampCenterVC.m */; };
+		49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49343A2126D4EAB2001A2892 /* CommonQuestionCell.m */; };
+		49343A2426D4EAB2001A2892 /* CommonQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49343A2226D4EAB2001A2892 /* CommonQuestionCell.xib */; };
 		4999FA8326D44EA8005D0ADE /* HintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4999FA8226D44EA8005D0ADE /* HintView.m */; };
 		49F47CD226D423A100084196 /* FeedBackMainPage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F47CD126D423A100084196 /* FeedBackMainPage.xcassets */; };
 		7311328426CCEC2400EF88C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7311327126CCEC2400EF88C1 /* Media.xcassets */; };
@@ -1409,6 +1411,9 @@
 		4931630526CD7B6800140412 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		4931631926CD7B7900140412 /* StampCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterVC.h; sourceTree = "<group>"; };
 		4931631B26CD7B7900140412 /* StampCenterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterVC.m; sourceTree = "<group>"; };
+		49343A2026D4EAB2001A2892 /* CommonQuestionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonQuestionCell.h; sourceTree = "<group>"; };
+		49343A2126D4EAB2001A2892 /* CommonQuestionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonQuestionCell.m; sourceTree = "<group>"; };
+		49343A2226D4EAB2001A2892 /* CommonQuestionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonQuestionCell.xib; sourceTree = "<group>"; };
 		4999FA8126D44EA8005D0ADE /* HintView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HintView.h; sourceTree = "<group>"; };
 		4999FA8226D44EA8005D0ADE /* HintView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HintView.m; sourceTree = "<group>"; };
 		49F47CD126D423A100084196 /* FeedBackMainPage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FeedBackMainPage.xcassets; sourceTree = "<group>"; };
@@ -4023,6 +4028,25 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		49343A1E26D4E9DE001A2892 /* HintView */ = {
+			isa = PBXGroup;
+			children = (
+				4999FA8126D44EA8005D0ADE /* HintView.h */,
+				4999FA8226D44EA8005D0ADE /* HintView.m */,
+			);
+			path = HintView;
+			sourceTree = "<group>";
+		};
+		49343A1F26D4E9EF001A2892 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				49343A2026D4EAB2001A2892 /* CommonQuestionCell.h */,
+				49343A2126D4EAB2001A2892 /* CommonQuestionCell.m */,
+				49343A2226D4EAB2001A2892 /* CommonQuestionCell.xib */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
 		4999FA8726D452A2005D0ADE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -4042,8 +4066,8 @@
 		49F47CD726D42AA100084196 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4999FA8126D44EA8005D0ADE /* HintView.h */,
-				4999FA8226D44EA8005D0ADE /* HintView.m */,
+				49343A1F26D4E9EF001A2892 /* TableCell */,
+				49343A1E26D4E9DE001A2892 /* HintView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5609,6 +5633,7 @@
 				DB34EB07239BD4550052B65E /* 多课2@3x.png in Resources */,
 				18CDF6F1257F91BE006E8E5C /* 展开前@2x.png in Resources */,
 				D0011A7023F0830B009A242C /* QAExitView.xib in Resources */,
+				49343A2426D4EAB2001A2892 /* CommonQuestionCell.xib in Resources */,
 				DB34EAF9239BD4550052B65E /* remind_image_remind@3x.png in Resources */,
 				18CDF6DF257F91BE006E8E5C /* login_password.png in Resources */,
 				18CDF6F6257F91BE006E8E5C /* 4@2x.png in Resources */,
@@ -6219,6 +6244,7 @@
 				18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */,
 				18CDF6CE257F91BE006E8E5C /* SchoolBusContentView.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
+				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
 				73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */,
 				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
 				18CDF4BB257F8DBD006E8E5C /* ResetPwdViewController.m in Sources */,

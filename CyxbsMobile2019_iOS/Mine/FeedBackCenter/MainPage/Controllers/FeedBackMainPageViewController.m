@@ -10,6 +10,7 @@
 #import "ZWTMacro.h"
 #import "UIView+XYView.h"
 #import "HintView.h"
+#import "HistoricalFeedBackViewController.h"
 @interface FeedBackMainPageViewController ()<UITableViewDelegate,UITableViewDataSource>
 ///常见问题标题
 @property (nonatomic,strong) UILabel *commonQuestionsLbl;
@@ -19,6 +20,10 @@
 @property (nonatomic,strong) UIButton *feedBackEntranceBtn;
 ///提示反馈qq群View
 @property (nonatomic,strong) HintView *hintView;
+///历史反馈入口按钮
+@property (nonatomic,strong) UIButton *historyBtn;
+///跳转添加QQ群按钮
+@property (nonatomic,strong) UIButton *jumpBtn;
 
 @end
 
@@ -31,8 +36,22 @@
     [self.view addSubview:self.table];
     [self.view addSubview:self.feedBackEntranceBtn];
     [self.view addSubview:self.hintView];
+    [self.topBarView addSubview:self.historyBtn];
+    [self.view addSubview:self.jumpBtn];
     
 }
+
+#pragma mark - Table数据源
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [[UITableViewCell alloc]init];
+    cell.contentView.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
+    return cell;
+}
+
 #pragma mark - getter
 - (UILabel *)commonQuestionsLbl{
     if (!_commonQuestionsLbl) {
@@ -66,6 +85,7 @@
     }
     return _feedBackEntranceBtn;
 }
+
 - (HintView *)hintView{
     if (!_hintView) {
         _hintView = [[HintView alloc]init];
@@ -76,15 +96,22 @@
     return _hintView;
 }
 
-
-#pragma mark - Table数据源
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+- (UIButton *)historyBtn{
+    if (!_historyBtn) {
+        _historyBtn = [[UIButton alloc]initWithFrame:CGRectMake(0.909*SCREEN_WIDTH, 15, 18, 19)];
+        [_historyBtn setImage:[UIImage imageNamed:@"His"]forState:UIControlStateNormal];
+        [_historyBtn addTarget:self action:@selector(history) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _historyBtn;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
-    return cell;
+- (UIButton *)jumpBtn{
+    if (!_jumpBtn) {
+        _jumpBtn = [[UIButton alloc]initWithFrame:self.hintView.frame];
+        _jumpBtn.backgroundColor = [UIColor clearColor];
+        [_jumpBtn addTarget:self action:@selector(jumpQQ) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _jumpBtn;
 }
 
 #pragma mark - 私有方法
@@ -96,7 +123,19 @@
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }
+
 - (void)entrance{
     NSLog(@"正在进入意见与反馈");
+}
+
+- (void)history{
+    NSLog(@"正在进入历史反馈");
+    HistoricalFeedBackViewController *hvc = [[HistoricalFeedBackViewController alloc]init];
+    hvc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:hvc animated:YES];
+}
+
+- (void)jumpQQ{
+    NSLog(@"跳转至QQ");
 }
 @end
