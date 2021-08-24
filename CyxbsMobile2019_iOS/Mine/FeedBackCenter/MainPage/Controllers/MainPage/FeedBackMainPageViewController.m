@@ -12,6 +12,7 @@
 #import "HintView.h"
 #import "HistoricalFeedBackViewController.h"
 #import "CommonQuestionCell.h"
+#import "FeedBackVC.h"
 
 @interface FeedBackMainPageViewController ()<UITableViewDelegate,UITableViewDataSource>
 ///常见问题标题
@@ -53,10 +54,14 @@
     return cell;
 }
 
+#pragma mark - Table代理
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"点击了%ld",indexPath.row);
+}
 #pragma mark - getter
 - (UILabel *)commonQuestionsLbl{
     if (!_commonQuestionsLbl) {
@@ -131,6 +136,10 @@
 
 - (void)entrance{
     NSLog(@"正在进入意见与反馈");
+    FeedBackVC *fvc = [[FeedBackVC alloc]init];
+    fvc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:fvc animated:YES];
+    
 }
 
 - (void)history{
