@@ -387,6 +387,7 @@
 		49343A2426D4EAB2001A2892 /* CommonQuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49343A2226D4EAB2001A2892 /* CommonQuestionCell.xib */; };
 		49628E3226D52C6000805A08 /* FeedBackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49628E3126D52C6000805A08 /* FeedBackVC.m */; };
 		49628E3C26D52E6C00805A08 /* TypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 49628E3B26D52E6C00805A08 /* TypeButton.m */; };
+		4975628A26D5975F004499E6 /* FeedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4975628926D5975F004499E6 /* FeedBackView.m */; };
 		4999FA8326D44EA8005D0ADE /* HintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4999FA8226D44EA8005D0ADE /* HintView.m */; };
 		49C2E78326D563AF00AFBE6F /* TypeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C2E78226D563AF00AFBE6F /* TypeSelectView.m */; };
 		49F47CD226D423A100084196 /* FeedBackMainPage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F47CD126D423A100084196 /* FeedBackMainPage.xcassets */; };
@@ -1421,6 +1422,8 @@
 		49628E3126D52C6000805A08 /* FeedBackVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackVC.m; sourceTree = "<group>"; };
 		49628E3A26D52E6C00805A08 /* TypeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeButton.h; sourceTree = "<group>"; };
 		49628E3B26D52E6C00805A08 /* TypeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeButton.m; sourceTree = "<group>"; };
+		4975628826D5975F004499E6 /* FeedBackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackView.h; sourceTree = "<group>"; };
+		4975628926D5975F004499E6 /* FeedBackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackView.m; sourceTree = "<group>"; };
 		4999FA8126D44EA8005D0ADE /* HintView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HintView.h; sourceTree = "<group>"; };
 		4999FA8226D44EA8005D0ADE /* HintView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HintView.m; sourceTree = "<group>"; };
 		49C2E78126D563AF00AFBE6F /* TypeSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeSelectView.h; sourceTree = "<group>"; };
@@ -4083,6 +4086,15 @@
 			path = TypeButton;
 			sourceTree = "<group>";
 		};
+		4975628726D59701004499E6 /* FeedBackView */ = {
+			isa = PBXGroup;
+			children = (
+				4975628826D5975F004499E6 /* FeedBackView.h */,
+				4975628926D5975F004499E6 /* FeedBackView.m */,
+			);
+			path = FeedBackView;
+			sourceTree = "<group>";
+		};
 		4999FA8726D452A2005D0ADE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -4095,6 +4107,7 @@
 		49C2E77F26D5634400AFBE6F /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				4975628726D59701004499E6 /* FeedBackView */,
 				49C2E78026D5637F00AFBE6F /* TypeSelectView */,
 				49343A1E26D4E9DE001A2892 /* HintView */,
 				49628E3926D52DF800805A08 /* TypeButton */,
@@ -5852,6 +5865,7 @@
 				1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */,
 				B83766ED25C14FD600A8666A /* SearchEndNoResultCV.m in Sources */,
 				180DAA7226B442B60094B8DC /* SelfFuncView.m in Sources */,
+				4975628A26D5975F004499E6 /* FeedBackView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				18CDF6B0257F91BD006E8E5C /* SCChartLabel.m in Sources */,

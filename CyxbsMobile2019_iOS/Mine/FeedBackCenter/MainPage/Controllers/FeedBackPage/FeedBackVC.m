@@ -9,9 +9,13 @@
 #import "FeedBackVC.h"
 #import "TypeSelectView.h"
 #import "ZWTMacro.h"
+#import "FeedBackView.h"
+#import "UIView+XYView.h"
 @interface FeedBackVC ()
 
-@property (nonatomic) TypeSelectView * typeSelectView;
+@property (nonatomic,strong) TypeSelectView * typeSelectView;
+@property (nonatomic,strong) FeedBackView *feedBackView;
+@property (nonatomic,strong) UIButton *submitBtn;
 
 @end
 
@@ -21,6 +25,8 @@
     [super viewDidLoad];
     [self setupBar];
     [self.view addSubview:self.typeSelectView];
+    [self.view addSubview:self.feedBackView];
+    [self.view addSubview:self.submitBtn];
 }
 
 
@@ -31,6 +37,25 @@
     }
     return _typeSelectView;
 }
+
+- (FeedBackView *)feedBackView{
+    if (!_feedBackView) {
+        _feedBackView = [[FeedBackView alloc]initWithFrame:CGRectMake(16, Bar_H + 71, SCREEN_WIDTH - 32, 509)];
+    }
+    return _feedBackView;
+}
+
+-(UIButton *)submitBtn{
+    if (!_submitBtn) {
+        _submitBtn = [[UIButton alloc]init];
+        _submitBtn.size = CGSizeMake(117, 41);
+        _submitBtn.centerX = self.view.centerX;
+        _submitBtn.y = 719;
+        [_submitBtn setImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
+    }
+    return _submitBtn;
+}
+
 
 #pragma mark - 私有方法
 - (void)setupBar{

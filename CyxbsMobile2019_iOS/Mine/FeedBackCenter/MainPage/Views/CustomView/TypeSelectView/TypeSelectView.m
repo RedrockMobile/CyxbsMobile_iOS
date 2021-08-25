@@ -15,7 +15,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
-//        self.backgroundColor = [UIColor redColor];
         [self addSubview:self.otherBtn];
         [self addSubview:self.profileProblemBtn];
         [self addSubview:self.recommendBtn];

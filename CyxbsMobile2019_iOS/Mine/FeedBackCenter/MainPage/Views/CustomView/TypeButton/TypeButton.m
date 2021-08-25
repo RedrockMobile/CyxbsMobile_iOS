@@ -16,7 +16,7 @@
         [self setTitleColor:[UIColor colorNamed:@"TypeBtn"] forState:UIControlStateNormal];
         [self setTitle:title forState:UIControlStateNormal];
         self.layer.masksToBounds = NO;
-        self.layer.cornerRadius = 10;
+        self.layer.cornerRadius = 15;
         self.layer.borderWidth = 1;
         self.layer.borderColor = [UIColor colorNamed:@"TypeBtn"].CGColor;
     }
