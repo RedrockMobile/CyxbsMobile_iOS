@@ -95,30 +95,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectZero];
-    if (section == 0) {
-        label.text = [self getTimeFromTimestamp: ((FeedBackDetailsModel *)self.detailsAry[section]).date];
-    } else {
-        label.text = [self getTimeFromTimestamp: ((FeedBackReplyModel *)self.detailsAry[section]).date];
-    }
-    label.textAlignment = NSTextAlignmentCenter;
-    return label;
-}
-
-#pragma mark - private
-
-- (NSString *)getTimeFromTimestamp:(long)time {
-    //将对象类型的时间转换为NSDate类型
-    NSDate * myDate = [NSDate dateWithTimeIntervalSince1970:time];
-    //设置时间格式
-    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY/MM/dd HH:mm"];
-    //将时间转换为字符串
-    NSString * timeStr = [formatter stringFromDate:myDate];
-    return timeStr;
-}
-
 #pragma mark - mj_refresh
 
 - (void)refreshFeedBackDetails {
@@ -136,7 +112,7 @@
 
 - (UITableView *)feedBackDetailsTableView {
     if (_feedBackDetailsTableView == nil) {
-        _feedBackDetailsTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _feedBackDetailsTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _feedBackDetailsTableView.delegate = self;
         _feedBackDetailsTableView.dataSource = self;
         _feedBackDetailsTableView.backgroundColor = [UIColor clearColor];

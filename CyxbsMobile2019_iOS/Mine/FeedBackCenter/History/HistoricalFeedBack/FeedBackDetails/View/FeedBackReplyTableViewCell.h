@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel * titleLabel;
 /// 图片
 @property (nonatomic, strong) UICollectionView * picturesCollectionView;
+/// 时间
+@property (nonatomic, strong) UILabel * timeLabel;
 
 @property (nonatomic, strong) FeedBackReplyModel * cellModel;
 
@@ -25,9 +27,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 复用标识
 + (NSString *)reuseIdentifier;
-
-/// 将时间戳转化为字符串 @"YYYY/MM/dd HH:mm"
-- (NSString *)getTimeFromTimestamp:(long)time;
 
 @end
 

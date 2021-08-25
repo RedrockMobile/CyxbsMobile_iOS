@@ -29,6 +29,7 @@
 }
 
 - (void)setupView {
+    [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.maskView];
     [self.maskView addSubview:self.titleLabel];
     [self.maskView addSubview:self.picturesCollectionView];
@@ -39,6 +40,12 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGRect bounds = self.contentView.bounds;
+    // timelabel
+    CGRect f6 = bounds;
+    f6.size = [self.timeLabel sizeThatFits:CGSizeZero];
+    f6.origin = CGPointMake((bounds.size.width - f6.size.width) / 2, 12);
+    self.timeLabel.frame = f6;
+    
     bounds.size.width -= 16 * 2;
     
     // titleLabel
@@ -61,13 +68,13 @@
     
     // maskeView
     CGRect flast = bounds;
-    flast.origin = CGPointMake(16, 8);
+    flast.origin = CGPointMake(16, CGRectGetMaxY(f6) + 12);
     flast.size = CGSizeMake(bounds.size.width, CGRectGetMaxY(self.picturesCollectionView.frame) + 18);
     self.maskView.frame = flast;
 }
 
 - (CGFloat)height {
-    return self.maskView.frame.size.height + 8 * 2;
+    return CGRectGetMaxY(self.maskView.frame) + 8;
 }
 
 #pragma mark - setter
@@ -75,6 +82,7 @@
 - (void)setCellModel:(FeedBackReplyModel *)cellModel {
     _cellModel = cellModel;
     self.titleLabel.text = [@"回复:" stringByAppendingString:cellModel.contentText];
+    self.timeLabel.text = [self getTimeFromTimestamp:cellModel.date];
     
     [self layoutSubviews];
     [self.picturesCollectionView reloadData];
@@ -120,6 +128,17 @@
     return _maskView;
 }
 
+- (UILabel *)timeLabel {
+    if (_timeLabel == nil) {
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _timeLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+        _timeLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
+        _timeLabel.backgroundColor = [UIColor clearColor];
+    }
+    return _timeLabel;
+}
+
 #pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -139,6 +158,7 @@
 
 #pragma mark - private
 
+/// 将时间戳转化为字符串 @"YYYY/MM/dd HH:mm"
 - (NSString *)getTimeFromTimestamp:(long)time {
     //将对象类型的时间转换为NSDate类型
     NSDate * myDate = [NSDate dateWithTimeIntervalSince1970:time];
