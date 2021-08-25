@@ -14,7 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FeedBackReplyTableViewCell : UITableViewCell
 
+/// 正文
+@property (nonatomic, strong) UILabel * titleLabel;
+/// 图片
+@property (nonatomic, strong) UICollectionView * picturesCollectionView;
+
 @property (nonatomic, strong) FeedBackReplyModel * cellModel;
+
+- (CGFloat)height;
 
 /// 复用标识
 + (NSString *)reuseIdentifier;

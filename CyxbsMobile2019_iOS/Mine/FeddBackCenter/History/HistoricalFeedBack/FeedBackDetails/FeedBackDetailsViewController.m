@@ -8,15 +8,16 @@
 
 #import "FeedBackDetailsViewController.h"
 //view
-#import "FeedBackDetailsTableView.h"
+#import "FeedBackDetailsTableViewCell.h"
+#import "FeedBackReplyTableViewCell.h"
 //model
 #import "FeedBackDetailsRequestDataModel.h"
 
 @interface FeedBackDetailsViewController ()
-<UITableViewDelegate>
+<UITableViewDelegate, UITableViewDataSource>
 
 /// 展示反馈和回复
-@property (nonatomic, strong) FeedBackDetailsTableView * feedBackDetailsTableView;
+@property (nonatomic, strong) UITableView * feedBackDetailsTableView;
 /// 刷新
 @property (nonatomic, strong) MJRefreshStateHeader * feedBackStateHeader;
 
@@ -46,24 +47,76 @@
     
     // config feedBackDetailsTableView
     [self.view addSubview:self.feedBackDetailsTableView];
-    [self.feedBackDetailsTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.topBarView.mas_bottom);
-    }];
+    CGRect bounds = self.view.bounds;
+    bounds.size.height -= [self getTopBarViewHeight];
+    bounds.origin.y += [self getTopBarViewHeight];
+    self.feedBackDetailsTableView.frame = bounds;
     [self.feedBackDetailsTableView.mj_header beginRefreshing];
-    
 }
 
-#pragma mark - tableview delegate
+#pragma mark - tableview delegate & data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.detailsAry.count;
+}
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        FeedBackDetailsTableViewCell * detailsCell = (FeedBackDetailsTableViewCell *)cell;
-        detailsCell.cellModel = self.detailsAry[indexPath.section];
+        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
+        cell.cellModel = self.detailsAry[indexPath.section];
+        return cell;
     } else {
-        FeedBackReplyTableViewCell * replyCell = (FeedBackReplyTableViewCell *)cell;
-        
+        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        cell.cellModel = self.detailsAry[indexPath.section];
+        return cell;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
+        cell.bounds = tableView.bounds;
+        cell.cellModel = self.detailsAry[indexPath.section];
+        return cell.height;
+    } else {
+        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        cell.bounds = tableView.bounds;
+        cell.cellModel = self.detailsAry[indexPath.section];
+        return cell.height;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectZero];
+    if (section == 0) {
+        label.text = [self getTimeFromTimestamp: ((FeedBackDetailsModel *)self.detailsAry[section]).date];
+    } else {
+        label.text = [self getTimeFromTimestamp: ((FeedBackReplyModel *)self.detailsAry[section]).date];
+    }
+    label.textAlignment = NSTextAlignmentCenter;
+    return label;
+}
+
+#pragma mark - private
+
+- (NSString *)getTimeFromTimestamp:(long)time {
+    //将对象类型的时间转换为NSDate类型
+    NSDate * myDate = [NSDate dateWithTimeIntervalSince1970:time];
+    //设置时间格式
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY/MM/dd HH:mm"];
+    //将时间转换为字符串
+    NSString * timeStr = [formatter stringFromDate:myDate];
+    return timeStr;
 }
 
 #pragma mark - mj_refresh
@@ -71,7 +124,7 @@
 - (void)refreshFeedBackDetails {
     [FeedBackDetailsRequestDataModel getDataArySuccess:^(NSArray * _Nonnull array) {
         self.detailsAry = array;
-        self.feedBackDetailsTableView.section = self.detailsAry.count;
+        [self.feedBackDetailsTableView reloadData];
         [self.feedBackDetailsTableView.mj_header endRefreshing];
     } failure:^{
         [self.feedBackDetailsTableView.mj_header endRefreshing];
@@ -81,10 +134,15 @@
 
 #pragma mark - getter
 
-- (FeedBackDetailsTableView *)feedBackDetailsTableView {
+- (UITableView *)feedBackDetailsTableView {
     if (_feedBackDetailsTableView == nil) {
-        _feedBackDetailsTableView = [[FeedBackDetailsTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _feedBackDetailsTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _feedBackDetailsTableView.delegate = self;
+        _feedBackDetailsTableView.dataSource = self;
+        _feedBackDetailsTableView.backgroundColor = [UIColor clearColor];
+        [_feedBackDetailsTableView registerClass:[FeedBackDetailsTableViewCell class] forCellReuseIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
+        [_feedBackDetailsTableView registerClass:[FeedBackReplyTableViewCell class] forCellReuseIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        _feedBackDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _feedBackDetailsTableView.mj_header = self.feedBackStateHeader;
     }
     return _feedBackDetailsTableView;

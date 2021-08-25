@@ -15,7 +15,7 @@
     NSMutableArray * mAry = [NSMutableArray array];
     
     FeedBackDetailsModel * detailsModel = [[FeedBackDetailsModel alloc] init];
-    detailsModel.contentText = @"今天喝了脉动呐，吃了果冻呐，打了电动呐， 还是挡不住对你的心动呐~ ";
+    detailsModel.contentText = @"今天喝了脉动呐，吃了果冻呐，打了电动呐，还是挡不住对你的心动呐~";
     detailsModel.date = 1628845560;
     detailsModel.title = @"参与买一送一的活动";
     detailsModel.type = @"账号问题";

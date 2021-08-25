@@ -8,11 +8,133 @@
 
 #import "FeedBackReplyTableViewCell.h"
 
+@interface FeedBackReplyTableViewCell ()
+<UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (nonatomic, strong) UICollectionViewFlowLayout * flowLayout;
+
+/// 背景蒙版
+@property (nonatomic, strong) UIView * maskView;
+
+@end
+
 @implementation FeedBackReplyTableViewCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setupView];
+    }
+    return self;
+}
+
+- (void)setupView {
+    [self.contentView addSubview:self.maskView];
+    [self.maskView addSubview:self.titleLabel];
+    [self.maskView addSubview:self.picturesCollectionView];
+    // config self
+    self.backgroundColor = [UIColor clearColor];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGRect bounds = self.contentView.bounds;
+    bounds.size.width -= 16 * 2;
+    
+    // titleLabel
+    CGRect f1 = bounds;
+    f1.origin = CGPointMake(18, 18);
+    f1.size = [self.titleLabel sizeThatFits:CGSizeMake(bounds.size.width - 18 * 2, 0)];
+    self.titleLabel.frame = f1;
+    
+    // picturesCollectionView
+    CGRect f2 = bounds;
+    f2.origin = CGPointMake(f1.origin.x, CGRectGetMaxY(f1) + 10);
+    CGFloat spaceWidth = 7.f;
+    self.flowLayout.minimumLineSpacing = spaceWidth;
+    self.flowLayout.minimumInteritemSpacing = spaceWidth;
+    CGFloat cellWidth = self.cellModel.imgCount == 0 ? 0 : (bounds.size.width - f2.origin.x * 2 - spaceWidth * 2) / 3;
+    CGFloat collectionWidth = cellWidth * self.cellModel.imgCount + spaceWidth * (self.cellModel.imgCount - 1);
+    self.flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth);
+    f2.size = CGSizeMake(collectionWidth, cellWidth);
+    self.picturesCollectionView.frame = f2;
+    
+    // maskeView
+    CGRect flast = bounds;
+    flast.origin = CGPointMake(16, 8);
+    flast.size = CGSizeMake(bounds.size.width, CGRectGetMaxY(self.picturesCollectionView.frame) + 18);
+    self.maskView.frame = flast;
+}
+
+- (CGFloat)height {
+    return self.maskView.frame.size.height + 8 * 2;
+}
+
+#pragma mark - setter
 
 - (void)setCellModel:(FeedBackReplyModel *)cellModel {
     _cellModel = cellModel;
+    self.titleLabel.text = [@"回复:" stringByAppendingString:cellModel.contentText];
+    
+    [self layoutSubviews];
+    [self.picturesCollectionView reloadData];
+}
+
+#pragma mark - getter
+
+- (UILabel *)titleLabel {
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
+        _titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
+        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _titleLabel.numberOfLines = 0;
+    }
+    return _titleLabel;
+}
+
+- (UICollectionView *)picturesCollectionView {
+    if (_picturesCollectionView == nil) {
+        _picturesCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
+        _picturesCollectionView.delegate = self;
+        _picturesCollectionView.dataSource = self;
+        _picturesCollectionView.scrollEnabled = NO;
+        _picturesCollectionView.backgroundColor = [UIColor clearColor];
+        [_picturesCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    }
+    return _picturesCollectionView;
+}
+
+- (UICollectionViewFlowLayout *)flowLayout {
+    if (_flowLayout == nil) {
+        _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    }
+    return _flowLayout;
+}
+
+- (UIView *)maskView {
+    if (_maskView == nil) {
+        _maskView = [[UIView alloc] initWithFrame:CGRectZero];
+        _maskView.backgroundColor = [UIColor colorNamed:@"white_1&45_45_45_1"];
+        _maskView.layer.cornerRadius = 8;
+    }
+    return _maskView;
+}
+
+#pragma mark - UICollectionViewDelegate, UICollectionViewDataSource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.cellModel.imgCount;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor redColor];
+    cell.layer.cornerRadius = 4;
+    return cell;
 }
 
 #pragma mark - private

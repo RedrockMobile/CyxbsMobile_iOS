@@ -396,7 +396,6 @@
 		735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53426D392D400F22678 /* FeedBackTableViewCell.m */; };
 		735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53726D399DB00F22678 /* FeedBackModel.m */; };
 		735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC53B26D3B33E00F22678 /* FeedBackDetailsViewController.m */; };
-		735BC54126D3B61000F22678 /* FeedBackDetailsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54026D3B61000F22678 /* FeedBackDetailsTableView.m */; };
 		735BC54426D3B64500F22678 /* FeedBackDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54326D3B64500F22678 /* FeedBackDetailsTableViewCell.m */; };
 		735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54626D3BF3000F22678 /* FeedBackDetailsModel.m */; };
 		735BC54A26D3BF6400F22678 /* FeedBackReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54926D3BF6400F22678 /* FeedBackReplyModel.m */; };
@@ -1439,8 +1438,6 @@
 		735BC53726D399DB00F22678 /* FeedBackModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackModel.m; sourceTree = "<group>"; };
 		735BC53A26D3B33E00F22678 /* FeedBackDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsViewController.h; sourceTree = "<group>"; };
 		735BC53B26D3B33E00F22678 /* FeedBackDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsViewController.m; sourceTree = "<group>"; };
-		735BC53F26D3B61000F22678 /* FeedBackDetailsTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsTableView.h; sourceTree = "<group>"; };
-		735BC54026D3B61000F22678 /* FeedBackDetailsTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsTableView.m; sourceTree = "<group>"; };
 		735BC54226D3B64500F22678 /* FeedBackDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsTableViewCell.h; sourceTree = "<group>"; };
 		735BC54326D3B64500F22678 /* FeedBackDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsTableViewCell.m; sourceTree = "<group>"; };
 		735BC54526D3BF3000F22678 /* FeedBackDetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsModel.h; sourceTree = "<group>"; };
@@ -4145,8 +4142,6 @@
 		735BC53D26D3B36F00F22678 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				735BC53F26D3B61000F22678 /* FeedBackDetailsTableView.h */,
-				735BC54026D3B61000F22678 /* FeedBackDetailsTableView.m */,
 				735BC54226D3B64500F22678 /* FeedBackDetailsTableViewCell.h */,
 				735BC54326D3B64500F22678 /* FeedBackDetailsTableViewCell.m */,
 				735BC54B26D3C05900F22678 /* FeedBackReplyTableViewCell.h */,
@@ -5774,7 +5769,6 @@
 				D026A80723D4E054001A4774 /* QAQuestionsViewController.m in Sources */,
 				AAE3309025E3D59100324750 /* ShareViewPlus.m in Sources */,
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
-				735BC54126D3B61000F22678 /* FeedBackDetailsTableView.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,

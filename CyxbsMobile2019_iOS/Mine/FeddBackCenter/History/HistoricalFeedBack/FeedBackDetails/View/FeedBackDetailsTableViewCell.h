@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) FeedBackDetailsModel * cellModel;
 
+/// 得到高度
+- (CGFloat)height;
+
 /// 复用标识
 + (NSString *)reuseIdentifier;
 
