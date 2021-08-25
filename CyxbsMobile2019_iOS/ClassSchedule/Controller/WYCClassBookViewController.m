@@ -453,7 +453,7 @@
 /// @param info 包含了发送网络请求时的参数，具体参数格式看课表.h的init方法处的说明
 - (void)modelLoadDataWithInfo:(id)info{
     if (info==nil) {
-        [_model getPersonalClassBookArrayWithStuNum:[[UserItem defaultItem]stuNum]];
+        [_model getPersonalClassBookArrayWithStuNum:[UserDefaultTool getStuNum]];
         return;
     }
     switch (self.schedulType) {
