@@ -7,8 +7,8 @@
 //
 
 #import "TodoDataModel.h"
-#include <stdlib.h>
-#include <stdio.h>
+#import "TodoDateTool.h"
+#import "TodoSyncTool.h"
 
 @implementation TodoDataModel
 - (instancetype)init {
@@ -23,7 +23,7 @@
         self.dateArr = @[];
         self.timeStr = @"";
         self.detailStr = @"";
-        self.isDone = NO;
+        _isDone = NO;
     }
     return self;
 }
@@ -50,9 +50,9 @@
     self.weekArr = remind_mode[@"week"];
     self.dayArr = remind_mode[@"day"];
     self.dateArr = remind_mode[@"date"];
-    self.timeStr = remind_mode[@"time"];
+    self.timeStr = remind_mode[@"notify_datetime"];
     self.detailStr = dict[@"detail"];
-    self.isDone = [dict[@"is_done"] boolValue];
+    _isDone = [dict[@"is_done"] boolValue];
 }
 
 - (NSDictionary*)getDataDict {
@@ -64,185 +64,78 @@
             @"date": self.dateArr,
             @"week": self.weekArr,
             @"day": self.dayArr,
-            @"time": self.timeStr
+            @"notify_datetime": self.timeStr
         },
         @"detail": self.detailStr,
         @"is_done": @(self.isDone)
     };
 }
-- (NSDateComponents*)getNextRemindTime {
-    TodoDataModel* model = self;
-    if ([model.timeStr isEqualToString:@""]) {
-        return nil;
-    }
-    NSDate* nowDate = NSDate.now;
-    //周秒分时日月年
-    NSCalendarUnit unit = (NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitWeekday|NSCalendarUnitWeekOfMonth);
-    
-    NSDateComponents* nowComponents = [[NSCalendar currentCalendar] components:unit fromDate:nowDate];
-    NSDate* onceDate = [NSDate dateWithString:model.timeStr format:@"yyyy年M月d日HH:mm"];
-    NSDateComponents* onceDateComponents = [[NSCalendar currentCalendar] components:unit fromDate:onceDate];
-    NSTimeInterval notiHourMinute = (onceDateComponents.hour*60 + onceDateComponents.minute)*60;
-    NSTimeInterval nowHourMinute = (nowComponents.hour*60 + nowComponents.minute)*60;
-    NSDateComponents* notiComponents = [[NSDateComponents alloc] init];
-    notiComponents.hour = onceDateComponents.hour;
-    notiComponents.minute = onceDateComponents.minute;
-    
-    
-    
-    switch (model.repeatMode) {
-        case TodoDataModelRepeatModeNO:
-            break;
-        case TodoDataModelRepeatModeDay: {
-            NSTimeInterval interval = -nowHourMinute + notiHourMinute;
-            if (notiHourMinute<nowHourMinute) {
-                //明天
-                interval += 86400;
-            }
-            NSDate* date = [[NSDate alloc] initWithTimeInterval:interval sinceDate:nowDate];
-            break;
-        }
-        case TodoDataModelRepeatModeWeek: {
-            NSTimeInterval interval = notiHourMinute - nowHourMinute - ForeignWeekToChinaWeek((int)nowComponents.weekday)*86400;
-            NSInteger cnt;
-            int* intWeekArr = copySortedChainaIntWeekArr(model.weekArr, &cnt);
-            NSDate* date = nil;
-            for (int i=0; i<cnt; i++) {
-                if ((intWeekArr[i])*86400 > interval ) {
-                    date = [[NSDate alloc] initWithTimeInterval:(intWeekArr[i])*86400 + interval sinceDate:nowDate];
-                }
-            }
-            if (date==nil) {
-                date = [[NSDate alloc] initWithTimeInterval:intWeekArr[0]*86400 + interval + 86400*7 sinceDate:nowDate];
-            }
-            free(intWeekArr);
-            break;
-        }
-        case TodoDataModelRepeatModeMonth: {
-            NSTimeInterval interval = notiHourMinute - nowHourMinute - nowComponents.day*86400;
-            NSInteger cnt;
-            NSInteger numberOfDayInThisMonth = [self getNumberOfDaysInMonth:nowDate];
-            int* intDayArr = copySortedIntDayArr(model.dayArr, &cnt, numberOfDayInThisMonth);
-            NSDate* date = nil;
-            for (int i=0; i<cnt; i++) {
-                if (intDayArr[i]*86400 > interval) {
-                    date = [NSDate dateWithTimeInterval:intDayArr[i]*86400 + interval sinceDate:nowDate];
-                }
-            }
-            NSDateComponents* nextRemindDateComponents = [[NSDateComponents alloc] init];
-            NSInteger month = nowComponents.month;
-            NSInteger year = nowComponents.year;
-            if (date==nil) {
-                while (YES) {
-                    month++;
-                    if (month==13) {
-                        year++;
-                        month = 1;
-                    }
-                    if (intDayArr[0] <= [self getNumberOfDaysInYear:year month:month]) {
-                        nextRemindDateComponents.year = year;
-                        nextRemindDateComponents.month = month;
-                        nextRemindDateComponents.day = intDayArr[0];
-                        nextRemindDateComponents.hour = notiComponents.hour;
-                        nextRemindDateComponents.minute = notiComponents.minute;
-                        break;
-                    }
-                }
-                date = [[NSCalendar currentCalendar] dateFromComponents:nextRemindDateComponents];
-            }
-            free(intDayArr);
-            break;
-        }
-        case TodoDataModelRepeatModeYear:{
-            NSDateComponents* startDateComponents = [[NSDateComponents alloc] init];
-            NSTimeInterval interval = [nowDate timeIntervalSinceDate:[[NSCalendar currentCalendar] dateFromComponents:startDateComponents]];
-            
-            break;
-        }
-    }
-    return nil;
+
+- (NSDate*)getTimeStrDate {
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
+    return [formatter dateFromString:self.timeStr];
 }
 
-- (int*)copySortedTimeIntervalOfYearBegain:(NSArray<NSDictionary<TodoDataModelKey,NSString*>*>*) arr {
-     
-    return nil;
-}
-/// 获取某一个月的最大天数
-- (NSInteger)getNumberOfDaysInMonth:(NSDate*)date {
-    NSRange range = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date];
-    return range.length;
-}
-
-/// 获取某一个月的最大天数
-- (NSInteger)getNumberOfDaysInYear:(NSInteger)year month:(NSInteger)mont {
-    NSDateComponents* com = [[NSDateComponents alloc] init];
-    com.year = year;
-    com.month = mont;
-    NSDate* date = [[NSCalendar currentCalendar] dateFromComponents:com];
-    NSRange range = [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:date];
-    return range.length;
-}
-
-/// 将字符串形式的日数组，转化为int形式的日数组，同时对日的最大值进行限制
-/// @param dayStrArr 字符串形式的日数组
-/// @param cnt int形式的日数组的大小
-/// @param maxDay 日的最大值(可以等)
-int* copySortedIntDayArr(NSArray<NSString*>* dayStrArr, NSInteger* cnt, NSInteger maxDay) {
-    *cnt = dayStrArr.count;
-    int* arr = calloc(*cnt, sizeof(int));
-    NSInteger i=0;
-    for (NSString* dayStr in dayStrArr) {
-        arr[i] = dayStr.intValue;
-        i++;
-    }
-    qsort_b(arr, *cnt, sizeof(int), ^(const void* n1, const void* n2){
-        if (*(int*)n1 < *(int*)n2) {
-            return -1;
-        }else {
-            return *(int*)n1 > *(int*)n2;
-        }
-    });
-    i = *cnt - 1;
-    while (arr[i] > maxDay) {
-        i--;
-    }
-    *cnt = i + 1;
-    return arr;
-}
-int* copySortedChainaIntWeekArr(NSArray<NSString*>* weekStrArr, NSInteger* cnt) {
-    *cnt = weekStrArr.count;
-    int* arr = calloc(*cnt, sizeof(int));
-    
-    int i=0;
-    for (NSString* weekStr in weekStrArr) {
-        arr[i] = ForeignWeekToChinaWeek(weekStr.intValue);
-        i++;
+//MARK: - 重写的getter
+- (TodoDataModelState)todoState {
+    TodoDataModelState state;
+    int mark = 0;
+    if (self.overdueTime < NSDate.now.timeIntervalSince1970&&self.overdueTime!=-1) {
+        self.lastOverdueTime = self.overdueTime;
+            self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:self.overdueTime inModel:self];
+            //需要通知数据库刷新todo
+            mark += 1;
     }
     
-    qsort_b(arr, *cnt, sizeof(int), ^(const void* n1, const void* n2){
-        if (*(int*)n1 < *(int*)n2) {
-            return -1;
-        }else {
-            return *(int*)n1 > *(int*)n2;
+    NSDate* remindDate = [NSDate dateWithTimeIntervalSince1970:self.overdueTime];
+    if ([remindDate isToday]) {
+        state = TodoDataModelStateNeedDone;
+        if (self.isDone==YES) {
+            _isDone = NO;
+            //需要通知数据库刷新todo
+            mark += 2;
         }
-    });
-    return arr;
+    }else {
+        if (self.isDone) {
+            state = TodoDataModelStateDone;
+        }else if (self.lastOverdueTime==-1) {
+            //代表这是第一次提醒，所以应该是NeedDone
+            state = TodoDataModelStateNeedDone;
+        }else{
+            state = TodoDataModelStateOverdue;
+        }
+    }
+    //通知数据库刷新todo
+    if (mark>=2) {
+        //mark>=2，代表isDone标记为发生了变化，那么需要记录变化（也就是这次改变是需要和服务器同步的）
+        [[TodoSyncTool share] alterTodoWithModel:self needRecord:YES];
+    }else if (mark==1) {
+        [[TodoSyncTool share] alterTodoWithModel:self needRecord:NO];
+    }
+    return state;
 }
 
-//从[1, 2, ... 7]转化为[2, 3, ... 1]
-static inline int ChinaWeekToForeignWeek(int week) {
-    return week%7+1;
-}
-//从[2, 3, ... 1]转化为[1, 2, ... 7]
-static inline int ForeignWeekToChinaWeek(int week) {
-    return (week+5)%7+1;
+- (NSString *)overdueTimeStr {
+    if (self.overdueTime==0) {
+        [self resetOverdueTime];
+    }
+    NSString* str;
+    if (self.overdueTime==-1) {
+        str = @"";
+    }else {
+        NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
+        str = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:self.overdueTime]];
+    }
+    return str;
 }
 
-- (long)getNowStamp {
-    return (long)[NSDate.now timeIntervalSince1970];
+- (void)resetOverdueTime {
+    self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:(long)NSDate.now.timeIntervalSince1970 inModel:self];
+    self.lastOverdueTime = -1;
 }
-
-//底下重写set方法，是为了避免数据库因为空值出错
+//MARK: - 底下重写setter方法，是为了避免数据库因为空值出错
 - (void)setTodoIDStr:(NSString *)todoIDStr {
     if (todoIDStr==nil) {
         _todoIDStr = @"";
@@ -297,9 +190,33 @@ static inline int ForeignWeekToChinaWeek(int week) {
     }
 }
 
+/// 由于用户操作时改变isDone标记时，调用这个方法
+- (void)setIsDoneForUserActivity:(BOOL)isDone {
+    //避免isDone 为非01的情况
+    isDone = !!isDone;
+    if (isDone==_isDone) {
+        return;
+    }
+    _isDone = isDone;
+    if (isDone) {
+        self.lastOverdueTime = self.overdueTime;
+        self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:self.overdueTime inModel:self];
+    }else {
+        self.overdueTime = self.lastOverdueTime;
+        self.lastOverdueTime = -1;
+    } 
+}
+
+/// 由于初始化、内部结构而改变isDone，调用这个方法
+- (void)setIsDoneForInnerActivity:(BOOL)isDone {
+    //避免isDone 为非01的情况
+    _isDone = !!isDone;
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"todoIDStr: %@; title: %@; remind_mode: %ld; date: %@; week: %@; day: %@; timeStr: %@; detail: %@; isDone: %d", self.todoIDStr, self.titleStr, self.repeatMode, self.dateArr, self.weekArr, self.dayArr, self.timeStr, self.detailStr, self.isDone];
 }
+
 
 /*
     {

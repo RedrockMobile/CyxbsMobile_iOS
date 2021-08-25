@@ -411,7 +411,6 @@
 		AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */; };
 		AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */; };
 		AA5F7EBA26BD23E700A1FE25 /* DiscoverTodoView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5F7EB926BD23E700A1FE25 /* DiscoverTodoView.m */; };
-		AA5F7EDD26BD6BC500A1FE25 /* DiscoverTodoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5F7EDC26BD6BC500A1FE25 /* DiscoverTodoModel.m */; };
 		AA5F7EE326BD6CAF00A1FE25 /* DiscoverTodoSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5F7EE226BD6CAF00A1FE25 /* DiscoverTodoSheetView.m */; };
 		AA6063D126BE1BC000D67A41 /* DiscoverTodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063D026BE1BC000D67A41 /* DiscoverTodoTableViewCell.m */; };
 		AA6063DB26BE903A00D67A41 /* TodoTitleInputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6063DA26BE903A00D67A41 /* TodoTitleInputTextField.m */; };
@@ -422,6 +421,7 @@
 		AA6064A826C91E6200D67A41 /* TodoDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6064A726C91E6200D67A41 /* TodoDataModel.m */; };
 		AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E38A2635B04A00756F05 /* ColorManager.m */; };
 		AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E3B72636630800756F05 /* ScheduleInfoModel.m */; };
+		AA897EE526D5FE600019051C /* TodoDateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AA897EE426D5FE5F0019051C /* TodoDateTool.m */; };
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
 		AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */; };
@@ -1437,8 +1437,6 @@
 		AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotiManager.m; sourceTree = "<group>"; };
 		AA5F7EB826BD23E700A1FE25 /* DiscoverTodoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoView.h; sourceTree = "<group>"; };
 		AA5F7EB926BD23E700A1FE25 /* DiscoverTodoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoView.m; sourceTree = "<group>"; };
-		AA5F7EDB26BD6BC500A1FE25 /* DiscoverTodoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoModel.h; sourceTree = "<group>"; };
-		AA5F7EDC26BD6BC500A1FE25 /* DiscoverTodoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoModel.m; sourceTree = "<group>"; };
 		AA5F7EE126BD6CAF00A1FE25 /* DiscoverTodoSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSheetView.h; sourceTree = "<group>"; };
 		AA5F7EE226BD6CAF00A1FE25 /* DiscoverTodoSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSheetView.m; sourceTree = "<group>"; };
 		AA6063CF26BE1BC000D67A41 /* DiscoverTodoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoTableViewCell.h; sourceTree = "<group>"; };
@@ -1459,6 +1457,8 @@
 		AA86E38A2635B04A00756F05 /* ColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		AA86E3B62636630800756F05 /* ScheduleInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleInfoModel.h; sourceTree = "<group>"; };
 		AA86E3B72636630800756F05 /* ScheduleInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleInfoModel.m; sourceTree = "<group>"; };
+		AA897EE326D5FE5F0019051C /* TodoDateTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoDateTool.h; sourceTree = "<group>"; };
+		AA897EE426D5FE5F0019051C /* TodoDateTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoDateTool.m; sourceTree = "<group>"; };
 		AA9ABE8E24EB63BF00D16BE0 /* ClassDetailViewShower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassDetailViewShower.h; sourceTree = "<group>"; };
 		AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassDetailViewShower.m; sourceTree = "<group>"; };
 		AA9ABE9124EB8ADB00D16BE0 /* LessonViewForAWeek.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LessonViewForAWeek.h; sourceTree = "<group>"; };
@@ -2329,7 +2329,6 @@
 		18CDF4DC257F91BC006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AA5F7EDA26BD6B9C00A1FE25 /* Todo */,
 				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
 				18CDF4E2257F91BC006E8E5C /* PickerView */,
 				18CDF4E5257F91BC006E8E5C /* News */,
@@ -3887,15 +3886,6 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		AA5F7EDA26BD6B9C00A1FE25 /* Todo */ = {
-			isa = PBXGroup;
-			children = (
-				AA5F7EDB26BD6BC500A1FE25 /* DiscoverTodoModel.h */,
-				AA5F7EDC26BD6BC500A1FE25 /* DiscoverTodoModel.m */,
-			);
-			path = Todo;
-			sourceTree = "<group>";
-		};
 		AA60641126C657A500D67A41 /* Discover_ToDo */ = {
 			isa = PBXGroup;
 			children = (
@@ -3922,6 +3912,8 @@
 			children = (
 				AA6064A626C91E6200D67A41 /* TodoDataModel.h */,
 				AA6064A726C91E6200D67A41 /* TodoDataModel.m */,
+				AA897EE326D5FE5F0019051C /* TodoDateTool.h */,
+				AA897EE426D5FE5F0019051C /* TodoDateTool.m */,
 				AA60649D26C91B1300D67A41 /* TodoSyncTool.h */,
 				AA60649E26C91B1300D67A41 /* TodoSyncTool.m */,
 			);
@@ -5486,7 +5478,6 @@
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
-				AA5F7EDD26BD6BC500A1FE25 /* DiscoverTodoModel.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
 				18CDF71B257F91BE006E8E5C /* VolunteerLoginView.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
@@ -5634,6 +5625,7 @@
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
 				B82CA6AB26315BD800786685 /* CircleLabelBtn.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
+				AA897EE526D5FE600019051C /* TodoDateTool.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,

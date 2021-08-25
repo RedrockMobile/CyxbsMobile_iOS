@@ -222,9 +222,9 @@
         [self removeFromSuperview];
     }];
     TodoDataModel* model = self.dataModel;
-    model.todoIDStr = [NSString stringWithFormat:@"%ld", model.getNowStamp];
+    model.todoIDStr = [NSString stringWithFormat:@"%ld", (long)NSDate.now.timeIntervalSince1970];
     model.titleStr = self.titleInputTextfield.text;
-    model.isDone = NO;
+    [model resetOverdueTime];
     [self.delegate sheetViewSaveBtnClicked:model];
 }
 

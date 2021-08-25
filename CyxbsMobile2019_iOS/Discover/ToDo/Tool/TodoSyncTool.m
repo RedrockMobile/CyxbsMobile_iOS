@@ -10,6 +10,7 @@
 
 #import "TodoSyncTool.h"
 #import <AFNetworkReachabilityManager.h>
+#import "TodoDateTool.h"
 
 //同步完成后的方式的通知名，通知的object有下面3种，分别代表成功、失败、冲突
 NSNotificationName const TodoSyncToolSyncNotification = @"TodoSyncToolSyncNotification";
@@ -21,7 +22,8 @@ NSString* const TodoSyncToolSyncNotificationConflict = @"TodoSyncToolSyncNotific
 NSString* const TodoSyncToolKeyLastSyncTimeStamp = @"TodoSyncToolKeyLastSyncTimeStamp";
 //用来从缓存获取是否修改过
 NSString* const TodoSyncToolKeyIsModified = @"TodoSyncToolKeyIsModified";
-
+//用来从缓存获取上次更新数据库全部todo的时间戳
+NSString* const TodoSyncToolKeyLastUpdateTodoTimeStamp = @"TodoSyncToolKeyLastUpdateTodoTimeStamp";
 
 //数据库路径
 #define TODO_DBPATH [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/todoDatabase"]
@@ -45,6 +47,9 @@ NSString* const TodoSyncToolKeyIsModified = @"TodoSyncToolKeyIsModified";
 @property(nonatomic, assign)long lastSyncTimeStamp;
 
 @property(nonatomic, assign, readonly) AFNetworkReachabilityStatus netWorkStatus;
+
+/// 今天23:59的时间戳，重写了getter方法，确保必定指向今天23:59
+@property(nonatomic, assign)NSInteger todayEndTimeStamp;
 @end
 
 //生产环境：https://be-prod.redrock.cqupt.edu.cn/magipoke-todo
@@ -333,7 +338,9 @@ static TodoSyncTool* _instance;
     model.todoIDStr = [resultSet stringForColumn:@"todo_id"];
     model.titleStr = [resultSet stringForColumn:@"title"];
     model.detailStr = [resultSet stringForColumn:@"detail"];
-    model.isDone = [resultSet boolForColumn:@"is_done"];
+    [model setIsDoneForInnerActivity:[resultSet boolForColumn:@"is_done"]];
+    model.overdueTime = [resultSet longForColumn:@"overdueTime"];
+    model.lastOverdueTime = [resultSet longForColumn:@"lastOverdueTime"];
     
     code = OSTRING(
                    SELECT *
@@ -343,7 +350,7 @@ static TodoSyncTool* _instance;
     FMResultSet* subSet = [self.db executeQuery:code withArgumentsInArray:@[model.todoIDStr]];
     if ([subSet next]) {
         model.repeatMode = [subSet longForColumn:@"repeat_mode"];
-        model.timeStr = [subSet stringForColumn:@"time"];
+        model.timeStr = [subSet stringForColumn:@"notify_datetime"];
         switch (model.repeatMode) {
             case TodoDataModelRepeatModeWeek:
                 model.weekArr = [self weekStrToWeekArr:[subSet stringForColumn:@"week"]];
@@ -377,16 +384,19 @@ static TodoSyncTool* _instance;
 
 /// 保存事项数据，由于用户的操作而调用时is填YES，内部合并数据时is填NO
 - (void)saveTodoWithModel:(TodoDataModel*)model needRecord:(BOOL)is {
+    if (model.overdueTime==0) {
+        [model resetOverdueTime];
+    }
     NSString* code;
     code = OSTRING(
-                   INSERT INTO todoTable
+                   INSERT INTO todoTable (todo_id, title, detail, is_done, overdueTime, lastOverdueTime)
                        VALUES
-                        (?, ?, ?, ?)
+                        (?, ?, ?, ?, ?, ?)
                    );
-    [self.db executeUpdate:code withArgumentsInArray:@[model.todoIDStr, model.titleStr, model.detailStr, @(model.isDone)]];
+    [self.db executeUpdate:code withArgumentsInArray:@[model.todoIDStr, model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime)]];
     
     code = OSTRING(
-                   INSERT INTO remindModeTable(todo_id, repeat_mode, week, day, date, time)
+                   INSERT INTO remindModeTable(todo_id, repeat_mode, week, day, date, notify_datetime)
                        VALUES
                         (?, ?, ?, ?, ?, ?)
                    );
@@ -402,15 +412,16 @@ static TodoSyncTool* _instance;
 
 /// 更新(修改已有的)事项数据，由于用户的操作而调用时is填YES，内部合并数据时is填NO
 - (void)alterTodoWithModel:(TodoDataModel*)model needRecord:(BOOL)is {
-        NSString* code = OSTRING(
-                              UPDATE remindModeTable
-                                  SET repeat_mode = ? <
-                                      date = ? <
-                                      week = ? <
-                                      day = ? <
-                                      time = ?
-                                  WHERE todo_id = ?
-                              );
+    NSString* code;
+    code = OSTRING(
+                      UPDATE remindModeTable
+                          SET repeat_mode = ? <
+                              date = ? <
+                              week = ? <
+                              day = ? <
+                              notify_datetime = ?
+                          WHERE todo_id = ?
+                   );
     code = [code stringByReplacingOccurrencesOfString:@"<" withString:@","];
     [self.db executeUpdate:code withArgumentsInArray:@[@(model.repeatMode), [self dateArrToDateStr:model.dateArr], [self weekArrToWeekStr:model.weekArr], [self dayArrToDayStr:model.dayArr], model.timeStr, model.todoIDStr]];
     
@@ -418,11 +429,14 @@ static TodoSyncTool* _instance;
                    UPDATE todoTable
                        SET title = ? <
                            detail = ? <
-                           is_done = ?
+                           is_done = ? <
+                       overdueTime = ? <
+                       lastOverdueTime = ?
+                   
                        WHERE todo_id = ?
                    );
     code = [code stringByReplacingOccurrencesOfString:@"<" withString:@","];
-    [self.db executeUpdate:code withArgumentsInArray:@[model.titleStr, model.detailStr, @(model.isDone), model.todoIDStr]];
+    [self.db executeUpdate:code withArgumentsInArray:@[model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime), model.todoIDStr]];
     
     //记录修改
     if (is) {
@@ -478,6 +492,53 @@ static TodoSyncTool* _instance;
 
 //MARK: +++++++++++++++++++++一些基础的工具方法++++++++++++++++++++++++++++
 
+- (void)updateTodoState {
+    //状态更新，一天调用一次就好了
+    NSInteger lastUpdateTime = [[NSUserDefaults standardUserDefaults] integerForKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
+    if (lastUpdateTime > (self.todayEndTimeStamp - 86400)) {
+        return;
+    }
+    [[NSUserDefaults standardUserDefaults] setInteger:(long)NSDate.now.timeIntervalSince1970 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
+    dispatch_queue_t que = dispatch_queue_create("用来刷新数据库todo时间的线程", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(que, ^{
+        NSString* code;
+        FMResultSet* set;
+        code = OSTRING(
+                       SELECT todoTable
+                           WHERE overdueTime!=-1 AND overdueTime < ?
+                       );
+        set = [self.db executeQuery:code withArgumentsInArray:@[@(((long)NSDate.now.timeIntervalSince1970))]];
+        while ([set next]) {
+            TodoDataModel* model = [self resultSetToDataModel:set];
+            //刷新状态
+            model.lastOverdueTime = model.overdueTime;
+            model.overdueTime = [TodoDateTool getOverdueTimeStampFrom:model.overdueTime inModel:model];
+        }
+        
+        code = OSTRING(
+                       SELECT todo_id
+                           FROM todoTable;
+                           WHERE  ? <overdueTime AND overdueTime<= ? AND is_done = 1
+                       );
+        set = [self.db executeQuery:code withArgumentsInArray:@[@(self.todayEndTimeStamp-86400), @(self.todayEndTimeStamp)]];
+        while ([set next]) {
+            [self recordAlterWithTodoID:[set stringForColumn:@"todo_id"]];
+        }
+        
+        code = OSTRING(
+                       UPDATE todoTable
+                           SET is_done = 0
+                           WHERE ? <overdueTime AND overdueTime<= ?
+                       );
+        [self.db executeUpdate:code withArgumentsInArray:@[@(self.todayEndTimeStamp-86400), @(self.todayEndTimeStamp)]];
+    });
+    dispatch_barrier_async(que, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //因为同步后会发送通知，所以切到主线程进行数据同步。
+            [self syncData];
+        });
+    });
+}
 /// 检测todoID为 todoIDStr 的元祖是否已经在 tableName 中存在
 - (BOOL)isTodoID:(NSString*)todoIDStr existsInTable:(NSString*)tableName {
     NSString* code = OSTRING(
@@ -494,10 +555,10 @@ static TodoSyncTool* _instance;
     }
 }
 
-///@"02.06, 03.05, 08.07" -> @[
-///  @{@"TodoDataModelKeyMonth":@"02", TodoDataModelKeyDay:@"06"},
-///  @{@"TodoDataModelKeyMonth":@"03", TodoDataModelKeyDay:@"05"},
-///  @{@"TodoDataModelKeyMonth":@"08", TodoDataModelKeyDay:@"07"},
+///@"2.6, 3.5, 8.7" -> @[
+///  @{@"TodoDataModelKeyMonth":@"2", TodoDataModelKeyDay:@"6"},
+///  @{@"TodoDataModelKeyMonth":@"3", TodoDataModelKeyDay:@"5"},
+///  @{@"TodoDataModelKeyMonth":@"8", TodoDataModelKeyDay:@"7"},
 ///]
 - (NSArray<NSDictionary*>*)dateStrToDateArr:(NSString*)str {
     if (str==nil||[str isEqualToString:@""]) {
@@ -540,10 +601,10 @@ static TodoSyncTool* _instance;
 
 
 ///@[
-///  @{@"TodoDataModelKeyMonth":@"02", TodoDataModelKeyDay:@"06"},
-///  @{@"TodoDataModelKeyMonth":@"03", TodoDataModelKeyDay:@"05"},
-///  @{@"TodoDataModelKeyMonth":@"08", TodoDataModelKeyDay:@"07"},
-///] -> ///@"02.06, 03.05, 08.07"
+///  @{@"TodoDataModelKeyMonth":@"2", TodoDataModelKeyDay:@"6"},
+///  @{@"TodoDataModelKeyMonth":@"3", TodoDataModelKeyDay:@"5"},
+///  @{@"TodoDataModelKeyMonth":@"8", TodoDataModelKeyDay:@"7"},
+///] -> ///@"2.6, 3.5, 8.7"
 - (NSString*)dateArrToDateStr:(NSArray<NSDictionary*>*)arr {
     NSMutableString* str = [[NSMutableString alloc] initWithString:@""];
     for (NSDictionary* dateDict in arr) {
@@ -586,10 +647,6 @@ static inline int ChinaWeekToForeignWeek(int week) {
 //从[2, 3, ... 1]转化为[1, 2, ... 7]
 static inline int ForeignWeekToChinaWeek(int week) {
     return (week+5)%7+1;
-}
-
-- (long)getNowStamp {
-    return (long)[NSDate.now timeIntervalSince1970];
 }
 
 - (long)getTupleCntOfTable:(NSString*)tableName {
@@ -687,7 +744,14 @@ static inline int ForeignWeekToChinaWeek(int week) {
     });
     return _instance;
 }
-
+- (NSInteger)todayEndTimeStamp {
+    if (_todayEndTimeStamp < NSDate.now.timeIntervalSince1970) {
+        NSDate* nowDate = NSDate.now;
+        NSDateComponents* components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:nowDate];
+        _instance.todayEndTimeStamp = nowDate.timeIntervalSince1970 - (((components.hour*60)+components.minute)*60+components.second) + 86399;
+    }
+    return _todayEndTimeStamp;
+}
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     return [self share];
 }
@@ -720,6 +784,8 @@ static inline int ForeignWeekToChinaWeek(int week) {
                                                title TEXT,
                                                detail TEXT,
                                                is_done INTEGER,
+                                               overdueTime INTEGER,
+                                               lastOverdueTime INTEGER,
                                                
                                                PRIMARY KEY(todo_id)
                                            )
@@ -734,7 +800,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
                                          date TEXT,
                                          week TEXT,
                                          day TEXT,
-                                         time TEXT,
+                                         notify_datetime TEXT,
                                          
                                          FOREIGN KEY(todo_id) REFERENCES todoTable(todo_id)
                                      )
@@ -788,7 +854,9 @@ static inline int ForeignWeekToChinaWeek(int week) {
         NSString* title = [set stringForColumn:@"title"];
         NSString* detail = [set stringForColumn:@"detail"];
         NSInteger is_done = [set longForColumn:@"is_done"];
-        CCLog(@"%@, %@, %@, %ld,", todo_id, title, detail, is_done);
+        NSInteger overdueTime = [set longForColumn:@"overdueTime"];
+        NSInteger lastOverdueTime = [set longForColumn:@"lastOverdueTime"];
+        CCLog(@"%@, %@, %@, %ld, %ld, %ld", todo_id, title, detail, is_done, overdueTime, lastOverdueTime);
     }
     /*
      todo_id TEXT,
@@ -811,7 +879,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
         NSString* week = [set stringForColumn:@"week"];
         NSString* day = [set stringForColumn:@"day"];
         NSString* date = [set stringForColumn:@"date"];
-        NSString* time = [set stringForColumn:@"time"];
+        NSString* time = [set stringForColumn:@"notify_datetime"];
         CCLog(@"%@, %ld, %@, %@, %@, %@", ID, repeat_mode, week, day, date, time);
     }
     /*
@@ -830,35 +898,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
     while ([resultSet next]) {
-        TodoDataModel* model = [[TodoDataModel alloc] init];
-        model.todoIDStr = [resultSet stringForColumn:@"todo_id"];
-        model.titleStr = [resultSet stringForColumn:@"title"];
-        model.detailStr = [resultSet stringForColumn:@"detail"];
-        model.isDone = [resultSet boolForColumn:@"is_done"];
-        
-        code = OSTRING(
-                       SELECT *
-                           FROM remindModeTable
-                           WHERE todo_id = ?
-                       );
-        FMResultSet* subSet = [self.db executeQuery:code withArgumentsInArray:@[model.todoIDStr]];
-        while ([subSet next]) {
-            model.repeatMode = [subSet longForColumn:@"repeat_mode"];
-            model.timeStr = [subSet stringForColumn:@"time"];
-            switch (model.repeatMode) {
-                case TodoDataModelRepeatModeWeek:
-                    model.weekArr = [self weekStrToWeekArr:[subSet stringForColumn:@"week"]];
-                    break;
-                case TodoDataModelRepeatModeMonth:
-                    model.dayArr = [self dayStrToDayArr:[subSet stringForColumn:@"day"]];
-                    break;
-                case TodoDataModelRepeatModeYear:
-                    model.dateArr = [self dateStrToDateArr:[subSet stringForColumn:@"date"]];
-                    break;
-                default:
-                    break;
-            }
-        }
+        TodoDataModel* model = [self resultSetToDataModel:resultSet];
         CCLog(@"%@", model);
     }
     
@@ -909,6 +949,11 @@ static inline int ForeignWeekToChinaWeek(int week) {
     }
 }
 @end
+/*
+ 一点点使用数据库的心得：
+    1. 感觉在表名、列名前面或者后面加个前缀会比较好，方便全局替换、搜索。没加标识容易定位到其他东西的名字
+ 
+ */
 
 /*
  #ifdef DEBUG

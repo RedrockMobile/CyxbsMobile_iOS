@@ -23,6 +23,15 @@ typedef enum : NSUInteger {
     TodoDataModelRepeatModeYear     //每年重复
 } TodoDataModelRepeatMode;
 
+typedef enum : NSUInteger {
+    //已完成
+    TodoDataModelStateDone,
+    //已过期
+    TodoDataModelStateOverdue,
+    //待完成
+    TodoDataModelStateNeedDone,
+} TodoDataModelState;
+
 @interface TodoDataModel : NSObject
 
 /// todo的ID，创建时的时间戳
@@ -57,12 +66,44 @@ typedef enum : NSUInteger {
 /// 是否已完成
 @property (nonatomic, assign)BOOL isDone;
 
-- (void)setDataWithDict:(NSDictionary*)dict;
-- (NSDictionary*)getDataDict;
-- (long)getNowStamp;
-- (NSDateComponents* _Nullable)getNextRemindTime;
+/// todo的状态，待完成、已完成、已过期。
+/// 每次读取这个属性时，内部都会根据已有信息进行判断，避免因为时间的变化而导致的状态错误。
+/// 同时也会根据状态的更新，而对数据库进行修改。
+@property (nonatomic, assign, readonly)TodoDataModelState todoState;
 
-- (int*)copyIntWeekArr;
+/// 完成的截止日期
+@property (nonatomic, readonly)NSString* overdueTimeStr;
+
+/// todo的过期时间（有提醒的情况下，代表提醒时间，无提醒的情况则代表todo需要完成的那一天的23:59:59的时间）
+/// 使用这个工具，写UI交互的同学，无需为这个属性赋值，只需在完成todo的各种数据设置后调用resetOverdueTime
+/// 为0意味着没有初始化，为-1意味着没有下一次提醒了
+@property (nonatomic, assign)long overdueTime;
+
+/// 上一次的过期时间
+/// 使用这个工具，写UI交互的同学，无需为这个属性赋值，只需在完成todo的各种数据设置后调用resetOverdueTime
+@property (nonatomic, assign)long lastOverdueTime;
+
+- (void)setIsDone:(BOOL)isDone DEPRECATED_MSG_ATTRIBUTE("\n不要使用setIsDone:方法修改isDone标记位，使用setIsDoneForUserActivity:方法 或者 setIsDoneForInnerActivity:方法，后续会将isDone设置成readonly");
+
+/// 由于用户操作时改变isDone标记时，调用这个方法
+- (void)setIsDoneForUserActivity:(BOOL)isDone;
+
+/// 由于初始化、修改内部结构而isDone，调用这个方法
+- (void)setIsDoneForInnerActivity:(BOOL)isDone;
+
+/// 通过字典完成数据配置
+/// @param dict 字典
+- (void)setDataWithDict:(NSDictionary*)dict;
+
+/// 获取相应的字典
+- (NSDictionary*)getDataDict;
+
+/// 调用后计算过期时间，一般在完成todo的各种数据设置后调用，必须调用。
+- (void)resetOverdueTime;
+
+- (NSDate*)getTimeStrDate;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
