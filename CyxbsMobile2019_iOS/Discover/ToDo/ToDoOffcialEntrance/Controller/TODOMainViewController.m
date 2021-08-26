@@ -45,8 +45,6 @@
     self.isFold = NO;
     //先获取到数据库的数据，再进行frame设置
     [self  dataFromSqlite];
-   
-    // Do any additional setup after loading the view.
 }
 
 #pragma mark- private methonds

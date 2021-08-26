@@ -281,13 +281,9 @@ static int requestCheckinInfo = 0;
     }
     requestCheckinInfo = 0;
     
-//    NSDictionary *params = @{
-//        @"stunum": [UserDefaultTool getStuNum],
-//        @"idnum": [UserDefaultTool getIdNum]
-//    };
     NSDictionary *params = @{
-        @"stunum": @"2019214110",
-        @"idnum": @"052818"
+        @"stunum": [UserDefaultTool getStuNum],
+        @"idnum": [UserDefaultTool getIdNum]
     };
     
     HttpClient *client = [HttpClient defaultClient];
