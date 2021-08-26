@@ -41,6 +41,10 @@ FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationConflictl;
 /// 获取最近创建的4个未完成的todo，用来在发现页显示
 - (NSArray<TodoDataModel*>*)getTodoForDiscoverMainPage;
 
+///获取所有的todo，用来展示在展览页面
+- (NSArray<TodoDataModel*>*)getTodoForMainPage;
+
+
 /// 获取全部事项的结果集
 - (FMResultSet*)getAllTodoResultSet;
 

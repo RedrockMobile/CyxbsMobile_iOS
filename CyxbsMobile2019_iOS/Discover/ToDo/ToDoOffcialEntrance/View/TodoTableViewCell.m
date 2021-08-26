@@ -44,13 +44,14 @@
     [self.circlebtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(SCREEN_WIDTH * 0.04);
         make.top.equalTo(self.contentView).offset(30);
+//        make.centerY.equalTo(self.contentView);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.0613, SCREEN_WIDTH * 0.0613));
     }];
     
     //标题
     [self.contentView addSubview:self.titleLbl];
     [self.titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.circlebtn);
+        make.top.equalTo(self.contentView).offset(30);
         make.left.equalTo(self.circlebtn.mas_right).offset(SCREEN_WIDTH * 0.032);
     }];
 
@@ -137,6 +138,8 @@
     if (!_titleLbl) {
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
+        _titleLbl.numberOfLines = 0;
+        _titleLbl.preferredMaxLayoutWidth = SCREEN_WIDTH * 0.8266;  //设置文本宽度最宽为多少时换行
     }
     return _titleLbl;
 }

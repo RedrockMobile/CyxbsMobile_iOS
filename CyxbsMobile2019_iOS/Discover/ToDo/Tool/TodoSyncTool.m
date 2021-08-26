@@ -476,6 +476,22 @@ static TodoSyncTool* _instance;
     return resultArr;
 }
 
+///获取所有的todo模型
+- (NSArray<TodoDataModel *> *)getTodoForMainPage{
+    NSMutableArray* resultArr = [NSMutableArray array];
+    NSString* code = OSTRING(
+                             SELECT *
+                                FROM todoTable
+                                ORDER BY todo_id DESC
+                             );
+    FMResultSet* resultSet = [self.db executeQuery:code];
+    while ([resultSet next]) {
+        TodoDataModel* model = [self resultSetToDataModel:resultSet];
+        [resultArr addObject:model];
+    }
+    return resultArr;
+}
+
 //MARK: +++++++++++++++++++++一些基础的工具方法++++++++++++++++++++++++++++
 
 /// 检测todoID为 todoIDStr 的元祖是否已经在 tableName 中存在

@@ -57,6 +57,9 @@ typedef enum : NSUInteger {
 /// 是否已完成
 @property (nonatomic, assign)BOOL isDone;
 
+/// 这个model对应的cell的高度
+@property (nonatomic, assign)double cellHeight;
+
 - (void)setDataWithDict:(NSDictionary*)dict;
 - (NSDictionary*)getDataDict;
 - (long)getNowStamp;

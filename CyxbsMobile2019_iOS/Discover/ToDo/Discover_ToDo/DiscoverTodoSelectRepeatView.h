@@ -8,7 +8,7 @@
 
 #import "DiscoverTodoSetRemindBasicView.h"
 #import "TodoDataModel.h"
-
+#import "DLTimeSelectedButton.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @class DiscoverTodoSelectRepeatView;
@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak)id <DiscoverTodoSelectRepeatViewDelegate> delegate;
 
+/// 保存了选择的数组
+@property (nonatomic, strong)NSMutableArray<DLTimeSelectedButton*>* btnArr;
 /// 外界调用，调用后显示出来
 - (void)show;
 @end

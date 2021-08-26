@@ -7,7 +7,7 @@
 //
 
 #import "DiscoverTodoSelectRepeatView.h"
-#import "DLTimeSelectedButton.h"
+
 
 
 @interface DiscoverTodoSelectRepeatView() <
@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong)UIView* scrContenView;
 
-@property (nonatomic, strong)NSMutableArray<DLTimeSelectedButton*>* btnArr;
+
 
 
 /// selectedCntOfcom[0]：当前的重复类型

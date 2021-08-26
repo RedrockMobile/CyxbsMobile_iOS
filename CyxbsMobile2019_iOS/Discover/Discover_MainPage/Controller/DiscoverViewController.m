@@ -136,11 +136,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
     
     self.navigationController.navigationBar.hidden = YES;
-    if (self.loginStatus != AlreadyLogin) {
-        [self presentToLogin];
-    } else {
-        [self RequestCheckinInfo];
-    }
+//    if (self.loginStatus != AlreadyLogin) {
+//        [self presentToLogin];
+//    } else {
+//        [self RequestCheckinInfo];
+//    }
      self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
@@ -281,9 +281,13 @@ static int requestCheckinInfo = 0;
     }
     requestCheckinInfo = 0;
     
+//    NSDictionary *params = @{
+//        @"stunum": [UserDefaultTool getStuNum],
+//        @"idnum": [UserDefaultTool getIdNum]
+//    };
     NSDictionary *params = @{
-        @"stunum": [UserDefaultTool getStuNum],
-        @"idnum": [UserDefaultTool getIdNum]
+        @"stunum": @"2019214110",
+        @"idnum": @"052818"
     };
     
     HttpClient *client = [HttpClient defaultClient];
