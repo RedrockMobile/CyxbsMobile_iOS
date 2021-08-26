@@ -250,8 +250,12 @@ static inline int ForeignWeekToChinaWeek(int week) {
     NSString* titleStr;
     switch (self.selectedCntOfcom[0]) {
         case 0:
+            if (self.btnArr.count) {
+                return;
+            }
             self.repeatMode = TodoDataModelRepeatModeDay;
-            return;
+            titleStr = @"每天";
+            break;
         case 1: {
             NSString* dateStr = [NSString stringWithFormat:@"%d", ForeignWeekToChinaWeek((int)self.selectedCntOfcom[1]+1)];
             if ([self.dateArr containsObject:dateStr]) {
@@ -274,8 +278,8 @@ static inline int ForeignWeekToChinaWeek(int week) {
         }
         case 3: {
             NSDictionary* dateDict = @{
-                TodoDataModelKeyMonth:[NSString stringWithFormat:@"%02ld",self.selectedCntOfcom[1]+1],
-                TodoDataModelKeyDay:[NSString stringWithFormat:@"%02ld",self.selectedCntOfcom[2]+1]
+                TodoDataModelKeyMonth:[NSString stringWithFormat:@"%ld",self.selectedCntOfcom[1]+1],
+                TodoDataModelKeyDay:[NSString stringWithFormat:@"%ld",self.selectedCntOfcom[2]+1]
             };
             if ([self.dateArr containsObject:dateDict]) {
                 return;
@@ -297,6 +301,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
     //有待性能优化
     [self reLayoutAllBtn];
     
+    //调整scrollView的显示位置
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         CGFloat x = self.scrollView.contentSize.width-SCREEN_WIDTH;
         if (x>60) {
@@ -333,7 +338,10 @@ static inline int ForeignWeekToChinaWeek(int week) {
 - (void)deleteButtonWithBtn:(DLTimeSelectedButton*)btn {
     //有待性能优化
     [btn removeFromSuperview];
-    [self.dateArr removeObjectAtIndex:[self.btnArr indexOfObject:btn]];
+    //避免在每天重复的情况下，出问题
+    if (self.dateArr.count) {
+        [self.dateArr removeObjectAtIndex:[self.btnArr indexOfObject:btn]];
+    }
     [self.btnArr removeObject:btn];
     [self reLayoutAllBtn];
     self.increseCnt--;

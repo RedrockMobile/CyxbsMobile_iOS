@@ -28,14 +28,14 @@ FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationConflictl;
 
 /// 调用后触发同步
 - (void)syncData;
-
-/// 保存事项数据，由于用户的操作而调用时is填YES，内部合并数据时is填NO
+//MARK: - todo的增删改方法：
+///对下面三个变化的方法说明：如果需要将此的变化和服务器同步，那么is填YES。
+///如：由于用户的操作而调用时is填YES，内部合并数据时is填NO。
+/// 保存事项数据，
 - (void)saveTodoWithModel:(TodoDataModel*)model needRecord:(BOOL)is;
-
-/// 更新(修改已有的)事项数据，由于用户的操作而调用时is填YES，内部合并数据时is填NO
+/// 更新(修改已有的)事项数据，
 - (void)alterTodoWithModel:(TodoDataModel*)model needRecord:(BOOL)is;
-
-/// 删除事项，由于用户的操作而调用时is填YES，内部合并数据时is填NO
+/// 删除事项
 - (void)deleteTodoWithTodoID:(NSString*)todoIDStr needRecord:(BOOL)is;
 
 /// 获取最近创建的4个未完成的todo，用来在发现页显示
@@ -50,9 +50,6 @@ FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationConflictl;
 
 /// 将todoTable查询的结果集转化为模型
 - (TodoDataModel*)resultSetToDataModel:(FMResultSet*)resultSet;
-
-/// 获取当前时间戳(1970.1.1起的秒间隔)
-- (long)getNowStamp;
 
 //几个测试用的API
 /// 打印TodoTable
