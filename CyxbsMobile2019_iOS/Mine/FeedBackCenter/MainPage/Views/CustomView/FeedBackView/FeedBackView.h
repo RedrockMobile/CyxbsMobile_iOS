@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
-
+@class PlusView;
 @interface FeedBackView : UIView <UITextFieldDelegate,UITextViewDelegate>
+
 
 ///标题
 @property (nonatomic,strong) UITextField *heading;
@@ -36,6 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIImageView *imageView2;
 ///3号位图片
 @property (nonatomic,strong) UIImageView *imageView3;
+///加号图片
+@property (nonatomic,strong) UIView *plusView;
+///选择图片
+///用来返回数据的 Block
+@property (nonatomic, copy) void (^selectPhoto)();
+
 @end
 
 NS_ASSUME_NONNULL_END

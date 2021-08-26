@@ -11,11 +11,13 @@
 #import "ZWTMacro.h"
 #import "FeedBackView.h"
 #import "UIView+XYView.h"
-@interface FeedBackVC ()
+#import <PhotosUI/PHPicker.h>
+@interface FeedBackVC () <PHPickerViewControllerDelegate>
 
 @property (nonatomic,strong) TypeSelectView * typeSelectView;
 @property (nonatomic,strong) FeedBackView *feedBackView;
 @property (nonatomic,strong) UIButton *submitBtn;
+@property (nonatomic,strong) NSMutableArray *photoAry;
 
 @end
 
@@ -27,6 +29,7 @@
     [self.view addSubview:self.typeSelectView];
     [self.view addSubview:self.feedBackView];
     [self.view addSubview:self.submitBtn];
+    self.photoAry = [[NSMutableArray alloc]initWithCapacity:4];
 }
 
 
@@ -41,6 +44,22 @@
 - (FeedBackView *)feedBackView{
     if (!_feedBackView) {
         _feedBackView = [[FeedBackView alloc]initWithFrame:CGRectMake(16, Bar_H + 71, SCREEN_WIDTH - 32, 509)];
+        [_feedBackView setSelectPhoto:^{
+                    NSLog(@"!!");
+            //PHPickerConfiguration
+            PHPickerConfiguration *config = [[PHPickerConfiguration alloc]init];
+            //个数限制
+            config.selectionLimit = 3;
+            //filter
+            config.filter = [PHPickerFilter imagesFilter];
+            //新建 PHPickerViewController ： pVC
+            PHPickerViewController *pVC = [[PHPickerViewController alloc]initWithConfiguration:config];
+            //代理
+            pVC.delegate = self;
+            //show
+            [self presentViewController:pVC animated:YES completion:nil];
+        }];
+   
     }
     return _feedBackView;
 }
@@ -67,5 +86,44 @@
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }
 
+#pragma - mark PHPicker Delegate
+- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results{
+    //picker消失时的操作
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    //遍历
+    for (PHPickerResult *result in results) {
+        [result.itemProvider loadObjectOfClass:[UIImage class] completionHandler:^(__kindof id<NSItemProviderReading>  _Nullable object, NSError * _Nullable error) {
+            //如果结果的类型是UIImage
+            if (object) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.photoAry addObject:object];
+                    if (self.photoAry.count == 1) {
+                        self.feedBackView.plusView.hidden = NO;
+                        self.feedBackView.plusView.frame = self.feedBackView.imageView2.frame;
+                        self.feedBackView.imageView1.image = self.photoAry[0];
+                        self.feedBackView.photoCountLbl.text = @"1/3";
+                    }
+                    if (self.photoAry.count == 2) {
+                        self.feedBackView.plusView.hidden = NO;
+                        self.feedBackView.plusView.frame = self.feedBackView.imageView3.frame;
+                        self.feedBackView.imageView1.image = self.photoAry[0];
+                        self.feedBackView.imageView2.image = self.photoAry[1];
+                        self.feedBackView.photoCountLbl.text = @"2/3";
+                    }
+                    if (self.photoAry.count == 3) {
+                        self.feedBackView.plusView.hidden = YES;
+                        self.feedBackView.imageView1.image = self.photoAry[0];
+                        self.feedBackView.imageView2.image = self.photoAry[1];
+                        self.feedBackView.imageView3.image = self.photoAry[2];
+                        self.feedBackView.photoCountLbl.text = @"3/3";
+                    }
+                });
+            }
+        }];
+    }
+    //获取主线程（更新UI）
 
+    
+    
+}
 @end

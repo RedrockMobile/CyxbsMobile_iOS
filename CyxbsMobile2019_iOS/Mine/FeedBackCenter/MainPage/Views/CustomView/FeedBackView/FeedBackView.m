@@ -19,13 +19,15 @@
         [self addSubview:self.feedBackMain];
         [self addSubview:self.splitLine];
         [self addSubview:self.heading];
-        [self.feedBackMain addSubview:self.placeholder];
         [self addSubview:self.textCountLbl];
         [self addSubview:self.headingCountLbl];
         [self addSubview:self.splitLine2];
         [self addSubview:self.photoLbl];
         [self addSubview:self.photoCountLbl];
         [self addSubview:self.imageView1];
+        [self addSubview:self.imageView2];
+        [self addSubview:self.imageView3];
+        [self addSubview:self.plusView];
     }
     return self;
 }
@@ -60,6 +62,7 @@
         _feedBackMain.delegate = self;
         [_feedBackMain setTextColor:[UIColor colorNamed:@"#15315B"]];
         _feedBackMain.font = [UIFont fontWithName:PingFangSCMedium size:15];
+        [_feedBackMain addSubview:self.placeholder];
     }
     return _feedBackMain;
 }
@@ -70,6 +73,7 @@
         _placeholder.textColor = [UIColor colorNamed:@"heading"];
         _placeholder.text = @"添加问题描述";
         _placeholder.font = [UIFont fontWithName:PingFangSCMedium size:15];
+        
     }
     return _placeholder;
 }
@@ -124,13 +128,38 @@
 - (UIImageView *)imageView1{
     if (!_imageView1) {
         _imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(18, 389, 98, 98)];
-        UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(34, 32.5, 30, 30)];
-        i.image = [UIImage imageNamed:@"myplus"];
-        _imageView1.image = [UIImage imageNamed:@"plusBG"];
-        [_imageView1 addSubview:i];
     }
     return _imageView1;
 }
+- (UIImageView *)imageView2{
+    if (!_imageView2) {
+        _imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(123, 389, 98, 98)];
+    }
+    return _imageView2;
+}
+- (UIImageView *)imageView3{
+    if (!_imageView3) {
+        _imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(227, 389, 98, 98)];
+    }
+    return _imageView3;
+}
+
+- (UIView *)plusView{
+    if (!_plusView) {
+        _plusView = [[UIView alloc]initWithFrame:CGRectMake(18, 389, 98, 98)];
+        UIImageView *iv2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 98, 98)];
+        iv2.image = [UIImage imageNamed:@"plusBG"];
+        UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(34, 32.5, 30, 30)];
+        iv.image = [UIImage imageNamed:@"myplus"];
+        [_plusView addSubview:iv2];
+        [_plusView addSubview:iv];
+        _plusView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(block)];
+        [_plusView addGestureRecognizer:tap];
+    }
+    return _plusView;
+}
+
 
 #pragma mark - 其他方法
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -153,4 +182,9 @@
         self.textCountLbl.text = @"0/200";
     }
 }
+
+- (void)block{
+    self.selectPhoto();
+}
+
 @end

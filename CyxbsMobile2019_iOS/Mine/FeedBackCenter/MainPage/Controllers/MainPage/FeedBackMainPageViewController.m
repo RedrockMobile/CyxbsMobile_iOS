@@ -13,6 +13,7 @@
 #import "HistoricalFeedBackViewController.h"
 #import "CommonQuestionCell.h"
 #import "FeedBackVC.h"
+#import "CommonQuestionDetailVC.h"
 
 @interface FeedBackMainPageViewController ()<UITableViewDelegate,UITableViewDataSource>
 ///常见问题标题
@@ -61,6 +62,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"点击了%ld",indexPath.row);
+    CommonQuestionDetailVC *cvc = [[CommonQuestionDetailVC alloc]init];
+    [self.navigationController pushViewController:cvc animated:YES];
 }
 #pragma mark - getter
 - (UILabel *)commonQuestionsLbl{
