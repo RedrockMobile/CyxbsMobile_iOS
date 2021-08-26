@@ -221,7 +221,25 @@
     return [NSString stringWithFormat:@"todoIDStr: %@; title: %@; remind_mode: %ld; date: %@; week: %@; day: %@; timeStr: %@; detail: %@; isDone: %d", self.todoIDStr, self.titleStr, self.repeatMode, self.dateArr, self.weekArr, self.dayArr, self.timeStr, self.detailStr, self.isDone];
 }
 
-
+- (double)cellHeight{
+    if (!_cellHeight) {
+        //不动高度 + 变化高度（文本框的高度）
+            //固定高度
+        double fixedHeight = SCREEN_HEIGHT * 0.0899;
+//        double fixedHeight = SCREEN_HEIGHT * 0.0449;
+            //变化高度
+                //标题的高度
+        NSDictionary *attr = @{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:18]};
+        double dynamicHeight = [self.titleStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8266, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size.height;
+        if (![self.timeStr isEqualToString:@""]) {
+            fixedHeight = SCREEN_HEIGHT * 0.0779;
+            dynamicHeight += SCREEN_WIDTH * 0.0269;
+        }
+        //最后的5是一个保险高度
+        _cellHeight = dynamicHeight + fixedHeight + 5;
+    }
+    return _cellHeight;
+}
 /*
     {
         "todo_id": 1,

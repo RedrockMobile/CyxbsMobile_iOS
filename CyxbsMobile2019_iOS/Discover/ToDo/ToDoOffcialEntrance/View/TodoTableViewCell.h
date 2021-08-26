@@ -8,20 +8,21 @@
 #import <UIKit/UIKit.h>
 #import "TodoDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
-
+@class TodoTableViewCell;
 @protocol TodoTableViewCellDelegate <NSObject>
 
 @optional
-//- (void)todoCellDidClickedDoneButton:(TodoTableViewCell *)todoCell;
-
+///点击已经完成的cell,将状态改变成未完成
+- (void)doneCellDidClickedThroughCell:(TodoTableViewCell *)doneCell;
+///点击待办事项的cell，状态改为完成
+- (void)toDoCellDidClickedThroughCell:(TodoTableViewCell *)toDoCell;
 @end
 
 @interface TodoTableViewCell : UITableViewCell
-@property(nonatomic, strong) UILabel *nameL;
-@property(nonatomic, strong) UILabel *timeL;
+
 @property(nonatomic, strong) TodoDataModel *model;
 @property(nonatomic, weak) id<TodoTableViewCellDelegate> delegate;
-
+- (void)setDataWithModel:(TodoDataModel *)model;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -133,7 +133,10 @@
             NSStrikethroughStyleAttributeName:@0
         };
     }
-    self.titleLabel.alpha = self.bellImgView.alpha = self.notiTimeLabel.alpha = alpha;
+    if (self.bellImgView.alpha!=0) {
+        self.bellImgView.alpha = self.notiTimeLabel.alpha = alpha;
+    }
+    self.titleLabel.alpha = alpha;
     self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:dict];
     [self.dataModel setIsDoneForUserActivity:!self.dataModel.isDone];
     

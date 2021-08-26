@@ -39,7 +39,7 @@
 
 #import "MGDStatusBarHeight.h"
 #import "UIColor+SYColor.h"
-
+#import "UIView+FrameTool.h"    //方便frame计算
 
 #pragma mark - Group共享
 #define kAPPGroupID @"group.com.redrock.mobile"

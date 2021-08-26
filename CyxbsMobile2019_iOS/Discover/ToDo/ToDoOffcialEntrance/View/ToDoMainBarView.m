@@ -37,7 +37,6 @@
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.equalTo(self);
         make.top.equalTo(self).offset(SCREEN_HEIGHT * 0.0142);
-//        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.0986, SCREEN_HEIGHT * 0.0434));
         make.width.mas_equalTo(SCREEN_WIDTH * 0.0986);
     }];
     

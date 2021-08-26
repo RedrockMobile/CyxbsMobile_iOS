@@ -12,13 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  这是放置ToDo事项的table
- 数据源为本table，代理则设置为VC，将数据源从VC中抽离出来
+ 数据源为table自身，代理则设置为VC，将数据源从VC中抽离出来
  */
 @interface ToDoTableView : UITableView
-/// 数据源数组
-@property (nonatomic, strong) NSMutableArray *dataSourceAry;
-/// 是否折叠已完成的分区
-@property (nonatomic ,assign) BOOL isFoldTwoSection;
+
 @end
 
 NS_ASSUME_NONNULL_END

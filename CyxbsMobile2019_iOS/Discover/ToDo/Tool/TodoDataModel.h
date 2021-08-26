@@ -66,6 +66,9 @@ typedef enum : NSUInteger {
 /// 是否已完成
 @property (nonatomic, assign)BOOL isDone;
 
+/// 这个model对应的cell的高度
+@property (nonatomic, assign)double cellHeight;
+
 /// todo的状态，待完成、已完成、已过期。
 /// 每次读取这个属性时，内部都会根据已有信息进行判断，避免因为时间的变化而导致的状态错误。
 /// 同时也会根据状态的更新，而对数据库进行修改。

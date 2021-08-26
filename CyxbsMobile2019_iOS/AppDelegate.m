@@ -203,6 +203,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [self settingBaseURL];
     return YES;
 }
+
 ///设置存储、更换baseURL
 - (void)settingBaseURL{
     //如果最开始无baseURL，则设置为学校服务器
@@ -219,6 +220,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
 //    NS，，，，，，，，Log(@"baseURL%@",CyxbsMobileBaseURL_1);
 }
+
 ///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{
     //获取当前发布的版本的Version

@@ -6,8 +6,11 @@
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
+//工具类
+#import "TodoSyncTool.h"
 //controllers
 #import "TODOMainViewController.h"
+#import "ToDoDetaileViewController.h"
 
 //Model
 #import "TodoDataModel.h"
@@ -15,12 +18,17 @@
 //Views
 #import "ToDoMainBarView.h"
 #import "ToDoTableView.h"
+#import "DiscoverTodoSheetView.h"   //点击添加事项后，弹出来的View
+#import "DiscoverTodoView.h"
+#import "ToDoEmptyCell.h"
+#import "TodoTableViewCell.h"
+@interface TODOMainViewController ()<ToDoMainBarViewDelegate,UITableViewDelegate,UITableViewDataSource,DiscoverTodoSheetViewDelegate,TodoTableViewCellDelegate>
 
-@interface TODOMainViewController ()<ToDoMainBarViewDelegate,UITableViewDelegate>
 /// 顶层的View
 @property (nonatomic, strong) ToDoMainBarView *barView;
 /// 放置事项的table
 @property (nonatomic, strong) ToDoTableView *tableView;
+
 /// 数据源数组
 @property (nonatomic, strong) NSMutableArray *dataSourceAry;
 
@@ -32,14 +40,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //一些初始化
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
-    self.dataSourceAry = [NSMutableArray arrayWithArray:@[@[],@[]]];
     self.isFold = NO;
-    [self setFrame];
-    // Do any additional setup after loading the view.
+    //先获取到数据库的数据，再进行frame设置
+    [self  dataFromSqlite];
 }
 
 #pragma mark- private methonds
+///设置frame
 - (void)setFrame{
     //顶部的bar
     [self.view addSubview:self.barView];
@@ -56,12 +65,35 @@
         make.top.equalTo(self.barView.mas_bottom);
     }];
 }
+///获取到数据库内的全部数据
+- (void)dataFromSqlite{
+    TodoSyncTool *synctool = [TodoSyncTool share];
+    //得到数据库中所有的数据模型，将其分别赋予数据源数组
+    NSArray *array = [synctool getTodoForMainPage];
+    for (TodoDataModel *model in array) {
+        if (model.isDone) {
+            [self.dataSourceAry[1] addObject:model];
+        }else{
+            [self.dataSourceAry[0] addObject:model];
+        }
+    }
+    //进行界面展示
+    [self setFrame];
+}
+/// 刷新界面
+- (void)refresh{
+    [self.dataSourceAry removeAllObjects];
+    self.dataSourceAry = nil;
+    [self dataFromSqlite];
+    [self.tableView reloadData];
+//        [self.tableView reloadData];
+//    [self setFrame];
+}
 
 #pragma mark- event methonds
 - (void)foldAction{
     NSLog(@"已经折叠");
     self.isFold = !self.isFold;
-    self.tableView.isFoldTwoSection = self.isFold;
     [self.tableView reloadData];
 }
 
@@ -73,9 +105,135 @@
 }
 /// 添加待办事项
 - (void)addMatter{
-    NSLog(@"已经添加待办事项");
+    DiscoverTodoSheetView* sheetView = [[DiscoverTodoSheetView alloc] init];
+    [self.view addSubview:sheetView];
+    sheetView.delegate = self;
+    //调用show方法让它弹出来
+    [sheetView show];
 }
 
+//MARK:cell的代理方法
+///点击将未完成的cell转移到完成区域
+- (void)toDoCellDidClickedThroughCell:(TodoTableViewCell *)toDoCell{
+    //1.设置button的icon设置为圆环
+    toDoCell.model.isDone = YES;
+    //2.进行区域转移
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:toDoCell];
+        //2.1从未完成区域中删除
+    [self.dataSourceAry[0] removeObjectAtIndex:indexPath.row];
+        //2.2添加到已完成区域中的第一行
+    [self.dataSourceAry[1] insertObject:toDoCell.model atIndex:0];
+        //2.3设置动画
+            //设置cell的x，y初始值为
+    toDoCell.layer.transform = CATransform3DMakeScale(1, 1, 1);
+            //让cell变小
+    [UIView animateWithDuration:0.7 animations:^{
+        toDoCell.layer.transform = CATransform3DMakeScale(1, 0.1, 1);
+    }];
+        //2.4延迟一秒刷新table
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    
+    //2.5同步本地数据库的数据更改
+    [[TodoSyncTool share] alterTodoWithModel:toDoCell.model needRecord:YES];
+}
+///点击将已经完成的cell转移到代办区域
+- (void)doneCellDidClickedThroughCell:(TodoTableViewCell *)doneCell{
+    //1.设置button的icon设置为圆环打勾
+    doneCell.model.isDone = NO;
+    //2.区域转移
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:doneCell];
+        //2.1从已完成区域中删除
+    [self.dataSourceAry[1] removeObjectAtIndex:indexPath.row];
+        //2.2添加到未完成区域中的第一行
+    [self.dataSourceAry[0] insertObject:doneCell.model atIndex:0];
+        //2.3设置动画
+            //设置cell的x，y初始值为
+    doneCell.layer.transform = CATransform3DMakeScale(1, 1, 1);
+            //让cell变小
+    [UIView animateWithDuration:0.7 animations:^{
+        doneCell.layer.transform = CATransform3DMakeScale(1, 0.1, 1);
+    }];
+        //2.4延迟一秒刷新table
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    
+    //2.5同步本地数据库中模型数据的更改
+    [[TodoSyncTool share] alterTodoWithModel:doneCell.model needRecord:YES];
+}
+
+//MARK: DiscoverTodoSheetView的代理方法：
+- (void)sheetViewSaveBtnClicked:(TodoDataModel *)dataModel {
+    NSLog(@"保存设置");
+    [self.dataSourceAry[0] insertObject:dataModel atIndex:0];
+    [self.tableView reloadData];
+    
+    //保存到数据库里面，并进行同步
+    [[TodoSyncTool share] saveTodoWithModel:dataModel needRecord:YES];
+}
+- (void)todoSyncToolDidSync:(NSNotification*)noti {
+    NSString* state = noti.object;
+    if ([state isEqualToString:TodoSyncToolSyncNotificationSuccess]) {
+        [NewQAHud showHudWith:@" 和服务器数据同步成功 " AddView:self.view];
+    }else if([state isEqualToString:TodoSyncToolSyncNotificationFailure]){
+        [NewQAHud showHudWith:@" 网络错误，待接入网络时，再和服务器同步数据 " AddView:self.view];
+    }else {
+        [NewQAHud showHudWith:@" 产生了冲突 " AddView:self.view];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+    NSLog(@"同步结果");
+        
+}
+- (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
+    NSLog(@"datamodel");
+//    return [self.todoSyncTool getTodoForDiscoverMainPage];
+    return nil;
+}
+- (void)sheetViewCancelBtnClicked {
+    NSLog(@"已经点击取消那妞");
+}
+
+//MARK:UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSArray *sectionAry = self.dataSourceAry[section];
+    if (sectionAry.count == 0) {
+        //让空白的cell也可以被收起
+        if (section == 1 && self.isFold) {
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+    
+    //让普通的cell被收起
+    if (section == 1 && self.isFold) {
+        return 0;
+    }
+    return sectionAry.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *sectionAry = self.dataSourceAry[indexPath.section];
+    //如果无内容则设置为空cell的样式
+    if (sectionAry.count == 0) {
+        ToDoEmptyCell *cell = [[ToDoEmptyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ToDoEmptyCell"];
+        cell.type = indexPath.section;
+        return cell;
+    }
+    TodoTableViewCell *cell = [[TodoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ToDoCell"];
+    TodoDataModel *model = sectionAry[indexPath.row];
+    cell.delegate = self;
+    [cell setDataWithModel:model];
+    return cell;
+}
 //MARK:UITableViewDelegate
 ///组头视图
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -119,23 +277,59 @@
         return 220;
     }
     TodoDataModel *model = sectionAry[indexPath.row];
-    if(model.timeStr.doubleValue > 0){
-        return 110;
-    }else{
-        return 64;
-    }
-    return 0;
+    return model.cellHeight;
 }
 ///组头视图高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 90;
+        return SCREEN_HEIGHT * 0.0899;
     }else{
-        return 60;
+        return SCREEN_HEIGHT * 0.0899;
     }
     
 }
-
+///删除cell
+- ( UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSMutableArray <TodoDataModel *>*dataList = self.dataSourceAry[indexPath.section];
+    if (dataList.count == 0) {
+        return nil;
+    }
+    //删除
+    UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        //1.获取这个模型
+        TodoDataModel *model = dataList[indexPath.row];
+        
+        //2.从数据源数组中移除这个模型
+        [dataList removeObjectAtIndex:indexPath.row];
+        //3.从数据库中删除这个模型数据
+        [[TodoSyncTool share] deleteTodoWithTodoID:model.todoIDStr  needRecord:YES];
+        
+        //4.进行动画，使得删除不这么违和
+        if (dataList.count != 0) {
+            [tableView beginUpdates];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
+        }
+       
+        //5.刷新table
+        [tableView reloadData];
+    }];
+    deleteRowAction.image = [UIImage imageNamed:@"垃圾桶图"];
+    deleteRowAction.backgroundColor = [UIColor redColor];
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
+    return config;
+}
+///点击cell
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *sectionArray = self.dataSourceAry[indexPath.section];
+    ToDoDetaileViewController *vc = [ToDoDetaileViewController new];
+    vc.model = sectionArray[indexPath.row];
+    self.navigationController.navigationBar.hidden = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    vc.block = ^{
+        [self refresh];
+    };
+}
 #pragma mark- Getter
 - (ToDoMainBarView *)barView{
     if (!_barView) {
@@ -149,10 +343,20 @@
     if (!_tableView) {
         _tableView = [[ToDoTableView alloc] initWithFrame:CGRectZero];
         _tableView.delegate = self;
-        _tableView.dataSourceAry = self.dataSourceAry;
+        _tableView.dataSource = self;
     }
     return _tableView;
 }
 
+- (NSMutableArray *)dataSourceAry{
+    if (!_dataSourceAry) {
+        _dataSourceAry = [NSMutableArray array];
+        NSMutableArray <TodoDataModel *>*firstAry = [NSMutableArray array];
+        NSMutableArray <TodoDataModel *>*lastAry = [NSMutableArray array];
+        [_dataSourceAry addObject:firstAry];
+        [_dataSourceAry addObject:lastAry];
+    }
+    return _dataSourceAry;
+}
 
 @end

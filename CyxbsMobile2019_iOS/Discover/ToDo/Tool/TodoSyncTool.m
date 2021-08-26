@@ -503,6 +503,22 @@ static TodoSyncTool* _instance;
     return resultArr;
 }
 
+///获取所有的todo模型
+- (NSArray<TodoDataModel *> *)getTodoForMainPage{
+    NSMutableArray* resultArr = [NSMutableArray array];
+    NSString* code = OSTRING(
+                             SELECT *
+                                FROM todoTable
+                                ORDER BY todo_id DESC
+                             );
+    FMResultSet* resultSet = [self.db executeQuery:code];
+    while ([resultSet next]) {
+        TodoDataModel* model = [self resultSetToDataModel:resultSet];
+        [resultArr addObject:model];
+    }
+    return resultArr;
+}
+
 //MARK: +++++++++++++++++++++登录相关的逻辑代码++++++++++++++++++++++++++++
 /// 需要在登录成功后调用，
 - (void)logInSuccess {
@@ -527,6 +543,7 @@ static TodoSyncTool* _instance;
         }
     });
 }
+
 
 //MARK: +++++++++++++++++++++一些基础的工具方法++++++++++++++++++++++++++++
 
