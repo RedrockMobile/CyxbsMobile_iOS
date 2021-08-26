@@ -182,7 +182,7 @@ fprintf(stderr,"\n");\
 //第一周从1开始，不是从0开始
 #define getNowWeek_NSString ^(void) {\
     NSString *nowWeek = [[NSUserDefaults standardUserDefaults] stringForKey:nowWeekKey_NSString];\
-    if (nowWeek==nil) {\
+    if (nowWeek == nil || nowWeek.intValue > 25) {\
         return @"0";\
     }\
     return nowWeek;\
