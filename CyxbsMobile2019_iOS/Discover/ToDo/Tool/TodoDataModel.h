@@ -101,7 +101,7 @@ typedef enum : NSUInteger {
 /// 调用后计算过期时间，一般在完成todo的各种数据设置后调用，必须调用。
 - (void)resetOverdueTime;
 
-- (NSDate*)getTimeStrDate;
+- (NSDate* _Nullable)getTimeStrDate;
 
 
 @end

@@ -12,7 +12,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor colorNamed:@"255_255_255&45_45_45"];
         [self addTipView];
         [self addCancelBtn];
         [self addSureBtn];
@@ -41,7 +41,7 @@
     
     [btn setTitle:@"取消" forState:UIControlStateNormal];
     btn.layer.cornerRadius = 20;
-    [btn setBackgroundColor:[UIColor colorNamed:@"237_244_253"]];
+    [btn setBackgroundColor:[UIColor colorNamed:@"237_244_253&72_74_77"]];
     
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:18]];
     [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
@@ -61,7 +61,7 @@
     
     [btn setTitle:@"确定" forState:UIControlStateNormal];
     btn.layer.cornerRadius = 20;
-    [btn setBackgroundColor:[UIColor colorNamed:@"72_65_226&93_93_247"]];
+    [btn setBackgroundColor:[UIColor colorNamed:@"72_65_226&72_65_226"]];
     
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:18]];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

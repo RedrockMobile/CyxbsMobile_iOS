@@ -31,9 +31,7 @@
     if (self) {
         [self addCheckMarkBtn];
         [self addTitleLabel];
-        self.bellImgView.alpha = 1;
-        self.notiTimeLabel.alpha = 1;
-        self.backgroundColor = RGBColor(248, 248, 251, 1);
+        self.backgroundColor = [UIColor colorNamed:@"248_248_251&29_29_29"];
     }
     return self;
 }
@@ -42,17 +40,25 @@
     _dataModel = dataModel;
     switch (dataModel.todoState) {
         case TodoDataModelStateDone:
+            self.titleLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
             break;
         case TodoDataModelStateOverdue:
             self.notiTimeLabel.alpha =
             self.bellImgView.alpha = 0;
+            self.titleLabel.textColor = [UIColor redColor];
             break;
         case TodoDataModelStateNeedDone:
-            self.notiTimeLabel.alpha =
-            self.bellImgView.alpha = 1;
-            self.notiTimeLabel.text = dataModel.overdueTimeStr;
+            self.titleLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
             break;
     }
+    if ([dataModel.timeStr isEqualToString:@""]) {
+        self.notiTimeLabel.alpha =
+        self.bellImgView.alpha = 0;
+    }else {
+        self.notiTimeLabel.alpha =
+        self.bellImgView.alpha = 1;
+    }
+    self.notiTimeLabel.text = dataModel.overdueTimeStr;
     self.checkMarkBtn.selected = dataModel.isDone;
     self.titleLabel.text = dataModel.titleStr;
 }
@@ -102,7 +108,6 @@
         _notiTimeLabel = label;
         
         label.font = [UIFont fontWithName:PingFangSCMedium size:11];
-        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
         
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.bellImgView.mas_right).offset(0.016*SCREEN_WIDTH);

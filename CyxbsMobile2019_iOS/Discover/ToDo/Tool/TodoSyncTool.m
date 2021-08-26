@@ -26,7 +26,7 @@ NSString* const TodoSyncToolKeyIsModified = @"TodoSyncToolKeyIsModified";
 NSString* const TodoSyncToolKeyLastUpdateTodoTimeStamp = @"TodoSyncToolKeyLastUpdateTodoTimeStamp";
 
 //数据库路径
-#define TODO_DBPATH [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/todoDatabase"]
+#define TODO_DB_DIRECTORYPATH [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/todoDatabaseDirectory"]
 //将s转为C字符串
 #define STRING(s) #s
 //将s转为OC字符串
@@ -325,7 +325,7 @@ static TodoSyncTool* _instance;
 /// 获取全部事项的结果集
 - (FMResultSet*)getAllTodoResultSet {
     NSString* code = OSTRING(
-                             SLECT * FROM TodoTable
+                             SELECT * FROM TodoTable
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
     return resultSet;
@@ -401,7 +401,7 @@ static TodoSyncTool* _instance;
                         (?, ?, ?, ?, ?, ?)
                    );
     [self.db executeUpdate:code withArgumentsInArray:@[model.todoIDStr, @(model.repeatMode), [self weekArrToWeekStr:model.weekArr], [self dayArrToDayStr:model.dayArr], [self dateArrToDateStr:model.dateArr], model.timeStr]];
-    
+    [TodoDateTool addNotiWithModel:model];
     //记录修改
     if (is) {
         [self recordAddWithTodoID:model.todoIDStr];
@@ -438,6 +438,9 @@ static TodoSyncTool* _instance;
     code = [code stringByReplacingOccurrencesOfString:@"<" withString:@","];
     [self.db executeUpdate:code withArgumentsInArray:@[model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime), model.todoIDStr]];
     
+    [TodoDateTool removeAllNotiInModel:model];
+    [TodoDateTool addNotiWithModel:model];
+    
     //记录修改
     if (is) {
         [self recordAlterWithTodoID:model.todoIDStr];
@@ -448,10 +451,20 @@ static TodoSyncTool* _instance;
 
 /// 删除事项，由于用户的操作而调用时is填YES，内部合并数据时is填NO
 - (void)deleteTodoWithTodoID:(NSString*)todoIDStr needRecord:(BOOL)is {
-    NSString* code = OSTRING(
-                             DELETE FROM remindModeTable
-                                 WHERE todo_id = ?
-                             );
+    NSString* code;
+    code = OSTRING(
+                   SELECT * FROM TodoTable
+                       WHERE todo_id = ?
+                   );
+    
+    FMResultSet* set = [self.db executeQuery:code withArgumentsInArray:@[todoIDStr]];
+    //移除model的全部通知
+    [TodoDateTool removeAllNotiInModel:[self resultSetToDataModel:set]];
+    
+    code = OSTRING(
+                    DELETE FROM remindModeTable
+                        WHERE todo_id = ?
+                    );
     [self.db executeUpdate:code withArgumentsInArray:@[todoIDStr]];
     
     code = OSTRING(
@@ -488,6 +501,31 @@ static TodoSyncTool* _instance;
         }
     }
     return resultArr;
+}
+
+//MARK: +++++++++++++++++++++登录相关的逻辑代码++++++++++++++++++++++++++++
+/// 需要在登录成功后调用，
+- (void)logInSuccess {
+    dispatch_queue_t que = dispatch_queue_create("登录成功后添加todo通知使用", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(que, ^{
+        FMResultSet* resultSet = [self getAllTodoResultSet];
+        while ([resultSet next]) {
+            TodoDataModel* model = [self resultSetToDataModel:resultSet];
+            [TodoDateTool addNotiWithModel:model];
+        }
+    });
+}
+
+/// 需要在退出登录后后调用，
+- (void)logOutSuccess {
+    dispatch_queue_t que = dispatch_queue_create("退出登录后删除todo通知使用", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(que, ^{
+        FMResultSet* resultSet = [self getAllTodoResultSet];
+        while ([resultSet next]) {
+            TodoDataModel* model = [self resultSetToDataModel:resultSet];
+            [TodoDateTool removeAllNotiInModel:model];
+        }
+    });
 }
 
 //MARK: +++++++++++++++++++++一些基础的工具方法++++++++++++++++++++++++++++
@@ -766,7 +804,23 @@ static inline int ForeignWeekToChinaWeek(int week) {
 
 /// 初始化数据库，如果数据库以存在，那么什么事都不会做
 - (void)initDataBase {
-    self.db = [[FMDatabase alloc] initWithPath:TODO_DBPATH];
+    NSString* stuNum = [UserDefaultTool getStuNum];
+    if ([stuNum isEqualToString:@""]||stuNum==nil) {
+#ifdef DEBUG
+        stuNum = @"test";
+        CCLog(@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n学号为空，todo数据库将建立在临时路径\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+#else
+        return;
+#endif
+    }
+    
+    //创建目录
+    if (![[NSFileManager defaultManager] fileExistsAtPath:TODO_DB_DIRECTORYPATH]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:TODO_DB_DIRECTORYPATH withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSString* dbPath = [TODO_DB_DIRECTORYPATH stringByAppendingPathComponent:stuNum];
+    CCLog(@"todo数据库路径为%@", dbPath);
+    self.db = [[FMDatabase alloc] initWithPath:dbPath];
     if ([self.db open]) {
         [self creatTodoTable];
         CCLog(@"todo数据库打开成功");

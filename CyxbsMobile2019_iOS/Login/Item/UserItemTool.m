@@ -13,6 +13,8 @@
 
 #import "PostArchiveTool.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+
+#import "TodoSyncTool.h"
 @interface UserItemTool ()
 
 @property (nonatomic, strong) UserItem *item;
@@ -82,6 +84,9 @@
     //清除所有已有的本地通知
     [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
     [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
+    
+    //完成退出登录后todo的一些配置
+    [[TodoSyncTool share] logOutSuccess];
     
     // 退出后停止umeng统计发送数据
     [MobClick profileSignOff];

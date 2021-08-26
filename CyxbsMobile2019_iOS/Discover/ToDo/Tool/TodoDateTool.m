@@ -10,47 +10,161 @@
 #import <UserNotifications/UserNotifications.h>
 
 @implementation TodoDateTool
-
-+ (void)addNotiWithModel:(TodoDataModel*)model {
-    //添加设置提醒时间界面的那一次提醒
-    NSCalendarUnit unit = (NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitWeekday);
-    NSDateComponents* components;
-    UNCalendarNotificationTrigger* trigger;
-    UNNotificationContent* content;
-    UNNotificationRequest* request;
-    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
++ (void)removeAllNotiInModel:(TodoDataModel*)model {
+    if ([model.timeStr isEqualToString:@""]) {
+        return;
+    }
+    NSMutableArray<NSString*>* notiIDArr = [NSMutableArray arrayWithCapacity:5];
+    [notiIDArr addObject:[NSString stringWithFormat:@"%@ + ONCE",model.todoIDStr]];
     
-    components = [[NSCalendar currentCalendar] components:unit fromDate:[model getTimeStrDate]];
-    trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
-    content = [self getContentWithModel:model];
-    request = [UNNotificationRequest requestWithIdentifier:[NSString stringWithFormat:@"%@+ONCE",model.todoIDStr] content:content trigger:trigger];
-    [center addNotificationRequest:request withCompletionHandler:nil];
-    
-    //设置重复的：
     switch (model.repeatMode) {
         case TodoDataModelRepeatModeNO:
-            return;
             break;
         case TodoDataModelRepeatModeDay:
-            
+            [notiIDArr addObject:[NSString stringWithFormat:@"%@ + DAY", model.todoIDStr]];
             break;
         case TodoDataModelRepeatModeWeek:
-            
+            for (NSString* weekStr in model.weekArr) {
+                [notiIDArr addObject:[NSString stringWithFormat:@"%@ + WEEK + %ld", model.todoIDStr, weekStr.integerValue]];
+            }
             break;
         case TodoDataModelRepeatModeMonth:
-            
+            for (NSString* dayStr in model.dayArr) {
+                [notiIDArr addObject:[NSString stringWithFormat:@"%@ + MONTH + %ld", model.todoIDStr, dayStr.integerValue]];
+            }
             break;
         case TodoDataModelRepeatModeYear:
-            
+            for (NSDictionary<TodoDataModelKey, NSString*>* dict in model.dateArr) {
+                [notiIDArr addObject:[NSString stringWithFormat:@"%@ + YEAR + %ld", model.todoIDStr, dict[TodoDataModelKeyMonth].integerValue*31 + dict[TodoDataModelKeyDay].integerValue]];
+            }
             break;
+    }
+    
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    [center removeDeliveredNotificationsWithIdentifiers:notiIDArr];
+    [center removePendingNotificationRequestsWithIdentifiers:notiIDArr];
+}
++ (void)addNotiWithModel:(TodoDataModel*)model {
+    if ([model.timeStr isEqualToString:@""]) {
+        return;
+    }
+    
+    NSCalendarUnit unit = (NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitWeekday);
+    NSDateComponents* components = [[NSCalendar currentCalendar] components:unit fromDate:[model getTimeStrDate]];
+    UNNotificationContent* content = [self getContentWithModel:model];
+    
+    if (model.repeatMode!=TodoDataModelRepeatModeNO) {
+        [self addNotiForRepaetTypeModel:model content:content hour:components.hour minute:components.minute];
+    }
+    
+    //添加设置提醒时间界面的那一次提醒
+    [self addNotiForOnceModel:model content:content onceComponents:components];
+    
+}
++ (void)addNotiForOnceModel:(TodoDataModel*)model content:(UNNotificationContent*)content onceComponents:(NSDateComponents*)components {
+    switch (model.repeatMode) {
+        case TodoDataModelRepeatModeNO:
+            break;
+        case TodoDataModelRepeatModeDay:
+            return;
+            break;
+        case TodoDataModelRepeatModeWeek:
+            for (NSString* weekStr in model.weekArr) {
+                if (weekStr.integerValue==components.weekday) {
+                    return;
+                }
+            }
+            break;
+        case TodoDataModelRepeatModeMonth:
+            for (NSString* dayStr in model.dayArr) {
+                if (dayStr.integerValue==components.day) {
+                    return;
+                }
+            }
+            break;
+        case TodoDataModelRepeatModeYear:
+            for (NSDictionary<TodoDataModelKey, NSString*>* dict in model.dateArr) {
+                if (components.month==dict[TodoDataModelKeyMonth].integerValue&&components.day==dict[TodoDataModelKeyDay].integerValue) {
+                    return;
+                }
+            }
+            break;
+    }
+    UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:NO];
+    
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:[NSString stringWithFormat:@"%@ + ONCE",model.todoIDStr] content:content trigger:trigger];
+    
+    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:nil];
+}
+
++ (void)addNotiForRepaetTypeModel:(TodoDataModel*)model content:(UNNotificationContent*)content hour:(NSInteger)hour minute:(NSInteger)minute {
+    //设置重复的：
+    NSMutableArray<UNCalendarNotificationTrigger*>* triggerArr = [NSMutableArray arrayWithCapacity:4];
+    NSMutableArray<NSString*>* notiIDArr = [NSMutableArray arrayWithCapacity:4];
+    switch (model.repeatMode) {
+        case TodoDataModelRepeatModeNO:
+            break;
+        case TodoDataModelRepeatModeDay: {
+            NSDateComponents* components = [[NSDateComponents alloc] init];
+            components.hour = hour;
+            components.minute = minute;
+            UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+            [triggerArr addObject:trigger];
+            [notiIDArr addObject:[NSString stringWithFormat:@"%@ + DAY", model.todoIDStr]];
+        }
+            break;
+        case TodoDataModelRepeatModeWeek:{
+            for (NSString* weekStr in model.weekArr) {
+                NSDateComponents* components = [[NSDateComponents alloc] init];
+                components.weekday = weekStr.integerValue;
+                components.hour = hour;
+                components.minute = minute;
+                UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+                [triggerArr addObject:trigger];
+                [notiIDArr addObject:[NSString stringWithFormat:@"%@ + WEEK + %ld", model.todoIDStr, weekStr.integerValue]];
+            }
+        }
+            break;
+        case TodoDataModelRepeatModeMonth:{
+            for (NSString* dayStr in model.dayArr) {
+                NSDateComponents* components = [[NSDateComponents alloc] init];
+                components.day = dayStr.integerValue;
+                components.hour = hour;
+                components.minute = minute;
+                UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+                [triggerArr addObject:trigger];
+                [notiIDArr addObject:[NSString stringWithFormat:@"%@ + MONTH + %ld", model.todoIDStr, dayStr.integerValue]];
+            }
+        }
+            break;
+        case TodoDataModelRepeatModeYear: {
+            for (NSDictionary<TodoDataModelKey, NSString*>* dict in model.dateArr) {
+                NSDateComponents* components = [[NSDateComponents alloc] init];
+                components.month = dict[TodoDataModelKeyMonth].integerValue;
+                components.day = dict[TodoDataModelKeyDay].integerValue;
+                components.hour = hour;
+                components.minute = minute;
+                UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+                [triggerArr addObject:trigger];
+                //不难推导出month*31 + day可以唯一标识一年中的某一天
+                [notiIDArr addObject:[NSString stringWithFormat:@"%@ + YEAR + %ld", model.todoIDStr, components.month*31 + components.day]];
+            }
+        }
+            break;
+    }
+    NSInteger i = 0;
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    for (UNCalendarNotificationTrigger* trigger in triggerArr) {
+        UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:notiIDArr[i++] content:content trigger:trigger];
+        [center addNotificationRequest:request withCompletionHandler:nil];
     }
 }
 
 + (UNNotificationContent*)getContentWithModel:(TodoDataModel*)model {
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-    content.title = model.titleStr;
+    content.title = @"你今天有一个事项待完成～";
     content.body = model.detailStr;
-    content.subtitle = @"你今天有一个事项待完成～";
+    content.subtitle = model.titleStr;
     content.sound = [UNNotificationSound defaultSound];
     return content;
 }

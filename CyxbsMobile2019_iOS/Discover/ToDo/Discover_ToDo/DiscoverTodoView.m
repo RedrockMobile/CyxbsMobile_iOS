@@ -153,11 +153,7 @@
     
     label.text = @"邮子清单";
     label.font = [UIFont fontWithName:PingFangSCBold size:18];
-    if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
-    } else {
-        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
-    }
+    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
 }
 /// 添加一个加号按钮，点击这个加号按钮后调用代理方法，来添加事项，代理是DiscoverViewController
 - (void)addAddBtn {

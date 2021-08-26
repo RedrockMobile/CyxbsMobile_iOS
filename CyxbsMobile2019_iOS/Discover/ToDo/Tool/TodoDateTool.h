@@ -20,7 +20,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param timeStamp 指向某一个时间点的时间戳
 /// @param model todo数据模型
 + (long)getOverdueTimeStampFrom:(long)timeStamp inModel:(TodoDataModel*)model;
+
+///为model添加提醒
 + (void)addNotiWithModel:(TodoDataModel*)model;
+
+///移除model的所有提醒
++ (void)removeAllNotiInModel:(TodoDataModel*)model;
+
 @end
 
 NS_ASSUME_NONNULL_END
+
+/*
+ 临时记录：
+     还差深色模式、切换账户时的todo删除、通知移除
+ 
+ */

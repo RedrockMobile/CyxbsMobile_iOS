@@ -85,7 +85,7 @@
     UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] init];
     [view addGestureRecognizer:tgr];
     
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = [UIColor colorNamed:@"255_255_255&45_45_45"];
     CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, 0.7389162562*SCREEN_HEIGHT);
     UIBezierPath* path = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(16, 16)];
     CAShapeLayer* layer = [[CAShapeLayer alloc] init];
@@ -108,6 +108,7 @@
         make.left.equalTo(self.backView).offset(0.04*SCREEN_WIDTH);
         make.top.equalTo(self.backView).offset(0.02586206897*SCREEN_WIDTH);
     }];
+    
     
     btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
@@ -159,6 +160,7 @@
     self.remindTimeBtn = btn;
     
     [btn setTitle:@"设置提醒时间" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorNamed:@"42_78_132&223_223_227"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"todo提醒的小铃铛"] forState:UIControlStateNormal];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backView).offset(0.048*SCREEN_WIDTH);
@@ -183,6 +185,7 @@
     self.repeatModelBtn = btn;
     
     [btn setTitle:@"设置重复提醒" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorNamed:@"42_78_132&223_223_227"] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"todo的小闹钟"] forState:UIControlStateNormal];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backView).offset(0.048*SCREEN_WIDTH);

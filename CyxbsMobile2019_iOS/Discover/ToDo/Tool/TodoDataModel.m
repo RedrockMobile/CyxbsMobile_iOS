@@ -71,7 +71,11 @@
     };
 }
 
-- (NSDate*)getTimeStrDate {
+- (NSDate* _Nullable)getTimeStrDate {
+    if ([self.timeStr isEqualToString:@""]) {
+        return nil;
+    }
+    
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
     return [formatter dateFromString:self.timeStr];

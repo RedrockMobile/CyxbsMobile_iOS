@@ -61,6 +61,12 @@ FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationConflictl;
 - (void)logRecordDataWithTableName:(NSString*)tableName;
 /// 内部是先删除todo相关的表，再重建表，可以把数据库重置
 - (void)resetDB;
+
+/// 需要在登录成功后调用，
+- (void)logInSuccess;
+
+/// 需要在退出登录后后调用，
+- (void)logOutSuccess;
 @end
 
 NS_ASSUME_NONNULL_END
