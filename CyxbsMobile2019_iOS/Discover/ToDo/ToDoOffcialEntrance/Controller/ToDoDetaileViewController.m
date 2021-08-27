@@ -273,7 +273,7 @@
 - (void)changeStatu{
     //改变当前的状态
 //    self.model.isDone = !self.model.isDone;
-    [self.model setIsDoneForUserActivity:self.model.isDone];
+    [self.model setIsDoneForUserActivity:!self.model.isDone];
     if (self.model.isDone == YES) {
         //btn图片改变
         [self.cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];

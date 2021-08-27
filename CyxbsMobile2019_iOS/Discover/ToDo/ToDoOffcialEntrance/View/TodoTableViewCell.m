@@ -9,8 +9,6 @@
 #import "TodoDataModel.h"
 
 @interface TodoTableViewCell ()
-/// 最前面点击的button
-@property(nonatomic, strong) UIButton *circlebtn;
 
 /// 标题
 @property(nonatomic, strong) UILabel *titleLbl;

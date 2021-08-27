@@ -116,8 +116,8 @@
 ///点击将未完成的cell转移到完成区域
 - (void)toDoCellDidClickedThroughCell:(TodoTableViewCell *)toDoCell{
     //1.设置button的icon设置为圆环
-//    toDoCell.model.isDone = YES;
-    [toDoCell.model setIsDoneForUserActivity:toDoCell.model.isDone];
+    [toDoCell.model setIsDoneForUserActivity:!toDoCell.model.isDone];
+    [toDoCell.circlebtn setImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
     //2.进行区域转移
     NSIndexPath *indexPath = [self.tableView indexPathForCell:toDoCell];
         //2.1从未完成区域中删除
@@ -143,7 +143,9 @@
 - (void)doneCellDidClickedThroughCell:(TodoTableViewCell *)doneCell{
     //1.设置button的icon设置为圆环打勾
 //    doneCell.model.isDone = NO;
-    [doneCell.model setIsDoneForUserActivity:doneCell.model.isDone];
+    [doneCell.model setIsDoneForUserActivity:!doneCell.model.isDone];
+    [doneCell.circlebtn setImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+    
     //2.区域转移
     NSIndexPath *indexPath = [self.tableView indexPathForCell:doneCell];
         //2.1从已完成区域中删除
@@ -155,7 +157,7 @@
     doneCell.layer.transform = CATransform3DMakeScale(1, 1, 1);
             //让cell变小
     [UIView animateWithDuration:0.7 animations:^{
-        doneCell.layer.transform = CATransform3DMakeScale(0.1, 1, 1);
+        doneCell.layer.transform = CATransform3DMakeScale(1, 0.1, 1);
     }];
         //2.4延迟一秒刷新table
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

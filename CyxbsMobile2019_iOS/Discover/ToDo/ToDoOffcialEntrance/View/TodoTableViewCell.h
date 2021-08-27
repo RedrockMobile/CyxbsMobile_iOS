@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface TodoTableViewCell : UITableViewCell
+/// 最前面点击的button
+@property(nonatomic, strong) UIButton *circlebtn;
 
 @property(nonatomic, strong) TodoDataModel *model;
 @property(nonatomic, weak) id<TodoTableViewCellDelegate> delegate;
