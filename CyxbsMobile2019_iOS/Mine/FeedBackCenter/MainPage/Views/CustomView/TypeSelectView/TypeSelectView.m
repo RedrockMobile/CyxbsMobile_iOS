@@ -26,6 +26,7 @@
 - (TypeButton *)recommendBtn{
     if (!_recommendBtn) {
         _recommendBtn = [[TypeButton alloc]initWithFrame:CGRectMake(16, 24, 84, 30) AndTitle:@"意见建议"];
+        _recommendBtn.delegate = self;
     }
     return _recommendBtn;
 }
@@ -51,6 +52,10 @@
     return _otherBtn;
 }
 
-
+- (void)selected:(TypeButton *)sender{
+    sender.backgroundColor = [UIColor colorNamed:@"typeBG"];
+    [sender setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateNormal];
+    sender.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
+}
 
 @end

@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.layer.cornerRadius = 8;
-        self.backgroundColor = [UIColor colorNamed:@"#FFFFFF"];
+        self.backgroundColor = [UIColor colorNamed:@"FeedBackBG"];
         [self addSubview:self.feedBackMain];
         [self addSubview:self.splitLine];
         [self addSubview:self.heading];
@@ -59,6 +59,7 @@
 - (UITextView *)feedBackMain{
     if (!_feedBackMain) {
         _feedBackMain = [[UITextView alloc]initWithFrame:CGRectMake(14, 65, self.width - 36, 280)];
+        _feedBackMain.backgroundColor = [UIColor colorNamed:@"FeedBackBG"];
         _feedBackMain.delegate = self;
         [_feedBackMain setTextColor:[UIColor colorNamed:@"#15315B"]];
         _feedBackMain.font = [UIFont fontWithName:PingFangSCMedium size:15];
@@ -90,7 +91,7 @@
 
 - (UILabel *)textCountLbl{
     if (!_textCountLbl) {
-        _textCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(293, 317, 35, 17)];
+        _textCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(290, 317, 50, 17)];
         _textCountLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
         _textCountLbl.textColor = [UIColor colorNamed:@"Count"];
         _textCountLbl.text = @"0/200";
@@ -128,18 +129,45 @@
 - (UIImageView *)imageView1{
     if (!_imageView1) {
         _imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(18, 389, 98, 98)];
+        UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
+        b.backgroundColor = [UIColor clearColor];
+        UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
+        i.image = [UIImage imageNamed:@"delete"];
+        _imageView1.userInteractionEnabled = YES;
+        [b addTarget:self action:@selector(deleteImage) forControlEvents:UIControlEventTouchUpInside];
+        [_imageView1 addSubview:i];
+        [_imageView1 addSubview:b];
+        _imageView1.hidden = YES;
     }
     return _imageView1;
 }
 - (UIImageView *)imageView2{
     if (!_imageView2) {
         _imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(123, 389, 98, 98)];
+        UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
+        b.backgroundColor = [UIColor clearColor];
+        UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
+        i.image = [UIImage imageNamed:@"delete"];
+        _imageView2.userInteractionEnabled = YES;
+        [b addTarget:self action:@selector(deleteImage) forControlEvents:UIControlEventTouchUpInside];
+        [_imageView2 addSubview:i];
+        [_imageView2 addSubview:b];
+        _imageView2.hidden = YES;
     }
     return _imageView2;
 }
 - (UIImageView *)imageView3{
     if (!_imageView3) {
         _imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(227, 389, 98, 98)];
+        UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
+        b.backgroundColor = [UIColor clearColor];
+        UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
+        i.image = [UIImage imageNamed:@"delete"];
+        _imageView3.userInteractionEnabled = YES;
+        [b addTarget:self action:@selector(deleteImage) forControlEvents:UIControlEventTouchUpInside];
+        [_imageView3 addSubview:i];
+        [_imageView3 addSubview:b];
+        _imageView3.hidden = YES;
     }
     return _imageView3;
 }
@@ -187,4 +215,7 @@
     self.selectPhoto();
 }
 
+- (void)deleteImage{
+    NSLog(@"!!!!!!!!!!!!!!!!!");
+}
 @end

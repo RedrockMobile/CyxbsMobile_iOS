@@ -19,6 +19,7 @@
         self.layer.cornerRadius = 15;
         self.layer.borderWidth = 1;
         self.layer.borderColor = [UIColor colorNamed:@"TypeBtn"].CGColor;
+        [self addTarget:self.delegate action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }

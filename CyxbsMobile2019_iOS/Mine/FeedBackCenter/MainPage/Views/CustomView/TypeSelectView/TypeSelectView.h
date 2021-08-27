@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TypeSelectView : UIView
+@interface TypeSelectView : UIView <TypeButtonDelegate>
 
 @property (nonatomic,strong) TypeButton *recommendBtn;
 @property (nonatomic,strong) TypeButton *systemProblemBtn;

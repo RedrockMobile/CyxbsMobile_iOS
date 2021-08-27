@@ -100,18 +100,27 @@
                     if (self.photoAry.count == 1) {
                         self.feedBackView.plusView.hidden = NO;
                         self.feedBackView.plusView.frame = self.feedBackView.imageView2.frame;
+                        self.feedBackView.imageView1.hidden = NO;
+                        self.feedBackView.imageView2.hidden = YES;
+                        self.feedBackView.imageView3.hidden = YES;
                         self.feedBackView.imageView1.image = self.photoAry[0];
                         self.feedBackView.photoCountLbl.text = @"1/3";
                     }
                     if (self.photoAry.count == 2) {
                         self.feedBackView.plusView.hidden = NO;
                         self.feedBackView.plusView.frame = self.feedBackView.imageView3.frame;
+                        self.feedBackView.imageView1.hidden = NO;
+                        self.feedBackView.imageView2.hidden = NO;
+                        self.feedBackView.imageView3.hidden = YES;
                         self.feedBackView.imageView1.image = self.photoAry[0];
                         self.feedBackView.imageView2.image = self.photoAry[1];
                         self.feedBackView.photoCountLbl.text = @"2/3";
                     }
                     if (self.photoAry.count == 3) {
                         self.feedBackView.plusView.hidden = YES;
+                        self.feedBackView.imageView1.hidden = NO;
+                        self.feedBackView.imageView2.hidden = NO;
+                        self.feedBackView.imageView3.hidden = NO;
                         self.feedBackView.imageView1.image = self.photoAry[0];
                         self.feedBackView.imageView2.image = self.photoAry[1];
                         self.feedBackView.imageView3.image = self.photoAry[2];
