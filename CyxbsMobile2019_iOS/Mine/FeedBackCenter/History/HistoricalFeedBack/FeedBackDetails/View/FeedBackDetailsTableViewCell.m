@@ -81,7 +81,8 @@
     self.flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth);
     CGFloat collectionWidth = cellWidth * self.cellModel.imgCount + spaceWidth * (self.cellModel.imgCount - 1);;
     f4.size = CGSizeMake(collectionWidth, cellWidth);
-
+    self.picturesCollectionView.frame = f4;
+    
     // typeLabel
     CGRect f5 = bounds;
     f5.origin = CGPointMake(f4.origin.x, CGRectGetMaxY(f4) + 10);
@@ -105,29 +106,13 @@
     self.titleLabel.text = cellModel.title;
     self.subtitleLabel.text = cellModel.contentText;
     [self.typeButton setTitle:[@"#" stringByAppendingString:cellModel.type] forState:UIControlStateNormal];
-    self.timeLabel.text = [self getTimeFromTimestamp:cellModel.date];
+    self.timeLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY/MM/dd HH:mm");
     
     [self layoutSubviews];
     [self.picturesCollectionView reloadData];
 }
 
 #pragma mark - private
-
-/// 将时间戳转化为字符串 @"YYYY/MM/dd HH:mm"
-- (NSString *)getTimeFromTimestamp:(long)time {
-    //将对象类型的时间转换为NSDate类型
-    NSDate * myDate = [NSDate dateWithTimeIntervalSince1970:time];
-    //设置时间格式
-    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY/MM/dd HH:mm"];
-    //将时间转换为字符串
-    NSString * timeStr = [formatter stringFromDate:myDate];
-    return timeStr;
-}
-
-+ (NSString *)reuseIdentifier {
-    return NSStringFromClass([self class]);
-}
 
 - (CGFloat)height {
     return CGRectGetMaxY(self.maskView.frame) + 8;

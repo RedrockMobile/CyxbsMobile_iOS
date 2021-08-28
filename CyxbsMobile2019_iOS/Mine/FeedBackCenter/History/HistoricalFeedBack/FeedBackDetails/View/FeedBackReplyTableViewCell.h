@@ -25,9 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)height;
 
-/// 复用标识
-+ (NSString *)reuseIdentifier;
-
 @end
 
 NS_ASSUME_NONNULL_END

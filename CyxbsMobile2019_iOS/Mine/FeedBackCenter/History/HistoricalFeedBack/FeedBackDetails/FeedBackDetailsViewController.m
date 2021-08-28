@@ -147,8 +147,10 @@
         _feedBackDetailsTableView.delegate = self;
         _feedBackDetailsTableView.dataSource = self;
         _feedBackDetailsTableView.backgroundColor = [UIColor clearColor];
-        [_feedBackDetailsTableView registerClass:[FeedBackDetailsTableViewCell class] forCellReuseIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
-        [_feedBackDetailsTableView registerClass:[FeedBackReplyTableViewCell class] forCellReuseIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        [_feedBackDetailsTableView registerClass:FeedBackDetailsTableViewCell.class
+                          forCellReuseIdentifier:reuseIdentifier(FeedBackDetailsTableViewCell)];
+        [_feedBackDetailsTableView registerClass:FeedBackReplyTableViewCell.class
+                          forCellReuseIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
         _feedBackDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _feedBackDetailsTableView.mj_header = self.feedBackStateHeader;
     }
