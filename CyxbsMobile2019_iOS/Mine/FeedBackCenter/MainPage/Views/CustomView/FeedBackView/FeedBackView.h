@@ -42,6 +42,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^selectPhoto)(void);
 ///用来删除图片的 Block
 @property (nonatomic,copy) void (^deletePhoto)( NSInteger tag);
+///1号删除按钮
+@property (nonatomic,strong) UIButton *delete1;
+///2号删除按钮
+@property (nonatomic,strong) UIButton *delete2;
+///3号删除按钮
+@property (nonatomic,strong) UIButton *delete3;
+
 
 @end
 

@@ -28,6 +28,9 @@
         [self addSubview:self.imageView2];
         [self addSubview:self.imageView3];
         [self addSubview:self.plusView];
+        [self addSubview:self.delete1];
+        [self addSubview:self.delete2];
+        [self addSubview:self.delete3];
     }
     return self;
 }
@@ -128,48 +131,27 @@
 
 - (UIImageView *)imageView1{
     if (!_imageView1) {
-        _imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(18, 389, 98, 98)];
-        UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
-        b.tag = 0;
-        b.backgroundColor = [UIColor clearColor];
-        UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
-        i.image = [UIImage imageNamed:@"delete"];
-        _imageView1.userInteractionEnabled = YES;
-        [b addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
-        [_imageView1 addSubview:i];
-        [_imageView1 addSubview:b];
+        _imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(18, 389, 95, 95)];
+        _imageView1.layer.cornerRadius = 4;
+        _imageView1.layer.masksToBounds = YES;
         _imageView1.hidden = YES;
     }
     return _imageView1;
 }
 - (UIImageView *)imageView2{
     if (!_imageView2) {
-        _imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(123, 389, 98, 98)];
-        UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
-        b.tag = 1;
-        b.backgroundColor = [UIColor clearColor];
-        UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
-        i.image = [UIImage imageNamed:@"delete"];
-        _imageView2.userInteractionEnabled = YES;
-        [b addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
-        [_imageView2 addSubview:i];
-        [_imageView2 addSubview:b];
+        _imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(123, 389, 95, 95)];
+        _imageView2.layer.cornerRadius = 4;
+        _imageView2.layer.masksToBounds = YES;
         _imageView2.hidden = YES;
     }
     return _imageView2;
 }
 - (UIImageView *)imageView3{
     if (!_imageView3) {
-        _imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(227, 389, 98, 98)];
-        UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
-        b.tag = 2;
-        b.backgroundColor = [UIColor clearColor];
-        UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
-        i.image = [UIImage imageNamed:@"delete"];
-        _imageView3.userInteractionEnabled = YES;
-        [b addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
-        [_imageView3 addSubview:i];
-        [_imageView3 addSubview:b];
+        _imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(227, 389, 95, 95)];
+        _imageView3.layer.cornerRadius = 4;
+        _imageView3.layer.masksToBounds = YES;
         _imageView3.hidden = YES;
     }
     return _imageView3;
@@ -190,6 +172,40 @@
     }
     return _plusView;
 }
+
+
+- (UIButton *)delete1{
+    if (!_delete1) {
+        _delete1 = [[UIButton alloc]initWithFrame:CGRectMake( 101, 387, 15, 15)];
+        _delete1.tag = 0;
+        [_delete1 setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        [_delete1 addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
+        _delete1.hidden = YES;
+    }
+    return _delete1;
+}
+- (UIButton *)delete2{
+    if (!_delete2) {
+        _delete2 = [[UIButton alloc]initWithFrame:CGRectMake( 206, 387, 15, 15)];
+        _delete2.tag = 1;
+        [_delete2 setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        [_delete2 addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
+        _delete2.hidden = YES;
+    }
+    return _delete2;
+}
+
+- (UIButton *)delete3{
+    if (!_delete3) {
+        _delete3 = [[UIButton alloc]initWithFrame:CGRectMake( 310, 387, 15, 15)];
+        _delete3.tag = 2;
+        [_delete3 setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        [_delete3 addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
+        _delete3.hidden = YES;
+    }
+    return _delete3;
+}
+
 
 
 #pragma mark - 其他方法
