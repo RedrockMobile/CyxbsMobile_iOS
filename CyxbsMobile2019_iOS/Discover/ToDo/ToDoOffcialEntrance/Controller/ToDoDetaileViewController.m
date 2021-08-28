@@ -255,8 +255,16 @@
         remarksTitleHeight = SCREEN_HEIGHT * 0.0258;
         self.reminedEditRemarksLbl.alpha = 0.4;
     }
-    self.remarksTextView.frame = CGRectMake(self.remarksTitleLbl.x, self.remarksTitleLbl.maxY + SCREEN_HEIGHT * 0.0258, SCREEN_WIDTH * 0.8266, remarksTitleHeight);
+    
     [self.scrollView addSubview:self.remarksTextView];
+    [self.remarksTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.remarksTitleLbl);
+        make.top.equalTo(self.remarksTitleLbl.mas_bottom).offset(SCREEN_HEIGHT * 0.0258);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.8266, remarksTitleHeight));
+    }];
+//    self.remarksTextView.size = CGSizeMake(SCREEN_WIDTH * 0.8266, remarksTitleHeight);
+//    self.remarksTextView.frame = CGRectMake(self.remarksTitleLbl.x, self.remarksTitleLbl.maxY + SCREEN_HEIGHT * 0.0258, SCREEN_WIDTH * 0.8266, remarksTitleHeight);
+   
     
     [self.remarksTextView addSubview:self.reminedEditRemarksLbl];
     [self.reminedEditRemarksLbl mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -436,19 +444,36 @@
 
 //MARK:UITextViewDeleaget
 - (void)textViewDidChange:(UITextView *)textView{
+    [self.view layoutIfNeeded];
     CGRect frame = textView.frame;
     CGSize constrainSize = CGSizeMake(frame.size.width, CGFLOAT_MAX);
     CGSize size = [textView sizeThatFits:constrainSize];
-    [UIView animateWithDuration:0.25 animations:^{
-        textView.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, size.height);
-    }];
+    //如果tag为1则此textView即为编辑备注的textView
     if (textView.tag == 1) {
+            //设置备注textView的placeHolde
         if (textView.text.length > 0) {
             self.reminedEditRemarksLbl.alpha = 0;
         }else{
             self.reminedEditRemarksLbl.alpha = 0.4;
         }
+            //设置高度随文字自适应增高
+        [UIView animateWithDuration:0.25 animations:^{
+            [textView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.remarksTitleLbl);
+                make.top.equalTo(self.remarksTitleLbl.mas_bottom).offset(SCREEN_HEIGHT * 0.0258);
+                make.size.mas_equalTo(CGSizeMake(frame.size.width, size.height));
+            }];
+            [self.view layoutIfNeeded];
+        }];
+    }else{
+        //设置tile随文字的增加自适应增高
+        [UIView animateWithDuration:0.25 animations:^{
+            textView.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, size.height);
+        }];
     }
+    
+    [self.view layoutIfNeeded];
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.remarksTextView.maxY + SCREEN_HEIGHT * 0.25);
 }
 
 #pragma mark- getter
@@ -466,7 +491,7 @@
         _scrollView.backgroundColor =  [UIColor colorNamed:@"255_255_255&0_0_0"];
         //设置scroll距离屏幕顶端无间距
         _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT * 1.5);
+        _scrollView.scrollEnabled = YES;
     }
     return _scrollView;
 }
