@@ -87,7 +87,7 @@
         _headingCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(315, 25, 15, 17)];
         _headingCountLbl.font = [UIFont fontWithName:PingFangSCMedium size:13];
         _headingCountLbl.textColor = [UIColor colorNamed:@"Count"];
-        _headingCountLbl.text = @"0";
+        _headingCountLbl.text = @"12";
     }
     return _headingCountLbl;
 }
@@ -215,7 +215,7 @@
 
 - (void)getlength:(UITextField *)sender{
     NSLog(@"%lu",(unsigned long)sender.text.length);
-    self.headingCountLbl.text = [NSString stringWithFormat:@"%lu",(unsigned long)sender.text.length];
+    self.headingCountLbl.text = [NSString stringWithFormat:@"%lu",12 - (unsigned long)sender.text.length];
 }
 
 #pragma mark - textView代理

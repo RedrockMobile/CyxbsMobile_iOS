@@ -38,11 +38,22 @@
 - (TypeSelectView *)typeSelectView{
     if (!_typeSelectView) {
         _typeSelectView = [[TypeSelectView alloc]initWithFrame:CGRectMake(0, Bar_H, SCREEN_WIDTH, 71)];
+        __weak typeof(self) weakSelf = self;
         [_typeSelectView setSelect:^(TypeButton * _Nonnull sender) {
-//                    NSLog(@"%d",)
-                    sender.backgroundColor = [UIColor colorNamed:@"typeBG"];
-                    [sender setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateNormal];
-                    sender.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
+            if (!weakSelf.correctBtn) {
+                sender.backgroundColor = [UIColor colorNamed:@"typeBG"];
+                [sender setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateNormal];
+                sender.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
+                weakSelf.correctBtn = sender;
+            }else{
+                weakSelf.correctBtn.backgroundColor = [UIColor clearColor];
+                [weakSelf.correctBtn setTitleColor:[UIColor colorNamed:@"TypeBtn"] forState:UIControlStateNormal];
+                weakSelf.correctBtn.layer.borderColor = [UIColor colorNamed:@"TypeBtn"].CGColor;
+                sender.backgroundColor = [UIColor colorNamed:@"typeBG"];
+                [sender setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateNormal];
+                sender.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
+                weakSelf.correctBtn = sender;
+            }
         }];
     }
     return _typeSelectView;
@@ -131,6 +142,7 @@
         _submitBtn.centerX = self.view.centerX;
         _submitBtn.y = 719;
         [_submitBtn setImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
+        [_submitBtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submitBtn;
 }
@@ -199,9 +211,9 @@
             }
         }];
     }
-    //获取主线程（更新UI）
+}
 
-    
-    
+- (void)submit{
+    NSLog(@"%d",self.correctBtn.tag);
 }
 @end
