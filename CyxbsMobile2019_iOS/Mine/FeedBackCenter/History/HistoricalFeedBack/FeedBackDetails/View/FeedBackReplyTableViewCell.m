@@ -83,9 +83,8 @@
 
 - (void)setCellModel:(FeedBackReplyModel *)cellModel {
     _cellModel = cellModel;
-    self.titleLabel.text = [@"回复:" stringByAppendingString:cellModel.contentText];
+    self.titleLabel.text = [@"回复：" stringByAppendingString:cellModel.contentText];
     self.timeLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY/MM/dd HH:mm");
-    
     [self layoutSubviews];
     [self.picturesCollectionView reloadData];
 }
