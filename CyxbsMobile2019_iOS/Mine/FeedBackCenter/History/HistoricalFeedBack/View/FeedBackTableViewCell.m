@@ -69,7 +69,7 @@
 - (void)setCellModel:(FeedBackModel *)cellModel {
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.title;
-    self.subtitleLabel.text = [self getTimeFromTimestamp:cellModel.date];
+    self.subtitleLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY/MM/dd HH:mm");
     self.rightImgView.image = [UIImage imageNamed:cellModel.isReplied ? @"标签-已回复" : @"标签-未回复"];
     self.redSpotView.hidden = cellModel.isReplied;
     [self setupFrame];
@@ -122,17 +122,6 @@
 }
 
 #pragma mark - private
-
-- (NSString *)getTimeFromTimestamp:(long)time {
-    //将对象类型的时间转换为NSDate类型
-    NSDate * myDate = [NSDate dateWithTimeIntervalSince1970:time];
-    //设置时间格式
-    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY/MM/dd HH:mm"];
-    //将时间转换为字符串
-    NSString * timeStr = [formatter stringFromDate:myDate];
-    return timeStr;
-}
 
 + (NSString *)reuseIdentifier {
     return NSStringFromClass([self class]);

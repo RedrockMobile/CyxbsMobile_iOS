@@ -273,5 +273,15 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #define SCREEN_RATE (667/[UIScreen mainScreen].bounds.size.height)
 #define ZOOM(x) x / SCREEN_RATE
 
+/// 通过时间戳获得时间
+#define getTimeFromTimestampWithDateFormat(timestamp, dateFormat) ^(long t, NSString* format){\
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];\
+    [formatter setDateFormat:format];\
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:t];\
+    return [formatter stringFromDate:date];\
+}(timestamp, dateFormat)
+
+/// 通过类名获得复用标识
+#define reuseIdentifier(className) NSStringFromClass(className.class)
 
 #endif /* CyxbsMobileToolMacro_h */

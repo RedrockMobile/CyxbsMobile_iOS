@@ -33,7 +33,7 @@
 - (void)setCellModel:(DetailsGoodsModel *)cellModel {
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.goods_name;
-    self.subtitleLabel.text = [self getTimeFromTimestamp: cellModel.date];
+    self.subtitleLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY.MM.dd");
     self.rightTitleLabel.text = [NSString stringWithFormat:@"-%zd", cellModel.goods_price];
     
     // 在代理方法中给 cell 赋值, 需要先将图片设置为隐藏, 否则动画的延后性会导致图片来不及隐藏

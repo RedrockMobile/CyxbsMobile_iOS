@@ -88,11 +88,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
+        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackDetailsTableViewCell)];
         cell.cellModel = self.detailsAry[indexPath.section];
         return cell;
     } else {
-        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
         cell.cellModel = self.detailsAry[indexPath.section];
         return cell;
     }
@@ -100,12 +100,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
+        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackDetailsTableViewCell)];
         cell.bounds = tableView.bounds;
         cell.cellModel = self.detailsAry[indexPath.section];
         return cell.height;
     } else {
-        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
         cell.bounds = tableView.bounds;
         cell.cellModel = self.detailsAry[indexPath.section];
         return cell.height;
@@ -147,8 +147,10 @@
         _feedBackDetailsTableView.delegate = self;
         _feedBackDetailsTableView.dataSource = self;
         _feedBackDetailsTableView.backgroundColor = [UIColor clearColor];
-        [_feedBackDetailsTableView registerClass:[FeedBackDetailsTableViewCell class] forCellReuseIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
-        [_feedBackDetailsTableView registerClass:[FeedBackReplyTableViewCell class] forCellReuseIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        [_feedBackDetailsTableView registerClass:FeedBackDetailsTableViewCell.class
+                          forCellReuseIdentifier:reuseIdentifier(FeedBackDetailsTableViewCell)];
+        [_feedBackDetailsTableView registerClass:FeedBackReplyTableViewCell.class
+                          forCellReuseIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
         _feedBackDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _feedBackDetailsTableView.mj_header = self.feedBackStateHeader;
     }

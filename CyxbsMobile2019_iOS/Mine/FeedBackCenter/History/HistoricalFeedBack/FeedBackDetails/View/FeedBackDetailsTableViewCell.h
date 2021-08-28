@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// separator
 @property (nonatomic, strong) UIView * separateLine;
 /// 问题类型
-@property (nonatomic, strong) UILabel * typeLabel;
+@property (nonatomic, strong) UIButton * typeButton;
 /// 图片
 @property (nonatomic, strong) UICollectionView * picturesCollectionView;
 /// 时间
@@ -33,10 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 得到高度
 - (CGFloat)height;
-
-/// 复用标识
-+ (NSString *)reuseIdentifier;
-
 
 @end
 
