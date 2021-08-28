@@ -88,11 +88,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
+        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackDetailsTableViewCell)];
         cell.cellModel = self.detailsAry[indexPath.section];
         return cell;
     } else {
-        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
         cell.cellModel = self.detailsAry[indexPath.section];
         return cell;
     }
@@ -100,12 +100,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackDetailsTableViewCell reuseIdentifier]];
+        FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackDetailsTableViewCell)];
         cell.bounds = tableView.bounds;
         cell.cellModel = self.detailsAry[indexPath.section];
         return cell.height;
     } else {
-        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackReplyTableViewCell reuseIdentifier]];
+        FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
         cell.bounds = tableView.bounds;
         cell.cellModel = self.detailsAry[indexPath.section];
         return cell.height;
