@@ -7,7 +7,6 @@
 //
 
 #import "HintView.h"
-#import "ZWTMacro.h"
 
 @implementation HintView
 

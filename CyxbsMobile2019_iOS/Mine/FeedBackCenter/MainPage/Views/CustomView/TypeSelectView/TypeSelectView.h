@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) TypeButton *profileProblemBtn;
 @property (nonatomic,strong) TypeButton *otherBtn;
 
+@property (nonatomic,copy) void(^select)(TypeButton *sender);
 
 @end
 

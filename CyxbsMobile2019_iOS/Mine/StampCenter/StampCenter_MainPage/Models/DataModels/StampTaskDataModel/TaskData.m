@@ -7,7 +7,6 @@
 //
 
 #import "TaskData.h"
-#import "ZWTMacro.h"
 @implementation TaskData
 
 @dynamic description;
@@ -20,8 +19,8 @@
 
 + (void)TaskDataWithSuccess:(void (^)(NSArray * _Nonnull))success error:(void (^)(void))error{
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             //字典转模型
         NSArray *array = responseObject[@"data"][@"task"];
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];

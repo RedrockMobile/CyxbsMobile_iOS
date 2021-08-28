@@ -130,11 +130,12 @@
     if (!_imageView1) {
         _imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(18, 389, 98, 98)];
         UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
+        b.tag = 0;
         b.backgroundColor = [UIColor clearColor];
         UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
         i.image = [UIImage imageNamed:@"delete"];
         _imageView1.userInteractionEnabled = YES;
-        [b addTarget:self action:@selector(deleteImage) forControlEvents:UIControlEventTouchUpInside];
+        [b addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
         [_imageView1 addSubview:i];
         [_imageView1 addSubview:b];
         _imageView1.hidden = YES;
@@ -145,11 +146,12 @@
     if (!_imageView2) {
         _imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(123, 389, 98, 98)];
         UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
+        b.tag = 1;
         b.backgroundColor = [UIColor clearColor];
         UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
         i.image = [UIImage imageNamed:@"delete"];
         _imageView2.userInteractionEnabled = YES;
-        [b addTarget:self action:@selector(deleteImage) forControlEvents:UIControlEventTouchUpInside];
+        [b addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
         [_imageView2 addSubview:i];
         [_imageView2 addSubview:b];
         _imageView2.hidden = YES;
@@ -160,11 +162,12 @@
     if (!_imageView3) {
         _imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(227, 389, 98, 98)];
         UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(80, -3, 25, 25)];
+        b.tag = 2;
         b.backgroundColor = [UIColor clearColor];
         UIImageView *i = [[UIImageView alloc]initWithFrame:CGRectMake(90, -3, 15, 15)];
         i.image = [UIImage imageNamed:@"delete"];
         _imageView3.userInteractionEnabled = YES;
-        [b addTarget:self action:@selector(deleteImage) forControlEvents:UIControlEventTouchUpInside];
+        [b addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
         [_imageView3 addSubview:i];
         [_imageView3 addSubview:b];
         _imageView3.hidden = YES;
@@ -215,7 +218,7 @@
     self.selectPhoto();
 }
 
-- (void)deleteImage{
-    NSLog(@"!!!!!!!!!!!!!!!!!");
+- (void)deleteImage:(UIButton *)sender{
+    self.deletePhoto(sender.tag);
 }
 @end

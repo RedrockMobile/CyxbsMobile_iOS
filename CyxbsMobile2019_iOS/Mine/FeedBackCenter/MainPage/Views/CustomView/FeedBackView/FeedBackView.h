@@ -38,9 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIImageView *imageView3;
 ///加号图片
 @property (nonatomic,strong) UIView *plusView;
-///选择图片
-///用来返回数据的 Block
-@property (nonatomic, copy) void (^selectPhoto)();
+///选择图片 block
+@property (nonatomic, copy) void (^selectPhoto)(void);
+///用来删除图片的 Block
+@property (nonatomic,copy) void (^deletePhoto)( NSInteger tag);
 
 @end
 

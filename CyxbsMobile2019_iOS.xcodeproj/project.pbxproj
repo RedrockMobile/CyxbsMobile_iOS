@@ -1396,7 +1396,6 @@
 		493162C426CD7B4900140412 /* stampcenter.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = stampcenter.xcassets; sourceTree = "<group>"; };
 		493162CA26CD7B5D00140412 /* UIView+XYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYView.m"; sourceTree = "<group>"; };
 		493162CB26CD7B5D00140412 /* UIView+XYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XYView.h"; sourceTree = "<group>"; };
-		493162CD26CD7B5D00140412 /* ZWTMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWTMacro.h; sourceTree = "<group>"; };
 		493162D526CD7B6300140412 /* StampCountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCountData.m; sourceTree = "<group>"; };
 		493162D626CD7B6300140412 /* StampCountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCountData.h; sourceTree = "<group>"; };
 		493162D826CD7B6300140412 /* TaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskData.m; sourceTree = "<group>"; };
@@ -1447,7 +1446,6 @@
 		7311327626CCEC2400EF88C1 /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
 		7311327726CCEC2400EF88C1 /* Goods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goods.m; sourceTree = "<group>"; };
 		7311327826CCEC2400EF88C1 /* Balance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balance.m; sourceTree = "<group>"; };
-		7311327926CCEC2400EF88C1 /* ZWTMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWTMacro.h; sourceTree = "<group>"; };
 		7311327A26CCEC2400EF88C1 /* Goods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Goods.h; sourceTree = "<group>"; };
 		7311327C26CCEC2400EF88C1 /* TopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopView.h; sourceTree = "<group>"; };
 		7311327D26CCEC2400EF88C1 /* BottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BottomView.h; sourceTree = "<group>"; };
@@ -3899,7 +3897,6 @@
 			children = (
 				493162CA26CD7B5D00140412 /* UIView+XYView.m */,
 				493162CB26CD7B5D00140412 /* UIView+XYView.h */,
-				493162CD26CD7B5D00140412 /* ZWTMacro.h */,
 			);
 			path = ZWTSupportingFiles;
 			sourceTree = "<group>";
@@ -4210,7 +4207,6 @@
 				7311327626CCEC2400EF88C1 /* Balance.h */,
 				7311327726CCEC2400EF88C1 /* Goods.m */,
 				7311327826CCEC2400EF88C1 /* Balance.m */,
-				7311327926CCEC2400EF88C1 /* ZWTMacro.h */,
 				7311327A26CCEC2400EF88C1 /* Goods.h */,
 			);
 			path = Model;

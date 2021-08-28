@@ -218,6 +218,11 @@ fprintf(stderr,"\n");\
     return is.boolValue;\
 }()
 
+//Bar的高度
+#define Bar_H (STATUSBARHEIGHT + 44)
+
+//邮票中心的适配
+#define COLLECTIONHEADER_H  65
 #pragma mark - 字体
 //苹方-简 极细体
 #define PingFangSCUltralight    @"PingFangSC-Ultralight"

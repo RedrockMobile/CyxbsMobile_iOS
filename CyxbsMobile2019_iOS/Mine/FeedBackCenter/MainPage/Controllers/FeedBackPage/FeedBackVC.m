@@ -8,16 +8,17 @@
 
 #import "FeedBackVC.h"
 #import "TypeSelectView.h"
-#import "ZWTMacro.h"
 #import "FeedBackView.h"
 #import "UIView+XYView.h"
 #import <PhotosUI/PHPicker.h>
+#import "TypeButton.h"
 @interface FeedBackVC () <PHPickerViewControllerDelegate>
 
 @property (nonatomic,strong) TypeSelectView * typeSelectView;
 @property (nonatomic,strong) FeedBackView *feedBackView;
 @property (nonatomic,strong) UIButton *submitBtn;
 @property (nonatomic,strong) NSMutableArray *photoAry;
+@property (nonatomic,strong) TypeButton *correctBtn;
 
 @end
 
@@ -37,15 +38,21 @@
 - (TypeSelectView *)typeSelectView{
     if (!_typeSelectView) {
         _typeSelectView = [[TypeSelectView alloc]initWithFrame:CGRectMake(0, Bar_H, SCREEN_WIDTH, 71)];
+        [_typeSelectView setSelect:^(TypeButton * _Nonnull sender) {
+//                    NSLog(@"%d",)
+                    sender.backgroundColor = [UIColor colorNamed:@"typeBG"];
+                    [sender setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateNormal];
+                    sender.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
+        }];
     }
     return _typeSelectView;
 }
 
 - (FeedBackView *)feedBackView{
     if (!_feedBackView) {
+        __weak typeof(self) weakSelf = self;
         _feedBackView = [[FeedBackView alloc]initWithFrame:CGRectMake(16, Bar_H + 71, SCREEN_WIDTH - 32, 509)];
         [_feedBackView setSelectPhoto:^{
-                    NSLog(@"!!");
             //PHPickerConfiguration
             PHPickerConfiguration *config = [[PHPickerConfiguration alloc]init];
             //个数限制
@@ -58,6 +65,47 @@
             pVC.delegate = self;
             //show
             [self presentViewController:pVC animated:YES completion:nil];
+        }];
+        
+        [_feedBackView setDeletePhoto:^(NSInteger tag) {
+            [weakSelf.photoAry removeObjectAtIndex:tag];
+            if (weakSelf.photoAry.count == 0) {
+                weakSelf.feedBackView.plusView.hidden = NO;
+                weakSelf.feedBackView.plusView.frame = weakSelf.feedBackView.imageView1.frame;
+                weakSelf.feedBackView.imageView1.hidden = YES;
+                weakSelf.feedBackView.imageView2.hidden = YES;
+                weakSelf.feedBackView.imageView3.hidden = YES;
+                weakSelf.feedBackView.photoCountLbl.text = @"0/3";
+            }
+            if (weakSelf.photoAry.count == 1) {
+                weakSelf.feedBackView.plusView.hidden = NO;
+                weakSelf.feedBackView.plusView.frame = weakSelf.feedBackView.imageView2.frame;
+                weakSelf.feedBackView.imageView1.hidden = NO;
+                weakSelf.feedBackView.imageView2.hidden = YES;
+                weakSelf.feedBackView.imageView3.hidden = YES;
+                weakSelf.feedBackView.imageView1.image = weakSelf.photoAry[0];
+                weakSelf.feedBackView.photoCountLbl.text = @"1/3";
+            }
+            if (weakSelf.photoAry.count == 2) {
+                weakSelf.feedBackView.plusView.hidden = NO;
+                weakSelf.feedBackView.plusView.frame = weakSelf.feedBackView.imageView3.frame;
+                weakSelf.feedBackView.imageView1.hidden = NO;
+                weakSelf.feedBackView.imageView2.hidden = NO;
+                weakSelf.feedBackView.imageView3.hidden = YES;
+                weakSelf.feedBackView.imageView1.image = weakSelf.photoAry[0];
+                weakSelf.feedBackView.imageView2.image = weakSelf.photoAry[1];
+                weakSelf.feedBackView.photoCountLbl.text = @"2/3";
+            }
+            if (weakSelf.photoAry.count == 3) {
+                weakSelf.feedBackView.plusView.hidden = YES;
+                weakSelf.feedBackView.imageView1.hidden = NO;
+                weakSelf.feedBackView.imageView2.hidden = NO;
+                weakSelf.feedBackView.imageView3.hidden = NO;
+                weakSelf.feedBackView.imageView1.image = weakSelf.photoAry[0];
+                weakSelf.feedBackView.imageView2.image = weakSelf.photoAry[1];
+                weakSelf.feedBackView.imageView3.image = weakSelf.photoAry[2];
+                weakSelf.feedBackView.photoCountLbl.text = @"3/3";
+            }
         }];
    
     }

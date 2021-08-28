@@ -8,7 +8,6 @@
 
 #import "ExchangeCenterViewController.h"
 #import <Masonry/Masonry.h>
-#import "ZWTMacro.h"
 
 #define iPhoneScreenWidth [UIScreen mainScreen].bounds.size.width
 #define iPhoneScreenHeight [UIScreen mainScreen].bounds.size.height

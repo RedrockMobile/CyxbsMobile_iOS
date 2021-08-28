@@ -6,7 +6,6 @@
 //
 
 #import "MyTableViewCellWithProgress.h"
-#import "ZWTMacro.h"
 
 @implementation MyTableViewCellWithProgress
 
@@ -97,20 +96,20 @@
 
 //完成任务 （测试版）
 - (void)test:(GotoButton *)sender{
-    NSLog(@"%@",sender.target);
-    HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSDictionary *taskDict = @{
-            @"title":sender.target,
-            @"current_progress":@5
-        };
-        NSData *data = [NSJSONSerialization dataWithJSONObject:taskDict options:NSJSONWritingPrettyPrinted error:nil]; 
-        [formData appendPartWithFormData:data name:@"test"];
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
-        }];
+//    NSLog(@"%@",sender.target);
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:TASK_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSDictionary *taskDict = @{
+//            @"title":sender.target,
+//            @"current_progress":@5
+//        };
+//        NSData *data = [NSJSONSerialization dataWithJSONObject:taskDict options:NSJSONWritingPrettyPrinted error:nil]; 
+//        [formData appendPartWithFormData:data name:@"test"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
 }
 @end

@@ -8,18 +8,17 @@
 
 #import "Balance.h"
 #import <AFNetworking/AFNetworking.h>
-#import "ZWTMacro.h"
 
 @implementation Balance
 
 + (void)getDataDictWithBalance:(NSString *)goodsid Success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(void))failure {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN]  forHTTPHeaderField:@"authorization"];
-    [manager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            success(responseObject[@"data"]);
-            
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                }];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN]  forHTTPHeaderField:@"authorization"];
+//    [manager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            success(responseObject[@"data"]);
+//            
+//                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                }];
 }
 
 @end
