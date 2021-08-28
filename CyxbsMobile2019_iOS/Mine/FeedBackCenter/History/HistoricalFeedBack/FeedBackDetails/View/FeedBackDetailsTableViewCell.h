@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// separator
 @property (nonatomic, strong) UIView * separateLine;
 /// 问题类型
-@property (nonatomic, strong) UILabel * typeLabel;
+@property (nonatomic, strong) UIButton * typeButton;
 /// 图片
 @property (nonatomic, strong) UICollectionView * picturesCollectionView;
 /// 时间

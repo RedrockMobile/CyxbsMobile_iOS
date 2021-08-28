@@ -38,7 +38,7 @@
     [self.maskView addSubview:self.subtitleLabel];
     [self.maskView addSubview:self.separateLine];
     [self.maskView addSubview:self.picturesCollectionView];
-    [self.maskView addSubview:self.typeLabel];
+    [self.maskView addSubview:self.typeButton];
     // config self
     self.backgroundColor = [UIColor clearColor];
 }
@@ -85,17 +85,16 @@
     // typeLabel
     CGRect f5 = bounds;
     f5.origin = CGPointMake(f4.origin.x, CGRectGetMaxY(f4) + 10);
-    CGSize typeLabelSize = [self.typeLabel sizeThatFits:CGSizeZero];
-    typeLabelSize.width += 12 * 2;
-    typeLabelSize.height += 4 * 2;
-    f5.size = typeLabelSize;
-    self.typeLabel.frame = f5;
-    self.typeLabel.layer.cornerRadius = 20;
+    CGSize typeButtonSize = [self.typeButton sizeThatFits:CGSizeZero];
+    typeButtonSize.width += 12 * 2;
+    f5.size = typeButtonSize;
+    self.typeButton.frame = f5;
+    self.typeButton.layer.cornerRadius = typeButtonSize.height / 2;
     
     // maskeView
     CGRect flast = bounds;
     flast.origin = CGPointMake(16, CGRectGetMaxY(f6) + 12);
-    flast.size = CGSizeMake(bounds.size.width, CGRectGetMaxY(self.typeLabel.frame) + 18);
+    flast.size = CGSizeMake(bounds.size.width, CGRectGetMaxY(self.typeButton.frame) + 18);
     self.maskView.frame = flast;
 }
 
@@ -105,7 +104,7 @@
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.title;
     self.subtitleLabel.text = cellModel.contentText;
-    self.typeLabel.text = [@"#" stringByAppendingString:cellModel.type];
+    [self.typeButton setTitle:[@"#" stringByAppendingString:cellModel.type] forState:UIControlStateNormal];
     self.timeLabel.text = [self getTimeFromTimestamp:cellModel.date];
     
     [self layoutSubviews];
@@ -183,16 +182,15 @@
     return _flowLayout;
 }
 
-- (UILabel *)typeLabel {
-    if (_typeLabel == nil) {
-        _typeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _typeLabel.font = [UIFont fontWithName:PingFangSCMedium size:11];
-        _typeLabel.textColor = [UIColor colorNamed:@"122_153_204_1&black_1"];
-        _typeLabel.backgroundColor = [UIColor colorNamed:@"232_240_252_1&90_90_90_1"];
-        _typeLabel.textAlignment = NSTextAlignmentCenter;
-        _typeLabel.layer.cornerRadius = 20;
+- (UIButton *)typeButton {
+    if (_typeButton == nil) {
+        _typeButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        _typeButton.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:11];
+        [_typeButton setTitleColor:[UIColor colorNamed:@"122_153_204_1&black_1"] forState:UIControlStateNormal];
+        _typeButton.backgroundColor = [UIColor colorNamed:@"232_240_252_1&90_90_90_1"];
+        _typeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     }
-    return _typeLabel;
+    return _typeButton;
 }
 
 - (UIView *)maskView {
