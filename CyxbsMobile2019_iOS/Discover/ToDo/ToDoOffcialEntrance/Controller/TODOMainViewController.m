@@ -129,12 +129,13 @@
     toDoCell.layer.transform = CATransform3DMakeScale(1, 1, 1);
             //让cell变小
     [UIView animateWithDuration:0.7 animations:^{
-        toDoCell.layer.transform = CATransform3DMakeScale(1, 0.1, 1);
+        toDoCell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
     }];
         //2.4延迟一秒刷新table
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+//    [self.tableView reloadData];
     
     //2.5同步本地数据库的数据更改
     [[TodoSyncTool share] alterTodoWithModel:toDoCell.model needRecord:YES];
@@ -142,9 +143,9 @@
 ///点击将已经完成的cell转移到代办区域
 - (void)doneCellDidClickedThroughCell:(TodoTableViewCell *)doneCell{
     //1.设置button的icon设置为圆环打勾
-//    doneCell.model.isDone = NO;
     [doneCell.model setIsDoneForUserActivity:!doneCell.model.isDone];
     [doneCell.circlebtn setImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+    
     
     //2.区域转移
     NSIndexPath *indexPath = [self.tableView indexPathForCell:doneCell];
@@ -153,16 +154,17 @@
         //2.2添加到未完成区域中的第一行
     [self.dataSourceAry[0] insertObject:doneCell.model atIndex:0];
         //2.3设置动画
-            //设置cell的x，y初始值为
+           // 设置cell的x，y初始值为
     doneCell.layer.transform = CATransform3DMakeScale(1, 1, 1);
             //让cell变小
     [UIView animateWithDuration:0.7 animations:^{
-        doneCell.layer.transform = CATransform3DMakeScale(1, 0.1, 1);
+        doneCell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
     }];
         //2.4延迟一秒刷新table
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
     });
+//    [self.tableView reloadData];
     
     //2.5同步本地数据库中模型数据的更改
     [[TodoSyncTool share] alterTodoWithModel:doneCell.model needRecord:YES];

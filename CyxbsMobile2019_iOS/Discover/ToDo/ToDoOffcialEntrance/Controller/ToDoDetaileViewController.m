@@ -410,7 +410,15 @@
     for (UIButton *btn in view.btnArr) {
         NSString *titleStr = btn.titleLabel.text;
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        lbl.text = [NSString stringWithFormat:@"每%@",titleStr];
+        switch (view.repeatMode) {
+            case TodoDataModelRepeatModeWeek:
+                lbl.text = [NSString stringWithFormat:@"每%@",titleStr];
+                break;
+            default:
+                lbl.text = [NSString stringWithFormat:@"%@",titleStr];
+                break;
+        }
+       
         [muteArray addObject:lbl];
     }
     self.repeatLblsAry = muteArray;
