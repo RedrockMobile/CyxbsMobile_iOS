@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FeedBackMainPageViewController : TopBarBasicViewController
 
 - (void)setupBar;
-
+- (NSURL*)getQQQunUrl;
 @end
 
 NS_ASSUME_NONNULL_END

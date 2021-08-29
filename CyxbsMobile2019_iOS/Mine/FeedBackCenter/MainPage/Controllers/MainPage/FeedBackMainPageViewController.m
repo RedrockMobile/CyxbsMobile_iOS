@@ -13,6 +13,7 @@
 #import "CommonQuestionCell.h"
 #import "FeedBackVC.h"
 #import "CommonQuestionDetailVC.h"
+#import "NewQAHud.h"
 
 @interface FeedBackMainPageViewController ()<UITableViewDelegate,UITableViewDataSource>
 ///常见问题标题
@@ -152,5 +153,18 @@
 
 - (void)jumpQQ{
     NSLog(@"跳转至QQ");
+
+    [NewQAHud showHudWith:@"TEST" AddView:self.view];
+    
+    NSURL *url = [self getQQQunUrl];
+    
+    [[UIApplication sharedApplication] openURL:url];
+    
+}
+
+- (NSURL*)getQQQunUrl {
+    NSString *qq_number = @"1398742714";
+    NSString* urlStr = [NSString stringWithFormat:@"mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%@&key=%@&card_type=group&source=external", qq_number, @"44a6e01f2dab126f87ecd2ec7b7e66ae259b30535fd0c2c25776271e8c0ac08f"];
+    return [NSURL URLWithString:urlStr];
 }
 @end

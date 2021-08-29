@@ -19,23 +19,6 @@
 
 + (void)TaskDataWithSuccess:(void (^)(NSArray * _Nonnull))success error:(void (^)(void))error{
     HttpClient *client = [HttpClient defaultClient];
-//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-//    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//            //字典转模型
-//        NSArray *array = responseObject[@"data"][@"task"];
-//        NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
-//            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                TaskData *data = [self TaskDataWithDict:obj];
-//                [mArray addObject:data];
-//            }];
-//            //调用成功的回调
-//            if (success) {
-//                success(mArray.copy);
-//            }
-//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//            NSLog(@"==========================出错了");
-//        }];
-    
     [client requestWithPath:Stamp_Store_Main_Page method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                     //字典转模型
                 NSArray *array = responseObject[@"data"][@"task"];
@@ -51,17 +34,13 @@
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     NSLog(@"==========================出错了");
                 }];
-    
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
-    
 }
-
 
 +(NSDictionary *)replacedKeyFromPropertyName{
     return @{@"Description":@"description"};
 }
-
 
 @end

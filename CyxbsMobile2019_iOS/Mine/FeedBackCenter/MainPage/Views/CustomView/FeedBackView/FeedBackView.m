@@ -228,6 +228,23 @@
         self.placeholder.hidden = NO;
         self.textCountLbl.text = @"0/200";
     }
+    if (textView.text.length > 199) {
+        textView.text = [textView.text substringToIndex:199];
+    }
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+        if (string.length == 0) return YES;
+
+        NSInteger existedLength = textField.text.length;
+        NSInteger selectedLength = range.length;
+        NSInteger replaceLength = string.length;
+        if (existedLength - selectedLength + replaceLength > 12){
+            return NO;
+        }
+
+
+    return YES;
 }
 
 - (void)block{
