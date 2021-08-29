@@ -458,8 +458,11 @@ static TodoSyncTool* _instance;
                    );
     
     FMResultSet* set = [self.db executeQuery:code withArgumentsInArray:@[todoIDStr]];
-    //移除model的全部通知
-    [TodoDateTool removeAllNotiInModel:[self resultSetToDataModel:set]];
+    
+    while ([set next]) {
+        //移除model的全部通知
+        [TodoDateTool removeAllNotiInModel:[self resultSetToDataModel:set]];
+    }
     
     code = OSTRING(
                     DELETE FROM remindModeTable
