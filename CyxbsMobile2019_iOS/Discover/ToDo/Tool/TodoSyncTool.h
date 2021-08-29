@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//同步完成后的发送的通知的名子
+//同步完成后的发送的通知的名字
 FOUNDATION_EXPORT NSNotificationName const TodoSyncToolSyncNotification;
 
 //通知的object有下面3种，分别代表成功、失败、冲突

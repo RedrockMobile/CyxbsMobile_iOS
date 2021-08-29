@@ -86,6 +86,9 @@ typedef enum : NSUInteger {
 /// 使用这个工具，写UI交互的同学，无需为这个属性赋值，只需在完成todo的各种数据设置后调用resetOverdueTime
 @property (nonatomic, assign)long lastOverdueTime;
 
+/// 上次的修改时间
+@property (nonatomic, assign)long lastModifyTime;
+
 - (void)setIsDone:(BOOL)isDone DEPRECATED_MSG_ATTRIBUTE("\n不要使用setIsDone:方法修改isDone标记位，使用setIsDoneForUserActivity:方法 或者 setIsDoneForInnerActivity:方法，后续会将isDone设置成readonly");
 
 /// 由于用户操作时改变isDone标记时，调用这个方法
