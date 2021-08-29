@@ -206,7 +206,7 @@ printf("%s\n\n",[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]);
 //获取今日是否已签到
 #define isTodayCheckedIn_BOOL ^(void) {\
     NSString *str = [UserItem defaultItem].week_info;\
-    NSInteger day = NSDate.now.weekday;\
+    NSInteger day = [NSDate date].weekday;\
     if (day==1) {\
         day = 6;\
     }else {\

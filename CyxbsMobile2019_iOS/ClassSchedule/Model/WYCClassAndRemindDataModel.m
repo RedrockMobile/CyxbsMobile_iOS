@@ -338,7 +338,7 @@
 
 //储存当前周数，计算开学日期
 - (void)storeDate:(NSString*)week {
-    NSDate *now = NSDate.now;
+    NSDate *now = [NSDate date];
     
     NSDateComponents *nowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:now];
 //    unit

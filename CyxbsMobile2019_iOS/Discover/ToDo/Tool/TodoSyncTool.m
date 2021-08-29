@@ -438,7 +438,17 @@ static TodoSyncTool* _instance;
     code = [code stringByReplacingOccurrencesOfString:@"<" withString:@","];
     [self.db executeUpdate:code withArgumentsInArray:@[model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime), model.todoIDStr]];
     
-    [TodoDateTool removeAllNotiInModel:model];
+    code = OSTRING(
+                   SELECT * FROM TodoTable
+                       WHERE todo_id = ?
+                   );
+    
+    FMResultSet* set = [self.db executeQuery:code withArgumentsInArray:@[model.todoIDStr]];
+    
+    while ([set next]) {
+        //移除model的全部通知
+        [TodoDateTool removeAllNotiInModel:[self resultSetToDataModel:set]];
+    }
     [TodoDateTool addNotiWithModel:model];
     
     //记录修改
@@ -556,7 +566,7 @@ static TodoSyncTool* _instance;
     if (lastUpdateTime > (self.todayEndTimeStamp - 86400)) {
         return;
     }
-    [[NSUserDefaults standardUserDefaults] setInteger:(long)NSDate.now.timeIntervalSince1970 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
+    [[NSUserDefaults standardUserDefaults] setInteger:(long)[NSDate date].timeIntervalSince1970 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
     dispatch_queue_t que = dispatch_queue_create("用来刷新数据库todo时间的线程", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(que, ^{
         NSString* code;
@@ -565,7 +575,7 @@ static TodoSyncTool* _instance;
                        SELECT todoTable
                            WHERE overdueTime!=-1 AND overdueTime < ?
                        );
-        set = [self.db executeQuery:code withArgumentsInArray:@[@(((long)NSDate.now.timeIntervalSince1970))]];
+        set = [self.db executeQuery:code withArgumentsInArray:@[@(((long)[NSDate date].timeIntervalSince1970))]];
         while ([set next]) {
             TodoDataModel* model = [self resultSetToDataModel:set];
             //刷新状态
@@ -803,8 +813,8 @@ static inline int ForeignWeekToChinaWeek(int week) {
     return _instance;
 }
 - (NSInteger)todayEndTimeStamp {
-    if (_todayEndTimeStamp < NSDate.now.timeIntervalSince1970) {
-        NSDate* nowDate = NSDate.now;
+    if (_todayEndTimeStamp < [NSDate date].timeIntervalSince1970) {
+        NSDate* nowDate = [NSDate date];
         NSDateComponents* components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:nowDate];
         _instance.todayEndTimeStamp = nowDate.timeIntervalSince1970 - (((components.hour*60)+components.minute)*60+components.second) + 86399;
     }
