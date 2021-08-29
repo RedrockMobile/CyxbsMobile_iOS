@@ -38,11 +38,15 @@
 @property (nonatomic, strong) MJRefreshStateHeader * tasksRefreshHeader;
 /// 获取记录界面的上拉加载更多
 @property (nonatomic, strong) MJRefreshAutoStateFooter * tasksLoadMoreFooter;
+
 /// 缺省文字1
 @property (nonatomic, strong) UILabel * goodsDefaultLabel;
+/// 缺省图片1
+@property (nonatomic, strong) UIImageView * goodsDefaultImgView;
 /// 缺省文字2
 @property (nonatomic, strong) UILabel * taskDefaultLabel;
-
+/// 缺省图片2
+@property (nonatomic, strong) UIImageView * taskDefaultImgView;
 
 /// 任务
 @property (nonatomic, copy) NSArray * tasksAry;
@@ -98,15 +102,31 @@
     // goods default label
     [self.detailsGoodsTableView addSubview:self.goodsDefaultLabel];
     [self.goodsDefaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.mas_equalTo(self.detailsGoodsTableView);
+        make.centerX.centerY.mas_equalTo(self.view);
     }];
+    
+    [self.detailsGoodsTableView addSubview:self.goodsDefaultImgView];
+    [self.goodsDefaultImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.goodsDefaultLabel.mas_top);
+    }];
+    
+    self.goodsDefaultImgView.hidden = YES;
     self.goodsDefaultLabel.hidden = YES;
+    
     // task default label
     [self.detailsTasksTableView addSubview:self.taskDefaultLabel];
     [self.taskDefaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.mas_equalTo(self.detailsTasksTableView);
+        make.centerX.centerY.mas_equalTo(self.view);
     }];
+    [self.detailsTasksTableView addSubview:self.taskDefaultImgView];
+    [self.taskDefaultImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.taskDefaultLabel.mas_top);
+    }];
+    
     self.taskDefaultLabel.hidden = YES;
+    self.taskDefaultImgView.hidden = YES;
     
     // 一个向上滑的动画
     CGFloat animationTime = 0.4f;
@@ -177,9 +197,11 @@
         self.goodsAry = array;
         self.detailsGoodsTableView.dataAry = self.goodsAry;
         self.goodsDefaultLabel.hidden = YES;
+        self.goodsDefaultImgView.hidden = YES;
         [self.goodsRefreshHeader endRefreshing];
     } failure:^(void) {
         self.goodsDefaultLabel.hidden = NO;
+        self.goodsDefaultImgView.hidden = NO;
         [self.goodsRefreshHeader endRefreshing];
     }];
 }
@@ -190,9 +212,11 @@
         self.tasksAry = array;
         self.detailsTasksTableView.dataAry = self.tasksAry;
         self.taskDefaultLabel.hidden = YES;
+        self.taskDefaultImgView.hidden = YES;
         [self.tasksRefreshHeader endRefreshing];
     } failure:^(void) {
         self.taskDefaultLabel.hidden = NO;
+        self.taskDefaultImgView.hidden = NO;
         [self.tasksRefreshHeader endRefreshing];
     }];
 }
@@ -286,20 +310,38 @@
     if (_goodsDefaultLabel == nil) {
         _goodsDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _goodsDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
-        _goodsDefaultLabel.text = @"没有数据";
+        _goodsDefaultLabel.text = @"还没有兑换记录哦";
+        _goodsDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         [_goodsDefaultLabel sizeToFit];
     }
     return _goodsDefaultLabel;
+}
+
+- (UIImageView *)goodsDefaultImgView {
+    if (_goodsDefaultImgView == nil) {
+        _goodsDefaultImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_goods_defaults"]];
+        [_goodsDefaultImgView sizeToFit];
+    }
+    return _goodsDefaultImgView;
 }
 
 - (UILabel *)taskDefaultLabel {
     if (_taskDefaultLabel == nil) {
         _taskDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _taskDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
-        _taskDefaultLabel.text = @"没有数据";
+        _taskDefaultLabel.text = @"还没有获取记录，快去做任务吧";
+        _taskDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         [_taskDefaultLabel sizeToFit];
     }
     return _taskDefaultLabel;
+}
+
+- (UIImageView *)taskDefaultImgView {
+    if (_taskDefaultImgView == nil) {
+        _taskDefaultImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_task_defaults"]];
+        [_taskDefaultImgView sizeToFit];
+    }
+    return _taskDefaultImgView;
 }
 
 @end
