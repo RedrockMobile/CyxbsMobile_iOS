@@ -1477,7 +1477,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "441"
             endingLineNumber = "441"
-            landmarkName = "-CheckInSucceded"
+            landmarkName = "-layoutSubviews"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1495,6 +1495,54 @@
             endingLineNumber = "134"
             landmarkName = "-didClickNextButton:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8BD5CCE9-2C8E-4DBA-853F-1D09D0DBA46F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/Swift/Login/Model/LoginModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "loginWith(stuNum:idNum:success:failed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8BD5CCE9-2C8E-4DBA-853F-1D09D0DBA46F - 8d2a86ac101a5532"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in static &#x638c;&#x4e0a;&#x91cd;&#x90ae;.LoginModel.loginWith(stuNum: Swift.String, idNum: Swift.String, success: () -&gt; (), failed: () -&gt; ()) -&gt; ()"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%BA%90%E4%BB%A3%E7%A0%81/%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Swift/Login/Model/LoginModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "4434">
+               </Location>
+               <Location
+                  uuid = "8BD5CCE9-2C8E-4DBA-853F-1D09D0DBA46F - 8d2a86ac101a5532"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in static &#x638c;&#x4e0a;&#x91cd;&#x90ae;.LoginModel.loginWith(stuNum: Swift.String, idNum: Swift.String, success: () -&gt; (), failed: () -&gt; ()) -&gt; ()"
+                  moduleName = "&#x638c;&#x4e0a;&#x91cd;&#x90ae;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yamayama/%E6%BA%90%E4%BB%A3%E7%A0%81/%E6%8E%8C%E9%82%AE/CyxbsMobile2019_iOS/CyxbsMobile2019_iOS/Swift/Login/Model/LoginModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "4795">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
