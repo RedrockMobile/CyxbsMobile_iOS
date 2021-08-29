@@ -69,7 +69,7 @@
 /// @param stuNum 学号
 - (void)getPersonalClassBookArrayFromNet:(NSString *)stuNum{
 //    NSDictionary *paramDict = @{@"stu_num":stuNum};
-    NSDictionary *paramDict = @{@"stu_num":@2020214855};
+    NSDictionary *paramDict = @{@"stu_num":stuNum};
     
     [self.afhttpSeMan POST:kebiaoAPI parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         //拿到课表数据

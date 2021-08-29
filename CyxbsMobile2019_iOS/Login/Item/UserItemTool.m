@@ -31,6 +31,9 @@
 
 + (UserItem *)defaultItem {
     UserItem *item = [UserItem defaultItem];
+    // 学号防空处理
+    if (item.stuNum == nil || [item.stuNum isEqualToString:@""])
+        item.stuNum = [UserDefaultTool getStuNum];
     return item;
 }
 

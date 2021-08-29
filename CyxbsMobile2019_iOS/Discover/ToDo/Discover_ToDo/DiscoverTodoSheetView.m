@@ -228,6 +228,7 @@
     model.todoIDStr = [NSString stringWithFormat:@"%ld", (long)[NSDate date].timeIntervalSince1970];
     model.titleStr = self.titleInputTextfield.text;
     [model resetOverdueTime];
+    model.lastModifyTime = (long)[NSDate date].timeIntervalSince1970;
     [self.delegate sheetViewSaveBtnClicked:model];
 }
 

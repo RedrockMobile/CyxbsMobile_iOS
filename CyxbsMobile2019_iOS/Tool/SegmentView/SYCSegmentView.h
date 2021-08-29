@@ -28,16 +28,25 @@ typedef NS_ENUM(NSUInteger, SYCSegmentViewType){
 
 @end
 
-
+/**
+ * 选择视图控制器
+ * 初始化请使用默认初始化方法
+ */
 @interface SYCSegmentView : UIView <SYCSegmentViewDelegate>
 
 @property (nonatomic, weak) id<SYCSegmentViewDelegate> eventDelegate;
-@property (nonatomic) CGFloat titleHeight;  //标签栏高度
-@property (nonatomic, strong) UIColor *selectedTitleColor;  //标签选中时的字体颜色
-@property (nonatomic, strong) UIColor *titleColor;  //标签字体颜色
-@property (nonatomic, strong) UIFont *titleFont;    //标签字体属性
-@property (nonatomic, strong) UIColor *titleBackgroundColor;    //标签背景颜色
-@property (nonatomic) SYCSegmentViewType segmentType;   //SegmentView样式类型
+/// 标签栏高度
+@property (nonatomic) CGFloat titleHeight;
+/// 在标签选中时的颜色
+@property (nonatomic, strong) UIColor *selectedTitleColor;
+/// 标签字体颜色
+@property (nonatomic, strong) UIColor *titleColor;
+/// 标签的字体
+@property (nonatomic, strong) UIFont *titleFont;
+/// 标签背景颜色
+@property (nonatomic, strong) UIColor *titleBackgroundColor;
+/// SegmentView样式类型
+@property (nonatomic) SYCSegmentViewType segmentType;
 
 
 /**
@@ -48,7 +57,9 @@ typedef NS_ENUM(NSUInteger, SYCSegmentViewType){
  @param type SegmentView的样式类型，
  @return 初始化方法
  */
-- (instancetype)initWithFrame:(CGRect)frame controllers:(NSArray <UIViewController *> *)controllers type:(SYCSegmentViewType)type;
+- (instancetype)initWithFrame:(CGRect)frame
+                  controllers:(NSArray <UIViewController *> *)controllers
+                         type:(SYCSegmentViewType)type;
 
 /**
  设置SegmentView上方标签栏的字体颜色

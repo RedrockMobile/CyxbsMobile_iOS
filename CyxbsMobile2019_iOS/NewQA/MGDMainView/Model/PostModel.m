@@ -16,6 +16,7 @@ MJCodingImplementation
 - (void)loadMainPostWithPage:(NSInteger)page AndSize:(NSInteger)size {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"type":@"recommend",@"page":@(page),@"size":@(size)};
+    NSLog(@"%@",NEW_QA_POST);
     [client requestWithPath:NEW_QA_POST method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         NSLog(@"======>>>>>>>%@",responseObject);

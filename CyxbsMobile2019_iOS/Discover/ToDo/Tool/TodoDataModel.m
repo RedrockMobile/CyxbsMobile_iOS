@@ -62,13 +62,29 @@
         @"remind_mode": @{
             @"repeat_mode": @(self.repeatMode),
             @"date": self.dateArr,
-            @"week": self.weekArr,
+            @"week": [self foreignWeekToChinaWeek:self.weekArr],
             @"day": self.dayArr,
             @"notify_datetime": self.timeStr
         },
         @"detail": self.detailStr,
+        @"last_modify_time":@(self.lastModifyTime),
         @"is_done": @(self.isDone)
     };
+}
+//从[1, 2, ... 7]转化为[2, 3, ... 1]
+static inline int ChinaWeekToForeignWeek(int week) {
+    return week%7+1;
+}
+//从[2, 3, ... 1]转化为[1, 2, ... 7]
+static inline int ForeignWeekToChinaWeek(int week) {
+    return (week+5)%7+1;
+}
+- (NSArray*)foreignWeekToChinaWeek:(NSArray<NSString*>*) arr {
+    NSMutableArray* resultArr = [NSMutableArray arrayWithCapacity:4];
+    for (NSString* weekStr in arr) {
+        [resultArr addObject:[NSString stringWithFormat:@"%d",ForeignWeekToChinaWeek(weekStr.intValue)]];
+    }
+    return resultArr;
 }
 
 - (NSDate* _Nullable)getTimeStrDate {
@@ -218,7 +234,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"todoIDStr: %@; title: %@; remind_mode: %ld; date: %@; week: %@; day: %@; timeStr: %@; detail: %@; isDone: %d", self.todoIDStr, self.titleStr, self.repeatMode, self.dateArr, self.weekArr, self.dayArr, self.timeStr, self.detailStr, self.isDone];
+    return [NSString stringWithFormat:@"%@", [self getDataDict]];
 }
 
 - (double)cellHeight{

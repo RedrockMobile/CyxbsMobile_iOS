@@ -341,6 +341,7 @@ static TodoSyncTool* _instance;
     [model setIsDoneForInnerActivity:[resultSet boolForColumn:@"is_done"]];
     model.overdueTime = [resultSet longForColumn:@"overdueTime"];
     model.lastOverdueTime = [resultSet longForColumn:@"lastOverdueTime"];
+    model.lastModifyTime = [resultSet longForColumn:@"last_modify_time"];
     
     code = OSTRING(
                    SELECT *
@@ -389,11 +390,11 @@ static TodoSyncTool* _instance;
     }
     NSString* code;
     code = OSTRING(
-                   INSERT INTO todoTable (todo_id, title, detail, is_done, overdueTime, lastOverdueTime)
+                   INSERT INTO todoTable (todo_id, title, detail, is_done, overdueTime, lastOverdueTime, last_modify_time)
                        VALUES
-                        (?, ?, ?, ?, ?, ?)
+                        (?, ?, ?, ?, ?, ?, ?)
                    );
-    [self.db executeUpdate:code withArgumentsInArray:@[model.todoIDStr, model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime)]];
+    [self.db executeUpdate:code withArgumentsInArray:@[model.todoIDStr, model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime), @(model.lastModifyTime)]];
     
     code = OSTRING(
                    INSERT INTO remindModeTable(todo_id, repeat_mode, week, day, date, notify_datetime)
@@ -431,24 +432,24 @@ static TodoSyncTool* _instance;
                            detail = ? <
                            is_done = ? <
                        overdueTime = ? <
-                       lastOverdueTime = ?
+                       lastOverdueTime = ? <
+                       last_modify_time = ?
                    
                        WHERE todo_id = ?
                    );
     code = [code stringByReplacingOccurrencesOfString:@"<" withString:@","];
-    [self.db executeUpdate:code withArgumentsInArray:@[model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime), model.todoIDStr]];
+    [self.db executeUpdate:code withArgumentsInArray:@[model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime), @(model.lastModifyTime), model.todoIDStr]];
     
     code = OSTRING(
                    SELECT * FROM TodoTable
                        WHERE todo_id = ?
                    );
-    
     FMResultSet* set = [self.db executeQuery:code withArgumentsInArray:@[model.todoIDStr]];
-    
-    while ([set next]) {
+    if ([set next]) {
         //移除model的全部通知
         [TodoDateTool removeAllNotiInModel:[self resultSetToDataModel:set]];
     }
+    //重新添加通知
     [TodoDateTool addNotiWithModel:model];
     
     //记录修改
@@ -462,24 +463,24 @@ static TodoSyncTool* _instance;
 /// 删除事项，由于用户的操作而调用时is填YES，内部合并数据时is填NO
 - (void)deleteTodoWithTodoID:(NSString*)todoIDStr needRecord:(BOOL)is {
     NSString* code;
+    //移除model的全部通知
     code = OSTRING(
                    SELECT * FROM TodoTable
                        WHERE todo_id = ?
                    );
-    
     FMResultSet* set = [self.db executeQuery:code withArgumentsInArray:@[todoIDStr]];
-    
     while ([set next]) {
-        //移除model的全部通知
         [TodoDateTool removeAllNotiInModel:[self resultSetToDataModel:set]];
     }
     
+    //在remindModeTable中删除数据
     code = OSTRING(
                     DELETE FROM remindModeTable
                         WHERE todo_id = ?
                     );
     [self.db executeUpdate:code withArgumentsInArray:@[todoIDStr]];
     
+    //在todoTable中删除数据
     code = OSTRING(
                    DELETE FROM todoTable
                        WHERE todo_id = ?
@@ -501,7 +502,7 @@ static TodoSyncTool* _instance;
                              SELECT *
                                 FROM todoTable
                                 WHERE is_done = 0
-                                ORDER BY todo_id DESC
+                                ORDER BY last_modify_time DESC
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
     int cnt = 0;
@@ -522,7 +523,7 @@ static TodoSyncTool* _instance;
     NSString* code = OSTRING(
                              SELECT *
                                 FROM todoTable
-                                ORDER BY todo_id DESC
+                                ORDER BY last_modify_time DESC
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
     while ([resultSet next]) {
@@ -738,9 +739,9 @@ static inline int ForeignWeekToChinaWeek(int week) {
                                  WHERE todo_id IN (SELECT todo_id FROM addTodoIDTable UNION SELECT todo_id FROM alterTodoIDTable)
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
-    NSMutableArray* arr = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray<NSDictionary*>* arr = [NSMutableArray arrayWithCapacity:5];
     while ([resultSet next]) {
-        [arr addObject:[self resultSetToDataModel:resultSet]];
+        [arr addObject:[[self resultSetToDataModel:resultSet] getDataDict]];
     }
     return arr;
 }
@@ -751,7 +752,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
                              SELECT * FROM deleteTodoIDTable
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
-    NSMutableArray* arr = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray<NSString*>* arr = [NSMutableArray arrayWithCapacity:5];
     while ([resultSet next]) {
         [arr addObject:[resultSet stringForColumn:@"todo_id"]];
     }
@@ -870,6 +871,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
                                                is_done INTEGER,
                                                overdueTime INTEGER,
                                                lastOverdueTime INTEGER,
+                                               last_modify_time INTEGER,
                                                
                                                PRIMARY KEY(todo_id)
                                            )
@@ -940,7 +942,8 @@ static inline int ForeignWeekToChinaWeek(int week) {
         NSInteger is_done = [set longForColumn:@"is_done"];
         NSInteger overdueTime = [set longForColumn:@"overdueTime"];
         NSInteger lastOverdueTime = [set longForColumn:@"lastOverdueTime"];
-        CCLog(@"%@, %@, %@, %ld, %ld, %ld", todo_id, title, detail, is_done, overdueTime, lastOverdueTime);
+        NSInteger last_modify_time = [set longForColumn:@"last_modify_time"];
+        CCLog(@"%@, %@, %@, %ld, %ld, %ld, %ld", todo_id, title, detail, is_done, overdueTime, lastOverdueTime, last_modify_time);
     }
     /*
      todo_id TEXT,

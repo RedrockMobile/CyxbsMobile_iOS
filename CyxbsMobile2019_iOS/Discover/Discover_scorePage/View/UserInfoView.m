@@ -81,7 +81,7 @@
     }
     [label setAlpha:0.71];
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    label.text = [UserItem defaultItem].stuNum;
+    label.text = [UserDefaultTool getStuNum];
     [self addSubview:label];
 }
 - (void)layoutSubviews {
