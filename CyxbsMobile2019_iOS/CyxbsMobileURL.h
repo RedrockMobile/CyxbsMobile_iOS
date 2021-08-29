@@ -388,7 +388,7 @@
 #define Stamp_store_details_getRecord [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/getRecord"]
 
 //主页信息
-#define Stamp_Store_Main_Page [CyxbsMobileBaseURL_1 stringByAppendingString:@"/magipoke-intergral/User/info"]
+#define Stamp_Store_Main_Page @"https://be-dev.redrock.cqupt.edu.cn/magipoke-intergral/User/info"
 
 #endif /* CyxbsMobileURL_h */
 

@@ -41,7 +41,6 @@
     [self.view addSubview:self.hintView];
     [self.topBarView addSubview:self.historyBtn];
     [self.view addSubview:self.jumpBtn];
-    
 }
 
 #pragma mark - Table数据源

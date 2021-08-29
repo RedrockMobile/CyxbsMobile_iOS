@@ -214,6 +214,6 @@
 }
 
 - (void)submit{
-    NSLog(@"%d",self.correctBtn.tag);
+    NSLog(@"%ld",(long)self.correctBtn.tag);
 }
 @end

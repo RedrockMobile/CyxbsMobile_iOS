@@ -39,6 +39,10 @@
             NSLog(@"==========================出错了");
         }];
     
+    
+    
+//    client.httpSessionManager POST:https:@"//be-dev.redrock.cqupt.edu.cn/magipoke/token" parameters:<#(nullable id)#> success:<#^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject)success#> failure:<#^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)failure#>
+    
 //    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 //        //字典转模型
 //    NSArray *array = responseObject[@"data"][@"shop"];
