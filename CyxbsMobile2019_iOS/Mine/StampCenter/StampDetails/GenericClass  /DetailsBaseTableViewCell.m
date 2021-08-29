@@ -34,6 +34,10 @@
     for (UIView * view in self.contentView.subviews) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
+
+    CGFloat space1 = (15 / 375) * SCREEN_WIDTH; // H:space1-[content]-space1
+    CGFloat space2 = (10 / 375) * SCREEN_WIDTH; // H:[text]-space2-[rightIndicator].H:[title]-space2-[titleImg]
+    CGFloat space3 = (6 / 375) * SCREEN_WIDTH; // V:[title]-space3-[subtitle]
     
     // title label
     [self.contentView addConstraints:@[
@@ -43,14 +47,14 @@
                                         toItem:self.contentView
                                      attribute:(NSLayoutAttributeLeft)
                                     multiplier:1.f
-                                      constant:15],
+                                      constant:space1],
         [NSLayoutConstraint constraintWithItem:_titleLabel
-                                     attribute:(NSLayoutAttributeTop)
+                                     attribute:(NSLayoutAttributeBottom)
                                      relatedBy:(NSLayoutRelationEqual)
                                         toItem:self.contentView
-                                     attribute:(NSLayoutAttributeTop)
+                                     attribute:(NSLayoutAttributeCenterY)
                                     multiplier:1.f
-                                      constant:15]
+                                      constant:0]
     ]];
     
     // subtitle label
@@ -68,7 +72,7 @@
                                         toItem:_titleLabel
                                      attribute:(NSLayoutAttributeBottom)
                                     multiplier:1.f
-                                      constant:6]
+                                      constant:space3]
     ]];
 
     // right indicator imgView
@@ -86,7 +90,7 @@
                                         toItem:self.contentView
                                      attribute:(NSLayoutAttributeRight)
                                     multiplier:1.f
-                                      constant:-15]
+                                      constant:-space1]
     ]];
     
     // titleImgView
@@ -104,7 +108,7 @@
                                         toItem:_titleLabel
                                      attribute:(NSLayoutAttributeRight)
                                     multiplier:1.f
-                                      constant:10],
+                                      constant:space2],
         [NSLayoutConstraint constraintWithItem:_titleImgView
                                      attribute:(NSLayoutAttributeHeight)
                                      relatedBy:(NSLayoutRelationEqual)
@@ -129,7 +133,7 @@
                                         toItem:_rightIndicatorImgView
                                      attribute:(NSLayoutAttributeRight)
                                     multiplier:1.f
-                                      constant:-10]
+                                      constant:-space2]
     ]];
     
     // separate line
