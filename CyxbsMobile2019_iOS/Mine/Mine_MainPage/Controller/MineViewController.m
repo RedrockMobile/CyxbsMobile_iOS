@@ -362,7 +362,7 @@
 
 /// 获取时间戳
 - (NSString*)getTime {
-    return [NSString stringWithFormat:@"%.0f", [NSDate.now timeIntervalSince1970]];
+    return [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]];
 }
 
 //imgPicker的代理方法：

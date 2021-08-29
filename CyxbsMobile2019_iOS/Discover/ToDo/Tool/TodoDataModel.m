@@ -85,7 +85,7 @@
 - (TodoDataModelState)todoState {
     TodoDataModelState state;
     int mark = 0;
-    if (self.overdueTime < NSDate.now.timeIntervalSince1970&&self.overdueTime!=-1) {
+    if (self.overdueTime < [NSDate date].timeIntervalSince1970&&self.overdueTime!=-1) {
         self.lastOverdueTime = self.overdueTime;
             self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:self.overdueTime inModel:self];
             //需要通知数据库刷新todo
@@ -136,7 +136,7 @@
 }
 
 - (void)resetOverdueTime {
-    self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:(long)NSDate.now.timeIntervalSince1970 inModel:self];
+    self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:(long)[NSDate date].timeIntervalSince1970 inModel:self];
     self.lastOverdueTime = -1;
 }
 //MARK: - 底下重写setter方法，是为了避免数据库因为空值出错

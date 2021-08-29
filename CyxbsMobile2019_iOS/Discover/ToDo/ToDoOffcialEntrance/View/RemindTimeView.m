@@ -121,7 +121,7 @@
         //本地化设置为中国
         _datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CHT"];
         //设置提醒时间最少为十分钟后
-        NSDate *date = [NSDate dateWithTimeInterval:600 sinceDate:NSDate.now];
+        NSDate *date = [NSDate dateWithTimeInterval:600 sinceDate:[NSDate date]];
         [_datePicker setDate:date];
         [_datePicker setMinimumDate:date];
         //设置成轮滑样式

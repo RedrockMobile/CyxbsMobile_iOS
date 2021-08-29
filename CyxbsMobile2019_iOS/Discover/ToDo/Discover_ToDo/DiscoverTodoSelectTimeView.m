@@ -41,7 +41,7 @@
     datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CHT"];
     
     //最少十分钟后
-    NSDate *date = [NSDate dateWithTimeInterval:60 sinceDate:NSDate.now];
+    NSDate *date = [NSDate dateWithTimeInterval:60 sinceDate:[NSDate date]];
     [datePicker setDate:date];
     [datePicker setMinimumDate:date];
     //设置成滑轮样式
