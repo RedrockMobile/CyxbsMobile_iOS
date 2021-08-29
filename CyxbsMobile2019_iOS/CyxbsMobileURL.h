@@ -385,6 +385,14 @@
  */
 #define NEW_QA_Dynamic_OR_Comment_Deleted [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/deleteId"]
 
+#pragma mark - 邮票中心
+
+// 积分兑换记录, 对应 =兑换记录= 界面
+#define Stamp_Store_details_exchange [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/exchange"]
+
+// 积分获得信息, 对应 =获取记录= 界面
+#define Stamp_store_details_getRecord [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/getRecord"]
+
 #endif /* CyxbsMobileURL_h */
 
 

@@ -13,7 +13,8 @@
 #import "IntegralStorePercentDrivenController.h"
 #import "MyGoodsViewController.h"
 #import "CheckInModel.h"
-@interface CheckInViewController () <CheckInProtocol, CheckInContentViewDelegate, UIViewControllerTransitioningDelegate>
+@interface CheckInViewController ()
+<CheckInProtocol, CheckInContentViewDelegate, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, weak) MBProgressHUD *chekingHUD;
 
@@ -128,12 +129,12 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-
+// 新需求要求删除签到界面的商城入口
 // 手势
 - (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
         self.presentPanGesture = pan;
-        
+
         IntegralStoreViewController *vc = [[IntegralStoreViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationCustom;
         vc.transitioningDelegate = self;

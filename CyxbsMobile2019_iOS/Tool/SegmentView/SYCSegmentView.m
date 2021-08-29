@@ -16,7 +16,9 @@
 @interface   SYCSegmentView() <UIScrollViewDelegate>
 
 //内容视图
+/// 保存视图的数组
 @property (nonatomic, copy) NSArray <UIViewController *> *controllers;
+/// 标签栏下方的不同页面的视图
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, assign) SYCSegmentViewType type;
@@ -37,11 +39,14 @@
 @implementation SYCSegmentView
 
 //默认初始化方法
-- (instancetype)initWithFrame:(CGRect)frame controllers:(NSArray<UIViewController *> *)controllers type:(SYCSegmentViewType)type{
+- (instancetype)initWithFrame:(CGRect)frame
+                  controllers:(NSArray<UIViewController *> *)controllers
+                         type:(SYCSegmentViewType)type{
     self = [super initWithFrame:frame];
     if (self) {
         _type = type;
         _controllers = controllers;
+        // 不同的样式不同的计算宽度的方法
         if (_type == SYCSegmentViewTypeButton) {
             _titleBtnWidth = controllers.count > 3 ? self.frame.size.width / 4 : self.frame.size.width / controllers.count;
         }else if(_type == SYCSegmentViewTypeNormal || _type == SYCSegmentViewTypeHiddenLine){
@@ -72,12 +77,12 @@
         _titleView.showsHorizontalScrollIndicator = NO;
     }
     
-    [self setUpView];
+    [self setupView];
     return self;
 }
 
 
-- (void)setUpView{
+- (void)setupView{
     //加载滑动标签栏
     if (_type == SYCSegmentViewTypeNormal || _type == SYCSegmentViewTypeHiddenLine) {
         for (int i = 0; i < self.controllers.count; ++i) {
@@ -143,7 +148,8 @@
     [self.mainScrollView setContentOffset:CGPointMake(sender.tag * self.frame.size.width, 0) animated:YES];
 }
 
-
+#pragma mark - delegate
+//MARK:UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSInteger currentIndex = floor(_mainScrollView.contentOffset.x / self.frame.size.width);
     CGFloat offSetX = scrollView.contentOffset.x; //主页面相对起始位置的位移
@@ -189,6 +195,8 @@
     _sliderLinePart1.frame = CGRectMake(_currentIndex * _titleBtnWidth + (_titleBtnWidth - _sliderWidth) / 2.0, _titleHeight - _sliderHeight, _sliderWidth, _sliderHeight);
     _sliderLinePart2.frame = CGRectMake(_currentIndex * _titleBtnWidth + (_titleBtnWidth - _sliderWidth) / 2.0, _titleHeight - _sliderHeight, _sliderWidth, _sliderHeight);
 }
+
+#pragma mark - setter
 
 - (void)setTitleColor:(UIColor *)titleColor{
     _titleColor = titleColor;

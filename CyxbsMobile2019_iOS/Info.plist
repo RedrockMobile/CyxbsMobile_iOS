@@ -56,6 +56,8 @@
 	<string>邮问上传图片，修改头像等可能需要打开相册，需要您允许。</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Bauhaus-93.ttf</string>
+		<string>DIN-Medium.otf</string>
 		<string>Impact.ttf</string>
 		<string>Bahnschrift.ttf</string>
 	</array>

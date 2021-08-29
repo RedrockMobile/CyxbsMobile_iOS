@@ -68,8 +68,7 @@
 /// 通过网络请求获取个人课表数据用这个方法，如果请求的数据和本地不一样且请求数据非空那么刷新课表
 /// @param stuNum 学号
 - (void)getPersonalClassBookArrayFromNet:(NSString *)stuNum{
-//    NSDictionary *paramDict = @{@"stu_num":stuNum};
-    NSDictionary *paramDict = @{@"stu_num":@2019214110};
+    NSDictionary *paramDict = @{@"stu_num":stuNum};
     
     [self.afhttpSeMan POST:kebiaoAPI parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         //拿到课表数据

@@ -124,10 +124,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)
             name:@"Login_LoginSuceeded" object:nil];
         
-        UserItem *item = [UserItem defaultItem];
+        NSString* stuNum = [UserDefaultTool getStuNum];
         
         //如果真实姓名非空，那么已登录
-        if(item.realName!=nil&&![item.realName isEqualToString:@""]){
+        if(stuNum!=nil&&![stuNum isEqualToString:@""]){
             [self initMySchedul];
         }
     }
@@ -269,7 +269,7 @@
     
     if(self.isInitingMySchedul==YES)return;
     self.isInitingMySchedul = YES;
-    self.mySchedul = [[WYCClassBookViewController alloc] initWithType:ScheduleTypePersonal andInfo:[[UserItem defaultItem] stuNum]];
+    self.mySchedul = [[WYCClassBookViewController alloc] initWithType:ScheduleTypePersonal andInfo:[UserDefaultTool getStuNum]];
     
     self.mySchedul.schedulTabBar = self;
     
