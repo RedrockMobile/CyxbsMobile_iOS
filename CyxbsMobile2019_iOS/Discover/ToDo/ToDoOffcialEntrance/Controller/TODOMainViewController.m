@@ -40,11 +40,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //一些初始化
+//    //重置数据库
+//    [[TodoSyncTool share] resetDB];
+    //一些初始化-
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.isFold = NO;
     //先获取到数据库的数据，再进行frame设置
     [self  dataFromSqlite];
+    
 }
 
 #pragma mark- private methonds
@@ -322,17 +325,18 @@
         [[TodoSyncTool share] deleteTodoWithTodoID:model.todoIDStr  needRecord:YES];
         
         //4.进行动画，使得删除不这么违和
-        if (dataList.count != 0) {
-            [tableView beginUpdates];
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView endUpdates];
-        }
+//        if (dataList.count != 0) {
+//            [tableView beginUpdates];
+//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            [tableView endUpdates];
+//        }
        
         //5.刷新table
         [tableView reloadData];
     }];
     deleteRowAction.image = [UIImage imageNamed:@"垃圾桶图"];
-    deleteRowAction.backgroundColor = [UIColor redColor];
+    deleteRowAction.backgroundColor = [UIColor colorWithRed:255/225.0 green:98/225.0 blue:95/225.0 alpha:1];;
+    deleteRowAction.title = @"";
     UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
     return config;
 }
