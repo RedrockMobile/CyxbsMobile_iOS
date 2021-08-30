@@ -10,9 +10,6 @@
 
 @interface TodoTableViewCell ()
 
-/// 标题
-@property(nonatomic, strong) UILabel *titleLbl;
-
 /// 小铃铛的图标
 @property (nonatomic, strong) UIImageView *bellImgView;
 
@@ -110,6 +107,7 @@
 #pragma mark- evenr response
 /// 圆圈按钮点击事件
 -(void)select{
+    self.circlebtn.userInteractionEnabled = NO;
     if (self.model.isDone == YES) {
         if (self.delegate != nil && [self.delegate respondsToSelector:@selector(doneCellDidClickedThroughCell:)]) {
             [self.delegate doneCellDidClickedThroughCell:self];
