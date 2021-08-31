@@ -35,9 +35,9 @@
         view.translatesAutoresizingMaskIntoConstraints = NO;
     }
 
-    CGFloat space1 = (15 / 375) * SCREEN_WIDTH; // H:space1-[content]-space1
-    CGFloat space2 = (10 / 375) * SCREEN_WIDTH; // H:[text]-space2-[rightIndicator].H:[title]-space2-[titleImg]
-    CGFloat space3 = (6 / 375) * SCREEN_WIDTH; // V:[title]-space3-[subtitle]
+    CGFloat space1 = (15.f / 375) * SCREEN_WIDTH; // H:space1-[content]-space1
+    CGFloat space2 = (10.f / 375) * SCREEN_WIDTH; // H:[text]-space2-[rightIndicator].H:[title]-space2-[titleImg]
+    CGFloat space3 = (6.f / 375) * SCREEN_WIDTH; // V:[title]-space3-[subtitle]
     
     // title label
     [self.contentView addConstraints:@[
