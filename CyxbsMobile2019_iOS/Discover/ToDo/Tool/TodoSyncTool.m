@@ -741,7 +741,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
     FMResultSet* resultSet = [self.db executeQuery:code];
     NSMutableArray<NSDictionary*>* arr = [NSMutableArray arrayWithCapacity:5];
     while ([resultSet next]) {
-        [arr addObject:[[self resultSetToDataModel:resultSet] getDataDict]];
+        [arr addObject:[[self resultSetToDataModel:resultSet] getDataDictToPush]];
     }
     return arr;
 }

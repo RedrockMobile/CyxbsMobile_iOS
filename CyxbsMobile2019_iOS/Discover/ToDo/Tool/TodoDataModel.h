@@ -101,8 +101,8 @@ typedef enum : NSUInteger {
 /// @param dict 字典
 - (void)setDataWithDict:(NSDictionary*)dict;
 
-/// 获取相应的字典
-- (NSDictionary*)getDataDict;
+/// 获取相应的字典（在网络请求那边使用）
+- (NSDictionary*)getDataDictToPush;
 
 /// 调用后计算过期时间，一般在完成todo的各种数据设置后调用，必须调用。
 - (void)resetOverdueTime;
