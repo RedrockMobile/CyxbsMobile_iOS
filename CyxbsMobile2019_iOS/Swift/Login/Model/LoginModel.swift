@@ -33,10 +33,11 @@ class LoginModel: NSObject {
             
             if let token = json["data"]["token"].string,
                let refreshToken = json["data"]["refreshToken"].string {
+                let item = UserItemTool.defaultItem();
                 // 保存token、refreshToke、账号、密码
-                UserItemTool.defaultItem().token = token
-                UserItemTool.defaultItem().refreshToken = refreshToken
-                UserItemTool.defaultItem().firstLogin = true
+                item.token = token
+                item.refreshToken = refreshToken
+                item.firstLogin = true
                 UserDefaultTool.saveStuNum(stuNum)
                 UserDefaultTool.saveIdNum(idNum)
                 
@@ -50,7 +51,9 @@ class LoginModel: NSObject {
                         success()
                         //
                         UserDefaults.standard.setValue(getLastLogInTime(), forKey: LastLogInTimeKey_double)
-                        NotificationCenter.default.postNotificationOnMainThread(withName: "Login_LoginSuceeded", object: nil, userInfo: ["userItem": UserItemTool.defaultItem()])
+                        NotificationCenter.default.postNotificationOnMainThread(withName: "Login_LoginSuceeded", object: nil, userInfo: ["userItem": item])
+                        
+                        
                         
                     } catch {
                         // 解码失败调用failed
