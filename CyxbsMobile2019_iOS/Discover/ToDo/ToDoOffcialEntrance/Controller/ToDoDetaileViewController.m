@@ -63,26 +63,38 @@
 /// 点击重复的label之后弹出的选择重复的View
 @property (nonatomic, strong) DiscoverTodoSelectRepeatView *selectRepeatView;
 
+/// 临时存储的重复的View
+@property (nonatomic, strong) DiscoverTodoSelectRepeatView *tempoarySelectRepeatView;
+
 /// 保存用户选择的重复的天数的数组
 @property (nonatomic, strong) NSMutableArray *repeatLblsAry;
 
+/// 用于存储这个界面改变的model
+@property (nonatomic, strong) TodoDataModel *temporaryModel;
+
+/// 事项完成或未完成的初始状态
+@property (nonatomic, assign) BOOL instialState;
 @end
 
 @implementation ToDoDetaileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.temporaryModel = [[TodoDataModel alloc] init];
+    self.temporaryModel = self.model;
+    self.instialState = self.temporaryModel.isDone;
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.repeatLblsAry = [NSMutableArray array];
-    //监听model的isDone属性，动态的更改页面的控件的状态
+    
     [self buildFrame];
     [self addRepeatLabel];
     [self reLayoutAllLbl];
 }
+
 #pragma mark- provate methonds
 /// 设置最开始加入进来的重复提醒
 - (void)addRepeatLabel{
-    switch (self.model.repeatMode) {
+    switch (self.temporaryModel.repeatMode) {
         case TodoDataModelRepeatModeNO:
             break;
         case TodoDataModelRepeatModeDay:
@@ -93,21 +105,21 @@
         }
             break;
         case TodoDataModelRepeatModeWeek:
-            for (NSString *titleStr in self.model.weekArr) {
+            for (NSString *titleStr in self.temporaryModel.weekArr) {
                 UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
                 lbl.text = [NSString stringWithFormat:@"每%@",[self intWeekToStrWeek:titleStr.intValue]];
                 [self.repeatLblsAry addObject:lbl];
             }
             break;
         case TodoDataModelRepeatModeMonth:
-            for (NSString *titleStr in self.model.dayArr) {
+            for (NSString *titleStr in self.temporaryModel.dayArr) {
                 UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
                 lbl.text = [NSString stringWithFormat:@"每月%d日",titleStr.intValue];
                 [self.repeatLblsAry addObject:lbl];
             }
             break;
         case TodoDataModelRepeatModeYear:
-            for (NSDictionary *dic in self.model.dateArr) {
+            for (NSDictionary *dic in self.temporaryModel.dateArr) {
                 UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
                 lbl.text = [NSString stringWithFormat:@"每年%@月%@日", dic[@"TodoDataModelKeyMonth"],dic[@"TodoDataModelKeyDay"]];
                 [self.repeatLblsAry addObject:lbl];
@@ -160,6 +172,21 @@
     NSArray* arr = @[@"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日"];
     return arr[intWeek-1];
 }
+//比较是否过期
+- (BOOL)compareIsOverdue{
+    if ([self.model.timeStr isEqualToString:@""]) {
+        return NO;
+    }
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
+    long notifyTimeStamp = [formatter dateFromString:self.temporaryModel.timeStr].timeIntervalSince1970;
+    long nowTimeStamp = [NSDate date].timeIntervalSince1970;
+    if (nowTimeStamp > notifyTimeStamp) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
 /// 设置各个控件的fram
 - (void)buildFrame{
     //顶部的bar
@@ -183,7 +210,7 @@
     
     //编辑文本
         //得到传入进来的title高度
-    CGFloat titleHeight = ceil([self.model.titleStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8267, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont fontWithName:PingFangSCBold size:22]} context:nil].size.height);
+    CGFloat titleHeight = ceil([self.temporaryModel.titleStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8267, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont fontWithName:PingFangSCBold size:22]} context:nil].size.height);
     [self.view layoutIfNeeded]; //得到圆环button的frame
     [self.scrollView addSubview:self.titleTextView];
         //设置frame
@@ -250,8 +277,8 @@
     
     //备注的文本编辑view
     [self.view layoutIfNeeded];
-    CGFloat remarksTitleHeight = ceil([self.model.detailStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8267, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont fontWithName:PingFangSCBold size:15]} context:nil].size.height);
-    if ([self.model.detailStr isEqualToString:@""]) {
+    CGFloat remarksTitleHeight = ceil([self.temporaryModel.detailStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8267, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont fontWithName:PingFangSCBold size:15]} context:nil].size.height);
+    if ([self.temporaryModel.detailStr isEqualToString:@""]) {
         remarksTitleHeight = SCREEN_HEIGHT * 0.0258;
         self.reminedEditRemarksLbl.alpha = 0.4;
     }
@@ -280,27 +307,32 @@
 /// 点击小圆环按钮，切换完成状态
 - (void)changeStatu{
     //改变当前的状态
-//    self.model.isDone = !self.model.isDone;
-    [self.model setIsDoneForUserActivity:!self.model.isDone];
-    if (self.model.isDone == YES) {
+    [self.temporaryModel setIsDoneForUserActivity:!self.temporaryModel.isDone];
+    //根据状态设置UI变化
+    if (self.temporaryModel.isDone) {
         //btn图片改变
         [self.cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
         //textView变化
+        self.titleTextView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
         self.titleTextView.alpha = 0.46;
         self.titleTextView.userInteractionEnabled = NO;
         self.remarksTextView.userInteractionEnabled = NO;
     }else{
-        //btn图片变化
-        [self.cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
-        //textView变化
         self.titleTextView.alpha = 1;
-        self.titleTextView.userInteractionEnabled = NO;
+        self.titleTextView.userInteractionEnabled = YES;
         self.remarksTextView.userInteractionEnabled = YES;
+        if ([self compareIsOverdue]) {
+            [self.cycleBtn setBackgroundImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
+            self.titleTextView.textColor = [UIColor redColor];
+        }else{
+            [self.cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+            self.titleTextView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        }
     }
 }
 /// 点击设置重复提醒时间
 - (void)setReminedTime{
-    if (self.model.isDone) {
+    if (self.temporaryModel.isDone) {
         [NewQAHud showHudWith:@"掌友，无法对已完成事项进行修改哦！\nTip：点击待办勾选框即可改变状态嚎！" AddView:self.scrollView];
     }else{
         NSLog(@"点击设置提醒时间");
@@ -318,7 +350,7 @@
 }
 ///设置重复的模式
 - (void)chooseRepeatStytle{
-    if (self.model.isDone) {
+    if (self.temporaryModel.isDone) {
         [NewQAHud showHudWith:@"掌友，无法对已完成事项进行修改哦！\nTip：点击待办勾选框即可改变状态嚎！" AddView:self.scrollView];
     }else{
         //添加遮罩层
@@ -336,28 +368,62 @@
 }
 
 #pragma mark- delegate
-//MARK:KVO回调
-
 //MARK:ToDoDetailBarDelegate
 - (void)popVC{
+    [self.model setIsDoneForUserActivity:self.instialState];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)saveChanges{
-    self.model.titleStr = self.titleTextView.text;
-    self.model.detailStr = self.remarksTextView.text;
-    self.model.timeStr = self.reminedBtnLbl.text;
+    //保存信息
+    self.temporaryModel.titleStr = self.titleTextView.text;
+    self.temporaryModel.detailStr = self.remarksTextView.text;
+    if ([self.reminedBtnLbl.text isEqualToString:@""]) {
+        self.temporaryModel.timeStr = @"";
+    }else{
+        self.temporaryModel.timeStr = self.reminedBtnLbl.text;
+    }
+        //保存重复提醒
+    self.temporaryModel.repeatMode = self.tempoarySelectRepeatView.repeatMode;
+    switch (self.tempoarySelectRepeatView.repeatMode) {
+        case TodoDataModelRepeatModeWeek:
+            self.temporaryModel.weekArr = self.tempoarySelectRepeatView.dateArr;
+            break;
+        case TodoDataModelRepeatModeMonth:
+            self.temporaryModel.dayArr = self.tempoarySelectRepeatView.dateArr;
+            break;
+        case TodoDataModelRepeatModeYear:
+            self.temporaryModel.dateArr = self.tempoarySelectRepeatView.dateArr;
+            break;
+        default:
+            break;
+    }
+        //重新设置过期时间
+    [self.temporaryModel resetOverdueTime];
+        //保存修改的时间
+    self.temporaryModel.lastModifyTime = [NSDate date].timeIntervalSince1970;
     
-    //保存数据，并回调block使上一界面刷新
+    self.model = self.temporaryModel;
+
+    //保存数据进数据库
     [[TodoSyncTool share] alterTodoWithModel:self.model needRecord:YES];
+    
+    //回调，使上个界面刷新
     self.block();
+
     [NewQAHud showHudWith:@"已成功修改数据" AddView:self.view];
-    NSLog(@"已经保存");
+    //延迟1.5秒后跳回到上个界面
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 //MARK:RemindTimeViewDelegate
 - (void)selectTimeViewSureBtnClicked:(NSDateComponents *)components{
-    self.reminedBtnLbl.text = [NSString stringWithFormat:@"%ld月%ld日%02ld:%02ld", components.month, components.day, components.hour, components.minute];
-    self.model.timeStr = self.reminedBtnLbl.text;
+    self.reminedBtnLbl.text = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+    
+//    //存储数据进model，注意这里要和model的格式相同
+//    self.temporaryModel.timeStr = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+    
     //设置消失
     [UIView animateWithDuration:0.5 animations:^{
         self.selectReminedTimeView.alpha = 0;
@@ -365,6 +431,12 @@
     } completion:^(BOOL finished) {
         [self.selectReminedTimeView removeFromSuperview];
         [self.maskView removeFromSuperview];
+        
+        //刷新
+        self.cycleBtn = nil;
+        self.titleTextView = nil;
+        [self.view removeAllSubviews];
+        [self buildFrame];
     }];
 }
 - (void)selectTimeViewCancelBtnClicked{
@@ -391,22 +463,8 @@
     
 }
 - (void)selectRepeatViewSureBtnClicked:(DiscoverTodoSelectRepeatView *)view{
-    //将数据存储在model里面
-    self.model.repeatMode = view.repeatMode;
-    switch (view.repeatMode) {
-        case TodoDataModelRepeatModeWeek:
-            self.model.weekArr = view.dateArr;
-            break;
-        case TodoDataModelRepeatModeMonth:
-            self.model.dayArr = view.dateArr;
-            break;
-        case TodoDataModelRepeatModeYear:
-            self.model.dateArr = view.dateArr;
-            break;
-        default:
-            break;
-    }
-    
+    self.tempoarySelectRepeatView = view;
+
     //进行界面显示
         //先清空之前有展示的
     long int cnt = self.repeatLblsAry.count;
@@ -499,11 +557,17 @@
 - (UIButton *)cycleBtn{
     if (!_cycleBtn) {
         _cycleBtn = [[UIButton alloc] initWithFrame:CGRectZero];
-        if (self.model.isDone) {
+        
+        if (self.temporaryModel.isDone) {
             [_cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
         }else{
-            [_cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+            if ([self compareIsOverdue]) {
+                [_cycleBtn setBackgroundImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
+            }else{
+                [_cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+            }
         }
+      
         [_cycleBtn addTarget:self action:@selector(changeStatu) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cycleBtn;
@@ -516,11 +580,15 @@
         _titleTextView.textContainer.lineFragmentPadding = 0;
         _titleTextView.font = [UIFont fontWithName:PingFangSCBold size:22];
         _titleTextView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _titleTextView.text = self.model.titleStr;
+        _titleTextView.text = self.temporaryModel.titleStr;
         _titleTextView.delegate = self;
-        if (self.model.isDone) {
+        
+        if (self.temporaryModel.isDone) {
             _titleTextView.userInteractionEnabled = NO;
             _titleTextView.alpha = 0.46;
+        }
+        else if([self compareIsOverdue]){
+            _titleTextView.textColor = [UIColor redColor];
         }
     }
     return _titleTextView;
@@ -540,10 +608,10 @@
     if (!_reminedBtnLbl) {
         //进行属性设置
         _reminedBtnLbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        if ([self.model.timeStr isEqualToString:@""]) {
+        if ([self.temporaryModel.timeStr isEqualToString:@""]) {
             _reminedBtnLbl.text = @"设置重复提醒";
         }else{
-            _reminedBtnLbl.text = self.model.timeStr;
+            _reminedBtnLbl.text = self.temporaryModel.timeStr;
         }
         _reminedBtnLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
         _reminedBtnLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
@@ -612,9 +680,9 @@
         _remarksTextView.textContainer.lineFragmentPadding = 0;
         _remarksTextView.font = [UIFont fontWithName:PingFangSCBold size:15];
         _remarksTextView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _remarksTextView.text = self.model.detailStr;
+        _remarksTextView.text = self.temporaryModel.detailStr;
         _remarksTextView.delegate = self;
-        if (self.model.isDone) {
+        if (self.temporaryModel.isDone) {
             _remarksTextView.userInteractionEnabled = NO;
             _remarksTextView.alpha = 0.46;
         }
@@ -650,22 +718,6 @@
         _selectReminedTimeView.delegate = self;
         
         _selectReminedTimeView.layer.cornerRadius = 16;
-//        _selectReminedTimeView.backgroundColor = [UIColor redColor];
-        //添加点击取消手势
-        
-//        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_selectReminedTimeView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(16, 16)];
-//        CAShapeLayer *maskLayer = [CAShapeLayer layer];
-//        maskLayer.frame = _selectReminedTimeView.frame;
-//        maskLayer.path = maskPath.CGPath;
-//        _selectReminedTimeView.layer.mask = maskLayer;
-        
-        //设置上面的圆角
-//        CGRect rect = _selectReminedTimeView.frame;
-//        UIBezierPath* path = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(16, 16)];
-//        CAShapeLayer* layer = [CAShapeLayer layer];
-//        layer.path = path.CGPath;
-//        layer.frame = _selectReminedTimeView.frame;
-//        _selectReminedTimeView.layer.mask = layer;
     }
     return _selectReminedTimeView;
 }

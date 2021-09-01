@@ -95,7 +95,6 @@
 
 #pragma mark- event methonds
 - (void)foldAction{
-    NSLog(@"已经折叠");
     self.isFold = !self.isFold;
     [self.tableView reloadData];
 }
@@ -123,7 +122,9 @@
     
     //1.设置cell的属性转换
     [toDoCell.model setIsDoneForUserActivity:!toDoCell.model.isDone];
+        //设置btn的icon变换
     [toDoCell.circlebtn setImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
+        //设置lable的文本划线
     NSAttributedString *attrStr =
     [[NSAttributedString alloc]initWithString:toDoCell.model.titleStr
                                    attributes:
@@ -132,12 +133,11 @@
        NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
        NSStrikethroughColorAttributeName:[UIColor colorNamed:@"137_151_173&240_240_242"]}];
     toDoCell.titleLbl.attributedText = attrStr;
-
-        //进行动画，不那么僵硬
+        //进行动画，使得变化不那么僵硬
     NSIndexPath *indexPath = [self.tableView indexPathForCell:toDoCell];
     [self.tableView reloadRow:indexPath.row inSection:indexPath.section withRowAnimation:UITableViewRowAnimationFade];
-    
-        //2.3延迟进行刷新
+
+        //2延迟刷新table
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         //2.1从未完成区域中删除
         [self.dataSourceAry[0] removeObjectAtIndex:indexPath.row];
@@ -148,9 +148,11 @@
         toDoCell.userInteractionEnabled = YES;
     });
     
+        //
+    [toDoCell.model resetOverdueTime];
+    toDoCell.model.lastModifyTime = [NSDate date].timeIntervalSince1970;
     //3.同步本地数据库的数据更改
     [[TodoSyncTool share] alterTodoWithModel:toDoCell.model needRecord:YES];
-    
     
 }
 ///点击将已经完成的cell转移到代办区域
@@ -178,6 +180,9 @@
         doneCell.userInteractionEnabled = YES;
     });
     
+        //保存修改时间
+    [doneCell.model resetOverdueTime];
+    doneCell.model.lastModifyTime = [NSDate date].timeIntervalSince1970;
     //3.同步本地数据库中模型数据的更改
     [[TodoSyncTool share] alterTodoWithModel:doneCell.model needRecord:YES];
     
@@ -185,8 +190,13 @@
 }
 
 //MARK: DiscoverTodoSheetView的代理方法：
+///保存添加
 - (void)sheetViewSaveBtnClicked:(TodoDataModel *)dataModel {
     NSLog(@"保存设置");
+    //重新设置过期时间
+    [dataModel resetOverdueTime];
+    //保存上一次修改的时间
+    dataModel.lastModifyTime = [NSDate date].timeIntervalSince1970;
     [self.dataSourceAry[0] insertObject:dataModel atIndex:0];
     [self.tableView reloadData];
     
@@ -221,7 +231,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *sectionAry = self.dataSourceAry[section];
     if (sectionAry.count == 0) {
@@ -239,7 +248,7 @@
     }
     return sectionAry.count;
 }
-
+///cell的点击事件
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *sectionAry = self.dataSourceAry[indexPath.section];
     //如果无内容则设置为空cell的样式
@@ -254,6 +263,7 @@
     [cell setDataWithModel:model];
     return cell;
 }
+
 //MARK:UITableViewDelegate
 ///组头视图
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -343,17 +353,27 @@
 ///点击cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *sectionArray = self.dataSourceAry[indexPath.section];
+    
+    TodoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
     if (sectionArray.count != 0) {
+        //数据传递
         ToDoDetaileViewController *vc = [ToDoDetaileViewController new];
-         vc.model = sectionArray[indexPath.row];
+//         vc.model = sectionArray[indexPath.row];
+        vc.model = cell.model;
+        
+        //跳转页面
         self.navigationController.navigationBar.hidden = YES;
         [self.navigationController pushViewController:vc animated:YES];
+        
+        //回调刷新当前页面
         vc.block = ^{
             [self refresh];
         };
     }
   
 }
+
 #pragma mark- Getter
 - (ToDoMainBarView *)barView{
     if (!_barView) {
