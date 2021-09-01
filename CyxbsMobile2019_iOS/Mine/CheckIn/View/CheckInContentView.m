@@ -231,7 +231,7 @@
     [storeView addGestureRecognizer:pan];
     self.storeView = storeView;
     // 商店入口隐藏
-    self.storeView.hidden = YES;
+    self.storeView.hidden = NO ;
 }
 
 /// 商城的 title

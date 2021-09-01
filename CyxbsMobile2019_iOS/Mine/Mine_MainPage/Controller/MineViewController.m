@@ -57,7 +57,6 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeAll;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceded) name:@"Login_LoginSuceeded" object:nil];
     
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor colorNamed:@"Mine_Store_ContainerColor"];
@@ -71,6 +70,9 @@
     [self addContentView];
     [self addAppSettingTableView];
     self.isLoadingMsgCntData = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceded) name:@"Login_LoginSuceeded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadUserDataWithNoti:) name:@"UserItemGetUserInfo" object:nil];
 }
 
 /// 添加contentView
@@ -117,18 +119,25 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self loadUserData];
     if (self.isLoadingMsgCntData==YES) {
         return;
     }
     
+    [[UserItem defaultItem] getUserInfo];
     [self.msgCntModel mainMsgCntModelLoadMoreData];
     
     self.isLoadingMsgCntData = YES;
     // 隐藏导航栏
     self.navigationController.navigationBar.hidden = YES;
 }
-
+- (void)loadUserDataWithNoti:(NSNotification*)noti {
+    BOOL state = [noti.object boolValue];
+    if (!state) {
+        [NewQAHud showHudWith:@" 加载个人信息失败 " AddView:UIApplication.sharedApplication.windows.firstObject];
+        return;
+    }
+    [self loadUserData];
+}
 - (void)loadUserData {
     UserItem *user = [UserItemTool defaultItem];
     self.headerView.nicknameLabel.text = user.nickname;
@@ -279,13 +288,13 @@
 
 /// 点击“积分商城”后调用
 - (void)selectedShopCell {
-//    CheckInViewController *vc = [[CheckInViewController alloc] init];
-//    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-//    [self presentViewController:vc animated:YES completion:nil];
+    CheckInViewController *vc = [[CheckInViewController alloc] init];
+    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:vc animated:YES completion:nil];
 
-    StampCenterVC * vc = [[StampCenterVC alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    StampCenterVC * vc = [[StampCenterVC alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

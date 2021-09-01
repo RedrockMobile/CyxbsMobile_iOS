@@ -174,12 +174,10 @@ fprintf(stderr,"\n");\
 //宽度放缩比，(宽/375)
 #define WScaleRate_SE (SCREEN_WIDTH/375.0)
 
-//学期开始时间
-#define DateStart @"2021-03-01"
 #define DateFormat @"yyyy-MM-dd"
 
 
-//第一周从1开始，不是从0开始
+//第一周从1开始，不是从0开始 
 #define getNowWeek_NSString ^(void) {\
     NSString *nowWeek = [[NSUserDefaults standardUserDefaults] stringForKey:nowWeekKey_NSString];\
     if (nowWeek == nil || nowWeek.intValue > 25) {\

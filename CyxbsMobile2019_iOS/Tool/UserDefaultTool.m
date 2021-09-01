@@ -94,7 +94,11 @@
 }
 
 +(NSString *)getStuNum{
-    return [self valueWithKey:@"stuNum"];
+    NSString* stuNum = [self valueWithKey:@"stuNum"];
+    if (stuNum==nil) {
+        stuNum = @"";
+    }
+    return stuNum;
 }
 
 +(void)saveStuNum:(NSString *)stuNum{

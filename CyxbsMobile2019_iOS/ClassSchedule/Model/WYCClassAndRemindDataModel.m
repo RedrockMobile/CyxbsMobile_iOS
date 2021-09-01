@@ -340,18 +340,13 @@
     NSDateComponents *nowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:now];
 //    unit
     NSInteger weekday = nowComponents.weekday;
-    if (weekday==1) {
-        weekday = 7;
-    }else {
-        weekday--;
-    }
     
     NSInteger todaySecond = (((nowComponents.hour*60)+nowComponents.minute)*60)+nowComponents.second;
     
-    NSInteger ortherDatSecond = ((week.longValue-1)*7+weekday-1)*86400;
+    NSInteger ortherDaySecond = ((week.integerValue-1)*7+(weekday+5)%7)*86400;
     //startDate指向开学日期那天的凌晨1秒
 //    NSDate *startDate = [now dateByAddingSeconds:1-(todaySecond+ortherDatSecond)];
-        NSDate *startDate = [[NSDate alloc] initWithTimeInterval:1-(todaySecond+ortherDatSecond) sinceDate:now];
+        NSDate *startDate = [[NSDate alloc] initWithTimeInterval:1-(todaySecond+ortherDaySecond) sinceDate:now];
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:startDate];
     

@@ -9,6 +9,7 @@
 #import "UserItem.h"
 
 @implementation UserItem
+@synthesize stuNum = _stuNum;
 
 MJExtensionCodingImplementation
 
@@ -21,6 +22,40 @@ static UserItem *item = nil;
         }
     }
     return item;
+}
+
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
+    return @{
+        //为登录那边的
+        @"stuNum":@"Data.stu_num",
+        @"gender":@"Data.gender",
+        @"redid":@"Redid",
+        
+        //为个人信息的：
+        @"headImgUrl":@"photo_src",
+        @"realName":@"username"
+    };
+    /*
+     "photo_thumbnail_src"
+     stunum
+     */
+}
+
+- (NSString *)stuNum {
+    if (_stuNum == nil || [_stuNum isEqualToString:@""]) {
+        _stuNum = [UserDefaultTool getStuNum];
+    }
+    return _stuNum;
+}
+
+- (void)getUserInfo {
+    [[HttpClient defaultClient] requestWithPath:getPersonData method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [UserItem mj_objectWithKeyValues:responseObject[@"data"]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(YES)];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        CCLog(@"fai,%@",error);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(NO)];
+    }];
 }
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
@@ -154,5 +189,9 @@ static UserItem *item = nil;
 - (void)setFirstLogin:(BOOL)firstLogin {
     _firstLogin = firstLogin;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@", self.mj_keyValues];
 }
 @end

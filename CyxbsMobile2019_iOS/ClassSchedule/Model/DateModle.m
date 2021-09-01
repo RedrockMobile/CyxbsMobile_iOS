@@ -25,7 +25,20 @@
 - (NSNumber *)nowWeek {
     return getNowWeek_NSString.numberValue;
 }
-
+- (NSDate*)test {
+    NSInteger nowWeek = nowWeekKey_NSString.integerValue;
+    NSDate* date = [NSDate date];
+    NSCalendarUnit unit = (NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond|NSCalendarUnitWeekday);
+    NSDateComponents* nowComponents = [[NSCalendar currentCalendar] components:unit fromDate:date];
+    NSTimeInterval deltTime = (nowComponents.weekday+5)%7 + (nowWeek - 1)*7;
+    deltTime *= 24; //时
+    deltTime += nowComponents.hour;
+    deltTime *= 60; //分
+    deltTime += nowComponents.minute;
+    deltTime *= 60; //秒
+    deltTime += nowComponents.second;
+    return [date dateByAddingTimeInterval:-deltTime];
+}
 -(void)initCalculateDate:(NSDate *)resDate{
     
     //初始化日期数组
