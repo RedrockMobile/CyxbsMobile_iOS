@@ -131,6 +131,7 @@
 
 // 新需求要求删除签到界面的商城入口
 // 手势
+/*
 - (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
         self.presentPanGesture = pan;
@@ -141,7 +142,7 @@
         [self presentViewController:vc animated:YES completion:nil];
     }
 }
-
+*/
 
 #pragma mark - 签到回调
 //model签到成功后调用
