@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UserItemTool : NSObject
 
 /// 获取UserItem单例对象
-+ (UserItem *)defaultItem DEPRECATED_MSG_ATTRIBUTE("\n不要使用UserItemTool来获取你需要的信息，使用UserDefaultTool");
++ (UserItem *)defaultItem;
 
 /// 获取缓存路径
 + (NSString *)userItemPath;

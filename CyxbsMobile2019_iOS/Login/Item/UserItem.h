@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// ids绑定成功
 @property (nonatomic, assign) BOOL idsBindingSuccess;
 /// 获得单例对象
-+ (UserItem *)defaultItem DEPRECATED_MSG_ATTRIBUTE("\n不要使用defaultItem来获取你需要的信息，使用UserDefaultTool");
++ (UserItem *)defaultItem;
 
 @end
 
