@@ -49,10 +49,12 @@ static UserItem *item = nil;
 }
 
 - (void)getUserInfo {
-    [[HttpClient defaultClient] requestWithPath:getPersonData method:HttpRequestPost parameters:@{@"stuNum":[UserDefaultTool getStuNum], @"idNum":[UserDefaultTool getIdNum]} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:getPersonData method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [UserItem mj_objectWithKeyValues:responseObject[@"data"]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(YES)];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         CCLog(@"fai,%@",error);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(NO)];
     }];
 }
 
@@ -187,5 +189,9 @@ static UserItem *item = nil;
 - (void)setFirstLogin:(BOOL)firstLogin {
     _firstLogin = firstLogin;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@", self.mj_keyValues];
 }
 @end

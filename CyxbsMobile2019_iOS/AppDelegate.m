@@ -174,8 +174,16 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [self checkVersion];
     //设置存储、更换baseURL的操作
     [self settingBaseURL];
-    [[UserItem defaultItem] getUserInfo];
+    [self addNotification];
+    [self requestUserInfo];
     return YES;
+}
+- (void)addNotification {
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(requestUserInfo) name:@"Login_LoginSuceeded" object:nil];
+}
+- (void)requestUserInfo {
+    [[UserItem defaultItem] getUserInfo];
 }
 ///设置存储、更换baseURL
 - (void)settingBaseURL{
