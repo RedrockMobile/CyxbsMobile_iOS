@@ -40,11 +40,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //一些初始化
+//    //重置数据库
+//    [[TodoSyncTool share] resetDB];
+    //一些初始化-
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.isFold = NO;
     //先获取到数据库的数据，再进行frame设置
     [self  dataFromSqlite];
+    
 }
 
 #pragma mark- private methonds
@@ -115,59 +118,70 @@
 //MARK:cell的代理方法
 ///点击将未完成的cell转移到完成区域
 - (void)toDoCellDidClickedThroughCell:(TodoTableViewCell *)toDoCell{
-    //1.设置button的icon设置为圆环
+    //禁止table交互防止误触cell
+    toDoCell.userInteractionEnabled = NO;
+    
+    //1.设置cell的属性转换
     [toDoCell.model setIsDoneForUserActivity:!toDoCell.model.isDone];
     [toDoCell.circlebtn setImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
-    //2.进行区域转移
+    NSAttributedString *attrStr =
+    [[NSAttributedString alloc]initWithString:toDoCell.model.titleStr
+                                   attributes:
+     @{NSFontAttributeName:toDoCell.titleLbl.font,
+       NSForegroundColorAttributeName:[UIColor colorNamed:@"112_129_155&255_255_255"],
+       NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
+       NSStrikethroughColorAttributeName:[UIColor colorNamed:@"137_151_173&240_240_242"]}];
+    toDoCell.titleLbl.attributedText = attrStr;
+
+        //进行动画，不那么僵硬
     NSIndexPath *indexPath = [self.tableView indexPathForCell:toDoCell];
-        //2.1从未完成区域中删除
-    [self.dataSourceAry[0] removeObjectAtIndex:indexPath.row];
-        //2.2添加到已完成区域中的第一行
-    [self.dataSourceAry[1] insertObject:toDoCell.model atIndex:0];
-        //2.3设置动画
-            //设置cell的x，y初始值为
-    toDoCell.layer.transform = CATransform3DMakeScale(1, 1, 1);
-            //让cell变小
-    [UIView animateWithDuration:0.7 animations:^{
-        toDoCell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
-    }];
-        //2.4延迟一秒刷新table
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-//    [self.tableView reloadData];
+    [self.tableView reloadRow:indexPath.row inSection:indexPath.section withRowAnimation:UITableViewRowAnimationFade];
     
-    //2.5同步本地数据库的数据更改
+        //2.3延迟进行刷新
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //2.1从未完成区域中删除
+        [self.dataSourceAry[0] removeObjectAtIndex:indexPath.row];
+        //2.2添加到已完成区域中的第一行
+        [self.dataSourceAry[1] insertObject:toDoCell.model atIndex:0];
+        [self.tableView reloadData];
+        //恢复tablede交互
+        toDoCell.userInteractionEnabled = YES;
+    });
+    
+    //3.同步本地数据库的数据更改
     [[TodoSyncTool share] alterTodoWithModel:toDoCell.model needRecord:YES];
+    
+    
 }
 ///点击将已经完成的cell转移到代办区域
 - (void)doneCellDidClickedThroughCell:(TodoTableViewCell *)doneCell{
-    //1.设置button的icon设置为圆环打勾
+    //禁止cell交互防止误触导致崩溃
+    doneCell.userInteractionEnabled = NO;
+    
+    //1.设置cell的属性转换
     [doneCell.model setIsDoneForUserActivity:!doneCell.model.isDone];
     [doneCell.circlebtn setImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+    doneCell.titleLbl.text = doneCell.model.titleStr;
     
-    
-    //2.区域转移
+        //刷新这个cell
     NSIndexPath *indexPath = [self.tableView indexPathForCell:doneCell];
-        //2.1从已完成区域中删除
-    [self.dataSourceAry[1] removeObjectAtIndex:indexPath.row];
-        //2.2添加到未完成区域中的第一行
-    [self.dataSourceAry[0] insertObject:doneCell.model atIndex:0];
-        //2.3设置动画
-           // 设置cell的x，y初始值为
-    doneCell.layer.transform = CATransform3DMakeScale(1, 1, 1);
-            //让cell变小
-    [UIView animateWithDuration:0.7 animations:^{
-        doneCell.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1);
-    }];
-        //2.4延迟一秒刷新table
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-//    [self.tableView reloadData];
+    [self.tableView reloadRow:indexPath.row inSection:indexPath.section withRowAnimation:UITableViewRowAnimationFade];
     
-    //2.5同步本地数据库中模型数据的更改
+        //2.延迟进行刷新table
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //2.1从已完成区域中删除
+        [self.dataSourceAry[1] removeObjectAtIndex:indexPath.row];
+            //2.2添加到未完成区域中的第一行
+        [self.dataSourceAry[0] insertObject:doneCell.model atIndex:0];
+        [self.tableView reloadData];
+        //恢复tablede交互
+        doneCell.userInteractionEnabled = YES;
+    });
+    
+    //3.同步本地数据库中模型数据的更改
     [[TodoSyncTool share] alterTodoWithModel:doneCell.model needRecord:YES];
+    
+  
 }
 
 //MARK: DiscoverTodoSheetView的代理方法：
@@ -311,30 +325,34 @@
         [[TodoSyncTool share] deleteTodoWithTodoID:model.todoIDStr  needRecord:YES];
         
         //4.进行动画，使得删除不这么违和
-        if (dataList.count != 0) {
-            [tableView beginUpdates];
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView endUpdates];
-        }
+//        if (dataList.count != 0) {
+//            [tableView beginUpdates];
+//            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//            [tableView endUpdates];
+//        }
        
         //5.刷新table
         [tableView reloadData];
     }];
     deleteRowAction.image = [UIImage imageNamed:@"垃圾桶图"];
-    deleteRowAction.backgroundColor = [UIColor redColor];
+    deleteRowAction.backgroundColor = [UIColor colorWithRed:255/225.0 green:98/225.0 blue:95/225.0 alpha:1];;
+    deleteRowAction.title = @"";
     UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
     return config;
 }
 ///点击cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *sectionArray = self.dataSourceAry[indexPath.section];
-    ToDoDetaileViewController *vc = [ToDoDetaileViewController new];
-    vc.model = sectionArray[indexPath.row];
-    self.navigationController.navigationBar.hidden = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-    vc.block = ^{
-        [self refresh];
-    };
+    if (sectionArray.count != 0) {
+        ToDoDetaileViewController *vc = [ToDoDetaileViewController new];
+         vc.model = sectionArray[indexPath.row];
+        self.navigationController.navigationBar.hidden = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        vc.block = ^{
+            [self refresh];
+        };
+    }
+  
 }
 #pragma mark- Getter
 - (ToDoMainBarView *)barView{

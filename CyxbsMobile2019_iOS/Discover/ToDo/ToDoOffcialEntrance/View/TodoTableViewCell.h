@@ -22,7 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 最前面点击的button
 @property(nonatomic, strong) UIButton *circlebtn;
 
+/// 标题
+@property(nonatomic, strong) UILabel *titleLbl;
+
+///cell的model
 @property(nonatomic, strong) TodoDataModel *model;
+
 @property(nonatomic, weak) id<TodoTableViewCellDelegate> delegate;
 - (void)setDataWithModel:(TodoDataModel *)model;
 @end
