@@ -369,8 +369,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "-loginStatus"
-            landmarkType = "7">
+            landmarkName = "defaults"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1301,7 +1301,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "205"
             endingLineNumber = "205"
-            landmarkName = "-presentToLogin"
+            landmarkName = "-layoutSubviews"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1397,7 +1397,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
             endingLineNumber = "122"
-            landmarkName = "-viewWillAppear:"
+            landmarkName = "-loginStatus"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1510,22 +1510,6 @@
             startingLineNumber = "56"
             endingLineNumber = "56"
             landmarkName = "loginWith(stuNum:idNum:success:failed:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A5A5A8FA-8AB6-4E69-95C3-E6AF71AA2940"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CyxbsMobile2019_iOS/Discover/ToDo/Tool/TodoSyncTool.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "390"
-            endingLineNumber = "390"
-            landmarkName = "-saveTodoWithModel:needRecord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

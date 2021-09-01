@@ -38,29 +38,10 @@
 
 - (void)setDataModel:(TodoDataModel *)dataModel {
     _dataModel = dataModel;
-    switch (dataModel.todoState) {
-        case TodoDataModelStateDone:
-            self.titleLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-            break;
-        case TodoDataModelStateOverdue:
-            self.notiTimeLabel.alpha =
-            self.bellImgView.alpha = 0;
-            self.titleLabel.textColor = [UIColor redColor];
-            break;
-        case TodoDataModelStateNeedDone:
-            self.titleLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-            break;
-    }
-    if ([dataModel.timeStr isEqualToString:@""]) {
-        self.notiTimeLabel.alpha =
-        self.bellImgView.alpha = 0;
-    }else {
-        self.notiTimeLabel.alpha =
-        self.bellImgView.alpha = 1;
-    }
     self.notiTimeLabel.text = dataModel.overdueTimeStr;
     self.checkMarkBtn.selected = dataModel.isDone;
     self.titleLabel.text = dataModel.titleStr;
+    [self setTodoState:dataModel.todoState];
 }
 - (void)addCheckMarkBtn {
     UIButton* btn = [[UIButton alloc] init];
@@ -143,6 +124,45 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self drawImg];
     });
+}
+- (void)setTodoState:(TodoDataModelState)state {
+    NSDictionary* attributeDict;
+    double titleAlpha, notiTimeAndBellAlpha;
+    switch (state) {
+        case TodoDataModelStateDone:
+            titleAlpha = 0.4;
+            notiTimeAndBellAlpha = 0.4;
+            attributeDict = @{
+                NSStrikethroughStyleAttributeName:@1,
+                NSForegroundColorAttributeName:[UIColor colorNamed:@"color21_49_91&#F0F0F2"]
+            };
+            break;
+        case TodoDataModelStateOverdue:
+            titleAlpha = 1;
+            notiTimeAndBellAlpha = 0;
+            attributeDict = @{
+                NSStrikethroughStyleAttributeName:@0,
+                NSForegroundColorAttributeName:[UIColor redColor],
+            };
+            break;
+        case TodoDataModelStateNeedDone:
+            titleAlpha = 1;
+            notiTimeAndBellAlpha = 1;
+            attributeDict = @{
+                NSStrikethroughStyleAttributeName:@0,
+                NSForegroundColorAttributeName:[UIColor colorNamed:@"color21_49_91&#F0F0F2"],
+            };
+            break;
+    }
+    if ([self.dataModel.timeStr isEqualToString:@""]) {
+        self.notiTimeLabel.alpha =
+        self.bellImgView.alpha = 0;
+    }else {
+        self.notiTimeLabel.alpha =
+        self.bellImgView.alpha = notiTimeAndBellAlpha;
+    }
+    self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:attributeDict];
+    self.notiTimeLabel.alpha = titleAlpha;
 }
 
 - (void)drawImg {
