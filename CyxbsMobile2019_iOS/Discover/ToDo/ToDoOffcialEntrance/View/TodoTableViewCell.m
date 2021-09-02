@@ -40,15 +40,14 @@
     [self.contentView addSubview:self.circlebtn];
     [self.circlebtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(SCREEN_WIDTH * 0.04);
-        make.top.equalTo(self.contentView).offset(30);
-//        make.centerY.equalTo(self.contentView);
+        make.top.equalTo(self.contentView).offset(20);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.0613, SCREEN_WIDTH * 0.0613));
     }];
     
     //标题
     [self.contentView addSubview:self.titleLbl];
     [self.titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(30);
+        make.top.equalTo(self.contentView).offset(20);
         make.left.equalTo(self.circlebtn.mas_right).offset(SCREEN_WIDTH * 0.032);
     }];
 
@@ -66,7 +65,7 @@
         [self.contentView addSubview:self.bellImgView];
         [self.bellImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.titleLbl);
-            make.top.equalTo(self.titleLbl.mas_bottom).offset(9);
+            make.top.equalTo(self.titleLbl.mas_bottom);
             make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.0293, SCREEN_WIDTH * 0.0346));
         }];
     

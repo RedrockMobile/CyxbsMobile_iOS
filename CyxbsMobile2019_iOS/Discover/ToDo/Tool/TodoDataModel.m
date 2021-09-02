@@ -241,15 +241,17 @@ static inline int ForeignWeekToChinaWeek(int week) {
     if (!_cellHeight) {
         //不动高度 + 变化高度（文本框的高度）
             //固定高度
-        double fixedHeight = SCREEN_HEIGHT * 0.0899;
-//        double fixedHeight = SCREEN_HEIGHT * 0.0449;
+//        double fixedHeight = SCREEN_HEIGHT * 0.0899;
+//        double fixedHeight = SCREEN_HEIGHT * 0.0492;
+        double fixedHeight = 40;
             //变化高度
                 //标题的高度
         NSDictionary *attr = @{NSFontAttributeName:[UIFont fontWithName:PingFangSCMedium size:18]};
         double dynamicHeight = [self.titleStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8266, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:attr context:nil].size.height;
         if (![self.timeStr isEqualToString:@""]) {
-            fixedHeight = SCREEN_HEIGHT * 0.0779;
-            dynamicHeight += SCREEN_WIDTH * 0.0269;
+//            fixedHeight = SCREEN_HEIGHT * 0.0779;
+            fixedHeight -= 10;
+            dynamicHeight += [self.timeStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8266, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont fontWithName:PingFangSCMedium size:13]} context:nil].size.height;
         }
         //最后的5是一个保险高度
         _cellHeight = dynamicHeight + fixedHeight + 5;
