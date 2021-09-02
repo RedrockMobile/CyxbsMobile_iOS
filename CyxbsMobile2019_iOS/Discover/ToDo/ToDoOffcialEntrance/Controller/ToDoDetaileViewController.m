@@ -377,7 +377,7 @@
     //保存信息
     self.temporaryModel.titleStr = self.titleTextView.text;
     self.temporaryModel.detailStr = self.remarksTextView.text;
-    if ([self.reminedBtnLbl.text isEqualToString:@""]) {
+    if ([self.reminedBtnLbl.text isEqualToString:@"设置重复提醒"]) {
         self.temporaryModel.timeStr = @"";
     }else{
         self.temporaryModel.timeStr = self.reminedBtnLbl.text;
