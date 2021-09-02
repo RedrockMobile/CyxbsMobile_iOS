@@ -412,6 +412,8 @@
 		735BC54A26D3BF6400F22678 /* FeedBackReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54926D3BF6400F22678 /* FeedBackReplyModel.m */; };
 		735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54C26D3C05900F22678 /* FeedBackReplyTableViewCell.m */; };
 		735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54F26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m */; };
+		738C15B126E0B35600E24F8C /* FeedBackDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 738C15B026E0B35600E24F8C /* FeedBackDefaultView.m */; };
+		738C15B426E0BDFE00E24F8C /* HistoricalFBDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 738C15B326E0BDFE00E24F8C /* HistoricalFBDefaultView.m */; };
 		73A1588A26C2475A00287C9F /* DIN-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 73A1588926C2475A00287C9F /* DIN-Medium.otf */; };
 		73AAA1CA26C918250084E44D /* details.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73AAA1A926C918240084E44D /* details.xcassets */; };
 		73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1AD26C918240084E44D /* DetailsTaskModel.m */; };
@@ -1476,6 +1478,10 @@
 		735BC54C26D3C05900F22678 /* FeedBackReplyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackReplyTableViewCell.m; sourceTree = "<group>"; };
 		735BC54E26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsRequestDataModel.h; sourceTree = "<group>"; };
 		735BC54F26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsRequestDataModel.m; sourceTree = "<group>"; };
+		738C15AF26E0B35600E24F8C /* FeedBackDefaultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDefaultView.h; sourceTree = "<group>"; };
+		738C15B026E0B35600E24F8C /* FeedBackDefaultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDefaultView.m; sourceTree = "<group>"; };
+		738C15B226E0BDFE00E24F8C /* HistoricalFBDefaultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoricalFBDefaultView.h; sourceTree = "<group>"; };
+		738C15B326E0BDFE00E24F8C /* HistoricalFBDefaultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoricalFBDefaultView.m; sourceTree = "<group>"; };
 		73A1588926C2475A00287C9F /* DIN-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Medium.otf"; sourceTree = "<group>"; };
 		73AAA1A926C918240084E44D /* details.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = details.xcassets; sourceTree = "<group>"; };
 		73AAA1AB26C918240084E44D /* DetailsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsMainViewController.h; sourceTree = "<group>"; };
@@ -4264,6 +4270,8 @@
 				735BC53126D38EA600F22678 /* HistoricalFeedBackTableView.m */,
 				735BC53326D392D400F22678 /* FeedBackTableViewCell.h */,
 				735BC53426D392D400F22678 /* FeedBackTableViewCell.m */,
+				738C15AF26E0B35600E24F8C /* FeedBackDefaultView.h */,
+				738C15B026E0B35600E24F8C /* FeedBackDefaultView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4295,6 +4303,8 @@
 				735BC54326D3B64500F22678 /* FeedBackDetailsTableViewCell.m */,
 				735BC54B26D3C05900F22678 /* FeedBackReplyTableViewCell.h */,
 				735BC54C26D3C05900F22678 /* FeedBackReplyTableViewCell.m */,
+				738C15B226E0BDFE00E24F8C /* HistoricalFBDefaultView.h */,
+				738C15B326E0BDFE00E24F8C /* HistoricalFBDefaultView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5925,6 +5935,7 @@
 				1AD038CA23F8301B00D5C90E /* MineQAModel.m in Sources */,
 				D0011A7623F08CB5009A242C /* QAAnswerExitView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
+				738C15B426E0BDFE00E24F8C /* HistoricalFBDefaultView.m in Sources */,
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
 				AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
@@ -6352,6 +6363,7 @@
 				D0011A7923F09422009A242C /* QADetailView.m in Sources */,
 				DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */,
 				AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */,
+				738C15B126E0B35600E24F8C /* FeedBackDefaultView.m in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
 				18CDF69B257F91BD006E8E5C /* CQUPTMapMyStarButton.m in Sources */,
 				B83766FC25C150F400A8666A /* SZHReleaseDynamic.m in Sources */,

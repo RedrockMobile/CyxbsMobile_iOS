@@ -21,7 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 用户是否阅读了这条反馈的回复
 @property (nonatomic, assign) BOOL isRead;
 
-+ (NSArray *)getFeedBackAry;
+/// 网络请求
+/// @param success 成功之后执行的block
+/// @param failure 失败之后,返回字符串
++ (void)getDataArySuccess:(void (^)(NSArray * array))success
+                  failure:(void (^)(void))failure;
 
 @end
 

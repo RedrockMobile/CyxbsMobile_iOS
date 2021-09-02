@@ -9,7 +9,7 @@
 #import "HistoricalFeedBackViewController.h"
 // view
 #import "HistoricalFeedBackTableView.h"
-
+#import "FeedBackDefaultView.h"
 // controller
 #import "FeedBackDetailsViewController.h"
 
@@ -20,6 +20,9 @@
 @property (nonatomic, strong) HistoricalFeedBackTableView * historicalFeedBackTableView;
 /// table 的头视图刷新
 @property (nonatomic, strong) MJRefreshStateHeader * feedBackStateHeader;
+/// 缺省
+@property (nonatomic, strong) FeedBackDefaultView * defaultView;
+
 /// 储存数据的数组
 @property (nonatomic, copy) NSArray * feedBackAry;
 
@@ -50,14 +53,29 @@
     }];
     [self.historicalFeedBackTableView.mj_header beginRefreshing];
     
+    // config defaultView
+    [self.historicalFeedBackTableView addSubview:self.defaultView];
+    [self.defaultView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.mas_equalTo(self.historicalFeedBackTableView);
+    }];
+    
 }
 
 #pragma mark - mj_refresh
 
 - (void)refreshHistoricalFeedBack {
-    self.feedBackAry = [FeedBackModel getFeedBackAry];
-    self.historicalFeedBackTableView.row = self.feedBackAry.count;
-    [self.historicalFeedBackTableView.mj_header endRefreshing];
+    [FeedBackModel getDataArySuccess:^(NSArray * _Nonnull array) {
+        self.feedBackAry = array;
+        self.historicalFeedBackTableView.row = self.feedBackAry.count;
+        if (self.feedBackAry.count == 0) {
+            self.defaultView.hidden = NO;
+        } else {
+            self.defaultView.hidden = YES;
+        }
+        [self.historicalFeedBackTableView.mj_header endRefreshing];
+    } failure:^{
+        [self.historicalFeedBackTableView.mj_header endRefreshing];
+    }];
 }
 
 #pragma mark - table delegate
@@ -91,6 +109,15 @@
         _feedBackStateHeader.lastUpdatedTimeLabel.hidden = YES;
     }
     return _feedBackStateHeader;
+}
+
+- (FeedBackDefaultView *)defaultView {
+    if (_defaultView == nil) {
+        _defaultView = [[FeedBackDefaultView alloc] initWithFrame:CGRectZero];
+        [_defaultView setText:@"你还没有提交过反馈意见哦~"
+                  ImgWithName:@"缺省_无记录"];
+    }
+    return _defaultView;
 }
 
 @end

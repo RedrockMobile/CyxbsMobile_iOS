@@ -10,7 +10,7 @@
 
 @implementation FeedBackModel
 
-+ (NSArray *)getFeedBackAry {
++ (void)getDataArySuccess:(void (^)(NSArray * _Nonnull))success failure:(void (^)(void))failure {
     NSMutableArray * mAry = [NSMutableArray array];
     for (int i = 0; i < 4; i++) {
         FeedBackModel * model = [[FeedBackModel alloc] init];
@@ -20,7 +20,7 @@
         model.isReplied = i % 2;
         [mAry addObject:model];
     }
-    return [mAry copy];
+    success([mAry copy]);
 }
 
 @end

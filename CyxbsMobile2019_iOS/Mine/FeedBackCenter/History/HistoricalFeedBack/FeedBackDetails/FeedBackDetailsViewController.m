@@ -10,6 +10,7 @@
 //view
 #import "FeedBackDetailsTableViewCell.h"
 #import "FeedBackReplyTableViewCell.h"
+#import "HistoricalFBDefaultView.h"
 //model
 #import "FeedBackDetailsRequestDataModel.h"
 
@@ -20,11 +21,8 @@
 @property (nonatomic, strong) UITableView * feedBackDetailsTableView;
 /// 刷新
 @property (nonatomic, strong) MJRefreshStateHeader * feedBackStateHeader;
-
-/// 提示1
-@property (nonatomic, strong) UILabel * tipsLabel1;
-/// 提示2
-@property (nonatomic, strong) UILabel * tipsLabel2;
+/// 缺省
+@property (nonatomic, strong) HistoricalFBDefaultView * defaultView;
 
 /// 储存数据的数组
 @property (nonatomic, copy) NSArray * detailsAry;
@@ -58,21 +56,13 @@
     self.feedBackDetailsTableView.frame = bounds;
     [self.feedBackDetailsTableView.mj_header beginRefreshing];
     
-    // tips1
-    [self.feedBackDetailsTableView addSubview:self.tipsLabel1];
-    [self.tipsLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.feedBackDetailsTableView);
-        make.bottom.mas_equalTo(self.feedBackDetailsTableView).offset(140);
-    }];
+    // config defaultView
+    CGFloat height = (131.f / 812) * SCREEN_HEIGHT;
+    self.feedBackDetailsTableView.tableFooterView = self.defaultView;
+    CGRect f_defaultView = bounds;
+    f_defaultView.size.height = height;
+    self.defaultView.frame = f_defaultView;
     
-    // tips2
-    [self.feedBackDetailsTableView addSubview:self.tipsLabel2];
-    [self.tipsLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.centerX.mas_equalTo(self.feedBackDetailsTableView);
-    }];
-    
-    self.tipsLabel1.hidden = YES;
-    self.tipsLabel2.hidden = YES;
 }
 
 #pragma mark - tableview delegate & data source
@@ -122,15 +112,10 @@
     [FeedBackDetailsRequestDataModel getDataArySuccess:^(NSArray * _Nonnull array) {
         self.detailsAry = array;
         [self.feedBackDetailsTableView reloadData];
-        if (self.detailsAry.count == 0) {
-            self.tipsLabel1.hidden = YES;
-            self.tipsLabel2.hidden = NO;
+        if (self.detailsAry.count == 2) {
+            self.defaultView.hidden = YES;
         } else if (self.detailsAry.count == 1) {
-            self.tipsLabel1.hidden = NO;
-            self.tipsLabel2.hidden = YES;
-        } else {
-            self.tipsLabel1.hidden = YES;
-            self.tipsLabel2.hidden = YES;
+            self.defaultView.hidden = NO;
         }
         [self.feedBackDetailsTableView.mj_header endRefreshing];
     } failure:^{
@@ -165,29 +150,12 @@
     return _feedBackStateHeader;
 }
 
-- (UILabel *)tipsLabel1 {
-    if (_tipsLabel1 == nil) {
-        UILabel * label = [[UILabel alloc] init];
-        label.text = @"还没有收到回复哦~再等等吧！";
-        label.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        _tipsLabel1 = label;
+- (HistoricalFBDefaultView *)defaultView {
+    if (_defaultView == nil) {
+        _defaultView = [[HistoricalFBDefaultView alloc] initWithFrame:CGRectZero];
+        [_defaultView setText:@"还没有收到回复哦~再等等吧！" ImgWithName:@"缺省_未回复"];
     }
-    return _tipsLabel1;
-}
-
-- (UILabel *)tipsLabel2 {
-    if (_tipsLabel2 == nil) {
-        UILabel * label = [[UILabel alloc] init];
-        label.text = @"你还没有提交过反馈意见哦~";
-        label.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        _tipsLabel2 = label;
-    }
-    return _tipsLabel2;
-    
+    return _defaultView;
 }
 
 @end
