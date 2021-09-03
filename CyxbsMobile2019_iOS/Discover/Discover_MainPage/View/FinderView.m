@@ -57,7 +57,7 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:DateFormat];
-    NSDate *resDate = [formatter dateFromString:DateStart];
+    NSDate *resDate = [formatter dateFromString:getDateStart_NSString];
     // 计算当前是第几周
     NSInteger beginTime=[resDate timeIntervalSince1970];
     NSDate *now = [NSDate date];

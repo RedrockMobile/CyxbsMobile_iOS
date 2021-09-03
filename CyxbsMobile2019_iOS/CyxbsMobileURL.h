@@ -11,16 +11,11 @@
 
 #pragma mark - “我的”接口
 
-#ifdef DEBUG
-#define CyxbsMobileBaseURL_1 @"https://be-dev.redrock.cqupt.edu.cn/"
-#define CyxbsMobileBaseURL_2 @"https://be-dev.redrock.cqupt.edu.cn/"
 
-#else
 //#define CyxbsMobileBaseURL_1 @"https://be-prod.redrock.team/"
 //#define CyxbsMobileBaseURL_2 @"https://be-prod.redrock.team/"
 #define CyxbsMobileBaseURL_1 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
 #define CyxbsMobileBaseURL_2 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
-#endif
 
 /// 登录接口
 #define LOGINAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/token"]
@@ -59,7 +54,7 @@
 #define UPLOADUSERINFOAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/Person/SetInfo"]
 
 //获取用户资料，POST
-#define getPersonData [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/Person/Search"];
+#define getPersonData [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/Person/Search"]
 
 //获取屏蔽的人
 #define getIgnoreUid [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/user/getIgnoreUid"]

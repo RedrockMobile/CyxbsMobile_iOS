@@ -201,7 +201,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [self checkVersion];
     //设置存储、更换baseURL的操作
     [self settingBaseURL];
+    [self addNotification];
+    [self requestUserInfo];
     return YES;
+}
+
+- (void)addNotification {
+    NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(requestUserInfo) name:@"Login_LoginSuceeded" object:nil];
+}
+- (void)requestUserInfo {
+    [[UserItem defaultItem] getUserInfo];
 }
 
 ///设置存储、更换baseURL
@@ -217,7 +227,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [[HttpClient defaultClient] baseUrlRequestSuccess:^(NSString *str) {
         [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"baseURL"];
     }];
-    
+//    @"https://be-dev.redrock.cqupt.edu.cn/"
 //    NS，，，，，，，，Log(@"baseURL%@",CyxbsMobileBaseURL_1);
 }
 
@@ -488,7 +498,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
            isEqualToString:@"remindBeforeCourseBegin"];
         
         //如果本地通知信息是这两个且没有打开“启动APP时显示课表”的开关
-        if(is&&[UserItem defaultItem].realName&&[[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_LaunchingWithClassScheduleView"]){
+        if(is&&[UserItem defaultItem].stuNum&&[[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_LaunchingWithClassScheduleView"]){
             dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC);
             dispatch_after(time, dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverVCShouldPresentMySchedul" object:nil];
