@@ -411,4 +411,7 @@
 //常见问题
 #define COMMON_QUESTION @"https://be-prod.redrock.cqupt.edu.cn/feedback-center/question/list?product_id=1"
 
+//提交反馈
+#define SUBMIT @"https://be-prod.redrock.cqupt.edu.cn/feedback-center/feedback/create?product_id=1"
+
 #endif /* CyxbsMobileURL_h */

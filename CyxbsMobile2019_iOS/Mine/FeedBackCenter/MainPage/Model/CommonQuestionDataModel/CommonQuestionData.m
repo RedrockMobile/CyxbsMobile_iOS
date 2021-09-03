@@ -24,6 +24,7 @@
     HttpClient *client = [HttpClient defaultClient];
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",FEED_BACK_TOKEN]  forHTTPHeaderField:@"authorization"];
     [client.httpSessionManager GET:COMMON_QUESTION parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
         NSArray *array = responseObject[@"data"];
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

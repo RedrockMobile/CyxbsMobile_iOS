@@ -10,11 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class WKWebView;
 @interface CommonQuestionDetailVC : TopBarBasicViewController
 
 @property (nonatomic,strong) NSArray *CommonQuestionAry;
 
-@property (nonatomic,strong) UILabel *testLbl;
+@property (nonatomic,strong) WKWebView *webView;
 
 @property (nonatomic,assign) NSInteger row;
 - (void)setupBar;

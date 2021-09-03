@@ -214,7 +214,6 @@
 }
 
 - (void)getlength:(UITextField *)sender{
-    NSLog(@"%lu",(unsigned long)sender.text.length);
     self.headingCountLbl.text = [NSString stringWithFormat:@"%lu",12 - (unsigned long)sender.text.length];
 }
 

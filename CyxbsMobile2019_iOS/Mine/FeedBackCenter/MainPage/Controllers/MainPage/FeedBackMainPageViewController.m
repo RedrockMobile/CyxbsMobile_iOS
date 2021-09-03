@@ -145,7 +145,6 @@
 }
 
 - (void)entrance{
-    NSLog(@"正在进入意见与反馈");
     FeedBackVC *fvc = [[FeedBackVC alloc]init];
     fvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:fvc animated:YES];
@@ -153,7 +152,6 @@
 }
 
 - (void)history{
-    NSLog(@"正在进入历史反馈");
     HistoricalFeedBackViewController *hvc = [[HistoricalFeedBackViewController alloc]init];
     hvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:hvc animated:YES];
@@ -162,7 +160,7 @@
 - (void)setupData{
     [CommonQuestionData CommonQuestionDataWithSuccess:^(NSArray * _Nonnull array) {
         self.CommonQuestionAry = array;
-        NSLog(@"%@",array);
+        
         } error:^{
             
         }];

@@ -12,6 +12,7 @@
 #import "UIView+XYView.h"
 #import <PhotosUI/PHPicker.h>
 #import "TypeButton.h"
+#import "NewQAHud.h"
 @interface FeedBackVC () <PHPickerViewControllerDelegate>
 
 @property (nonatomic,strong) TypeSelectView * typeSelectView;
@@ -214,6 +215,50 @@
 }
 
 - (void)submit{
-    NSLog(@"%ld",(long)self.correctBtn.tag);
+    NSString *type = [[NSString alloc]init];
+    switch (self.correctBtn.tag) {
+        case 0:
+            type = @"意见建议";
+            break;
+        case 1:
+            type = @"系统问题";
+            break;
+        case 2:
+            type = @"账号问题";
+        default:
+            type = @"其他";
+            break;
+    }
+ 
+    NSString *title = self.feedBackView.heading.text;
+    NSString *content = self.feedBackView.feedBackMain.text;
+    NSString *cyxbs_id = @"1";
+    
+    if (self.correctBtn) {
+        HttpClient *client = [HttpClient defaultClient];
+        [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",FEED_BACK_TOKEN]  forHTTPHeaderField:@"authorization"];
+        [client.httpRequestOperationManager POST:SUBMIT parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+
+            NSData *data1 = [type dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *data2 = [title dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *data3 = [content dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *data4 = [cyxbs_id dataUsingEncoding:NSUTF8StringEncoding];
+
+            [formData appendPartWithFormData:data1 name:@"type"];
+            [formData appendPartWithFormData:data2 name:@"title"];
+            [formData appendPartWithFormData:data3 name:@"content"];
+            [formData appendPartWithFormData:data4 name:@"product_id"];
+
+            } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+                NSLog(@"成功了");
+                [NewQAHud showHudWith:@"提交成功，感谢您的反馈与建议" AddView:self.view AndToDo:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+                NSLog(@"失败了");
+            }];
+    }else{
+        [NewQAHud showHudWith:@"请选择问题类型" AddView:self.view];
+    }
 }
 @end
