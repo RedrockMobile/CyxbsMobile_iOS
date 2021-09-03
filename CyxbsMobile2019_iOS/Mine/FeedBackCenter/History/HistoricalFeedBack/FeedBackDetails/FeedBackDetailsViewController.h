@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FeedBackDetailsViewController : TopBarBasicViewController
 
+- (instancetype)initWithFeedBackID:(long)feedback_id;
+
 @end
 
 NS_ASSUME_NONNULL_END

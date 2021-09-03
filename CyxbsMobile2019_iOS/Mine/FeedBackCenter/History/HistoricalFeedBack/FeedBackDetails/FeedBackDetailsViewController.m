@@ -17,6 +17,8 @@
 @interface FeedBackDetailsViewController ()
 <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, assign) long feedback_id;
+
 /// 展示反馈和回复
 @property (nonatomic, strong) UITableView * feedBackDetailsTableView;
 /// 刷新
@@ -26,10 +28,27 @@
 
 /// 储存数据的数组
 @property (nonatomic, copy) NSArray * detailsAry;
+/*
+ [
+    detailsModel,
+    [
+        replyModel,
+        replyModel...
+    ]
+ ]
+ */
 
 @end
 
 @implementation FeedBackDetailsViewController
+
+- (instancetype)initWithFeedBackID:(long)feedback_id {
+    self = [super init];
+    if (self) {
+        _feedback_id = feedback_id;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,7 +91,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if (section == 0) {
+        return 1;
+    }
+    return ((NSArray *)self.detailsAry[section]).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -83,7 +105,7 @@
         return cell;
     } else {
         FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
-        cell.cellModel = self.detailsAry[indexPath.section];
+        cell.cellModel = self.detailsAry[indexPath.section][indexPath.row];
         return cell;
     }
 }
@@ -109,7 +131,7 @@
 #pragma mark - mj_refresh
 
 - (void)refreshFeedBackDetails {
-    [FeedBackDetailsRequestDataModel getDataArySuccess:^(NSArray * _Nonnull array) {
+    [FeedBackDetailsRequestDataModel getDataAryWithFeedBackID:self.feedback_id Success:^(NSArray * _Nonnull array) {
         self.detailsAry = array;
         [self.feedBackDetailsTableView reloadData];
         if (self.detailsAry.count == 2) {

@@ -281,6 +281,16 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
     return [formatter stringFromDate:date];\
 }(timestamp, dateFormat)
 
+/// 时间字符串的格式转换
+#define getTimeStrWithDateFormat(timeStr, oldDateFormat, newDateFormat) ^(NSString * t, NSString * old, NSString * new) { \
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init]; \
+    formatter.dateFormat = old; \
+    NSDate * date = [formatter dateFromString:t]; \
+    formatter.dateFormat = new; \
+    NSString * str = [formatter stringFromDate:date]; \
+    return str; \
+}(timeStr, oldDateFormat, newDateFormat)
+
 /// 通过类名获得复用标识
 #define reuseIdentifier(className) NSStringFromClass(className.class)
 

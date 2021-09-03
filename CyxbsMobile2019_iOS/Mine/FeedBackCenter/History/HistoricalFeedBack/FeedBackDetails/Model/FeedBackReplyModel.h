@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FeedBackReplyModel : NSObject
 
-@property (nonatomic, assign) long date;
-@property (nonatomic, copy) NSString * contentText;
-@property (nonatomic, assign) NSInteger imgCount;
+@property (nonatomic, copy) NSString * content;
+@property (nonatomic, copy) NSArray * urls;
+@property (nonatomic, copy) NSString * CreatedAt;
 
 @end
 

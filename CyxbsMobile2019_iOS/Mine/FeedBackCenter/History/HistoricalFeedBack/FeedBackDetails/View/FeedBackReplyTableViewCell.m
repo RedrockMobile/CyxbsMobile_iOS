@@ -7,6 +7,10 @@
 //
 
 #import "FeedBackReplyTableViewCell.h"
+// view
+#import "ImgViewCollectionViewCell.h"
+// pod
+#import <YBImageBrowser.h>
 
 @interface FeedBackReplyTableViewCell ()
 <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -60,8 +64,8 @@
     CGFloat spaceWidth = 7.f;
     self.flowLayout.minimumLineSpacing = spaceWidth;
     self.flowLayout.minimumInteritemSpacing = spaceWidth;
-    CGFloat cellWidth = self.cellModel.imgCount == 0 ? 0 : (bounds.size.width - f2.origin.x * 2 - spaceWidth * 2) / 3;
-    CGFloat collectionWidth = cellWidth * self.cellModel.imgCount + spaceWidth * (self.cellModel.imgCount - 1);
+    CGFloat cellWidth = self.cellModel.urls.count == 0 ? 0 : (bounds.size.width - f2.origin.x * 2 - spaceWidth * 2) / 3;
+    CGFloat collectionWidth = cellWidth * self.cellModel.urls.count + spaceWidth * (self.cellModel.urls.count - 1);
     self.flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth);
     f2.size = CGSizeMake(collectionWidth, cellWidth);
     self.picturesCollectionView.frame = f2;
@@ -83,8 +87,8 @@
 
 - (void)setCellModel:(FeedBackReplyModel *)cellModel {
     _cellModel = cellModel;
-    self.titleLabel.text = [@"回复：" stringByAppendingString:cellModel.contentText];
-    self.timeLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY/MM/dd HH:mm");
+    self.titleLabel.text = [@"回复：" stringByAppendingString:cellModel.content];
+    self.timeLabel.text = getTimeStrWithDateFormat(cellModel.CreatedAt, @"yyyy-MM-dd'T'HH:mm:ss'+08:00'", @"yyyy/HH/dd HH:mm");
     [self layoutSubviews];
     [self.picturesCollectionView reloadData];
 }
@@ -108,7 +112,7 @@
         _picturesCollectionView.dataSource = self;
         _picturesCollectionView.scrollEnabled = NO;
         _picturesCollectionView.backgroundColor = [UIColor clearColor];
-        [_picturesCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+        [_picturesCollectionView registerClass:[ImgViewCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier(ImgViewCollectionViewCell)];
     }
     return _picturesCollectionView;
 }
@@ -147,14 +151,32 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.cellModel.imgCount;
+    return self.cellModel.urls.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
-    cell.layer.cornerRadius = 4;
+    ImgViewCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier(ImgViewCollectionViewCell) forIndexPath:indexPath];
+    
+    [cell.picImgView sd_setImageWithURL:[NSURL URLWithString:self.cellModel.urls[indexPath.item]]];
+    
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSMutableArray *photos = [NSMutableArray array];
+    for (int i = 0;i < self.cellModel.urls.count; i++) {
+        YBIBImageData *data = [YBIBImageData new];
+        data.imageURL = [NSURL URLWithString:self.cellModel.urls[i]];
+        [photos addObject:data];
+    }
+    YBImageBrowser *browser = [YBImageBrowser new];
+    browser.dataSourceArray = photos;
+    browser.currentPage = indexPath.row;
+    // 只有一个保存操作的时候，可以直接右上角显示保存按钮
+    browser.defaultToolViewHandler.topView.operationType = YBIBTopViewOperationTypeSave;
+    [browser show];
+    
 }
 
 @end

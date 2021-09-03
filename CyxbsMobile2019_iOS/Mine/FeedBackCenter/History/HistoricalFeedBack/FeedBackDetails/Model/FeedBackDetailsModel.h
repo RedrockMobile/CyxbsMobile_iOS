@@ -15,11 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FeedBackDetailsModel : NSObject
 
-@property (nonatomic, assign) long date;
-@property (nonatomic, copy) NSString * title;
-@property (nonatomic, copy) NSString * contentText;
-@property (nonatomic, assign) NSInteger imgCount;
+@property (nonatomic, copy) NSString * CreatedAt;
 @property (nonatomic, copy) NSString * type;
+@property (nonatomic, copy) NSString * title;
+@property (nonatomic, copy) NSString * content;
+@property (nonatomic, copy) NSArray * pictures; // urls
 
 @end
 

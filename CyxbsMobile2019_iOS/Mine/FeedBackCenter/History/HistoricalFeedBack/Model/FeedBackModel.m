@@ -7,20 +7,30 @@
 //
 
 #import "FeedBackModel.h"
+// network
+#import "HttpClient.h"
 
 @implementation FeedBackModel
 
-+ (void)getDataArySuccess:(void (^)(NSArray * _Nonnull))success failure:(void (^)(void))failure {
-    NSMutableArray * mAry = [NSMutableArray array];
-    for (int i = 0; i < 4; i++) {
-        FeedBackModel * model = [[FeedBackModel alloc] init];
-        model.title = [NSString stringWithFormat:@"标题表头多好我的%d", i];
-        model.date = 1628845560 + i * 100;
-        model.isRead = i % 2;
-        model.isReplied = i % 2;
-        [mAry addObject:model];
++ (void)getDataArySuccess:(void (^)(NSArray * _Nonnull))success
+                  failure:(void (^)(void))failure {
+    [[HttpClient defaultClient] requestWithPath:FeedBack_Center_History_List
+                                         method:HttpRequestGet
+                                     parameters:@{@"product_id" : @1}
+                                 prepareExecute:nil
+                                       progress:nil
+                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSDictionary * feedbacks = responseObject[@"data"][@"feedbacks"];
+        NSMutableArray * mAry = [NSMutableArray array];
+        for (NSDictionary * feedback in feedbacks) {
+            FeedBackModel * model = [FeedBackModel mj_objectWithKeyValues:feedback];
+            [mAry addObject:model];
+        }
+        success([mAry copy]);
     }
-    success([mAry copy]);
+                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure();
+    }];
 }
 
 @end

@@ -88,7 +88,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    FeedBackDetailsViewController * vc = [[FeedBackDetailsViewController alloc] init];
+    FeedBackModel * model = self.feedBackAry[indexPath.row];
+    if (model.replied == true) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"feedback_history_%zd", model.ID]];
+    }
+    
+    FeedBackDetailsViewController * vc = [[FeedBackDetailsViewController alloc] initWithFeedBackID:model.ID];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -14,12 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FeedBackModel : NSObject
 
+/// 反馈的标题
 @property (nonatomic, copy) NSString * title;
-@property (nonatomic, assign) long date;
+/// 反馈的ID
+@property (nonatomic, assign) long ID;
+/// 创建时间
+@property (nonatomic, copy) NSString * CreatedAt;
+/// 内容
+@property (nonatomic, copy) NSString * content;
 /// 是否收到回复
-@property (nonatomic, assign) BOOL isReplied;
-/// 用户是否阅读了这条反馈的回复
-@property (nonatomic, assign) BOOL isRead;
+@property (nonatomic, assign) BOOL replied;
 
 /// 网络请求
 /// @param success 成功之后执行的block
