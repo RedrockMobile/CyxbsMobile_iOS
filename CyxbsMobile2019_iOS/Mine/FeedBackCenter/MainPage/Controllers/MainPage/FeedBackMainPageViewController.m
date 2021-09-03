@@ -14,6 +14,7 @@
 #import "FeedBackVC.h"
 #import "CommonQuestionDetailVC.h"
 #import "NewQAHud.h"
+#import "CommonQuestionData.h"
 
 @interface FeedBackMainPageViewController ()<UITableViewDelegate,UITableViewDataSource>
 ///常见问题标题
@@ -28,13 +29,15 @@
 @property (nonatomic,strong) UIButton *historyBtn;
 ///跳转添加QQ群按钮
 @property (nonatomic,strong) UIButton *jumpBtn;
-
+///常见问题数组
+@property (nonatomic,strong) NSArray *CommonQuestionAry;
 @end
 
 @implementation FeedBackMainPageViewController
-
+#pragma mark - ViewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupData];
     [self setupBar];
     [self.view addSubview:self.commonQuestionsLbl];
     [self.view addSubview:self.table];
@@ -43,14 +46,21 @@
     [self.topBarView addSubview:self.historyBtn];
     [self.view addSubview:self.jumpBtn];
 }
+#pragma mark - setter
+- (void)setCommonQuestionAry:(NSArray *)CommonQuestionAry{
+    _CommonQuestionAry = CommonQuestionAry;
+    [self.table reloadData];
+}
 
 #pragma mark - Table数据源
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.CommonQuestionAry.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CommonQuestionData *data = self.CommonQuestionAry[indexPath.row];
     CommonQuestionCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"CommonQuestionCell" owner:nil options:nil]firstObject];
+    cell.mainLabel.text = data.title;
     return cell;
 }
 
@@ -60,8 +70,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"点击了%ld",indexPath.row);
-    CommonQuestionDetailVC *cvc = [[CommonQuestionDetailVC alloc]init];
+    CommonQuestionDetailVC *cvc = [[CommonQuestionDetailVC alloc]initWithIndexPathRow:indexPath.row];
     [self.navigationController pushViewController:cvc animated:YES];
 }
 #pragma mark - getter
@@ -121,7 +130,6 @@
     if (!_jumpBtn) {
         _jumpBtn = [[UIButton alloc]initWithFrame:self.hintView.frame];
         _jumpBtn.backgroundColor = [UIColor clearColor];
-        [_jumpBtn addTarget:self action:@selector(jumpQQ) forControlEvents:UIControlEventTouchUpInside];
     }
     return _jumpBtn;
 }
@@ -151,20 +159,12 @@
     [self.navigationController pushViewController:hvc animated:YES];
 }
 
-- (void)jumpQQ{
-    NSLog(@"跳转至QQ");
-
-    [NewQAHud showHudWith:@"TEST" AddView:self.view];
-    
-    NSURL *url = [self getQQQunUrl];
-    
-    [[UIApplication sharedApplication] openURL:url];
-    
-}
-
-- (NSURL*)getQQQunUrl {
-    NSString *qq_number = @"1398742714";
-    NSString* urlStr = [NSString stringWithFormat:@"mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%@&key=%@&card_type=group&source=external", qq_number, @"44a6e01f2dab126f87ecd2ec7b7e66ae259b30535fd0c2c25776271e8c0ac08f"];
-    return [NSURL URLWithString:urlStr];
+- (void)setupData{
+    [CommonQuestionData CommonQuestionDataWithSuccess:^(NSArray * _Nonnull array) {
+        self.CommonQuestionAry = array;
+        NSLog(@"%@",array);
+        } error:^{
+            
+        }];
 }
 @end

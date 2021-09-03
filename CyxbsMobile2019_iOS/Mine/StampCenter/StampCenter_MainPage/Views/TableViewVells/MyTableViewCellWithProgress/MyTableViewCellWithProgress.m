@@ -96,6 +96,8 @@
 
 //完成任务 （测试版）
 - (void)test:(GotoButton *)sender{
+    
+    NSLog(@"!!!!");
 //    NSLog(@"%@",sender.target);
 //    HttpClient *client = [HttpClient defaultClient];
 //    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];

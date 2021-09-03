@@ -33,7 +33,6 @@
 //获取自己的帖子
 #define getArticle [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/user/getUserPostList"]
 
-
 //动态/点赞/获赞评论数
 #define getUserCount [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/user/getUserCount"]
 
@@ -389,6 +388,15 @@
 
 //主页信息
 #define Stamp_Store_Main_Page @"https://be-dev.redrock.cqupt.edu.cn/magipoke-intergral/User/info"
+
+//积分商城TOKEN
+#define STAMP_CENTER_TOKEN @"eyJEYXRhIjp7ImdlbmRlciI6IueUtyIsInN0dV9udW0iOiIyMDIwMjE0ODMwIn0sIkRvbWFpbiI6Im1hZ2lwb2tlIiwiUmVkaWQiOiJjODcyYzFlMDI2MTA2YmY3NGE3ZTkwODNhNDRhZjEwZjBmOTc0OWI2IiwiZXhwIjoiNzQwMDQ2NzA2NyIsImlhdCI6IjE2MzA2NTU4MTQiLCJzdWIiOiJ3ZWIifQ==.US5JcV3tiquOCyA+jW7pO9leUAYwV7/ESDeF4x+crSXa4A7XArhwZejWE0h+AWOI/xzfTJ0p/aJH6h5uWWX0WS/USef4JRdbJux7TDSxBZpiI1Lo1O4++bLz5amveYzE306tomjzBa65FsWQ7uJPgVdipLjsfrDdBhnvOHY8IZPbJ0UGY0K4ZYI+wdDbo0D2r4GBApfcXbcfvrJnnIjLHQ/LXPQMetSWszlQYqKPEfM6c9JUfHK7+C5rqE8ttQq3W9JK8L8B9SMQDt1IPap/MWw2lNoD5R5z945a8qLur+i4cnksIqw4t3FgVX4C2sQqQPgYvM4LftNm9G1kawlIdg=="
+
+//反馈TOKEN
+#define FEED_BACK_TOKEN @"eyJEYXRhIjp7ImdlbmRlciI6IueUtyIsInN0dV9udW0iOiIyMDIwMjE0ODMwIn0sIkRvbWFpbiI6Im1hZ2lwb2tlIiwiUmVkaWQiOiJjODcyYzFlMDI2MTA2YmY3NGE3ZTkwODNhNDRhZjEwZjBmOTc0OWI2IiwiZXhwIjoiNzQwMDQ2NjI1MyIsImlhdCI6IjE2MzA2NTQ5OTkiLCJzdWIiOiJ3ZWIifQ==.pxHIEAFkCFUynRFqv8XcABvpbmCSPT/nM4feaXOsjXk2zpnckc1RR8vS51vlj34tapVkFjUNX/wtmVtyJ371XCSIzGO87SDIJ3qduLi1zdf9fbt601vnrk8AlVWWZYnF8QTHjXpckFNa117YmA00ElSI+JSSdLdBGhvWwAHFxs0rIjFnGsrrH6Kvhxkzs0LZk5qW/ONt/QOIzHtNV8hK7uDCLtPEIy6D4iPeOjf5C1YwkwNVCzfySb+yZgwOcbfEbc3luiEc8UUv+sHgb303uMnjrLD+Eob4gHScXHh1/UzrL08xev6LekbixKfyGku1lW+nTN8AHGoOJJNIOiiU/Q=="
+
+//常见问题
+#define COMMON_QUESTION @"https://be-prod.redrock.cqupt.edu.cn/feedback-center/question/list?product_id=1"
 
 #endif /* CyxbsMobileURL_h */
 

@@ -12,8 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CommonQuestionDetailVC : TopBarBasicViewController
 
-- (void)setupBar;
+@property (nonatomic,strong) NSArray *CommonQuestionAry;
 
+@property (nonatomic,strong) UILabel *testLbl;
+
+@property (nonatomic,assign) NSInteger row;
+- (void)setupBar;
+- (void)setupData;
+- (instancetype)initWithIndexPathRow:(NSInteger)row;
 @end
 
 NS_ASSUME_NONNULL_END

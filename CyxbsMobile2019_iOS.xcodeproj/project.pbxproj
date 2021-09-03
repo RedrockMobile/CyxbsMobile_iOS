@@ -366,11 +366,11 @@
 		1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */; };
 		1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE535024F7571300F42A74 /* IntroductionController.m */; };
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
+		491DAE5726E207C600693AAA /* CommonQuestionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 491DAE5626E207C600693AAA /* CommonQuestionData.m */; };
 		49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49252DA926D39CC9003A8A7F /* FeedBackMainPageViewController.m */; };
 		492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */; };
 		493162C526CD7B4900140412 /* stampcenter.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 493162C426CD7B4900140412 /* stampcenter.xcassets */; };
 		493162CE26CD7B5D00140412 /* UIView+XYView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162CA26CD7B5D00140412 /* UIView+XYView.m */; };
-		493162DD26CD7B6300140412 /* StampCountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162D526CD7B6300140412 /* StampCountData.m */; };
 		493162DE26CD7B6300140412 /* TaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162D826CD7B6300140412 /* TaskData.m */; };
 		493162DF26CD7B6300140412 /* GoodsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162DB26CD7B6300140412 /* GoodsData.m */; };
 		4931630926CD7B6800140412 /* MyTableViewCellWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162E726CD7B6800140412 /* MyTableViewCellWithProgress.m */; };
@@ -390,7 +390,6 @@
 		4975628A26D5975F004499E6 /* FeedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4975628926D5975F004499E6 /* FeedBackView.m */; };
 		4999FA8326D44EA8005D0ADE /* HintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4999FA8226D44EA8005D0ADE /* HintView.m */; };
 		49A50B6726D83B9600B25DDF /* CommonQuestionDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A50B6526D83B9600B25DDF /* CommonQuestionDetailVC.m */; };
-		49A50B6826D83B9600B25DDF /* CommonQuestionDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49A50B6626D83B9600B25DDF /* CommonQuestionDetailVC.xib */; };
 		49C2E78326D563AF00AFBE6F /* TypeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C2E78226D563AF00AFBE6F /* TypeSelectView.m */; };
 		49F47CD226D423A100084196 /* FeedBackMainPage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F47CD126D423A100084196 /* FeedBackMainPage.xcassets */; };
 		7311328426CCEC2400EF88C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7311327126CCEC2400EF88C1 /* Media.xcassets */; };
@@ -1392,14 +1391,14 @@
 		1AFE534F24F7571300F42A74 /* IntroductionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroductionController.h; sourceTree = "<group>"; };
 		1AFE535024F7571300F42A74 /* IntroductionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroductionController.m; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		491DAE5526E207C600693AAA /* CommonQuestionData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonQuestionData.h; sourceTree = "<group>"; };
+		491DAE5626E207C600693AAA /* CommonQuestionData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonQuestionData.m; sourceTree = "<group>"; };
 		49252DA826D39CC9003A8A7F /* FeedBackMainPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackMainPageViewController.h; sourceTree = "<group>"; };
 		49252DA926D39CC9003A8A7F /* FeedBackMainPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackMainPageViewController.m; sourceTree = "<group>"; };
 		492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bauhaus-93.ttf"; sourceTree = "<group>"; };
 		493162C426CD7B4900140412 /* stampcenter.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = stampcenter.xcassets; sourceTree = "<group>"; };
 		493162CA26CD7B5D00140412 /* UIView+XYView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYView.m"; sourceTree = "<group>"; };
 		493162CB26CD7B5D00140412 /* UIView+XYView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XYView.h"; sourceTree = "<group>"; };
-		493162D526CD7B6300140412 /* StampCountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCountData.m; sourceTree = "<group>"; };
-		493162D626CD7B6300140412 /* StampCountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCountData.h; sourceTree = "<group>"; };
 		493162D826CD7B6300140412 /* TaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskData.m; sourceTree = "<group>"; };
 		493162D926CD7B6300140412 /* TaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskData.h; sourceTree = "<group>"; };
 		493162DB26CD7B6300140412 /* GoodsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsData.m; sourceTree = "<group>"; };
@@ -1437,7 +1436,6 @@
 		4999FA8226D44EA8005D0ADE /* HintView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HintView.m; sourceTree = "<group>"; };
 		49A50B6426D83B9600B25DDF /* CommonQuestionDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonQuestionDetailVC.h; sourceTree = "<group>"; };
 		49A50B6526D83B9600B25DDF /* CommonQuestionDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonQuestionDetailVC.m; sourceTree = "<group>"; };
-		49A50B6626D83B9600B25DDF /* CommonQuestionDetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonQuestionDetailVC.xib; sourceTree = "<group>"; };
 		49C2E78126D563AF00AFBE6F /* TypeSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypeSelectView.h; sourceTree = "<group>"; };
 		49C2E78226D563AF00AFBE6F /* TypeSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TypeSelectView.m; sourceTree = "<group>"; };
 		49F47CD126D423A100084196 /* FeedBackMainPage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FeedBackMainPage.xcassets; sourceTree = "<group>"; };
@@ -3875,6 +3873,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		491DAE5426E2078F00693AAA /* CommonQuestionDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				491DAE5526E207C600693AAA /* CommonQuestionData.h */,
+				491DAE5626E207C600693AAA /* CommonQuestionData.m */,
+			);
+			path = CommonQuestionDataModel;
+			sourceTree = "<group>";
+		};
 		49252DA726D39C90003A8A7F /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -3918,20 +3925,10 @@
 		493162D326CD7B6300140412 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				493162D426CD7B6300140412 /* StampCountDataModel */,
 				493162D726CD7B6300140412 /* StampTaskDataModel */,
 				493162DA26CD7B6300140412 /* StampStoreGoodsDataModel */,
 			);
 			path = DataModels;
-			sourceTree = "<group>";
-		};
-		493162D426CD7B6300140412 /* StampCountDataModel */ = {
-			isa = PBXGroup;
-			children = (
-				493162D526CD7B6300140412 /* StampCountData.m */,
-				493162D626CD7B6300140412 /* StampCountData.h */,
-			);
-			path = StampCountDataModel;
 			sourceTree = "<group>";
 		};
 		493162D726CD7B6300140412 /* StampTaskDataModel */ = {
@@ -4136,7 +4133,6 @@
 			children = (
 				49A50B6426D83B9600B25DDF /* CommonQuestionDetailVC.h */,
 				49A50B6526D83B9600B25DDF /* CommonQuestionDetailVC.m */,
-				49A50B6626D83B9600B25DDF /* CommonQuestionDetailVC.xib */,
 			);
 			path = CommonQuestionDetailVC;
 			sourceTree = "<group>";
@@ -4164,6 +4160,7 @@
 		49F47CD626D42A9600084196 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				491DAE5426E2078F00693AAA /* CommonQuestionDataModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5808,7 +5805,6 @@
 				DB34EAF7239BD4550052B65E /* remind_image_content@3x.png in Resources */,
 				DB34EB17239BD4550052B65E /* 提醒@3x.png in Resources */,
 				DB34EB04239BD4550052B65E /* 多课0@2x.png in Resources */,
-				49A50B6826D83B9600B25DDF /* CommonQuestionDetailVC.xib in Resources */,
 				DB34EB16239BD4550052B65E /* remind_image_confirm@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6326,6 +6322,7 @@
 				180DAA3A26B442B20094B8DC /* PostArchiveTool.m in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
 				735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */,
+				491DAE5726E207C600693AAA /* CommonQuestionData.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				180DA9B626B440900094B8DC /* GroupModel.m in Sources */,
 				AAE3305325E2A41900324750 /* ArticleTableViewCell.m in Sources */,
@@ -6372,7 +6369,6 @@
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				7311328626CCEC2400EF88C1 /* Goods.m in Sources */,
 				AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */,
-				493162DD26CD7B6300140412 /* StampCountData.m in Sources */,
 				18CDF71D257F91BE006E8E5C /* GestureTableView.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
