@@ -55,7 +55,7 @@
     _isDone = [dict[@"is_done"] boolValue];
 }
 
-- (NSDictionary*)getDataDict {
+- (NSDictionary*)getDataDictToPush {
     return @{
         @"todo_id": self.todoIDStr,
         @"title": self.titleStr,
@@ -234,7 +234,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@", [self getDataDict]];
+    return [NSString stringWithFormat:@"%@", self.mj_keyValues];
 }
 
 - (double)cellHeight{

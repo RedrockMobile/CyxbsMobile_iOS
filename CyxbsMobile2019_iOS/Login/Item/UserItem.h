@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserItem : NSObject<NSCoding>
-
+//DEPRECATED_MSG_ATTRIBUTE("\n不要使用UserItem来获取你需要的信息，使用UserDefaultTool")
+@interface UserItem : NSObject<NSCoding> 
+//MARK: - 个人信息/登录相关的
 /// Token
 @property (nonatomic, copy) NSString *token;
 
@@ -54,6 +55,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// QQ号
 @property (nonatomic, copy) NSString *qq;
 
+
+
+//MARK: - 积分商城相关
 /// 已连续签到天数
 @property (nonatomic, copy) NSString *checkInDay;
 
@@ -72,23 +76,36 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否能签到
 @property (nonatomic, assign) BOOL canCheckIn;
 
+
+
+//MARK: - 电费相关（可能）
 /// 楼栋：例如26
 @property (nonatomic, copy, nullable) NSString *building;
 
 /// 房间号：例如413
 @property (nonatomic, copy, nullable) NSString *room;
 
+
+
+//MARK: - 志愿服务相关
 /// 志愿服务账号
 @property (nonatomic, copy) NSString *volunteerUserName;
 
 /// 志愿服务密码
 @property (nonatomic, copy) NSString *volunteerPassword ;
-///第一次登陆
+
+
+///第一次登陆（是邮问那边需要的一个标记位）
 @property (nonatomic, assign) BOOL firstLogin;
-/// ids绑定成功
+
+/// ids绑定成功（查询成绩/考试安排那边需要的）
 @property (nonatomic, assign) BOOL idsBindingSuccess;
+
+
 /// 获得单例对象
-+ (UserItem *)defaultItem DEPRECATED_MSG_ATTRIBUTE("\n不要使用defaultItem来获取你需要的信息，使用UserDefaultTool");
++ (UserItem *)defaultItem;
+
+- (void)getUserInfo;
 
 @end
 

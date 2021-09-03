@@ -35,7 +35,7 @@
         
         AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
         [responseSerializer setRemovesKeysWithNullValues:YES];
-        [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
+        [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",@"application/x-www-form-urlencoded", nil]];
         [self.httpSessionManager setResponseSerializer:responseSerializer];
         [self.httpRequestOperationManager setResponseSerializer:responseSerializer];
         

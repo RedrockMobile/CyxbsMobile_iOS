@@ -185,8 +185,10 @@
 
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    //在选择了一种重复模式后，又去选择其他模式的情况：
     if (component==0&&self.btnArr.count!=0&&row!=self.selectedCntOfcom[component]) {
         [pickerView selectRow:self.selectedCntOfcom[component] inComponent:0 animated:YES];
+        [NewQAHud showHudWith:@" 只能选择一种重复模式～ " AddView:UIApplication.sharedApplication.windows.firstObject];
         return;
     }
     self.selectedCntOfcom[component] = row;
