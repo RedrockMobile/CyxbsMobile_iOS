@@ -69,9 +69,12 @@
 - (void)setCellModel:(FeedBackModel *)cellModel {
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.title;
-    self.subtitleLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY/MM/dd HH:mm");
-    self.rightImgView.image = [UIImage imageNamed:cellModel.isReplied ? @"标签-已回复" : @"标签-未回复"];
-    self.redSpotView.hidden = cellModel.isReplied;
+    self.subtitleLabel.text = getTimeStrWithDateFormat(cellModel.CreatedAt, @"yyyy-MM-dd'T'HH:mm:ss'+08:00'", @"yyyy/HH/dd HH:mm");
+    self.rightImgView.image = [UIImage imageNamed:cellModel.replied ? @"标签-已回复" : @"标签-未回复"];
+    
+    id result = [[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"feedback_history_%zd", cellModel.ID]];
+    self.redSpotView.hidden = result ? [result boolValue] : NO;
+    
     [self setupFrame];
 }
 
