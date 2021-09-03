@@ -14,13 +14,12 @@
 
 + (void)getDataArySuccess:(void (^)(NSArray * _Nonnull))success
                   failure:(void (^)(void))failure {
-    [[HttpClient defaultClient] requestWithPath:FeedBack_Center_History_List
-                                         method:HttpRequestGet
-                                     parameters:@{@"product_id" : @1}
-                                 prepareExecute:nil
-                                       progress:nil
-                                        success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary * feedbacks = responseObject[@"data"][@"feedbacks"];
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",FEED_BACK_TOKEN]  forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager GET:FeedBack_Center_History_List
+                        parameters:nil
+                           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        NSArray * feedbacks = responseObject[@"data"][@"feedbacks"];
         NSMutableArray * mAry = [NSMutableArray array];
         for (NSDictionary * feedback in feedbacks) {
             FeedBackModel * model = [FeedBackModel mj_objectWithKeyValues:feedback];
@@ -28,9 +27,29 @@
         }
         success([mAry copy]);
     }
-                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
+                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure();
     }];
+     
+     
+     
+//    [[HttpClient defaultClient] requestWithPath:FeedBack_Center_History_List
+//                                         method:HttpRequestGet
+//                                     parameters:@{@"product_id" : @1}
+//                                 prepareExecute:nil
+//                                       progress:nil
+//                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSDictionary * feedbacks = responseObject[@"data"][@"feedbacks"];
+//        NSMutableArray * mAry = [NSMutableArray array];
+//        for (NSDictionary * feedback in feedbacks) {
+//            FeedBackModel * model = [FeedBackModel mj_objectWithKeyValues:feedback];
+//            [mAry addObject:model];
+//        }
+//        success([mAry copy]);
+//    }
+//                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        failure();
+//    }];
 }
 
 @end

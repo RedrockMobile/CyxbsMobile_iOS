@@ -395,7 +395,7 @@
 // 测试环境, 请在正式环境出来的时候
 // 历史反馈列表
 // 参数 product_id 区分数据来源, 掌邮只填1
-#define FeedBack_Center_History_List [@"http://be-prod.redrock.cqupt.edu.cn/" stringByAppendingString:@"feedback-center/feedback/list"]
+#define FeedBack_Center_History_List @"https://be-prod.redrock.cqupt.edu.cn/feedback-center/feedback/list?product_id=1"
 
 // 历史反馈页, 点击一个进入详情
 // 参数 feedback_id 信息的id
