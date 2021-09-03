@@ -7,6 +7,10 @@
 //
 
 #import "FeedBackReplyTableViewCell.h"
+// view
+#import "ImgViewCollectionViewCell.h"
+// pod
+#import <YBImageBrowser.h>
 
 @interface FeedBackReplyTableViewCell ()
 <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -108,7 +112,7 @@
         _picturesCollectionView.dataSource = self;
         _picturesCollectionView.scrollEnabled = NO;
         _picturesCollectionView.backgroundColor = [UIColor clearColor];
-        [_picturesCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+        [_picturesCollectionView registerClass:[ImgViewCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier(ImgViewCollectionViewCell)];
     }
     return _picturesCollectionView;
 }
@@ -151,11 +155,28 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    UIImageView * imgView = [[UIImageView alloc] init];
-    [imgView sd_setImageWithURL:self.cellModel.urls[indexPath.item]];
-    cell.layer.cornerRadius = 4;
+    ImgViewCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier(ImgViewCollectionViewCell) forIndexPath:indexPath];
+    
+    [cell.picImgView sd_setImageWithURL:[NSURL URLWithString:self.cellModel.urls[indexPath.item]]];
+    
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSMutableArray *photos = [NSMutableArray array];
+    for (int i = 0;i < self.cellModel.urls.count; i++) {
+        YBIBImageData *data = [YBIBImageData new];
+        data.imageURL = [NSURL URLWithString:self.cellModel.urls[i]];
+        [photos addObject:data];
+    }
+    YBImageBrowser *browser = [YBImageBrowser new];
+    browser.dataSourceArray = photos;
+    browser.currentPage = indexPath.row;
+    // 只有一个保存操作的时候，可以直接右上角显示保存按钮
+    browser.defaultToolViewHandler.topView.operationType = YBIBTopViewOperationTypeSave;
+    [browser show];
+    
 }
 
 @end
