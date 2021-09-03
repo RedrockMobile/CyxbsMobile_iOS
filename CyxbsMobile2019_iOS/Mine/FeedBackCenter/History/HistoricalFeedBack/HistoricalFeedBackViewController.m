@@ -93,7 +93,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"feedback_history_%zd", model.ID]];
     }
     
-    FeedBackDetailsViewController * vc = [[FeedBackDetailsViewController alloc] init];
+    FeedBackDetailsViewController * vc = [[FeedBackDetailsViewController alloc] initWithFeedBackID:model.ID];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

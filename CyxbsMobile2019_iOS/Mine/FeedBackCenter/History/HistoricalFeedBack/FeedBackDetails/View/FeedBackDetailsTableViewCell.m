@@ -104,9 +104,9 @@
 - (void)setCellModel:(FeedBackDetailsModel *)cellModel {
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.title;
-    self.subtitleLabel.text = cellModel.contentText;
+    self.subtitleLabel.text = cellModel.content;
     [self.typeButton setTitle:[@"#" stringByAppendingString:cellModel.type] forState:UIControlStateNormal];
-    self.timeLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY/MM/dd HH:mm");
+    self.timeLabel.text = getTimeStrWithDateFormat(cellModel.CreatedAt, @"yyyy-MM-dd'T'HH:mm:ss'+08:00'", @"yyyy/HH/dd HH:mm");
     
     [self layoutSubviews];
     [self.picturesCollectionView reloadData];
@@ -205,12 +205,13 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.cellModel.imgCount;
+    return self.cellModel.pictures.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+    UIImageView * imgView = [[UIImageView alloc] init];
+    [imgView sd_setImageWithURL:self.cellModel.pictures[indexPath.item]];
     cell.layer.cornerRadius = 4;
     return cell;
 }

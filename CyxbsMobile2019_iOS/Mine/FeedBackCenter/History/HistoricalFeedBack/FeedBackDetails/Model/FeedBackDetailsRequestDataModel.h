@@ -20,8 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 网络请求
 /// @param success 成功之后执行的block
 /// @param failure 失败之后,返回字符串
-+ (void)getDataArySuccess:(void (^)(NSArray * array))success
-                  failure:(void (^)(void))failure;
++ (void)getDataAryWithFeedBackID:(long)feedback_id
+                         Success:(void (^)(NSArray * array))success
+                         failure:(void (^)(void))failure;
 
 @end
 

@@ -83,8 +83,8 @@
 
 - (void)setCellModel:(FeedBackReplyModel *)cellModel {
     _cellModel = cellModel;
-    self.titleLabel.text = [@"回复：" stringByAppendingString:cellModel.contentText];
-    self.timeLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY/MM/dd HH:mm");
+    self.titleLabel.text = [@"回复：" stringByAppendingString:cellModel.content];
+    self.timeLabel.text = getTimeStrWithDateFormat(cellModel.CreatedAt, @"yyyy-MM-dd'T'HH:mm:ss'+08:00'", @"yyyy/HH/dd HH:mm");
     [self layoutSubviews];
     [self.picturesCollectionView reloadData];
 }
@@ -147,12 +147,13 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.cellModel.imgCount;
+    return self.cellModel.urls.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+    UIImageView * imgView = [[UIImageView alloc] init];
+    [imgView sd_setImageWithURL:self.cellModel.urls[indexPath.item]];
     cell.layer.cornerRadius = 4;
     return cell;
 }
