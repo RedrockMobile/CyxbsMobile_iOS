@@ -19,6 +19,8 @@
 /// 分割线
 @property(nonatomic, strong) UIView *lineView;
 
+/// 是否过期标识，如果过期的话
+@property (nonatomic, assign) BOOL isOverdue;
 
 @end
 
@@ -38,15 +40,14 @@
     [self.contentView addSubview:self.circlebtn];
     [self.circlebtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(SCREEN_WIDTH * 0.04);
-        make.top.equalTo(self.contentView).offset(30);
-//        make.centerY.equalTo(self.contentView);
+        make.top.equalTo(self.contentView).offset(20);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.0613, SCREEN_WIDTH * 0.0613));
     }];
     
     //标题
     [self.contentView addSubview:self.titleLbl];
     [self.titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView).offset(30);
+        make.top.equalTo(self.contentView).offset(20);
         make.left.equalTo(self.circlebtn.mas_right).offset(SCREEN_WIDTH * 0.032);
     }];
 
@@ -64,7 +65,7 @@
         [self.contentView addSubview:self.bellImgView];
         [self.bellImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.titleLbl);
-            make.top.equalTo(self.titleLbl.mas_bottom).offset(9);
+            make.top.equalTo(self.titleLbl.mas_bottom);
             make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.0293, SCREEN_WIDTH * 0.0346));
         }];
     
@@ -77,30 +78,55 @@
     }
 }
 
+//比较是否过期
+- (BOOL)compareIsOverdue{
+    //如果未设置提醒时间不认为是过期
+    if ([self.model.timeStr isEqualToString:@""]) {
+        return NO;
+    }
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
+    long notifyTimeStamp = [formatter dateFromString:self.model.timeStr].timeIntervalSince1970;
+    long nowTimeStamp = [NSDate date].timeIntervalSince1970;
+    if (nowTimeStamp > notifyTimeStamp) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 - (void)setDataWithModel:(TodoDataModel *)model{
     self.model = model;
-    //文字
-//    self.titleLbl.text = model.titleStr;
     self.timeLbl.text = model.timeStr;
     
-    //这里是对字符串进行配置，四个参数分别是：字体及字号、文字颜色、删除线样式：单实线、删除线的颜色
-    NSAttributedString *attrStr =
-    [[NSAttributedString alloc]initWithString:model.titleStr
-                                  attributes:
-    @{NSFontAttributeName:self.titleLbl.font,
-      NSForegroundColorAttributeName:[UIColor colorNamed:@"112_129_155&255_255_255"],
-      NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
-      NSStrikethroughColorAttributeName:[UIColor colorNamed:@"137_151_173&240_240_242"]}];
-        
-//    self.orginPriceLabel.attributedText = attrStr;
-    //根据是否已经完成来进行图标和文字配置
-    if (model.isDone == YES) {
+    //根据事项状态设置不同的情况
+    //如果已完成状态
+    if (self.model.isDone) {
+        //设置文本划线，这里是对字符串进行配置，四个参数分别是：字体及字号、文字颜色、删除线样式：单实线、删除线的颜色
+        NSAttributedString *attrStr =
+        [[NSAttributedString alloc]initWithString:model.titleStr
+                                       attributes:
+         @{NSFontAttributeName:self.titleLbl.font,
+           NSForegroundColorAttributeName:[UIColor colorNamed:@"112_129_155&255_255_255"],
+           NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
+           NSStrikethroughColorAttributeName:[UIColor colorNamed:@"137_151_173&240_240_242"]}];
         self.titleLbl.attributedText = attrStr;
+        
         [self.circlebtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
     } else {
-        self.titleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        [self.circlebtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
-        self.titleLbl.text = model.titleStr;
+        //如果过期
+        if ([self compareIsOverdue]) {
+            [self.circlebtn setImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
+            self.bellImgView.alpha = self.timeLbl.alpha = 0;
+            self.titleLbl.text = model.titleStr;
+            self.titleLbl.textColor = [UIColor redColor];
+        }else{
+        //待办情况
+            self.titleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+            [self.circlebtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+            self.titleLbl.text = model.titleStr;
+        }
     }
     [self configUI];
 }
