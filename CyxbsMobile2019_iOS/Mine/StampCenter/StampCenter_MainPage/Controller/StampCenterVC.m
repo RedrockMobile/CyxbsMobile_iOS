@@ -436,6 +436,7 @@
     self.splitLineHidden = YES;
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshTable" object:nil];
 }
 
 //小型邮票数量View
@@ -482,13 +483,15 @@
     [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
-        NSLog(@"!");
+       
     }];
     
     [GoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
         self.goodsAry = array;
     } error:^{
-        NSLog(@"!");
+        
     }];
 }
+
+
 @end

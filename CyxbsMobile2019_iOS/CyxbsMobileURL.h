@@ -414,4 +414,7 @@
 //提交反馈
 #define SUBMIT @"https://be-prod.redrock.cqupt.edu.cn/feedback-center/feedback/create?product_id=1"
 
+//任务
+#define TASK @"https://be-dev.redrock.cqupt.edu.cn/magipoke-intergral/Integral/progress"
+
 #endif /* CyxbsMobileURL_h */

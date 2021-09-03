@@ -96,22 +96,27 @@
 
 //完成任务 （测试版）
 - (void)test:(GotoButton *)sender{
-    
-    NSLog(@"!!!!");
-//    NSLog(@"%@",sender.target);
-//    HttpClient *client = [HttpClient defaultClient];
-//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-//    [client.httpSessionManager POST:TASK_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        NSDictionary *taskDict = @{
-//            @"title":sender.target,
-//            @"current_progress":@5
-//        };
-//        NSData *data = [NSJSONSerialization dataWithJSONObject:taskDict options:NSJSONWritingPrettyPrinted error:nil]; 
-//        [formData appendPartWithFormData:data name:@"test"];
-//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//            NSLog(@"成功了");
-//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//            NSLog(@"失败了");
-//        }];
+    NSLog(@"%@",sender.target);
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",STAMP_CENTER_TOKEN] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        NSString *target = sender.target;
+        NSString *value = @"1";
+        
+        NSData *data1 = [target dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *data2 = [value dataUsingEncoding:NSUTF8StringEncoding];
+        
+        [formData appendPartWithFormData:data1 name:@"title"];
+        [formData appendPartWithFormData:data2 name:@"current_progress"];
+       
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            NSLog(@"成功了");
+            [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                            self.progressBarHaveDone.width = self.progressBar.width * 1;
+            } completion:nil];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"失败了");
+        }];
 }
 @end
