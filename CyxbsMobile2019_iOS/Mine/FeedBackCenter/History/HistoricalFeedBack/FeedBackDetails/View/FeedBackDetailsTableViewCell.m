@@ -77,9 +77,9 @@
     CGFloat spaceWidth = 7.f;
     self.flowLayout.minimumLineSpacing = spaceWidth;
     self.flowLayout.minimumInteritemSpacing = spaceWidth;
-    CGFloat cellWidth = self.cellModel.imgCount == 0 ? 0 : (bounds.size.width - f4.origin.x * 2 - spaceWidth * 2) / 3;
+    CGFloat cellWidth = self.cellModel.pictures.count == 0 ? 0 : (bounds.size.width - f4.origin.x * 2 - spaceWidth * 2) / 3;
     self.flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth);
-    CGFloat collectionWidth = cellWidth * self.cellModel.imgCount + spaceWidth * (self.cellModel.imgCount - 1);;
+    CGFloat collectionWidth = cellWidth * self.cellModel.pictures.count + spaceWidth * (self.cellModel.pictures.count - 1);;
     f4.size = CGSizeMake(collectionWidth, cellWidth);
     self.picturesCollectionView.frame = f4;
     

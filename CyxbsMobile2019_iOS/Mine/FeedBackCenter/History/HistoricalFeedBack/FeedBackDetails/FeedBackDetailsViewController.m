@@ -131,7 +131,7 @@
 #pragma mark - mj_refresh
 
 - (void)refreshFeedBackDetails {
-    [FeedBackDetailsRequestDataModel getDataArySuccess:^(NSArray * _Nonnull array) {
+    [FeedBackDetailsRequestDataModel getDataAryWithFeedBackID:self.feedback_id Success:^(NSArray * _Nonnull array) {
         self.detailsAry = array;
         [self.feedBackDetailsTableView reloadData];
         if (self.detailsAry.count == 2) {
