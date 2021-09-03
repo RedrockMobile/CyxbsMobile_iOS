@@ -306,8 +306,9 @@
     if (sectionAry.count == 0) {
         return 220;
     }
-    TodoDataModel *model = sectionAry[indexPath.row];
-    return model.cellHeight;
+//    TodoDataModel *model = sectionAry[indexPath.row];
+//    return model.cellHeight;
+    return 65;
 }
 ///组头视图高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

@@ -49,6 +49,7 @@
     [self.titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(20);
         make.left.equalTo(self.circlebtn.mas_right).offset(SCREEN_WIDTH * 0.032);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.8266);
     }];
 
     
@@ -160,7 +161,7 @@
     if (!_titleLbl) {
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
-        _titleLbl.numberOfLines = 0;
+//        _titleLbl.numberOfLines = 0;
         _titleLbl.preferredMaxLayoutWidth = SCREEN_WIDTH * 0.8266;  //设置文本宽度最宽为多少时换行
     }
     return _titleLbl;
