@@ -34,7 +34,7 @@
         UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.663*SCREEN_WIDTH, 28, 108, 16)];
         detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
         detailLabel.textColor = [UIColor colorNamed:@"#15315B66"];
-        detailLabel.text = @"请在个人资料里查看";
+        detailLabel.text = @"敬请期待";
         _detailLabel = detailLabel;
     }
     return _detailLabel;

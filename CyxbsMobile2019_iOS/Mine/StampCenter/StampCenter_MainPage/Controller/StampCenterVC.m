@@ -112,7 +112,6 @@
 #pragma mark - viewDidLoad
 - (void)viewDidLoad{
     [super viewDidLoad];
-    NSLog(@"%@",[UserItem defaultItem].token);
     //加载数据
     [self setupData];
     //加载TopBar
