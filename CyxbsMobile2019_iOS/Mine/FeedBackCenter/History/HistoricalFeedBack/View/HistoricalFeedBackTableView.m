@@ -30,7 +30,7 @@
     self.backgroundColor = [UIColor clearColor];
     self.rowHeight = 74;
     
-    [self registerClass:[FeedBackTableViewCell class] forCellReuseIdentifier:[FeedBackTableViewCell reuseIdentifier]];
+    [self registerClass:[FeedBackTableViewCell class] forCellReuseIdentifier:reuseIdentifier(FeedBackTableViewCell)];
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -54,7 +54,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FeedBackTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FeedBackTableViewCell reuseIdentifier]];
+    FeedBackTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackTableViewCell)];
     return cell;
 }
 
