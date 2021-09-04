@@ -132,14 +132,14 @@
 
 - (void)refreshFeedBackDetails {
     [FeedBackDetailsRequestDataModel getDataAryWithFeedBackID:self.feedback_id Success:^(NSArray * _Nonnull array) {
+        [self.feedBackDetailsTableView.mj_header endRefreshing];
         self.detailsAry = array;
-        [self.feedBackDetailsTableView reloadData];
         if (self.detailsAry.count == 2) {
             self.defaultView.hidden = YES;
         } else if (self.detailsAry.count == 1) {
             self.defaultView.hidden = NO;
         }
-        [self.feedBackDetailsTableView.mj_header endRefreshing];
+        [self.feedBackDetailsTableView reloadData];
     } failure:^{
         [self.feedBackDetailsTableView.mj_header endRefreshing];
     }];

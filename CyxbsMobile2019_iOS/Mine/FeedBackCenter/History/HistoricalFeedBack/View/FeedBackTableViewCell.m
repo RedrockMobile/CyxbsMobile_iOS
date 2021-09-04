@@ -128,10 +128,4 @@
     return _redSpotView;
 }
 
-#pragma mark - private
-
-+ (NSString *)reuseIdentifier {
-    return NSStringFromClass([self class]);
-}
-
 @end

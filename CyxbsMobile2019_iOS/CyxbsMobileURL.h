@@ -400,7 +400,7 @@
 // 历史反馈页, 点击一个进入详情
 // 参数 feedback_id 信息的id
 // 参数 product_id 区分数据来源, 掌邮只填1
-#define FeedBack_Center_History_View [@"http://be-prod.redrock.cqupt.edu.cn/" stringByAppendingString:@"feedback-center/feedback/view"]
+#define FeedBack_Center_History_View @"https://be-prod.redrock.cqupt.edu.cn/feedback-center/feedback/view"
 
 //积分商城TOKEN
 #define STAMP_CENTER_TOKEN @"eyJEYXRhIjp7ImdlbmRlciI6IueUtyIsInN0dV9udW0iOiIyMDIwMjE0ODMwIn0sIkRvbWFpbiI6Im1hZ2lwb2tlIiwiUmVkaWQiOiJjODcyYzFlMDI2MTA2YmY3NGE3ZTkwODNhNDRhZjEwZjBmOTc0OWI2IiwiZXhwIjoiNzQwMDQ2NzA2NyIsImlhdCI6IjE2MzA2NTU4MTQiLCJzdWIiOiJ3ZWIifQ==.US5JcV3tiquOCyA+jW7pO9leUAYwV7/ESDeF4x+crSXa4A7XArhwZejWE0h+AWOI/xzfTJ0p/aJH6h5uWWX0WS/USef4JRdbJux7TDSxBZpiI1Lo1O4++bLz5amveYzE306tomjzBa65FsWQ7uJPgVdipLjsfrDdBhnvOHY8IZPbJ0UGY0K4ZYI+wdDbo0D2r4GBApfcXbcfvrJnnIjLHQ/LXPQMetSWszlQYqKPEfM6c9JUfHK7+C5rqE8ttQq3W9JK8L8B9SMQDt1IPap/MWw2lNoD5R5z945a8qLur+i4cnksIqw4t3FgVX4C2sQqQPgYvM4LftNm9G1kawlIdg=="

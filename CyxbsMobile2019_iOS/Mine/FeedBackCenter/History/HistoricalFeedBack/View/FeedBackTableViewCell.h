@@ -29,9 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) FeedBackModel * cellModel;
 
-/// 复用标识
-+ (NSString *)reuseIdentifier;
-
 @end
 
 NS_ASSUME_NONNULL_END

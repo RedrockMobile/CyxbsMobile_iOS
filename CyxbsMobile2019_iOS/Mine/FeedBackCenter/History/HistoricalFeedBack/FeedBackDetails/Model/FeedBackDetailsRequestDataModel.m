@@ -32,23 +32,22 @@
 //    replyModel.imgCount = 1;
 //    [mAry addObject:replyModel];
 //    success([mAry copy]);
-
-    [[HttpClient defaultClient] requestWithPath:FeedBack_Center_History_View
-                                         method:HttpRequestGet
-                                     parameters:@{
-                                         @"feedback_id" : @(feedback_id),
-                                         @"product_id" : @1
-                                     }
-                                 prepareExecute:nil
-                                       progress:nil
-                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",FEED_BACK_TOKEN]  forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager GET:FeedBack_Center_History_View
+                        parameters:@{
+                            @"feedback_id" : @(feedback_id),
+                            @"product_id" : @1
+                        }
+                           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSMutableArray * mAry = [NSMutableArray array];
-        
+
         //
         NSDictionary * feedback = responseObject[@"data"][@"feedback"];
         FeedBackDetailsModel * model = [FeedBackDetailsModel mj_objectWithKeyValues:feedback];
         [mAry addObject:model];
-        
+
         //
         NSArray * reply = responseObject[@"data"][@"reply"];
         NSMutableArray * replies = [NSMutableArray array];
@@ -56,14 +55,47 @@
             FeedBackReplyModel * replyModel = [FeedBackReplyModel mj_objectWithKeyValues:dict];
             [replies addObject: replyModel];
         }
-        [mAry addObject:replies.copy];
-        
+        if (replies.count > 0) {
+            [mAry addObject:replies.copy];
+        }
+
         success([mAry copy]);
     }
-                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
+                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure();
     }];
-    
+     
+
+//    [[HttpClient defaultClient] requestWithPath:FeedBack_Center_History_View
+//                                         method:HttpRequestGet
+//                                     parameters:@{
+//                                         @"feedback_id" : @(feedback_id),
+//                                         @"product_id" : @1
+//                                     }
+//                                 prepareExecute:nil
+//                                       progress:nil
+//                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSMutableArray * mAry = [NSMutableArray array];
+//
+//        //
+//        NSDictionary * feedback = responseObject[@"data"][@"feedback"];
+//        FeedBackDetailsModel * model = [FeedBackDetailsModel mj_objectWithKeyValues:feedback];
+//        [mAry addObject:model];
+//
+//        //
+//        NSArray * reply = responseObject[@"data"][@"reply"];
+//        NSMutableArray * replies = [NSMutableArray array];
+//        for (NSDictionary * dict in reply) {
+//            FeedBackReplyModel * replyModel = [FeedBackReplyModel mj_objectWithKeyValues:dict];
+//            [replies addObject: replyModel];
+//        }
+//        [mAry addObject:replies.copy];
+//
+//        success([mAry copy]);
+//    }
+//                                        failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        failure();
+//    }];
 }
 
 @end
