@@ -69,7 +69,8 @@
             }
         }
     if (mArray.count == 0) {
-        self.mainScrollView.collectionHeaderView.detailLabel.text = @"!!!!!!";
+        self.mainScrollView.collectionHeaderView.detailLabel.text = @"敬请期待";
+        self.mainScrollView.collectionHeaderView.detailLabel.x = 0.8*SCREEN_WIDTH;
     }
         _goodsAry = mArray;
     self.section2GoodsAry = mArray2;

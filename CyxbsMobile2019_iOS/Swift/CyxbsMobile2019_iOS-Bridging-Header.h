@@ -153,8 +153,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 
 /// 登录接口
 #define LOGINAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token"
-/// 测试环境登录接口
-#define LOGINAPI2 @"https://be-dev.redrock.cqupt.edu.cn/magipoke/token"
+
 /// 刷新token
 #define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token/refresh"
 

@@ -20,7 +20,7 @@ class LoginModel: NSObject {
             "idNum": idNum
         ]
         
-        guard let url = URL(string: LOGINAPI2) else { return }
+        guard let url = URL(string: LOGINAPI) else { return }
         
         SwiftyClient.shared.request(url, method: .post, headers: nil, parameters: params) { (response) in
             
