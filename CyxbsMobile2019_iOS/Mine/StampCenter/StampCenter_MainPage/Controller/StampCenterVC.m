@@ -112,7 +112,7 @@
 #pragma mark - viewDidLoad
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    NSLog(@"%@",[UserItem defaultItem].token);
     //加载数据
     [self setupData];
     //加载TopBar
@@ -132,12 +132,12 @@
 #pragma mark - table数据源
 //数量
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.taskAry.count;
+    return self.taskAry.count - 1;
 }
 
 //Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TaskData *data = self.taskAry[indexPath.row];
+    TaskData *data = self.taskAry[indexPath.row + 1];
         MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
     cell.row = indexPath.row;
     cell.data = data;

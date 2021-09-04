@@ -110,7 +110,7 @@
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSLog(@"成功了");
           [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
-              TaskData *data = array[self.row];
+              TaskData *data = array[self.row + 1];
               [self setData:data];
             } error:^{
                 
