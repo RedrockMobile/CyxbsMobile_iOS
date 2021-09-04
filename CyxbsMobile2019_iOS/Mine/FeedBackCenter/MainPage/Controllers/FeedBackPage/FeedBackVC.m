@@ -63,7 +63,7 @@
 - (FeedBackView *)feedBackView{
     if (!_feedBackView) {
         __weak typeof(self) weakSelf = self;
-        _feedBackView = [[FeedBackView alloc]initWithFrame:CGRectMake(16, Bar_H + 71, SCREEN_WIDTH - 32, 509)];
+        _feedBackView = [[FeedBackView alloc]initWithFrame:CGRectMake(16, Bar_H + 71, SCREEN_WIDTH - 32, 369)];
         [_feedBackView setSelectPhoto:^{
             //PHPickerConfiguration
             PHPickerConfiguration *config = [[PHPickerConfiguration alloc]init];
@@ -141,7 +141,12 @@
         _submitBtn = [[UIButton alloc]init];
         _submitBtn.size = CGSizeMake(117, 41);
         _submitBtn.centerX = self.view.centerX;
-        _submitBtn.y = 719;
+        if (IS_IPHONE8) {
+            _submitBtn.y = self.view.height - 100;
+        }else{
+            _submitBtn.y = self.view.height - 150;
+        }
+       
         [_submitBtn setImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
         [_submitBtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
     }

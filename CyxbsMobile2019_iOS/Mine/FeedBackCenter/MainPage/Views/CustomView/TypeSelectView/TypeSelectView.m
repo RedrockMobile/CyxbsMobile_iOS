@@ -25,7 +25,7 @@
 
 - (TypeButton *)recommendBtn{
     if (!_recommendBtn) {
-        _recommendBtn = [[TypeButton alloc]initWithFrame:CGRectMake(16, 24, 84, 30) AndTitle:@"意见建议"];
+        _recommendBtn = [[TypeButton alloc]initWithFrame:CGRectMake(0.042 * SCREEN_WIDTH, 24, 0.224*SCREEN_WIDTH, 30) AndTitle:@"意见建议"];
         _recommendBtn.tag = 0;
         _recommendBtn.delegate = self;
     }
@@ -34,7 +34,7 @@
 
 - (TypeButton *)systemProblemBtn{
     if (!_systemProblemBtn) {
-        _systemProblemBtn = [[TypeButton alloc]initWithFrame:CGRectMake(112, 24, 84, 30) AndTitle:@"系统问题"];
+        _systemProblemBtn = [[TypeButton alloc]initWithFrame:CGRectMake(0.298 * SCREEN_WIDTH, 24, 0.224*SCREEN_WIDTH, 30) AndTitle:@"系统问题"];
         _systemProblemBtn.tag = 1;
     }
     return _systemProblemBtn;
@@ -42,7 +42,7 @@
 
 - (TypeButton *)profileProblemBtn{
     if (!_profileProblemBtn) {
-        _profileProblemBtn = [[TypeButton alloc]initWithFrame:CGRectMake(207, 24, 84, 30) AndTitle:@"账号问题"];
+        _profileProblemBtn = [[TypeButton alloc]initWithFrame:CGRectMake(0.552 *SCREEN_WIDTH, 24, 0.224*SCREEN_WIDTH, 30) AndTitle:@"账号问题"];
         _profileProblemBtn.tag = 2;
     }
     return _profileProblemBtn;
@@ -50,7 +50,7 @@
 
 - (TypeButton *)otherBtn{
     if (!_otherBtn) {
-        _otherBtn = [[TypeButton alloc]initWithFrame:CGRectMake(302, 24, 56, 30) AndTitle:@"其他"];
+        _otherBtn = [[TypeButton alloc]initWithFrame:CGRectMake(0.805 *SCREEN_WIDTH, 24, 0.149*SCREEN_WIDTH, 30) AndTitle:@"其他"];
         _otherBtn.tag = 3;
     }
     return _otherBtn;

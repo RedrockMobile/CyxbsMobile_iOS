@@ -61,8 +61,9 @@
 
 - (UITextView *)feedBackMain{
     if (!_feedBackMain) {
-        _feedBackMain = [[UITextView alloc]initWithFrame:CGRectMake(14, 65, self.width - 36, 280)];
+        _feedBackMain = [[UITextView alloc]initWithFrame:CGRectMake(14, 65, self.width - 36, 140)];
         _feedBackMain.backgroundColor = [UIColor colorNamed:@"FeedBackBG"];
+//        _feedBackMain.backgroundColor = [UIColor redColor];
         _feedBackMain.delegate = self;
         [_feedBackMain setTextColor:[UIColor colorNamed:@"#15315B"]];
         _feedBackMain.font = [UIFont fontWithName:PingFangSCMedium size:15];
@@ -84,7 +85,7 @@
 
 - (UILabel *)headingCountLbl{
     if (!_headingCountLbl) {
-        _headingCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(315, 25, 15, 17)];
+        _headingCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.84*SCREEN_WIDTH, 25, 15, 17)];
         _headingCountLbl.font = [UIFont fontWithName:PingFangSCMedium size:13];
         _headingCountLbl.textColor = [UIColor colorNamed:@"Count"];
         _headingCountLbl.text = @"12";
@@ -94,7 +95,7 @@
 
 - (UILabel *)textCountLbl{
     if (!_textCountLbl) {
-        _textCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(290, 317, 50, 17)];
+        _textCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.773*SCREEN_WIDTH, 177, 50, 17)];
         _textCountLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
         _textCountLbl.textColor = [UIColor colorNamed:@"Count"];
         _textCountLbl.text = @"0/200";
@@ -103,7 +104,7 @@
 }
 - (UIView *)splitLine2{
     if (!_splitLine2) {
-        _splitLine2 = [[UIView alloc]initWithFrame:CGRectMake(16, 344, self.width - 32, 1)];
+        _splitLine2 = [[UIView alloc]initWithFrame:CGRectMake(16, 204, self.width - 32, 1)];
         _splitLine2.backgroundColor = [UIColor systemGray5Color];
     }
     return _splitLine2;
@@ -111,7 +112,7 @@
 
 - (UILabel *)photoLbl{
     if (!_photoLbl) {
-        _photoLbl = [[UILabel alloc]initWithFrame:CGRectMake(18, 361, 150, 21)];
+        _photoLbl = [[UILabel alloc]initWithFrame:CGRectMake(18, 221, 150, 21)];
         _photoLbl.text = @"相关问题的截图或图片";
         _photoLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
         _photoLbl.textColor = [UIColor colorNamed:@"photo"];
@@ -121,7 +122,7 @@
 
 - (UILabel *)photoCountLbl{
     if (!_photoCountLbl) {
-        _photoCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(304, 363, 21, 17)];
+        _photoCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.81*SCREEN_WIDTH, 223, 21, 17)];
         _photoCountLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
         _photoCountLbl.textColor = [UIColor colorNamed:@"Count"];
         _photoCountLbl.text = @"0/3";
@@ -131,7 +132,7 @@
 
 - (UIImageView *)imageView1{
     if (!_imageView1) {
-        _imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(18, 389, 95, 95)];
+        _imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(18, 249, 95, 95)];
         _imageView1.layer.cornerRadius = 4;
         _imageView1.layer.masksToBounds = YES;
         _imageView1.hidden = YES;
@@ -140,7 +141,7 @@
 }
 - (UIImageView *)imageView2{
     if (!_imageView2) {
-        _imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(123, 389, 95, 95)];
+        _imageView2 = [[UIImageView alloc]initWithFrame:CGRectMake(123, 249, 95, 95)];
         _imageView2.layer.cornerRadius = 4;
         _imageView2.layer.masksToBounds = YES;
         _imageView2.hidden = YES;
@@ -149,7 +150,7 @@
 }
 - (UIImageView *)imageView3{
     if (!_imageView3) {
-        _imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(227, 389, 95, 95)];
+        _imageView3 = [[UIImageView alloc]initWithFrame:CGRectMake(227, 249, 95, 95)];
         _imageView3.layer.cornerRadius = 4;
         _imageView3.layer.masksToBounds = YES;
         _imageView3.hidden = YES;
@@ -159,7 +160,7 @@
 
 - (UIView *)plusView{
     if (!_plusView) {
-        _plusView = [[UIView alloc]initWithFrame:CGRectMake(18, 389, 98, 98)];
+        _plusView = [[UIView alloc]initWithFrame:CGRectMake(18, 249, 98, 98)];
         UIImageView *iv2 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 98, 98)];
         iv2.image = [UIImage imageNamed:@"plusBG"];
         UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(34, 32.5, 30, 30)];
@@ -176,7 +177,7 @@
 
 - (UIButton *)delete1{
     if (!_delete1) {
-        _delete1 = [[UIButton alloc]initWithFrame:CGRectMake( 101, 387, 15, 15)];
+        _delete1 = [[UIButton alloc]initWithFrame:CGRectMake( 101, 247, 15, 15)];
         _delete1.tag = 0;
         [_delete1 setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
         [_delete1 addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
@@ -186,7 +187,7 @@
 }
 - (UIButton *)delete2{
     if (!_delete2) {
-        _delete2 = [[UIButton alloc]initWithFrame:CGRectMake( 206, 387, 15, 15)];
+        _delete2 = [[UIButton alloc]initWithFrame:CGRectMake( 206, 247, 15, 15)];
         _delete2.tag = 1;
         [_delete2 setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
         [_delete2 addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
@@ -197,7 +198,7 @@
 
 - (UIButton *)delete3{
     if (!_delete3) {
-        _delete3 = [[UIButton alloc]initWithFrame:CGRectMake( 310, 387, 15, 15)];
+        _delete3 = [[UIButton alloc]initWithFrame:CGRectMake( 310, 247, 15, 15)];
         _delete3.tag = 2;
         [_delete3 setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
         [_delete3 addTarget:self action:@selector(deleteImage:) forControlEvents:UIControlEventTouchUpInside];
