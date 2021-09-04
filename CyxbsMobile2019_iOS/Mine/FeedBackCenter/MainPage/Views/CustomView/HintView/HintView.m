@@ -33,7 +33,7 @@
         _qqGroupLbl = [[UILabel alloc]initWithFrame:CGRectMake(140, 0, 62, 15)];
         _qqGroupLbl.textColor = [UIColor colorNamed:@"QQ"];
         _qqGroupLbl.font = [UIFont fontWithName:PingFangSCMedium size:11];
-        _qqGroupLbl.text = @"57919844";
+        _qqGroupLbl.text = @"570919844";
     }
     return _qqGroupLbl;
 }

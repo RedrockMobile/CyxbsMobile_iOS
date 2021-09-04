@@ -274,12 +274,13 @@
             [formData appendPartWithFormData:data2 name:@"title"];
             [formData appendPartWithFormData:data3 name:@"content"];
             [formData appendPartWithFormData:data4 name:@"product_id"];
-            
            
-
+            [NewQAHud showHudWith:@"上传图片中，请稍候" AddView:self.view];
+            self.view.userInteractionEnabled = NO;
             } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
                 NSLog(@"成功了");
                 [NewQAHud showHudWith:@"提交成功，感谢您的反馈与建议" AddView:self.view AndToDo:^{
+                    self.view.userInteractionEnabled = YES;
                     [self.navigationController popViewControllerAnimated:YES];
                 }];
             } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {

@@ -34,22 +34,6 @@
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     NSLog(@"==========================出错了");
                 }];
-//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",STAMP_CENTER_TOKEN]  forHTTPHeaderField:@"authorization"];
-//    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//                //字典转模型
-//            NSArray *array = responseObject[@"data"][@"task"];
-//            NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
-//                [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                    TaskData *data = [self TaskDataWithDict:obj];
-//                    [mArray addObject:data];
-//                }];
-//                //调用成功的回调
-//                if (success) {
-//                    success(mArray.copy);
-//                }
-//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//                NSLog(@"==========================出错了");
-//        }];
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{

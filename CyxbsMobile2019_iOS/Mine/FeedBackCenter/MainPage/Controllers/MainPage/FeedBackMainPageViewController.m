@@ -130,6 +130,7 @@
     if (!_jumpBtn) {
         _jumpBtn = [[UIButton alloc]initWithFrame:self.hintView.frame];
         _jumpBtn.backgroundColor = [UIColor clearColor];
+        [_jumpBtn addTarget:self action:@selector(jumptoQQ) forControlEvents:UIControlEventTouchUpInside];
     }
     return _jumpBtn;
 }
@@ -164,5 +165,20 @@
         } error:^{
             
         }];
+}
+- (NSURL*)getQQQunUrl{
+    NSString *qq_number = @"570919844";
+    NSString* urlStr = [NSString stringWithFormat:@"mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%@&key=%@&card_type=group&source=external", qq_number, @"44a6e01f2dab126f87ecd2ec7b7e66ae259b30535fd0c2c25776271e8c0ac08f"];
+    return [NSURL URLWithString:urlStr];
+}
+
+- (void)jumptoQQ{
+    NSLog(@"跳转至QQ");
+    NSURL* url = [self getQQQunUrl];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url];
+    }else{
+        NSLog(@"这里不行");
+    }
 }
 @end
