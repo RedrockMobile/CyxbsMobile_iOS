@@ -58,7 +58,7 @@
     [self.defaultView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.centerY.mas_equalTo(self.historicalFeedBackTableView);
     }];
-    
+    self.defaultView.hidden = YES;
 }
 
 #pragma mark - mj_refresh

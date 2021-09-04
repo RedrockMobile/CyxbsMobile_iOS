@@ -10,4 +10,11 @@
 
 @implementation FeedBackDetailsModel
 
+- (NSArray *)pictures {
+    if (_pictures == nil) {
+        _pictures = [NSArray array];
+    }
+    return _pictures;
+}
+
 @end

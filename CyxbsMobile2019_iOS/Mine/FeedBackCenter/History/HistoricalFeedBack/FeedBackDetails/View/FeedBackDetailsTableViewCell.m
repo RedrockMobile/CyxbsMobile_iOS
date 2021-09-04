@@ -81,10 +81,16 @@
     CGFloat spaceWidth = 7.f;
     self.flowLayout.minimumLineSpacing = spaceWidth;
     self.flowLayout.minimumInteritemSpacing = spaceWidth;
-    CGFloat cellWidth = self.cellModel.pictures.count == 0 ? 0 : (bounds.size.width - f4.origin.x * 2 - spaceWidth * 2) / 3;
+    CGFloat cellWidth = (bounds.size.width - f4.origin.x * 2 - spaceWidth * 2) / 3;
     self.flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth);
-    CGFloat collectionWidth = cellWidth * self.cellModel.pictures.count + spaceWidth * (self.cellModel.pictures.count - 1);;
-    f4.size = CGSizeMake(collectionWidth, cellWidth);
+    if (self.cellModel.pictures.count == 0) {
+        CGFloat collectionWidth = 0;
+        f4.size = CGSizeMake(collectionWidth, 0);
+    } else {
+        CGFloat collectionWidth = cellWidth * self.cellModel.pictures.count + spaceWidth * (self.cellModel.pictures.count - 1);;
+        f4.size = CGSizeMake(collectionWidth, cellWidth);
+    }
+    
     self.picturesCollectionView.frame = f4;
     
     // typeLabel

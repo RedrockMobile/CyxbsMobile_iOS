@@ -64,10 +64,15 @@
     CGFloat spaceWidth = 7.f;
     self.flowLayout.minimumLineSpacing = spaceWidth;
     self.flowLayout.minimumInteritemSpacing = spaceWidth;
-    CGFloat cellWidth = self.cellModel.urls.count == 0 ? 0 : (bounds.size.width - f2.origin.x * 2 - spaceWidth * 2) / 3;
-    CGFloat collectionWidth = cellWidth * self.cellModel.urls.count + spaceWidth * (self.cellModel.urls.count - 1);
+    CGFloat cellWidth = (bounds.size.width - f2.origin.x * 2 - spaceWidth * 2) / 3;
     self.flowLayout.itemSize = CGSizeMake(cellWidth, cellWidth);
-    f2.size = CGSizeMake(collectionWidth, cellWidth);
+    if (self.cellModel.urls.count == 0) {
+        CGFloat collectionWidth = 0;
+        f2.size = CGSizeMake(collectionWidth, 0);
+    } else {
+        CGFloat collectionWidth = cellWidth * self.cellModel.urls.count + spaceWidth * (self.cellModel.urls.count - 1);
+        f2.size = CGSizeMake(collectionWidth, cellWidth);
+    }
     self.picturesCollectionView.frame = f2;
     
     // maskeView

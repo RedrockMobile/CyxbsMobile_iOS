@@ -33,12 +33,11 @@
 
 #pragma mark - Getter
 
-- (UIImageView *)picsimgview {
+- (UIImageView *)picImgView {
     if (_picImgView == nil) {
-        UIImageView *imageView = [[UIImageView alloc] init];
-        imageView.contentMode = UIViewContentModeScaleAspectFill;
-        imageView.clipsToBounds = YES;
-        _picImgView = imageView;
+        _picImgView = [[UIImageView alloc] init];
+        _picImgView.contentMode = UIViewContentModeScaleAspectFill;
+        _picImgView.clipsToBounds = YES;
     }
     return _picImgView;
 }

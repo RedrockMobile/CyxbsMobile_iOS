@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIImageView * picImgView;
 
-- (void)updateCellBy:(NSString *)picURL;
-
 @end
 
 NS_ASSUME_NONNULL_END
