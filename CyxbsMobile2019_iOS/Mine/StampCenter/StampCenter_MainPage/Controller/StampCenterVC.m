@@ -59,15 +59,18 @@
         NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
         for (int i = 0; i < goodsAry.count; i++) {
             GoodsData *data = goodsAry[i];
-            if (data.type == 1) {
+            if (data.type == 0) {
                 //第二分区数据
                 [mArray2 addObject:data];
             }
             //第一分区数据
-            if(data.type == 0){
+            if(data.type == 1){
                 [mArray addObject:data];
             }
         }
+    if (mArray.count == 0) {
+        self.mainScrollView.collectionHeaderView.detailLabel.text = @"!!!!!!";
+    }
         _goodsAry = mArray;
     self.section2GoodsAry = mArray2;
     //刷新控件

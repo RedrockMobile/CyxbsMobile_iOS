@@ -30,10 +30,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBar.hidden = YES;
-    self.tabBarController.tabBar.hidden = YES;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,10 +43,6 @@
     [self addBottomView];
    
     
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    self.tabBarController.tabBar.hidden = NO;
 }
 #pragma mark - configure
 ///顶部

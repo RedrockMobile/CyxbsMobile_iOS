@@ -85,7 +85,7 @@
 
 - (void)setData:(TaskData *)data{
     self.mainLabel.text = data.title;
-    self.detailLabel.text = data.Description;
+    self.detailLabel.text =[ NSString stringWithFormat:@"%@ +%d",data.Description,data.gain_stamp];
     float f = (float)data.current_progress/(float)data.max_progress;//必须强转float，不然全都是0
     self.progressBarHaveDone.size = CGSizeMake(f*150, 8);
     self.progressNumberLabel.text = [NSString stringWithFormat:@"%d/%d",data.current_progress,data.max_progress];

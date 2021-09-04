@@ -31,10 +31,10 @@
 
 - (UILabel *)detailLabel{
     if (!_detailLabel) {
-        UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.663*SCREEN_WIDTH, 28, 108, 16)];
+        UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.8*SCREEN_WIDTH, 28, 108, 16)];
         detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
         detailLabel.textColor = [UIColor colorNamed:@"#15315B66"];
-        detailLabel.text = @"敬请期待";
+        detailLabel.text = @"";
         _detailLabel = detailLabel;
     }
     return _detailLabel;
