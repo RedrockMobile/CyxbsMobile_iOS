@@ -73,7 +73,6 @@
     bounds.size.height -= [self getTopBarViewHeight];
     bounds.origin.y += [self getTopBarViewHeight];
     self.feedBackDetailsTableView.frame = bounds;
-    [self.feedBackDetailsTableView.mj_header beginRefreshing];
     
     // config defaultView
     CGFloat height = (131.f / 812) * SCREEN_HEIGHT;
@@ -81,7 +80,10 @@
     CGRect f_defaultView = bounds;
     f_defaultView.size.height = height;
     self.defaultView.frame = f_defaultView;
+    self.defaultView.hidden = YES;
     
+    // 获取数据
+    [self.feedBackDetailsTableView.mj_header beginRefreshing];
 }
 
 #pragma mark - tableview delegate & data source
@@ -125,7 +127,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - mj_refresh

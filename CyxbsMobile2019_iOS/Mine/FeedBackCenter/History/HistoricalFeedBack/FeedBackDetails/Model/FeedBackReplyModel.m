@@ -10,4 +10,11 @@
 
 @implementation FeedBackReplyModel
 
+- (NSArray *)urls {
+    if (_urls == nil) {
+        _urls = [NSArray array];
+    }
+    return _urls;
+}
+
 @end
