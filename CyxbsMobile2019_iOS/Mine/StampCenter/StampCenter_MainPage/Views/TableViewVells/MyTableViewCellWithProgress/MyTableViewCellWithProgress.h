@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) GotoButton *gotoButton;
 ///数据
 @property (nonatomic,strong) TaskData *data;
+///Row
+@property (nonatomic,assign) NSInteger row;
 
 
 @end

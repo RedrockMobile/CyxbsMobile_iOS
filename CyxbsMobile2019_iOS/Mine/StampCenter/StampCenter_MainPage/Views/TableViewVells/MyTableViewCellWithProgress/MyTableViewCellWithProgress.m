@@ -90,31 +90,31 @@
     self.progressBarHaveDone.size = CGSizeMake(f*150, 8);
     self.progressNumberLabel.text = [NSString stringWithFormat:@"%d/%d",data.current_progress,data.max_progress];
     self.gotoButton.target = data.title;
+    if (data.current_progress == data.max_progress) {
+        self.gotoButton.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
+        [self.gotoButton setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
+        self.gotoButton.enabled = NO;
+        [self.gotoButton setTitle:@"已完成" forState:UIControlStateNormal];
+    }
     [self.gotoButton addTarget:self action:@selector(test:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-
-//完成任务 （测试版）
+//做任务
 - (void)test:(GotoButton *)sender{
-    NSLog(@"%@",sender.target);
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",STAMP_CENTER_TOKEN] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
     [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
         NSString *target = sender.target;
-        NSString *value = @"1";
-        
-        NSData *data1 = [target dataUsingEncoding:NSUTF8StringEncoding];
-        NSData *data2 = [value dataUsingEncoding:NSUTF8StringEncoding];
-        
-        [formData appendPartWithFormData:data1 name:@"title"];
-        [formData appendPartWithFormData:data2 name:@"current_progress"];
-       
+        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+        [formData appendPartWithFormData:data name:@"title"];
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSLog(@"成功了");
-            [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                            self.progressBarHaveDone.width = self.progressBar.width * 1;
-            } completion:nil];
+          [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+              TaskData *data = array[self.row];
+              [self setData:data];
+            } error:^{
+                
+            }];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"失败了");
         }];

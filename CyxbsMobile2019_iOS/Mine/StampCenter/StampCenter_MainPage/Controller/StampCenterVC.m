@@ -112,6 +112,7 @@
 #pragma mark - viewDidLoad
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
     //加载数据
     [self setupData];
     //加载TopBar
@@ -138,6 +139,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TaskData *data = self.taskAry[indexPath.row];
         MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
+    cell.row = indexPath.row;
     cell.data = data;
     return cell;
 }
@@ -436,14 +438,12 @@
     self.splitLineHidden = YES;
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTable) name:@"refreshTable" object:nil];
 }
 
 //小型邮票数量View
 - (UIView *)stampCountView{
     if (!_stampCountView) {
         HttpClient *client = [HttpClient defaultClient];
-//        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
         [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

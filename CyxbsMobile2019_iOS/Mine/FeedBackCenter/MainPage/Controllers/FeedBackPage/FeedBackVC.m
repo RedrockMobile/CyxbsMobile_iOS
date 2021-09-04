@@ -243,11 +243,39 @@
             NSData *data2 = [title dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data3 = [content dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data4 = [cyxbs_id dataUsingEncoding:NSUTF8StringEncoding];
-
+            
+            
+            if (self.photoAry.count == 1) {
+                NSData *imageData = UIImagePNGRepresentation(self.photoAry[0]);
+                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+            }
+            if (self.photoAry.count == 2) {
+                NSData *imageData = UIImagePNGRepresentation(self.photoAry[0]);
+                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+                NSData *imageData2 = UIImagePNGRepresentation(self.photoAry[1]);
+                NSString *fileName2 = [NSString stringWithFormat:@"%ld2.jpeg", [NSDate nowTimestamp]];
+                [formData appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
+            }
+            if (self.photoAry.count == 3) {
+                NSData *imageData = UIImagePNGRepresentation(self.photoAry[0]);
+                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+                NSData *imageData2 = UIImagePNGRepresentation(self.photoAry[1]);
+                NSString *fileName2 = [NSString stringWithFormat:@"%ld2.jpeg", [NSDate nowTimestamp]];
+                [formData appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
+                NSData *imageData3 = UIImagePNGRepresentation(self.photoAry[2]);
+                NSString *fileName3 = [NSString stringWithFormat:@"%ld3.jpeg", [NSDate nowTimestamp]];
+                [formData appendPartWithFileData:imageData3 name:@"file" fileName:fileName3 mimeType:@"image/jpeg"];
+            }
+            
             [formData appendPartWithFormData:data1 name:@"type"];
             [formData appendPartWithFormData:data2 name:@"title"];
             [formData appendPartWithFormData:data3 name:@"content"];
             [formData appendPartWithFormData:data4 name:@"product_id"];
+            
+           
 
             } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
                 NSLog(@"成功了");
@@ -260,5 +288,9 @@
     }else{
         [NewQAHud showHudWith:@"请选择问题类型" AddView:self.view];
     }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.feedBackView endEditing:YES];
 }
 @end
