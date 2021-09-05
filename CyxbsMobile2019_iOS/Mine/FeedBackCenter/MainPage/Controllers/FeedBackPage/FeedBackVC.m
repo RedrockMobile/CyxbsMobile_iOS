@@ -251,26 +251,26 @@
             
             
             if (self.photoAry.count == 1) {
-                NSData *imageData = UIImagePNGRepresentation(self.photoAry[0]);
+                NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
                 NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
                 [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
             }
             if (self.photoAry.count == 2) {
-                NSData *imageData = UIImagePNGRepresentation(self.photoAry[0]);
+                NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
                 NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
                 [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
-                NSData *imageData2 = UIImagePNGRepresentation(self.photoAry[1]);
+                NSData *imageData2 = UIImageJPEGRepresentation(self.photoAry[1], 0.6);
                 NSString *fileName2 = [NSString stringWithFormat:@"%ld2.jpeg", [NSDate nowTimestamp]];
                 [formData appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
             }
             if (self.photoAry.count == 3) {
-                NSData *imageData = UIImagePNGRepresentation(self.photoAry[0]);
+                NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
                 NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
                 [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
-                NSData *imageData2 = UIImagePNGRepresentation(self.photoAry[1]);
+                NSData *imageData2 = UIImageJPEGRepresentation(self.photoAry[1], 0.6);
                 NSString *fileName2 = [NSString stringWithFormat:@"%ld2.jpeg", [NSDate nowTimestamp]];
                 [formData appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
-                NSData *imageData3 = UIImagePNGRepresentation(self.photoAry[2]);
+                NSData *imageData3 = UIImageJPEGRepresentation(self.photoAry[2], 0.6);
                 NSString *fileName3 = [NSString stringWithFormat:@"%ld3.jpeg", [NSDate nowTimestamp]];
                 [formData appendPartWithFileData:imageData3 name:@"file" fileName:fileName3 mimeType:@"image/jpeg"];
             }
