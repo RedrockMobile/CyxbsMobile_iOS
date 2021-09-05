@@ -22,17 +22,15 @@
 
 + (void)CommonQuestionDataWithSuccess:(void (^)(NSArray * _Nonnull))success error:(void (^)(void))error{
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",FEED_BACK_TOKEN]  forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager GET:COMMON_QUESTION parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        NSLog(@"%@",responseObject);
-        NSArray *array = responseObject[@"data"];
-        NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
-        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    CommonQuestionData *data = [self CommonQuestionDataWithDict:obj];
-                    [mArray addObject:data];
-        }];
-        success(mArray.copy);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    [client requestWithPath:COMMON_QUESTION method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSArray *array = responseObject[@"data"];
+            NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
+            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        CommonQuestionData *data = [self CommonQuestionDataWithDict:obj];
+                        [mArray addObject:data];
+                        success(mArray.copy);
+            }];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"==========================出错了");
         }];
     
