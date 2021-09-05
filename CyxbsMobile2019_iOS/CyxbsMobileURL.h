@@ -390,6 +390,9 @@
 //主页信息
 #define Stamp_Store_Main_Page [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/info"]
 
+//任务
+#define TASK [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/progress"]
+
 #pragma mark - 反馈中心
 
 // 测试环境, 请在正式环境出来的时候
@@ -402,17 +405,10 @@
 // 参数 product_id 区分数据来源, 掌邮只填1
 #define FeedBack_Center_History_View [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/view"]
 
-//反馈TOKEN
-#define FEED_BACK_TOKEN @"eyJEYXRhIjp7ImdlbmRlciI6IueUtyIsInN0dV9udW0iOiIyMDIwMjE0ODMwIn0sIkRvbWFpbiI6Im1hZ2lwb2tlIiwiUmVkaWQiOiJjODcyYzFlMDI2MTA2YmY3NGE3ZTkwODNhNDRhZjEwZjBmOTc0OWI2IiwiZXhwIjoiNzQwMDQ2NjI1MyIsImlhdCI6IjE2MzA2NTQ5OTkiLCJzdWIiOiJ3ZWIifQ==.pxHIEAFkCFUynRFqv8XcABvpbmCSPT/nM4feaXOsjXk2zpnckc1RR8vS51vlj34tapVkFjUNX/wtmVtyJ371XCSIzGO87SDIJ3qduLi1zdf9fbt601vnrk8AlVWWZYnF8QTHjXpckFNa117YmA00ElSI+JSSdLdBGhvWwAHFxs0rIjFnGsrrH6Kvhxkzs0LZk5qW/ONt/QOIzHtNV8hK7uDCLtPEIy6D4iPeOjf5C1YwkwNVCzfySb+yZgwOcbfEbc3luiEc8UUv+sHgb303uMnjrLD+Eob4gHScXHh1/UzrL08xev6LekbixKfyGku1lW+nTN8AHGoOJJNIOiiU/Q=="
-
 //常见问题
 #define COMMON_QUESTION [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/question/list?product_id=1"]
 
 //提交反馈
 #define SUBMIT [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/create?product_id=1"]
-
-
-//任务
-#define TASK [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/progress"]
 
 #endif /* CyxbsMobileURL_h */
