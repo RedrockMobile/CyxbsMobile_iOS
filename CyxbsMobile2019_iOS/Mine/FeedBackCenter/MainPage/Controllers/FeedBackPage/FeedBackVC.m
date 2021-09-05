@@ -241,7 +241,8 @@
     
     if (self.correctBtn) {
         HttpClient *client = [HttpClient defaultClient];
-        [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",FEED_BACK_TOKEN]  forHTTPHeaderField:@"authorization"];
+        
+        [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
         [client.httpRequestOperationManager POST:SUBMIT parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 
             NSData *data1 = [type dataUsingEncoding:NSUTF8StringEncoding];
