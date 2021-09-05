@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface FeedBackDetailsViewController : TopBarBasicViewController
 
-- (instancetype)initWithFeedBackID:(long)feedback_id;
+- (instancetype)initWithFeedBackID:(long)feedback_id
+                 whenPopCompletion:(void (^)(void))popCompletion;
 
 @end
 

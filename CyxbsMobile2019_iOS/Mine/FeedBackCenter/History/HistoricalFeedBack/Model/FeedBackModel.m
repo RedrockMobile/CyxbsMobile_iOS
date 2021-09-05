@@ -24,6 +24,10 @@
         for (NSDictionary * feedback in feedbacks) {
             FeedBackModel * model = [FeedBackModel mj_objectWithKeyValues:feedback];
             [mAry addObject:model];
+            if (model.replied &&
+                ![[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"feedback_history_%zd", model.ID]]) {
+                [[NSUserDefaults standardUserDefaults] setBool:NO forKey:[NSString stringWithFormat:@"feedback_history_%zd", model.ID]];
+            }
         }
         success([mAry copy]);
     }

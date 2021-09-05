@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString * content;
 @property (nonatomic, copy) NSArray * urls;
 @property (nonatomic, copy) NSString * CreatedAt;
+@property (nonatomic, assign) long ID;
 
 @end
 

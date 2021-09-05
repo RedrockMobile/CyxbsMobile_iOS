@@ -93,7 +93,9 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:@"feedback_history_%zd", model.ID]];
     }
     
-    FeedBackDetailsViewController * vc = [[FeedBackDetailsViewController alloc] initWithFeedBackID:model.ID];
+    FeedBackDetailsViewController * vc = [[FeedBackDetailsViewController alloc] initWithFeedBackID:model.ID whenPopCompletion:^{
+        [self.historicalFeedBackTableView reloadData];
+    }];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

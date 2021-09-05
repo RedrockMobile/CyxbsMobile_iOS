@@ -31,21 +31,22 @@
 /*
  [
     detailsModel,
-    [
-        replyModel,
-        replyModel...
-    ]
+    replyModel (nullable)
  ]
  */
+
+@property (nonatomic, copy) void (^popCompletion)(void);
 
 @end
 
 @implementation FeedBackDetailsViewController
 
-- (instancetype)initWithFeedBackID:(long)feedback_id {
+- (instancetype)initWithFeedBackID:(long)feedback_id
+                 whenPopCompletion:(nonnull void (^)(void))popCompletion {
     self = [super init];
     if (self) {
         _feedback_id = feedback_id;
+        _popCompletion = popCompletion;
     }
     return self;
 }
@@ -93,10 +94,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    }
-    return ((NSArray *)self.detailsAry[section]).count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -107,7 +105,7 @@
         return cell;
     } else {
         FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
-        cell.cellModel = self.detailsAry[indexPath.section][indexPath.row];
+        cell.cellModel = self.detailsAry[indexPath.section];
         return cell;
     }
 }
@@ -128,6 +126,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+#pragma mark - event response
+
+- (void)backBtnClicked:(UIButton *)sender {
+    [super backBtnClicked:sender];
+    self.popCompletion();
 }
 
 #pragma mark - mj_refresh

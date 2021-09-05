@@ -49,14 +49,10 @@
         [mAry addObject:model];
 
         //
-        NSArray * reply = responseObject[@"data"][@"reply"];
-        NSMutableArray * replies = [NSMutableArray array];
-        for (NSDictionary * dict in reply) {
-            FeedBackReplyModel * replyModel = [FeedBackReplyModel mj_objectWithKeyValues:dict];
-            [replies addObject: replyModel];
-        }
-        if (replies.count > 0) {
-            [mAry addObject:replies.copy];
+        NSDictionary * reply = responseObject[@"data"][@"reply"];
+        FeedBackReplyModel * replyModel = [FeedBackReplyModel mj_objectWithKeyValues:reply];
+        if (replyModel && replyModel.ID != 0) {
+            [mAry addObject: replyModel];
         }
 
         success([mAry copy]);
