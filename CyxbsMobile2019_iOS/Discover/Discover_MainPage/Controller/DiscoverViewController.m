@@ -112,7 +112,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
     } else {
-        [self RequestCheckinInfo];
+//        [self RequestCheckinInfo];
     }
      self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
