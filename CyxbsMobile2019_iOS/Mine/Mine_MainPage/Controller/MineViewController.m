@@ -25,8 +25,12 @@
 #import "MineSettingViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import "CheckInModel.h"
-
+//邮票中心
 #import "StampCenterVC.h"
+
+//意见与反馈
+#import "FeedBackMainPageViewController.h"
+#import "HistoricalFeedBackViewController.h"
 
 @interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -298,17 +302,28 @@
     
 }
 
+// 点击意见与反馈
 - (void)selectedFeedBack {
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = @"570919844";
+
+//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//    pasteboard.string = @"570919844";
+//
+//    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
+//
+//    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
+//
+//    [feedBackGroupAllert addAction:certainAction];
+//
+//    [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
     
-    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
+//    HistoricalFeedBackViewController * vc = [[HistoricalFeedBackViewController alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
+
     
-    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
-    
-    [feedBackGroupAllert addAction:certainAction];
-    
-    [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
+    FeedBackMainPageViewController *fvc = [[FeedBackMainPageViewController alloc]init];
+    fvc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:fvc animated:YES];
 }
 
 #pragma mark - 通知中心回调

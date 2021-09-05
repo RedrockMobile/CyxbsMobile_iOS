@@ -8,7 +8,6 @@
 
 #import "Goods.h"
 #import <AFNetworking/AFNetworking.h>
-#import "ZWTMacro.h"
 
 @implementation Goods
 
@@ -16,17 +15,17 @@
 + (void)getDataDictWithId:(NSString *)goodsid Success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(void))failure {
     
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSDictionary *paramDict = @{
-        @"id":goodsid
-    };
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN]  forHTTPHeaderField:@"authorization"];
-        [manager GET:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-intergral/Integral/getItemInfo" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            success(responseObject[@"data"]);
-            
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                }];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    NSDictionary *paramDict = @{
+//        @"id":goodsid
+//    };
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+//        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN]  forHTTPHeaderField:@"authorization"];
+//        [manager GET:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-intergral/Integral/getItemInfo" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            success(responseObject[@"data"]);
+//            
+//                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                }];
 }
 @end

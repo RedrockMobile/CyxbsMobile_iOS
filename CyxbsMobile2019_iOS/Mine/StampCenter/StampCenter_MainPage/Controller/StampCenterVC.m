@@ -16,8 +16,6 @@
 
 //Tool
 #import "UIView+XYView.h"
-#import "ZWTMacro.h"
-
 //Model
 #import "GoodsData.h"
 #import "TaskData.h"
@@ -61,15 +59,19 @@
         NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
         for (int i = 0; i < goodsAry.count; i++) {
             GoodsData *data = goodsAry[i];
-            if (data.type == 1) {
+            if (data.type == 0) {
                 //第二分区数据
                 [mArray2 addObject:data];
             }
             //第一分区数据
-            if(data.type == 0){
+            if(data.type == 1){
                 [mArray addObject:data];
             }
         }
+    if (mArray.count == 0) {
+        self.mainScrollView.collectionHeaderView.detailLabel.text = @"敬请期待";
+        self.mainScrollView.collectionHeaderView.detailLabel.x = 0.8*SCREEN_WIDTH;
+    }
         _goodsAry = mArray;
     self.section2GoodsAry = mArray2;
     //刷新控件
@@ -133,13 +135,14 @@
 #pragma mark - table数据源
 //数量
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.taskAry.count;
+    return self.taskAry.count - 1;
 }
 
 //Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TaskData *data = self.taskAry[indexPath.row];
+    TaskData *data = self.taskAry[indexPath.row + 1];
         MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
+    cell.row = indexPath.row;
     cell.data = data;
     return cell;
 }
@@ -444,8 +447,7 @@
 - (UIView *)stampCountView{
     if (!_stampCountView) {
         HttpClient *client = [HttpClient defaultClient];
-        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-        [client.httpSessionManager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"==========================出错了");
@@ -484,13 +486,15 @@
     [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
-        NSLog(@"!");
+       
     }];
     
     [GoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
         self.goodsAry = array;
     } error:^{
-        NSLog(@"!");
+        
     }];
 }
+
+
 @end

@@ -32,7 +32,7 @@
 - (void)setCellModel:(DetailsTaskModel *)cellModel {
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.task_name;
-    self.subtitleLabel.text = [self getTimeFromTimestamp:cellModel.date];
+    self.subtitleLabel.text = getTimeFromTimestampWithDateFormat(cellModel.date, @"YYYY.MM.dd");
     self.rightTitleLabel.text = [NSString stringWithFormat:@"+%zd", cellModel.task_income];
 }
 

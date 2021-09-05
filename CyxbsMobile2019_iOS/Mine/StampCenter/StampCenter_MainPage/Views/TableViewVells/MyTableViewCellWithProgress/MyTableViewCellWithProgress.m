@@ -6,7 +6,6 @@
 //
 
 #import "MyTableViewCellWithProgress.h"
-#import "ZWTMacro.h"
 
 @implementation MyTableViewCellWithProgress
 
@@ -86,29 +85,36 @@
 
 - (void)setData:(TaskData *)data{
     self.mainLabel.text = data.title;
-    self.detailLabel.text = data.Description;
+    self.detailLabel.text =[ NSString stringWithFormat:@"%@ +%d",data.Description,data.gain_stamp];
     float f = (float)data.current_progress/(float)data.max_progress;//必须强转float，不然全都是0
     self.progressBarHaveDone.size = CGSizeMake(f*150, 8);
     self.progressNumberLabel.text = [NSString stringWithFormat:@"%d/%d",data.current_progress,data.max_progress];
     self.gotoButton.target = data.title;
+    if (data.current_progress == data.max_progress) {
+        self.gotoButton.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
+        [self.gotoButton setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
+        self.gotoButton.enabled = NO;
+        [self.gotoButton setTitle:@"已完成" forState:UIControlStateNormal];
+    }
     [self.gotoButton addTarget:self action:@selector(test:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-
-//完成任务 （测试版）
+//做任务
 - (void)test:(GotoButton *)sender{
-    NSLog(@"%@",sender.target);
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSDictionary *taskDict = @{
-            @"title":sender.target,
-            @"current_progress":@5
-        };
-        NSData *data = [NSJSONSerialization dataWithJSONObject:taskDict options:NSJSONWritingPrettyPrinted error:nil]; 
-        [formData appendPartWithFormData:data name:@"test"];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSString *target = sender.target;
+        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+        [formData appendPartWithFormData:data name:@"title"];
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSLog(@"成功了");
+          [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+              TaskData *data = array[self.row + 1];
+              [self setData:data];
+            } error:^{
+                
+            }];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"失败了");
         }];
