@@ -359,7 +359,7 @@
         [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectRepeatViewCancelBtnClicked)]];
         
         [self.view addSubview:self.selectRepeatView];
-        [self.selectRepeatView show];
+        [self.selectRepeatView showView];
         [UIView animateWithDuration:0.5 animations:^{
             self.maskView.alpha = 1;
             self.selectRepeatView.alpha = 1;

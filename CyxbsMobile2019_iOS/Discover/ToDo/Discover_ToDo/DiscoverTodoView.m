@@ -27,6 +27,8 @@
 @property (nonatomic, strong)UILabel* nothingLabel;
 
 @property (nonatomic, strong)NSArray<TodoDataModel*>* dataModelArr;
+
+@property (nonatomic, assign)CGFloat viewHeight;
 @end
 
 @implementation DiscoverTodoView
@@ -35,10 +37,6 @@
     self = [super init];
     if (self) {
         self.dataModelArr = @[];
-        [self mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(SCREEN_WIDTH);
-            make.height.mas_equalTo(0.315*SCREEN_HEIGHT);
-        }];
         
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D"];
@@ -60,72 +58,25 @@
 - (void)shouldDrawImg:(NSNotification*)noti {
     DiscoverTodoTableViewCell* cell = noti.object;
     [self.delegate todoDidAlterWithModel:cell.dataModel];
-    
-    CGRect cellFrame = [cell convertRect:cell.bounds toView:self.todoListTableView];
-    CGFloat bottomImgY = cellFrame.origin.y+cellFrame.size.height;
-    
-    UIImageView* cellImgView = [self addImgViewOfView:self.todoListTableView clip:cellFrame];
-    UIImageView* bottomImgView = [self addImgViewOfView:self.todoListTableView clip:CGRectMake(0, bottomImgY, self.todoListTableView.width, self.todoListTableView.height-bottomImgY)];
-    
-    cellImgView.layer.anchorPoint = CGPointMake(0.5, 0);
-    cellImgView.layer.position = CGPointMake(cellImgView.layer.position.x, cellImgView.layer.position.y-cellImgView.frame.size.height/2);
-    [UIView animateWithDuration:1 animations:^{
-        cellImgView.transform = CGAffineTransformMakeScale(1, 0.01);
-        bottomImgView.transform = CGAffineTransformMakeTranslation(0, -cellFrame.size.height);
-    }completion:^(BOOL finished) {
-        [self reloadData];
-        [cellImgView removeFromSuperview];
-        [bottomImgView removeFromSuperview];
-    }];
-    
+    [self reloadData];
 }
-
-- (UIImageView*)addImgViewOfView:(UIView*)view clip:(CGRect)rect {
-    UIImageView* imgView = [[UIImageView alloc] initWithImage:[self getImgOfView:view clip:rect]];
-    imgView.frame = rect;
-    [self.todoListTableView addSubview:imgView];
-    [imgView sizeToFit];
-    return imgView;
-}
-/// 在view表示的矩形区域内，截取frame为rect的矩形区域的图片
-- (UIImage*)getImgOfView:(UIView*)view clip:(CGRect)rect {
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
-    
-    //得先剪裁，再渲染
-//    UIBezierPath* path = [UIBezierPath bezierPathWithRect:rect];
-//    [path addClip];
-    
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(ctx, -rect.origin.x, -rect.origin.y);
-    [view.layer renderInContext:ctx];
-    
-    UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    static int cnt = 0;
-    cnt++;
-    [UIImagePNGRepresentation(img) writeToFile:[NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%d.png",cnt]] atomically:YES];
-    if (cnt%2==0) {
-        cnt = 0;
-    }
-    return img;
-}
-
 
 - (void)reloadData {
     self.dataModelArr = [self.dataSource dataModelToShowForDiscoverTodoView:self];
     [self.todoListTableView reloadData];
+    int nothingLabelAlpha;
+    if (self.dataModelArr.count==0) {
+        self.viewHeight = 0.1822660099*SCREEN_HEIGHT;
+        nothingLabelAlpha = 1;
+    }else {
+        self.viewHeight = 0.315*SCREEN_HEIGHT;
+        nothingLabelAlpha = 0;
+    }
     [UIView animateWithDuration:1 animations:^{
-        if (self.dataModelArr.count==0) {
-            self.nothingLabel.alpha = 1;
-            self.todoListTableView.alpha = 0;
-        }else {
-            self.nothingLabel.alpha = 0;
-            self.todoListTableView.alpha = 1;
-        }
+        self.nothingLabel.alpha = nothingLabelAlpha;
+        self.todoListTableView.alpha = 1-nothingLabelAlpha;
     }];
-    
+    [self setNeedsLayout];
 }
 //MARK: - 初始化UI的操作：
 /// 添加一个View遮住底部多出来的圆角
@@ -229,4 +180,52 @@
 - (void)addBtnClicked {
     [self.delegate addBtnClicked];
 }
+
+- (void)layoutSubviews {
+    [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.viewHeight);
+    }];
+}
+
+/// 折叠动画，视觉嫌他太丑，ban掉了，但是我舍不得删
+- (void)flodAnimationWithCell:(UITableViewCell*)cell {
+    CGRect cellFrame = [cell convertRect:cell.bounds toView:self.todoListTableView];
+    CGFloat bottomImgY = cellFrame.origin.y+cellFrame.size.height;
+    
+    UIImageView* cellImgView = [self addImgViewOfView:self.todoListTableView clip:cellFrame];
+    UIImageView* bottomImgView = [self addImgViewOfView:self.todoListTableView clip:CGRectMake(0, bottomImgY, self.todoListTableView.width, self.todoListTableView.height-bottomImgY)];
+    
+    cellImgView.layer.anchorPoint = CGPointMake(0.5, 0);
+    cellImgView.layer.position = CGPointMake(cellImgView.layer.position.x, cellImgView.layer.position.y-cellImgView.frame.size.height/2);
+    [UIView animateWithDuration:1 animations:^{
+        cellImgView.transform = CGAffineTransformMakeScale(1, 0.01);
+        bottomImgView.transform = CGAffineTransformMakeTranslation(0, -cellFrame.size.height);
+    }completion:^(BOOL finished) {
+        [self reloadData];
+        [cellImgView removeFromSuperview];
+        [bottomImgView removeFromSuperview];
+    }];
+}
+- (UIImageView*)addImgViewOfView:(UIView*)view clip:(CGRect)rect {
+    UIImageView* imgView = [[UIImageView alloc] initWithImage:[self getImgOfView:view clip:rect]];
+    imgView.frame = rect;
+    [self.todoListTableView addSubview:imgView];
+    [imgView sizeToFit];
+    return imgView;
+}
+/// 在view表示的矩形区域内，截取frame为rect的矩形区域的图片
+- (UIImage*)getImgOfView:(UIView*)view clip:(CGRect)rect {
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(ctx, -rect.origin.x, -rect.origin.y);
+    [view.layer renderInContext:ctx];
+    
+    UIImage* img = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
 @end

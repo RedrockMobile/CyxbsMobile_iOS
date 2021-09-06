@@ -14,7 +14,8 @@
 
 @interface DiscoverTodoSheetView ()<
     DiscoverTodoSelectTimeViewDelegate,
-    DiscoverTodoSelectRepeatViewDelegate
+    DiscoverTodoSelectRepeatViewDelegate,
+    UITextFieldDelegate
 >
 
 /// 白色背景板
@@ -37,13 +38,11 @@
 
 @property (nonatomic, strong)DiscoverTodoSelectTimeView* selectTimeView;
 
-@property (nonatomic, strong) DiscoverTodoSelectRepeatView* selectRepeatView;
+@property (nonatomic, strong)DiscoverTodoSelectRepeatView* selectRepeatView;
+
+@property (nonatomic, strong)UIButton* deleteBtn;
 
 @property (nonatomic, strong)TodoDataModel* dataModel;
-
-/// 是否处于选择时间/重复模式的状态
-@property (nonatomic, assign)BOOL isSelecting;
-
 
 @end
 
@@ -70,6 +69,7 @@
         [self addCancelBtn];
         [self addTitleInputTextfield];
         [self addRemindTimeBtn];
+        [self addDeleteBtn];
         [self addRepeatModelBtn];
     }
     return self;
@@ -129,6 +129,7 @@
     
     btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    [btn setAlpha:0.4];
     [btn setTitle:@"保存" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(saveBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -145,6 +146,8 @@
     [self.backView addSubview:textField];
     self.titleInputTextfield = textField;
     
+    textField.delegate = self;
+    
     [textField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backView).offset(0.048*SCREEN_WIDTH);
         make.top.equalTo(self.backView).offset(0.09236453202*SCREEN_HEIGHT);
@@ -152,7 +155,39 @@
         make.height.mas_equalTo(0.1173333333*SCREEN_WIDTH);
     }];
 }
-
+- (void)addDeleteBtn {
+    UIButton* btn = [[UIButton alloc] init];
+    [self addSubview:btn];
+    self.deleteBtn = btn;
+    
+    [btn setTitleColor:[UIColor colorNamed:@"124_163_233&131_131_133"] forState:UIControlStateNormal];
+    [btn setTitle:@"删除" forState:UIControlStateNormal];
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:15]];
+    btn.alpha = 0;
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.remindTimeBtn);
+        make.right.equalTo(self).offset(-0.04*SCREEN_WIDTH);
+    }];
+    
+    [btn addTarget:self action:@selector(deleteBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)deleteBtnClicked {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.deleteBtn.alpha = 0;
+    }];
+    [self.remindTimeBtn setTitle:@"设置提醒时间" forState:UIControlStateNormal];
+    self.dataModel.timeStr = @"";
+}
+- (void)textFieldDidChangeSelection:(UITextField *)textField {
+    if (textField.text!=nil&&![textField.text isEqualToString:@""]) {
+        self.saveBtn.alpha = 1;
+        [self.saveBtn setTitleColor:[UIColor colorNamed:@"41_35_210&44_222_255"] forState:UIControlStateNormal];
+    }else {
+        self.saveBtn.alpha = 0.4;
+        [self.saveBtn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    }
+}
 //这边约束好像有warming
 - (void)addRemindTimeBtn {
     UIButton* btn = [self getStdBtn];
@@ -238,37 +273,16 @@
 
 /// 选择提醒时间的按钮点击后调用
 - (void)remindTimeBtnClicked {
-    // 如果这个属性为YES，说明在选择重复模式/重复时间，那么此时应当不允许进行选择提醒时间，所以return
-    if (self.isSelecting) {
-        return;
-    }
-    self.isSelecting = YES;
     [self endEditing:YES];
-    DiscoverTodoSelectTimeView* view = [[DiscoverTodoSelectTimeView alloc] init];
-    [self.backView addSubview:view];
-    self.selectTimeView = view;
-    view.alpha = 0;
-    view.delegate = self;
-    
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self);
-        make.height.equalTo(@(0.4729064039*SCREEN_HEIGHT));
-    }];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        view.alpha = 1;
-    }];
+    [self.selectRepeatView hideView];
+    [self.selectTimeView showView];
 }
 
 /// 选择重复提醒的按钮点击后调用
 - (void)repeatModelBtnClicked {
-    // 如果这个属性为YES，说明在选择重复模式/重复时间，那么此时应当不允许进行选择重复模式，所以return
-    if (self.isSelecting) {
-        return;
-    }
-    self.isSelecting = YES;
     [self endEditing:YES];
-    [self.selectRepeatView show];
+    [self.selectTimeView hideView];
+    [self.selectRepeatView showView];
 }
 
 - (DiscoverTodoSelectRepeatView *)selectRepeatView {
@@ -285,15 +299,32 @@
     }
     return _selectRepeatView;
 }
-
+- (DiscoverTodoSelectTimeView *)selectTimeView {
+    if (_selectTimeView==nil) {
+        _selectTimeView = [[DiscoverTodoSelectTimeView alloc] init];
+        [self.backView addSubview:_selectTimeView];
+        _selectTimeView.alpha = 0;
+        _selectTimeView.delegate = self;
+        
+        [_selectTimeView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self);
+            make.height.equalTo(@(0.4729064039*SCREEN_HEIGHT));
+        }];
+    }
+    return _selectTimeView;
+}
 - (void)selectTimeViewSureBtnClicked:(NSDateComponents *)components {
-    self.isSelecting = NO;
     [self.remindTimeBtn setTitle:[NSString stringWithFormat:@"%ld月%ld日%02ld:%02ld", components.month, components.day, components.hour, components.minute] forState:UIControlStateNormal];
     self.dataModel.timeStr = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.deleteBtn.alpha = 1;
+    }];
+}
+- (void)selectTimeViewCancelBtnClicked {
+
 }
 
 - (void)selectRepeatViewSureBtnClicked:(DiscoverTodoSelectRepeatView*)view {
-    self.isSelecting = NO;
     self.dataModel.repeatMode = view.repeatMode;
     switch (view.repeatMode) {
         case TodoDataModelRepeatModeWeek:
@@ -310,12 +341,8 @@
     }
 }
 
-- (void)selectTimeViewCancelBtnClicked {
-    self.isSelecting = NO;
-}
-
 - (void)selectRepeatViewCancelBtnClicked {
-    self.isSelecting = NO;
+    
 }
 
 

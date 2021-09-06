@@ -8,6 +8,7 @@
 
 #import "DiscoverTodoTableViewCell.h"
 #import "TodoSyncTool.h"
+#import "DiscoverTodoTableViewAnimationView.h"
 
 @interface DiscoverTodoTableViewCell ()
 
@@ -100,30 +101,15 @@
 
 /// 点击复选框后调用，修改是否已完成的状态，连带改变UI效果
 - (void)checkMarkBtnClicked {
-    self.checkMarkBtn.selected = !self.checkMarkBtn.isSelected;
-    NSDictionary* dict;
-    double alpha;
-    if (self.checkMarkBtn.selected) {
-        alpha = 0.4;
-        dict = @{
-            NSStrikethroughStyleAttributeName:@1
-        };
-    }else {
-        alpha = 1;
-        dict = @{
-            NSStrikethroughStyleAttributeName:@0
-        };
-    }
-    if (self.bellImgView.alpha!=0) {
-        self.bellImgView.alpha = self.notiTimeLabel.alpha = alpha;
-    }
-    self.titleLabel.alpha = alpha;
-    self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:dict];
-    [self.dataModel setIsDoneForUserActivity:!self.dataModel.isDone];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self drawImg];
-    });
+    DiscoverTodoTableViewAnimationView *animationView = [[DiscoverTodoTableViewAnimationView alloc ] initWithCellFrame:self.contentView.frame labelFrame:self.titleLabel.frame];
+    [self.contentView addSubview:animationView];
+    self.checkMarkBtn.alpha = 0;
+    [animationView begainAnimationWithCompletionBlock:^{
+        self.checkMarkBtn.alpha = 1;
+        [self.dataModel setIsDoneForUserActivity:!self.dataModel.isDone];
+//        //通知DiscoverTodoView，开始动画
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverTodoTableViewCellCheckMarkBtnClicked" object:self];
+    }];
 }
 - (void)setTodoState:(TodoDataModelState)state {
     NSDictionary* attributeDict;
@@ -165,11 +151,6 @@
     self.notiTimeLabel.alpha = titleAlpha;
 }
 
-- (void)drawImg {
-    //通知DiscoverTodoView，开始动画
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverTodoTableViewCellCheckMarkBtnClicked" object:self];
-}
-
 /// 完成部分UI布局，bellImgView、notiTimeLabel的布局在其对应的getter方法内
 - (void)layoutSubviews {
     [self.checkMarkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -181,7 +162,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.checkMarkBtn.mas_right).offset(0.02666666667*SCREEN_WIDTH);
         make.centerY.equalTo(self.checkMarkBtn);
-        make.width.mas_equalTo(0.75*SCREEN_WIDTH);
+        make.width.mas_lessThanOrEqualTo(0.75*SCREEN_WIDTH);
     }];
 }
 @end

@@ -66,7 +66,7 @@ static TodoSyncTool* _instance;
         return;
     }
     //获取上次同步时间
-    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
@@ -103,7 +103,7 @@ static TodoSyncTool* _instance;
 }
 
 - (void)fistDownload {
-    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
             return;
@@ -126,7 +126,7 @@ static TodoSyncTool* _instance;
 
 //调用的前提是没有冲突
 - (void)downloadDataAndMerge {
-    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
             return;
@@ -162,7 +162,7 @@ static TodoSyncTool* _instance;
         @"sync_time":@"0",
         @"first_push":@"1"
     };
-    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/batch-create" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString* state = responseObject[@"info"];
         if ([state isEqualToString:@"success"]) {
             self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
@@ -195,7 +195,7 @@ static TodoSyncTool* _instance;
             @"data":[self getAddAndAlterDataToPush],
             @"sync_time":@(self.lastSyncTimeStamp),
         };
-        [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/batch-create" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSString* state = responseObject[@"info"];
             if ([state isEqualToString:@"success"]) {
                 self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
@@ -223,7 +223,7 @@ static TodoSyncTool* _instance;
             @"sync_time": @(self.lastSyncTimeStamp),
             @"force": @1
         };
-        [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestDelete parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestDelete parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSString* state = responseObject[@"info"];
             if ([state isEqualToString:@"success"]) {
                 self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
@@ -508,9 +508,11 @@ static TodoSyncTool* _instance;
     int cnt = 0;
     while ([resultSet next]) {
         TodoDataModel* model = [self resultSetToDataModel:resultSet];
-        [resultArr addObject:model];
-        cnt++;
-        if (cnt==4) {
+//        if (model.todoState==TodoDataModelStateNeedDone) {
+            [resultArr addObject:model];
+            cnt++;
+//        }
+        if (cnt==3) {
             break;
         }
     }
@@ -1041,17 +1043,3 @@ static inline int ForeignWeekToChinaWeek(int week) {
     1. 感觉在表名、列名前面或者后面加个前缀会比较好，方便全局替换、搜索。没加标识容易定位到其他东西的名字
  
  */
-
-/*
- #ifdef DEBUG
- #define CyxbsMobileBaseURL_1 @"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo"
- #define CyxbsMobileBaseURL_2 @"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo"
-
- #else
- //#define CyxbsMobileBaseURL_1 @"https://be-prod.redrock.team/"
- //#define CyxbsMobileBaseURL_2 @"https://be-prod.redrock.team/"
- #define CyxbsMobileBaseURL_1 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
- #define CyxbsMobileBaseURL_2 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
- #endif
- */
-

@@ -62,7 +62,6 @@
             @31, @30, @31
         ];
         self.selectedCntOfcom = calloc(3, sizeof(NSInteger));
-        self.alpha = 0;
         [self addPickerView];
         [self layoutTipView];
         [self addAddBtn];
@@ -105,7 +104,7 @@
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.pickerView.mas_right);
         make.centerY.equalTo(self.pickerView);
-        make.width.height.mas_equalTo(0.048*SCREEN_WIDTH);
+        make.width.height.mas_equalTo(0.05866666667*SCREEN_WIDTH);
     }];
 }
 - (void)addScrollView {
@@ -212,20 +211,9 @@
 }
 //MARK: - 点击按钮后调用
 - (void)cancelBtnClicked {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.addBtn.alpha =
-        self.tipView.alpha =
-        self.pickerView.alpha =
-        self.sureBtn.alpha =
-        self.cancelBtn.alpha =
-        self.separatorLine.alpha = 0;
-    }];
-    for (NSInteger i=0; i<_increseCnt; i++) {
-        [[self.btnArr popLastObject] removeFromSuperview];
-        [self.dateArr removeLastObject];
-    }
-    [self reLayoutAllBtn];
+    [self hideView];
     [self.delegate selectRepeatViewCancelBtnClicked];
+    self.isViewHided = YES;
 }
 - (void)sureBtnClicked {
     [UIView animateWithDuration:0.3 animations:^{
@@ -236,6 +224,8 @@
         self.cancelBtn.alpha =
         self.separatorLine.alpha = 0;
     }];
+    _increseCnt = 0;
+    self.isViewHided = YES;
     [self.delegate selectRepeatViewSureBtnClicked:self];
 }
 
@@ -355,14 +345,38 @@ static inline int ForeignWeekToChinaWeek(int week) {
 }
 
 /// 外界调用，调用后显示出来
-- (void)show {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.alpha = 1;
-        for (UIView* subView in self.subviews) {
-            subView.alpha = 1;
+- (void)showView {
+    if (self.isViewHided==YES) {
+        self.isViewHided = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.alpha = 1;
+            for (UIView* subView in self.subviews) {
+                subView.alpha = 1;
+            }
+        }];
+        self.increseCnt = 0;
+    }
+}
+
+/// 调用后效果如同点击取消按钮，但是不会调用代理方法
+- (void)hideView {
+    if (self.isViewHided==NO) {
+        self.isViewHided = YES;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.addBtn.alpha =
+            self.tipView.alpha =
+            self.pickerView.alpha =
+            self.sureBtn.alpha =
+            self.cancelBtn.alpha =
+            self.separatorLine.alpha = 0;
+        }];
+        
+        for (NSInteger i=0; i<_increseCnt; i++) {
+            [[self.btnArr popLastObject] removeFromSuperview];
+            [self.dateArr removeLastObject];
         }
-    }];
-    self.increseCnt = 0;
+        [self reLayoutAllBtn];
+    }
 }
 
 /// 外界调用，调用把除了scrContenView、scrollView意外的所有view隐藏起来
