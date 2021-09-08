@@ -20,29 +20,38 @@
 }
 ///设置
 - (void)setup {
-    UIButton *backBtn = [[UIButton alloc]initWithFrame:CGRectZero];
-    [self addSubview:backBtn];
-    _backBtn = backBtn;
-    [backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self addSubview:self.backBtn];
+    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self);
         make.left.equalTo(self).offset(15);
         make.width.mas_equalTo(40);
         make.height.mas_equalTo(45);
     }];
-    backBtn.backgroundColor = [UIColor colorNamed:@"White&Black"];
-    [backBtn setImage: [UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    [self addSubview:titleLabel];
-    _titleLabel = titleLabel;
-    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self);
-            make.left.equalTo(backBtn.mas_right).offset(10);
+            make.left.equalTo(_backBtn.mas_right).offset(10);
             make.width.mas_equalTo(100);
             make.height.mas_equalTo(40);
     }];
-    titleLabel.font = [UIFont boldSystemFontOfSize:22];
-    titleLabel.textColor = [UIColor colorNamed:@"21_49_91"];
 }
-
+#pragma mark -getter
+- (UIButton *)backBtn {
+    if (_backBtn == nil) {
+        _backBtn = [[UIButton alloc]initWithFrame:CGRectZero];
+        _backBtn.backgroundColor = [UIColor colorNamed:@"White&Black"];
+        [_backBtn setImage: [UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    }
+    return _backBtn;
+}
+- (UILabel *)titleLabel {
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:22];
+        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+    }
+    return _titleLabel;
+}
 @end

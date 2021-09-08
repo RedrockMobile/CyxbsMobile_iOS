@@ -36,6 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSDictionary *goodsDict;
 ///id
 @property (nonatomic,copy) NSString *goodsID;
+///数量
+@property (nonatomic, assign) int amount;
+///价格
+@property (nonatomic, assign) int price;
 ///计时器
 @property (nonatomic) NSTimer *timer;
 ///滑动方向
