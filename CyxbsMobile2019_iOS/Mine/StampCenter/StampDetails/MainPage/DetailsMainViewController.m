@@ -39,6 +39,24 @@
 /// 获取记录界面的上拉加载更多
 @property (nonatomic, strong) MJRefreshAutoStateFooter * tasksLoadMoreFooter;
 
+/// 缺省文字1
+@property (nonatomic, strong) UILabel * goodsDefaultLabel;
+/// 缺省图片1
+@property (nonatomic, strong) UIImageView * goodsDefaultImgView;
+/// 缺省文字2
+@property (nonatomic, strong) UILabel * taskDefaultLabel;
+/// 缺省图片2
+@property (nonatomic, strong) UIImageView * taskDefaultImgView;
+/// 缺省文字3
+@property (nonatomic, strong) UILabel * networkFailureLabel1;
+/// 缺省图片3
+@property (nonatomic, strong) UIImageView * networkFailureImgView1;
+/// 缺省文字4
+@property (nonatomic, strong) UILabel * networkFailureLabel2;
+/// 缺省图片4
+@property (nonatomic, strong) UIImageView * networkFailureImgView2;
+
+
 /// 任务
 @property (nonatomic, copy) NSArray * tasksAry;
 /// 兑换记录
@@ -90,6 +108,63 @@
     bounds.origin.x += bounds.size.width;
     self.detailsTasksTableView.frame = bounds;
     
+    // goods default label
+    [self.detailsGoodsTableView addSubview:self.goodsDefaultLabel];
+    [self.goodsDefaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.mas_equalTo(self.view);
+    }];
+    
+    [self.detailsGoodsTableView addSubview:self.goodsDefaultImgView];
+    [self.goodsDefaultImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.goodsDefaultLabel.mas_top);
+    }];
+    
+    self.goodsDefaultImgView.hidden = YES;
+    self.goodsDefaultLabel.hidden = YES;
+    
+    // task default label
+    [self.detailsTasksTableView addSubview:self.taskDefaultLabel];
+    [self.taskDefaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.mas_equalTo(self.view);
+    }];
+    [self.detailsTasksTableView addSubview:self.taskDefaultImgView];
+    [self.taskDefaultImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.taskDefaultLabel.mas_top);
+    }];
+    
+    self.taskDefaultLabel.hidden = YES;
+    self.taskDefaultImgView.hidden = YES;
+    
+    // network 缺省1
+    [self.detailsGoodsTableView addSubview:self.networkFailureLabel1];
+    [self.networkFailureLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.mas_equalTo(self.view);
+    }];
+    [self.detailsGoodsTableView addSubview:self.networkFailureImgView1];
+    [self.networkFailureImgView1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.networkFailureLabel1.mas_top);
+    }];
+    
+    self.networkFailureLabel1.hidden = YES;
+    self.networkFailureImgView1.hidden = YES;
+    
+    // network 缺省2
+    [self.detailsTasksTableView addSubview:self.networkFailureLabel2];
+    [self.networkFailureLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.mas_equalTo(self.view);
+    }];
+    [self.detailsTasksTableView addSubview:self.networkFailureImgView2];
+    [self.networkFailureImgView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view);
+        make.bottom.mas_equalTo(self.networkFailureLabel2.mas_top);
+    }];
+    
+    self.networkFailureLabel2.hidden = YES;
+    self.networkFailureImgView2.hidden = YES;
+    
     // 一个向上滑的动画
     CGFloat animationTime = 0.4f;
     self.horizontalScrollView.layer.affineTransform = CGAffineTransformMakeTranslation(0, size.height - [self getTopBarViewHeight]);
@@ -120,7 +195,7 @@
     self.segmentView.selectedIndex = currentIndex;
 }
 
-#pragma mark - delegate & data source
+#pragma mark - delegate
 //MARK:SegmentViewDelegate
 - (void)segmentView:(SegmentView *)segmentView alertWithIndex:(NSInteger)index {
     [UIView animateWithDuration:0.5 animations:^{
@@ -158,9 +233,21 @@
     [DetailsGoodsModel getDataArySuccess:^(NSArray * _Nonnull array) {
         self.goodsAry = array;
         self.detailsGoodsTableView.dataAry = self.goodsAry;
+        if (array.count == 0) {
+            self.goodsDefaultLabel.hidden = NO;
+            self.goodsDefaultImgView.hidden = NO;
+        } else {
+            self.goodsDefaultLabel.hidden = YES;
+            self.goodsDefaultImgView.hidden = YES;
+        }
+        self.networkFailureLabel1.hidden = YES;
+        self.networkFailureImgView1.hidden = YES;
         [self.goodsRefreshHeader endRefreshing];
     } failure:^(void) {
-            
+        self.goodsDefaultLabel.hidden = YES;
+        self.goodsDefaultImgView.hidden = YES;
+        self.networkFailureLabel1.hidden = NO;
+        self.networkFailureImgView1.hidden = NO;
         [self.goodsRefreshHeader endRefreshing];
     }];
 }
@@ -170,9 +257,21 @@
     [DetailsTaskModel getDataAryWithPage:1 Size:10 Success:^(NSArray * _Nonnull array) {
         self.tasksAry = array;
         self.detailsTasksTableView.dataAry = self.tasksAry;
+        if (array.count == 0) {
+            self.taskDefaultLabel.hidden = NO;
+            self.taskDefaultImgView.hidden = NO;
+        } else {
+            self.taskDefaultLabel.hidden = YES;
+            self.taskDefaultImgView.hidden = YES;
+        }
+        self.networkFailureLabel2.hidden = YES;
+        self.networkFailureImgView2.hidden = YES;
         [self.tasksRefreshHeader endRefreshing];
     } failure:^(void) {
-        
+        self.taskDefaultLabel.hidden = YES;
+        self.taskDefaultImgView.hidden = YES;
+        self.networkFailureLabel2.hidden = NO;
+        self.networkFailureImgView2.hidden = NO;
         [self.tasksRefreshHeader endRefreshing];
     }];
 }
@@ -260,6 +359,82 @@
         _tasksLoadMoreFooter.automaticallyChangeAlpha = YES;
     }
     return _tasksLoadMoreFooter;
+}
+
+- (UILabel *)goodsDefaultLabel {
+    if (_goodsDefaultLabel == nil) {
+        _goodsDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _goodsDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        _goodsDefaultLabel.text = @"还没有兑换记录哦";
+        _goodsDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        [_goodsDefaultLabel sizeToFit];
+    }
+    return _goodsDefaultLabel;
+}
+
+- (UIImageView *)goodsDefaultImgView {
+    if (_goodsDefaultImgView == nil) {
+        _goodsDefaultImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_goods_defaults"]];
+        [_goodsDefaultImgView sizeToFit];
+    }
+    return _goodsDefaultImgView;
+}
+
+- (UILabel *)taskDefaultLabel {
+    if (_taskDefaultLabel == nil) {
+        _taskDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _taskDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        _taskDefaultLabel.text = @"还没有获取记录，快去做任务吧";
+        _taskDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        [_taskDefaultLabel sizeToFit];
+    }
+    return _taskDefaultLabel;
+}
+
+- (UIImageView *)taskDefaultImgView {
+    if (_taskDefaultImgView == nil) {
+        _taskDefaultImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_task_defaults"]];
+        [_taskDefaultImgView sizeToFit];
+    }
+    return _taskDefaultImgView;
+}
+
+- (UILabel *)networkFailureLabel1 {
+    if (_networkFailureLabel1 == nil) {
+        _networkFailureLabel1 = [[UILabel alloc] initWithFrame:CGRectZero];
+        _networkFailureLabel1.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        _networkFailureLabel1.text = @"最遥远的距离不是天各一方，而是断网了 TAT";
+        _networkFailureLabel1.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        [_networkFailureLabel1 sizeToFit];
+    }
+    return _networkFailureLabel1;
+}
+
+- (UIImageView *)networkFailureImgView1 {
+    if (_networkFailureImgView1 == nil) {
+        _networkFailureImgView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_network_failure"]];
+        [_networkFailureImgView1 sizeToFit];
+    }
+    return _networkFailureImgView1;
+}
+
+- (UILabel *)networkFailureLabel2 {
+    if (_networkFailureLabel2 == nil) {
+        _networkFailureLabel2 = [[UILabel alloc] initWithFrame:CGRectZero];
+        _networkFailureLabel2.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        _networkFailureLabel2.text = @"最遥远的距离不是天各一方，而是断网了 TAT";
+        _networkFailureLabel2.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        [_networkFailureLabel2 sizeToFit];
+    }
+    return _networkFailureLabel2;
+}
+
+- (UIImageView *)networkFailureImgView2 {
+    if (_networkFailureImgView2 == nil) {
+        _networkFailureImgView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_network_failure"]];
+        [_networkFailureImgView2 sizeToFit];
+    }
+    return _networkFailureImgView2;
 }
 
 @end
