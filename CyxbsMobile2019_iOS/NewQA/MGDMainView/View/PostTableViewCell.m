@@ -10,7 +10,7 @@
 #import "MGDImageCollectionViewCell.h"
 #import "PostModel.h"
 #import "StarPostModel.h"
-#import "UIControl+MGD.h"
+//#import "UIControl+MGD.h"
 #import <YBImageBrowser.h>
 
 
@@ -78,8 +78,8 @@
     
     ///多功能按钮
     _funcBtn = [[UIButton alloc] init];
-    _funcBtn.mgd_ignoreEvent = NO;
-    _funcBtn.mgd_acceptEventInterval = 0.5;
+//    _funcBtn.mgd_ignoreEvent = NO;
+//    _funcBtn.mgd_acceptEventInterval = 0.5;
     _funcBtn.backgroundColor = [UIColor clearColor];
     [_funcBtn setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
     [_funcBtn addTarget:self action:@selector(ClickedFuncBtn) forControlEvents:UIControlEventTouchUpInside];
@@ -113,8 +113,8 @@
     
     ///标签
     _groupLabel = [[UIButton alloc] init];
-    _groupLabel.mgd_ignoreEvent = NO;
-    _groupLabel.mgd_acceptEventInterval = 0.5;
+//    _groupLabel.mgd_ignoreEvent = NO;
+//    _groupLabel.mgd_acceptEventInterval = 0.5;
     _groupLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_groupLabel.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08]];
     if (@available(iOS 11.0, *)) {
@@ -129,8 +129,8 @@
     
     ///点赞
     _starBtn = [[FunctionBtn alloc] init];
-    _starBtn.mgd_ignoreEvent = NO;
-    _starBtn.mgd_acceptEventInterval = 0.8;
+//    _starBtn.mgd_ignoreEvent = YES;
+//    _starBtn.mgd_acceptEventInterval = 0.8;
     [_starBtn addTarget:self action:@selector(ClickedStar) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_starBtn];
     
@@ -142,16 +142,16 @@
     
     ///评论
     _commendBtn = [[FunctionBtn alloc] init];
-    _commendBtn.mgd_ignoreEvent = NO;
-    _commendBtn.mgd_acceptEventInterval = 2;
+//    _commendBtn.mgd_ignoreEvent = NO;
+//    _commendBtn.mgd_acceptEventInterval = 2;
     _commendBtn.iconView.image = [UIImage imageNamed:@"answerIcon"];
     [_commendBtn addTarget:self action:@selector(ClickedComment) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_commendBtn];
     
     ///分享
     _shareBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _starBtn.mgd_ignoreEvent = NO;
-    _starBtn.mgd_acceptEventInterval = 2;
+//    _starBtn.mgd_ignoreEvent = NO;
+//    _starBtn.mgd_acceptEventInterval = 2;
     _shareBtn.backgroundColor = [UIColor clearColor];
     [_shareBtn setBackgroundImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
     [_shareBtn addTarget:self action:@selector(ClickedShare) forControlEvents:UIControlEventTouchUpInside];

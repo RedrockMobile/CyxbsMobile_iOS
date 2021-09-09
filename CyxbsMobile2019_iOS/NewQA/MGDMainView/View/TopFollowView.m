@@ -10,7 +10,7 @@
 #import "GroupFollowBtn.h"
 #import "GroupBtn.h"
 #import "GroupModel.h"
-#import "UIControl+MGD.h"
+//#import "UIControl+MGD.h"
 
 
 @interface TopFollowView()
@@ -64,8 +64,8 @@
 - (void)loadTopFollowViewWithoutGroup:(NSMutableArray *)dataArray {
     [self removeAllSubviews];
     GroupFollowBtn *followBtn = [[GroupFollowBtn alloc] init];
-    followBtn.mgd_ignoreEvent = NO;
-    followBtn.mgd_acceptEventInterval = 1.0;
+//    followBtn.mgd_ignoreEvent = NO;
+//    followBtn.mgd_acceptEventInterval = 1.0;
     [followBtn addTarget:self action:@selector(FollowGroups) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:followBtn];
     _followBtn = followBtn;

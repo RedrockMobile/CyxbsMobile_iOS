@@ -14,7 +14,7 @@
 #import "FuncView.h"            //点击多功能后弹出来的界面
 #import "MGDImageCollectionViewCell.h"
 //tool
-#import "UIControl+MGD.h"       //防止按钮多次点击的工具类
+//#import "UIControl+MGD.h"       //防止按钮多次点击的工具类
 
 #define Pading SCREEN_WIDTH*0.0427
 #define Margin 7
