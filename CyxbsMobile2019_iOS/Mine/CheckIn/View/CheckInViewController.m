@@ -131,6 +131,7 @@
 
 // 新需求要求删除签到界面的商城入口
 // 手势
+
 - (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
         self.presentPanGesture = pan;

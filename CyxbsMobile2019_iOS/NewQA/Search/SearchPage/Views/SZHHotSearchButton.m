@@ -7,7 +7,7 @@
 //
 
 #import "SZHHotSearchButton.h"
-#import "UIControl+MGD.h"
+//#import "UIControl+MGD.h"
 @interface SZHHotSearchButton()<UITraitEnvironment>
 
 @end

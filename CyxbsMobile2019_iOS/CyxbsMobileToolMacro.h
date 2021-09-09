@@ -292,4 +292,6 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 /// 通过类名获得复用标识
 #define reuseIdentifier(className) NSStringFromClass(className.class)
 
+#define NSParameterAssert(condition) NSAssert((condition), @"Invalid parameter not satisfying: %@", @#condition)
+
 #endif /* CyxbsMobileToolMacro_h */

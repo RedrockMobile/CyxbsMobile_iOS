@@ -18,6 +18,7 @@
 #import "SearchBeginVC.h"
 #import "YYZTopicGroupVC.h"
 #import "SZHReleaseDynamic.h"
+#import "MGDTimer.h"
 
 @interface NewQAMainPageMainController ()<NewQAMainPageViewScrollViewDelegate,TopFollowViewDelegate>
 
@@ -33,6 +34,7 @@
 @property (nonatomic, strong) MBProgressHUD *loadHUD;   // 加载视图菊花
 @property (nonatomic, strong) RecommentLabel *recommendedLabel; // 推荐label
 @property (nonatomic, strong) UIButton *publishBtn;     // 发布按钮
+@property (nonatomic, strong) MGDTimer *timer;         // 定时器
 
 @property (nonatomic, strong) NSMutableArray *testArr;
 @property (nonatomic, assign) NSInteger i;
@@ -98,11 +100,14 @@
         [[UserItemTool defaultItem] setFirstLogin:NO];
     }
     // 每隔三秒钟调用一次变换热搜词汇的方法
-    [NSTimer scheduledTimerWithTimeInterval:3.0
-        target:self
-        selector:@selector(refreshHotWords)
-        userInfo:nil
-        repeats:YES];
+    self.timer = [[MGDTimer alloc] initInMainQueue];
+    [self.timer event:^{
+        [self refreshHotWords];
+    } timeInterval:NSEC_PER_SEC * 3 delay:NSEC_PER_SEC * 1.2];
+    
+    // 启动计时器
+    [self.timer start];
+
 }
 
 #pragma mark 设置控件的UI
@@ -412,6 +417,9 @@
     [self.tableVC refreshData];
 }
 
+- (void)dealloc {
+    [self.timer destroy];
+}
 
 
 @end

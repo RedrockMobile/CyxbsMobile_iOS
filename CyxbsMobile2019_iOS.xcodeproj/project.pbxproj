@@ -53,6 +53,14 @@
 		187DF4BD260310DD000BCDE9 /* LYEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4B6260310DD000BCDE9 /* LYEmptyView.m */; };
 		187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4B8260310DD000BCDE9 /* FTEmptyView.m */; };
 		187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4C3260310FA000BCDE9 /* UITextView+WZB.m */; };
+		1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC8826EA32A3007E871E /* MGDGCD.m */; };
+		1893DC8A26EA32A3007E871E /* MGDGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC8826EA32A3007E871E /* MGDGCD.m */; };
+		1893DC8D26EA32F1007E871E /* MGDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC8C26EA32F1007E871E /* MGDQueue.m */; };
+		1893DC8E26EA32F1007E871E /* MGDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC8C26EA32F1007E871E /* MGDQueue.m */; };
+		1893DC9126EA3375007E871E /* MGDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC9026EA3375007E871E /* MGDGroup.m */; };
+		1893DC9226EA3375007E871E /* MGDGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC9026EA3375007E871E /* MGDGroup.m */; };
+		1893DC9526EA3887007E871E /* MGDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC9426EA3887007E871E /* MGDTimer.m */; };
+		1893DC9626EA3887007E871E /* MGDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC9426EA3887007E871E /* MGDTimer.m */; };
 		189D392F26B4EBA200C894C8 /* RecommendedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 189D392D26B4EBA200C894C8 /* RecommendedTableView.m */; };
 		18CDF478257F8D9C006E8E5C /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF477257F8D9C006E8E5C /* Mine.xcassets */; };
 		18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */; };
@@ -821,6 +829,14 @@
 		187DF4B9260310DD000BCDE9 /* UIView+LYExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LYExtension.h"; sourceTree = "<group>"; };
 		187DF4C3260310FA000BCDE9 /* UITextView+WZB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WZB.m"; sourceTree = "<group>"; };
 		187DF4C4260310FA000BCDE9 /* UITextView+WZB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+WZB.h"; sourceTree = "<group>"; };
+		1893DC8726EA32A3007E871E /* MGDGCD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDGCD.h; sourceTree = "<group>"; };
+		1893DC8826EA32A3007E871E /* MGDGCD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDGCD.m; sourceTree = "<group>"; };
+		1893DC8B26EA32F1007E871E /* MGDQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDQueue.h; sourceTree = "<group>"; };
+		1893DC8C26EA32F1007E871E /* MGDQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDQueue.m; sourceTree = "<group>"; };
+		1893DC8F26EA3375007E871E /* MGDGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDGroup.h; sourceTree = "<group>"; };
+		1893DC9026EA3375007E871E /* MGDGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDGroup.m; sourceTree = "<group>"; };
+		1893DC9326EA3887007E871E /* MGDTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDTimer.h; sourceTree = "<group>"; };
+		1893DC9426EA3887007E871E /* MGDTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDTimer.m; sourceTree = "<group>"; };
 		189D392D26B4EBA200C894C8 /* RecommendedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedTableView.m; sourceTree = "<group>"; };
 		189D392E26B4EBA200C894C8 /* RecommendedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedTableView.h; sourceTree = "<group>"; };
 		18CDF477257F8D9C006E8E5C /* Mine.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Mine.xcassets; sourceTree = "<group>"; };
@@ -2193,6 +2209,29 @@
 			path = UITextView;
 			sourceTree = "<group>";
 		};
+		1893DC8426EA0AC9007E871E /* UsefulTool */ = {
+			isa = PBXGroup;
+			children = (
+				1893DC8626EA3262007E871E /* GCD */,
+			);
+			path = UsefulTool;
+			sourceTree = "<group>";
+		};
+		1893DC8626EA3262007E871E /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				1893DC8726EA32A3007E871E /* MGDGCD.h */,
+				1893DC8826EA32A3007E871E /* MGDGCD.m */,
+				1893DC8B26EA32F1007E871E /* MGDQueue.h */,
+				1893DC8C26EA32F1007E871E /* MGDQueue.m */,
+				1893DC8F26EA3375007E871E /* MGDGroup.h */,
+				1893DC9026EA3375007E871E /* MGDGroup.m */,
+				1893DC9326EA3887007E871E /* MGDTimer.h */,
+				1893DC9426EA3887007E871E /* MGDTimer.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
 		18CDF47F257F8DBD006E8E5C /* Safe */ = {
 			isa = PBXGroup;
 			children = (
@@ -3281,6 +3320,7 @@
 		1A141339235F524B0001417E /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				1893DC8426EA0AC9007E871E /* UsefulTool */,
 				187DF4C2260310FA000BCDE9 /* UITextView */,
 				187DF4AE260310DD000BCDE9 /* LYEmptyView */,
 				1A67857D251F1E02002BCA28 /* WebView */,
@@ -5952,6 +5992,7 @@
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				18CDF6BD257F91BE006E8E5C /* Credits.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
+				1893DC8D26EA32F1007E871E /* MGDQueue.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				1A9EB52024F90C6D00B6AD83 /* IntegralIntroductionController.m in Sources */,
 				B896BF34260CD9FF00314829 /* CYRleaseDynamicAlertView.m in Sources */,
@@ -6027,6 +6068,7 @@
 				187DF4BC260310DD000BCDE9 /* UIView+LYExtension.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
+				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				18CDF682257F91BD006E8E5C /* EmptyClassItem.m in Sources */,
 				18CDF688257F91BD006E8E5C /* EmptyClassContentView.m in Sources */,
 				B82CA6602631599900786685 /* DynamicDetailCommentTableCellModel.m in Sources */,
@@ -6129,10 +6171,12 @@
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				180DAA7126B442B60094B8DC /* SearchBtn.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
+				1893DC9126EA3375007E871E /* MGDGroup.m in Sources */,
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
+				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
@@ -6431,7 +6475,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1893DC8E26EA32F1007E871E /* MGDQueue.m in Sources */,
 				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
+				1893DC9626EA3887007E871E /* MGDTimer.m in Sources */,
+				1893DC9226EA3375007E871E /* MGDGroup.m in Sources */,
+				1893DC8A26EA32A3007E871E /* MGDGCD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6592,8 +6640,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
-				DEVELOPMENT_TEAM = 92469DFD6U;
+				CURRENT_PROJECT_VERSION = 35;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -6602,8 +6650,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.szh;
+				MARKETING_VERSION = 6.1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -6621,8 +6669,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
-				DEVELOPMENT_TEAM = 92469DFD6U;
+				CURRENT_PROJECT_VERSION = 35;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -6631,8 +6679,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.szh;
+				MARKETING_VERSION = 6.1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
