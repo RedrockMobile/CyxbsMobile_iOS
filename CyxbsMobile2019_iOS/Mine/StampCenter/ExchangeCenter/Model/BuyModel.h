@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 typedef void(^Netblock)(id info);//1
-
+///兑换模型 与后端链接
 @interface BuyModel : NSObject
-
+///判断是否兑换成功
 @property (nonatomic, copy) Netblock Block;//2
 
 -(void)buyGoodsWithID:(NSString *)ID;

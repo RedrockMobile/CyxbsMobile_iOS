@@ -36,8 +36,7 @@
 
 // 点击确定后，调用网络请求，如果兑换成功了，调用此方法
 - (void)refresh1 {
-    [self.cancleBtn removeFromSuperview];
-    [self.comfirmBtn removeFromSuperview];
+    [self moveBtn];
     self.textLabel.text = @"兑换成功\n请尽快到红岩网校领取！";
     UIButton *btn = [[UIButton alloc]init];
     [self.whiteView addSubview:btn];
@@ -56,8 +55,7 @@
 
 // 点击确定后，调用网络请求，如果积分不足了，调用此方法
 - (void)refresh2 {
-    [self.cancleBtn removeFromSuperview];
-    [self.comfirmBtn removeFromSuperview];
+    [self moveBtn];
     self.textLabel.text = @"积分不足\n兑换失败\n";
 //    self.textLabel.font = [UIFont systemFontOfSize:24];
     UIButton *btn = [[UIButton alloc]init];
@@ -77,8 +75,7 @@
 
 // 点击确定后，调用网络请求，如果无库存了，调用此方法
 - (void)refresh3 {
-    [self.cancleBtn removeFromSuperview];
-    [self.comfirmBtn removeFromSuperview];
+    [self moveBtn];
     self.textLabel.text = @"啊哦！手慢了！下次再来吧！\n";
     UIButton *btn = [[UIButton alloc]init];
     [self.whiteView addSubview:btn];
@@ -188,6 +185,10 @@
             [self refresh3];
         }
     }];
-//    [self removeFromSuperview];
+}
+///溢出按钮
+- (void)moveBtn {
+    [self.cancleBtn removeFromSuperview];
+    [self.comfirmBtn removeFromSuperview];
 }
 @end
