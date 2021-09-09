@@ -8,7 +8,6 @@
 
 #import "ExchangeCenterViewController.h"
 #import <Masonry/Masonry.h>
-#import "ZWTMacro.h"
 
 #define iPhoneScreenWidth [UIScreen mainScreen].bounds.size.width
 #define iPhoneScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -31,10 +30,6 @@
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBar.hidden = YES;
-    self.tabBarController.tabBar.hidden = YES;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,10 +43,6 @@
     [self addBottomView];
    
     
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    self.tabBarController.tabBar.hidden = NO;
 }
 #pragma mark - configure
 ///顶部

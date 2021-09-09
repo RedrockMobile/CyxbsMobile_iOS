@@ -387,6 +387,28 @@
 // 积分获得信息, 对应 =获取记录= 界面
 #define Stamp_store_details_getRecord [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/getRecord"]
 
+//主页信息
+#define Stamp_Store_Main_Page [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/info"]
+
+//任务
+#define TASK [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/progress"]
+
+#pragma mark - 反馈中心
+
+// 测试环境, 请在正式环境出来的时候
+// 历史反馈列表
+// 参数 product_id 区分数据来源, 掌邮只填1
+#define FeedBack_Center_History_List [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/list"]
+
+// 历史反馈页, 点击一个进入详情
+// 参数 feedback_id 信息的id
+// 参数 product_id 区分数据来源, 掌邮只填1
+#define FeedBack_Center_History_View [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/view"]
+
+//常见问题
+#define COMMON_QUESTION [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/question/list?product_id=1"]
+
+//提交反馈
+#define SUBMIT [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/create?product_id=1"]
+
 #endif /* CyxbsMobileURL_h */
-
-

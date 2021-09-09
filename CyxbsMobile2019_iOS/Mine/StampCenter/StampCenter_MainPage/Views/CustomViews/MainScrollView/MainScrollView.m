@@ -9,7 +9,6 @@
 #import "MainScrollView.h"
 #import "MyCollectionViewCell.h"
 #import "SecondHeaderView.h"
-#import "ZWTMacro.h"
 @implementation MainScrollView
 
 - (instancetype)initWithFrame:(CGRect)frame
