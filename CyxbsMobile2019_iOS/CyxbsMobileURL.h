@@ -393,6 +393,11 @@
 //任务
 #define TASK [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/progress"]
 
+// 商品
+#define Stamp_Store_Goods [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/getItemInfo"]
+// 兑换
+#define Stamp_Store_Exchange [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/purchase"]
+
 #pragma mark - 反馈中心
 
 // 测试环境, 请在正式环境出来的时候

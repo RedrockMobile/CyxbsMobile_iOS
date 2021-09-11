@@ -177,7 +177,7 @@
     self.reportmodel = [[ReportModel alloc] init];
     __weak typeof(self) weakSelf = self;
     [self.reportmodel ReportWithPostID:self.reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:self.reportView.textView.text];
-    [self.reportmodel setBlock:^(id  _Nonnull info) {
+    [self.reportmodel setBlock:^(id  _Nonnull info) { //3
         [weakSelf showOperationSuccessfulWithString:@"  举报成功  "];
     }];
     self.isShowedReportView = NO;
