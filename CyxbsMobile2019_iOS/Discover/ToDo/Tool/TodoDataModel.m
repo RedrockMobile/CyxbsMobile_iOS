@@ -110,6 +110,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
     
     NSDate* remindDate = [NSDate dateWithTimeIntervalSince1970:self.overdueTime];
     if ([remindDate isToday]) {
+        //remindDate指向今天的未来
         state = TodoDataModelStateNeedDone;
         if (self.isDone==YES) {
             _isDone = NO;
@@ -117,12 +118,13 @@ static inline int ForeignWeekToChinaWeek(int week) {
             mark += 2;
         }
     }else {
+        //remindDate指向非今天的未来
         if (self.isDone) {
             state = TodoDataModelStateDone;
         }else if (self.lastOverdueTime==-1) {
             //代表这是第一次提醒，所以应该是NeedDone
             state = TodoDataModelStateNeedDone;
-        }else{
+        }else {
             state = TodoDataModelStateOverdue;
         }
     }

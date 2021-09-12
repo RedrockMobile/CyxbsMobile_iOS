@@ -25,6 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong)UIView* separatorLine;
 
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+
+/// 1代表状态为show，0为hide，子类自己去维护，父类不维护
+@property(nonatomic, assign)BOOL isViewHided;
+/// 外界调用，调用后显示出来，子类自己去实现，父类不实现。
+- (void)showView;
+
+/// 调用后效果如同点击取消按钮，但是不会调用代理方法，子类自己去实现，父类不实现。
+- (void)hideView;
+
 @end
 
 NS_ASSUME_NONNULL_END

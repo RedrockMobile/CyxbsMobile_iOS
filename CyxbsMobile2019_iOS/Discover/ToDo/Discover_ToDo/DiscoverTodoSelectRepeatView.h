@@ -31,8 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 保存了选择的数组
 @property (nonatomic, strong)NSMutableArray<DLTimeSelectedButton*>* btnArr;
-/// 外界调用，调用后显示出来
-- (void)show;
+
 @end
 
 NS_ASSUME_NONNULL_END

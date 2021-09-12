@@ -7,12 +7,15 @@
 //
 
 #import "DiscoverTodoSelectTimeView.h"
+#import "YearBtnsView.h"
 
-
-@interface DiscoverTodoSelectTimeView ()
+@interface DiscoverTodoSelectTimeView ()<
+    YearBtnsViewDelegate
+>
 
 /// 日期选择器
 @property(nonatomic, strong)UIDatePicker* datePicker;
+@property(nonatomic, strong)YearBtnsView* yearBtnsView;
 @end
 
 @implementation DiscoverTodoSelectTimeView
@@ -21,6 +24,7 @@
     self = [super init];
     if (self) {
         [self addDatePicker];
+        [self addYearBtnsView];
         [self layoutTipView];
         
         [self.cancelBtn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -30,6 +34,20 @@
     return self;
 }
 //MARK: - 初始化UI
+- (void)addYearBtnsView {
+    YearBtnsView* view = [[YearBtnsView alloc] init];
+    self.yearBtnsView = view;
+    [self addSubview:view];
+    
+    view.delegate = self;
+    
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(0.0197044335*SCREEN_HEIGHT);
+        make.left.equalTo(self).offset(0.04266666667*SCREEN_WIDTH);
+        make.right.equalTo(self).offset(-0.04266666667*SCREEN_WIDTH);
+        make.height.mas_equalTo(0.04926108374*SCREEN_HEIGHT);
+    }];
+}
 /// 添加日期选择器
 - (void)addDatePicker {
     UIDatePicker* datePicker = [[UIDatePicker alloc] init];
@@ -41,17 +59,20 @@
     datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CHT"];
     
     //最少十分钟后
-    NSDate *date = [NSDate dateWithTimeInterval:60 sinceDate:[NSDate date]];
+    NSDate *date = [NSDate dateWithTimeInterval:600 sinceDate:[NSDate date]];
     [datePicker setDate:date];
     [datePicker setMinimumDate:date];
-    //设置成滑轮样式
-    datePicker.preferredDatePickerStyle = UIDatePickerStyleWheels;
+    
+    //13.4之后设置成滑轮样式
+    if (@available(iOS 13.4, *)) {
+        datePicker.preferredDatePickerStyle = UIDatePickerStyleWheels;
+    }
     //设置成本地时区（应该是亚洲/上海）
     datePicker.timeZone = NSTimeZone.localTimeZone;
     
     [datePicker mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.top.equalTo(self).offset(0.039408867*SCREEN_HEIGHT);
+        make.top.equalTo(self).offset(0.059408867*SCREEN_HEIGHT);
         make.bottom.equalTo(self).offset(-0.1477832512*SCREEN_HEIGHT);
     }];
     /*
@@ -76,33 +97,56 @@
     }];
 }
 
-//MARK: - 响应事件
-//滚动datePicker时调用
-//- (void)touchDatePicker:(UIDatePicker*)datePicker {
-//    NSDateComponents* components = [[NSCalendar currentCalendar] components:252 fromDate:datePicker.date];
-//    components.timeZone = NSTimeZone.localTimeZone;
-//    self.components = components;
-//    CCLog(@"%@",components);
-//}
 /// 下方的取消按钮点击后调用
 - (void)cancelBtnClicked {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
+    [self hideView];
     [self.delegate selectTimeViewCancelBtnClicked];
 }
+
 /// 下方的确定按钮点击后调用
 - (void)sureBtnClicked {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.alpha = 0;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-    }];
+    [self hideView];
     NSDateComponents* components = [[NSCalendar currentCalendar] components:252 fromDate:self.datePicker.date];
     components.timeZone = NSTimeZone.localTimeZone;
     [self.delegate selectTimeViewSureBtnClicked:components];
+}
+
+- (void)yearBtnsView:(YearBtnsView *)view didSelectedYear:(NSInteger)year {
+    NSDate *minDate, *maxDate;
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    components.year = year+1;
+    maxDate = [NSDate dateWithTimeInterval:-1 sinceDate:[[NSCalendar currentCalendar] dateFromComponents:components]];
+    if ([[NSCalendar currentCalendar] component:NSCalendarUnitYear fromDate:[NSDate date]]==year) {
+        minDate = [NSDate dateWithTimeInterval:600 sinceDate:[NSDate date]];
+    }else {
+        NSDateComponents *components = [[NSDateComponents alloc] init];
+        components.year = year;
+        minDate = [[NSCalendar currentCalendar] dateFromComponents:components];
+    }
+    
+    [self.datePicker setMinimumDate:minDate];
+    [self.datePicker setMaximumDate:maxDate];
+}
+
+
+/// 外界调用，调用后显示出来
+- (void)showView {
+    if (self.isViewHided==YES) {
+        self.isViewHided = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.alpha = 1;
+        }];
+    }
+}
+
+/// 调用后效果如同点击取消按钮，但是不会调用代理方法
+- (void)hideView {
+    if (self.isViewHided==NO) {
+        self.isViewHided = YES;
+        [UIView animateWithDuration:0.5 animations:^{
+            self.alpha = 0;
+        }];
+    }
 }
 
 @end

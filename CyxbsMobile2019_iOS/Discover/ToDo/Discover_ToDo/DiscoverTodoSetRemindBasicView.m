@@ -13,6 +13,8 @@
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor colorNamed:@"255_255_255&45_45_45"];
+        self.isViewHided = YES;
+        self.alpha = 0;
         [self addTipView];
         [self addCancelBtn];
         [self addSureBtn];
