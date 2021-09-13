@@ -101,22 +101,22 @@
 
 //做任务
 - (void)test:(GotoButton *)sender{
-    HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSString *target = sender.target;
-        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-        [formData appendPartWithFormData:data name:@"title"];
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
-          [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
-              TaskData *data = array[self.row + 1];
-              [self setData:data];
-            } error:^{
-                
-            }];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
-        }];
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *target = sender.target;
+//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:data name:@"title"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//          [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+//              TaskData *data = array[self.row + 1];
+//              [self setData:data];
+//            } error:^{
+//
+//            }];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
 }
 @end

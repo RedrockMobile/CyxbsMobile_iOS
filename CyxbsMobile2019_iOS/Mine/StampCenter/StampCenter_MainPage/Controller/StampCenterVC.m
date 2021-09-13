@@ -37,6 +37,8 @@
 @property (nonatomic,copy) NSArray *section2GoodsAry;
 ///任务数据
 @property (nonatomic,copy) NSArray *taskAry;
+///额外任务数据
+@property (nonatomic,copy) NSArray *extraTaskAry;
 ///左右划的scroll
 @property (nonatomic,strong) MainScrollView *mainScrollView;
 ///小型邮票数量View
@@ -80,7 +82,20 @@
 
 //任务数据
 - (void)setTaskAry:(NSArray *)taskAry{
-    _taskAry = taskAry;
+    NSMutableArray *mArray =[[NSMutableArray alloc]initWithCapacity:99];
+    NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
+    for (int i = 0; i < taskAry.count; i++) {
+        TaskData *data = taskAry[i];
+        if ([data.type isEqualToString:@"base"]) {
+            [mArray addObject:data];
+        }
+        if ([data.type isEqualToString:@"more"]) {
+            [mArray2 addObject:data];
+        }
+    }
+    [mArray removeObjectAtIndex:0];
+    _taskAry = mArray;
+    _extraTaskAry = mArray2;
     //刷新控件
     [self.mainScrollView.table reloadData];
 }
@@ -118,32 +133,54 @@
     [super viewDidLoad];
     //加载数据
     [self setupData];
+    
     //加载TopBar
     [self setupBar];
+    
     //加载横向Scroll
     [self.view addSubview:self.mainScrollView];
+    
     //加载TopView
     [self.view addSubview:self.topView];
+    
     //加载邮票数量View
     [self.topBarView addSubview:self.stampCountView];
+    
     //topBar优先级最高
     [self.view bringSubviewToFront:self.topBarView];
+    
     //设置小点
     [self setupPoint];
 }
 
 #pragma mark - table数据源
-//数量
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+//row数量
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.taskAry.count - 1;
+    if (section == 0) {
+        return self.taskAry.count;
+    }else{
+        return self.extraTaskAry.count;
+    }
 }
 
 //Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TaskData *data = self.taskAry[indexPath.row + 1];
         MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
-    cell.row = indexPath.row;
-    cell.data = data;
+    if (indexPath.section == 0) {
+        TaskData *data = self.taskAry[indexPath.row];
+        cell.row = indexPath.row;
+        cell.data = data;
+    }else{
+        TaskData *data = self.extraTaskAry[indexPath.row];
+        cell.row = indexPath.row;
+        cell.data = data;
+    }
+
     return cell;
 }
 
@@ -152,6 +189,32 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 75;
 }
+//FOOTER高度
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        return 60;
+    }else{
+        return 0.000001f;  // 设置为0.0001  是为了不悬浮
+    }
+    return 0.1;
+}
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH   , 60.0)];
+        footerView.backgroundColor = [UIColor whiteColor];
+        UILabel *la = [[UILabel alloc ]init ];
+        la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
+        la.textColor = [UIColor colorNamed:@"#15315B"];
+        la.text = @"更多任务";
+        la.font = [UIFont fontWithName:PingFangSCBold size:20];
+        [footerView addSubview:la];
+        return footerView;
+    }
+    return nil;
+}
+
 
 #pragma mark - collection数据源
 //组数
