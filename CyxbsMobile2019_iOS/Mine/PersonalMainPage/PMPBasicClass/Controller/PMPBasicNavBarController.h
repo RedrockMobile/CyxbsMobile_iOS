@@ -44,6 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 返回按钮的点击方法
 - (void)backBtnClicked:(UIButton *)sender;
 
+- (void)updateVCTitleStr:(NSString *)VCTitleStr ;
+
 @end
 
 NS_ASSUME_NONNULL_END

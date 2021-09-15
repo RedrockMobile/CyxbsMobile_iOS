@@ -448,6 +448,7 @@
 		73BAFFB726F21C42007290B1 /* PMPBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFB626F21C42007290B1 /* PMPBasicTableViewCell.m */; };
 		73BAFFBA26F21D49007290B1 /* PMPBasicActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFB926F21D49007290B1 /* PMPBasicActionView.m */; };
 		73BAFFBD26F21F8F007290B1 /* PMPSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFBC26F21F8F007290B1 /* PMPSegmentView.m */; };
+		73BAFFC026F22445007290B1 /* PMPTextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFBF26F22445007290B1 /* PMPTextButton.m */; };
 		7F101AC2260613E800F2034C /* YYZTopicGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */; };
 		7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */; };
 		7F101AC5260613E800F2034C /* YYZTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101ABF260613E800F2034C /* YYZTopicCell.m */; };
@@ -1558,6 +1559,8 @@
 		73BAFFB926F21D49007290B1 /* PMPBasicActionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPBasicActionView.m; sourceTree = "<group>"; };
 		73BAFFBB26F21F8F007290B1 /* PMPSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPSegmentView.h; sourceTree = "<group>"; };
 		73BAFFBC26F21F8F007290B1 /* PMPSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPSegmentView.m; sourceTree = "<group>"; };
+		73BAFFBE26F22445007290B1 /* PMPTextButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPTextButton.h; sourceTree = "<group>"; };
+		73BAFFBF26F22445007290B1 /* PMPTextButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPTextButton.m; sourceTree = "<group>"; };
 		7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicGroupVC.m; sourceTree = "<group>"; };
 		7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
 		7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
@@ -4448,6 +4451,8 @@
 			children = (
 				73BAFFBB26F21F8F007290B1 /* PMPSegmentView.h */,
 				73BAFFBC26F21F8F007290B1 /* PMPSegmentView.m */,
+				73BAFFBE26F22445007290B1 /* PMPTextButton.h */,
+				73BAFFBF26F22445007290B1 /* PMPTextButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6379,6 +6384,7 @@
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
+				73BAFFC026F22445007290B1 /* PMPTextButton.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,

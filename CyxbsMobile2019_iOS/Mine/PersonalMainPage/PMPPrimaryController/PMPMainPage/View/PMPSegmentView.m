@@ -81,10 +81,10 @@
 }
 
 - (NSInteger)tagWithIndex:(NSInteger)index {
-    return 1000 + index;
+    return 2052 + index;
 }
 - (NSInteger)indexWithTag:(NSInteger)tag {
-    return tag - 1000;
+    return tag - 2052;
 }
 
 #pragma mark - setter
