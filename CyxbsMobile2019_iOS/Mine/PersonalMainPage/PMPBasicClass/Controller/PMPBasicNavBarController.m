@@ -8,6 +8,19 @@
 
 #import "PMPBasicNavBarController.h"
 
+@interface PMPBasicNavBarController ()
+
+/// 顶部的bar
+@property (nonatomic,strong) UIView * topBarView;
+/// 控制器标题
+@property (nonatomic,strong) UILabel * VCTitleLabel;
+/// 返回按钮
+@property (nonatomic,strong) UIButton * backBtn;
+/// 导航条底部的黑线
+@property (nonatomic,strong) UIView * splitLine;
+
+@end
+
 @implementation PMPBasicNavBarController
 
 - (void)viewDidLoad {

@@ -36,15 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 分割线的颜色
 @property (nonatomic, strong) UIColor * splitLineColor;
 
-/// 顶部的bar
-@property (nonatomic,strong) UIView * topBarView;
-/// 控制器标题
-@property (nonatomic,strong) UILabel * VCTitleLabel;
-/// 返回按钮
-@property (nonatomic,strong) UIButton * backBtn;
-/// 导航条底部的黑线
-@property (nonatomic,strong) UIView * splitLine;
-
 /// 整个导航栏的高度，包括状态栏和内容的高度
 /// 状态栏是根据机型不同而变化
 /// 内容高度固定为 44
