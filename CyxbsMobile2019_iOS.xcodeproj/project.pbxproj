@@ -420,6 +420,13 @@
 		735BC54A26D3BF6400F22678 /* FeedBackReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54926D3BF6400F22678 /* FeedBackReplyModel.m */; };
 		735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54C26D3C05900F22678 /* FeedBackReplyTableViewCell.m */; };
 		735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 735BC54F26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m */; };
+		73613F4426EF3CD300A88357 /* PMPMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73613F4326EF3CD300A88357 /* PMPMainPageViewController.m */; };
+		73613F4926EF3DCB00A88357 /* UIView+JHFrameExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 73613F4826EF3DCB00A88357 /* UIView+JHFrameExtension.m */; };
+		73613F5526F0B3A200A88357 /* PMPInformationEditingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73613F5426F0B3A200A88357 /* PMPInformationEditingViewController.m */; };
+		73613F5826F0B47000A88357 /* PMPBasicNavBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73613F5726F0B47000A88357 /* PMPBasicNavBarController.m */; };
+		73613F5B26F0B86100A88357 /* PMPColorSets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73613F5A26F0B86100A88357 /* PMPColorSets.xcassets */; };
+		73613F5F26F0C40400A88357 /* PMPImagesSets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73613F5E26F0C40400A88357 /* PMPImagesSets.xcassets */; };
+		73613F6226F0CCFA00A88357 /* PMPFansAndFollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73613F6126F0CCFA00A88357 /* PMPFansAndFollowerViewController.m */; };
 		738C15B126E0B35600E24F8C /* FeedBackDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 738C15B026E0B35600E24F8C /* FeedBackDefaultView.m */; };
 		738C15B426E0BDFE00E24F8C /* HistoricalFBDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 738C15B326E0BDFE00E24F8C /* HistoricalFBDefaultView.m */; };
 		738C15CA26E2176700E24F8C /* ImgViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 738C15C926E2176700E24F8C /* ImgViewCollectionViewCell.m */; };
@@ -1496,6 +1503,18 @@
 		735BC54C26D3C05900F22678 /* FeedBackReplyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackReplyTableViewCell.m; sourceTree = "<group>"; };
 		735BC54E26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDetailsRequestDataModel.h; sourceTree = "<group>"; };
 		735BC54F26D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDetailsRequestDataModel.m; sourceTree = "<group>"; };
+		73613F4226EF3CD300A88357 /* PMPMainPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPMainPageViewController.h; sourceTree = "<group>"; };
+		73613F4326EF3CD300A88357 /* PMPMainPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPMainPageViewController.m; sourceTree = "<group>"; };
+		73613F4726EF3DCB00A88357 /* UIView+JHFrameExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+JHFrameExtension.h"; sourceTree = "<group>"; };
+		73613F4826EF3DCB00A88357 /* UIView+JHFrameExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+JHFrameExtension.m"; sourceTree = "<group>"; };
+		73613F5326F0B3A200A88357 /* PMPInformationEditingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPInformationEditingViewController.h; sourceTree = "<group>"; };
+		73613F5426F0B3A200A88357 /* PMPInformationEditingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPInformationEditingViewController.m; sourceTree = "<group>"; };
+		73613F5626F0B47000A88357 /* PMPBasicNavBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPBasicNavBarController.h; sourceTree = "<group>"; };
+		73613F5726F0B47000A88357 /* PMPBasicNavBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPBasicNavBarController.m; sourceTree = "<group>"; };
+		73613F5A26F0B86100A88357 /* PMPColorSets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PMPColorSets.xcassets; sourceTree = "<group>"; };
+		73613F5E26F0C40400A88357 /* PMPImagesSets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PMPImagesSets.xcassets; sourceTree = "<group>"; };
+		73613F6026F0CCFA00A88357 /* PMPFansAndFollowerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPFansAndFollowerViewController.h; sourceTree = "<group>"; };
+		73613F6126F0CCFA00A88357 /* PMPFansAndFollowerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPFansAndFollowerViewController.m; sourceTree = "<group>"; };
 		738C15AF26E0B35600E24F8C /* FeedBackDefaultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackDefaultView.h; sourceTree = "<group>"; };
 		738C15B026E0B35600E24F8C /* FeedBackDefaultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackDefaultView.m; sourceTree = "<group>"; };
 		738C15B226E0BDFE00E24F8C /* HistoricalFBDefaultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoricalFBDefaultView.h; sourceTree = "<group>"; };
@@ -3276,6 +3295,7 @@
 		1A14132A235F523B0001417E /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				73613F4126EF3C3900A88357 /* PersonalMainPage */,
 				735BC52626D3875B00F22678 /* FeedBackCenter */,
 				7311321C26CCEB9C00EF88C1 /* StampCenter */,
 				AA536DD8258C3F7C00F69E73 /* TopBarBasicViewController.h */,
@@ -4369,6 +4389,145 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		73613F4126EF3C3900A88357 /* PersonalMainPage */ = {
+			isa = PBXGroup;
+			children = (
+				73613F5E26F0C40400A88357 /* PMPImagesSets.xcassets */,
+				73613F5A26F0B86100A88357 /* PMPColorSets.xcassets */,
+				73613F4526EF3CDA00A88357 /* PMPBasicClass */,
+				73613F4626EF3D0A00A88357 /* PMPTools */,
+				73613F5026F0ADE900A88357 /* PMPPrimaryController */,
+			);
+			path = PersonalMainPage;
+			sourceTree = "<group>";
+		};
+		73613F4526EF3CDA00A88357 /* PMPBasicClass */ = {
+			isa = PBXGroup;
+			children = (
+				73BAFFAF26F1BE3D007290B1 /* View */,
+				73BAFFAE26F1BE23007290B1 /* Controller */,
+			);
+			path = PMPBasicClass;
+			sourceTree = "<group>";
+		};
+		73613F4626EF3D0A00A88357 /* PMPTools */ = {
+			isa = PBXGroup;
+			children = (
+				73613F4D26EF4D5600A88357 /* FrameExtension */,
+			);
+			path = PMPTools;
+			sourceTree = "<group>";
+		};
+		73613F4D26EF4D5600A88357 /* FrameExtension */ = {
+			isa = PBXGroup;
+			children = (
+				73613F4726EF3DCB00A88357 /* UIView+JHFrameExtension.h */,
+				73613F4826EF3DCB00A88357 /* UIView+JHFrameExtension.m */,
+			);
+			path = FrameExtension;
+			sourceTree = "<group>";
+		};
+		73613F4E26F0AC5000A88357 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		73613F4F26F0AC5E00A88357 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73613F5026F0ADE900A88357 /* PMPPrimaryController */ = {
+			isa = PBXGroup;
+			children = (
+				73613F5D26F0B93C00A88357 /* PMPMainPage */,
+				73613F5126F0AE8500A88357 /* PMPSecondaryController */,
+			);
+			path = PMPPrimaryController;
+			sourceTree = "<group>";
+		};
+		73613F5126F0AE8500A88357 /* PMPSecondaryController */ = {
+			isa = PBXGroup;
+			children = (
+				73613F5926F0B63E00A88357 /* PMPFansAndFollower */,
+				73613F5226F0B34200A88357 /* PMPInformationEditing */,
+				73613F5C26F0B88700A88357 /* PMPTertiaryController */,
+			);
+			path = PMPSecondaryController;
+			sourceTree = "<group>";
+		};
+		73613F5226F0B34200A88357 /* PMPInformationEditing */ = {
+			isa = PBXGroup;
+			children = (
+				73613F5326F0B3A200A88357 /* PMPInformationEditingViewController.h */,
+				73613F5426F0B3A200A88357 /* PMPInformationEditingViewController.m */,
+				73613F6626F0CD3700A88357 /* Model */,
+				73613F6526F0CD3500A88357 /* View */,
+			);
+			path = PMPInformationEditing;
+			sourceTree = "<group>";
+		};
+		73613F5926F0B63E00A88357 /* PMPFansAndFollower */ = {
+			isa = PBXGroup;
+			children = (
+				73613F6026F0CCFA00A88357 /* PMPFansAndFollowerViewController.h */,
+				73613F6126F0CCFA00A88357 /* PMPFansAndFollowerViewController.m */,
+				73613F6426F0CD2A00A88357 /* Model */,
+				73613F6326F0CD2800A88357 /* View */,
+			);
+			path = PMPFansAndFollower;
+			sourceTree = "<group>";
+		};
+		73613F5C26F0B88700A88357 /* PMPTertiaryController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PMPTertiaryController;
+			sourceTree = "<group>";
+		};
+		73613F5D26F0B93C00A88357 /* PMPMainPage */ = {
+			isa = PBXGroup;
+			children = (
+				73613F4226EF3CD300A88357 /* PMPMainPageViewController.h */,
+				73613F4326EF3CD300A88357 /* PMPMainPageViewController.m */,
+				73613F4F26F0AC5E00A88357 /* View */,
+				73613F4E26F0AC5000A88357 /* Model */,
+			);
+			path = PMPMainPage;
+			sourceTree = "<group>";
+		};
+		73613F6326F0CD2800A88357 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73613F6426F0CD2A00A88357 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		73613F6526F0CD3500A88357 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73613F6626F0CD3700A88357 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		73AAA1A826C918240084E44D /* StampDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -4449,6 +4608,22 @@
 				73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */,
 			);
 			path = "GenericClass  ";
+			sourceTree = "<group>";
+		};
+		73BAFFAE26F1BE23007290B1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				73613F5626F0B47000A88357 /* PMPBasicNavBarController.h */,
+				73613F5726F0B47000A88357 /* PMPBasicNavBarController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		73BAFFAF26F1BE3D007290B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		7F101AB5260613E800F2034C /* YYZTopicGroup */ = {
@@ -5708,6 +5883,7 @@
 				18CDF6EA257F91BE006E8E5C /* login_password@3x.png in Resources */,
 				18CDF6FD257F91BE006E8E5C /* 背景板@2x.png in Resources */,
 				18CDF6E0257F91BE006E8E5C /* 年份圆圈@3x.png in Resources */,
+				73613F5F26F0C40400A88357 /* PMPImagesSets.xcassets in Resources */,
 				DB34EAE4239BD4550052B65E /* 箭头@2x.png in Resources */,
 				DB34EAEA239BD4550052B65E /* 无课@3x.png in Resources */,
 				18CDF6F5257F91BE006E8E5C /* login_icon.png in Resources */,
@@ -5794,6 +5970,7 @@
 				18CDF6C9257F91BE006E8E5C /* SchoolBus.xcassets in Resources */,
 				DB34EB1C239BD4550052B65E /* 选择@2x.png in Resources */,
 				D06AAEDC24AC00BB00EE0892 /* QAReviewReportView.xib in Resources */,
+				73613F5B26F0B86100A88357 /* PMPColorSets.xcassets in Resources */,
 				DB34EB09239BD4550052B65E /* remind1@2x.png in Resources */,
 				18CDF6E1257F91BE006E8E5C /* login_back@3x.png in Resources */,
 				18CDF6DB257F91BE006E8E5C /* login_number.png in Resources */,
@@ -5941,6 +6118,7 @@
 			files = (
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
+				73613F6226F0CCFA00A88357 /* PMPFansAndFollowerViewController.m in Sources */,
 				180DAA6B26B442B60094B8DC /* FunctionBtn.m in Sources */,
 				18CDF6A1257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.m in Sources */,
 				18CDF4C2257F8DBD006E8E5C /* changePassword.m in Sources */,
@@ -6157,6 +6335,7 @@
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				180DA9B526B440900094B8DC /* FollowGroupModel.m in Sources */,
+				73613F5826F0B47000A88357 /* PMPBasicNavBarController.m in Sources */,
 				180DAA6726B442B60094B8DC /* ShareView.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
@@ -6215,6 +6394,7 @@
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				18CDF6C5257F91BE006E8E5C /* IdsBindingView.m in Sources */,
 				180DA9B726B440900094B8DC /* StarPostModel.m in Sources */,
+				73613F5526F0B3A200A88357 /* PMPInformationEditingViewController.m in Sources */,
 				180DAA3E26B442B20094B8DC /* NewQAHud.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
 				1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */,
@@ -6310,6 +6490,7 @@
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				18FE64F625FDA186008748AE /* UIControl+MGD.m in Sources */,
 				73AAA1D226C918250084E44D /* SegmentView.m in Sources */,
+				73613F4926EF3DCB00A88357 /* UIView+JHFrameExtension.m in Sources */,
 				7311328B26CCEC2400EF88C1 /* BottomView.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				B82CA682263159BA00786685 /* zhPopupController.m in Sources */,
@@ -6467,6 +6648,7 @@
 				735BC54426D3B64500F22678 /* FeedBackDetailsTableViewCell.m in Sources */,
 				18CDF68E257F91BD006E8E5C /* CQUPTMapModel.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
+				73613F4426EF3CD300A88357 /* PMPMainPageViewController.m in Sources */,
 				7311328726CCEC2400EF88C1 /* Balance.m in Sources */,
 				B845737925C0408E005EFB91 /* SZHSearchDataModel.m in Sources */,
 				1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */,
