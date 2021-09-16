@@ -16,8 +16,6 @@
 @property (nonatomic,strong) UILabel * VCTitleLabel;
 /// 返回按钮
 @property (nonatomic,strong) UIButton * backBtn;
-/// 导航条底部的黑线
-@property (nonatomic,strong) UIView * splitLine;
 
 @end
 
@@ -61,14 +59,6 @@
         make.centerY.equalTo(self.topBarView);
         make.left.mas_equalTo(self.backBtn.mas_right);
     }];
-
-    // configure splitLine
-    [self.topBarView addSubview:self.splitLine];
-    [self.splitLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.topBarView);
-        make.left.right.equalTo(self.topBarView);
-        make.height.mas_equalTo(1);
-    }];
 }
 
 #pragma mark - private
@@ -82,20 +72,30 @@
 /// 点击 返回按钮 后调用的方法
 - (void)backBtnClicked:(UIButton *)sender {
     // 添加一个小动画
-    CABasicAnimation * animation = [CABasicAnimation animation];
-    animation.keyPath = @"backgroundColor";
-    animation.toValue = (__bridge id)[UIColor lightGrayColor].CGColor;
-    animation.duration = 0.1;
-    animation.autoreverses = YES;
-    [sender.layer addAnimation:animation forKey:@"backgroundColor"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//    CABasicAnimation * animation = [CABasicAnimation animation];
+//    animation.keyPath = @"backgroundColor";
+//    animation.toValue = (__bridge id)[UIColor lightGrayColor].CGColor;
+//    animation.duration = 0.1;
+//    animation.autoreverses = YES;
+//    [sender.layer addAnimation:animation forKey:@"backgroundColor"];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        if (self.navigationController != nil) {
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//        else if (self.presentingViewController != nil) {
+//            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+//        }
+//    });
+    [UIView animateWithDuration:0.1 animations:^{
+        sender.backgroundColor = [UIColor lightGrayColor];
+    } completion:^(BOOL finished) {
         if (self.navigationController != nil) {
             [self.navigationController popViewControllerAnimated:YES];
         }
         else if (self.presentingViewController != nil) {
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
         }
-    });
+    }];
 }
 
 #pragma mark - setter
@@ -105,16 +105,6 @@
     if(self.topBarView){
         self.VCTitleLabel.text = _VCTitleStr;
     }
-}
-
-- (void)setSplitLineHidden:(BOOL)splitLineHidden {
-    _splitLineHidden = splitLineHidden;
-    self.splitLine.hidden = _splitLineHidden;
-}
-
-- (void)setSplitLineColor:(UIColor *)splitLineColor {
-    _splitLineColor = splitLineColor;
-    self.splitLine.backgroundColor = splitLineColor;
 }
 
 - (void)setTitleFont:(UIFont *)titleFont {
@@ -130,11 +120,6 @@
 - (void)setTopBarBackgroundColor:(UIColor *)topBarBackgroundColor {
     _topBarBackgroundColor = topBarBackgroundColor;
     self.topBarView.backgroundColor = topBarBackgroundColor;
-}
-
-- (void)setTopBarViewHidden:(BOOL)topBarViewHidden {
-    _topBarViewHidden = topBarViewHidden;
-    self.topBarView.hidden = topBarViewHidden;
 }
 
 #pragma mark - getter
@@ -165,14 +150,6 @@
         [_VCTitleLabel sizeToFit];
     }
     return _VCTitleLabel;
-}
-
-- (UIView *)splitLine {
-    if (_splitLine == nil) {
-        _splitLine = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _splitLine.backgroundColor = [UIColor colorNamed:@"45_45_45_0.2&230_230_230_0.4"];
-    }
-    return _splitLine;
 }
 
 @end

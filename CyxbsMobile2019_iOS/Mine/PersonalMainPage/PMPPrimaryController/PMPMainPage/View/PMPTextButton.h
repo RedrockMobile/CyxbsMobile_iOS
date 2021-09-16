@@ -10,14 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 一个简单地按钮
+/// 一个简单的按钮
 @interface PMPTextButton : PMPBasicActionView
 
 @property (nonatomic, strong) UILabel * titleLabel;
 @property (nonatomic, strong) UILabel * subtitleLabel;
 
+@property (nonatomic, assign) NSUInteger index;
+
+/// @param title 标题-第一行
+/// @param subtitle 副标题-第二行
+/// @param index 索引
 - (void)setTitle:(NSString *)title
-        subtitle:(NSString *)subtitle;
+        subtitle:(NSString *)subtitle
+           index:(NSUInteger)index;
 
 @end
 

@@ -14,6 +14,8 @@
 
 /// 存放按钮的数组
 @property (nonatomic, strong) NSMutableArray <UIButton *> * buttonMAry;
+/// 分割线
+@property (nonatomic, strong) UIView * splitLineView;
 
 @end
 
@@ -37,6 +39,24 @@
 }
 
 - (void)configureView {
+    // 设置圆角, topLeft | topRight
+    self.backgroundColor = [UIColor colorNamed:@"white&29_29_29_1"];
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                   byRoundingCorners:UIRectCornerTopRight | UIRectCornerTopLeft
+                                                         cornerRadii:CGSizeMake(self.height/4, self.height/4)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.layer.mask = maskLayer;
+    
+    // config splitLineView
+    self.splitLineView = [[UIView alloc] init];
+    self.splitLineView.backgroundColor = [UIColor colorNamed:@"42_78_132_0.1&74_80_102_0.4"];
+    self.splitLineView.jh_size = CGSizeMake(self.jh_width, 1);
+    self.splitLineView.jh_origin = CGPointMake(0, self.jh_height -1);
+    [self.layer addSublayer:self.splitLineView.layer];
+
+    // config buttonMAry
     self.buttonMAry = [NSMutableArray array];
     for (int i = 0; i < _titles.count; i++) {
         UIButton * button = [self getNewButtonWithIndex:i];
@@ -44,10 +64,11 @@
         [self addSubview:button];
         [self.buttonMAry addObject:button];
     }
+    [self setupButtonFrame];
+
     // 随便设置一个在索引范围内的数字, 只要不是0就可以
     _selectedIndex = 1;
 }
-
 
 #pragma mark - eventResponse action
 
@@ -62,22 +83,29 @@
 - (UIButton *)getNewButtonWithIndex:(NSInteger)index {
     UIButton * button = [[UIButton alloc] initWithFrame:(CGRectZero)];
     button.tag = [self tagWithIndex:index];
-    [button setTitleColor:[UIColor colorNamed:@"21_49_91_0.8&240_240_242_0.8"]
+    [button setTitleColor:[UIColor colorNamed:@"21_49_91_1&240_240_242_1"]
                  forState:(UIControlStateNormal)];
-    [button setTitleColor:[UIColor colorNamed:@"95_117_228_1&119_142_255_1"]
+    [button setTitleColor:[UIColor colorNamed:@"21_49_91_1&240_240_242_1"]
                  forState:(UIControlStateSelected)];
     [button addTarget:self
                action:@selector(clickButton:)
      forControlEvents:(UIControlEventTouchUpInside)];
-    
-    //设置button的frame
-    CGFloat buttonWidth = [UIScreen mainScreen].bounds.size.width / _titles.count;
-    button.jh_width = buttonWidth;
-    button.jh_height = self.height;
-    button.jh_y = 0;
-    button.jh_x = buttonWidth * index;
+    button.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
     
     return button;
+}
+
+- (void)setupButtonFrame {
+    if (self.buttonMAry.count == 0) {
+        return;
+    }
+    CGFloat buttonWidth = [UIScreen mainScreen].bounds.size.width / _titles.count;
+    for (UIButton * button in self.buttonMAry) {
+        button.jh_width = buttonWidth;
+        button.jh_height = self.height;
+        button.jh_y = 0;
+        button.jh_x = buttonWidth * [self indexWithTag:button.tag];
+    }
 }
 
 - (NSInteger)tagWithIndex:(NSInteger)index {
@@ -96,18 +124,12 @@
 
 - (void)setSelectedIndex:(NSInteger)selectedIndex {
     self.buttonMAry[_selectedIndex].selected = NO;
-    self.buttonMAry[_selectedIndex].titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:14];
     _selectedIndex = selectedIndex;
     self.buttonMAry[_selectedIndex].selected = YES;
-    self.buttonMAry[_selectedIndex].titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
-    // 增加动画效果
-    CAKeyframeAnimation *scale = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    NSArray *shapes = @[@1.1, @1.2, @1.2, @1.2, @1.1, @1];
-    [scale setDuration:0.5];
-    [scale setValues:shapes];
-    [scale setRemovedOnCompletion:NO];
-    [scale setFillMode:kCAFillModeBoth];
-    [self.buttonMAry[_selectedIndex].layer addAnimation:scale forKey:@"transform.scale"];
+}
+
+- (void)setTitles:(NSArray<NSString *> *)titles {
+    _titles = titles;
 }
 
 @end

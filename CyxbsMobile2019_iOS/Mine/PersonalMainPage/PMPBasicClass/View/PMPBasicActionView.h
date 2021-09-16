@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PMPBasicActionView : UIView
 
-- (void)addTarget:(nullable id)target action:(nullable SEL)action;
+- (void)addTarget:(nullable id)target
+           action:(nullable SEL)action;
 
 @end
 
