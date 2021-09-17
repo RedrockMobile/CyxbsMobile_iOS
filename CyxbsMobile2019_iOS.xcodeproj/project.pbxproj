@@ -401,6 +401,9 @@
 		49C2E78326D563AF00AFBE6F /* TypeSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C2E78226D563AF00AFBE6F /* TypeSelectView.m */; };
 		49F47CD226D423A100084196 /* FeedBackMainPage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F47CD126D423A100084196 /* FeedBackMainPage.xcassets */; };
 		6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6464F93326E4F6EE008562C5 /* BuyModel.m */; };
+		6464F97D26F484B0008562C5 /* FansTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6464F97C26F484B0008562C5 /* FansTableView.m */; };
+		6464F98026F484C6008562C5 /* FollowingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6464F97F26F484C6008562C5 /* FollowingTableView.m */; };
+		6464F98326F48B2F008562C5 /* FansAndFollowingSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6464F98226F48B2F008562C5 /* FansAndFollowingSegmentView.m */; };
 		7311328426CCEC2400EF88C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7311327126CCEC2400EF88C1 /* Media.xcassets */; };
 		7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311327326CCEC2400EF88C1 /* ExchangeCenterViewController.m */; };
 		7311328626CCEC2400EF88C1 /* Goods.m in Sources */ = {isa = PBXBuildFile; fileRef = 7311327726CCEC2400EF88C1 /* Goods.m */; };
@@ -1466,6 +1469,12 @@
 		49F47CD126D423A100084196 /* FeedBackMainPage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FeedBackMainPage.xcassets; sourceTree = "<group>"; };
 		6464F93226E4F6EE008562C5 /* BuyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyModel.h; sourceTree = "<group>"; };
 		6464F93326E4F6EE008562C5 /* BuyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyModel.m; sourceTree = "<group>"; };
+		6464F97B26F484B0008562C5 /* FansTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FansTableView.h; path = "../../../../../../../../../../../../Volumes/Xcode/Cyxbs/fans demo/fans demo/fans/FansTableView.h"; sourceTree = "<group>"; };
+		6464F97C26F484B0008562C5 /* FansTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FansTableView.m; path = "../../../../../../../../../../../../Volumes/Xcode/Cyxbs/fans demo/fans demo/fans/FansTableView.m"; sourceTree = "<group>"; };
+		6464F97E26F484C6008562C5 /* FollowingTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FollowingTableView.h; path = "../../../../../../../../../../../../Volumes/Xcode/Cyxbs/fans demo/fans demo/fans/FollowingTableView.h"; sourceTree = "<group>"; };
+		6464F97F26F484C6008562C5 /* FollowingTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FollowingTableView.m; path = "../../../../../../../../../../../../Volumes/Xcode/Cyxbs/fans demo/fans demo/fans/FollowingTableView.m"; sourceTree = "<group>"; };
+		6464F98126F48B2F008562C5 /* FansAndFollowingSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FansAndFollowingSegmentView.h; path = "../../../../../../../../../../../../Volumes/Xcode/Cyxbs/fans demo/fans demo/fans/FansAndFollowingSegmentView.h"; sourceTree = "<group>"; };
+		6464F98226F48B2F008562C5 /* FansAndFollowingSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FansAndFollowingSegmentView.m; path = "../../../../../../../../../../../../Volumes/Xcode/Cyxbs/fans demo/fans demo/fans/FansAndFollowingSegmentView.m"; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7311327126CCEC2400EF88C1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		7311327326CCEC2400EF88C1 /* ExchangeCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeCenterViewController.m; sourceTree = "<group>"; };
@@ -4503,6 +4512,12 @@
 		73613F6326F0CD2800A88357 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6464F98126F48B2F008562C5 /* FansAndFollowingSegmentView.h */,
+				6464F98226F48B2F008562C5 /* FansAndFollowingSegmentView.m */,
+				6464F97B26F484B0008562C5 /* FansTableView.h */,
+				6464F97C26F484B0008562C5 /* FansTableView.m */,
+				6464F97E26F484C6008562C5 /* FollowingTableView.h */,
+				6464F97F26F484C6008562C5 /* FollowingTableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6163,6 +6178,7 @@
 				D03E59B423D9D8BE00E0F34D /* QAAnswerViewController.m in Sources */,
 				AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
+				6464F98326F48B2F008562C5 /* FansAndFollowingSegmentView.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				49C2E78326D563AF00AFBE6F /* TypeSelectView.m in Sources */,
 				1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */,
@@ -6341,6 +6357,7 @@
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
+				6464F98026F484C6008562C5 /* FollowingTableView.m in Sources */,
 				18CDF6AA257F91BD006E8E5C /* NewsCell.m in Sources */,
 				AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
@@ -6462,6 +6479,7 @@
 				7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */,
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
 				B82CA6AB26315BD800786685 /* CircleLabelBtn.m in Sources */,
+				6464F97D26F484B0008562C5 /* FansTableView.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
