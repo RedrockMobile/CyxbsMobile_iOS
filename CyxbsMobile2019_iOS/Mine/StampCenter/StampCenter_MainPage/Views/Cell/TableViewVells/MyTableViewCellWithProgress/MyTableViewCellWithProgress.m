@@ -104,6 +104,10 @@
     
     if ([sender.target isEqualToString:@"斐然成章"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToReleaseDynamic" object:nil];
+    }else if ([sender.target isEqualToString:@"绑定志愿者账号"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToZhiyuan" object:nil];
+    }else if ([sender.target isEqualToString:@"完善个人信息"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToProfile" object:nil];
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToNewQA" object:nil];
     }

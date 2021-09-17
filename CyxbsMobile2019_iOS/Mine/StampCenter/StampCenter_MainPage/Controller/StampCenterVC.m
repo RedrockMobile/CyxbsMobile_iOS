@@ -15,6 +15,8 @@
 #import "MyTableViewCellWithProgress.h"
 #import "NewQAMainPageMainController.h"
 #import "SZHReleaseDynamic.h"
+#import "QueryLoginViewController.h"
+#import "EditMyInfoViewController.h"
 
 //Tool
 #import "UIView+XYView.h"
@@ -513,6 +515,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showalertLbl) name:@"showalertLbl" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
     
 }
 
@@ -604,4 +608,13 @@
     self.topView.alertLbl.hidden = NO;
 }
 
+- (void)jumpToZhiyuan{
+    QueryLoginViewController *QVC = [[QueryLoginViewController alloc]init];
+    [self.navigationController pushViewController:QVC animated:YES];
+}
+
+- (void)jumpToProfile{
+    EditMyInfoViewController *EVC = [[EditMyInfoViewController alloc]init];
+    [self.navigationController presentViewController:EVC animated:YES completion:nil];
+}
 @end
