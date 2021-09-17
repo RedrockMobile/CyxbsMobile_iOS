@@ -67,49 +67,31 @@
 
         cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
         self.cycleScrollView = cycleScrollView;
-        
+        [self addPageController];
 
         } failure:^{
     }];
     
 }
 
-//- (void)addPicView {
-//    _picScrollView = [[UIScrollView alloc]init];
-//    [self addSubview:_picScrollView];
-//    [_picScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self);
-        
-//    }];
-//    _picScrollView.layer.cornerRadius = 10;
-//    [_picScrollView setContentSize:CGSizeMake(picScrollViewWidth * 3, 178)];
-//    _picScrollView.pagingEnabled = YES;
-//    [_picScrollView setShowsHorizontalScrollIndicator:NO];
-//
-//
-    
-//    //添加分页控制器
-////    [self addPageController];
-//    NSLog(@"%@", _urls);
-//}
 
 ///分页控制器
-//- (void)addPageController {
-//    UIPageControl *pageControl = [[UIPageControl alloc]init];
-//    [self addSubview:pageControl];
-//    _pageControl = pageControl;
-//    [pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerX.equalTo(self);
-//            make.bottom.equalTo(self.picScrollView.mas_bottom);
-//            make.width.mas_equalTo(125);
-//            make.height.mas_equalTo(30);
-//    }];
-//    pageControl.pageIndicatorTintColor =[UIColor grayColor];
-//    pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-//    pageControl.numberOfPages = 3;
-//    pageControl.currentPage = 0;
-//
-//}
+- (void)addPageController {
+    UIPageControl *pageControl = [[UIPageControl alloc]init];
+    [self addSubview:pageControl];
+    _pageControl = pageControl;
+    [pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.bottom.equalTo(self.bannerView.mas_bottom);
+            make.width.mas_equalTo(125);
+            make.height.mas_equalTo(30);
+    }];
+    pageControl.pageIndicatorTintColor =[UIColor grayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+    pageControl.numberOfPages = 2;
+    pageControl.currentPage = 0;
+
+}
 #pragma mark - configure
 - (void)configure {
     
@@ -152,7 +134,10 @@
     
     
 }
-
+#pragma mark - delegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
+    self.pageControl.currentPage = index;
+}
 
 #pragma mark - getter
 ///商品名字
@@ -170,7 +155,7 @@
         _amountLabel = [[UILabel alloc]init];
         _amountLabel.textAlignment = NSTextAlignmentRight;
         _amountLabel.textColor = [UIColor colorNamed:@"21_49_91"];
-        _amountLabel.alpha = 0.8;
+        _amountLabel.alpha = 0.4;
         _amountLabel.font = [UIFont systemFontOfSize:13];
     }
     return _amountLabel;
