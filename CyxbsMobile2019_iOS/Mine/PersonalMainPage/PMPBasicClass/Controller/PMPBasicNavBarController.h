@@ -7,43 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+// 有必要放在这里
+#import "UIView+JHFrameExtension.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  * 直接继承使用
  * 在控制器的 viewDidLoad 方法中写:
- * self.view.backgroundColor = [UIColor colorNamed:@"white&black"];
- * self.VCTitleStr = @"";
- * self.splitLineColor = [UIColor colorNamed:@"45_45_45_0.2&230_230_230_0.4"];
- * self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
- * self.splitLineHidden = YES;
+ self.view.backgroundColor = [UIColor colorNamed:@"white&black"];
+ self.VCTitleStr = @"";
+ self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
  */
 @interface PMPBasicNavBarController : UIViewController
 
 /// 设置这个属性自动完成顶部自定义导航条的设置
 @property (nonatomic,copy)NSString *VCTitleStr;
-/// 是否隐藏分割线，default is NO
-@property (nonatomic, assign, getter=isSplitLineHidden) BOOL splitLineHidden;
 /// 标题字体 Font， default is [UIFont fontWithName:PingFangSCSemibold size:21]
 @property (nonatomic, strong) UIFont * titleFont;
 /// 标题颜色，default is Red:21 green:49 blue:91 alpha:1
 @property (nonatomic, strong) UIColor * titleColor;
-/// 导航栏的颜色 默认为和控制器 view 颜色一样
+/// 导航栏的颜色
 @property (nonatomic, strong) UIColor * topBarBackgroundColor;
-/// 导航栏是否隐藏 默认为 NO
-@property (nonatomic, assign, getter=isTopBarViewHidden) BOOL topBarViewHidden;
-/// 分割线的颜色
-@property (nonatomic, strong) UIColor * splitLineColor;
-
-/// 顶部的bar
-@property (nonatomic,strong) UIView * topBarView;
-/// 控制器标题
-@property (nonatomic,strong) UILabel * VCTitleLabel;
-/// 返回按钮
-@property (nonatomic,strong) UIButton * backBtn;
-/// 导航条底部的黑线
-@property (nonatomic,strong) UIView * splitLine;
 
 /// 整个导航栏的高度，包括状态栏和内容的高度
 /// 状态栏是根据机型不同而变化

@@ -448,6 +448,11 @@
 		73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C226C918240084E44D /* PurchaseInfoOrderIDView.m */; };
 		73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */; };
 		73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */; };
+		73BAFFB726F21C42007290B1 /* PMPBasicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFB626F21C42007290B1 /* PMPBasicTableViewCell.m */; };
+		73BAFFBA26F21D49007290B1 /* PMPBasicActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFB926F21D49007290B1 /* PMPBasicActionView.m */; };
+		73BAFFBD26F21F8F007290B1 /* PMPSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFBC26F21F8F007290B1 /* PMPSegmentView.m */; };
+		73BAFFC026F22445007290B1 /* PMPTextButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFBF26F22445007290B1 /* PMPTextButton.m */; };
+		73BAFFC726F33A24007290B1 /* PMPMainPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73BAFFC626F33A24007290B1 /* PMPMainPageHeaderView.m */; };
 		7F101AC2260613E800F2034C /* YYZTopicGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */; };
 		7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */; };
 		7F101AC5260613E800F2034C /* YYZTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101ABF260613E800F2034C /* YYZTopicCell.m */; };
@@ -1558,6 +1563,16 @@
 		73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsBaseTableViewCell.m; sourceTree = "<group>"; };
 		73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCustomizeNavigationBar.m; sourceTree = "<group>"; };
 		73AAA1C926C918240084E44D /* DetailsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsBaseTableViewCell.h; sourceTree = "<group>"; };
+		73BAFFB526F21C42007290B1 /* PMPBasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPBasicTableViewCell.h; sourceTree = "<group>"; };
+		73BAFFB626F21C42007290B1 /* PMPBasicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPBasicTableViewCell.m; sourceTree = "<group>"; };
+		73BAFFB826F21D49007290B1 /* PMPBasicActionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPBasicActionView.h; sourceTree = "<group>"; };
+		73BAFFB926F21D49007290B1 /* PMPBasicActionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPBasicActionView.m; sourceTree = "<group>"; };
+		73BAFFBB26F21F8F007290B1 /* PMPSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPSegmentView.h; sourceTree = "<group>"; };
+		73BAFFBC26F21F8F007290B1 /* PMPSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPSegmentView.m; sourceTree = "<group>"; };
+		73BAFFBE26F22445007290B1 /* PMPTextButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPTextButton.h; sourceTree = "<group>"; };
+		73BAFFBF26F22445007290B1 /* PMPTextButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPTextButton.m; sourceTree = "<group>"; };
+		73BAFFC526F33A24007290B1 /* PMPMainPageHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PMPMainPageHeaderView.h; sourceTree = "<group>"; };
+		73BAFFC626F33A24007290B1 /* PMPMainPageHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMPMainPageHeaderView.m; sourceTree = "<group>"; };
 		7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicGroupVC.m; sourceTree = "<group>"; };
 		7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
 		7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
@@ -4446,6 +4461,12 @@
 		73613F4F26F0AC5E00A88357 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				73BAFFBB26F21F8F007290B1 /* PMPSegmentView.h */,
+				73BAFFBC26F21F8F007290B1 /* PMPSegmentView.m */,
+				73BAFFBE26F22445007290B1 /* PMPTextButton.h */,
+				73BAFFBF26F22445007290B1 /* PMPTextButton.m */,
+				73BAFFC526F33A24007290B1 /* PMPMainPageHeaderView.h */,
+				73BAFFC626F33A24007290B1 /* PMPMainPageHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4637,6 +4658,10 @@
 		73BAFFAF26F1BE3D007290B1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				73BAFFB526F21C42007290B1 /* PMPBasicTableViewCell.h */,
+				73BAFFB626F21C42007290B1 /* PMPBasicTableViewCell.m */,
+				73BAFFB826F21D49007290B1 /* PMPBasicActionView.h */,
+				73BAFFB926F21D49007290B1 /* PMPBasicActionView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6250,6 +6275,7 @@
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
 				18CDF661257F91BD006E8E5C /* WeekAndDay.m in Sources */,
+				73BAFFC726F33A24007290B1 /* PMPMainPageHeaderView.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				7311328A26CCEC2400EF88C1 /* TopView.m in Sources */,
@@ -6287,6 +6313,7 @@
 				1A4A467724D16A810033734E /* UserInformationIntorductionView.m in Sources */,
 				18CDF713257F91BE006E8E5C /* ArchiveTool.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
+				73BAFFBD26F21F8F007290B1 /* PMPSegmentView.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */,
 				AA3F82E624EA4A8900B65042 /* LeftBar.m in Sources */,
@@ -6297,6 +6324,7 @@
 				D026A80F23D4F7D0001A4774 /* QAListTableViewCell.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */,
+				73BAFFBA26F21D49007290B1 /* PMPBasicActionView.m in Sources */,
 				18CDF69E257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m in Sources */,
 				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */,
@@ -6379,6 +6407,7 @@
 				1A16592D23D880BE0039BA46 /* MyQuestionsReleasedCell.m in Sources */,
 				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
+				73BAFFC026F22445007290B1 /* PMPTextButton.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				1AD038CE23F91C3D00D5C90E /* MineQAMyQuestionItem.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
@@ -6479,7 +6508,11 @@
 				7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */,
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
 				B82CA6AB26315BD800786685 /* CircleLabelBtn.m in Sources */,
+<<<<<<< HEAD
 				6464F97D26F484B0008562C5 /* FansTableView.m in Sources */,
+=======
+				73BAFFB726F21C42007290B1 /* PMPBasicTableViewCell.m in Sources */,
+>>>>>>> fec10ff89b2c9516e93eeebfa604323c6d78f01a
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
