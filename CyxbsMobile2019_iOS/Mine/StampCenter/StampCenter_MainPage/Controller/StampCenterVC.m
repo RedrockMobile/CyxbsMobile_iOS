@@ -13,6 +13,8 @@
 #import "MyCollectionViewCell.h"
 #import "SecondHeaderView.h"
 #import "MyTableViewCellWithProgress.h"
+#import "NewQAMainPageMainController.h"
+#import "SZHReleaseDynamic.h"
 
 //Tool
 #import "UIView+XYView.h"
@@ -151,6 +153,8 @@
     
     //设置小点
     [self setupPoint];
+    
+    
 }
 
 #pragma mark - table数据源
@@ -504,6 +508,12 @@
     self.splitLineHidden = YES;
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showalertLbl) name:@"showalertLbl" object:nil];
+    
 }
 
 //小型邮票数量View
@@ -559,5 +569,39 @@
     }];
 }
 
+- (void)netWorkAlert{
+    [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+}
+
+- (void)jumpToNewQA{
+    NSLog(@"正在跳转至邮问主页");
+    self.tabBarController.selectedIndex = 1;
+}
+
+- (void)jumpToReleaseDynamic{
+    SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
+    
+    [self.navigationController pushViewController:SVC animated:YES];
+}
+
+- (void)refreshPage{
+    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+        self.taskAry = array;
+    } error:^{
+        
+    }];
+    
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        self.number = responseObject[@"data"][@"user_amount"];
+        self.topView.number = responseObject[@"data"][@"user_amount"];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"==========================出错了");
+        }];
+}
+
+- (void)showalertLbl{
+    self.topView.alertLbl.hidden = NO;
+}
 
 @end

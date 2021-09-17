@@ -55,7 +55,6 @@
         [_detailBtn setImage:[UIImage imageNamed:@"mingxi"] forState:UIControlStateNormal];
         _detailBtn.alpha = 0.7;
         HttpClient *client = [HttpClient defaultClient];
-//        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
         [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -74,7 +73,7 @@
         _alertLbl.font = [UIFont fontWithName:@"Bauhaus93" size:12];
         _alertLbl.textColor = [UIColor colorNamed:@"#FFFFFFE5"];
         _alertLbl.text = @"你还有待领取的商品，请尽快领取";
-        _alertLbl.hidden = YES;
+        _alertLbl.hidden = NO;
         [_bannerImage addSubview:_bigStampImage];
         [_bannerImage addSubview:_wodeyoupiao];
         [_bannerImage addSubview:_mingxiLbl];

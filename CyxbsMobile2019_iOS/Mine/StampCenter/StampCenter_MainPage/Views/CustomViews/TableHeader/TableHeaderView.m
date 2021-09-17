@@ -30,7 +30,7 @@
     self.layer.mask = maskLayer;
 }
 
--(GotoButton *)button{
+- (GotoButton *)button{
     if (!_button) {
        GotoButton *button = [[GotoButton alloc]initWithFrame:CGRectMake(0.781*SCREEN_WIDTH, 32, 66, 28) AndTitle:@"去签到"];
         [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
@@ -39,7 +39,7 @@
                 self.button.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
                 [self.button setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
                 self.button.enabled = NO;
-                [self.button setTitle:@"已完成" forState:UIControlStateNormal];
+                [self.button setTitle:@"已签到" forState:UIControlStateNormal];
             }
                 } error:^{
                     NSLog(@"出错了");
@@ -85,9 +85,10 @@
                 self.button.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
                 [self.button setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
                 self.button.enabled = NO;
-                [self.button setTitle:@"已完成" forState:UIControlStateNormal];
+                [self.button setTitle:@"已签到" forState:UIControlStateNormal];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"失败了");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"networkerror" object:nil];
             }];
 }
 @end
