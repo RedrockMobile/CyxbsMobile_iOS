@@ -6520,11 +6520,8 @@
 				7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */,
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
 				B82CA6AB26315BD800786685 /* CircleLabelBtn.m in Sources */,
-<<<<<<< HEAD
 				6464F97D26F484B0008562C5 /* FansTableView.m in Sources */,
-=======
 				73BAFFB726F21C42007290B1 /* PMPBasicTableViewCell.m in Sources */,
->>>>>>> fec10ff89b2c9516e93eeebfa604323c6d78f01a
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
