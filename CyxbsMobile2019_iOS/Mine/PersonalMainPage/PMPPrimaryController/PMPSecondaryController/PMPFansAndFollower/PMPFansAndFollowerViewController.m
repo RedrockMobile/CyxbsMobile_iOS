@@ -48,9 +48,9 @@
 
 - (void)configureView {
     self.VCTitleStr = @"详情";
-    self.VCTitleLabel.textColor = [UIColor colorNamed:@"21_49_91_1&223_223_227_1"];
+    self.titleColor = [UIColor colorNamed:@"21_49_91_1&223_223_227_1"];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
-    self.splitLineHidden = YES;
+//    self.splitLineHidden = YES;
     
     CGSize size = self.view.frame.size;
     
