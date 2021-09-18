@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UIView+JHFrameExtension.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PMPBasicActionView : UIView

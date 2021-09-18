@@ -27,12 +27,12 @@
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self);
-        make.bottom.mas_equalTo(self.centerY);
+        make.bottom.mas_equalTo(self.mas_centerY);
     }];
     
     [self.subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self);
-        make.top.mas_equalTo(self.centerY);
+        make.top.mas_equalTo(self.mas_centerY);
     }];
 }
 

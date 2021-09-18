@@ -39,8 +39,8 @@
 }
 
 - (void)configureView {
-    // 设置圆角, topLeft | topRight
     self.backgroundColor = [UIColor colorNamed:@"white&29_29_29_1"];
+    // 设置圆角, topLeft | topRight
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                    byRoundingCorners:UIRectCornerTopRight | UIRectCornerTopLeft
                                                          cornerRadii:CGSizeMake(self.height/4, self.height/4)];
