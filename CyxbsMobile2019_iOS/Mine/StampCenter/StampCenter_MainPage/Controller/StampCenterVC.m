@@ -20,9 +20,12 @@
 
 //Tool
 #import "UIView+XYView.h"
+
 //Model
 #import "GoodsData.h"
 #import "TaskData.h"
+#import "DetailsgoodsModel.h"
+
 
 ///邮票中心主界面
 @interface StampCenterVC () <UITableViewDelegate,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UICollectionViewDataSource,TopViewDelegate>
@@ -132,6 +135,12 @@
     self.smallcountLbl.text = [NSString stringWithFormat:@"%@",_number];
 }
 
+
+#pragma mark - viewWillAppear
+- (void)viewWillAppear:(BOOL)animated{
+    [self checkAlertLbl];
+}
+
 #pragma mark - viewDidLoad
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -155,7 +164,6 @@
     
     //设置小点
     [self setupPoint];
-    
     
 }
 
@@ -186,7 +194,6 @@
         cell.row = indexPath.row;
         cell.data = data;
     }
-
     return cell;
 }
 
@@ -205,7 +212,6 @@
     return 0.1;
 }
 
-
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section == 0) {
         UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH   , 60.0)];
@@ -220,7 +226,6 @@
     }
     return nil;
 }
-
 
 #pragma mark - collection数据源
 //组数
@@ -514,7 +519,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showalertLbl) name:@"showalertLbl" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
     
@@ -604,10 +609,6 @@
         }];
 }
 
-- (void)showalertLbl{
-    self.topView.alertLbl.hidden = NO;
-}
-
 - (void)jumpToZhiyuan{
     QueryLoginViewController *QVC = [[QueryLoginViewController alloc]init];
     [self.navigationController pushViewController:QVC animated:YES];
@@ -616,5 +617,19 @@
 - (void)jumpToProfile{
     EditMyInfoViewController *EVC = [[EditMyInfoViewController alloc]init];
     [self.navigationController presentViewController:EVC animated:YES completion:nil];
+}
+
+- (void)checkAlertLbl{
+    self.topView.alertLbl.hidden = YES;
+    [DetailsGoodsModel getDataArySuccess:^(NSArray * _Nonnull array) {
+        for (int i = 0 ; i < array.count; i++) {
+            DetailsGoodsModel *data = array[i];
+            if (data.is_received == NO) {
+                self.topView.alertLbl.hidden = NO;
+            }
+        }
+        } failure:^{
+            
+        }];
 }
 @end

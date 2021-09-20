@@ -90,5 +90,13 @@
                 NSLog(@"失败了");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"networkerror" object:nil];
             }];
+    
+//    [client requestWithJson:CHECKINAPI method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//
+//        NSLog(@"%@",responseObject);
+//        NSLog(@"成功了");
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"出错了");
+//        }];
 }
 @end

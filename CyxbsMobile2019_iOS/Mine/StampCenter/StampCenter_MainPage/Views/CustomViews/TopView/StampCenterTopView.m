@@ -73,7 +73,7 @@
         _alertLbl.font = [UIFont fontWithName:@"Bauhaus93" size:12];
         _alertLbl.textColor = [UIColor colorNamed:@"#FFFFFFE5"];
         _alertLbl.text = @"你还有待领取的商品，请尽快领取";
-        _alertLbl.hidden = NO;
+        _alertLbl.hidden = YES;
         [_bannerImage addSubview:_bigStampImage];
         [_bannerImage addSubview:_wodeyoupiao];
         [_bannerImage addSubview:_mingxiLbl];

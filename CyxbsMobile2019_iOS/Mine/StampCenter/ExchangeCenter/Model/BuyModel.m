@@ -16,6 +16,8 @@
     };
     [client requestWithPath:Stamp_Store_Exchange method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self->_Block(responseObject[@"status"]);
+        
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"failure-exchange%@" ,error);
     }];
