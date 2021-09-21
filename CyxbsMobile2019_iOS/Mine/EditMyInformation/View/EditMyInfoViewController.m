@@ -81,6 +81,19 @@
         // 头像没有改变，直接上传其他信息
         [self profileUploadSuccess];  // 这个方法是头像上传成功的回调，里面的内容就是上传个人信息
     }
+    HttpClient *client = [HttpClient defaultClient];
+    //完成完善个人信息任务
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSString *target = @"完善个人信息";
+        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+        [formData appendPartWithFormData:data name:@"title"];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            NSLog(@"成功了");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"失败了");
+        }];
 }
 
 - (void)backButtonClicked:(UIButton *)sender {

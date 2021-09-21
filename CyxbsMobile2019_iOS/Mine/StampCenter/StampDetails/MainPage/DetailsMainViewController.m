@@ -236,7 +236,9 @@
         if (array.count == 0) {
             self.goodsDefaultLabel.hidden = NO;
             self.goodsDefaultImgView.hidden = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"showalertLbl" object:nil];
         } else {
+     
             self.goodsDefaultLabel.hidden = YES;
             self.goodsDefaultImgView.hidden = YES;
         }

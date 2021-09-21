@@ -45,7 +45,12 @@
 #pragma mark - configure
 ///设置
 - (void)configure {
-    [self.view addSubview:self.topView];
+    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&0_0_0_1"];
+    self.VCTitleStr = @"";
+    self.titlePosition = TopBarViewTitlePositionLeft;
+    self.splitLineHidden = YES;
+    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+    self.titleColor = [UIColor colorNamed:@"21_49_91"];
     
     [self.view addSubview:self.contentView];
     
@@ -70,11 +75,11 @@
         self.contentView.textLabel.text = self.goodsDict[@"description" ];
         self.contentView.lastdayLabel.text = [[@"有效期：" stringByAppendingString: [NSString stringWithFormat:@"%@",self.goodsDict[@"life"]]] stringByAppendingString:@"天"];
         int type = [self.goodsDict[@"type"]intValue];
-        if (type == 1) {
-            self.topView.titleLabel.text = @"邮货详情";
+        if (type == 0) {
+            self.VCTitleStr = @"邮货详情";
             self.contentView.tipsContentLabel.text = @"1、每个实物商品每人限兑换一次，已经兑换的商品不能退货换货也不予折现。\n2、在法律允许的范围内，本活动的最终解释权归红岩网校工作站所有。";
         }else{
-            self.topView.titleLabel.text = @"装扮详情";
+            self.VCTitleStr = @"装扮详情";
             self.contentView.tipsContentLabel.text = @"1、虚拟商品版权归红岩网校工作站所有。\n2、在法律允许的范围内，本活动的最终解释权归红岩网校工作站所有。";
         }
         } failure:^{
@@ -110,15 +115,7 @@
 }
 
 #pragma mark - getter
-- (TopView *)topView {
-    if (_topView == nil) {
-        _topView = [[TopView alloc]initWithFrame:CGRectZero];
-        _topView.frame= CGRectMake(0, 0, iPhoneScreenWidth, 88.0 / 812 * iPhoneScreenHeight);
-        _topView.backgroundColor = [UIColor colorNamed:@"White&Black"];
-        [_topView.backBtn addTarget:self action:@selector(returnindex) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _topView;
-}
+
 ///内容
 - (ContentScrollView *)contentView {
     if (_contentView == nil) {

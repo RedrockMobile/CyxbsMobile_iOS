@@ -13,12 +13,19 @@
 #import "MyCollectionViewCell.h"
 #import "SecondHeaderView.h"
 #import "MyTableViewCellWithProgress.h"
+#import "NewQAMainPageMainController.h"
+#import "SZHReleaseDynamic.h"
+#import "QueryLoginViewController.h"
+#import "EditMyInfoViewController.h"
 
 //Tool
 #import "UIView+XYView.h"
+
 //Model
 #import "GoodsData.h"
 #import "TaskData.h"
+#import "DetailsgoodsModel.h"
+
 
 ///邮票中心主界面
 @interface StampCenterVC () <UITableViewDelegate,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UICollectionViewDataSource,TopViewDelegate>
@@ -37,6 +44,8 @@
 @property (nonatomic,copy) NSArray *section2GoodsAry;
 ///任务数据
 @property (nonatomic,copy) NSArray *taskAry;
+///额外任务数据
+@property (nonatomic,copy) NSArray *extraTaskAry;
 ///左右划的scroll
 @property (nonatomic,strong) MainScrollView *mainScrollView;
 ///小型邮票数量View
@@ -80,7 +89,20 @@
 
 //任务数据
 - (void)setTaskAry:(NSArray *)taskAry{
-    _taskAry = taskAry;
+    NSMutableArray *mArray =[[NSMutableArray alloc]initWithCapacity:99];
+    NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
+    for (int i = 0; i < taskAry.count; i++) {
+        TaskData *data = taskAry[i];
+        if ([data.type isEqualToString:@"base"]) {
+            [mArray addObject:data];
+        }
+        if ([data.type isEqualToString:@"more"]) {
+            [mArray2 addObject:data];
+        }
+    }
+    [mArray removeObjectAtIndex:0];
+    _taskAry = mArray;
+    _extraTaskAry = mArray2;
     //刷新控件
     [self.mainScrollView.table reloadData];
 }
@@ -113,37 +135,65 @@
     self.smallcountLbl.text = [NSString stringWithFormat:@"%@",_number];
 }
 
+
+#pragma mark - viewWillAppear
+- (void)viewWillAppear:(BOOL)animated{
+    [self checkAlertLbl];
+}
+
 #pragma mark - viewDidLoad
 - (void)viewDidLoad{
     [super viewDidLoad];
     //加载数据
     [self setupData];
+    
     //加载TopBar
     [self setupBar];
+    
     //加载横向Scroll
     [self.view addSubview:self.mainScrollView];
+    
     //加载TopView
     [self.view addSubview:self.topView];
+    
     //加载邮票数量View
     [self.topBarView addSubview:self.stampCountView];
+    
     //topBar优先级最高
     [self.view bringSubviewToFront:self.topBarView];
+    
     //设置小点
     [self setupPoint];
+    
 }
 
 #pragma mark - table数据源
-//数量
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+//row数量
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.taskAry.count - 1;
+    if (section == 0) {
+        return self.taskAry.count;
+    }else{
+        return self.extraTaskAry.count;
+    }
 }
 
 //Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TaskData *data = self.taskAry[indexPath.row + 1];
         MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
-    cell.row = indexPath.row;
-    cell.data = data;
+    if (indexPath.section == 0) {
+        TaskData *data = self.taskAry[indexPath.row];
+        cell.row = indexPath.row;
+        cell.data = data;
+    }else{
+        TaskData *data = self.extraTaskAry[indexPath.row];
+        cell.row = indexPath.row;
+        cell.data = data;
+    }
     return cell;
 }
 
@@ -151,6 +201,30 @@
 //高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 75;
+}
+//FOOTER高度
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        return 60;
+    }else{
+        return 0.000001f;  // 设置为0.0001  是为了不悬浮
+    }
+    return 0.1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH   , 60.0)];
+        footerView.backgroundColor = [UIColor whiteColor];
+        UILabel *la = [[UILabel alloc ]init ];
+        la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
+        la.textColor = [UIColor colorNamed:@"#15315B"];
+        la.text = @"更多任务";
+        la.font = [UIFont fontWithName:PingFangSCBold size:20];
+        [footerView addSubview:la];
+        return footerView;
+    }
+    return nil;
 }
 
 #pragma mark - collection数据源
@@ -441,6 +515,14 @@
     self.splitLineHidden = YES;
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
+    
 }
 
 //小型邮票数量View
@@ -496,5 +578,58 @@
     }];
 }
 
+- (void)netWorkAlert{
+    [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+}
 
+- (void)jumpToNewQA{
+    NSLog(@"正在跳转至邮问主页");
+    self.tabBarController.selectedIndex = 1;
+}
+
+- (void)jumpToReleaseDynamic{
+    SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
+    
+    [self.navigationController pushViewController:SVC animated:YES];
+}
+
+- (void)refreshPage{
+    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+        self.taskAry = array;
+    } error:^{
+        
+    }];
+    
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        self.number = responseObject[@"data"][@"user_amount"];
+        self.topView.number = responseObject[@"data"][@"user_amount"];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"==========================出错了");
+        }];
+}
+
+- (void)jumpToZhiyuan{
+    QueryLoginViewController *QVC = [[QueryLoginViewController alloc]init];
+    [self.navigationController pushViewController:QVC animated:YES];
+}
+
+- (void)jumpToProfile{
+    EditMyInfoViewController *EVC = [[EditMyInfoViewController alloc]init];
+    [self.navigationController presentViewController:EVC animated:YES completion:nil];
+}
+
+- (void)checkAlertLbl{
+    self.topView.alertLbl.hidden = YES;
+    [DetailsGoodsModel getDataArySuccess:^(NSArray * _Nonnull array) {
+        for (int i = 0 ; i < array.count; i++) {
+            DetailsGoodsModel *data = array[i];
+            if (data.is_received == NO) {
+                self.topView.alertLbl.hidden = NO;
+            }
+        }
+        } failure:^{
+            
+        }];
+}
 @end

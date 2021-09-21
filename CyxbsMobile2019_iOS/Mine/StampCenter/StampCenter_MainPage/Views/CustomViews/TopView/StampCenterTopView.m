@@ -55,7 +55,6 @@
         [_detailBtn setImage:[UIImage imageNamed:@"mingxi"] forState:UIControlStateNormal];
         _detailBtn.alpha = 0.7;
         HttpClient *client = [HttpClient defaultClient];
-//        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
         [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
