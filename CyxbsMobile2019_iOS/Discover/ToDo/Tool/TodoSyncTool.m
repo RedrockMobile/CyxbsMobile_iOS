@@ -325,7 +325,9 @@ static TodoSyncTool* _instance;
 /// 获取全部事项的结果集
 - (FMResultSet*)getAllTodoResultSet {
     NSString* code = OSTRING(
-                             SELECT * FROM TodoTable
+                             SELECT *
+                                FROM todoTable
+                                ORDER BY last_modify_time DESC
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
     return resultSet;

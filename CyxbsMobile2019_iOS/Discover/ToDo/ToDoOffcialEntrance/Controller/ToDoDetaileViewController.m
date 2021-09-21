@@ -11,12 +11,19 @@
 #import "RemindTimeView.h"
 #import "DiscoverTodoSelectRepeatView.h"
 #import "TodoSyncTool.h"
+#import "ToDoDetailTitleView.h"
+#import "ToDoDetailReminderTimeView.h"
+#import "ToDoDetailRepeatView.h"
+#import "ToDoDetailRemarkView.h"
 @interface ToDoDetaileViewController ()
 <
     ToDoDetailBarDelegate,
-    UITextViewDelegate,
+//    UITextViewDelegate,
     RemindTimeViewDelegate,
-    DiscoverTodoSelectRepeatViewDelegate
+    DiscoverTodoSelectRepeatViewDelegate,
+    ToDoDetailTitleViewDelegate,
+    ToDoDetailReminderTimeViewDelegate,
+    ToDoDetailRepeatViewDelegate
                             >
 /// 最底层的scrolView
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -24,35 +31,15 @@
 /// 最顶部的一个bar
 @property (nonatomic, strong) ToDoDetailBar *topBar;
 
-/// 最前端的button
-@property (nonatomic, strong) UIButton *cycleBtn;
+/// 放置todo标题的和状态按钮的view
+@property (nonatomic, strong) ToDoDetailTitleView *titleView;
 
-/// 编辑title的TextView，大小随内容自适应增高
-@property (nonatomic, strong) UITextView *titleTextView;
+/// 提醒时间的View
+@property (nonatomic, strong) ToDoDetailReminderTimeView *reminderTimeView;
 
-/// 提醒时间的label
-@property (nonatomic, strong) UILabel *reminedTimeLbl;
+@property (nonatomic, strong) ToDoDetailRepeatView *repeatView;
 
-/// 添加了点击手势的一个设置提醒时间的label
-@property (nonatomic, strong) UILabel *reminedBtnLbl;
-
-/// 显示“重复”的lbl，添加了点击手势，点击后选择重复时间周期
-@property (nonatomic, strong) UILabel *repeatTitleLbl;
-
-/// 展示重复内容的一个scrollView
-@property (nonatomic, strong) UIScrollView *repeatContentScrollView;
-
-/// 设置重复提醒时间的label
-@property (nonatomic, strong) UILabel *reminedRepatTimeTitleLbl;
-
-/// 备注的的label
-@property (nonatomic, strong) UILabel *remarksTitleLbl;
-
-/// 编辑备注的textView
-@property (nonatomic, strong) UITextView *remarksTextView;
-
-/// 编辑备注的提示文字
-@property (nonatomic, strong) UILabel *reminedEditRemarksLbl;
+@property (nonatomic, strong) ToDoDetailRemarkView *remarkView;
 
 /// 弹出弹窗之后的一层黑色的遮罩层
 @property (nonatomic, strong) UIView *maskView;
@@ -65,6 +52,9 @@
 
 /// 临时存储的重复的View
 @property (nonatomic, strong) DiscoverTodoSelectRepeatView *tempoarySelectRepeatView;
+
+/// 删除按钮
+@property (nonatomic, strong) UIButton *deleteBtn;
 
 /// 保存用户选择的重复的天数的数组
 @property (nonatomic, strong) NSMutableArray *repeatLblsAry;
@@ -87,8 +77,25 @@
     self.repeatLblsAry = [NSMutableArray array];
     
     [self buildFrame];
-    [self addRepeatLabel];
-    [self reLayoutAllLbl];
+}
+
+#pragma mark- event response
+- (void)deleteToDO{
+    //重新设置过期时间
+[self.temporaryModel resetOverdueTime];
+    //保存修改的时间
+self.temporaryModel.lastModifyTime = [NSDate date].timeIntervalSince1970;
+
+self.model = self.temporaryModel;
+    
+    //删除model
+    [[TodoSyncTool share] deleteTodoWithTodoID:self.model.todoIDStr needRecord:YES];
+    self.block();   //刷新上个界面
+    [NewQAHud showHudWith:@"已成功删除数据" AddView:self.view];
+    //延迟1.5秒后跳回到上个界面
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 #pragma mark- provate methonds
@@ -127,45 +134,7 @@
             break;
     }
     
-}
-- (void)reLayoutAllLbl {
-    if (self.repeatLblsAry.count == 0) {
-        self.reminedRepatTimeTitleLbl.alpha = 0.4;
-        return;
-    }
-    self.reminedRepatTimeTitleLbl.alpha = 0;
-    
-    for (UILabel *lbl in self.repeatLblsAry) {
-        [self.repeatContentScrollView addSubview:lbl];
-    }
-    
-    MASViewAttribute* last = self.repeatContentScrollView.mas_left;
-    for (int i = 0; i < self.repeatLblsAry.count; i++) {
-        UILabel *lbl = self.repeatLblsAry[i];
-        [lbl mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(0.04433497537 * SCREEN_HEIGHT);
-            make.top.bottom.equalTo(self.repeatLblsAry);
-            make.left.equalTo(last).offset(i == 0 ? 0 : 0.03733333333*SCREEN_WIDTH);
-        }];
-        last = lbl.mas_right;
-    }
-    
-    [[self.repeatLblsAry lastObject] mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.repeatContentScrollView).offset(-0.03733333333*SCREEN_WIDTH);
-    }];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        CGFloat x = self.repeatContentScrollView.contentSize.width-SCREEN_WIDTH;
-        if (x>60) {
-            [UIView animateWithDuration:0.6 animations:^{
-                self.repeatContentScrollView.contentOffset = CGPointMake(x+4, 0);
-            }completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.4 animations:^{
-                    self.repeatContentScrollView.contentOffset = CGPointMake(x, 0);
-                }];
-            }];
-        }
-    });
+    [self.repeatView relayoutLblsByArray:self.repeatLblsAry];
 }
 ///将每周的数字转化为对应的字符串
 - (NSString*)intWeekToStrWeek:(int)intWeek {
@@ -187,6 +156,50 @@
         return NO;
     }
 }
+///为各控件添加遮罩
+- (void)addMasKBtn{
+    //如果是完成状态，则添加遮罩的btn
+    if (self.model.isDone) {
+        [self.reminderTimeView addSubview:self.reminderTimeView.maskBtn];
+        [self.reminderTimeView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.reminderTimeView);
+        }];
+        
+        [self.repeatView addSubview:self.repeatView.maskBtn];
+        [self.repeatView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.repeatView);
+        }];
+        
+        [self.remarkView addSubview:self.remarkView.maskBtn];
+        [self.repeatView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.remarkView);
+        }];
+    }
+}
+///重新设置动态改变titleView和remarkView的高度
+- (void)resetHeight{
+    __weak typeof(self.titleView) weakTitleView = self.titleView;
+    __weak typeof(self) weakSelf = self;
+    self.titleView.changeTitleViewHeightBlock = ^(CGFloat height) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [weakTitleView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(height);
+            }];
+            [weakSelf.view layoutIfNeeded];
+            weakSelf.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, weakSelf.remarkView.maxY + SCREEN_HEIGHT * 0.2);
+        }];
+    };
+    
+    self.remarkView.changeTitleViewHeightBlock = ^(CGFloat height) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [weakSelf.remarkView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(height);
+            }];
+            [weakSelf.view layoutIfNeeded];
+            weakSelf.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, weakSelf.remarkView.maxY + SCREEN_HEIGHT * 0.2);
+        }];
+    };
+}
 /// 设置各个控件的fram
 - (void)buildFrame{
     //顶部的bar
@@ -200,171 +213,58 @@
     //底部可滑动的scroll
     [self.view addSubview:self.scrollView];
     
-    //圆环button
-    [self.scrollView addSubview:self.cycleBtn];
-    [self.cycleBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.scrollView).offset(SCREEN_WIDTH * 0.04);;
+    //标题的View
+    [self.scrollView addSubview:self.titleView];
+    [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
         make.top.equalTo(self.scrollView).offset(SCREEN_HEIGHT * 0.0449);
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.0613, SCREEN_WIDTH * 0.0613));
+        make.size.mas_equalTo(self.titleView.titleViewSize);
+    }];
+
+    
+    //提醒时间的view
+    [self.scrollView addSubview:self.reminderTimeView];
+    [self.reminderTimeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.scrollView).offset(SCREEN_WIDTH * 0.1333);
+        make.top.equalTo(self.titleView.mas_bottom).offset(SCREEN_HEIGHT * 0.0539);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.8267, SCREEN_HEIGHT * 0.07512));
     }];
     
-    //编辑文本
-        //得到传入进来的title高度
-    CGFloat titleHeight = ceil([self.temporaryModel.titleStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8267, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont fontWithName:PingFangSCBold size:22]} context:nil].size.height);
-    [self.view layoutIfNeeded]; //得到圆环button的frame
-    [self.scrollView addSubview:self.titleTextView];
-        //设置frame
-    self.titleTextView.frame = CGRectMake(self.cycleBtn.maxX + SCREEN_WIDTH * 0.04, self.cycleBtn.y, SCREEN_WIDTH * 0.8266, titleHeight);
-        //调整位置
-    self.titleTextView.center = CGPointMake(self.titleTextView.centerX, self.cycleBtn.centerY);
-    
-    //提醒时间的label
-    [self.scrollView addSubview:self.reminedTimeLbl];
-    [self.reminedTimeLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleTextView.mas_bottom).offset(SCREEN_HEIGHT * 0.0539);
-        make.left.equalTo(self.titleTextView);
+    //重复的View
+    [self.scrollView addSubview:self.repeatView];
+    [self.repeatView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.reminderTimeView);
+        make.top.equalTo(self.reminderTimeView.mas_bottom).offset(SCREEN_HEIGHT * 0.0419);
+        make.size.mas_equalTo(self.reminderTimeView);
     }];
-    
-    //提醒时间的btn
-    [self.scrollView addSubview:self.reminedBtnLbl];
-    [self.reminedBtnLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.reminedTimeLbl);
-        make.top.equalTo(self.reminedTimeLbl.mas_bottom).offset(SCREEN_HEIGHT * 0.0149);
-        make.size.mas_equalTo(CGSizeMake(self.titleTextView.width, SCREEN_WIDTH * 0.056));
-    }];
-    
-    //分割线
-    UIView *reminedTimeSpliteLineView = [[UIView alloc] initWithFrame:CGRectZero];
-    reminedTimeSpliteLineView.backgroundColor = [UIColor colorNamed:@"189_204_229_0.2&248_249_252_0.1"];
-    [self.scrollView addSubview:reminedTimeSpliteLineView];
-    [reminedTimeSpliteLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.reminedBtnLbl);
-        make.top.equalTo(self.reminedBtnLbl.mas_bottom).offset(4);
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.8666, 1));
-    }];
-    
-    //重复的laebl
-    [self.scrollView addSubview:self.repeatTitleLbl];
-    [self.repeatTitleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.titleTextView);
-        make.top.equalTo(reminedTimeSpliteLineView.mas_bottom).offset(SCREEN_HEIGHT * 0.0419);
-    }];
-    
-    //展示重复内容label的一个ScrollView
-    [self.scrollView addSubview:self.repeatContentScrollView];
-    [self.repeatContentScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.repeatTitleLbl);
-        make.top.equalTo(self.repeatTitleLbl.mas_bottom).offset(SCREEN_HEIGHT * 0.0123);
-        make.size.mas_equalTo(CGSizeMake(self.titleTextView.width, 0.04433497537 * SCREEN_HEIGHT));
-    }];
-    
-    //展示设置重复日期的一个标题
-    [self.scrollView addSubview:self.reminedRepatTimeTitleLbl];
-    [self.reminedRepatTimeTitleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self.repeatContentScrollView);
-        make.width.equalTo(self.repeatContentScrollView);
-    }];
-    if (self.repeatLblsAry.count != 0) {
-        self.reminedRepatTimeTitleLbl.alpha = 0;
-    }
-    
-    // 备注的标题label
-    [self.scrollView addSubview:self.remarksTitleLbl];
-    [self.remarksTitleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.repeatContentScrollView);
-        make.top.equalTo(self.repeatContentScrollView.mas_bottom).offset(SCREEN_HEIGHT * 0.0369);
-    }];
-    
-    //备注的文本编辑view
-    [self.view layoutIfNeeded];
-    CGFloat remarksTitleHeight = ceil([self.temporaryModel.detailStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.8267, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName :[UIFont fontWithName:PingFangSCBold size:15]} context:nil].size.height);
-    if ([self.temporaryModel.detailStr isEqualToString:@""]) {
-        remarksTitleHeight = SCREEN_HEIGHT * 0.0258;
-        self.reminedEditRemarksLbl.alpha = 0.4;
-    }
-    
-    [self.scrollView addSubview:self.remarksTextView];
-    [self.remarksTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.remarksTitleLbl);
-        make.top.equalTo(self.remarksTitleLbl.mas_bottom).offset(SCREEN_HEIGHT * 0.0258);
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.8266, remarksTitleHeight));
-    }];
-//    self.remarksTextView.size = CGSizeMake(SCREEN_WIDTH * 0.8266, remarksTitleHeight);
-//    self.remarksTextView.frame = CGRectMake(self.remarksTitleLbl.x, self.remarksTitleLbl.maxY + SCREEN_HEIGHT * 0.0258, SCREEN_WIDTH * 0.8266, remarksTitleHeight);
    
-    
-    [self.remarksTextView addSubview:self.reminedEditRemarksLbl];
-    [self.reminedEditRemarksLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self.remarksTextView);
+
+    //写备注的View
+    [self.scrollView addSubview:self.remarkView];
+    [self.remarkView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.repeatView);
+        make.top.equalTo(self.repeatView.mas_bottom).offset(SCREEN_HEIGHT * 0.0369);
+        make.size.mas_equalTo(self.remarkView.remarkViewSize);
     }];
+   
+    [self.view addSubview:self.deleteBtn];
+    [self.deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_bottom).offset(SCREEN_HEIGHT * -0.064); 
+    }];
+    
     
     //设置scrollView的contentSize
     [self.view layoutIfNeeded];
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.remarksTextView.maxY + SCREEN_HEIGHT * 0.25);
-}
-
-#pragma mark- event response
-/// 点击小圆环按钮，切换完成状态
-- (void)changeStatu{
-    //改变当前的状态
-    [self.temporaryModel setIsDoneForUserActivity:!self.temporaryModel.isDone];
-    //根据状态设置UI变化
-    if (self.temporaryModel.isDone) {
-        //btn图片改变
-        [self.cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
-        //textView变化
-        self.titleTextView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        self.titleTextView.alpha = 0.46;
-        self.titleTextView.userInteractionEnabled = NO;
-        self.remarksTextView.userInteractionEnabled = NO;
-    }else{
-        self.titleTextView.alpha = 1;
-        self.titleTextView.userInteractionEnabled = YES;
-        self.remarksTextView.userInteractionEnabled = YES;
-        if ([self compareIsOverdue]) {
-            [self.cycleBtn setBackgroundImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
-            self.titleTextView.textColor = [UIColor redColor];
-        }else{
-            [self.cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
-            self.titleTextView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        }
-    }
-}
-/// 点击设置重复提醒时间
-- (void)setReminedTime{
-    if (self.temporaryModel.isDone) {
-        [NewQAHud showHudWith:@"掌友，无法对已完成事项进行修改哦！\nTip：点击待办勾选框即可改变状态嚎！" AddView:self.scrollView];
-    }else{
-        NSLog(@"点击设置提醒时间");
-        //添加遮罩层
-        self.maskView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - self.selectReminedTimeView.height + 16);
-        [self.view addSubview:self.maskView];
-        [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectTimeViewCancelBtnClicked)]];
-        
-        [self.view addSubview:self.selectReminedTimeView];
-        [UIView animateWithDuration:0.5 animations:^{
-            self.selectReminedTimeView.alpha = 1;
-            self.maskView.alpha = 1;
-        }];
-    }
-}
-///设置重复的模式
-- (void)chooseRepeatStytle{
-    if (self.temporaryModel.isDone) {
-        [NewQAHud showHudWith:@"掌友，无法对已完成事项进行修改哦！\nTip：点击待办勾选框即可改变状态嚎！" AddView:self.scrollView];
-    }else{
-        //添加遮罩层
-        self.maskView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - self.selectRepeatView.height);
-        [self.view addSubview:self.maskView];
-        [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectRepeatViewCancelBtnClicked)]];
-        
-        [self.view addSubview:self.selectRepeatView];
-        [self.selectRepeatView showView];
-        [UIView animateWithDuration:0.5 animations:^{
-            self.maskView.alpha = 1;
-            self.selectRepeatView.alpha = 1;
-        }];
-    }
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.remarkView.maxY + SCREEN_HEIGHT * 0.25);
+    
+    [self addRepeatLabel];
+    
+    [self addMasKBtn];
+    
+    [self resetHeight];
+    
+    
 }
 
 #pragma mark- delegate
@@ -375,12 +275,12 @@
 }
 - (void)saveChanges{
     //保存信息
-    self.temporaryModel.titleStr = self.titleTextView.text;
-    self.temporaryModel.detailStr = self.remarksTextView.text;
-    if ([self.reminedBtnLbl.text isEqualToString:@"设置重复提醒"]) {
+    self.temporaryModel.titleStr = self.titleView.textView.text;
+    self.temporaryModel.detailStr = self.remarkView.textView.text;
+    if ([self.reminderTimeView.reminderTimeLbl.text isEqualToString:@"设置提醒时间"]) {
         self.temporaryModel.timeStr = @"";
     }else{
-        self.temporaryModel.timeStr = self.reminedBtnLbl.text;
+        self.temporaryModel.timeStr = self.reminderTimeView.reminderTimeLbl.text;
     }
         //保存重复提醒
     self.temporaryModel.repeatMode = self.tempoarySelectRepeatView.repeatMode;
@@ -417,9 +317,98 @@
     });
 }
 
+//MARK:ToDoDetailTitleViewDelegate
+/// 点击小圆环按钮，切换完成状态
+- (void)changeStatu{
+    //改变当前的状态
+    [self.temporaryModel setIsDoneForUserActivity:!self.temporaryModel.isDone];
+    //根据状态设置UI变化
+    if (self.temporaryModel.isDone) {
+        //titleView变化
+        [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
+        self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        self.titleView.textView.alpha = 0.46;
+        self.titleView.textView.editable = NO;
+        self.reminderTimeView.reminderTimeLbl.alpha = 0.46;
+        self.remarkView.textView.alpha = 0.46;
+        self.remarkView.textView.editable = NO;
+        
+        //各view添加更改无效的遮罩按钮
+            //titleView
+        [self.titleView addSubview:self.titleView.clearBtn];
+        [self.titleView.clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.titleView.textView);
+        }];
+        
+            //reminderView添加遮罩btn
+        [self.reminderTimeView addSubview:self.reminderTimeView.maskBtn];
+        [self.reminderTimeView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.reminderTimeView);
+        }];
+        
+            //RepeatView添加遮罩层
+        [self.repeatView addSubview:self.repeatView.maskBtn];
+        [self.repeatView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.repeatView);
+        }];
+        
+            //
+        [self.remarkView addSubview:self.remarkView.maskBtn];
+        [self.remarkView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.remarkView);
+        }];
+        
+        
+    }else{
+        self.titleView.textView.alpha = 1;
+        self.titleView.textView.editable = YES;
+        self.remarkView.textView.editable = YES;
+        self.remarkView.textView.alpha = 1;
+        self.reminderTimeView.reminderTimeLbl.alpha = 1;
+        
+        //移除遮罩btn
+        [self.titleView.clearBtn removeFromSuperview];
+        [self.reminderTimeView.maskBtn  removeFromSuperview];
+        [self.repeatView.maskBtn removeFromSuperview];
+        [self.remarkView.maskBtn removeFromSuperview];
+        
+        
+        if ([self compareIsOverdue]) {
+            
+            [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
+            self.titleView.textView.textColor = [UIColor redColor];
+            
+        }else{
+            [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+            self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        }
+    }
+}
+///已完成状态下点击弹出无法更改的提示
+- (void)changeInvaliePrompt{
+    [NewQAHud showHudWith:@"掌友，无法对已完成事项进行修改哦！\nTip：点击待办勾选框即可改变状态嚎！" AddView:self.scrollView];
+}
+
+//MARK:ToDoDetailReminderTimeViewDelegate
+/// 点击设置提醒时间
+- (void)setReminderTime{
+    
+    //添加遮罩层
+    self.maskView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - self.selectReminedTimeView.height + 16);
+    [self.view addSubview:self.maskView];
+    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectTimeViewCancelBtnClicked)]];
+    
+    [self.view addSubview:self.selectReminedTimeView];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.selectReminedTimeView.alpha = 1;
+        self.maskView.alpha = 1;
+    }];
+    
+}
+
 //MARK:RemindTimeViewDelegate
 - (void)selectTimeViewSureBtnClicked:(NSDateComponents *)components{
-    self.reminedBtnLbl.text = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+    self.reminderTimeView.reminderTimeLbl.text = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
     
 //    //存储数据进model，注意这里要和model的格式相同
 //    self.temporaryModel.timeStr = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
@@ -433,8 +422,7 @@
         [self.maskView removeFromSuperview];
         
         //刷新
-        self.cycleBtn = nil;
-        self.titleTextView = nil;
+        self.titleView = nil;
         [self.view removeAllSubviews];
         [self buildFrame];
     }];
@@ -447,6 +435,22 @@
     } completion:^(BOOL finished) {
         [self.selectReminedTimeView removeFromSuperview];
         [self.maskView removeFromSuperview];
+    }];
+}
+
+//MARK:ToDoDetailRepeatViewDelegate
+///设置重复的模式
+- (void)chooseRepeatStytle{
+    //添加遮罩层
+    self.maskView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - self.selectRepeatView.height);
+    [self.view addSubview:self.maskView];
+    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectRepeatViewCancelBtnClicked)]];
+    
+    [self.view addSubview:self.selectRepeatView];
+    [self.selectRepeatView showView];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.maskView.alpha = 1;
+        self.selectRepeatView.alpha = 1;
     }];
 }
 
@@ -488,7 +492,7 @@
         [muteArray addObject:lbl];
     }
     self.repeatLblsAry = muteArray;
-    [self reLayoutAllLbl];
+    [self.repeatView relayoutLblsByArray:self.repeatLblsAry];
     
     [UIView animateWithDuration:0.5 animations:^{
         self.selectRepeatView.alpha = 0;
@@ -500,49 +504,8 @@
     
 }
 
-//MARK:UITextViewDeleaget
-- (void)textViewDidChange:(UITextView *)textView{
-    [self.view layoutIfNeeded];
-    CGRect frame = textView.frame;
-    CGSize constrainSize = CGSizeMake(frame.size.width, CGFLOAT_MAX);
-    CGSize size = [textView sizeThatFits:constrainSize];
-    //如果tag为1则此textView即为编辑备注的textView
-    if (textView.tag == 1) {
-            //设置备注textView的placeHolde
-        if (textView.text.length > 0) {
-            self.reminedEditRemarksLbl.alpha = 0;
-        }else{
-            self.reminedEditRemarksLbl.alpha = 0.4;
-        }
-            //设置高度随文字自适应增高
-        [UIView animateWithDuration:0.25 animations:^{
-            [textView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.remarksTitleLbl);
-                make.top.equalTo(self.remarksTitleLbl.mas_bottom).offset(SCREEN_HEIGHT * 0.0258);
-                make.size.mas_equalTo(CGSizeMake(frame.size.width, size.height));
-            }];
-            [self.view layoutIfNeeded];
-        }];
-    }else{
-        //设置tile随文字的增加自适应增高
-        [UIView animateWithDuration:0.25 animations:^{
-            textView.frame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, size.height);
-        }];
-    }
-    
-    [self.view layoutIfNeeded];
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.remarksTextView.maxY + SCREEN_HEIGHT * 0.25);
-}
 
 #pragma mark- getter
-- (ToDoDetailBar *)topBar{
-    if (!_topBar) {
-        _topBar = [[ToDoDetailBar alloc] initWithFrame:CGRectZero];
-        _topBar.delegate = self;
-    }
-    return _topBar;
-}
-
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT+STATUSBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NVGBARHEIGHT+STATUSBARHEIGHT)];
@@ -554,151 +517,61 @@
     return _scrollView;
 }
 
-- (UIButton *)cycleBtn{
-    if (!_cycleBtn) {
-        _cycleBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+- (ToDoDetailBar *)topBar{
+    if (!_topBar) {
+        _topBar = [[ToDoDetailBar alloc] initWithFrame:CGRectZero];
+        _topBar.delegate = self;
+    }
+    return _topBar;
+}
+
+- (ToDoDetailTitleView *)titleView{
+    if (!_titleView) {
+        _titleView = [[ToDoDetailTitleView alloc] initWithFrame:CGRectZero];
+        _titleView.backgroundColor = self.view.backgroundColor;
+        _titleView.delegate = self;
+        _titleView.model = self.model;
+    }
+    return _titleView;
+}
+
+- (ToDoDetailReminderTimeView *)reminderTimeView{
+    if (!_reminderTimeView) {
+        _reminderTimeView = [[ToDoDetailReminderTimeView alloc] initWithFrame:CGRectZero];
+        _reminderTimeView.delegate = self;
         
-        if (self.temporaryModel.isDone) {
-            [_cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
+        //进行文本设置
+        if ([self.model.timeStr isEqualToString:@""]) {
+            _reminderTimeView.reminderTimeLbl.text = @"设置提醒时间";
         }else{
-            if ([self compareIsOverdue]) {
-                [_cycleBtn setBackgroundImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
-            }else{
-                [_cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
-            }
+            _reminderTimeView.reminderTimeLbl.text = self.model.timeStr;
+            _reminderTimeView.reminderTimeLbl.alpha = 1;
         }
-      
-        [_cycleBtn addTarget:self action:@selector(changeStatu) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _cycleBtn;
-}
-
-- (UITextView *)titleTextView{
-    if (!_titleTextView) {
-        _titleTextView = [[UITextView alloc] initWithFrame:CGRectZero];
-        _titleTextView.textContainerInset = UIEdgeInsetsZero;
-        _titleTextView.textContainer.lineFragmentPadding = 0;
-        _titleTextView.font = [UIFont fontWithName:PingFangSCBold size:22];
-        _titleTextView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _titleTextView.text = self.temporaryModel.titleStr;
-        _titleTextView.delegate = self;
-        
-        if (self.temporaryModel.isDone) {
-            _titleTextView.userInteractionEnabled = NO;
-            _titleTextView.alpha = 0.46;
-        }
-        else if([self compareIsOverdue]){
-            _titleTextView.textColor = [UIColor redColor];
-        }
-    }
-    return _titleTextView;
-}
-
-- (UILabel *)reminedTimeLbl{
-    if (!_reminedTimeLbl) {
-        _reminedTimeLbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        _reminedTimeLbl.text = @"提醒时间";
-        _reminedTimeLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _reminedTimeLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-    }
-    return _reminedTimeLbl;
-}
-
-- (UILabel *)reminedBtnLbl{
-    if (!_reminedBtnLbl) {
-        //进行属性设置
-        _reminedBtnLbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        if ([self.temporaryModel.timeStr isEqualToString:@""]) {
-            _reminedBtnLbl.text = @"设置重复提醒";
+        if (self.model.isDone) {
+            _reminderTimeView.reminderTimeLbl.alpha = 0.4;
         }else{
-            _reminedBtnLbl.text = self.temporaryModel.timeStr;
-        }
-        _reminedBtnLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _reminedBtnLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _reminedBtnLbl.alpha = 0.4;
-        _reminedBtnLbl.userInteractionEnabled = YES;
-        
-        //添加点击手势
-        [_reminedBtnLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setReminedTime)]];
-    }
-    return _reminedBtnLbl;
-}
-
-- (UILabel *)repeatTitleLbl{
-    if (!_repeatTitleLbl) {
-        _repeatTitleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        _repeatTitleLbl.text = @"重复";
-        _repeatTitleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _repeatTitleLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
-        _repeatTitleLbl.userInteractionEnabled = YES;
-        
-        //添加点击手势
-        [_repeatTitleLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseRepeatStytle)]];
-    }
-    return _repeatTitleLbl;
-}
-
-- (UIScrollView *)repeatContentScrollView{
-    if (!_repeatContentScrollView) {
-        _repeatContentScrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
-        _repeatContentScrollView.showsVerticalScrollIndicator = NO;
-        _repeatContentScrollView.showsHorizontalScrollIndicator = NO;
-        _repeatContentScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-    return _repeatContentScrollView;
-}
-
-- (UILabel *)reminedRepatTimeTitleLbl{
-    if (!_reminedRepatTimeTitleLbl) {
-        _reminedRepatTimeTitleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        _reminedRepatTimeTitleLbl.text = @"设置重复提醒";
-        _reminedRepatTimeTitleLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _reminedRepatTimeTitleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _reminedRepatTimeTitleLbl.alpha = 0.4;
-        
-        _reminedRepatTimeTitleLbl.userInteractionEnabled = YES;
-        [_reminedRepatTimeTitleLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseRepeatStytle)]];
-    }
-    return _reminedRepatTimeTitleLbl;
-}
-
-- (UILabel *)remarksTitleLbl{
-    if (!_remarksTitleLbl) {
-        _remarksTitleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        _remarksTitleLbl.text = @"备注";
-        _remarksTitleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _remarksTitleLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
-    }
-    return  _remarksTitleLbl;
-}
-
-- (UITextView *)remarksTextView{
-    if (!_remarksTextView) {
-        _remarksTextView = [[UITextView alloc] initWithFrame:CGRectZero];
-        _remarksTextView.tag = 1;
-        _remarksTextView.textContainerInset = UIEdgeInsetsZero;
-        _remarksTextView.textContainer.lineFragmentPadding = 0;
-        _remarksTextView.font = [UIFont fontWithName:PingFangSCBold size:15];
-        _remarksTextView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _remarksTextView.text = self.temporaryModel.detailStr;
-        _remarksTextView.delegate = self;
-        if (self.temporaryModel.isDone) {
-            _remarksTextView.userInteractionEnabled = NO;
-            _remarksTextView.alpha = 0.46;
+            _reminderTimeView.reminderTimeLbl.alpha = 1;
         }
     }
-    return _remarksTextView;
+    return _reminderTimeView;
 }
 
-- (UILabel *)reminedEditRemarksLbl{
-    if (!_reminedEditRemarksLbl) {
-        _reminedEditRemarksLbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        _reminedEditRemarksLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _reminedEditRemarksLbl.text = @"输入备注信息";
-        _reminedEditRemarksLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        _reminedEditRemarksLbl.alpha = 0;
+- (ToDoDetailRepeatView *)repeatView{
+    if (!_repeatView) {
+        _repeatView = [[ToDoDetailRepeatView alloc] initWithFrame:CGRectZero];
+        _repeatView.delegate = self;
+        
     }
-    return _reminedEditRemarksLbl;
+    return _repeatView;
+}
+
+- (ToDoDetailRemarkView *)remarkView{
+    if (!_remarkView) {
+        _remarkView = [[ToDoDetailRemarkView alloc] initWithFrame:CGRectZero];
+        _remarkView.delegate = self;
+        _remarkView.model = self.model;
+    }
+    return _remarkView;
 }
 
 - (UIView *)maskView{
@@ -731,4 +604,12 @@
     return _selectRepeatView;
 }
 
+- (UIButton *)deleteBtn{
+    if (!_deleteBtn) {
+        _deleteBtn = [[UIButton alloc] initWithFrame:CGRectZero];
+        [_deleteBtn setBackgroundImage:[UIImage imageNamed:@"删除按钮背景图片"] forState:UIControlStateNormal];
+        [_deleteBtn addTarget:self action:@selector(deleteToDO) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _deleteBtn;
+}
 @end

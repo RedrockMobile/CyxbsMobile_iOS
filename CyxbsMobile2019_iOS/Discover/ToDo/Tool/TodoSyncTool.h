@@ -41,7 +41,7 @@ FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationConflictl;
 /// 获取最近创建的4个未完成的todo，用来在发现页显示
 - (NSArray<TodoDataModel*>*)getTodoForDiscoverMainPage;
 
-///获取所有的todo，用来展示在展览页面
+///获取所有的todo，用来展示在展览页面 （注意，这里一次性获取全部的结果集对性能山有一些影响，不够优雅，后面的学弟学妹如果优化代码可以考虑一下MJRefresging的刷新机制）
 - (NSArray<TodoDataModel*>*)getTodoForMainPage;
 
 

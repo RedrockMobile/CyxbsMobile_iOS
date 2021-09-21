@@ -525,6 +525,11 @@
 		B896BF34260CD9FF00314829 /* CYRleaseDynamicAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B896BF33260CD9FF00314829 /* CYRleaseDynamicAlertView.m */; };
 		B89B8E5D2603928F00497814 /* CYSearchEndKnowledgeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89B8E5C2603928F00497814 /* CYSearchEndKnowledgeDetailView.m */; };
 		B89B8E632603974400497814 /* CYSearchEndKnowledgeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B89B8E622603974400497814 /* CYSearchEndKnowledgeDetailModel.m */; };
+		B89C2C5226F4B67F00C0215C /* ToDoDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89C2C5026F4B67D00C0215C /* ToDoDetailTitleView.m */; };
+		B89C2C5526F5BB2100C0215C /* ToDoDetailCurrencyView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89C2C5426F5BB2100C0215C /* ToDoDetailCurrencyView.m */; };
+		B89C2C5826F5CBDB00C0215C /* ToDoDetailReminderTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89C2C5726F5CBDB00C0215C /* ToDoDetailReminderTimeView.m */; };
+		B89C2C5B26F61A1B00C0215C /* ToDoDetailRepeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89C2C5A26F61A1B00C0215C /* ToDoDetailRepeatView.m */; };
+		B89C2C5E26F70D9D00C0215C /* ToDoDetailRemarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89C2C5D26F70D9D00C0215C /* ToDoDetailRemarkView.m */; };
 		B8A3CE2C26D240A300298008 /* ToDoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A3CE2B26D240A300298008 /* ToDoTableView.m */; };
 		B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */; };
 		B8B7AD7E264BA6FA00FEEF7D /* NoComentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B7AD7D264BA6FA00FEEF7D /* NoComentView.m */; };
@@ -1703,6 +1708,16 @@
 		B89B8E5C2603928F00497814 /* CYSearchEndKnowledgeDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSearchEndKnowledgeDetailView.m; sourceTree = "<group>"; };
 		B89B8E612603974400497814 /* CYSearchEndKnowledgeDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CYSearchEndKnowledgeDetailModel.h; sourceTree = "<group>"; };
 		B89B8E622603974400497814 /* CYSearchEndKnowledgeDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSearchEndKnowledgeDetailModel.m; sourceTree = "<group>"; };
+		B89C2C5026F4B67D00C0215C /* ToDoDetailTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailTitleView.m; sourceTree = "<group>"; };
+		B89C2C5126F4B67F00C0215C /* ToDoDetailTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetailTitleView.h; sourceTree = "<group>"; };
+		B89C2C5326F5BB2100C0215C /* ToDoDetailCurrencyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoDetailCurrencyView.h; sourceTree = "<group>"; };
+		B89C2C5426F5BB2100C0215C /* ToDoDetailCurrencyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailCurrencyView.m; sourceTree = "<group>"; };
+		B89C2C5626F5CBDB00C0215C /* ToDoDetailReminderTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoDetailReminderTimeView.h; sourceTree = "<group>"; };
+		B89C2C5726F5CBDB00C0215C /* ToDoDetailReminderTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailReminderTimeView.m; sourceTree = "<group>"; };
+		B89C2C5926F61A1B00C0215C /* ToDoDetailRepeatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoDetailRepeatView.h; sourceTree = "<group>"; };
+		B89C2C5A26F61A1B00C0215C /* ToDoDetailRepeatView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailRepeatView.m; sourceTree = "<group>"; };
+		B89C2C5C26F70D9D00C0215C /* ToDoDetailRemarkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoDetailRemarkView.h; sourceTree = "<group>"; };
+		B89C2C5D26F70D9D00C0215C /* ToDoDetailRemarkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailRemarkView.m; sourceTree = "<group>"; };
 		B8A3CE2A26D240A300298008 /* ToDoTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoTableView.h; sourceTree = "<group>"; };
 		B8A3CE2B26D240A300298008 /* ToDoTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDoTableView.m; sourceTree = "<group>"; };
 		B8A981F525E1452B0020CD86 /* SZHCircleLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHCircleLabelView.h; path = CyxbsMobile2019_iOS/SZHCircleLabelView.h; sourceTree = SOURCE_ROOT; };
@@ -2057,6 +2072,16 @@
 				0999163026CD75DE00C185EB /* ToDoEmptyCell.m */,
 				B82CF12926D4424200FAADFD /* ToDoDetailBar.h */,
 				B82CF12A26D4424200FAADFD /* ToDoDetailBar.m */,
+				B89C2C5126F4B67F00C0215C /* ToDoDetailTitleView.h */,
+				B89C2C5026F4B67D00C0215C /* ToDoDetailTitleView.m */,
+				B89C2C5326F5BB2100C0215C /* ToDoDetailCurrencyView.h */,
+				B89C2C5426F5BB2100C0215C /* ToDoDetailCurrencyView.m */,
+				B89C2C5626F5CBDB00C0215C /* ToDoDetailReminderTimeView.h */,
+				B89C2C5726F5CBDB00C0215C /* ToDoDetailReminderTimeView.m */,
+				B89C2C5926F61A1B00C0215C /* ToDoDetailRepeatView.h */,
+				B89C2C5A26F61A1B00C0215C /* ToDoDetailRepeatView.m */,
+				B89C2C5C26F70D9D00C0215C /* ToDoDetailRemarkView.h */,
+				B89C2C5D26F70D9D00C0215C /* ToDoDetailRemarkView.m */,
 				B82CF17326D4939500FAADFD /* RemindTimeView.h */,
 				B82CF17426D4939500FAADFD /* RemindTimeView.m */,
 			);
@@ -5950,6 +5975,7 @@
 				AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */,
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
+				B89C2C5E26F70D9D00C0215C /* ToDoDetailRemarkView.m in Sources */,
 				4931630E26CD7B6800140412 /* SecondHeaderView.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
@@ -6146,6 +6172,7 @@
 				1A16592323D87E460039BA46 /* MineQATableViewController.m in Sources */,
 				18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */,
 				180DAA6C26B442B60094B8DC /* MGDCircleLayer.m in Sources */,
+				B89C2C5526F5BB2100C0215C /* ToDoDetailCurrencyView.m in Sources */,
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				180DAA6E26B442B60094B8DC /* GroupBtn.m in Sources */,
@@ -6172,6 +6199,7 @@
 				18CDF70F257F91BE006E8E5C /* BackgroundTableViewCell.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
+				B89C2C5226F4B67F00C0215C /* ToDoDetailTitleView.m in Sources */,
 				18CDF68F257F91BD006E8E5C /* CQUPTMapPlaceRect.m in Sources */,
 				AA4CD60425EF6311002D9394 /* IgnoreModel.m in Sources */,
 				18CDF70A257F91BE006E8E5C /* ActivityTableViewCell.m in Sources */,
@@ -6188,6 +6216,7 @@
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
 				AAE4A47126E489D60071D497 /* DiscoverTodoTableViewAnimationView.m in Sources */,
+				B89C2C5B26F61A1B00C0215C /* ToDoDetailRepeatView.m in Sources */,
 				180DAA6D26B442B60094B8DC /* TopFollowView.m in Sources */,
 				B82CA680263159BA00786685 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
@@ -6207,6 +6236,7 @@
 				AAE3305325E2A41900324750 /* ArticleTableViewCell.m in Sources */,
 				180DAA7626B442B60094B8DC /* RecommentLabel.m in Sources */,
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
+				B89C2C5826F5CBDB00C0215C /* ToDoDetailReminderTimeView.m in Sources */,
 				18CDF6CA257F91BE006E8E5C /* SchoolBusModel.m in Sources */,
 				1A16592A23D880900039BA46 /* MyQuestionsDraftCell.m in Sources */,
 				AA5F7EE326BD6CAF00A1FE25 /* DiscoverTodoSheetView.m in Sources */,
