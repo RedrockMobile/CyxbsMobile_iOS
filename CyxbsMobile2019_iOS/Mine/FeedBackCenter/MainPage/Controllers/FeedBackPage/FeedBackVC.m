@@ -20,7 +20,7 @@
 @property (nonatomic,strong) UIButton *submitBtn;
 @property (nonatomic,strong) NSMutableArray *photoAry;
 @property (nonatomic,strong) TypeButton *correctBtn;
-
+@property (nonatomic,strong) MBProgressHUD *hud;
 @end
 
 @implementation FeedBackVC
@@ -220,6 +220,8 @@
 }
 
 - (void)submit{
+
+    
     NSString *type = [[NSString alloc]init];
     switch (self.correctBtn.tag) {
         case 0:
@@ -240,6 +242,7 @@
     NSString *cyxbs_id = @"1";
     
     if (self.correctBtn) {
+
         HttpClient *client = [HttpClient defaultClient];
         
         [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
@@ -275,25 +278,36 @@
                 NSString *fileName3 = [NSString stringWithFormat:@"%ld3.jpeg", [NSDate nowTimestamp]];
                 [formData appendPartWithFileData:imageData3 name:@"file" fileName:fileName3 mimeType:@"image/jpeg"];
             }
-            
+            if (self.photoAry.count != 0) {
+                self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                self.hud.mode = MBProgressHUDModeText;
+                self.hud.labelText = @"上传图片中,请稍候";
+            }
+
             [formData appendPartWithFormData:data1 name:@"type"];
             [formData appendPartWithFormData:data2 name:@"title"];
             [formData appendPartWithFormData:data3 name:@"content"];
             [formData appendPartWithFormData:data4 name:@"product_id"];
-           
-            [NewQAHud showHudWith:@"上传图片中，请稍候" AddView:self.view];
-            self.view.userInteractionEnabled = NO;
+            
             } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
                 NSLog(@"成功了");
-                [NewQAHud showHudWith:@"提交成功，感谢您的反馈与建议" AddView:self.view AndToDo:^{
+                [self.hud hide:YES];
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = @"提交成功，感谢您的反馈与建议";
+                [hud hide:YES afterDelay:1];
+                hud.completionBlock = ^{
                     self.view.userInteractionEnabled = YES;
                     [self.navigationController popViewControllerAnimated:YES];
-                }];
+                };
             } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
                 NSLog(@"失败了");
             }];
     }else{
-        [NewQAHud showHudWith:@"请选择问题类型" AddView:self.view];
+         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+         hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"请选择问题类型";
+         [hud hide:YES afterDelay:1];
     }
 }
 

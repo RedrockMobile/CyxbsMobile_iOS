@@ -63,7 +63,6 @@
     if (!_feedBackMain) {
         _feedBackMain = [[UITextView alloc]initWithFrame:CGRectMake(14, 65, self.width - 36, 140)];
         _feedBackMain.backgroundColor = [UIColor colorNamed:@"FeedBackBG"];
-//        _feedBackMain.backgroundColor = [UIColor redColor];
         _feedBackMain.delegate = self;
         [_feedBackMain setTextColor:[UIColor colorNamed:@"#15315B"]];
         _feedBackMain.font = [UIFont fontWithName:PingFangSCMedium size:15];

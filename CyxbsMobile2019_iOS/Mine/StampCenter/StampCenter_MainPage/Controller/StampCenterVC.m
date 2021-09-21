@@ -24,7 +24,6 @@
 //Model
 #import "GoodsData.h"
 #import "TaskData.h"
-#import "DetailsgoodsModel.h"
 
 
 ///邮票中心主界面
@@ -164,7 +163,6 @@
     
     //设置小点
     [self setupPoint];
-    
 }
 
 #pragma mark - table数据源
@@ -515,6 +513,9 @@
     self.splitLineHidden = YES;
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
+    
+
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
@@ -522,7 +523,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
 }
 
 //小型邮票数量View
@@ -561,6 +562,11 @@
     else{
         self.topView.point.hidden = NO;
     }
+    
+    //设置底部并没有什么用的Bar
+    UIView *bottomBar = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 34,SCREEN_WIDTH , 34)];
+    bottomBar.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:bottomBar];
 }
 
 //获取数据
@@ -620,16 +626,24 @@
 }
 
 - (void)checkAlertLbl{
-    self.topView.alertLbl.hidden = YES;
-    [DetailsGoodsModel getDataArySuccess:^(NSArray * _Nonnull array) {
-        for (int i = 0 ; i < array.count; i++) {
-            DetailsGoodsModel *data = array[i];
-            if (data.is_received == NO) {
-                self.topView.alertLbl.hidden = NO;
-            }
+    HttpClient *client = [HttpClient defaultClient];
+    [client requestWithPath:COMMON_QUESTION method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            BOOL un_got_good = responseObject[@"un_got_good"];
+        if (un_got_good == YES) {
+            self.topView.alertLbl.hidden = NO;
+        }else{
+            self.topView.alertLbl.hidden = YES;
         }
-        } failure:^{
-            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"==========================出错了");
         }];
+
+}
+
+- (void)checkInSucceeded{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"签到成功";
+    [hud hide:YES afterDelay:1];
 }
 @end

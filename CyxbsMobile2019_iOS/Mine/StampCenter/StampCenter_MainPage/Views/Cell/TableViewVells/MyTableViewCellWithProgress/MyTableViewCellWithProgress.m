@@ -101,7 +101,6 @@
 
 //做任务
 - (void)test:(GotoButton *)sender{
-    
     if ([sender.target isEqualToString:@"斐然成章"]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToReleaseDynamic" object:nil];
     }else if ([sender.target isEqualToString:@"绑定志愿者账号"]){
