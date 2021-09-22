@@ -97,6 +97,7 @@
     if (!_saveBtn) {
         _saveBtn = [[UIButton alloc] initWithFrame:CGRectZero];
         _saveBtn.backgroundColor = [UIColor clearColor];
+        _saveBtn.userInteractionEnabled = NO;
         [_saveBtn addTarget:self action:@selector(saveThing) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveBtn;

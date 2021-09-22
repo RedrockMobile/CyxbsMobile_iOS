@@ -64,6 +64,15 @@
 
 /// 事项完成或未完成的初始状态
 @property (nonatomic, assign) BOOL instialState;
+
+/// 是否更改了提醒时间和重复时间、title、备注文本
+@property (nonatomic, assign) BOOL isChange;
+
+/// 是否更改了状态按钮
+@property (nonatomic, assign) BOOL isChangeStatuBtn;
+
+/// 标题是否无文本
+@property (nonatomic, assign) BOOL isTitleNil;
 @end
 
 @implementation ToDoDetaileViewController
@@ -75,6 +84,10 @@
     self.instialState = self.temporaryModel.isDone;
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.repeatLblsAry = [NSMutableArray array];
+    
+    self.isChange = NO;
+    self.isChangeStatuBtn = NO;
+    self.isTitleNil = NO;
     
     [self buildFrame];
 }
@@ -181,6 +194,15 @@ self.model = self.temporaryModel;
     __weak typeof(self.titleView) weakTitleView = self.titleView;
     __weak typeof(self) weakSelf = self;
     self.titleView.changeTitleViewHeightBlock = ^(CGFloat height) {
+        //更改保存按钮状态
+        weakSelf.isChange = YES;
+        if ([weakSelf.titleView.textView.text isEqualToString:@""]) {
+            weakSelf.isTitleNil = YES;
+        }else{
+            weakSelf.isTitleNil = NO;
+        }
+        [weakSelf isUseSaveBtn];
+        
         [UIView animateWithDuration:0.25 animations:^{
             [weakTitleView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(height);
@@ -191,6 +213,10 @@ self.model = self.temporaryModel;
     };
     
     self.remarkView.changeTitleViewHeightBlock = ^(CGFloat height) {
+        //更改保存按钮状态
+        weakSelf.isChange = YES;
+        [weakSelf isUseSaveBtn];
+        
         [UIView animateWithDuration:0.25 animations:^{
             [weakSelf.remarkView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.height.mas_equalTo(height);
@@ -266,6 +292,18 @@ self.model = self.temporaryModel;
     
     
 }
+///判断是否可用保存按钮
+- (void)isUseSaveBtn{
+    if ((self.isChangeStatuBtn || self.isChange) && !self.isTitleNil) {
+        self.topBar.saveLbl.textColor = [UIColor colorNamed:@"41_35_210&44_222_255"];
+        self.topBar.saveLbl.alpha = 1;
+        self.topBar.saveBtn.userInteractionEnabled = YES;
+    }else{
+        self.topBar.saveLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        self.topBar.saveLbl.alpha = 0.6;
+        self.topBar.saveBtn.userInteractionEnabled = NO;
+    }
+}
 
 #pragma mark- delegate
 //MARK:ToDoDetailBarDelegate
@@ -320,6 +358,9 @@ self.model = self.temporaryModel;
 //MARK:ToDoDetailTitleViewDelegate
 /// 点击小圆环按钮，切换完成状态
 - (void)changeStatu{
+    //更改保存按钮状态
+    self.isChangeStatuBtn = !self.isChangeStatuBtn;
+    [self isUseSaveBtn];
     //改变当前的状态
     [self.temporaryModel setIsDoneForUserActivity:!self.temporaryModel.isDone];
     //根据状态设置UI变化
@@ -408,10 +449,12 @@ self.model = self.temporaryModel;
 
 //MARK:RemindTimeViewDelegate
 - (void)selectTimeViewSureBtnClicked:(NSDateComponents *)components{
-    self.reminderTimeView.reminderTimeLbl.text = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+    //更改保存按钮状态
+    self.isChange = YES;
+    [self isUseSaveBtn];
     
-//    //存储数据进model，注意这里要和model的格式相同
-//    self.temporaryModel.timeStr = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+    //存储数据进model，注意这里要和model的格式相同
+    self.reminderTimeView.reminderTimeLbl.text = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
     
     //设置消失
     [UIView animateWithDuration:0.5 animations:^{
@@ -467,6 +510,10 @@ self.model = self.temporaryModel;
     
 }
 - (void)selectRepeatViewSureBtnClicked:(DiscoverTodoSelectRepeatView *)view{
+    //更改保存按钮状态
+    self.isChange = YES;
+    [self isUseSaveBtn];
+    
     self.tempoarySelectRepeatView = view;
 
     //进行界面显示
