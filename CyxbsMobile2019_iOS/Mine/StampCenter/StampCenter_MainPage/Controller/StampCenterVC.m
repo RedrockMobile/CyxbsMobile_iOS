@@ -574,13 +574,13 @@
     [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
-       
+        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
     
     [GoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
         self.goodsAry = array;
     } error:^{
-        
+        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
 }
 
@@ -591,6 +591,9 @@
 - (void)jumpToNewQA{
     NSLog(@"正在跳转至邮问主页");
     self.tabBarController.selectedIndex = 1;
+    [self.navigationController popViewControllerAnimated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
+  
 }
 
 - (void)jumpToReleaseDynamic{
@@ -603,7 +606,7 @@
     [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
-        
+        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
     
     HttpClient *client = [HttpClient defaultClient];

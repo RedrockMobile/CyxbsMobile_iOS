@@ -81,21 +81,21 @@
         // 头像没有改变，直接上传其他信息
         [self profileUploadSuccess];  // 这个方法是头像上传成功的回调，里面的内容就是上传个人信息
     }
-    int hasChangeItem = 0;
-    if (![[UserItem defaultItem].qq isEqualToString:@"完善你的个人信息哦"]) {
-        hasChangeItem++;
+
+    if ([[UserItem defaultItem].qq isEqualToString:@"完善你的个人信息哦"]) {
+        return;
     }
-    if (![[UserItem defaultItem].nickname isEqualToString:@"student"]) {
-        hasChangeItem++;
+    if ([[UserItem defaultItem].nickname isEqualToString:@"student"]) {
+        return;
     }
-    if (![[UserItem defaultItem].introduction isEqualToString:@"完善你的个人信息哦"]) {
-        hasChangeItem++;
+    if ([[UserItem defaultItem].introduction isEqualToString:@"完善你的个人信息哦"]) {
+        return;
     }
-    if (![[UserItem defaultItem].phone isEqualToString:@"完善你的个人信息哦"]) {
-        hasChangeItem++;
+    if ([[UserItem defaultItem].phone isEqualToString:@"完善你的个人信息哦"]) {
+        return;
     }
-    if (hasChangeItem == 4) {
-        NSLog(@"已经完善");
+
+    NSLog(@"完成完善个人信息任务");
    HttpClient *client = [HttpClient defaultClient];
     //完成完善个人信息任务
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
@@ -109,10 +109,6 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"失败了");
         }];
-        
-    }else{
-        NSLog(@"没有完善");
-    }
 }
 
 - (void)backButtonClicked:(UIButton *)sender {

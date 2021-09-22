@@ -44,7 +44,7 @@
                 self.detailLabel.text = [NSString stringWithFormat:@"明日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
             }
                 } error:^{
-                    NSLog(@"出错了");
+            
                 }];
         [button addTarget:self action:@selector(checkIn) forControlEvents:UIControlEventTouchUpInside];
         _button = button;

@@ -163,7 +163,7 @@
         self.CommonQuestionAry = array;
         
         } error:^{
-            
+            [NewQAHud showHudWith:@"网络异常" AddView:self.view];
         }];
 }
 - (NSURL*)getQQQunUrl{

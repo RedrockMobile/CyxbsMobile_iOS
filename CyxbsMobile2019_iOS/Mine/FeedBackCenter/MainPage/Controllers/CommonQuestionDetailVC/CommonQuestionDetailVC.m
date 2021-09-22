@@ -61,7 +61,7 @@
     [CommonQuestionData CommonQuestionDataWithSuccess:^(NSArray * _Nonnull array) {
         self.CommonQuestionAry = array;
         } error:^{
-            
+            [NewQAHud showHudWith:@"网络异常" AddView:self.view];
         }];
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
