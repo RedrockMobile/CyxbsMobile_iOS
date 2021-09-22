@@ -194,9 +194,6 @@
 // 设置HeadView
 - (void)setupHeadView
 {
-//    _headBackView = [[NewQAHeadrView alloc] initWithFrame:CGRectMake(0, _topBackViewH, SCREEN_WIDTH, self.headViewHeight + SLIDERHEIGHT)];
-//    [self.view addSubview:_headBackView];
-    
     _topView = [[TopFollowView alloc]initWithFrame:CGRectMake(0, _topBackViewH, SCREEN_WIDTH, self.headViewHeight)];
     [self.view addSubview:_topView];
     
@@ -281,7 +278,8 @@
         originY = -(self.headViewHeight-self.titleBarView.height);
         otherOffsetY = self.headViewHeight;
     }
-    self.topView.frame = CGRectMake(SCREEN_WIDTH * (-originY/(self.headViewHeight-self.titleBarView.height))/2, originY + _topBackViewH, SCREEN_WIDTH * (1 - (-originY/(self.headViewHeight-self.titleBarView.height))), self.headViewHeight);
+    CGFloat ratio = MAX(0, (-originY/(self.headViewHeight-self.titleBarView.height)));
+    self.topView.frame = CGRectMake(SCREEN_WIDTH * ratio/2, originY + _topBackViewH, SCREEN_WIDTH * (1 - ratio), self.headViewHeight);
 //    self.titleBarView.frame = CGRectMake(0, originY + _topBackViewH, SCREEN_WIDTH, self.titleBarView.frame.size.height);
     for ( int i = 0; i < 2; i++) {
         if (i != self.titleBarView.selectedItemIndex) {
