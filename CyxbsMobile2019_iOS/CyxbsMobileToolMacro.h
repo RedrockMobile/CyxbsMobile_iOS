@@ -102,6 +102,10 @@ fprintf(stderr,"\n");\
 //gege
 #define BACK_GRAY_COLOR [UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1]
 
+#define SLIDERHEIGHT HScaleRate_SE * 54
+
+#define CELLINITHEIGHT SCREEN_WIDTH*(0.1486 + 0.0427 * 101.5/16  + 0.2707 * 25.5/101.5)
+
 
 
 
