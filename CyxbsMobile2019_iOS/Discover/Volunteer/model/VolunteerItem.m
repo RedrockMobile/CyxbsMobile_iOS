@@ -57,7 +57,19 @@ MJExtensionCodingImplementation
                 [ArchiveTool saveVolunteerInfomationWith:self];
                 finish(self);
                 NSLog(@"志愿信息查询成功");
-                
+                HttpClient *client = [HttpClient defaultClient];
+                //完成绑定志愿者账号任务 (需要绑定成功)
+                [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+                [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                    NSString *target = @"绑定志愿者账号";
+                    NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+                    [formData appendPartWithFormData:data name:@"title"];
+                    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                        NSLog(@"成功了");
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+                    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        NSLog(@"失败了");
+                    }];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
             }];

@@ -8,6 +8,7 @@
 #import "TableHeaderView.h"
 #import "PrefixHeader.pch"
 #import "TaskData.h"
+#import "CheckInModel.h"
 
 @implementation TableHeaderView
 
@@ -40,6 +41,7 @@
                 [self.button setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
                 self.button.enabled = NO;
                 [self.button setTitle:@"已签到" forState:UIControlStateNormal];
+                self.detailLabel.text = [NSString stringWithFormat:@"明日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
             }
                 } error:^{
                     NSLog(@"出错了");
@@ -64,7 +66,7 @@
 -(UILabel *)detailLabel{
     if (!_detailLabel) {
         UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 50, 91, 20)];
-        detailLabel.text = @"每日签到 +10";
+        detailLabel.text = [NSString stringWithFormat:@"每日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
         detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
         detailLabel.textColor = [UIColor colorNamed:@"#15315B66"];
         _detailLabel = detailLabel;
@@ -74,29 +76,16 @@
 
 
 - (void)checkIn{
-        HttpClient *client = [HttpClient defaultClient];
-        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-        [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-            NSString *target = @"今日打卡";
-            NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-            [formData appendPartWithFormData:data name:@"title"];
-            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                NSLog(@"成功了");
-                self.button.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
-                [self.button setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
-                self.button.enabled = NO;
-                [self.button setTitle:@"已签到" forState:UIControlStateNormal];
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"失败了");
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"networkerror" object:nil];
-            }];
-    
-//    [client requestWithJson:CHECKINAPI method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//        NSLog(@"%@",responseObject);
-//        NSLog(@"成功了");
-//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"出错了");
-//        }];
+    [CheckInModel CheckInSucceeded:^{
+        self.button.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
+        [self.button setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
+        self.button.enabled = NO;
+        [self.button setTitle:@"已签到" forState:UIControlStateNormal];
+        self.detailLabel.text = [NSString stringWithFormat:@"明日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+        } Failed:^(NSError * _Nonnull err) {
+            NSLog(@"出错了");
+        }];
+
 }
 @end

@@ -24,12 +24,14 @@
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:COMMON_QUESTION method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSArray *array = responseObject[@"data"];
+        
             NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                         CommonQuestionData *data = [self CommonQuestionDataWithDict:obj];
                         [mArray addObject:data];
-                        success(mArray.copy);
+                        
             }];
+            success(mArray.copy);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"==========================出错了");
         }];

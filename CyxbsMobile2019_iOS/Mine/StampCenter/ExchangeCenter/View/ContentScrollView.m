@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import <AFNetworking/AFNetworking.h>
 #import "Goods.h"
+#import <YBImageBrowser.h>
 
 #define picScrollViewWidth 360 * [UIScreen mainScreen].bounds.size.width / 390
 
@@ -35,7 +36,7 @@
     _bannerView = [[SDCycleScrollView alloc]init];
     [self addSubview:self.bannerView];
     [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(16);
+        make.centerX.equalTo(self);
         make.top.equalTo(self).offset(16);
         make.width.mas_equalTo(picScrollViewWidth);
         make.height.mas_equalTo(178);
@@ -44,7 +45,7 @@
     
     NSString *s = self.goodsID;
     [Goods getDataDictWithId:s Success:^(NSDictionary * _Nonnull dict) {
-        self->_urls = dict[@"urls"];
+        self.urls = dict[@"urls"];
         
         NSArray *imagesURLStrings = dict[@"urls"];
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@""]];
@@ -56,7 +57,6 @@
             make.height.mas_equalTo(178);
         }];
         cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
-        cycleScrollView.currentPageDotColor = [UIColor blueColor]; // 自定义分页控件小圆标颜色
         cycleScrollView.imageURLStringsGroup = imagesURLStrings;
         cycleScrollView.clipsToBounds = YES;
         cycleScrollView.layer.cornerRadius = 15;
@@ -67,8 +67,20 @@
 
         cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
         self.cycleScrollView = cycleScrollView;
+        self.urlscount = imagesURLStrings.count;
         [self addPageController];
-
+        
+        //图片的设置
+        //设置图片浏览器的数据源数组
+        NSMutableArray *dataMuteAry = [NSMutableArray array];
+        for (int i = 0;i < self.urls.count; i++) {
+            YBIBImageData *data = [YBIBImageData new];
+            data.imageURL = [NSURL URLWithString:self.urls[i]];
+            [dataMuteAry addObject:data];
+        }
+        self.urldataArray = dataMuteAry;
+//        self.imageDataArray = dynamicDataModel.pics;
+        
         } failure:^{
     }];
     
@@ -88,7 +100,7 @@
     }];
     pageControl.pageIndicatorTintColor =[UIColor grayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-    pageControl.numberOfPages = 2;
+    pageControl.numberOfPages = self.urlscount;
     pageControl.currentPage = 0;
 
 }
@@ -137,6 +149,19 @@
 #pragma mark - delegate
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
     self.pageControl.currentPage = index;
+}
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    
+    YBImageBrowser *browser = [YBImageBrowser new];
+    browser.dataSourceArray = self.urldataArray;
+    
+    browser.currentPage = index;
+    // 只有一个保存操作的时候，可以直接右上角显示保存按钮
+    
+    browser.defaultToolViewHandler.topView.operationType = YBIBTopViewOperationTypeSave;
+    
+    [browser show];
+    
 }
 
 #pragma mark - getter
