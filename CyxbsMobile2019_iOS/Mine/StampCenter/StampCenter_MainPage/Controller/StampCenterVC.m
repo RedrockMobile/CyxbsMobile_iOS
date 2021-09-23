@@ -163,11 +163,7 @@
     
     //设置小点
     [self setupPoint];
-    
-    
-    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
-    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
-    [self.view addSubview:v];
+
 }
 
 #pragma mark - table数据源
@@ -519,7 +515,9 @@
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
     
-
+    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
+    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+    [self.view addSubview:v];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
