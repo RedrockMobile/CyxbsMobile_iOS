@@ -73,6 +73,10 @@
 
 /// 标题是否无文本
 @property (nonatomic, assign) BOOL isTitleNil;
+
+/// 点击返回的次数
+@property (nonatomic, assign) int popNum;
+
 @end
 
 @implementation ToDoDetaileViewController
@@ -88,6 +92,7 @@
     self.isChange = NO;
     self.isChangeStatuBtn = NO;
     self.isTitleNil = NO;
+    self.popNum = 0;
     
     [self buildFrame];
 }
@@ -169,24 +174,66 @@ self.model = self.temporaryModel;
         return NO;
     }
 }
-///为各控件添加遮罩
+///根据是否完成的状态设置各空间的状态
 - (void)addMasKBtn{
     //如果是完成状态，则添加遮罩的btn
-    if (self.model.isDone) {
+    if (self.temporaryModel.isDone) {
+        //titleView变化
+        [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
+        self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        self.titleView.textView.alpha = 0.46;
+        self.titleView.textView.editable = NO;
+        self.reminderTimeView.reminderTimeLbl.alpha = 0.46;
+        self.remarkView.textView.alpha = 0.46;
+        self.remarkView.textView.editable = NO;
+        
+        //各view添加更改无效的遮罩按钮
+            //titleView
+        [self.titleView addSubview:self.titleView.clearBtn];
+        [self.titleView.clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.titleView.textView);
+        }];
+        
+            //reminderView添加遮罩btn
         [self.reminderTimeView addSubview:self.reminderTimeView.maskBtn];
         [self.reminderTimeView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.reminderTimeView);
         }];
         
+            //RepeatView添加遮罩层
         [self.repeatView addSubview:self.repeatView.maskBtn];
         [self.repeatView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.repeatView);
         }];
         
+            //
         [self.remarkView addSubview:self.remarkView.maskBtn];
-        [self.repeatView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.remarkView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.remarkView);
         }];
+    }else{
+        self.titleView.textView.alpha = 1;
+        self.titleView.textView.editable = YES;
+        self.remarkView.textView.editable = YES;
+        self.remarkView.textView.alpha = 1;
+        self.reminderTimeView.reminderTimeLbl.alpha = 1;
+        
+        //移除遮罩btn
+        [self.titleView.clearBtn removeFromSuperview];
+        [self.reminderTimeView.maskBtn  removeFromSuperview];
+        [self.repeatView.maskBtn removeFromSuperview];
+        [self.remarkView.maskBtn removeFromSuperview];
+        
+        
+        if ([self compareIsOverdue]) {
+            
+            [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
+            self.titleView.textView.textColor = [UIColor redColor];
+            
+        }else{
+            [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
+            self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        }
     }
 }
 ///重新设置动态改变titleView和remarkView的高度
@@ -309,7 +356,17 @@ self.model = self.temporaryModel;
 //MARK:ToDoDetailBarDelegate
 - (void)popVC{
     [self.model setIsDoneForUserActivity:self.instialState];
-    [self.navigationController popViewControllerAnimated:YES];
+    if ((self.isChangeStatuBtn || self.isChange) && !self.isTitleNil) {
+        if (self.popNum == 0) {
+            [NewQAHud showHudWith:@"掌友，你的修改还未保存" AddView:self.view];
+            self.popNum++;
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 - (void)saveChanges{
     //保存信息
@@ -364,66 +421,7 @@ self.model = self.temporaryModel;
     //改变当前的状态
     [self.temporaryModel setIsDoneForUserActivity:!self.temporaryModel.isDone];
     //根据状态设置UI变化
-    if (self.temporaryModel.isDone) {
-        //titleView变化
-        [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
-        self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        self.titleView.textView.alpha = 0.46;
-        self.titleView.textView.editable = NO;
-        self.reminderTimeView.reminderTimeLbl.alpha = 0.46;
-        self.remarkView.textView.alpha = 0.46;
-        self.remarkView.textView.editable = NO;
-        
-        //各view添加更改无效的遮罩按钮
-            //titleView
-        [self.titleView addSubview:self.titleView.clearBtn];
-        [self.titleView.clearBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.titleView.textView);
-        }];
-        
-            //reminderView添加遮罩btn
-        [self.reminderTimeView addSubview:self.reminderTimeView.maskBtn];
-        [self.reminderTimeView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.reminderTimeView);
-        }];
-        
-            //RepeatView添加遮罩层
-        [self.repeatView addSubview:self.repeatView.maskBtn];
-        [self.repeatView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.repeatView);
-        }];
-        
-            //
-        [self.remarkView addSubview:self.remarkView.maskBtn];
-        [self.remarkView.maskBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.remarkView);
-        }];
-        
-        
-    }else{
-        self.titleView.textView.alpha = 1;
-        self.titleView.textView.editable = YES;
-        self.remarkView.textView.editable = YES;
-        self.remarkView.textView.alpha = 1;
-        self.reminderTimeView.reminderTimeLbl.alpha = 1;
-        
-        //移除遮罩btn
-        [self.titleView.clearBtn removeFromSuperview];
-        [self.reminderTimeView.maskBtn  removeFromSuperview];
-        [self.repeatView.maskBtn removeFromSuperview];
-        [self.remarkView.maskBtn removeFromSuperview];
-        
-        
-        if ([self compareIsOverdue]) {
-            
-            [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
-            self.titleView.textView.textColor = [UIColor redColor];
-            
-        }else{
-            [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
-            self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        }
-    }
+    [self addMasKBtn];
 }
 ///已完成状态下点击弹出无法更改的提示
 - (void)changeInvaliePrompt{
