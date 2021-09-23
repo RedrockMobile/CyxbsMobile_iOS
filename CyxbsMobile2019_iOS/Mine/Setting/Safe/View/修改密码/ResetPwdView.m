@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIImageView *passwordImageView1;
 @property (nonatomic, strong) UIImageView *passwordImageView2;
 @property (nonatomic, strong) UIImageView *passwordRightImageView1;
+@property (nonatomic, strong) UIButton *passwordRight1;
 @property (nonatomic, strong) UIButton *passwordRight2;
 
 @end
@@ -56,6 +57,7 @@
         ///密码输入框
         UITextField *passwordField1=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请输入6位以上新密码"];
         passwordField1.clearButtonMode = UITextFieldViewModeNever;
+        passwordField1.secureTextEntry = YES;
         [self addSubview:passwordField1];
         _passwordField1 = passwordField1;
         
@@ -134,15 +136,22 @@
         UIImageView *passwordRightImageView1 = [[UIImageView alloc] init];
         UIImage *passwordRightImage1 = [UIImage imageNamed:@"眼睛1"];
         passwordRightImageView1.image = passwordRightImage1;
-        [self addSubview:passwordRightImageView1];
+       // [self addSubview:passwordRightImageView1];
         _passwordRightImageView1 = passwordRightImageView1;
         
+        UIButton *passwordRight1 = [[UIButton alloc] init];
+        [passwordRight1 setBackgroundImage:[UIImage imageNamed:@"眼睛1"] forState:UIControlStateNormal];
+        [passwordRight1 setBackgroundImage:[UIImage imageNamed:@"眼睛2"] forState:UIControlStateSelected];
+        passwordRight1.selected = YES;
+        [passwordRight1 addTarget:self action:@selector(securityPassword1) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:passwordRight1];
+        _passwordRight1 = passwordRight1;
         
         UIButton *passwordRight2 = [[UIButton alloc] init];
         [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛1"] forState:UIControlStateNormal];
         [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛2"] forState:UIControlStateSelected];
         passwordRight2.selected = YES;
-        [passwordRight2 addTarget:self action:@selector(securityPassword) forControlEvents:UIControlEventTouchUpInside];
+        [passwordRight2 addTarget:self action:@selector(securityPassword2) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:passwordRight2];
         _passwordRight2 = passwordRight2;
         
@@ -194,12 +203,6 @@
         make.height.mas_equalTo(SCREEN_WIDTH * 0.05 * 20.92/18.74);
     }];
     
-    [_passwordRightImageView1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.1281);
-        make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.073);
-        make.width.mas_equalTo(SCREEN_WIDTH * 0.0579);
-        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0131);
-    }];
     
     [_placeholder1Error mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.1663);
@@ -243,6 +246,13 @@
         make.height.mas_equalTo(SCREEN_HEIGHT * 0.0131);
     }];
     
+    [_passwordRight1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(_passwordRight2).mas_offset(-80);
+        make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.073);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.0579);
+        make.height.mas_equalTo(SCREEN_HEIGHT * 0.0131);
+    }];
+    
     [_placeholder2Error mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_barTitle.mas_bottom).mas_offset(SCREEN_HEIGHT * 0.2599);
         make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.073);
@@ -267,7 +277,17 @@
     
 }
 
-- (void)securityPassword {
+- (void)securityPassword1 {
+    if (_passwordRight1.selected == YES) {
+        _passwordField1.secureTextEntry = NO;
+        _passwordRight1.selected = NO;
+    }else {
+        _passwordField1.secureTextEntry = YES;
+        _passwordRight1.selected = YES;
+    }
+}
+
+- (void)securityPassword2 {
     if (_passwordRight2.selected == YES) {
         _passwordField2.secureTextEntry = NO;
         _passwordRight2.selected = NO;
