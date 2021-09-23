@@ -217,7 +217,8 @@
         }
         [nameArray addObject:@"更多功能"];
     }else {
-        nameArray = [@[@"空教室", @"校车轨迹", @"查课表", @"更多功能"] mutableCopy];//用来保存图片和名称
+        //nameArray = [@[@"空教室", @"校车轨迹", @"查课表", @"更多功能"] mutableCopy];//用来保存图片和名称
+        nameArray = [@[@"空教室", @"查课表",@"我的考试", @"更多功能"] mutableCopy];//用来保存图片和名称
     }
         
     NSMutableArray *array = [NSMutableArray array];
