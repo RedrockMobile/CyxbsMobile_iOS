@@ -79,7 +79,7 @@
 
 - (void)startAnimationWith:(NSMutableArray *)dataArray {
     UIScrollView *groupsScrollView = [[UIScrollView alloc] init];
-    groupsScrollView.backgroundColor = [UIColor blueColor];
+    groupsScrollView.backgroundColor = [UIColor clearColor];
     groupsScrollView.showsHorizontalScrollIndicator = NO;
     groupsScrollView.showsVerticalScrollIndicator = NO;
     groupsScrollView.userInteractionEnabled = YES;

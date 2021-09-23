@@ -36,6 +36,7 @@
 @property (nonatomic, strong) TopFollowView *topView;
 @property (nonatomic, strong) GroupModel *groupmodel;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) UIVisualEffectView *HUDView;
 
  
 @end
@@ -46,7 +47,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
     self.view.clipsToBounds = YES;
-    _topBackViewH = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
+    self.topBackViewH = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
     self.headViewHeight = 205 * HScaleRate_SE - SCREEN_WIDTH * 0.04 * 11/15;
     
     ///我的关注数据请求成功
@@ -64,7 +65,12 @@
     [self setUpTopSearchView];
     [self setupContentView];
     [self setupHeadView];
-    [self.view bringSubviewToFront:_topBackView];
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    _HUDView = [[UIVisualEffectView alloc] initWithEffect:blur];
+    _HUDView.alpha = 0.0f;
+    _HUDView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.headViewHeight + self.topBackViewH - SLIDERHEIGHT);
+    [self.view addSubview:_HUDView];
+    [self.view bringSubviewToFront:_searchBtn];
     [self recommendTableLoadData];
     
 }
@@ -82,6 +88,8 @@
 }
 
 - (void)settingFollowViewUI {
+
+    [self.view bringSubviewToFront:_searchBtn];
     [self.topView loadViewWithArray:self.dataArray];
 //    [self.loadHUD removeFromSuperview];
 //    [self reloadTopFollowViewWithArray:self.dataArray];
@@ -117,12 +125,16 @@
 
 
 - (void)setUpTopSearchView {
-    [self.view addSubview:self.topBackView];
-    [_topBackView addSubview:self.searchBtn];
-    [_topBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(self.view);
-        make.height.mas_equalTo(_topBackViewH);
-    }];
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.headViewHeight + self.topBackViewH)];
+//    backView.backgroundColor = [UIColor redColor];
+    [backView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NewQATopImage"]]];
+    [self.view addSubview:backView];
+//    [self.view addSubview:self.topBackView];
+    [self.view addSubview:self.searchBtn];
+//    [_topBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.right.mas_equalTo(self.view);
+//        make.height.mas_equalTo(_topBackViewH);
+//    }];
     [_searchBtn mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT);
         make.left.mas_equalTo(self.view.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
@@ -130,7 +142,7 @@
         make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 37.5/343);
     }];
     _searchBtn.layer.cornerRadius = SCREEN_WIDTH * 0.9147 * 37.5/343 * 1/2;
-    [self.view bringSubviewToFront:_topBackView];
+//    [self.view bringSubviewToFront:_topBackView];
 }
 
 - (void)setupContentView
@@ -139,7 +151,7 @@
     NewQAContentScrollView *scrollView = [[NewQAContentScrollView alloc] init];
     scrollView.delaysContentTouches = NO;
     [self.view addSubview:scrollView];
-    scrollView.backgroundColor = [UIColor whiteColor];
+    scrollView.backgroundColor = [UIColor clearColor];
     self.scrollView = scrollView;
     scrollView.pagingEnabled = YES;
     scrollView.showsVerticalScrollIndicator = NO;
@@ -149,12 +161,13 @@
 
     // 设置两个tableView的headerView
     UIView* headView = [[UIView alloc] init];
-    headView.backgroundColor = [UIColor redColor];
+    headView.backgroundColor = [UIColor clearColor];
     headView.frame = CGRectMake(0, _topBackViewH, 0, self.headViewHeight);
     self.tableViewHeadView = headView;
     
     
     _recommenTableView = [[NewQARecommenTableView alloc] init];
+    _recommenTableView.backgroundColor = [UIColor clearColor];
     _recommenTableView.tag = 1;
     _recommenTableView.delegate = self;
     _recommenTableView.showsVerticalScrollIndicator = FALSE;
@@ -195,6 +208,7 @@
 - (void)setupHeadView
 {
     _topView = [[TopFollowView alloc]initWithFrame:CGRectMake(0, _topBackViewH, SCREEN_WIDTH, self.headViewHeight)];
+    _topView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_topView];
     
     NewQASelectorView *titleBarView = [[NewQASelectorView alloc] init];
@@ -211,6 +225,8 @@
         make.left.right.bottom.mas_equalTo(self.view);
         make.top.mas_equalTo(self.view);
     }];
+//    [self.view bringSubviewToFront:_scrollView];
+    [self.view bringSubviewToFront:_searchBtn];
     self.titleBarView.selectedItemIndex = 0;
 }
 
@@ -231,7 +247,8 @@
 - (UIView *)topBackView {
     if (!_topBackView) {
         _topBackView = [[UIView alloc] init];
-        [_topBackView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NewQATopImage"]]];
+//        [_topBackView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NewQATopImage"]]];
+        _topBackView.backgroundColor = [UIColor redColor];
     }
     return _topBackView;
 }
@@ -278,8 +295,11 @@
         originY = -(self.headViewHeight-self.titleBarView.height);
         otherOffsetY = self.headViewHeight;
     }
-    CGFloat ratio = MAX(0, (-originY/(self.headViewHeight-self.titleBarView.height)));
+    CGFloat ratio = MIN(1,MAX(0,(-originY/(self.headViewHeight-self.titleBarView.height - _topBackViewH))));
+    NSLog(@"%f\n",ratio);
     self.topView.frame = CGRectMake(SCREEN_WIDTH * ratio/2, originY + _topBackViewH, SCREEN_WIDTH * (1 - ratio), self.headViewHeight);
+    self.HUDView.frame = CGRectMake(0, originY, SCREEN_WIDTH, self.headViewHeight + self.topBackViewH - SLIDERHEIGHT);
+    self.HUDView.alpha = ratio;
 //    self.titleBarView.frame = CGRectMake(0, originY + _topBackViewH, SCREEN_WIDTH, self.titleBarView.frame.size.height);
     for ( int i = 0; i < 2; i++) {
         if (i != self.titleBarView.selectedItemIndex) {
