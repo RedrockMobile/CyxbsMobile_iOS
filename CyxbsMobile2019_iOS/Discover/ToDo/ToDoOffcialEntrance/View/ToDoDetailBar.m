@@ -39,7 +39,7 @@
     [self.saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self);
         make.top.equalTo(self.backBtn);
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1));
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.2, SCREEN_WIDTH * 0.12));
     }];
     
     //分割线

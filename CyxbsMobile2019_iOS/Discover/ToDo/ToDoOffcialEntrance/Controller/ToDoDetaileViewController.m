@@ -183,6 +183,7 @@ self.model = self.temporaryModel;
         self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
         self.titleView.textView.alpha = 0.46;
         self.titleView.textView.editable = NO;
+        self.repeatView.repeatContentScrollView.alpha = 0.6;
         self.reminderTimeView.reminderTimeLbl.alpha = 0.46;
         self.remarkView.textView.alpha = 0.46;
         self.remarkView.textView.editable = NO;
@@ -214,6 +215,7 @@ self.model = self.temporaryModel;
     }else{
         self.titleView.textView.alpha = 1;
         self.titleView.textView.editable = YES;
+        self.repeatView.repeatContentScrollView.alpha = 0.6;
         self.remarkView.textView.editable = YES;
         self.remarkView.textView.alpha = 1;
         self.reminderTimeView.reminderTimeLbl.alpha = 1;
@@ -461,11 +463,6 @@ self.model = self.temporaryModel;
     } completion:^(BOOL finished) {
         [self.selectReminedTimeView removeFromSuperview];
         [self.maskView removeFromSuperview];
-        
-        //刷新
-        self.titleView = nil;
-        [self.view removeAllSubviews];
-        [self buildFrame];
     }];
 }
 - (void)selectTimeViewCancelBtnClicked{
@@ -546,7 +543,6 @@ self.model = self.temporaryModel;
             [self.maskView removeFromSuperview];
             [self.selectRepeatView removeFromSuperview];
         }];
-    
 }
 
 
