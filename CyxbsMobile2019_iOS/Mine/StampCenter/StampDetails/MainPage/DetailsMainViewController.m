@@ -140,11 +140,12 @@
     // network 缺省1
     [self.detailsGoodsTableView addSubview:self.networkFailureLabel1];
     [self.networkFailureLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.mas_equalTo(self.view);
+        make.centerY.mas_equalTo(self.view);
+        make.centerX.mas_equalTo(self.detailsGoodsTableView);
     }];
     [self.detailsGoodsTableView addSubview:self.networkFailureImgView1];
     [self.networkFailureImgView1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.view);
+        make.centerX.mas_equalTo(self.detailsTasksTableView);
         make.bottom.mas_equalTo(self.networkFailureLabel1.mas_top);
     }];
     
@@ -154,11 +155,12 @@
     // network 缺省2
     [self.detailsTasksTableView addSubview:self.networkFailureLabel2];
     [self.networkFailureLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.mas_equalTo(self.view);
+        make.centerY.mas_equalTo(self.view);
+        make.centerX.mas_equalTo(self.detailsTasksTableView);
     }];
     [self.detailsTasksTableView addSubview:self.networkFailureImgView2];
     [self.networkFailureImgView2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.view);
+        make.centerX.mas_equalTo(self.detailsTasksTableView);
         make.bottom.mas_equalTo(self.networkFailureLabel2.mas_top);
     }];
     
