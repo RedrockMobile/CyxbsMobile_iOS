@@ -11,6 +11,7 @@
 #import "IntroductionController.h"
 #import <AFNetworking.h>
 
+#import "ExchangeCenterViewController.h"
 @interface MineAboutController () <MineAboutContentViewDelegate>
 
 @end
@@ -29,6 +30,13 @@
     MineAboutContentView *contentView = [[MineAboutContentView alloc] init];
     contentView.delegate = self;
     [self.view addSubview:contentView];
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 50)];
+    [self.view addSubview:btn];
+    [btn addTarget:self action:@selector(jump) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)jump {
+    ExchangeCenterViewController *vc = [[ExchangeCenterViewController alloc]initWithID:@"1"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

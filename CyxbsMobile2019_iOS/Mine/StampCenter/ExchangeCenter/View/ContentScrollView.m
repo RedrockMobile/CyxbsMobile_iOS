@@ -41,7 +41,7 @@
         make.width.mas_equalTo(picScrollViewWidth);
         make.height.mas_equalTo(178);
     }];
-    _bannerView.backgroundColor = [UIColor whiteColor];
+    _bannerView.backgroundColor = [UIColor colorNamed:@"white&black"];
     
     NSString *s = self.goodsID;
     [Goods getDataDictWithId:s Success:^(NSDictionary * _Nonnull dict) {
@@ -64,7 +64,6 @@
         cycleScrollView.layer.shadowOpacity = 0.33f;
         cycleScrollView.layer.shadowColor = [UIColor colorWithRed:140/255.0 green:150/255.0 blue:217/255.0 alpha:1].CGColor;
         cycleScrollView.autoScrollTimeInterval = 3;
-
         cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
         self.cycleScrollView = cycleScrollView;
         self.urlscount = imagesURLStrings.count;
