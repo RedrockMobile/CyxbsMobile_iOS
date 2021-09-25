@@ -8,8 +8,8 @@
 
 #import "ToDoDetaileViewController.h"
 #import "ToDoDetailBar.h"
-#import "RemindTimeView.h"
 #import "DiscoverTodoSelectRepeatView.h"
+#import "DiscoverTodoSelectTimeView.h"
 #import "TodoSyncTool.h"
 #import "ToDoDetailTitleView.h"
 #import "ToDoDetailReminderTimeView.h"
@@ -18,12 +18,11 @@
 @interface ToDoDetaileViewController ()
 <
     ToDoDetailBarDelegate,
-//    UITextViewDelegate,
-    RemindTimeViewDelegate,
     DiscoverTodoSelectRepeatViewDelegate,
     ToDoDetailTitleViewDelegate,
     ToDoDetailReminderTimeViewDelegate,
-    ToDoDetailRepeatViewDelegate
+    ToDoDetailRepeatViewDelegate,
+    DiscoverTodoSelectTimeViewDelegate
                             >
 /// 最底层的scrolView
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -44,14 +43,15 @@
 /// 弹出弹窗之后的一层黑色的遮罩层
 @property (nonatomic, strong) UIView *maskView;
 
-/// 弹出设置提醒时间的View
-@property (nonatomic, strong) RemindTimeView *selectReminedTimeView;
 
 /// 点击重复的label之后弹出的选择重复的View
 @property (nonatomic, strong) DiscoverTodoSelectRepeatView *selectRepeatView;
 
 /// 临时存储的重复的View
 @property (nonatomic, strong) DiscoverTodoSelectRepeatView *tempoarySelectRepeatView;
+
+/// 点击设置提醒时间，
+@property (nonatomic, strong) DiscoverTodoSelectTimeView *selectTimeView;
 
 /// 删除按钮
 @property (nonatomic, strong) UIButton *deleteBtn;
@@ -442,13 +442,14 @@ self.model = self.temporaryModel;
 - (void)setReminderTime{
     
     //添加遮罩层
-    self.maskView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - self.selectReminedTimeView.height + 16);
+    self.maskView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - self.selectTimeView.height + 16);
     [self.view addSubview:self.maskView];
     [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectTimeViewCancelBtnClicked)]];
     
-    [self.view addSubview:self.selectReminedTimeView];
+    [self.view addSubview:self.selectTimeView];
+    [self.selectTimeView showView];
     [UIView animateWithDuration:0.5 animations:^{
-        self.selectReminedTimeView.alpha = 1;
+//        self.selectReminedTimeView.alpha = 1;
         self.maskView.alpha = 1;
     }];
     
@@ -459,30 +460,32 @@ self.model = self.temporaryModel;
     //更改保存按钮状态
     self.isChange = YES;
     [self isUseSaveBtn];
-    
+
     //存储数据进model，注意这里要和model的格式相同
     self.reminderTimeView.reminderTimeLbl.text = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
     self.reminderTimeView.reminderTimeLbl.alpha = 1;
-    
+
     //设置消失
     [UIView animateWithDuration:0.5 animations:^{
-        self.selectReminedTimeView.alpha = 0;
+        self.selectTimeView.alpha = 0;
         self.maskView.alpha = 0;
     } completion:^(BOOL finished) {
-        [self.selectReminedTimeView removeFromSuperview];
+//        [self.selectTimeView removeFromSuperview];
         [self.maskView removeFromSuperview];
     }];
 }
 - (void)selectTimeViewCancelBtnClicked{
     //设置消失
+    [self.selectTimeView hideView];
     [UIView animateWithDuration:0.5 animations:^{
-        self.selectReminedTimeView.alpha = 0;
+//        self.selectTimeView.alpha = 0;
         self.maskView.alpha = 0;
     } completion:^(BOOL finished) {
-        [self.selectReminedTimeView removeFromSuperview];
+//        [self.selectTimeView removeFromSuperview];
         [self.maskView removeFromSuperview];
     }];
 }
+
 
 //MARK:ToDoDetailRepeatViewDelegate
 ///设置重复的模式
@@ -628,27 +631,25 @@ self.model = self.temporaryModel;
     return _maskView;
 }
 
-- (RemindTimeView *)selectReminedTimeView{
-    if (!_selectReminedTimeView) {
-        _selectReminedTimeView = [[RemindTimeView alloc] init];
-        _selectReminedTimeView.frame = CGRectMake(0, SCREEN_HEIGHT * 0.4705, SCREEN_WIDTH, SCREEN_HEIGHT * 0.5295);
-        _selectReminedTimeView.alpha = 0;
-        _selectReminedTimeView.delegate = self;
-        
-        _selectReminedTimeView.layer.cornerRadius = 16;
-    }
-    return _selectReminedTimeView;
-}
-
 - (DiscoverTodoSelectRepeatView *)selectRepeatView{
     if (!_selectRepeatView) {
         _selectRepeatView = [[DiscoverTodoSelectRepeatView alloc] init];
         _selectRepeatView.frame = CGRectMake(0, SCREEN_HEIGHT * 0.4705, SCREEN_WIDTH, SCREEN_HEIGHT * 0.5295);
         _selectRepeatView.delegate = self;
+        _selectRepeatView.layer.cornerRadius = 16;
     }
     return _selectRepeatView;
 }
 
+- (DiscoverTodoSelectTimeView *)selectTimeView{
+    if (!_selectTimeView) {
+        _selectTimeView = [[DiscoverTodoSelectTimeView alloc] init];
+        _selectTimeView.frame = CGRectMake(0, SCREEN_HEIGHT * 0.4705, SCREEN_WIDTH, SCREEN_HEIGHT * 0.5295);
+        _selectTimeView.delegate = self;
+        _selectTimeView.layer.cornerRadius = 16;
+    }
+    return _selectTimeView;
+}
 - (UIButton *)deleteBtn{
     if (!_deleteBtn) {
         _deleteBtn = [[UIButton alloc] initWithFrame:CGRectZero];
