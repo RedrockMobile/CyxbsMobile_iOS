@@ -37,6 +37,8 @@
 @property (nonatomic, strong) GroupModel *groupmodel;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UIVisualEffectView *HUDView;
+@property (nonatomic, strong) UIView *nodataView;
+@property (nonatomic, strong) UIImageView *nodataImageView;
 
  
 @end
@@ -121,14 +123,71 @@
     _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
     _reportView.delegate = self;
     
+    _nodataView.hidden = YES;
+    
 }
 
+- (UIView *)nodataView {
+    if (!_nodataView) {
+        _nodataView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.headViewHeight)];
+        _nodataView.backgroundColor = [UIColor colorNamed:@"QATABLENODATACOLOR"];
+        
+        _nodataImageView = [[UIImageView alloc] init];
+        _nodataImageView.image = [UIImage imageNamed:@"QATABLENODATA"];
+        [_nodataView addSubview:_nodataImageView];
+        [self.recommenTableView addSubview:_nodataView];
+        CGFloat imageW = _nodataImageView.image.size.width;
+        CGFloat imageH = _nodataImageView.image.size.height;
+        [_nodataImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_nodataView.mas_top).mas_offset(HScaleRate_SE * 72);
+            make.centerX.mas_equalTo(self.view);
+            make.height.mas_equalTo(imageH);
+            make.width.mas_equalTo(imageW);
+        }];
+        
+        UILabel *nodataLabel = [[UILabel alloc] init];
+        nodataLabel.text = @"去发现第一个有趣的人吧~";
+        nodataLabel.textAlignment = NSTextAlignmentCenter;
+        nodataLabel.font = [UIFont fontWithName:PingFangSCRegular size:12];
+        nodataLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
+        [_nodataView addSubview:nodataLabel];
+        [nodataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_nodataImageView.mas_bottom).mas_offset(HScaleRate_SE * 10);
+            make.centerX.mas_equalTo(self.view);
+            make.height.mas_equalTo(HScaleRate_SE * 17);
+            make.width.mas_equalTo(self.view);
+        }];
+    }
+    return _nodataView;
+}
 
 - (void)setUpTopSearchView {
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.headViewHeight + self.topBackViewH)];
-//    backView.backgroundColor = [UIColor redColor];
-    [backView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NewQATopImage"]]];
     [self.view addSubview:backView];
+    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backView.frame];
+    backImageView.image = [UIImage imageNamed:@"NewQATopImage"];
+    [backView addSubview:backImageView];
+//    backView.backgroundColor = [UIColor redColor];
+//    [backView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NewQATopImage"]]];
+    UIImageView *leftCircleImage = [[UIImageView alloc] init];
+    leftCircleImage.image = [UIImage imageNamed:@"NewQATopLeftCircleImage"];
+    [backImageView addSubview:leftCircleImage];
+    [leftCircleImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view).mas_offset(-WScaleRate_SE * 11);
+        make.top.mas_equalTo(self.view).mas_offset(HScaleRate_SE * 40);
+        make.width.mas_equalTo(WScaleRate_SE * 163);
+        make.height.mas_equalTo(HScaleRate_SE * 160);
+    }];
+    
+    UIImageView *rightCircleImage = [[UIImageView alloc] init];
+    rightCircleImage.image = [UIImage imageNamed:@"NewQATopRightCircleImage"];
+    [backImageView addSubview:rightCircleImage];
+    [rightCircleImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view).mas_offset(WScaleRate_SE * 46);
+        make.top.mas_equalTo(self.view).mas_offset(HScaleRate_SE * 93);
+        make.width.mas_equalTo(WScaleRate_SE * 219);
+        make.height.mas_equalTo(HScaleRate_SE * 217);
+    }];
 //    [self.view addSubview:self.topBackView];
     [self.view addSubview:self.searchBtn];
 //    [_topBackView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -209,10 +268,14 @@
 {
     _topView = [[TopFollowView alloc]initWithFrame:CGRectMake(0, _topBackViewH, SCREEN_WIDTH, self.headViewHeight)];
     _topView.backgroundColor = [UIColor clearColor];
+    UIView *v = [[UIView alloc] init];
+    v.frame = CGRectMake(0, 20, 200, 40);
+    v.backgroundColor = [UIColor redColor];
+    [_topView addSubview:v];
     [self.view addSubview:_topView];
     
     NewQASelectorView *titleBarView = [[NewQASelectorView alloc] init];
-    [self.view addSubview:titleBarView];
+    [self.topView addSubview:titleBarView];
     self.titleBarView = titleBarView;
     [self.titleBarView.leftBtn addTarget:self action:@selector(clickTitleLeft) forControlEvents:UIControlEventTouchUpInside];
     [self.titleBarView.rightBtn addTarget:self action:@selector(clickTitleRight) forControlEvents:UIControlEventTouchUpInside];
@@ -380,12 +443,18 @@
         }
         [MainQueue AsyncTask:^{
             [weakSelf.recommenTableView reloadData];
+            if ([weakSelf.recommenArray count] == 0) {
+                weakSelf.nodataView.hidden = NO;
+            }
 //            [weakSelf.recommendTableView layoutIfNeeded]; //这句是关键
             [weakSelf.recommenTableView.mj_header endRefreshing];
             [weakSelf.recommenTableView.mj_footer endRefreshing];
         }];
     } failure:^(NSError *error) {
         NSLog(@"请求失败 error:%@",error.description);
+        if ([weakSelf.recommenArray count] == 0) {
+            weakSelf.nodataView.hidden = NO;
+        }
         [weakSelf.recommenTableView.mj_header endRefreshing];
         [weakSelf.recommenTableView.mj_footer endRefreshing];
     }];

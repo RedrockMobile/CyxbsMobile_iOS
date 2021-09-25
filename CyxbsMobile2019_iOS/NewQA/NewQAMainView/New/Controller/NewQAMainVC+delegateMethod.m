@@ -89,7 +89,12 @@
             self.selfPopView.deleteBtn.tag = indexPath.row;
             self.selfPopView.postID = self.itemDic[@"post_id"];
             self.selfPopView.layer.cornerRadius = 8;
-            self.selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+//            self.selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+            [self.selfPopView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.mas_equalTo(self.view.mas_bottom);
+                make.left.right.mas_equalTo(self.view);
+                make.height.mas_equalTo(HScaleRate_SE * 198);
+            }];
             [self.view.window addSubview:self.selfPopView];
         } else {
             self.popView.starGroupBtn.tag = indexPath.row;
