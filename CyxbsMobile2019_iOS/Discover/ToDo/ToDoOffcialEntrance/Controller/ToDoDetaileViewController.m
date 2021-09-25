@@ -218,7 +218,12 @@ self.model = self.temporaryModel;
         self.repeatView.repeatContentScrollView.alpha = 0.6;
         self.remarkView.textView.editable = YES;
         self.remarkView.textView.alpha = 1;
-        self.reminderTimeView.reminderTimeLbl.alpha = 1;
+        if([self.temporaryModel.timeStr isEqualToString:@""]){
+            self.reminderTimeView.reminderTimeLbl.alpha = 0.4;
+        }else{
+            self.reminderTimeView.reminderTimeLbl.alpha = 1;
+        }
+       
         
         //移除遮罩btn
         [self.titleView.clearBtn removeFromSuperview];
@@ -302,7 +307,9 @@ self.model = self.temporaryModel;
     [self.reminderTimeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.scrollView).offset(SCREEN_WIDTH * 0.1333);
         make.top.equalTo(self.titleView.mas_bottom).offset(SCREEN_HEIGHT * 0.0539);
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.8267, SCREEN_HEIGHT * 0.07512));
+//        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.8267, SCREEN_HEIGHT * 0.07512));
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.8267);
+        make.height.mas_equalTo(IS_IPHONEX ? (SCREEN_HEIGHT*0.07812) : (SCREEN_HEIGHT*0.09));
     }];
     
     //重复的View
@@ -455,6 +462,7 @@ self.model = self.temporaryModel;
     
     //存储数据进model，注意这里要和model的格式相同
     self.reminderTimeView.reminderTimeLbl.text = [NSString stringWithFormat:@"%ld年%ld月%ld日%02ld:%02ld",components.year, components.month, components.day, components.hour, components.minute];
+    self.reminderTimeView.reminderTimeLbl.alpha = 1;
     
     //设置消失
     [UIView animateWithDuration:0.5 animations:^{
@@ -584,13 +592,9 @@ self.model = self.temporaryModel;
         //进行文本设置
         if ([self.model.timeStr isEqualToString:@""]) {
             _reminderTimeView.reminderTimeLbl.text = @"设置提醒时间";
-        }else{
-            _reminderTimeView.reminderTimeLbl.text = self.model.timeStr;
-            _reminderTimeView.reminderTimeLbl.alpha = 1;
-        }
-        if (self.model.isDone) {
             _reminderTimeView.reminderTimeLbl.alpha = 0.4;
         }else{
+            _reminderTimeView.reminderTimeLbl.text = self.model.timeStr;
             _reminderTimeView.reminderTimeLbl.alpha = 1;
         }
     }

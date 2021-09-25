@@ -34,7 +34,7 @@
     [self.repeatLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLbl.mas_bottom).offset(SCREEN_HEIGHT * 0.0123);
         make.left.equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.8266, SCREEN_WIDTH * 0.056));
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH * 0.8266, SCREEN_HEIGHT * 0.0258));
     }];
     
     [self addSubview:self.repeatContentScrollView];
