@@ -199,56 +199,59 @@
         self.goodsAry = array;
         self.detailsGoodsTableView.dataAry = self.goodsAry;
         if (array.count == 0) {
-//            self.goodsDefaultLabel.hidden = NO;
-//            self.goodsDefaultImgView.hidden = NO;
+            self.goodsDefaultLabel.text = @"还没有兑换记录哦";
+            self.goodsDefaultImgView.image = [UIImage imageNamed:@"details_goods_defaults"];
+            self.goodsDefaultLabel.hidden = NO;
+            self.goodsDefaultImgView.hidden = NO;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"showalertLbl" object:nil];
         } else {
-     
             self.goodsDefaultLabel.hidden = YES;
             self.goodsDefaultImgView.hidden = YES;
         }
-//        self.networkFailureLabel1.hidden = YES;
-//        self.networkFailureImgView1.hidden = YES;
         [self.goodsRefreshHeader endRefreshing];
     } failure:^(void) {
-//        self.goodsDefaultLabel.hidden = YES;
-//        self.goodsDefaultImgView.hidden = YES;
-//        self.networkFailureLabel1.hidden = NO;
-//        self.networkFailureImgView1.hidden = NO;
+        self.goodsDefaultLabel.text = @"最遥远的距离不是天各一方，而是断网了 TAT";
+        self.goodsDefaultImgView.image = [UIImage imageNamed:@"details_network_failure"];
+        self.goodsDefaultLabel.hidden = NO;
+        self.goodsDefaultImgView.hidden = NO;
         [self.goodsRefreshHeader endRefreshing];
     }];
 }
 
 - (void)refreshTasks {
     // 获取记录的数据
-    [DetailsTaskModel getDataAryWithPage:1 Size:7 Success:^(NSArray * _Nonnull array) {
+    [DetailsTaskModel getDataAryWithPage:1 Size:30 Success:^(NSArray * _Nonnull array) {
         self.tasksAry = array;
         self.detailsTasksTableView.dataAry = self.tasksAry;
         if (array.count == 0) {
-//            self.taskDefaultLabel.hidden = NO;
-//            self.taskDefaultImgView.hidden = NO;
+            self.taskDefaultLabel.text = @"还没有获取记录，快去做任务吧";
+            self.taskDefaultImgView.image = [UIImage imageNamed:@"details_task_defaults"];
+            self.taskDefaultLabel.hidden = NO;
+            self.taskDefaultImgView.hidden = NO;
+            self.tasksLoadMoreFooter.userInteractionEnabled = NO;
         } else {
             self.taskDefaultLabel.hidden = YES;
             self.taskDefaultImgView.hidden = YES;
         }
-//        self.networkFailureLabel2.hidden = YES;
-//        self.networkFailureImgView2.hidden = YES;
         [self.tasksRefreshHeader endRefreshing];
     } failure:^(void) {
-//        self.taskDefaultLabel.hidden = YES;
-//        self.taskDefaultImgView.hidden = YES;
-//        self.networkFailureLabel2.hidden = NO;
-//        self.networkFailureImgView2.hidden = NO;
+        self.taskDefaultLabel.text = @"最遥远的距离不是天各一方，而是断网了 TAT";
+        self.taskDefaultImgView.image = [UIImage imageNamed:@"details_network_failure"];
+        self.taskDefaultLabel.hidden = NO;
+        self.taskDefaultImgView.hidden = NO;
         [self.tasksRefreshHeader endRefreshing];
     }];
 }
 
 - (void)loadMoreTasks {
-    [DetailsTaskModel getDataAryWithPage:self.tasksAry.count / 7 + 1 Size:7 Success:^(NSArray * _Nonnull array) {
+    [DetailsTaskModel getDataAryWithPage:self.tasksAry.count / 30 + 1 Size:30 Success:^(NSArray * _Nonnull array) {
         NSMutableArray * mAry = [self.tasksAry mutableCopy];
         [mAry addObjectsFromArray:array];
         self.tasksAry = [mAry copy];
         self.detailsTasksTableView.dataAry = self.tasksAry;
+        if (array.count < 30) {
+            self.tasksLoadMoreFooter.userInteractionEnabled = NO;
+        }
         [self.tasksLoadMoreFooter endRefreshing];
     } failure:^{
             
@@ -293,6 +296,9 @@
     if (_goodsRefreshHeader == nil) {
         _goodsRefreshHeader = [MJRefreshStateHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshGoods)];
         [_goodsRefreshHeader setTitle:@"松开手刷新兑换记录" forState:MJRefreshStatePulling];
+        [_goodsRefreshHeader setTitle:@"" forState:MJRefreshStateIdle];
+        [_goodsRefreshHeader setTitle:@"" forState:MJRefreshStateWillRefresh];
+        [_goodsRefreshHeader setTitle:@"刷新中" forState:MJRefreshStateRefreshing];
         _goodsRefreshHeader.lastUpdatedTimeLabel.hidden = YES;
         _goodsRefreshHeader.automaticallyChangeAlpha = YES;
     }
@@ -314,6 +320,9 @@
     if (_tasksRefreshHeader == nil) {
         _tasksRefreshHeader = [MJRefreshStateHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshTasks)];
         [_tasksRefreshHeader setTitle:@"松开手刷新获取记录" forState:MJRefreshStatePulling];
+        [_tasksRefreshHeader setTitle:@"" forState:MJRefreshStateIdle];
+        [_tasksRefreshHeader setTitle:@"" forState:MJRefreshStateWillRefresh];
+        [_tasksRefreshHeader setTitle:@"刷新中" forState:MJRefreshStateRefreshing];
         _tasksRefreshHeader.lastUpdatedTimeLabel.hidden = YES;
         _tasksRefreshHeader.automaticallyChangeAlpha = YES;
     }
@@ -323,7 +332,10 @@
 - (MJRefreshAutoStateFooter *)tasksLoadMoreFooter {
     if (_tasksLoadMoreFooter == nil) {
         _tasksLoadMoreFooter = [MJRefreshAutoStateFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTasks)];
-        [_tasksLoadMoreFooter setTitle:@"松kai" forState:MJRefreshStatePulling];
+        [_tasksLoadMoreFooter setTitle:@"松开手获取更多记录" forState:MJRefreshStatePulling];
+        [_tasksLoadMoreFooter setTitle:@"" forState:MJRefreshStateIdle];
+        [_tasksLoadMoreFooter setTitle:@"" forState:MJRefreshStateWillRefresh];
+        [_tasksLoadMoreFooter setTitle:@"刷新中" forState:MJRefreshStateRefreshing];
         _tasksLoadMoreFooter.automaticallyChangeAlpha = YES;
     }
     return _tasksLoadMoreFooter;
@@ -333,7 +345,6 @@
     if (_goodsDefaultLabel == nil) {
         _goodsDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _goodsDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
-        _goodsDefaultLabel.text = @"还没有兑换记录哦";
         _goodsDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         [_goodsDefaultLabel sizeToFit];
     }
@@ -342,7 +353,7 @@
 
 - (UIImageView *)goodsDefaultImgView {
     if (_goodsDefaultImgView == nil) {
-        _goodsDefaultImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_goods_defaults"]];
+        _goodsDefaultImgView = [[UIImageView alloc] init];
         [_goodsDefaultImgView sizeToFit];
     }
     return _goodsDefaultImgView;
@@ -366,43 +377,5 @@
     }
     return _taskDefaultImgView;
 }
-
-//- (UILabel *)networkFailureLabel1 {
-//    if (_networkFailureLabel1 == nil) {
-//        _networkFailureLabel1 = [[UILabel alloc] initWithFrame:CGRectZero];
-//        _networkFailureLabel1.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
-//        _networkFailureLabel1.text = @"最遥远的距离不是天各一方，而是断网了 TAT";
-//        _networkFailureLabel1.font = [UIFont fontWithName:PingFangSCMedium size:12];
-//        [_networkFailureLabel1 sizeToFit];
-//    }
-//    return _networkFailureLabel1;
-//}
-
-//- (UIImageView *)networkFailureImgView1 {
-//    if (_networkFailureImgView1 == nil) {
-//        _networkFailureImgView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_network_failure"]];
-//        [_networkFailureImgView1 sizeToFit];
-//    }
-//    return _networkFailureImgView1;
-//}
-
-//- (UILabel *)networkFailureLabel2 {
-//    if (_networkFailureLabel2 == nil) {
-//        _networkFailureLabel2 = [[UILabel alloc] initWithFrame:CGRectZero];
-//        _networkFailureLabel2.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
-//        _networkFailureLabel2.text = @"最遥远的距离不是天各一方，而是断网了 TAT";
-//        _networkFailureLabel2.font = [UIFont fontWithName:PingFangSCMedium size:12];
-//        [_networkFailureLabel2 sizeToFit];
-//    }
-//    return _networkFailureLabel2;
-//}
-
-//- (UIImageView *)networkFailureImgView2 {
-//    if (_networkFailureImgView2 == nil) {
-//        _networkFailureImgView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"details_network_failure"]];
-//        [_networkFailureImgView2 sizeToFit];
-//    }
-//    return _networkFailureImgView2;
-//}
 
 @end
