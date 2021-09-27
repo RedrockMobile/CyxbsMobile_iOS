@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///商品模型
 @property (nonatomic, strong) Goods *goods;
 ///图片轮播器
-@property (nonatomic, strong) SDCycleScrollView *picScrollView;
+//@property (nonatomic, strong) SDCycleScrollView *picScrollView;
 ///名字
 @property (nonatomic, strong) UILabel *nameLabel;
 ///库存

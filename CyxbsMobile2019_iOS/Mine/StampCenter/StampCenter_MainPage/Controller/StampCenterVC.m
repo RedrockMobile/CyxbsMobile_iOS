@@ -163,6 +163,7 @@
     
     //设置小点
     [self setupPoint];
+
 }
 
 #pragma mark - table数据源
@@ -212,9 +213,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section == 0) {
-        UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH   , 60.0)];
-        footerView.backgroundColor = [UIColor whiteColor];
-        UILabel *la = [[UILabel alloc ]init ];
+        UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60.0)];
+        footerView.backgroundColor = [UIColor colorNamed:@"table"];
+        UILabel *la = [[UILabel alloc]init];
         la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
         la.textColor = [UIColor colorNamed:@"#15315B"];
         la.text = @"更多任务";
@@ -514,7 +515,9 @@
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
     
-
+    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
+    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+    [self.view addSubview:v];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
@@ -562,11 +565,6 @@
     else{
         self.topView.point.hidden = NO;
     }
-    
-    //设置底部并没有什么用的Bar
-    UIView *bottomBar = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 34,SCREEN_WIDTH , 34)];
-    bottomBar.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:bottomBar];
 }
 
 //获取数据
