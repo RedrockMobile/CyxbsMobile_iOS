@@ -19,8 +19,8 @@ class LoginModel: NSObject {
             "stuNum": stuNum,
             "idNum": idNum
         ]
-        
-        guard let url = URL(string: LOGINAPI) else { return }
+        let LoginURL = BaseURL() as String + "magipoke/token"
+        guard let url = URL(string:LoginURL) else { return }
         
         SwiftyClient.shared.request(url, method: .post, headers: nil, parameters: params) { (response) in
             
@@ -72,5 +72,9 @@ class LoginModel: NSObject {
     class func getLastLogInTime() -> TimeInterval {
         return Date.timeIntervalSinceReferenceDate + Date.timeIntervalBetween1970AndReferenceDate
     }
-
+    
+    class func BaseURL() -> NSString {
+        let baseURL = UserDefaults.standard.string(forKey: "baseURL")
+        return baseURL! as NSString
+    }
 }
