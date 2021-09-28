@@ -13,7 +13,9 @@
 #import <PhotosUI/PHPicker.h>
 #import "TypeButton.h"
 #import "NewQAHud.h"
-@interface FeedBackVC () <PHPickerViewControllerDelegate>
+#import "TZImagePickerController.h"
+
+@interface FeedBackVC () <PHPickerViewControllerDelegate,TZImagePickerControllerDelegate>
 
 @property (nonatomic,strong) TypeSelectView * typeSelectView;
 @property (nonatomic,strong) FeedBackView *feedBackView;
@@ -64,18 +66,27 @@
         __weak typeof(self) weakSelf = self;
         _feedBackView = [[FeedBackView alloc]initWithFrame:CGRectMake(16, Bar_H + 71, SCREEN_WIDTH - 32, 369)];
         [_feedBackView setSelectPhoto:^{
-            //PHPickerConfiguration
-            PHPickerConfiguration *config = [[PHPickerConfiguration alloc]init];
-            //个数限制
-            config.selectionLimit = 3;
-            //filter
-            config.filter = [PHPickerFilter imagesFilter];
-            //新建 PHPickerViewController ： pVC
-            PHPickerViewController *pVC = [[PHPickerViewController alloc]initWithConfiguration:config];
-            //代理
-            pVC.delegate = self;
-            //show
-            [self presentViewController:pVC animated:YES completion:nil];
+            //Newest iOS
+            if (@available(iOS 14, *)) {
+
+                PHPickerConfiguration *config = [[PHPickerConfiguration alloc]init];
+                config.selectionLimit = 3;
+                config.filter = [PHPickerFilter imagesFilter];
+                PHPickerViewController *pVC = [[PHPickerViewController alloc]initWithConfiguration:config];
+                pVC.delegate = weakSelf;
+                [weakSelf presentViewController:pVC animated:YES completion:nil];
+
+            } else {
+                // iOS 13.7 or Lower (Above iOS 6.0)
+                TZImagePickerController *picker = [[TZImagePickerController alloc]initWithMaxImagesCount:9 delegate:weakSelf];
+                
+                [picker setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+                    weakSelf.photoAry = [photos mutableCopy];
+                    [weakSelf refreshImage];
+                }];
+                
+                [weakSelf presentViewController:picker animated:YES completion:nil];
+            }
         }];
         
         [_feedBackView setDeletePhoto:^(NSInteger tag) {
@@ -164,7 +175,7 @@
 }
 
 #pragma - mark PHPicker Delegate
-- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results{
+- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results API_AVAILABLE(ios(14)){
     //picker消失时的操作
     [picker dismissViewControllerAnimated:YES completion:nil];
     //遍历
@@ -174,44 +185,8 @@
             if (object) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.photoAry addObject:object];
-                    if (self.photoAry.count == 1) {
-                        self.feedBackView.plusView.hidden = NO;
-                        self.feedBackView.plusView.frame = self.feedBackView.imageView2.frame;
-                        self.feedBackView.imageView1.hidden = NO;
-                        self.feedBackView.imageView2.hidden = YES;
-                        self.feedBackView.imageView3.hidden = YES;
-                        self.feedBackView.delete1.hidden = NO;
-                        self.feedBackView.delete2.hidden = YES;
-                        self.feedBackView.delete3.hidden = YES;
-                        self.feedBackView.imageView1.image = self.photoAry[0];
-                        self.feedBackView.photoCountLbl.text = @"1/3";
-                    }
-                    if (self.photoAry.count == 2) {
-                        self.feedBackView.plusView.hidden = NO;
-                        self.feedBackView.plusView.frame = self.feedBackView.imageView3.frame;
-                        self.feedBackView.imageView1.hidden = NO;
-                        self.feedBackView.imageView2.hidden = NO;
-                        self.feedBackView.imageView3.hidden = YES;
-                        self.feedBackView.delete1.hidden = NO;
-                        self.feedBackView.delete2.hidden = NO;
-                        self.feedBackView.delete3.hidden = YES;
-                        self.feedBackView.imageView1.image = self.photoAry[0];
-                        self.feedBackView.imageView2.image = self.photoAry[1];
-                        self.feedBackView.photoCountLbl.text = @"2/3";
-                    }
-                    if (self.photoAry.count == 3) {
-                        self.feedBackView.plusView.hidden = YES;
-                        self.feedBackView.imageView1.hidden = NO;
-                        self.feedBackView.imageView2.hidden = NO;
-                        self.feedBackView.imageView3.hidden = NO;
-                        self.feedBackView.delete1.hidden = NO;
-                        self.feedBackView.delete2.hidden = NO;
-                        self.feedBackView.delete3.hidden = NO;
-                        self.feedBackView.imageView1.image = self.photoAry[0];
-                        self.feedBackView.imageView2.image = self.photoAry[1];
-                        self.feedBackView.imageView3.image = self.photoAry[2];
-                        self.feedBackView.photoCountLbl.text = @"3/3";
-                    }
+                    //刷新控件
+                    [self refreshImage];
                 });
             }
         }];
@@ -313,5 +288,46 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.feedBackView endEditing:YES];
+}
+
+- (void)refreshImage{
+    if (self.photoAry.count == 1) {
+        self.feedBackView.plusView.hidden = NO;
+        self.feedBackView.plusView.frame = self.feedBackView.imageView2.frame;
+        self.feedBackView.imageView1.hidden = NO;
+        self.feedBackView.imageView2.hidden = YES;
+        self.feedBackView.imageView3.hidden = YES;
+        self.feedBackView.delete1.hidden = NO;
+        self.feedBackView.delete2.hidden = YES;
+        self.feedBackView.delete3.hidden = YES;
+        self.feedBackView.imageView1.image = self.photoAry[0];
+        self.feedBackView.photoCountLbl.text = @"1/3";
+    }
+    if (self.photoAry.count == 2) {
+        self.feedBackView.plusView.hidden = NO;
+        self.feedBackView.plusView.frame = self.feedBackView.imageView3.frame;
+        self.feedBackView.imageView1.hidden = NO;
+        self.feedBackView.imageView2.hidden = NO;
+        self.feedBackView.imageView3.hidden = YES;
+        self.feedBackView.delete1.hidden = NO;
+        self.feedBackView.delete2.hidden = NO;
+        self.feedBackView.delete3.hidden = YES;
+        self.feedBackView.imageView1.image = self.photoAry[0];
+        self.feedBackView.imageView2.image = self.photoAry[1];
+        self.feedBackView.photoCountLbl.text = @"2/3";
+    }
+    if (self.photoAry.count == 3) {
+        self.feedBackView.plusView.hidden = YES;
+        self.feedBackView.imageView1.hidden = NO;
+        self.feedBackView.imageView2.hidden = NO;
+        self.feedBackView.imageView3.hidden = NO;
+        self.feedBackView.delete1.hidden = NO;
+        self.feedBackView.delete2.hidden = NO;
+        self.feedBackView.delete3.hidden = NO;
+        self.feedBackView.imageView1.image = self.photoAry[0];
+        self.feedBackView.imageView2.image = self.photoAry[1];
+        self.feedBackView.imageView3.image = self.photoAry[2];
+        self.feedBackView.photoCountLbl.text = @"3/3";
+    }
 }
 @end
