@@ -139,15 +139,19 @@
      */
     ClassmateItem *item = self.classmatesList.classmatesArray[indexPath.row];
     id info;
+    ScheduleType type;
     if(self.peopleType==PeopleTypeStudent){
         info = item.stuNum;
+        type = ScheduleTypeClassmate;
     }else{
         info = @{
             @"teaName":item.name,
             @"tea":item.teaNum
         };
+        type = ScheduleTypeTeacher;
     }
-    WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] initWithType:ScheduleTypeClassmate andInfo:info];
+    
+    WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] initWithType:type andInfo:info];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
