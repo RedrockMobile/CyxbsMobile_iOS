@@ -3640,7 +3640,6 @@
 				1A5A5ED423600BA300543BAE /* Login */,
 				1A141319235F521C0001417E /* Base */,
 				1A141339235F524B0001417E /* Tool */,
-				6464F93526F207E3008562C5 /* fans */,
 				1A9B766A235F50A600725937 /* AppDelegate.h */,
 				1A9B766B235F50A600725937 /* AppDelegate.m */,
 				DB34EB3E239BD4850052B65E /* Main.storyboard */,
@@ -4227,13 +4226,6 @@
 				49343A1F26D4E9EF001A2892 /* TableCell */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		6464F93526F207E3008562C5 /* fans */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = fans;
 			sourceTree = "<group>";
 		};
 		7311321C26CCEB9C00EF88C1 /* StampCenter */ = {
@@ -5686,6 +5678,10 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"ar-001",
+				"tz-ru",
+				"tz-RU",
 			);
 			mainGroup = 1A9B765E235F50A600725937;
 			productRefGroup = 1A9B7668235F50A600725937 /* Products */;
@@ -6592,7 +6588,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -6646,7 +6642,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -6667,7 +6663,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -6696,7 +6692,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -22,7 +22,7 @@
 - (UILabel *)hintLbl{
     if (!_hintLbl) {
         _hintLbl = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 15)];
-        _hintLbl.textColor = [UIColor systemGray3Color];
+        _hintLbl.textColor = [UIColor colorNamed:@"QQLbl"];
         _hintLbl.font = [UIFont fontWithName:PingFangSCMedium size:11];
         _hintLbl.text = @"实时反馈可添加QQ反馈群：";
     }
