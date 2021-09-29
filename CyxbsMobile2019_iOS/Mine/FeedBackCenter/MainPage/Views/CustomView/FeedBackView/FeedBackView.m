@@ -16,6 +16,7 @@
     if (self) {
         self.layer.cornerRadius = 8;
         self.backgroundColor = [UIColor colorNamed:@"FeedBackBG"];
+        
         [self addSubview:self.feedBackMain];
         [self addSubview:self.splitLine];
         [self addSubview:self.heading];

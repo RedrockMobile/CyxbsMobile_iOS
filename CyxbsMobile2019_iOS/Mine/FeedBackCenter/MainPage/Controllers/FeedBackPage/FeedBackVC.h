@@ -12,9 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///反馈主界面
 @interface FeedBackVC : TopBarBasicViewController
 
-
-- (void)setupBar;
-
 @end
 
 NS_ASSUME_NONNULL_END

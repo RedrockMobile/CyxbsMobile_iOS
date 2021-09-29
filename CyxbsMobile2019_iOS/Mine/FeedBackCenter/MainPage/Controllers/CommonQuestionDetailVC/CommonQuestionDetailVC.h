@@ -13,13 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @class WKWebView;
 @interface CommonQuestionDetailVC : TopBarBasicViewController
 
+///常见问题数组
 @property (nonatomic,strong) NSArray *CommonQuestionAry;
-
+///webview
 @property (nonatomic,strong) WKWebView *webView;
-
+///当前的行 （Row）
 @property (nonatomic,assign) NSInteger row;
-- (void)setupBar;
-- (void)setupData;
+///初始化 传入行（Row）
 - (instancetype)initWithIndexPathRow:(NSInteger)row;
 @end
 

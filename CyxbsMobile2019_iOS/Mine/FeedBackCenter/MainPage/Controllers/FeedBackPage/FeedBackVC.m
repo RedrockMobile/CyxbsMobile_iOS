@@ -17,10 +17,15 @@
 
 @interface FeedBackVC () <PHPickerViewControllerDelegate,TZImagePickerControllerDelegate>
 
+///问题类型选择器
 @property (nonatomic,strong) TypeSelectView * typeSelectView;
+///反馈自定义View
 @property (nonatomic,strong) FeedBackView *feedBackView;
+///提交按钮
 @property (nonatomic,strong) UIButton *submitBtn;
+///选中的图片数组
 @property (nonatomic,strong) NSMutableArray *photoAry;
+///选中的按钮
 @property (nonatomic,strong) TypeButton *correctBtn;
 @end
 
@@ -41,13 +46,27 @@
     if (!_typeSelectView) {
         _typeSelectView = [[TypeSelectView alloc]initWithFrame:CGRectMake(0, Bar_H, SCREEN_WIDTH, 71)];
         __weak typeof(self) weakSelf = self;
+        
+        /*
+         按钮选择说明
+         weakSelf.correctBtn : 已选的 （可以为空）
+         sender : 正要选的
+         */
+        
         [_typeSelectView setSelect:^(TypeButton * _Nonnull sender) {
+            //若第一次选择
             if (!weakSelf.correctBtn) {
+                //设置正要选的为选中
                 sender.backgroundColor = [UIColor colorNamed:@"typeBG"];
                 [sender setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateNormal];
                 sender.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
                 weakSelf.correctBtn = sender;
             }else{
+                /*
+                 如果之前选过了
+                 那么先取消已选择的效果
+                 再设置新的为已选择
+                 */
                 weakSelf.correctBtn.backgroundColor = [UIColor clearColor];
                 [weakSelf.correctBtn setTitleColor:[UIColor colorNamed:@"TypeBtn"] forState:UIControlStateNormal];
                 weakSelf.correctBtn.layer.borderColor = [UIColor colorNamed:@"TypeBtn"].CGColor;
@@ -79,7 +98,6 @@
             } else {
                 // iOS 13.7 or Lower (Above iOS 6.0)
                 TZImagePickerController *picker = [[TZImagePickerController alloc]initWithMaxImagesCount:9 delegate:weakSelf];
-                
                 [picker setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
                     weakSelf.photoAry = [photos mutableCopy];
                     [weakSelf refreshImage];
@@ -125,7 +143,7 @@
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }
 
-#pragma - mark PHPicker Delegate
+#pragma mark - PHPicker Delegate
 - (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results API_AVAILABLE(ios(14)){
     //picker消失时的操作
     [picker dismissViewControllerAnimated:YES completion:nil];
@@ -144,6 +162,7 @@
     }
 }
 
+#pragma mark - 上传
 - (void)submit{
 
     if (self.feedBackView.heading.text.length == 0) {
@@ -156,8 +175,9 @@
         return;
     }
     
-    
+    //问题类型字段
     NSString *type = [[NSString alloc]init];
+    
     switch (self.correctBtn.tag) {
         case 0:
             type = @"意见建议";
@@ -172,23 +192,28 @@
             break;
     }
  
+    //问题的标题
     NSString *title = self.feedBackView.heading.text;
+    //问题的内容
     NSString *content = self.feedBackView.feedBackMain.text;
+    //标识
     NSString *cyxbs_id = @"1";
     
+    //如果选择了类型
     if (self.correctBtn) {
 
         HttpClient *client = [HttpClient defaultClient];
         
         [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
         [client.httpRequestOperationManager POST:SUBMIT parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-
+            
+            //字段转二进制
             NSData *data1 = [type dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data2 = [title dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data3 = [content dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data4 = [cyxbs_id dataUsingEncoding:NSUTF8StringEncoding];
             
-            
+            //图片转二进制
             if (self.photoAry.count == 1) {
                 NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
                 NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
@@ -231,7 +256,7 @@
             } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
                 NSLog(@"失败了");
             }];
-    }else{
+    }else{//没有选择问题类型
         [NewQAHud showHudWith:@"请选择问题类型" AddView:self.view];
     }
 }
