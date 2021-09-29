@@ -90,56 +90,7 @@
         }];
         
         [_feedBackView setDeletePhoto:^(NSInteger tag) {
-            [weakSelf.photoAry removeObjectAtIndex:tag];
-            if (weakSelf.photoAry.count == 0) {
-                weakSelf.feedBackView.plusView.hidden = NO;
-                weakSelf.feedBackView.plusView.frame = weakSelf.feedBackView.imageView1.frame;
-                weakSelf.feedBackView.imageView1.hidden = YES;
-                weakSelf.feedBackView.imageView2.hidden = YES;
-                weakSelf.feedBackView.imageView3.hidden = YES;
-                weakSelf.feedBackView.delete1.hidden = YES;
-                weakSelf.feedBackView.delete2.hidden = YES;
-                weakSelf.feedBackView.delete3.hidden = YES;
-                weakSelf.feedBackView.photoCountLbl.text = @"0/3";
-            }
-            if (weakSelf.photoAry.count == 1) {
-                weakSelf.feedBackView.plusView.hidden = NO;
-                weakSelf.feedBackView.plusView.frame = weakSelf.feedBackView.imageView2.frame;
-                weakSelf.feedBackView.imageView1.hidden = NO;
-                weakSelf.feedBackView.imageView2.hidden = YES;
-                weakSelf.feedBackView.imageView3.hidden = YES;
-                weakSelf.feedBackView.delete1.hidden = NO;
-                weakSelf.feedBackView.delete2.hidden = YES;
-                weakSelf.feedBackView.delete3.hidden = YES;
-                weakSelf.feedBackView.imageView1.image = weakSelf.photoAry[0];
-                weakSelf.feedBackView.photoCountLbl.text = @"1/3";
-            }
-            if (weakSelf.photoAry.count == 2) {
-                weakSelf.feedBackView.plusView.hidden = NO;
-                weakSelf.feedBackView.plusView.frame = weakSelf.feedBackView.imageView3.frame;
-                weakSelf.feedBackView.imageView1.hidden = NO;
-                weakSelf.feedBackView.imageView2.hidden = NO;
-                weakSelf.feedBackView.imageView3.hidden = YES;
-                weakSelf.feedBackView.delete1.hidden = NO;
-                weakSelf.feedBackView.delete2.hidden = NO;
-                weakSelf.feedBackView.delete3.hidden = YES;
-                weakSelf.feedBackView.imageView1.image = weakSelf.photoAry[0];
-                weakSelf.feedBackView.imageView2.image = weakSelf.photoAry[1];
-                weakSelf.feedBackView.photoCountLbl.text = @"2/3";
-            }
-            if (weakSelf.photoAry.count == 3) {
-                weakSelf.feedBackView.plusView.hidden = YES;
-                weakSelf.feedBackView.imageView1.hidden = NO;
-                weakSelf.feedBackView.imageView2.hidden = NO;
-                weakSelf.feedBackView.imageView3.hidden = NO;
-                weakSelf.feedBackView.delete1.hidden = NO;
-                weakSelf.feedBackView.delete2.hidden = NO;
-                weakSelf.feedBackView.delete3.hidden = NO;
-                weakSelf.feedBackView.imageView1.image = weakSelf.photoAry[0];
-                weakSelf.feedBackView.imageView2.image = weakSelf.photoAry[1];
-                weakSelf.feedBackView.imageView3.image = weakSelf.photoAry[2];
-                weakSelf.feedBackView.photoCountLbl.text = @"3/3";
-            }
+            [weakSelf deleteImageWithTag:tag];
         }];
    
     }
@@ -291,6 +242,48 @@
 }
 
 - (void)refreshImage{
+    if (self.photoAry.count == 1) {
+        self.feedBackView.plusView.hidden = NO;
+        self.feedBackView.plusView.frame = self.feedBackView.imageView2.frame;
+        self.feedBackView.imageView1.hidden = NO;
+        self.feedBackView.imageView2.hidden = YES;
+        self.feedBackView.imageView3.hidden = YES;
+        self.feedBackView.delete1.hidden = NO;
+        self.feedBackView.delete2.hidden = YES;
+        self.feedBackView.delete3.hidden = YES;
+        self.feedBackView.imageView1.image = self.photoAry[0];
+        self.feedBackView.photoCountLbl.text = @"1/3";
+    }
+    if (self.photoAry.count == 2) {
+        self.feedBackView.plusView.hidden = NO;
+        self.feedBackView.plusView.frame = self.feedBackView.imageView3.frame;
+        self.feedBackView.imageView1.hidden = NO;
+        self.feedBackView.imageView2.hidden = NO;
+        self.feedBackView.imageView3.hidden = YES;
+        self.feedBackView.delete1.hidden = NO;
+        self.feedBackView.delete2.hidden = NO;
+        self.feedBackView.delete3.hidden = YES;
+        self.feedBackView.imageView1.image = self.photoAry[0];
+        self.feedBackView.imageView2.image = self.photoAry[1];
+        self.feedBackView.photoCountLbl.text = @"2/3";
+    }
+    if (self.photoAry.count == 3) {
+        self.feedBackView.plusView.hidden = YES;
+        self.feedBackView.imageView1.hidden = NO;
+        self.feedBackView.imageView2.hidden = NO;
+        self.feedBackView.imageView3.hidden = NO;
+        self.feedBackView.delete1.hidden = NO;
+        self.feedBackView.delete2.hidden = NO;
+        self.feedBackView.delete3.hidden = NO;
+        self.feedBackView.imageView1.image = self.photoAry[0];
+        self.feedBackView.imageView2.image = self.photoAry[1];
+        self.feedBackView.imageView3.image = self.photoAry[2];
+        self.feedBackView.photoCountLbl.text = @"3/3";
+    }
+}
+
+- (void)deleteImageWithTag:(NSInteger)tag {
+    [self.photoAry removeObjectAtIndex:tag];
     if (self.photoAry.count == 1) {
         self.feedBackView.plusView.hidden = NO;
         self.feedBackView.plusView.frame = self.feedBackView.imageView2.frame;
