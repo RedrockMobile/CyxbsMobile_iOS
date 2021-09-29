@@ -217,7 +217,6 @@
                     self.view.userInteractionEnabled = NO;
                 }];
         
-
             [formData appendPartWithFormData:data1 name:@"type"];
             [formData appendPartWithFormData:data2 name:@"title"];
             [formData appendPartWithFormData:data3 name:@"content"];
@@ -282,8 +281,23 @@
     }
 }
 
+
 - (void)deleteImageWithTag:(NSInteger)tag {
-    [self.photoAry removeObjectAtIndex:tag];
+    
+    if (self.photoAry.count != 0) {
+        [self.photoAry removeObjectAtIndex:tag];
+    }
+    if (self.photoAry.count == 0) {
+        self.feedBackView.plusView.hidden = NO;
+        self.feedBackView.plusView.frame = self.feedBackView.imageView1.frame;
+        self.feedBackView.imageView1.hidden = YES;
+        self.feedBackView.imageView2.hidden = YES;
+        self.feedBackView.imageView3.hidden = YES;
+        self.feedBackView.delete1.hidden = YES;
+        self.feedBackView.delete2.hidden = YES;
+        self.feedBackView.delete3.hidden = YES;
+        self.feedBackView.photoCountLbl.text = @"0/3";
+    }
     if (self.photoAry.count == 1) {
         self.feedBackView.plusView.hidden = NO;
         self.feedBackView.plusView.frame = self.feedBackView.imageView2.frame;
