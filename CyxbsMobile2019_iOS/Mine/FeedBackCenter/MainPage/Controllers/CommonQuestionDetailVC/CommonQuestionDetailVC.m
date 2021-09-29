@@ -45,11 +45,7 @@
     self.view.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
     self.VCTitleStr = @"";
     self.topBarView.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
-    self.splitLineColor = [UIColor systemGray5Color];
-    
-    
-    UIColor *c = [UIColor systemGray5Color];
-    NSLog(@"%@",c);
+    self.splitLineColor = [UIColor colorNamed:@"BarLine"];
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }

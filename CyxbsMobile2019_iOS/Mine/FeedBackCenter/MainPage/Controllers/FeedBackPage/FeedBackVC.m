@@ -120,7 +120,8 @@
     self.view.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
     self.VCTitleStr = @"意见反馈";
     self.topBarView.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
-    self.splitLineColor = [UIColor systemGray5Color];
+    self.splitLineColor = [UIColor colorNamed:@"BarLine"];
+    UIColor *c = [UIColor systemGray5Color];
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }

@@ -54,7 +54,7 @@
 - (UIView *)splitLine{
     if (!_splitLine) {
         _splitLine = [[UIView alloc]initWithFrame:CGRectMake(16, 55, self.width - 32, 1)];
-        _splitLine.backgroundColor = [UIColor systemGray5Color];
+        _splitLine.backgroundColor = [UIColor colorNamed:@"FeedBackViewLine"];
     }
     return _splitLine;
 }
@@ -104,7 +104,7 @@
 - (UIView *)splitLine2{
     if (!_splitLine2) {
         _splitLine2 = [[UIView alloc]initWithFrame:CGRectMake(16, 204, self.width - 32, 1)];
-        _splitLine2.backgroundColor = [UIColor systemGray5Color];
+        _splitLine2.backgroundColor = [UIColor colorNamed:@"FeedBackViewLine"];
     }
     return _splitLine2;
 }
