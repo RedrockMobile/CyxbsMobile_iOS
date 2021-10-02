@@ -42,9 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 复用标识
 + (NSString *)reuseIdentifier;
 
-/// 将时间戳转化为字符串 @"YYYY.MM.dd"
-- (NSString *)getTimeFromTimestamp:(long)time;
-
 @end
 
 NS_ASSUME_NONNULL_END

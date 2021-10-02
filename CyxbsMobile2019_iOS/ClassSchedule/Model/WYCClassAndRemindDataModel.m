@@ -131,6 +131,7 @@
 /// 查老师课表用这个方法来网络请求
 /// @param parameters 参数结构： @{ @"teaName": name, @"tea": teaNum }
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
+
     [self.afhttpSeMan POST:TEAkebiaoAPI parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
         //拿到课表数据

@@ -42,19 +42,10 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     self.itemDic = self.tableArray[indexPath.row];
     [self.starpostmodel starPostWithPostID:[NSNumber numberWithString:self.itemDic[@"post_id"]]];
-
-
-    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:self.itemDic];
-        tempDic[@"praise_count"] = [NSNumber numberWithString:cell.starBtn.countLabel.text];
-        [self.tableArray replaceObjectAtIndex:indexPath.row withObject:tempDic];
-
-
-    /*
     NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:self.itemDic];
     tempDic[@"is_praised"] = cell.starBtn.selected == YES ? @"1" : @"0";
     tempDic[@"praise_count"] = [NSNumber numberWithString:cell.starBtn.countLabel.text];
     [self.tableArray replaceObjectAtIndex:indexPath.row withObject:tempDic];
-*/
 }
 
 #pragma mark -点击评论按钮跳转到具体的帖子
@@ -186,7 +177,7 @@
     self.reportmodel = [[ReportModel alloc] init];
     __weak typeof(self) weakSelf = self;
     [self.reportmodel ReportWithPostID:self.reportView.postID WithModel:[NSNumber numberWithInt:0] AndContent:self.reportView.textView.text];
-    [self.reportmodel setBlock:^(id  _Nonnull info) {
+    [self.reportmodel setBlock:^(id  _Nonnull info) { //3
         [weakSelf showOperationSuccessfulWithString:@"  举报成功  "];
     }];
     self.isShowedReportView = NO;

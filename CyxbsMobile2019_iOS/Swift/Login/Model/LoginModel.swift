@@ -19,6 +19,7 @@ class LoginModel: NSObject {
             "stuNum": stuNum,
             "idNum": idNum
         ]
+
         let LoginURL = BaseURL() as String + "magipoke/token"
         guard let url = URL(string:LoginURL) else { return }
         
@@ -77,4 +78,5 @@ class LoginModel: NSObject {
         let baseURL = UserDefaults.standard.string(forKey: "baseURL")
         return baseURL! as NSString
     }
+
 }

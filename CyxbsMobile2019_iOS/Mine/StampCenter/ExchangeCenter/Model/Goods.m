@@ -8,25 +8,29 @@
 
 #import "Goods.h"
 #import <AFNetworking/AFNetworking.h>
-#import "ZWTMacro.h"
+#import "HttpClient.h"
 
 @implementation Goods
 
 ///网络请求
 + (void)getDataDictWithId:(NSString *)goodsid Success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(void))failure {
     
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSDictionary *paramDict = @{
         @"id":goodsid
     };
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN]  forHTTPHeaderField:@"authorization"];
-        [manager GET:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-intergral/Integral/getItemInfo" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            success(responseObject[@"data"]);
-            
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                }];
+    
+    [[HttpClient defaultClient] requestWithPath:Stamp_Store_Goods
+                                         method:HttpRequestGet
+                                     parameters:paramDict
+                                 prepareExecute:nil
+                                       progress:nil
+                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"success-goods");
+        success(responseObject[@"data"]);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"failure-goods");
+        failure();
+    }];
+    
 }
 @end

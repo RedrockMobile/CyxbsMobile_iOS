@@ -20,6 +20,8 @@
     
     [client requestWithPath:CHECKINAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
+    
+        
         [self requestCheckInInfoWithParams:params succeeded:succeded];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

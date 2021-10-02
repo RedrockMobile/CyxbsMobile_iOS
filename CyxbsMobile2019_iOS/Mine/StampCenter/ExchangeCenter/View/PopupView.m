@@ -9,23 +9,88 @@
 #import "PopupView.h"
 #import <Masonry/Masonry.h>
 #import "Goods.h"
+#import "BuyModel.h"
 
 @implementation PopupView
 
-- (instancetype)initWithFrame:(CGRect)frame AndID:(NSString *)ID {
-    self = [super initWithFrame:frame];
-    if (self) {
+- (instancetype)initWithGoodsName:(NSString *)name AndCount:(NSString *)count AndAmount:(int)amount AndID:(NSString *)ID {
+    if ([super init]) {
         self.goodsID = ID;
         [self addgrayView];
         [self addwhiteView];
         [self addLabel];
         _is = 1;
-//        [self addNoamountButton];
-        [self addButton];
+        _grayView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8];
+        _whiteView.backgroundColor = [UIColor whiteColor];
+        NSLog(@"%d", amount);
+        if (amount <= 0) {
+            self.textLabel.text = @"啊哦！手慢了！下次再来吧！";
+            [self addNoamountButton];
+        }else{
+            self.textLabel.text = [NSString stringWithFormat:@"确认要用%@邮票兑换%@吗",count,name];
+            [self addExchangeButton];
+        }
     }
-    return self;
+    return  self;
 }
 
+// 点击确定后，调用网络请求，如果兑换成功了，调用此方法
+- (void)refresh1 {
+    [self moveBtn];
+    self.textLabel.text = @"兑换成功\n请尽快到红岩网校领取！";
+    UIButton *btn = [[UIButton alloc]init];
+    [self.whiteView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_whiteView);
+            make.top.equalTo(_whiteView).offset(110);
+            make.width.mas_equalTo(129);
+            make.height.mas_equalTo(34);
+    }];
+    btn.layer.cornerRadius = 18;
+    btn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+    [btn setTitle:@"确认" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
+}
+
+// 点击确定后，调用网络请求，如果积分不足了，调用此方法
+- (void)refresh2 {
+    [self moveBtn];
+    self.textLabel.text = @"积分不足\n兑换失败\n";
+//    self.textLabel.font = [UIFont systemFontOfSize:24];
+    UIButton *btn = [[UIButton alloc]init];
+    [self.whiteView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_whiteView);
+            make.top.equalTo(_whiteView).offset(110);
+            make.width.mas_equalTo(129);
+            make.height.mas_equalTo(34);
+    }];
+    btn.layer.cornerRadius = 18;
+    btn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+    [btn setTitle:@"确认" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
+}
+
+// 点击确定后，调用网络请求，如果无库存了，调用此方法
+- (void)refresh3 {
+    [self moveBtn];
+    self.textLabel.text = @"啊哦！手慢了！下次再来吧！\n";
+    UIButton *btn = [[UIButton alloc]init];
+    [self.whiteView addSubview:btn];
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_whiteView);
+            make.top.equalTo(_whiteView).offset(110);
+            make.width.mas_equalTo(129);
+            make.height.mas_equalTo(34);
+    }];
+    btn.layer.cornerRadius = 18;
+    btn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+    [btn setTitle:@"确认" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
+}
 //添加灰色框
 - (void)addgrayView {
     UIView *grayView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
@@ -45,23 +110,7 @@
     }];
     whiteView.layer.cornerRadius = 20;
 }
-//添加按钮
-- (void)addButton {
-    [Goods getDataDictWithId:self.goodsID Success:^(NSDictionary * _Nonnull dict) {
-        self->_grayView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8];
-        self->_whiteView.backgroundColor = [UIColor whiteColor];
-        int amount = [dict[@"amount"] intValue];
-            if (amount <= 0) {
-                [self addNoamountButton];
-                self->_textLabel.text = @"啊哦！手慢了！下次再来吧！";
-            }else{
-                [self addExchangeButton];
-                self->_textLabel.text = [[[[@"确认要用" stringByAppendingString: [NSString stringWithFormat:@"%@",dict[@"price"]]] stringByAppendingString:@"邮票兑换"] stringByAppendingString:dict[@"title"]]stringByAppendingString:@"吗"];
-            }
-        } failure:^{
-            
-        }];
-}
+
 ///没库存按钮
 - (void)addNoamountButton {
     UIButton *noamountcomfirmBtn = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -110,7 +159,7 @@
     _textLabel = textlabel;
     [textlabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_grayView);
-            make.top.equalTo(self.whiteView).offset(34);
+            make.top.equalTo(self.whiteView).offset(44);
             make.width.mas_equalTo(200);
     }];
     textlabel.numberOfLines = 0;
@@ -124,6 +173,22 @@
 }
 ///确定
 - (void)comfirm {
-    [self removeFromSuperview];
+    BuyModel *model = [[BuyModel alloc] init];
+    [model buyGoodsWithID:self.goodsID];
+    [model setBlock:^(id  _Nonnull info) { //3
+        NSLog(@"%@", info);
+        if ([info intValue] == 10000) {
+            [self refresh1];
+        }else if ([info intValue] == 50000) {
+            [self refresh2];
+        }else if([info intValue] == 50001){
+            [self refresh3];
+        }
+    }];
+}
+///溢出按钮
+- (void)moveBtn {
+    [self.cancleBtn removeFromSuperview];
+    [self.comfirmBtn removeFromSuperview];
 }
 @end

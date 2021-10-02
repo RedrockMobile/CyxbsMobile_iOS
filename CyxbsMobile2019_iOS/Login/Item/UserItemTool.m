@@ -106,7 +106,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     // 这个请求需要上传json
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    
+    [manager.requestSerializer setValue:[UserDefaultTool getStuNum] forHTTPHeaderField:@"STU-NUM" ];
     [manager POST:REFRESHTOKENAPI parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
         NSString *token = responseObject[@"data"][@"token"];

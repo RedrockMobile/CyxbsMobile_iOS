@@ -8,7 +8,6 @@
 #import "StampCenterTopView.h"
 #import "PrefixHeader.pch"
 #import "UIView+XYView.h"
-#import "ZWTMacro.h"
 @interface StampCenterTopView ()
 
 @end
@@ -56,8 +55,7 @@
         [_detailBtn setImage:[UIImage imageNamed:@"mingxi"] forState:UIControlStateNormal];
         _detailBtn.alpha = 0.7;
         HttpClient *client = [HttpClient defaultClient];
-        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-        [client.httpSessionManager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"==========================出错了");
@@ -70,11 +68,12 @@
         _bigStampCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(16,26, 200, 66)];
         _bigStampCountLbl.font = [UIFont fontWithName:@"Bauhaus93" size:45];
         _bigStampCountLbl.textColor = [UIColor colorNamed:@"数字"];
-        _bigStampCountLbl.text = @"000000";
+        _bigStampCountLbl.text = @"";
         _alertLbl = [[UILabel alloc]initWithFrame:CGRectMake(16, 93, 180, 18)];
         _alertLbl.font = [UIFont fontWithName:@"Bauhaus93" size:12];
         _alertLbl.textColor = [UIColor colorNamed:@"#FFFFFFE5"];
         _alertLbl.text = @"你还有待领取的商品，请尽快领取";
+        _alertLbl.hidden = YES;
         [_bannerImage addSubview:_bigStampImage];
         [_bannerImage addSubview:_wodeyoupiao];
         [_bannerImage addSubview:_mingxiLbl];

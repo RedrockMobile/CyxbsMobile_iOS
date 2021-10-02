@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Goods.h"
+#import <SDCycleScrollView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 ///内容ScrollView
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///商品模型
 @property (nonatomic, strong) Goods *goods;
 ///图片轮播器
-@property (nonatomic, strong) UIScrollView *picScrollView;
+//@property (nonatomic, strong) SDCycleScrollView *picScrollView;
 ///名字
 @property (nonatomic, strong) UILabel *nameLabel;
 ///库存
@@ -40,7 +41,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSTimer *timer;
 ///URLS
 @property (nonatomic, copy) NSArray *urls;
-
+///URLS数量
+@property (nonatomic, assign) NSInteger urlscount;
+///图片浏览器的数据源数组
+@property (nonatomic, copy) NSArray *urldataArray;
+///轮播器
+@property (nonatomic, strong) SDCycleScrollView *bannerView;//
 
 @property (nonatomic, copy) NSArray *color1;
 

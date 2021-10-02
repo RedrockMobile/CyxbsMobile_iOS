@@ -29,7 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) int is;
 
-- (instancetype)initWithFrame:(CGRect)frame AndID:(NSString *)ID;
+- (instancetype)initWithGoodsName:(NSString *)name AndCount:(NSString *)count AndAmount:(int )amount AndID:(NSString *)ID;
+
+- (void)refresh1;
+- (void)refresh2;
+- (void)refresh3;
+
 @end
 
 NS_ASSUME_NONNULL_END

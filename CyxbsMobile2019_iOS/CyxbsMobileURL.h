@@ -219,16 +219,16 @@
 #define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
 //查老师课表数据，POST，参数： @{ @"teaName": 姓名, @"tea": 工号？}
-#define TEAkebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teaKb/api/teaKb"]
+#define TEAkebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaKb"]
 
 /// 空教室接口
 #define EMPTYCLASSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/roomEmpty"]
 
 /// 同学课表之查找同学，GET，参数：@{@"stu"]: 用来搜索的数据}
-#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
+#define SEARCHPEOPLEAPI  [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-text/search/people"]
 
 /// 查找老师，POST，参数：@{@"teaName"]: 用来搜索的数据}
-#define SEARCHTEACHERAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teaKb/api/teaSearch"]
+#define SEARCHTEACHERAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaSearch"]
 
 
 
@@ -387,6 +387,33 @@
 // 积分获得信息, 对应 =获取记录= 界面
 #define Stamp_store_details_getRecord [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/getRecord"]
 
+//主页信息
+#define Stamp_Store_Main_Page [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/info"]
+
+//任务
+#define TASK [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/progress"]
+
+// 商品
+#define Stamp_Store_Goods [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/getItemInfo"]
+// 兑换
+#define Stamp_Store_Exchange [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/purchase"]
+
+#pragma mark - 反馈中心
+
+// 测试环境, 请在正式环境出来的时候
+// 历史反馈列表
+// 参数 product_id 区分数据来源, 掌邮只填1
+#define FeedBack_Center_History_List [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/list"]
+
+// 历史反馈页, 点击一个进入详情
+// 参数 feedback_id 信息的id
+// 参数 product_id 区分数据来源, 掌邮只填1
+#define FeedBack_Center_History_View [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/view"]
+
+//常见问题
+#define COMMON_QUESTION [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/question/list?product_id=1"]
+
+//提交反馈
+#define SUBMIT [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/create?product_id=1"]
+
 #endif /* CyxbsMobileURL_h */
-
-
