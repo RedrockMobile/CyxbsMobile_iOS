@@ -7,7 +7,6 @@
 //
 
 #import "GoodsData.h"
-#import "ZWTMacro.h"
 @implementation GoodsData
 
 
@@ -23,24 +22,23 @@
 
 + (void)GoodsDataWithSuccess:(void (^)(NSArray * _Nonnull))success error:(void (^)(void))error{
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        //字典转模型
-    NSArray *array = responseObject[@"data"][@"shop"];
-    NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
-        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            GoodsData *data = [self GoodsDataWithDict:obj];
-            [mArray addObject:data];
-        }];
-        //调用成功的回调
-        if (success) {
-            success(mArray.copy);
-        }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    [client requestWithPath:Stamp_Store_Main_Page method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            //字典转模型
+        NSArray *array = responseObject[@"data"][@"shop"];
+        NSLog(@"%@",responseObject);
+        NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
+            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                GoodsData *data = [self GoodsDataWithDict:obj];
+                [mArray addObject:data];
+            }];
+            //调用成功的回调
+            if (success) {
+                success(mArray.copy);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"==========================出错了");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"networkerror" object:nil];
         }];
-    
-    
 }
 
 

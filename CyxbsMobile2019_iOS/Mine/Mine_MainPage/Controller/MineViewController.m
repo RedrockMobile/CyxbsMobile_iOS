@@ -25,8 +25,12 @@
 #import "MineSettingViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import "CheckInModel.h"
-
+//邮票中心
 #import "StampCenterVC.h"
+
+//意见与反馈
+#import "FeedBackMainPageViewController.h"
+#import "HistoricalFeedBackViewController.h"
 
 @interface MineViewController () <UIViewControllerTransitioningDelegate,UITableViewDelegate, UITableViewDataSource, MineHeaderViewDelegate,MainMsgCntModelDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -285,13 +289,13 @@
 
 /// 点击“积分商城”后调用
 - (void)selectedShopCell {
-    CheckInViewController *vc = [[CheckInViewController alloc] init];
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:vc animated:YES completion:nil];
+//    CheckInViewController *vc = [[CheckInViewController alloc] init];
+//    vc.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:vc animated:YES completion:nil];
 
-//    StampCenterVC * vc = [[StampCenterVC alloc] init];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
+    StampCenterVC * vc = [[StampCenterVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
@@ -306,9 +310,14 @@
     
     UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
     
-    [feedBackGroupAllert addAction:certainAction];
+//    HistoricalFeedBackViewController * vc = [[HistoricalFeedBackViewController alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
+
     
-    [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
+    FeedBackMainPageViewController *fvc = [[FeedBackMainPageViewController alloc]init];
+    fvc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:fvc animated:YES];
 }
 
 #pragma mark - 通知中心回调

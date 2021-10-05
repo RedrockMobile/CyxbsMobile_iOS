@@ -98,22 +98,10 @@
     _dict = @{
         _ary[0] : goodsName,
         _ary[1] : [NSString stringWithFormat:@"%@邮票", @(goodsPrice)],
-        _ary[2] : [self getTimeFromTimestamp:_tradingTime],
+        _ary[2] : getTimeFromTimestampWithDateFormat(_tradingTime, @"YYYY-MM-dd HH:mm"),
         _ary[3] : (isReceived? @"已领取": @"未领取")
     };
     [self setupFrame];
-}
-#pragma mark - 将时间戳转换成时间
-
-- (NSString *)getTimeFromTimestamp:(long)time {
-    //将对象类型的时间转换为NSDate类型
-    NSDate * myDate = [NSDate dateWithTimeIntervalSince1970:time];
-    //设置时间格式
-    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-    //将时间转换为字符串
-    NSString *timeStr = [formatter stringFromDate:myDate];
-    return timeStr;
 }
 
 #pragma mark - getter

@@ -219,6 +219,11 @@ printf("%s\n\n",[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]);
     return [NSString stringWithFormat:@"%.2f,%.2f,  %.2f,%.2f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];\
 }(r)
 
+//Bar的高度
+#define Bar_H (STATUSBARHEIGHT + 44)
+
+//邮票中心的适配
+#define COLLECTIONHEADER_H  65
 #pragma mark - 字体
 //苹方-简 极细体
 #define PingFangSCUltralight    @"PingFangSC-Ultralight"
@@ -269,5 +274,27 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #define SCREEN_RATE (667/[UIScreen mainScreen].bounds.size.height)
 #define ZOOM(x) x / SCREEN_RATE
 
+/// 通过时间戳获得时间
+#define getTimeFromTimestampWithDateFormat(timestamp, dateFormat) ^(long t, NSString* format){\
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];\
+    [formatter setDateFormat:format];\
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:t];\
+    return [formatter stringFromDate:date];\
+}(timestamp, dateFormat)
+
+/// 时间字符串的格式转换
+#define getTimeStrWithDateFormat(timeStr, oldDateFormat, newDateFormat) ^(NSString * t, NSString * old, NSString * new) { \
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init]; \
+    formatter.dateFormat = old; \
+    NSDate * date = [formatter dateFromString:t]; \
+    formatter.dateFormat = new; \
+    NSString * str = [formatter stringFromDate:date]; \
+    return str; \
+}(timeStr, oldDateFormat, newDateFormat)
+
+/// 通过类名获得复用标识
+#define reuseIdentifier(className) NSStringFromClass(className.class)
+
+#define NSParameterAssert(condition) NSAssert((condition), @"Invalid parameter not satisfying: %@", @#condition)
 
 #endif /* CyxbsMobileToolMacro_h */

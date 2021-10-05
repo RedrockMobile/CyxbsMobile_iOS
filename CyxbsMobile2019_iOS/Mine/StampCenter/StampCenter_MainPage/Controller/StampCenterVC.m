@@ -13,14 +13,18 @@
 #import "MyCollectionViewCell.h"
 #import "SecondHeaderView.h"
 #import "MyTableViewCellWithProgress.h"
+#import "NewQAMainPageMainController.h"
+#import "SZHReleaseDynamic.h"
+#import "QueryLoginViewController.h"
+#import "EditMyInfoViewController.h"
 
 //Tool
 #import "UIView+XYView.h"
-#import "ZWTMacro.h"
 
 //Model
 #import "GoodsData.h"
 #import "TaskData.h"
+
 
 ///邮票中心主界面
 @interface StampCenterVC () <UITableViewDelegate,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UICollectionViewDataSource,TopViewDelegate>
@@ -39,6 +43,8 @@
 @property (nonatomic,copy) NSArray *section2GoodsAry;
 ///任务数据
 @property (nonatomic,copy) NSArray *taskAry;
+///额外任务数据
+@property (nonatomic,copy) NSArray *extraTaskAry;
 ///左右划的scroll
 @property (nonatomic,strong) MainScrollView *mainScrollView;
 ///小型邮票数量View
@@ -61,15 +67,19 @@
         NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
         for (int i = 0; i < goodsAry.count; i++) {
             GoodsData *data = goodsAry[i];
-            if (data.type == 1) {
+            if (data.type == 0) {
                 //第二分区数据
                 [mArray2 addObject:data];
             }
             //第一分区数据
-            if(data.type == 0){
+            if(data.type == 1){
                 [mArray addObject:data];
             }
         }
+    if (mArray.count == 0) {
+        self.mainScrollView.collectionHeaderView.detailLabel.text = @"敬请期待";
+        self.mainScrollView.collectionHeaderView.detailLabel.x = 0.8*SCREEN_WIDTH;
+    }
         _goodsAry = mArray;
     self.section2GoodsAry = mArray2;
     //刷新控件
@@ -78,7 +88,20 @@
 
 //任务数据
 - (void)setTaskAry:(NSArray *)taskAry{
-    _taskAry = taskAry;
+    NSMutableArray *mArray =[[NSMutableArray alloc]initWithCapacity:99];
+    NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
+    for (int i = 0; i < taskAry.count; i++) {
+        TaskData *data = taskAry[i];
+        if ([data.type isEqualToString:@"base"]) {
+            [mArray addObject:data];
+        }
+        if ([data.type isEqualToString:@"more"]) {
+            [mArray2 addObject:data];
+        }
+    }
+    [mArray removeObjectAtIndex:0];
+    _taskAry = mArray;
+    _extraTaskAry = mArray2;
     //刷新控件
     [self.mainScrollView.table reloadData];
 }
@@ -111,36 +134,65 @@
     self.smallcountLbl.text = [NSString stringWithFormat:@"%@",_number];
 }
 
+
+#pragma mark - viewWillAppear
+- (void)viewWillAppear:(BOOL)animated{
+    [self checkAlertLbl];
+}
+
 #pragma mark - viewDidLoad
 - (void)viewDidLoad{
     [super viewDidLoad];
     //加载数据
     [self setupData];
+    
     //加载TopBar
     [self setupBar];
+    
     //加载横向Scroll
     [self.view addSubview:self.mainScrollView];
+    
     //加载TopView
     [self.view addSubview:self.topView];
+    
     //加载邮票数量View
     [self.topBarView addSubview:self.stampCountView];
+    
     //topBar优先级最高
     [self.view bringSubviewToFront:self.topBarView];
+    
     //设置小点
     [self setupPoint];
+
 }
 
 #pragma mark - table数据源
-//数量
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+//row数量
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.taskAry.count;
+    if (section == 0) {
+        return self.taskAry.count;
+    }else{
+        return self.extraTaskAry.count;
+    }
 }
 
 //Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TaskData *data = self.taskAry[indexPath.row];
         MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
-    cell.data = data;
+    if (indexPath.section == 0) {
+        TaskData *data = self.taskAry[indexPath.row];
+        cell.row = indexPath.row;
+        cell.data = data;
+    }else{
+        TaskData *data = self.extraTaskAry[indexPath.row];
+        cell.row = indexPath.row;
+        cell.data = data;
+    }
     return cell;
 }
 
@@ -148,6 +200,30 @@
 //高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 75;
+}
+//FOOTER高度
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        return 60;
+    }else{
+        return 0.000001f;  // 设置为0.0001  是为了不悬浮
+    }
+    return 0.1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section == 0) {
+        UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60.0)];
+        footerView.backgroundColor = [UIColor colorNamed:@"table"];
+        UILabel *la = [[UILabel alloc]init];
+        la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
+        la.textColor = [UIColor colorNamed:@"#15315B"];
+        la.text = @"更多任务";
+        la.font = [UIFont fontWithName:PingFangSCBold size:20];
+        [footerView addSubview:la];
+        return footerView;
+    }
+    return nil;
 }
 
 #pragma mark - collection数据源
@@ -438,14 +514,26 @@
     self.splitLineHidden = YES;
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
+    
+    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
+    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+    [self.view addSubview:v];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
 }
 
 //小型邮票数量View
 - (UIView *)stampCountView{
     if (!_stampCountView) {
         HttpClient *client = [HttpClient defaultClient];
-        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",TOKEN] forHTTPHeaderField:@"authorization"];
-        [client.httpSessionManager GET:MAIN_PAGE_API parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"==========================出错了");
@@ -484,13 +572,79 @@
     [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
-        NSLog(@"!");
+        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
     
     [GoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
         self.goodsAry = array;
     } error:^{
-        NSLog(@"!");
+        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
+}
+
+- (void)netWorkAlert{
+    [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+}
+
+- (void)jumpToNewQA{
+    NSLog(@"正在跳转至邮问主页");
+    self.tabBarController.selectedIndex = 1;
+    [self.navigationController popViewControllerAnimated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
+  
+}
+
+- (void)jumpToReleaseDynamic{
+    SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
+    
+    [self.navigationController pushViewController:SVC animated:YES];
+}
+
+- (void)refreshPage{
+    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+        self.taskAry = array;
+    } error:^{
+        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+    }];
+    
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        self.number = responseObject[@"data"][@"user_amount"];
+        self.topView.number = responseObject[@"data"][@"user_amount"];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"==========================出错了");
+        }];
+}
+
+- (void)jumpToZhiyuan{
+    QueryLoginViewController *QVC = [[QueryLoginViewController alloc]init];
+    [self.navigationController pushViewController:QVC animated:YES];
+}
+
+- (void)jumpToProfile{
+    EditMyInfoViewController *EVC = [[EditMyInfoViewController alloc]init];
+    [self.navigationController presentViewController:EVC animated:YES completion:nil];
+}
+
+- (void)checkAlertLbl{
+    HttpClient *client = [HttpClient defaultClient];
+    [client requestWithPath:COMMON_QUESTION method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            BOOL un_got_good = responseObject[@"un_got_good"];
+        if (un_got_good == YES) {
+            self.topView.alertLbl.hidden = NO;
+        }else{
+            self.topView.alertLbl.hidden = YES;
+        }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"==========================出错了");
+        }];
+
+}
+
+- (void)checkInSucceeded{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"签到成功";
+    [hud hide:YES afterDelay:1];
 }
 @end

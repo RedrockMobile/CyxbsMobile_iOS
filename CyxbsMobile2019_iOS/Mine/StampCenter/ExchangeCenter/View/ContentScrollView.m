@@ -10,8 +10,13 @@
 #import <Masonry/Masonry.h>
 #import <AFNetworking/AFNetworking.h>
 #import "Goods.h"
+#import <YBImageBrowser.h>
 
 #define picScrollViewWidth 360 * [UIScreen mainScreen].bounds.size.width / 390
+
+@interface ContentScrollView()<SDCycleScrollViewDelegate>
+@property (nonatomic, weak)SDCycleScrollView *cycleScrollView;
+@end
 
 @implementation ContentScrollView
 
@@ -19,75 +24,67 @@
 - (instancetype)initWithFrame:(CGRect)frame AndID:(NSString *)ID{
     if ([super initWithFrame:frame]) {
         self.goodsID = ID;
-        [self addPicView];
-        [self addAmountLabel];
+
+        [self addBannerView];
+        [self configure];
+        
     }
     return  self;
 }
 ///商品图片滚动
-- (void)addPicView {
-    UIScrollView *picScrollView = [[UIScrollView alloc]init];
-    [self addSubview:picScrollView];
-    _picScrollView = picScrollView;
-    [picScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+- (void) addBannerView {
+    _bannerView = [[SDCycleScrollView alloc]init];
+    [self addSubview:self.bannerView];
+    [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.top.equalTo(self).offset(16);
         make.width.mas_equalTo(picScrollViewWidth);
         make.height.mas_equalTo(178);
     }];
-    picScrollView.layer.cornerRadius = 10;
-    [picScrollView setContentSize:CGSizeMake(picScrollViewWidth * 3, 178)];
-    picScrollView.pagingEnabled = YES;
-    [picScrollView setShowsHorizontalScrollIndicator:NO];
-//    [picScrollView setContentOffset:CGPointMake(picScrollViewWidth, 0) animated:NO];
+    _bannerView.backgroundColor = [UIColor colorNamed:@"white&black"];
     
-    _color1 = @[[UIColor blueColor], [UIColor yellowColor], [UIColor redColor]];
-    CGFloat imgW = picScrollViewWidth;
-    CGFloat imgH = 178;
-    CGFloat imgY = 0;
     NSString *s = self.goodsID;
     [Goods getDataDictWithId:s Success:^(NSDictionary * _Nonnull dict) {
-//        CGFloat imgX = imgW;
-//        self->_leftimgView =[[UIImageView alloc] init];
-//        [self.picScrollView addSubview:self->_leftimgView];
-//        self->_leftimgView.frame = CGRectMake(imgX, imgY, imgW, imgH);
-//        self->_leftimgView.backgroundColor = self->_urls[0];
-//
-//        imgX= imgW * 2;
-//        self->_centerimgView =[[UIImageView alloc] init];
-//        [self.picScrollView addSubview:self->_centerimgView];
-//        self->_centerimgView.frame = CGRectMake(imgX, imgY, imgW, imgH);
-//        self->_centerimgView.backgroundColor = self->_urls[1];
-//
-//        imgX= imgW * 3;
-//        self->_rightimgView =[[UIImageView alloc] init];
-//        [self.picScrollView addSubview:self->_rightimgView];
-//        self->_rightimgView.frame = CGRectMake(imgX, imgY, imgW, imgH);
-//        self->_rightimgView.backgroundColor = self->_urls[2];
+        self.urls = dict[@"urls"];
         
+        NSArray *imagesURLStrings = dict[@"urls"];
+        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@""]];
+        [self addSubview:cycleScrollView];
+        [cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(16);
+            make.top.equalTo(self).offset(16);
+            make.width.mas_equalTo(picScrollViewWidth);
+            make.height.mas_equalTo(178);
+        }];
+        cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
+        cycleScrollView.imageURLStringsGroup = imagesURLStrings;
+        cycleScrollView.clipsToBounds = YES;
+        cycleScrollView.layer.cornerRadius = 15;
+        cycleScrollView.layer.shadowColor = [UIColor blackColor].CGColor;
+        cycleScrollView.layer.shadowOpacity = 0.33f;
+        cycleScrollView.layer.shadowColor = [UIColor colorWithRed:140/255.0 green:150/255.0 blue:217/255.0 alpha:1].CGColor;
+        cycleScrollView.autoScrollTimeInterval = 3;
+        cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
+        self.cycleScrollView = cycleScrollView;
+        self.urlscount = imagesURLStrings.count;
+        [self addPageController];
         
-        for (int i = 0; i < 3; i++) {
-                UIImageView *imgeView =[[UIImageView alloc] init];
-                [self.picScrollView addSubview:imgeView];
-                CGFloat imgX = i*imgW;
-                imgeView.frame = CGRectMake(imgX, imgY, imgW, imgH);
-
-                imgeView.backgroundColor = self->_color1[i];
-
-                self->_urls = dict[@"urls"];
-                NSString *imgurl = self->_urls[0];
-                NSLog(@"2312312%@", self->_urls[0]);
-                NSURL *url = [NSURL URLWithString: imgurl];
-                NSData *imageData = [NSData dataWithContentsOfURL:url];
-                UIImage *image = [UIImage imageWithData:imageData];
-                imgeView.image = image;
-            }
+        //图片的设置
+        //设置图片浏览器的数据源数组
+        NSMutableArray *dataMuteAry = [NSMutableArray array];
+        for (int i = 0;i < self.urls.count; i++) {
+            YBIBImageData *data = [YBIBImageData new];
+            data.imageURL = [NSURL URLWithString:self.urls[i]];
+            [dataMuteAry addObject:data];
+        }
+        self.urldataArray = dataMuteAry;
+//        self.imageDataArray = dynamicDataModel.pics;
+        
         } failure:^{
     }];
-    //添加分页控制器
-    [self addPageController];
-    NSLog(@"%@", _urls);
+    
 }
+
 
 ///分页控制器
 - (void)addPageController {
@@ -96,122 +93,139 @@
     _pageControl = pageControl;
     [pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.bottom.equalTo(self.picScrollView.mas_bottom);
+            make.bottom.equalTo(self.bannerView.mas_bottom);
             make.width.mas_equalTo(125);
             make.height.mas_equalTo(30);
     }];
     pageControl.pageIndicatorTintColor =[UIColor grayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-    pageControl.numberOfPages = 3;
+    pageControl.numberOfPages = self.urlscount;
     pageControl.currentPage = 0;
-    
+
 }
-///商品名字
-- (void)addnameLabel {
-    UILabel *nameLabel = [[UILabel alloc]init];
-    [self addSubview:nameLabel];
-    _nameLabel = nameLabel;
-    [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.picScrollView);
-        make.top.equalTo(self.picScrollView.mas_bottomMargin).mas_offset(28);
+#pragma mark - configure
+- (void)configure {
+    
+        
+    [self addSubview:self.nameLabel];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bannerView);
+        make.top.equalTo(self.bannerView.mas_bottomMargin).mas_offset(28);
         make.width.mas_equalTo(250);
     }];
-    nameLabel.textColor = [UIColor colorNamed:@"21_49_91"];
-    nameLabel.font = [UIFont systemFontOfSize:20];
-}
-///库存
-- (void)addAmountLabel {
-    UILabel *amountLabel = [[UILabel alloc]init];
-    [self addSubview:amountLabel];
-    _amountLabel = amountLabel;
-    [amountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.picScrollView.mas_right);
-            make.top.equalTo(self.picScrollView.mas_bottomMargin).mas_offset(28);
+    ///库存
+    [self addSubview:self.amountLabel];
+    [self.amountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.bannerView.mas_right);
+            make.top.equalTo(self.bannerView.mas_bottomMargin).mas_offset(28);
             make.width.mas_equalTo(100);
     }];
-    amountLabel.textAlignment = NSTextAlignmentRight;
-    amountLabel.textColor = [UIColor colorNamed:@"21_49_91"];
-    amountLabel.alpha = 0.8;
-    amountLabel.font = [UIFont systemFontOfSize:13];
-}
-///商品说明
-- (void)addtextLabel {
-    UILabel *textLabel = [[UILabel alloc]init];
-    [self addSubview:textLabel];
-    _textLabel = textLabel;
-    [textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    ///有效期
+    [self addSubview:self.textLabel];
+    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.nameLabel);
             make.top.equalTo(self.nameLabel.mas_bottom).mas_offset(16);
             make.width.mas_equalTo(344);
     }];
-    textLabel.numberOfLines = 0;
-    textLabel.textColor = [UIColor colorNamed:@"21_49_91"];
-    textLabel.alpha = 0.8;
-    textLabel.font = [UIFont systemFontOfSize:16];
-}
-///有效期
-- (void)addlastdayLabel {
-    _lastdayLabel = [[UILabel alloc]init];
-    [self addSubview:_lastdayLabel];
-    [_lastdayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    ///有效期
+    [self addSubview:self.lastdayLabel];
+    [self.lastdayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.textLabel);
             make.top.equalTo(self.textLabel.mas_bottom).offset(8);
             make.width.mas_equalTo(300);
     }];
-    _lastdayLabel.textColor = [UIColor colorNamed:@"21_49_91"];
-    _lastdayLabel.alpha = 0.8;
-    _lastdayLabel.font = [UIFont systemFontOfSize:13];
-}
-///说明
-- (void)addtipsLabel {
-    UILabel *tipsLabel = [[UILabel alloc]init];
-    [self addSubview:tipsLabel];
-    [tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    ///说明
+    [self addSubview:self.tipsContentLabel];
+    [self.tipsContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.textLabel);
-            make.top.equalTo(self.lastdayLabel.mas_bottom).offset(36);
-            make.width.mas_equalTo(100);
-    }];
-    tipsLabel.textColor = [UIColor colorNamed:@"21_49_91"];;
-    tipsLabel.font = [UIFont systemFontOfSize:14];
-    tipsLabel.text = @"权益说明:";
-    
-    _tipsContentLabel = [[UILabel alloc]init];
-    _tipsContentLabel.numberOfLines = 0;
-    _tipsContentLabel.textColor = [UIColor colorNamed:@"21_49_91"];
-    _tipsContentLabel.alpha = 0.4;
-    _tipsContentLabel.font = [UIFont systemFontOfSize:14];
-    [self addSubview:_tipsContentLabel];
-    [_tipsContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(tipsLabel);
-            make.top.equalTo(tipsLabel.mas_bottom).offset(12);
+            make.top.equalTo(self.lastdayLabel.mas_bottom).offset(66);
 //            make.right.equalTo(self.mas_right).offset(-16);
             make.width.mas_equalTo([UIScreen mainScreen].bounds.size.width * 345 / 375);
     }];
     
+    
+}
+#pragma mark - delegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
+    self.pageControl.currentPage = index;
+}
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    
+    YBImageBrowser *browser = [YBImageBrowser new];
+    browser.dataSourceArray = self.urldataArray;
+    
+    browser.currentPage = index;
+    // 只有一个保存操作的时候，可以直接右上角显示保存按钮
+    
+    browser.defaultToolViewHandler.topView.operationType = YBIBTopViewOperationTypeSave;
+    
+    [browser show];
+    
 }
 
 #pragma mark - getter
+///商品名字
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
-        [self addnameLabel];
+        _nameLabel = [[UILabel alloc]init];
+        _nameLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _nameLabel.font = [UIFont systemFontOfSize:20];
     }
     return _nameLabel;
 }
+///库存
+- (UILabel *)amountLabel {
+    if (_amountLabel == nil) {
+        _amountLabel = [[UILabel alloc]init];
+        _amountLabel.textAlignment = NSTextAlignmentRight;
+        _amountLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _amountLabel.alpha = 0.4;
+        _amountLabel.font = [UIFont systemFontOfSize:13];
+    }
+    return _amountLabel;
+}
+///商品说明
 - (UILabel *)textLabel {
     if (_textLabel == nil) {
-        [self addtextLabel];
+        _textLabel = [[UILabel alloc]init];
+        _textLabel.numberOfLines = 0;
+        _textLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _textLabel.alpha = 0.8;
+        _textLabel.font = [UIFont systemFontOfSize:16];
     }
     return _textLabel;
 }
+///有效期
 - (UILabel *)lastdayLabel {
     if (_lastdayLabel == nil) {
-        [self addlastdayLabel];
+        _lastdayLabel = [[UILabel alloc]init];
+        _lastdayLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _lastdayLabel.alpha = 0.8;
+        _lastdayLabel.font = [UIFont systemFontOfSize:13];
     }
     return _lastdayLabel;
 }
+///说明
 - (UILabel *)tipsContentLabel {
     if (_tipsContentLabel == nil) {
-        [self addtipsLabel];
+        UILabel *tipsLabel = [[UILabel alloc]init];
+        [self addSubview:tipsLabel];
+        [tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.textLabel);
+                make.top.equalTo(self.lastdayLabel.mas_bottom).offset(36);
+                make.width.mas_equalTo(100);
+        }];
+        tipsLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        tipsLabel.alpha = 0.8;
+        tipsLabel.font = [UIFont systemFontOfSize:14];
+        tipsLabel.text = @"权益说明:";
+        
+        _tipsContentLabel = [[UILabel alloc]init];
+        _tipsContentLabel.numberOfLines = 0;
+        _tipsContentLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _tipsContentLabel.alpha = 0.4;
+        _tipsContentLabel.font = [UIFont systemFontOfSize:14];
+        
     }
     return _tipsContentLabel;
 }

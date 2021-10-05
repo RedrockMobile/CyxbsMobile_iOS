@@ -68,6 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 内容高度固定为 44
 - (CGFloat)getTopBarViewHeight;
 
+/// 返回按钮的点击方法
+- (void)backBtnClicked:(UIButton *)sender;
+
 @end
 
 NS_ASSUME_NONNULL_END

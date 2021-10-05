@@ -40,23 +40,45 @@
 }
 
 - (void)getTeaListWithName:(NSString *)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack{
-    
-    NSDictionary *parameters = @{@"teaName": name};
+
     HttpClient *client = [HttpClient defaultClient];
-    //https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch
-//    SEARCHTEACHERAPI
-    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch" method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSMutableArray *tmpArray = [NSMutableArray array];
-        for (NSDictionary *classmateInfo in responseObject[@"data"]) {
-            ClassmateItem *classmate = [ClassmateItem teaItemWithDictionary:classmateInfo];
-            [tmpArray addObject:classmate];
-        }
-        self.classmatesArray = tmpArray;
-        succeededCallBack(self);
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        failedCallBack(task, error);
-    }];
+//<<<<<<< HEAD
+//    //https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch
+////    SEARCHTEACHERAPI
+//    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch" method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSMutableArray *tmpArray = [NSMutableArray array];
+//        for (NSDictionary *classmateInfo in responseObject[@"data"]) {
+//            ClassmateItem *classmate = [ClassmateItem teaItemWithDictionary:classmateInfo];
+//            [tmpArray addObject:classmate];
+//        }
+//        self.classmatesArray = tmpArray;
+//        succeededCallBack(self);
+//
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        failedCallBack(task, error);
+//    }];
+//=======
+    
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:SEARCHTEACHERAPI parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            
+            NSData *data = [name dataUsingEncoding:NSUTF8StringEncoding];
+            [formData appendPartWithFormData:data name:@"teaName"];
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            
+            NSMutableArray *tmpArray = [NSMutableArray array];
+            for (NSDictionary *classmateInfo in responseObject[@"data"]) {
+                ClassmateItem *classmate = [ClassmateItem teaItemWithDictionary:classmateInfo];
+                [tmpArray addObject:classmate];
+            }
+            self.classmatesArray = tmpArray;
+            succeededCallBack(self);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            failedCallBack(task,error);
+        }];
+  
+//>>>>>>> 1cae5bb78d05f58b5f2e38da11c1496d8195b276
 }
 
 - (void)getPeopleListWithName:(NSString*)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack{
