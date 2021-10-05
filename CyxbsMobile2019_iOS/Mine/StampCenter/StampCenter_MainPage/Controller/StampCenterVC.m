@@ -515,9 +515,7 @@
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
     
-    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
-    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
-    [self.view addSubview:v];
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
@@ -565,7 +563,15 @@
     else{
         self.topView.point.hidden = NO;
     }
+    
+    //请勿移动此代码的位置，不然会引起UI错乱，连锁玄学问题
+    //=============================================<<<
+    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
+    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+    [self.view addSubview:v];
+    //=============================================>>>
 }
+
 
 //获取数据
 - (void)setupData{
