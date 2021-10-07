@@ -19,7 +19,7 @@
         }
         
         _starGroupBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        _starGroupBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 14];
+        _starGroupBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
         if (@available(iOS 11.0, *)) {
             [_starGroupBtn setTitleColor:[UIColor colorNamed:@"ReportTextColor"] forState:UIControlStateNormal];
         } else {
@@ -30,7 +30,7 @@
         
         UIButton *shieldBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [shieldBtn setTitle:@"屏蔽此人" forState:UIControlStateNormal];
-        shieldBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 14];
+        shieldBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
         if (@available(iOS 11.0, *)) {
             [shieldBtn setTitleColor:[UIColor colorNamed:@"ReportTextColor"] forState:UIControlStateNormal];
         } else {
@@ -42,7 +42,7 @@
         
         UIButton *reportBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [reportBtn setTitle:@"举报" forState:UIControlStateNormal];
-        reportBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 14];
+        reportBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
         if (@available(iOS 11.0, *)) {
             [reportBtn setTitleColor:[UIColor colorNamed:@"ReportTextColor"] forState:UIControlStateNormal];
         } else {

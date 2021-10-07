@@ -10,12 +10,26 @@
 
 @implementation NewQAFollowTableView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
+//        self.estimatedRowHeight = 130;
+    }
+    return self;
 }
-*/
+
+- (void)didMoveToWindow {
+    [super didMoveToWindow];
+}
+
+
+
+- (void)setContentOffset:(CGPoint)contentOffset {
+    if (self.window) {
+        [super setContentOffset:contentOffset];
+    }
+}
 
 @end

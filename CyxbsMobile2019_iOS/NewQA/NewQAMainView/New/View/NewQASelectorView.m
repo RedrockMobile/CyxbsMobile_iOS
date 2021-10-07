@@ -33,7 +33,7 @@
         [_tableSliderBackView addSubview:_sliderLinePart];
         
         UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        leftBtn.frame = CGRectMake(WScaleRate_SE * 17, HScaleRate_SE * 10, WScaleRate_SE * 40, HScaleRate_SE * 28);
+        leftBtn.frame = CGRectMake(WScaleRate_SE * 17, HScaleRate_SE * 10, WScaleRate_SE * 45, HScaleRate_SE * 28);
         [leftBtn setTitle:@"推荐" forState:UIControlStateNormal];
         [leftBtn setTitleColor:[UIColor colorNamed:@"NewQAMainVCBtnColor"] forState:UIControlStateNormal];
         [leftBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:18*fontSizeScaleRate_SE]];
@@ -43,7 +43,7 @@
         _leftBtn = leftBtn;
         
         UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        rightBtn.frame = CGRectMake(WScaleRate_SE * 76, HScaleRate_SE * 10, WScaleRate_SE * 40, HScaleRate_SE * 28);
+        rightBtn.frame = CGRectMake(WScaleRate_SE * 76, HScaleRate_SE * 10, WScaleRate_SE * 45, HScaleRate_SE * 28);
         [rightBtn setTitle:@"关注" forState:UIControlStateNormal];
         [rightBtn setTitleColor:[UIColor colorNamed:@"NewQAMainVCBtnColor"] forState:UIControlStateNormal];
         rightBtn.titleLabel.alpha = 0.8;

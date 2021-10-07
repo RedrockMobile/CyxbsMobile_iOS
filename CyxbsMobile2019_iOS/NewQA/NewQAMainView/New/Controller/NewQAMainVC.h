@@ -25,6 +25,7 @@
 #import "NewQASelectorView.h"
 #import "PostModel.h"
 #import "NewQARecommenTableView.h"
+#import "NewQAFollowTableView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGPoint printPoint;
 @property (nonatomic, strong) NewQARecommenTableView *recommenTableView;   // 推荐TableView
-@property (nonatomic, strong) NewQAMainTableView *focusTableView;   // 关注TableView
+@property (nonatomic, strong) NewQAFollowTableView *focusTableView;   // 关注TableView
 
 @property (nonatomic, strong) NSMutableArray *recommenArray;   // 推荐列表数据源数组
 @property (nonatomic, strong) NSMutableArray *recommenheightArray;  // 推荐列表高度数组

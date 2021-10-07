@@ -19,11 +19,12 @@
 #import "DynamicDetailMainVC.h"
 #import "TopFollowView.h"
 #import "GroupModel.h"
+#import "YYZTopicGroupVC.h"
 
 #define kItemheight 50
 #define kTopView_Height 200
 
-@interface NewQAMainVC () <UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,PostTableViewCellDelegate,SelfFuncViewProtocol>
+@interface NewQAMainVC () <UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,TopFollowViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,PostTableViewCellDelegate,SelfFuncViewProtocol>
 
 @property (nonatomic, strong) UIView *topBackView;  // 搜索的背景View
 @property (nonatomic, strong) SearchBtn *searchBtn;     // 搜索按钮
@@ -57,23 +58,27 @@
                                              selector:@selector(topFollowViewLoadSuccess)
                                                  name:@"MyFollowGroupDataLoadSuccess" object:nil];
     
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];//获取app版本信息
+    NSString *applocalversion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSLog(@"\n\n\n\n\napp版本: %@\n\n\n\n",applocalversion);
+    
     self.recommenPage = 0;
+    self.focusPage = 0;
     [self setUpModel];
     [self funcPopViewinit];
     self.groupmodel = [[GroupModel alloc] init];
     [self loadMyStarGroupList];
     _recommenArray = [NSMutableArray array];
     _recommenheightArray = [NSMutableArray array];
+    _focusArray = [NSMutableArray array];
+    _focusheightArray = [NSMutableArray array];
     [self setUpTopSearchView];
     [self setupContentView];
     [self setupHeadView];
-    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    _HUDView = [[UIVisualEffectView alloc] initWithEffect:blur];
-    _HUDView.alpha = 0.0f;
-    _HUDView.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.headViewHeight + self.topBackViewH - SLIDERHEIGHT);
-    [self.view addSubview:_HUDView];
+    [self setBackViewWithGesture];
     [self.view bringSubviewToFront:_searchBtn];
     [self recommendTableLoadData];
+    [self focusTableLoadData];
     
 }
 
@@ -226,6 +231,14 @@
     
     
     _recommenTableView = [[NewQARecommenTableView alloc] init];
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_recommenTableView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(12,28)];
+//    //创建 layer
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = _recommenTableView.bounds;
+//    //赋值
+//    maskLayer.path = maskPath.CGPath;
+//    _recommenTableView.layer.mask = maskLayer;
+    _recommenTableView.layer.cornerRadius = 28;
     _recommenTableView.backgroundColor = [UIColor clearColor];
     _recommenTableView.tag = 1;
     _recommenTableView.delegate = self;
@@ -248,7 +261,8 @@
     }];
 
     
-    _focusTableView = [[NewQAMainTableView alloc] init];
+    _focusTableView = [[NewQAFollowTableView alloc] init];
+    _focusTableView.backgroundColor = [UIColor clearColor];
     _focusTableView.tag = 2;
     _focusTableView.delegate = self;
     _focusTableView.dataSource = self;
@@ -260,6 +274,12 @@
         make.width.mas_equalTo(_recommenTableView);
         make.top.bottom.mas_equalTo(_recommenTableView);
     }];
+    _focusTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf focusTableRefreshData];
+    }];
+    _focusTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf focusTableLoadData];
+    }];
     
 }
 
@@ -267,11 +287,8 @@
 - (void)setupHeadView
 {
     _topView = [[TopFollowView alloc]initWithFrame:CGRectMake(0, _topBackViewH, SCREEN_WIDTH, self.headViewHeight)];
+    _topView.delegate = self;
     _topView.backgroundColor = [UIColor clearColor];
-    UIView *v = [[UIView alloc] init];
-    v.frame = CGRectMake(0, 20, 200, 40);
-    v.backgroundColor = [UIColor redColor];
-    [_topView addSubview:v];
     [self.view addSubview:_topView];
     
     NewQASelectorView *titleBarView = [[NewQASelectorView alloc] init];
@@ -288,7 +305,7 @@
         make.left.right.bottom.mas_equalTo(self.view);
         make.top.mas_equalTo(self.view);
     }];
-//    [self.view bringSubviewToFront:_scrollView];
+
     [self.view bringSubviewToFront:_searchBtn];
     self.titleBarView.selectedItemIndex = 0;
 }
@@ -359,11 +376,8 @@
         otherOffsetY = self.headViewHeight;
     }
     CGFloat ratio = MIN(1,MAX(0,(-originY/(self.headViewHeight-self.titleBarView.height - _topBackViewH))));
-    NSLog(@"%f\n",ratio);
     self.topView.frame = CGRectMake(SCREEN_WIDTH * ratio/2, originY + _topBackViewH, SCREEN_WIDTH * (1 - ratio), self.headViewHeight);
-    self.HUDView.frame = CGRectMake(0, originY, SCREEN_WIDTH, self.headViewHeight + self.topBackViewH - SLIDERHEIGHT);
-    self.HUDView.alpha = ratio;
-//    self.titleBarView.frame = CGRectMake(0, originY + _topBackViewH, SCREEN_WIDTH, self.titleBarView.frame.size.height);
+    self.topView.groupsScrollView.alpha = 1-ratio;
     for ( int i = 0; i < 2; i++) {
         if (i != self.titleBarView.selectedItemIndex) {
             UITableView* contentView = self.scrollView.subviews[i];
@@ -467,6 +481,56 @@
     [self recommendTableLoadData];
 }
 
+- (void)focusTableLoadData {
+    self.focusPage += 1;
+    __weak typeof (self) weakSelf = self;
+    [self.postmodel handleDataWithPage:self.focusPage
+                               Success:^(NSArray *arr) {
+        if (weakSelf.focusPage == 1) {
+            [weakSelf.focusArray removeAllObjects];
+            [weakSelf.focusheightArray removeAllObjects];
+            [weakSelf.focusArray addObjectsFromArray:arr];
+            for (NSDictionary *dic in arr) {
+                weakSelf.item = [[PostItem alloc] initWithDic:dic];
+                PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+                cellFrame.item = weakSelf.item;
+                [weakSelf.focusheightArray addObject:cellFrame];
+            }
+//            [PostArchiveTool savePostListWith:self.tableArray];
+        } else {
+            [weakSelf.focusArray addObjectsFromArray:arr];
+            for (NSDictionary *dic in arr) {
+                weakSelf.item = [[PostItem alloc] initWithDic:dic];
+                PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+                [cellFrame setItem:weakSelf.item];
+                [weakSelf.focusheightArray addObject:cellFrame];
+            }
+        }
+        [MainQueue AsyncTask:^{
+            [weakSelf.focusTableView reloadData];
+//            if ([weakSelf.focusArray count] == 0) {
+//                weakSelf.nodataView.hidden = NO;
+//            }
+//            [weakSelf.recommendTableView layoutIfNeeded]; //这句是关键
+            [weakSelf.focusTableView.mj_header endRefreshing];
+            [weakSelf.focusTableView.mj_footer endRefreshing];
+        }];
+    } failure:^(NSError *error) {
+        NSLog(@"请求失败 error:%@",error.description);
+//        if ([weakSelf.focusArray count] == 0) {
+//            weakSelf.nodataView.hidden = NO;
+//        }
+        [weakSelf.focusTableView.mj_header endRefreshing];
+        [weakSelf.focusTableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)focusTableRefreshData {
+    [self.focusTableView.heightArray removeAllObjects];
+    self.focusPage = 0;
+    [self focusTableLoadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -475,8 +539,9 @@
 {
     if (tableView.tag == 1) {
         return _recommenArray.count;
+    } else {
+        return _focusArray.count;
     }
-    return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -503,27 +568,59 @@
 //        [cell layoutSubviews];
 //        [cell layoutIfNeeded];
         return cell;
-    }
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"contentCell"];
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"contentCell"];
+    } else {
+        NSString *identifier = [NSString stringWithFormat:@"postfocuscell"];
+        _item = [[PostItem alloc] initWithDic:self.focusArray[indexPath.row]];
+        PostTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if(cell == nil) {
+            //这里
+            cell = [[PostTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.delegate = self;
+            cell.item = _item;
+            cell.funcBtn.tag = indexPath.row;
+            cell.commendBtn.tag = indexPath.row;
+            cell.shareBtn.tag = indexPath.row;
+            cell.starBtn.tag = indexPath.row;
+            cell.tableTag = [NSNumber numberWithInt:1];
+            cell.tag = indexPath.row;
+        }else if (_item.post_id != cell.item.post_id){
+            [self.focusTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:indexPath.row inSection:0],nil] withRowAnimation:UITableViewRowAnimationNone];
+        }
+        cell.cellFrame = self.focusheightArray[indexPath.row];
+//        [cell layoutSubviews];
+//        [cell layoutIfNeeded];
+        return cell;
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"content - %zd", indexPath.row];
-    cell.contentView.backgroundColor = [UIColor clearColor];
-    cell.backgroundColor = [UIColor clearColor];
-    
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == 1) {
         PostTableViewCellFrame *cellFrame = self.recommenheightArray[indexPath.row];
         return cellFrame.cellHeight;
+    } else {
+        PostTableViewCellFrame *cellFrame = self.focusheightArray[indexPath.row];
+        return cellFrame.cellHeight;
     }
-    return 160;
 
+}
+
+///点击我的关注中的已关注的圈子跳转到具体的圈子里去
+- (void)ClickedGroupBtn:(GroupBtn *)sender {
+    NSString *groupName = sender.groupBtnLabel.text;
+    if (sender.tag == 0) {
+        YYZTopicGroupVC *topVc = [[YYZTopicGroupVC alloc]init];
+        topVc.hidesBottomBarWhenPushed = YES;
+        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+        [self.navigationController pushViewController:topVc animated:YES];
+    }else {
+        YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc]init];
+        detailVC.topicID = [sender.item.topic_id intValue];
+        detailVC.topicIdString = groupName;
+        detailVC.hidesBottomBarWhenPushed = YES;
+        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
 }
 
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）

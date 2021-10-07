@@ -79,8 +79,6 @@
 
 # pragma mark - 关注，举报和屏蔽的多功能按钮
 - (void)ClickedFuncBtn:(PostTableViewCell *)cell{
-    UIWindow* desWindow=self.view.window;
-    CGRect frame = [cell.funcBtn convertRect:cell.funcBtn.bounds toView:desWindow];
     [self showBackViewWithGesture];
     if ([cell.tableTag intValue] == 1) {
         NSIndexPath *indexPath = [self.recommenTableView indexPathForCell:cell];
@@ -89,13 +87,16 @@
             self.selfPopView.deleteBtn.tag = indexPath.row;
             self.selfPopView.postID = self.itemDic[@"post_id"];
             self.selfPopView.layer.cornerRadius = 8;
-//            self.selfPopView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5* 1/3);
+            [self.selfPopView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.view.window.mas_top).mas_offset(SCREEN_HEIGHT * 460/667);
+                make.left.right.bottom.mas_equalTo(self.view.window);
+            }];
+            [self.view.window addSubview:self.selfPopView];
             [self.selfPopView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.mas_equalTo(self.view.mas_bottom);
                 make.left.right.mas_equalTo(self.view);
                 make.height.mas_equalTo(HScaleRate_SE * 198);
             }];
-            [self.view.window addSubview:self.selfPopView];
         } else {
             self.popView.starGroupBtn.tag = indexPath.row;
             self.popView.shieldBtn.tag = indexPath.row;
@@ -107,8 +108,11 @@
                 [self.popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
             }
             self.popView.layer.cornerRadius = 8;
-            self.popView.frame = CGRectMake(frame.origin.x - SCREEN_WIDTH * 0.27, frame.origin.y + 10, SCREEN_WIDTH * 0.3057, SCREEN_WIDTH * 0.3057 * 105/131.5);
             [self.view.window addSubview:self.popView];
+            [self.popView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.height.mas_equalTo(HScaleRate_SE * 198);
+                make.left.right.bottom.mas_equalTo(self.view.window);
+            }];
         }
     } else if ([cell.tableTag intValue] == 2) {
         

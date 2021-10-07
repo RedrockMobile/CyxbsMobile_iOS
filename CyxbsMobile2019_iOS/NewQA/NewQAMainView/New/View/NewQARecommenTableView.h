@@ -11,8 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^RefreshBlock)(NSInteger index);
-
 @interface NewQARecommenTableView : UITableView
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -21,7 +19,6 @@ typedef void(^RefreshBlock)(NSInteger index);
 
 @property (nonatomic, strong) PostItem *item;
 
-@property (nonatomic, copy) RefreshBlock Block;
 
 @end
 

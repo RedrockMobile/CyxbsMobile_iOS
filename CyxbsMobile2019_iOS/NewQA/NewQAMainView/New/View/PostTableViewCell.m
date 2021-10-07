@@ -55,7 +55,7 @@
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textAlignment = NSTextAlignmentLeft;
     _nicknameLabel.font = [UIFont fontWithName:PingFangSCSemibold size: 17];
-    _nicknameLabel.backgroundColor = [UIColor orangeColor];
+    _nicknameLabel.backgroundColor = [UIColor clearColor];
     _nicknameLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
     [self.contentView addSubview:_nicknameLabel];
     
@@ -77,7 +77,7 @@
     _detailLabel = [[NewQAPostDetailLabel alloc] initWithFrame:self.bounds];
     _detailLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
     self.detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:16];
-    self.detailLabel.backgroundColor = [UIColor blueColor];
+    self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
     self.detailLabel.numberOfLines = 5;

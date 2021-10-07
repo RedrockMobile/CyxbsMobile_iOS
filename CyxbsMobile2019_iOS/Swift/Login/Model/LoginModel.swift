@@ -19,8 +19,8 @@ class LoginModel: NSObject {
             "stuNum": stuNum,
             "idNum": idNum
         ]
-        
-        guard let url = URL(string: LOGINAPI) else { return }
+        let LoginURL = BaseURL() as String + "magipoke/token"
+        guard let url = URL(string: LoginURL) else { return }
         
         SwiftyClient.shared.request(url, method: .post, headers: nil, parameters: params) { (response) in
             

@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PostItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NewQAFollowTableView : UIView
+@interface NewQAFollowTableView : UITableView
+
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic, strong) NSMutableArray *heightArray;
+
+@property (nonatomic, strong) PostItem *item;
 
 @end
 
