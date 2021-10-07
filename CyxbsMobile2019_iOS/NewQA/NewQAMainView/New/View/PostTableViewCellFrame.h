@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, readonly) CGRect shareBtnFrame;
 
+@property (nonatomic, assign, readonly) CGRect IdentifyBackViewFrame;
+
 @property (nonatomic, assign, readonly) CGFloat cellHeight;
 
 @property (nonatomic, strong) PostItem *item;

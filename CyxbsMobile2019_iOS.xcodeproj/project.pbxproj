@@ -17,6 +17,10 @@
 		187DF4BD260310DD000BCDE9 /* LYEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4B6260310DD000BCDE9 /* LYEmptyView.m */; };
 		187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4B8260310DD000BCDE9 /* FTEmptyView.m */; };
 		187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4C3260310FA000BCDE9 /* UITextView+WZB.m */; };
+		18911E90270F258A00886028 /* PostH5Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 18911E8F270F258A00886028 /* PostH5Item.m */; };
+		18911E91270F258A00886028 /* PostH5Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 18911E8F270F258A00886028 /* PostH5Item.m */; };
+		18911E94270F29BC00886028 /* PostFocusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18911E93270F29BC00886028 /* PostFocusModel.m */; };
+		18911E95270F29BC00886028 /* PostFocusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18911E93270F29BC00886028 /* PostFocusModel.m */; };
 		1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC8826EA32A3007E871E /* MGDGCD.m */; };
 		1893DC8A26EA32A3007E871E /* MGDGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC8826EA32A3007E871E /* MGDGCD.m */; };
 		1893DC8D26EA32F1007E871E /* MGDQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1893DC8C26EA32F1007E871E /* MGDQueue.m */; };
@@ -824,6 +828,10 @@
 		187DF4B9260310DD000BCDE9 /* UIView+LYExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LYExtension.h"; sourceTree = "<group>"; };
 		187DF4C3260310FA000BCDE9 /* UITextView+WZB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+WZB.m"; sourceTree = "<group>"; };
 		187DF4C4260310FA000BCDE9 /* UITextView+WZB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+WZB.h"; sourceTree = "<group>"; };
+		18911E8E270F258A00886028 /* PostH5Item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostH5Item.h; sourceTree = "<group>"; };
+		18911E8F270F258A00886028 /* PostH5Item.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostH5Item.m; sourceTree = "<group>"; };
+		18911E92270F29BC00886028 /* PostFocusModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostFocusModel.h; sourceTree = "<group>"; };
+		18911E93270F29BC00886028 /* PostFocusModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostFocusModel.m; sourceTree = "<group>"; };
 		1893DC8726EA32A3007E871E /* MGDGCD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDGCD.h; sourceTree = "<group>"; };
 		1893DC8826EA32A3007E871E /* MGDGCD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MGDGCD.m; sourceTree = "<group>"; };
 		1893DC8B26EA32F1007E871E /* MGDQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MGDQueue.h; sourceTree = "<group>"; };
@@ -3285,8 +3293,12 @@
 			children = (
 				18FBAE1026F356BB004CED7D /* PostItem.h */,
 				18FBAE0226F356BB004CED7D /* PostItem.m */,
+				18911E8E270F258A00886028 /* PostH5Item.h */,
+				18911E8F270F258A00886028 /* PostH5Item.m */,
 				18FBAE0E26F356BB004CED7D /* PostModel.h */,
 				18FBAE0526F356BB004CED7D /* PostModel.m */,
+				18911E92270F29BC00886028 /* PostFocusModel.h */,
+				18911E93270F29BC00886028 /* PostFocusModel.m */,
 				18FBAE1126F356BB004CED7D /* GroupItem.h */,
 				18FBAE0326F356BB004CED7D /* GroupItem.m */,
 				18FBAE0B26F356BB004CED7D /* GroupModel.h */,
@@ -6158,6 +6170,7 @@
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				18CDF6B0257F91BD006E8E5C /* SCChartLabel.m in Sources */,
+				18911E90270F258A00886028 /* PostH5Item.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				18CDF6BD257F91BE006E8E5C /* Credits.m in Sources */,
 				18FBAEA726F356BD004CED7D /* NewQAMainTableView.m in Sources */,
@@ -6239,6 +6252,7 @@
 				187DF4BC260310DD000BCDE9 /* UIView+LYExtension.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
+				18911E94270F29BC00886028 /* PostFocusModel.m in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				18CDF682257F91BD006E8E5C /* EmptyClassItem.m in Sources */,
 				18CDF688257F91BD006E8E5C /* EmptyClassContentView.m in Sources */,
@@ -6686,8 +6700,10 @@
 				18FBAE6026F356BC004CED7D /* NewQAMainPageMainView.m in Sources */,
 				18FBAEAE26F356BD004CED7D /* PostArchiveTool.m in Sources */,
 				18FBAE6A26F356BC004CED7D /* PostItem.m in Sources */,
+				18911E91270F258A00886028 /* PostH5Item.m in Sources */,
 				18FBAE8826F356BC004CED7D /* MGDClickCoreLayer.m in Sources */,
 				18FBAE8626F356BC004CED7D /* ShareView.m in Sources */,
+				18911E95270F29BC00886028 /* PostFocusModel.m in Sources */,
 				18FBAE9626F356BD004CED7D /* NewQAHeadrView.m in Sources */,
 				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
 				18FBAE6226F356BC004CED7D /* NewQAMainPageMainController.m in Sources */,

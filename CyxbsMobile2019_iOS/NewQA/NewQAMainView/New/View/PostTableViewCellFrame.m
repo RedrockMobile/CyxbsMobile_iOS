@@ -30,6 +30,8 @@
 
 @property (nonatomic, assign) CGRect shareBtnFrame;
 
+@property (nonatomic, assign) CGRect IdentifyBackViewFrame;
+
 @property (nonatomic, assign) CGFloat cellHeight;
 
 @end
@@ -50,7 +52,13 @@
     CGFloat nicknameLabelFrame_H = SCREEN_WIDTH * 0.1381 * 14.5/43.5;
     CGRect nickName = [item.nick_name boundingRectWithSize:CGSizeMake(MAXFLOAT,nicknameLabelFrame_H) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCSemibold size: 17]} context:nil];
     self.nicknameLabelFrame = CGRectMake(iconImageViewFrame_X + iconImageViewFrame_W + nicknameLabelFrame_X, nicknameLabelFrame_Y, nickName.size.width, nickName.size.height);
-
+    
+    CGFloat identifyBackViewFrame_X = WScaleRate_SE * 7;
+    CGFloat identifyBackViewFrame_Y = SCREEN_WIDTH * 0.0427 + 2;
+    CGFloat identifyBackViewFrame_W = WScaleRate_SE * 71;
+    CGFloat identifyBackViewFrame_H = HScaleRate_SE * 18.86;
+    self.IdentifyBackViewFrame = CGRectMake(iconImageViewFrame_X + iconImageViewFrame_W + nicknameLabelFrame_X + nickName.size.width + identifyBackViewFrame_X, identifyBackViewFrame_Y, identifyBackViewFrame_W, identifyBackViewFrame_H);
+    
     CGFloat timeLabelFrame_X = SCREEN_WIDTH * 0.04;
     CGFloat timeLabelFrame_Y = 9;
     CGFloat timeLabelFrame_W = SCREEN_WIDTH * 0.8;

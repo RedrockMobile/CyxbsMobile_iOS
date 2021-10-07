@@ -20,6 +20,7 @@
 #import "TopFollowView.h"
 #import "GroupModel.h"
 #import "YYZTopicGroupVC.h"
+#import "PostFocusModel.h"
 
 #define kItemheight 50
 #define kTopView_Height 200
@@ -36,6 +37,7 @@
 @property (nonatomic, strong) NewQASelectorView *titleBarView;  // 选择器View
 @property (nonatomic, strong) TopFollowView *topView;
 @property (nonatomic, strong) GroupModel *groupmodel;
+@property (nonatomic, strong) PostFocusModel *postfocusmodel;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UIVisualEffectView *HUDView;
 @property (nonatomic, strong) UIView *nodataView;
@@ -109,6 +111,7 @@
     _starpostmodel = [[StarPostModel alloc] init];
     _deletepostmodel = [[DeletePostModel alloc] init];
     _followgroupmodel = [[FollowGroupModel alloc] init];
+    _postfocusmodel = [[PostFocusModel alloc] init];
 }
 
 - (void)funcPopViewinit {
@@ -140,7 +143,7 @@
         _nodataImageView = [[UIImageView alloc] init];
         _nodataImageView.image = [UIImage imageNamed:@"QATABLENODATA"];
         [_nodataView addSubview:_nodataImageView];
-        [self.recommenTableView addSubview:_nodataView];
+        [self.focusTableView addSubview:_nodataView];
         CGFloat imageW = _nodataImageView.image.size.width;
         CGFloat imageH = _nodataImageView.image.size.height;
         [_nodataImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -457,9 +460,6 @@
         }
         [MainQueue AsyncTask:^{
             [weakSelf.recommenTableView reloadData];
-            if ([weakSelf.recommenArray count] == 0) {
-                weakSelf.nodataView.hidden = NO;
-            }
 //            [weakSelf.recommendTableView layoutIfNeeded]; //这句是关键
             [weakSelf.recommenTableView.mj_header endRefreshing];
             [weakSelf.recommenTableView.mj_footer endRefreshing];
@@ -484,7 +484,7 @@
 - (void)focusTableLoadData {
     self.focusPage += 1;
     __weak typeof (self) weakSelf = self;
-    [self.postmodel handleDataWithPage:self.focusPage
+    [self.postfocusmodel handleFocusDataWithPage:self.focusPage
                                Success:^(NSArray *arr) {
         if (weakSelf.focusPage == 1) {
             [weakSelf.focusArray removeAllObjects];
@@ -508,18 +508,18 @@
         }
         [MainQueue AsyncTask:^{
             [weakSelf.focusTableView reloadData];
-//            if ([weakSelf.focusArray count] == 0) {
-//                weakSelf.nodataView.hidden = NO;
-//            }
+            if ([weakSelf.focusArray count] == 0) {
+                weakSelf.nodataView.hidden = NO;
+            }
 //            [weakSelf.recommendTableView layoutIfNeeded]; //这句是关键
             [weakSelf.focusTableView.mj_header endRefreshing];
             [weakSelf.focusTableView.mj_footer endRefreshing];
         }];
     } failure:^(NSError *error) {
         NSLog(@"请求失败 error:%@",error.description);
-//        if ([weakSelf.focusArray count] == 0) {
-//            weakSelf.nodataView.hidden = NO;
-//        }
+        if ([weakSelf.focusArray count] == 0) {
+            weakSelf.nodataView.hidden = NO;
+        }
         [weakSelf.focusTableView.mj_header endRefreshing];
         [weakSelf.focusTableView.mj_footer endRefreshing];
     }];

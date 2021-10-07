@@ -51,6 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///是否点赞帖子
 @property (nonatomic, strong) NSNumber *is_praised;
 
+///用户身份牌的小图URL
+@property (nonatomic, strong) NSString *identity_pic;
+
 - (instancetype)initWithDic:(NSDictionary *)dict;
 
 

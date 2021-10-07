@@ -59,6 +59,10 @@
     _nicknameLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
     [self.contentView addSubview:_nicknameLabel];
     
+    _IdentifyBackImage = [[UIImageView alloc] init];
+    _IdentifyBackImage.image = [UIImage imageNamed:@"IdentifyLabel"];
+    [self.contentView addSubview:_IdentifyBackImage];
+    
     ///时间
     _timeLabel = [[UILabel alloc] init];
     _timeLabel.textAlignment = NSTextAlignmentLeft;
@@ -113,7 +117,7 @@
     ///点赞
     _starBtn = [[FunctionBtn alloc] init];
     [_starBtn addTarget:self action:@selector(ClickedStar) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_starBtn];
+    [self.contentView addSubview:_starBtn];
     
     MGDClickParams *params = [[MGDClickParams alloc] init];
     params.circleCount = 10;    // 周围外层圈圈个数
@@ -414,6 +418,7 @@
     _cellFrame = cellFrame;
     _iconImageView.frame = cellFrame.iconImageViewFrame;
     _nicknameLabel.frame = cellFrame.nicknameLabelFrame;
+    _IdentifyBackImage.frame = cellFrame.IdentifyBackViewFrame;
     _timeLabel.frame = cellFrame.timeLabelFrame;
     _funcBtn.frame = cellFrame.funcBtnFrame;
     _detailLabel.frame = cellFrame.detailLabelFrame;

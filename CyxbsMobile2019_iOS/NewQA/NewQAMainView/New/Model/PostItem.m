@@ -25,6 +25,7 @@
         self.comment_count = [NSNumber numberWithInt:[dict[@"comment_count"] intValue]];
         self.is_follow_topic = dict[@"is_follow_topic"];
         self.is_praised = dict[@"is_praised"];
+        self.identity_pic = dict[@"identity_pic"];
     }
     return self;
 }
