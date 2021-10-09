@@ -21,7 +21,7 @@
 #import "GroupModel.h"
 #import "YYZTopicGroupVC.h"
 #import "PostFocusModel.h"
-
+#import "SearchBeginVC.h"
 #define kItemheight 50
 #define kTopView_Height 200
 
@@ -209,7 +209,14 @@
         make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 37.5/343);
     }];
     _searchBtn.layer.cornerRadius = SCREEN_WIDTH * 0.9147 * 37.5/343 * 1/2;
+    [_searchBtn addTarget:self action:@selector(jumpSearchVC) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view bringSubviewToFront:_topBackView];
+}
+
+/// 跳转到搜索洁面
+- (void)jumpSearchVC{
+    SearchBeginVC *vc = [[SearchBeginVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)setupContentView
