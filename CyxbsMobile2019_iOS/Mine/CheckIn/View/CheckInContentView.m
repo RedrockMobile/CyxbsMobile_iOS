@@ -55,7 +55,7 @@
         self.backBtn = backBtn;
         
         NSString *yearStr;
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:NSDate.now];
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:[NSDate date]];
         if (components.month > 6) {
             yearStr = [NSString stringWithFormat:@"%ld-%ld",components.year, components.year+1];
         }else {

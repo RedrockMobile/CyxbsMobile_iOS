@@ -6,6 +6,7 @@
 //  Copyright © 2019 Redrock. All rights reserved.
 //
 
+#import "TODOMainViewController.h"  //邮子清单
 #import "DiscoverViewController.h"
 //#import "LoginViewController.h"
 #import "FinderToolViewController.h"
@@ -33,16 +34,12 @@
 #import "VolunteerItem.h"
 #import "QueryViewController.h"
 #import "ArchiveTool.h"
+#import "DiscoverTodoView.h"
+#import "DiscoverTodoSheetView.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 //Tool
 #import "NewQAHud.h"
-
-#define Color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
-#define ColorWhite  [UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define TextColor [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define TextColor [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define TextColorShallow [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#import "TodoSyncTool.h"
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
@@ -50,36 +47,66 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     AlreadyLogin,
 };
 
-@interface DiscoverViewController ()<UIScrollViewDelegate, LQQFinderViewDelegate,UIPickerViewDelegate,UIPickerViewDataSource,ElectricityViewDelegate,VolunteerViewDelegate>
+@interface DiscoverViewController ()<
+    UIScrollViewDelegate,
+    LQQFinderViewDelegate,
+    UIPickerViewDelegate,
+    UIPickerViewDataSource,
+    ElectricityViewDelegate,
+    VolunteerViewDelegate,
+    DiscoverTodoViewDelegate,
+    DiscoverTodoSheetViewDelegate,
+    DiscoverTodoViewDataSource
+>
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
-//View
-@property (nonatomic, weak) UIScrollView * backView;
-@property (nonatomic, weak) UIScrollView *contentView;
-@property(nonatomic, weak) FinderView *finderView;//上方发现页面
-@property (nonatomic, weak) ElectricityView *eleView;//电费相关View
-@property (nonatomic, weak)VolunteerView *volView;//志愿服务View
 
-@property (nonatomic, weak) UIButton * bindingDormitoryContentView;//绑定宿舍页面的contentView，他是一个button，用来保证点击空白处可以取消设置宿舍
-@property (nonatomic, weak)UIView *bindingView;//用来绑定宿舍的View
-@property (nonatomic, weak)UILabel *buildingNumberLabel;//选择宿舍时候的宿舍号label
-@property (nonatomic, weak)UITextField *roomTextField;//填写房间号的框框
-@property (nonatomic, weak)UIView *hideTabbarView;//用来遮挡tabbar的View
-@property (nonatomic, weak)UIView *colorView;//用来补充志愿服务页面下方颜色
-//Model
+@property (nonatomic, weak) UIScrollView *contentView;
+
+/// 上方发现页面
+@property(nonatomic, weak) FinderView *finderView;
+
+/// 电费相关View
+@property (nonatomic, weak) ElectricityView *eleView;
+
+/// 志愿服务View
+@property (nonatomic, weak)VolunteerView *volView;
+
+/// 绑定宿舍页面的contentView，他是一个button，用来保证点击空白处可以取消设置宿舍
+@property (nonatomic, weak) UIButton * bindingDormitoryContentView;
+
+/// 用来绑定宿舍的View
+@property (nonatomic, weak)UIView *bindingView;
+
+/// 选择宿舍时候的宿舍号label
+@property (nonatomic, weak)UILabel *buildingNumberLabel;
+
+/// 填写房间号的框框
+@property (nonatomic, weak)UITextField *roomTextField;
+
+/// 用来遮挡tabbar的View
+@property (nonatomic, weak)UIView *hideTabbarView;
+
+/// 用来补充志愿服务页面下方颜色
+@property (nonatomic, weak)UIView *colorView;
+
+/// Model
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
 @property NSUserDefaults *defaults;
 @property BannerModel *bannerModel;
 @property PickerModel *pickerModel;
-//pickerView
+
+/// pickerView
 @property (nonatomic)NSInteger selectedArrays;
-//Data
+
+/// Data
 @property (nonatomic, assign)int classTabbarHeight;
 @property(nonatomic, assign)int classTabbarCornerRadius;
 
 @property(nonatomic,strong)UIWindow *window;
-
+@property(nonatomic, strong)DiscoverTodoView* todoView;
+@property(nonatomic, strong)TodoSyncTool* todoSyncTool;
 @end
 
 @implementation DiscoverViewController
@@ -131,6 +158,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
     }
+    
 }
 - (void)presentMySchedul{
     ClassScheduleTabBarView *classTabBarView = ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView;
@@ -140,14 +168,21 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.todoSyncTool = [TodoSyncTool share];
+//    [self.todoSyncTool resetDB];
     [self configDefaults];
     [self requestData];
     [self addContentView];
     [self addFinderView];
+    [self addTodoView];
     [self addEleView];
     [self addVolView];
     [self layoutSubviews];
+    [self addNotifications];
     self.view.backgroundColor = self.finderView.backgroundColor;
+}
+
+- (void)addNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"Login_LoginSuceeded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestElectricFeeFailed) name:@"electricFeeRequestFailed" object:nil];//服务器可能有问题，电费信息请求失败
@@ -159,11 +194,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(todoSyncToolDidSync:) name:TodoSyncToolSyncNotification object:nil];
 }
--(void)loginSucceed {
+- (void)loginSucceed {
     [self requestData];
 }
--(void)layoutSubviews {
+- (void)layoutSubviews {
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         if(IS_IPHONEX) {
@@ -174,18 +210,25 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
+
     [self.finderView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
     }];
-    [self.eleView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.todoView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
         make.top.equalTo(self.finderView.mas_bottom).offset(20);
+    }];
+    
+    [self.eleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.todoView.mas_bottom);
         make.width.equalTo(self.contentView);
         make.height.equalTo(@152);
     }];
     [self.volView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.eleView.mas_bottom).offset(-20);
+        make.top.equalTo(self.eleView.mas_bottom);
         make.left.right.equalTo(self.view);
         make.height.equalTo(@152);
         make.bottom.equalTo(self.contentView).offset(-20);
@@ -277,7 +320,7 @@ static int requestCheckinInfo = 0;
     self.contentView = contentView;
     self.contentView.delegate = self;
     if (@available(iOS 11.0, *)) {
-        self.contentView.backgroundColor = Color242_243_248to000000;
+        self.contentView.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000"];
     } else {
         self.contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
@@ -295,12 +338,12 @@ static int requestCheckinInfo = 0;
     [self refreshBannerViewIfNeeded];
 
 }
--(void) refreshBannerViewIfNeeded {
+- (void)refreshBannerViewIfNeeded {
     //更新bannerView
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(UpdateBannerViewUI) name:@"BannerModel_Success" object:nil];
 }
--(void)UpdateBannerViewUI {
+- (void)UpdateBannerViewUI {
     NSMutableArray *urlStrings = [NSMutableArray array];
     NSMutableArray *bannerGoToURL = [NSMutableArray array];
     for(BannerItem *item in self.bannerModel.bannerData.bannerItems) {
@@ -311,7 +354,7 @@ static int requestCheckinInfo = 0;
     self.finderView.bannerURLStrings = urlStrings;
     [self.finderView updateBannerViewIfNeeded];
 }
--(void)addEleView {
+- (void)addEleView {
     ElectricityView *eleView = [[ElectricityView alloc]init];
     self.eleView = eleView;
     eleView.delegate = self;
@@ -329,7 +372,16 @@ static int requestCheckinInfo = 0;
     self.colorView.backgroundColor = self.volView.backgroundColor;
     [self.contentView addSubview:self.colorView];
 }
-
+/// 添加todo的view
+- (void)addTodoView {
+    DiscoverTodoView* todoView = [[DiscoverTodoView alloc] init];
+    [self.contentView addSubview:todoView];
+    self.todoView = todoView;
+    
+    todoView.delegate = self;
+    todoView.dataSource = self;
+    [todoView reloadData];
+}
 - (void)bindingVolunteerButton {
     ///需要在此处判断一下是否已经登陆了志愿者的界面，如果登陆了，则直接跳QueryViewController，如果未登陆的话则跳登陆的viewController
     if (![self.defaults objectForKey:@"volunteer_information"]) {
@@ -353,17 +405,16 @@ static int requestCheckinInfo = 0;
     [bannerModel fetchData];
     self.bannerModel = bannerModel;
 }
+
 - (void)bindingRoomFailed {
-      MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-      [hud setMode:(MBProgressHUDModeText)];
-      hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
-    [UserItem defaultItem].building = NULL;
-    [UserItem defaultItem].room = NULL;
-    
-      [hud hide:YES afterDelay:1.2];
-      return;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setMode:(MBProgressHUDModeText)];
+    hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
+    [UserItem defaultItem].building = nil;
+    [UserItem defaultItem].room = nil;
+    [hud hide:YES afterDelay:1.2];
 }
--(void)requestElectricFeeFailed {
+- (void)requestElectricFeeFailed {
 //    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    [hud setMode:(MBProgressHUDModeText)];
 //    hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
@@ -381,7 +432,6 @@ static int requestCheckinInfo = 0;
     //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }
-
 - (void)updateNewsUI {
     if(self.oneNewsModel.oneNewsItem.dataArray != nil){
         [self.finderView.news setTitle:self.oneNewsModel.oneNewsItem.dataArray.firstObject.title forState:normal];
@@ -390,10 +440,8 @@ static int requestCheckinInfo = 0;
     }
 }
 
+//点击了绑定宿舍房间号
 - (void) bindingBuildingAndRoom {
-//    NSLog(@"点击了绑定宿舍房间号");
-//    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self getPickerViewData];
     //添加灰色背景板
     UIButton * contentView = [[UIButton alloc]initWithFrame:self.view.frame];
@@ -412,7 +460,7 @@ static int requestCheckinInfo = 0;
         hideTabbarView.alpha = 1;
 //        self.tabBarController.tabBar.hidden=YES;
         [self.tabBarController.tabBar addSubview:hideTabbarView];
-        [UIApplication.sharedApplication.keyWindow bringSubviewToFront:hideTabbarView];
+        [[UIApplication.sharedApplication.windows firstObject] bringSubviewToFront:hideTabbarView];
         self.view.backgroundColor = self.finderView.backgroundColor;
     }];
     [contentView addTarget:self action:@selector(cancelSettingDormitory) forControlEvents:UIControlEventTouchUpInside];
@@ -420,7 +468,7 @@ static int requestCheckinInfo = 0;
     UIView *bindingView = [[UIView alloc]init];
     bindingView.layer.cornerRadius = 8;
     if (@available(iOS 11.0, *)) {
-        bindingView.backgroundColor = ColorWhite;
+        bindingView.backgroundColor = [UIColor colorNamed:@"whiteColor"];
     } else {
         bindingView.backgroundColor = UIColor.whiteColor;
     }
@@ -441,12 +489,12 @@ static int requestCheckinInfo = 0;
     }];
     pickerView.delegate = self;
     pickerView.dataSource = self;
-    pickerView.showsSelectionIndicator = YES;
+    
     UILabel * roomNumberLabel = [[UILabel alloc]init];
     roomNumberLabel.font = [UIFont fontWithName:PingFangSCBold size: 24];
     roomNumberLabel.text = @"宿舍号：";
     if (@available(iOS 11.0, *)) {
-        roomNumberLabel.textColor = TextColor;
+        roomNumberLabel.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
     } else {
     }
     [bindingView addSubview:roomNumberLabel];
@@ -480,7 +528,7 @@ static int requestCheckinInfo = 0;
     buildingNumberLabel.text = @"01栋";
 
     if (@available(iOS 11.0, *)) {
-        buildingNumberLabel.textColor = TextColorShallow;
+        buildingNumberLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59"];
     } else {
         // Fallback on earlier versions
     }
@@ -512,14 +560,13 @@ static int requestCheckinInfo = 0;
     }];
     [button addTarget:self action:@selector(bindingDormitory) forControlEvents:UIControlEventTouchUpInside];
 }
--(void)cancelSettingDormitory {
+- (void)cancelSettingDormitory {
 //    self.tabBarController.tabBar.hidden=NO;
     [self.bindingDormitoryContentView removeFromSuperview];
     [self.hideTabbarView removeFromSuperview];
 
 }
-- (UIToolbar *)addToolbar
-{
+- (UIToolbar *)addToolbar {
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 35)];
     toolbar.tintColor = [UIColor blueColor];
 //    toolbar.backgroundColor = [UIColor sy_grayColor];
@@ -528,7 +575,7 @@ static int requestCheckinInfo = 0;
     toolbar.items = @[space, bar];
     return toolbar;
 }
--(void)textFieldDone {
+- (void)textFieldDone {
     [self.view endEditing:YES];
 }
 - (void)bindingDormitory {
@@ -555,17 +602,16 @@ static int requestCheckinInfo = 0;
     [self.hideTabbarView removeFromSuperview];
     [self reloadElectricViewIfNeeded];
 }
--(void)getPickerViewData {
+- (void)getPickerViewData {
     PickerModel *pickerModel = [[PickerModel alloc]init];
     self.pickerModel = pickerModel;
 }
-//MARK: - PickerViewDataSourse
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView
-{
+
+//MARK: - pickerView代理
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView*)pickerView {
     return 2; // 返回2表明该控件只包含2列
 }
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component  {
     if (component == 0) {
         return self.pickerModel.allArray.count;
     }else {
@@ -586,8 +632,6 @@ static int requestCheckinInfo = 0;
         }
     }
 }
-
-
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
        if (component == 0) {
         //如果滑动的是第 0 列, 刷新第 1 列
@@ -607,7 +651,6 @@ static int requestCheckinInfo = 0;
     NSInteger row1 = [pickerView selectedRowInComponent:1];
     self.buildingNumberLabel.text = [self.pickerModel getNumberOfDormitoryWith:self.pickerModel.placeArray[row0] andPlace:self.pickerModel.allArray[row0][row1]];
 }
-
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     if (component == 0) {
         return 100;
@@ -616,8 +659,7 @@ static int requestCheckinInfo = 0;
     }
     
 }
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
     if (component == 0) {
         return 45;
     }else{
@@ -625,17 +667,17 @@ static int requestCheckinInfo = 0;
     }
 }
 
--(void)updateFinderViewUI {
+- (void)updateFinderViewUI {
     [self.finderView remoreAllEnters];
     [self.finderView addSomeEnters];
     [self layoutSubviews];
 }
--(void)reloadElectricViewIfNeeded {
+- (void)reloadElectricViewIfNeeded {
 //    NSLog(@"%@",[UserItem defaultItem].room);
 //    NSLog(@"%@",[UserItem defaultItem].building);
     [self reloadViewController:self];
 }
--(void)reloadVolViewIdNeeded {
+- (void)reloadVolViewIdNeeded {
     [self reloadViewController:self];
 }
 - (void)reloadViewController:(UIViewController *)viewController {
@@ -653,7 +695,68 @@ static int requestCheckinInfo = 0;
     [viewController viewDidAppear:YES];
     [viewController viewWillLayoutSubviews];
 }
-//MARK: FinderView代理
+
+//MARK:- DiscoverTodoView的代理方法：
+- (void)addBtnClicked {
+    //隐藏底部课表的tabBar
+    [UIView animateWithDuration:0.5 animations:^{
+        self.tabBarController.tabBar.alpha = 0;
+    }];
+    
+    
+    DiscoverTodoSheetView* sheetView = [[DiscoverTodoSheetView alloc] init];
+    [self.view addSubview:sheetView];
+    
+    sheetView.delegate = self;
+    //调用show方法让它弹出来
+    [sheetView show];
+}
+- (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
+    return [self.todoSyncTool getTodoForDiscoverMainPage];
+}
+- (void)todoDidAlterWithModel:(TodoDataModel*)model {
+    [self.todoSyncTool alterTodoWithModel:model needRecord:YES];
+}
+
+//MARK: - DiscoverTodoSheetView的代理方法：
+- (void)sheetViewSaveBtnClicked:(TodoDataModel *)dataModel {
+    //显示底部课表的tabBar
+    [UIView animateWithDuration:0.5 animations:^{
+        self.tabBarController.tabBar.alpha = 1;
+    }];
+    
+    [self.todoSyncTool saveTodoWithModel:dataModel needRecord:YES];
+    [self.todoSyncTool logTodoData];
+    [self.todoSyncTool logRecordDataWithTableName:@"addTodoIDTable"];
+    [self.todoSyncTool logRecordDataWithTableName:@"alterTodoIDTable"];
+    [self.todoSyncTool logRecordDataWithTableName:@"deleteTodoIDTable"];
+}
+- (void)sheetViewCancelBtnClicked {
+    //显示底部课表的tabBar
+    [UIView animateWithDuration:0.5 animations:^{
+        self.tabBarController.tabBar.alpha = 1;
+    }];
+}
+
+
+//MARK: - 监听TodoSyncTool的通知
+- (void)todoSyncToolDidSync:(NSNotification*)noti {
+    NSString* state = noti.object;
+    if ([state isEqualToString:TodoSyncToolSyncNotificationSuccess]) {
+        [NewQAHud showHudWith:@" 和服务器数据同步成功 " AddView:self.view];
+    }else if([state isEqualToString:TodoSyncToolSyncNotificationFailure]){
+        [NewQAHud showHudWith:@" 网络错误，待接入网络时，再和服务器同步数据 " AddView:self.view];
+    }else {
+        [NewQAHud showHudWith:@" 产生了冲突 " AddView:self.view];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.todoView reloadData];
+    });
+        
+}
+
+
+//MARK: - FinderView代理
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
     CheckInViewController * vc = [[CheckInViewController alloc]init];
@@ -707,41 +810,47 @@ static int requestCheckinInfo = 0;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchNoClassAppointment {
+- (void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
     UserItem *item = [[UserItem alloc] init];
     WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":item.realName,@"stuNum":item.stuNum}] mutableCopy]];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchMyTest {
+- (void)touchMyTest {
     NSLog(@"点击了我的考试");
     TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchSchoolCalender {
+- (void)touchSchoolCalender {
     NSLog(@"点击了校历");
     CalendarViewController *vc = [[CalendarViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchMap {
+- (void)touchMap {
     NSLog(@"点击了重邮地图");
     CQUPTMapViewController * vc = [[CQUPTMapViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
--(void)touchEmptyClass {
+- (void)touchEmptyClass {
     NSLog(@"点击了空教室");
     EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (void)touchToDOList{
+    NSLog(@"点击了邮子清单");
+    TODOMainViewController *vc = [[TODOMainViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 //MARK: - 监听键盘事件
  //当键盘出现或改变时调用
-- (void)keyboardWillShow:(NSNotification *)aNotification
-{
+- (void)keyboardWillShow:(NSNotification *)aNotification {
     //获取键盘的高度
     NSDictionary *userInfo = [aNotification userInfo];
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -755,7 +864,8 @@ static int requestCheckinInfo = 0;
 - (void)touchElectrictyView {
     [self bindingBuildingAndRoom];
 }
--(void)touchVolunteerView {
+//MARK: - 志愿服务view的代理
+- (void)touchVolunteerView {
     [self bindingVolunteerButton];
 }
 @end

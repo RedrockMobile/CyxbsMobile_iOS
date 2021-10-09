@@ -47,22 +47,18 @@
     
     for (NSString *text in self.dataArray) {
         DLTimeSelectedButton *button = [[DLTimeSelectedButton alloc]init];
+        [self addSubview:button];
+        [self.buttonArray addObject:button];
         
         button.delegate = self;
-        
         [button setTitle:text forState:UIControlStateNormal];
-        
-        [button addTarget:self.btnClickedDelegate action:@selector(touchHistoryButton:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self addSubview:button];
-        
-        [self.buttonArray addObject:button];
+        [button addTarget:self.delegate action:@selector(touchHistoryButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     
 }
 
 - (void)historyBtnAddConstraints{
-    if(self.buttonArray.count==0)return;;
+    if(self.buttonArray.count==0)return;
     __block int k = 0;
     [self.buttonArray[0] mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.historyLabel.mas_bottom).offset(LINESPLIT);
@@ -95,7 +91,7 @@
     
     DLTimeSelectedButton *btn = [[DLTimeSelectedButton alloc]init];
     [btn setTitle:string forState:UIControlStateNormal];
-    [btn addTarget:self.btnClickedDelegate action:@selector(touchHistoryButton:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self.delegate action:@selector(touchHistoryButton:) forControlEvents:UIControlEventTouchUpInside];
     btn.delegate = self;
     
     for (int i=0; i<self.buttonArray.count; i++) {
@@ -126,7 +122,7 @@
     self.clearHistoryItemBtn.enabled = YES;
 }
 
-- (void)deleteButtonWithBtn:(UIButton *)btn{
+- (void)deleteButtonWithBtn:(DLTimeSelectedButton *)btn{
     [self.buttonArray removeObject:btn];
     [self.dataArray removeObject:btn.titleLabel.text];
     [self remove:btn.titleLabel.text fromDataArrayWithUserDefaultKey:self.UserDefaultKey];

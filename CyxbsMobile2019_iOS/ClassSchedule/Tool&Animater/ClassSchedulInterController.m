@@ -31,23 +31,26 @@
     [super startInteractiveTransition:transitionContext];
 }
 
+//这个方法里面的所有魔法数据的来源：根据屏幕信息计算 + 手动调教修改(使用SE2调教)
 - (void)updateAnimation:(UIPanGestureRecognizer *)sender {
-    CGFloat percent = [self gesturePercent:sender];
-    
+    CGFloat rate = [sender translationInView:self.transitionContext.containerView].y/(3.296*SCREEN_HEIGHT);
+    rate = fabs(rate);
+    if (rate > 0.1) {
+        rate *= (rate/0.1);
+    }
+//    CCLog(@"%.3f",rate);
     switch (sender.state) {
-        case UIGestureRecognizerStateBegan:
-            break;
-            
         case UIGestureRecognizerStateChanged:
             //更新转场动画进度
-            [self updateInteractiveTransition:percent / 4];
+            [self updateInteractiveTransition:rate];
+            if (rate > 0.5) {
+                [self finishInteractiveTransition];
+            }
             break;
-            
         case UIGestureRecognizerStateEnded:
-            if (percent > 0.1) {
+            if (rate > 0.025) {
                 //完成转场动画
                 [self finishInteractiveTransition];
-                
             } else {
                 //取消转场
                 [self cancelInteractiveTransition];
@@ -59,24 +62,6 @@
             [self cancelInteractiveTransition];
             break;
     }
-}
-
-- (CGFloat)gesturePercent:(UIPanGestureRecognizer *)sender {
-    //获取手势再横坐标上、纵坐标上拖动的像素
-    CGPoint translation = [sender translationInView:self.transitionContext.containerView];
-    
-    // 如果是下拉
-    if ([[self.transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey] isMemberOfClass:[UINavigationController class]]) {
-        CGFloat percent = translation.y / 667;
-        if (percent > 0) {
-            return percent;
-        } else {
-            return 0;
-        }
-    } else {
-        return fabs(translation.y / 667);
-    }
-    
 }
 
 @end

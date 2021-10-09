@@ -118,8 +118,6 @@ static float viewHeight = 38.0f; //按钮视图高度
 //    }
 }
 
-
-
 #pragma mark- getter
 - (UIButton *)emojiBtn {
     if (!_emojiBtn) {
@@ -150,7 +148,7 @@ static float viewHeight = 38.0f; //按钮视图高度
 - (UITextView *)textView {
     if (!_textView) {
         _textView = [[UITextView alloc] initWithFrame:CGRectZero];
-        _textView.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:15];
+        _textView.font = [UIFont fontWithName:PingFangSCMedium size:15];
         _textView.delegate = self;
 //        _textView.returnKeyType = UIReturnKeySend;
         _textView.layer.cornerRadius = 4;

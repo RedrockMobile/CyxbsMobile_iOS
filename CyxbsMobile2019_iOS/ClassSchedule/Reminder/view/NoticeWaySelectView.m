@@ -7,7 +7,10 @@
 //
 
 #import "NoticeWaySelectView.h"
-@interface NoticeWaySelectView()<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface NoticeWaySelectView()<
+    UIPickerViewDelegate,
+    UIPickerViewDataSource
+>
 
 /// 弹窗
 @property (nonatomic, strong)UIView *backView;

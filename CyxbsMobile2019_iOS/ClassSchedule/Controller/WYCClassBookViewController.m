@@ -20,7 +20,10 @@
 //某节课详情弹窗的高度
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
-@interface WYCClassBookViewController ()<UIScrollViewDelegate,TopBarScrollViewDelegate>
+@interface WYCClassBookViewController ()<
+    UIScrollViewDelegate,
+    TopBarScrollViewDelegate
+>
 /**课表顶部的小拖拽条*/
 @property (nonatomic, weak) UIView *dragHintView;
 //当前显示的课表对应的下标
@@ -31,7 +34,7 @@
 @property (nonatomic, strong) DateModle *dateModel;
 
 
-//拖动手势，下拉弹回课表
+/// 拖动手势，下拉弹回课表
 @property (nonatomic, strong)UIPanGestureRecognizer *PGR;
 
 @property (nonatomic, assign)BOOL isReloading;

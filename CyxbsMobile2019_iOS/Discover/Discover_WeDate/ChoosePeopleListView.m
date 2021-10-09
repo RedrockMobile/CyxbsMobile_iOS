@@ -8,7 +8,12 @@
 
 #import "ChoosePeopleListView.h"
 
-@interface ChoosePeopleListView()<UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateAdd,UIScrollViewDelegate>
+@interface ChoosePeopleListView() <
+    UITableViewDelegate,
+    UITableViewDataSource,
+    PeopleListTableViewCellDelegateAdd,
+    UIScrollViewDelegate
+>
 /**有圆角的那个view，里面有一个tableView和取消按钮*/
 @property (nonatomic, strong)UIView *peopleListView;
 /**self.peopleListView的父控件，实现peopleListView的滚动*/
@@ -22,21 +27,22 @@
 ];
 */
 @property (nonatomic, strong)NSArray *infoDictArray;
+
+@property (nonatomic, assign, readonly)CGFloat tableViewCellHeight;
 @end
 @implementation ChoosePeopleListView
 - (instancetype)initWithInfoDictArray:(NSArray*)infoDictArray{
     self = [super init];
     if(self){
-//        self.frame = [UIScreen mainScreen].bounds;
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"ChoosePeopleListViewBackColor"];
         } else {
             self.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.14];
         }
-        
-        self.infoDictArray =infoDictArray;
+        self.infoDictArray = infoDictArray;
         [self addScrollView];
         [self addPeopleListView];
+        _tableViewCellHeight = 0.07*SCREEN_HEIGHT;
         self.alpha = 0;
     }
     return self;
@@ -49,14 +55,11 @@
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     [self addSubview:scrollView];
     self.scrollView = scrollView;
-    scrollView.delegate = self;
-    scrollView.backgroundColor = UIColor.clearColor;
     
-    scrollView.contentSize = CGSizeMake(0, MAIN_SCREEN_H*1.0845);
+    scrollView.delegate = self;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.bounces = NO;
-    scrollView.backgroundColor = UIColor.clearColor;
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
@@ -78,13 +81,20 @@
     } else {
         backgroundView.backgroundColor = [UIColor whiteColor];
     }
-    backgroundView.layer.cornerRadius = 16;
+    
+    CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, MAIN_SCREEN_H*0.55);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight) cornerRadii:CGSizeMake(16, 0)];
+    
+    CAShapeLayer *mask = [[CAShapeLayer alloc] init];
+    mask.path = path.CGPath;
+    mask.frame = rect;
+    backgroundView.layer.mask = mask;
     
     [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self);
-        make.right.equalTo(self);
-        make.top.equalTo(self.scrollView.mas_bottom).offset(MAIN_SCREEN_H*0.55);
-        make.height.mas_equalTo(MAIN_SCREEN_H*0.6);
+        make.left.right.bottom.equalTo(self.scrollView);
+        make.top.equalTo(self.scrollView).offset(MAIN_SCREEN_H*0.55);
+        make.width.mas_equalTo(SCREEN_WIDTH);
+        make.height.mas_equalTo(MAIN_SCREEN_H*0.55);
     }];
     
     //_______________________添加取消按钮_________________________________
@@ -122,7 +132,6 @@
     tableView.showsHorizontalScrollIndicator = NO;
     tableView.showsVerticalScrollIndicator = NO;
     tableView.allowsSelection = NO;
-    tableView.backgroundColor = [UIColor clearColor];
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backgroundView);
@@ -130,6 +139,8 @@
         make.bottom.equalTo(backgroundView);
         make.top.equalTo(btn).offset(MAIN_SCREEN_H*0.04);
     }];
+    CCLog(@"tttt = %@", tableView);
+    [self.scrollView layoutIfNeeded];
 }
 
 
@@ -151,41 +162,36 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *infoDict = self.infoDictArray[indexPath.row];
-    PeopleListTableViewCell *cell = [[PeopleListTableViewCell alloc] initWithInfoDict:@{
-        @"name":infoDict[@"name"],
-        @"stuNum":infoDict[@"stuNum"]
-    } andRightBtnType:(PeopleListTableViewCellRightBtnTypeAdd)];
-    
+    PeopleListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WeDateVCPeopleListTableViewCellAdd"];
+    if (cell==nil) {
+        cell = [[PeopleListTableViewCell alloc] initWithRightBtnType:(PeopleListTableViewCellRightBtnTypeAdd) ID:@"WeDateVCPeopleListTableViewCellAdd"];
+    }
+    [cell updataWithDict:self.infoDictArray[indexPath.row]];
     cell.delegateAdd = self;
     return cell;
 }
-
-- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView{
-    if([scrollView isEqual:self.scrollView]){
-        return self.peopleListView;
-    }else{
-        return nil;
-    }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return _tableViewCellHeight;
 }
 
 //cell的add按钮点击后调用
-- (void)PeopleListTableViewCellAddBtnClickInfoDict:(NSDictionary *)infoDict{
-    [self.delegate PeopleListTableViewCellAddBtnClickInfoDict:infoDict];
+- (void)peopleListTableViewCellRightBtnClickedInfoDict:(NSDictionary *)infoDict{
+    [self.delegate peopleListTableViewCellRightBtnClickedInfoDict:infoDict];
     [self cancelBtnClicked];
 }
 //下面两个方法实现当弹窗被拖移后的回弹或者消失
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if([scrollView isEqual:self.scrollView]){
-        if(decelerate==YES)return;
-        if(scrollView.contentOffset.y>self.peopleListView.frame.size.height*0.6){
-            [UIView animateWithDuration:0.3 animations:^{
-                scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.5345);
+        if(decelerate==YES) return;
+        if(scrollView.contentOffset.y > self.peopleListView.frame.size.height*0.7){
+            //t: (0, 0.3)
+            CGFloat t = (1 - scrollView.contentOffset.y/self.peopleListView.frame.size.height);
+            [UIView animateWithDuration:t animations:^{
+                scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.55);
             }];
-
         }else{
             [UIView animateWithDuration:0.4 animations:^{
-                self.scrollView.contentOffset = CGPointMake(0, 0);
+                scrollView.contentOffset = CGPointMake(0, 0);
                 self.alpha = 0;
             } completion:^(BOOL finished) {
                 [self removeFromSuperview];
@@ -193,22 +199,22 @@
         }
     }
 }
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if([scrollView isEqual:self.scrollView]){
         if(scrollView.tracking==YES)return;
-        float height = self.peopleListView.frame.size.height;
-        if(scrollView.contentOffset.y<0.9*height){
-            
+        
+        if(scrollView.contentOffset.y > self.peopleListView.frame.size.height*0.7){
+            CGFloat t = (1 - scrollView.contentOffset.y/self.peopleListView.frame.size.height);
+            [UIView animateWithDuration:t animations:^{
+                scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.55);
+            }];
+        }else{
             [UIView animateWithDuration:0.4 animations:^{
-                self.scrollView.contentOffset = CGPointMake(0, 0);
+                scrollView.contentOffset = CGPointMake(0, 0);
                 self.alpha = 0;
             } completion:^(BOOL finished) {
                 [self removeFromSuperview];
-            }];
-        }else{
-            [UIView animateWithDuration:0.3 animations:^{
-                self.scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.5345);
-                self.alpha = 1;
             }];
         }
     }
@@ -219,11 +225,11 @@
 //调用这个方法会让这个类弹出来
 - (void)showPeopleListView{
     [UIView animateWithDuration:0.7 animations:^{
-        self.scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.5345);
+        self.scrollView.contentOffset = CGPointMake(0, MAIN_SCREEN_H*0.55);
         self.alpha = 1;
     }];
-    
 }
+
 //用这个方法实现点击空白处弹窗就自弹回去再消失
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self cancelBtnClicked];

@@ -33,19 +33,32 @@
             make.width.mas_equalTo(0);
             make.height.mas_equalTo(0);
         }];
-        
-        UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(ballMove:)];
-        [self addGestureRecognizer:PGR];
+        [self addGR];
         [self addMsgLabel];
     }
     return self;
 }
 
+- (void)addGR {
+    UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(ballMove:)];
+    [self addGestureRecognizer:PGR];
+}
+
 - (void)ballMove:(UIPanGestureRecognizer*)PGR {
-    CGPoint p = [PGR locationInView: self.superview];
+    CGPoint p = [PGR translationInView:self.superview];
     if(PGR.state==UIGestureRecognizerStateChanged){
-        self.center = p;
+        self.transform = CGAffineTransformMakeTranslation(p.x, p.y);
+    }else if (PGR.state==UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.transform = CGAffineTransformIdentity;
+        }];
     }
+    /*
+     CGPoint p = [PGR locationInView: self.superview];
+     if(PGR.state==UIGestureRecognizerStateChanged){
+         self.center = p;
+     }
+     */
 }
 
 - (void)setMsgCount:(NSString*)msgCount{

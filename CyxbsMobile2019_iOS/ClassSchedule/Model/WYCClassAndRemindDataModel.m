@@ -28,7 +28,7 @@
             //清除旧的课表数据，等过几版后，去掉这个代码
             [self clear];
         }
-        self.afhttpSeMan = [AFHTTPSessionManager manager];
+        self.afhttpSeMan = [HttpClient defaultClient].httpSessionManager;
     }
     return self;
 }
@@ -68,6 +68,7 @@
 /// 通过网络请求获取个人课表数据用这个方法，如果请求的数据和本地不一样且请求数据非空那么刷新课表
 /// @param stuNum 学号
 - (void)getPersonalClassBookArrayFromNet:(NSString *)stuNum{
+//    NSDictionary *paramDict = @{@"stu_num":stuNum};
     NSDictionary *paramDict = @{@"stu_num":stuNum};
     
     [self.afhttpSeMan POST:kebiaoAPI parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
@@ -131,7 +132,12 @@
 /// 查老师课表用这个方法来网络请求
 /// @param parameters 参数结构： @{ @"teaName": name, @"tea": teaNum }
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
+<<<<<<< HEAD
 
+=======
+//    TEAkebiaoAPI
+//    @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
+>>>>>>> d79786bb6bbb21bd701253af7e2a5594fb7b3332
     [self.afhttpSeMan POST:TEAkebiaoAPI parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
         //拿到课表数据
@@ -336,7 +342,7 @@
 
 //储存当前周数，计算开学日期
 - (void)storeDate:(NSString*)week {
-    NSDate *now = NSDate.now;
+    NSDate *now = [NSDate date];
     
     NSDateComponents *nowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:now];
 //    unit

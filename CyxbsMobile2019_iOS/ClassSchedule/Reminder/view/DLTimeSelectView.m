@@ -11,7 +11,10 @@
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
 
-@interface DLTimeSelectView()<UIPickerViewDataSource,UIPickerViewDelegate>
+@interface DLTimeSelectView()<
+    UIPickerViewDataSource,
+    UIPickerViewDelegate
+>
 
 @property(nonatomic,strong)UIView *backViewOfPickerView;
 

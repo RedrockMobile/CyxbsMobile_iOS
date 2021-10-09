@@ -19,16 +19,14 @@
 
 @implementation PeopleListTableViewCell
 
-- (instancetype)initWithInfoDict:(NSDictionary*)infoDict andRightBtnType:(PeopleListTableViewCellRightBtnType)type{
-    self = [super init];
+- (instancetype)initWithRightBtnType:(PeopleListTableViewCellRightBtnType)type ID:(NSString*)str {
+    self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:str];
     if(self){
-        self.infoDict = infoDict;
+        
         [self addNameLabel];
         
         [self addStuNumLabel];
         
-        self.contentView.backgroundColor = [UIColor clearColor];
-        self.backgroundColor = [UIColor clearColor];
         if(type==PeopleListTableViewCellRightBtnTypeAdd){
             [self addAddBtn];
         }else{
@@ -38,13 +36,18 @@
     return self;
 }
 
+- (void)updataWithDict:(NSDictionary*)infoDict {
+    self.infoDict = infoDict;
+    self.nameLabel.text = infoDict[@"name"];
+    self.stuNumLabel.text = infoDict[@"stuNum"];
+}
+
 //MARK: -初始化子控件的方法：
 //添加显示姓名的大标题
 - (void)addNameLabel{
     UILabel *label = [[UILabel alloc] init];
     [self.contentView addSubview:label];
     self.nameLabel = label;
-    label.text =self.infoDict[@"name"];
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     } else {
@@ -65,7 +68,6 @@
     UILabel *label = [[UILabel alloc] init];
     [self.contentView addSubview:label];
     self.stuNumLabel = label;
-    label.text =self.infoDict[@"stuNum"];
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     } else {
@@ -121,7 +123,7 @@
 
 //点击add按钮后调用
 - (void)addBtnClicked{
-    [self.delegateAdd PeopleListTableViewCellAddBtnClickInfoDict:self.infoDict];
+    [self.delegateAdd peopleListTableViewCellRightBtnClickedInfoDict:self.infoDict];
 }
 
 @end

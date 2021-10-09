@@ -16,7 +16,7 @@
 #import "GPA.h"
 #import "GPAItem.h"
 #import "IdsBindingView.h"
-#define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define ColorWhite  [UIColor colorNamed:@"248_249_252&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color_WhiteTo222222 [UIColor colorNamed:@"Color_WhiteTo222222" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]

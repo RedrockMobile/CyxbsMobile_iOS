@@ -27,6 +27,8 @@
 @property (nonatomic, strong)UIButton *enquiryBtn;
 /**已添加的人的信息*/
 @property (nonatomic, strong)NSMutableArray *infoDictArray;
+
+@property (nonatomic, assign, readonly)CGFloat tableViewCellHeight;
 @end
 
 @implementation WeDateViewController
@@ -47,14 +49,12 @@
     [self addPeoleAddedList];
     
     [self addEnquiryBtn];
-    /**调试用，可以在最开始就已经添加了两个人
-     self.infoDictArray = [@[@{@"stuNum":@"2019211000",@"name":@"刘"},@{@"stuNum":@"2019211001",@"name":@"范"}] mutableCopy];
-    */
 }
 - (instancetype)initWithInfoDictArray:(NSMutableArray*)infoDictArray{
     self = [super init];
     if(self){
         self.infoDictArray = infoDictArray;
+        _tableViewCellHeight = 0.07*SCREEN_HEIGHT;
     }
     return self;
 }
@@ -179,11 +179,6 @@
     textField.inputAccessoryView = toolBar;
 }
 
-//点击键盘右上角的完成按钮后调用
-- (void)doneClicked{
-    [self.view endEditing:YES];
-    [self search];
-}
 
 /**添加显示已经被添加的人的tableView*/
 - (void)addPeoleAddedList{
@@ -263,7 +258,7 @@
         listView.delegate = self;
         [self.view addSubview:listView];
         [listView showPeopleListView];
-        
+        CCLog(@"currentThread = %@",NSThread.currentThread);
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
         hud.labelText = @"加载失败";
         [hud hide:YES afterDelay:1];
@@ -275,7 +270,6 @@
 }
 
 //点击紫色的那个查询后调用
-
 - (void)enquiry{
     if(self.infoDictArray.count==0){
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -284,33 +278,37 @@
         [hud hide:YES afterDelay:1];
         return;
     }else{
-//        hud.labelText = @"加载中";
         WYCClassBookViewController *vc = [[WYCClassBookViewController alloc] initWithType:ScheduleTypeWeDate andInfo:self.infoDictArray];
         [self presentViewController:vc animated:YES completion:nil];
-        /*
-        WYCClassAndRemindDataModel *model = [[WYCClassAndRemindDataModel alloc] init];
-        model.delegate = self;
-        [model getClassBookArrayFromNetWithInfoDictArr:self.infoDictArray];
-        [hud hide:YES afterDelay:0.3];
-         */
     }
 }
 
+//点击键盘右上角的完成按钮后调用
+- (void)doneClicked{
+    [self.view endEditing:YES];
+    [self search];
+}
 //MARK: - 需要实现的代理方法：
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.infoDictArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *infoDict = self.infoDictArray[indexPath.row];
-    
-    PeopleListTableViewCell *cell = [[PeopleListTableViewCell alloc] initWithInfoDict:infoDict andRightBtnType:(PeopleListTableViewCellRightBtnTypeDelete)];
+    PeopleListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WeDateVCPeopleListTableViewCellDelete"];
+    if (cell==nil) {
+        cell = [[PeopleListTableViewCell alloc] initWithRightBtnType:(PeopleListTableViewCellRightBtnTypeDelete) ID:@"WeDateVCPeopleListTableViewCellDelete"];
+    }
+    [cell updataWithDict:self.infoDictArray[indexPath.row]];
     cell.delegateDelete = self;
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return _tableViewCellHeight;
+}
+
 //代理方法，点击cell的addBtn时调用，参数infoDict里面是对应那行的数据@{@"name":@"张树洞",@"stuNum":@"20"}
-- (void)PeopleListTableViewCellAddBtnClickInfoDict:(NSDictionary *)infoDict{
+- (void)peopleListTableViewCellRightBtnClickedInfoDict:(NSDictionary *)infoDict{
     if(self.infoDictArray.count>5){
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [hud setMode:(MBProgressHUDModeText)];
@@ -318,19 +316,18 @@
         [hud hide:YES afterDelay:1];
         return;
     }else{
-        //检验是否重复添加的标志
+        //检验是否重复添加
         int mark = 0;
         for (NSDictionary *dict in self.infoDictArray) {
             if([dict[@"stuNum"] isEqualToString:infoDict[@"stuNum"]]){
                 mark = 1;
                 MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
                 [hud setMode:(MBProgressHUDModeText)];
-                hud.labelText = @"请勿重复添加";
+                hud.labelText = @"重复添加了哟～";
                 [hud hide:YES afterDelay:1];
                 break;
             }
         }
-        
         if(mark==0){
             [self.infoDictArray addObject:infoDict];
             [self.peoleAddedList reloadData];

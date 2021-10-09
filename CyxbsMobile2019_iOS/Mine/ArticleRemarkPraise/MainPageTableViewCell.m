@@ -18,7 +18,7 @@
 
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"PraiseTableViewCellID"];
+    self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = UIColor.clearColor;

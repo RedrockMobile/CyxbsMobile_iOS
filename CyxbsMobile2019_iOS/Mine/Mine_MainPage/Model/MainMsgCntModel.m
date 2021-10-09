@@ -89,7 +89,7 @@ typedef enum : NSUInteger {
 /// 获取一天前的时间戳
 - (NSString*)getTime7DayAgo {
     //86400正好是一天的秒数
-    return [NSString stringWithFormat:@"%.0f", [NSDate.now timeIntervalSince1970]-86400];
+    return [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]-86400];
 }
 
 - (void)setUncheckedCommentCnt:(NSString *)uncheckedCommentCnt {

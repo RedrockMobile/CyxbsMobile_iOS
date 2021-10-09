@@ -153,6 +153,7 @@
     }
 }
 
+
 #pragma mark - getter
 
 - (UIView *)topBarView {
