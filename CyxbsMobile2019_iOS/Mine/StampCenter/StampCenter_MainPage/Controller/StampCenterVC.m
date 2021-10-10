@@ -296,14 +296,14 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //====================================================横向
     if (scrollView.tag == 123) {
-        
-        NSLog(@"%f",_collectionCorrectHeaderY);
-        
+    
         //判断如果两边高度如果不相等
         if (_tableCorrectHeaderY != _collectionCorrectHeaderY) {
-
+            
+            //往左划
             //以Collection为主
             if (scrollView.contentOffset.x < SCREEN_WIDTH*0.5) {
+                //判断小邮票view是否要出现
                 if (_collectionCorrectHeaderY >= Bar_H-75) {
                     [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                         self->_stampCountView.x = SCREEN_WIDTH;
@@ -313,6 +313,7 @@
                         self->_stampCountView.x = self.stampCountView_X;
                     } completion:nil];
                 }
+                //对应的位置
                 [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                     self.topView.y = self.collectionCorrectHeaderY;
                     CGFloat f = Bar_H - self.collectionCorrectHeaderY;
@@ -322,8 +323,10 @@
                 } completion:nil];
             }
             
+            //往右划
             //以Table为主
             if (scrollView.contentOffset.x >= SCREEN_WIDTH*0.5) {
+                //判断小邮票view是否要出现
                 if (_tableCorrectHeaderY >= Bar_H-75) {
                     [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                         self->_stampCountView.x = SCREEN_WIDTH;
@@ -333,6 +336,7 @@
                         self->_stampCountView.x = self.stampCountView_X;
                     } completion:nil];
                 }
+                //对应的位置
                 [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                     self.topView.y = self.tableCorrectHeaderY;
                     CGFloat f = self->_tableCorrectHeaderY - Bar_H + 215;
@@ -340,11 +344,9 @@
                     self.detailBtn.transform = CGAffineTransformMakeScale( ((f)/215),  ((f)/215));
                     self.topView.bannerImage.alpha = (f)/215;
                 } completion:nil];
-                
-           
-            
             }
         }
+        
         //滑到任务界面时，小圆点消失，并将日期写入NSUserdefualt
         if (scrollView.contentOffset.x == SCREEN_WIDTH) {
             NSDate *date = [NSDate date];
@@ -355,17 +357,18 @@
             [defaults setObject:str forKey:@"NowDate"];
             self.topView.point.hidden = YES;
         }
+        
         //滑动条
         CGFloat x = self.topView.stampStoreLbl.x+3 + (scrollView.contentOffset.x * ((self.topView.stampTaskLbl.x-self.topView.stampStoreLbl.x)/SCREEN_WIDTH));
         self.topView.switchbar.x = x;
         self.topView.swithPoint.x = x+63;
     }
+    
     //====================================================CollectionView
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
         CGFloat f = Bar_H - self.collectionCorrectHeaderY;
         //当未滑动时
         if (scrollView.contentOffset.y <= 0) {
-
            _collectionCorrectHeaderY = Bar_H;
             [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self->_stampCountView.x = SCREEN_WIDTH;
@@ -374,37 +377,27 @@
                 self.detailBtn.transform = CGAffineTransformMakeScale(1, 1);
                 self.topView.bannerImage.alpha = 1;
                 self.topView.bannerImage.y = 28;
-            
         }
-        //当正在滑动时
+        //当正在滑动时 （不出现邮票）
         if (scrollView.contentOffset.y > 0 && scrollView.contentOffset.y < 75) {
-            
             _collectionCorrectHeaderY = -scrollView.contentOffset.y+Bar_H;
             [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self->_stampCountView.x = SCREEN_WIDTH;
             } completion:nil];
-              
-           
             self.topView.bannerImage.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
             self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
             self.topView.bannerImage.alpha = (125 - f)/125;
-
         }
-        
+        //当正在滑动时 （出现邮票）
         if (scrollView.contentOffset.y >= 75 && scrollView.contentOffset.y < 138) {
-            
             _collectionCorrectHeaderY = -scrollView.contentOffset.y+Bar_H;
             [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self->_stampCountView.x = self.stampCountView_X;
             } completion:nil];
-            
             self.topView.bannerImage.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
             self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
             self.topView.bannerImage.alpha = (125 - f)/125;
-
         }
-        
-        
         //到顶了
         if (scrollView.contentOffset.y >= 138) {
             self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.1,0.1);
@@ -426,7 +419,7 @@
             self.topView.bannerImage.y = 28;
 
         }
-        //正在滑动
+        //正在滑动 (不出现邮票)
         if (scrollView.contentOffset.y > -215 && scrollView.contentOffset.y < -140) {
             _tableCorrectHeaderY = Bar_H-(215+scrollView.contentOffset.y);
             
@@ -438,15 +431,12 @@
             self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
             self.topView.bannerImage.alpha = (125 - f)/125;
         }
-        
-        
+        //正在滑动 (出现邮票)
         if (scrollView.contentOffset.y > -140 && scrollView.contentOffset.y < -77) {
             _tableCorrectHeaderY = Bar_H-(215+scrollView.contentOffset.y);
-            
             [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self->_stampCountView.x = self.stampCountView_X;
             } completion:nil];
-            
             self.topView.bannerImage.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
             self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
             self.topView.bannerImage.alpha = (125 - f)/125;
