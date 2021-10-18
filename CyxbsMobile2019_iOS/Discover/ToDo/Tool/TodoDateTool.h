@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TodoDateTool : NSObject
 
-/// 时间戳指向时间点起，根据model的重复提醒相关的数据，
+/// 从timeStamp指向时间点起，根据model的重复提醒相关的数据，
 /// 往未来寻找下一次提醒的时间，不考虑设置提醒界面的那一次提醒。
 /// 当 模式为不重复模式时返回-1
 /// 当 timeStamp< 0时返回 timeStamp

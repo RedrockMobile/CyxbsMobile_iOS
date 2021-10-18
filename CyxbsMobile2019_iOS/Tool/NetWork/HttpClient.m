@@ -35,7 +35,7 @@
         
         AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
         [responseSerializer setRemovesKeysWithNullValues:YES];
-        [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",@"application/x-www-form-urlencoded", nil]];
+        responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",@"application/x-www-form-urlencoded", nil];
         [self.httpSessionManager setResponseSerializer:responseSerializer];
         [self.httpRequestOperationManager setResponseSerializer:responseSerializer];
         
@@ -83,12 +83,19 @@
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    // 请求需要json
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    
     NSString *token = [UserItem defaultItem].token;
     if (token) {
         [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }
-    // 请求需要json
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
+//    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+//    [responseSerializer setRemovesKeysWithNullValues:YES];
+    responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",@"application/x-www-form-urlencoded", nil];
+    [manager setResponseSerializer:responseSerializer];
+    
     switch (method) {
         case HttpRequestGet:
             [manager GET:url parameters:parameters success:success failure:failure];

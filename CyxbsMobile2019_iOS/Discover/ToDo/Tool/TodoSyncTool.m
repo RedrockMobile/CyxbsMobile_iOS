@@ -11,6 +11,7 @@
 #import "TodoSyncTool.h"
 #import <AFNetworkReachabilityManager.h>
 #import "TodoDateTool.h"
+#import <sqlite3.h>
 
 //同步完成后的方式的通知名，通知的object有下面3种，分别代表成功、失败、冲突
 NSNotificationName const TodoSyncToolSyncNotification = @"TodoSyncToolSyncNotification";
@@ -63,16 +64,20 @@ static TodoSyncTool* _instance;
     if (self.netWorkStatus!=AFNetworkReachabilityStatusReachableViaWWAN
         &&self.netWorkStatus!=AFNetworkReachabilityStatusReachableViaWiFi) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
+        CCLog(@"netWorkError");
         return;
     }
+    
     //获取上次同步时间
     [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        CCLog(@"%@",responseObject);
+        CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
             return;
         }
         long syncTime = [responseObject[@"data"][@"sync_time"] longValue];
+        CCLog(@"%ld, %ld", syncTime, self.lastSyncTimeStamp);
+        
         if (syncTime!=self.lastSyncTimeStamp) {
             //时间不相等，代表需要下载数据
             if (self.needSynchronize) {
@@ -88,22 +93,31 @@ static TodoSyncTool* _instance;
                 }
             }
         }else if (self.needSynchronize) {
+            
             if (syncTime==0) {
+                CCLog(@"firstPush");
                 //服务器没有数据，进行首次推送
                 [self firstPush];
+                
             }else {
+                CCLog(@"Push");
                 //需要同步，把离线时的增删该数据推送上去
                 [self pushModifiedData];
             }
+        }else {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationSuccess];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        CCLog(@"%@",error);
+        CCLog(@"error::%@",error);
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
     }];
 }
-
+//√
 - (void)fistDownload {
+    
     [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
             return;
@@ -121,12 +135,15 @@ static TodoSyncTool* _instance;
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationSuccess];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
+        CCLog(@"error::%@",error);
     }];
 }
 
 //调用的前提是没有冲突
 - (void)downloadDataAndMerge {
+    
     [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
             return;
@@ -150,8 +167,10 @@ static TodoSyncTool* _instance;
         }
         self.lastSyncTimeStamp = [dataDitc[@"sync_time"] longValue];
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationSuccess];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
+        CCLog(@"error::%@",error);
     }];
 }
 
@@ -159,10 +178,23 @@ static TodoSyncTool* _instance;
 - (void)firstPush {
     NSDictionary* paramDict = @{
         @"data":[self getAddAndAlterDataToPush],
-        @"sync_time":@"0",
-        @"first_push":@"1"
+        @"sync_time":@(0),
+        @"first_push":@(1)
     };
-    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    AFHTTPSessionManager *man = [AFHTTPSessionManager manager];
+    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+    man.requestSerializer = requestSerializer;
+    NSString *token = [UserItem defaultItem].token;
+    if (token) {
+        [requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
+    }
+    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+    man.responseSerializer = responseSerializer;
+    
+    [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        CCLog(@"%@", responseObject);
+        
         NSString* state = responseObject[@"info"];
         if ([state isEqualToString:@"success"]) {
             self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
@@ -173,9 +205,23 @@ static TodoSyncTool* _instance;
             //"data conflict, and does not indicate to override"
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationConflict];
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
+        
+        CCLog(@"error::%@",error);
     }];
+    
+}
+
+- (void)logMsgWithError:(NSError*)error {
+    NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+    NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData: errorData options:kNilOptions error:nil];
+    CCLog(@"%@, %@", serializedData, error);
+    /*
+     NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"] ;
+     NSString *errorStr = [[ NSString alloc ] initWithData:data encoding:NSUTF8StringEncoding];
+         CCLog(@"%@, %@", errorStr, error);
+     */
 }
 
 /// 推送新增和修改的数据
@@ -186,81 +232,128 @@ static TodoSyncTool* _instance;
     //使用信号量来化异步为同步
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     
-    //记录网络请求成功的个数
+    //记录网络请求状态的标记的个数
     __block int mark = 0;
-    
+    CCLog(@"%d", [FMDatabase isSQLiteThreadSafe]);
     dispatch_async(que, ^{
+        NSString *token = [UserItem defaultItem].token;
         NSDictionary* paramDict;
-        paramDict = @{
-            @"data":[self getAddAndAlterDataToPush],
-            @"sync_time":@(self.lastSyncTimeStamp),
-        };
-        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSString* state = responseObject[@"info"];
-            if ([state isEqualToString:@"success"]) {
-                self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
-                [self cleanRecordForTable:@"addTodoIDTable"];
-                [self cleanRecordForTable:@"alterTodoIDTable"];
-                mark |= 0b1;
-            }else if ([state hasPrefix:@"data"]){
-                mark |= 0b100;
-                //"data conflict, and does not indicate to override"
-            }else if ([state hasPrefix:@"the"]){
-                //"the sync_time does not exist"
-                mark |= 0b1000;
-            }else if([state hasPrefix:@"unknown"]) {
-                //"unknown error"
-                mark |= 0b10000;
+        NSArray *todoDataArr = [self getAddAndAlterDataToPush];
+        if (todoDataArr.count!=0) {
+            CCLog(@"1start");
+            paramDict = @{
+                @"data":todoDataArr,
+                @"sync_time":@(self.lastSyncTimeStamp),
+            };
+            
+            AFHTTPSessionManager *man = [AFHTTPSessionManager manager];
+            AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+            man.requestSerializer = requestSerializer;
+            if (token) {
+                [requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
             }
-            dispatch_semaphore_signal(sema);
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            dispatch_semaphore_signal(sema);
-        }];
-        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-        
-        paramDict = @{
-            @"del_todo_array": [self getDeleteDataToPush],
-            @"sync_time": @(self.lastSyncTimeStamp),
-            @"force": @1
-        };
-        [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestDelete parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSString* state = responseObject[@"info"];
-            if ([state isEqualToString:@"success"]) {
-                self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
-                [self cleanRecordForTable:@"deleteTodoIDTable"];
-                mark |= 0b10;
-            }else if ([state hasPrefix:@"data"]){
-                //"data conflict, and does not indicate to override"
-                mark |= 0b100;
-            }else if ([state hasPrefix:@"the"]){
-                //"the sync_time does not exist"
-                mark |= 0b1000;
-            }else if ([state hasPrefix:@"unknown"]) {
-                //"unknown error"
-                mark |= 0b10000;
-            }
-            dispatch_semaphore_signal(sema);
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            dispatch_semaphore_signal(sema);
-        }];
-        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-    });
-        
-    dispatch_barrier_async(que, ^{
-        if (mark==0b11) {
-            //成功
-            self.isModified = NO;
-            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationSuccess];
-        }else if (mark==(mark|0b100)) {
-            //冲突
-            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationConflict];
-        }else if (mark==(mark|0b1000)){
-            //服务器没有数据
-            CCLog(@"服务器还没有同步时间，请使用firstPush方法");
-            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
+            AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+            man.responseSerializer = responseSerializer;
+            
+            [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                CCLog(@"resp::%@",responseObject);
+                NSString* state = responseObject[@"info"];
+                if ([state isEqualToString:@"success"]) {
+                    self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
+                    [self cleanRecordForTable:@"addTodoIDTable"];
+                    [self cleanRecordForTable:@"alterTodoIDTable"];
+                    mark |= 0b1;
+                }else if ([state hasPrefix:@"data"]){
+                    mark |= 0b100;
+                    //"data conflict, and does not indicate to override"
+                }else if ([state hasPrefix:@"the"]){
+                    //"the sync_time does not exist"
+                    mark |= 0b1000;
+                }else if([state hasPrefix:@"unknown"]) {
+                    //"unknown error"
+                    mark |= 0b10000;
+                }
+                dispatch_semaphore_signal(sema);
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                dispatch_semaphore_signal(sema);
+                CCLog(@"error::%@",error);
+            }];
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         }else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
+            mark |= 0b1;
         }
+        
+        NSArray * todoDeleteIDArr = [self getDeleteDataToPush];
+        if (todoDeleteIDArr.count!=0) {
+            CCLog(@"2start");
+            paramDict = @{
+                @"del_todo_array": todoDeleteIDArr,
+                @"sync_time": @(self.lastSyncTimeStamp),
+//                @"force": @1
+            };
+            CCLog(@"%@", paramDict);
+            AFHTTPSessionManager *man = [AFHTTPSessionManager manager];
+            AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+            if (token) {
+                [requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
+            }
+            //在网上搜索得知：AFN的DELETE请求会把参数直接拼接到URL后面，解决方法是执行下面这句代码，
+            //因为源码中有一句判定代码，决定是否会把参数直接拼接到URL后面，下面这句代码就是修改了那句
+            //判断代码的判定条件，副作用未知。
+            requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@""]];
+//            AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+            AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+            [man setRequestSerializer:requestSerializer];
+            [man setResponseSerializer:responseSerializer];
+            
+            
+//            [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success
+            [man DELETE:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+                CCLog(@"resp::%@",responseObject);
+                NSString* state = responseObject[@"info"];
+                if ([state isEqualToString:@"success"]) {
+                    self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
+                    [self cleanRecordForTable:@"deleteTodoIDTable"];
+                    mark |= 0b10;
+                }else if ([state hasPrefix:@"data"]){
+                    //"data conflict, and does not indicate to override"
+                    mark |= 0b100;
+                }else if ([state hasPrefix:@"the"]){
+                    //"the sync_time does not exist"
+                    mark |= 0b1000;
+                }else if ([state hasPrefix:@"unknown"]) {
+                    //"unknown error"
+                    mark |= 0b10000;
+                }
+                dispatch_semaphore_signal(sema);
+            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                dispatch_semaphore_signal(sema);
+                CCLog(@"error::%@",error);
+            }];
+            dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        }else {
+            mark |= 0b10;
+        }
+//        CCLog(@"todoDeleteIDArr = %@\n\n\ntodoDataArr = %@\n", todoDeleteIDArr, todoDataArr);
+    });
+    
+    dispatch_barrier_async(que, ^{
+        dispatch_async_on_main_queue(^{
+            if (mark==0b11) {
+                //成功
+                self.isModified = NO;
+                [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationSuccess];
+            }else if (mark==(mark|0b100)) {
+                //冲突
+                [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationConflict];
+            }else if (mark==(mark|0b1000)){
+                //服务器没有数据
+                CCLog(@"服务器还没有同步时间，请使用firstPush方法");
+                [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
+            }else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:TodoSyncToolSyncNotificationFailure];
+            }
+        });
     });
 }
 
@@ -390,6 +483,7 @@ static TodoSyncTool* _instance;
     if (model.overdueTime==0) {
         [model resetOverdueTime];
     }
+    
     NSString* code;
     code = OSTRING(
                    INSERT INTO todoTable (todo_id, title, detail, is_done, overdueTime, lastOverdueTime, last_modify_time)
@@ -408,6 +502,7 @@ static TodoSyncTool* _instance;
     //记录修改
     if (is) {
         [self recordAddWithTodoID:model.todoIDStr];
+        
         self.isModified = YES;
         [self syncData];
     }
@@ -416,6 +511,16 @@ static TodoSyncTool* _instance;
 /// 更新(修改已有的)事项数据，由于用户的操作而调用时is填YES，内部合并数据时is填NO
 - (void)alterTodoWithModel:(TodoDataModel*)model needRecord:(BOOL)is {
     NSString* code;
+    
+    code = OSTRING(
+                   SELECT * FROM TodoTable
+                       WHERE todo_id = ?
+                   );
+    FMResultSet* set = [self.db executeQuery:code withArgumentsInArray:@[model.todoIDStr]];
+    while ([set next]) {
+        [TodoDateTool removeAllNotiInModel:[self resultSetToDataModel:set]];
+    }
+    
     code = OSTRING(
                       UPDATE remindModeTable
                           SET repeat_mode = ? <
@@ -442,21 +547,13 @@ static TodoSyncTool* _instance;
     code = [code stringByReplacingOccurrencesOfString:@"<" withString:@","];
     [self.db executeUpdate:code withArgumentsInArray:@[model.titleStr, model.detailStr, @(model.isDone), @(model.overdueTime), @(model.lastOverdueTime), @(model.lastModifyTime), model.todoIDStr]];
     
-    code = OSTRING(
-                   SELECT * FROM TodoTable
-                       WHERE todo_id = ?
-                   );
-    FMResultSet* set = [self.db executeQuery:code withArgumentsInArray:@[model.todoIDStr]];
-    if ([set next]) {
-        //移除model的全部通知
-        [TodoDateTool removeAllNotiInModel:[self resultSetToDataModel:set]];
-    }
     //重新添加通知
     [TodoDateTool addNotiWithModel:model];
     
     //记录修改
     if (is) {
         [self recordAlterWithTodoID:model.todoIDStr];
+        
         self.isModified = YES;
         [self syncData];
     }
@@ -492,6 +589,7 @@ static TodoSyncTool* _instance;
     //记录修改
     if (is) {
         [self recordDeleteWithTodoID:todoIDStr];
+        
         self.isModified = YES;
         [self syncData];
     }
@@ -540,6 +638,8 @@ static TodoSyncTool* _instance;
 //MARK: +++++++++++++++++++++登录相关的逻辑代码++++++++++++++++++++++++++++
 /// 需要在登录成功后调用，
 - (void)logInSuccess {
+    [self initDataBase];
+    [self syncData];
     dispatch_queue_t que = dispatch_queue_create("登录成功后添加todo通知使用", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(que, ^{
         FMResultSet* resultSet = [self getAllTodoResultSet];
@@ -751,14 +851,16 @@ static inline int ForeignWeekToChinaWeek(int week) {
 }
 
 /// 获取被删除的事项ID
-- (NSArray<NSString*>*)getDeleteDataToPush {
+- (NSArray<NSNumber*>*)getDeleteDataToPush {
     NSString* code = OSTRING(
                              SELECT * FROM deleteTodoIDTable
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
-    NSMutableArray<NSString*>* arr = [NSMutableArray arrayWithCapacity:5];
+    NSMutableArray<NSNumber*>* arr = [NSMutableArray arrayWithCapacity:5];
     while ([resultSet next]) {
-        [arr addObject:[resultSet stringForColumn:@"todo_id"]];
+        id t = @([resultSet intForColumn:@"todo_id"]);
+        CCLog(@"%@", [t class]);
+        [arr addObject:t];
     }
     return arr;
 }
@@ -837,16 +939,11 @@ static inline int ForeignWeekToChinaWeek(int week) {
     return _instance;
 }
 
-/// 初始化数据库，如果数据库以存在，那么什么事都不会做
+/// 初始化数据库，如果数据库已经存在，那么什么事都不会做
 - (void)initDataBase {
-    NSString* stuNum = [UserDefaultTool getStuNum];
+    NSString* stuNum = [UserItem defaultItem].stuNum;
     if ([stuNum isEqualToString:@""]||stuNum==nil) {
-#ifdef DEBUG
-        stuNum = @"test";
-        CCLog(@"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n学号为空，todo数据库将建立在临时路径\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-#else
         return;
-#endif
     }
     
     //创建目录

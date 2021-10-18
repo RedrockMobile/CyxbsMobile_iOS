@@ -27,48 +27,73 @@
     }
     return self;
 }
+//+ (NSDictionary*)mj_replacedKeyFromPropertyName {
+//    return @{
+//        @"todoIDStr":@"todo_id",
+//    };
+//}
 /*
-    {
-        "todo_id": 1,
-        "title": "这个是todo的标题",
-        "remind_mode": {
-            "repeat_mode": 0,
-            "date": 0,
-            "week": 0,
-            "day": 0,
-            "time":@"12:39"
-        },
-        "detail": "这里是todo的detail",
-        "is_done": 0
-    }
+ {
+     "todo_id": 1,
+     "title": "内卷",
+     "remind_mode": {
+         "repeat_mode": 0,
+         "notify_datetime":"",
+         "date": [],
+         "week": [],
+         "day": [],
+     },
+     "detail": "全栈永远滴神",
+     "last_modify_time": 1561561561,
+     "is_done": 0
+ }
  */
 - (void)setDataWithDict:(NSDictionary*)dict {
     self.todoIDStr = dict[@"todo_id"];
     self.titleStr = dict[@"title"];
     NSDictionary* remind_mode = dict[@"remind_mode"];
     self.repeatMode = [remind_mode[@"repeat_mode"] longValue];
-    self.weekArr = remind_mode[@"week"];
-    self.dayArr = remind_mode[@"day"];
-    self.dateArr = remind_mode[@"date"];
+    self.lastModifyTime = [dict[@"last_modify_time"] longValue];
     self.timeStr = remind_mode[@"notify_datetime"];
     self.detailStr = dict[@"detail"];
     _isDone = [dict[@"is_done"] boolValue];
+    
+    self.weekArr = remind_mode[@"week"];
+    self.dayArr = remind_mode[@"day"];
+    NSMutableArray *dateArr = [[NSMutableArray alloc] init];
+    NSArray *tempArr;
+    for (NSString *dateStr in remind_mode[@"date"]) {
+        tempArr = [dateStr componentsSeparatedByString:@"."];
+        [dateArr addObject:@{
+            TodoDataModelKeyMonth:@([[tempArr firstObject] intValue]),
+            TodoDataModelKeyDay:@([[tempArr lastObject] intValue])
+        }];
+    }
+    self.dateArr = dateArr;
 }
 
 - (NSDictionary*)getDataDictToPush {
+    NSMutableArray *dateArr = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in self.dateArr) {
+        [dateArr addObject:[NSString stringWithFormat:@"%02d.%02d", [dict[TodoDataModelKeyMonth] intValue], [dict[TodoDataModelKeyDay] intValue]]];
+    }
+    NSMutableArray *dayArr = [[NSMutableArray alloc] init];
+    for (NSString *dayStr in self.dayArr) {
+        [dayArr addObject:@(dayStr.intValue)];
+    }
     return @{
-        @"todo_id": self.todoIDStr,
+        @"todo_id": @(self.todoIDStr.longValue),
         @"title": self.titleStr,
         @"remind_mode": @{
-            @"repeat_mode": @(self.repeatMode),
-            @"date": self.dateArr,
+            @"repeat_mode": @((int)self.repeatMode),
+            @"date": dateArr,
             @"week": [self foreignWeekToChinaWeek:self.weekArr],
-            @"day": self.dayArr,
+            @"day": dayArr,
             @"notify_datetime": self.timeStr
         },
         @"detail": self.detailStr,
         @"last_modify_time":@(self.lastModifyTime),
-        @"is_done": @(self.isDone)
+        @"is_done": @((int)self.isDone)
     };
 }
 //从[1, 2, ... 7]转化为[2, 3, ... 1]
@@ -82,7 +107,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
 - (NSArray*)foreignWeekToChinaWeek:(NSArray<NSString*>*) arr {
     NSMutableArray* resultArr = [NSMutableArray arrayWithCapacity:4];
     for (NSString* weekStr in arr) {
-        [resultArr addObject:[NSString stringWithFormat:@"%d",ForeignWeekToChinaWeek(weekStr.intValue)]];
+        [resultArr addObject:@(ForeignWeekToChinaWeek(weekStr.intValue))];
     }
     return resultArr;
 }
@@ -261,17 +286,19 @@ static inline int ForeignWeekToChinaWeek(int week) {
     return _cellHeight;
 }
 /*
-    {
-        "todo_id": 1,
-        "title": "这个是todo的标题",
-        "remind_mode": {
-            "repeat_mode": 0,
-            "date": ["02.06", "03.05"],
-            "week": [1,2,3,4],
-            "day": [1,2,3]
-        },
-        "detail": "这里是todo的detail",
-        "is_done": 0
-    }
+ {
+     "todo_id": 1,
+     "title": "内卷",
+     "remind_mode": {
+         "repeat_mode": 0,
+         "notify_datetime":"",
+         "date": [],
+         "week": [],
+         "day": [],
+     },
+     "detail": "全栈永远滴神",
+     "last_modify_time": 1561561561,
+     "is_done": 0
+ }
  */
 @end
