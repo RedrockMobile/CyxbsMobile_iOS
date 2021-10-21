@@ -69,7 +69,7 @@
 - (void)setCellModel:(FeedBackModel *)cellModel {
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.title;
-    self.subtitleLabel.text = getTimeStrWithDateFormat(cellModel.CreatedAt, @"yyyy-MM-dd'T'HH:mm:ss'+08:00'", @"yyyy/HH/dd HH:mm");
+    self.subtitleLabel.text = getTimeStrWithDateFormat(cellModel.CreatedAt, @"yyyy-MM-dd'T'HH:mm:ss'+08:00'", @"yyyy/MM/dd HH:mm");
     self.rightImgView.image = [UIImage imageNamed:cellModel.replied ? @"标签-已回复" : @"标签-未回复"];
     
     if (cellModel.replied == NO) {

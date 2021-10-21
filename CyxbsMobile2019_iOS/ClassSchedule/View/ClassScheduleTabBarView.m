@@ -124,21 +124,10 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initMySchedul)
             name:@"Login_LoginSuceeded" object:nil];
         
-<<<<<<< HEAD
-//        UserItem *item = [UserItem defaultItem];
-        //如果真实姓名非空，那么已登录
-
-//        if(item.realName!=nil&&![item.realName isEqualToString:@""]){
-//            [self initMySchedul];
-//        }
-        if([UserDefaultTool getStuNum] != nil && [UserDefaultTool getIdNum] != nil && ![[UserDefaultTool getStuNum]isEqualToString:@""] && ![[UserDefaultTool getIdNum]isEqualToString:@""]){
-
-=======
         NSString* stuNum = [UserDefaultTool getStuNum];
         
         //如果真实姓名非空，那么已登录
         if(stuNum!=nil&&![stuNum isEqualToString:@""]){
->>>>>>> d79786bb6bbb21bd701253af7e2a5594fb7b3332
             [self initMySchedul];
         }
     }

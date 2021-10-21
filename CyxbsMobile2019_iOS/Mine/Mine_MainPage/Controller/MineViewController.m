@@ -299,7 +299,6 @@
     
 }
 
-<<<<<<< HEAD
 // 点击意见与反馈
 - (void)selectedFeedBack {
 
@@ -313,18 +312,6 @@
 //    [feedBackGroupAllert addAction:certainAction];
 //
 //    [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
-=======
-/// 点击意见反馈后调用
-- (void)selectedFeedBack {
-    //UIPasteboard相关文章
-    //https://www.jianshu.com/p/52153c9fca99
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    pasteboard.string = @"570919844";
-    
-    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
->>>>>>> d79786bb6bbb21bd701253af7e2a5594fb7b3332
     
 //    HistoricalFeedBackViewController * vc = [[HistoricalFeedBackViewController alloc] init];
 //    vc.hidesBottomBarWhenPushed = YES;

@@ -5,7 +5,6 @@
 //  Created by 方昱恒 on 2020/10/5.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
-
 import UIKit
 import SwiftyJSON
 
@@ -19,7 +18,7 @@ class LoginModel: NSObject {
             "stuNum": stuNum,
             "idNum": idNum
         ]
-
+        
         let LoginURL = BaseURL() as String + "magipoke/token"
         guard let url = URL(string:LoginURL) else { return }
         
