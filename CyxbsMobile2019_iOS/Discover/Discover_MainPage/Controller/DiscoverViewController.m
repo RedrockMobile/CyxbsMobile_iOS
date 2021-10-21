@@ -138,8 +138,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.navigationController.navigationBar.hidden = YES;
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
+        CCLog(@"needLogIn, %lud", self.loginStatus);
     } else {
         [self RequestCheckinInfo];
+        CCLog(@"LogIned, %lud", self.loginStatus);
     }
      self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
@@ -726,10 +728,13 @@ static int requestCheckinInfo = 0;
     }];
     
     [self.todoSyncTool saveTodoWithModel:dataModel needRecord:YES];
+<<<<<<< HEAD
     [self.todoSyncTool logTodoData];
     [self.todoSyncTool logRecordDataWithTableName:@"addTodoIDTable"];
     [self.todoSyncTool logRecordDataWithTableName:@"alterTodoIDTable"];
     [self.todoSyncTool logRecordDataWithTableName:@"deleteTodoIDTable"];
+=======
+>>>>>>> b9cd69d87a47310dcc9e8ba739c96abf0112a71b
 }
 - (void)sheetViewCancelBtnClicked {
     //显示底部课表的tabBar

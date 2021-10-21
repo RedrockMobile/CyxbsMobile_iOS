@@ -146,7 +146,11 @@
                 components.minute = minute;
                 UNCalendarNotificationTrigger* trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
                 [triggerArr addObject:trigger];
+<<<<<<< HEAD
                 //不难推导出month*31 + day可以唯一标识一年中的某一天
+=======
+                //可以推导出month*31 + day可以唯一标识一年中的某一天
+>>>>>>> b9cd69d87a47310dcc9e8ba739c96abf0112a71b
                 [notiIDArr addObject:[NSString stringWithFormat:@"%@ + YEAR + %ld", model.todoIDStr, components.month*31 + components.day]];
             }
         }
@@ -197,7 +201,11 @@
 }
 
 
+<<<<<<< HEAD
 /// 时间戳指向时间点起，根据model的重复提醒相关的数据，
+=======
+/// 从timeStamp指向时间点起，根据model的重复提醒相关的数据，
+>>>>>>> b9cd69d87a47310dcc9e8ba739c96abf0112a71b
 /// 往未来寻找下一次提醒的时间，不考虑设置提醒界面的那一次提醒。
 /// 当且仅当模式为不重复模式时返回-1
 /// @param timeStamp 指向某一个时间点的时间戳

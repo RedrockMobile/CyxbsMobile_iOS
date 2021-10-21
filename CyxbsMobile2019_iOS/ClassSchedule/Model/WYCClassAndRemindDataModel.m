@@ -132,6 +132,11 @@
 /// 查老师课表用这个方法来网络请求
 /// @param parameters 参数结构： @{ @"teaName": name, @"tea": teaNum }
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
+<<<<<<< HEAD
+=======
+//    TEAkebiaoAPI
+//    @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
+>>>>>>> b9cd69d87a47310dcc9e8ba739c96abf0112a71b
     [self.afhttpSeMan POST:TEAkebiaoAPI parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
         //拿到课表数据

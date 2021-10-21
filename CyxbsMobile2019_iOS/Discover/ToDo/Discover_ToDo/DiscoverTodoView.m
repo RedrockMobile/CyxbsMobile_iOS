@@ -179,6 +179,15 @@
 /// 加号按钮点击后调用
 - (void)addBtnClicked {
     [self.delegate addBtnClicked];
+<<<<<<< HEAD
+=======
+    TodoSyncTool *tool = [TodoSyncTool share];
+    [tool logTodoData];
+    [tool logRecordDataWithTableName:@"addTodoIDTable"];
+    [tool logRecordDataWithTableName:@"alterTodoIDTable"];
+    [tool logRecordDataWithTableName:@"deleteTodoIDTable"];
+    [tool syncData];
+>>>>>>> b9cd69d87a47310dcc9e8ba739c96abf0112a71b
 }
 
 - (void)layoutSubviews {

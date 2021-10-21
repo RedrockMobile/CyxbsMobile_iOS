@@ -59,7 +59,11 @@
     datePicker.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CHT"];
     
     //最少十分钟后
+<<<<<<< HEAD
     NSDate *date = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+=======
+    NSDate *date = [NSDate dateWithTimeInterval:60 sinceDate:[NSDate date]];
+>>>>>>> b9cd69d87a47310dcc9e8ba739c96abf0112a71b
     [datePicker setDate:date];
     [datePicker setMinimumDate:date];
     
@@ -117,7 +121,11 @@
     components.year = year+1;
     maxDate = [NSDate dateWithTimeInterval:-1 sinceDate:[[NSCalendar currentCalendar] dateFromComponents:components]];
     if ([[NSCalendar currentCalendar] component:NSCalendarUnitYear fromDate:[NSDate date]]==year) {
+<<<<<<< HEAD
         minDate = [NSDate dateWithTimeInterval:300 sinceDate:[NSDate date]];
+=======
+        minDate = [NSDate dateWithTimeInterval:60 sinceDate:[NSDate date]];
+>>>>>>> b9cd69d87a47310dcc9e8ba739c96abf0112a71b
     }else {
         NSDateComponents *components = [[NSDateComponents alloc] init];
         components.year = year;

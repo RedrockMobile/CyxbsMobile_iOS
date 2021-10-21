@@ -130,6 +130,7 @@ NS_ASSUME_NONNULL_END
 /*
  {
      "todo_id": 1,
+<<<<<<< HEAD
      "title": "这个是todo的标题",
      "remind_mode": {
          "repeat_mode": 0,
@@ -138,6 +139,18 @@ NS_ASSUME_NONNULL_END
          "day": [1,2,3]
      },
      "detail": "这里是todo的detail",
+=======
+     "title": "内卷",
+     "remind_mode": {
+         "repeat_mode": 0,
+         "notify_datetime":"",
+         "date": [],
+         "week": [],
+         "day": [],
+     },
+     "detail": "全栈永远滴神",
+     "last_modify_time": 1561561561,
+>>>>>>> b9cd69d87a47310dcc9e8ba739c96abf0112a71b
      "is_done": 0
  }
  */

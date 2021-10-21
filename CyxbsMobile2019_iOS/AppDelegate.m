@@ -19,6 +19,8 @@
 #import "QADetailViewController.h"
 #import <AFNetworkReachabilityManager.h>
 #include "ArchiveTool.h"
+#import <sqlite3.h>
+#define SQLITE_THREADSAFE 1
 
 extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
@@ -85,6 +87,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //    #ifdef DEBUG
 //    [Bagel start];
 //    #endif
+    if (sqlite3_config(SQLITE_CONFIG_SERIALIZED)!=SQLITE_OK) {
+        CCLog(@"Failure");
+    }
+    sqlite3_initialize();
+    CCLog(@"%d", sqlite3_threadsafe());
     
     if ([UserDefaultTool getStuNum]) {
         [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {

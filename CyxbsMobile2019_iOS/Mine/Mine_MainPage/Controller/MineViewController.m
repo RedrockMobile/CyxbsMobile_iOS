@@ -299,19 +299,16 @@
     
 }
 
-// 点击意见与反馈
+/// 点击意见反馈后调用
 - (void)selectedFeedBack {
-
-//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//    pasteboard.string = @"570919844";
-//
-//    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
-//
-//    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
-//
-//    [feedBackGroupAllert addAction:certainAction];
-//
-//    [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
+    //UIPasteboard相关文章
+    //https://www.jianshu.com/p/52153c9fca99
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = @"570919844";
+    
+    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
     
 //    HistoricalFeedBackViewController * vc = [[HistoricalFeedBackViewController alloc] init];
 //    vc.hidesBottomBarWhenPushed = YES;
