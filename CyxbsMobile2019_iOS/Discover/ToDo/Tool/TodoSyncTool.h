@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "TodoDataModel.h"
 #import <FMDB/FMDB.h>
+#import "TodoSyncMsg.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT NSNotificationName const TodoSyncToolSyncNotification;
 
 //通知的object有下面3种，分别代表成功、失败、冲突
-FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationSuccess;
-FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationFailure;
-FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationConflictl;
+//FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationSuccess;
+//FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationFailure;
+//FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationConflictl;
 
 
 /// todo那边数据存取、同步的工具类
@@ -71,6 +72,10 @@ FOUNDATION_EXPORT NSString* const TodoSyncToolSyncNotificationConflictl;
 
 /// 需要在退出登录后后调用，
 - (void)logOutSuccess;
+
+- (void)forceLoadServerData;
+
+- (void)forcePushLocalData;
 @end
 
 NS_ASSUME_NONNULL_END

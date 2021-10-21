@@ -61,9 +61,16 @@
     [self setNeedsDisplay];
     if (currentAnimationTime >= totalAnimationTime) {
         [self.timer invalidate];
-        [self removeFromSuperview];
-        self.completion();
-        self.completion = nil;
+        UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"打勾"]];
+        [self addSubview:imgView];
+        [imgView setFrame:CGRectMake(0, 0, 2*radius, 2*radius)];
+        imgView.center = center;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self removeFromSuperview];
+            self.completion();
+            self.completion = nil;
+        });
     }
 }
 

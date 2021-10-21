@@ -40,6 +40,7 @@
 //Tool
 #import "NewQAHud.h"
 #import "TodoSyncTool.h"
+#import "TodoSyncMsg.h"
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
@@ -699,7 +700,7 @@ static int requestCheckinInfo = 0;
 }
 
 //MARK:- DiscoverTodoView的代理方法：
-- (void)addBtnClicked {
+- (void)addBtnClickedTodoView:(DiscoverTodoView *)todoView {
     //隐藏底部课表的tabBar
     [UIView animateWithDuration:0.5 animations:^{
         self.tabBarController.tabBar.alpha = 0;
@@ -713,11 +714,23 @@ static int requestCheckinInfo = 0;
     //调用show方法让它弹出来
     [sheetView show];
 }
+
+- (void)todoView:(DiscoverTodoView *)todoView didAlterWithModel:(TodoDataModel *)model {
+    [self.todoSyncTool alterTodoWithModel:model needRecord:YES];
+}
+
+- (void)localBtnClickedTodoView:(DiscoverTodoView *)todoView {
+    CCLog(@"强推");
+    [self.todoSyncTool forcePushLocalData];
+}
+
+- (void)cloudBtnClickedTodoView:(DiscoverTodoView *)todoView {
+    CCLog(@"下载");
+    [self.todoSyncTool forceLoadServerData];
+}
+//MARK:- DiscoverTodoView的数据源方法：
 - (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
     return [self.todoSyncTool getTodoForDiscoverMainPage];
-}
-- (void)todoDidAlterWithModel:(TodoDataModel*)model {
-    [self.todoSyncTool alterTodoWithModel:model needRecord:YES];
 }
 
 //MARK: - DiscoverTodoSheetView的代理方法：
@@ -739,18 +752,32 @@ static int requestCheckinInfo = 0;
 
 //MARK: - 监听TodoSyncTool的通知
 - (void)todoSyncToolDidSync:(NSNotification*)noti {
-    NSString* state = noti.object;
-    if ([state isEqualToString:TodoSyncToolSyncNotificationSuccess]) {
-        [NewQAHud showHudWith:@" 和服务器数据同步成功 " AddView:self.view];
-    }else if([state isEqualToString:TodoSyncToolSyncNotificationFailure]){
-        [NewQAHud showHudWith:@" 网络错误，待接入网络时，再和服务器同步数据 " AddView:self.view];
-    }else {
-        [NewQAHud showHudWith:@" 产生了冲突 " AddView:self.view];
+    TodoSyncMsg* msg = noti.object;
+    NSString *str;
+    switch (msg.syncState) {
+        case TodoSyncStateSuccess:
+            str = @"和服务器数据同步成功";
+            break;
+        case TodoSyncStateFailure:
+            str = @" 网络错误，待接入网络时，再和服务器同步数据 ";
+            break;
+        case TodoSyncStateConflict:
+            str = @" 产生了冲突 ";
+            break;
+        case TodoSyncStateUnexpectedError:
+            str = @" 网络错误，待接入网络时，再和服务器同步数据 ";
+            break;
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.todoView reloadData];
-    });
-        
+    
+    [NewQAHud showHudAtWindowWithStr:str enableInteract:YES];
+    
+    if (msg.syncState==TodoSyncStateConflict) {
+        [self.todoView showConflictWithServerTime:msg.serverLastSyncTime localTime:msg.clientLastSyncTime];
+    }else {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.todoView reloadData];
+        });
+    }
 }
 
 

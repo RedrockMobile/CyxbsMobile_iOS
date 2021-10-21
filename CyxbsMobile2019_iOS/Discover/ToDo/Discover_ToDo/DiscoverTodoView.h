@@ -10,12 +10,14 @@
 #import "TodoDataModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class DiscoverTodoView;
 /// 发现页的todo，上面显示了会显示三个事项
 @protocol DiscoverTodoViewDelegate <NSObject>
 /// 加号按钮点击后调用
-- (void)addBtnClicked;
-- (void)todoDidAlterWithModel:(TodoDataModel*)model;
+- (void)addBtnClickedTodoView:(DiscoverTodoView*)todoView;
+- (void)todoView:(DiscoverTodoView*)todoView didAlterWithModel:(TodoDataModel*)model;
+- (void)localBtnClickedTodoView:(DiscoverTodoView*)todoView;
+- (void)cloudBtnClickedTodoView:(DiscoverTodoView*)todoView;
 @end
 
 @class DiscoverTodoView;
@@ -33,6 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, weak)id <DiscoverTodoViewDataSource> dataSource;
 
 - (void)reloadData;
+- (void)showConflictWithServerTime:(NSInteger)serverTime localTime:(NSInteger) localTime;
+- (void)removeConflictView;
 @end
 
 NS_ASSUME_NONNULL_END

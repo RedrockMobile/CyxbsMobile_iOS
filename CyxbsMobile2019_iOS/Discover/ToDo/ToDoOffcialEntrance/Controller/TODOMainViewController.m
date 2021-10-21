@@ -204,19 +204,30 @@
     [[TodoSyncTool share] saveTodoWithModel:dataModel needRecord:YES];
 }
 - (void)todoSyncToolDidSync:(NSNotification*)noti {
-    NSString* state = noti.object;
-    if ([state isEqualToString:TodoSyncToolSyncNotificationSuccess]) {
-        [NewQAHud showHudWith:@" 和服务器数据同步成功 " AddView:self.view];
-    }else if([state isEqualToString:TodoSyncToolSyncNotificationFailure]){
-        [NewQAHud showHudWith:@" 网络错误，待接入网络时，再和服务器同步数据 " AddView:self.view];
-    }else {
-        [NewQAHud showHudWith:@" 产生了冲突 " AddView:self.view];
+    TodoSyncMsg* msg = noti.object;
+    NSString *str;
+    switch (msg.syncState) {
+        case TodoSyncStateSuccess:
+            str = @"和服务器数据同步成功";
+            break;
+        case TodoSyncStateFailure:
+            str = @" 网络错误，待接入网络时，再和服务器同步数据 ";
+            break;
+        case TodoSyncStateConflict:
+            str = @" 产生了冲突 ";
+            break;
+        case TodoSyncStateUnexpectedError:
+            str = @" 网络错误，待接入网络时，再和服务器同步数据 ";
+            break;
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-    NSLog(@"同步结果");
-        
+    
+    [NewQAHud showHudAtWindowWithStr:str enableInteract:YES];
+    
+    if (msg.syncState==TodoSyncStateConflict) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }
 }
 - (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
     NSLog(@"datamodel");

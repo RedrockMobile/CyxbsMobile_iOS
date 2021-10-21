@@ -9,6 +9,8 @@
 #import "DiscoverTodoView.h"
 #import "DiscoverTodoTableViewCell.h"
 #import "TodoSyncTool.h"
+#import "TodoConflictStateView.h"
+
 @interface DiscoverTodoView ()<
     UITableViewDelegate,
     UITableViewDataSource
@@ -29,6 +31,8 @@
 @property (nonatomic, strong)NSArray<TodoDataModel*>* dataModelArr;
 
 @property (nonatomic, assign)CGFloat viewHeight;
+
+@property(nonatomic, strong)TodoConflictStateView *conflictTipView;
 @end
 
 @implementation DiscoverTodoView
@@ -57,7 +61,7 @@
 
 - (void)shouldDrawImg:(NSNotification*)noti {
     DiscoverTodoTableViewCell* cell = noti.object;
-    [self.delegate todoDidAlterWithModel:cell.dataModel];
+    [self.delegate todoView:self didAlterWithModel:cell.dataModel];
     [self reloadData];
 }
 
@@ -66,17 +70,90 @@
     [self.todoListTableView reloadData];
     int nothingLabelAlpha;
     if (self.dataModelArr.count==0) {
-        self.viewHeight = 0.1822660099*SCREEN_HEIGHT;
+        self.viewHeight = 0.37*SCREEN_WIDTH;
         nothingLabelAlpha = 1;
     }else {
-        self.viewHeight = 0.315*SCREEN_HEIGHT;
         nothingLabelAlpha = 0;
+        self.viewHeight = 0.155*SCREEN_WIDTH;
+        for (TodoDataModel *model in self.dataModelArr) {
+            if ([model.timeStr isEqualToString:@""]||model.todoState==TodoDataModelStateOverdue) {
+                self.viewHeight += 0.115*SCREEN_WIDTH;
+            }else {
+                self.viewHeight += 0.155*SCREEN_WIDTH;
+            }
+        }
     }
+    
     [UIView animateWithDuration:1 animations:^{
         self.nothingLabel.alpha = nothingLabelAlpha;
         self.todoListTableView.alpha = 1-nothingLabelAlpha;
     }];
+    
     [self setNeedsLayout];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self layoutIfNeeded];
+    }];
+}
+
+- (void)showConflictWithServerTime:(NSInteger)serverTime localTime:(NSInteger)localTime {
+    TodoConflictStateView *view = [[TodoConflictStateView alloc] init];
+    self.conflictTipView = view;
+    [self addSubview:view];
+    
+    NSString *serverTimeStr = [self getTimeStrWithTimeStamp:serverTime];
+    NSString *localTimeStr = [self getTimeStrWithTimeStamp:localTime];
+    NSString *tipStr = [NSString stringWithFormat:@"掌友，你的云同步存档 %@ 和本地存档 %@ 存在冲突，请选择一个存档予以保留", serverTimeStr, localTimeStr];
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:tipStr];
+
+
+    [attStr addAttributes:@{
+        NSFontAttributeName:[UIFont fontWithName:PingFangSCRegular size:15],
+        NSForegroundColorAttributeName:[UIColor colorNamed:@"color21_49_91&#F0F0F2"]
+    } range:NSMakeRange(0, attStr.length)];
+    [attStr addAttributes:@{
+        NSForegroundColorAttributeName:[UIColor colorNamed:@"41_35_210&44_222_255"]
+    } range:[tipStr rangeOfString:serverTimeStr]];
+    
+    [attStr addAttributes:@{
+        NSForegroundColorAttributeName:[UIColor colorNamed:@"41_35_210&44_222_255"]
+    } range:[tipStr rangeOfString:localTimeStr]];
+    
+    view.tipMsgLabel.attributedText = attStr;
+    
+    [view.localBtn addTarget:self action:@selector(localBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view.cloudBtn addTarget:self action:@selector(cloudBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.addBtn.mas_bottom);
+        make.left.bottom.right.equalTo(self);
+    }];
+    
+    
+    self.viewHeight = 0.5786666667*SCREEN_WIDTH;
+    [self setNeedsLayout];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self layoutIfNeeded];
+    }];
+}
+
+- (void)localBtnClicked {
+    [self.delegate localBtnClickedTodoView:self];
+}
+
+- (void)cloudBtnClicked {
+    [self.delegate cloudBtnClickedTodoView:self];
+}
+- (void)removeConflictView {
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.conflictTipView setAlpha:0];
+    }];
+    [self reloadData];
+}
+- (NSString*)getTimeStrWithTimeStamp:(NSInteger)t {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:t]];
 }
 //MARK: - 初始化UI的操作：
 /// 添加一个View遮住底部多出来的圆角
@@ -99,7 +176,7 @@
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.03733333333*SCREEN_WIDTH);
-        make.top.equalTo(self).offset(0.02832512315*SCREEN_HEIGHT);
+        make.top.equalTo(self).offset(0.03448275862*SCREEN_WIDTH);
     }];
     
     label.text = @"邮子清单";
@@ -113,13 +190,15 @@
     [self addSubview:btn];
     
     [btn setImage:[UIImage imageNamed:@"todoAddBtn"] forState:UIControlStateNormal];
-    
-    
+//    NewQAHud
+    CGFloat gap = 0.01*SCREEN_WIDTH;
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(-0.04*SCREEN_WIDTH);
         make.centerY.equalTo(self.titleLabel);
-        make.width.height.mas_equalTo(0.048*SCREEN_WIDTH);
+        make.width.height.mas_equalTo(0.048*SCREEN_WIDTH + 2*gap);
     }];
+    
+    [btn setImageEdgeInsets:UIEdgeInsetsMake(gap, gap, gap, gap)];
     
     [btn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -151,12 +230,12 @@
     tableView.dataSource = self;
     tableView.backgroundColor = self.backgroundColor;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.scrollEnabled = NO;
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
         make.top.equalTo(self.addBtn.mas_bottom).offset(0.03078817734*SCREEN_HEIGHT);
-//        make.height.mas_equalTo(0.2795566502*SCREEN_HEIGHT);
-        make.bottom.equalTo(self).offset(0.07142857143*SCREEN_HEIGHT);
+        make.bottom.equalTo(self);
     }];
     tableView.showsVerticalScrollIndicator = NO;
 }
@@ -167,23 +246,27 @@
     return self.dataModelArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DiscoverTodoTableViewCell* cell = [[DiscoverTodoTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"idd"];
+    DiscoverTodoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"todoListTableViewCell"];
+    if (cell==nil) {
+        cell = [[DiscoverTodoTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"todoListTableViewCell"];
+    }
     [cell setDataModel:self.dataModelArr[indexPath.row]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 0.07142857143*SCREEN_HEIGHT;
+    TodoDataModel *model = self.dataModelArr[indexPath.row];
+    if ([model.timeStr isEqualToString:@""]||model.todoState==TodoDataModelStateOverdue) {
+        return 0.115*SCREEN_WIDTH;
+    }else {
+        return 0.155*SCREEN_WIDTH;
+    }
 }
 
 //MARK: - 点击按钮后调用：
 /// 加号按钮点击后调用
 - (void)addBtnClicked {
-    [self.delegate addBtnClicked];
+    [self.delegate addBtnClickedTodoView:self];
     TodoSyncTool *tool = [TodoSyncTool share];
-    [tool logTodoData];
-    [tool logRecordDataWithTableName:@"addTodoIDTable"];
-    [tool logRecordDataWithTableName:@"alterTodoIDTable"];
-    [tool logRecordDataWithTableName:@"deleteTodoIDTable"];
     [tool syncData];
 }
 

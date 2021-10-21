@@ -254,7 +254,7 @@
 /// 保存按钮点击后调用
 - (void)saveBtnClicked {
     if (self.titleInputTextfield.text==nil||[self.titleInputTextfield.text isEqualToString:@""]) {
-        [NewQAHud showHudWith:@" 还没有设置标题～ " AddView:[[UIApplication sharedApplication] windows].firstObject];
+        [NewQAHud showHudAtWindowWithStr:@" 还没有设置标题～ " enableInteract:YES];
         return;
     }
     [UIView animateWithDuration:0.5 animations:^{
