@@ -222,6 +222,8 @@ printf("%s\n\n",[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]);
 //Bar的高度
 #define Bar_H (STATUSBARHEIGHT + 44)
 
+#define Bar_H (STATUSBARHEIGHT + 44)
+
 //邮票中心的适配
 #define COLLECTIONHEADER_H  65
 #pragma mark - 字体

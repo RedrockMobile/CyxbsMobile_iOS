@@ -228,13 +228,17 @@
 			<key>orderHint</key>
 			<integer>33</integer>
 		</dict>
-		<key>YBImageBrowser.xcscheme_^#shared#^_</key>
+		<key>YBImageBrowser.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
-			<integer>36</integer>
+			<integer>34</integer>
 		</dict>
-		<key>YYImage.xcscheme_^#shared#^_</key>
+		<key>YYImage.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>35</integer>
 		</dict>
@@ -243,7 +247,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>34</integer>
+			<integer>36</integer>
 		</dict>
 		<key>pop.xcscheme</key>
 		<dict>
