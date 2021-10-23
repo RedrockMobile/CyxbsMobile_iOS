@@ -26,9 +26,6 @@
 #import "PostArchiveTool.h"
 #import "NewQANoDataView.h"
 
-//#define kItemheight 50
-//#define kTopView_Height 200
-
 @interface NewQAMainVC () <UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,TopFollowViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,PostTableViewCellDelegate,SelfFuncViewProtocol,TopFollowViewDelegate>
 
 @property (nonatomic, strong) UIView *topBackView;  // 搜索的背景View
@@ -276,7 +273,14 @@
         make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 37.5/343);
     }];
     _searchBtn.layer.cornerRadius = SCREEN_WIDTH * 0.9147 * 37.5/343 * 1/2;
+    [_searchBtn addTarget:self action:@selector(jumpSearchVC) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view bringSubviewToFront:_topBackView];
+}
+
+/// 跳转到搜索洁面
+- (void)jumpSearchVC{
+    SearchBeginVC *vc = [[SearchBeginVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)setupContentView
