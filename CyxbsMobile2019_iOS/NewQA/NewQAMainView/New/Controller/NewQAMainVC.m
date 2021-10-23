@@ -21,11 +21,15 @@
 #import "GroupModel.h"
 #import "YYZTopicGroupVC.h"
 #import "PostFocusModel.h"
+#import "SearchBeginVC.h"
+#import "MGDTimer.h"
+#import "PostArchiveTool.h"
+#import "NewQANoDataView.h"
 
-#define kItemheight 50
-#define kTopView_Height 200
+//#define kItemheight 50
+//#define kTopView_Height 200
 
-@interface NewQAMainVC () <UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,TopFollowViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,PostTableViewCellDelegate,SelfFuncViewProtocol>
+@interface NewQAMainVC () <UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,TopFollowViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,PostTableViewCellDelegate,SelfFuncViewProtocol,TopFollowViewDelegate>
 
 @property (nonatomic, strong) UIView *topBackView;  // 搜索的背景View
 @property (nonatomic, strong) SearchBtn *searchBtn;     // 搜索按钮
@@ -39,9 +43,11 @@
 @property (nonatomic, strong) GroupModel *groupmodel;
 @property (nonatomic, strong) PostFocusModel *postfocusmodel;
 @property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, strong) UIVisualEffectView *HUDView;
-@property (nonatomic, strong) UIView *nodataView;
-@property (nonatomic, strong) UIImageView *nodataImageView;
+@property (nonatomic, strong) NewQANoDataView *recommenNoDataView;
+@property (nonatomic, strong) NewQANoDataView *focusNoDataView;
+
+@property (nonatomic, assign) NSInteger hotWordIndex;
+@property (nonatomic, strong) MGDTimer *timer;         // 定时器
 
  
 @end
@@ -53,35 +59,118 @@
     self.view.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
     self.view.clipsToBounds = YES;
     self.topBackViewH = SCREEN_WIDTH * 0.04 * 11/15 + TOTAL_TOP_HEIGHT;
-    self.headViewHeight = 205 * HScaleRate_SE - SCREEN_WIDTH * 0.04 * 11/15;
+    self.headViewHeight = 190 * HScaleRate_SE;
     
-    ///我的关注数据请求成功
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(topFollowViewLoadSuccess)
-                                                 name:@"MyFollowGroupDataLoadSuccess" object:nil];
-    
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];//获取app版本信息
-    NSString *applocalversion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    NSLog(@"\n\n\n\n\napp版本: %@\n\n\n\n",applocalversion);
-    
+    [self setNotification];
     self.recommenPage = 0;
     self.focusPage = 0;
     [self setUpModel];
     [self funcPopViewinit];
-    self.groupmodel = [[GroupModel alloc] init];
-    [self loadMyStarGroupList];
-    _recommenArray = [NSMutableArray array];
-    _recommenheightArray = [NSMutableArray array];
     _focusArray = [NSMutableArray array];
     _focusheightArray = [NSMutableArray array];
+    _dataArray = [NSMutableArray array];
     [self setUpTopSearchView];
     [self setupContentView];
     [self setupHeadView];
     [self setBackViewWithGesture];
     [self.view bringSubviewToFront:_searchBtn];
-    [self recommendTableLoadData];
+    self.hotWordsArray = [PostArchiveTool getHotWords].hotWordsArray;
+    self.dataArray = [PostArchiveTool getMyFollowGroup];
+    [self loadMyStarGroupList];
+    self.recommenArray = [NSMutableArray arrayWithArray:[PostArchiveTool getPostList]];
+    self.recommenheightArray = [NSMutableArray arrayWithArray:[PostArchiveTool getPostCellHeight]];
+//     判断是否是登录状态，如果是第一次登录，则重新请求新的数据，如果不是则加载缓存数据
+    if ([UserItemTool defaultItem].firstLogin == NO && [self.recommenArray count] != 0 && [self.recommenheightArray count] != 0 && [self.recommenheightArray[0] isKindOfClass:[PostTableViewCellFrame class]]) {
+        NSLog(@"这是缓存的\n\n\n\n\n");
+        [self.recommenTableView reloadData];
+        // 每次加载缓存时，热搜词汇再次请求一下并缓存下来
+        [self loadHotWords];
+    } else {
+        NSLog(@"这是加载的\n\n\n\n");
+        [self loadHotWords];
+        [self loadMyStarGroupList];
+        [self recommendTableLoadData];
+        [[UserItemTool defaultItem] setFirstLogin:NO];
+    }
     [self focusTableLoadData];
     
+    self.timer = [[MGDTimer alloc] initInMainQueue];
+    [self.timer event:^{
+        [self refreshHotWords];
+    } timeInterval:NSEC_PER_SEC * 3 delay:NSEC_PER_SEC * 1.2];
+    
+    // 启动计时器
+    [self.timer start];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
+//    if (self.isNeedFresh == YES || [UserItemTool defaultItem].firstLogin == YES) {
+//        [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//        [self loadMyStarGroupList];
+//        [self setupHeadView];
+//        [self.recommenTableView.mj_header beginRefreshing];
+//        [self.recommenArray removeAllObjects];
+//        [self recommendTableRefreshData];
+//    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
+    self.isNeedFresh = NO;
+}
+
+- (void)setNotification {
+    ///我的关注数据请求成功
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(topFollowViewLoadSuccess)
+                                                 name:@"MyFollowGroupDataLoadSuccess" object:nil];
+    ///热搜词汇请求成功
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(howWordsLoadSuccess)
+                                                 name:@"HotWordsDataLoadSuccess" object:nil];
+    //监听键盘将要消失、出现，以此来动态的设置举报View的上下移动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    ///刷新页面控件的高度
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(RefreshRecommenTableView)
+                                                 name:@"RefreshRecommenTableView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(RefreshFocusTableView)
+                                                 name:@"RefreshFocusTableView" object:nil];
+}
+
+///键盘将要出现时，若举报页面已经显示则上移
+- (void)reportViewKeyboardWillShow:(NSNotification *)notification{
+    //如果举报页面已经出现，就将举报View上移动
+    if (self.isShowedReportView == YES) {
+        //获取键盘高度
+        NSDictionary *userInfo = notification.userInfo;
+        CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGFloat keyBoardHeight = endFrame.size.height;
+        
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+            //这里如果是设置成距离self.view的底部，会高出一截
+            make.bottom.equalTo(self.view.window).offset( IS_IPHONEX ? -(keyBoardHeight+20) : -keyBoardHeight);
+        }];
+    }
+}
+///键盘将要消失，若举报页面已经显示则使其下移
+- (void)reportViewKeyboardWillHide:(NSNotification *)notification{
+    if (self.isShowedReportView == YES) {
+        [self.reportView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.view);
+            make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+        }];
+    }
 }
 
 ///我的关注的网络请求
@@ -93,15 +182,13 @@
 - (void)topFollowViewLoadSuccess {
     self.dataArray = self.groupmodel.dataArray;
     [self settingFollowViewUI];
-//    [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
+    [PostArchiveTool saveMyFollowGroupWith:self.dataArray];
 }
 
 - (void)settingFollowViewUI {
-
+    [self setupHeadView];
     [self.view bringSubviewToFront:_searchBtn];
     [self.topView loadViewWithArray:self.dataArray];
-//    [self.loadHUD removeFromSuperview];
-//    [self reloadTopFollowViewWithArray:self.dataArray];
 }
 
 - (void)setUpModel {
@@ -112,6 +199,8 @@
     _deletepostmodel = [[DeletePostModel alloc] init];
     _followgroupmodel = [[FollowGroupModel alloc] init];
     _postfocusmodel = [[PostFocusModel alloc] init];
+    _hotWordModel = [[HotSearchModel alloc] init];
+    _groupmodel = [[GroupModel alloc] init];
 }
 
 - (void)funcPopViewinit {
@@ -131,52 +220,35 @@
     _reportView = [[ReportView alloc]initWithPostID:[NSNumber numberWithInt:0]];
     _reportView.delegate = self;
     
-    _nodataView.hidden = YES;
+    _recommenNoDataView.hidden = YES;
+    _focusNoDataView.hidden = YES;
     
 }
 
-- (UIView *)nodataView {
-    if (!_nodataView) {
-        _nodataView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.headViewHeight)];
-        _nodataView.backgroundColor = [UIColor colorNamed:@"QATABLENODATACOLOR"];
-        
-        _nodataImageView = [[UIImageView alloc] init];
-        _nodataImageView.image = [UIImage imageNamed:@"QATABLENODATA"];
-        [_nodataView addSubview:_nodataImageView];
-        [self.focusTableView addSubview:_nodataView];
-        CGFloat imageW = _nodataImageView.image.size.width;
-        CGFloat imageH = _nodataImageView.image.size.height;
-        [_nodataImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_nodataView.mas_top).mas_offset(HScaleRate_SE * 72);
-            make.centerX.mas_equalTo(self.view);
-            make.height.mas_equalTo(imageH);
-            make.width.mas_equalTo(imageW);
-        }];
-        
-        UILabel *nodataLabel = [[UILabel alloc] init];
-        nodataLabel.text = @"去发现第一个有趣的人吧~";
-        nodataLabel.textAlignment = NSTextAlignmentCenter;
-        nodataLabel.font = [UIFont fontWithName:PingFangSCRegular size:12];
-        nodataLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
-        [_nodataView addSubview:nodataLabel];
-        [nodataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_nodataImageView.mas_bottom).mas_offset(HScaleRate_SE * 10);
-            make.centerX.mas_equalTo(self.view);
-            make.height.mas_equalTo(HScaleRate_SE * 17);
-            make.width.mas_equalTo(self.view);
-        }];
+- (NewQANoDataView *)recommenNoDataView {
+    if (!_recommenNoDataView) {
+        _recommenNoDataView = [[NewQANoDataView alloc] initWithNodataImage:[UIImage imageNamed:@"NewQARecommenNoDataImage"] AndText:@"暂时没有数据哦~"];
+        _recommenNoDataView.frame = CGRectMake(0, self.headViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.headViewHeight);
+        [self.recommenTableView addSubview:_recommenNoDataView];
     }
-    return _nodataView;
+    return _recommenNoDataView;
+}
+
+- (NewQANoDataView *)focusNoDataView {
+    if (!_focusNoDataView) {
+        _focusNoDataView = [[NewQANoDataView alloc] initWithNodataImage:[UIImage imageNamed:@"QATABLENODATA"] AndText:@"去发现第一个有趣的人吧~"];
+        _focusNoDataView.frame = CGRectMake(0, self.headViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT - self.headViewHeight);
+        [self.focusTableView addSubview:_focusNoDataView];
+    }
+    return _focusNoDataView;
 }
 
 - (void)setUpTopSearchView {
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.headViewHeight + self.topBackViewH)];
+    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.view addSubview:backView];
     UIImageView *backImageView = [[UIImageView alloc] initWithFrame:backView.frame];
     backImageView.image = [UIImage imageNamed:@"NewQATopImage"];
     [backView addSubview:backImageView];
-//    backView.backgroundColor = [UIColor redColor];
-//    [backView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"NewQATopImage"]]];
     UIImageView *leftCircleImage = [[UIImageView alloc] init];
     leftCircleImage.image = [UIImage imageNamed:@"NewQATopLeftCircleImage"];
     [backImageView addSubview:leftCircleImage];
@@ -196,12 +268,7 @@
         make.width.mas_equalTo(WScaleRate_SE * 219);
         make.height.mas_equalTo(HScaleRate_SE * 217);
     }];
-//    [self.view addSubview:self.topBackView];
     [self.view addSubview:self.searchBtn];
-//    [_topBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.left.right.mas_equalTo(self.view);
-//        make.height.mas_equalTo(_topBackViewH);
-//    }];
     [_searchBtn mas_updateConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_top).mas_offset(TOTAL_TOP_HEIGHT);
         make.left.mas_equalTo(self.view.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
@@ -234,13 +301,6 @@
     
     
     _recommenTableView = [[NewQARecommenTableView alloc] init];
-//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_recommenTableView.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(12,28)];
-//    //创建 layer
-//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-//    maskLayer.frame = _recommenTableView.bounds;
-//    //赋值
-//    maskLayer.path = maskPath.CGPath;
-//    _recommenTableView.layer.mask = maskLayer;
     _recommenTableView.layer.cornerRadius = 28;
     _recommenTableView.backgroundColor = [UIColor clearColor];
     _recommenTableView.tag = 1;
@@ -289,17 +349,18 @@
 // 设置HeadView
 - (void)setupHeadView
 {
-    _topView = [[TopFollowView alloc]initWithFrame:CGRectMake(0, _topBackViewH, SCREEN_WIDTH, self.headViewHeight)];
+    if (!_topView) {
+        _topView = [[TopFollowView alloc]initWithFrame:CGRectMake(0, _topBackViewH, SCREEN_WIDTH, self.headViewHeight)];
+    }
     _topView.delegate = self;
     _topView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_topView];
     
-    NewQASelectorView *titleBarView = [[NewQASelectorView alloc] init];
-    [self.topView addSubview:titleBarView];
-    self.titleBarView = titleBarView;
+    _titleBarView = [[NewQASelectorView alloc] init];
+    [self.topView addSubview:_titleBarView];
     [self.titleBarView.leftBtn addTarget:self action:@selector(clickTitleLeft) forControlEvents:UIControlEventTouchUpInside];
     [self.titleBarView.rightBtn addTarget:self action:@selector(clickTitleRight) forControlEvents:UIControlEventTouchUpInside];
-    [titleBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_titleBarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(self.view);
         make.bottom.mas_equalTo(_topView.mas_bottom);
         make.height.mas_equalTo(SLIDERHEIGHT);
@@ -311,19 +372,6 @@
 
     [self.view bringSubviewToFront:_searchBtn];
     self.titleBarView.selectedItemIndex = 0;
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
 }
 
 ///顶部搜索背景View懒加载
@@ -340,10 +388,48 @@
 - (SearchBtn *)searchBtn {
     if (!_searchBtn) {
         _searchBtn = [[SearchBtn alloc] init];
-//        [_searchBtn addTarget:self action:@selector(searchPost) forControlEvents:UIControlEventTouchUpInside];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHotWords) name:@"refreshHotWords" object:nil];
+        [_searchBtn addTarget:self action:@selector(searchPost) forControlEvents:UIControlEventTouchUpInside];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHotWords) name:@"refreshHotWords" object:nil];
     }
     return _searchBtn;
+}
+
+///热搜词汇的网络请求
+- (void)loadHotWords {
+    [self.hotWordModel getHotSearchArray];
+}
+
+///热搜词汇请求完成后数组赋值
+- (void)howWordsLoadSuccess {
+    self.hotWordsArray = self.hotWordModel.hotWordsArray;
+    [PostArchiveTool saveHotWordsWith:self.hotWordModel];
+}
+
+///3s刷新热搜词汇
+-(void)refreshHotWords {
+    if ([self.hotWordsArray count] == 0) {
+        return;
+    }
+    if (_hotWordIndex < [self.hotWordsArray count] - 1) {
+        _hotWordIndex++;
+    }else {
+        _hotWordIndex = 0;
+    }
+    [UIView transitionWithView:_searchBtn.searchBtnLabel
+                      duration:0.25f
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+        self->_searchBtn.searchBtnLabel.text = [NSString stringWithFormat:@"%@:%@",@"大家都在搜", self.hotWordsArray[self->_hotWordIndex]];
+
+      } completion:nil];
+}
+
+- (void)searchPost {
+    SearchBeginVC *vc = [[SearchBeginVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+    [self.navigationController pushViewController:vc animated:YES];
+    NSLog(@"跳转到搜索页面");
 }
 
 
@@ -448,7 +534,8 @@
                 cellFrame.item = weakSelf.item;
                 [weakSelf.recommenheightArray addObject:cellFrame];
             }
-//            [PostArchiveTool savePostListWith:self.tableArray];
+            [PostArchiveTool savePostListWith:weakSelf.recommenArray];
+            [PostArchiveTool savePostCellHeightWith:weakSelf.recommenheightArray];
         } else {
             [weakSelf.recommenArray addObjectsFromArray:arr];
             for (NSDictionary *dic in arr) {
@@ -460,6 +547,9 @@
         }
         [MainQueue AsyncTask:^{
             [weakSelf.recommenTableView reloadData];
+            if ([weakSelf.recommenArray count] == 0) {
+                weakSelf.recommenNoDataView.hidden = NO;
+            }
 //            [weakSelf.recommendTableView layoutIfNeeded]; //这句是关键
             [weakSelf.recommenTableView.mj_header endRefreshing];
             [weakSelf.recommenTableView.mj_footer endRefreshing];
@@ -467,7 +557,7 @@
     } failure:^(NSError *error) {
         NSLog(@"请求失败 error:%@",error.description);
         if ([weakSelf.recommenArray count] == 0) {
-            weakSelf.nodataView.hidden = NO;
+            weakSelf.recommenNoDataView.hidden = NO;
         }
         [weakSelf.recommenTableView.mj_header endRefreshing];
         [weakSelf.recommenTableView.mj_footer endRefreshing];
@@ -484,7 +574,7 @@
 - (void)focusTableLoadData {
     self.focusPage += 1;
     __weak typeof (self) weakSelf = self;
-    [self.postfocusmodel handleFocusDataWithPage:self.focusPage
+    [self.postmodel handleDataWithPage:self.focusPage
                                Success:^(NSArray *arr) {
         if (weakSelf.focusPage == 1) {
             [weakSelf.focusArray removeAllObjects];
@@ -496,7 +586,6 @@
                 cellFrame.item = weakSelf.item;
                 [weakSelf.focusheightArray addObject:cellFrame];
             }
-//            [PostArchiveTool savePostListWith:self.tableArray];
         } else {
             [weakSelf.focusArray addObjectsFromArray:arr];
             for (NSDictionary *dic in arr) {
@@ -509,7 +598,7 @@
         [MainQueue AsyncTask:^{
             [weakSelf.focusTableView reloadData];
             if ([weakSelf.focusArray count] == 0) {
-                weakSelf.nodataView.hidden = NO;
+                weakSelf.focusNoDataView.hidden = NO;
             }
 //            [weakSelf.recommendTableView layoutIfNeeded]; //这句是关键
             [weakSelf.focusTableView.mj_header endRefreshing];
@@ -518,7 +607,7 @@
     } failure:^(NSError *error) {
         NSLog(@"请求失败 error:%@",error.description);
         if ([weakSelf.focusArray count] == 0) {
-            weakSelf.nodataView.hidden = NO;
+            weakSelf.focusNoDataView.hidden = NO;
         }
         [weakSelf.focusTableView.mj_header endRefreshing];
         [weakSelf.focusTableView.mj_footer endRefreshing];
@@ -581,7 +670,7 @@
             cell.commendBtn.tag = indexPath.row;
             cell.shareBtn.tag = indexPath.row;
             cell.starBtn.tag = indexPath.row;
-            cell.tableTag = [NSNumber numberWithInt:1];
+            cell.tableTag = [NSNumber numberWithInt:2];
             cell.tag = indexPath.row;
         }else if (_item.post_id != cell.item.post_id){
             [self.focusTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:[NSIndexPath indexPathForRow:indexPath.row inSection:0],nil] withRowAnimation:UITableViewRowAnimationNone];
@@ -595,11 +684,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PostTableViewCellFrame *cellFrame;
     if (tableView.tag == 1) {
-        PostTableViewCellFrame *cellFrame = self.recommenheightArray[indexPath.row];
+        cellFrame = self.recommenheightArray[indexPath.row];
         return cellFrame.cellHeight;
     } else {
-        PostTableViewCellFrame *cellFrame = self.focusheightArray[indexPath.row];
+        cellFrame = self.focusheightArray[indexPath.row];
         return cellFrame.cellHeight;
     }
 
@@ -681,6 +771,29 @@
     [self.backViewWithGesture removeFromSuperview];
 }
 
+#pragma mark -通知刷新邮问主页
+- (void) RefreshRecommenTableView {
+    NSLog(@"调用了RefreshRecommenTableView方法\n\n\n\n\n\n\n");
+    [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self loadMyStarGroupList];
+//    [self.recommenTableView removeFromSuperview];
+    [self.recommenArray removeAllObjects];
+    [self.recommenTableView.mj_header beginRefreshing];
+    [self recommendTableRefreshData];
+}
+
+- (void) RefreshFocusTableView {
+    [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self loadMyStarGroupList];
+//    [self.focusTableView removeFromSuperview];
+    [self.focusArray removeAllObjects];
+    [self.focusTableView.mj_header beginRefreshing];
+    [self focusTableRefreshData];
+}
+
+- (void)dealloc {
+    [self.timer destroy];
+}
 
 
 

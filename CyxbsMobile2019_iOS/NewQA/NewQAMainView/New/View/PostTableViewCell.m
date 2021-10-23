@@ -48,6 +48,7 @@
     ///头像
     _iconImageView = [[UIImageView alloc] init];
     _iconImageView.layer.masksToBounds = YES;
+    _iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     _iconImageView.layer.cornerRadius = SCREEN_WIDTH * 0.1066 * 1/2;
     [self.contentView addSubview:_iconImageView];
     
@@ -101,17 +102,11 @@
     
     ///标签
     _groupLabel = [[UIButton alloc] init];
-    _groupLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
+    _groupLabel.titleLabel.textAlignment = NSTextAlignmentLeft;
     [_groupLabel.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08]];
-    if (@available(iOS 11.0, *)) {
-        [_groupLabel setTitleColor:[UIColor colorNamed:@"CellGroupColor"] forState:UIControlStateNormal];
-        _groupLabel.backgroundColor = [UIColor colorNamed:@"CELLTOPICBACKCOLOR"];
-    } else {
-        [_groupLabel setTitleColor:[UIColor colorWithRed:85.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1] forState:UIControlStateNormal];
-        _groupLabel.backgroundColor = [UIColor colorWithRed:241/255.0 green:243/255.0 blue:248/255.0 alpha:1];
-    }
+    [_groupLabel setTitleColor:[UIColor colorNamed:@"CellGroupColor"] forState:UIControlStateNormal];
+    _groupLabel.backgroundColor = [UIColor clearColor];
     [_groupLabel addTarget:self action:@selector(ClickedGroupTopicBtn) forControlEvents:UIControlEventTouchUpInside];
-    _groupLabel.layer.cornerRadius = SCREEN_WIDTH * 0.2707 * 25.5/101.5 * 1/2;
     [self.contentView addSubview:_groupLabel];
     
     ///点赞
@@ -416,16 +411,16 @@
 
 - (void)setCellFrame:(PostTableViewCellFrame *)cellFrame {
     _cellFrame = cellFrame;
-    _iconImageView.frame = cellFrame.iconImageViewFrame;
-    _nicknameLabel.frame = cellFrame.nicknameLabelFrame;
-    _IdentifyBackImage.frame = cellFrame.IdentifyBackViewFrame;
-    _timeLabel.frame = cellFrame.timeLabelFrame;
-    _funcBtn.frame = cellFrame.funcBtnFrame;
-    _detailLabel.frame = cellFrame.detailLabelFrame;
-    _collectView.frame = cellFrame.collectViewFrame;
-    _groupLabel.frame = cellFrame.groupLabelFrame;
-    _starBtn.frame = cellFrame.starBtnFrame;
-    _commendBtn.frame = cellFrame.commendBtnFrame;
-    _shareBtn.frame = cellFrame.shareBtnFrame;
+    _iconImageView.frame = [cellFrame.iconImageViewFrameValue CGRectValue];
+    _nicknameLabel.frame = [cellFrame.nicknameLabelFrameValue CGRectValue];
+    _IdentifyBackImage.frame = [cellFrame.IdentifyBackViewFrameValue CGRectValue];
+    _timeLabel.frame = [cellFrame.timeLabelFrameValue CGRectValue];
+    _funcBtn.frame = [cellFrame.funcBtnFrameValue CGRectValue];
+    _detailLabel.frame = [cellFrame.detailLabelFrameValue CGRectValue];
+    _collectView.frame = [cellFrame.collectViewFrameValue CGRectValue];
+    _groupLabel.frame = [cellFrame.groupLabelFrameValue CGRectValue];
+    _starBtn.frame = [cellFrame.starBtnFrameValue CGRectValue];
+    _commendBtn.frame = [cellFrame.commendBtnFrameValue CGRectValue];
+    _shareBtn.frame = [cellFrame.shareBtnFrameValue CGRectValue];
 }
 @end

@@ -12,12 +12,8 @@
 
 - (instancetype)init{
     if ([super init]) {
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ReportBackColor"];
-        } else {
-            // Fallback on earlier versions
-        }
-        
+        self.backgroundColor = [UIColor colorNamed:@"ReportBackColor"];
+
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [_deleteBtn setTitle:@"删除帖子" forState:UIControlStateNormal];
         _deleteBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 14];

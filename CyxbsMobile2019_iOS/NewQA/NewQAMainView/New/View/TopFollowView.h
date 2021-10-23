@@ -41,8 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)loadTopFollowViewWithGroup:(NSMutableArray *)dataArray;
 
-- (void)loadTopFollowViewWithoutGroup:(NSMutableArray *)dataArray;
-
 - (void)startAnimationWith:(NSMutableArray *)dataArray;
 
 //- (instancetype)initWithFrame:(CGRect)frame And:(NSMutableArray *)dataArray;

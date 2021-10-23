@@ -309,7 +309,7 @@
         _headerViewH = SCREEN_WIDTH * 84/375;
         _recommendHeight = SCREEN_WIDTH * 43/375;
         _recommendedLabel.lineView.hidden = YES;
-        [self.headerFlowView loadTopFollowViewWithoutGroup:array];
+//        [self.headerFlowView loadTopFollowViewWithoutGroup:array];
     } else {
         _recommendedLabel.lineView.hidden = NO;
         _headerViewH = SCREEN_WIDTH * 147/375;

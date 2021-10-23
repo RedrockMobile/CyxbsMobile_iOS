@@ -26,6 +26,8 @@
 #import "PostModel.h"
 #import "NewQARecommenTableView.h"
 #import "NewQAFollowTableView.h"
+#import "HotSearchModel.h"
+#import "PostTableViewCellFrame.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,8 +50,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) ShieldModel *shieldmodel;     // 屏蔽的请求model
 @property (nonatomic, strong) DeletePostModel *deletepostmodel;     //  删除自己帖子的请求model
 @property (nonatomic, strong) ReportModel *reportmodel;     // 举报的请求model
-@property (nonatomic, strong) PostModel *postmodel; 
+@property (nonatomic, strong) PostModel *postmodel;
+@property (nonatomic, strong) HotSearchModel *hotWordModel;
 
+@property (nonatomic, strong) NSMutableArray *hotWordsArray;
 @property (nonatomic, strong) NSMutableDictionary *itemDic;    //获取cell里item数据的NSDictionary
 
 @property (nonatomic, strong) UIView *backViewWithGesture;  // 背景蒙版
@@ -63,6 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PostItem *item;
 
 @property (nonatomic, strong) NSMutableArray *topicArray;
+
+@property (nonatomic, assign) BOOL isNeedFresh;
 
 - (void)showBackViewWithGesture;
 

@@ -30,51 +30,17 @@
 
 - (void)loadViewWithArray:(NSMutableArray *)dataArray {
     ///根据后端传回来的数据源数组来判断放哪个控件
-    if ([dataArray count] == 0) {
-        [self loadTopFollowViewWithoutGroup:dataArray];
-    }else {
-        [self setMyFollowLab];
-        [self loadTopFollowViewWithGroup:dataArray];
-    }
+//    if ([dataArray count] == 0) {
+//        [self loadTopFollowViewWithoutGroup:dataArray];
+//    }else {
+//        [self loadTopFollowViewWithGroup:dataArray];
+//    }
+    [self loadTopFollowViewWithGroup:dataArray];
 }
 
-- (void)setMyFollowLab {
-    UILabel *myFollowLab = [[UILabel alloc] init];
-    if (@available(iOS 11.0, *)) {
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"我关注的" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 18],NSForegroundColorAttributeName:[UIColor colorNamed:@"MainPageLabelColor"]}];
-        myFollowLab.attributedText = string;
-    } else {
-        // Fallback on earlier versions
-    }
-    [self addSubview:myFollowLab];
-    _myFollowLab = myFollowLab;
-    [_myFollowLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.0427 * 11/16);
-        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
-        make.right.mas_equalTo(self.mas_right);
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.1947 * 17/73);
-    }];
-}
 - (void)loadTopFollowViewWithGroup:(NSMutableArray *)dataArray {
 //    [self removeAllSubviews];
-    [self setMyFollowLab];
     [self startAnimationWith:dataArray];
-}
-
-- (void)loadTopFollowViewWithoutGroup:(NSMutableArray *)dataArray {
-    [self removeAllSubviews];
-    GroupFollowBtn *followBtn = [[GroupFollowBtn alloc] init];
-//    followBtn.mgd_ignoreEvent = NO;
-//    followBtn.mgd_acceptEventInterval = 1.0;
-    [followBtn addTarget:self action:@selector(FollowGroups) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:followBtn];
-    _followBtn = followBtn;
-    [_followBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top);
-        make.left.mas_equalTo(self.mas_left).mas_offset(SCREEN_WIDTH * 0.04);
-        make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0453);
-        make.height.mas_equalTo(SCREEN_WIDTH * 0.9147 * 73/343);
-    }];
 }
 
 - (void)startAnimationWith:(NSMutableArray *)dataArray {
@@ -90,7 +56,7 @@
     self.groupsScrollView = groupsScrollView;
     
     [self.groupsScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).mas_offset(SCREEN_WIDTH * 0.0427 * 11/16 + SCREEN_WIDTH * 0.1947 * 17/73);
+        make.top.mas_equalTo(self.mas_top).mas_offset(HScaleRate_SE * 14);
         make.left.mas_equalTo(self.mas_left);
         make.right.mas_equalTo(self.mas_right);
         make.height.mas_equalTo(SCREEN_WIDTH * 108/375);
