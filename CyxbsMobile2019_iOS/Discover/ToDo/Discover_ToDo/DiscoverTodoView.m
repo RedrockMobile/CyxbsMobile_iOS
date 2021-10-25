@@ -96,6 +96,160 @@
 }
 
 - (void)showConflictWithServerTime:(NSInteger)serverTime localTime:(NSInteger)localTime {
+    if (self.conflictTipView==nil) {
+        [self addConflictTipViewWithServerTime:serverTime localTime:localTime];
+    }
+    
+    if (self.conflictTipView.alpha!=1) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.conflictTipView.alpha = 1;
+        }];
+    }
+    
+    self.viewHeight = 0.5786666667*SCREEN_WIDTH;
+    [self setNeedsLayout];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [self layoutIfNeeded];
+    }];
+}
+
+- (void)localBtnClicked {
+    [self.delegate localBtnClickedTodoView:self];
+}
+
+- (void)cloudBtnClicked {
+    [self.delegate cloudBtnClickedTodoView:self];
+}
+
+- (void)removeConflictView {
+    if (self.conflictTipView.alpha != 0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.conflictTipView setAlpha:0];
+        }];
+    }
+    [self reloadData];
+}
+
+- (NSString*)getTimeStrWithTimeStamp:(NSInteger)t {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
+    return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:t]];
+}
+//MARK: - 初始化UI的操作：
+/// 添加一个View遮住底部多出来的圆角
+- (void)addMaskView {
+    UIView* view = [[UIView alloc] init];
+    [self addSubview:view];
+    
+    view.backgroundColor = [self backgroundColor];
+    
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self);
+        make.height.equalTo(@20);
+    }];
+}
+
+/// 添加显示“邮子清单”四个字的label
+- (void)addTitleLabel {
+    UILabel* label = [[UILabel alloc] init];
+    [self addSubview:label];
+    self.titleLabel = label;
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(0.03733333333*SCREEN_WIDTH);
+        make.top.equalTo(self).offset(0.03448275862*SCREEN_WIDTH);
+    }];
+    
+    label.text = @"邮子清单";
+    label.font = [UIFont fontWithName:PingFangSCBold size:18];
+    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+}
+
+/// 添加一个加号按钮，点击这个加号按钮后调用代理方法，来添加事项，代理是DiscoverViewController
+- (void)addAddBtn {
+    UIButton* btn = [[UIButton alloc] init];
+    self.addBtn = btn;
+    [self addSubview:btn];
+    
+    [btn setImage:[UIImage imageNamed:@"todoAddBtn"] forState:UIControlStateNormal];
+//    NewQAHud
+    CGFloat gap = 0.01*SCREEN_WIDTH;
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-0.04*SCREEN_WIDTH);
+        make.centerY.equalTo(self.titleLabel);
+        make.width.height.mas_equalTo(0.048*SCREEN_WIDTH + 2*gap);
+    }];
+    
+    [btn setImageEdgeInsets:UIEdgeInsetsMake(gap, gap, gap, gap)];
+    
+    [btn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
+/// 没有事项时，用来占位
+- (UILabel*)nothingLabel {
+    if (_nothingLabel==nil) {
+        UILabel* label = [[UILabel alloc] init];
+        [self addSubview:label];
+        _nothingLabel = label;
+        
+        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+        label.font = [UIFont fontWithName:PingFangSCMedium size:15];
+        label.text = @"还没有待做事项哦～快去添加吧！";
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).mas_offset(0.1034482759*SCREEN_HEIGHT);
+            make.left.equalTo(self).mas_offset(0.1866666667*SCREEN_WIDTH);
+        }];
+    }
+    return _nothingLabel;
+}
+
+/// 添加tableView
+- (void)addTodoListTableView {
+    UITableView* tableView = [[UITableView alloc] init];
+    self.todoListTableView = tableView;
+    [self addSubview:tableView];
+    
+    tableView.allowsSelection = NO;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.backgroundColor = self.backgroundColor;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.scrollEnabled = NO;
+    
+    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self);
+        make.top.equalTo(self.addBtn.mas_bottom).offset(0.03078817734*SCREEN_HEIGHT);
+        make.bottom.equalTo(self);
+    }];
+    tableView.showsVerticalScrollIndicator = NO;
+}
+
+/// MARK: - tableviwe的代理方法
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return self.dataModelArr.count;
+    return self.dataModelArr.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DiscoverTodoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"todoListTableViewCell"];
+    if (cell==nil) {
+        cell = [[DiscoverTodoTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"todoListTableViewCell"];
+    }
+    [cell setDataModel:self.dataModelArr[indexPath.row]];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TodoDataModel *model = self.dataModelArr[indexPath.row];
+    if ([model.timeStr isEqualToString:@""]||model.todoState==TodoDataModelStateOverdue) {
+        return 0.115*SCREEN_WIDTH;
+    }else {
+        return 0.155*SCREEN_WIDTH;
+    }
+}
+
+- (void)addConflictTipViewWithServerTime:(NSInteger)serverTime localTime:(NSInteger)localTime {
     TodoConflictStateView *view = [[TodoConflictStateView alloc] init];
     self.conflictTipView = view;
     [self addSubview:view];
@@ -128,138 +282,6 @@
         make.top.equalTo(self.addBtn.mas_bottom);
         make.left.bottom.right.equalTo(self);
     }];
-    
-    
-    self.viewHeight = 0.5786666667*SCREEN_WIDTH;
-    [self setNeedsLayout];
-    [UIView animateWithDuration:0.5 animations:^{
-        [self layoutIfNeeded];
-    }];
-}
-
-- (void)localBtnClicked {
-    [self.delegate localBtnClickedTodoView:self];
-}
-
-- (void)cloudBtnClicked {
-    [self.delegate cloudBtnClickedTodoView:self];
-}
-- (void)removeConflictView {
-    [UIView animateWithDuration:0.5 animations:^{
-        [self.conflictTipView setAlpha:0];
-    }];
-    [self reloadData];
-}
-- (NSString*)getTimeStrWithTimeStamp:(NSInteger)t {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm";
-    return [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:t]];
-}
-//MARK: - 初始化UI的操作：
-/// 添加一个View遮住底部多出来的圆角
-- (void)addMaskView {
-    UIView* view = [[UIView alloc] init];
-    [self addSubview:view];
-    
-    view.backgroundColor = [self backgroundColor];
-    
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self);
-        make.height.equalTo(@20);
-    }];
-}
-/// 添加显示“邮子清单”四个字的label
-- (void)addTitleLabel {
-    UILabel* label = [[UILabel alloc] init];
-    [self addSubview:label];
-    self.titleLabel = label;
-    
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(0.03733333333*SCREEN_WIDTH);
-        make.top.equalTo(self).offset(0.03448275862*SCREEN_WIDTH);
-    }];
-    
-    label.text = @"邮子清单";
-    label.font = [UIFont fontWithName:PingFangSCBold size:18];
-    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-}
-/// 添加一个加号按钮，点击这个加号按钮后调用代理方法，来添加事项，代理是DiscoverViewController
-- (void)addAddBtn {
-    UIButton* btn = [[UIButton alloc] init];
-    self.addBtn = btn;
-    [self addSubview:btn];
-    
-    [btn setImage:[UIImage imageNamed:@"todoAddBtn"] forState:UIControlStateNormal];
-//    NewQAHud
-    CGFloat gap = 0.01*SCREEN_WIDTH;
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-0.04*SCREEN_WIDTH);
-        make.centerY.equalTo(self.titleLabel);
-        make.width.height.mas_equalTo(0.048*SCREEN_WIDTH + 2*gap);
-    }];
-    
-    [btn setImageEdgeInsets:UIEdgeInsetsMake(gap, gap, gap, gap)];
-    
-    [btn addTarget:self action:@selector(addBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-}
-/// 没有事项时，用来占位
-- (UILabel*)nothingLabel {
-    if (_nothingLabel==nil) {
-        UILabel* label = [[UILabel alloc] init];
-        [self addSubview:label];
-        _nothingLabel = label;
-        
-        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
-        label.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        label.text = @"还没有待做事项哦～快去添加吧！";
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).mas_offset(0.1034482759*SCREEN_HEIGHT);
-            make.left.equalTo(self).mas_offset(0.1866666667*SCREEN_WIDTH);
-        }];
-    }
-    return _nothingLabel;
-}
-/// 添加tableView
-- (void)addTodoListTableView {
-    UITableView* tableView = [[UITableView alloc] init];
-    self.todoListTableView = tableView;
-    [self addSubview:tableView];
-    
-    tableView.allowsSelection = NO;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.backgroundColor = self.backgroundColor;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.scrollEnabled = NO;
-    
-    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self);
-        make.top.equalTo(self.addBtn.mas_bottom).offset(0.03078817734*SCREEN_HEIGHT);
-        make.bottom.equalTo(self);
-    }];
-    tableView.showsVerticalScrollIndicator = NO;
-}
-
-/// MARK: - tableviwe的代理方法
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return self.dataModelArr.count;
-    return self.dataModelArr.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DiscoverTodoTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"todoListTableViewCell"];
-    if (cell==nil) {
-        cell = [[DiscoverTodoTableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"todoListTableViewCell"];
-    }
-    [cell setDataModel:self.dataModelArr[indexPath.row]];
-    return cell;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TodoDataModel *model = self.dataModelArr[indexPath.row];
-    if ([model.timeStr isEqualToString:@""]||model.todoState==TodoDataModelStateOverdue) {
-        return 0.115*SCREEN_WIDTH;
-    }else {
-        return 0.155*SCREEN_WIDTH;
-    }
 }
 
 //MARK: - 点击按钮后调用：

@@ -774,6 +774,7 @@ static int requestCheckinInfo = 0;
     if (msg.syncState==TodoSyncStateConflict) {
         [self.todoView showConflictWithServerTime:msg.serverLastSyncTime localTime:msg.clientLastSyncTime];
     }else {
+        [self.todoView removeConflictView];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.todoView reloadData];
         });

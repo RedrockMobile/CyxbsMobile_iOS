@@ -54,6 +54,10 @@ NSString* const TodoSyncToolKeyLastUpdateTodoTimeStamp = @"TodoSyncToolKeyLastUp
 
 /// 临时存储服务器的同步时间
 @property(nonatomic, assign)NSInteger serverTimeStamp;
+
+/// 在获取服务器的同步时间的接口那边确认本地的服务时间存在或不存在后，
+/// 会对这个属性进行修改。在lastSyncTimeStamp的set方法里会把这个属性置位YES
+@property(nonatomic, assign)BOOL isSyncTimeExist;
 @end
 
 //生产环境：https://be-prod.redrock.cqupt.edu.cn/magipoke-todo
@@ -74,17 +78,31 @@ static TodoSyncTool* _instance;
 //    }
     
     //获取上次同步时间
-    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
-        if (![responseObject[@"info"] isEqualToString:@"success"]) {
+        NSDictionary *dataDict = responseObject[@"data"];
+        if (![responseObject[@"info"] isEqualToString:@"success"] || dataDict==nil || [dataDict isEqualToDictionary:@{}]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateUnexpectedError;
-
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
             return;
         }
+        long syncTime = [dataDict[@"sync_time"] longValue];
         
-        long syncTime = [responseObject[@"data"][@"sync_time"] longValue];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
+        });
+        
+        if ([dataDict[@"is_sync_time_exist"] intValue]==0) {
+            TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+            msg.syncState = TodoSyncStateConflict;
+            msg.serverLastSyncTime = syncTime;
+            msg.clientLastSyncTime = self.lastSyncTimeStamp;
+            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+            self.isSyncTimeExist = NO;
+            return;
+        }
+        self.isSyncTimeExist = YES;
         CCLog(@"%ld, %ld", syncTime, self.lastSyncTimeStamp);
         self.serverTimeStamp = syncTime;
         if (syncTime!=self.lastSyncTimeStamp) {
@@ -131,8 +149,7 @@ static TodoSyncTool* _instance;
 }
 //√
 - (void)firstDownload {
-    
-    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
@@ -165,8 +182,7 @@ static TodoSyncTool* _instance;
 
 //调用的前提是没有冲突
 - (void)downloadDataAndMerge {
-    
-    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
@@ -207,9 +223,10 @@ static TodoSyncTool* _instance;
 /// 从本地记录修改的逻辑来说，第一次推送修改时，推送的数据必定只有新增事项，所以，不必再调用删除事项的接口
 - (void)firstPush {
     NSDictionary* paramDict = @{
-        @"data":[self getAddAndAlterDataToPush],
+        @"data":[self getAllTodoToPush],
         @"sync_time":@(0),
-        @"first_push":@(1)
+        @"first_push":@(1),
+        @"force":@(1)
     };
     
     AFHTTPSessionManager *man = [AFHTTPSessionManager manager];
@@ -222,7 +239,7 @@ static TodoSyncTool* _instance;
     AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
     man.responseSerializer = responseSerializer;
     
-    [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [man POST:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         CCLog(@"%@", responseObject);
         
         NSString* state = responseObject[@"info"];
@@ -230,6 +247,8 @@ static TodoSyncTool* _instance;
             self.lastSyncTimeStamp = [responseObject[@"data"][@"sync_time"] longValue];
             [self cleanRecordForTable:@"addTodoIDTable"];
             [self cleanRecordForTable:@"alterTodoIDTable"];
+            [self cleanRecordForTable:@"deleteTodoIDTable"];
+            self.isModified = NO;
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
         msg.syncState = TodoSyncStateSuccess;
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
@@ -263,7 +282,6 @@ static TodoSyncTool* _instance;
 
 /// 推送新增和修改的数据
 - (void)pushModifiedDataForce:(BOOL)is {
-    is = YES;
     //在子线程作网络请求，因为有阻塞线程的操作。为什么要使用有阻塞线程的操作？因为看起来优雅一些。
     //为什么不同时进行这两个网络请求？因为会由于时序问题导致self.lastSyncTimeStamp和服务器不一样，而被服务器视为冲突。
     dispatch_queue_t que = dispatch_queue_create("TodoPushModifiedDataQue", DISPATCH_QUEUE_CONCURRENT);
@@ -294,7 +312,7 @@ static TodoSyncTool* _instance;
             AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
             man.responseSerializer = responseSerializer;
             
-            [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            [man POST:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                 CCLog(@"resp::%@",responseObject);
                 NSString* state = responseObject[@"info"];
                 if ([state isEqualToString:@"success"]) {
@@ -345,8 +363,8 @@ static TodoSyncTool* _instance;
             [man setResponseSerializer:responseSerializer];
             
             
-//            [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success
-            [man DELETE:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+//            [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success
+            [man DELETE:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
                 CCLog(@"resp::%@",responseObject);
                 NSString* state = responseObject[@"info"];
                 if ([state isEqualToString:@"success"]) {
@@ -428,9 +446,9 @@ static TodoSyncTool* _instance;
 }
 
 - (void)forceLoadServerData {
-    //先抹除本地修改，再进行同步，性能会更好，但是这样会使结构变得更复杂，所以这里选择重置数据库
+    //抹除本地修改，再进行同步，性能会更好，但是这样会使结构变得更复杂，所以这里选择重置数据库
     
-    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
@@ -441,7 +459,6 @@ static TodoSyncTool* _instance;
         
         //等网络请求成功后，再抹除本地修改
         [self resetDB];
-        self.lastSyncTimeStamp = NO;
         self.isModified = NO;
         
         NSDictionary* dataDitc = responseObject[@"data"];
@@ -465,7 +482,14 @@ static TodoSyncTool* _instance;
 }
 
 - (void)forcePushLocalData {
-    [self pushModifiedDataForce:YES];
+    if (self.isSyncTimeExist==YES) {
+        [self pushModifiedDataForce:YES];
+    }else {
+        [self firstPush];
+        
+        
+    }
+    
 }
 //MARK: +++++++++++++++重写的 geter/setter 方法++++++++++++++++++++++
 /// 是否需要推送数据给服务器
@@ -492,6 +516,7 @@ static TodoSyncTool* _instance;
 
 - (void)setLastSyncTimeStamp:(long)lastSyncTimeStamp {
     _lastSyncTimeStamp = lastSyncTimeStamp;
+    self.isSyncTimeExist = YES;
     [[NSUserDefaults standardUserDefaults] setInteger:lastSyncTimeStamp forKey:TodoSyncToolKeyLastSyncTimeStamp];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -933,6 +958,15 @@ static inline int ForeignWeekToChinaWeek(int week) {
                                  WHERE todo_id IN (SELECT todo_id FROM addTodoIDTable UNION SELECT todo_id FROM alterTodoIDTable)
                              );
     FMResultSet* resultSet = [self.db executeQuery:code];
+    NSMutableArray<NSDictionary*>* arr = [NSMutableArray arrayWithCapacity:5];
+    while ([resultSet next]) {
+        [arr addObject:[[self resultSetToDataModel:resultSet] getDataDictToPush]];
+    }
+    return arr;
+}
+
+- (NSArray<NSDictionary*>*)getAllTodoToPush {
+    FMResultSet* resultSet = [self getAllTodoResultSet];
     NSMutableArray<NSDictionary*>* arr = [NSMutableArray arrayWithCapacity:5];
     while ([resultSet next]) {
         [arr addObject:[[self resultSetToDataModel:resultSet] getDataDictToPush]];
