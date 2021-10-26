@@ -9,8 +9,6 @@
 #import "NewQAMainPageTableViewController+delegateMethod.h"
 #import "PostTableViewCell.h"
 #import "DynamicDetailMainVC.h"
-#import "PostArchiveTool.h"
-#import "GroupModel.h"
 
 @implementation NewQAMainPageTableViewController (delegateMethod)
 
