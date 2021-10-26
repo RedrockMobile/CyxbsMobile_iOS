@@ -48,10 +48,9 @@
         NSLog(@"圈子数据请求成功");
         [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
+            [NewQAHud showHudWith:@" 请求失败,请检查网络  " AddView:self.view];
         }
      ];
-    
 }
 // 自定义返回方法
 - (void)back {

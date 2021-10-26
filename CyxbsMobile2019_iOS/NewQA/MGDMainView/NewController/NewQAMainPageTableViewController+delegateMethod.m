@@ -9,6 +9,8 @@
 #import "NewQAMainPageTableViewController+delegateMethod.h"
 #import "PostTableViewCell.h"
 #import "DynamicDetailMainVC.h"
+#import "PostArchiveTool.h"
+#import "GroupModel.h"
 
 @implementation NewQAMainPageTableViewController (delegateMethod)
 
@@ -215,20 +217,32 @@
 #pragma mark -点击标签跳转到相应的圈子
 - (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
     self.itemDic = self.tableArray[indexPath.row];
+    
     NSString *groupName = self.itemDic[@"topic"];
+
     YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
-    int topicID = 0;
-    for(int i = 0;i < self.topicArray.count; i++) {
-        NSDictionary *dic = self.topicArray[i];
-        if([dic[@"topic_name"] isEqualToString:groupName])
-            topicID = i+1;
-    }
-    detailVC.topicIdString = groupName;
-    detailVC.topicID = topicID;
-    detailVC.hidesBottomBarWhenPushed = YES;
-    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int topicID = 0;
+        NSArray *array = responseObject[@"data"];
+        self.topicArray = [[NSMutableArray alloc]initWithArray:array];
+        for (int i = 0; i < self.topicArray.count; i++) {
+            NSDictionary *data = self.topicArray[i];
+            if ([groupName isEqualToString:data[@"topic_name"]]) {
+                    topicID = i+1;
+                    break;
+                }
+        }
+        detailVC.topicIdString = groupName;
+        detailVC.topicID = topicID;
+        detailVC.hidesBottomBarWhenPushed = YES;
+        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+        [self.navigationController pushViewController:detailVC animated:YES];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [NewQAHud showHudWith:@" 请求失败,请检查网络  " AddView:self.view];
+        }
+     ];
 }
 
 #pragma mark- 配置相关操作成功后的弹窗
