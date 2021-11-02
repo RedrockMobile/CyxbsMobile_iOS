@@ -56,6 +56,7 @@
         
         ///密码输入框
         UITextField *passwordField1=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请输入6位以上新密码"];
+        passwordField1.secureTextEntry = YES;
         passwordField1.clearButtonMode = UITextFieldViewModeNever;
         passwordField1.secureTextEntry = YES;
         [self addSubview:passwordField1];
@@ -276,7 +277,6 @@
     _nextBtn.layer.cornerRadius = _nextBtn.frame.size.height * 26/50;
     
 }
-
 - (void)securityPassword1 {
     if (_passwordRight1.selected == YES) {
         _passwordField1.secureTextEntry = NO;

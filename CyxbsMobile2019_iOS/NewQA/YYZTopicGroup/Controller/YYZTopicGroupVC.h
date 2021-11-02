@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NewQAMainPageMainController.h"
+#import "NewQAMainVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
