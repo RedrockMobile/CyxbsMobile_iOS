@@ -605,6 +605,7 @@
     [self recommendTableLoadData];
 }
 
+///关注列表刷新数据
 - (void)focusTableLoadData {
     self.focusPage += 1;
     __weak typeof (self) weakSelf = self;
