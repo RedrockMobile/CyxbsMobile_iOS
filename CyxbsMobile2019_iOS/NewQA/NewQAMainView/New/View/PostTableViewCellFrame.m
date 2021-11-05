@@ -146,7 +146,7 @@
     self.commendBtnFrameValue = [NSValue valueWithCGRect:self.commendBtnFrame];
     
     CGFloat shareBtnFrame_X = SCREEN_WIDTH * (0.9573 - 0.0547);
-    CGFloat shareBtnFrame_Y = SCREEN_WIDTH * 0.5653 * 20.5/212;
+    CGFloat shareBtnFrame_Y = SCREEN_WIDTH * 0.5653 * 22.5/212;
     CGFloat shareBtnFrame_W = SCREEN_WIDTH * 0.0535 * 20.75/20.05;
     CGFloat shareBtnFrame_H = SCREEN_WIDTH * 0.0535 * 20.75/20.05;
     self.shareBtnFrame = CGRectMake(shareBtnFrame_X, iconImageViewFrame_Y + iconImageViewFrame_H + detailLabelFrame_Y + detailLabelFrame_H + collectView_Y + collectView_H + groupLabelFrame_Y + groupLabelFrame_H + shareBtnFrame_Y, shareBtnFrame_W, shareBtnFrame_H);

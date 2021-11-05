@@ -25,6 +25,7 @@
 #import "MGDTimer.h"
 #import "PostArchiveTool.h"
 #import "NewQANoDataView.h"
+#import "SZHReleaseDynamic.h"
 
 @interface NewQAMainVC () <UIScrollViewDelegate, UITableViewDelegate,UITableViewDataSource,TopFollowViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,PostTableViewCellDelegate,SelfFuncViewProtocol,TopFollowViewDelegate>
 
@@ -42,7 +43,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NewQANoDataView *recommenNoDataView;
 @property (nonatomic, strong) NewQANoDataView *focusNoDataView;
-
+@property (nonatomic, strong) UIButton *publishBtn;
 @property (nonatomic, assign) NSInteger hotWordIndex;
 @property (nonatomic, strong) MGDTimer *timer;         // 定时器
 
@@ -105,14 +106,14 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
-//    if (self.isNeedFresh == YES || [UserItemTool defaultItem].firstLogin == YES) {
-//        [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//        [self loadMyStarGroupList];
-//        [self setupHeadView];
-//        [self.recommenTableView.mj_header beginRefreshing];
-//        [self.recommenArray removeAllObjects];
-//        [self recommendTableRefreshData];
-//    }
+    if (self.isNeedFresh == YES || [UserItemTool defaultItem].firstLogin == YES) {
+        [self.topView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self loadMyStarGroupList];
+        [self setupHeadView];
+        [self.recommenTableView.mj_header beginRefreshing];
+        [self.recommenArray removeAllObjects];
+        [self recommendTableRefreshData];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -274,7 +275,6 @@
     }];
     _searchBtn.layer.cornerRadius = SCREEN_WIDTH * 0.9147 * 37.5/343 * 1/2;
     [_searchBtn addTarget:self action:@selector(jumpSearchVC) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view bringSubviewToFront:_topBackView];
 }
 
 /// 跳转到搜索洁面
@@ -376,6 +376,16 @@
 
     [self.view bringSubviewToFront:_searchBtn];
     self.titleBarView.selectedItemIndex = 0;
+    
+    [self publishBtn];
+    [self.view addSubview:_publishBtn];
+    [_publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.view.top).mas_offset(SCREEN_HEIGHT * 0.7256);
+        make.right.mas_equalTo(self.view.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
+        make.width.height.mas_equalTo(WScaleRate_SE * 70);
+    }];
+    _publishBtn.layer.cornerRadius = WScaleRate_SE * 70 * 1/2;
+    _publishBtn.layer.masksToBounds = YES;
 }
 
 ///顶部搜索背景View懒加载
@@ -396,6 +406,18 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHotWords) name:@"refreshHotWords" object:nil];
     }
     return _searchBtn;
+}
+
+///发布按钮加载
+- (UIButton *)publishBtn {
+    if (!_publishBtn) {
+        _publishBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _publishBtn.backgroundColor = [UIColor clearColor];
+        [_publishBtn setBackgroundImage:[UIImage imageNamed:@"发布动态"] forState:UIControlStateNormal];
+        [_publishBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [_publishBtn addTarget:self action:@selector(clickedPublishBtn) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _publishBtn;
 }
 
 ///热搜词汇的网络请求
@@ -434,6 +456,14 @@
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:vc animated:YES];
     NSLog(@"跳转到搜索页面");
+}
+
+///点击了发布按钮，跳转到发布页面
+- (void)clickedPublishBtn {
+    SZHReleaseDynamic *vc = [[SZHReleaseDynamic alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -578,7 +608,7 @@
 - (void)focusTableLoadData {
     self.focusPage += 1;
     __weak typeof (self) weakSelf = self;
-    [self.postmodel handleDataWithPage:self.focusPage
+    [self.postfocusmodel handleFocusDataWithPage:self.focusPage
                                Success:^(NSArray *arr) {
         if (weakSelf.focusPage == 1) {
             [weakSelf.focusArray removeAllObjects];

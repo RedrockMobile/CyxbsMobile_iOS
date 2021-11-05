@@ -3266,19 +3266,11 @@
 		18FBADFC26F356BB004CED7D /* New */ = {
 			isa = PBXGroup;
 			children = (
-				18FBADFD26F356BB004CED7D /* ViewModel */,
 				18FBADFE26F356BB004CED7D /* Controller */,
 				18FBAE0126F356BB004CED7D /* Model */,
 				18FBAE1826F356BB004CED7D /* View */,
 			);
 			path = New;
-			sourceTree = "<group>";
-		};
-		18FBADFD26F356BB004CED7D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		18FBADFE26F356BB004CED7D /* Controller */ = {

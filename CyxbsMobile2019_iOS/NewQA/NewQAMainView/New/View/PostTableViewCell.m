@@ -61,7 +61,6 @@
     [self.contentView addSubview:_nicknameLabel];
     
     _IdentifyBackImage = [[UIImageView alloc] init];
-    _IdentifyBackImage.image = [UIImage imageNamed:@"IdentifyLabel"];
     [self.contentView addSubview:_IdentifyBackImage];
     
     ///时间
@@ -135,81 +134,6 @@
     
 }
 
-//- (void)BuildFrame {
-//    [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.0427);
-//        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
-//        make.width.height.mas_equalTo(SCREEN_WIDTH * 0.1066);
-//    }];
-//    _iconImageView.layer.cornerRadius = SCREEN_WIDTH * 0.1066 * 1/2;
-//
-//    [_nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.0427 + 2);
-//        make.left.mas_equalTo(self.iconImageView.mas_right).mas_offset(SCREEN_WIDTH * 0.04);
-//        make.right.mas_equalTo(self.funcBtn.mas_right).mas_offset(-SCREEN_WIDTH * 0.5);
-//        make.height.mas_equalTo(SCREEN_WIDTH * 0.1381 * 14.5/43.5);
-//    }];
-//
-//    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.nicknameLabel.mas_bottom).mas_offset(9);
-//        make.left.right.mas_equalTo(self.nicknameLabel);
-//        make.height.mas_equalTo(SCREEN_WIDTH * 0.1794 * 9/56.5);
-//    }];
-//
-//    [_funcBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.89 * 18/343);
-//        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.89);
-//        make.right.mas_equalTo(self.contentView.mas_right);
-//        make.height.mas_equalTo((SCREEN_WIDTH * 0.89 * 18/343 + [UIImage imageNamed:@"QAMoreButton"].size.height));
-//    }];
-//    [_funcBtn setImageEdgeInsets:UIEdgeInsetsMake((SCREEN_WIDTH * 0.89 * 18/343 - [UIImage imageNamed:@"QAMoreButton"].size.height), 0, 0, (SCREEN_WIDTH * 0.11 - [UIImage imageNamed:@"QAMoreButton"].size.width))];
-//
-//
-//    [_detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.0427 * 14.5/16);
-//        make.left.mas_equalTo(self.iconImageView);
-//        make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
-//        make.height.mas_equalTo(1).priorityLow();
-//    }];
-//
-//    [_collectView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(_detailLabel.mas_bottom).mas_offset(Pading * 13.5/16);
-//        make.left.mas_equalTo(_detailLabel);
-//        make.width.mas_equalTo(SCREEN_WIDTH - Pading * 2);
-//        make.height.mas_equalTo(1).priorityLow();
-//    }];
-//
-//    [_groupLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.height.mas_equalTo(SCREEN_WIDTH * 0.2707 * 25.5/101.5);
-//        make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-Pading * 62.5/16);
-//        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
-//        make.width.mas_equalTo(SCREEN_WIDTH * 0.2707);
-//    }];
-//    _groupLabel.layer.cornerRadius = SCREEN_WIDTH * 0.2707 * 25.5/101.5 * 1/2;
-//
-//    [_starBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.groupLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
-//        make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 22.75/20.05);
-//        make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.5587);
-//        make.width.mas_equalTo(SCREEN_WIDTH * 0.1648);
-//    }];
-//
-//    [_commendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.groupLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.5653 * 20.5/212);
-//        make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 22.75/20.05);
-//        make.left.mas_equalTo(self.starBtn.mas_right).mas_offset(SCREEN_WIDTH * 0.01);
-//        make.width.mas_equalTo(SCREEN_WIDTH * 0.1648);
-//    }];
-//
-//    [_shareBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.commendBtn);
-//        make.width.mas_equalTo(SCREEN_WIDTH * 0.0547);
-//        make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
-//        make.height.mas_equalTo(SCREEN_WIDTH * 0.0535 * 22.75/20.05);
-//    }];
-//    self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//}
-
 -(void)changeLineSpaceForLabel:(UILabel *)label WithSpace:(float)space {
     NSString *labelText = label.text;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
@@ -238,22 +162,10 @@
         [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:item.avatar] placeholderImage:[UIImage imageNamed:@"圈子图像"]];
         self.nicknameLabel.text = item.nick_name;
         self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%@",item.publish_time]];
+        [self.IdentifyBackImage sd_setImageWithURL:[NSURL URLWithString:item.identity_pic] placeholderImage:nil];
         self.detailLabel.text = item.content;
         self.collectView.item = item;
         [self.groupLabel setTitle:[NSString stringWithFormat:@"# %@",item.topic] forState:UIControlStateNormal];
-//        NSString *content = self.groupLabel.titleLabel.text;
-//        UIFont *font = self.groupLabel.titleLabel.font;
-//        CGSize size = CGSizeMake(MAXFLOAT, 30.0f);
-//        CGSize buttonSize = [content boundingRectWithSize:size
-//        options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-//        attributes:@{ NSFontAttributeName:font}
-//        context:nil].size;
-//        [_groupLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(self.collectView.mas_bottom).mas_offset(11);
-//            make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-Pading * 62.5/16);
-//            make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
-//            make.width.mas_equalTo(buttonSize.width + SCREEN_WIDTH * 0.05 * 2);
-//        }];
         self.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.comment_count];
         self.starBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.praise_count];
         self.starBtn.selected = [item.is_praised intValue] == 1 ? YES : NO;
@@ -261,8 +173,6 @@
             self.commendBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
         self.starBtn.isFirst = YES;
         [self.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
-//        self.starBtn.isSelected = self.starBtn.selected;
-//        [self reloadCell:item.pics];
     }
 }
 
@@ -409,6 +319,7 @@
     }
 }
 
+// 此处设置各个控件frame
 - (void)setCellFrame:(PostTableViewCellFrame *)cellFrame {
     _cellFrame = cellFrame;
     _iconImageView.frame = [cellFrame.iconImageViewFrameValue CGRectValue];

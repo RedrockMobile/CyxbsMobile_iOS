@@ -51,10 +51,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *shareBtn;
 ///圈子标签的背景图片
 @property (nonatomic, strong) UIImage *groupImage;
-///
+///个人身份标识
 @property (nonatomic, strong) UIImageView *IdentifyBackImage;
-
-@property (nonatomic, strong) UIImageView *IdentifyTopImage;
 
 @property (nonatomic, strong) UIView *backView;
 
