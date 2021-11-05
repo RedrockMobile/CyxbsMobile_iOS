@@ -18,6 +18,18 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure();
         }];
+    //完成拍案叫绝任务
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSString *target = @"拍案叫绝";
+        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+        [formData appendPartWithFormData:data name:@"title"];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            NSLog(@"成功了");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"失败了");
+        }];
 }
 
 - (void)requestDynamicDetailDataWithDynamic_id:(int)dynamic_id Sucess:(void (^)(NSDictionary * _Nonnull))sucess Failure:(void (^)(void))failure{
@@ -26,9 +38,24 @@
     [client requestWithPath:NEW_QA_DynamicDetail method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = responseObject[@"data"];
         sucess(dic);
+        
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure();
         }];
+    
+        //完成逛逛邮问任务
+        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+        [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            NSString *target = @"逛逛邮问";
+            NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+            [formData appendPartWithFormData:data name:@"title"];
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                NSLog(@"成功了");
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"失败了");
+            }];
+    
 }
 
 - (void)getCommentDataWithPost_id:(int)post_id Sucess:(void (^)(NSArray * _Nonnull))sucess Failure:(void (^)(void))failure{

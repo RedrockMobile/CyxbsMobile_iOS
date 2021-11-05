@@ -33,6 +33,7 @@
                     }
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     NSLog(@"==========================出错了");
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"networkerror" object:nil];
                 }];
 }
 

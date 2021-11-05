@@ -56,6 +56,7 @@
     return _otherBtn;
 }
 
+#pragma mark - TypeButtonDelegate
 - (void)selected:(TypeButton *)sender{
     self.select(sender);
 }

@@ -219,16 +219,16 @@
 #define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
 //查老师课表数据，POST，参数： @{ @"teaName": 姓名, @"tea": 工号？}
-#define TEAkebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teaKb/api/teaKb"]
+#define TEAkebiaoAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaKb"]
 
 /// 空教室接口
 #define EMPTYCLASSAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/roomEmpty"]
 
 /// 同学课表之查找同学，GET，参数：@{@"stu"]: 用来搜索的数据}
-#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
+#define SEARCHPEOPLEAPI  [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-text/search/people"]
 
 /// 查找老师，POST，参数：@{@"teaName"]: 用来搜索的数据}
-#define SEARCHTEACHERAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teaKb/api/teaSearch"]
+#define SEARCHTEACHERAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaSearch"]
 
 
 

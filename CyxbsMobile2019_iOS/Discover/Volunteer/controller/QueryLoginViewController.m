@@ -90,9 +90,25 @@
             [user synchronize];
             QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:self.volunteer];
             [self.navigationController pushViewController:queryVC animated:YES];
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginVolunteerAccountSucceed" object:nil];
         }];
     });
+ 
+//    HttpClient *client = [HttpClient defaultClient];
+//    //完成绑定志愿者账号任务 (只需要点击按钮即可，未判断是否绑定成功 2021年9月22日 志愿者服务不可用状态)
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *target = @"绑定志愿者账号";
+//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:data name:@"title"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
+//
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 

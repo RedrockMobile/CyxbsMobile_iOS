@@ -45,7 +45,7 @@
     self.view.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
     self.VCTitleStr = @"";
     self.topBarView.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
-    self.splitLineColor = [UIColor systemGray5Color];
+    self.splitLineColor = [UIColor colorNamed:@"BarLine"];
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }
@@ -61,7 +61,7 @@
     [CommonQuestionData CommonQuestionDataWithSuccess:^(NSArray * _Nonnull array) {
         self.CommonQuestionAry = array;
         } error:^{
-            
+            [NewQAHud showHudWith:@"网络异常" AddView:self.view];
         }];
 }
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation

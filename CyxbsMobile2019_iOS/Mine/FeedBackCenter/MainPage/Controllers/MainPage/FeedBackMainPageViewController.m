@@ -140,7 +140,7 @@
     self.view.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
     self.VCTitleStr = @"意见与反馈";
     self.topBarView.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
-    self.splitLineColor = [UIColor systemGray5Color];
+    self.splitLineColor = [UIColor colorNamed:@"BarLine"];
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }
@@ -163,14 +163,17 @@
         self.CommonQuestionAry = array;
         
         } error:^{
-            
+            [NewQAHud showHudWith:@"网络异常" AddView:self.view];
         }];
 }
+
+#pragma mark - 跳转至qq
 - (NSURL*)getQQQunUrl{
     NSString *qq_number = @"570919844";
     NSString* urlStr = [NSString stringWithFormat:@"mqqapi://card/show_pslcard?src_type=internal&version=1&uin=%@&key=%@&card_type=group&source=external", qq_number, @"44a6e01f2dab126f87ecd2ec7b7e66ae259b30535fd0c2c25776271e8c0ac08f"];
     return [NSURL URLWithString:urlStr];
 }
+
 
 - (void)jumptoQQ{
     NSLog(@"跳转至QQ");

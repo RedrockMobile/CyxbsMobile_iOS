@@ -58,8 +58,8 @@
         _table.showsVerticalScrollIndicator = NO;
         _table.showsHorizontalScrollIndicator = NO;
         _table.contentInset = UIEdgeInsetsMake(215, 0, 0, 0);
-        _table.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
         _table.bounces = NO;
+        _table.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
         _table.tableHeaderView = _tableHeaderView;
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
         _table.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];

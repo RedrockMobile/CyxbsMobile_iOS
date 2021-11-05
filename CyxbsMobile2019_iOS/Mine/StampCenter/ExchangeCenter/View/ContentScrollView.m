@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import <AFNetworking/AFNetworking.h>
 #import "Goods.h"
+#import <YBImageBrowser.h>
 
 #define picScrollViewWidth 360 * [UIScreen mainScreen].bounds.size.width / 390
 
@@ -35,16 +36,16 @@
     _bannerView = [[SDCycleScrollView alloc]init];
     [self addSubview:self.bannerView];
     [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(16);
+        make.centerX.equalTo(self);
         make.top.equalTo(self).offset(16);
         make.width.mas_equalTo(picScrollViewWidth);
         make.height.mas_equalTo(178);
     }];
-    _bannerView.backgroundColor = [UIColor whiteColor];
+    _bannerView.backgroundColor = [UIColor colorNamed:@"white&black"];
     
     NSString *s = self.goodsID;
     [Goods getDataDictWithId:s Success:^(NSDictionary * _Nonnull dict) {
-        self->_urls = dict[@"urls"];
+        self.urls = dict[@"urls"];
         
         NSArray *imagesURLStrings = dict[@"urls"];
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@""]];
@@ -56,7 +57,6 @@
             make.height.mas_equalTo(178);
         }];
         cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
-        cycleScrollView.currentPageDotColor = [UIColor blueColor]; // 自定义分页控件小圆标颜色
         cycleScrollView.imageURLStringsGroup = imagesURLStrings;
         cycleScrollView.clipsToBounds = YES;
         cycleScrollView.layer.cornerRadius = 15;
@@ -64,52 +64,45 @@
         cycleScrollView.layer.shadowOpacity = 0.33f;
         cycleScrollView.layer.shadowColor = [UIColor colorWithRed:140/255.0 green:150/255.0 blue:217/255.0 alpha:1].CGColor;
         cycleScrollView.autoScrollTimeInterval = 3;
-
         cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
         self.cycleScrollView = cycleScrollView;
+        self.urlscount = imagesURLStrings.count;
+        [self addPageController];
         
-
+        //图片的设置
+        //设置图片浏览器的数据源数组
+        NSMutableArray *dataMuteAry = [NSMutableArray array];
+        for (int i = 0;i < self.urls.count; i++) {
+            YBIBImageData *data = [YBIBImageData new];
+            data.imageURL = [NSURL URLWithString:self.urls[i]];
+            [dataMuteAry addObject:data];
+        }
+        self.urldataArray = dataMuteAry;
+//        self.imageDataArray = dynamicDataModel.pics;
+        
         } failure:^{
     }];
     
 }
 
-//- (void)addPicView {
-//    _picScrollView = [[UIScrollView alloc]init];
-//    [self addSubview:_picScrollView];
-//    [_picScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self);
-        
-//    }];
-//    _picScrollView.layer.cornerRadius = 10;
-//    [_picScrollView setContentSize:CGSizeMake(picScrollViewWidth * 3, 178)];
-//    _picScrollView.pagingEnabled = YES;
-//    [_picScrollView setShowsHorizontalScrollIndicator:NO];
-//
-//
-    
-//    //添加分页控制器
-////    [self addPageController];
-//    NSLog(@"%@", _urls);
-//}
 
 ///分页控制器
-//- (void)addPageController {
-//    UIPageControl *pageControl = [[UIPageControl alloc]init];
-//    [self addSubview:pageControl];
-//    _pageControl = pageControl;
-//    [pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.centerX.equalTo(self);
-//            make.bottom.equalTo(self.picScrollView.mas_bottom);
-//            make.width.mas_equalTo(125);
-//            make.height.mas_equalTo(30);
-//    }];
-//    pageControl.pageIndicatorTintColor =[UIColor grayColor];
-//    pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
-//    pageControl.numberOfPages = 3;
-//    pageControl.currentPage = 0;
-//
-//}
+- (void)addPageController {
+    UIPageControl *pageControl = [[UIPageControl alloc]init];
+    [self addSubview:pageControl];
+    _pageControl = pageControl;
+    [pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self);
+            make.bottom.equalTo(self.bannerView.mas_bottom);
+            make.width.mas_equalTo(125);
+            make.height.mas_equalTo(30);
+    }];
+    pageControl.pageIndicatorTintColor =[UIColor grayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+    pageControl.numberOfPages = self.urlscount;
+    pageControl.currentPage = 0;
+
+}
 #pragma mark - configure
 - (void)configure {
     
@@ -152,7 +145,23 @@
     
     
 }
-
+#pragma mark - delegate
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index {
+    self.pageControl.currentPage = index;
+}
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    
+    YBImageBrowser *browser = [YBImageBrowser new];
+    browser.dataSourceArray = self.urldataArray;
+    
+    browser.currentPage = index;
+    // 只有一个保存操作的时候，可以直接右上角显示保存按钮
+    
+    browser.defaultToolViewHandler.topView.operationType = YBIBTopViewOperationTypeSave;
+    
+    [browser show];
+    
+}
 
 #pragma mark - getter
 ///商品名字
@@ -170,7 +179,7 @@
         _amountLabel = [[UILabel alloc]init];
         _amountLabel.textAlignment = NSTextAlignmentRight;
         _amountLabel.textColor = [UIColor colorNamed:@"21_49_91"];
-        _amountLabel.alpha = 0.8;
+        _amountLabel.alpha = 0.4;
         _amountLabel.font = [UIFont systemFontOfSize:13];
     }
     return _amountLabel;

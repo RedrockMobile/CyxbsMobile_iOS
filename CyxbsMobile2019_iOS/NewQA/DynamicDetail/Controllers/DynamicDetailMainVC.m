@@ -349,6 +349,20 @@
     [self.backViewWithGesture removeFromSuperview];
 //    self.backViewWithGesture.alpha = 0;
     [NewQAHud showHudWith:@"  已复制链接，可以去分享给小伙伴了～  " AddView:self.view];
+    
+    HttpClient *client = [HttpClient defaultClient];
+    //完成围观吃瓜任务
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSString *target = @"围观吃瓜";
+        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+        [formData appendPartWithFormData:data name:@"title"];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            NSLog(@"成功了");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"失败了");
+        }];
 }
 ///删除评论
 - (void)deleteAction:(int)comment_id{
@@ -755,6 +769,20 @@
     
     //初始化设置
     self.isCommentFirstLevel = YES;
+    
+    HttpClient *client = [HttpClient defaultClient];
+    //完成能说会道任务
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSString *target = @"能说会道";
+        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+        [formData appendPartWithFormData:data name:@"title"];
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            NSLog(@"成功了");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"失败了");
+        }];
 }
 
 //MARK:UITextViewDelegate

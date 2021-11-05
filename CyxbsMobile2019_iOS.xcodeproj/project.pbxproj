@@ -1570,10 +1570,10 @@
 		49F47CD126D423A100084196 /* FeedBackMainPage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FeedBackMainPage.xcassets; sourceTree = "<group>"; };
 		6464F93226E4F6EE008562C5 /* BuyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyModel.h; sourceTree = "<group>"; };
 		6464F93326E4F6EE008562C5 /* BuyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyModel.m; sourceTree = "<group>"; };
+		6464F98726F4FDB4008562C5 /* ExchangeCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExchangeCenterViewController.h; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7311327126CCEC2400EF88C1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		7311327326CCEC2400EF88C1 /* ExchangeCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeCenterViewController.m; sourceTree = "<group>"; };
-		7311327426CCEC2400EF88C1 /* ExchangeCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeCenterViewController.h; sourceTree = "<group>"; };
 		7311327626CCEC2400EF88C1 /* Balance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Balance.h; sourceTree = "<group>"; };
 		7311327726CCEC2400EF88C1 /* Goods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Goods.m; sourceTree = "<group>"; };
 		7311327826CCEC2400EF88C1 /* Balance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Balance.m; sourceTree = "<group>"; };
@@ -2497,15 +2497,15 @@
 		18CDF4F6257F91BC006E8E5C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF4F7257F91BC006E8E5C /* ElectricityView.m */,
-				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
-				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
-				18CDF4FA257F91BC006E8E5C /* VolunteerView.h */,
-				18CDF4FB257F91BC006E8E5C /* ElectricityView.h */,
 				18CDF4FC257F91BC006E8E5C /* LQQFinderView.h */,
+				18CDF4FB257F91BC006E8E5C /* ElectricityView.h */,
+				18CDF4F7257F91BC006E8E5C /* ElectricityView.m */,
 				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
+				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
+				18CDF4FA257F91BC006E8E5C /* VolunteerView.h */,
 				18CDF4FE257F91BC006E8E5C /* VolunteerView.m */,
 				18CDF4FF257F91BC006E8E5C /* FinderView.h */,
+				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4169,8 +4169,7 @@
 		493162E326CD7B6800140412 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				493162E426CD7B6800140412 /* TableViewVells */,
-				493162EB26CD7B6800140412 /* CollectionVIewVells */,
+				498F563526EFA87200685D40 /* Cell */,
 				493162EE26CD7B6800140412 /* CustomViews */,
 			);
 			path = Views;
@@ -4237,9 +4236,9 @@
 			isa = PBXGroup;
 			children = (
 				493162F326CD7B6800140412 /* SecondHeaderView.h */,
-				493162F426CD7B6800140412 /* CollectionHeaderView.m */,
 				493162F526CD7B6800140412 /* SecondHeaderView.m */,
 				493162F626CD7B6800140412 /* CollectionHeaderView.h */,
+				493162F426CD7B6800140412 /* CollectionHeaderView.m */,
 			);
 			path = CollectionHeaderView;
 			sourceTree = "<group>";
@@ -4335,6 +4334,15 @@
 			path = FeedBackView;
 			sourceTree = "<group>";
 		};
+		498F563526EFA87200685D40 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				493162E426CD7B6800140412 /* TableViewVells */,
+				493162EB26CD7B6800140412 /* CollectionVIewVells */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		4999FA8726D452A2005D0ADE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -4415,7 +4423,7 @@
 		7311327226CCEC2400EF88C1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7311327426CCEC2400EF88C1 /* ExchangeCenterViewController.h */,
+				6464F98726F4FDB4008562C5 /* ExchangeCenterViewController.h */,
 				7311327326CCEC2400EF88C1 /* ExchangeCenterViewController.m */,
 			);
 			path = Controller;
@@ -5842,6 +5850,10 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"ar-001",
+				"tz-ru",
+				"tz-RU",
 			);
 			mainGroup = 1A9B765E235F50A600725937;
 			productRefGroup = 1A9B7668235F50A600725937 /* Products */;
@@ -6823,7 +6835,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -6877,7 +6889,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

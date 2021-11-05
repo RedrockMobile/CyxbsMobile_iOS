@@ -44,7 +44,7 @@
     self.stockLbl.text = [NSString stringWithFormat:@"库存: %d",data.amount];
     [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:data.url]];
     if (data.amount < 1) {
-        self.exchangeBtn.backgroundColor = [UIColor systemGray4Color];
+        self.exchangeBtn.backgroundColor = [UIColor colorNamed:@"cannotbuy"];
     }
     else{
         self.exchangeBtn.backgroundColor = [UIColor colorNamed:@"#4A44E4"];

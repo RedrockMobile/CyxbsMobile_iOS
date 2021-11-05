@@ -450,12 +450,12 @@
       } completion:nil];
 }
 
+///跳转到搜索界面
 - (void)searchPost {
     SearchBeginVC *vc = [[SearchBeginVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:vc animated:YES];
-    NSLog(@"跳转到搜索页面");
 }
 
 ///点击了发布按钮，跳转到发布页面
