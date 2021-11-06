@@ -100,7 +100,7 @@
 
 /// 添加tableView
 - (void)addAppSettingTableView{
-    self.cellTitleStrArr = @[@"积分商城",@"设置",@"关于我们",@"意见与反馈"];
+    self.cellTitleStrArr = @[@"积分商城",@"设置",@"关于我们"];//,@"意见与反馈"
     
     UITableView *appSettingTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, MAIN_SCREEN_H) style:UITableViewStyleGrouped];
     [self.contentView addSubview: appSettingTabelView];
