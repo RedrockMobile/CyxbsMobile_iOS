@@ -139,6 +139,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
 }
 - (void)viewDidLoad {
+    
+    self.tabBarController.tabBar.backgroundColor = [UIColor whiteColor];
+    
     [super viewDidLoad];
     [self configDefaults];
     [self requestData];
