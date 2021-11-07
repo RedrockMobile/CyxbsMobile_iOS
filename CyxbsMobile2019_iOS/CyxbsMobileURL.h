@@ -326,6 +326,9 @@
 // 推荐帖子
 #define NEW_QA_POST [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getMainPage"]
 
+// 关注的人帖子
+#define NEW_QA_FOCUSLIST [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/dynamic/focus"]
+
 // 举报
 #define NEW_QA_REPORT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/report"]
 
