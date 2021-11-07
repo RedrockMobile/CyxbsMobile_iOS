@@ -255,6 +255,10 @@
                 }];
             } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
                 NSLog(@"失败了");
+                [NewQAHud showHudWith:@"提交失败 网络异常" AddView:self.view AndToDo:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                    self.view.userInteractionEnabled = YES;
+                }];
             }];
     }else{//没有选择问题类型
         [NewQAHud showHudWith:@"请选择问题类型" AddView:self.view];

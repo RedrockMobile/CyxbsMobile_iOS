@@ -306,6 +306,32 @@
     } else if ([cell.tableTag intValue] == 2) {
         
     }
+    
+    //这里是 可以加载出数据的代码
+    //主要的问题是 TopicID 的问题  可以自己打断点调试看一下 我记得我之前看 self.topicArray 是空的
+    //所以我直接用网络请求来获取 TopicID 其实也不会慢多少
+    //具体怎么修 看你们 我只是提供一个可行的思路 
+    
+//        [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//               int topicID = 0;
+//               NSArray *array = responseObject[@"data"];
+//               self.topicArray = [[NSMutableArray alloc]initWithArray:array];
+//               for (int i = 0; i < self.topicArray.count; i++) {
+//                   NSDictionary *data = self.topicArray[i];
+//                   if ([groupName isEqualToString:data[@"topic_name"]]) {
+//                           topicID = i+1;
+//                           break;
+//                       }
+//               }
+//               detailVC.topicIdString = groupName;
+//               detailVC.topicID = topicID;
+//               detailVC.hidesBottomBarWhenPushed = YES;
+//               ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+//               [self.navigationController pushViewController:detailVC animated:YES];
+//               } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//                   [NewQAHud showHudWith:@" 请求失败,请检查网络  " AddView:self.view];
+//               }
+//            ];
 }
 
 #pragma mark- 配置相关操作成功后的弹窗
