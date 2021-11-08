@@ -16,9 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface HistoricalFeedBackTableView : UITableView
 
-/// 只用做用来更新 cell 的个数
-@property (nonatomic, assign) NSInteger row;
-
 @end
 
 NS_ASSUME_NONNULL_END

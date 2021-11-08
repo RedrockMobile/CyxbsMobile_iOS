@@ -102,10 +102,12 @@
     if (indexPath.section == 0) {
         FeedBackDetailsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackDetailsTableViewCell)];
         cell.cellModel = self.detailsAry[indexPath.section];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     } else {
         FeedBackReplyTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackReplyTableViewCell)];
         cell.cellModel = self.detailsAry[indexPath.section];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
 }

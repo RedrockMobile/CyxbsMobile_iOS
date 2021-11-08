@@ -14,7 +14,7 @@
 #import "FeedBackDetailsViewController.h"
 
 @interface HistoricalFeedBackViewController ()
-<UITableViewDelegate>
+<UITableViewDelegate, UITableViewDataSource>
 
 /// 展示历史记录的 table
 @property (nonatomic, strong) HistoricalFeedBackTableView * historicalFeedBackTableView;
@@ -65,25 +65,25 @@
 
 - (void)refreshHistoricalFeedBack {
     [FeedBackModel getDataArySuccess:^(NSArray * _Nonnull array) {
+        [self.historicalFeedBackTableView.mj_header endRefreshing];
         self.feedBackAry = array;
-        self.historicalFeedBackTableView.row = self.feedBackAry.count;
+        [self.historicalFeedBackTableView reloadData];
         if (self.feedBackAry.count == 0) {
             self.defaultView.hidden = NO;
         } else {
             self.defaultView.hidden = YES;
         }
-        [self.historicalFeedBackTableView.mj_header endRefreshing];
     } failure:^{
         [self.historicalFeedBackTableView.mj_header endRefreshing];
+        [NewQAHud showHudWith:@"获取数据失败,请检查一下网络!"
+                      AddView:self.view.window
+                      AndToDo:^{
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }];
 }
 
 #pragma mark - table delegate
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    FeedBackTableViewCell * feedBackCell = (FeedBackTableViewCell *)cell;
-    feedBackCell.cellModel = self.feedBackAry[indexPath.row];
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -99,12 +99,31 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
+    return self.feedBackAry.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FeedBackTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackTableViewCell)];
+    cell.cellModel = self.feedBackAry[indexPath.row];
+    return cell;
+}
+
 #pragma mark - getter
 
 - (HistoricalFeedBackTableView *)historicalFeedBackTableView {
     if (_historicalFeedBackTableView == nil) {
         _historicalFeedBackTableView = [[HistoricalFeedBackTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _historicalFeedBackTableView.delegate = self;
+        _historicalFeedBackTableView.dataSource = self;
         _historicalFeedBackTableView.mj_header = self.feedBackStateHeader;
     }
     return _historicalFeedBackTableView;

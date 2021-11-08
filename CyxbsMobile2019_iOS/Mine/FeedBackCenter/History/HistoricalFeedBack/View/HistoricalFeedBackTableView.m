@@ -26,36 +26,10 @@
 }
 
 - (void)configureView {
-    self.dataSource = self;
     self.backgroundColor = [UIColor clearColor];
     self.rowHeight = 74;
     
     [self registerClass:[FeedBackTableViewCell class] forCellReuseIdentifier:reuseIdentifier(FeedBackTableViewCell)];
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
-
-#pragma mark - setter
-
-- (void)setRow:(NSInteger)row {
-    _row = row;
-    [self reloadData];
-}
-
-#pragma mark - data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
-    return self.row;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FeedBackTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier(FeedBackTableViewCell)];
-    return cell;
-}
-
 @end
