@@ -223,6 +223,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 ///设置存储、更换baseURL
 - (void)settingBaseURL{
+    [[NSUserDefaults standardUserDefaults] setObject:@"https://be-prod.redrock.cqupt.edu.cn/" forKey:@"baseURL"];
+    /*
 #ifdef DEBUG
     [[NSUserDefaults standardUserDefaults] setObject:@"https://be-dev.redrock.cqupt.edu.cn/" forKey:@"baseURL"];
 #else
@@ -240,7 +242,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //    @"https://be-dev.redrock.cqupt.edu.cn/"
 //    NS，，，，，，，，Log(@"baseURL%@",CyxbsMobileBaseURL_1);
 #endif
-    
+    */
 }
 
 ///检查是否有最新的掌邮，并提示用户获取
