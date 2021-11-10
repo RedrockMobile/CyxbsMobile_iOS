@@ -22,7 +22,13 @@
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
 
-@interface DLReminderSetTimeVC ()<UITextFieldDelegate, WeekSelectDelegate,DLTimeSelectViewDelegate,TimeBtnSelectedBackViewDeleget,NoticeWaySelectViewDelegate>
+@interface DLReminderSetTimeVC ()<
+    UITextFieldDelegate,
+    WeekSelectDelegate,
+    DLTimeSelectViewDelegate,
+    TimeBtnSelectedBackViewDeleget,
+    NoticeWaySelectViewDelegate
+>
 @property (nonatomic, strong) UIPickerView *timePiker;
 @property (nonatomic, strong) DLReminderView *reminderView;
 

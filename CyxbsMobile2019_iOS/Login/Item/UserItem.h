@@ -80,10 +80,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 //MARK: - 电费相关（可能）
 /// 楼栋：例如26
-@property (nonatomic, copy) NSString *building;
+@property (nonatomic, copy, nullable) NSString *building;
 
 /// 房间号：例如413
-@property (nonatomic, copy) NSString *room;
+@property (nonatomic, copy, nullable) NSString *room;
 
 
 

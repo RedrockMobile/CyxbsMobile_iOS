@@ -33,7 +33,7 @@ typedef void (^PrepareExecuteBlock)(void);
 //                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 - (void)requestWithPath:(NSString *)url
-                 method:(NSInteger)method
+                 method:(HttpRequestType)method
              parameters:(id)parameters
          prepareExecute:(PrepareExecuteBlock) prepare
                progress:(void (^)(NSProgress * progress))progress
@@ -43,7 +43,7 @@ typedef void (^PrepareExecuteBlock)(void);
 
 
 - (void)requestWithJson:(NSString *)url
-                 method:(NSInteger)method
+                 method:(HttpRequestType)method
              parameters:(id)parameters
          prepareExecute:(PrepareExecuteBlock) prepare
                progress:(void (^)(NSProgress * progress))progress
@@ -51,7 +51,7 @@ typedef void (^PrepareExecuteBlock)(void);
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
 - (void)uploadImageWithJson:(NSString *)url
-                     method:(NSInteger)method
+                     method:(HttpRequestType)method
                  parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
              prepareExecute:(PrepareExecuteBlock) prepare
                    progress:(void (^)(NSProgress * progress))progress

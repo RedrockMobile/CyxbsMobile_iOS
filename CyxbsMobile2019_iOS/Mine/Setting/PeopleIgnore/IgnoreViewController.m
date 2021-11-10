@@ -13,7 +13,11 @@
 
 
 
-@interface IgnoreViewController ()<UITableViewDelegate,UITableViewDataSource,MainPageModelDelegate>
+@interface IgnoreViewController ()<
+    UITableViewDelegate,
+    UITableViewDataSource,
+    MainPageModelDelegate
+>
 @property(nonatomic,strong)UITableView *tableView;
 
 /// 用于网络请求的model
@@ -39,12 +43,6 @@
     UITableView *tableView = [[UITableView alloc] init];
     self.tableView = tableView;
     [self.view addSubview:tableView];
-    
-//    if (@available(iOS 11.0, *)) {
-//        tableView.backgroundColor = [UIColor colorNamed:@"241_243_248&0_0_0"];
-//    } else {
-//        tableView.backgroundColor = [UIColor colorWithRed:241/255.0 green:243/255.0 blue:248/255.0 alpha:1];
-//    }
     tableView.backgroundColor = self.view.backgroundColor;
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -58,17 +56,16 @@
     tableView.dataSource = self;
 }
 
-// 通知邮问主页重新加载帖子数据  
-- (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shieldReloadNEWQAList" object:nil];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.model.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    IgnoreTableViewCell *cell = [[IgnoreTableViewCell alloc] init];
+    IgnoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IgnoreTableViewCell"];
+    if (cell==nil) {
+        cell = [[IgnoreTableViewCell alloc] init];
+    }
     [cell setDataWithDataModel:[[IgnoreDataModel alloc]initWithDict:self.model.dataArr[indexPath.row]]];
     return cell;
 }
@@ -86,6 +83,9 @@
     switch (state) {
         case MainPageModelStateNoMoreDate:
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            if (self.model.dataArr.count==0) {
+                [self.tableView.mj_footer setHidden:YES];
+            }
             break;
         case MainPageModelStateEndRefresh:
             [self.tableView.mj_footer endRefreshing];

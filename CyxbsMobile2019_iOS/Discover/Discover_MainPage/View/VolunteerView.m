@@ -18,7 +18,6 @@
 #define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
 @interface VolunteerView()
@@ -36,10 +35,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        if (@available(iOS 11.0, *)) {
+            self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
         } else {
-            // Fallback on earlier versions
+            self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
         }
         [self loadUserDefaults];//加载缓存用作视图的初始化
         [self addNoBindingView];
@@ -99,9 +98,9 @@
 - (void)addSeperateLine {
     UIView *line = [[UIView alloc]init];
     if (@available(iOS 11.0, *)) {
-        line.backgroundColor = Color42_78_132to2D2D2D;
+        line.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
     } else {
-        line.backgroundColor = [UIColor colorWithRed:232/255.0 green:223/255.0 blue:241/255.0 alpha:1];
+        line.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
     }
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {

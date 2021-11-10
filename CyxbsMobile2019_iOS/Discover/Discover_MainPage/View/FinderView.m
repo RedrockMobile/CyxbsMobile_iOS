@@ -251,7 +251,10 @@
         [enterButton.imageButton addTarget:self action:@selector(touchSchoolCalender) forControlEvents:UIControlEventTouchUpInside];
         }else if([enterButton.label.text isEqual:@"重邮地图"]){
         [enterButton.imageButton addTarget:self action:@selector(touchMap) forControlEvents:UIControlEventTouchUpInside];
+        }else if([enterButton.label.text isEqualToString:@"邮子清单"]){
+            [enterButton.imageButton addTarget:self action:@selector(touchToDoBtn) forControlEvents:UIControlEventTouchUpInside];
         }
+        
         [self addSubview:enterButton];
     }
 
@@ -339,6 +342,7 @@
         URLController * controller = [[URLController alloc]init];
         controller.hidesBottomBarWhenPushed = YES;
         controller.toUrl = self.bannerGoToURL[index];
+        CCLog(@"toUrl = %@",controller.toUrl);
         [self.viewController.navigationController pushViewController:controller animated:YES];
 
     } else if ([self.bannerGoToURL[index] hasPrefix:@"cyxbs"]) {
@@ -406,6 +410,11 @@
 - (void) touchNoClassAppointment{
     if ([self.delegate respondsToSelector:@selector(touchNoClassAppointment)]) {
         [self.delegate touchNoClassAppointment];
+    }
+}
+- (void) touchToDoBtn{
+    if ([self.delegate respondsToSelector:@selector(touchToDOList)]) {
+        [self.delegate touchToDOList];
     }
 }
 @end

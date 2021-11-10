@@ -58,27 +58,25 @@
 }
 
 - (void)addTitleLabel {
-        UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.text = @"资料编辑";
-        titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 21];
-        if (@available(iOS 11.0, *)) {
-            titleLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
-        } else {
-            titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-        }
-        [self addSubview:titleLabel];
-        self.titleLabel = titleLabel;
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.text = @"资料编辑";
+    titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 21];
+    if (@available(iOS 11.0, *)) {
+        titleLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
+    }
+    [self addSubview:titleLabel];
+    self.titleLabel = titleLabel;
 }
 
 - (void)addBackButton {
-        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        backButton.imageEdgeInsets = UIEdgeInsetsMake(5, 0, 5, 17);
-        [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
-        [backButton addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:backButton];
-        self.backButton = backButton;
-        
-        
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.imageEdgeInsets = UIEdgeInsetsMake(7, 7, 7, 10);
+    [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:backButton];
+    self.backButton = backButton;
 }
 
 - (void)addContentScrollView{
@@ -86,7 +84,7 @@
     [self addSubview:scrollView];
     scrollView.showsVerticalScrollIndicator = NO;
     self.contentScrollView = scrollView;
-    
+
     [self addGestureView];
     [self addHeaderImageView];
     [self addIntroductionButton];
@@ -113,45 +111,45 @@
 }
 
 - (void)addHeaderImageView {
-        UIImageView *headerImageView = [[UIImageView alloc] init];
-        [self.contentScrollView addSubview:headerImageView];
-        self.headerImageView = headerImageView;
-        NSString *headImgUrl_str = [UserItemTool defaultItem].headImgUrl;
-        NSURL *headImageUrl = [NSURL URLWithString:headImgUrl_str];
-        [headerImageView sd_setImageWithURL:headImageUrl placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageFromCacheOnly context:nil progress:nil completed:nil];
-        headerImageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerImageTapped:)];
-        [headerImageView addGestureRecognizer:tap];
+    UIImageView *headerImageView = [[UIImageView alloc] init];
+    [self.contentScrollView addSubview:headerImageView];
+    self.headerImageView = headerImageView;
+    NSString *headImgUrl_str = [UserItemTool defaultItem].headImgUrl;
+    NSURL *headImageUrl = [NSURL URLWithString:headImgUrl_str];
+    [headerImageView sd_setImageWithURL:headImageUrl placeholderImage:[UIImage imageNamed:@"默认头像"] options:SDWebImageFromCacheOnly context:nil progress:nil completed:nil];
+    headerImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headerImageTapped:)];
+    [headerImageView addGestureRecognizer:tap];
 }
 
 - (void)addIntroductionButton{
-        UIButton *introductionButton = [[UIButton alloc] init];
-        [introductionButton setImage:[UIImage imageNamed:@"编辑资料问号"] forState:UIControlStateNormal];
-        [introductionButton addTarget:self action:@selector(showUserInformationIntroduction:) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentScrollView addSubview:introductionButton];
-        self.introductionButton = introductionButton;
+    UIButton *introductionButton = [[UIButton alloc] init];
+    [introductionButton setImage:[UIImage imageNamed:@"编辑资料问号"] forState:UIControlStateNormal];
+    [introductionButton addTarget:self action:@selector(showUserInformationIntroduction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentScrollView addSubview:introductionButton];
+    self.introductionButton = introductionButton;
 }
 
 - (void)addNicknameLabel{
-        UILabel *nicknameLabel = [[UILabel alloc] init];
-        nicknameLabel.text = @"昵称";
-        if (@available(iOS 11.0, *)) {
-            nicknameLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
-        } else {
-            nicknameLabel.textColor = LABELCOLOR;
-        }
-        nicknameLabel.font = LABELFONT;
-        [self.contentScrollView addSubview:nicknameLabel];
-        self.nicknameLabel = nicknameLabel;
+    UILabel *nicknameLabel = [[UILabel alloc] init];
+    nicknameLabel.text = @"昵称";
+    if (@available(iOS 11.0, *)) {
+        nicknameLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        nicknameLabel.textColor = LABELCOLOR;
+    }
+    nicknameLabel.font = LABELFONT;
+    [self.contentScrollView addSubview:nicknameLabel];
+    self.nicknameLabel = nicknameLabel;
 }
 
 - (void)addNicknameTextField{
     MineEditTextField *nicknameTextField = [[MineEditTextField alloc] init];
     [self.contentScrollView addSubview:nicknameTextField];
     self.nicknameTextField = nicknameTextField;
-    
+
     nicknameTextField.delegate = self;
-    
+
     NSString *oldNickname = [UserItemTool defaultItem].nickname;
     if (oldNickname==nil || [oldNickname isEqualToString:@""]) {
         if (@available(iOS 11.0, *)) {
@@ -174,16 +172,16 @@
 }
 
 - (void)addIntroductionLabel{
-        UILabel *introductionLabel = [[UILabel alloc] init];
-        introductionLabel.text = @"个性签名";
-        if (@available(iOS 11.0, *)) {
-            introductionLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
-        } else {
-            introductionLabel.textColor = LABELCOLOR;
-        }
-        introductionLabel.font = LABELFONT;
-        [self.contentScrollView addSubview:introductionLabel];
-        self.introductionLabel = introductionLabel;
+    UILabel *introductionLabel = [[UILabel alloc] init];
+    introductionLabel.text = @"个性签名";
+    if (@available(iOS 11.0, *)) {
+        introductionLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        introductionLabel.textColor = LABELCOLOR;
+    }
+    introductionLabel.font = LABELFONT;
+    [self.contentScrollView addSubview:introductionLabel];
+    self.introductionLabel = introductionLabel;
 }
 
 - (void)addIntroductionTextField{
@@ -215,16 +213,16 @@
 }
 
 - (void)addQQLabel{
-        UILabel *QQLabel = [[UILabel alloc] init];
-        QQLabel.text = @"QQ";
-        if (@available(iOS 11.0, *)) {
-            QQLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
-        } else {
-            QQLabel.textColor = LABELCOLOR;
-        }
-        QQLabel.font = LABELFONT;
-        [self.contentScrollView addSubview:QQLabel];
-        self.QQLabel = QQLabel;
+    UILabel *QQLabel = [[UILabel alloc] init];
+    QQLabel.text = @"QQ";
+    if (@available(iOS 11.0, *)) {
+        QQLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        QQLabel.textColor = LABELCOLOR;
+    }
+    QQLabel.font = LABELFONT;
+    [self.contentScrollView addSubview:QQLabel];
+    self.QQLabel = QQLabel;
 }
 
 - (void)addQQTextField{
@@ -252,16 +250,16 @@
 }
 
 - (void)addPhoneNumberLabel{
-        UILabel *phoneNumberLabel = [[UILabel alloc] init];
-        phoneNumberLabel.text = @"电话";
-        if (@available(iOS 11.0, *)) {
-            phoneNumberLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
-        } else {
-            phoneNumberLabel.textColor = LABELCOLOR;
-        }
-        phoneNumberLabel.font = LABELFONT;
-        [self.contentScrollView addSubview:phoneNumberLabel];
-        self.phoneNumberLabel = phoneNumberLabel;
+    UILabel *phoneNumberLabel = [[UILabel alloc] init];
+    phoneNumberLabel.text = @"电话";
+    if (@available(iOS 11.0, *)) {
+        phoneNumberLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        phoneNumberLabel.textColor = LABELCOLOR;
+    }
+    phoneNumberLabel.font = LABELFONT;
+    [self.contentScrollView addSubview:phoneNumberLabel];
+    self.phoneNumberLabel = phoneNumberLabel;
 }
 
 - (void)addPhoneNumberTextField{
@@ -289,39 +287,39 @@
 }
 
 - (void)addAcademyLabel{
-        UILabel *academyLabel = [[UILabel alloc] init];
-        academyLabel.text = @"学院";
-        if (@available(iOS 11.0, *)) {
-            academyLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
-        } else {
-            academyLabel.textColor = LABELCOLOR;
-        }
-        academyLabel.font = LABELFONT;
-        [self.contentScrollView addSubview:academyLabel];
-        self.academyLabel = academyLabel;
+    UILabel *academyLabel = [[UILabel alloc] init];
+    academyLabel.text = @"学院";
+    if (@available(iOS 11.0, *)) {
+        academyLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        academyLabel.textColor = LABELCOLOR;
+    }
+    academyLabel.font = LABELFONT;
+    [self.contentScrollView addSubview:academyLabel];
+    self.academyLabel = academyLabel;
 }
 
 - (void)addMyAcademyLabel{
-        UILabel *myAcademyLabel = [[UILabel alloc] init];
-        myAcademyLabel.text = [UserItemTool defaultItem].college;
-        if (@available(iOS 11.0, *)) {
-            myAcademyLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
-        } else {
-            myAcademyLabel.textColor = LABELCOLOR;
-        }
-        myAcademyLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
-        myAcademyLabel.numberOfLines = 0;
-        [self.contentScrollView addSubview:myAcademyLabel];
-        self.myAcademyLabel = myAcademyLabel;
+    UILabel *myAcademyLabel = [[UILabel alloc] init];
+    myAcademyLabel.text = [UserItemTool defaultItem].college;
+    if (@available(iOS 11.0, *)) {
+        myAcademyLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    } else {
+        myAcademyLabel.textColor = LABELCOLOR;
+    }
+    myAcademyLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+    myAcademyLabel.numberOfLines = 0;
+    [self.contentScrollView addSubview:myAcademyLabel];
+    self.myAcademyLabel = myAcademyLabel;
 }
 
 - (void)addExplainLabel{
-        UILabel *explainLabel = [[UILabel alloc] init];
-        explainLabel.text = @"写下你的联系方式，便于我们与您联系";
-        explainLabel.textColor = [UIColor colorWithRed:188/255.0 green:195/255.0 blue:206/255.0 alpha:0.9];
-        explainLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
-        [self.contentScrollView addSubview:explainLabel];
-        self.explainLabel = explainLabel;
+    UILabel *explainLabel = [[UILabel alloc] init];
+    explainLabel.text = @"写下你的联系方式，便于我们与您联系";
+    explainLabel.textColor = [UIColor colorWithRed:188/255.0 green:195/255.0 blue:206/255.0 alpha:0.9];
+    explainLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    [self.contentScrollView addSubview:explainLabel];
+    self.explainLabel = explainLabel;
 }
 
 - (void)addSaveButton{
@@ -348,7 +346,7 @@
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(-10);
         make.centerY.equalTo(self.titleLabel);
-        make.height.equalTo(@24);
+        make.height.equalTo(@26);
         make.width.equalTo(@24);
     }];
     

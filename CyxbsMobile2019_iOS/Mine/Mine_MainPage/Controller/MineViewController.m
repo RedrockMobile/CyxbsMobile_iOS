@@ -188,10 +188,7 @@
     }
     
     
-    if (self.isLoadingMsgCntData==NO) {
-        return;
-    }
-    //如果没有没有加载成功，那么多半是后端出问题了，这种情况下，降低刷新未读消息会比较好
+    //如果没有没有加载成功，那么多半是后端出问题了，这种情况下，降低刷新未读消息的频率会比较好
     if (isSuccess==NO) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.isLoadingMsgCntData = NO;
@@ -302,19 +299,16 @@
     
 }
 
-// 点击意见与反馈
+/// 点击意见反馈后调用
 - (void)selectedFeedBack {
-
-//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-//    pasteboard.string = @"570919844";
-//
-//    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
-//
-//    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
-//
-//    [feedBackGroupAllert addAction:certainAction];
-//
-//    [self presentViewController:feedBackGroupAllert animated:YES completion:nil];
+    //UIPasteboard相关文章
+    //https://www.jianshu.com/p/52153c9fca99
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    pasteboard.string = @"570919844";
+    
+    UIAlertController *feedBackGroupAllert = [UIAlertController alertControllerWithTitle:@"欢迎加入反馈群" message:@"群号已复制到剪切板，快去QQ搜索吧～" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *certainAction = [UIAlertAction actionWithTitle:@"好" style:UIAlertActionStyleDefault handler:nil];
     
 //    HistoricalFeedBackViewController * vc = [[HistoricalFeedBackViewController alloc] init];
 //    vc.hidesBottomBarWhenPushed = YES;
@@ -391,7 +385,7 @@
 
 /// 获取时间戳
 - (NSString*)getTime {
-    return [NSString stringWithFormat:@"%.0f", [NSDate.now timeIntervalSince1970]];
+    return [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]];
 }
 
 //imgPicker的代理方法：

@@ -25,45 +25,44 @@
 
 //++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  Begain
 #ifdef DEBUG
-//每行的最大长度，行尾分隔符，格式化, ...
-#define CCCLLog(line, separator, format, ...) do{\
-fprintf(stderr,"Stove[%s - %d%s]:\n",\
-[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\
-__LINE__,\
-separator);\
-\
-for (__strong NSString *CCLogStr__ in [[NSString stringWithFormat:format, ##__VA_ARGS__] componentsSeparatedByString:@"\n"]) {\
+//每行的最大长度，行尾分隔符，字符串
+#define CCCLog(line, separator, str) do {\
+for (__strong NSString *CCLogStr__ in [str componentsSeparatedByString:@"\n"]) {\
 while (CCLogStr__.length > line) {\
 fprintf(stderr, "%s    %s\n",\
 [[CCLogStr__ substringToIndex:line] UTF8String],\
 separator);\
-\
 CCLogStr__ = [CCLogStr__ substringFromIndex:line];\
 }\
 while (CCLogStr__.length < line + 4) {\
 CCLogStr__ = [CCLogStr__ stringByAppendingString:@"                                                  "];\
 }\
 fprintf(stderr,"%s%s\n",\
-[[[NSString stringWithFormat:@"%@",CCLogStr__] substringToIndex:line+4] UTF8String],\
+[[[NSString stringWithFormat:@"%@", CCLogStr__] substringToIndex:line + 4] UTF8String],\
 separator);\
 }\
-\
 fprintf(stderr,"\n");\
-}while(0)
-//默认行尾分隔符为"˙"
-#define CCLLog(line, format, ...) CCCLLog(line, "˙", format, ##__VA_ARGS__)
-//默认行尾分隔符为"˙"，且每行长度为77
-#define CCLog77(format, ...) CCLLog(77, format, ##__VA_ARGS__)
-//默认行尾分隔符为"˙"，且每行长度为97
-#define CCLog(format, ...) CCLLog(97, format, ##__VA_ARGS__)
-//只有末尾自动换行
-#define CLog(format, ...) fprintf(stderr,"Stove[%d]:\n%s\n\n",__LINE__,[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String])
+} while(0)
+//CCLog(@"Hello, World!"); CCLog(@"˙77Hello, World!");
+#define CCLog(format, ...) do {\
+fprintf(stderr,"Stove[%s - %d˙]:\n",\
+[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],\
+__LINE__);\
+\
+if ([[format substringToIndex:1] isEqual:@"˙"]) {\
+int line = [format substringWithRange:NSMakeRange(1, 2)].intValue;\
+if (line==0) line = 77;\
+char* separator = "˙";\
+NSString* str = [[NSString stringWithFormat:format, ##__VA_ARGS__] substringFromIndex:3];\
+CCCLog(line, separator, str);\
+}else {\
+printf("%s\n\n",[[NSString stringWithFormat:format, ##__VA_ARGS__] UTF8String]);\
+}\
+} while (0)
+
 #else
-#define CCCLLog(line, separator, format, ...)
-#define CCLLog(line, format, ...)
-#define CCLog77(format, ...)
+#define CCCLLog(line, separator, str)
 #define CCLog(format, ...)
-#define CLog(format, ...)
 #endif
 //++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  End
 
@@ -205,7 +204,7 @@ fprintf(stderr,"\n");\
 //获取今日是否已签到
 #define isTodayCheckedIn_BOOL ^(void) {\
     NSString *str = [UserItem defaultItem].week_info;\
-    NSInteger day = NSDate.now.weekday;\
+    NSInteger day = [NSDate date].weekday;\
     if (day==1) {\
         day = 6;\
     }else {\
@@ -215,8 +214,14 @@ fprintf(stderr,"\n");\
     NSString *is = [str substringWithRange:NSMakeRange(day, 1)];\
     return is.boolValue;\
 }()
+//OC自带的CGRect转NSString不好使，所以自己写了这个，只保留两位小数的版本
+#define RectToString(r) ^(CGRect rect){\
+    return [NSString stringWithFormat:@"%.2f,%.2f,  %.2f,%.2f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];\
+}(r)
 
 //Bar的高度
+#define Bar_H (STATUSBARHEIGHT + 44)
+
 #define Bar_H (STATUSBARHEIGHT + 44)
 
 //邮票中心的适配

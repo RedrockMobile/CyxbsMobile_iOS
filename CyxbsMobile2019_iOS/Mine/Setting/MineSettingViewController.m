@@ -13,7 +13,10 @@
 #import <UserNotifications/UserNotifications.h>
 
 
-@interface MineSettingViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MineSettingViewController ()<
+    UITableViewDelegate,
+    UITableViewDataSource
+>
 
 /// tableView
 @property(nonatomic,strong)UITableView *tableView;
@@ -39,10 +42,9 @@
     }
     self.cellTitleStrArr = @[@"启动APP时最先显示课表页面", @"上课前提醒我", @"每天晚上推送课表给我", @"账号与安全", @"屏蔽的人"];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"zxsd"];
     //父类是TopBarBasicViewController，调用父类的vcTitleStr的set方法，自动完成顶部的bar的设置
     self.VCTitleStr = @"设置";
-//    [self addTitleBar];
+    
     [self addTableView];
     [self addQuitBtn];
 }
@@ -123,7 +125,7 @@
     cell.textLabel.text = self.cellTitleStrArr[indexPath.row];
     cell.backgroundColor = tableView.backgroundColor;
     cell.textLabel.font = [UIFont fontWithName:PingFangSCRegular size:15*fontSizeScaleRate_SE];
-//    [UIFont systemFontOfSize:15*fontSizeScaleRate_SE];
+    
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     if (@available(iOS 11.0, *)) {
@@ -141,18 +143,15 @@
                 break;
             case 1:
                 s = @selector(switchedRemindBeforeClass:);
+                settingSwitch.on = [[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_RemindBeforeClass"];
                 break;
             case 2:
                 s = @selector(switchedRemindEveryDay:);
+                settingSwitch.on = [[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_RemindEveryDay"];
                 break;
             default:
                 s = NULL;
                 break;
-        }
-        if(indexPath.row==0){
-            
-        }else{
-            
         }
         [settingSwitch addTarget:self action:s forControlEvents:UIControlEventValueChanged];
         [cell setAccessoryView:settingSwitch];
@@ -165,6 +164,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60* HScaleRate_SE;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 3:
@@ -189,7 +189,6 @@
 - (void)selectedSafeCell {
     selfSafeViewController *vc = [[selfSafeViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
-    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -198,11 +197,48 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+
+/// 退出登录按钮点击后调用
+/// @param sender 退出登录按钮
+- (void)quitButtonClicked:(UIButton *)sender {
+    [self.view addSubview:self.quitTipView];
+}
+
+
+/// 滑动 “启动时优先显示课表” 开关后调用
+/// @param sender 开关
+- (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender{
+    if (sender.on) {            // 打开开关
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
+    } else {                    // 关闭开关
+        [[NSUserDefaults standardUserDefaults] setValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+/// 滑动 “课前提醒”开关后调用
+/// @param sender 开关
+- (void)switchedRemindBeforeClass:(UISwitch *)sender{
+    if (sender.on) {            // 打开开关
+        [[NSUserDefaults standardUserDefaults] setValue:@"test" forKey:@"Mine_RemindBeforeClass"];
+        //通知WYCClassBookViewController要课前提醒
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"remindBeforeClass" object:nil];
+    } else {                    // 关闭开关
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindBeforeClass"];
+        
+        //通知WYCClassBookViewController不要课前提醒
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"notRemindBeforeClass" object:nil];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
 /// 滑动 “每天推送课表”开关后调用
 /// @param sender 开关
 - (void)switchedRemindEveryDay:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
-        [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindEveryDay"];
+        [[NSUserDefaults standardUserDefaults] setValue:@"test" forKey:@"Mine_RemindEveryDay"];
     } else {                    // 关闭开关
         
         NSArray *idStrArr = @[@"每天晚上推送课表0",@"每天晚上推送课表1",@"每天晚上推送课表2",
@@ -215,41 +251,8 @@
         [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:idStrArr];
         
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindEveryDay"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
     }
-}
-
-/// 退出登录按钮点击后调用
-/// @param sender 退出登录按钮
-- (void)quitButtonClicked:(UIButton *)sender {
-    [self.view addSubview:self.quitTipView];
-}
-
-/// 滑动 “课前提醒”开关后调用
-/// @param sender 开关
-- (void)switchedRemindBeforeClass:(UISwitch *)sender{
-    if (sender.on) {            // 打开开关
-        [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindBeforeClass"];
-        //通知WYCClassBookViewController要课前提醒
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"remindBeforeClass" object:nil];
-    } else {                    // 关闭开关
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindBeforeClass"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        //通知WYCClassBookViewController不要课前提醒
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"notRemindBeforeClass" object:nil];
-    }
-}
-
-/// 滑动 “启动时优先显示课表” 开关后调用
-/// @param sender 开关
-- (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender{
-    if (sender.on) {            // 打开开关
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    } else {                    // 关闭开关
-        [[NSUserDefaults standardUserDefaults] setValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

@@ -9,8 +9,6 @@
 #import "ScheduleViewController.h"
 #import "HistoryView.h"
 #import "ClassmatesList.h"
-/**最大的搜索历史记录个数*/
-#define MAXLEN 9
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define BACKGROUNDCOLOR  [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define SEARCHBARCOLOR  [UIColor colorNamed:@"Color#E8F1FC&2C2C2C" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -155,7 +153,7 @@
     
     self.historyView = view;
     [self.view addSubview:view];
-    view.btnClickedDelegate = self;
+    view.delegate = self;
     
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -185,7 +183,10 @@
 - (void)touchHistoryButton:(UIButton *)sender {
     [self requestStudentNameDataWithNSString:sender.titleLabel.text];
 }
-
+/**
+ 分析数据的流向，模块的划分要参考数据的流向。
+ 如果只是单纯地从视觉图决定模块的划分，就太肤浅了。
+ */
 
 //MARK: -需要实现的代理方法：
 //搜索框textfield的代理方法

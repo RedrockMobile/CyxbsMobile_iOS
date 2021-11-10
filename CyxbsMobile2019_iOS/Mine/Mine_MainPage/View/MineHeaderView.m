@@ -48,7 +48,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        @throw [[NSException alloc] initWithName:NSInvalidArgumentException reason:@"Use 'initWithFrame:'" userInfo:nil];
+        @throw [[NSException alloc] initWithName:NSInvalidArgumentException reason:@"'initWithFrame:' is forbidden at MineHeaderView, ues 'init' instead." userInfo:nil];
     }
     return self;
 }

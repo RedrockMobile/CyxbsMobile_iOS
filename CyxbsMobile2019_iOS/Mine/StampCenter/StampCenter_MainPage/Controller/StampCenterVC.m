@@ -296,57 +296,55 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //====================================================横向
     if (scrollView.tag == 123) {
-    
         //判断如果两边高度如果不相等
         if (_tableCorrectHeaderY != _collectionCorrectHeaderY) {
-            
-            //往左划
-            //以Collection为主
+            //往右滑时
             if (scrollView.contentOffset.x < SCREEN_WIDTH*0.5) {
-                //判断小邮票view是否要出现
-                if (_collectionCorrectHeaderY >= Bar_H-75) {
-                    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    //topView的Y值以Collection为主
+                    self->_topView.y = self->_collectionCorrectHeaderY;
+                    //如果在最底部
+                    if (self->_collectionCorrectHeaderY == Bar_H) {
                         self->_stampCountView.x = SCREEN_WIDTH;
-                    } completion:nil];
-                }else{
-                    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                        self.topView.bannerImage.transform = CGAffineTransformMakeScale(1, 1);
+                        self.topView.bannerImage.alpha = 1;
+                        self.topView.bannerImage.y = 28;
+                        self.detailBtn.hidden = NO;
+                    }
+                    //如果不在底部
+                    if (self->_collectionCorrectHeaderY != Bar_H) {
                         self->_stampCountView.x = self.stampCountView_X;
-                    } completion:nil];
-                }
-                //对应的位置
-                [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                    self.topView.y = self.collectionCorrectHeaderY;
-                    CGFloat f = Bar_H - self.collectionCorrectHeaderY;
-                    self.topView.bannerImage.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-                    self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-                    self.topView.bannerImage.alpha = (125 - f)/125;
+                        self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                        self.topView.bannerImage.y = 28;
+                        self.topView.bannerImage.alpha = 0;
+                        self.detailBtn.hidden = YES;
+                    }
                 } completion:nil];
             }
-            
-            //往右划
-            //以Table为主
+            //往左滑时
             if (scrollView.contentOffset.x >= SCREEN_WIDTH*0.5) {
-                //判断小邮票view是否要出现
-                if (_tableCorrectHeaderY >= Bar_H-75) {
-                    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    //topView的Y值以Table为主
+                    self->_topView.y = self->_tableCorrectHeaderY;
+                    //如果在最底部
+                    if (self->_tableCorrectHeaderY == Bar_H) {
                         self->_stampCountView.x = SCREEN_WIDTH;
-                    } completion:nil];
-                }else{
-                    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                        self.topView.bannerImage.transform = CGAffineTransformMakeScale(1, 1);
+                        self.topView.bannerImage.alpha = 1;
+                        self.topView.bannerImage.y = 28;
+                        self.detailBtn.hidden = NO;
+                    }
+                    //如果不在最底部
+                    if (self->_tableCorrectHeaderY != Bar_H) {
                         self->_stampCountView.x = self.stampCountView_X;
-                    } completion:nil];
-                }
-                //对应的位置
-                [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                    self.topView.y = self.tableCorrectHeaderY;
-                    CGFloat f = self->_tableCorrectHeaderY - Bar_H + 215;
-                    self.topView.bannerImage.transform = CGAffineTransformMakeScale( ((f)/215),  ((f)/215));
-                    self.detailBtn.transform = CGAffineTransformMakeScale( ((f)/215),  ((f)/215));
-                    self.topView.bannerImage.alpha = (f)/215;
+                        self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                        self.topView.bannerImage.y = 28;
+                        self.topView.bannerImage.alpha = 0;
+                        self.detailBtn.hidden = YES;
+                    }
                 } completion:nil];
             }
         }
-        
         //滑到任务界面时，小圆点消失，并将日期写入NSUserdefualt
         if (scrollView.contentOffset.x == SCREEN_WIDTH) {
             NSDate *date = [NSDate date];
@@ -357,95 +355,76 @@
             [defaults setObject:str forKey:@"NowDate"];
             self.topView.point.hidden = YES;
         }
-        
         //滑动条
         CGFloat x = self.topView.stampStoreLbl.x+3 + (scrollView.contentOffset.x * ((self.topView.stampTaskLbl.x-self.topView.stampStoreLbl.x)/SCREEN_WIDTH));
         self.topView.switchbar.x = x;
         self.topView.swithPoint.x = x+63;
     }
-    
     //====================================================CollectionView
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
-        CGFloat f = Bar_H - self.collectionCorrectHeaderY;
         //当未滑动时
         if (scrollView.contentOffset.y <= 0) {
+            self.topView.bannerImage.y = 0;
            _collectionCorrectHeaderY = Bar_H;
-            [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self->_stampCountView.x = SCREEN_WIDTH;
-            } completion:nil];
                 self.topView.bannerImage.transform = CGAffineTransformMakeScale(1, 1);
-                self.detailBtn.transform = CGAffineTransformMakeScale(1, 1);
                 self.topView.bannerImage.alpha = 1;
                 self.topView.bannerImage.y = 28;
-        }
-        //当正在滑动时 （不出现邮票）
-        if (scrollView.contentOffset.y > 0 && scrollView.contentOffset.y < 75) {
-            _collectionCorrectHeaderY = -scrollView.contentOffset.y+Bar_H;
-            [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                self->_stampCountView.x = SCREEN_WIDTH;
+                self.detailBtn.hidden = NO;
             } completion:nil];
-            self.topView.bannerImage.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-            self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-            self.topView.bannerImage.alpha = (125 - f)/125;
         }
-        //当正在滑动时 （出现邮票）
-        if (scrollView.contentOffset.y >= 75 && scrollView.contentOffset.y < 138) {
+        //当正在滑动时
+        if (scrollView.contentOffset.y > 0 && scrollView.contentOffset.y <= 138) {
             _collectionCorrectHeaderY = -scrollView.contentOffset.y+Bar_H;
-            [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self->_stampCountView.x = self.stampCountView_X;
+                self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                self.topView.bannerImage.y = 28;
+                self.detailBtn.hidden = YES;
             } completion:nil];
-            self.topView.bannerImage.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-            self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-            self.topView.bannerImage.alpha = (125 - f)/125;
+            [UIView animateWithDuration:0.2 animations:^{
+                            self.topView.bannerImage.alpha = 0;
+            }];
         }
         //到顶了
         if (scrollView.contentOffset.y >= 138) {
-            self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.1,0.1);
-            self.detailBtn.transform = CGAffineTransformMakeScale(0.1,0.1);
+            _collectionCorrectHeaderY = -138+Bar_H;
+            _stampCountView.x = self.stampCountView_X;
         }
         _topView.y = _collectionCorrectHeaderY;
     }
     //====================================================TableView
     if ([scrollView isKindOfClass:[UITableView class]]){
-        CGFloat f = scrollView.contentOffset.y + 215;
         //未滑动时
         if (scrollView.contentOffset.y <= -215) {
-            
-            [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            _tableCorrectHeaderY = Bar_H;
+            self.topView.bannerImage.y = 0;
+            [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 self->_stampCountView.x = SCREEN_WIDTH;
+                self.topView.bannerImage.transform = CGAffineTransformMakeScale(1, 1);
+                self.topView.bannerImage.alpha = 1;
+                self.topView.bannerImage.y = 28;
+                self.detailBtn.hidden = NO;
             } completion:nil];
-            self.topView.bannerImage.transform = CGAffineTransformMakeScale(1,  1);
-            self.topView.bannerImage.alpha = 1;
-            self.topView.bannerImage.y = 28;
-
         }
-        //正在滑动 (不出现邮票)
-        if (scrollView.contentOffset.y > -215 && scrollView.contentOffset.y < -140) {
+        //正在滑动
+        if (scrollView.contentOffset.y > -215 && scrollView.contentOffset.y <= -215+138) {
             _tableCorrectHeaderY = Bar_H-(215+scrollView.contentOffset.y);
-            
-            [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self->_stampCountView.x = SCREEN_WIDTH;
-            } completion:nil];
-            
-            self.topView.bannerImage.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-            self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-            self.topView.bannerImage.alpha = (125 - f)/125;
-        }
-        //正在滑动 (出现邮票)
-        if (scrollView.contentOffset.y > -140 && scrollView.contentOffset.y < -77) {
-            _tableCorrectHeaderY = Bar_H-(215+scrollView.contentOffset.y);
-            [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:0.8 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self->_stampCountView.x = self.stampCountView_X;
+                self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.5, 0.5);
+                self.topView.bannerImage.y = 28;
+                self.detailBtn.hidden = YES;
             } completion:nil];
-            self.topView.bannerImage.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-            self.detailBtn.transform = CGAffineTransformMakeScale((280 - f)/280, (280 - f)/280);
-            self.topView.bannerImage.alpha = (125 - f)/125;
+            [UIView animateWithDuration:0.2 animations:^{
+                            self.topView.bannerImage.alpha = 0;
+            }];
         }
         //到顶了
-        if (scrollView.contentOffset.y >= -77){
+        if (scrollView.contentOffset.y > -77){
             _tableCorrectHeaderY = -138+Bar_H;
-            self.topView.bannerImage.transform = CGAffineTransformMakeScale(0.1,0.1);
-            self.detailBtn.transform = CGAffineTransformMakeScale(0.1,0.1);
+            _stampCountView.x = self.stampCountView_X;
         }
         _topView.y = _tableCorrectHeaderY;
     }
@@ -536,7 +515,9 @@
     self.collectionCorrectHeaderY = Bar_H;
     self.tableCorrectHeaderY = Bar_H;
     
-
+    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
+    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+    [self.view addSubview:v];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
@@ -584,15 +565,7 @@
     else{
         self.topView.point.hidden = NO;
     }
-    
-    //请勿移动此代码的位置，不然会引起UI错乱，连锁玄学问题
-    //=============================================<<<
-    UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
-    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
-    [self.view addSubview:v];
-    //=============================================>>>
 }
-
 
 //获取数据
 - (void)setupData{

@@ -42,6 +42,22 @@
 - (void)getTeaListWithName:(NSString *)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack{
 
     HttpClient *client = [HttpClient defaultClient];
+
+//    //https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch
+////    SEARCHTEACHERAPI
+//    [client requestWithPath:@"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch" method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSMutableArray *tmpArray = [NSMutableArray array];
+//        for (NSDictionary *classmateInfo in responseObject[@"data"]) {
+//            ClassmateItem *classmate = [ClassmateItem teaItemWithDictionary:classmateInfo];
+//            [tmpArray addObject:classmate];
+//        }
+//        self.classmatesArray = tmpArray;
+//        succeededCallBack(self);
+//
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        failedCallBack(task, error);
+//    }];
+
     
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
     [client.httpSessionManager POST:SEARCHTEACHERAPI parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {

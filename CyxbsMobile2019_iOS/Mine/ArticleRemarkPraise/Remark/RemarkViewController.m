@@ -13,7 +13,11 @@
 //GYY的动态详情页控制器
 //#import "GYYDynamicDetailViewController.h"
 
-@interface RemarkViewController ()<UITableViewDelegate, UITableViewDataSource, MainPage2RequestModelDelegate>
+@interface RemarkViewController ()<
+    UITableViewDelegate,
+    UITableViewDataSource,
+    MainPage2RequestModelDelegate
+>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)RemarkModel *remarkModel;
 @property(nonatomic,strong)NothingStateView *nothingView;
@@ -68,6 +72,9 @@
             //加载成功，而且没有数据了
         case MainPage2RequestModelStateNoMoreDate:
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            if (self.remarkModel.dataArr.count==0) {
+                [self.tableView.mj_footer setHidden:YES];
+            }
             break;
             //加载失败
         case MainPage2RequestModelStateFailure:
@@ -95,18 +102,18 @@
     return 0.4733* SCREEN_WIDTH;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    RemarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PraiseTableViewCellID"];
+    RemarkTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RemarkTableViewCellID"];
     if (cell==nil) {
-        cell = [[RemarkTableViewCell alloc] initWithReuseIdentifier:@"PraiseTableViewCellID"];
+        cell = [[RemarkTableViewCell alloc] initWithReuseIdentifier:@"RemarkTableViewCellID"];
     }
     
     RemarkParseModel *model = self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]];
     if(model==nil) {
         model = [[RemarkParseModel alloc]initWithDict:self.remarkModel.dataArr[indexPath.row]];
         self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]] = model;
-        CLog(@"1%ld,,%@",indexPath.row,self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]]);
+        CCLog(@"1%ld,,%@",indexPath.row,self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]]);
     }else {
-        CLog(@"2%ld,,%@",indexPath.row,model);
+        CCLog(@"2%ld,,%@",indexPath.row,model);
     }
     [cell setModel:model];
     return cell;

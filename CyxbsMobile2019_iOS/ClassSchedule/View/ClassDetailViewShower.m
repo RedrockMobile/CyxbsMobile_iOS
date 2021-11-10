@@ -10,7 +10,10 @@
 #import "ClassDetailView.h"
 #import "NoteDetailView.h"
 
-@interface ClassDetailViewShower()<NoteDetailViewDelegate,UIScrollViewDelegate>
+@interface ClassDetailViewShower()<
+    NoteDetailViewDelegate,
+    UIScrollViewDelegate
+>
 
 /// scrollView的背景view，弹窗
 @property(nonatomic,strong)UIView *backViewOfScrollView;

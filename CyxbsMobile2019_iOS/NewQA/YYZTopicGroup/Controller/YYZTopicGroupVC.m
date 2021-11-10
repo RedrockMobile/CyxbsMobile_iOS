@@ -142,8 +142,7 @@
 }
 #pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;
+    return UITableViewAutomaticDimension;
 }
 
 - (void)changeFollow:(UIButton *) btn {

@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, PeopleListTableViewCellRightBtnType) {
 /**加号型cell的代理协议，点击add按钮后调用代理的方法，
  传入cell对应的数据：@{@"name":@"张树洞",@"stuNum":@"201928738"}*/
 @protocol PeopleListTableViewCellDelegateAdd <NSObject>
-- (void)PeopleListTableViewCellAddBtnClickInfoDict:(NSDictionary*)infoDict;
+- (void)peopleListTableViewCellRightBtnClickedInfoDict:(NSDictionary*)infoDict;
 @end
 
 /**删除型cell的代理协议，点击delete按钮后调用代理的方法，
@@ -33,12 +33,14 @@ typedef NS_ENUM(NSInteger, PeopleListTableViewCellRightBtnType) {
 
 //只能用这个方法初始化cell
 /**infoDict要求格式为：@{@"name":@"张树洞",@"stuNum":@"201928738"}*/
-- (instancetype)initWithInfoDict:(NSDictionary*)infoDict andRightBtnType:(PeopleListTableViewCellRightBtnType)type;
+- (instancetype)initWithRightBtnType:(PeopleListTableViewCellRightBtnType)type ID:(NSString*)str;
 
 /**添加的代理，点击add按钮后调用代理的方法*/
 @property (nonatomic,weak)id<PeopleListTableViewCellDelegateAdd>delegateAdd;
 /**删除的代理，点击delete按钮后调用代理方法*/
 @property (nonatomic,weak)id<PeopleListTableViewCellDelegateDelete>delegateDelete;
+
+- (void)updataWithDict:(NSDictionary*)infoDict;
 @end
 
 NS_ASSUME_NONNULL_END

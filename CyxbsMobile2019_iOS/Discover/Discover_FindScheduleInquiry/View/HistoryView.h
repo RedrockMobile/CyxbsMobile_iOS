@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 @property (nonatomic, strong)NSMutableArray <UIButton*>*buttonArray;//每一个button
-@property (nonatomic, weak)id <HistoryViewDelegate>btnClickedDelegate;
+@property (nonatomic, weak)id <HistoryViewDelegate>delegate;
 @property (nonatomic, copy)NSString *UserDefaultKey;
 - (void)addHistoryBtnWithString:(NSString*)string reLayout:(BOOL)is;
 - (instancetype)initWithUserDefaultKey:(NSString*)key;
