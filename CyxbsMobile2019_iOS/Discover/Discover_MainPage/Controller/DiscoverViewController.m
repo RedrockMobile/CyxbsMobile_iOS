@@ -107,7 +107,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     } else {
         self.tabBarController.tabBar.barTintColor = [UIColor whiteColor];
     }
-    self.tabBarController.tabBar.backgroundColor = [UIColor whiteColor];
+    self.tabBarController.tabBar.backgroundColor = [UIColor colorNamed:@"TabBarColor"];
     self.navigationController.navigationBar.hidden = YES;
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
