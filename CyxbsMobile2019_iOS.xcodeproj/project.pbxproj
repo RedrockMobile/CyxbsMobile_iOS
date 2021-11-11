@@ -793,6 +793,8 @@
 		DB4065032466D889006CE5BC /* DLReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F42466D888006CE5BC /* DLReminderView.m */; };
 		EE131C212471362E00B6ED97 /* URLController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C202471362E00B6ED97 /* URLController.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
+		FE505CC0273D441E0022B872 /* SchoolBusUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */; };
+		FE505CC1273D441E0022B872 /* SchoolBusUnavailableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2119,6 +2121,9 @@
 		EE131C202471362E00B6ED97 /* URLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLController.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		FE505CBD273D441E0022B872 /* SchoolBusUnavailableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusUnavailableViewController.h; sourceTree = "<group>"; };
+		FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusUnavailableViewController.m; sourceTree = "<group>"; };
+		FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SchoolBusUnavailableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2975,6 +2980,9 @@
 				18CDF5D9257F91BD006E8E5C /* SchoolBusViewController.m */,
 				18CDF5DA257F91BD006E8E5C /* SchoolBusViewController.h */,
 				18CDF5DB257F91BD006E8E5C /* SchoolBusContentView.m */,
+				FE505CBD273D441E0022B872 /* SchoolBusUnavailableViewController.h */,
+				FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */,
+				FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5964,6 +5972,7 @@
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				DB34EAEE239BD4550052B65E /* remind_image_content@2x.png in Resources */,
 				1A16593123D984840039BA46 /* Assets.xcassets in Resources */,
+				FE505CC1273D441E0022B872 /* SchoolBusUnavailableViewController.xib in Resources */,
 				492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */,
 				DB34EAE2239BD4550052B65E /* 书@3x.png in Resources */,
 				DB34EB13239BD4550052B65E /* 提醒@2x.png in Resources */,
@@ -6132,6 +6141,7 @@
 				73AAA1D326C918250084E44D /* PurchaseinfoViewController.m in Sources */,
 				187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */,
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
+				FE505CC0273D441E0022B872 /* SchoolBusUnavailableViewController.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				1AD038DA23FA775600D5C90E /* MineQACommentItem.m in Sources */,

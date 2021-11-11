@@ -15,6 +15,8 @@
 #import "CalendarViewController.h"
 #import "WeDateViewController.h"
 #import "CQUPTMapViewController.h"
+#import "SchoolBusUnavailableViewController.h"
+
 #define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -333,7 +335,8 @@
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
-        SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+        SchoolBusUnavailableViewController *vc = [[SchoolBusUnavailableViewController alloc]init];
+//        SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         
