@@ -34,6 +34,9 @@
 #import "QueryViewController.h"
 #import "ArchiveTool.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+#import "EmptyClassUnavailableViewController.h"
+#import "SchoolBusUnavailableViewController.h"
+
 //Tool
 #import "NewQAHud.h"
 
@@ -680,14 +683,16 @@ static int requestCheckinInfo = 0;
 
 - (void)touchFindClass {
     NSLog(@"点击了空教室");
-    EmptyClassViewController *vc = [[EmptyClassViewController alloc]init];
+//    EmptyClassViewController *vc = [[EmptyClassViewController alloc]init];
+    EmptyClassUnavailableViewController *vc = [[EmptyClassUnavailableViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchSchoolCar {
     NSLog(@"点击了校车查询");
-    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+//    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+    SchoolBusUnavailableViewController *vc = [[SchoolBusUnavailableViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

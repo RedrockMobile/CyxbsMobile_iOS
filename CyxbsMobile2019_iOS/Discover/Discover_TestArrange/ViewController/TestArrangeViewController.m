@@ -15,6 +15,7 @@
 #import "UserInfoView.h"
 #import "ScorePresentAnimation.h"
 #import <WebKit/WebKit.h>
+#import "GPAUnavailableViewController.h"
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -228,8 +229,9 @@
 
 
 - (void) pushToScoreVC {
-    ScoreViewController *vc = [[ScoreViewController alloc]init];
-    vc.transitioningDelegate = self;
+//    ScoreViewController *vc = [[ScoreViewController alloc]init];
+//    vc.transitioningDelegate = self;
+    GPAUnavailableViewController *vc = [[GPAUnavailableViewController alloc]init];
     [self presentViewController:vc animated:YES completion:^{
         NSLog(@"跳转至学分成绩vc");
     }];

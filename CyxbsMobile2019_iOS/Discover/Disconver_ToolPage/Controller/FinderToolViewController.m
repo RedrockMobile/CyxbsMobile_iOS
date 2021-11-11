@@ -16,6 +16,7 @@
 #import "WeDateViewController.h"
 #import "CQUPTMapViewController.h"
 #import "SchoolBusUnavailableViewController.h"
+#import "EmptyClassUnavailableViewController.h"
 
 #define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -348,7 +349,9 @@
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
-        EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+//        EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+        EmptyClassUnavailableViewController *vc = [[EmptyClassUnavailableViewController alloc]init];
+        
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
