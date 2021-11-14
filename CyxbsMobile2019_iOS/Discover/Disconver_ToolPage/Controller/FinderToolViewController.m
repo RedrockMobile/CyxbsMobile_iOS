@@ -15,6 +15,9 @@
 #import "CalendarViewController.h"
 #import "WeDateViewController.h"
 #import "CQUPTMapViewController.h"
+#import "SchoolBusUnavailableViewController.h"
+#import "EmptyClassUnavailableViewController.h"
+
 #define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -226,7 +229,7 @@
 }
 - (void)addToolViewItems {
     FinderToolViewItem *item1 = [[FinderToolViewItem alloc]initWithIconView:@"没课约" Title:@"没课约" Detail:@"多人空课表同步查询"];
-    //FinderToolViewItem *item2 = [[FinderToolViewItem alloc]initWithIconView:@"校车轨迹" Title:@"校车轨迹" Detail:@"校园观光车轨迹路线实时查看"];
+    FinderToolViewItem *item2 = [[FinderToolViewItem alloc]initWithIconView:@"校车轨迹" Title:@"校车轨迹" Detail:@"校园观光车轨迹路线实时查看"];
     FinderToolViewItem *item3 = [[FinderToolViewItem alloc]initWithIconView:@"空教室" Title:@"空教室" Detail:@"空余教室及时查询"];
     FinderToolViewItem *item4 = [[FinderToolViewItem alloc]initWithIconView:@"我的考试" Title:@"我的考试" Detail:@"考试安排、成绩学分轻松查询"];
     FinderToolViewItem *item5 = [[FinderToolViewItem alloc]initWithIconView:@"查课表" Title:@"查课表" Detail:@"同学、老师课表快捷查询"];
@@ -235,7 +238,7 @@
     FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"敬请期待"];
     
     [item1 addTarget:self action:@selector(chooseWeDate:) forControlEvents:UIControlEventTouchUpInside];
-    //[item2 addTarget:self action:@selector(chooseSchoolBus:) forControlEvents:UIControlEventTouchUpInside];
+    [item2 addTarget:self action:@selector(chooseSchoolBus:) forControlEvents:UIControlEventTouchUpInside];
     [item3 addTarget:self action:@selector(chooseEmptyClassRoom:) forControlEvents:UIControlEventTouchUpInside];
     [item4 addTarget:self action:@selector(chooseTestArrange:) forControlEvents:UIControlEventTouchUpInside];
     [item5 addTarget:self action:@selector(chooseScheduleInquiry:) forControlEvents:UIControlEventTouchUpInside];
@@ -244,7 +247,7 @@
     
     NSMutableArray *itemsArray = [NSMutableArray array];
     [itemsArray addObject:item1];
-   // [itemsArray addObject:item2];
+    [itemsArray addObject:item2];
     [itemsArray addObject:item3];
     [itemsArray addObject:item4];
     [itemsArray addObject:item5];
@@ -333,7 +336,8 @@
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
-        SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+        SchoolBusUnavailableViewController *vc = [[SchoolBusUnavailableViewController alloc]init];
+//        SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         
@@ -345,7 +349,9 @@
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
-        EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+//        EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+        EmptyClassUnavailableViewController *vc = [[EmptyClassUnavailableViewController alloc]init];
+        
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }

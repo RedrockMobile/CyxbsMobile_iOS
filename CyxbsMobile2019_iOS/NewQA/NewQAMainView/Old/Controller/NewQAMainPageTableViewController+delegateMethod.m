@@ -14,7 +14,7 @@
 
 ///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
 - (void)ClickedStarBtn:(PostTableViewCell *)cell{
-    cell.starBtn.isFirst = NO;
+//    cell.starBtn.isFirst = NO;
     if (cell.starBtn.selected == YES) {
         cell.starBtn.selected = NO;
         cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];

@@ -793,6 +793,12 @@
 		DB4065032466D889006CE5BC /* DLReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F42466D888006CE5BC /* DLReminderView.m */; };
 		EE131C212471362E00B6ED97 /* URLController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C202471362E00B6ED97 /* URLController.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
+		FE505CC0273D441E0022B872 /* SchoolBusUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */; };
+		FE505CC1273D441E0022B872 /* SchoolBusUnavailableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */; };
+		FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED345E0273D51DA004073C0 /* EmptyClassUnavailableViewController.m */; };
+		FED345E3273D51DA004073C0 /* EmptyClassUnavailableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED345E1273D51DA004073C0 /* EmptyClassUnavailableViewController.xib */; };
+		FED345E7273D5DD8004073C0 /* GPAUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED345E5273D5DD8004073C0 /* GPAUnavailableViewController.m */; };
+		FED345E8273D5DD8004073C0 /* GPAUnavailableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED345E6273D5DD8004073C0 /* GPAUnavailableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2119,6 +2125,15 @@
 		EE131C202471362E00B6ED97 /* URLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLController.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		FE505CBD273D441E0022B872 /* SchoolBusUnavailableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusUnavailableViewController.h; sourceTree = "<group>"; };
+		FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusUnavailableViewController.m; sourceTree = "<group>"; };
+		FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SchoolBusUnavailableViewController.xib; sourceTree = "<group>"; };
+		FED345DF273D51DA004073C0 /* EmptyClassUnavailableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyClassUnavailableViewController.h; sourceTree = "<group>"; };
+		FED345E0273D51DA004073C0 /* EmptyClassUnavailableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyClassUnavailableViewController.m; sourceTree = "<group>"; };
+		FED345E1273D51DA004073C0 /* EmptyClassUnavailableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyClassUnavailableViewController.xib; sourceTree = "<group>"; };
+		FED345E4273D5DD8004073C0 /* GPAUnavailableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAUnavailableViewController.h; sourceTree = "<group>"; };
+		FED345E5273D5DD8004073C0 /* GPAUnavailableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAUnavailableViewController.m; sourceTree = "<group>"; };
+		FED345E6273D5DD8004073C0 /* GPAUnavailableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GPAUnavailableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2551,6 +2566,9 @@
 				18CDF50F257F91BC006E8E5C /* TestArrangeViewController.m */,
 				18CDF510257F91BC006E8E5C /* ScorePresentAnimation.m */,
 				18CDF511257F91BC006E8E5C /* TestArrangeViewController.h */,
+				FED345E4273D5DD8004073C0 /* GPAUnavailableViewController.h */,
+				FED345E5273D5DD8004073C0 /* GPAUnavailableViewController.m */,
+				FED345E6273D5DD8004073C0 /* GPAUnavailableViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2645,6 +2663,9 @@
 				18CDF536257F91BC006E8E5C /* EmptyClassTableViewCell.xib */,
 				18CDF537257F91BC006E8E5C /* EmptyClassTableViewCell.h */,
 				18CDF533257F91BC006E8E5C /* EmptyClassTableViewCell.m */,
+				FED345DF273D51DA004073C0 /* EmptyClassUnavailableViewController.h */,
+				FED345E0273D51DA004073C0 /* EmptyClassUnavailableViewController.m */,
+				FED345E1273D51DA004073C0 /* EmptyClassUnavailableViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2975,6 +2996,9 @@
 				18CDF5D9257F91BD006E8E5C /* SchoolBusViewController.m */,
 				18CDF5DA257F91BD006E8E5C /* SchoolBusViewController.h */,
 				18CDF5DB257F91BD006E8E5C /* SchoolBusContentView.m */,
+				FE505CBD273D441E0022B872 /* SchoolBusUnavailableViewController.h */,
+				FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */,
+				FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5964,9 +5988,11 @@
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				DB34EAEE239BD4550052B65E /* remind_image_content@2x.png in Resources */,
 				1A16593123D984840039BA46 /* Assets.xcassets in Resources */,
+				FE505CC1273D441E0022B872 /* SchoolBusUnavailableViewController.xib in Resources */,
 				492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */,
 				DB34EAE2239BD4550052B65E /* 书@3x.png in Resources */,
 				DB34EB13239BD4550052B65E /* 提醒@2x.png in Resources */,
+				FED345E8273D5DD8004073C0 /* GPAUnavailableViewController.xib in Resources */,
 				18CDF6D7257F91BE006E8E5C /* 5@3x.png in Resources */,
 				DB34EAF2239BD4550052B65E /* 地点@2x.png in Resources */,
 				1A9B7674235F50A800725937 /* Assets.xcassets in Resources */,
@@ -6031,6 +6057,7 @@
 				18CDF6DE257F91BE006E8E5C /* 7@3x.png in Resources */,
 				18CDF680257F91BD006E8E5C /* EmptyClassResources.xcassets in Resources */,
 				DB34EAF5239BD4550052B65E /* 椭圆@2x.png in Resources */,
+				FED345E3273D51DA004073C0 /* EmptyClassUnavailableViewController.xib in Resources */,
 				DB34EB1E239BD4550052B65E /* timeTable_image_add@3x.png in Resources */,
 				DB34EB0F239BD4550052B65E /* 编辑箭头@3x.png in Resources */,
 				493162C526CD7B4900140412 /* stampcenter.xcassets in Resources */,
@@ -6132,6 +6159,7 @@
 				73AAA1D326C918250084E44D /* PurchaseinfoViewController.m in Sources */,
 				187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */,
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
+				FE505CC0273D441E0022B872 /* SchoolBusUnavailableViewController.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				1AD038DA23FA775600D5C90E /* MineQACommentItem.m in Sources */,
@@ -6355,6 +6383,7 @@
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
+				FED345E7273D5DD8004073C0 /* GPAUnavailableViewController.m in Sources */,
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
@@ -6461,6 +6490,7 @@
 				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
 				18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */,
 				7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */,
+				FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
 				493162CE26CD7B5D00140412 /* UIView+XYView.m in Sources */,
 				18CDF6AD257F91BD006E8E5C /* SCCircleChart.m in Sources */,
