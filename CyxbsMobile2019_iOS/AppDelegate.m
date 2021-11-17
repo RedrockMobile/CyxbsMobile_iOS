@@ -16,7 +16,6 @@
 #import "VolunteerItem.h"
 #import "DynamicDetailMainVC.h"
 #import <Bagel.h>
-#import "QADetailViewController.h"
 #import <AFNetworkReachabilityManager.h>
 #include "ArchiveTool.h"
 

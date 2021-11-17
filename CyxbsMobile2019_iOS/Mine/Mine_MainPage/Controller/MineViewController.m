@@ -12,7 +12,6 @@
 #import "EditMyInfoTransitionAnimator.h"
 #import "EditMyInfoPercentDrivenController.h"
 #import "CheckInViewController.h"
-#import "MineQAController.h"
 #import "MineAboutController.h"
 //#import "SelfSafeViewController.h"
 
