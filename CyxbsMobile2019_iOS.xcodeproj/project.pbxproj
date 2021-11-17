@@ -250,24 +250,8 @@
 		18CDF720257F91BE006E8E5C /* VolunteerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF657257F91BD006E8E5C /* VolunteerLabel.m */; };
 		18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF65D257F91BD006E8E5C /* FinderToolViewController.m */; };
 		18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF660257F91BD006E8E5C /* FinderToolViewItem.m */; };
-		18FBAE5526F356BC004CED7D /* NewQABackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADE826F356BB004CED7D /* NewQABackgroundView.m */; };
-		18FBAE5626F356BC004CED7D /* NewQABackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADE826F356BB004CED7D /* NewQABackgroundView.m */; };
-		18FBAE5726F356BC004CED7D /* NewQAFocusTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADE926F356BB004CED7D /* NewQAFocusTableView.m */; };
-		18FBAE5826F356BC004CED7D /* NewQAFocusTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADE926F356BB004CED7D /* NewQAFocusTableView.m */; };
 		18FBAE5926F356BC004CED7D /* NewQAPostDetailLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADED26F356BB004CED7D /* NewQAPostDetailLabel.m */; };
 		18FBAE5A26F356BC004CED7D /* NewQAPostDetailLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADED26F356BB004CED7D /* NewQAPostDetailLabel.m */; };
-		18FBAE5B26F356BC004CED7D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF126F356BB004CED7D /* UIView+Extension.m */; };
-		18FBAE5C26F356BC004CED7D /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF126F356BB004CED7D /* UIView+Extension.m */; };
-		18FBAE5D26F356BC004CED7D /* NewQATopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF326F356BB004CED7D /* NewQATopView.m */; };
-		18FBAE5E26F356BC004CED7D /* NewQATopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF326F356BB004CED7D /* NewQATopView.m */; };
-		18FBAE5F26F356BC004CED7D /* NewQAMainPageMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF426F356BB004CED7D /* NewQAMainPageMainView.m */; };
-		18FBAE6026F356BC004CED7D /* NewQAMainPageMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF426F356BB004CED7D /* NewQAMainPageMainView.m */; };
-		18FBAE6126F356BC004CED7D /* NewQAMainPageMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF826F356BB004CED7D /* NewQAMainPageMainController.m */; };
-		18FBAE6226F356BC004CED7D /* NewQAMainPageMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF826F356BB004CED7D /* NewQAMainPageMainController.m */; };
-		18FBAE6326F356BC004CED7D /* NewQAMainPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF926F356BB004CED7D /* NewQAMainPageTableViewController.m */; };
-		18FBAE6426F356BC004CED7D /* NewQAMainPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADF926F356BB004CED7D /* NewQAMainPageTableViewController.m */; };
-		18FBAE6526F356BC004CED7D /* NewQAMainPageTableViewController+delegateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADFA26F356BB004CED7D /* NewQAMainPageTableViewController+delegateMethod.m */; };
-		18FBAE6626F356BC004CED7D /* NewQAMainPageTableViewController+delegateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADFA26F356BB004CED7D /* NewQAMainPageTableViewController+delegateMethod.m */; };
 		18FBAE6726F356BC004CED7D /* NewQAMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADFF26F356BB004CED7D /* NewQAMainVC.m */; };
 		18FBAE6826F356BC004CED7D /* NewQAMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBADFF26F356BB004CED7D /* NewQAMainVC.m */; };
 		18FBAE6926F356BC004CED7D /* PostItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBAE0226F356BB004CED7D /* PostItem.m */; };
@@ -1231,24 +1215,8 @@
 		18CDF65D257F91BD006E8E5C /* FinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewController.m; sourceTree = "<group>"; };
 		18CDF65F257F91BD006E8E5C /* FinderToolViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
 		18CDF660257F91BD006E8E5C /* FinderToolViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewItem.m; sourceTree = "<group>"; };
-		18FBADE826F356BB004CED7D /* NewQABackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQABackgroundView.m; sourceTree = "<group>"; };
-		18FBADE926F356BB004CED7D /* NewQAFocusTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAFocusTableView.m; sourceTree = "<group>"; };
-		18FBADEA26F356BB004CED7D /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		18FBADEB26F356BB004CED7D /* NewQAMainPageMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainPageMainView.h; sourceTree = "<group>"; };
-		18FBADEC26F356BB004CED7D /* NewQATopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQATopView.h; sourceTree = "<group>"; };
 		18FBADED26F356BB004CED7D /* NewQAPostDetailLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAPostDetailLabel.m; sourceTree = "<group>"; };
-		18FBADEF26F356BB004CED7D /* NewQAFocusTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAFocusTableView.h; sourceTree = "<group>"; };
-		18FBADF026F356BB004CED7D /* NewQABackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQABackgroundView.h; sourceTree = "<group>"; };
-		18FBADF126F356BB004CED7D /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		18FBADF226F356BB004CED7D /* NewQAPostDetailLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAPostDetailLabel.h; sourceTree = "<group>"; };
-		18FBADF326F356BB004CED7D /* NewQATopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQATopView.m; sourceTree = "<group>"; };
-		18FBADF426F356BB004CED7D /* NewQAMainPageMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainPageMainView.m; sourceTree = "<group>"; };
-		18FBADF626F356BB004CED7D /* NewQAMainPageTableViewController+delegateMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewQAMainPageTableViewController+delegateMethod.h"; sourceTree = "<group>"; };
-		18FBADF726F356BB004CED7D /* NewQAMainPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainPageTableViewController.h; sourceTree = "<group>"; };
-		18FBADF826F356BB004CED7D /* NewQAMainPageMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainPageMainController.m; sourceTree = "<group>"; };
-		18FBADF926F356BB004CED7D /* NewQAMainPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainPageTableViewController.m; sourceTree = "<group>"; };
-		18FBADFA26F356BB004CED7D /* NewQAMainPageTableViewController+delegateMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewQAMainPageTableViewController+delegateMethod.m"; sourceTree = "<group>"; };
-		18FBADFB26F356BB004CED7D /* NewQAMainPageMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainPageMainController.h; sourceTree = "<group>"; };
 		18FBADFF26F356BB004CED7D /* NewQAMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainVC.m; sourceTree = "<group>"; };
 		18FBAE0026F356BB004CED7D /* NewQAMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainVC.h; sourceTree = "<group>"; };
 		18FBAE0226F356BB004CED7D /* PostItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostItem.m; sourceTree = "<group>"; };
@@ -3241,50 +3209,10 @@
 		18FBADE426F356BB004CED7D /* NewQAMainView */ = {
 			isa = PBXGroup;
 			children = (
-				18FBADE526F356BB004CED7D /* Old */,
 				18FBADFC26F356BB004CED7D /* New */,
 				18FBAE4626F356BB004CED7D /* Tool */,
 			);
 			path = NewQAMainView;
-			sourceTree = "<group>";
-		};
-		18FBADE526F356BB004CED7D /* Old */ = {
-			isa = PBXGroup;
-			children = (
-				18FBADE626F356BB004CED7D /* NewView */,
-				18FBADF526F356BB004CED7D /* Controller */,
-			);
-			path = Old;
-			sourceTree = "<group>";
-		};
-		18FBADE626F356BB004CED7D /* NewView */ = {
-			isa = PBXGroup;
-			children = (
-				18FBADE826F356BB004CED7D /* NewQABackgroundView.m */,
-				18FBADE926F356BB004CED7D /* NewQAFocusTableView.m */,
-				18FBADEA26F356BB004CED7D /* UIView+Extension.h */,
-				18FBADEB26F356BB004CED7D /* NewQAMainPageMainView.h */,
-				18FBADEC26F356BB004CED7D /* NewQATopView.h */,
-				18FBADEF26F356BB004CED7D /* NewQAFocusTableView.h */,
-				18FBADF026F356BB004CED7D /* NewQABackgroundView.h */,
-				18FBADF126F356BB004CED7D /* UIView+Extension.m */,
-				18FBADF326F356BB004CED7D /* NewQATopView.m */,
-				18FBADF426F356BB004CED7D /* NewQAMainPageMainView.m */,
-			);
-			path = NewView;
-			sourceTree = "<group>";
-		};
-		18FBADF526F356BB004CED7D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				18FBADFB26F356BB004CED7D /* NewQAMainPageMainController.h */,
-				18FBADF826F356BB004CED7D /* NewQAMainPageMainController.m */,
-				18FBADF726F356BB004CED7D /* NewQAMainPageTableViewController.h */,
-				18FBADF926F356BB004CED7D /* NewQAMainPageTableViewController.m */,
-				18FBADF626F356BB004CED7D /* NewQAMainPageTableViewController+delegateMethod.h */,
-				18FBADFA26F356BB004CED7D /* NewQAMainPageTableViewController+delegateMethod.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		18FBADFC26F356BB004CED7D /* New */ = {
@@ -6357,7 +6285,6 @@
 				18CDF6C0257F91BE006E8E5C /* IdsBinding.m in Sources */,
 				18CDF6CB257F91BE006E8E5C /* SchoolBusItem.m in Sources */,
 				18CDF71E257F91BE006E8E5C /* LogOutView.m in Sources */,
-				18FBAE5F26F356BC004CED7D /* NewQAMainPageMainView.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				18CDF4BE257F8DBD006E8E5C /* questionItem.m in Sources */,
 				18CDF69C257F91BD006E8E5C /* CQUPTMapViewController.m in Sources */,
@@ -6379,7 +6306,6 @@
 				4931630926CD7B6800140412 /* MyTableViewCellWithProgress.m in Sources */,
 				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
 				7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */,
-				18FBAE5726F356BC004CED7D /* NewQAFocusTableView.m in Sources */,
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
@@ -6464,16 +6390,13 @@
 				735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */,
 				18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */,
 				18FBAEB326F356BD004CED7D /* MGDRefreshTool.m in Sources */,
-				18FBAE6126F356BC004CED7D /* NewQAMainPageMainController.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				18CDF668257F91BD006E8E5C /* OneNewsItemData.m in Sources */,
 				18FBAE5926F356BC004CED7D /* NewQAPostDetailLabel.m in Sources */,
 				B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				18FBAE9926F356BD004CED7D /* MGDImageCollectionViewCell.m in Sources */,
-				18FBAE5D26F356BC004CED7D /* NewQATopView.m in Sources */,
 				D0101D38243387ED004337ED /* QABaseViewController.m in Sources */,
-				18FBAE5526F356BC004CED7D /* NewQABackgroundView.m in Sources */,
 				1A46C34823DC6F58005DC1F3 /* MyResponseRecievedCell.m in Sources */,
 				4931630A26CD7B6800140412 /* MyTableViewCell.m in Sources */,
 				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
@@ -6512,7 +6435,6 @@
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
 				7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */,
 				1AD038C423F6C7FF00D5C90E /* MineQAPresenter.m in Sources */,
-				18FBAE6526F356BC004CED7D /* NewQAMainPageTableViewController+delegateMethod.m in Sources */,
 				B82CA6AB26315BD800786685 /* CircleLabelBtn.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
@@ -6564,7 +6486,6 @@
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				18AD64BF26F5D9ED003DB7AB /* NewQAMainVC+delegateMethod.m in Sources */,
 				18CDF4C7257F8DBD006E8E5C /* sendCodeView.m in Sources */,
-				18FBAE5B26F356BC004CED7D /* UIView+Extension.m in Sources */,
 				49628E3226D52C6000805A08 /* FeedBackVC.m in Sources */,
 				1AEF3122245E9D5300487D40 /* MyGoodsItem.m in Sources */,
 				18FBAE7B26F356BC004CED7D /* GroupModel.m in Sources */,
@@ -6605,7 +6526,6 @@
 				182213D02717C6EC0033A7FA /* NewQANoDataView.m in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
-				18FBAE6326F356BC004CED7D /* NewQAMainPageTableViewController.m in Sources */,
 				735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */,
 				491DAE5726E207C600693AAA /* CommonQuestionData.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
@@ -6722,24 +6642,20 @@
 				18FBAE7226F356BC004CED7D /* NewCountModel.m in Sources */,
 				18FBAE8026F356BC004CED7D /* PostTableViewCell.m in Sources */,
 				18FBAE7026F356BC004CED7D /* PostModel.m in Sources */,
-				18FBAE5C26F356BC004CED7D /* UIView+Extension.m in Sources */,
 				18FBAE7826F356BC004CED7D /* ReportModel.m in Sources */,
 				18FBAE9426F356BC004CED7D /* TopFollowView.m in Sources */,
-				18FBAE5E26F356BC004CED7D /* NewQATopView.m in Sources */,
 				18FBAE7C26F356BC004CED7D /* GroupModel.m in Sources */,
 				18FBAE6826F356BC004CED7D /* NewQAMainVC.m in Sources */,
 				18FBAE6E26F356BC004CED7D /* DeletePostModel.m in Sources */,
 				18FBAE8C26F356BC004CED7D /* MGDClickLayer.m in Sources */,
 				1893DC8E26EA32F1007E871E /* MGDQueue.m in Sources */,
 				18FBAEB626F356BD004CED7D /* NewQAHud.m in Sources */,
-				18FBAE6426F356BC004CED7D /* NewQAMainPageTableViewController.m in Sources */,
 				18FBAE9226F356BC004CED7D /* NewQAContentScrollView.m in Sources */,
 				18FBAE8426F356BC004CED7D /* NewQASelectorView.m in Sources */,
 				18FBAE8E26F356BC004CED7D /* FunctionBtn.m in Sources */,
 				182213D12717C6EC0033A7FA /* NewQANoDataView.m in Sources */,
 				18FBAE8226F356BC004CED7D /* FuncView.m in Sources */,
 				18FBAE9C26F356BD004CED7D /* ReportView.m in Sources */,
-				18FBAE6026F356BC004CED7D /* NewQAMainPageMainView.m in Sources */,
 				18FBAEAE26F356BD004CED7D /* PostArchiveTool.m in Sources */,
 				18FBAE6A26F356BC004CED7D /* PostItem.m in Sources */,
 				18911E91270F258A00886028 /* PostH5Item.m in Sources */,
@@ -6748,9 +6664,7 @@
 				18911E95270F29BC00886028 /* PostFocusModel.m in Sources */,
 				18FBAE9626F356BD004CED7D /* NewQAHeadrView.m in Sources */,
 				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
-				18FBAE6226F356BC004CED7D /* NewQAMainPageMainController.m in Sources */,
 				1893DC9626EA3887007E871E /* MGDTimer.m in Sources */,
-				18FBAE5626F356BC004CED7D /* NewQABackgroundView.m in Sources */,
 				18FBAEB426F356BD004CED7D /* MGDRefreshTool.m in Sources */,
 				18FBAEAA26F356BD004CED7D /* RecommentLabel.m in Sources */,
 				18FBAE7A26F356BC004CED7D /* FollowGroupModel.m in Sources */,
@@ -6758,7 +6672,6 @@
 				185AFA5727022258007F40F9 /* MGDCommen.swift in Sources */,
 				18FBAEA426F356BD004CED7D /* ShareBtn.m in Sources */,
 				18AD64C026F5D9ED003DB7AB /* NewQAMainVC+delegateMethod.m in Sources */,
-				18FBAE6626F356BC004CED7D /* NewQAMainPageTableViewController+delegateMethod.m in Sources */,
 				1893DC9226EA3375007E871E /* MGDGroup.m in Sources */,
 				1893DC8A26EA32A3007E871E /* MGDGCD.m in Sources */,
 				18FBAE9026F356BC004CED7D /* MGDCircleLayer.m in Sources */,
@@ -6774,7 +6687,6 @@
 				185AFA83270356AE007F40F9 /* NewQARecommenTableView.m in Sources */,
 				18FBAE9A26F356BD004CED7D /* MGDImageCollectionViewCell.m in Sources */,
 				18FBAEA026F356BD004CED7D /* SelfFuncView.m in Sources */,
-				18FBAE5826F356BC004CED7D /* NewQAFocusTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
