@@ -18,7 +18,6 @@
 #import "UserDefaultTool.h"
 #import "UserItemTool.h"
 #import "BaseViewController.h"
-#import "QABaseViewController.h"
 #import "NSDate+Timestamp.h"
 #import "URLController.h"
 #import <UMAnalytics/MobClick.h>

@@ -13,7 +13,6 @@
 #import "MyCollectionViewCell.h"
 #import "SecondHeaderView.h"
 #import "MyTableViewCellWithProgress.h"
-#import "NewQAMainPageMainController.h"
 #import "SZHReleaseDynamic.h"
 #import "QueryLoginViewController.h"
 #import "EditMyInfoViewController.h"
