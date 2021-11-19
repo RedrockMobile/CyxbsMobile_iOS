@@ -4,8 +4,6 @@ ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/Bagel/Bagel.framework
 ${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework
 ${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework
-${BUILT_PRODUCTS_DIR}/GMImagePicker/GMImagePicker.framework
-${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MGJRouter/MGJRouter.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
@@ -23,4 +21,3 @@ ${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework
 ${BUILT_PRODUCTS_DIR}/YBImageBrowser/YBImageBrowser.framework
 ${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework
 ${BUILT_PRODUCTS_DIR}/YYKit/YYKit.framework
-${BUILT_PRODUCTS_DIR}/pop/pop.framework

@@ -212,10 +212,6 @@ static CGFloat _NSStringPathScale(NSString *string) {
     }
 }
 
-+ (BOOL)supportsSecureCoding {
-    return  YES;
-}
-
 #pragma mark - protocol YYAnimatedImage
 
 - (NSUInteger)animatedImageFrameCount {
