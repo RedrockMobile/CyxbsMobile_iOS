@@ -124,6 +124,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
     @package
     UIImage <YYAnimatedImage> *_curAnimatedImage;
     
+    dispatch_once_t _onceToken;
     dispatch_semaphore_t _lock; ///< lock for _buffer
     NSOperationQueue *_requestQueue; ///< image request queue, serial
     
@@ -230,7 +231,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 
 // init the animated params.
 - (void)resetAnimated {
-    if (!_link) {
+    dispatch_once(&_onceToken, ^{
         _lock = dispatch_semaphore_create(1);
         _buffer = [NSMutableDictionary new];
         _requestQueue = [[NSOperationQueue alloc] init];
@@ -243,7 +244,7 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    }
+    });
     
     [_requestQueue cancelAllOperations];
     LOCK(
@@ -526,13 +527,8 @@ typedef NS_ENUM(NSUInteger, YYAnimatedImageType) {
 }
 
 - (void)displayLayer:(CALayer *)layer {
-    UIImage *currentFrame = _curFrame;
-    if (!currentFrame) {
-    currentFrame = self.image;
-    }
-    if (currentFrame) {
-    layer.contentsScale = currentFrame.scale;
-    layer.contents = (__bridge id)currentFrame.CGImage;
+    if (_curFrame) {
+        layer.contents = (__bridge id)_curFrame.CGImage;
     }
 }
 
