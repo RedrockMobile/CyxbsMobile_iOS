@@ -580,6 +580,22 @@
 		B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */; };
 		B8B7AD7E264BA6FA00FEEF7D /* NoComentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B7AD7D264BA6FA00FEEF7D /* NoComentView.m */; };
 		B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */; };
+		BE7CBD1327535A2F00094AE8 /* NewQABackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0227535A2F00094AE8 /* NewQABackgroundView.m */; };
+		BE7CBD1427535A2F00094AE8 /* NewQABackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0227535A2F00094AE8 /* NewQABackgroundView.m */; };
+		BE7CBD1527535A2F00094AE8 /* NewQAFocusTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0327535A2F00094AE8 /* NewQAFocusTableView.m */; };
+		BE7CBD1627535A2F00094AE8 /* NewQAFocusTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0327535A2F00094AE8 /* NewQAFocusTableView.m */; };
+		BE7CBD1727535A2F00094AE8 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0927535A2F00094AE8 /* UIView+Extension.m */; };
+		BE7CBD1827535A2F00094AE8 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0927535A2F00094AE8 /* UIView+Extension.m */; };
+		BE7CBD1927535A2F00094AE8 /* NewQATopView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0A27535A2F00094AE8 /* NewQATopView.m */; };
+		BE7CBD1A27535A2F00094AE8 /* NewQATopView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0A27535A2F00094AE8 /* NewQATopView.m */; };
+		BE7CBD1B27535A2F00094AE8 /* NewQAMainPageMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0B27535A2F00094AE8 /* NewQAMainPageMainView.m */; };
+		BE7CBD1C27535A2F00094AE8 /* NewQAMainPageMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0B27535A2F00094AE8 /* NewQAMainPageMainView.m */; };
+		BE7CBD1D27535A2F00094AE8 /* NewQAMainPageMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0F27535A2F00094AE8 /* NewQAMainPageMainController.m */; };
+		BE7CBD1E27535A2F00094AE8 /* NewQAMainPageMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD0F27535A2F00094AE8 /* NewQAMainPageMainController.m */; };
+		BE7CBD1F27535A2F00094AE8 /* NewQAMainPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD1027535A2F00094AE8 /* NewQAMainPageTableViewController.m */; };
+		BE7CBD2027535A2F00094AE8 /* NewQAMainPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD1027535A2F00094AE8 /* NewQAMainPageTableViewController.m */; };
+		BE7CBD2127535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD1127535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.m */; };
+		BE7CBD2227535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD1127535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1727,6 +1743,22 @@
 		B8B7AD7C264BA6FA00FEEF7D /* NoComentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoComentView.h; sourceTree = "<group>"; };
 		B8B7AD7D264BA6FA00FEEF7D /* NoComentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoComentView.m; sourceTree = "<group>"; };
 		B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewQA_Search.xcassets; sourceTree = "<group>"; };
+		BE7CBD0227535A2F00094AE8 /* NewQABackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQABackgroundView.m; sourceTree = "<group>"; };
+		BE7CBD0327535A2F00094AE8 /* NewQAFocusTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAFocusTableView.m; sourceTree = "<group>"; };
+		BE7CBD0427535A2F00094AE8 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		BE7CBD0527535A2F00094AE8 /* NewQAMainPageMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainPageMainView.h; sourceTree = "<group>"; };
+		BE7CBD0627535A2F00094AE8 /* NewQATopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQATopView.h; sourceTree = "<group>"; };
+		BE7CBD0727535A2F00094AE8 /* NewQAFocusTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAFocusTableView.h; sourceTree = "<group>"; };
+		BE7CBD0827535A2F00094AE8 /* NewQABackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQABackgroundView.h; sourceTree = "<group>"; };
+		BE7CBD0927535A2F00094AE8 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		BE7CBD0A27535A2F00094AE8 /* NewQATopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQATopView.m; sourceTree = "<group>"; };
+		BE7CBD0B27535A2F00094AE8 /* NewQAMainPageMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainPageMainView.m; sourceTree = "<group>"; };
+		BE7CBD0D27535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewQAMainPageTableViewController+delegateMethod.h"; sourceTree = "<group>"; };
+		BE7CBD0E27535A2F00094AE8 /* NewQAMainPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainPageTableViewController.h; sourceTree = "<group>"; };
+		BE7CBD0F27535A2F00094AE8 /* NewQAMainPageMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainPageMainController.m; sourceTree = "<group>"; };
+		BE7CBD1027535A2F00094AE8 /* NewQAMainPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainPageTableViewController.m; sourceTree = "<group>"; };
+		BE7CBD1127535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewQAMainPageTableViewController+delegateMethod.m"; sourceTree = "<group>"; };
+		BE7CBD1227535A2F00094AE8 /* NewQAMainPageMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainPageMainController.h; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -3062,6 +3094,7 @@
 		18FBADE426F356BB004CED7D /* NewQAMainView */ = {
 			isa = PBXGroup;
 			children = (
+				BE7CBD0027535A2F00094AE8 /* Old */,
 				18FBADFC26F356BB004CED7D /* New */,
 				18FBAE4626F356BB004CED7D /* Tool */,
 			);
@@ -4867,6 +4900,45 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		BE7CBD0027535A2F00094AE8 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				BE7CBD0127535A2F00094AE8 /* NewView */,
+				BE7CBD0C27535A2F00094AE8 /* Controller */,
+			);
+			path = Old;
+			sourceTree = "<group>";
+		};
+		BE7CBD0127535A2F00094AE8 /* NewView */ = {
+			isa = PBXGroup;
+			children = (
+				BE7CBD0227535A2F00094AE8 /* NewQABackgroundView.m */,
+				BE7CBD0327535A2F00094AE8 /* NewQAFocusTableView.m */,
+				BE7CBD0427535A2F00094AE8 /* UIView+Extension.h */,
+				BE7CBD0527535A2F00094AE8 /* NewQAMainPageMainView.h */,
+				BE7CBD0627535A2F00094AE8 /* NewQATopView.h */,
+				BE7CBD0727535A2F00094AE8 /* NewQAFocusTableView.h */,
+				BE7CBD0827535A2F00094AE8 /* NewQABackgroundView.h */,
+				BE7CBD0927535A2F00094AE8 /* UIView+Extension.m */,
+				BE7CBD0A27535A2F00094AE8 /* NewQATopView.m */,
+				BE7CBD0B27535A2F00094AE8 /* NewQAMainPageMainView.m */,
+			);
+			path = NewView;
+			sourceTree = "<group>";
+		};
+		BE7CBD0C27535A2F00094AE8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE7CBD0D27535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.h */,
+				BE7CBD0E27535A2F00094AE8 /* NewQAMainPageTableViewController.h */,
+				BE7CBD0F27535A2F00094AE8 /* NewQAMainPageMainController.m */,
+				BE7CBD1027535A2F00094AE8 /* NewQAMainPageTableViewController.m */,
+				BE7CBD1127535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.m */,
+				BE7CBD1227535A2F00094AE8 /* NewQAMainPageMainController.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
 			isa = PBXGroup;
 			children = (
@@ -5684,6 +5756,7 @@
 				AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */,
 				18FBAE8B26F356BC004CED7D /* MGDClickLayer.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
+				BE7CBD1727535A2F00094AE8 /* UIView+Extension.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				49C2E78326D563AF00AFBE6F /* TypeSelectView.m in Sources */,
 				1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */,
@@ -5929,6 +6002,7 @@
 				18FBAEB326F356BD004CED7D /* MGDRefreshTool.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				18CDF668257F91BD006E8E5C /* OneNewsItemData.m in Sources */,
+				BE7CBD1D27535A2F00094AE8 /* NewQAMainPageMainController.m in Sources */,
 				18FBAE5926F356BC004CED7D /* NewQAPostDetailLabel.m in Sources */,
 				B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
@@ -5968,7 +6042,9 @@
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
 				7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */,
+				BE7CBD1B27535A2F00094AE8 /* NewQAMainPageMainView.m in Sources */,
 				B82CA6AB26315BD800786685 /* CircleLabelBtn.m in Sources */,
+				BE7CBD1927535A2F00094AE8 /* NewQATopView.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
@@ -5982,6 +6058,7 @@
 				18CDF71A257F91BE006E8E5C /* ActivityView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				1AEF311F245E927B00487D40 /* MyGoodsTableViewCell.m in Sources */,
+				BE7CBD1527535A2F00094AE8 /* NewQAFocusTableView.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
 				18CDF6C4257F91BE006E8E5C /* DetailSubjectScoreCell.m in Sources */,
 				493162DF26CD7B6300140412 /* GoodsData.m in Sources */,
@@ -6075,6 +6152,8 @@
 				18CDF4BC257F8DBD006E8E5C /* selfSafeViewController.m in Sources */,
 				18CDF698257F91BD006E8E5C /* CQUPTMapHotPlaceButton.m in Sources */,
 				B82CA67F263159BA00786685 /* DynamicDetailTopBarView.m in Sources */,
+				BE7CBD1F27535A2F00094AE8 /* NewQAMainPageTableViewController.m in Sources */,
+				BE7CBD2127535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.m in Sources */,
 				187DF4BD260310DD000BCDE9 /* LYEmptyView.m in Sources */,
 				7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */,
 				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
@@ -6130,6 +6209,7 @@
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				18FBAE7D26F356BC004CED7D /* StarPostModel.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
+				BE7CBD1327535A2F00094AE8 /* NewQABackgroundView.m in Sources */,
 				73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */,
 				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
 				18CDF4BB257F8DBD006E8E5C /* ResetPwdViewController.m in Sources */,
@@ -6156,7 +6236,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE7CBD1A27535A2F00094AE8 /* NewQATopView.m in Sources */,
 				18FBAEA626F356BD004CED7D /* RecommendedTableView.m in Sources */,
+				BE7CBD2027535A2F00094AE8 /* NewQAMainPageTableViewController.m in Sources */,
 				18FBAE9E26F356BD004CED7D /* SearchBtn.m in Sources */,
 				18FBAE7426F356BC004CED7D /* ShieldModel.m in Sources */,
 				18FBAEA826F356BD004CED7D /* NewQAMainTableView.m in Sources */,
@@ -6165,6 +6247,7 @@
 				18FBAE8026F356BC004CED7D /* PostTableViewCell.m in Sources */,
 				18FBAE7026F356BC004CED7D /* PostModel.m in Sources */,
 				18FBAE7826F356BC004CED7D /* ReportModel.m in Sources */,
+				BE7CBD1C27535A2F00094AE8 /* NewQAMainPageMainView.m in Sources */,
 				18FBAE9426F356BC004CED7D /* TopFollowView.m in Sources */,
 				18FBAE7C26F356BC004CED7D /* GroupModel.m in Sources */,
 				18FBAE6826F356BC004CED7D /* NewQAMainVC.m in Sources */,
@@ -6187,21 +6270,26 @@
 				18FBAE9626F356BD004CED7D /* NewQAHeadrView.m in Sources */,
 				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
 				1893DC9626EA3887007E871E /* MGDTimer.m in Sources */,
+				BE7CBD1427535A2F00094AE8 /* NewQABackgroundView.m in Sources */,
 				18FBAEB426F356BD004CED7D /* MGDRefreshTool.m in Sources */,
 				18FBAEAA26F356BD004CED7D /* RecommentLabel.m in Sources */,
 				18FBAE7A26F356BC004CED7D /* FollowGroupModel.m in Sources */,
 				18FBAEAC26F356BD004CED7D /* MGDStatusBarHeight.m in Sources */,
 				185AFA5727022258007F40F9 /* MGDCommen.swift in Sources */,
 				18FBAEA426F356BD004CED7D /* ShareBtn.m in Sources */,
+				BE7CBD1827535A2F00094AE8 /* UIView+Extension.m in Sources */,
 				18AD64C026F5D9ED003DB7AB /* NewQAMainVC+delegateMethod.m in Sources */,
 				1893DC9226EA3375007E871E /* MGDGroup.m in Sources */,
 				1893DC8A26EA32A3007E871E /* MGDGCD.m in Sources */,
+				BE7CBD1E27535A2F00094AE8 /* NewQAMainPageMainController.m in Sources */,
 				18FBAE9026F356BC004CED7D /* MGDCircleLayer.m in Sources */,
 				18FBAE7626F356BC004CED7D /* HotSearchModel.m in Sources */,
+				BE7CBD1627535A2F00094AE8 /* NewQAFocusTableView.m in Sources */,
 				18FBAE5A26F356BC004CED7D /* NewQAPostDetailLabel.m in Sources */,
 				18FBAEC126F35FB9004CED7D /* NewQAFollowTableView.m in Sources */,
 				18FBAEB226F356BD004CED7D /* NewQATool.m in Sources */,
 				18FBAE7E26F356BC004CED7D /* StarPostModel.m in Sources */,
+				BE7CBD2227535A2F00094AE8 /* NewQAMainPageTableViewController+delegateMethod.m in Sources */,
 				18FBAEB026F356BD004CED7D /* MGDCurrentTimeStr.m in Sources */,
 				18FBAEA226F356BD004CED7D /* GroupFollowBtn.m in Sources */,
 				18FBAE8A26F356BC004CED7D /* MGDClickParams.m in Sources */,
@@ -6358,6 +6446,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6372,7 +6461,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 35;
-				DEVELOPMENT_TEAM = GZ4KJFC499;
+				DEVELOPMENT_TEAM = RT6PQ9CYD3;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -6402,7 +6491,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 35;
-				DEVELOPMENT_TEAM = GZ4KJFC499;
+				DEVELOPMENT_TEAM = RT6PQ9CYD3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
