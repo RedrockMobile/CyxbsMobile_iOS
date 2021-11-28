@@ -184,8 +184,8 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
         UIViewController *frontVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-        if ([frontVC isKindOfClass:[NewQAMainVC class]]) {
-            NewQAMainVC * QAMainVC = (NewQAMainVC *)frontVC;
+        if ([frontVC isKindOfClass:[NewQAMainPageMainController class]]) {
+            NewQAMainPageMainController * QAMainVC = (NewQAMainPageMainController *)frontVC;
             QAMainVC.isNeedFresh = _isChanged;
             [self.navigationController popToViewController:QAMainVC animated:YES];
         }else{
@@ -785,7 +785,7 @@
 }
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:FOLLOWTOPIC method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                         //改变button状态
             NSDictionary *dic = @{@"topic_ID":stringIsFollow};
             [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];

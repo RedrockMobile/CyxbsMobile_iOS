@@ -56,8 +56,8 @@
 // 自定义返回方法
 - (void)back {
     UIViewController *frontVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-    if ([frontVC isKindOfClass:[NewQAMainVC class]]) {
-        NewQAMainVC * QAMainVC = (NewQAMainVC *)frontVC;
+    if ([frontVC isKindOfClass:[NewQAMainPageMainController class]]) {
+        NewQAMainPageMainController * QAMainVC = (NewQAMainPageMainController *)frontVC;
         QAMainVC.isNeedFresh = _isChanged;
         [self.navigationController popToViewController:QAMainVC animated:YES];
     }else{
