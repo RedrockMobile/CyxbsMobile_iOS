@@ -229,9 +229,9 @@
 
 
 - (void) pushToScoreVC {
-//    ScoreViewController *vc = [[ScoreViewController alloc]init];
-//    vc.transitioningDelegate = self;
-    GPAUnavailableViewController *vc = [[GPAUnavailableViewController alloc]init];
+    ScoreViewController *vc = [[ScoreViewController alloc]init];
+    vc.transitioningDelegate = self;
+//    GPAUnavailableViewController *vc = [[GPAUnavailableViewController alloc]init];
     [self presentViewController:vc animated:YES completion:^{
         NSLog(@"跳转至学分成绩vc");
     }];
