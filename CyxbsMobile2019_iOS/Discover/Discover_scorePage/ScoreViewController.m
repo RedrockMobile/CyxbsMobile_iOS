@@ -323,7 +323,7 @@
         cell.timeLabel.text = [self getTermTitleWithString:self.gpaItem.termGrades.termGrades[indexPath.row].term];
     }
     if(self.gpaItem.termGrades.termGrades[indexPath.row].gpa) {
-        cell.averangePointLabel.text =self.gpaItem.termGrades.termGrades[indexPath.row].gpa.stringValue;
+        cell.averangePointLabel.text = [NSString stringWithFormat:@"%.2f",self.gpaItem.termGrades.termGrades[indexPath.row].gpa.floatValue];
         
     }
     if(self.gpaItem.termGrades.termGrades[indexPath.row].grade) {
@@ -332,7 +332,7 @@
         cell.averangeScoreLabel.text = averangeScore;
     }
     if (self.gpaItem.termGrades.termGrades[indexPath.row].rank) {
-        cell.averangeRankLabel.text = self.gpaItem.termGrades.termGrades[indexPath.row].rank.stringValue;
+        cell.averangeRankLabel.text = [NSString stringWithFormat:@"%.2f",self.gpaItem.termGrades.termGrades[indexPath.row].rank.floatValue];
     }
     if(self.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr) {
         cell.singleGradesArray =self.gpaItem.termGrades.termGrades[indexPath.row].singegradesArr;
