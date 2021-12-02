@@ -20,28 +20,21 @@
         cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
-        if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
-        } else {
-            // Fallback on earlier versions
-        }
+        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
     }else {
         cell.starBtn.selected = YES;
         cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
-        if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
-
-        } else {
-            // Fallback on earlier versions
-        }
-
+        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
     }
-    self.starpostmodel = [[StarPostModel alloc] init];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     self.itemDic = self.tableArray[indexPath.row];
     [self.starpostmodel starPostWithPostID:[NSNumber numberWithString:self.itemDic[@"post_id"]]];
+    NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:self.itemDic];
+    tempDic[@"is_praised"] = cell.starBtn.selected == YES ? @"1" : @"0";
+    tempDic[@"praise_count"] = [NSNumber numberWithString:cell.starBtn.countLabel.text];
+    [self.tableArray replaceObjectAtIndex:indexPath.row withObject:tempDic];
 }
 
 #pragma mark -点击评论按钮跳转到具体的帖子

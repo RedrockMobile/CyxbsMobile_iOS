@@ -10,7 +10,7 @@
 #import "MGDImageCollectionViewCell.h"
 #import "PostModel.h"
 #import "StarPostModel.h"
-#import "UIControl+MGD.h"
+//#import "UIControl+MGD.h"
 #import <YBImageBrowser.h>
 
 
@@ -52,6 +52,7 @@
     ///头像
     _iconImageView = [[UIImageView alloc] init];
     _iconImageView.layer.masksToBounds = YES;
+    [self.iconImageView setContentMode:UIViewContentModeScaleAspectFit];
     [self.contentView addSubview:_iconImageView];
     
     ///昵称
@@ -78,8 +79,8 @@
     
     ///多功能按钮
     _funcBtn = [[UIButton alloc] init];
-    _funcBtn.mgd_ignoreEvent = NO;
-    _funcBtn.mgd_acceptEventInterval = 0.5;
+//    _funcBtn.mgd_ignoreEvent = NO;
+//    _funcBtn.mgd_acceptEventInterval = 0.5;
     _funcBtn.backgroundColor = [UIColor clearColor];
     [_funcBtn setImage:[UIImage imageNamed:@"QAMoreButton"] forState:UIControlStateNormal];
     [_funcBtn addTarget:self action:@selector(ClickedFuncBtn) forControlEvents:UIControlEventTouchUpInside];
@@ -87,17 +88,13 @@
     
     ///内容
     _detailLabel = [[NewQAPostDetailLabel alloc] initWithFrame:self.bounds];
-    if (@available(iOS 11.0, *)) {
-        _detailLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
-    } else {
-        _detailLabel.textColor = [UIColor colorWithRed:17.0/255.0 green:44.0/255.0 blue:87.0/255.0 alpha:1];
-    }
+    _detailLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
     self.detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:16];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
     // 多行设置
     self.detailLabel.numberOfLines = 5;
-    self.detailLabel.preferredMaxLayoutWidth = (SCREEN_WIDTH - Pading * 2);
+    self.detailLabel.preferredMaxLayoutWidth = SCREEN_WIDTH * 0.9;
     [self.detailLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self.contentView addSubview:_detailLabel];
 
@@ -113,8 +110,8 @@
     
     ///标签
     _groupLabel = [[UIButton alloc] init];
-    _groupLabel.mgd_ignoreEvent = NO;
-    _groupLabel.mgd_acceptEventInterval = 0.5;
+//    _groupLabel.mgd_ignoreEvent = NO;
+//    _groupLabel.mgd_acceptEventInterval = 0.5;
     _groupLabel.titleLabel.textAlignment = NSTextAlignmentCenter;
     [_groupLabel.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08]];
     if (@available(iOS 11.0, *)) {
@@ -129,8 +126,8 @@
     
     ///点赞
     _starBtn = [[FunctionBtn alloc] init];
-    _starBtn.mgd_ignoreEvent = NO;
-    _starBtn.mgd_acceptEventInterval = 0.8;
+//    _starBtn.mgd_ignoreEvent = NO;
+//    _starBtn.mgd_acceptEventInterval = 0.8;
     [_starBtn addTarget:self action:@selector(ClickedStar) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_starBtn];
     
@@ -142,16 +139,16 @@
     
     ///评论
     _commendBtn = [[FunctionBtn alloc] init];
-    _commendBtn.mgd_ignoreEvent = NO;
-    _commendBtn.mgd_acceptEventInterval = 2;
+//    _commendBtn.mgd_ignoreEvent = NO;
+//    _commendBtn.mgd_acceptEventInterval = 2;
     _commendBtn.iconView.image = [UIImage imageNamed:@"answerIcon"];
     [_commendBtn addTarget:self action:@selector(ClickedComment) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_commendBtn];
     
     ///分享
     _shareBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    _starBtn.mgd_ignoreEvent = NO;
-    _starBtn.mgd_acceptEventInterval = 2;
+//    _starBtn.mgd_ignoreEvent = NO;
+//    _starBtn.mgd_acceptEventInterval = 2;
     _shareBtn.backgroundColor = [UIColor clearColor];
     [_shareBtn setBackgroundImage:[UIImage imageNamed:@"分享"] forState:UIControlStateNormal];
     [_shareBtn addTarget:self action:@selector(ClickedShare) forControlEvents:UIControlEventTouchUpInside];
@@ -163,9 +160,9 @@
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.0427);
         make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0427);
-        make.width.height.mas_equalTo(SCREEN_WIDTH * 0.1066);
+        make.width.height.mas_equalTo(SCREEN_WIDTH * 0.108);
     }];
-    _iconImageView.layer.cornerRadius = SCREEN_WIDTH * 0.1066 * 1/2;
+    _iconImageView.layer.cornerRadius = SCREEN_WIDTH * 0.108 * 1/2;
     
     [_nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.0427 + 2);
@@ -190,7 +187,7 @@
     
     
     [_detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.0427 * 14.5/16);
+        make.top.mas_equalTo(self.timeLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.0427 * 14.5/16);
         make.left.mas_equalTo(self.iconImageView);
         make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
     }];
@@ -243,6 +240,13 @@
     // Configure the view for the selected state
 }
 
+-(CGSize)sizeWithText:(NSString *)text font:(UIFont *)font maxW:(CGFloat)maxW {
+    NSMutableDictionary *attrs=[NSMutableDictionary dictionary];
+    attrs[NSFontAttributeName]=font;
+    CGSize maxSize=CGSizeMake(maxW, MAXFLOAT);
+    return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
+}
+
 #pragma mark- setter
 - (void)setItem:(PostItem *)item {
     if (item) {
@@ -251,22 +255,14 @@
         self.nicknameLabel.text = item.nick_name;
         self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%@",item.publish_time]];
         self.detailLabel.text = item.content;
-        NSString *fiveString = item.content;
-        NSMutableAttributedString *fiveStr = [[NSMutableAttributedString alloc] initWithString:fiveString];
-        NSRange fiveRange = [fiveString rangeOfString:fiveString];
-        [fiveStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:PingFangSCRegular size:16] range:fiveRange];
-        [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
-        NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
-            // 获取label的最大宽度
-        CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(WScaleRate_SE * 342, CGFLOAT_MAX)options:fiveOptions context:nil];
-        CGFloat detailHeight = fiveRect.size.height > [self getDetailLabelHeight] ? [self getDetailLabelHeight]:fiveRect.size.height;
+        CGSize fiveRect = [self sizeWithText:item.content font:[UIFont fontWithName:PingFangSCRegular size:16] maxW:SCREEN_WIDTH * 0.9];
+        CGFloat detailHeight = fiveRect.height > [self getDetailLabelHeight] ? [self getDetailLabelHeight]:fiveRect.height;
         [_detailLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.iconImageView.mas_bottom).mas_offset(SCREEN_WIDTH * 0.0427 * 14.5/16);
+            make.top.mas_equalTo(self.timeLabel.mas_bottom).mas_offset(SCREEN_WIDTH * 0.0427 * 14.5/16);
             make.left.mas_equalTo(self.iconImageView);
             make.right.mas_equalTo(self.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
-            make.height.mas_equalTo(detailHeight);
+            make.height.mas_equalTo(detailHeight+3);
         }];
-        NSLog(@"%f==== %f ==== %f",fiveRect.size.height,[self getDetailLabelHeight],detailHeight);
         [self.groupLabel setTitle:[NSString stringWithFormat:@"# %@",item.topic] forState:UIControlStateNormal];
         NSString *content = self.groupLabel.titleLabel.text;
         UIFont *font = self.groupLabel.titleLabel.font;
@@ -276,7 +272,7 @@
         attributes:@{ NSFontAttributeName:font}
         context:nil].size;
         [_groupLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.collectView.mas_bottom).mas_offset(11);
+            make.height.mas_equalTo(SCREEN_WIDTH * 0.2707 * 25.5/101.5);
             make.bottom.mas_equalTo(self.contentView.mas_bottom).mas_offset(-Pading * 62.5/16);
             make.left.mas_equalTo(self.contentView.mas_left).mas_offset(SCREEN_WIDTH * 0.0413);
             make.width.mas_equalTo(buttonSize.width + SCREEN_WIDTH * 0.05 * 2);
@@ -322,14 +318,8 @@
 
 - (CGFloat) getDetailLabelHeight {
     NSString *fiveString = @"1\n1\n1\n1\n1";
-    NSMutableAttributedString *fiveStr = [[NSMutableAttributedString alloc] initWithString:fiveString];
-    NSRange fiveRange = [fiveString rangeOfString:fiveString];
-    [fiveStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:PingFangSCRegular size:16] range:fiveRange];
-    [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
-    NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
-        // 获取label的最大宽度
-    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(WScaleRate_SE * 342, CGFLOAT_MAX)options:fiveOptions context:nil];
-    return fiveRect.size.height;
+    CGSize fiveRect = [self sizeWithText:fiveString font:[UIFont fontWithName:PingFangSCRegular size:16] maxW:SCREEN_WIDTH * 0.9];
+    return fiveRect.height;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
