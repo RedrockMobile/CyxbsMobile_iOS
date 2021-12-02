@@ -231,10 +231,9 @@
     [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
     NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
         // 获取label的最大宽度
-    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(WScaleRate_SE * 342, CGFLOAT_MAX)options:fiveOptions context:nil];
-    CGFloat detailHeight = ceilf(fiveRect.size.height) > [self getDetailLabelHeight] ? [self getDetailLabelHeight] : ceilf(fiveRect.size.height);
+    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.9, CGFLOAT_MAX)options:fiveOptions context:nil];
+    CGFloat detailHeight = fiveRect.size.height + 3 > [self getDetailLabelHeight] ? [self getDetailLabelHeight] : ceilf(fiveRect.size.height);
     height = detailHeight + _initHeight + imageHeight;
-//    [self.heightArray addObject:[NSNumber numberWithDouble:height]];
     return height;
 }
 
@@ -246,7 +245,7 @@
     [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
     NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
         // 获取label的最大宽度
-    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(WScaleRate_SE * 342, CGFLOAT_MAX)options:fiveOptions context:nil];
+    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.9, CGFLOAT_MAX)options:fiveOptions context:nil];
     return fiveRect.size.height;
 }
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）

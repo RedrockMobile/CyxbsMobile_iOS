@@ -524,6 +524,7 @@
 		BE7CBD9E27535FC000094AE8 /* ShareBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD7327535FC000094AE8 /* ShareBtn.m */; };
 		BE7CBD9F27535FC000094AE8 /* RecommendedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD7427535FC000094AE8 /* RecommendedTableView.m */; };
 		BE7CBDA027535FC000094AE8 /* RecommentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD7827535FC000094AE8 /* RecommentLabel.m */; };
+		BEA0A0AE2758FC90000EA81C /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD5427535FC000094AE8 /* PostTableViewCell.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -6058,6 +6059,7 @@
 				1893DC8E26EA32F1007E871E /* MGDQueue.m in Sources */,
 				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
 				1893DC9626EA3887007E871E /* MGDTimer.m in Sources */,
+				BEA0A0AE2758FC90000EA81C /* PostTableViewCell.m in Sources */,
 				185AFA5727022258007F40F9 /* MGDCommen.swift in Sources */,
 				1893DC9226EA3375007E871E /* MGDGroup.m in Sources */,
 				1893DC8A26EA32A3007E871E /* MGDGCD.m in Sources */,

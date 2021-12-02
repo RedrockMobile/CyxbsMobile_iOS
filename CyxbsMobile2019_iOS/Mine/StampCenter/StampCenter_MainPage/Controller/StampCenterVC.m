@@ -616,7 +616,7 @@
     NSLog(@"正在跳转至邮问主页");
     self.tabBarController.selectedIndex = 1;
     [self.navigationController popViewControllerAnimated:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
   
 }
 
