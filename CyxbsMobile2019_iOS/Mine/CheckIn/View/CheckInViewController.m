@@ -8,10 +8,6 @@
 
 #import "CheckInViewController.h"
 #import "CheckInProtocol.h"
-#import "IntegralStoreViewController.h"
-#import "IntegralStoreTransitionAnimator.h"
-#import "IntegralStorePercentDrivenController.h"
-#import "MyGoodsViewController.h"
 #import "CheckInModel.h"
 @interface CheckInViewController ()
 <CheckInProtocol, CheckInContentViewDelegate, UIViewControllerTransitioningDelegate>
@@ -123,25 +119,6 @@
     }];
 }
 
-//点击积分商城页面的我的商品按钮后调用
-- (void)myGoodsButtonTouched {
-    MyGoodsViewController *vc = [[MyGoodsViewController alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
-// 新需求要求删除签到界面的商城入口
-// 手势
-
-- (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
-    if (pan.state == UIGestureRecognizerStateBegan) {
-        self.presentPanGesture = pan;
-
-        IntegralStoreViewController *vc = [[IntegralStoreViewController alloc] init];
-        vc.modalPresentationStyle = UIModalPresentationCustom;
-        vc.transitioningDelegate = self;
-        [self presentViewController:vc animated:YES completion:nil];
-    }
-}
 
 
 #pragma mark - 签到回调
@@ -166,35 +143,9 @@
 }
 
 
-#pragma mark - 转场动画
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [[IntegralStoreTransitionAnimator alloc] init];
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return [[IntegralStoreTransitionAnimator alloc] init];
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
-    if (self.presentPanGesture) {
-        return [[IntegralStorePercentDrivenController alloc] initWithPanGesture:self.presentPanGesture];
-    } else {
-        return nil;
-    }
-}
-
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    if (self.presentPanGesture) {
-        return [[IntegralStorePercentDrivenController alloc] initWithPanGesture:self.presentPanGesture];
-    } else {
-        return nil;
-    }
-}
-
-
 #pragma mark - 通知中心
 - (void)integralRefreshSuccess {
-    self.contentView.scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
+//    self.contentView.scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
 }
 
 @end

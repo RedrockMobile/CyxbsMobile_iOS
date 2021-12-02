@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)backButtonClicked;
 - (void)CheckInButtonClicked;
 - (void)myGoodsButtonTouched;
-- (void)presentIntegralStore:(UIPanGestureRecognizer *)pan;
+
 
 @end
 
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) CheckInBar *bar;
 @property (nonatomic, weak) UIView *checkInView;
 @property (nonatomic, weak) UIView *storeView;
-@property (nonatomic, weak) UILabel *scoreLabel;
+//@property (nonatomic, weak) UILabel *scoreLabel;
 
 
 - (void)CheckInSucceded;
