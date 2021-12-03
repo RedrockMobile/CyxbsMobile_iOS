@@ -1,7 +1,8 @@
 source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
-platform :ios,'10.0'
+platform :ios,'11.0'
 use_frameworks!
+
 
 target 'CyxbsMobile2019_iOS' do
   pod 'MGJRouter'
@@ -12,7 +13,7 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'SDWebImage'
 	pod 'AFNetworking','~> 2.6.3'
 	pod 'FMDB'
-	pod 'MBProgressHUD', '~> 0.9.2'
+	pod 'MBProgressHUD'
 	pod 'YYKit'
 	pod 'YYImage'
 	pod 'Masonry'
