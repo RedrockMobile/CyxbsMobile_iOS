@@ -26,10 +26,7 @@
 @property (nonatomic, weak) UILabel *checkInRankLabel;
 @property (nonatomic, weak) UILabel *checkInRankPercentLabel;
 @property (nonatomic, weak) UIButton *checkInButton;
-@property (nonatomic, weak) UIView *dragHintView;
-@property (nonatomic, weak) UILabel *storeTitlelabel;
-@property (nonatomic, weak) UIButton *myGoodsButton;
-@property (nonatomic, weak) UIImageView *scoreImageView;
+
 
 @end
 
@@ -106,19 +103,11 @@
         
         [self addStoreView];
         
-        [self addStoreTitlelabel];
-        
-        [self addMyGoodsButton];
-        
+
         
         UIImageView *scoreImageView = [[UIImageView alloc] init];
         scoreImageView.image = [UIImage imageNamed:@"积分"];
-        [self.storeView addSubview:scoreImageView];
-        self.scoreImageView = scoreImageView;
-        
-        
-        [self addScoreLabel];
-        [self addDragHintView];
+
         
         CheckInBar *bar = [[CheckInBar alloc] init];
         [self.checkInView addSubview:bar];
@@ -220,74 +209,14 @@
 /// 添加底部的商城入口
 - (void)addStoreView{
     UIView *storeView = [[UIView alloc] init];
-    if (@available(iOS 11.0, *)) {
-        storeView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_StoreViewColor"];
-    } else {
-        storeView.backgroundColor = [UIColor whiteColor];
-    }
-    storeView.layer.cornerRadius = 16;
+    storeView.backgroundColor = [UIColor clearColor];
     [self.checkInView addSubview:storeView];
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(presentIntegralStore:)];
-    [storeView addGestureRecognizer:pan];
+
     self.storeView = storeView;
-    // 商店入口隐藏
-    self.storeView.hidden = NO ;
+
+
 }
 
-/// 商城的 title
-- (void)addStoreTitlelabel{
-    UILabel *storeTitlelabel = [[UILabel alloc] init];
-    storeTitlelabel.text = @"积分商城";
-    storeTitlelabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
-    if (@available(iOS 11.0, *)) {
-        storeTitlelabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
-    } else {
-        storeTitlelabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    }
-    [self.storeView addSubview:storeTitlelabel];
-    self.storeTitlelabel = storeTitlelabel;
-    
-}
-
-/// 商城title 右侧 的 我的商品
-- (void)addMyGoodsButton{
-    UIButton *myGoodsButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [myGoodsButton setTitle:@"我的商品" forState:UIControlStateNormal];
-    myGoodsButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:13];
-    [myGoodsButton setTitleColor:[UIColor colorWithRed:255/255.0 green:161/255.0 blue:146/255.0 alpha:1] forState:UIControlStateNormal];
-    myGoodsButton.backgroundColor = [UIColor colorWithRed:248/255.0 green:226/255.0 blue:223/255.0 alpha:1];
-    [myGoodsButton addTarget:self action:@selector(myGoodsButtonTouched) forControlEvents:UIControlEventTouchUpInside];
-    [self.storeView addSubview:myGoodsButton];
-    self.myGoodsButton = myGoodsButton;
-}
-
-/// 商城顶部右侧的积分数量
-- (void)addScoreLabel{
-    UILabel *scoreLabel = [[UILabel alloc] init];
-    scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
-    scoreLabel.font = [UIFont systemFontOfSize:18];
-    if (@available(iOS 11.0, *)) {
-        scoreLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
-    } else {
-        scoreLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
-    }
-    [self.storeView addSubview:scoreLabel];
-    self.scoreLabel = scoreLabel;
-}
-
-/// 商城顶部的那个小灰块
-- (void)addDragHintView{
-    // 提醒用户该view可拖拽
-    UIView *dragHintView = [[UIView alloc] init];
-    if (@available(iOS 11.0, *)) {
-        dragHintView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_DragHintViewColor"];
-    } else {
-        dragHintView.backgroundColor = [UIColor colorWithRed:226/255.0 green:237/255.0 blue:251/255.0 alpha:1.0];
-    }
-
-    [self.storeView addSubview:dragHintView];
-    self.dragHintView = dragHintView;
-}
 
 - (void)layoutSubviews {
     [super layoutSubviews];
@@ -394,39 +323,7 @@
             make.bottom.equalTo(self).offset(16);       // 隐藏下圆角
         }];
     }
-    
-    [self.dragHintView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.storeView);
-        make.top.equalTo(self.storeView).offset(9);
-        make.height.equalTo(@6);
-        make.width.equalTo(@30);
-    }];
-    self.dragHintView.layer.cornerRadius = 3;
-    
-    [self.storeTitlelabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.storeView).offset(22);
-        make.leading.equalTo(self.storeView).offset(13);
-    }];
-    
-    [self.myGoodsButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.storeTitlelabel);
-        make.leading.equalTo(self.storeTitlelabel.mas_trailing).offset(16);
-        make.height.equalTo(@26);
-        make.width.equalTo(@75);
-    }];
-    self.myGoodsButton.layer.cornerRadius = 13;
-    
-    [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.storeTitlelabel);
-        make.trailing.equalTo(self.storeView).offset(-16);
-    }];
-    
-    [self.scoreImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.storeTitlelabel);
-        make.trailing.equalTo(self.scoreLabel.mas_leading).offset(-9);
-        make.height.width.equalTo(@21);
-    }];
-    
+   
     if (IS_IPHONESE) {
         [self.bar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.checkInView).offset(90);
@@ -458,7 +355,6 @@
     self.checkInRankPercentLabel.hidden = NO;
     self.checkInRankPercentLabel.text = [NSString stringWithFormat:@"超过%d%%的邮子", [UserItemTool defaultItem].rank_Persent.intValue];
     self.daysLabel.text = [NSString stringWithFormat:@"已连续打卡%@天", [UserItemTool defaultItem].checkInDay];
-    self.scoreLabel.text = [NSString stringWithFormat:@"%@", [UserItemTool defaultItem].integral];
     
     if (@available(iOS 11.0, *)) {
         _checkInButton.backgroundColor = [UIColor colorNamed:@"Mine_CanNotCheckInColor"];
@@ -480,20 +376,10 @@
         [self.delegate CheckInButtonClicked];
     }
 }
-//点击我的商品后调用
-- (void)myGoodsButtonTouched {
-    if ([self.delegate respondsToSelector:@selector(myGoodsButtonTouched)]) {
-        [self.delegate myGoodsButtonTouched];
-    }
-}
 
 
-#pragma mark - 手势
-- (void)presentIntegralStore:(UIPanGestureRecognizer *)pan {
-    if ([self.delegate respondsToSelector:@selector(presentIntegralStore:)]) {
-        [self.delegate presentIntegralStore:pan];
-    }
-}
+
+
 
 
 @end

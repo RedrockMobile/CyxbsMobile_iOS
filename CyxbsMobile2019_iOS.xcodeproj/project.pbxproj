@@ -267,18 +267,8 @@
 		1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1691FD2430ECFE0076EDC7 /* ClassTabBar.m */; };
 		1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1E869623C8D1DE00321367 /* CheckInBar.m */; };
 		1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2CEA8E250667C200A0EE0F /* ClassDetailModel.m */; };
-		1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */; };
-		1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */; };
-		1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */; };
-		1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */; };
 		1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3A923D33F1300FBBD83 /* CheckInModel.m */; };
 		1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */; };
-		1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3B123D340EF00FBBD83 /* StoreCollectionViewCell.m */; };
-		1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3F723D4330E00FBBD83 /* WaterFallLayout.m */; };
-		1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3FB23D490BD00FBBD83 /* IntegralStoreModel.m */; };
-		1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F3FE23D4910900FBBD83 /* IntegralStorePresenter.m */; };
-		1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F40323D494A900FBBD83 /* IntegralStoreDataItem.m */; };
-		1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */; };
 		1A3106312377173B00A56468 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A310630237711A800A56468 /* Impact.ttf */; };
 		1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A344BB623E96AD80014A3B4 /* MineAboutController.m */; };
 		1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A344BB923E96BF50014A3B4 /* MineAboutContentView.m */; };
@@ -302,12 +292,6 @@
 		1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC2550723C9B14F00DF0475 /* DidNotCheckInDot.m */; };
 		1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AD038BF23F6BF6B00D5C90E /* EditMyInfoView.m */; };
 		1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */; };
-		1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF310E245C022400487D40 /* MyGoodsViewController.m */; };
-		1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3111245C023A00487D40 /* MyGoodsContentView.m */; };
-		1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3115245C701D00487D40 /* MyGoodsPresenter.m */; };
-		1AEF311C245C71CE00487D40 /* MyGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF311B245C71CE00487D40 /* MyGoodsModel.m */; };
-		1AEF311F245E927B00487D40 /* MyGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF311E245E927B00487D40 /* MyGoodsTableViewCell.m */; };
-		1AEF3122245E9D5300487D40 /* MyGoodsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF3121245E9D5300487D40 /* MyGoodsItem.m */; };
 		1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */; };
 		1AFD1519237D81AF004D9CEA /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD1518237D81AF004D9CEA /* EditMyInfoViewController.m */; };
 		1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD151B237D81DD004D9CEA /* EditMyInfoPresenter.m */; };
@@ -1150,31 +1134,10 @@
 		1A1E869623C8D1DE00321367 /* CheckInBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckInBar.m; sourceTree = "<group>"; };
 		1A2CEA8D250667C200A0EE0F /* ClassDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassDetailModel.h; sourceTree = "<group>"; };
 		1A2CEA8E250667C200A0EE0F /* ClassDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassDetailModel.m; sourceTree = "<group>"; };
-		1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreViewController.h; sourceTree = "<group>"; };
-		1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreViewController.m; sourceTree = "<group>"; };
-		1A30F39523D05AB200FBBD83 /* IntegralStoreTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreTransitionAnimator.h; sourceTree = "<group>"; };
-		1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreTransitionAnimator.m; sourceTree = "<group>"; };
-		1A30F39823D09CD800FBBD83 /* IntegralStoreContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreContentView.h; sourceTree = "<group>"; };
-		1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreContentView.m; sourceTree = "<group>"; };
-		1A30F39B23D0B86400FBBD83 /* IntegralStorePercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStorePercentDrivenController.h; sourceTree = "<group>"; };
-		1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStorePercentDrivenController.m; sourceTree = "<group>"; };
 		1A30F3A823D33F1300FBBD83 /* CheckInModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInModel.h; sourceTree = "<group>"; };
 		1A30F3A923D33F1300FBBD83 /* CheckInModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckInModel.m; sourceTree = "<group>"; };
 		1A30F3AB23D33F1300FBBD83 /* CheckInProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckInProtocol.h; sourceTree = "<group>"; };
 		1A30F3AE23D33F8800FBBD83 /* TodaysDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodaysDot.m; sourceTree = "<group>"; };
-		1A30F3B023D340EF00FBBD83 /* StoreCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreCollectionViewCell.h; sourceTree = "<group>"; };
-		1A30F3B123D340EF00FBBD83 /* StoreCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreCollectionViewCell.m; sourceTree = "<group>"; };
-		1A30F3F723D4330E00FBBD83 /* WaterFallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterFallLayout.m; sourceTree = "<group>"; };
-		1A30F3F823D4330E00FBBD83 /* WaterFallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterFallLayout.h; sourceTree = "<group>"; };
-		1A30F3FA23D490BD00FBBD83 /* IntegralStoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreModel.h; sourceTree = "<group>"; };
-		1A30F3FB23D490BD00FBBD83 /* IntegralStoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreModel.m; sourceTree = "<group>"; };
-		1A30F3FD23D4910900FBBD83 /* IntegralStorePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStorePresenter.h; sourceTree = "<group>"; };
-		1A30F3FE23D4910900FBBD83 /* IntegralStorePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStorePresenter.m; sourceTree = "<group>"; };
-		1A30F40123D4914700FBBD83 /* IntegralStorePresenterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStorePresenterProtocol.h; sourceTree = "<group>"; };
-		1A30F40223D494A900FBBD83 /* IntegralStoreDataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreDataItem.h; sourceTree = "<group>"; };
-		1A30F40323D494A900FBBD83 /* IntegralStoreDataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreDataItem.m; sourceTree = "<group>"; };
-		1A30F40723D4A04C00FBBD83 /* IntegralStoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegralStoreCell.h; sourceTree = "<group>"; };
-		1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegralStoreCell.m; sourceTree = "<group>"; };
 		1A310630237711A800A56468 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		1A344BB523E96AD80014A3B4 /* MineAboutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineAboutController.h; sourceTree = "<group>"; };
 		1A344BB623E96AD80014A3B4 /* MineAboutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineAboutController.m; sourceTree = "<group>"; };
@@ -1218,19 +1181,6 @@
 		1AD038BF23F6BF6B00D5C90E /* EditMyInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoView.m; sourceTree = "<group>"; };
 		1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoPercentDrivenController.h; sourceTree = "<group>"; };
 		1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoPercentDrivenController.m; sourceTree = "<group>"; };
-		1AEF310D245C022400487D40 /* MyGoodsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsViewController.h; sourceTree = "<group>"; };
-		1AEF310E245C022400487D40 /* MyGoodsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsViewController.m; sourceTree = "<group>"; };
-		1AEF3110245C023A00487D40 /* MyGoodsContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsContentView.h; sourceTree = "<group>"; };
-		1AEF3111245C023A00487D40 /* MyGoodsContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsContentView.m; sourceTree = "<group>"; };
-		1AEF3114245C701D00487D40 /* MyGoodsPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsPresenter.h; sourceTree = "<group>"; };
-		1AEF3115245C701D00487D40 /* MyGoodsPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsPresenter.m; sourceTree = "<group>"; };
-		1AEF3118245C706F00487D40 /* MyGoodsProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsProtocol.h; sourceTree = "<group>"; };
-		1AEF311A245C71CE00487D40 /* MyGoodsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsModel.h; sourceTree = "<group>"; };
-		1AEF311B245C71CE00487D40 /* MyGoodsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsModel.m; sourceTree = "<group>"; };
-		1AEF311D245E927B00487D40 /* MyGoodsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsTableViewCell.h; sourceTree = "<group>"; };
-		1AEF311E245E927B00487D40 /* MyGoodsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsTableViewCell.m; sourceTree = "<group>"; };
-		1AEF3120245E9D5300487D40 /* MyGoodsItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyGoodsItem.h; sourceTree = "<group>"; };
-		1AEF3121245E9D5300487D40 /* MyGoodsItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyGoodsItem.m; sourceTree = "<group>"; };
 		1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
 		1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Timestamp.m"; sourceTree = "<group>"; };
 		1AFD1517237D81AF004D9CEA /* EditMyInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditMyInfoViewController.h; sourceTree = "<group>"; };
@@ -3043,10 +2993,8 @@
 				AA536DD9258C3F7C00F69E73 /* TopBarBasicViewController.m */,
 				AA4FF36225879C6E00C31286 /* Setting */,
 				18CDF477257F8D9C006E8E5C /* Mine.xcassets */,
-				1AEF3103245BFF3D00487D40 /* MyGoods */,
 				1A344BB123E96AB80014A3B4 /* About */,
 				AAE3306325E3658D00324750 /* ArticleRemarkPraise */,
-				1A30F38E23D0574F00FBBD83 /* IntegralStore */,
 				1AFD152C23819505004D9CEA /* CustomTransition */,
 				1ABE801F238D01A600E88C4E /* CheckIn */,
 				1AFD1513237D8166004D9CEA /* EditMyInformation */,
@@ -3123,52 +3071,6 @@
 			path = SegmentView;
 			sourceTree = "<group>";
 		};
-		1A30F38E23D0574F00FBBD83 /* IntegralStore */ = {
-			isa = PBXGroup;
-			children = (
-				1A30F40023D4911B00FBBD83 /* Protocol */,
-				1A30F39123D0579600FBBD83 /* View */,
-				1A30F39023D0578F00FBBD83 /* Presenter */,
-				1A30F38F23D0578600FBBD83 /* Model */,
-			);
-			path = IntegralStore;
-			sourceTree = "<group>";
-		};
-		1A30F38F23D0578600FBBD83 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1A30F3FA23D490BD00FBBD83 /* IntegralStoreModel.h */,
-				1A30F3FB23D490BD00FBBD83 /* IntegralStoreModel.m */,
-				1A30F40223D494A900FBBD83 /* IntegralStoreDataItem.h */,
-				1A30F40323D494A900FBBD83 /* IntegralStoreDataItem.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1A30F39023D0578F00FBBD83 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				1A30F3FD23D4910900FBBD83 /* IntegralStorePresenter.h */,
-				1A30F3FE23D4910900FBBD83 /* IntegralStorePresenter.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		1A30F39123D0579600FBBD83 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1A30F40623D4A02300FBBD83 /* CollectionViewLayout */,
-				1A30F40523D4A01500FBBD83 /* CollectionCell */,
-				1A30F39223D057D000FBBD83 /* IntegralStoreViewController.h */,
-				1A30F39323D057D000FBBD83 /* IntegralStoreViewController.m */,
-				1A30F39823D09CD800FBBD83 /* IntegralStoreContentView.h */,
-				1A30F39923D09CD800FBBD83 /* IntegralStoreContentView.m */,
-				1A30F3B023D340EF00FBBD83 /* StoreCollectionViewCell.h */,
-				1A30F3B123D340EF00FBBD83 /* StoreCollectionViewCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		1A30F3A723D33F1300FBBD83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3184,32 +3086,6 @@
 				1A30F3AB23D33F1300FBBD83 /* CheckInProtocol.h */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		1A30F40023D4911B00FBBD83 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				1A30F40123D4914700FBBD83 /* IntegralStorePresenterProtocol.h */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		1A30F40523D4A01500FBBD83 /* CollectionCell */ = {
-			isa = PBXGroup;
-			children = (
-				1A30F40723D4A04C00FBBD83 /* IntegralStoreCell.h */,
-				1A30F40823D4A04C00FBBD83 /* IntegralStoreCell.m */,
-			);
-			path = CollectionCell;
-			sourceTree = "<group>";
-		};
-		1A30F40623D4A02300FBBD83 /* CollectionViewLayout */ = {
-			isa = PBXGroup;
-			children = (
-				1A30F3F823D4330E00FBBD83 /* WaterFallLayout.h */,
-				1A30F3F723D4330E00FBBD83 /* WaterFallLayout.m */,
-			);
-			path = CollectionViewLayout;
 			sourceTree = "<group>";
 		};
 		1A344BB123E96AB80014A3B4 /* About */ = {
@@ -3423,58 +3299,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1AEF3103245BFF3D00487D40 /* MyGoods */ = {
-			isa = PBXGroup;
-			children = (
-				1AEF3119245C71B600487D40 /* Model */,
-				1AEF3117245C703700487D40 /* Protocol */,
-				1AEF3113245C700600487D40 /* Presenter */,
-				1AEF3104245BFF5700487D40 /* View */,
-			);
-			path = MyGoods;
-			sourceTree = "<group>";
-		};
-		1AEF3104245BFF5700487D40 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1AEF310D245C022400487D40 /* MyGoodsViewController.h */,
-				1AEF310E245C022400487D40 /* MyGoodsViewController.m */,
-				1AEF3110245C023A00487D40 /* MyGoodsContentView.h */,
-				1AEF3111245C023A00487D40 /* MyGoodsContentView.m */,
-				1AEF311D245E927B00487D40 /* MyGoodsTableViewCell.h */,
-				1AEF311E245E927B00487D40 /* MyGoodsTableViewCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1AEF3113245C700600487D40 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				1AEF3114245C701D00487D40 /* MyGoodsPresenter.h */,
-				1AEF3115245C701D00487D40 /* MyGoodsPresenter.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		1AEF3117245C703700487D40 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				1AEF3118245C706F00487D40 /* MyGoodsProtocol.h */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
-		1AEF3119245C71B600487D40 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1AEF311A245C71CE00487D40 /* MyGoodsModel.h */,
-				1AEF311B245C71CE00487D40 /* MyGoodsModel.m */,
-				1AEF3120245E9D5300487D40 /* MyGoodsItem.h */,
-				1AEF3121245E9D5300487D40 /* MyGoodsItem.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		1AFD1512237D814D004D9CEA /* Mine_MainPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -3546,10 +3370,6 @@
 				1AFD153123819FBD004D9CEA /* EditMyInfoTransitionAnimator.m */,
 				1ADFA1A823841CB700E97365 /* EditMyInfoPercentDrivenController.h */,
 				1ADFA1A923841CB700E97365 /* EditMyInfoPercentDrivenController.m */,
-				1A30F39523D05AB200FBBD83 /* IntegralStoreTransitionAnimator.h */,
-				1A30F39623D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m */,
-				1A30F39B23D0B86400FBBD83 /* IntegralStorePercentDrivenController.h */,
-				1A30F39C23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m */,
 			);
 			path = CustomTransition;
 			sourceTree = "<group>";
@@ -5571,7 +5391,6 @@
 				B82CA686263159BA00786685 /* UIView+FrameTool.m in Sources */,
 				D0101F62243587A1004337ED /* UIScrollView+GKGestureHandle.m in Sources */,
 				D0101D5B2433C885004337ED /* SDMaskGuidBGView.m in Sources */,
-				1A30F40923D4A04C00FBBD83 /* IntegralStoreCell.m in Sources */,
 				AAE3307225E367E400324750 /* MainPageTableViewCell.m in Sources */,
 				73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
@@ -5579,7 +5398,6 @@
 				18CDF6A6257F91BD006E8E5C /* NewsViewController.m in Sources */,
 				18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */,
 				49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */,
-				1A30F3FC23D490BD00FBBD83 /* IntegralStoreModel.m in Sources */,
 				B82CA67E263159BA00786685 /* DynamicDetailComentTableCell.m in Sources */,
 				AAE3308125E39EBA00324750 /* RedTipBall.m in Sources */,
 				B892095425BEC30B00386451 /* SearchTopView.m in Sources */,
@@ -5628,7 +5446,6 @@
 				B82CA69126315A4200786685 /* DynamicDetailAddPhotoController.m in Sources */,
 				18CDF6D1257F91BE006E8E5C /* MGDSliderBar.m in Sources */,
 				B82CA683263159BA00786685 /* SHPopMenu.m in Sources */,
-				1A30F39D23D0B86400FBBD83 /* IntegralStorePercentDrivenController.m in Sources */,
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
@@ -5661,7 +5478,6 @@
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				7311328A26CCEC2400EF88C1 /* TopView.m in Sources */,
-				1A30F3B223D340EF00FBBD83 /* StoreCollectionViewCell.m in Sources */,
 				18CDF718257F91BE006E8E5C /* VolunteeringEventItem.m in Sources */,
 				B82CA685263159BA00786685 /* DynamicSpecificCell.m in Sources */,
 				B83766F325C150C000A8666A /* SZHSearchEndCv.m in Sources */,
@@ -5699,9 +5515,7 @@
 				18CDF672257F91BD006E8E5C /* ExamArrangeData.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
-				1AEF310F245C022400487D40 /* MyGoodsViewController.m in Sources */,
 				18CDF69E257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m in Sources */,
-				1A30F3FF23D4910900FBBD83 /* IntegralStorePresenter.m in Sources */,
 				7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				AA4CD68325F28A32002D9394 /* NSArray+ChineseCharacterLog.m in Sources */,
@@ -5807,7 +5621,6 @@
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				18CDF6C5257F91BE006E8E5C /* IdsBindingView.m in Sources */,
 				1AFD1527237D9A7E004D9CEA /* MineEditTextField.m in Sources */,
-				1AEF3116245C701D00487D40 /* MyGoodsPresenter.m in Sources */,
 				18CDF4C0257F8DBD006E8E5C /* sendCodeModel.m in Sources */,
 				18CDF6BA257F91BD006E8E5C /* TermGrade.m in Sources */,
 				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
@@ -5818,8 +5631,6 @@
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
 				18CDF6B1257F91BD006E8E5C /* SCPieChart.m in Sources */,
 				18CDF716257F91BE006E8E5C /* VolunteerUnbinding.m in Sources */,
-				1A30F39423D057D000FBBD83 /* IntegralStoreViewController.m in Sources */,
-				1A30F39723D05AB200FBBD83 /* IntegralStoreTransitionAnimator.m in Sources */,
 				18CDF6BC257F91BE006E8E5C /* TermGrades.m in Sources */,
 				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
 				735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */,
@@ -5829,7 +5640,6 @@
 				B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */,
 				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				4931630A26CD7B6800140412 /* MyTableViewCell.m in Sources */,
-				1A30F39A23D09CD800FBBD83 /* IntegralStoreContentView.m in Sources */,
 				B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
 				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
@@ -5850,7 +5660,6 @@
 				BE7CBD9E27535FC000094AE8 /* ShareBtn.m in Sources */,
 				493162CE26CD7B5D00140412 /* UIView+XYView.m in Sources */,
 				18CDF6AD257F91BD006E8E5C /* SCCircleChart.m in Sources */,
-				1AEF3112245C023A00487D40 /* MyGoodsContentView.m in Sources */,
 				B82CA65F2631599900786685 /* DynamicDetailRequestDataModel.m in Sources */,
 				B82CA6A226315BC300786685 /* SZHPhotoImageView.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
@@ -5868,7 +5677,6 @@
 				7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */,
 				B82CA6AB26315BD800786685 /* CircleLabelBtn.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
-				1A30F40423D494A900FBBD83 /* IntegralStoreDataItem.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
 				BE7CBD9127535FC000094AE8 /* ShareView.m in Sources */,
@@ -5880,7 +5688,6 @@
 				18CDF715257F91BE006E8E5C /* VolunteerActivity.m in Sources */,
 				18CDF71A257F91BE006E8E5C /* ActivityView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
-				1AEF311F245E927B00487D40 /* MyGoodsTableViewCell.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
 				18CDF6C4257F91BE006E8E5C /* DetailSubjectScoreCell.m in Sources */,
 				493162DF26CD7B6300140412 /* GoodsData.m in Sources */,
@@ -5902,7 +5709,6 @@
 				18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */,
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
-				1AEF311C245C71CE00487D40 /* MyGoodsModel.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
@@ -5915,7 +5721,6 @@
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				18CDF4C7257F8DBD006E8E5C /* sendCodeView.m in Sources */,
 				49628E3226D52C6000805A08 /* FeedBackVC.m in Sources */,
-				1AEF3122245E9D5300487D40 /* MyGoodsItem.m in Sources */,
 				18CDF697257F91BD006E8E5C /* CQUPTVRMapController.m in Sources */,
 				18CDF6A2257F91BD006E8E5C /* CQUPTMapImageLayout.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
@@ -5958,7 +5763,6 @@
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				18CDF6CA257F91BE006E8E5C /* SchoolBusModel.m in Sources */,
 				18CDF6CD257F91BE006E8E5C /* SchoolBusViewController.m in Sources */,
-				1A30F3F923D4330E00FBBD83 /* WaterFallLayout.m in Sources */,
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				B8B7AD7E264BA6FA00FEEF7D /* NoComentView.m in Sources */,
