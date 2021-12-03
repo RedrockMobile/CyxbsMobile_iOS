@@ -48,6 +48,14 @@
     [self BuildFrame];
 }
 
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+    UIView *hitView = [super hitTest:point withEvent:event];
+    if(hitView == _collectView){
+        return self;
+    }
+    return hitView;
+}
+
 - (void)BuildUI {
     ///头像
     _iconImageView = [[UIImageView alloc] init];
