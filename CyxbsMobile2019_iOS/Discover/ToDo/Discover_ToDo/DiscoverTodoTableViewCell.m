@@ -140,15 +140,18 @@
             };
             break;
     }
+    
     if ([self.dataModel.timeStr isEqualToString:@""]) {
         self.notiTimeLabel.alpha =
         self.bellImgView.alpha = 0;
+        CCLog(@"%f, %f", self.notiTimeLabel.alpha, self.bellImgView.alpha);
     }else {
         self.notiTimeLabel.alpha =
         self.bellImgView.alpha = notiTimeAndBellAlpha;
+        CCLog(@"%f, %f", self.notiTimeLabel.alpha, self.bellImgView.alpha);
     }
     self.titleLabel.attributedText = [[NSAttributedString alloc] initWithString:self.titleLabel.text attributes:attributeDict];
-    self.notiTimeLabel.alpha = titleAlpha;
+    self.titleLabel.alpha = titleAlpha;
 }
 
 /// 完成部分UI布局，bellImgView、notiTimeLabel的布局在其对应的getter方法内

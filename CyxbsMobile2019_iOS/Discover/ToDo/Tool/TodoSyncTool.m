@@ -76,7 +76,6 @@ static TodoSyncTool* _instance;
 //        CCLog(@"netWorkError");
 //        return;
 //    }
-    
     //获取上次同步时间
     [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
@@ -93,7 +92,7 @@ static TodoSyncTool* _instance;
             [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
         });
         
-        if ([dataDict[@"is_sync_time_exist"] intValue]==0) {
+        if ([dataDict[@"is_sync_time_exist"] intValue]==0&&self.lastSyncTimeStamp!=0) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateConflict;
             msg.serverLastSyncTime = syncTime;
@@ -147,7 +146,8 @@ static TodoSyncTool* _instance;
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
     }];
 }
-//√
+
+/// 第一次从服务器下载数据
 - (void)firstDownload {
     [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
@@ -180,7 +180,7 @@ static TodoSyncTool* _instance;
     }];
 }
 
-//调用的前提是没有冲突
+/// 下载数据，并合并，调用的前提是没有冲突
 - (void)downloadDataAndMerge {
     [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
@@ -445,6 +445,7 @@ static TodoSyncTool* _instance;
     }
 }
 
+/// 强制拉取服务器的数据
 - (void)forceLoadServerData {
     //抹除本地修改，再进行同步，性能会更好，但是这样会使结构变得更复杂，所以这里选择重置数据库
     
@@ -481,6 +482,7 @@ static TodoSyncTool* _instance;
     }];
 }
 
+/// 强制把本地的数据推到服务器
 - (void)forcePushLocalData {
     if (self.isSyncTimeExist==YES) {
         [self pushModifiedDataForce:YES];
@@ -596,6 +598,11 @@ static TodoSyncTool* _instance;
 - (void)saveTodoWithModel:(TodoDataModel*)model needRecord:(BOOL)is {
     if (model.overdueTime==0) {
         [model resetOverdueTime];
+    }
+    
+    //如果提醒时间是今天，那么把todo的状态重置为待完成
+    if (self.todayEndTimeStamp-86400 < model.overdueTime&&model.overdueTime <= self.todayEndTimeStamp) {
+        [model setIsDoneForInnerActivity:NO];
     }
     
     NSString* code;
@@ -780,51 +787,52 @@ static TodoSyncTool* _instance;
 //MARK: +++++++++++++++++++++一些基础的工具方法++++++++++++++++++++++++++++
 
 - (void)updateTodoState {
+//    [[NSUserDefaults standardUserDefaults] setInteger:(long)0 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
+    
     //状态更新，一天调用一次就好了
     NSInteger lastUpdateTime = [[NSUserDefaults standardUserDefaults] integerForKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
     if (lastUpdateTime > (self.todayEndTimeStamp - 86400)) {
         return;
     }
     [[NSUserDefaults standardUserDefaults] setInteger:(long)[NSDate date].timeIntervalSince1970 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
-    dispatch_queue_t que = dispatch_queue_create("用来刷新数据库todo时间的线程", DISPATCH_QUEUE_CONCURRENT);
-    dispatch_async(que, ^{
-        NSString* code;
-        FMResultSet* set;
-        code = OSTRING(
-                       SELECT todoTable
-                           WHERE overdueTime!=-1 AND overdueTime < ?
-                       );
-        set = [self.db executeQuery:code withArgumentsInArray:@[@(((long)[NSDate date].timeIntervalSince1970))]];
-        while ([set next]) {
-            TodoDataModel* model = [self resultSetToDataModel:set];
-            //刷新状态
-            model.lastOverdueTime = model.overdueTime;
-            model.overdueTime = [TodoDateTool getOverdueTimeStampFrom:model.overdueTime inModel:model];
-        }
-        
-        code = OSTRING(
-                       SELECT todo_id
-                           FROM todoTable;
-                           WHERE  ? <overdueTime AND overdueTime<= ? AND is_done = 1
-                       );
-        set = [self.db executeQuery:code withArgumentsInArray:@[@(self.todayEndTimeStamp-86400), @(self.todayEndTimeStamp)]];
-        while ([set next]) {
-            [self recordAlterWithTodoID:[set stringForColumn:@"todo_id"]];
-        }
-        
-        code = OSTRING(
-                       UPDATE todoTable
-                           SET is_done = 0
-                           WHERE ? <overdueTime AND overdueTime<= ?
-                       );
-        [self.db executeUpdate:code withArgumentsInArray:@[@(self.todayEndTimeStamp-86400), @(self.todayEndTimeStamp)]];
-    });
-    dispatch_barrier_async(que, ^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //因为同步后会发送通知，所以切到主线程进行数据同步。
-            [self syncData];
-        });
-    });
+    NSString* code;
+    /*
+    FMResultSet* set;
+    code = OSTRING(
+                   SELECT todoTable
+                       WHERE overdueTime!=-1 AND overdueTime < ?
+                   );
+    set = [self.db executeQuery:code withArgumentsInArray:@[@(((long)[NSDate date].timeIntervalSince1970))]];
+    while ([set next]) {
+        TodoDataModel* model = [self resultSetToDataModel:set];
+        //刷新状态
+        model.lastOverdueTime = model.overdueTime;
+        model.overdueTime = [TodoDateTool getOverdueTimeStampFrom:model.overdueTime inModel:model];
+        CCLog(@"%@", model);
+    }
+    
+    
+    code = OSTRING(
+                   SELECT todo_id
+                       FROM todoTable;
+                       WHERE  ? <overdueTime AND overdueTime<= ? AND is_done = 1
+                   );
+    set = [self.db executeQuery:code withArgumentsInArray:@[@(self.todayEndTimeStamp-86400), @(self.todayEndTimeStamp)]];
+    while ([set next]) {
+        [self recordAlterWithTodoID:[set stringForColumn:@"todo_id"]];
+    }
+    */
+    
+    //如果提醒时间是今天，那么把todo的状态重置为待完成
+    code = OSTRING(
+                   UPDATE todoTable
+                       SET is_done = 0
+                       WHERE ? <overdueTime AND overdueTime<= ?
+                   );
+    [self.db executeUpdate:code withArgumentsInArray:@[@(self.todayEndTimeStamp-86400), @(self.todayEndTimeStamp)]];
+    
+    CCLog(@"\n\ntopush==%@", [self getAllTodoToPush]);
+    CCLog(@"\n\nAll==%@", [self getAllTodoResultSet]);
 }
 
 /// 检测todoID为 todoIDStr 的元祖是否已经在 tableName 中存在
@@ -1044,15 +1052,6 @@ static inline int ForeignWeekToChinaWeek(int week) {
     return _instance;
 }
 
-- (NSInteger)todayEndTimeStamp {
-    if (_todayEndTimeStamp < [NSDate date].timeIntervalSince1970) {
-        NSDate* nowDate = [NSDate date];
-        NSDateComponents* components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:nowDate];
-        _instance.todayEndTimeStamp = nowDate.timeIntervalSince1970 - (((components.hour*60)+components.minute)*60+components.second) + 86399;
-    }
-    return _todayEndTimeStamp;
-}
-
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
     return [self share];
 }
@@ -1069,6 +1068,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
 - (void)initDataBase {
     NSString* stuNum = [UserItem defaultItem].stuNum;
     if ([stuNum isEqualToString:@""]||stuNum==nil) {
+        [NewQAHud showHudAtWindowWithStr:@"登录已过期，请重新登录" enableInteract:YES];
         return;
     }
     
@@ -1081,10 +1081,12 @@ static inline int ForeignWeekToChinaWeek(int week) {
     self.db = [[FMDatabase alloc] initWithPath:dbPath];
     if ([self.db open]) {
         [self creatTodoTable];
+        [_instance updateTodoState];
         CCLog(@"todo数据库打开成功");
     }else {
         CCLog(@"todo数据库打开失败");
     }
+    
 }
 
 /// 建表
@@ -1152,6 +1154,16 @@ static inline int ForeignWeekToChinaWeek(int week) {
                                       )
                    );
     [self.db executeUpdate:code];
+}
+
+/// 今天23:59的时间戳
+- (NSInteger)todayEndTimeStamp {
+    if (_todayEndTimeStamp < [NSDate date].timeIntervalSince1970) {
+        NSDate* nowDate = [NSDate date];
+        NSDateComponents* components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:nowDate];
+        _instance.todayEndTimeStamp = nowDate.timeIntervalSince1970 - (((components.hour*60)+components.minute)*60+components.second) + 86399;
+    }
+    return _todayEndTimeStamp;
 }
 
 //MARK: +++++++++++++++++++++测试时会用到的方法++++++++++++++++++++++++++++

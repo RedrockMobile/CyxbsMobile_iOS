@@ -25,6 +25,7 @@ FOUNDATION_EXPORT NSNotificationName const TodoSyncToolSyncNotification;
 /// todo那边数据存取、同步的工具类
 @interface TodoSyncTool : NSObject
 
+/// 单例的同步工具的创建方
 + (instancetype)share;
 
 /// 调用后触发同步
@@ -42,12 +43,13 @@ FOUNDATION_EXPORT NSNotificationName const TodoSyncToolSyncNotification;
 /// 获取最近创建的4个未完成的todo，用来在发现页显示
 - (NSArray<TodoDataModel*>*)getTodoForDiscoverMainPage;
 
-///获取所有的todo，用来展示在展览页面 （注意，这里一次性获取全部的结果集对性能山有一些影响，不够优雅，后面的学弟学妹如果优化代码可以考虑一下MJRefresging的刷新机制）
+///获取所有的todo，用来展示在展览页面 （注意，这里一次性获取全部的结果集对性能有一些影响，不够优雅，
+///后面的学弟学妹如果优化代码可以考虑一下MJRefresging的刷新机制）
 - (NSArray<TodoDataModel*>*)getTodoForMainPage;
 
 
 /// 获取全部事项的结果集
-- (FMResultSet*)getAllTodoResultSet;
+//- (FMResultSet*)getAllTodoResultSet;
 
 /// 将todoTable查询的结果集转化为模型
 - (TodoDataModel*)resultSetToDataModel:(FMResultSet*)resultSet;
@@ -73,8 +75,10 @@ FOUNDATION_EXPORT NSNotificationName const TodoSyncToolSyncNotification;
 /// 需要在退出登录后后调用，
 - (void)logOutSuccess;
 
+/// 强制拉取服务器的数据
 - (void)forceLoadServerData;
 
+/// 强制把本地的数据推到服务器
 - (void)forcePushLocalData;
 @end
 
