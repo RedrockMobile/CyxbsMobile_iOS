@@ -516,7 +516,7 @@
     
 }
 
-//跳转至商品详情
+//跳转至商品详情111
 - (void)jump:(UIButton *)sender{
     NSLog(@"跳转至商品详情，id = %ld",(long)sender.tag);
     ExchangeCenterViewController *evc = [[ExchangeCenterViewController alloc]initWithID:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
