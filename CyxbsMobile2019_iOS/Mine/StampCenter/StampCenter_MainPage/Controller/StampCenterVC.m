@@ -588,8 +588,11 @@
     //=============================================<<<
     UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
     v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+    
     [self.view addSubview:v];
     //=============================================>>>
+    
+    
 }
 
 
