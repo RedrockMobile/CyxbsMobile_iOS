@@ -77,7 +77,7 @@
         int amount = [dict[@"amount"] intValue];
         if (amount <= 0) {
             self.exchangeBtn.enabled = NO;
-            self.exchangeBtn.backgroundColor = [UIColor colorNamed:@"170_187_255_1"];
+            self.exchangeBtn.backgroundColor = [UIColor colorNamed:@"170_187_255&73_85_132"];
         }
         self->_priceLabel.text = [NSString stringWithFormat:@"%@",dict[@"price"]];
         

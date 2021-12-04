@@ -21,7 +21,7 @@
         [self addLabel];
         _is = 1;
         _grayView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8];
-        _whiteView.backgroundColor = [UIColor whiteColor];
+        _whiteView.backgroundColor = [UIColor colorNamed:@"255_255_255&28_28_28"];
         NSLog(@"%d", amount);
         if (amount <= 0) {
             self.textLabel.text = @"啊哦！手慢了！下次再来吧！";
@@ -137,7 +137,7 @@
     [_whiteView addSubview:cancleBtn];
     cancleBtn.frame = CGRectMake(26, 110, 93, 34);
     cancleBtn.layer.cornerRadius = 18;
-    cancleBtn.backgroundColor = [UIColor colorNamed:@"195_212_238"];
+    cancleBtn.backgroundColor = [UIColor colorNamed:@"195_212_238&78_78_78"];
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
     [cancleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cancleBtn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
