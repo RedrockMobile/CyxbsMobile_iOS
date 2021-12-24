@@ -51,9 +51,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///是否点赞帖子
 @property (nonatomic, strong) NSNumber *is_praised;
 
+/// cell的固定搭配高度
+@property (nonatomic, assign) CGFloat initHeight;
+
 - (instancetype)initWithDic:(NSDictionary *)dict;
 
-
+/// 获取详情的label的gaodu
+- (CGFloat)getDetailLabelHeight;
 
 @end
 

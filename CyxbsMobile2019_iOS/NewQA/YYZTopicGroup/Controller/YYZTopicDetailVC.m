@@ -21,6 +21,7 @@
 #import "ShieldModel.h"
 #import "ReportModel.h"
 #import "DeletePostModel.h"
+//#import "PostTableViewCellFrame.h"
 #import <objc/runtime.h>
 
 
@@ -53,7 +54,6 @@
 @property (nonatomic, assign) NSInteger offestInt;
 @property (nonatomic, assign) NSInteger stausHeight;
 @property (nonatomic, assign) NSInteger navHeight;
-
 /// 是否已经显示reportView
 @property (nonatomic, assign) BOOL isShowedReportView;
 @property (nonatomic, assign) BOOL isChanged;
@@ -280,7 +280,23 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     /*UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;*/
-    return UITableViewAutomaticDimension;
+//    return UITableViewAutomaticDimension;
+    CGFloat height;
+       CGFloat imageHeight;
+       _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
+       imageHeight = [_item.pics count] != 0 ? SCREEN_WIDTH * 0.944 / 3 : 0;
+       // 计算cell中detailLabel的高度
+       NSString *fiveString = _item.content;
+       NSMutableAttributedString *fiveStr = [[NSMutableAttributedString alloc] initWithString:fiveString];
+       NSRange fiveRange = [fiveString rangeOfString:fiveString];
+       [fiveStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:PingFangSCRegular size:16] range:fiveRange];
+       [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
+       NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+           // 获取label的最大宽度
+       CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.9, CGFLOAT_MAX)options:fiveOptions context:nil];
+       CGFloat detailHeight = fiveRect.size.height + 3 > [_item getDetailLabelHeight] ? [_item getDetailLabelHeight] : ceilf(fiveRect.size.height);
+       height = detailHeight + _item.initHeight + imageHeight;
+       return height;
 
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
