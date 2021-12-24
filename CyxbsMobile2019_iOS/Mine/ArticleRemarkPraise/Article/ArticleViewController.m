@@ -12,7 +12,7 @@
 #import "DeleteArticleTipView.h"
 #import "ArticleModel.h"
 #import "StarPostModel.h"
-
+#import "PostItem.h"
 //动态详情页控制器
 #import "DynamicDetailMainVC.h"
 @interface ArticleViewController ()<UITableViewDelegate, UITableViewDataSource,PostTableViewCellDelegate,ShareViewPlusDelegate,ArticleModelDelegate>
@@ -70,6 +70,25 @@
     PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
     [cell setItem:item];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat height;
+    CGFloat imageHeight;
+    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
+    imageHeight = [item.pics count] != 0 ? SCREEN_WIDTH * 0.944 / 3 : 0;
+    // 计算cell中detailLabel的高度
+    NSString *fiveString = item.content;
+    NSMutableAttributedString *fiveStr = [[NSMutableAttributedString alloc] initWithString:fiveString];
+    NSRange fiveRange = [fiveString rangeOfString:fiveString];
+    [fiveStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:PingFangSCRegular size:16] range:fiveRange];
+    [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
+    NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+    // 获取label的最大宽度
+    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.9, CGFLOAT_MAX)options:fiveOptions context:nil];
+    CGFloat detailHeight = fiveRect.size.height + 3 > [item getDetailLabelHeight] ? [item getDetailLabelHeight] : ceilf(fiveRect.size.height);
+    height = detailHeight + item.initHeight + imageHeight;
+    return height;
 }
 
 //MARK:-ArticleModel的代理方法：

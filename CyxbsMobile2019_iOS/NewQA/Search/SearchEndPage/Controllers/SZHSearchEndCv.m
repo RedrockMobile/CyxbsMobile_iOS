@@ -427,7 +427,7 @@
 }
 
 
-//MARK:==============================相关动态table的数据源和代理方法=====================================
+//MARK:==============================相关动态table的数据源和代理方法==================================
 ///数据源
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.tableDataAry.count;
@@ -463,7 +463,23 @@
 }
 //自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewAutomaticDimension;
+    CGFloat height;
+    CGFloat imageHeight;
+    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[indexPath.row]];
+    imageHeight = [item.pics count] != 0 ? SCREEN_WIDTH * 0.944 / 3 : 0;
+    // 计算cell中detailLabel的高度
+    NSString *fiveString = item.content;
+    NSMutableAttributedString *fiveStr = [[NSMutableAttributedString alloc] initWithString:fiveString];
+    NSRange fiveRange = [fiveString rangeOfString:fiveString];
+    [fiveStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:PingFangSCRegular size:16] range:fiveRange];
+    [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
+    NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+    // 获取label的最大宽度
+    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.9, CGFLOAT_MAX)options:fiveOptions context:nil];
+    CGFloat detailHeight = fiveRect.size.height + 3 > [item getDetailLabelHeight] ? [item getDetailLabelHeight] : ceilf(fiveRect.size.height);
+    height = detailHeight + item.initHeight + imageHeight;
+    return height;
+
 }
 
 //MARK:==============================相关动态cell的代理方法==============================
