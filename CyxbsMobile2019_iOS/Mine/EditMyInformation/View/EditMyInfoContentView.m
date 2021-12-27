@@ -147,6 +147,7 @@
 
 - (void)addNicknameTextField{
     MineEditTextField *nicknameTextField = [[MineEditTextField alloc] init];
+    nicknameTextField.inputAccessoryView = [self addToolBar];
     [self.contentScrollView addSubview:nicknameTextField];
     self.nicknameTextField = nicknameTextField;
     
@@ -188,6 +189,8 @@
 
 - (void)addIntroductionTextField{
     MineEditTextField *introductionField = [[MineEditTextField alloc] init];
+
+    introductionField.inputAccessoryView = [self addToolBar];
     [self.contentScrollView addSubview:introductionField];
     self.introductionTextField = introductionField;
     
@@ -229,6 +232,7 @@
 
 - (void)addQQTextField{
     MineEditTextField *QQTextField = [[MineEditTextField alloc] init];
+    QQTextField.inputAccessoryView = [self addToolBar];
     NSString *oldQQ = [UserItemTool defaultItem].qq;
     if (oldQQ==nil || [oldQQ isEqualToString:@""]) {
         if (@available(iOS 11.0, *)) {
@@ -266,6 +270,7 @@
 
 - (void)addPhoneNumberTextField{
     MineEditTextField *phoneNumberTextField = [[MineEditTextField alloc] init];
+    phoneNumberTextField.inputAccessoryView = [self addToolBar];
     NSString *oldPhoneNumber = [UserItemTool defaultItem].phone;
     if (oldPhoneNumber==nil || [oldPhoneNumber isEqualToString:@""]) {
         if (@available(iOS 11.0, *)) {
@@ -520,5 +525,19 @@
     }
 }
 
+- (void)textFieldDone{
+    [self.introductionTextField endEditing:YES];
+}
 
+- (UIToolbar *)addToolBar{
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+    toolbar.tintColor = [UIColor blueColor];
+    toolbar.barTintColor = [UIColor whiteColor];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *space2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *space3 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(textFieldDone)];
+    toolbar.items = @[space,space2,space3,done];
+    return toolbar;
+}
 @end
