@@ -32,6 +32,13 @@
     // configure self
     self.view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
     
+    if (@available(iOS 15.0, *)) {
+          UINavigationBarAppearance *barApp = [UINavigationBarAppearance new];
+        barApp.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+          self.navigationController.navigationBar.scrollEdgeAppearance = barApp;
+          self.navigationController.navigationBar.standardAppearance = barApp;
+      }
+    
     // configure topBarView
     [self.view addSubview:self.topBarView];
     //12：47
