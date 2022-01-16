@@ -16,6 +16,7 @@
 #import "SZHReleaseDynamic.h"
 #import "QueryLoginViewController.h"
 #import "EditMyInfoViewController.h"
+#import "TableHeaderView.h"
 
 //Tool
 #import "UIView+XYView.h"
@@ -200,18 +201,25 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 75;
 }
-//FOOTER高度
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        return 60;
-    }else{
-        return 0.000001f;  // 设置为0.0001  是为了不悬浮
-    }
-    return 0.1;
-}
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
+        TableHeaderView *headerView = [[TableHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 78)];
+        return headerView;
+    }
+    if (section == 1) {
         UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60.0)];
         footerView.backgroundColor = [UIColor colorNamed:@"table"];
         UILabel *la = [[UILabel alloc]init];
@@ -225,6 +233,15 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 78;
+    }
+    if (section == 1) {
+        return 50;
+    }
+    return 0.001;
+}
 #pragma mark - collection数据源
 //组数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{

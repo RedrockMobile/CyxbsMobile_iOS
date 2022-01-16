@@ -21,8 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) CollectionHeaderView *collectionHeaderView;
 ///table
 @property (nonatomic,strong) UITableView *table;
-///table头视图
-@property (nonatomic,strong) TableHeaderView *tableHeaderView;
+
 
 
 @end
