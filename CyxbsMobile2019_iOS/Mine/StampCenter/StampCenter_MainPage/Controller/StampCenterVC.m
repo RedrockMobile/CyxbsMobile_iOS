@@ -214,9 +214,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 215+Bar_H+10)];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 280)];
         view.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
-        TableHeaderView *headerView = [[TableHeaderView alloc]initWithFrame:CGRectMake(0, 215-78+64+14, SCREEN_WIDTH, 78)];
+        TableHeaderView *headerView = [[TableHeaderView alloc]initWithFrame:CGRectMake(0, 217, SCREEN_WIDTH, 78)];
         [view addSubview:headerView];
         return view;
     }
@@ -236,7 +236,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 215+Bar_H+10;
+        return 290;
     }
     if (section == 1) {
         return 50;
