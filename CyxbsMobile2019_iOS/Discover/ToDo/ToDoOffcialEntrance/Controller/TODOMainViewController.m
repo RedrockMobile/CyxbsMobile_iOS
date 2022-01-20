@@ -114,7 +114,7 @@
     [sheetView show];
 }
 
-//MARK:cell的代理方法
+//MARK: cell的代理方法
 ///点击将未完成的cell转移到完成区域
 - (void)toDoCellDidClickedThroughCell:(TodoTableViewCell *)toDoCell{
     //禁止table交互防止误触cell
@@ -139,19 +139,19 @@
 
         //2延迟刷新table
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //2.1从未完成区域中删除
+            //2.1从未完成区域中删除
         [self.dataSourceAry[0] removeObjectAtIndex:indexPath.row];
-        //2.2添加到已完成区域中的第一行
+            //2.2添加到已完成区域中的第一行
         [self.dataSourceAry[1] insertObject:toDoCell.model atIndex:0];
         [self.tableView reloadData];
-        //恢复tablede交互
+            //2.3恢复tablede交互
         toDoCell.userInteractionEnabled = YES;
     });
     
-        //
+    //3.重新计算过期时间
     [toDoCell.model resetOverdueTime];
     toDoCell.model.lastModifyTime = [NSDate date].timeIntervalSince1970;
-    //3.同步本地数据库的数据更改
+    //4.同步本地数据库的数据更改
     [[TodoSyncTool share] alterTodoWithModel:toDoCell.model needRecord:YES];
     
 }
