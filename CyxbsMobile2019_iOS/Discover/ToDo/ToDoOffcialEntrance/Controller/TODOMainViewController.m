@@ -238,7 +238,7 @@
     NSLog(@"已经点击取消那妞");
 }
 
-//MARK:UITableViewDataSource
+//MARK: UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
@@ -275,11 +275,12 @@
     return cell;
 }
 
-//MARK:UITableViewDelegate
+//MARK: UITableViewDelegate
 ///组头视图
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         UIView* firstview = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 60.0)];
+        firstview.backgroundColor = [UIColor whiteColor];
         UILabel *toDoLbl = [[UILabel alloc] initWithFrame:CGRectMake(15,30,50,34)];
         toDoLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
         toDoLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
@@ -288,6 +289,7 @@
         return firstview;
     }else{
         UIView * secondview = [[UIView alloc] initWithFrame:CGRectMake(0,30, SCREEN_WIDTH,60.0)];
+        secondview.backgroundColor = [UIColor whiteColor];
         //完成的label
         UILabel *doneLbl = [[UILabel alloc ]initWithFrame:CGRectMake(15,30,100,34) ];
         doneLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
