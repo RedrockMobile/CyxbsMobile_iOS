@@ -81,26 +81,26 @@
 
 //比较是否过期
 - (BOOL)compareIsOverdue{
-    //如果未设置提醒时间不认为是过期
-    if ([self.model.timeStr isEqualToString:@""]) {
-        return NO;
-    }
-    
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
-    long notifyTimeStamp = [formatter dateFromString:self.model.timeStr].timeIntervalSince1970;
-    long nowTimeStamp = [NSDate date].timeIntervalSince1970;
-    if (nowTimeStamp > notifyTimeStamp) {
-        return YES;
-    }else{
-        return NO;
-    }
-    //是否过期
-//    if (self.model.todoState == TodoDataModelStateOverdue) {
+//    //如果未设置提醒时间不认为是过期
+//    if ([self.model.timeStr isEqualToString:@""]) {
+//        return NO;
+//    }
+//
+//    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
+//    long notifyTimeStamp = [formatter dateFromString:self.model.timeStr].timeIntervalSince1970;
+//    long nowTimeStamp = [NSDate date].timeIntervalSince1970;
+//    if (nowTimeStamp > notifyTimeStamp) {
 //        return YES;
 //    }else{
 //        return NO;
 //    }
+    //是否过期
+    if (self.model.todoState == TodoDataModelStateOverdue) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 - (void)setDataWithModel:(TodoDataModel *)model{
