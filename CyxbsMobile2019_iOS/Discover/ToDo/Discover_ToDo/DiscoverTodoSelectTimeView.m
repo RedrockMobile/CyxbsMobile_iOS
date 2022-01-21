@@ -131,6 +131,7 @@
 
 /// 外界调用，调用后显示出来
 - (void)showView {
+    CCLog(@"%d, %.2f", self.isViewHided, self.alpha);
     if (self.isViewHided==YES) {
         self.isViewHided = NO;
         [UIView animateWithDuration:0.3 animations:^{

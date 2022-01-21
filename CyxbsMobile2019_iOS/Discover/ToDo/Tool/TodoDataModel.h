@@ -109,7 +109,7 @@ typedef enum : NSUInteger {
 
 - (NSDate* _Nullable)getTimeStrDate;
 
-
+- (void)debugLog;
 @end
 
 NS_ASSUME_NONNULL_END

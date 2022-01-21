@@ -248,6 +248,7 @@
     }completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+    
     [self.delegate sheetViewCancelBtnClicked];
 }
 
@@ -276,6 +277,7 @@
     [self endEditing:YES];
     [self.selectRepeatView hideView];
     [self.selectTimeView showView];
+    [self.backView insertSubview:self.selectTimeView aboveSubview:self.selectRepeatView];
 }
 
 /// 选择重复提醒的按钮点击后调用
@@ -283,6 +285,7 @@
     [self endEditing:YES];
     [self.selectTimeView hideView];
     [self.selectRepeatView showView];
+    [self.backView insertSubview:self.selectRepeatView aboveSubview:self.selectTimeView];
 }
 
 - (DiscoverTodoSelectRepeatView *)selectRepeatView {
@@ -303,7 +306,6 @@
     if (_selectTimeView==nil) {
         _selectTimeView = [[DiscoverTodoSelectTimeView alloc] init];
         [self.backView addSubview:_selectTimeView];
-        _selectTimeView.alpha = 0;
         _selectTimeView.delegate = self;
         
         [_selectTimeView mas_makeConstraints:^(MASConstraintMaker *make) {

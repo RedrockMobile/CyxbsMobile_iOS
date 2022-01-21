@@ -164,9 +164,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
 }
 
 - (NSString *)overdueTimeStr {
-    if (self.overdueTime==0) {
-        [self resetOverdueTime];
-    }
+    [self resetOverdueTime];
     NSString* str;
     if (self.overdueTime==-1) {
         str = @"";
@@ -179,8 +177,10 @@ static inline int ForeignWeekToChinaWeek(int week) {
 }
 
 - (void)resetOverdueTime {
+    if (self.overdueTime < 1) {
     self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:(long)[NSDate date].timeIntervalSince1970 inModel:self];
     self.lastOverdueTime = -1;
+    }
 }
 //MARK: - 底下重写setter方法，是为了避免数据库因为空值出错
 - (void)setTodoIDStr:(NSString *)todoIDStr {
@@ -245,13 +245,28 @@ static inline int ForeignWeekToChinaWeek(int week) {
         return;
     }
     _isDone = isDone;
+    [self debugLog];
+    
     if (isDone) {
         self.lastOverdueTime = self.overdueTime;
         self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:self.overdueTime inModel:self];
     }else {
         self.overdueTime = self.lastOverdueTime;
         self.lastOverdueTime = -1;
-    } 
+    }
+    [self debugLog];
+    
+}
+
+- (void)debugLog {
+    CCLog(@"%@, %@", [self timeStampToTimeStr:self.overdueTime], [self timeStampToTimeStr:self.lastOverdueTime]);
+}
+- (NSString*)timeStampToTimeStr:(NSInteger)t {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:t];
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"yyyy-MM-DD HH:mm";
+//    NSDateComponents *comp = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
+    return [format stringFromDate:date];
 }
 
 /// 由于初始化、内部结构而改变isDone，调用这个方法

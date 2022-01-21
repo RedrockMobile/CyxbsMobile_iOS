@@ -213,7 +213,6 @@
 - (void)cancelBtnClicked {
     [self hideView];
     [self.delegate selectRepeatViewCancelBtnClicked];
-    self.isViewHided = YES;
 }
 - (void)sureBtnClicked {
     [UIView animateWithDuration:0.3 animations:^{
