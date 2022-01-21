@@ -95,6 +95,12 @@
     }else{
         return NO;
     }
+    //是否过期
+//    if (self.model.todoState == TodoDataModelStateOverdue) {
+//        return YES;
+//    }else{
+//        return NO;
+//    }
 }
 
 - (void)setDataWithModel:(TodoDataModel *)model{
@@ -118,6 +124,7 @@
     } else {
         //如果过期
         if ([self compareIsOverdue]) {
+//        if(self.model.todoState == TodoDataModelStateOverdue){
             [self.circlebtn setImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
             self.bellImgView.alpha = self.timeLbl.alpha = 0;
             self.titleLbl.text = model.titleStr;
