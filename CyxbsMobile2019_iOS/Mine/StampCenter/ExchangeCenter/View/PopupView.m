@@ -22,7 +22,7 @@
         _is = 1;
         _grayView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8];
         _whiteView.backgroundColor = [UIColor colorNamed:@"255_255_255&28_28_28"];
-        NSLog(@"%d", amount);
+        
         if (amount <= 0) {
             self.textLabel.text = @"啊哦！手慢了！下次再来吧！";
             [self addNoamountButton];
@@ -176,7 +176,7 @@
     BuyModel *model = [[BuyModel alloc] init];
     [model buyGoodsWithID:self.goodsID];
     [model setBlock:^(id  _Nonnull info) { //3
-        NSLog(@"%@", info);
+        
         if ([info intValue] == 10000) {
             [self refresh1];
         }else if ([info intValue] == 50000) {

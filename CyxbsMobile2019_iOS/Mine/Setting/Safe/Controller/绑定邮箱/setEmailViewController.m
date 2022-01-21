@@ -107,9 +107,9 @@
     [model sendEmail:_setEmailView.emailField.text];
     [model setBlock:^(id  _Nonnull info) {
         if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
-            NSLog(@"重新发送了验证码");
+           
         }else {
-            NSLog(@"重新发送验证码失败");
+           
         }
     }];
 }

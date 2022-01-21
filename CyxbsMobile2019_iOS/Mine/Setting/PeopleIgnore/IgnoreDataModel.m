@@ -16,7 +16,6 @@
         self.introduction = dict[@"introduction"];
         self.nickName = dict[@"nickName"];
         self.uid = dict[@"uid"];
-        NSLog(@"IgnoreDataModel:%@,%@,%@,%@",self.avatar,self.introduction,self.nickName,self.uid);
     }
     return self;
 }

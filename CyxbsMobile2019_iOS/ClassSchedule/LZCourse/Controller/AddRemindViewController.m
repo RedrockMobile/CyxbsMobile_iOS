@@ -331,7 +331,7 @@
                                          @"title":self.titleTextField.text,
                                          @"content":self.contentTextView.text,
                                          } mutableCopy];
-    NSLog(@"%@",jsonParameters);
+   
     HttpClient *client = [HttpClient defaultClient];
     if (!_isEditing) {
         [parameters setValue:identifier forKey:@"id"];
@@ -348,11 +348,11 @@
         } progress:^(NSProgress *progress) {
             
         } success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@",responseObject);
+            
             [[NSNotificationCenter defaultCenter]postNotificationName:@"RemindAddSuccess" object:nil];
          
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"%@",error);
+        
             NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:failurePath];
             if(failureRequests == nil){
                 failureRequests = [NSMutableArray array];
@@ -384,7 +384,7 @@
         } progress:^(NSProgress *progress) {
             
         } success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@",responseObject);
+            
             [[NSNotificationCenter defaultCenter]postNotificationName:@"RemindEditSuccess" object:nil];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:failurePath];

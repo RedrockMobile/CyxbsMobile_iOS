@@ -14,7 +14,7 @@
 
 - (void)requestEmptyClassRoomDataWithParams:(NSDictionary *)params {
     [EmptyClassModel RequestEmptyClassDataWithParams:params success:^(NSDictionary * _Nonnull responseObject) {
-        NSLog(@"%@",responseObject);
+    
         NSMutableDictionary<NSString *, id> *itemData = [@{
             @"floorNum": @"",
             @"roomArray": [@[] mutableCopy]

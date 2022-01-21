@@ -18,10 +18,10 @@
                                  prepareExecute:nil
                                        progress:nil
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"success-page");
+        
         success(responseObject[@"data"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"failure-page");
+       
         failure();
     }];
 }

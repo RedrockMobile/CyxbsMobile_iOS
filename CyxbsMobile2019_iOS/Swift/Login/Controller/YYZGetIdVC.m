@@ -142,7 +142,7 @@
             
         }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"----------%@",error);
+            
         }];
 }
 

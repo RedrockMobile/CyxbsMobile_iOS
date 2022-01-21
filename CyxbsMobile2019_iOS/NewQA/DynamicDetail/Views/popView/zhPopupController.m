@@ -638,7 +638,7 @@ static CGFloat zh_randomValue(int i, int j) {
         }
     }
     UIWindow *applicationWindow = [[UIApplication sharedApplication].delegate window];
-    if (!applicationWindow) NSLog(@"** zhPopupController ** Window is nil!");
+
     return applicationWindow;
 }
 

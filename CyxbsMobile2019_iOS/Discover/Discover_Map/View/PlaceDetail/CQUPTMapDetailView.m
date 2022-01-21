@@ -412,7 +412,7 @@
                     }
                     
                     [[HttpClient defaultClient] uploadImageWithJson:CQUPTMAPUPLOADIMAGE method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        NSLog(@"%@", responseObject);
+                        
                     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                         
                     }];

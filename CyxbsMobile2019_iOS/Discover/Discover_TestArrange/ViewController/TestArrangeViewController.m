@@ -233,7 +233,7 @@
     vc.transitioningDelegate = self;
 //    GPAUnavailableViewController *vc = [[GPAUnavailableViewController alloc]init];
     [self presentViewController:vc animated:YES completion:^{
-        NSLog(@"跳转至学分成绩vc");
+       
     }];
 
 }
@@ -256,7 +256,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getExamArrangeDataSucceed) name:@"getExamArrangeSucceed" object:nil];
 }
 - (void)getExamArrangeDataSucceed {
-    NSLog(@"%@",self.examArrangeModel.examArrangeData);
+    
     [self.tableView reloadData];
     //展示左边的小球和点点
     int pointCount = (int)self.examArrangeModel.examArrangeData.data.count;
@@ -393,7 +393,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateTime = [formatter stringFromDate:[NSDate date]];
-    NSLog(@"%@",dateTime);
+    
     return dateTime;
 }
 //MARK: - 将字符串转成NSDate类型

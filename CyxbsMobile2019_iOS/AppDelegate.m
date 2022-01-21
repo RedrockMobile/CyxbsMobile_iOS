@@ -56,7 +56,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     if ([UserDefaultTool getStuNum]) {
         [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
-            NSLog(@"%@", responseObject);
+            
         }];
     }
     
@@ -151,7 +151,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
             //获取用户是否同意开启通知
             if (granted) {
-                NSLog(@"request authorization successed!");
+    
             }
         }];
     } else {
@@ -163,7 +163,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //
 
     double launchTime = (CFAbsoluteTimeGetCurrent() - StartTime);
-    NSLog(@"double======%f",launchTime);
+
     
     // 完成创建文件/文件夹的操作
     [self setFile];
@@ -198,7 +198,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"baseURL"];
     }];
     
-//    NSLog(@"baseURL%@",CyxbsMobileBaseURL_1);
+
 }
 ///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{
@@ -302,7 +302,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         
         //通过request添加本地通知
         [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-            NSLog(@"添加%@成功",requestIDStr);
+            
         }];
     }
     
@@ -413,7 +413,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     
     NSString *urlStr = [url absoluteString];
-    NSLog(@"%@",urlStr);
+    
     UINavigationController *navigationController = ((UITabBarController *)(self.window.rootViewController)).selectedViewController;
     if ([urlStr hasPrefix:@"redrock.zscy.youwen.share://"]) {
         NSCharacterSet *nonDigitCharacterSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];

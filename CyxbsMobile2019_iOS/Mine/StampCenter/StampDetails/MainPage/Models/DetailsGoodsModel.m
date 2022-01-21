@@ -20,7 +20,7 @@
                                  prepareExecute:nil
                                        progress:nil
                                         success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"success-goods");
+        
         NSMutableArray * mAry = [NSMutableArray array];
         for (NSDictionary * dict in responseObject[@"data"]) {
             DetailsGoodsModel * model = [DetailsGoodsModel mj_objectWithKeyValues:dict];
@@ -29,7 +29,7 @@
         NSArray * ary = [mAry copy];
         success(ary);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"failure-goods");
+        
         failure();
     }];
 }

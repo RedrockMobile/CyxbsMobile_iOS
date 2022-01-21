@@ -90,7 +90,7 @@
     [model setBlock:^(id  _Nonnull info) {
         if ([info[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
             ///修改密码成功
-            NSLog(@"修改密码成功");
+           
             [self updatePassword];
             [self changePasswordSuccessful];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -41,7 +41,6 @@
         } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
                 sucess();
         } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-            NSLog(@"-----%@",error);
             if (error.code == -1001) {
                 sucess();
             }else{
@@ -55,7 +54,6 @@
 - (void)getAllTopicsSucess:(void (^)(NSArray * _Nonnull))sucess{
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"圈子广场请求成功------%@",responseObject);
         NSArray *dataAry = responseObject[@"data"];
         NSMutableArray *muteAry = [NSMutableArray array];
         for (NSDictionary *dic in dataAry) {
@@ -65,7 +63,7 @@
         NSArray *ary = muteAry;
         sucess(ary);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//            NSLog(@"获取圈子广场失败-----%@",error);
+            
         }];
 }
 @end

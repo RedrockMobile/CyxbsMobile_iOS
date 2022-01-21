@@ -401,9 +401,7 @@ static int requestCheckinInfo = 0;
 }
 
 - (void) bindingBuildingAndRoom {
-//    NSLog(@"点击了绑定宿舍房间号");
-//    InstallRoomViewController *vc = [[InstallRoomViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
+
     [self getPickerViewData];
     //添加灰色背景板
     UIButton * contentView = [[UIButton alloc]initWithFrame:self.view.frame];
@@ -549,7 +547,7 @@ static int requestCheckinInfo = 0;
 
         item.building = building;
     }
-        NSLog(@"*%@*",self.roomTextField.text);
+     
     if(self.roomTextField.text != nil && ![self.roomTextField.text isEqual: @""]) {
         item.room = self.roomTextField.text;
     }else {
@@ -641,8 +639,7 @@ static int requestCheckinInfo = 0;
     [self layoutSubviews];
 }
 -(void)reloadElectricViewIfNeeded {
-//    NSLog(@"%@",[UserItem defaultItem].room);
-//    NSLog(@"%@",[UserItem defaultItem].building);
+
     [self reloadViewController:self];
 }
 -(void)reloadVolViewIdNeeded {
@@ -665,7 +662,7 @@ static int requestCheckinInfo = 0;
 }
 //MARK: FinderView代理
 - (void)touchWriteButton {
-    NSLog(@"点击了签到button");
+ 
     CheckInViewController * vc = [[CheckInViewController alloc]init];
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     vc.hidesBottomBarWhenPushed = YES;
@@ -675,21 +672,21 @@ static int requestCheckinInfo = 0;
 }
 
 - (void)touchNewsSender {
-    NSLog(@"点击了“教务在线”");
+   
     NewsViewController *vc = [[NewsViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchNews {
-    NSLog(@"点击了新闻");
+ 
     NewsViewController *vc = [[NewsViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchFindClass {
-    NSLog(@"点击了空教室");
+   
 //    EmptyClassViewController *vc = [[EmptyClassViewController alloc]init];
     EmptyClassUnavailableViewController *vc = [[EmptyClassUnavailableViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
@@ -697,7 +694,7 @@ static int requestCheckinInfo = 0;
 }
 
 - (void)touchSchoolCar {
-    NSLog(@"点击了校车查询");
+ 
 //    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
     SchoolBusUnavailableViewController *vc = [[SchoolBusUnavailableViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
@@ -706,7 +703,6 @@ static int requestCheckinInfo = 0;
 
 
 - (void)touchSchedule {
-    NSLog(@"点击了空课表");
     ScheduleInquiryViewController *vc = [[ScheduleInquiryViewController alloc]init];
     vc.title = @"查课表";
     vc.hidesBottomBarWhenPushed = YES;
@@ -714,38 +710,38 @@ static int requestCheckinInfo = 0;
 }
 
 - (void)touchMore {
-    NSLog(@"点击了更多功能");
+   
     FinderToolViewController *vc = [[FinderToolViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchNoClassAppointment {
-    NSLog(@"点击了没课约");
+   
     UserItem *item = [[UserItem alloc] init];
     WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":item.realName,@"stuNum":item.stuNum}] mutableCopy]];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchMyTest {
-    NSLog(@"点击了我的考试");
+ 
     TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchSchoolCalender {
-    NSLog(@"点击了校历");
+    
     CalendarViewController *vc = [[CalendarViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchMap {
-    NSLog(@"点击了重邮地图");
+  
     CQUPTMapViewController * vc = [[CQUPTMapViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)touchEmptyClass {
-    NSLog(@"点击了空教室");
+   
     EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

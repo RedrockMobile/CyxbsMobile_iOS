@@ -201,7 +201,7 @@
 - (void)loadDynamicTableSucessWithAry:(NSArray *)array{
     //根据当前页数判断是下拉刷新还是上滑增加内容
     if (self.page == 1) {
-        NSLog(@"%@",array);
+        
         self.tableDataAry = array;
         [self.relevantDynamicTable reloadData];
         [self.relevantDynamicTable.mj_header endRefreshing];

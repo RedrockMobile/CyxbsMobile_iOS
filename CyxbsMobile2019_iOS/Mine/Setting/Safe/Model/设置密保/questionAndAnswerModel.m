@@ -25,7 +25,7 @@
     [manager POST:SENDQUESTION parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"上传密保答案失败");
+       
     }];
 }
 

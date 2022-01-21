@@ -37,7 +37,7 @@
 //@"Documents/remind.plist"
 //清除旧的课表数据，等过几版后，去掉这个代码
 - (void)clear{
-//    NSLog(@"%@",[[NSFileManager defaultManager] subpathsAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]]);
+
     NSFileManager *man = [NSFileManager defaultManager];
     
     //删除课表数据
@@ -46,7 +46,7 @@
     //移动备忘数据
     [man moveItemAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents/remind.plist"] toPath:remDataArrPath error:nil];
     
-//    NSLog(@"%@",[[NSFileManager defaultManager] subpathsAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]]);
+
 }
 
 /// 查个人课表用这个方法,它会先加载本地数据，再调去用getPersonalClassBookArrayFromNet方法来网络请求数据

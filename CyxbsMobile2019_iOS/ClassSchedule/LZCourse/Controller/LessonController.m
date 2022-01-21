@@ -289,7 +289,7 @@
     [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:parameter prepareExecute:nil progress:^(NSProgress *progress) {
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
-        //NSLog(@"%@",responseObject);
+     
         NSNumber *nowWeek = responseObject[@"nowWeek"];
         self.nowWeek = nowWeek.integerValue;
         if (self.nowWeek <0 ) {
@@ -308,7 +308,7 @@
         dispatch_semaphore_signal(sema);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_semaphore_signal(sema);
-        NSLog(@"%@",error);
+      
     }];
     dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
@@ -339,7 +339,7 @@
         dispatch_semaphore_signal(sema);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_semaphore_signal(sema);
-        NSLog(@"%@",error);
+       
     }];
     dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
@@ -383,7 +383,7 @@
         } progress:^(NSProgress *progress) {
             
         } success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@",responseObject);
+            
             [failureRequests removeObject:failure];
             if ([failureRequests writeToFile:failurePath atomically:YES]) {
                  dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -391,7 +391,7 @@
                  });
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"%@",error);
+            
             return;
             
         }];

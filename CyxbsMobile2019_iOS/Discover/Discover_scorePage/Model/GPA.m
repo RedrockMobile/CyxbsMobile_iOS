@@ -9,7 +9,7 @@
 #import "GPA.h"
 @implementation GPA
 - (void)fetchData {
-    NSLog(@"请求GPA");
+   
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     
     NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"GET" URLString:GPAAPI parameters:nil error:nil];
@@ -19,15 +19,13 @@
     [req setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"Authorization"];
     [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
         if ([responseObject[@"status"] intValue] == 10000) {
-            //请求成功
-//            NSLog(@"%@",responseObject);
+
             GPAItem *item = [[GPAItem alloc]initWithDictionary:responseObject];
             self.gpaItem = item;
-            NSLog(@"GPA请求成功");//发送消息更新tableView
+            
             [[NSNotificationCenter defaultCenter]postNotificationName:@"GPASucceed" object:nil];
     } else {
-        NSLog(@"GPA请求失败Error: %@, %@, %@", error, response, responseObject);
-        //请求失败
+      
         
     } }] resume];
 }

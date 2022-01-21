@@ -590,7 +590,7 @@
 
 //程序回到前台时调用，在这里更新显示下节课信息的tabBar的信息
 - (void)applicationWillEnterForeground:(UIApplication *)application{
-    NSLog(@"-----back---");
+
     if([self.schedulTabBar respondsToSelector:@selector(updateSchedulTabBarViewWithDic:)]){
         //让tabBar和假的tabBar更新一下下节课信息
         [self.fakeBar updateSchedulTabBarViewWithDic:[self getNextLessonData]];

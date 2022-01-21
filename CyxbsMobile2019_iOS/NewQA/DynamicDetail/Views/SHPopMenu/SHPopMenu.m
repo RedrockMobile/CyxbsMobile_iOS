@@ -163,7 +163,7 @@ static NSString *reuseIdentifier = @"cell";
 - (void)showInRectX:(int)x rectY:(int)y block:(void (^)(SHPopMenu *, NSInteger))block{
     
     if (!self.mList.count) {
-        NSLog(@"先设置 mList");
+       
         return;
     }
     

@@ -113,7 +113,7 @@
         [self.delegate DetailsCustomizeNavigationBarDidClickBack:self];
         return;
     }
-    NSLog(@"未设置点击事件");
+    
 }
 
 #pragma mark - setter

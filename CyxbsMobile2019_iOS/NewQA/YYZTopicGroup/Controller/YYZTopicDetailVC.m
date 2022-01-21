@@ -750,10 +750,10 @@
             self.popView.shieldBtn.tag = indexPath.row;
             self.popView.reportBtn.tag = indexPath.row;
             if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
-                NSLog(@"取消关注");
+              
                 [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
             }else {
-                NSLog(@"关注圈子");
+              
                 [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
             }
             _popView.layer.cornerRadius = 8;
@@ -775,10 +775,10 @@
             self.popView.shieldBtn.tag = indexPath.row;
             self.popView.reportBtn.tag = indexPath.row;
             if ([_itemDic[@"is_follow_topic"] intValue] == 1) {
-                NSLog(@"取消关注");
+           
                 [_popView.starGroupBtn setTitle:@"取消关注" forState:UIControlStateNormal];
             }else {
-                NSLog(@"关注圈子");
+              
                 [_popView.starGroupBtn setTitle:@"关注圈子" forState:UIControlStateNormal];
             }
             _popView.layer.cornerRadius = 8;

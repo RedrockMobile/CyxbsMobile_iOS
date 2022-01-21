@@ -37,12 +37,12 @@
                 [[NSUserDefaults standardUserDefaults] setObject:self.idsNum forKey:@"idsAccount"];
                 [[NSUserDefaults standardUserDefaults]setObject:self.idsPassword forKey:@"idsPasswd"];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
-                NSLog(@"ids绑定成功");
+                
                 [UserItem defaultItem].idsBindingSuccess = YES;
             }
             
     } else {
-//        NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+
         if ([responseObject[@"errcode"]  isEqual: @"10010"]) {
             [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_passwordError" object:nil];
             //密码错误

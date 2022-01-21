@@ -111,9 +111,9 @@
     self.ABScoreView.BScore.text = self.gpaItem.termGrades.b_credit.stringValue;
     NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"];
     if([NSKeyedArchiver archiveRootObject:self.gpaModel.gpaItem toFile:filePath]) {
-        NSLog(@"归档成功,路径%@",filePath);
+       
     }
-    NSLog(@"a = %@, b = %@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
+
 
     [self.tableView removeFromSuperview];
     [self addTableView];
@@ -134,12 +134,11 @@
     [self.idsBindgView removeFromSuperview];
 //    GPAItem *gpaItem = [[GPAItem alloc]init];
 //    self.gpaItem = gpaItem;
-    NSLog(@"解档");
-    NSLog(@"a = %@, b = %@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
+  
     self.gpaItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"]];
     self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 
-//    NSLog(@"%@,%@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
+
 
     [self.loadHud hide:YES];
       [self addTwoTitleView];
@@ -273,7 +272,7 @@
 - (NSArray *)SCChart_yValueArray:(SCChart *)chart {
     if ([self getChartArray] != nil) {
         return @[[self getChartArray]];
-        NSLog(@"%@", [self getChartArray]);
+   
     }
     NSMutableArray *ary = [NSMutableArray array];
     ary = [@[@0] mutableCopy];//备用数据
@@ -304,7 +303,7 @@
 //            NSString *gpa = gpaNumber.stringValue;
             [arr addObject:@(gpaNumber)];
     }
-    NSLog(@"%@",self.gpaItem.termGrades.termGrades);
+    
     NSArray *array = arr;
     return array;
 }

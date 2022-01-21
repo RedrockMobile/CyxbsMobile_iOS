@@ -374,7 +374,6 @@
     vc.hidesBottomBarWhenPushed = YES;
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
     [self.navigationController pushViewController:vc animated:YES];
-    NSLog(@"跳转到搜索页面");
 }
 #pragma mark- 我的关注页面的代理方法
 ///关注更多--跳转到圈子广场

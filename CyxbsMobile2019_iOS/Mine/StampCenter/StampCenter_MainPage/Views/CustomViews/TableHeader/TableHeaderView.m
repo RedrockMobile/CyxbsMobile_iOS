@@ -84,7 +84,7 @@
         self.detailLabel.text = [NSString stringWithFormat:@"明日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
         } Failed:^(NSError * _Nonnull err) {
-            NSLog(@"出错了");
+            
         }];
 
 }

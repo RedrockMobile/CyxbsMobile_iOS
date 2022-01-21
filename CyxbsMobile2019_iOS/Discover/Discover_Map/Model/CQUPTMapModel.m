@@ -27,7 +27,7 @@
             failed([[NSError alloc] init]);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", error);
+        
     }];
     
 }
@@ -44,7 +44,7 @@
             success(tmpArray);
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@", error);
+       
     }];
     
 }

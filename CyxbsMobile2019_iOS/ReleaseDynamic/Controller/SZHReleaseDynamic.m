@@ -240,10 +240,10 @@
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
+            
         }];
 }
 
@@ -338,7 +338,7 @@
  3.
  */
 - (void)releaseDynamic{
-    NSLog(@"发布动态");
+
     //如果未添加标签，则第一次提示未添加标签，第二次就直接归类到其他
     if ([self.circleLabelText isEqualToString:@"未添加标签"]) {
         //显示提示
@@ -561,7 +561,7 @@
     //队列组里所有的异步执行操作完成之后回调此方法，进行界面的布局
     dispatch_group_notify(getPhotosGroup, dispatch_get_main_queue(), ^{
         [self imageViewsConstraint];
-        NSLog(@"选取图片完成-------end");
+      
     });
 }
 
@@ -647,8 +647,6 @@
     self.topicAry = [SZHArchiveTool getTopicsAry];
     if (self.topicAry == nil ) {
         [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
-//            [self.circleLabelView updateViewWithAry:topicsAry];
-//            NSLog(@"得到全部标签----%@",topicsAry);
             self.topicAry = topicsAry;
             [SZHArchiveTool saveTopicsAry:topicsAry];
             self.circleLabelView = [[SZHCircleLabelView alloc] initWithArrays:self.topicAry];

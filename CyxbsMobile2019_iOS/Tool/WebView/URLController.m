@@ -37,7 +37,7 @@
     self.webView.navigationDelegate = self;
     NSURL * url = [NSURL URLWithString:_toUrl];
     NSURLRequest * request = [NSURLRequest requestWithURL:url];
-//    NSLog(@"_toUrl = %@",_toUrl);
+
     [webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
     
     [self.view addSubview:webView];
@@ -48,7 +48,7 @@
 }
 
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    NSLog(@"网页加载失败");
+
 }
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {

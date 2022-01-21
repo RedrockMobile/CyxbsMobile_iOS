@@ -18,7 +18,7 @@
             content = [[dayArray[tag/(LONGLESSON)] stringByAppendingString:lessonArray[tag%(LONGLESSON)]] mutableCopy];
         }
         else{
-            NSLog(@"%d",tag%(LONGLESSON));
+            
             [content appendFormat:@"、%@",[[dayArray[tag/(LONGLESSON)]stringByAppendingString:lessonArray[tag%(LONGLESSON)]] mutableCopy]];
         }
     }

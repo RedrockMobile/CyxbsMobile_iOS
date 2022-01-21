@@ -176,12 +176,12 @@
 
 
 - (void)jumptoQQ{
-    NSLog(@"跳转至QQ");
+    
     NSURL* url = [self getQQQunUrl];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
     }else{
-        NSLog(@"这里不行");
+        
     }
 }
 @end

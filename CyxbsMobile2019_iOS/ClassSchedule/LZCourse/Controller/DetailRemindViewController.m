@@ -213,10 +213,10 @@
     } progress:^(NSProgress *progress) {
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@",responseObject);
+        
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@",error);
+        
         NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:self.failurePath];
         if(failureRequests == nil){
             failureRequests = [NSMutableArray array];

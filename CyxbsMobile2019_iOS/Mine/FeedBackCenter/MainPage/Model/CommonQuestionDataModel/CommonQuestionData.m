@@ -33,7 +33,7 @@
             }];
             success(mArray.copy);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"==========================出错了");
+            
         }];
     
 }

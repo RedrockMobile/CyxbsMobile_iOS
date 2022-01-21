@@ -57,8 +57,6 @@
 - (void)didClickHistoryButton:(DLHistodyButton *)button{
     self.inputString = self.buttonTitleArray[button.tag];
     
-    NSLog(@"%@",self.inputString);
-    
     self.reminderView.textFiled.text = self.buttonTitleArray[button.tag];
 }
 - (void)back{

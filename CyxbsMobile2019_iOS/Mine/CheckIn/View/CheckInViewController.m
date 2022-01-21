@@ -69,7 +69,7 @@
 
 - (void)dealloc
 {
-    NSLog(@"dealloc");
+    
 }
 
 - (void)animationForViewWillAppear {

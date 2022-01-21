@@ -495,16 +495,16 @@
 
 //跳转至邮票详情
 - (void)goDetail{
-    NSLog(@"跳转至邮票详情");
+   
     DetailsMainViewController *dvc = [[DetailsMainViewController alloc]init];
     dvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:dvc animated:YES];
     
 }
 
-//跳转至商品详情111
+//跳转至商品详情
 - (void)jump:(UIButton *)sender{
-    NSLog(@"跳转至商品详情，id = %ld",(long)sender.tag);
+    
     ExchangeCenterViewController *evc = [[ExchangeCenterViewController alloc]initWithID:[NSString stringWithFormat:@"%ld",(long)sender.tag]];
     evc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:evc animated:YES];
@@ -537,7 +537,7 @@
         [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"==========================出错了");
+                
             }];
         _stampCountView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH,7, 75, 27)];
         _stampCountView.backgroundColor = [UIColor colorNamed:@"#2B333F66"];
@@ -596,7 +596,7 @@
 }
 
 - (void)jumpToNewQA{
-    NSLog(@"正在跳转至邮问主页");
+   
     self.tabBarController.selectedIndex = 1;
     [self.navigationController popViewControllerAnimated:NO];
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
@@ -621,7 +621,7 @@
         self.number = responseObject[@"data"][@"user_amount"];
         self.topView.number = responseObject[@"data"][@"user_amount"];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"==========================出错了");
+            
         }];
 }
 
@@ -645,7 +645,7 @@
             self.topView.alertLbl.hidden = YES;
         }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"==========================出错了");
+            
         }];
 
 }

@@ -31,7 +31,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"%@",self.classmatesList);
+   
     //添加tableView
     [self addTableView];
     //添加返回按钮

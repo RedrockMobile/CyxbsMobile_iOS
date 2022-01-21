@@ -42,13 +42,13 @@
         if([self.traitCollection hasDifferentColorAppearanceComparedToTraitCollection:previousTraitCollection]){
               UIUserInterfaceStyle  mode = UITraitCollection.currentTraitCollection.userInterfaceStyle;
                 if (mode == UIUserInterfaceStyleDark) {
-                    NSLog(@"深色模式");
+                 
                     self.layer.borderColor =  [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
                 } else if (mode == UIUserInterfaceStyleLight) {
-                    NSLog(@"浅色模式");
+                 
                     self.layer.borderColor = [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
                 } else {
-                    NSLog(@"未知模式");
+                 
                 }
         }
     } else {

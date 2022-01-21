@@ -90,7 +90,7 @@
 +(void)print{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *dic = [userDefaults dictionaryRepresentation];
-    NSLog(@"%@",dic);
+  
 }
 
 +(NSString *)getStuNum{

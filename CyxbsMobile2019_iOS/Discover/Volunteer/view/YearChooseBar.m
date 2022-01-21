@@ -92,7 +92,7 @@
     if (sender.tag != _index) {
         
         _index = sender.tag;
-        //NSLog(@"index:%ld",_index);
+    
         [self updateScrollView];
         
     }

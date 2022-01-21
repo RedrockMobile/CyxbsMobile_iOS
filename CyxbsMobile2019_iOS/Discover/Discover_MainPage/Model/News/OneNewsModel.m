@@ -27,8 +27,7 @@
         self.oneNewsItem = item;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"oneNewsSucceed" object:nil];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"教务新闻请求失败");
-        NSLog(@"%@",error);
+     
     }];
     
 }

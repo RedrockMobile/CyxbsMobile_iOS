@@ -24,6 +24,10 @@
     return Mstr;
 }
 
+static void extracted(NSError *error) {
+  
+}
+
 - (void)requestSchoolBusLocation:(NSString *)url success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
     NSDate *datenow = [NSDate date];
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)([datenow timeIntervalSince1970]*1000)];
@@ -39,7 +43,7 @@
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(error);
-        NSLog(@"%@", error);
+        extracted(error);
     }];
 }
 

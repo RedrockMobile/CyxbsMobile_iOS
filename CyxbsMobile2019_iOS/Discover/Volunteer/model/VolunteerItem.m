@@ -16,7 +16,7 @@ MJExtensionCodingImplementation
 
 - (void)getVolunteerInfoWithUserName:(NSString *)userName andPassWord:(NSString *)passWord finishBlock:(void (^)(VolunteerItem *volunteer))finish {
     
-    NSLog(@"--%@--", [self aesEncrypt:passWord]);
+    
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 8.f;
@@ -56,7 +56,7 @@ MJExtensionCodingImplementation
                 
                 [ArchiveTool saveVolunteerInfomationWith:self];
                 finish(self);
-                NSLog(@"志愿信息查询成功");
+               
                 HttpClient *client = [HttpClient defaultClient];
                 //完成绑定志愿者账号任务 (需要绑定成功)
                 [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
@@ -65,23 +65,23 @@ MJExtensionCodingImplementation
                     NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
                     [formData appendPartWithFormData:data name:@"title"];
                     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                        NSLog(@"成功了");
+                       
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
                     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                        NSLog(@"失败了");
+                        
                     }];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
             }];
         }else if ([responseObject[@"code"] isEqualToNumber:[NSNumber numberWithInt:-1]]) {
-            NSLog(@"志愿网服务异常");
+           
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QueryVolunteerInfoFailed" object:nil];
         }else if ([responseObject[@"code"] isEqualToNumber:[NSNumber numberWithInt:-2]]) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"QueryVolunteerInfoFailed" object:nil];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"QueryVolunteerInfoFailed" object:nil];
-        NSLog(@"志愿信息绑定失败");
+      
     }];
 }
 

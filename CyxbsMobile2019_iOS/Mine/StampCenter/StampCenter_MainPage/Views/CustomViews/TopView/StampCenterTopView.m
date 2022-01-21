@@ -58,7 +58,7 @@
         [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"==========================出错了");
+                
             }];
         _mingxiLbl = [[UILabel alloc]initWithFrame:CGRectMake(83, 18, 23, 13)];
         _mingxiLbl.font = [UIFont fontWithName:PingFangSCRegular size:10];

@@ -272,7 +272,7 @@ static RemindNotification *_instance;
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:requestIdentifier content:content trigger:calendarTrigger];
     
     [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        NSLog(@"Error:%@",error);
+       
     }];
 }
 

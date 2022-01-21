@@ -153,11 +153,9 @@
     }
 }
 
-- (BOOL)touchesShouldCancelInContentView:(UIView *)view
-{
- 
-   NSLog(@"用户点击的视图 %@",view);
-   return YES;
+- (BOOL)touchesShouldCancelInContentView:(UIView *)view{
+   
+    return YES;
 }
 @end
 

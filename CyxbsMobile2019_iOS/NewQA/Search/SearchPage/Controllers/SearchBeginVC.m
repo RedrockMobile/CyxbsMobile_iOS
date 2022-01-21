@@ -70,7 +70,7 @@
     //网络请求热搜列表并归档
     [self.searchDataModel getHotArayWithProgress:^(NSArray * _Nonnull ary) {
         [SZHArchiveTool saveHotWordsList:ary];
-        NSLog(@"成功解档-----%@",[SZHArchiveTool getHotWordsListAry]);
+        
     }];
 }
 
@@ -108,7 +108,7 @@
     [self.historyTable removeFromSuperview];
     [self.historyLabel removeFromSuperview];
     [self.clearAllHistoryRecordbtn removeFromSuperview];
-    NSLog(@"已经点击清除按钮");
+    
 }
 
 /// 点击搜索按钮之后去进行的逻辑操作
@@ -198,7 +198,7 @@
         
         //6.刷新table
         [self.historyTable reloadData];
-        NSLog(@"%@",array);
+       
     }
 }
 /// 刷新历史记录表格
@@ -299,7 +299,7 @@
 /// 删除当前cell
 /// @param string 当前cell的string
 - (void)deleteHistoryCellThroughString:(NSString *)string{
-//    NSLog(@"删除该cell %@",string);
+
     //1.删除历史记录数组中的数据
     NSMutableArray *copyarray = [self.historyRecordsAry mutableCopy];
     for ( NSString *cellString in copyarray) {
@@ -315,7 +315,7 @@
     [userdef setObject:self.historyRecordsAry forKey:@"historyRecords"];
     [self.historyTable reloadData];
     
-    NSLog(@"删除该cell");
+  
 }
 
 //MARK:TableViewDelegate

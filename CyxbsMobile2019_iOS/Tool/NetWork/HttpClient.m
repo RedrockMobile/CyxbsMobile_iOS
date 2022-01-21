@@ -170,9 +170,9 @@
 - (void)cancelRequest
 {
         if ([self.httpSessionManager.tasks count] > 0) {
-                NSLog(@"返回时取消网络请求");
+               
                 [self.httpSessionManager.tasks makeObjectsPerformSelector:@selector(cancel)];
-                //NSLog(@"tasks = %@",manager.tasks);
+                
             }
 }
 

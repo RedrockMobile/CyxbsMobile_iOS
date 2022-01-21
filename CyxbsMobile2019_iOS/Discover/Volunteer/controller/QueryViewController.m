@@ -429,7 +429,7 @@
     [unbindingModel VolunteerUnbinding];
     [self.navigationController popToRootViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginVolunteerAccountSucceed" object:nil];
-    NSLog(@"controller点击了此方法");
+   
 }
 
 - (void)ClickedCancelBtn {

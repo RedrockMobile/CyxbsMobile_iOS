@@ -25,7 +25,7 @@
     [client requestWithPath:Stamp_Store_Main_Page method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             //字典转模型
         NSArray *array = responseObject[@"data"][@"shop"];
-        NSLog(@"%@",responseObject);
+        
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 GoodsData *data = [self GoodsDataWithDict:obj];
@@ -36,7 +36,7 @@
                 success(mArray.copy);
             }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"==========================出错了");
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"networkerror" object:nil];
         }];
 }

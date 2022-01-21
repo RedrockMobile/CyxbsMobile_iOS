@@ -45,7 +45,7 @@
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
-        NSLog(@"圈子数据请求成功");
+    
         [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];

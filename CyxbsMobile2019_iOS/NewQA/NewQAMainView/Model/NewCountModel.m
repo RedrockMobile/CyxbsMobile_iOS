@@ -16,7 +16,6 @@
     [client requestWithPath:NEW_QA_QUERYNEWCOUNT method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"查询新消息数失败");
     }];
 }
 

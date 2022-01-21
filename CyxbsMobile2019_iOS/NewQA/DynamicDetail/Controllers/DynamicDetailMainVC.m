@@ -358,10 +358,10 @@
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
+        
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
+        
         }];
 }
 ///删除评论
@@ -778,10 +778,10 @@
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
+   
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
+        
         }];
 }
 

@@ -25,10 +25,10 @@
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
+  
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
+    
         }];
 }
 
@@ -50,10 +50,10 @@
             NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
             [formData appendPartWithFormData:data name:@"title"];
             } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                NSLog(@"成功了");
+          
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"失败了");
+        
             }];
     
 }
@@ -62,7 +62,6 @@
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:NEW_QA_Comment_Reply method:HttpRequestGet parameters:@{@"post_id":@(post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
-//        NSLog(@"请求评论数据成功,内容为%@",responseObject);
         sucess(array);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure();
@@ -90,9 +89,9 @@
     NSDictionary *param = @{@"id":@(post_id),@"model":@1};
 //    @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId"
     [client requestWithPath:NEW_QA_Dynamic_OR_Comment_Deleted method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"删除评论后得到的数据为%@",responseObject);
+
         if ([responseObject[@"status"] intValue] == 200) {
-            NSLog(@"删除成功");
+
             sucess();
         }else{
             failure();
@@ -102,7 +101,7 @@
             if ([error.domain isEqualToString:AFURLResponseSerializationErrorDomain]){
             NSData *errorData = [error.userInfo objectForKey:AFNetworkingOperationFailingURLResponseDataErrorKey];
             NSString * str = [[NSString alloc]initWithData:errorData encoding:NSUTF8StringEncoding];
-                NSLog(@"错误信息-------%@",str);
+      
             }
 
             failure();

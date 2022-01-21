@@ -118,7 +118,7 @@ static const void *WZBTextViewLastHeightKey = &WZBTextViewLastHeightKey;
 {
     // 如果有placeholder值才去调用，这步很重要
     if (!self.placeholderExist) {
-        NSLog(@"请先设置placeholder值！");
+       
     } else {
         self.placeholderView.textColor = placeholderColor;
         

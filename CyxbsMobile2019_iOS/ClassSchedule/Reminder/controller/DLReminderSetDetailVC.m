@@ -30,7 +30,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     else{
-        NSLog(@"未输入");
+       
     }
     
 }

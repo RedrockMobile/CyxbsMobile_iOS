@@ -17,7 +17,7 @@
         [client requestWithPath:CHANGEPASSWORDAPI method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 self->_Block(responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"失败了");
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWorkToChangePassword" object:nil userInfo:nil];
         }];
     }
@@ -27,7 +27,7 @@
         [client requestWithPath:RESSETPASSWORDAPI method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 self->_Block(responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"失败了");
+            
             [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWorkToChangePassword" object:nil userInfo:nil];
         }];
     }

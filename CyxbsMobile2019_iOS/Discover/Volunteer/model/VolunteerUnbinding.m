@@ -24,7 +24,7 @@
     [manager POST:VOLUNTEERUNBINDING parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"解绑志愿者信息失败");
+       
     }];
 }
 

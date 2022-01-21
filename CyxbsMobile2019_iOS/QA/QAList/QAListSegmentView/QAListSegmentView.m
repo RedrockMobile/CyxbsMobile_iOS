@@ -140,7 +140,7 @@
             btn.titleLabel.font = _titleFont;
         }
     }
-    NSLog(@"%lD",(long)sender.tag);
+    
 //
 }
 

@@ -248,13 +248,13 @@
             [formData appendPartWithFormData:data4 name:@"product_id"];
             
             } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-                NSLog(@"成功了");
+                
                 [NewQAHud showHudWith:@"提交成功，我们会在十四个工作日内回复~" AddView:self.view AndToDo:^{
                     [self.navigationController popViewControllerAnimated:YES];
                     self.view.userInteractionEnabled = YES;
                 }];
             } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-                NSLog(@"失败了");
+                
                 [NewQAHud showHudWith:@"提交失败 网络异常" AddView:self.view AndToDo:^{
                     [self.navigationController popViewControllerAnimated:YES];
                     self.view.userInteractionEnabled = YES;

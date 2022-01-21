@@ -114,14 +114,14 @@
         
         
         [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-            NSLog(@"Error:%@",error);
+          
         }];
         
         if (([_bigMonthArray containsObject:[NSString stringWithFormat:@"%ld",components.month]]&&components.month==31)
             || (![_bigMonthArray containsObject:[NSString stringWithFormat:@"%ld",components.month]]&&components.month==30)){
             components.day = 0;
         }
-        NSLog(@"------%@-------",components);
+       
         components.day += 1;
     }
 }

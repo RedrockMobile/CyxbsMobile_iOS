@@ -144,13 +144,11 @@
 - (void)refreshData{
     [self.heightArray removeAllObjects];
     self.page = 1;
-    NSLog(@"此时的page:%ld",(long)self.page);
     [self.postmodel loadMainPostWithPage:self.page AndSize:6];
 }
 
 ///成功请求数据
 - (void)NewQAListLoadSuccess {
-    NSLog(@"请求列表数据成功");
     BOOL flag = true;
     if (self.page == 1) {
         [self.tableArray removeAllObjects];

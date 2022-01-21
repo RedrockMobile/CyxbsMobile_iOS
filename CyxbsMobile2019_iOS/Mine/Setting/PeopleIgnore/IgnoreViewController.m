@@ -78,7 +78,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%@",[UserItem defaultItem].redid);
+    
 }
 
 //MARK:-model的代理方法：

@@ -15,10 +15,10 @@
     NSDictionary *param = @{@"stu_num":[UserDefaultTool getStuNum]};
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:BINDINGEMAILANDQUESTIONAPI method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@",[responseObject[@"status"] class]);
+       
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"请求失败");
+      
     }];
 }
 
