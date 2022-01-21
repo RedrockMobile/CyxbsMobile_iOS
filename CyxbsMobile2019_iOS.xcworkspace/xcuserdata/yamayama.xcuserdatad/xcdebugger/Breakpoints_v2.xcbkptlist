@@ -369,8 +369,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "-loginStatus"
-            landmarkType = "7">
+            landmarkName = "oneNewsModel"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1288,7 +1288,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "196"
             endingLineNumber = "196"
-            landmarkName = "-layoutSubviews"
+            landmarkName = "-addNotifications"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1384,8 +1384,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
             endingLineNumber = "114"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "7">
+            landmarkName = "DiscoverViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1586,8 +1586,8 @@
             filePath = "CyxbsMobile2019_iOS/Discover/ToDo/Tool/TodoDataModel.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-setIsDoneForUserActivity:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1602,8 +1602,8 @@
             filePath = "CyxbsMobile2019_iOS/Discover/ToDo/Tool/TodoDataModel.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "-setIsDoneForUserActivity:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1621,6 +1621,22 @@
             startingLineNumber = "634"
             endingLineNumber = "634"
             landmarkName = "-alterTodoWithModel:needRecord:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BBDA6D2-8608-45A4-BE59-0CB6A50AA330"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CyxbsMobile2019_iOS/Discover/ToDo/Discover_ToDo/DiscoverTodoTableViewCell.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "-setTodoState:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

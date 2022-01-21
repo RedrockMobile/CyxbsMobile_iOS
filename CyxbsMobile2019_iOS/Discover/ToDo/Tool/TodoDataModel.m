@@ -121,26 +121,46 @@ static inline int ForeignWeekToChinaWeek(int week) {
     [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
     return [formatter dateFromString:self.timeStr];
 }
+/*
+ 
+ 维护：overdueTime 指向未来
+ 
+ 如果 overdueTime = -1 意味着未来没有提醒了，也就是说重复模式为不重复，
+ 如果有一次提醒，那么这次提醒指向过去，
+ 或者没有设置提醒
+ 
+ overdueTime 的分类：
+ 指向今天的未来、指向非今天的未来、-1
+ 
+ isDone的分类：
+ 0、1
+ 
+ 
+ 
+ 已完成、待完成、已过期
+ 
+ 已完成：overdueTime 指向
+ 
+ */
 
 //MARK: - 重写的getter
 - (TodoDataModelState)todoState {
     TodoDataModelState state;
-    int mark = 0;
-    if (self.overdueTime < [NSDate date].timeIntervalSince1970&&self.overdueTime!=-1) {
-        self.lastOverdueTime = self.overdueTime;
-            self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:self.overdueTime inModel:self];
-            //需要通知数据库刷新todo
-            mark += 1;
+    [self refreshOverdueTime];
+    if (self.overdueTime==-1) {
+        if (self.isDone) {
+            return TodoDataModelStateDone;
+        }else {
+            return TodoDataModelStateOverdue;
+        }
     }
-    
+        
     NSDate* remindDate = [NSDate dateWithTimeIntervalSince1970:self.overdueTime];
     if ([remindDate isToday]) {
         //remindDate指向今天的未来
         state = TodoDataModelStateNeedDone;
         if (self.isDone==YES) {
-            _isDone = NO;
-            //需要通知数据库刷新todo
-            mark += 2;
+            [self setIsDoneForInnerActivity:NO];
         }
     }else {
         //remindDate指向非今天的未来
@@ -153,14 +173,24 @@ static inline int ForeignWeekToChinaWeek(int week) {
             state = TodoDataModelStateOverdue;
         }
     }
+    
     //通知数据库刷新todo
-    if (mark>=2) {
-        //mark>=2，代表isDone标记为发生了变化，那么需要记录变化（也就是这次改变是需要和服务器同步的）
-        [[TodoSyncTool share] alterTodoWithModel:self needRecord:YES];
-    }else if (mark==1) {
-        [[TodoSyncTool share] alterTodoWithModel:self needRecord:NO];
-    }
+    [[TodoSyncTool share] alterTodoWithModel:self needRecord:NO];
     return state;
+}
+
+/// 维护overdueTime
+/// 如果overdueTime为-1或者指向未来，则什么都不做。
+/// overdueTime指向过去，将lastOverdueTime更新为 overdueTime
+/// 则将overdueTime更新为下一次提醒的时间
+/// 将isDone置为NO
+- (void)refreshOverdueTime {
+    if (self.overdueTime > [NSDate date].timeIntervalSince1970 || self.overdueTime==-1) {
+        return;
+    }
+    self.lastOverdueTime = self.overdueTime;
+    self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:self.overdueTime inModel:self];
+    [self setIsDoneForInnerActivity:NO];
 }
 
 - (NSString *)overdueTimeStr {
@@ -317,3 +347,48 @@ static inline int ForeignWeekToChinaWeek(int week) {
  }
  */
 @end
+
+/*
+ 
+ //MARK: - 重写的getter
+ - (TodoDataModelState)todoState {
+     TodoDataModelState state;
+     
+     int mark = 0;
+     if (self.overdueTime < [NSDate date].timeIntervalSince1970&&self.overdueTime!=-1) {
+         self.lastOverdueTime = self.overdueTime;
+             self.overdueTime = [TodoDateTool getOverdueTimeStampFrom:self.overdueTime inModel:self];
+             //需要通知数据库刷新todo
+             mark += 1;
+     }
+     
+     NSDate* remindDate = [NSDate dateWithTimeIntervalSince1970:self.overdueTime];
+     if ([remindDate isToday]) {
+         //remindDate指向今天的未来
+         state = TodoDataModelStateNeedDone;
+         if (self.isDone==YES) {
+             _isDone = NO;
+             //需要通知数据库刷新todo
+             mark += 2;
+         }
+     }else {
+         //remindDate指向非今天的未来
+         if (self.isDone) {
+             state = TodoDataModelStateDone;
+         }else if (self.lastOverdueTime==-1) {
+             //代表这是第一次提醒，所以应该是NeedDone
+             state = TodoDataModelStateNeedDone;
+         }else {
+             state = TodoDataModelStateOverdue;
+         }
+     }
+     //通知数据库刷新todo
+     if (mark>=2) {
+         //mark>=2，代表isDone标记为发生了变化，那么需要记录变化（也就是这次改变是需要和服务器同步的）
+         [[TodoSyncTool share] alterTodoWithModel:self needRecord:YES];
+     }else if (mark==1) {
+         [[TodoSyncTool share] alterTodoWithModel:self needRecord:NO];
+     }
+     return state;
+ }
+ */
