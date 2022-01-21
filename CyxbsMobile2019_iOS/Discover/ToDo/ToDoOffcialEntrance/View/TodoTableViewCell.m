@@ -80,7 +80,7 @@
 }
 
 //比较是否过期
-- (BOOL)compareIsOverdue{
+//- (BOOL)compareIsOverdue{
 //    //如果未设置提醒时间不认为是过期
 //    if ([self.model.timeStr isEqualToString:@""]) {
 //        return NO;
@@ -95,13 +95,7 @@
 //    }else{
 //        return NO;
 //    }
-    //是否过期
-    if (self.model.todoState == TodoDataModelStateOverdue) {
-        return YES;
-    }else{
-        return NO;
-    }
-}
+//}
 
 - (void)setDataWithModel:(TodoDataModel *)model{
     self.model = model;
@@ -123,7 +117,7 @@
         [self.circlebtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
     } else {
         //如果过期
-        if ([self compareIsOverdue]) {
+        if (self.model.todoState == TodoDataModelStateOverdue) {
 //        if(self.model.todoState == TodoDataModelStateOverdue){
             [self.circlebtn setImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
             self.bellImgView.alpha = self.timeLbl.alpha = 0;

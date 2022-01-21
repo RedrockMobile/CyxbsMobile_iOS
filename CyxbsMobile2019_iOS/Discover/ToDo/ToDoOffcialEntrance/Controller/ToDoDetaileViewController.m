@@ -159,21 +159,21 @@ self.model = self.temporaryModel;
     NSArray* arr = @[@"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周日"];
     return arr[intWeek-1];
 }
-//比较是否过期
-- (BOOL)compareIsOverdue{
-    if ([self.model.timeStr isEqualToString:@""]) {
-        return NO;
-    }
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
-    long notifyTimeStamp = [formatter dateFromString:self.temporaryModel.timeStr].timeIntervalSince1970;
-    long nowTimeStamp = [NSDate date].timeIntervalSince1970;
-    if (nowTimeStamp > notifyTimeStamp) {
-        return YES;
-    }else{
-        return NO;
-    }
-}
+////比较是否过期
+//- (BOOL)compareIsOverdue{
+//    if ([self.model.timeStr isEqualToString:@""]) {
+//        return NO;
+//    }
+//    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy年M月d日HH:mm"];
+//    long notifyTimeStamp = [formatter dateFromString:self.temporaryModel.timeStr].timeIntervalSince1970;
+//    long nowTimeStamp = [NSDate date].timeIntervalSince1970;
+//    if (nowTimeStamp > notifyTimeStamp) {
+//        return YES;
+//    }else{
+//        return NO;
+//    }
+//}
 ///根据是否完成的状态设置各空间的状态
 - (void)addMasKBtn{
     //如果是完成状态，则添加遮罩的btn
@@ -232,7 +232,7 @@ self.model = self.temporaryModel;
         [self.remarkView.maskBtn removeFromSuperview];
         
         
-        if ([self compareIsOverdue]) {
+        if (self.model.todoState == TodoDataModelStateOverdue) {
             
             [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"ToDo过期圆圈"] forState:UIControlStateNormal];
             self.titleView.textView.textColor = [UIColor redColor];
