@@ -161,7 +161,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
     }
-    
+    [self.todoView reloadData];
 }
 - (void)presentMySchedul{
     ClassScheduleTabBarView *classTabBarView = ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView;
@@ -699,7 +699,7 @@ static int requestCheckinInfo = 0;
     [viewController viewWillLayoutSubviews];
 }
 
-//MARK:- DiscoverTodoView的代理方法：
+//MARK: - DiscoverTodoView的代理方法：
 - (void)addBtnClickedTodoView:(DiscoverTodoView *)todoView {
     //隐藏底部课表的tabBar
     [UIView animateWithDuration:0.5 animations:^{
@@ -894,4 +894,5 @@ static int requestCheckinInfo = 0;
 - (void)touchVolunteerView {
     [self bindingVolunteerButton];
 }
+
 @end

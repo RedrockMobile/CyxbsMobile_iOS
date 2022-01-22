@@ -172,6 +172,40 @@ static inline int ForeignWeekToChinaWeek(int week) {
         }else {
             state = TodoDataModelStateOverdue;
         }
+        /*
+         这里的逻辑有点绕，我举个例子：
+         假设现在时间是 day1，11:00，用户添加了一个每日 10:00 提醒的todo。
+         ①此时：
+             tode状态：NeedDone。
+             标记位：
+                overdueTime：day2，10:00
+                lastOverdueTime=-1
+                isDone：NO
+         
+         
+         假设用户在添加完以后就退出了掌邮，直到 day2，11:00才打开掌邮
+         ②此时：
+             tode状态：Overdue。
+             标记位：
+                overdueTime：day3，10:00
+                lastOverdueTime：day2，10:00
+                isDone：NO
+         
+         假设用户在添加完以后就退出了掌邮，然后在 day2，08:00 才打开掌邮，并勾选成完成，
+         再退出，等到 day2，11:00再打开掌邮：
+         ③此时：
+             tode状态：Done。
+             标记位：
+                overdueTime：day3，10:00
+                lastOverdueTime：day2，10:00
+                isDone：YES
+         
+         考虑到refreshOverdueTime机制的存在，overdueTime指向非今天的未来的情况也就只有上面三种。
+         所以：
+         如果 isDone==YES，那么 return Done
+         否则 如果 lastOverdueTime==-1，那么 return NeedDone
+         否则 return Overdue
+         */
     }
     
     //通知数据库刷新todo
@@ -289,7 +323,7 @@ static inline int ForeignWeekToChinaWeek(int week) {
 }
 
 - (void)debugLog {
-    CCLog(@"%@, %@", [self timeStampToTimeStr:self.overdueTime], [self timeStampToTimeStr:self.lastOverdueTime]);
+//    CCLog(@"%@, %@", [self timeStampToTimeStr:self.overdueTime], [self timeStampToTimeStr:self.lastOverdueTime]);
 }
 - (NSString*)timeStampToTimeStr:(NSInteger)t {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:t];

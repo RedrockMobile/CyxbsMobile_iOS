@@ -288,8 +288,7 @@
 /// 加号按钮点击后调用
 - (void)addBtnClicked {
     [self.delegate addBtnClickedTodoView:self];
-    TodoSyncTool *tool = [TodoSyncTool share];
-    [tool syncData];
+    [self reloadData];
 }
 
 - (void)layoutSubviews {

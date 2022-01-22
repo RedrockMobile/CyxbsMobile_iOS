@@ -77,7 +77,7 @@ static TodoSyncTool* _instance;
 //        return;
 //    }
     //获取上次同步时间
-    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/sync-time" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
         NSDictionary *dataDict = responseObject[@"data"];
         if (![responseObject[@"info"] isEqualToString:@"success"] || dataDict==nil || [dataDict isEqualToDictionary:@{}]) {
@@ -87,11 +87,11 @@ static TodoSyncTool* _instance;
             return;
         }
         long syncTime = [dataDict[@"sync_time"] longValue];
-        
+#ifdef DEBUG
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
         });
-        
+#endif
         if ([dataDict[@"is_sync_time_exist"] intValue]==0&&self.lastSyncTimeStamp!=0) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateConflict;
@@ -149,7 +149,7 @@ static TodoSyncTool* _instance;
 
 /// 第一次从服务器下载数据
 - (void)firstDownload {
-    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
@@ -182,7 +182,7 @@ static TodoSyncTool* _instance;
 
 /// 下载数据，并合并，调用的前提是没有冲突
 - (void)downloadDataAndMerge {
-    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
@@ -239,7 +239,7 @@ static TodoSyncTool* _instance;
     AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
     man.responseSerializer = responseSerializer;
     
-    [man POST:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         CCLog(@"%@", responseObject);
         
         NSString* state = responseObject[@"info"];
@@ -312,7 +312,7 @@ static TodoSyncTool* _instance;
             AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
             man.responseSerializer = responseSerializer;
             
-            [man POST:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                 CCLog(@"resp::%@",responseObject);
                 NSString* state = responseObject[@"info"];
                 if ([state isEqualToString:@"success"]) {
@@ -363,8 +363,8 @@ static TodoSyncTool* _instance;
             [man setResponseSerializer:responseSerializer];
             
             
-//            [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success
-            [man DELETE:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+//            [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success
+            [man DELETE:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
                 CCLog(@"resp::%@",responseObject);
                 NSString* state = responseObject[@"info"];
                 if ([state isEqualToString:@"success"]) {
@@ -449,7 +449,7 @@ static TodoSyncTool* _instance;
 - (void)forceLoadServerData {
     //抹除本地修改，再进行同步，性能会更好，但是这样会使结构变得更复杂，所以这里选择重置数据库
     
-    [[HttpClient defaultClient] requestWithPath:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/list" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"resp::%@",responseObject);
         if (![responseObject[@"info"] isEqualToString:@"success"]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
@@ -728,10 +728,10 @@ static TodoSyncTool* _instance;
     int cnt = 0;
     while ([resultSet next]) {
         TodoDataModel* model = [self resultSetToDataModel:resultSet];
-//        if (model.todoState==TodoDataModelStateNeedDone) {
+        if (model.todoState==TodoDataModelStateNeedDone) {
             [resultArr addObject:model];
             cnt++;
-//        }
+        }
         if (cnt==3) {
             break;
         }
