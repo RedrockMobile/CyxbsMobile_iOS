@@ -53,16 +53,13 @@
 
 - (UITableView *)table{
     if (!_table) {
-        _tableHeaderView = [[TableHeaderView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 86-8)];
-        _table = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-Bar_H)];
+        _table = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT-Bar_H) style:UITableViewStyleGrouped];
         _table.showsVerticalScrollIndicator = NO;
         _table.showsHorizontalScrollIndicator = NO;
-        _table.contentInset = UIEdgeInsetsMake(215, 0, 0, 0);
+//        _table.contentInset = UIEdgeInsetsMake(215, 0, 0, 0);
         _table.bounces = NO;
         _table.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
-        _table.tableHeaderView = _tableHeaderView;
         _table.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _table.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
     }
     return _table;
 }
