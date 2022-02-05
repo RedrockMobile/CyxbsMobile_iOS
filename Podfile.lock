@@ -97,22 +97,22 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - NudeIn
-  - RxCocoa (~> 5)
-  - RxSwift (~> 5)
+  - RxCocoa (~> 5.1.1)
+  - RxSwift (~> 5.1.1)
   - SDCycleScrollView
   - SDWebImage
   - SnapKit
   - SwiftyJSON (~> 4.0)
-  - TZImagePickerController
-  - UMCAnalytics
-  - UMCCommon
-  - UMCCommonLog
-  - UMCErrorCatch
-  - UMCPush
-  - UMCSecurityPlugins
-  - UMCShare/Social/ReducedQQ
-  - UMCShare/Social/ReducedWeChat
-  - UMCShare/UI
+  - TZImagePickerController (~> 3.3.2)
+  - UMCAnalytics (~> 6.0.5)
+  - UMCCommon (~> 2.1.1)
+  - UMCCommonLog (~> 1.0.0)
+  - UMCErrorCatch (~> 1.0.0)
+  - UMCPush (~> 3.2.4)
+  - UMCSecurityPlugins (~> 1.0.6)
+  - UMCShare/Social/ReducedQQ (~> 6.9.6)
+  - UMCShare/Social/ReducedWeChat (~> 6.9.6)
+  - UMCShare/UI (~> 6.9.6)
   - YBImageBrowser
   - YYImage
   - YYKit
@@ -186,6 +186,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 99838f75286297d07c89ef5f92466516dde522ad
+PODFILE CHECKSUM: 4ffcb97a071173810e20ccb1a18d1ff986110bba
 
 COCOAPODS: 1.11.2
