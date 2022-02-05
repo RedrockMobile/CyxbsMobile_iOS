@@ -2186,6 +2186,7 @@
 				18CDF5C9257F91BD006E8E5C /* Discover_SchoolCalendar */,
 				18CDF5CD257F91BD006E8E5C /* Discover_SchoolBus */,
 				18CDF5DE257F91BD006E8E5C /* Volunteer */,
+				FE2C136E27AEF952001CF7AF /* NewDiscover6.0Media.xcassets */,
 				18CDF65A257F91BD006E8E5C /* Disconver_ToolPage */,
 			);
 			path = Discover;
@@ -3286,7 +3287,6 @@
 				1817F00C2594D5C500FE1304 /* NewQA */,
 				18FBAEB726F35DF7004CED7D /* NewQA.xcassets */,
 				18CDF4D4257F91BC006E8E5C /* Discover */,
-				FE2C136E27AEF952001CF7AF /* NewDiscover6.0Media.xcassets */,
 				1A0AC5F5252B234700221514 /* Swift */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
