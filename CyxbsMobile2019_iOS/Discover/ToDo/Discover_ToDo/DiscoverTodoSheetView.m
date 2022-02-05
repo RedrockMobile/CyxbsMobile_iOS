@@ -247,8 +247,9 @@
         self.backgroundColor = [UIColor clearColor];
     }completion:^(BOOL finished) {
         [self removeFromSuperview];
+
     }];
-    
+   
     [self.delegate sheetViewCancelBtnClicked];
 }
 
