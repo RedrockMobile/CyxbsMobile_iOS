@@ -26,7 +26,7 @@
     UIView *view = [super hitTest:point withEvent:event];
     if (view == nil) {
         CGPoint hitPoint = [self convertPoint:point fromView:self];
-        if (self.classScheduleTabBarView && self.classScheduleTabBarView.userInteractionEnabled) {
+        if (self.classScheduleTabBarView && self.classScheduleTabBarView.userInteractionEnabled && self.alpha!=0 && self.hidden!=YES) {
             if (CGRectContainsPoint(self.classScheduleTabBarView.frame, hitPoint)) {
                 view = self.classScheduleTabBarView;
             }

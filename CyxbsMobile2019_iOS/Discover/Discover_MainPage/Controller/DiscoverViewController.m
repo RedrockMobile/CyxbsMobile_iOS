@@ -705,8 +705,6 @@ static int requestCheckinInfo = 0;
     //隐藏底部课表的tabBar
     [UIView animateWithDuration:0.5 animations:^{
         self.tabBarController.tabBar.alpha = 0;
-    }completion:^(BOOL finished) {
-        self.tabBarController.tabBar.hidden = YES;
     }];
     
     DiscoverTodoSheetView* sheetView = [[DiscoverTodoSheetView alloc] init];
@@ -738,7 +736,6 @@ static int requestCheckinInfo = 0;
 //MARK: - DiscoverTodoSheetView的代理方法：
 - (void)sheetViewSaveBtnClicked:(TodoDataModel *)dataModel {
     //显示底部课表的tabBar
-    self.tabBarController.tabBar.hidden = NO;
     [UIView animateWithDuration:0.5 animations:^{
         self.tabBarController.tabBar.alpha = 1;
     }];
@@ -747,7 +744,6 @@ static int requestCheckinInfo = 0;
 }
 - (void)sheetViewCancelBtnClicked {
     //显示底部课表的tabBar
-    self.tabBarController.tabBar.hidden = NO;
     [UIView animateWithDuration:0.5 animations:^{
         self.tabBarController.tabBar.alpha = 1;
     }];

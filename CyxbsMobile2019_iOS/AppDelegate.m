@@ -18,14 +18,47 @@
 #import <Bagel.h>
 #import <AFNetworkReachabilityManager.h>
 #include "ArchiveTool.h"
+#import <sqlite3.h>
+#define SQLITE_THREADSAFE 1
 
 extern CFAbsoluteTime StartTime;
 @interface AppDelegate ()<UNUserNotificationCenterDelegate>
-
+@property(nonatomic, strong)AFNetworkReachabilityManager* reaManager;
 @end
 
 @implementation AppDelegate
-
+- (void)addReaManager {
+    AFNetworkReachabilityManager* man = [AFNetworkReachabilityManager sharedManager];
+    self.reaManager = man;
+    [man setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        //把网络状态写入缓存
+        [[NSUserDefaults standardUserDefaults] setInteger:status forKey:@"AFNetworkReachabilityStatus"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //发送网络发送变化的通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AFNetworkReachabilityStatusChanges" object:@(status)];
+    }];
+    [man startMonitoring];
+}
+/*
+- (void)netStatusChanges:(NSNotification*)noti {
+    AFNetworkReachabilityStatus status = [noti.object longValue];
+    switch (status) {
+        case AFNetworkReachabilityStatusUnknown:
+            CCLog(@"AFNetworkReachabilityStatusUnknown");
+            break;
+        case AFNetworkReachabilityStatusNotReachable:
+            CCLog(@"AFNetworkReachabilityStatusNotReachable");
+            break;
+        case AFNetworkReachabilityStatusReachableViaWWAN:
+            CCLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
+            break;
+        case AFNetworkReachabilityStatusReachableViaWiFi:
+            CCLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
+            break;
+    }
+}
+*/
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
@@ -53,6 +86,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 //    #ifdef DEBUG
 //    [Bagel start];
 //    #endif
+    if (sqlite3_config(SQLITE_CONFIG_SERIALIZED)!=SQLITE_OK) {
+        CCLog(@"Failure");
+    }
+    sqlite3_initialize();
+    CCLog(@"%d", sqlite3_threadsafe());
     
     if ([UserDefaultTool getStuNum]) {
         [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
@@ -64,18 +102,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     if (([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) || ![UserDefaultTool getStuNum]) {
         [UserItemTool logout];
     }
-    
+    [self addReaManager];
     // 打开应用时刷新token
-    AFNetworkReachabilityManager *man = [AFNetworkReachabilityManager sharedManager];
     //开始监测网络状态
-    [man startMonitoring];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if([man isReachable]){
+        if([self.reaManager isReachable]){
             //如果网络可用，刷新token
             [UserItemTool refresh];
         }
-        //停止监测
-        [man stopMonitoring];
     });
     //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
 //    [UserItemTool refresh];
@@ -177,6 +211,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [self requestUserInfo];
     return YES;
 }
+
 - (void)addNotification {
     NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(requestUserInfo) name:@"Login_LoginSuceeded" object:nil];
@@ -184,8 +219,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 - (void)requestUserInfo {
     [[UserItem defaultItem] getUserInfo];
 }
+
 ///设置存储、更换baseURL
 - (void)settingBaseURL{
+//#ifdef DEBUG
+//    [[NSUserDefaults standardUserDefaults] setObject:@"https://be-dev.redrock.cqupt.edu.cn/" forKey:@"baseURL"];
+//#else
     //如果最开始无baseURL，则设置为学校服务器
     NSString *baseURL= [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
     if (baseURL == nil || [baseURL isEqualToString:@""]) {
@@ -197,9 +236,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [[HttpClient defaultClient] baseUrlRequestSuccess:^(NSString *str) {
         [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"baseURL"];
     }];
+//    @"https://be-dev.redrock.cqupt.edu.cn/"
+//    NS，，，，，，，，Log(@"baseURL%@",CyxbsMobileBaseURL_1);
+//#endif
     
-//    NSLog(@"baseURL%@",CyxbsMobileBaseURL_1);
 }
+
 ///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{
     //获取当前发布的版本的Version
