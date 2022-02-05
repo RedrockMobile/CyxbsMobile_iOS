@@ -147,7 +147,6 @@
 		18CDF6C5257F91BE006E8E5C /* IdsBindingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5C6257F91BD006E8E5C /* IdsBindingView.m */; };
 		18CDF6C6257F91BE006E8E5C /* ScoreTwoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5C7257F91BD006E8E5C /* ScoreTwoTitleView.m */; };
 		18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */; };
-		18CDF6C8257F91BE006E8E5C /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF5CC257F91BD006E8E5C /* NewDiscover6.0Media.xcassets */; };
 		18CDF6C9257F91BE006E8E5C /* SchoolBus.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF5CE257F91BD006E8E5C /* SchoolBus.xcassets */; };
 		18CDF6CA257F91BE006E8E5C /* SchoolBusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5D2257F91BD006E8E5C /* SchoolBusModel.m */; };
 		18CDF6CB257F91BE006E8E5C /* SchoolBusItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5D3257F91BD006E8E5C /* SchoolBusItem.m */; };
@@ -489,7 +488,6 @@
 		BE7CBD8B27535FC000094AE8 /* MGDCurrentTimeStr.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD4E27535FC000094AE8 /* MGDCurrentTimeStr.m */; };
 		BE7CBD8C27535FC000094AE8 /* NewQATool.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD4F27535FC000094AE8 /* NewQATool.m */; };
 		BE7CBD8D27535FC000094AE8 /* MGDRefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD5027535FC000094AE8 /* MGDRefreshTool.m */; };
-		BE7CBD8E27535FC000094AE8 /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD5227535FC000094AE8 /* NewQAHud.m */; };
 		BE7CBD8F27535FC000094AE8 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD5427535FC000094AE8 /* PostTableViewCell.m */; };
 		BE7CBD9027535FC000094AE8 /* FuncView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD5527535FC000094AE8 /* FuncView.m */; };
 		BE7CBD9127535FC000094AE8 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD5A27535FC000094AE8 /* ShareView.m */; };
@@ -654,6 +652,35 @@
 		DB4065032466D889006CE5BC /* DLReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F42466D888006CE5BC /* DLReminderView.m */; };
 		EE131C212471362E00B6ED97 /* URLController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C202471362E00B6ED97 /* URLController.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
+		FE2C134E27AEF629001CF7AF /* TODOMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131727AEF629001CF7AF /* TODOMainViewController.m */; };
+		FE2C134F27AEF629001CF7AF /* ToDoDetaileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131827AEF629001CF7AF /* ToDoDetaileViewController.m */; };
+		FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131B27AEF629001CF7AF /* TodoTableViewCell.m */; };
+		FE2C135127AEF629001CF7AF /* ToDoEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131D27AEF629001CF7AF /* ToDoEmptyCell.m */; };
+		FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131E27AEF629001CF7AF /* ToDoMainBarView.m */; };
+		FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131F27AEF629001CF7AF /* ToDoTableView.m */; };
+		FE2C135427AEF629001CF7AF /* ToDoDetailRemarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C132127AEF629001CF7AF /* ToDoDetailRemarkView.m */; };
+		FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C132427AEF629001CF7AF /* ToDoDetailTitleView.m */; };
+		FE2C135627AEF629001CF7AF /* ToDoDetailRepeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C132527AEF629001CF7AF /* ToDoDetailRepeatView.m */; };
+		FE2C135727AEF629001CF7AF /* ToDoDetailCurrencyView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C132927AEF629001CF7AF /* ToDoDetailCurrencyView.m */; };
+		FE2C135827AEF629001CF7AF /* ToDoDetailBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C132C27AEF629001CF7AF /* ToDoDetailBar.m */; };
+		FE2C135927AEF629001CF7AF /* ToDoDetailReminderTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C132D27AEF629001CF7AF /* ToDoDetailReminderTimeView.m */; };
+		FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133127AEF629001CF7AF /* TodoTitleInputTextField.m */; };
+		FE2C135B27AEF629001CF7AF /* DiscoverTodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133427AEF629001CF7AF /* DiscoverTodoTableViewCell.m */; };
+		FE2C135C27AEF629001CF7AF /* DiscoverTodoView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133527AEF629001CF7AF /* DiscoverTodoView.m */; };
+		FE2C135D27AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133627AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m */; };
+		FE2C135E27AEF629001CF7AF /* DiscoverTodoSelectRepeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133B27AEF629001CF7AF /* DiscoverTodoSelectRepeatView.m */; };
+		FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133E27AEF629001CF7AF /* DiscoverTodoSheetView.m */; };
+		FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133F27AEF629001CF7AF /* DiscoverTodoSelectTimeView.m */; };
+		FE2C136127AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134027AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m */; };
+		FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134227AEF629001CF7AF /* TodoConflictStateView.m */; };
+		FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134327AEF629001CF7AF /* YearBtnsView.m */; };
+		FE2C136427AEF629001CF7AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE2C134427AEF629001CF7AF /* Assets.xcassets */; };
+		FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134627AEF629001CF7AF /* TodoDateTool.m */; };
+		FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134727AEF629001CF7AF /* TodoDataModel.m */; };
+		FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134827AEF629001CF7AF /* TodoSyncTool.m */; };
+		FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134927AEF629001CF7AF /* TodoSyncMsg.m */; };
+		FE2C136C27AEF680001CF7AF /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C136927AEF680001CF7AF /* NewQAHud.m */; };
+		FE2C136F27AEF952001CF7AF /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE2C136E27AEF952001CF7AF /* NewDiscover6.0Media.xcassets */; };
 		FE505CC0273D441E0022B872 /* SchoolBusUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */; };
 		FE505CC1273D441E0022B872 /* SchoolBusUnavailableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */; };
 		FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED345E0273D51DA004073C0 /* EmptyClassUnavailableViewController.m */; };
@@ -948,7 +975,6 @@
 		18CDF5C8257F91BD006E8E5C /* ABScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABScoreView.h; sourceTree = "<group>"; };
 		18CDF5CA257F91BD006E8E5C /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
-		18CDF5CC257F91BD006E8E5C /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
 		18CDF5CE257F91BD006E8E5C /* SchoolBus.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SchoolBus.xcassets; sourceTree = "<group>"; };
 		18CDF5D0257F91BD006E8E5C /* SchoolBusItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolBusItem.h; sourceTree = "<group>"; };
 		18CDF5D1257F91BD006E8E5C /* SchoolBusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolBusModel.h; sourceTree = "<group>"; };
@@ -1559,7 +1585,6 @@
 		BE7CBD4727535FC000094AE8 /* MGDStatusBarHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDStatusBarHeight.m; sourceTree = "<group>"; };
 		BE7CBD4827535FC000094AE8 /* NewQATool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQATool.h; sourceTree = "<group>"; };
 		BE7CBD4927535FC000094AE8 /* MGDCurrentTimeStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDCurrentTimeStr.h; sourceTree = "<group>"; };
-		BE7CBD4A27535FC000094AE8 /* NewQAHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHud.h; sourceTree = "<group>"; };
 		BE7CBD4B27535FC000094AE8 /* PostArchiveTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostArchiveTool.m; sourceTree = "<group>"; };
 		BE7CBD4C27535FC000094AE8 /* MGDRefreshTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDRefreshTool.h; sourceTree = "<group>"; };
 		BE7CBD4D27535FC000094AE8 /* MGDStatusBarHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDStatusBarHeight.h; sourceTree = "<group>"; };
@@ -1567,7 +1592,6 @@
 		BE7CBD4F27535FC000094AE8 /* NewQATool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQATool.m; sourceTree = "<group>"; };
 		BE7CBD5027535FC000094AE8 /* MGDRefreshTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDRefreshTool.m; sourceTree = "<group>"; };
 		BE7CBD5127535FC000094AE8 /* PostArchiveTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostArchiveTool.h; sourceTree = "<group>"; };
-		BE7CBD5227535FC000094AE8 /* NewQAHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAHud.m; sourceTree = "<group>"; };
 		BE7CBD5427535FC000094AE8 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
 		BE7CBD5527535FC000094AE8 /* FuncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuncView.m; sourceTree = "<group>"; };
 		BE7CBD5627535FC000094AE8 /* SearchBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBtn.h; sourceTree = "<group>"; };
@@ -1823,6 +1847,62 @@
 		EE131C202471362E00B6ED97 /* URLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLController.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		FE2C131627AEF629001CF7AF /* ToDoDetaileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetaileViewController.h; sourceTree = "<group>"; };
+		FE2C131727AEF629001CF7AF /* TODOMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TODOMainViewController.m; sourceTree = "<group>"; };
+		FE2C131827AEF629001CF7AF /* ToDoDetaileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetaileViewController.m; sourceTree = "<group>"; };
+		FE2C131927AEF629001CF7AF /* TODOMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TODOMainViewController.h; sourceTree = "<group>"; };
+		FE2C131B27AEF629001CF7AF /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
+		FE2C131C27AEF629001CF7AF /* ToDoDetailRepeatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetailRepeatView.h; sourceTree = "<group>"; };
+		FE2C131D27AEF629001CF7AF /* ToDoEmptyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoEmptyCell.m; sourceTree = "<group>"; };
+		FE2C131E27AEF629001CF7AF /* ToDoMainBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoMainBarView.m; sourceTree = "<group>"; };
+		FE2C131F27AEF629001CF7AF /* ToDoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoTableView.m; sourceTree = "<group>"; };
+		FE2C132027AEF629001CF7AF /* ToDoDetailCurrencyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetailCurrencyView.h; sourceTree = "<group>"; };
+		FE2C132127AEF629001CF7AF /* ToDoDetailRemarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailRemarkView.m; sourceTree = "<group>"; };
+		FE2C132227AEF629001CF7AF /* ToDoDetailReminderTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetailReminderTimeView.h; sourceTree = "<group>"; };
+		FE2C132327AEF629001CF7AF /* ToDoDetailBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetailBar.h; sourceTree = "<group>"; };
+		FE2C132427AEF629001CF7AF /* ToDoDetailTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailTitleView.m; sourceTree = "<group>"; };
+		FE2C132527AEF629001CF7AF /* ToDoDetailRepeatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailRepeatView.m; sourceTree = "<group>"; };
+		FE2C132627AEF629001CF7AF /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
+		FE2C132727AEF629001CF7AF /* ToDoDetailRemarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetailRemarkView.h; sourceTree = "<group>"; };
+		FE2C132827AEF629001CF7AF /* ToDoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoTableView.h; sourceTree = "<group>"; };
+		FE2C132927AEF629001CF7AF /* ToDoDetailCurrencyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailCurrencyView.m; sourceTree = "<group>"; };
+		FE2C132A27AEF629001CF7AF /* ToDoMainBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoMainBarView.h; sourceTree = "<group>"; };
+		FE2C132B27AEF629001CF7AF /* ToDoEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoEmptyCell.h; sourceTree = "<group>"; };
+		FE2C132C27AEF629001CF7AF /* ToDoDetailBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailBar.m; sourceTree = "<group>"; };
+		FE2C132D27AEF629001CF7AF /* ToDoDetailReminderTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetailReminderTimeView.m; sourceTree = "<group>"; };
+		FE2C132E27AEF629001CF7AF /* ToDoDetailTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetailTitleView.h; sourceTree = "<group>"; };
+		FE2C133027AEF629001CF7AF /* DiscoverTodoSelectRepeatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSelectRepeatView.h; sourceTree = "<group>"; };
+		FE2C133127AEF629001CF7AF /* TodoTitleInputTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTitleInputTextField.m; sourceTree = "<group>"; };
+		FE2C133227AEF629001CF7AF /* DiscoverTodoSelectTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSelectTimeView.h; sourceTree = "<group>"; };
+		FE2C133327AEF629001CF7AF /* DiscoverTodoSheetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSheetView.h; sourceTree = "<group>"; };
+		FE2C133427AEF629001CF7AF /* DiscoverTodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoTableViewCell.m; sourceTree = "<group>"; };
+		FE2C133527AEF629001CF7AF /* DiscoverTodoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoView.m; sourceTree = "<group>"; };
+		FE2C133627AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoTableViewAnimationView.m; sourceTree = "<group>"; };
+		FE2C133727AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoSetRemindBasicView.h; sourceTree = "<group>"; };
+		FE2C133827AEF629001CF7AF /* YearBtnsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearBtnsView.h; sourceTree = "<group>"; };
+		FE2C133927AEF629001CF7AF /* TodoConflictStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoConflictStateView.h; sourceTree = "<group>"; };
+		FE2C133A27AEF629001CF7AF /* TodoTitleInputTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTitleInputTextField.h; sourceTree = "<group>"; };
+		FE2C133B27AEF629001CF7AF /* DiscoverTodoSelectRepeatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSelectRepeatView.m; sourceTree = "<group>"; };
+		FE2C133C27AEF629001CF7AF /* DiscoverTodoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoView.h; sourceTree = "<group>"; };
+		FE2C133D27AEF629001CF7AF /* DiscoverTodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoTableViewCell.h; sourceTree = "<group>"; };
+		FE2C133E27AEF629001CF7AF /* DiscoverTodoSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSheetView.m; sourceTree = "<group>"; };
+		FE2C133F27AEF629001CF7AF /* DiscoverTodoSelectTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSelectTimeView.m; sourceTree = "<group>"; };
+		FE2C134027AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTodoSetRemindBasicView.m; sourceTree = "<group>"; };
+		FE2C134127AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTodoTableViewAnimationView.h; sourceTree = "<group>"; };
+		FE2C134227AEF629001CF7AF /* TodoConflictStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoConflictStateView.m; sourceTree = "<group>"; };
+		FE2C134327AEF629001CF7AF /* YearBtnsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearBtnsView.m; sourceTree = "<group>"; };
+		FE2C134427AEF629001CF7AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE2C134627AEF629001CF7AF /* TodoDateTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoDateTool.m; sourceTree = "<group>"; };
+		FE2C134727AEF629001CF7AF /* TodoDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoDataModel.m; sourceTree = "<group>"; };
+		FE2C134827AEF629001CF7AF /* TodoSyncTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoSyncTool.m; sourceTree = "<group>"; };
+		FE2C134927AEF629001CF7AF /* TodoSyncMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoSyncMsg.m; sourceTree = "<group>"; };
+		FE2C134A27AEF629001CF7AF /* TodoDateTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoDateTool.h; sourceTree = "<group>"; };
+		FE2C134B27AEF629001CF7AF /* TodoSyncTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoSyncTool.h; sourceTree = "<group>"; };
+		FE2C134C27AEF629001CF7AF /* TodoDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoDataModel.h; sourceTree = "<group>"; };
+		FE2C134D27AEF629001CF7AF /* TodoSyncMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoSyncMsg.h; sourceTree = "<group>"; };
+		FE2C136927AEF680001CF7AF /* NewQAHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAHud.m; sourceTree = "<group>"; };
+		FE2C136B27AEF680001CF7AF /* NewQAHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHud.h; sourceTree = "<group>"; };
+		FE2C136E27AEF952001CF7AF /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
 		FE505CBD273D441E0022B872 /* SchoolBusUnavailableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusUnavailableViewController.h; sourceTree = "<group>"; };
 		FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusUnavailableViewController.m; sourceTree = "<group>"; };
 		FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SchoolBusUnavailableViewController.xib; sourceTree = "<group>"; };
@@ -2095,6 +2175,7 @@
 			children = (
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
 				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
+				FE2C131327AEF629001CF7AF /* ToDo */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
 				18CDF525257F91BC006E8E5C /* Discover_EmptyClass */,
 				18CDF53B257F91BC006E8E5C /* Discover_WeDate */,
@@ -2103,7 +2184,6 @@
 				18CDF58C257F91BD006E8E5C /* SCChart */,
 				18CDF5A6257F91BD006E8E5C /* Discover_scorePage */,
 				18CDF5C9257F91BD006E8E5C /* Discover_SchoolCalendar */,
-				18CDF5CC257F91BD006E8E5C /* NewDiscover6.0Media.xcassets */,
 				18CDF5CD257F91BD006E8E5C /* Discover_SchoolBus */,
 				18CDF5DE257F91BD006E8E5C /* Volunteer */,
 				18CDF65A257F91BD006E8E5C /* Disconver_ToolPage */,
@@ -3206,6 +3286,7 @@
 				1817F00C2594D5C500FE1304 /* NewQA */,
 				18FBAEB726F35DF7004CED7D /* NewQA.xcassets */,
 				18CDF4D4257F91BC006E8E5C /* Discover */,
+				FE2C136E27AEF952001CF7AF /* NewDiscover6.0Media.xcassets */,
 				1A0AC5F5252B234700221514 /* Swift */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
@@ -4529,10 +4610,11 @@
 		BE7CBD4627535FC000094AE8 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				FE2C136B27AEF680001CF7AF /* NewQAHud.h */,
+				FE2C136927AEF680001CF7AF /* NewQAHud.m */,
 				BE7CBD4727535FC000094AE8 /* MGDStatusBarHeight.m */,
 				BE7CBD4827535FC000094AE8 /* NewQATool.h */,
 				BE7CBD4927535FC000094AE8 /* MGDCurrentTimeStr.h */,
-				BE7CBD4A27535FC000094AE8 /* NewQAHud.h */,
 				BE7CBD4B27535FC000094AE8 /* PostArchiveTool.m */,
 				BE7CBD4C27535FC000094AE8 /* MGDRefreshTool.h */,
 				BE7CBD4D27535FC000094AE8 /* MGDStatusBarHeight.h */,
@@ -4540,7 +4622,6 @@
 				BE7CBD4F27535FC000094AE8 /* NewQATool.m */,
 				BE7CBD5027535FC000094AE8 /* MGDRefreshTool.m */,
 				BE7CBD5127535FC000094AE8 /* PostArchiveTool.h */,
-				BE7CBD5227535FC000094AE8 /* NewQAHud.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -5004,6 +5085,106 @@
 			path = Reminder;
 			sourceTree = "<group>";
 		};
+		FE2C131327AEF629001CF7AF /* ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				FE2C131427AEF629001CF7AF /* ToDoOffcialEntrance */,
+				FE2C132F27AEF629001CF7AF /* Discover_ToDo */,
+				FE2C134427AEF629001CF7AF /* Assets.xcassets */,
+				FE2C134527AEF629001CF7AF /* Tool */,
+			);
+			path = ToDo;
+			sourceTree = "<group>";
+		};
+		FE2C131427AEF629001CF7AF /* ToDoOffcialEntrance */ = {
+			isa = PBXGroup;
+			children = (
+				FE2C131527AEF629001CF7AF /* Controller */,
+				FE2C131A27AEF629001CF7AF /* View */,
+			);
+			path = ToDoOffcialEntrance;
+			sourceTree = "<group>";
+		};
+		FE2C131527AEF629001CF7AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FE2C131627AEF629001CF7AF /* ToDoDetaileViewController.h */,
+				FE2C131727AEF629001CF7AF /* TODOMainViewController.m */,
+				FE2C131827AEF629001CF7AF /* ToDoDetaileViewController.m */,
+				FE2C131927AEF629001CF7AF /* TODOMainViewController.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FE2C131A27AEF629001CF7AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FE2C131B27AEF629001CF7AF /* TodoTableViewCell.m */,
+				FE2C131C27AEF629001CF7AF /* ToDoDetailRepeatView.h */,
+				FE2C131D27AEF629001CF7AF /* ToDoEmptyCell.m */,
+				FE2C131E27AEF629001CF7AF /* ToDoMainBarView.m */,
+				FE2C131F27AEF629001CF7AF /* ToDoTableView.m */,
+				FE2C132027AEF629001CF7AF /* ToDoDetailCurrencyView.h */,
+				FE2C132127AEF629001CF7AF /* ToDoDetailRemarkView.m */,
+				FE2C132227AEF629001CF7AF /* ToDoDetailReminderTimeView.h */,
+				FE2C132327AEF629001CF7AF /* ToDoDetailBar.h */,
+				FE2C132427AEF629001CF7AF /* ToDoDetailTitleView.m */,
+				FE2C132527AEF629001CF7AF /* ToDoDetailRepeatView.m */,
+				FE2C132627AEF629001CF7AF /* TodoTableViewCell.h */,
+				FE2C132727AEF629001CF7AF /* ToDoDetailRemarkView.h */,
+				FE2C132827AEF629001CF7AF /* ToDoTableView.h */,
+				FE2C132927AEF629001CF7AF /* ToDoDetailCurrencyView.m */,
+				FE2C132A27AEF629001CF7AF /* ToDoMainBarView.h */,
+				FE2C132B27AEF629001CF7AF /* ToDoEmptyCell.h */,
+				FE2C132C27AEF629001CF7AF /* ToDoDetailBar.m */,
+				FE2C132D27AEF629001CF7AF /* ToDoDetailReminderTimeView.m */,
+				FE2C132E27AEF629001CF7AF /* ToDoDetailTitleView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FE2C132F27AEF629001CF7AF /* Discover_ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				FE2C133027AEF629001CF7AF /* DiscoverTodoSelectRepeatView.h */,
+				FE2C133127AEF629001CF7AF /* TodoTitleInputTextField.m */,
+				FE2C133227AEF629001CF7AF /* DiscoverTodoSelectTimeView.h */,
+				FE2C133327AEF629001CF7AF /* DiscoverTodoSheetView.h */,
+				FE2C133427AEF629001CF7AF /* DiscoverTodoTableViewCell.m */,
+				FE2C133527AEF629001CF7AF /* DiscoverTodoView.m */,
+				FE2C133627AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m */,
+				FE2C133727AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.h */,
+				FE2C133827AEF629001CF7AF /* YearBtnsView.h */,
+				FE2C133927AEF629001CF7AF /* TodoConflictStateView.h */,
+				FE2C133A27AEF629001CF7AF /* TodoTitleInputTextField.h */,
+				FE2C133B27AEF629001CF7AF /* DiscoverTodoSelectRepeatView.m */,
+				FE2C133C27AEF629001CF7AF /* DiscoverTodoView.h */,
+				FE2C133D27AEF629001CF7AF /* DiscoverTodoTableViewCell.h */,
+				FE2C133E27AEF629001CF7AF /* DiscoverTodoSheetView.m */,
+				FE2C133F27AEF629001CF7AF /* DiscoverTodoSelectTimeView.m */,
+				FE2C134027AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m */,
+				FE2C134127AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.h */,
+				FE2C134227AEF629001CF7AF /* TodoConflictStateView.m */,
+				FE2C134327AEF629001CF7AF /* YearBtnsView.m */,
+			);
+			path = Discover_ToDo;
+			sourceTree = "<group>";
+		};
+		FE2C134527AEF629001CF7AF /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				FE2C134627AEF629001CF7AF /* TodoDateTool.m */,
+				FE2C134727AEF629001CF7AF /* TodoDataModel.m */,
+				FE2C134827AEF629001CF7AF /* TodoSyncTool.m */,
+				FE2C134927AEF629001CF7AF /* TodoSyncMsg.m */,
+				FE2C134A27AEF629001CF7AF /* TodoDateTool.h */,
+				FE2C134B27AEF629001CF7AF /* TodoSyncTool.h */,
+				FE2C134C27AEF629001CF7AF /* TodoDataModel.h */,
+				FE2C134D27AEF629001CF7AF /* TodoSyncMsg.h */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -5210,7 +5391,6 @@
 				18CDF701257F91BE006E8E5C /* 标签矩形@3x.png in Resources */,
 				18CDF6E6257F91BE006E8E5C /* 1@3x.png in Resources */,
 				18CDF6A8257F91BD006E8E5C /* News.xcassets in Resources */,
-				18CDF6C8257F91BE006E8E5C /* NewDiscover6.0Media.xcassets in Resources */,
 				18CDF6FC257F91BE006E8E5C /* 2@3x.png in Resources */,
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				DB34EAEE239BD4550052B65E /* remind_image_content@2x.png in Resources */,
@@ -5233,7 +5413,9 @@
 				18CDF6D4257F91BE006E8E5C /* 服务记录矩形.png in Resources */,
 				18CDF6FA257F91BE006E8E5C /* login_password@2x.png in Resources */,
 				18CDF6E8257F91BE006E8E5C /* 3@2x.png in Resources */,
+				FE2C136427AEF629001CF7AF /* Assets.xcassets in Resources */,
 				DB34EADE239BD4550052B65E /* timeTable_image_pull@2x.png in Resources */,
+				FE2C136F27AEF952001CF7AF /* NewDiscover6.0Media.xcassets in Resources */,
 				18CDF6F7257F91BE006E8E5C /* scroll@2x.png in Resources */,
 				18CDF6DC257F91BE006E8E5C /* 5@2x.png in Resources */,
 				18CDF6DA257F91BE006E8E5C /* 月日标签@3x.png in Resources */,
@@ -5383,6 +5565,7 @@
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
+				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
 				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
 				18CDF710257F91BE006E8E5C /* QueryLoginViewController.m in Sources */,
 				18CDF676257F91BD006E8E5C /* TestArrangeViewController.m in Sources */,
@@ -5395,6 +5578,7 @@
 				73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
+				FE2C135827AEF629001CF7AF /* ToDoDetailBar.m in Sources */,
 				18CDF6A6257F91BD006E8E5C /* NewsViewController.m in Sources */,
 				18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */,
 				49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */,
@@ -5407,7 +5591,6 @@
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				738C15B426E0BDFE00E24F8C /* HistoricalFBDefaultView.m in Sources */,
 				AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */,
-				BE7CBD8E27535FC000094AE8 /* NewQAHud.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				49C2E78326D563AF00AFBE6F /* TypeSelectView.m in Sources */,
@@ -5448,9 +5631,12 @@
 				B82CA683263159BA00786685 /* SHPopMenu.m in Sources */,
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
+				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
+				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
 				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
+				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				B85675FC260D7C960022605C /* CYRleaseSaveDraftAlertBtn.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
@@ -5494,6 +5680,7 @@
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				18CDF682257F91BD006E8E5C /* EmptyClassItem.m in Sources */,
 				18CDF688257F91BD006E8E5C /* EmptyClassContentView.m in Sources */,
+				FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */,
 				B82CA6602631599900786685 /* DynamicDetailCommentTableCellModel.m in Sources */,
 				18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */,
 				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
@@ -5509,6 +5696,7 @@
 				BE7CBD9027535FC000094AE8 /* FuncView.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */,
+				FE2C135C27AEF629001CF7AF /* DiscoverTodoView.m in Sources */,
 				AA3F82E624EA4A8900B65042 /* LeftBar.m in Sources */,
 				18CDF67B257F91BD006E8E5C /* ClassmateItem.m in Sources */,
 				18CDF6AE257F91BD006E8E5C /* SCChart.m in Sources */,
@@ -5526,6 +5714,7 @@
 				B82CA681263159BA00786685 /* UIColor+SYColor.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
+				FE2C135127AEF629001CF7AF /* ToDoEmptyCell.m in Sources */,
 				4931630B26CD7B6800140412 /* MyCollectionViewCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
@@ -5536,6 +5725,7 @@
 				4931630E26CD7B6800140412 /* SecondHeaderView.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
+				FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */,
 				18CDF71B257F91BE006E8E5C /* VolunteerLoginView.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
 				AAC7CA0B25F7725200E6B5D5 /* MainPage2RequestModel.m in Sources */,
@@ -5548,6 +5738,7 @@
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				18CDF4BE257F8DBD006E8E5C /* questionItem.m in Sources */,
 				18CDF69C257F91BD006E8E5C /* CQUPTMapViewController.m in Sources */,
+				FE2C135627AEF629001CF7AF /* ToDoDetailRepeatView.m in Sources */,
 				D0101F61243587A1004337ED /* GKLoadingView.m in Sources */,
 				18CDF669257F91BD006E8E5C /* VolunteerModel.m in Sources */,
 				BE7CBD9227535FC000094AE8 /* MGDClickCoreLayer.m in Sources */,
@@ -5556,6 +5747,8 @@
 				18CDF671257F91BD006E8E5C /* ExamArrangeModel.m in Sources */,
 				7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
+				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
+				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				B82D115525E35FF400690FA6 /* SZHReleaseTopBarView.m in Sources */,
@@ -5591,6 +5784,7 @@
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
+				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
 				BE7CBD9427535FC000094AE8 /* MGDClickLayer.m in Sources */,
 				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
@@ -5626,6 +5820,7 @@
 				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				B83766E725C13E0E00A8666A /* SZHSearchTableViewCell.m in Sources */,
+				FE2C136127AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				BE7CBD9527535FC000094AE8 /* FunctionBtn.m in Sources */,
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
@@ -5647,6 +5842,7 @@
 				BE7CBD8427535FC000094AE8 /* NewQAMainPageMainController.m in Sources */,
 				18CDF6D3257F91BE006E8E5C /* HeaderGifRefresh.m in Sources */,
 				7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */,
+				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
 				BE7CBD8D27535FC000094AE8 /* MGDRefreshTool.m in Sources */,
 				18CDF719257F91BE006E8E5C /* VolunteerItem.m in Sources */,
@@ -5678,6 +5874,7 @@
 				B82CA6AB26315BD800786685 /* CircleLabelBtn.m in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
+				FE2C135D27AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m in Sources */,
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
 				BE7CBD9127535FC000094AE8 /* ShareView.m in Sources */,
 				4999FA8326D44EA8005D0ADE /* HintView.m in Sources */,
@@ -5696,6 +5893,7 @@
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */,
+				FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */,
 				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
 				18FE64F625FDA186008748AE /* UIControl+MGD.m in Sources */,
@@ -5716,7 +5914,9 @@
 				18CDF720257F91BE006E8E5C /* VolunteerLabel.m in Sources */,
 				B845737325C03A9E005EFB91 /* SZHHotSearchView.m in Sources */,
 				AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */,
+				FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
+				FE2C135927AEF629001CF7AF /* ToDoDetailReminderTimeView.m in Sources */,
 				BE7CBD7C27535FC000094AE8 /* PostModel.m in Sources */,
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				18CDF4C7257F8DBD006E8E5C /* sendCodeView.m in Sources */,
@@ -5765,6 +5965,7 @@
 				18CDF6CD257F91BE006E8E5C /* SchoolBusViewController.m in Sources */,
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
+				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				B8B7AD7E264BA6FA00FEEF7D /* NoComentView.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
@@ -5776,6 +5977,7 @@
 				187DF4BD260310DD000BCDE9 /* LYEmptyView.m in Sources */,
 				BE7CBD9727535FC000094AE8 /* TopFollowView.m in Sources */,
 				7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */,
+				FE2C135727AEF629001CF7AF /* ToDoDetailCurrencyView.m in Sources */,
 				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
 				18CDF709257F91BE006E8E5C /* segmentTableViewCell.m in Sources */,
 				B82CA6612631599900786685 /* DynamicDetailViewModel.m in Sources */,
@@ -5790,6 +5992,7 @@
 				DB4065002466D889006CE5BC /* DLHistodyButton.m in Sources */,
 				18CDF4BF257F8DBD006E8E5C /* questionAndAnswerModel.m in Sources */,
 				DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */,
+				FE2C135B27AEF629001CF7AF /* DiscoverTodoTableViewCell.m in Sources */,
 				AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */,
 				738C15B126E0B35600E24F8C /* FeedBackDefaultView.m in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
@@ -5807,9 +6010,11 @@
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
 				18CDF70B257F91BE006E8E5C /* HeaderTableViewCell.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
+				FE2C135427AEF629001CF7AF /* ToDoDetailRemarkView.m in Sources */,
 				49628E3C26D52E6C00805A08 /* TypeButton.m in Sources */,
 				18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */,
 				18CDF6BE257F91BE006E8E5C /* SingleGrade.m in Sources */,
+				FE2C136C27AEF680001CF7AF /* NewQAHud.m in Sources */,
 				B89B8E632603974400497814 /* CYSearchEndKnowledgeDetailModel.m in Sources */,
 				BE7CBD8F27535FC000094AE8 /* PostTableViewCell.m in Sources */,
 				18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */,
@@ -5823,6 +6028,7 @@
 				73AAA1D426C918250084E44D /* PurchaseInfoGoodsInfoView.m in Sources */,
 				BE7CBD8327535FC000094AE8 /* StarPostModel.m in Sources */,
 				18CDF66A257F91BD006E8E5C /* BannerItem.m in Sources */,
+				FE2C134F27AEF629001CF7AF /* ToDoDetaileViewController.m in Sources */,
 				187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */,
 				4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */,
 				18CDF695257F91BD006E8E5C /* CQUPTMapPlaceItem.m in Sources */,
@@ -5845,7 +6051,9 @@
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
 				BE7CBD8C27535FC000094AE8 /* NewQATool.m in Sources */,
 				BE7CBD9F27535FC000094AE8 /* RecommendedTableView.m in Sources */,
+				FE2C134E27AEF629001CF7AF /* TODOMainViewController.m in Sources */,
 				735BC54426D3B64500F22678 /* FeedBackDetailsTableViewCell.m in Sources */,
+				FE2C135E27AEF629001CF7AF /* DiscoverTodoSelectRepeatView.m in Sources */,
 				18CDF68E257F91BD006E8E5C /* CQUPTMapModel.m in Sources */,
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
 				7311328726CCEC2400EF88C1 /* Balance.m in Sources */,
@@ -6031,7 +6239,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 51;
-				DEVELOPMENT_TEAM = RT6PQ9CYD3;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -6061,7 +6269,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 51;
-				DEVELOPMENT_TEAM = RT6PQ9CYD3;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				INFOPLIST_FILE = CyxbsMobile2019_iOS/Info.plist;
@@ -6087,7 +6295,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPM8HVK7C6;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -6112,7 +6320,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPM8HVK7C6;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -6134,7 +6342,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPM8HVK7C6;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6153,7 +6361,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HPM8HVK7C6;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
