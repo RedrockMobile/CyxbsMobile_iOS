@@ -12,7 +12,6 @@
 
 #import "TAAbstractDotView.h"
 #import "TAAnimatedDotView.h"
-#import "TADotView 2.h"
 #import "TADotView.h"
 #import "TAPageControl.h"
 #import "SDCollectionViewCell.h"
