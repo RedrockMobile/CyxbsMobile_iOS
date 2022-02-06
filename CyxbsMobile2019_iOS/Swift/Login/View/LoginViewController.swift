@@ -109,6 +109,8 @@ class LoginViewController: UIViewController {
                     (UIApplication.shared.delegate?.window!?.rootViewController as! UITabBarController).selectedIndex = 0
                     self.hideHud()
                     self.dismiss(animated: true, completion: nil)
+                    //完成登录成功后todo的一些配置
+                    TodoSyncTool.share().logInSuccess();
                 } failed: {
                     self.hideHud()
                     self.showHud("账号或密码错误", time: 1)
