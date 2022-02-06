@@ -1,6 +1,0 @@
-framework module UMErrorCatch {
-  umbrella header "UMErrorCatch.h"
-
-  export *
-  module * { export * }
-}
