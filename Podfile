@@ -35,6 +35,7 @@ target 'CyxbsMobile2019_iOS' do
     	pod 'UMCShare/Social/ReducedWeChat','~> 6.9.6'
 	# 集成QQ/QZone/TIM(精简版0.5M)
     	pod 'UMCShare/Social/ReducedQQ','~> 6.9.6'
+	pod 'IQKeyboardManager'
       
   # For Swift:
   

@@ -28,7 +28,7 @@
             //清除旧的课表数据，等过几版后，去掉这个代码
             [self clear];
         }
-        self.afhttpSeMan = [AFHTTPSessionManager manager];
+        self.afhttpSeMan = [HttpClient defaultClient].httpSessionManager;
     }
     return self;
 }
@@ -336,7 +336,7 @@
 
 //储存当前周数，计算开学日期
 - (void)storeDate:(NSString*)week {
-    NSDate *now = NSDate.now;
+    NSDate *now = [NSDate date];
     
     NSDateComponents *nowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:now];
 //    unit
