@@ -15,7 +15,6 @@
 #import "VolunteeringEventItem.h"
 #import "VolunteerItem.h"
 #import "DynamicDetailMainVC.h"
-#import <Bagel.h>
 #import <AFNetworkReachabilityManager.h>
 #include "ArchiveTool.h"
 #import <sqlite3.h>
@@ -82,10 +81,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
     // Override point for customization after application launch.
     
-    // 一个网络调试工具用的，需要在Mac端使用一个叫Bagel的软件配合调试，升级Xcode以后这个库出了点问题
-//    #ifdef DEBUG
-//    [Bagel start];
-//    #endif
     if (sqlite3_config(SQLITE_CONFIG_SERIALIZED)!=SQLITE_OK) {
         CCLog(@"Failure");
     }

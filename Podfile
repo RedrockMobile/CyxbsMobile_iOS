@@ -5,8 +5,7 @@ use_frameworks!
 
 
 target 'CyxbsMobile2019_iOS' do
-  pod 'MGJRouter'
-  pod 'Bagel', '~> 1.3.2'
+  	pod 'MGJRouter'
 	pod 'TZImagePickerController','~> 3.3.2'
 	pod 'YBImageBrowser'
 	pod 'NudeIn'
