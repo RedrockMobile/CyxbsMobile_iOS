@@ -60,7 +60,14 @@
 
 - (void)getCommentDataWithPost_id:(int)post_id Sucess:(void (^)(NSArray * _Nonnull))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:NEW_QA_Comment_Reply method:HttpRequestGet parameters:@{@"post_id":@(post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    ;
+    NSDictionary *parameters = @{
+        @"target_id" : @(post_id),
+        @"comment_type" : @1,
+        @"page" : @1,
+        @"size" : @6
+    };
+    [client requestWithPath:NEW_QA_Comment_Reply method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
 //        NSLog(@"请求评论数据成功,内容为%@",responseObject);
         sucess(array);

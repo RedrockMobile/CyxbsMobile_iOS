@@ -374,7 +374,7 @@
 #define NEW_QA_DynamicDetail @"magipoke-loop/post/getPostInfo"
 
 //根据id获取评论/回复
-#define NEW_QA_Comment_Reply @"magipoke-loop/comment/getallcomment"
+#define NEW_QA_Comment_Reply @"magipoke-loop/comment"
 
 //回复评论
 #define New_QA_Comment_Release @"magipoke-loop/comment/releaseComment"

@@ -277,7 +277,7 @@
         [self buildFrame];
     } Failure:^{
         self.isGetCommentDtaFailure = YES;
-        [self getDataFailure];
+//        [self getDataFailure];
     }];
 }
 
