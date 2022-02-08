@@ -116,6 +116,7 @@
                    progress:(void (^)(NSProgress * progress))progress
                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+    url =  [CyxbsMobileBaseURL_1 stringByAppendingString:url];
     NSString *token = [UserItem defaultItem].token;
     if (token) {
         [self.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
