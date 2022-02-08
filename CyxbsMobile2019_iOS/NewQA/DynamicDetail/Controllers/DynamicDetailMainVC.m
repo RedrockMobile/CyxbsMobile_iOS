@@ -166,12 +166,12 @@
     [self.view addSubview:self.topBarView];
 
     //无评论时的布局策略：底部为一个scrollView，scrollView的滑动高度为动态信息页和无评论的view的高度总和
-//    [self.commentTableDataAry removeAllObjects];
     if (self.commentTableDataAry.count <= 0) {
         [self setFrameWhenNoComent];
     }else{
         [self setFrameWhenHaveComents];
     }
+
 }
 
 ///当有评论的时候设置UI
@@ -200,18 +200,17 @@
         make.bottom.equalTo(self.view);
     }];
 }
-
 ///当没有评论的时候设置UI
 - (void)setFrameWhenNoComent{
     //底层的scrollView
     [self.view addSubview:self.scrollView];
 //        self.scrollView.backgroundColor = [UIColor redColor];
-    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view);
-        make.top.equalTo(self.topBarView.mas_bottom);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-70);
-        make.width.equalTo(self.view);
-    }];
+//    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.view);
+//        make.top.equalTo(self.topBarView.mas_bottom);
+//        make.bottom.equalTo(self.view.mas_bottom).offset(-70);
+//        make.width.equalTo(self.view);
+//    }];
         //设置scrollView的contentsize动态改变
     self.scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, [self.dynamicDataModel getModelHeight] + MAIN_SCREEN_H * 0.251 + 10);
     
@@ -223,9 +222,7 @@
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, [self.dynamicDataModel getModelHeight]));
     }];
     
-    //无评论的缺省页
     [self.scrollView addSubview:self.noCommentView];
-    
     [self.noCommentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.scrollView.mas_centerX);
         make.top.equalTo(self.dynamicSpecifiCell.mas_bottom);
@@ -525,7 +522,7 @@
     pasteboard.string = shareURL;
 }
 
-//MARK: 多功能View的代理方法
+//MARK:======================================多功能View的代理方法=====================
 ///点击关注按钮
 - (void)ClickedStarGroupBtn:(UIButton *)sender {
     FollowGroupModel *model = [[FollowGroupModel alloc] init];
@@ -598,7 +595,7 @@
     self.isReportComment = NO;
 }
 
-//MARK: 是自己的动态的多功能View的代理方法
+//MARK: =====================是自己的动态的多功能View的代理方法================
 - (void)ClickedDeletePostBtn:(UIButton *)sender{
 //    [self.selfPopView removeFromSuperview];
 //    [self.backViewWithGesture removeFromSuperview];
@@ -1097,8 +1094,6 @@
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50 * HScaleRate_SE, MAIN_SCREEN_W, IS_IPHONE8 ? (MAIN_SCREEN_H - 54) : (MAIN_SCREEN_H - 70))];
-        
-//        _scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 1.5);
         
     }
     return _scrollView;

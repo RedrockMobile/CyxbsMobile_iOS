@@ -276,7 +276,7 @@
         }
         
         //点赞按钮
-        self.starBtn.countLabel.text = [NSString stringWithFormat:@"%@",dataModel.praise_count];
+        self.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",dataModel.praise_count];
         self.starBtn.selected = dataModel.is_praised;
         self.starBtn.countLabel.textColor = self.starBtn.selected == YES ? [UIColor colorNamed:@"countLabelColor"] : [UIColor colorNamed:@"FuncBtnColor"];
         [self.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
