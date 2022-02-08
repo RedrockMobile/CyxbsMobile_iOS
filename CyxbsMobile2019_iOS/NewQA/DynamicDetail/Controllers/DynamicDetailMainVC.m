@@ -166,12 +166,12 @@
     [self.view addSubview:self.topBarView];
 
     //无评论时的布局策略：底部为一个scrollView，scrollView的滑动高度为动态信息页和无评论的view的高度总和
+//    [self.commentTableDataAry removeAllObjects];
     if (self.commentTableDataAry.count <= 0) {
         [self setFrameWhenNoComent];
     }else{
         [self setFrameWhenHaveComents];
     }
-
 }
 
 ///当有评论的时候设置UI
@@ -200,6 +200,7 @@
         make.bottom.equalTo(self.view);
     }];
 }
+
 ///当没有评论的时候设置UI
 - (void)setFrameWhenNoComent{
     //底层的scrollView
@@ -222,14 +223,17 @@
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W, [self.dynamicDataModel getModelHeight]));
     }];
     
+    //无评论的缺省页
     [self.scrollView addSubview:self.noCommentView];
+    
     [self.noCommentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.scrollView);
+        make.centerX.equalTo(self.scrollView.mas_centerX);
         make.top.equalTo(self.dynamicSpecifiCell.mas_bottom);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.445, MAIN_SCREEN_H * 0.251));
     }];
     
-    [self.view addSubview:self.inputView];  //输入框
+    //输入框
+    [self.view addSubview:self.inputView];
     [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(IS_IPHONE8 ? 54 : 70);
@@ -277,7 +281,7 @@
         [self buildFrame];
     } Failure:^{
         self.isGetCommentDtaFailure = YES;
-//        [self getDataFailure];
+        [self getDataFailure];
     }];
 }
 
@@ -521,7 +525,7 @@
     pasteboard.string = shareURL;
 }
 
-//MARK:======================================多功能View的代理方法======================================
+//MARK: 多功能View的代理方法
 ///点击关注按钮
 - (void)ClickedStarGroupBtn:(UIButton *)sender {
     FollowGroupModel *model = [[FollowGroupModel alloc] init];
@@ -594,7 +598,7 @@
     self.isReportComment = NO;
 }
 
-//MARK:=====================是自己的动态的多功能View的代理方法================
+//MARK: 是自己的动态的多功能View的代理方法
 - (void)ClickedDeletePostBtn:(UIButton *)sender{
 //    [self.selfPopView removeFromSuperview];
 //    [self.backViewWithGesture removeFromSuperview];
@@ -607,7 +611,7 @@
 //        }];
 }
 
-//MARK:======================================举报页面的代理方法======================================
+//MARK: 举报页面的代理方法
 /// 举报页面点击确定按钮
 - (void)ClickedSureBtn {
     //隐藏视图
@@ -661,7 +665,7 @@
     [self.reportView.textView resignFirstResponder];
 }
 
-//MARK:======================================分享View的代理方法======================================
+//MARK: 分享View的代理方法
 ///点击取消
 - (void)ClickedCancel {
     [self.shareView removeFromSuperview];
@@ -704,7 +708,7 @@
     [self shareSuccessful];
 }
 
-//MARK:======================================DKSKeyboardDelegate===============================
+//MARK: DKSKeyboardDelegate
 //发送的文案
 - (void)textViewContentText:(NSString *)textStr {
     [self reportComment:textStr];
@@ -785,7 +789,7 @@
         }];
 }
 
-//MARK:UITextViewDelegate
+//MARK: UITextViewDelegate
 //实现return按钮的方法 + 限制输入字数
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     //限制字数
@@ -894,7 +898,8 @@
     }
     self.inputView.oldTextViewHeight = height;
 }
-//MARK:====================================表格的数据源方法============================================
+
+//MARK: UITableViewDataSource
 - (NSInteger )numberOfSectionsInTableView:(UITableView *)tableView{
     return self.commentTableDataAry.count;
 }
@@ -905,7 +910,6 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewCell *cell = [UITableViewCell alloc] initWithStyle:<#(UITableViewCellStyle)#> reuseIdentifier:<#(nullable NSString *)#>
     NSString *identifier = @"commentCell";
         DynamicDetailComentTableCell *cell = [[DynamicDetailComentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier commentType:(indexPath.row == 0 ? DynamicCommentType_stair : DynamicCommentType_secondLevel)];
     
@@ -933,7 +937,7 @@
 }
     
 
-//MARK:====================================表格的代理方法==============================================
+//MARK: UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
     
@@ -1048,7 +1052,11 @@
         _commentTable.estimatedRowHeight = SCREEN_HEIGHT * 0.461;
         //cell高度自适应
         _commentTable.rowHeight = UITableViewAutomaticDimension;
-        _commentTable.automaticallyAdjustsScrollIndicatorInsets = NO;
+        if (@available(iOS 13.0, *)) {
+            _commentTable.automaticallyAdjustsScrollIndicatorInsets = NO;
+        } else {
+            // Fallback on earlier versions
+        }
         //cell间的颜色
         _commentTable.separatorColor = [UIColor colorNamed:@"ShareLineViewColor"];
         _commentTable.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -1088,10 +1096,9 @@
 
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
-        
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50 * HScaleRate_SE, MAIN_SCREEN_W, IS_IPHONE8 ? (MAIN_SCREEN_H - 54) : (MAIN_SCREEN_H - 70))];
         
-        _scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 1.5);
+//        _scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 1.5);
         
     }
     return _scrollView;
