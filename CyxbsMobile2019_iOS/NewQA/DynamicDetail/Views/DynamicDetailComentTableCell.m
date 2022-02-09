@@ -233,8 +233,7 @@
         self.nicknameLabel.text = dataModel.nick_name;
         
         //发布日期
-        self.timeLabel.text = [self getDateStringWithTimeStr:dataModel.publish_time];
-        
+        self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%ld", dataModel.publish_time]];
         //内容，根据几级评论设置内容
             //如果是二级评论，对内容进行处理
         if (self.commentLevel == DynamicCommentType_secondLevel) {

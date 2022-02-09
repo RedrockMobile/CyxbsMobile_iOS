@@ -708,7 +708,7 @@
     }
     commentVC.post_id = [self.post_id intValue];
     if (self.actionCommentModel.comment_id > 0) {
-        commentVC.reply_id = self.actionCommentModel.comment_id;
+        commentVC.reply_id = self.actionCommentModel.comment_id.intValue;
     }
     commentVC.tampComment = textStr;
     [self.navigationController pushViewController:commentVC animated:YES];
@@ -726,7 +726,7 @@
     [param setObject:self.post_id forKey:@"post_id"];
     //当不是一级评论的时候才加回复id作为二级评论
     if (self.isCommentFirstLevel != YES) {
-        [param setObject:@(self.actionCommentModel.comment_id) forKey:@"reply_id"];
+        [param setObject:self.actionCommentModel.comment_id forKey:@"reply_id"];
     }
 
     [[HttpClient defaultClient]requestWithPath:New_QA_Comment_Release method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {

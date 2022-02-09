@@ -38,9 +38,9 @@
     
         //图片的collectionView的高度
     CGFloat height4 = 0;
-    if (self.pics > 0) {
+    if (self.pics.count > 0) {
         //内容框底部到collectionView的高度 + collectionView的高度
-        height4 = 11.5*HScaleRate_SE + (self.pics.count-1)/3 * 10*HScaleRate_SE + ((self.pics.count-1)/3 + 1)* (SCREEN_WIDTH-(2 * Margin + Pading * 2))/item_num;
+        height4 = 11.5*HScaleRate_SE + (self.pics.count-1)/3 * 10*HScaleRate_SE + ((self.pics.count-1)/3 + 1)* 111 * HScaleRate_SE;
     }
     
 //    self.cellHeight = height1 + height2 + height3 + height4;
