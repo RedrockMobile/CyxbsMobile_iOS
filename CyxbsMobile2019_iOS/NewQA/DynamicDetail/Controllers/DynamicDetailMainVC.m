@@ -185,8 +185,6 @@
         make.bottom.equalTo(self.view).offset(-54);
     }];
     //添加头视图
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 200)];
-    view.backgroundColor = [UIColor redColor];
     self.dynamicSpecifiCell.frame = CGRectMake(0, 0, MAIN_SCREEN_W, [self.dynamicDataModel getModelHeight]);
     self.dynamicSpecifiCell.dynamicDataModel = self.dynamicDataModel;
     
@@ -205,12 +203,12 @@
     //底层的scrollView
     [self.view addSubview:self.scrollView];
 //        self.scrollView.backgroundColor = [UIColor redColor];
-//    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view);
-//        make.top.equalTo(self.topBarView.mas_bottom);
-//        make.bottom.equalTo(self.view.mas_bottom).offset(-70);
-//        make.width.equalTo(self.view);
-//    }];
+    [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.top.equalTo(self.topBarView.mas_bottom);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-70);
+        make.width.equalTo(self.view);
+    }];
         //设置scrollView的contentsize动态改变
     self.scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, [self.dynamicDataModel getModelHeight] + MAIN_SCREEN_H * 0.251 + 10);
     
@@ -898,34 +896,35 @@
 
 //MARK: UITableViewDataSource
 - (NSInteger )numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.commentTableDataAry.count;
+//    return self.commentTableDataAry.count;
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
+//
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[section];
     return model.reply_list.count + 1;
+//    return 100;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier = @"commentCell";
         DynamicDetailComentTableCell *cell = [[DynamicDetailComentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier commentType:(indexPath.row == 0 ? DynamicCommentType_stair : DynamicCommentType_secondLevel)];
-    
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
         DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
         if (indexPath.row == 0) {
             cell.dataModel = model;
             if (indexPath.section == 0) {
                 cell.lineLB.hidden = YES;
             }
-            //存储一级评论的高度
+//            //存储一级评论的高度
             NSString *height = [NSString stringWithFormat:@"%f",[model getCellHeight]];
             [self.oneLeveCommentHeight addObject:height];
-           
+
         }else{
             cell.dataModel = model.reply_list[indexPath.row-1];
-            
-            //存储二级评论的高度
+//
+//            //存储二级评论的高度
             NSString *height = [NSString stringWithFormat:@"%f",[cell.dataModel getCellHeight]];
             NSMutableArray *muteAry = self.twoLevelCommentHeight[indexPath.section];
             [muteAry addObject:height];
@@ -937,21 +936,19 @@
 //MARK: UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
-    
+
     if (indexPath.row == 0) {
-        NSString *height = [NSString stringWithFormat:@"%f",[model getCellHeight]];
-//        return [self.oneLeveCommentHeight[indexPath.section] doubleValue];
-        return [height doubleValue];
+        CGFloat height = [model getCellHeight];
+        return height ;
     }else{
         DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
-        NSString *height = [NSString stringWithFormat:@"%f",[secondCommentModel getCellHeight]];
+        CGFloat height = [secondCommentModel getCellHeight];
+        
         //后面的20是回复的label的高度
-        return [height doubleValue] + 22;
-//        NSMutableArray *muteAry =  self.twoLevelCommentHeight[indexPath.section];
-//        return [muteAry[indexPath.row - 1] doubleValue];
+        return height + 22;
     }
-   
 }
+   
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.view endEditing:YES];
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
@@ -960,17 +957,17 @@
     }
     self.actionCommentModel = model;
     DynamicDetailComentTableCell *cell = (DynamicDetailComentTableCell *)[self.commentTable cellForRowAtIndexPath:indexPath];
-    
+
     CGRect rectInTableView = [tableView rectForRowAtIndexPath:indexPath];
     //获取cell在tableView中的位置,后面点击之后弹出来的View是根据这个frame设定的
     CGRect rectInSuperview = [tableView convertRect:rectInTableView toView:[tableView superview]];
-    
+
     //弹出视图在屏幕下方被隐藏时，设置它的最低的弹出位置
     CGFloat rectYMargin = rectInSuperview.origin.y+40;
     if (rectYMargin >= SCREEN_HEIGHT-NVGBARHEIGHT-STATUSBARHEIGHT-54) {
         rectYMargin = rectInSuperview.origin.y-SCREEN_WIDTH*0.0773;
     }
-    
+
     //设置点击cell后弹出的cell
     SHPopMenu *_menu = [[SHPopMenu alloc]init];
     _menu.dimBackground = YES;
@@ -979,16 +976,16 @@
     _menu.mList = @[@"回复",@"复制",(model.is_self ? @"删除" : @"举报")];
     _menu.arrowX = 0;
     _menu.arrowImage = [UIImage imageNamed:@""];
-    
+
     _menu.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x0C3573) DarkColor:KUIColorFromRGB(0x0C3573)];
     _menu.font = [UIFont fontWithName:PingFangSCMedium size:12];
     _menu.layer.cornerRadius = 15;
     _menu.layer.masksToBounds = YES;
-    
+
     __weak typeof(self)weakSelf = self;
     //显示菜单
     [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:rectYMargin block:^(SHPopMenu *menu, NSInteger index) {
-        
+
         if (index <= 1){
             if (index == 0) {
                 //回复评论
@@ -1009,7 +1006,7 @@
                 weakSelf.isReportComment = YES;
                 [weakSelf.view.window addSubview:weakSelf.backViewWithGesture]; //添加背景蒙板
                 weakSelf.reportView.postID = [NSNumber numberWithInteger:model.comment_id];
-                
+
                 //每次添加到屏幕上时内容置空
                 weakSelf.reportView.textView.text = @"";
                 [weakSelf.view.window addSubview:weakSelf.reportView];
@@ -1056,7 +1053,8 @@
         }
         //cell间的颜色
         _commentTable.separatorColor = [UIColor colorNamed:@"ShareLineViewColor"];
-        _commentTable.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//        _commentTable.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        
         //分割线样式为无
         _commentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_commentTable registerClass:[DynamicDetailComentTableCell class] forCellReuseIdentifier:@"commentCell"];

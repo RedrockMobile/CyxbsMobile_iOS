@@ -192,12 +192,13 @@
 }
 //设置每个item的size
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat item_height = (SCREEN_WIDTH-(2 * Margin + Pading * 2))/item_num;
+//    CGFloat item_height = (SCREEN_WIDTH - (2 * Margin + Pading * 2))/item_num;
+    CGFloat item_height = 97 * HScaleRate_SE;
     CGSize size = CGSizeMake(item_height,item_height);
     return size;
 }
 
-//MARK: CollectionView Delegate
+//MARK: CollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSMutableArray *photos = [NSMutableArray array];
     for (int i = 0;i < self.dataModel.pics.count; i++) {
