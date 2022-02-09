@@ -48,17 +48,16 @@
     
         //图片的collectionView的高度 + 到底部的距离一级评论才有，二级无
     CGFloat height4 = 0;
-    if (self.reply_list.count == 0) {
-        if (self.pics.count > 0) {
-            //内容框底部到collectionView的高度 + collectionView的高度 + 底部的高度
-            
-            //内容框到collectionView的高度 + collectionView到底部的高度
-            CGFloat height5 = (14.5 + 10) *HScaleRate_SE;
-            //collectionView的高度 = 行间距 + 每一行的高度
-            CGFloat height6 = ((self.pics.count - 1)/3) * 10*HScaleRate_SE + ((self.pics.count-1)/3 + 1) * 97*HScaleRate_SE ;
-            height4 = height5 + height6;
-        }
-    }
+//    if (self.reply_list.count == 0) {
+//        if (self.pics.count > 0) {
+//            //内容框底部到collectionView的高度 + collectionView的高度 + 底部的高度
+//                //内容框到collectionView的高度 + collectionView到底部的高度
+//            CGFloat height5 = (14.5 + 10) *HScaleRate_SE;
+//                //collectionView的高度 = 行间距 + 每一行的高度
+//            CGFloat height6 = ((self.pics.count - 1)/3) * 10*HScaleRate_SE + ((self.pics.count-1)/3 + 1) * 97*HScaleRate_SE ;
+//            height4 = height5 + height6;
+//        }
+//    }
         //最后的5是容错处理 10是发布时间距离昵称的高度
     CGFloat totleHeight = height1 + height2 + height3 + height4 + 5 + 10;
     printf("%f", totleHeight);

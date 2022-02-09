@@ -80,11 +80,6 @@
 /// 评论table的数据源数组
 @property (nonatomic, strong)NSMutableArray *commentTableDataAry;
 
-/// 存储一级评论cell的高度的数组
-@property (nonatomic, strong) NSMutableArray *oneLeveCommentHeight;
-///存储二级评论cell的高度的数组
-@property (nonatomic, strong) NSMutableArray *twoLevelCommentHeight;
-
 
 /// 请求数据的model
 @property (nonatomic, strong) DynamicDetailRequestDataModel *requestModel;
@@ -128,8 +123,6 @@
     
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.commentTableDataAry = [NSMutableArray array];
-    self.oneLeveCommentHeight = [NSMutableArray array];
-    self.twoLevelCommentHeight = [NSMutableArray array];
     
     self.waiLoadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.waiLoadHud.labelText = @"正在加载中...";
@@ -140,7 +133,7 @@
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = YES;//隐藏nav_bar
-    if (self.isFirstEnter != YES) {
+    if (!self.isFirstEnter) {
         [self rebuildFrameByComentCount];
     }
     //注册通知中心
@@ -266,12 +259,6 @@
         //模型数组
         [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
         
-        //高度数组
-        for (int i = 0; i < commentAry.count; i++) {
-            NSMutableArray *muteAry = [NSMutableArray array];
-            [self.twoLevelCommentHeight addObject:muteAry];
-        }
-        
         self.isGetCommentDtaFailure = NO;
         [self buildFrame];
     } Failure:^{
@@ -283,11 +270,14 @@
 ///第一次进入页面网络请求失败
 - (void)getDataFailure{
     [self.waiLoadHud hide:YES];
-    MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"请检查网络";
-    [hud hide:YES afterDelay:1];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if (self.isGetCommentDtaFailure == YES && self.isGetDynamicDataFailure == YES) {
+        MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"请检查网络";
+        [hud hide:YES afterDelay:1];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 ///添加或者删除评论后调用的方法
@@ -297,18 +287,12 @@
     [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
         //移除原所有数据
         [self.commentTableDataAry removeAllObjects];
-        [self.oneLeveCommentHeight removeAllObjects];
-        [self.twoLevelCommentHeight removeAllObjects];
         //向评论列表数据源数组添加元素
         [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
 
-        //高度数组
-        for (int i = 0; i < commentAry.count; i++) {
-            NSMutableArray *muteAry = [NSMutableArray array];
-            [self.twoLevelCommentHeight addObject:muteAry];
-        }
         
         [self.view removeAllSubviews];
+        self.commentTableDataAry = [NSMutableArray array];
         [self buildFrame];
         [self.commentTable reloadData];
         
@@ -452,12 +436,12 @@
 }
 #pragma mark- Delegate
 
-//MARK:=================================DynamicDetailTopBarViewDelegate==========================
+//MARK: DynamicDetailTopBarViewDelegate
 - (void)pop{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//MARK:======================================动态信息cell的代理方法================
+//MARK: 动态信息cell的代理方法
 /**
  点击多功能按钮
  逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
@@ -520,7 +504,7 @@
     pasteboard.string = shareURL;
 }
 
-//MARK:======================================多功能View的代理方法=====================
+//MARK: 多功能View的代理方法
 ///点击关注按钮
 - (void)ClickedStarGroupBtn:(UIButton *)sender {
     FollowGroupModel *model = [[FollowGroupModel alloc] init];
@@ -593,7 +577,7 @@
     self.isReportComment = NO;
 }
 
-//MARK: =====================是自己的动态的多功能View的代理方法================
+//MARK: 是自己的动态的多功能View的代理方法
 - (void)ClickedDeletePostBtn:(UIButton *)sender{
 //    [self.selfPopView removeFromSuperview];
 //    [self.backViewWithGesture removeFromSuperview];
@@ -896,11 +880,10 @@
 
 //MARK: UITableViewDataSource
 - (NSInteger )numberOfSectionsInTableView:(UITableView *)tableView{
-//    return self.commentTableDataAry.count;
-    return 1;
+    return self.commentTableDataAry.count;
+//    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[section];
     return model.reply_list.count + 1;
 //    return 100;
@@ -917,17 +900,8 @@
             if (indexPath.section == 0) {
                 cell.lineLB.hidden = YES;
             }
-//            //存储一级评论的高度
-            NSString *height = [NSString stringWithFormat:@"%f",[model getCellHeight]];
-            [self.oneLeveCommentHeight addObject:height];
-
         }else{
             cell.dataModel = model.reply_list[indexPath.row-1];
-//
-//            //存储二级评论的高度
-            NSString *height = [NSString stringWithFormat:@"%f",[cell.dataModel getCellHeight]];
-            NSMutableArray *muteAry = self.twoLevelCommentHeight[indexPath.section];
-            [muteAry addObject:height];
         }
     return cell;
 }
