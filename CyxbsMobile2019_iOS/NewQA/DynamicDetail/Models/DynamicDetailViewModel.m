@@ -19,13 +19,9 @@
 
 - (CGFloat)getModelHeight{
     //固定高度
-        //内容框顶部到cell顶部的高度
+        //1.内容框顶部到cell顶部的高度
     CGFloat height1 = 70.5 * HScaleRate_SE;
-        //内容框底部到cell底部的高度  内容框底部到标签btn的距离 + 标签btn的height + 到cell底部的距离
-//    CGFloat height2 = 12.5*HScaleRate_SE + (SCREEN_WIDTH * 0.2707 * 25.5/101.5) + ( (69 + 25)*HScaleRate_SE + 18 * fontSizeScaleRate_SE);
-//    CGFloat height2 = (12.5 + 25 + 88 + 17) * fontSizeScaleRate_SE;
-    
-    //内容框底部到cell底部的距离
+        //2。内容框底部到cell底部的距离
     CGFloat height2 = 142.5 * HScaleRate_SE;
     
     //动态高度
@@ -42,8 +38,6 @@
         //内容框底部到collectionView的高度 + collectionView的高度
         height4 = 11.5*HScaleRate_SE + (self.pics.count-1)/3 * 10*HScaleRate_SE + ((self.pics.count-1)/3 + 1)* 111 * HScaleRate_SE;
     }
-    
-//    self.cellHeight = height1 + height2 + height3 + height4;
     return height1 + height2 + height3 + height4 + 10;
     
 }

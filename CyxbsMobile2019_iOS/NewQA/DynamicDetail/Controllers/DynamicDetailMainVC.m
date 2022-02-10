@@ -47,11 +47,6 @@
 @property (nonatomic, strong) DynamicDetailTopBarView *topBarView;
 
 @property (nonatomic, strong) DynamicSpecificCell *dynamicSpecifiCell;
-/// table的头视图
-@property (nonatomic, strong) UIView *tableHeaderView;
-
-/// 评论的Table
-@property (nonatomic, strong) UITableView *commentTable;
 
 /// 无评论时放置的ScrollView
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -89,9 +84,6 @@
 ///
 @property (nonatomic, strong) DynamicDetailCommentTableCellModel *actionCommentModel;
 
-/// table头视图的高度
-@property (nonatomic, assign) double tableHedaerViewHeight;
-
 /// 请求动态信息数据失败
 @property (nonatomic, assign) BOOL isGetDynamicDataFailure;
 /// 请求评论数据信息失败
@@ -107,6 +99,11 @@
 @property (nonatomic, assign) BOOL isFirstEnter;
 /// 是否是动态详情页
 @property (nonatomic, assign) BOOL isDynamicDetailVC;
+
+/// 评论的Table
+@property (nonatomic, strong) UITableView *commentTable;
+///table的页数，每页是六个一级评论
+@property (nonatomic, assign) int page;
 @end
 
 @implementation DynamicDetailMainVC
@@ -120,6 +117,7 @@
     self.isFirstEnter = YES;
     self.isDynamicDetailVC = YES;
     self.isShowedReportView = NO;
+    self.page = 1;
     
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.commentTableDataAry = [NSMutableArray array];
@@ -255,18 +253,17 @@
         }];
     
     //请求评论的数据
-    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
+    [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:self.page andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
         //模型数组
         [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
         
         self.isGetCommentDtaFailure = NO;
         [self buildFrame];
-    } Failure:^{
-        self.isGetCommentDtaFailure = YES;
-        [self getDataFailure];
-    }];
+        } Failure:^{
+            self.isGetCommentDtaFailure = YES;
+            [self getDataFailure];
+        }];
 }
-
 ///第一次进入页面网络请求失败
 - (void)getDataFailure{
     [self.waiLoadHud hide:YES];
@@ -279,39 +276,73 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
 ///添加或者删除评论后调用的方法
 - (void)rebuildFrameByComentCount{
+    
     DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
-    //请求评论的数据
-    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
-        //移除原所有数据
+    
+    //请求动态信息的数据,更新评论数量
+    [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
+        DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
+        //字典转模型
+        [model setValuesForKeysWithDictionary:dic];
+        //更改评论数量
+        self.dynamicSpecifiCell.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",model.comment_count];
+        } Failure:^{
+            [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
+        }];
+    
+    [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:1 andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
+        //如果删除评论后此时还有评论，则更新table的数量
+        if (commentAry.count > 0) {
+            //移除原所有数据
+            [self.commentTableDataAry removeAllObjects];
+            //向评论列表数据源数组添加元素
+            [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
+            [self.commentTable reloadData];
+        }else{
+            //如果无评论的情况下
+            [self.view removeAllSubviews];
+            [self setFrameWhenNoComent];
+        }
+        } Failure:^{
+            [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
+        }];
+}
+///下拉刷新数据
+- (void)refreshData{
+    self.page = 1;
+    DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
+    [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:self.page andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
+        //移除数组内所有元素
         [self.commentTableDataAry removeAllObjects];
         //向评论列表数据源数组添加元素
         [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
-
-        
-        [self.view removeAllSubviews];
-        self.commentTableDataAry = [NSMutableArray array];
-        [self buildFrame];
         [self.commentTable reloadData];
         
-        //请求动态信息的数据,更新评论数量
-        DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
-        [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
-            //数据请求成功先进行赋值
-            [model setValuesForKeysWithDictionary:dic];
-            //获取该cell的缓存高度
-            [model getModelHeight];
-            self.dynamicSpecifiCell.dynamicDataModel = model;
-            self.dynamicDataModel = model;
-            self.dynamicSpecifiCell.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",model.comment_count];
-            } Failure:^{
-            }];
-    } Failure:^{
-        [self.commentTable.mj_header endRefreshing];
-        [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
+        } Failure:^{
+            [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
         }];
+    [self.commentTable.mj_header endRefreshing];
+}
+///上滑加载更多数据
+- (void)loadData{
+    //新增加一页数据
+    self.page += 1;
+    
+    //请求新一页的数据
+    DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
+    [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:self.page andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
+        //向评论列表数据源数组添加元素
+        [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
+        [self.commentTable reloadData];
+        } Failure:^{
+            [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
+        }];
+    
+    //停止刷新
+    [self.commentTable.mj_footer endRefreshing];
+    
 }
 
 #pragma mark- event respomse
@@ -1018,20 +1049,31 @@
         _commentTable.dataSource = self;
         //设置预加载高度
         _commentTable.estimatedRowHeight = SCREEN_HEIGHT * 0.461;
-        //cell高度自适应
+//        cell高度自适应
         _commentTable.rowHeight = UITableViewAutomaticDimension;
         if (@available(iOS 13.0, *)) {
             _commentTable.automaticallyAdjustsScrollIndicatorInsets = NO;
         } else {
             // Fallback on earlier versions
         }
-        //cell间的颜色
+        //cell之间的颜色
         _commentTable.separatorColor = [UIColor colorNamed:@"ShareLineViewColor"];
-//        _commentTable.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        
-        //分割线样式为无
+        //设置分割线样式为无
         _commentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        //注册celll
         [_commentTable registerClass:[DynamicDetailComentTableCell class] forCellReuseIdentifier:@"commentCell"];
+        
+        //给table添加MJRefresh控件，用来下拉刷新，上滑加载更多
+            //头刷新
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+            //尾刷新
+        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+            //进行刷新时的个性化设置
+        [MGDRefreshTool setUPHeader:header AndFooter:footer];
+            //添加到table上
+        _commentTable.mj_header = header;
+        _commentTable.mj_footer = footer;
+        
     }
     return _commentTable;
 }

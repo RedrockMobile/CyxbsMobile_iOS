@@ -58,13 +58,12 @@
     
 }
 
-- (void)getCommentDataWithPost_id:(int)post_id Sucess:(void (^)(NSArray * _Nonnull))sucess Failure:(void (^)(void))failure{
+- (void)getCommentDataWithTarget_id:(int)target_id andPage:(int)page andComent_type:(int)comment_type Sucess:(void (^)(NSArray * _Nonnull))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
-    ;
     NSDictionary *parameters = @{
-        @"target_id" : @(post_id),
-        @"comment_type" : @1,
-        @"page" : @1,
+        @"target_id" : @(target_id),
+        @"comment_type" : @(comment_type),
+        @"page" : @(page),
         @"size" : @6
     };
     [client requestWithPath:NEW_QA_Comment_Reply method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
