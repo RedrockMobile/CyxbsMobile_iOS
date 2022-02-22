@@ -12,7 +12,7 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'SDWebImage'
 	pod 'AFNetworking'
 	pod 'FMDB'
-	pod 'MBProgressHUD'
+	pod 'MBProgressHUD', '~> 0.9.2'
 	pod 'YYKit'
 	pod 'YYImage'
 	pod 'Masonry'
