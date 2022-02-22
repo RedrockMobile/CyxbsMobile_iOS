@@ -97,7 +97,7 @@
 /// 删除草稿
 #define DELETEDRAFT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-draft/User/deleteItemInDraft"]
 
-#pragma mark - 修改密码 借口
+#pragma mark - 修改密码 接口
 /// 密保问题列表
 #define QUESTIONLISTAPI [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/question"]
 
@@ -130,6 +130,8 @@
 #define GETEMAILCODE [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/valid/email/code"]
 ///请求密保邮箱账号
 #define GETEMAILDETAIL [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/bind/email/detail"]
+///判断是否为默认密码
+#define IFORIGINPASSWORD [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/judge/origin"] 
 
 
 #pragma mark - “发现”接口

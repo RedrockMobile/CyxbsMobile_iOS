@@ -15,7 +15,7 @@
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
 
-@interface YYZGetIdVC ()
+@interface YYZGetIdVC () <UITextFieldDelegate>
 
 @property (nonatomic, strong) FindPasswordView *findPasswordView;
 @property (nonatomic, strong) YYZpopView *popView;
@@ -86,6 +86,7 @@
     testF.keyboardType = UIKeyboardTypeNumberPad;
     testF.font = [UIFont fontWithName:@"Arial" size:18.0];
     testF.frame = CGRectMake(55,182, 180, 50) ;
+    testF.delegate = self;
     [self.view addSubview:testF];
 }
 -(void) setLable{
@@ -116,7 +117,12 @@
 }
 
 -(void)jumpTOchangeword{
-    [[HttpClient defaultClient]requestWithPath :@"https://cyxbsmobile.redrock.team/wxapi/user-secret/user/judge/origin" method:HttpRequestPost parameters:@{@"stu_num":self.testF.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    //判断学号格式是否正确
+    if(self.testF.text.length != 10){
+        [NewQAHud showHudWith:@" 请输入正确格式的学号  " AddView:self.view];
+        return;
+    }
+    [[HttpClient defaultClient]requestWithPath :IFORIGINPASSWORD method:HttpRequestPost parameters:@{@"stu_num":self.testF.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         //如果是默认密码，弹出提示框
         if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
             self->_popView.alpha = 1.0;
@@ -142,9 +148,21 @@
             
         }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"----------%@",error);
+            NSLog(@"——————————错误信息如下————————%@",error);
+            [NewQAHud showHudWith:@" 请求失败,请检查网络  " AddView:self.view];
         }];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField == self.testF) {
+        if (string.length == 0) return YES;
+       NSMutableString *newtxt = [NSMutableString stringWithString:textField.text];
+        [newtxt replaceCharactersInRange:range withString:string];
+        if (newtxt.length > 10) return NO;
+    }
+    return YES;
+}
+
 
 - (void)addViewTo:(UIView *)view {
     [view addSubview:self.view];
@@ -155,15 +173,5 @@
 {
     [self.findPasswordView removeFromSuperview];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

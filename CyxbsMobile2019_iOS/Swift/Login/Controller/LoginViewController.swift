@@ -18,11 +18,11 @@ private enum LoginState {
     case OK
 }
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,UITextFieldDelegate {
     
-    @IBOutlet private weak var stuNumTextField: UITextField!
+    @IBOutlet private weak var stuNumTextField: UITextField! //学号
     
-    @IBOutlet private weak var idNumTextField: UITextField!
+    @IBOutlet private weak var idNumTextField: UITextField! //密码
     
     @IBOutlet private weak var protocolCheckButton: UIButton!
     
@@ -131,7 +131,8 @@ class LoginViewController: UIViewController {
         }
         
     }
-    
+
+
     @IBAction private func protocolButtonClicked(_ sender: UIButton) {
         self.present(UserProtocolViewController(), animated: true, completion: nil)
     }

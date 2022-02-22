@@ -3243,7 +3243,6 @@
 			isa = PBXGroup;
 			children = (
 				7FBF39E7257B79F20077494E /* FindPasswordView.swift */,
-				7FBF39EA257B79F20077494E /* LoginViewController.swift */,
 				7FBF3A11257CBCCC0077494E /* YYZpopView.h */,
 				7FBF3A12257CBCCC0077494E /* YYZpopView.m */,
 			);
@@ -4056,6 +4055,7 @@
 		7FA2499F265A4FC6001B49FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7FBF39EA257B79F20077494E /* LoginViewController.swift */,
 				7FBF39E9257B79F20077494E /* ByPasswordViewController.h */,
 				7FBF39EB257B79F20077494E /* ByPasswordViewController.m */,
 				7FBF39E8257B79F20077494E /* ByWordViewController.h */,
