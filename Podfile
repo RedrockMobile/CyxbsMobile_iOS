@@ -10,7 +10,7 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'YBImageBrowser'
 	pod 'NudeIn'
 	pod 'SDWebImage'
-	pod 'AFNetworking','~> 2.6.3'
+	pod 'AFNetworking'
 	pod 'FMDB'
 	pod 'MBProgressHUD'
 	pod 'YYKit'
