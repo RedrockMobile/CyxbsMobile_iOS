@@ -83,14 +83,14 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.6.3)
+  - AFNetworking
   - Alamofire (~> 5.2)
   - AMap3DMap-NO-IDFA
   - AMapLocation-NO-IDFA
   - FMDB
   - IQKeyboardManager
   - Masonry
-  - MBProgressHUD
+  - MBProgressHUD (~> 0.9.2)
   - MGJRouter
   - MJExtension
   - MJRefresh
@@ -182,6 +182,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 4c1b8671d52b4872ca7afc80cf0d173805066015
+PODFILE CHECKSUM: 60252ba36090f957495cb860840903681ab7d451
 
 COCOAPODS: 1.11.2
