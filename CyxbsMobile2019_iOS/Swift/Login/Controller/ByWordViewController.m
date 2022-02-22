@@ -10,7 +10,6 @@
 #import "ByWordViewController.h"
 #import "Masonry.h"
 #import "ResetPwdViewController.h"
-#import "AFHTTPRequestOperationManager.h"
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准

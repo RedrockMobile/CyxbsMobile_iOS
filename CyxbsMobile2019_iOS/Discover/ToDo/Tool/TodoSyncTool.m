@@ -239,7 +239,7 @@ static TodoSyncTool* _instance;
     AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
     man.responseSerializer = responseSerializer;
     
-    [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         CCLog(@"%@", responseObject);
         
         NSString* state = responseObject[@"info"];
@@ -312,7 +312,7 @@ static TodoSyncTool* _instance;
             AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
             man.responseSerializer = responseSerializer;
             
-            [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                 CCLog(@"resp::%@",responseObject);
                 NSString* state = responseObject[@"info"];
                 if ([state isEqualToString:@"success"]) {
@@ -364,7 +364,9 @@ static TodoSyncTool* _instance;
             
             
 //            [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success
-            [man DELETE:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            
+            [man DELETE:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict headers:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 CCLog(@"resp::%@",responseObject);
                 NSString* state = responseObject[@"info"];
                 if ([state isEqualToString:@"success"]) {

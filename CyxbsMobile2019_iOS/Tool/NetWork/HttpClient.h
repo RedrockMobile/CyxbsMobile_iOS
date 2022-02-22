@@ -19,7 +19,6 @@ typedef void (^PrepareExecuteBlock)(void);
 
 @interface HttpClient : NSObject
 @property(strong,nonatomic)AFHTTPSessionManager *httpSessionManager;
-@property(strong,nonatomic)AFHTTPRequestOperationManager *httpRequestOperationManager;
 
 + (HttpClient *)defaultClient;
 
@@ -55,8 +54,10 @@ typedef void (^PrepareExecuteBlock)(void);
                  parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
              prepareExecute:(PrepareExecuteBlock) prepare
                    progress:(void (^)(NSProgress * progress))progress
-                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+                    success:(void (^)(id responseObject))success
+                    failure:(void (^)(NSError *error))failure;
+
+
 
 - (void)cancelRequest;
 ///获取baseURL

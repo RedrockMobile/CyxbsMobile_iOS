@@ -16,11 +16,18 @@
         @"idnum": [UserDefaultTool getIdNum]
     };
     
-    [[HttpClient defaultClient] uploadImageWithJson:UPLOADPROFILEAPI method:HttpRequestPost parameters:params imageArray:@[profile] imageNames:@[@"fold"] prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        success(responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error);
-    }];
+//    [[HttpClient defaultClient] uploadImageWithJson:UPLOADPROFILEAPI method:HttpRequestPost parameters:params imageArray:@[profile] imageNames:@[@"fold"] prepareExecute:nil progress:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        success(responseObject);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        failure(error);
+//    }];
+    
+    
+    [[HttpClient defaultClient] uploadImageWithJson:UPLOADPROFILEAPI method:HttpRequestPost parameters:params imageArray:@[profile] imageNames:@[@"fold"] prepareExecute:nil progress:nil success:^(id responseObject) {
+            success(responseObject);
+        } failure:^(NSError *error) {
+            failure(error);
+        }];
 }
 
 + (void)uploadUserInfo:(NSDictionary *)userInfo success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {

@@ -30,7 +30,9 @@
     [req setValue:@"*/*" forHTTPHeaderField:@"Accept"];
     [req setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"Authorization"];
     [req setHTTPBody:data];
-    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
+    
+    
+    [[manager dataTaskWithRequest:req uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
         if (!error) {
             if ([responseObject[@"status"] isEqual:@"10000"]) {
                 //ids绑定成功

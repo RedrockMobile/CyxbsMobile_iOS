@@ -44,12 +44,12 @@
     HttpClient *client = [HttpClient defaultClient];
     
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:SEARCHTEACHERAPI parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:SEARCHTEACHERAPI parameters:nil headers:nil  constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             
             NSData *data = [name dataUsingEncoding:NSUTF8StringEncoding];
             [formData appendPartWithFormData:data name:@"teaName"];
             
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             
             NSMutableArray *tmpArray = [NSMutableArray array];
             for (NSDictionary *classmateInfo in responseObject[@"data"]) {
