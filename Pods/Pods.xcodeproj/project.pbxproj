@@ -1191,11 +1191,12 @@
 			remoteInfo = UMCCommon;
 		};
 		14C866F4D0FDA937EC12EBD33104103F /* PBXContainerItemProxy */ = {
+
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EA9EA43B3B503823EE36C60D9C8A865F;
-			remoteInfo = RxSwift;
+			remoteGlobalIDString = 4622BFEF3DC16E8BD15EEFC30D4D0084;
+			remoteInfo = RxRelay;
 		};
 		18324590DC1BF51E812A30F0DDCD118A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1208,8 +1209,8 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6F6B630FA5213AB083E7CEF1F986FE44;
-			remoteInfo = UMCCommon;
+			remoteGlobalIDString = 55AF53E6C77A10ED4985E04D74A8878E;
+			remoteInfo = Masonry;
 		};
 		1DB38E14E07E859055BBDC59322D50ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1383,8 +1384,8 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8592E0E389D40AC17881400ADC67ABC0;
-			remoteInfo = FMDB;
+			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
+			remoteInfo = Alamofire;
 		};
 		C47F9966D6EE6D26BE160936A4B7640C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1397,8 +1398,8 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
-			remoteInfo = Alamofire;
+			remoteGlobalIDString = 4BD4E22D3419D68A85BDD6119CB37C6C;
+			remoteInfo = "AMapLocation-NO-IDFA";
 		};
 		C9DA2F93146483D0597725C02838A011 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1436,12 +1437,14 @@
 			remoteInfo = UMCCommon;
 		};
 		E07EBA485FE8AD04B15D3E0330A80220 /* PBXContainerItemProxy */ = {
+
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3847153A6E5EEFB86565BA840768F429;
-			remoteInfo = SDWebImage;
+			remoteGlobalIDString = 6F6B630FA5213AB083E7CEF1F986FE44;
+			remoteInfo = UMCCommon;
 		};
+
 		E1C25DB648BDA71B29802DA38A9BED71 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -1480,6 +1483,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+
 		0051EFF68BC3F1A27B3CE51C57390295 /* SDWebImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImage.h; path = WebImage/SDWebImage.h; sourceTree = "<group>"; };
 		00A3158E9027FAA5C35C1D8AA9F76685 /* BehaviorRelay+Driver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "BehaviorRelay+Driver.swift"; path = "RxCocoa/Traits/Driver/BehaviorRelay+Driver.swift"; sourceTree = "<group>"; };
 		00AD27EEE8BF2664AD528875904F674C /* UIDevice+YYAdd.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIDevice+YYAdd.h"; path = "YYKit/Base/UIKit/UIDevice+YYAdd.h"; sourceTree = "<group>"; };
@@ -2788,20 +2792,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		20B0E01BCC9D7B243D86DD83900A39A2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A9BDC0D8963AA278E701666DA8AD4B08 /* Foundation.framework in Frameworks */,
-				E2F63B9BE121A707DB0F29010509A49E /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		265D5711F1A22DBC2EBA3E6E562F4E34 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F289CB7567BB7133DB03D4B4D0C9C056 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A239207FD293653009EB238AB61CFEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D25C259465679E35BBF4326EA697319 /* Foundation.framework in Frameworks */,
+				8FE8FADD7F7B300A6CD839263338525A /* ImageIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2856,6 +2860,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		59346394DAED6D7C64B5FD555B5705E7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2873,6 +2878,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		6F8DBBA5DC41668111AABDE75CE965E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2932,6 +2938,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		9FCFA36BAA704EB50FD2F60AD4198250 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2940,11 +2947,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7EB9333BB3CE99C2B80C668EEFC3B43 /* Frameworks */ = {
+		B9677F205D10C264AE8EE8C534DEAB12 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B20BB2AD2137BBF6E97BD43F981A45E0 /* Foundation.framework in Frameworks */,
+				4F1CCC9BB9D7637B1CDCFA8533F4E619 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2953,6 +2960,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				23AEAF5E77D59B98AE79C57BAE746C1A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4F0E9990E24194A5EA3CDD1001D678E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				374A698A0D0840EC4545835707641BDE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2965,6 +2980,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		E3BFF50DA479A93D0FE665ED44140D9B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -3184,6 +3200,7 @@
 			children = (
 				A2174024EAF293614DC8F36BD17D61ED /* UMCommonLog.framework */,
 			);
+
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -3229,6 +3246,7 @@
 			path = "../Target Support Files/MJRefresh";
 			sourceTree = "<group>";
 		};
+
 		0F9EA6486E6C24F43E34765225C6A24F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3245,6 +3263,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+
 		18C6C7611AFD9CFF328C8491C231741C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -3273,6 +3292,7 @@
 			children = (
 				B2A5E31FD984D7197546784589ADC283 /* UMAnalytics.framework */,
 			);
+
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -3306,8 +3326,9 @@
 				BD9B78B91B91809F1A262129B200B30B /* SDWebImage.debug.xcconfig */,
 				99D0BF729F9F3B35191053E2FFCE774C /* SDWebImage.release.xcconfig */,
 			);
+
 			name = "Support Files";
-			path = "../Target Support Files/SDWebImage";
+			path = "../Target Support Files/SDWebImage"; 
 			sourceTree = "<group>";
 		};
 		1DEEE5ACE93AD75DB177FA94290F4F07 /* Masonry */ = {
@@ -3374,6 +3395,7 @@
 			path = UMCShare;
 			sourceTree = "<group>";
 		};
+
 		27690377777AF866EA4B1556375EAAF5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3382,7 +3404,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		298F272835EE681942BD8522FD477E61 /* Resources */ = {
+		298F272835EE681942BD8522FD477E61 /* Resources */ = { f 
 			isa = PBXGroup;
 			children = (
 				7EF2DAD1DB2B9C5062850D3618A88C02 /* TZImagePickerController.bundle */,
@@ -3401,6 +3423,7 @@
 				0EC39417D6ABCD827BF97487C4B685EF /* Masonry.debug.xcconfig */,
 				5C5CB2E210D15A667777AA39626C6354 /* Masonry.release.xcconfig */,
 			);
+
 			name = "Support Files";
 			path = "../Target Support Files/Masonry";
 			sourceTree = "<group>";
@@ -3428,6 +3451,7 @@
 				96682DEFC7C84B8BBF83F3243F9F6BE2 /* WKWebView+AFNetworking.h */,
 				3B54FB21ED79E6E9CE3C20203879B800 /* WKWebView+AFNetworking.m */,
 			);
+
 			name = UIKit;
 			sourceTree = "<group>";
 		};
@@ -3519,6 +3543,7 @@
 			path = "../Target Support Files/MGJRouter";
 			sourceTree = "<group>";
 		};
+
 		3CD118E02C1D4C5DC07475BA9D5C2636 /* YYImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -3535,6 +3560,7 @@
 				523B81FB97E5EF1F9DAA2640E82ECE78 /* UMCCommonLog.debug.xcconfig */,
 				3D7BDFBD2EF3C6DD84F1C58DF3751B65 /* UMCCommonLog.release.xcconfig */,
 			);
+
 			name = "Support Files";
 			path = "../Target Support Files/UMCCommonLog";
 			sourceTree = "<group>";
@@ -3545,6 +3571,7 @@
 				18F840A8ACA822482FD13F030F0690DF /* Frameworks */,
 				C57DDDC9F34E675A4AE320AC8C67CAD6 /* Support Files */,
 			);
+
 			name = UMCAnalytics;
 			path = UMCAnalytics;
 			sourceTree = "<group>";
@@ -3563,6 +3590,7 @@
 				B54567623A3B18F5A437F0C91A4670BC /* UMCSecurityPlugins.debug.xcconfig */,
 				997105C6110949DA40A98581684285E1 /* UMCSecurityPlugins.release.xcconfig */,
 			);
+
 			name = "Support Files";
 			path = "../Target Support Files/UMCSecurityPlugins";
 			sourceTree = "<group>";
@@ -3578,6 +3606,7 @@
 			path = MGJRouter;
 			sourceTree = "<group>";
 		};
+
 		4ED635D1A47A22FDE9415B73306B1C37 /* AMapLocation-NO-IDFA */ = {
 			isa = PBXGroup;
 			children = (
@@ -3609,6 +3638,7 @@
 			children = (
 				E389F7F626A87F790AC3F71204BDEB09 /* WebP.framework */,
 			);
+
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -3620,6 +3650,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+
 		626F8E7152DD97F4CD4A9FBF9824A036 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -3775,6 +3806,7 @@
 				0E8E533C3FC4E82D91EA841A5D616B79 /* UMCCommon.debug.xcconfig */,
 				AAD517126874A140659793C8C009AAFD /* UMCCommon.release.xcconfig */,
 			);
+
 			name = "Support Files";
 			path = "../Target Support Files/UMCCommon";
 			sourceTree = "<group>";
@@ -3793,6 +3825,7 @@
 				677C975BEA860AB7533C5CBA15351D2A /* Frameworks */,
 				E13FB979E2260CDB0E228CCC3CB4F797 /* Support Files */,
 			);
+
 			name = "AMapFoundation-NO-IDFA";
 			path = "AMapFoundation-NO-IDFA";
 			sourceTree = "<group>";
@@ -3805,12 +3838,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+
 		7955E17809E960B8BCAE6E16AA753793 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				A157CF2CEF288F6DB13468059363BFE6 /* SecurityEnvSDK.framework */,
 				BE1A4450D4BF1CB09A0C9FBD4E95CFB9 /* UTDID.framework */,
 			);
+
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -3878,6 +3913,7 @@
 				971872AD9B82988FC6507F85240D8445 /* RxSwift.debug.xcconfig */,
 				03930288CAAA24DB7D964164C6138DD6 /* RxSwift.release.xcconfig */,
 			);
+
 			name = "Support Files";
 			path = "../Target Support Files/RxSwift";
 			sourceTree = "<group>";
@@ -3888,6 +3924,7 @@
 				410A4ECA80B2DBBEA0DF92136950FAE5 /* SwiftyJSON.swift */,
 				E6077848A42FB5FEB618B9B85C974D75 /* Support Files */,
 			);
+
 			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
@@ -3914,6 +3951,7 @@
 				26ED6E54FFB38DF877D7E7993DB41D4D /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */,
 				0DBB68ED7CAA30F05B6EF64C484E67DD /* Pods-CyxbsMobile2019_iOS.release.xcconfig */,
 			);
+
 			name = "Pods-CyxbsMobile2019_iOS";
 			path = "Target Support Files/Pods-CyxbsMobile2019_iOS";
 			sourceTree = "<group>";
@@ -3923,6 +3961,7 @@
 			children = (
 				5D858A67E188F7CB2EEE4E88248DF3B7 /* UMCommon.framework */,
 			);
+
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -3997,6 +4036,7 @@
 			name = NSURLSession;
 			sourceTree = "<group>";
 		};
+
 		8D432409008B7E4A6E41AC71CCA36147 /* NudeIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -4025,6 +4065,7 @@
 				443160D64BB4BCB87A85D31C0E06DA6F /* UIImage+NUDPainter.m */,
 				A40F277EDE14554852C97BC9B3EE5A86 /* Support Files */,
 			);
+
 			name = NudeIn;
 			path = NudeIn;
 			sourceTree = "<group>";
@@ -4469,6 +4510,7 @@
 				7955E17809E960B8BCAE6E16AA753793 /* Frameworks */,
 				471EA65C0EB083742775385ED53391C1 /* Support Files */,
 			);
+
 			name = UMCSecurityPlugins;
 			path = UMCSecurityPlugins;
 			sourceTree = "<group>";
@@ -4540,6 +4582,7 @@
 				EE31FAE67E7B81065C54370AFB9C5B36 /* ReducedQQ */,
 				B86D668F00686B71397DEFA5136990F4 /* ReducedWeChat */,
 			);
+
 			name = Social;
 			sourceTree = "<group>";
 		};
@@ -4572,6 +4615,7 @@
 				E85823654298D9249AA2FEE5BD098D63 /* UMSocialWechatHandler.h */,
 				791210B39E9D96B5EA56F9797B49E9A3 /* Frameworks */,
 			);
+
 			name = ReducedWeChat;
 			sourceTree = "<group>";
 		};
@@ -4588,10 +4632,11 @@
 			children = (
 				DCC0D3697FE1D3DA89131E1116D44113 /* MAMapKit.framework */,
 			);
+
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BD5548A15D667A212A4E0EBDFCA78EA9 /* MBProgressHUD */ = {
+		BD5548A15D667A212A4E0EBDFCA78EA9 /* MBProgressHUD */ = 
 			isa = PBXGroup;
 			children = (
 				CE631BECCCCF6FD33D94B5DC11BF0C74 /* MBProgressHUD.h */,
@@ -4668,6 +4713,7 @@
 				24481C7B66BF589307F459E790399A3D /* YYKit.debug.xcconfig */,
 				C6F7854B68D8CC06FD366EE24CC6C822 /* YYKit.release.xcconfig */,
 			);
+
 			name = "Support Files";
 			path = "../Target Support Files/YYKit";
 			sourceTree = "<group>";
@@ -4728,6 +4774,7 @@
 			);
 			sourceTree = "<group>";
 		};
+
 		D079D9083E226D3183419D1FB95074AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -4794,6 +4841,7 @@
 		D9492575161C344DDB0EF7A0A3C6701F /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
+
 				93850C1965A3A986B8150683FF4CACD7 /* Core */,
 				1C10F9A4383947187FDBA40A203B5599 /* Support Files */,
 			);
@@ -4826,6 +4874,7 @@
 			path = "../Target Support Files/AMapFoundation-NO-IDFA";
 			sourceTree = "<group>";
 		};
+
 		E20191A99055197C0012D9DBFE97FDEB /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -4964,6 +5013,7 @@
 				22DE35EF6585C9B9339A845D27979AF3 /* WKWebView+Rx.swift */,
 				6A9A9AB356E3C86A76B407D3EE4079B2 /* Support Files */,
 			);
+
 			name = RxCocoa;
 			path = RxCocoa;
 			sourceTree = "<group>";
@@ -4973,6 +5023,7 @@
 			children = (
 				9CE59DA599FD3A06810A7390D3E7F429 /* iOS */,
 			);
+
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -5040,6 +5091,7 @@
 				A24F4716EF62F47C386C6FC9C98D4185 /* UIView+SDExtension.m */,
 				C22DB4F967B2E63D60FD778AC2AA860F /* Support Files */,
 			);
+
 			name = SDCycleScrollView;
 			path = SDCycleScrollView;
 			sourceTree = "<group>";
@@ -5052,6 +5104,7 @@
 				22B452F33F72104AA7DF9FFAAB945096 /* NSThread+YYAdd.h */,
 				C96F84632122828B3D184410FBD97CBA /* NSThread+YYAdd.m */,
 			);
+
 			name = "no-arc";
 			sourceTree = "<group>";
 		};
@@ -5267,6 +5320,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23695F0D7607F289F5084E35D4A06018 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF506DF28CA89FFC67C9D919B7D3A64B /* YYAnimatedImageView.h in Headers */,
+				D86F150869359D2623CA2599E898FD81 /* YYFrameImage.h in Headers */,
+				8AB5CB5D0812AB218C4A50B2A471EFEC /* YYImage.h in Headers */,
+				1DD8B844B8802931E19C0C7DFE7E55BC /* YYImage-umbrella.h in Headers */,
+				963852F26609CE4C8D373F244349C235 /* YYImageCoder.h in Headers */,
+				ED1176F037A6F4B0778849B0A3AC9C73 /* YYSpriteSheetImage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3B921547E999920F44EBD58F955423CC /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -5284,6 +5350,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		405E20FF8114D2FB56F3774A57BABB85 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -5396,6 +5463,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		52E6F7B26483BE3BC9393C6C05D32424 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -5449,6 +5517,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		658295A20852AA0BCB20AA73F0939276 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -5694,6 +5763,7 @@
 		};
 		0130B3724283586C0E9D2A112D4F2AA1 /* AFNetworking */ = {
 			isa = PBXNativeTarget;
+
 			buildConfigurationList = D5480C5D42AA8B0CF0C71E4D89BF03BF /* Build configuration list for PBXNativeTarget "AFNetworking" */;
 			buildPhases = (
 				611427CBC37B16A455BA30DDD0F9104D /* Headers */,
@@ -5748,6 +5818,7 @@
 		};
 		3847153A6E5EEFB86565BA840768F429 /* SDWebImage */ = {
 			isa = PBXNativeTarget;
+
 			buildConfigurationList = 3AFD84A7845A41738CA03C21D21209F6 /* Build configuration list for PBXNativeTarget "SDWebImage" */;
 			buildPhases = (
 				405E20FF8114D2FB56F3774A57BABB85 /* Headers */,
@@ -5776,11 +5847,13 @@
 			buildRules = (
 			);
 			dependencies = (
+
 				8F1AAACEB8BB0935FE64D12C215610FE /* PBXTargetDependency */,
 				49F9D938C18D7F592088245F1EB153A3 /* PBXTargetDependency */,
 				17544034E6B9BAFE20D7D99201E5A729 /* PBXTargetDependency */,
 				769F5552DC064C93CC0ED2F3C5F55FCD /* PBXTargetDependency */,
 				F4D2E57AC0FB345BE054FA311775F742 /* PBXTargetDependency */,
+
 				7F20DD7BCF13130CE3692BFDAAA32D21 /* PBXTargetDependency */,
 				893A29F08B6ED3573773EA12871BBF80 /* PBXTargetDependency */,
 				0637D0914625B6675E4F9CC3618DBE08 /* PBXTargetDependency */,
@@ -5815,6 +5888,7 @@
 		};
 		4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */ = {
 			isa = PBXNativeTarget;
+
 			buildConfigurationList = 63C17CA6668B267BB74CC1AC5AAB98CD /* Build configuration list for PBXNativeTarget "RxRelay" */;
 			buildPhases = (
 				658295A20852AA0BCB20AA73F0939276 /* Headers */,
@@ -5825,6 +5899,7 @@
 			buildRules = (
 			);
 			dependencies = (
+
 				6928506332468F4774E7FBDA236186DA /* PBXTargetDependency */,
 			);
 			name = RxRelay;
@@ -5898,6 +5973,7 @@
 			buildRules = (
 			);
 			dependencies = (
+
 				ED15A58209442D8F2323F35117EEAA85 /* PBXTargetDependency */,
 				DE5F34D428DBDD2DC1F38E08F35E039A /* PBXTargetDependency */,
 			);
@@ -5908,6 +5984,7 @@
 		};
 		822E44240F2922DAB12018A6B649BD19 /* YYImage */ = {
 			isa = PBXNativeTarget;
+
 			buildConfigurationList = B0E9A7CA58BC005AFC27099009067901 /* Build configuration list for PBXNativeTarget "YYImage" */;
 			buildPhases = (
 				AE8A9512B3DC3068BB7BA5B804B2B441 /* Headers */,
@@ -6008,6 +6085,7 @@
 			buildRules = (
 			);
 			dependencies = (
+
 				8F9C6B93CE4381A487A8A25FA805E279 /* PBXTargetDependency */,
 				5445CBE9C615FED4D6952FAFE2FFEA43 /* PBXTargetDependency */,
 			);
@@ -6028,6 +6106,7 @@
 			buildRules = (
 			);
 			dependencies = (
+
 				087ECC010C27A97FC8E0567CD56CDCE4 /* PBXTargetDependency */,
 			);
 			name = SDCycleScrollView;
@@ -6055,6 +6134,7 @@
 		};
 		EA9EA43B3B503823EE36C60D9C8A865F /* RxSwift */ = {
 			isa = PBXNativeTarget;
+
 			buildConfigurationList = 62E1103D0E21A87ADFDCD43E659F0BA0 /* Build configuration list for PBXNativeTarget "RxSwift" */;
 			buildPhases = (
 				C8FB4448F20612CFFB6801EB89DE9BB3 /* Headers */,
@@ -6166,6 +6246,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+
 		0BD915FF1BC94BACA960068021ED476F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6203,13 +6284,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		391A0FAA8EEAFC4A6C713A0DC407ABB7 /* Resources */ = {
+		333DD20259C162F88D55CDAB7E544912 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		4522D50300D635138BEDBF5E60D39B53 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6224,6 +6306,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		5BD024A96B6533A0754CCB2F880E374B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6232,6 +6315,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		686AC4B6C97F7CCE377319A4B7A350D4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6246,13 +6330,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		8A190A17F289F99ECE07124E97ED74B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3D23AC513D9BD37E9584ECC7A43EB96 /* MJRefresh.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		8BA5E3641934AD3305ADBA93046BB152 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6260,6 +6347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		9627C058A85A13EBCB62535E53DA071B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6267,6 +6355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		A6A9DA08536D1DB78E7B41DDEA50BD66 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6274,6 +6363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		B05597C458D738E12F170EAC515F8483 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6281,6 +6371,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		B8E8D5E5D1ED0D861BF0C3F5228B5E45 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6288,6 +6379,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		D5CF6450C682B42321290106E8F7E838 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6295,6 +6387,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		DBFBC99C6F5D9B1D57CC9D1C6E9209EB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6302,6 +6395,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		DCACE143A81738CD5E047AAD21B8E491 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6309,6 +6403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		E28580357E2120BA5F6BB06775D23735 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6316,6 +6411,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		E9D4145FA41F60FFAB33A07796D9ED97 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6474,6 +6570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		2379166A022B8C9B9071959EBF1B43AD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6712,6 +6809,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A9C7E9AE52D92D627AAD1F86D38990D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FECAC84F7E965D53557A97566BD687EF /* YYAnimatedImageView.m in Sources */,
+				7DDFB5557400043F15D0ED5447AA1D8D /* YYFrameImage.m in Sources */,
+				AF08738B788CE5FCE70EB68A3714C2F1 /* YYImage.m in Sources */,
+				536AE5C7A40C8E8E2BEFA68905EB1C68 /* YYImage-dummy.m in Sources */,
+				275061CE314C8C990C14BA4AA371B1DB /* YYImageCoder.m in Sources */,
+				245FD3C2D00ED9E7AF709C219463D39F /* YYSpriteSheetImage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7B5BEB32F210EFE38F7D58FF8A1CC2DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -6846,6 +6956,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		CAE03210FAC4855FA1090E525AB10480 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -7077,6 +7188,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+
 		F5D2A45FBA06D86A537CB441D5BF4FF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -7142,6 +7254,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+
 		0571FAA5E8231DFB46C8A4986D19D46E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = UMCErrorCatch;
@@ -7399,6 +7512,7 @@
 			name = UMCCommon;
 			target = 6F6B630FA5213AB083E7CEF1F986FE44 /* UMCCommon */;
 			targetProxy = F6311BF1C92C20B31A43DED0BC60841B /* PBXContainerItemProxy */;
+
 		};
 /* End PBXTargetDependency section */
 
@@ -7900,6 +8014,7 @@
 			};
 			name = Debug;
 		};
+
 		3D15B8DAA008539AEBEF4E7163078F78 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 99D0BF729F9F3B35191053E2FFCE774C /* SDWebImage.release.xcconfig */;
@@ -7954,6 +8069,7 @@
 		};
 		3FB9CC0248F263FDDECF5F048A418877 /* Debug */ = {
 			isa = XCBuildConfiguration;
+
 			baseConfigurationReference = 523B81FB97E5EF1F9DAA2640E82ECE78 /* UMCCommonLog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -8087,6 +8203,7 @@
 			};
 			name = Debug;
 		};
+
 		49967EE3B10E73C0FAFBDC35FED28676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 15A146F974CBDCD2D7517BD2F9755486 /* RxRelay.release.xcconfig */;
@@ -8099,6 +8216,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+
 				GCC_PREFIX_HEADER = "Target Support Files/RxRelay/RxRelay-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/RxRelay/RxRelay-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -8108,6 +8226,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+
 				MODULEMAP_FILE = "Target Support Files/RxRelay/RxRelay.modulemap";
 				PRODUCT_MODULE_NAME = RxRelay;
 				PRODUCT_NAME = RxRelay;
@@ -8209,6 +8328,7 @@
 			name = Release;
 		};
 		5ACF06E7B12D2C966E4D28B1BA4175F0 /* Debug */ = {
+
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E5D5E867FE4F4ED047AD1226E0158F60 /* AMapFoundation-NO-IDFA.debug.xcconfig */;
 			buildSettings = {
@@ -8243,16 +8363,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/AFNetworking/AFNetworking.modulemap";
-				PRODUCT_MODULE_NAME = AFNetworking;
-				PRODUCT_NAME = AFNetworking;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -8430,6 +8544,7 @@
 			};
 			name = Debug;
 		};
+
 		696A7EAA6CB1F9E3E8675D3562E83E1B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 524901DB7568844F541A547E9F6E9024 /* RxRelay.debug.xcconfig */;
@@ -8442,8 +8557,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/RxRelay/RxRelay-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RxRelay/RxRelay-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/AFNetworking/AFNetworking-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AFNetworking/AFNetworking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -8451,9 +8566,9 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/RxRelay/RxRelay.modulemap";
-				PRODUCT_MODULE_NAME = RxRelay;
-				PRODUCT_NAME = RxRelay;
+				MODULEMAP_FILE = "Target Support Files/AFNetworking/AFNetworking.modulemap";
+				PRODUCT_MODULE_NAME = AFNetworking;
+				PRODUCT_NAME = AFNetworking;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -8498,9 +8613,9 @@
 			};
 			name = Debug;
 		};
-		72EE4AEC47EC12B8FB37C2B061868638 /* Release */ = {
+		6FC6827391D77CBDBA3CCF6251561BCF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D7BDFBD2EF3C6DD84F1C58DF3751B65 /* UMCCommonLog.release.xcconfig */;
+			baseConfigurationReference = FBE3ADF89E05B42DD6DBFA22D947F838 /* UMCCommon.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8515,6 +8630,62 @@
 			};
 			name = Release;
 		};
+		71E1601CCF0624954CF3833776B5A89F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 797D98BAF0168B4B57005B6B84A516EF /* SDWebImage.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SDWebImage/SDWebImage-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SDWebImage/SDWebImage.modulemap";
+				PRODUCT_MODULE_NAME = SDWebImage;
+				PRODUCT_NAME = SDWebImage;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		72EE4AEC47EC12B8FB37C2B061868638 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D7BDFBD2EF3C6DD84F1C58DF3751B65 /* UMCCommonLog.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+
+
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+
 		732B46D6A7FEFEC04F3B3E95CF607A22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D4C0791E7DE7FF526E5649D2A73760B /* MGJRouter.debug.xcconfig */;
@@ -8527,6 +8698,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+
 				GCC_PREFIX_HEADER = "Target Support Files/MGJRouter/MGJRouter-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MGJRouter/MGJRouter-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -8536,6 +8708,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+
 				MODULEMAP_FILE = "Target Support Files/MGJRouter/MGJRouter.modulemap";
 				PRODUCT_MODULE_NAME = MGJRouter;
 				PRODUCT_NAME = MGJRouter;
@@ -8565,12 +8738,10 @@
 			};
 			name = Debug;
 		};
-		846D9B7BC5C41040FEE2923BFE73D823 /* Debug */ = {
+		894BD030CC1EB3ECF736DBDF5CB5EBA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26ED6E54FFB38DF877D7E7993DB41D4D /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */;
+			baseConfigurationReference = 2E9C19B167912CB6CEC038479A3B11AA /* RxSwift.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -8579,23 +8750,23 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/RxSwift/RxSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RxSwift/RxSwift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = "Target Support Files/RxSwift/RxSwift.modulemap";
+				PRODUCT_MODULE_NAME = RxSwift;
+				PRODUCT_NAME = RxSwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -8774,6 +8945,7 @@
 			};
 			name = Release;
 		};
+
 		90A4588B06F8745E7FCD1B00204D6241 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F9BA98212432B4D17CB253C7DA2A8BDF /* Alamofire.release.xcconfig */;
@@ -8787,6 +8959,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -8796,6 +8969,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+
 				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				PRODUCT_MODULE_NAME = Alamofire;
 				PRODUCT_NAME = Alamofire;
@@ -8826,6 +9000,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire/Alamofire-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8860,6 +9035,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/YYImage/YYImage-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/YYImage/YYImage-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8879,6 +9055,7 @@
 			};
 			name = Debug;
 		};
+
 		A6C06F26F3D6739F2C6E9775A4465B64 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EC7AFCBC7E167764453A11CA8DB2139 /* SwiftyJSON.debug.xcconfig */;
@@ -8894,6 +9071,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9012,6 +9190,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/RxSwift/RxSwift-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/RxSwift/RxSwift-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9036,6 +9215,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 089CE2E47B62B3FD14B9F1CB1C2F4205 /* IQKeyboardManager.release.xcconfig */;
 			buildSettings = {
+
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -9067,6 +9247,7 @@
 			};
 			name = Release;
 		};
+
 		BDAF868E52190EF3C799B5BDFFD35A4C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B54567623A3B18F5A437F0C91A4670BC /* UMCSecurityPlugins.debug.xcconfig */;
@@ -9083,8 +9264,9 @@
 			};
 			name = Debug;
 		};
-		C4C038B4C9AE703605054B54BE893C8C /* Release */ = {
+		C7B060AA5D2166DE4B7E850584B49530 /* Debug */ = {
 			isa = XCBuildConfiguration;
+
 			baseConfigurationReference = 6F64D91EA09BDA0C6C513DCB99FA7269 /* AMapLocation-NO-IDFA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -9096,9 +9278,8 @@
 				);
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
 		C7FF92808B6E9EE49AA9BBA2894C62D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -9185,6 +9366,7 @@
 			};
 			name = Debug;
 		};
+
 		D7C4F1354BA2F097FFDA8E2554025129 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5A6CF1C8C3108689ADA93597596A1962 /* AMap3DMap-NO-IDFA.release.xcconfig */;
@@ -9308,7 +9490,7 @@
 			};
 			name = Release;
 		};
-		E5D4DBB253DB60E58502F3D53DB628BE /* Release */ = {
+		E0EEC597EC3FDF5CEBB3873BEA6DF31E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 92A5EA991EF8F46FAD36BF3B625CEB5D /* SDCycleScrollView.release.xcconfig */;
 			buildSettings = {
@@ -9320,9 +9502,35 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SDCycleScrollView/SDCycleScrollView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SDCycleScrollView/SDCycleScrollView-Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/RxRelay/RxRelay-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RxRelay/RxRelay-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/RxRelay/RxRelay.modulemap";
+				PRODUCT_MODULE_NAME = RxRelay;
+				PRODUCT_NAME = RxRelay;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E5D4DBB253DB60E58502F3D53DB628BE /* Release */ = {
+			isa = XCBuildConfiguration;
+
+			baseConfigurationReference = 997105C6110949DA40A98581684285E1 /* UMCSecurityPlugins.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9343,23 +9551,7 @@
 			};
 			name = Release;
 		};
-		EFBDD0A0A63BD295B328483709DDF517 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 997105C6110949DA40A98581684285E1 /* UMCSecurityPlugins.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
+
 		FEB2E2F8BE8C2C7960D6CC1629D0A998 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2170495942FD306CF4D751794C73DB8 /* MJRefresh.debug.xcconfig */;
@@ -9372,6 +9564,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+
 				GCC_PREFIX_HEADER = "Target Support Files/MJRefresh/MJRefresh-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/MJRefresh/MJRefresh-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -9381,6 +9574,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+
 				MODULEMAP_FILE = "Target Support Files/MJRefresh/MJRefresh.modulemap";
 				PRODUCT_MODULE_NAME = MJRefresh;
 				PRODUCT_NAME = MJRefresh;
@@ -9394,6 +9588,7 @@
 			};
 			name = Debug;
 		};
+
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -9451,6 +9646,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+
 		3AFD84A7845A41738CA03C21D21209F6 /* Build configuration list for PBXNativeTarget "SDWebImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9505,6 +9701,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+
 		5CD80DA32CB225BF4A6BF9272324AB4B /* Build configuration list for PBXAggregateTarget "UMCPush" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9523,6 +9720,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+
 		63C17CA6668B267BB74CC1AC5AAB98CD /* Build configuration list for PBXNativeTarget "RxRelay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9550,6 +9748,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+
 		8A212264186B8822192F9C369D7DE4BB /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9604,6 +9803,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+
 		B0E9A7CA58BC005AFC27099009067901 /* Build configuration list for PBXNativeTarget "YYImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9631,6 +9831,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+
 		D5480C5D42AA8B0CF0C71E4D89BF03BF /* Build configuration list for PBXNativeTarget "AFNetworking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -9654,6 +9855,15 @@
 			buildConfigurations = (
 				2DEE96E9FA4CFB0D14D6B58D5F09ACA5 /* Debug */,
 				63C1377A97C253BB85AE8A47114853D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E82CDED54F3A8B0793A183E0894D8AAC /* Build configuration list for PBXAggregateTarget "UMCCommon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7B060AA5D2166DE4B7E850584B49530 /* Debug */,
+				6FC6827391D77CBDBA3CCF6251561BCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
