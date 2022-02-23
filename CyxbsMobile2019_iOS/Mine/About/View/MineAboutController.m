@@ -111,7 +111,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager.responseSerializer setAcceptableContentTypes: [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil]];
     
-    [manager GET:@"https://itunes.apple.com/cn/lookup?id=974026615" parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [manager GET:@"https://itunes.apple.com/cn/lookup?id=974026615" parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSArray *dataArray = responseObject[@"results"];
         if (dataArray.count != 0) {// 先判断返回的数据是否为空
             NSDictionary *dict = dataArray.firstObject;

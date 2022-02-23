@@ -17,7 +17,7 @@
     [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [req setValue:@"*/*" forHTTPHeaderField:@"Accept"];
     [req setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"Authorization"];
-    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
+    [[manager dataTaskWithRequest:req uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id _Nullable responseObject, NSError * _Nullable error) {
         if ([responseObject[@"status"] intValue] == 10000) {
             //请求成功
 //            NSLog(@"%@",responseObject);

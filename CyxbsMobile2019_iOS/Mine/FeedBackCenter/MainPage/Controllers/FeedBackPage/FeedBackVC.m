@@ -204,15 +204,16 @@
 
         HttpClient *client = [HttpClient defaultClient];
         
-        [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
-        [client.httpRequestOperationManager POST:SUBMIT parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
+        
+        [client.httpSessionManager POST:SUBMIT parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             
             //字段转二进制
             NSData *data1 = [type dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data2 = [title dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data3 = [content dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data4 = [cyxbs_id dataUsingEncoding:NSUTF8StringEncoding];
-            
+
             //图片转二进制
             if (self.photoAry.count == 1) {
                 NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
@@ -241,29 +242,28 @@
                 [NewQAHud showHudWith:@"正在上传，请稍候" AddView:self.view AndToDo:^{
                     self.view.userInteractionEnabled = NO;
                 }];
-        
+
             [formData appendPartWithFormData:data1 name:@"type"];
             [formData appendPartWithFormData:data2 name:@"title"];
             [formData appendPartWithFormData:data3 name:@"content"];
             [formData appendPartWithFormData:data4 name:@"product_id"];
-            
-            } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-                NSLog(@"成功了");
-                [NewQAHud showHudWith:@"提交成功，我们会在十四个工作日内回复~" AddView:self.view AndToDo:^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                    self.view.userInteractionEnabled = YES;
-                }];
-            } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-                NSLog(@"失败了");
-                [NewQAHud showHudWith:@"提交失败 网络异常" AddView:self.view AndToDo:^{
+
+        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [NewQAHud showHudWith:@"提交成功，我们会在十四个工作日内回复~" AddView:self.view AndToDo:^{
+                [self.navigationController popViewControllerAnimated:YES];
+                self.view.userInteractionEnabled = YES;
+            }];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [NewQAHud showHudWith:@"提交失败 网络异常" AddView:self.view AndToDo:^{
                     [self.navigationController popViewControllerAnimated:YES];
                     self.view.userInteractionEnabled = YES;
                 }];
             }];
-    }else{//没有选择问题类型
-        [NewQAHud showHudWith:@"请选择问题类型" AddView:self.view];
-    }
-}
+                }else{//没有选择问题类型
+                    [NewQAHud showHudWith:@"请选择问题类型" AddView:self.view];
+                }
+        }
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.feedBackView endEditing:YES];

@@ -33,10 +33,10 @@ MJExtensionCodingImplementation
         @"password": [self aesEncrypt:passWord],
     };
     
-    [manager POST:VOLUNTEERBIND parameters:bindParams success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [manager POST:VOLUNTEERBIND parameters:bindParams headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
         if ([responseObject[@"code"] isEqualToNumber:[NSNumber numberWithInt:0]]) {
-            [manager POST:VOLUNTEERREQUEST parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            [manager POST:VOLUNTEERREQUEST parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                 NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
                 for (NSDictionary *dict in responseObject[@"record"]) {
                     VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
@@ -60,11 +60,14 @@ MJExtensionCodingImplementation
                 HttpClient *client = [HttpClient defaultClient];
                 //完成绑定志愿者账号任务 (需要绑定成功)
                 [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-                [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                
+//                client.httpSessionManager POST:<#(nonnull NSString *)#> parameters:<#(nullable id)#> headers:<#(nullable NSDictionary<NSString *,NSString *> *)#> constructingBodyWithBlock:<#^(id<AFMultipartFormData>  _Nonnull formData)block#> progress:<#^(NSProgress * _Nonnull uploadProgress)uploadProgress#> success:<#^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)success#> failure:<#^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)failure#>
+                
+                [client.httpSessionManager POST:TASK parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                     NSString *target = @"绑定志愿者账号";
                     NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
                     [formData appendPartWithFormData:data name:@"title"];
-                    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+                    }progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                         NSLog(@"成功了");
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
                     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
