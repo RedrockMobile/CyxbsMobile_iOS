@@ -193,7 +193,10 @@
         [self addSubview:label];
         _nothingLabel = label;
         
-        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+//        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+        
+//        label.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
         label.font = [UIFont fontWithName:PingFangSCMedium size:15];
         label.text = @"还没有待做事项哦～快去添加吧！";
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
