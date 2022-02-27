@@ -105,16 +105,39 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         switch loginCheck {
             case .OK:
                 showHud("登录中...")
-                LoginModel.loginWith(stuNum: stuNumTextField.text!, idNum: idNumTextField.text!) {
-                    (UIApplication.shared.delegate?.window!?.rootViewController as! UITabBarController).selectedIndex = 0
+//                LoginModel.loginWith(stuNum: stuNumTextField.text!, idNum: idNumTextField.text!) {
+//                    (UIApplication.shared.delegate?.window!?.rootViewController as! UITabBarController).selectedIndex = 0
+//                    self.hideHud()
+//                    self.dismiss(animated: true, completion: nil)
+//                    //完成登录成功后todo的一些配置
+//                    TodoSyncTool.share().logInSuccess();
+//                } failed: {
+//
+//
+//                    self.hideHud()
+//                    self.showHud("账号或密码错误", time: 1)
+//                }
+//            LoginModel.loginWith(stuNum: <#T##String#>, idNum: <#T##String#>, success: <#T##() -> Void#>, failed: <#T##(let, Bool) -> Void#>)
+            
+            
+            
+            LoginModel.loginWith(stuNum: stuNumTextField.text!, idNum: idNumTextField.text!) {
+                (UIApplication.shared.delegate?.window!?.rootViewController as! UITabBarController).selectedIndex = 0
                     self.hideHud()
                     self.dismiss(animated: true, completion: nil)
                     //完成登录成功后todo的一些配置
                     TodoSyncTool.share().logInSuccess();
-                } failed: {
+            } failed: { isNetUnAvailable in
+                if isNetUnAvailable == true {
+                    self.hideHud()
+                    self.showHud("网络不可用，请检查网络设置", time: 1)
+                }else {
                     self.hideHud()
                     self.showHud("账号或密码错误", time: 1)
                 }
+            }
+
+
                 
             case .lackAccount:
                 showHud("请输入账号", time: 1)
