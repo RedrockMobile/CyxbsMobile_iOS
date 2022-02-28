@@ -89,7 +89,7 @@ static TodoSyncTool* _instance;
         long syncTime = [dataDict[@"sync_time"] longValue];
 #ifdef DEBUG
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
+//            [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
         });
 #endif
         if ([dataDict[@"is_sync_time_exist"] intValue]==0&&self.lastSyncTimeStamp!=0) {
