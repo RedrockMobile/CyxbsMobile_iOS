@@ -87,22 +87,25 @@
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     
-    [self getAppStoreVersionInfoWithResponseBlock:^(NSDictionary * _Nonnull response, NSError * _Nonnull error) {
-        NSString *appStoreVersion = response[@"version"];
-        NSComparisonResult comparisonResult = [self compareSystemVersion:currentVersion toVersion:appStoreVersion];
-            if (comparisonResult == NSOrderedAscending) {
-                //更新弹窗
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.labelText = @"请去应用商店更新版本哦～";
-                [hud hide:YES afterDelay:0.7];
-            } else {
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.labelText = @"已经是最新版本";
-                [hud hide:YES afterDelay:0.7];
-            }
-    }];
+    
+    
+    //有问题 之后再修
+//    [self getAppStoreVersionInfoWithResponseBlock:^(NSDictionary * _Nonnull response, NSError * _Nonnull error) {
+//        NSString *appStoreVersion = response[@"version"];
+//        NSComparisonResult comparisonResult = [self compareSystemVersion:currentVersion toVersion:appStoreVersion];
+//            if (comparisonResult == NSOrderedAscending) {
+//                //更新弹窗
+//                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//                hud.mode = MBProgressHUDModeText;
+//                hud.labelText = @"请去应用商店更新版本哦～";
+//                [hud hide:YES afterDelay:0.7];
+//            } else {
+//                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//                hud.mode = MBProgressHUDModeText;
+//                hud.labelText = @"已经是最新版本";
+//                [hud hide:YES afterDelay:0.7];
+//            }
+//    }];
     
 }
 
