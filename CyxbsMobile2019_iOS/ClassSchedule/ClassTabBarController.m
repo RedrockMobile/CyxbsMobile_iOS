@@ -19,6 +19,14 @@
     [super viewDidLoad];
     [self setValue:[[ClassTabBar alloc] init] forKey:@"tabBar"];
     
+    if (@available(iOS 15.0, *)) {
+        UITabBarAppearance *appearance = [[UITabBarAppearance alloc]init];
+//        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+        appearance.backgroundColor = [UIColor colorNamed:@"TabBar"];
+        self.tabBar.scrollEdgeAppearance = appearance;
+        self.tabBar.standardAppearance = appearance;
+    }
+    
     [self addObserver:self forKeyPath:@"tabBar.hidden" options:NSKeyValueObservingOptionNew context:nil];
 }
 

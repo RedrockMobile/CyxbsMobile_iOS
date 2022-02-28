@@ -42,11 +42,14 @@
     if (self) {
         self.dataModelArr = @[];
         
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D"];
-        } else {
-            self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
-        }
+//        if (@available(iOS 11.0, *)) {
+//            self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D"];
+//        } else {
+//            self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+//        }
+        
+        self.backgroundColor = [UIColor colorNamed:@"TodoBG"];
+        
         self.layer.cornerRadius = 20;
         
         [self addMaskView];

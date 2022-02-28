@@ -52,6 +52,10 @@
         [self.tableVC.tableArray removeAllObjects];
         [self.tableVC refreshData];
     }
+    
+//    if (@available(iOS 15.0, *)) {
+//        self.tabBarController
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
