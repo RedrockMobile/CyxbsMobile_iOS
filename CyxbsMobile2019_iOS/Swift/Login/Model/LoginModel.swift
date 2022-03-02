@@ -63,6 +63,7 @@ class LoginModel: NSObject {
                 
             } else {
                 failed()
+                
             }
             
             

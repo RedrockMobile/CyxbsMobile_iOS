@@ -149,39 +149,39 @@
     }
 //
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
-    [client.httpRequestOperationManager POST:New_QA_Comment_Release parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-            NSMutableArray *imageNames = [NSMutableArray array];
-        for (int i = 0; i < self.imagesAry.count; i++)  {
-            [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
-        }
-            for (int i = 0; i < self.imagesAry.count; i++) {
-                UIImage *image = self.imagesAry[i];
-                UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
-                NSData *data = UIImageJPEGRepresentation(image1, 0.8);
-                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
-                [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/jpeg"];
-            }
-            
-        } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            [hud hide:YES];
-            if ([responseObject[@"status"] intValue] == 200) {
-                [NewQAHud showHudWith:@"评论成功" AddView:self.view];
-                [self.navigationController popViewControllerAnimated:YES];
-            }else{
-                [hud hide:YES];
-                //设置发布按钮恢复正常
-                self.topBarView.releaseBtn.enabled = YES;
-                [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
-            }
-            
-        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-            [hud hide:YES];
-            //设置发布按钮恢复正常
-            self.topBarView.releaseBtn.enabled = YES;
-            [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
-        }];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
     
+    [client.httpSessionManager POST:New_QA_Comment_Release parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            NSMutableArray *imageNames = [NSMutableArray array];
+              for (int i = 0; i < self.imagesAry.count; i++)  {
+                  [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
+              }
+                  for (int i = 0; i < self.imagesAry.count; i++) {
+                      UIImage *image = self.imagesAry[i];
+                      UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+                      NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+                      NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+                      [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/jpeg"];
+                  }
+        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [hud hide:YES];
+               if ([responseObject[@"status"] intValue] == 200) {
+                   [NewQAHud showHudWith:@"评论成功" AddView:self.view];
+                   [self.navigationController popViewControllerAnimated:YES];
+               }else{
+                   [hud hide:YES];
+                   //设置发布按钮恢复正常
+                   self.topBarView.releaseBtn.enabled = YES;
+                   [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
+               }
+
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        [hud hide:YES];
+                        //设置发布按钮恢复正常
+                        self.topBarView.releaseBtn.enabled = YES;
+                        [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
+        }];
+
 }
 
 //MARK:UITExteView代理方法

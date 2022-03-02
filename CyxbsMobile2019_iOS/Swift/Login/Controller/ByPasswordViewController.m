@@ -6,6 +6,8 @@
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
+//通过邮箱验证码找回页面
+
 #import "ByPasswordViewController.h"
 #import "Masonry.h"
 #import "ResetPwdViewController.h"

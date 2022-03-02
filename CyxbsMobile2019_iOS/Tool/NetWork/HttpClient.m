@@ -27,19 +27,14 @@
     {
         self.httpSessionManager = [AFHTTPSessionManager manager];
         
-        self.httpRequestOperationManager = [AFHTTPRequestOperationManager manager];
-        
         AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
         requestSerializer.timeoutInterval = 15.0;
         [self.httpSessionManager setRequestSerializer:requestSerializer];
-        [self.httpRequestOperationManager setRequestSerializer:requestSerializer];
         
         AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
         [responseSerializer setRemovesKeysWithNullValues:YES];
         [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",@"application/x-www-form-urlencoded", nil]];
         [self.httpSessionManager setResponseSerializer:responseSerializer];
-        [self.httpRequestOperationManager setResponseSerializer:responseSerializer];
-        
         
     }
     return self;
@@ -52,26 +47,25 @@
                progress:(void (^)(NSProgress * progress))progress
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
-    url =  [CyxbsMobileBaseURL_1 stringByAppendingString:url];
     NSString *token = [UserItem defaultItem].token;
     if (token) {
         [self.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }
     switch (method) {
         case HttpRequestGet:
-            [self.httpSessionManager GET:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager GET:url parameters:parameters headers:nil progress:nil success:success failure:failure];
             break;
         case HttpRequestPost:
-            [self.httpSessionManager POST:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager POST:url parameters:parameters headers:nil progress:nil success:success failure:failure];
             break;
         case HttpRequestPut:
-            [self.httpSessionManager PUT:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager PUT:url parameters:parameters headers:nil success:success failure:failure];
             break;
         case HttpRequestDelete:
-            [self.httpSessionManager DELETE:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager DELETE:url parameters:parameters headers:nil success:success failure:failure];
             break;
         case HttpRequestPatch:
-            [self.httpSessionManager PATCH:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager PATCH:url parameters:parameters headers:nil success:success failure:failure];
         default:
             break;
     }
@@ -84,54 +78,103 @@
                progress:(void (^)(NSProgress * progress))progress
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
-    url =  [CyxbsMobileBaseURL_1 stringByAppendingString:url];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSString *token = [UserItem defaultItem].token;
     if (token) {
-        [self.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }
     // 请求需要json
-    self.httpSessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     switch (method) {
         case HttpRequestGet:
-            [self.httpSessionManager GET:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager GET:url parameters:parameters headers:nil progress:nil success:success failure:failure];
             break;
         case HttpRequestPost:
-            [self.httpSessionManager POST:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager POST:url parameters:parameters headers:nil progress:nil success:success failure:failure];
             break;
         case HttpRequestPut:
-            [self.httpSessionManager PUT:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager PUT:url parameters:parameters headers:nil success:success failure:failure];
             break;
         case HttpRequestDelete:
-            [self.httpSessionManager DELETE:url parameters:parameters success:success failure:failure];
+            [self.httpSessionManager DELETE:url parameters:parameters headers:nil success:success failure:failure];
             break;
+        case HttpRequestPatch:
+            [self.httpSessionManager PATCH:url parameters:parameters headers:nil success:success failure:failure];
         default:
             break;
     }
 }
+
+
+
+//- (void)requestWithHead:(NSString *)url
+//                 method:(NSInteger)method
+//             parameters:(id)parameters
+//                   head:(NSDictionary *)head
+//         prepareExecute:(PrepareExecuteBlock) prepare
+//               progress:(void (^)(NSProgress * progress))progress
+//                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+//                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure{
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    for (int i = 0; i < head.count; i++) {
+//        [manager.requestSerializer setValue:head.allValues[i]  forHTTPHeaderField:head.allKeys[i]];
+//    }
+//    
+//    switch (method) {
+//        case HttpRequestGet:
+//            
+//            [manager GET:url parameters:parameters success:success failure:failure];
+//            break;
+//        case HttpRequestPost:
+//            [manager POST:url parameters:parameters success:success failure:failure];
+//            
+//            break;
+//        case HttpRequestPut:
+//            [manager PUT:url parameters:parameters success:success failure:failure];
+//            break;
+//        case HttpRequestDelete:
+//            [manager DELETE:url parameters:parameters success:success failure:failure];
+//            break;
+//        default:
+//            break;
+//    }
+//    
+//}
 
 - (void)uploadImageWithJson:(NSString *)url
                      method:(NSInteger)method
                  parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
              prepareExecute:(PrepareExecuteBlock) prepare
                    progress:(void (^)(NSProgress * progress))progress
-                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
-    url =  [CyxbsMobileBaseURL_1 stringByAppendingString:url];
+                    success:(void (^)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject))success
+                    failure:(void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error))failure{
     NSString *token = [UserItem defaultItem].token;
     if (token) {
-        [self.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
+        [self.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }
     //发送网络请求
-    [self.httpRequestOperationManager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        for (int i = 0; i < imageArray.count; i++) {
-            UIImage *image = imageArray[i];
-            UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
-            NSData *data = UIImageJPEGRepresentation(image1, 0.8);
-            NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
-            [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/png"];
-        }
-        
-    } success:success failure:failure];
+//    [self.httpSessionManager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        for (int i = 0; i < imageArray.count; i++) {
+//            UIImage *image = imageArray[i];
+//            UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+//            NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+//            NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
+//            [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/png"];
+//        }
+//
+//    } success:success failure:failure];
+    
+    
+    [self.httpSessionManager POST:url parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            for (int i = 0; i < imageArray.count; i++) {
+                      UIImage *image = imageArray[i];
+                      UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+                      NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+                      NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
+                      [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/png"];
+                  }
+        } progress:nil success:success
+                          failure:failure];
 }
 
 - (void)cancelRequest
@@ -144,13 +187,34 @@
 }
 
 - (void)baseUrlRequestSuccess:(void (^)(NSString *))success{
-    [self.httpRequestOperationManager GET:@"https://be-prod.redrock.team/cloud-manager/check" parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        NSDictionary *dic = responseObject[@"data"];
-        NSString *basURl = [NSString stringWithFormat:@"https://%@/",dic[@"base_url"]];
-        NSLog(@"%@",basURl);
-        success(basURl);
-        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+
+    [self.httpSessionManager GET:@"https://be-prod.redrock.team/cloud-manager/check" parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSDictionary *dic = responseObject[@"data"];
+                    NSString *basURl = [NSString stringWithFormat:@"https://%@/",dic[@"base_url"]];
+                    NSLog(@"%@",basURl);
+                    success(basURl);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
         }];
+    
 }
+//- (BOOL)isReachability{
+//    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
+//    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+//        if (status == AFNetworkReachabilityStatusNotReachable) {
+//            
+//        }
+//        else{
+//            
+//        }
+//    }];
+//    [reachabilityManager startMonitoring];
+
+//    [reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+//        if (status == AFNetworkReachabilityStatusNotReachable) {
+//            return NO;
+//            //网络无连接的提示
+//        }
+//    }];
+//}
 @end

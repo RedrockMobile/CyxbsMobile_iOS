@@ -89,7 +89,7 @@ static TodoSyncTool* _instance;
         long syncTime = [dataDict[@"sync_time"] longValue];
 #ifdef DEBUG
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
+//            [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
         });
 #endif
         if ([dataDict[@"is_sync_time_exist"] intValue]==0&&self.lastSyncTimeStamp!=0) {
@@ -239,7 +239,7 @@ static TodoSyncTool* _instance;
     AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
     man.responseSerializer = responseSerializer;
     
-    [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         CCLog(@"%@", responseObject);
         
         NSString* state = responseObject[@"info"];
@@ -312,7 +312,7 @@ static TodoSyncTool* _instance;
             AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
             man.responseSerializer = responseSerializer;
             
-            [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                 CCLog(@"resp::%@",responseObject);
                 NSString* state = responseObject[@"info"];
                 if ([state isEqualToString:@"success"]) {
@@ -364,7 +364,9 @@ static TodoSyncTool* _instance;
             
             
 //            [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success
-            [man DELETE:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            
+            [man DELETE:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos" parameters:paramDict headers:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 CCLog(@"resp::%@",responseObject);
                 NSString* state = responseObject[@"info"];
                 if ([state isEqualToString:@"success"]) {

@@ -769,7 +769,7 @@ static int requestCheckinInfo = 0;
             break;
     }
     
-    [NewQAHud showHudAtWindowWithStr:str enableInteract:YES];
+//    [NewQAHud showHudAtWindowWithStr:str enableInteract:YES];
     
     if (msg.syncState==TodoSyncStateConflict) {
         [self.todoView showConflictWithServerTime:msg.serverLastSyncTime localTime:msg.clientLastSyncTime];

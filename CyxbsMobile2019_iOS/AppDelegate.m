@@ -121,7 +121,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         
         VolunteerItem *volunteer = [[VolunteerItem alloc] init];
 
-        [manager POST:VOLUNTEERREQUEST parameters:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [manager POST:VOLUNTEERREQUEST parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
             for (NSDictionary *dict in responseObject[@"record"]) {
                 VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
@@ -239,22 +239,24 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 ///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{
-    //获取当前发布的版本的Version
-    NSString *version = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    //获取Store上的掌邮的版本id
-    [[HttpClient defaultClient] requestWithPath:@"http://itunes.apple.com/cn/lookup?id=974026615" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSArray *array = responseObject[@"results"];
-        NSDictionary *dict = array[0];
-        //请求成功，判断版本大小,如果不一致，就提示
-        if ([dict[@"version"] floatValue] != [version floatValue]) {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
-            hud.mode = MBProgressHUDModeText;
-            hud.labelText = @"请去应用商店更新版本哦～";
-            [hud hide:YES afterDelay:1];
-        }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-        }];
+    
+    //有问题 之后再修
+//    //获取当前发布的版本的Version
+//    NSString *version = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+//    //获取Store上的掌邮的版本id
+//    [[HttpClient defaultClient] requestWithPath:@"http://itunes.apple.com/cn/lookup?id=974026615" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSArray *array = responseObject[@"results"];
+//        NSDictionary *dict = array[0];
+//        //请求成功，判断版本大小,如果不一致，就提示
+//        if ([dict[@"version"] floatValue] != [version floatValue]) {
+//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
+//            hud.mode = MBProgressHUDModeText;
+//            hud.labelText = @"请去应用商店更新版本哦～";
+//            [hud hide:YES afterDelay:1];
+//        }
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//        }];
 }
 
 /// 完成创建文件/文件夹的操作

@@ -42,11 +42,14 @@
     if (self) {
         self.dataModelArr = @[];
         
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D"];
-        } else {
-            self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
-        }
+//        if (@available(iOS 11.0, *)) {
+//            self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D"];
+//        } else {
+//            self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
+//        }
+        
+        self.backgroundColor = [UIColor colorNamed:@"TodoBG"];
+        
         self.layer.cornerRadius = 20;
         
         [self addMaskView];
@@ -193,7 +196,10 @@
         [self addSubview:label];
         _nothingLabel = label;
         
-        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+//        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+        
+//        label.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
         label.font = [UIFont fontWithName:PingFangSCMedium size:15];
         label.text = @"还没有待做事项哦～快去添加吧！";
         [label mas_makeConstraints:^(MASConstraintMaker *make) {

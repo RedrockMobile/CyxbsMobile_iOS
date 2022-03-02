@@ -17,7 +17,6 @@
     }
     return self;
 }
-//[CyxbsMobileBaseURL_1 stringByAppendingString:@"renewapi/examSchedule"]
 - (void)fetchData {
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:EXAMARRANGEAPI method:HttpRequestPost parameters:@{@"stuNum":[UserDefaultTool getStuNum]} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {

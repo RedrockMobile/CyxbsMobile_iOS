@@ -221,7 +221,7 @@
             break;
     }
     
-    [NewQAHud showHudAtWindowWithStr:str enableInteract:YES];
+//    [NewQAHud showHudAtWindowWithStr:str enableInteract:YES];
     
     if (msg.syncState==TodoSyncStateConflict) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -280,7 +280,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         UIView* firstview = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 60.0)];
-        firstview.backgroundColor = [UIColor whiteColor];
+        firstview.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
         UILabel *toDoLbl = [[UILabel alloc] initWithFrame:CGRectMake(15,30,50,34)];
         toDoLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
         toDoLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
@@ -289,7 +289,7 @@
         return firstview;
     }else{
         UIView * secondview = [[UIView alloc] initWithFrame:CGRectMake(0,30, SCREEN_WIDTH,60.0)];
-        secondview.backgroundColor = [UIColor whiteColor];
+        secondview.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
         //完成的label
         UILabel *doneLbl = [[UILabel alloc ]initWithFrame:CGRectMake(15,30,100,34) ];
         doneLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
