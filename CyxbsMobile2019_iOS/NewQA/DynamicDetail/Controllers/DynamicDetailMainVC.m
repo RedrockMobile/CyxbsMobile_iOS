@@ -261,7 +261,7 @@
         [self buildFrame];
         } Failure:^{
             self.isGetCommentDtaFailure = YES;
-            [self getDataFailure];
+//            [self getDataFailure];
         }];
 }
 ///第一次进入页面网络请求失败
