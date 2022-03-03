@@ -22,15 +22,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-          if (@available(iOS 11.0, *)) {
-                  self.backgroundColor = ColorWhite;
-              } else {
-                  // Fallback on earlier versions
-              }
-              [self addImage];
-              [self addName];
-              [self addMajor];
-              [self addIDLabel];
+        self.backgroundColor = [UIColor whiteColor];
+      [self addImage];
+      [self addName];
+      [self addMajor];
+      [self addIDLabel];
     }
     return self;
 }
