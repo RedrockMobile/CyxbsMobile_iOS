@@ -376,7 +376,7 @@
 #define NEW_QA_DynamicDetail [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getPostInfo"]
 
 //根据id获取评论/回复
-#define NEW_QA_Comment_Reply [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/getallcomment"]
+#define NEW_QA_Comment_Reply [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment"]
 
 //回复评论
 #define New_QA_Comment_Release [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/releaseComment"] 

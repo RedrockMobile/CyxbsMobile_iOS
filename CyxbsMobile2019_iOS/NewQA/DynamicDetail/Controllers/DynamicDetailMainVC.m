@@ -261,7 +261,7 @@
         [self buildFrame];
         } Failure:^{
             self.isGetCommentDtaFailure = YES;
-//            [self getDataFailure];
+            [self getDataFailure];
         }];
 }
 ///第一次进入页面网络请求失败
@@ -912,12 +912,10 @@
 //MARK: UITableViewDataSource
 - (NSInteger )numberOfSectionsInTableView:(UITableView *)tableView{
     return self.commentTableDataAry.count;
-//    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[section];
     return model.reply_list.count + 1;
-//    return 100;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
