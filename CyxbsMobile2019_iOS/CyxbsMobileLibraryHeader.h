@@ -32,6 +32,7 @@
 #import "AESCipher.h"           // AES加密算法
 #import <MGJRouter.h>
 #import <SDWebImage/SDWebImage.h>
+#import "UIView+FrameTool.h"
 
 //自定义hud
 #import "NewQAHud.h"

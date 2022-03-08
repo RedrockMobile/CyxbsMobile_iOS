@@ -192,12 +192,13 @@
 }
 //设置每个item的size
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat item_height = (SCREEN_WIDTH-(2 * Margin + Pading * 2))/item_num;
+//    CGFloat item_height = (SCREEN_WIDTH - (2 * Margin + Pading * 2))/item_num;
+    CGFloat item_height = 97 * HScaleRate_SE;
     CGSize size = CGSizeMake(item_height,item_height);
     return size;
 }
 
-//MARK: CollectionView Delegate
+//MARK: CollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSMutableArray *photos = [NSMutableArray array];
     for (int i = 0;i < self.dataModel.pics.count; i++) {
@@ -232,8 +233,7 @@
         self.nicknameLabel.text = dataModel.nick_name;
         
         //发布日期
-        self.timeLabel.text = [self getDateStringWithTimeStr:dataModel.publish_time];
-        
+        self.timeLabel.text = [self getDateStringWithTimeStr:[NSString stringWithFormat:@"%ld", dataModel.publish_time]];
         //内容，根据几级评论设置内容
             //如果是二级评论，对内容进行处理
         if (self.commentLevel == DynamicCommentType_secondLevel) {
@@ -276,7 +276,7 @@
         }
         
         //点赞按钮
-        self.starBtn.countLabel.text = [NSString stringWithFormat:@"%@",dataModel.praise_count];
+        self.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",dataModel.praise_count];
         self.starBtn.selected = dataModel.is_praised;
         self.starBtn.countLabel.textColor = self.starBtn.selected == YES ? [UIColor colorNamed:@"countLabelColor"] : [UIColor colorNamed:@"FuncBtnColor"];
         [self.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
