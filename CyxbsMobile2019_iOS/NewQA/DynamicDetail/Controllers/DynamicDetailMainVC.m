@@ -295,7 +295,12 @@
     [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:1 andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
         //如果删除评论后此时还有评论，则更新table的数量
         if (commentAry.count > 0) {
-            //移除原所有数据
+//            //移除原所有数据
+//            [self.commentTableDataAry removeAllObjects];
+//            //向评论列表数据源数组添加元素
+//            [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
+//            [self.commentTable reloadData];
+            //移除数组内所有元素
             [self.commentTableDataAry removeAllObjects];
             //向评论列表数据源数组添加元素
             [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
@@ -749,6 +754,8 @@
     [self reportComment:textStr];
     [self.hideKeyBoardView removeFromSuperview];
 }
+
+///发布评论
 - (void)reportComment:(NSString *)textStr{
     
     //设置参数
@@ -761,22 +768,18 @@
     }
 
     [[HttpClient defaultClient]requestWithPath:New_QA_Comment_Release method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        if ([responseObject[@"status"] intValue] == 200) {
-            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
-            
-            //清除文字内容，收回键盘
-            self.inputView.textView.text = @"";
-            self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
-            //更新textView的高度
-            [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(self.inputView.originTextViewSize);
-            }];
-            [self.inputView.textView resignFirstResponder];
-            
-            [self rebuildFrameByComentCount];
-            
-        }
-
+        [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
+        
+        //清除文字内容，收回键盘
+        self.inputView.textView.text = @"";
+        self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
+        //更新textView的高度
+        [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(self.inputView.originTextViewSize);
+        }];
+        [self.inputView.textView resignFirstResponder];
+        
+        [self rebuildFrameByComentCount];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
     }];
