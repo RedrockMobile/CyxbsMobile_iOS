@@ -46,11 +46,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = ColorWhite;
-    } else {
-        // Fallback on earlier versions
-    }
+    self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     [self addContentView];//scrollView
     [self addUserInfoView];
