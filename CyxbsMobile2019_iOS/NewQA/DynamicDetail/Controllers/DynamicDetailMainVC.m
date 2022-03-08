@@ -916,7 +916,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[section];
     //如果一级评论下二级评论超过三条，则最后插入一条更多回复的cell
-    unsigned long count = model.has_more_reply ? (model.reply_list.count + 2) : (model.reply_list.count + 1);
+//    unsigned long count = model.has_more_reply ? (model.reply_list.count + 2) : (model.reply_list.count + 1);
+    unsigned long count = model.reply_list.count + 1;
     return count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -932,15 +933,15 @@
                 cell.lineLB.hidden = YES;
             }
         } else {
-           if (model.has_more_reply && (indexPath.row == model.reply_list.count + 1)) {
-               //用于点击更多评论的cell
-               UITableViewCell *hasMoreCommentCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reminedCell"];
-               hasMoreCommentCell.backgroundColor = [UIColor redColor];
-               hasMoreCommentCell.textLabel.text = @"我是更多评论呀";
-               return hasMoreCommentCell;
-           } else {
+//           if (model.has_more_reply && (indexPath.row == model.reply_list.count + 1)) {
+//               //用于点击更多评论的cell
+//               UITableViewCell *hasMoreCommentCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reminedCell"];
+//               hasMoreCommentCell.backgroundColor = [UIColor redColor];
+//               hasMoreCommentCell.textLabel.text = @"我是更多评论呀";
+//               return hasMoreCommentCell;
+//           } else {
                cell.dataModel = model.reply_list[indexPath.row-1];
-           }
+//           }
         }
     return cell;
 }
@@ -954,24 +955,24 @@
         CGFloat height = [model getCellHeight];
         return height ;
     } else {
-        if (model.has_more_reply && (indexPath.row == model.reply_list.count + 1)) {
-            return  100;
-        } else {
+//        if (model.has_more_reply && (indexPath.row == model.reply_list.count + 1)) {
+//            return  100;
+//        } else {
             DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
             CGFloat height = [secondCommentModel getCellHeight];
             
             //后面的20是回复的label的高度
             return height + 22;
-        }
+//        }
     }
 }
    
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.view endEditing:YES];
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
-    if (model.has_more_reply && indexPath.row == model.reply_list.count + 1) {
-        NSLog(@"更多评论哟");
-    } else {
+//    if (model.has_more_reply && indexPath.row == model.reply_list.count + 1) {
+//        NSLog(@"更多评论哟");
+//    } else {
         if (indexPath.row !=0 ) {
             model = model.reply_list[indexPath.row-1];
         }
@@ -1038,7 +1039,7 @@
                 }
             }
         }];
-    }
+//    }
 }
 
 #pragma mark- getter
