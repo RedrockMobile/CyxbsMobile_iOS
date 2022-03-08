@@ -465,7 +465,6 @@
 		B89B8E5D2603928F00497814 /* CYSearchEndKnowledgeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = B89B8E5C2603928F00497814 /* CYSearchEndKnowledgeDetailView.m */; };
 		B89B8E632603974400497814 /* CYSearchEndKnowledgeDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B89B8E622603974400497814 /* CYSearchEndKnowledgeDetailModel.m */; };
 		B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */; };
-		B8B7AD7E264BA6FA00FEEF7D /* NoComentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B7AD7D264BA6FA00FEEF7D /* NoComentView.m */; };
 		B8EFF3CE259C61F1003753DD /* NewQA_Search.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */; };
 		BE7CBD7927535FC000094AE8 /* PostItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD2427535FC000094AE8 /* PostItem.m */; };
 		BE7CBD7A27535FC000094AE8 /* GroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7CBD2527535FC000094AE8 /* GroupItem.m */; };
@@ -1547,8 +1546,6 @@
 		B89B8E622603974400497814 /* CYSearchEndKnowledgeDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CYSearchEndKnowledgeDetailModel.m; sourceTree = "<group>"; };
 		B8A981F525E1452B0020CD86 /* SZHCircleLabelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SZHCircleLabelView.h; path = CyxbsMobile2019_iOS/SZHCircleLabelView.h; sourceTree = SOURCE_ROOT; };
 		B8A981F625E1452B0020CD86 /* SZHCircleLabelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SZHCircleLabelView.m; path = CyxbsMobile2019_iOS/SZHCircleLabelView.m; sourceTree = SOURCE_ROOT; };
-		B8B7AD7C264BA6FA00FEEF7D /* NoComentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoComentView.h; sourceTree = "<group>"; };
-		B8B7AD7D264BA6FA00FEEF7D /* NoComentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoComentView.m; sourceTree = "<group>"; };
 		B8EFF3CD259C61F1003753DD /* NewQA_Search.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewQA_Search.xcassets; sourceTree = "<group>"; };
 		BE7CBD2427535FC000094AE8 /* PostItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostItem.m; sourceTree = "<group>"; };
 		BE7CBD2527535FC000094AE8 /* GroupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupItem.m; sourceTree = "<group>"; };
@@ -4375,8 +4372,6 @@
 				B82CA666263159B800786685 /* DynamicDetailComentTableCell.m */,
 				B82CA670263159B900786685 /* GYYImageChooseCollectionViewCell.h */,
 				B82CA668263159B900786685 /* GYYImageChooseCollectionViewCell.m */,
-				B8B7AD7C264BA6FA00FEEF7D /* NoComentView.h */,
-				B8B7AD7D264BA6FA00FEEF7D /* NoComentView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5966,7 +5961,6 @@
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
-				B8B7AD7E264BA6FA00FEEF7D /* NoComentView.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */,

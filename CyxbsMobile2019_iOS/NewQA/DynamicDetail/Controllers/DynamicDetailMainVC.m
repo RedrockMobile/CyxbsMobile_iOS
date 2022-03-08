@@ -915,7 +915,9 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[section];
-    return model.reply_list.count + 1;
+    //如果一级评论下二级评论超过三条，则最后插入一条更多回复的cell
+    unsigned long count = model.has_more_reply ? (model.reply_list.count + 2) : (model.reply_list.count + 1);
+    return count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -929,8 +931,16 @@
             if (indexPath.section == 0) {
                 cell.lineLB.hidden = YES;
             }
-        }else{
-            cell.dataModel = model.reply_list[indexPath.row-1];
+        } else {
+           if (model.has_more_reply && (indexPath.row == model.reply_list.count + 1)) {
+               //用于点击更多评论的cell
+               UITableViewCell *hasMoreCommentCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reminedCell"];
+               hasMoreCommentCell.backgroundColor = [UIColor redColor];
+               hasMoreCommentCell.textLabel.text = @"我是更多评论呀";
+               return hasMoreCommentCell;
+           } else {
+               cell.dataModel = model.reply_list[indexPath.row-1];
+           }
         }
     return cell;
 }
@@ -943,84 +953,92 @@
     if (indexPath.row == 0) {
         CGFloat height = [model getCellHeight];
         return height ;
-    }else{
-        DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
-        CGFloat height = [secondCommentModel getCellHeight];
-        
-        //后面的20是回复的label的高度
-        return height + 22;
+    } else {
+        if (model.has_more_reply && (indexPath.row == model.reply_list.count + 1)) {
+            return  100;
+        } else {
+            DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
+            CGFloat height = [secondCommentModel getCellHeight];
+            
+            //后面的20是回复的label的高度
+            return height + 22;
+        }
     }
 }
    
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.view endEditing:YES];
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
-    if (indexPath.row !=0 ) {
-        model = model.reply_list[indexPath.row-1];
-    }
-    self.actionCommentModel = model;
-    DynamicDetailComentTableCell *cell = (DynamicDetailComentTableCell *)[self.commentTable cellForRowAtIndexPath:indexPath];
-
-    CGRect rectInTableView = [tableView rectForRowAtIndexPath:indexPath];
-    //获取cell在tableView中的位置,后面点击之后弹出来的View是根据这个frame设定的
-    CGRect rectInSuperview = [tableView convertRect:rectInTableView toView:[tableView superview]];
-
-    //弹出视图在屏幕下方被隐藏时，设置它的最低的弹出位置
-    CGFloat rectYMargin = rectInSuperview.origin.y+40;
-    if (rectYMargin >= SCREEN_HEIGHT-NVGBARHEIGHT-STATUSBARHEIGHT-54) {
-        rectYMargin = rectInSuperview.origin.y-SCREEN_WIDTH*0.0773;
-    }
-
-    //设置点击cell后弹出的cell
-    SHPopMenu *_menu = [[SHPopMenu alloc]init];
-    _menu.dimBackground = YES;
-    _menu.menuW = SCREEN_WIDTH * 0.4747;
-    _menu.contentH = SCREEN_WIDTH * 0.0773;
-    _menu.mList = @[@"回复",@"复制",(model.is_self ? @"删除" : @"举报")];
-    _menu.arrowX = 0;
-    _menu.arrowImage = [UIImage imageNamed:@""];
-
-    _menu.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x0C3573) DarkColor:KUIColorFromRGB(0x0C3573)];
-    _menu.font = [UIFont fontWithName:PingFangSCMedium size:12];
-    _menu.layer.cornerRadius = 15;
-    _menu.layer.masksToBounds = YES;
-
-    __weak typeof(self)weakSelf = self;
-    //显示菜单
-    [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:rectYMargin block:^(SHPopMenu *menu, NSInteger index) {
-
-        if (index <= 1){
-            if (index == 0) {
-                //回复评论
-                weakSelf.isCommentFirstLevel = NO;  //此处是二级评论
-                [weakSelf.inputView startInputAction];
-            }else{
-                //复制
-                UIPasteboard *pab = [UIPasteboard generalPasteboard];
-                pab.string = model.content;
-                [NewQAHud showHudWith:@"已复制内容" AddView:self.view];
-            }
-        }else{
-            if (model.is_self) {
-                //如果这条评论是自己的，就执行删除操作
-                [weakSelf deleteAction:model.comment_id];
-            }else{
-                //举报功能
-                weakSelf.isReportComment = YES;
-                [weakSelf.view.window addSubview:weakSelf.backViewWithGesture]; //添加背景蒙板
-                weakSelf.reportView.postID = [NSNumber numberWithInteger:model.comment_id];
-
-                //每次添加到屏幕上时内容置空
-                weakSelf.reportView.textView.text = @"";
-                [weakSelf.view.window addSubview:weakSelf.reportView];
-                [weakSelf.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.center.equalTo(self.view);
-                    make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
-                }];
-                weakSelf.isShowedReportView = YES;  //标记转为已经显示举报
-            }
+    if (model.has_more_reply && indexPath.row == model.reply_list.count + 1) {
+        NSLog(@"更多评论哟");
+    } else {
+        if (indexPath.row !=0 ) {
+            model = model.reply_list[indexPath.row-1];
         }
-    }];
+        self.actionCommentModel = model;
+        DynamicDetailComentTableCell *cell = (DynamicDetailComentTableCell *)[self.commentTable cellForRowAtIndexPath:indexPath];
+
+        CGRect rectInTableView = [tableView rectForRowAtIndexPath:indexPath];
+        //获取cell在tableView中的位置,后面点击之后弹出来的View是根据这个frame设定的
+        CGRect rectInSuperview = [tableView convertRect:rectInTableView toView:[tableView superview]];
+
+        //弹出视图在屏幕下方被隐藏时，设置它的最低的弹出位置
+        CGFloat rectYMargin = rectInSuperview.origin.y+40;
+        if (rectYMargin >= SCREEN_HEIGHT-NVGBARHEIGHT-STATUSBARHEIGHT-54) {
+            rectYMargin = rectInSuperview.origin.y-SCREEN_WIDTH*0.0773;
+        }
+
+        //设置点击cell后弹出的cell
+        SHPopMenu *_menu = [[SHPopMenu alloc]init];
+        _menu.dimBackground = YES;
+        _menu.menuW = SCREEN_WIDTH * 0.4747;
+        _menu.contentH = SCREEN_WIDTH * 0.0773;
+        _menu.mList = @[@"回复",@"复制",(model.is_self ? @"删除" : @"举报")];
+        _menu.arrowX = 0;
+        _menu.arrowImage = [UIImage imageNamed:@""];
+
+        _menu.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x0C3573) DarkColor:KUIColorFromRGB(0x0C3573)];
+        _menu.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        _menu.layer.cornerRadius = 15;
+        _menu.layer.masksToBounds = YES;
+
+        __weak typeof(self)weakSelf = self;
+        //显示菜单
+        [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:rectYMargin block:^(SHPopMenu *menu, NSInteger index) {
+
+            if (index <= 1){
+                if (index == 0) {
+                    //回复评论
+                    weakSelf.isCommentFirstLevel = NO;  //此处是二级评论
+                    [weakSelf.inputView startInputAction];
+                }else{
+                    //复制
+                    UIPasteboard *pab = [UIPasteboard generalPasteboard];
+                    pab.string = model.content;
+                    [NewQAHud showHudWith:@"已复制内容" AddView:self.view];
+                }
+            }else{
+                if (model.is_self) {
+                    //如果这条评论是自己的，就执行删除操作
+                    [weakSelf deleteAction:model.comment_id.intValue];
+                }else{
+                    //举报功能
+                    weakSelf.isReportComment = YES;
+                    [weakSelf.view.window addSubview:weakSelf.backViewWithGesture]; //添加背景蒙板
+                    weakSelf.reportView.postID = [NSNumber numberWithInteger:model.comment_id.intValue];
+
+                    //每次添加到屏幕上时内容置空
+                    weakSelf.reportView.textView.text = @"";
+                    [weakSelf.view.window addSubview:weakSelf.reportView];
+                    [weakSelf.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.center.equalTo(self.view);
+                        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+                    }];
+                    weakSelf.isShowedReportView = YES;  //标记转为已经显示举报
+                }
+            }
+        }];
+    }
 }
 
 #pragma mark- getter
