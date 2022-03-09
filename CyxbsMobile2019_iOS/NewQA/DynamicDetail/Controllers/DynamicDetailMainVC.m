@@ -295,11 +295,6 @@
     [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:1 andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
         //如果删除评论后此时还有评论，则更新table的数量
         if (commentAry.count > 0) {
-//            //移除原所有数据
-//            [self.commentTableDataAry removeAllObjects];
-//            //向评论列表数据源数组添加元素
-//            [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
-//            [self.commentTable reloadData];
             //移除数组内所有元素
             [self.commentTableDataAry removeAllObjects];
             //向评论列表数据源数组添加元素
@@ -747,6 +742,9 @@
         commentVC.reply_id = self.actionCommentModel.comment_id.intValue;
     }
     commentVC.tampComment = textStr;
+    commentVC.freshBlock = ^{
+        [self rebuildFrameByComentCount];
+    };
     [self.navigationController pushViewController:commentVC animated:YES];
 }
 ///发送按钮

@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///当前的输入内容
 @property (nonatomic,copy) NSString *tampComment;
+
+@property (nonatomic, copy) void (^freshBlock)(void);
 @end
 
 NS_ASSUME_NONNULL_END
