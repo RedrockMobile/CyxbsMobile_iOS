@@ -154,7 +154,7 @@
     
     [self.waiLoadHud hide:YES];
     
-    [self.view addSubview:self.topBarView];
+    
 
     //无评论时的布局策略：底部为一个scrollView，scrollView的滑动高度为动态信息页和无评论的view的高度总和
     if (self.commentTableDataAry.count <= 0) {
@@ -169,6 +169,7 @@
 - (void)setFrameWhenHaveComents{
     //有评论时的布局策略：动态详情信息为评论table的头视图
     //评论的table
+    [self.view addSubview:self.topBarView];
     [self.view addSubview:self.commentTable];
     [self.commentTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -192,6 +193,7 @@
 ///当没有评论的时候设置UI
 - (void)setFrameWhenNoComent{
     //底层的scrollView
+    [self.view addSubview:self.topBarView];
     [self.view addSubview:self.scrollView];
 //        self.scrollView.backgroundColor = [UIColor redColor];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -299,7 +301,15 @@
             [self.commentTableDataAry removeAllObjects];
             //向评论列表数据源数组添加元素
             [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
-            [self.commentTable reloadData];
+            
+            //如果scrollview存在，说明之前是无评论的状态，这里要刷新界面
+            if (!self.scrollView) {
+                [self.commentTable reloadData];
+            } else {
+                [self.view removeAllSubviews];
+                [self setFrameWhenHaveComents];
+            }
+            
         }else{
             //如果无评论的情况下
             [self.view removeAllSubviews];
