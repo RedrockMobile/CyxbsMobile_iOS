@@ -32,7 +32,7 @@
     if (self) {
         [self addCheckMarkBtn];
         [self addTitleLabel];
-        self.backgroundColor = [UIColor colorNamed:@"248_248_251&29_29_29"];
+        self.backgroundColor = [UIColor colorNamed:@"TodoBG"];
     }
     return self;
 }
