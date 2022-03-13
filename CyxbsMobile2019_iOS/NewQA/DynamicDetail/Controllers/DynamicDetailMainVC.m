@@ -294,6 +294,7 @@
             [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
         }];
     
+    __weak UIScrollView  *weakScroll = _scrollView;
     [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:1 andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
         //如果删除评论后此时还有评论，则更新table的数量
         if (commentAry.count > 0) {
@@ -303,7 +304,7 @@
             [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
             
             //如果scrollview存在，说明之前是无评论的状态，这里要刷新界面
-            if (!self.scrollView) {
+            if (!weakScroll) {
                 [self.commentTable reloadData];
             } else {
                 [self.view removeAllSubviews];
