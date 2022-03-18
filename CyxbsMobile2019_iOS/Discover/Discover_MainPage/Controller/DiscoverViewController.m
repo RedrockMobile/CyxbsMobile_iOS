@@ -283,13 +283,10 @@ static int requestCheckinInfo = 0;
         });
         return;
     }
+    
     requestCheckinInfo = 0;
-    
-    NSDictionary *params = @{
-        @"stunum": [UserDefaultTool getStuNum],
-        @"idnum": [UserDefaultTool getIdNum]
-    };
-    
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[UserDefaultTool getStuNum],@"stunum",[UserDefaultTool getIdNum],@"idnum",nil];
+
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
