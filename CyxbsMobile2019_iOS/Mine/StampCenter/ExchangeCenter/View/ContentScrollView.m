@@ -67,7 +67,7 @@
         cycleScrollView.layer.shadowOffset = CGSizeMake(0, 3);
         self.cycleScrollView = cycleScrollView;
         self.urlscount = imagesURLStrings.count;
-        [self addPageController];
+//        [self addPageController];
         
         //图片的设置
         //设置图片浏览器的数据源数组
