@@ -526,8 +526,6 @@
 		D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101F5E243587A1004337ED /* UIImage+GKDecoder.m */; };
 		D0101F69243587A1004337ED /* GKPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101F5F243587A1004337ED /* GKPhotoView.m */; };
 		D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101F60243587A1004337ED /* GKPanGestureRecognizer.m */; };
-		D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D026A7FE23D4E054001A4774 /* QAListSegmentView.m */; };
-		D026A80623D4E054001A4774 /* QA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D026A80223D4E054001A4774 /* QA.xcassets */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
 		DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2B239BD4540052B65E /* WYCClassBookViewController.m */; };
 		DB34EACE239BD4550052B65E /* DateModle.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EA2D239BD4540052B65E /* DateModle.m */; };
@@ -651,6 +649,8 @@
 		DB4065032466D889006CE5BC /* DLReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F42466D888006CE5BC /* DLReminderView.m */; };
 		EE131C212471362E00B6ED97 /* URLController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C202471362E00B6ED97 /* URLController.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
+		FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE11E81D27E8712A00C4B90B /* QAListSegmentView.m */; };
+		FE11E82127E8712B00C4B90B /* QA.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE11E81F27E8712B00C4B90B /* QA.xcassets */; };
 		FE2C134E27AEF629001CF7AF /* TODOMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131727AEF629001CF7AF /* TODOMainViewController.m */; };
 		FE2C134F27AEF629001CF7AF /* ToDoDetaileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131827AEF629001CF7AF /* ToDoDetaileViewController.m */; };
 		FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C131B27AEF629001CF7AF /* TodoTableViewCell.m */; };
@@ -1669,9 +1669,6 @@
 		D0101F5E243587A1004337ED /* UIImage+GKDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GKDecoder.m"; sourceTree = "<group>"; };
 		D0101F5F243587A1004337ED /* GKPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKPhotoView.m; sourceTree = "<group>"; };
 		D0101F60243587A1004337ED /* GKPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKPanGestureRecognizer.m; sourceTree = "<group>"; };
-		D026A7FE23D4E054001A4774 /* QAListSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListSegmentView.m; sourceTree = "<group>"; };
-		D026A7FF23D4E054001A4774 /* QAListSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListSegmentView.h; sourceTree = "<group>"; };
-		D026A80223D4E054001A4774 /* QA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QA.xcassets; sourceTree = "<group>"; };
 		D09081D923F4571B00D5342D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "掌上重邮.entitlements"; sourceTree = "<group>"; };
 		DB34EA2A239BD4540052B65E /* WYCClassBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYCClassBookViewController.h; sourceTree = "<group>"; };
@@ -1844,6 +1841,9 @@
 		EE131C202471362E00B6ED97 /* URLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLController.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		FE11E81D27E8712A00C4B90B /* QAListSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAListSegmentView.m; sourceTree = "<group>"; };
+		FE11E81E27E8712A00C4B90B /* QAListSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAListSegmentView.h; sourceTree = "<group>"; };
+		FE11E81F27E8712B00C4B90B /* QA.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QA.xcassets; sourceTree = "<group>"; };
 		FE2C131627AEF629001CF7AF /* ToDoDetaileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoDetaileViewController.h; sourceTree = "<group>"; };
 		FE2C131727AEF629001CF7AF /* TODOMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TODOMainViewController.m; sourceTree = "<group>"; };
 		FE2C131827AEF629001CF7AF /* ToDoDetaileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoDetaileViewController.m; sourceTree = "<group>"; };
@@ -1941,6 +1941,7 @@
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
 			isa = PBXGroup;
 			children = (
+				18FBAEB726F35DF7004CED7D /* NewQA.xcassets */,
 				18FBADE426F356BB004CED7D /* NewQAMainView */,
 				B8AA53DB25B9499A00CEE847 /* ReleaseDynamic */,
 				B82CA6552631580C00786685 /* DynamicDetail */,
@@ -3049,7 +3050,7 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		1A141319235F521C0001417E /* Base */ = {
+		1A141319235F521C0001417E /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
 				1A14131E235F521C0001417E /* BaseNavigationController.h */,
@@ -3059,7 +3060,7 @@
 				1A14131F235F521C0001417E /* BaseViewController.h */,
 				1A14131B235F521C0001417E /* BaseViewController.m */,
 			);
-			path = Base;
+			path = BaseClass;
 			sourceTree = "<group>";
 		};
 		1A14132A235F523B0001417E /* Mine */ = {
@@ -3090,18 +3091,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1A141331235F52440001417E /* QA */ = {
+		1A141339235F524B0001417E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				D026A80223D4E054001A4774 /* QA.xcassets */,
-				D026A7FB23D4E054001A4774 /* QAList */,
-			);
-			path = QA;
-			sourceTree = "<group>";
-		};
-		1A141339235F524B0001417E /* Tool */ = {
-			isa = PBXGroup;
-			children = (
+				FE11E81C27E86E1B00C4B90B /* UserDefaultTool */,
 				1893DC8426EA0AC9007E871E /* UsefulTool */,
 				187DF4C2260310FA000BCDE9 /* UITextView */,
 				187DF4AE260310DD000BCDE9 /* LYEmptyView */,
@@ -3112,12 +3105,10 @@
 				AA86E3A92635B3DC00756F05 /* SkinTheme */,
 				1A14133D235F524B0001417E /* AESCipher */,
 				AA86E38F2635B33F00756F05 /* Category */,
-				1A14135C235F524B0001417E /* UserDefaultTool.h */,
-				1A141353235F524B0001417E /* UserDefaultTool.m */,
 				1A141360235F524B0001417E /* SegmentView */,
 				AAC0DA35265DF65B0039A099 /* Other */,
 			);
-			path = Tool;
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		1A14133D235F524B0001417E /* AESCipher */ = {
@@ -3141,6 +3132,9 @@
 		1A141360235F524B0001417E /* SegmentView */ = {
 			isa = PBXGroup;
 			children = (
+				FE11E81F27E8712B00C4B90B /* QA.xcassets */,
+				FE11E81E27E8712A00C4B90B /* QAListSegmentView.h */,
+				FE11E81D27E8712A00C4B90B /* QAListSegmentView.m */,
 				1A141363235F524B0001417E /* SYCSegmentViewButton.h */,
 				1A141361235F524B0001417E /* SYCSegmentViewButton.m */,
 				1A141364235F524B0001417E /* SYCSegmentView.h */,
@@ -3281,17 +3275,15 @@
 			isa = PBXGroup;
 			children = (
 				1817F00C2594D5C500FE1304 /* NewQA */,
-				18FBAEB726F35DF7004CED7D /* NewQA.xcassets */,
 				18CDF4D4257F91BC006E8E5C /* Discover */,
 				1A0AC5F5252B234700221514 /* Swift */,
-				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
 				1AAFAD41236DC96300E854A3 /* Fonts */,
 				1A14132A235F523B0001417E /* Mine */,
-				1A141331235F52440001417E /* QA */,
 				1A5A5ED423600BA300543BAE /* Login */,
-				1A141319235F521C0001417E /* Base */,
-				1A141339235F524B0001417E /* Tool */,
+				1A141319235F521C0001417E /* BaseClass */,
+				1A141339235F524B0001417E /* Tools */,
+				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B766A235F50A600725937 /* AppDelegate.h */,
 				1A9B766B235F50A600725937 /* AppDelegate.m */,
 				DB34EB3E239BD4850052B65E /* Main.storyboard */,
@@ -4768,23 +4760,6 @@
 			path = GKLoadingView;
 			sourceTree = "<group>";
 		};
-		D026A7FB23D4E054001A4774 /* QAList */ = {
-			isa = PBXGroup;
-			children = (
-				D026A7FD23D4E054001A4774 /* QAListSegmentView */,
-			);
-			path = QAList;
-			sourceTree = "<group>";
-		};
-		D026A7FD23D4E054001A4774 /* QAListSegmentView */ = {
-			isa = PBXGroup;
-			children = (
-				D026A7FE23D4E054001A4774 /* QAListSegmentView.m */,
-				D026A7FF23D4E054001A4774 /* QAListSegmentView.h */,
-			);
-			path = QAListSegmentView;
-			sourceTree = "<group>";
-		};
 		DB34EA28239BD4540052B65E /* ClassSchedule */ = {
 			isa = PBXGroup;
 			children = (
@@ -5078,6 +5053,15 @@
 				DB4064EE2466D888006CE5BC /* Reminder.xcassets */,
 			);
 			path = Reminder;
+			sourceTree = "<group>";
+		};
+		FE11E81C27E86E1B00C4B90B /* UserDefaultTool */ = {
+			isa = PBXGroup;
+			children = (
+				1A14135C235F524B0001417E /* UserDefaultTool.h */,
+				1A141353235F524B0001417E /* UserDefaultTool.m */,
+			);
+			path = UserDefaultTool;
 			sourceTree = "<group>";
 		};
 		FE2C131327AEF629001CF7AF /* ToDo */ = {
@@ -5429,7 +5413,6 @@
 				18CDF6D6257F91BE006E8E5C /* 7@2x.png in Resources */,
 				DB34EADF239BD4550052B65E /* remind0@3x.png in Resources */,
 				DB34EB0B239BD4550052B65E /* timeTable_image_add@2x.png in Resources */,
-				D026A80623D4E054001A4774 /* QA.xcassets in Resources */,
 				DB34EB07239BD4550052B65E /* 多课2@3x.png in Resources */,
 				18CDF6F1257F91BE006E8E5C /* 展开前@2x.png in Resources */,
 				49343A2426D4EAB2001A2892 /* CommonQuestionCell.xib in Resources */,
@@ -5437,6 +5420,7 @@
 				18CDF6DF257F91BE006E8E5C /* login_password.png in Resources */,
 				18CDF6F6257F91BE006E8E5C /* 4@2x.png in Resources */,
 				B82CA684263159BA00786685 /* pop_arrow.png in Resources */,
+				FE11E82127E8712B00C4B90B /* QA.xcassets in Resources */,
 				DB34EAEC239BD4550052B65E /* remind_image_time@2x.png in Resources */,
 				DB34EB01239BD4550052B65E /* 左三角@3x.png in Resources */,
 				DB34EAE7239BD4550052B65E /* timeTable_image_pull@3x.png in Resources */,
@@ -5627,6 +5611,7 @@
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
+				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
@@ -5938,7 +5923,6 @@
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
-				D026A80423D4E054001A4774 /* QAListSegmentView.m in Sources */,
 				6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */,
 				B82CA680263159BA00786685 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
