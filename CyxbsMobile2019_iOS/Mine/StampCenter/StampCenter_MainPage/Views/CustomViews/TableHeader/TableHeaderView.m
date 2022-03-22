@@ -35,7 +35,10 @@
     if (!_button) {
        GotoButton *button = [[GotoButton alloc]initWithFrame:CGRectMake(0.781*SCREEN_WIDTH, 32, 66, 28) AndTitle:@"去签到"];
         [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
-                    TaskData *data = array[0];
+            TaskData *data = array[0];
+            if ([data.title isEqualToString:@"NULL"]) {
+                [NewQAHud showHudWith:@"Token失效了，重启掌邮试试吧" AddView:self];
+            }
             if (data.current_progress == data.max_progress) {
                 self.button.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
                 [self.button setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];

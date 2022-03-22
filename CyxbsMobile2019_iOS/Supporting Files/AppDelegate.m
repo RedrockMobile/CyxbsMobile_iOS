@@ -260,7 +260,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
                 hud.detailsLabelFont = [UIFont fontWithName:PingFangSCLight size:14];
                 hud.detailsLabelText = [NSString stringWithFormat:@" %@新版本已上线 \n %@ ",dict[@"version"],dict[@"releaseNotes"]];
                 hud.labelText = @"请去 App Store 更新版本哦～";
-                [hud hide:YES afterDelay:3];
+                [hud hide:YES afterDelay:4];
         
             }
         
