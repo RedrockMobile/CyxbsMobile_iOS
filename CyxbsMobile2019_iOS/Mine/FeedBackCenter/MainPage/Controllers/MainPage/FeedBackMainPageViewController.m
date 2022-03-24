@@ -174,14 +174,14 @@
     return [NSURL URLWithString:urlStr];
 }
 
-
 - (void)jumptoQQ{
-    NSLog(@"跳转至QQ");
     NSURL* url = [self getQQQunUrl];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
-        [[UIApplication sharedApplication] openURL:url];
+        [[UIApplication sharedApplication] openURL:url options:@{
+            
+        } completionHandler:nil];
     }else{
-        NSLog(@"这里不行");
+        [NewQAHud showHudWith:@"打开URL失败" AddView:self.view];
     }
 }
 @end

@@ -83,29 +83,38 @@
 
 
 - (void)p_versionUpdateButtonAction  {
-    //获取本地的App版本号
-    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *currentVersion = [infoDic objectForKey:@"CFBundleShortVersionString"];
     
-    
-    
-    //有问题 之后再修
-//    [self getAppStoreVersionInfoWithResponseBlock:^(NSDictionary * _Nonnull response, NSError * _Nonnull error) {
-//        NSString *appStoreVersion = response[@"version"];
-//        NSComparisonResult comparisonResult = [self compareSystemVersion:currentVersion toVersion:appStoreVersion];
-//            if (comparisonResult == NSOrderedAscending) {
-//                //更新弹窗
-//                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//                hud.mode = MBProgressHUDModeText;
-//                hud.labelText = @"请去应用商店更新版本哦～";
-//                [hud hide:YES afterDelay:0.7];
-//            } else {
-//                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//                hud.mode = MBProgressHUDModeText;
-//                hud.labelText = @"已经是最新版本";
-//                [hud hide:YES afterDelay:0.7];
-//            }
-//    }];
+    //获取当前发布的版本的Version
+    NSString *localVersion = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    //获取Store上的掌邮的版本id
+    [[HttpClient defaultClient] requestWithPath:@"http://itunes.apple.com/cn/lookup?id=974026615" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSArray *array = responseObject[@"results"];
+        NSDictionary *dict = array[0];
+        NSString *appstoreVersion = dict[@"version"];
+        
+        //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
+        NSComparisonResult result = [localVersion compare:appstoreVersion];
+        
+        if (result == NSOrderedAscending) {
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.mode = MBProgressHUDModeText;
+                    hud.labelFont = [UIFont fontWithName:PingFangSCSemibold size:17];
+                    hud.detailsLabelFont = [UIFont fontWithName:PingFangSCLight size:14];
+                    hud.detailsLabelText = [NSString stringWithFormat:@" %@新版本已上线 \n %@ ",dict[@"version"],dict[@"releaseNotes"]];
+                    hud.labelText = @"请去 App Store 更新版本哦～";
+                    [hud hide:YES afterDelay:1];
+                }else{
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                    hud.mode = MBProgressHUDModeText;
+                    hud.labelFont = [UIFont fontWithName:PingFangSCSemibold size:17];
+                    hud.labelText = @"已经是最新版本";
+                    [hud hide:YES afterDelay:1];
+            }
+        
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        }];
     
 }
 

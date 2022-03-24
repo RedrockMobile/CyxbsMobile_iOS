@@ -16,11 +16,12 @@
 #import "TransitionManager.h"
 #import <UserNotifications/UserNotifications.h>
 #import "LocalNotiManager.h"
+#import "updatePopView.h"
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
-@interface WYCClassBookViewController ()<UIScrollViewDelegate,TopBarScrollViewDelegate>
+@interface WYCClassBookViewController ()<UIScrollViewDelegate,TopBarScrollViewDelegate,updatePopViewDelegate>
 /**课表顶部的小拖拽条*/
 @property (nonatomic, weak) UIView *dragHintView;
 //当前显示的课表对应的下标
@@ -43,6 +44,9 @@
 
 /// lessonViewDict[0]代表整学期页的课表，lessonViewDict[x]代表第x周
 @property (nonatomic, strong)NSMutableDictionary <NSString*, LessonViewForAWeek*>* lessonViewDict;
+
+///检查更新View
+@property (nonatomic, strong) updatePopView *updatePopView;
 @end
 
 @implementation WYCClassBookViewController
@@ -67,6 +71,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //检查版本更新
+    [self checkUpdate];
+    
     //添加对通知中心的监听
     [self addNoti];
     
@@ -615,4 +623,52 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+//检查更新
+- (void)checkUpdate{
+    //获取当前发布的版本的Version
+    NSString *localVersion = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    //获取Store上的掌邮的版本id
+    [[HttpClient defaultClient] requestWithPath:@"http://itunes.apple.com/cn/lookup?id=974026615" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSArray *array = responseObject[@"results"];
+        NSDictionary *dict = array[0];
+        NSString *appstoreVersion = dict[@"version"];
+        
+        //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
+        NSComparisonResult result = [localVersion compare:appstoreVersion];
+        
+        //需要更新 -> 弹窗提示
+        if (result == NSOrderedAscending) {
+                self.updatePopView = [[updatePopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) WithUpdateInfo:dict];
+                    self.updatePopView.delegate = self;
+                [self.view addSubview:self.updatePopView];
+            [self.view bringSubviewToFront:self.updatePopView];
+            }
+        
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        }];
+}
+
+- (void)Cancel{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.updatePopView.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self.updatePopView removeFromSuperview];
+        }
+    }];
+}
+
+- (void)Update{
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"https://apps.apple.com/cn/app/%E6%8E%8C%E4%B8%8A%E9%87%8D%E9%82%AE/id974026615"] options:@{
+        
+    } completionHandler:^(BOOL success) {
+        if (success) {
+            [self Cancel];
+        }
+    }];
+}
+
 @end

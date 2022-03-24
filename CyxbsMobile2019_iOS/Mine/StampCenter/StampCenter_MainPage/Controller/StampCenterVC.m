@@ -135,7 +135,39 @@
 
 #pragma mark - viewWillAppear
 - (void)viewWillAppear:(BOOL)animated{
+    
+    //初始化一些数据，避免token失效导致请求不到数据导致数组越界x的闪退
+    //初始化商品数据
+    if (!self.goodsAry) {
+        NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:4];
+        for (int i = 0; i < 4; i++) {
+            GoodsData *data = [[GoodsData alloc]init];
+            data.url = @"NULL";
+            data.title = @" NULL";
+            data.type = 0;
+            [mArray addObject:data];
+        }
+        self.goodsAry = mArray;
+    }
+    
+    //初始化任务数据
+    if (!self.taskAry) {
+        NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:4];
+        for (int i = 0; i < 4; i++) {
+            TaskData *data = [[TaskData alloc]init];
+            data.title = @"NULL";
+            data.type = @"base";
+            data.Description = @"NULL";
+            data.max_progress = 1;
+            data.current_progress = 1;
+            data.gain_stamp = 999;
+            [mArray2 addObject:data];
+        }
+        self.taskAry = mArray2;
+    }
+   
     [self checkAlertLbl];
+    
 }
 
 #pragma mark - viewDidLoad
@@ -162,36 +194,50 @@
     //设置小点
     [self setupPoint];
 
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"Lookin_3D" object:nil];
 }
 
 #pragma mark - table数据源
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 
 //row数量
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return self.taskAry.count;
-    }else{
-        return self.extraTaskAry.count;
+    switch (section) {
+        case 0:
+            return self.taskAry.count;
+            break;
+        case 1:
+            return self.extraTaskAry.count;
+            break;
+        default:
+            return self.section2GoodsAry.count*0.5;
+            break;
     }
 }
 
 //Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-        MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
+        
     if (indexPath.section == 0) {
+        MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
         TaskData *data = self.taskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
-    }else{
+        return cell;
+    }if (indexPath.section == 1){
+        MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
         TaskData *data = self.extraTaskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
+        return cell;
+    }else{
+        UITableViewCell *cell = [[UITableViewCell alloc]init];
+        cell.backgroundColor = [UIColor whiteColor];
+        return cell;
     }
-    return cell;
 }
 
 #pragma mark - table代理
@@ -656,4 +702,5 @@
     hud.labelText = @"签到成功";
     [hud hide:YES afterDelay:1];
 }
+
 @end

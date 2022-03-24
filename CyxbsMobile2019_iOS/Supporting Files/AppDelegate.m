@@ -18,6 +18,9 @@
 #import <AFNetworkReachabilityManager.h>
 #include "ArchiveTool.h"
 #import <sqlite3.h>
+#import <Bugly/Bugly.h>
+
+#define BUGLY_APP_ID @"41e7a3c1b3"
 #define SQLITE_THREADSAFE 1
 
 extern CFAbsoluteTime StartTime;
@@ -78,7 +81,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-
+    [Bugly startWithAppId:BUGLY_APP_ID];
     // Override point for customization after application launch.
     
     if (sqlite3_config(SQLITE_CONFIG_SERIALIZED)!=SQLITE_OK) {
@@ -239,24 +242,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 ///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{
-    
-    //有问题 之后再修
-//    //获取当前发布的版本的Version
-//    NSString *version = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-//    //获取Store上的掌邮的版本id
-//    [[HttpClient defaultClient] requestWithPath:@"http://itunes.apple.com/cn/lookup?id=974026615" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSArray *array = responseObject[@"results"];
-//        NSDictionary *dict = array[0];
-//        //请求成功，判断版本大小,如果不一致，就提示
-//        if ([dict[@"version"] floatValue] != [version floatValue]) {
-//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
-//            hud.mode = MBProgressHUDModeText;
-//            hud.labelText = @"请去应用商店更新版本哦～";
-//            [hud hide:YES afterDelay:1];
-//        }
-//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//
-//        }];
+    //这个模块已重构
 }
 
 /// 完成创建文件/文件夹的操作
