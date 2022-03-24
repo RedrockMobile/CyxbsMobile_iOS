@@ -46,6 +46,15 @@ target 'CyxbsMobile2019_iOS' do
   pod 'RxCocoa', '~> 5.1.1'
   pod 'SnapKit'
   
+
+    post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+    config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+    config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
+    config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+    end
+    end
+  
 end
 
 #去除AFN中的UIWebView模块
