@@ -16,6 +16,7 @@
 				F69D41439D1785CC82ECE1E91BC22F41 /* PBXTargetDependency */,
 			);
 			name = UMCShare;
+			productName = UMCShare;
 		};
 		4A68CFD979D413A619DF631BB121D98F /* Bugly */ = {
 			isa = PBXAggregateTarget;
@@ -25,6 +26,7 @@
 			dependencies = (
 			);
 			name = Bugly;
+			productName = Bugly;
 		};
 		4BD4E22D3419D68A85BDD6119CB37C6C /* AMapLocation-NO-IDFA */ = {
 			isa = PBXAggregateTarget;
@@ -35,6 +37,7 @@
 				7B6F7B12402AE00EF89D0F0DB15BF4F3 /* PBXTargetDependency */,
 			);
 			name = "AMapLocation-NO-IDFA";
+			productName = "AMapLocation-NO-IDFA";
 		};
 		59CEE9D6F6016BD1B1C9DB3F7774066F /* UMCErrorCatch */ = {
 			isa = PBXAggregateTarget;
@@ -45,6 +48,7 @@
 				C3FB426763826501609A4B8F2A39A6F0 /* PBXTargetDependency */,
 			);
 			name = UMCErrorCatch;
+			productName = UMCErrorCatch;
 		};
 		6075E73CE9761233A64B697DA4780D60 /* UMCCommonLog */ = {
 			isa = PBXAggregateTarget;
@@ -54,6 +58,7 @@
 			dependencies = (
 			);
 			name = UMCCommonLog;
+			productName = UMCCommonLog;
 		};
 		6F6B630FA5213AB083E7CEF1F986FE44 /* UMCCommon */ = {
 			isa = PBXAggregateTarget;
@@ -63,6 +68,7 @@
 			dependencies = (
 			);
 			name = UMCCommon;
+			productName = UMCCommon;
 		};
 		8B5BB4D9C85FBB3B774B6C624239821A /* UMCSecurityPlugins */ = {
 			isa = PBXAggregateTarget;
@@ -72,6 +78,7 @@
 			dependencies = (
 			);
 			name = UMCSecurityPlugins;
+			productName = UMCSecurityPlugins;
 		};
 		8FBAE66FA6352AB9D5094143816D813B /* UMCPush */ = {
 			isa = PBXAggregateTarget;
@@ -82,6 +89,7 @@
 				DD4F1F1E888FD59DE9A1F4849664FE61 /* PBXTargetDependency */,
 			);
 			name = UMCPush;
+			productName = UMCPush;
 		};
 		9B182CB4E1716E9070813D3C59736001 /* AMapFoundation-NO-IDFA */ = {
 			isa = PBXAggregateTarget;
@@ -91,6 +99,7 @@
 			dependencies = (
 			);
 			name = "AMapFoundation-NO-IDFA";
+			productName = "AMapFoundation-NO-IDFA";
 		};
 		B44FB02BD2D3FEAD1F36808AD405A543 /* AMap3DMap-NO-IDFA */ = {
 			isa = PBXAggregateTarget;
@@ -101,6 +110,7 @@
 				0F276923515B9DEA1AA64D399BA302C2 /* PBXTargetDependency */,
 			);
 			name = "AMap3DMap-NO-IDFA";
+			productName = "AMap3DMap-NO-IDFA";
 		};
 		FD2E8643412994484A50DA7D3BFB1EFC /* UMCAnalytics */ = {
 			isa = PBXAggregateTarget;
@@ -111,6 +121,7 @@
 				9307D0AD1D5B529364C0C41255BC5884 /* PBXTargetDependency */,
 			);
 			name = UMCAnalytics;
+			productName = UMCAnalytics;
 		};
 /* End PBXAggregateTarget section */
 
@@ -2531,7 +2542,7 @@
 		9D120BF38009E97D8733538D67F21925 /* RxCollectionViewReactiveArrayDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxCollectionViewReactiveArrayDataSource.swift; path = RxCocoa/iOS/DataSources/RxCollectionViewReactiveArrayDataSource.swift; sourceTree = "<group>"; };
 		9D271B0823D310FAAF56510BFFF5D484 /* MJRefreshComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshComponent.m; path = MJRefresh/Base/MJRefreshComponent.m; sourceTree = "<group>"; };
 		9D460CEE194783A23894B0934032A11F /* SDWebImageDownloaderConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderConfig.h; path = SDWebImage/Core/SDWebImageDownloaderConfig.h; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9D96CEB1E425A20A79EB9508329B6E47 /* SDImageCoderHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageCoderHelper.m; path = SDWebImage/Core/SDImageCoderHelper.m; sourceTree = "<group>"; };
 		9E242B8D0708AB4615450C214CBE55BB /* Alamofire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.debug.xcconfig; sourceTree = "<group>"; };
 		9E4A506D7D770BFC4FC18CA1C01431E2 /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Source/Typealiases.swift; sourceTree = "<group>"; };
@@ -3342,7 +3353,6 @@
 				C0CA5B006D1C4CB5D074ACC734AC7AB1 /* SwiftyJSON.swift */,
 				D81307032D1A2A08F20BD8D09D486DF9 /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -3418,7 +3428,6 @@
 				36BB5FC151E19E93C362726589360A0C /* Resources */,
 				5E45E54126ECA2E2C87AF22C4F6D45AA /* Support Files */,
 			);
-			name = "AMap3DMap-NO-IDFA";
 			path = "AMap3DMap-NO-IDFA";
 			sourceTree = "<group>";
 		};
@@ -3473,7 +3482,6 @@
 				851F9449422FB6B1F2AF454786D10F96 /* Core */,
 				A6913BD039D2768F6EED00E7251C3EBD /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -3501,7 +3509,6 @@
 				221A90D282D37865A0050EA570D820FA /* Frameworks */,
 				913E4BB3DA0A0C04AA290FE27217ACCC /* Support Files */,
 			);
-			name = UMCErrorCatch;
 			path = UMCErrorCatch;
 			sourceTree = "<group>";
 		};
@@ -3511,7 +3518,6 @@
 				E7A5F177F23CCD88CCA886972AECB845 /* Frameworks */,
 				FEB80AD89DB84BF1551B62A08198D258 /* Support Files */,
 			);
-			name = UMCAnalytics;
 			path = UMCAnalytics;
 			sourceTree = "<group>";
 		};
@@ -3529,7 +3535,6 @@
 				26AA567823987582B0B461D256272EEB /* standard */,
 				5E7B76826ED09A8D63F52CFA133ED697 /* Support Files */,
 			);
-			name = FMDB;
 			path = FMDB;
 			sourceTree = "<group>";
 		};
@@ -3591,7 +3596,6 @@
 				DF366F2705116F878FF941D5B7725F9C /* Support Files */,
 				34194639BC6C38D7C70C84F35850A405 /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -3714,7 +3718,6 @@
 				C41D2E279803C70EF4E2FD175A9A5586 /* Core */,
 				112FBF512B73DBFB503C0D01638910DC /* Support Files */,
 			);
-			name = YBImageBrowser;
 			path = YBImageBrowser;
 			sourceTree = "<group>";
 		};
@@ -3740,7 +3743,6 @@
 				1720965C35A85C260127F9F2BC9765A3 /* Frameworks */,
 				030EB3B24CF4F8C0AB95F0048B1BB0FB /* Support Files */,
 			);
-			name = "AMapFoundation-NO-IDFA";
 			path = "AMapFoundation-NO-IDFA";
 			sourceTree = "<group>";
 		};
@@ -3911,7 +3913,6 @@
 				B333B7A4CB2A09CBA6CC46D95B5A1BA6 /* no-arc */,
 				CD5BDB0B1B3926A79620F0A6E74C53A2 /* Support Files */,
 			);
-			name = YYKit;
 			path = YYKit;
 			sourceTree = "<group>";
 		};
@@ -3967,7 +3968,6 @@
 				F1008A3ABD58731F3E6BF70F49CEF5A3 /* Resources */,
 				2A17E4B9DE8897DFAC255DAB87502AFA /* Support Files */,
 			);
-			name = TZImagePickerController;
 			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
@@ -3987,7 +3987,6 @@
 				5EDB66128390083BE8FF8194927D4080 /* Resources */,
 				CAB6BA95FE7CF10BF9E54810ED4AF8CC /* Support Files */,
 			);
-			name = UMCCommonLog;
 			path = UMCCommonLog;
 			sourceTree = "<group>";
 		};
@@ -4155,7 +4154,6 @@
 				787DCE6F93EAF093DC1A5073BDDA563C /* UILayoutSupport+Extensions.swift */,
 				88FECEE289E84FFE805C0F5133778A61 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -4202,7 +4200,6 @@
 				5A2C2F7ED1A9929FFCADFBE6C4BF9026 /* IQUIViewController+Additions.m */,
 				02C4C39DBA33B802B37E4205ADBE40A9 /* Support Files */,
 			);
-			name = IQKeyboardManager;
 			path = IQKeyboardManager;
 			sourceTree = "<group>";
 		};
@@ -4232,7 +4229,6 @@
 				998670C7687ED9A4C5DA589B3953CDE5 /* NSString+MJExtension.m */,
 				25F60F8D657EA9821F045EB8285C9EB4 /* Support Files */,
 			);
-			name = MJExtension;
 			path = MJExtension;
 			sourceTree = "<group>";
 		};
@@ -4250,7 +4246,6 @@
 				8D4BB3C7661F68D101C1153F0D22BBF2 /* Frameworks */,
 				1E9CCBB6E13717EB2D4DF8A5E0DA4F7F /* Support Files */,
 			);
-			name = "AMapLocation-NO-IDFA";
 			path = "AMapLocation-NO-IDFA";
 			sourceTree = "<group>";
 		};
@@ -4261,7 +4256,6 @@
 				DFE9D04828DC61B82762EF6E85048595 /* MBProgressHUD.m */,
 				DD35F9A5F81FE9A3445DF4B30AF864A6 /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -4319,7 +4313,6 @@
 				E4D5DB46C37193B27AA61F78BD41A76C /* Frameworks */,
 				B11C0FD287667EE5AF40217682AA7147 /* Support Files */,
 			);
-			name = UMCCommon;
 			path = UMCCommon;
 			sourceTree = "<group>";
 		};
@@ -4646,7 +4639,6 @@
 				8AA33DF9DD4AF21275C35BAED60C8986 /* UIVisualEffectView+LookinServer.m */,
 				5AB97BE32105E98B327D614859E3AE6E /* Support Files */,
 			);
-			name = LookinServer;
 			path = LookinServer;
 			sourceTree = "<group>";
 		};
@@ -4668,7 +4660,6 @@
 				29C47FD2E82E4E6F9F5C58CC9F72C354 /* Core */,
 				5A634A556C6FBB878C497A7A22264CC0 /* Support Files */,
 			);
-			name = YYImage;
 			path = YYImage;
 			sourceTree = "<group>";
 		};
@@ -4701,7 +4692,6 @@
 				99FEB9B10B29C47957EB6E718DD2CE32 /* UIView+SDExtension.m */,
 				B003AF2268DFA33AA63EB594FF847D09 /* Support Files */,
 			);
-			name = SDCycleScrollView;
 			path = SDCycleScrollView;
 			sourceTree = "<group>";
 		};
@@ -4857,7 +4847,6 @@
 				F3CF9EF862AA5B540EC75A0EF7F40F09 /* WKWebView+Rx.swift */,
 				9DCC82D3543849CFE245D92EB463230D /* Support Files */,
 			);
-			name = RxCocoa;
 			path = RxCocoa;
 			sourceTree = "<group>";
 		};
@@ -4935,7 +4924,6 @@
 				59EBC99D1837606CE9D4C077E0F72A9B /* ViewController+MASAdditions.m */,
 				DCAF9D1780D0D26CA5D0F143C51094C1 /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -5052,7 +5040,6 @@
 				978A91259B18B2AEA208C3413B0FC07D /* Frameworks */,
 				65F90505A54B605C7F0F28FC44471247 /* Support Files */,
 			);
-			name = UMCPush;
 			path = UMCPush;
 			sourceTree = "<group>";
 		};
@@ -5064,7 +5051,6 @@
 				6DA101452ACDE1AC631B9448E46D8F7B /* Support Files */,
 				4E5361C53F2E33EE4172044B1765978D /* UI */,
 			);
-			name = UMCShare;
 			path = UMCShare;
 			sourceTree = "<group>";
 		};
@@ -5176,7 +5162,6 @@
 				C852064B405D3F7BF237772BA76D7BAB /* Utils.swift */,
 				297ABF8F3BAECDE7B7D9106ADE16711C /* Support Files */,
 			);
-			name = RxRelay;
 			path = RxRelay;
 			sourceTree = "<group>";
 		};
@@ -5228,7 +5213,6 @@
 				7B1E8A44518FEFB53D409BAED6DFE9EC /* MGJRouter.m */,
 				818D5441581CC4899F796B2AF3338C89 /* Support Files */,
 			);
-			name = MGJRouter;
 			path = MGJRouter;
 			sourceTree = "<group>";
 		};
@@ -5283,7 +5267,6 @@
 				994DBACF585FF074B87EAF658BF0F55B /* Frameworks */,
 				14A7387F42734B06FEF8742CAD3F4712 /* Support Files */,
 			);
-			name = Bugly;
 			path = Bugly;
 			sourceTree = "<group>";
 		};
@@ -5315,7 +5298,6 @@
 				6CBF46B137BB48CEF7A0CB7833A765A2 /* UIImage+NUDPainter.m */,
 				AF004BFAECFE6B45F45D150FC391582E /* Support Files */,
 			);
-			name = NudeIn;
 			path = NudeIn;
 			sourceTree = "<group>";
 		};
@@ -5404,7 +5386,6 @@
 				AE68CAB56D68F5FE957632BD2720C42E /* Resources */,
 				D6792A69B757F674B01520114CE84336 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -5437,7 +5418,6 @@
 				F0F3E4CC783319B34FCC4E53FE9BF0E3 /* Frameworks */,
 				699C8FBB12DF9911E85E81E029E609A4 /* Support Files */,
 			);
-			name = UMCSecurityPlugins;
 			path = UMCSecurityPlugins;
 			sourceTree = "<group>";
 		};
@@ -5631,7 +5611,6 @@
 				1DC90A205F546303EFA4C53CC829C8E6 /* Zip+Collection.swift */,
 				ED9B3677B54FF3B0E666AFBBD84F697A /* Support Files */,
 			);
-			name = RxSwift;
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
@@ -5686,7 +5665,6 @@
 				153495C225436A7AA0D9FDA52D9FFEC1 /* Validation.swift */,
 				7E489BB30B0CFA96FC3B1F756A5C8C52 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -9811,6 +9789,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
