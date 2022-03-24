@@ -37,6 +37,7 @@
 #import "DiscoverTodoView.h"
 #import "DiscoverTodoSheetView.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+
 //Tool
 #import "NewQAHud.h"
 #import "TodoSyncTool.h"
@@ -109,6 +110,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property(nonatomic,strong)UIWindow *window;
 @property(nonatomic, strong)DiscoverTodoView* todoView;
 @property(nonatomic, strong)TodoSyncTool* todoSyncTool;
+
+
 @end
 
 @implementation DiscoverViewController

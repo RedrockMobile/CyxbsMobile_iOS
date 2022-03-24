@@ -701,4 +701,5 @@
     hud.labelText = @"签到成功";
     [hud hide:YES afterDelay:1];
 }
+
 @end

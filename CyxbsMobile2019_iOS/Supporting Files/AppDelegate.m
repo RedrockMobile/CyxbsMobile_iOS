@@ -18,6 +18,7 @@
 #import <AFNetworkReachabilityManager.h>
 #include "ArchiveTool.h"
 #import <sqlite3.h>
+
 #define SQLITE_THREADSAFE 1
 
 extern CFAbsoluteTime StartTime;
@@ -239,34 +240,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 ///检查是否有最新的掌邮，并提示用户获取
 -(void)checkVersion{
-    
-    
-    //获取当前发布的版本的Version
-    NSString *localVersion = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    //获取Store上的掌邮的版本id
-    [[HttpClient defaultClient] requestWithPath:@"http://itunes.apple.com/cn/lookup?id=974026615" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        NSArray *array = responseObject[@"results"];
-        NSDictionary *dict = array[0];
-        NSString *appstoreVersion = dict[@"version"];
-        
-        //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
-        NSComparisonResult result = [localVersion compare:appstoreVersion];
-        
-        if (result == NSOrderedAscending) {
-                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
-                hud.mode = MBProgressHUDModeText;
-                hud.labelFont = [UIFont fontWithName:PingFangSCSemibold size:17];
-                hud.detailsLabelFont = [UIFont fontWithName:PingFangSCLight size:14];
-                hud.detailsLabelText = [NSString stringWithFormat:@" %@新版本已上线 \n %@ ",dict[@"version"],dict[@"releaseNotes"]];
-                hud.labelText = @"请去 App Store 更新版本哦～";
-                [hud hide:YES afterDelay:4];
-        
-            }
-        
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-        }];
+    //这个模块已重构
 }
 
 /// 完成创建文件/文件夹的操作
