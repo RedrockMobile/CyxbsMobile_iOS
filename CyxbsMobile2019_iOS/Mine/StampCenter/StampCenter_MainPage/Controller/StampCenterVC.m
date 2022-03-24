@@ -194,6 +194,7 @@
     //设置小点
     [self setupPoint];
 
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"Lookin_3D" object:nil];
 }
 
 #pragma mark - table数据源
