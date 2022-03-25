@@ -51,6 +51,9 @@
         [tabBarVC presentViewController:navController animated:YES completion:nil];
     }
     
+    //假销毁单例
+    [[UserItem defaultItem] attemptDealloc];
+    
     NSString *filePath = [self userItemPath];
     
     // 删除偏好设置，删除时保留baseURL的偏好信息
@@ -69,6 +72,15 @@
         [fileManager removeItemAtPath:filePath error:&err];
     }
     
+    NSLog(@"%@", NSHomeDirectory());
+    
+//    [UserDefaultTool removeALLData];
+    
+//    NSLog(@"%@",[UserItemTool defaultItem]);
+    
+//    [UserItem attemptDealloc];
+    
+//    [UserItem defaultItem].token = nil;
     
     [ArchiveTool deleteFile];
     [PostArchiveTool removePostModel];
@@ -90,6 +102,7 @@
     [UMessage removeAlias:[UserItemTool defaultItem].stuNum type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
         
     }];
+
 }
 
 + (void)refresh {
@@ -162,5 +175,6 @@
         }
     }];
 }
+
 
 @end

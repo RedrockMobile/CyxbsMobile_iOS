@@ -626,6 +626,13 @@
 
 //检查更新
 - (void)checkUpdate{
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CancelUpdateDate"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NeedUpdate"];
+    }
+
+    //先判断用户是否需要更新
+    if ([self isNeedtoUpdate]) {
+    
     //获取当前发布的版本的Version
     NSString *localVersion = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     //获取Store上的掌邮的版本id
@@ -641,7 +648,7 @@
         //需要更新 -> 弹窗提示
         if (result == NSOrderedAscending) {
                 self.updatePopView = [[updatePopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) WithUpdateInfo:dict];
-                    self.updatePopView.delegate = self;
+                self.updatePopView.delegate = self;
                 [self.view addSubview:self.updatePopView];
             [self.view bringSubviewToFront:self.updatePopView];
             }
@@ -649,13 +656,22 @@
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
         }];
+        
+    }
 }
 
+//取消更新
 - (void)Cancel{
     [UIView animateWithDuration:0.5 animations:^{
         self.updatePopView.alpha = 0.0;
     } completion:^(BOOL finished) {
         if (finished) {
+            NSDate *nowDate = [NSDate date];
+            
+            [[NSUserDefaults standardUserDefaults]setObject:nowDate forKey:@"CancelUpdateDate"];
+            
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NeedUpdate"];
+            
             [self.updatePopView removeFromSuperview];
         }
     }];
@@ -666,9 +682,31 @@
         
     } completionHandler:^(BOOL success) {
         if (success) {
-            [self Cancel];
+            [UIView animateWithDuration:0.5 animations:^{
+                self.updatePopView.alpha = 0.0;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    [self.updatePopView removeFromSuperview];
+                }
+            }];
         }
     }];
+}
+
+- (BOOL)isNeedtoUpdate{
+    
+    NSDate *lastCancelDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"CancelUpdateDate"];
+    NSTimeInterval interval = 60 * 60 * 24 * 7;
+    NSDate *nextRemindDate = [NSDate dateWithTimeInterval:interval sinceDate:lastCancelDate];
+    NSDate *date = [NSDate date];
+    
+    NSComparisonResult result = [date compare:nextRemindDate];
+    
+    if (result == NSOrderedDescending) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NeedUpdate"];
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"NeedUpdate"];
 }
 
 @end
