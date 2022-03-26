@@ -12,7 +12,7 @@
 @synthesize stuNum = _stuNum;
 
 MJExtensionCodingImplementation
-
+static dispatch_once_t onceToken;
 static UserItem *item = nil;
 + (UserItem *)defaultItem {
     if (!item) {
@@ -59,7 +59,6 @@ static UserItem *item = nil;
 }
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {
-    static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         item = [super allocWithZone:zone];
     });
@@ -193,5 +192,35 @@ static UserItem *item = nil;
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%@", self.mj_keyValues];
+}
+
+
+- (void)attemptDealloc{
+    _token = nil;
+    _iat = nil;
+    _exp = nil;
+    _refreshToken = nil;
+    _realName = nil;
+    _gender = nil;
+    _college = nil;
+    _redid = nil;
+    _stuNum =nil;
+    _nickname = nil;
+    _introduction = nil;
+    _headImgUrl = nil;
+    _phone = nil;
+    _qq = nil;
+    _checkInDay = nil;
+    _integral = nil;
+    _rank = nil;
+    _rank_Persent = nil;
+    _week_info = nil;
+    _canCheckIn = NULL;
+    _building = nil;
+    _room = nil;
+    _volunteerPassword = nil;
+    _volunteerUserName = nil;
+    _firstLogin = nil;
+    _idsBindingSuccess = NULL;
 }
 @end

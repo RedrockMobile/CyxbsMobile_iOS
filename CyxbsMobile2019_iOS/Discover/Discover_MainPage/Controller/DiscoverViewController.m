@@ -133,6 +133,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)viewWillAppear:(BOOL)animated {
 //    self.tabBarController.tabBar.translucent = NO;
+
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
     if (@available(iOS 11.0, *)) {
         self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
@@ -202,6 +203,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(todoSyncToolDidSync:) name:TodoSyncToolSyncNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToThisController) name:@"logout" object:nil];
 }
 - (void)loginSucceed {
     [self requestData];
@@ -248,10 +250,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }];
 }
 - (void)presentToLogin {
-//    LoginViewController *loginVC = [[LoginViewController alloc] init];
-  //  UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginVC];
-   // [self presentViewController:nav animated:NO completion:nil];
-//   [self presentViewController:loginVC animated:NO completion:nil];
     LoginViewController *loginVC = [[LoginViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
     navController.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -893,6 +891,14 @@ static int requestCheckinInfo = 0;
 //MARK: - 志愿服务view的代理
 - (void)touchVolunteerView {
     [self bindingVolunteerButton];
+}
+
+- (void)backToThisController{
+//    self.loginStatus = DidntLogin;
+    
+    self.navigationController.tabBarController.selectedIndex = 0;
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 @end

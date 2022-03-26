@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UserItem : NSObject<NSCoding> 
 //MARK: - 个人信息/登录相关的
 /// Token
-@property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSString *__nullable token;
 
 /// 该token什么时候颁发（Unix时间戳）
 @property (nonatomic, copy) NSString *iat;
@@ -106,6 +106,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (UserItem *)defaultItem;
 
 - (void)getUserInfo;
+
+///假销毁单例
+- (void)attemptDealloc;
 
 @end
 
