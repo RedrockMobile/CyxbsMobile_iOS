@@ -19,7 +19,7 @@
 #import "TableHeaderView.h"
 
 //Tool
-#import "UIView+XYView.h"
+#import "UIView+Frame.h"
 
 //Model
 #import "GoodsData.h"

@@ -9,7 +9,7 @@
 #import "FeedBackVC.h"
 #import "TypeSelectView.h"
 #import "FeedBackView.h"
-#import "UIView+XYView.h"
+#import "UIView+Frame.h"
 #import <PhotosUI/PHPicker.h>
 #import "TypeButton.h"
 #import "NewQAHud.h"

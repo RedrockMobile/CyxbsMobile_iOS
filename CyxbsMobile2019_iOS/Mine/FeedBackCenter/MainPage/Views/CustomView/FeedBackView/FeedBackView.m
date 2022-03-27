@@ -7,7 +7,7 @@
 //
 
 #import "FeedBackView.h"
-#import "UIView+XYView.h"
+#import "UIView+Frame.h"
 @implementation FeedBackView
 
 - (instancetype)initWithFrame:(CGRect)frame

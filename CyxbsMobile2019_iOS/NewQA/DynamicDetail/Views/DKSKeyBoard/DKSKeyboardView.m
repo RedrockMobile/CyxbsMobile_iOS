@@ -7,7 +7,7 @@
 //
 
 #import "DKSKeyboardView.h"
-#import "UIView+FrameTool.h"
+#import "UIView+Frame.h"
 #import "UITextView+WZB.h"
 #import "UIColor+SYColor.h"
 //状态栏和导航栏的总高度

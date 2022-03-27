@@ -37,8 +37,8 @@
     UIView *view = self.superview;
     //不是UIScrollView，不做操作
     if (view && [view isKindOfClass:[UIScrollView class]]){
-        self.ly_width = view.ly_width;
-        self.ly_height = view.ly_height;
+        self.width = view.width;
+        self.height = view.height;
     }
     
     [self setupSubviews];
@@ -56,8 +56,8 @@
     if (newSuperview && ![newSuperview isKindOfClass:[UIScrollView class]]) return;
     
     if (newSuperview) {
-        self.ly_width = newSuperview.ly_width;
-        self.ly_height = newSuperview.ly_height;
+        self.width = newSuperview.width;
+        self.height = newSuperview.height;
     }
 }
 + (instancetype)emptyActionViewWithImageStr:(NSString *)imageStr titleStr:(NSString *)titleStr detailStr:(NSString *)detailStr btnTitleStr:(NSString *)btnTitleStr target:(id)target action:(SEL)action{
