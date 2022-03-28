@@ -6,7 +6,7 @@
 //
 
 #import "MyCollectionViewCell.h"
-#import "UIView+XYView.h"
+
 #define W self.myFrame.size.width
 #define H self.myFrame.size.height
 

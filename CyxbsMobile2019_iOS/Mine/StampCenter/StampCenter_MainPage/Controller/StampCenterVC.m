@@ -18,9 +18,6 @@
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
 
-//Tool
-#import "UIView+XYView.h"
-
 //Model
 #import "GoodsData.h"
 #import "TaskData.h"

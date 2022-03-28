@@ -6,8 +6,6 @@
 //
 
 #import "SegmentView.h"
-// category
-#import "UIView+FrameTool.h"
 
 @interface SegmentView ()
 

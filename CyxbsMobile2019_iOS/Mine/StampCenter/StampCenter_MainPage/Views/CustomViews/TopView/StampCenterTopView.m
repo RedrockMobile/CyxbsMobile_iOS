@@ -7,7 +7,7 @@
 
 #import "StampCenterTopView.h"
 #import "PrefixHeader.pch"
-#import "UIView+XYView.h"
+
 @interface StampCenterTopView ()
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIView+LYExtension.h"
 
 /** 
  事件回调

@@ -15,7 +15,6 @@
 #import "ToDoDetailReminderTimeView.h"
 #import "ToDoDetailRepeatView.h"
 #import "ToDoDetailRemarkView.h"
-#import "UIView+FrameTool.h"
 
 @interface ToDoDetaileViewController ()
 <
@@ -264,7 +263,7 @@ self.model = self.temporaryModel;
                 make.height.mas_equalTo(height);
             }];
             [weakSelf.view layoutIfNeeded];
-            weakSelf.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, weakSelf.remarkView.maxY + SCREEN_HEIGHT * 0.2);
+            weakSelf.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, weakSelf.remarkView.bottom + SCREEN_HEIGHT * 0.2);
         }];
     };
     
@@ -278,7 +277,7 @@ self.model = self.temporaryModel;
                 make.height.mas_equalTo(height);
             }];
             [weakSelf.view layoutIfNeeded];
-            weakSelf.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, weakSelf.remarkView.maxY + SCREEN_HEIGHT * 0.2);
+            weakSelf.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, weakSelf.remarkView.bottom + SCREEN_HEIGHT * 0.2);
         }];
     };
 }
@@ -340,7 +339,7 @@ self.model = self.temporaryModel;
     
     //设置scrollView的contentSize
     [self.view layoutIfNeeded];
-    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.remarkView.maxY + SCREEN_HEIGHT * 0.25);
+    self.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, self.remarkView.bottom + SCREEN_HEIGHT * 0.25);
     
     [self addRepeatLabel];
     

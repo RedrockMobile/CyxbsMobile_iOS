@@ -53,7 +53,7 @@
 - (void)setupSubviews{
     [super setupSubviews];
     
-    contentMaxWidth = self.ly_width - 30.f; //最大宽度（ScrollView 的宽 - 30）
+    contentMaxWidth = self.width - 30.f; //最大宽度（ScrollView 的宽 - 30）
     contentWidth = 0;//内容物宽度
     contentHeight = 0;//内容物高度
     subViweMargin = self.subViewMargin ? self.subViewMargin : kSubViewMargin;
@@ -105,8 +105,8 @@
     
     //自定义view
     if (self.customView) {
-        contentWidth = self.customView.ly_width;
-        contentHeight = self.customView.ly_maxY;
+        contentWidth = self.customView.width;
+        contentHeight = self.customView.bottom;
     }
     
     ///设置frame
@@ -120,7 +120,7 @@
     CGFloat scrollViewHeight = self.bounds.size.height;
     
     //重新设置self的frame（大小为content的大小）
-    self.ly_size = CGSizeMake(contentWidth, contentHeight);
+    self.size = CGSizeMake(contentWidth, contentHeight);
     CGFloat emptyViewCenterX = scrollViewWidth * 0.5f;
     CGFloat emptyViewCenterY = scrollViewHeight * 0.5f;
     self.center = CGPointMake(emptyViewCenterX, emptyViewCenterY);
@@ -129,25 +129,25 @@
     self.contentView.frame = self.bounds;
     
     //子控件的centerX设置
-    CGFloat centerX = self.contentView.ly_width * 0.5f;
+    CGFloat centerX = self.contentView.width * 0.5f;
     if (self.customView) {
-        self.customView.ly_centerX      = centerX;
+        self.customView.centerX = centerX;
         
     }else{
-        _promptImageView.ly_centerX = centerX;
-        _titleLabel.ly_centerX       = centerX;
-        _detailLabel.ly_centerX = centerX;
-        _actionButton.ly_centerX    = centerX;
+        _promptImageView.centerX = centerX;
+        _titleLabel.centerX = centerX;
+        _detailLabel.centerX = centerX;
+        _actionButton.centerX = centerX;
     }
     
     //有无设置偏移
     if (self.contentViewOffset) {
-        self.ly_centerY += self.contentViewOffset;
+        self.centerY += self.contentViewOffset;
     }
     
     //有无设置Y坐标值
     if (self.contentViewY < 1000) {
-        self.ly_y = self.contentViewY;
+        self.y = self.contentViewY;
     }
 }
 
@@ -171,8 +171,8 @@
     }
     self.promptImageView.frame = CGRectMake(0, 0, imgViewWidth, imgViewHeight);
     
-    contentWidth = self.promptImageView.ly_size.width;
-    contentHeight = self.promptImageView.ly_maxY;
+    contentWidth = self.promptImageView.width;
+    contentHeight = self.promptImageView.bottom;
 }
 
 - (void)setupTitleLabel:(NSString *)titleStr{
@@ -188,7 +188,7 @@
     self.titleLabel.textColor = textColor;
     
     contentWidth = width > contentWidth ? width : contentWidth;
-    contentHeight = self.titleLabel.ly_maxY;
+    contentHeight = self.titleLabel.bottom;
 }
 
 - (void)setupDetailLabel:(NSString *)detailStr{
@@ -209,7 +209,7 @@
     self.detailLabel.textColor = textColor;
     
     contentWidth = width > contentWidth ? width : contentWidth;
-    contentHeight = self.detailLabel.ly_maxY;
+    contentHeight = self.detailLabel.bottom;
 }
 
 - (void)setupActionBtn:(NSString *)btnTitle target:(id)target action:(SEL)action btnClickBlock:(LYActionTapBlock)btnClickBlock{
@@ -251,7 +251,7 @@
     }
     
     contentWidth = btnWidth > contentWidth ? btnWidth : contentWidth;
-    contentHeight = self.actionButton.ly_maxY;
+    contentHeight = self.actionButton.bottom;
 }
 
 #pragma mark - ------------------ 懒加载 ------------------
@@ -305,7 +305,7 @@
         _contentViewOffset = contentViewOffset;
         
         if (_promptImageView || _titleLabel || _detailLabel || _actionButton || self.customView) {
-            self.ly_centerY += self.contentViewOffset;
+            self.bottom += self.contentViewOffset;
         }
     }
 }
@@ -314,7 +314,7 @@
         _contentViewY = contentViewY;
         
         if (_promptImageView || _titleLabel || _detailLabel || _actionButton || self.customView) {
-            self.ly_y = self.contentViewY;
+            self.y = self.contentViewY;
         }
     }
 }

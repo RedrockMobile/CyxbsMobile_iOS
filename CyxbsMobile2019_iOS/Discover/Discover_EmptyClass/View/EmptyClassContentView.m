@@ -7,7 +7,6 @@
 //
 
 #import "EmptyClassContentView.h"
-//#import "UIView+HitTestLog.h"
 
 @interface EmptyClassContentView ()
 
