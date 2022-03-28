@@ -16,11 +16,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 // some difine about [UIScreen mainScreen]
-#define MainScreenWidth [UIScreen mainScreen].bounds.size.width
-#define MainScreenHeight [UIScreen mainScreen].bounds.size.height
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 // some difine about [[UIApplication sharedApplication] statusBarFrame]
-#define StatusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
+#define STATUSBAR_HEIGHT [[UIApplication sharedApplication] statusBarFrame].size.height
 
 #pragma mark - UIView (Frame)
 

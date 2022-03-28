@@ -3137,7 +3137,7 @@
 				1A141345235F524B0001417E /* NetWork */,
 				AA86E3A92635B3DC00756F05 /* SkinTheme */,
 				1A14133D235F524B0001417E /* AESCipher */,
-				AA86E38F2635B33F00756F05 /* Extention */,
+				AA86E38F2635B33F00756F05 /* Category */,
 				1A141360235F524B0001417E /* SegmentView */,
 				AAC0DA35265DF65B0039A099 /* Other */,
 			);
@@ -4113,7 +4113,7 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		AA86E38F2635B33F00756F05 /* Extention */ = {
+		AA86E38F2635B33F00756F05 /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				147842EF27F07A5E002359BA /* UIColor+Color */,
@@ -4152,7 +4152,7 @@
 				18FE64F425FDA186008748AE /* UIControl+MGD.h */,
 				18FE64F525FDA186008748AE /* UIControl+MGD.m */,
 			);
-			path = Extention;
+			path = Category;
 			sourceTree = "<group>";
 		};
 		AA86E3A92635B3DC00756F05 /* SkinTheme */ = {

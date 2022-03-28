@@ -264,7 +264,7 @@ self.model = self.temporaryModel;
                 make.height.mas_equalTo(height);
             }];
             [weakSelf.view layoutIfNeeded];
-            weakSelf.scrollView.contentSize = CGSizeMake(MainScreenWidth, weakSelf.remarkView.bottom + MainScreenHeight * 0.2);
+            weakSelf.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, weakSelf.remarkView.bottom + SCREEN_HEIGHT * 0.2);
         }];
     };
     
@@ -278,7 +278,7 @@ self.model = self.temporaryModel;
                 make.height.mas_equalTo(height);
             }];
             [weakSelf.view layoutIfNeeded];
-            weakSelf.scrollView.contentSize = CGSizeMake(MainScreenWidth, weakSelf.remarkView.bottom + MainScreenHeight * 0.2);
+            weakSelf.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, weakSelf.remarkView.bottom + SCREEN_HEIGHT * 0.2);
         }];
     };
 }
