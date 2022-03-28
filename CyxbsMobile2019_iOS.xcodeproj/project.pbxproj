@@ -1970,6 +1970,232 @@
 			path = "NSDate+Day";
 			sourceTree = "<group>";
 		};
+		14B3F21427F16DE3007B421C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF482257F8DBD006E8E5C /* SetQuestionViewController.h */,
+				18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		14B3F21527F16DF6007B421C /* questionAndAnswerModel */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF493257F8DBD006E8E5C /* questionAndAnswerModel.h */,
+				18CDF498257F8DBD006E8E5C /* questionAndAnswerModel.m */,
+			);
+			path = questionAndAnswerModel;
+			sourceTree = "<group>";
+		};
+		14B3F21627F16E07007B421C /* questionModel */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF495257F8DBD006E8E5C /* questionModel.h */,
+				18CDF496257F8DBD006E8E5C /* questionModel.m */,
+			);
+			path = questionModel;
+			sourceTree = "<group>";
+		};
+		14B3F21727F16E10007B421C /* questionItem */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF494257F8DBD006E8E5C /* questionItem.h */,
+				18CDF497257F8DBD006E8E5C /* questionItem.m */,
+			);
+			path = questionItem;
+			sourceTree = "<group>";
+		};
+		14B3F21827F16E36007B421C /* SetQuestionView */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4A6257F8DBD006E8E5C /* SetQuestionView.h */,
+				18CDF4A8257F8DBD006E8E5C /* SetQuestionView.m */,
+			);
+			path = SetQuestionView;
+			sourceTree = "<group>";
+		};
+		14B3F21927F16E41007B421C /* QuestionView */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4A7257F8DBD006E8E5C /* QuestionView.h */,
+				18CDF4A9257F8DBD006E8E5C /* QuestionView.m */,
+			);
+			path = QuestionView;
+			sourceTree = "<group>";
+		};
+		14B3F21A27F16E5D007B421C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14B3F21827F16E36007B421C /* SetQuestionView */,
+				14B3F21927F16E41007B421C /* QuestionView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B3F21B27F16E66007B421C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14B3F21527F16DF6007B421C /* questionAndAnswerModel */,
+				14B3F21627F16E07007B421C /* questionModel */,
+				14B3F21727F16E10007B421C /* questionItem */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14B3F21C27F16E98007B421C /* sendCodeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF485257F8DBD006E8E5C /* sendCodeViewController.h */,
+				18CDF488257F8DBD006E8E5C /* sendCodeViewController.m */,
+			);
+			path = sendCodeViewController;
+			sourceTree = "<group>";
+		};
+		14B3F21D27F16EA3007B421C /* setEmailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF486257F8DBD006E8E5C /* setEmailViewController.h */,
+				18CDF487257F8DBD006E8E5C /* setEmailViewController.m */,
+			);
+			path = setEmailViewController;
+			sourceTree = "<group>";
+		};
+		14B3F21E27F16EAF007B421C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				14B3F21C27F16E98007B421C /* sendCodeViewController */,
+				14B3F21D27F16EA3007B421C /* setEmailViewController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		14B3F21F27F16F48007B421C /* sendCodeModel */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF49A257F8DBD006E8E5C /* sendCodeModel.h */,
+				18CDF49C257F8DBD006E8E5C /* sendCodeModel.m */,
+			);
+			path = sendCodeModel;
+			sourceTree = "<group>";
+		};
+		14B3F22027F16F58007B421C /* sendEmailModel */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF49B257F8DBD006E8E5C /* sendEmailModel.h */,
+				18CDF49D257F8DBD006E8E5C /* sendEmailModel.m */,
+			);
+			path = sendEmailModel;
+			sourceTree = "<group>";
+		};
+		14B3F22127F16F65007B421C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14B3F21F27F16F48007B421C /* sendCodeModel */,
+				14B3F22027F16F58007B421C /* sendEmailModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14B3F22227F16F8C007B421C /* setEmail */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4AD257F8DBD006E8E5C /* setEmail.h */,
+				18CDF4AB257F8DBD006E8E5C /* setEmail.m */,
+			);
+			path = setEmail;
+			sourceTree = "<group>";
+		};
+		14B3F22327F16F97007B421C /* sendCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4AC257F8DBD006E8E5C /* sendCodeView.m */,
+				18CDF4AE257F8DBD006E8E5C /* sendCodeView.h */,
+			);
+			path = sendCodeView;
+			sourceTree = "<group>";
+		};
+		14B3F22427F16FA7007B421C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14B3F22227F16F8C007B421C /* setEmail */,
+				14B3F22327F16F97007B421C /* sendCodeView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B3F22527F1700F007B421C /* ResetPwdViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF48A257F8DBD006E8E5C /* ResetPwdViewController.h */,
+				18CDF48C257F8DBD006E8E5C /* ResetPwdViewController.m */,
+			);
+			path = ResetPwdViewController;
+			sourceTree = "<group>";
+		};
+		14B3F22627F17019007B421C /* ChangePwdViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF48D257F8DBD006E8E5C /* ChangePwdViewController.h */,
+				18CDF48B257F8DBD006E8E5C /* ChangePwdViewController.m */,
+			);
+			path = ChangePwdViewController;
+			sourceTree = "<group>";
+		};
+		14B3F22727F17024007B421C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				14B3F22527F1700F007B421C /* ResetPwdViewController */,
+				14B3F22627F17019007B421C /* ChangePwdViewController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		14B3F22827F17042007B421C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4B0257F8DBD006E8E5C /* ResetPwdView.h */,
+				18CDF4B1257F8DBD006E8E5C /* ResetPwdView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B3F22927F170FA007B421C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF48F257F8DBD006E8E5C /* selfSafeViewController.h */,
+				18CDF490257F8DBD006E8E5C /* selfSafeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		14B3F22A27F17130007B421C /* SafePopView */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4B5257F8DBD006E8E5C /* safePopView.h */,
+				18CDF4B3257F8DBD006E8E5C /* safePopView.m */,
+			);
+			path = SafePopView;
+			sourceTree = "<group>";
+		};
+		14B3F22B27F1713B007B421C /* SelfSafeView */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4B4257F8DBD006E8E5C /* SelfSafeView.h */,
+				18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */,
+			);
+			path = SelfSafeView;
+			sourceTree = "<group>";
+		};
+		14B3F22C27F1714A007B421C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14B3F22A27F17130007B421C /* SafePopView */,
+				14B3F22B27F1713B007B421C /* SelfSafeView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
 			isa = PBXGroup;
 			children = (
@@ -2034,168 +2260,70 @@
 		18CDF47F257F8DBD006E8E5C /* Safe */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF480257F8DBD006E8E5C /* Controller */,
-				18CDF491257F8DBD006E8E5C /* Model */,
-				18CDF4A4257F8DBD006E8E5C /* View */,
+				18CDF48E257F8DBD006E8E5C /* Main Interface */,
+				18CDF489257F8DBD006E8E5C /* Change Password */,
+				18CDF481257F8DBD006E8E5C /* Secret protection */,
+				18CDF484257F8DBD006E8E5C /* Bind mailbox */,
 			);
 			path = Safe;
 			sourceTree = "<group>";
 		};
-		18CDF480257F8DBD006E8E5C /* Controller */ = {
+		18CDF481257F8DBD006E8E5C /* Secret protection */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF481257F8DBD006E8E5C /* 设置密保 */,
-				18CDF484257F8DBD006E8E5C /* 绑定邮箱 */,
-				18CDF489257F8DBD006E8E5C /* 修改密码 */,
-				18CDF48E257F8DBD006E8E5C /* 主界面 */,
+				14B3F21427F16DE3007B421C /* Controller */,
+				14B3F21A27F16E5D007B421C /* View */,
+				14B3F21B27F16E66007B421C /* Model */,
 			);
-			path = Controller;
+			path = "Secret protection";
 			sourceTree = "<group>";
 		};
-		18CDF481257F8DBD006E8E5C /* 设置密保 */ = {
+		18CDF484257F8DBD006E8E5C /* Bind mailbox */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF482257F8DBD006E8E5C /* SetQuestionViewController.h */,
-				18CDF483257F8DBD006E8E5C /* SetQuestionViewController.m */,
+				14B3F21E27F16EAF007B421C /* Controller */,
+				14B3F22427F16FA7007B421C /* View */,
+				14B3F22127F16F65007B421C /* Model */,
 			);
-			path = "设置密保";
+			path = "Bind mailbox";
 			sourceTree = "<group>";
 		};
-		18CDF484257F8DBD006E8E5C /* 绑定邮箱 */ = {
+		18CDF489257F8DBD006E8E5C /* Change Password */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF485257F8DBD006E8E5C /* sendCodeViewController.h */,
-				18CDF486257F8DBD006E8E5C /* setEmailViewController.h */,
-				18CDF487257F8DBD006E8E5C /* setEmailViewController.m */,
-				18CDF488257F8DBD006E8E5C /* sendCodeViewController.m */,
+				14B3F22827F17042007B421C /* View */,
+				18CDF49E257F8DBD006E8E5C /* Model */,
+				14B3F22727F17024007B421C /* Controller */,
 			);
-			path = "绑定邮箱";
+			path = "Change Password";
 			sourceTree = "<group>";
 		};
-		18CDF489257F8DBD006E8E5C /* 修改密码 */ = {
+		18CDF48E257F8DBD006E8E5C /* Main Interface */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF48A257F8DBD006E8E5C /* ResetPwdViewController.h */,
-				18CDF48B257F8DBD006E8E5C /* ChangePwdViewController.m */,
-				18CDF48C257F8DBD006E8E5C /* ResetPwdViewController.m */,
-				18CDF48D257F8DBD006E8E5C /* ChangePwdViewController.h */,
+				14B3F22C27F1714A007B421C /* View */,
+				18CDF4A1257F8DBD006E8E5C /* Model */,
+				14B3F22927F170FA007B421C /* Controller */,
 			);
-			path = "修改密码";
+			path = "Main Interface";
 			sourceTree = "<group>";
 		};
-		18CDF48E257F8DBD006E8E5C /* 主界面 */ = {
+		18CDF49E257F8DBD006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF48F257F8DBD006E8E5C /* selfSafeViewController.h */,
-				18CDF490257F8DBD006E8E5C /* selfSafeViewController.m */,
-			);
-			path = "主界面";
-			sourceTree = "<group>";
-		};
-		18CDF491257F8DBD006E8E5C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF492257F8DBD006E8E5C /* 设置密保 */,
-				18CDF499257F8DBD006E8E5C /* 绑定邮箱 */,
-				18CDF49E257F8DBD006E8E5C /* 修改密码 */,
-				18CDF4A1257F8DBD006E8E5C /* 主界面 */,
+				18CDF4A0257F8DBD006E8E5C /* changePassword.h */,
+				18CDF49F257F8DBD006E8E5C /* changePassword.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		18CDF492257F8DBD006E8E5C /* 设置密保 */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF493257F8DBD006E8E5C /* questionAndAnswerModel.h */,
-				18CDF494257F8DBD006E8E5C /* questionItem.h */,
-				18CDF495257F8DBD006E8E5C /* questionModel.h */,
-				18CDF496257F8DBD006E8E5C /* questionModel.m */,
-				18CDF497257F8DBD006E8E5C /* questionItem.m */,
-				18CDF498257F8DBD006E8E5C /* questionAndAnswerModel.m */,
-			);
-			path = "设置密保";
-			sourceTree = "<group>";
-		};
-		18CDF499257F8DBD006E8E5C /* 绑定邮箱 */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF49A257F8DBD006E8E5C /* sendCodeModel.h */,
-				18CDF49B257F8DBD006E8E5C /* sendEmailModel.h */,
-				18CDF49C257F8DBD006E8E5C /* sendCodeModel.m */,
-				18CDF49D257F8DBD006E8E5C /* sendEmailModel.m */,
-			);
-			path = "绑定邮箱";
-			sourceTree = "<group>";
-		};
-		18CDF49E257F8DBD006E8E5C /* 修改密码 */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF49F257F8DBD006E8E5C /* changePassword.m */,
-				18CDF4A0257F8DBD006E8E5C /* changePassword.h */,
-			);
-			path = "修改密码";
-			sourceTree = "<group>";
-		};
-		18CDF4A1257F8DBD006E8E5C /* 主界面 */ = {
+		18CDF4A1257F8DBD006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				18CDF4A2257F8DBD006E8E5C /* questionAndEmail.m */,
 				18CDF4A3257F8DBD006E8E5C /* questionAndEmail.h */,
 			);
-			path = "主界面";
-			sourceTree = "<group>";
-		};
-		18CDF4A4257F8DBD006E8E5C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4A5257F8DBD006E8E5C /* 设置密保 */,
-				18CDF4AA257F8DBD006E8E5C /* 绑定邮箱 */,
-				18CDF4AF257F8DBD006E8E5C /* 修改密码 */,
-				18CDF4B2257F8DBD006E8E5C /* 主界面 */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		18CDF4A5257F8DBD006E8E5C /* 设置密保 */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4A6257F8DBD006E8E5C /* SetQuestionView.h */,
-				18CDF4A7257F8DBD006E8E5C /* QuestionView.h */,
-				18CDF4A8257F8DBD006E8E5C /* SetQuestionView.m */,
-				18CDF4A9257F8DBD006E8E5C /* QuestionView.m */,
-			);
-			path = "设置密保";
-			sourceTree = "<group>";
-		};
-		18CDF4AA257F8DBD006E8E5C /* 绑定邮箱 */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4AB257F8DBD006E8E5C /* setEmail.m */,
-				18CDF4AC257F8DBD006E8E5C /* sendCodeView.m */,
-				18CDF4AD257F8DBD006E8E5C /* setEmail.h */,
-				18CDF4AE257F8DBD006E8E5C /* sendCodeView.h */,
-			);
-			path = "绑定邮箱";
-			sourceTree = "<group>";
-		};
-		18CDF4AF257F8DBD006E8E5C /* 修改密码 */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4B0257F8DBD006E8E5C /* ResetPwdView.h */,
-				18CDF4B1257F8DBD006E8E5C /* ResetPwdView.m */,
-			);
-			path = "修改密码";
-			sourceTree = "<group>";
-		};
-		18CDF4B2257F8DBD006E8E5C /* 主界面 */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4B3257F8DBD006E8E5C /* safePopView.m */,
-				18CDF4B4257F8DBD006E8E5C /* SelfSafeView.h */,
-				18CDF4B5257F8DBD006E8E5C /* safePopView.h */,
-				18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */,
-			);
-			path = "主界面";
+			path = Model;
 			sourceTree = "<group>";
 		};
 		18CDF4D4257F91BC006E8E5C /* Discover */ = {
