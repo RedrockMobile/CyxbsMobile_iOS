@@ -7,7 +7,23 @@
 
 #import "UIView+Frame.h"
 
-#pragma mark - Frame扩展
+@implementation UIView (Application)
+
++ (CGFloat)StatusBarHeight {
+    float statusBarHeight = 0;
+    if (@available(iOS 13.0, *)) {
+        UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+        statusBarHeight = statusBarManager.statusBarFrame.size.height;
+    }
+    else {
+        statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    }
+    return statusBarHeight;
+}
+
+@end
+
+#pragma mark - UIView (Frame)
 
 @implementation UIView (Frame)
 
@@ -184,7 +200,7 @@
 
 @end
 
-#pragma mark - Stretch扩展
+#pragma mark - UIView (Stretch)
 
 @implementation UIView (Stretch)
 

@@ -56,6 +56,8 @@
 
 @end
 
+#pragma mark - NSDate (TranslateMonth)
+
 @implementation NSDate (TranslateMonth)
 
 - (NSString *)monthWithTranslate:(DateTranslateMonth)translate {
