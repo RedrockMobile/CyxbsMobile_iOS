@@ -9,7 +9,6 @@
 #import "FinderView.h"
 #import <SDCycleScrollView.h>
 #import "URLController.h"
-#import "WeekAndDay.h"
 
 #define PingFangSC @".PingFang SC"
 #define Gap 17                   //控件距离两边的距离

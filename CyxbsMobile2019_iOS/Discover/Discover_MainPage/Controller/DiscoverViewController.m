@@ -24,7 +24,7 @@
 #import "ClassTabBar.h"
 #import "QueryLoginViewController.h"
 #import "CalendarViewController.h"
-#import "BannerModel.h"
+#import "DiscoverADModel.h"
 #import "TestArrangeViewController.h"
 #import "SchoolBusViewController.h"
 #import "PickerModel.h"
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property ElectricFeeModel *elecModel;
 @property (nonatomic, strong)OneNewsModel *oneNewsModel;
 @property NSUserDefaults *defaults;
-@property BannerModel *bannerModel;
+@property (nonatomic, strong) DiscoverADModel *ADModel;
 @property PickerModel *pickerModel;
 
 /// pickerView
@@ -116,7 +116,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 @implementation DiscoverViewController
 
-
 #pragma mark - Getter
 - (LoginStates)loginStatus {
     if (![UserItemTool defaultItem].token) {
@@ -131,17 +130,17 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 
+#pragma mark - Life cycle
+
 - (void)viewWillAppear:(BOOL)animated {
 //    self.tabBarController.tabBar.translucent = NO;
 
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
-    if (@available(iOS 11.0, *)) {
-        self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
-    } else {
-        self.tabBarController.tabBar.barTintColor = [UIColor whiteColor];
-    }
+    
+    self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
     
     self.navigationController.navigationBar.hidden = YES;
+    
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
         CCLog(@"needLogIn, %lud", self.loginStatus);
@@ -149,17 +148,25 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [self RequestCheckinInfo];
         CCLog(@"LogIned, %lud", self.loginStatus);
     }
-     self.navigationController.navigationBar.translucent = NO;
+    self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
-    if(((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView==nil){
-        ClassScheduleTabBarView *classTabBarView = [[ClassScheduleTabBarView alloc] initWithFrame:CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
+    if(((ClassTabBar *)(self.tabBarController.tabBar))
+       .classScheduleTabBarView == nil) {
+        ClassScheduleTabBarView *classTabBarView =
+        [[ClassScheduleTabBarView alloc] initWithFrame:
+         CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
+        
         classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
         [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
-        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView = classTabBarView;
-        ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView.userInteractionEnabled = YES;
+        
+        ((ClassTabBar *)(self.tabBarController.tabBar))
+            .classScheduleTabBarView = classTabBarView;
+        
+        ((ClassTabBar *)(self.tabBarController.tabBar))
+            .classScheduleTabBarView.userInteractionEnabled = YES;
             
-        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"]&&classTabBarView.mySchedul!=nil){
+        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
             [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
@@ -337,18 +344,15 @@ static int requestCheckinInfo = 0;
     self.finderView = finderView;
     self.finderView.delegate = self;
     [self.contentView addSubview:finderView];
-    [self refreshBannerViewIfNeeded];
+    [self requestData];
 
 }
-- (void)refreshBannerViewIfNeeded {
-    //更新bannerView
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(UpdateBannerViewUI) name:@"BannerModel_Success" object:nil];
-}
+
+#pragma mark - 即将更改的东西
 - (void)UpdateBannerViewUI {
     NSMutableArray *urlStrings = [NSMutableArray array];
     NSMutableArray *bannerGoToURL = [NSMutableArray array];
-    for(BannerItem *item in self.bannerModel.bannerData.bannerItems) {
+    for(DiscoverAD *item in self.ADModel.discoverADs.ADs) {
         [urlStrings addObject:item.pictureUrl];
         [bannerGoToURL addObject:item.pictureGoToUrl];
     }
@@ -356,6 +360,8 @@ static int requestCheckinInfo = 0;
     self.finderView.bannerURLStrings = urlStrings;
     [self.finderView updateBannerViewIfNeeded];
 }
+
+
 - (void)addEleView {
     ElectricityView *eleView = [[ElectricityView alloc]init];
     self.eleView = eleView;
@@ -398,15 +404,34 @@ static int requestCheckinInfo = 0;
     }
 }
 
+#pragma mark - 看不懂的网络请求骚操作
+
+- (void)request {
+    [self.ADModel
+     GETADsSuccess:^(DiscoverADModel * _Nonnull ADModel) {
+        [self UpdateBannerViewUI];
+    }];
+}
+
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
     self.elecModel = elecModel;
     OneNewsModel *oneNewsModel = [[OneNewsModel alloc]initWithPage:@1];
     self.oneNewsModel = oneNewsModel;
-    BannerModel * bannerModel = [[BannerModel alloc]init];
-    [bannerModel fetchData];
-    self.bannerModel = bannerModel;
+    
+    [self request];
 }
+
+#pragma mark - Lazy
+
+- (DiscoverADModel *)ADModel {
+    if (_ADModel == nil) {
+        _ADModel = [[DiscoverADModel alloc] init];
+    }
+    return _ADModel;
+}
+
+#pragma mark - END
 
 - (void)bindingRoomFailed {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];

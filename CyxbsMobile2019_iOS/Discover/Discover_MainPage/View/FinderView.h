@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) touchToDOList; //点击邮子清单
 @end
 
+#pragma mark - FinderView
+
 @interface FinderView : UIView
 @property (nonatomic, weak) UILabel *weekTime;//当前周数
 @property (nonatomic, weak) UILabel *finderTitle;//“发现”标题

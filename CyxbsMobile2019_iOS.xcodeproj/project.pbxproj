@@ -46,7 +46,6 @@
 		18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B1257F8DBD006E8E5C /* ResetPwdView.m */; };
 		18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B3257F8DBD006E8E5C /* safePopView.m */; };
 		18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */; };
-		18CDF661257F91BD006E8E5C /* WeekAndDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4D7257F91BC006E8E5C /* WeekAndDay.m */; };
 		18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */; };
 		18CDF663257F91BD006E8E5C /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4DE257F91BC006E8E5C /* ElectricFeeItem.m */; };
 		18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4DF257F91BC006E8E5C /* ElectricFeeModel.m */; };
@@ -55,9 +54,9 @@
 		18CDF667257F91BD006E8E5C /* OneNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4EA257F91BC006E8E5C /* OneNewsItem.m */; };
 		18CDF668257F91BD006E8E5C /* OneNewsItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4EB257F91BC006E8E5C /* OneNewsItemData.m */; };
 		18CDF669257F91BD006E8E5C /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4ED257F91BC006E8E5C /* VolunteerModel.m */; };
-		18CDF66A257F91BD006E8E5C /* BannerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F0257F91BC006E8E5C /* BannerItem.m */; };
-		18CDF66B257F91BD006E8E5C /* BannerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F1257F91BC006E8E5C /* BannerData.m */; };
-		18CDF66C257F91BD006E8E5C /* BannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F2257F91BC006E8E5C /* BannerModel.m */; };
+		18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */; };
+		18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F1257F91BC006E8E5C /* DiscoverADs.m */; };
+		18CDF66C257F91BD006E8E5C /* DiscoverADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */; };
 		18CDF66D257F91BD006E8E5C /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F7257F91BC006E8E5C /* ElectricityView.m */; };
 		18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F8257F91BC006E8E5C /* EnterButton.m */; };
 		18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F9257F91BC006E8E5C /* FinderView.m */; };
@@ -776,8 +775,6 @@
 		18CDF4B4257F8DBD006E8E5C /* SelfSafeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfSafeView.h; sourceTree = "<group>"; };
 		18CDF4B5257F8DBD006E8E5C /* safePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safePopView.h; sourceTree = "<group>"; };
 		18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfSafeView.m; sourceTree = "<group>"; };
-		18CDF4D7257F91BC006E8E5C /* WeekAndDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekAndDay.m; sourceTree = "<group>"; };
-		18CDF4D8257F91BC006E8E5C /* WeekAndDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekAndDay.h; sourceTree = "<group>"; };
 		18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		18CDF4DE257F91BC006E8E5C /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
@@ -794,12 +791,12 @@
 		18CDF4EB257F91BC006E8E5C /* OneNewsItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneNewsItemData.m; sourceTree = "<group>"; };
 		18CDF4ED257F91BC006E8E5C /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
 		18CDF4EE257F91BC006E8E5C /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
-		18CDF4F0257F91BC006E8E5C /* BannerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerItem.m; sourceTree = "<group>"; };
-		18CDF4F1257F91BC006E8E5C /* BannerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerData.m; sourceTree = "<group>"; };
-		18CDF4F2257F91BC006E8E5C /* BannerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerModel.m; sourceTree = "<group>"; };
-		18CDF4F3257F91BC006E8E5C /* BannerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerModel.h; sourceTree = "<group>"; };
-		18CDF4F4257F91BC006E8E5C /* BannerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerData.h; sourceTree = "<group>"; };
-		18CDF4F5257F91BC006E8E5C /* BannerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerItem.h; sourceTree = "<group>"; };
+		18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverAD.m; sourceTree = "<group>"; };
+		18CDF4F1257F91BC006E8E5C /* DiscoverADs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverADs.m; sourceTree = "<group>"; };
+		18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverADModel.m; sourceTree = "<group>"; };
+		18CDF4F3257F91BC006E8E5C /* DiscoverADModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverADModel.h; sourceTree = "<group>"; };
+		18CDF4F4257F91BC006E8E5C /* DiscoverADs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverADs.h; sourceTree = "<group>"; };
+		18CDF4F5257F91BC006E8E5C /* DiscoverAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverAD.h; sourceTree = "<group>"; };
 		18CDF4F7257F91BC006E8E5C /* ElectricityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
 		18CDF4F8257F91BC006E8E5C /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
 		18CDF4F9257F91BC006E8E5C /* FinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderView.m; sourceTree = "<group>"; };
@@ -1943,6 +1940,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1404746727F3230700307209 /* DiscoverAD */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4F5257F91BC006E8E5C /* DiscoverAD.h */,
+				18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */,
+			);
+			path = DiscoverAD;
+			sourceTree = "<group>";
+		};
+		1404746827F324C100307209 /* DiscoverADs */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4F4257F91BC006E8E5C /* DiscoverADs.h */,
+				18CDF4F1257F91BC006E8E5C /* DiscoverADs.m */,
+				1404746727F3230700307209 /* DiscoverAD */,
+			);
+			path = DiscoverADs;
+			sourceTree = "<group>";
+		};
+		1404746927F32B0D00307209 /* DiscoverADModel */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4F3257F91BC006E8E5C /* DiscoverADModel.h */,
+				18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */,
+				1404746827F324C100307209 /* DiscoverADs */,
+			);
+			name = DiscoverADModel;
+			path = DiscoverADModel/DiscoverADModel;
+			sourceTree = "<group>";
+		};
 		147842EB27F07A30002359BA /* UIView+Frame */ = {
 			isa = PBXGroup;
 			children = (
@@ -2351,21 +2378,11 @@
 		18CDF4D5257F91BC006E8E5C /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF4D6257F91BC006E8E5C /* ViewTool */,
 				18CDF4D9257F91BC006E8E5C /* Controller */,
 				18CDF4DC257F91BC006E8E5C /* Model */,
 				18CDF4F6257F91BC006E8E5C /* View */,
 			);
 			path = Discover_MainPage;
-			sourceTree = "<group>";
-		};
-		18CDF4D6257F91BC006E8E5C /* ViewTool */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4D7257F91BC006E8E5C /* WeekAndDay.m */,
-				18CDF4D8257F91BC006E8E5C /* WeekAndDay.h */,
-			);
-			path = ViewTool;
 			sourceTree = "<group>";
 		};
 		18CDF4D9257F91BC006E8E5C /* Controller */ = {
@@ -2380,11 +2397,11 @@
 		18CDF4DC257F91BC006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1404746927F32B0D00307209 /* DiscoverADModel */,
 				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
 				18CDF4E2257F91BC006E8E5C /* PickerView */,
 				18CDF4E5257F91BC006E8E5C /* News */,
 				18CDF4EC257F91BC006E8E5C /* Volunteer */,
-				18CDF4EF257F91BC006E8E5C /* Banner */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2413,9 +2430,9 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4E6257F91BC006E8E5C /* OneNewsModel.h */,
+				18CDF4E9257F91BC006E8E5C /* OneNewsModel.m */,
 				18CDF4E7257F91BC006E8E5C /* OneNewsItem.h */,
 				18CDF4E8257F91BC006E8E5C /* OneNewsItemData.h */,
-				18CDF4E9257F91BC006E8E5C /* OneNewsModel.m */,
 				18CDF4EA257F91BC006E8E5C /* OneNewsItem.m */,
 				18CDF4EB257F91BC006E8E5C /* OneNewsItemData.m */,
 			);
@@ -2429,19 +2446,6 @@
 				18CDF4EE257F91BC006E8E5C /* VolunteerModel.h */,
 			);
 			path = Volunteer;
-			sourceTree = "<group>";
-		};
-		18CDF4EF257F91BC006E8E5C /* Banner */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4F0257F91BC006E8E5C /* BannerItem.m */,
-				18CDF4F1257F91BC006E8E5C /* BannerData.m */,
-				18CDF4F2257F91BC006E8E5C /* BannerModel.m */,
-				18CDF4F3257F91BC006E8E5C /* BannerModel.h */,
-				18CDF4F4257F91BC006E8E5C /* BannerData.h */,
-				18CDF4F5257F91BC006E8E5C /* BannerItem.h */,
-			);
-			path = Banner;
 			sourceTree = "<group>";
 		};
 		18CDF4F6257F91BC006E8E5C /* View */ = {
@@ -5816,7 +5820,7 @@
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
 				BE7CBD9927535FC000094AE8 /* MGDImageCollectionViewCell.m in Sources */,
-				18CDF66B257F91BD006E8E5C /* BannerData.m in Sources */,
+				18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */,
 				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				BE7CBD8827535FC000094AE8 /* NewQAMainPageMainView.m in Sources */,
@@ -5835,7 +5839,6 @@
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
 				BE7CBD9B27535FC000094AE8 /* SearchBtn.m in Sources */,
-				18CDF661257F91BD006E8E5C /* WeekAndDay.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				7311328A26CCEC2400EF88C1 /* TopView.m in Sources */,
@@ -5943,7 +5946,7 @@
 				AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
 				AA536DF5258C4F7600F69E73 /* IgnoreViewController.m in Sources */,
-				18CDF66C257F91BD006E8E5C /* BannerModel.m in Sources */,
+				18CDF66C257F91BD006E8E5C /* DiscoverADModel.m in Sources */,
 				18CDF685257F91BD006E8E5C /* EmptyClassTableViewCell.m in Sources */,
 				BE7CBD8527535FC000094AE8 /* NewQAMainPageTableViewController.m in Sources */,
 				18CDF663257F91BD006E8E5C /* ElectricFeeItem.m in Sources */,
@@ -6202,7 +6205,7 @@
 				18CDF673257F91BD006E8E5C /* ExamArrangeDataItem.m in Sources */,
 				73AAA1D426C918250084E44D /* PurchaseInfoGoodsInfoView.m in Sources */,
 				BE7CBD8327535FC000094AE8 /* StarPostModel.m in Sources */,
-				18CDF66A257F91BD006E8E5C /* BannerItem.m in Sources */,
+				18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */,
 				FE2C134F27AEF629001CF7AF /* ToDoDetaileViewController.m in Sources */,
 				187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */,
 				4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */,
@@ -6412,7 +6415,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 65;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -6449,7 +6452,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.2.9;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs1;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -6468,7 +6471,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 65;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -6505,7 +6508,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.2.9;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs1;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";

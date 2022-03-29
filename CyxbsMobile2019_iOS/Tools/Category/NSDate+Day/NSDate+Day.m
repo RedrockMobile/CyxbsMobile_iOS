@@ -1,8 +1,8 @@
 //
 //  NSDate+Day.m
-//  ZhiHu
+//  SSRSwipe
 //
-//  Created by SSR on 2022/2/6.
+//  Created by SSR on 2022/3/29.
 //
 
 #import "NSDate+Day.h"
@@ -11,159 +11,67 @@
 
 @implementation NSDate (Day)
 
-/**返回[NSDate date]*/
 + (NSDate *)today {
     return  [NSDate date];
 }
 
-/**设置为昨天*/
 - (NSDate *)yesterday {
     return [self dateByAddingTimeInterval:- 24 * 60 * 60];
 }
 
-/**设置为明天*/
 - (NSDate *)tomorrow {
     return [self dateByAddingTimeInterval:24 * 60 * 60];
 }
 
-/**根据formatter取时间nsdate*/
-+ (NSDate *)dateString:(NSString *)date WithFormatter:(NSString *)formatter {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:formatter];
-    return [format dateFromString:date];
++ (NSDate *)dateString:(NSString *)dateStr fromFormatter:(NSDateFormatter *)formatter withDateFormat:(NSString *)format {
+    [formatter setDateFormat:format];
+    return [formatter dateFromString:dateStr];
 }
 
-/**根据formater取出nsstring*/
-- (NSString *)stringWithFormatter:(NSString *)formatter {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:formatter];
-    return [format stringFromDate:self];
-}
-
-/**快速取出日期*/
-- (NSString *)day {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"d"];
-    return [format stringFromDate:self];
-}
-
-/**快速取出月(数字)*/
-- (NSString *)month {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"M"];
-    return [format stringFromDate:self];
+- (NSString *)stringFromFormatter:(NSDateFormatter *)formatter withDateFormat:(NSString *)format {
+    [formatter setDateFormat:format];
+    return [formatter stringFromDate:self];
 }
 
 @end
 
-#pragma mark - NSDate (TranslateMonth)
+#pragma mark - NSDateFormatter (NSDate)
 
-@implementation NSDate (TranslateMonth)
+static NSDateFormatter *_defaultFormatter = nil;
+static NSDateFormatter *_chineseFormatter = nil;
 
-- (NSString *)monthWithTranslate:(DateTranslateMonth)translate {
-    switch (translate) {
-        case DateTranslateMonthSimpleChinese:
-            return [self monthWithSimpleChinese];
-        case DateTranslateMonthTraditionalChinese:
+@implementation NSDateFormatter (NSDate)
+
++ (NSDateFormatter *)defaultFormatter {
+    if (_defaultFormatter == nil) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            _defaultFormatter = [[NSDateFormatter alloc] init];
+        });
+    }
+    return _defaultFormatter;
+}
+
++ (NSDateFormatter *)ChineseFormatter {
+    if (_chineseFormatter == nil) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            _chineseFormatter = [[NSDateFormatter alloc] init];
+            _chineseFormatter.monthSymbols =
+            @[@"一月", @"二月", @"三月", @"四月", @"五月", @"六月", @"七月", @"八月", @"九月", @"十月", @"十一月", @"十二月"];
+            _chineseFormatter.shortMonthSymbols =  @[@"一", @"二", @"三", @"四", @"五", @"六", @"七", @"八", @"九", @"十", @"十一", @"十二"];
             
-            break;
-        case DateTranslateMonthShortEnglish:
+            _chineseFormatter.veryShortMonthSymbols = _chineseFormatter.veryShortStandaloneMonthSymbols =  _chineseFormatter.shortMonthSymbols;
             
-            break;
-        case DateTranslateMonthLongEnglish:
+            _chineseFormatter.standaloneMonthSymbols = _chineseFormatter.shortStandaloneMonthSymbols = _chineseFormatter.monthSymbols;
             
-            break;
+            _chineseFormatter.weekdaySymbols = @[@"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六", @"星期天"];
+            _chineseFormatter.shortWeekdaySymbols = @[@"一", @"二", @"三", @"四", @"五", @"六", @"天"];
+            _chineseFormatter.AMSymbol = @"上午";
+            _chineseFormatter.PMSymbol = @"下午";
+        });
     }
-    return @"";
-}
-
-/**将month转为中文@"一月"*/
-- (NSString *)monthWithSimpleChinese {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"M"];
-    NSInteger month = [[format stringFromDate:self] integerValue];
-    switch (month) {
-        case 1: return @"一月";
-        case 2: return @"二月";
-        case 3: return @"三月";
-        case 4: return @"四月";
-        case 5: return @"五月";
-        case 6: return @"六月";
-        case 7: return @"七月";
-        case 8: return @"八月";
-        case 9: return @"九月";
-        case 10: return @"十月";
-        case 11: return @"十一月";
-        case 12: return @"十二月";
-        default: return @"";
-    }
-    return @"";
-}
-
-- (NSString *)monthWithTraditionalChinese {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"M"];
-    NSInteger month = [[format stringFromDate:self] integerValue];
-    switch (month) {
-        case 1: return @"正月";
-        case 2: return @"如月";
-        case 3: return @"辰月";
-        case 4: return @"梅月";
-        case 5: return @"仲夏";
-        case 6: return @"季夏";
-        case 7: return @"兰月";
-        case 8: return @"桂月";
-        case 9: return @"闰月";
-        case 10: return @"猪月";
-        case 11: return @"冬月";
-        case 12: return @"腊月";
-        default: return @"";
-    }
-    return @"";
-}
-
-- (NSString *)monthWithShortEnglish {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"M"];
-    NSInteger month = [[format stringFromDate:self] integerValue];
-    switch (month) {
-        case 1: return @"Jan.";
-        case 2: return @"Feb.";
-        case 3: return @"Mar.";
-        case 4: return @"Apr.";
-        case 5: return @"May.";
-        case 6: return @"Jun.";
-        case 7: return @"Jul.";
-        case 8: return @"Aug.";
-        case 9: return @"Sept.";
-        case 10: return @"Oct.";
-        case 11: return @"Nov.";
-        case 12: return @"Dec.";
-        default: return @"";
-    }
-    return @"";
-}
-
-- (NSString *)monthWithLongEnglish {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"M"];
-    NSInteger month = [[format stringFromDate:self] integerValue];
-    switch (month) {
-        case 1: return @"January";
-        case 2: return @"February";
-        case 3: return @"March";
-        case 4: return @"April";
-        case 5: return @"May";
-        case 6: return @"June";
-        case 7: return @"July";
-        case 8: return @"August";
-        case 9: return @"September";
-        case 10: return @"October";
-        case 11: return @"November";
-        case 12: return @"December";
-        default: return @"";
-    }
-    return @"";
+    return _chineseFormatter;
 }
 
 @end

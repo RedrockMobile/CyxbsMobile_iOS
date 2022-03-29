@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#pragma mark - DiscoverViewController
+
 @interface DiscoverViewController: UIViewController
 
 - (void)reloadViewController:(UIViewController *)viewController;
+
 @end
 

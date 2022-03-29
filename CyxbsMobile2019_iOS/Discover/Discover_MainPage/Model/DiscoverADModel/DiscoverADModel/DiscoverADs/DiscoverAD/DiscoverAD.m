@@ -1,15 +1,20 @@
 //
-//  BannerItem.m
+//  DiscoverAD.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by 千千 on 2020/5/11.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "BannerItem.h"
+#import "DiscoverAD.h"
 
-@implementation BannerItem
-- (instancetype)initWithdictionary:(NSDictionary *)dict {
+#pragma mark - DiscoverAD
+
+@implementation DiscoverAD
+
+#pragma mark - Init
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
     if (self = [super init]) {
         self.picureID = dict[@"id"];
         self.pictureUrl = dict[@"picture_url"];
