@@ -56,6 +56,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 代理
 @property (nonatomic, weak) id <DiscoverADBannerViewDelegate> ssr_delegate;
 
+/// 得到DiscoverADItem
+- (DiscoverADItem *)getReusableDiscoverADItem;
+
+/// 计算当前所在页
+- (NSUInteger)currentPage;
+
 @end
 
 NS_ASSUME_NONNULL_END

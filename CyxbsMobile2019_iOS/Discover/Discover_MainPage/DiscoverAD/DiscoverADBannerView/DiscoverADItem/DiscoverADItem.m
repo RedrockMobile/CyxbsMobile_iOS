@@ -53,8 +53,9 @@
     return _imgView;
 }
 
-- (void)setImgURL:(NSString *)imgURL {
+- (DiscoverADItem *)setImgURL:(NSString *)imgURL {
     [self.imgView setImageWithURL:[NSURL URLWithString:imgURL] placeholder:[UIImage imageNamed:@"Discover_placeholder"]];
+    return self;
 }
 
 #pragma mark - Method

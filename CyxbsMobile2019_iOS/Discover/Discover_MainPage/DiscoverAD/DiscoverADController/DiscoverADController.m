@@ -19,7 +19,8 @@
 #pragma mark - DiscoverADController ()
 
 @interface DiscoverADController () <
-    DiscoverADBannerViewDelegate
+    DiscoverADBannerViewDelegate,
+    DiscoverADModelDelegate
 >
 
 /// 广告视图
@@ -69,6 +70,8 @@
 - (DiscoverADModel *)ADModel {
     if (_ADModel == nil) {
         _ADModel = [[DiscoverADModel alloc] init];
+        
+        _ADModel.delegate = self;
     }
     return _ADModel;
 }
@@ -87,6 +90,15 @@
 
 - (void)discoverADBannerView:(DiscoverADBannerView *)bannerView didSelectedAtItem:(NSUInteger)item {
     // -----待实现确认-----
+}
+
+#pragma mark - <DiscoverADModelDelegate>
+
+- (__kindof UICollectionViewCell *)discoverAD:(DiscoverAD *)AD cellForCollectionView:(UICollectionView *)collectionView {
+    return AD == nil ?
+        self.ADBannerView.getReusableDiscoverADItem.Default :
+        [self.ADBannerView.getReusableDiscoverADItem
+            setImgURL:AD.pictureUrl];
 }
 
 @end

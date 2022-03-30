@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DiscoverADItem : UICollectionViewCell
 
 /// 设置图片的获取地方
-- (void)setImgURL:(NSString *)imgURL;
+- (DiscoverADItem *)setImgURL:(NSString *)imgURL;
 
 /// 用于资源复用池初始化
 - (DiscoverADItem *)Default;
