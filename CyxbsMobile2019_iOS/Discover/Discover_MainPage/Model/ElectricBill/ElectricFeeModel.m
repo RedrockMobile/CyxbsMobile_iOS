@@ -29,6 +29,7 @@
         building = item.building;
            room = item.room;
         NSDictionary *parameters = @{@"building":building, @"room":room};
+        
         [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"%@",responseObject);
             ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];

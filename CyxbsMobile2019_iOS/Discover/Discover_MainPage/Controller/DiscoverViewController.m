@@ -13,7 +13,7 @@
 #import "FinderView.h"
 #import "EmptyClassViewController.h"
 #import "ElectricFeeModel.h"
-#import "OneNewsModel.h"
+#import "JWZXNewsModel.h"
 #import "CheckInViewController.h"
 #import "WeDateViewController.h"//没课约
 #import "CQUPTMapViewController.h"
@@ -95,7 +95,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 /// Model
 @property ElectricFeeModel *elecModel;
-@property (nonatomic, strong)OneNewsModel *oneNewsModel;
+@property (nonatomic, strong)JWZXNewsModel *oneNewsModel;
 @property NSUserDefaults *defaults;
 @property (nonatomic, strong) DiscoverADModel *ADModel;
 @property PickerModel *pickerModel;
@@ -205,7 +205,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadVolViewIdNeeded) name:@"LoginVolunteerAccountSucceed" object:nil];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
@@ -416,7 +416,7 @@ static int requestCheckinInfo = 0;
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc]init];
     self.elecModel = elecModel;
-    OneNewsModel *oneNewsModel = [[OneNewsModel alloc]initWithPage:@1];
+    JWZXNewsModel *oneNewsModel = [[JWZXNewsModel alloc]init];
     self.oneNewsModel = oneNewsModel;
     
     [self request];
@@ -459,13 +459,17 @@ static int requestCheckinInfo = 0;
     //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }
+
+#pragma mark - 即将要被更改的地方
 - (void)updateNewsUI {
-    if(self.oneNewsModel.oneNewsItem.dataArray != nil){
-        [self.finderView.news setTitle:self.oneNewsModel.oneNewsItem.dataArray.firstObject.title forState:normal];
+    if(self.oneNewsModel.jwzxNews.news != nil){
+        [self.finderView.news setTitle:self.oneNewsModel.jwzxNews.news.firstObject.title forState:normal];
         //同时写入缓存
-        [self.defaults setObject:self.oneNewsModel.oneNewsItem.dataArray.firstObject.title forKey:@"OneNews_oneNews"];
+        [self.defaults setObject:self.oneNewsModel.jwzxNews.news.firstObject.title forKey:@"OneNews_oneNews"];
     }
 }
+
+#pragma mark - end
 
 //点击了绑定宿舍房间号
 - (void) bindingBuildingAndRoom {

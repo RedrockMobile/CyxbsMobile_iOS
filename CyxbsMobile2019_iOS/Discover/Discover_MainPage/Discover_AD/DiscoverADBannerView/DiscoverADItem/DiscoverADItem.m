@@ -49,6 +49,7 @@
     if (_imgView == nil) {
         _imgView = [[UIImageView alloc] initWithFrame:self.contentView.SuperFrame];
         _imgView.image = [UIImage imageNamed:@"Discover_placeholder"];
+        _imgView.contentMode = UIViewContentModeScaleToFill;
     }
     return _imgView;
 }

@@ -21,7 +21,7 @@
      prepareExecute:nil
      progress:nil
      success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"🟢AD:\n%@",responseObject);
+        NSLog(@"🟢AD:\n%@", responseObject);
         
         DiscoverADs *ADs = [[DiscoverADs alloc] initWithDictionary:responseObject];
         
@@ -30,7 +30,7 @@
         setModel();
     }
      failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"🔴AD ERROR");
+        NSLog(@"🔴AD ERROR:\n%@", error);
     }];
 }
 

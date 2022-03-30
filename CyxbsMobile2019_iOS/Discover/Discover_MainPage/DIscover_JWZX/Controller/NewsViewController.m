@@ -8,7 +8,7 @@
 
 #import "NewsViewController.h"
 #import "NewsCell.h"
-#import "OneNewsModel.h"
+#import "JWZXNewsModel.h"
 #import "NewDetailViewController.h"
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -19,7 +19,7 @@
 @property (nonatomic, weak)UIButton *backButton;
 @property (nonatomic, weak)UILabel *titleLabel;
 @property (nonatomic, weak)UITableView *tableView;
-@property (nonatomic, strong)OneNewsModel *model;
+@property (nonatomic, strong)JWZXNewsModel *model;
 
 @end
 
@@ -37,7 +37,6 @@
     [self addTitleLabel];
     [self addTableView];
     [self requestData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateNewsUI) name:@"oneNewsSucceed" object:nil];
     // Do any additional setup after loading the view.
 }
 
@@ -79,10 +78,14 @@
         make.centerY.equalTo(self.backButton);
     }];
 }
+
 - (void)requestData {
-    OneNewsModel *model = [[OneNewsModel alloc]initWithPage:@1];
-    self.model = model;
+    [self.model
+     GET_JWZXPage:1 success:^{
+        [self.tableView reloadData];
+    }];
 }
+
 - (void)addTableView {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 87, self.view.width, self.view.height - 87) style:UITableViewStylePlain];
     self.tableView = tableView;
@@ -97,15 +100,12 @@
         make.height.equalTo(@(self.self.view.height - 87));
     }];
 }
-- (void)updateNewsUI {
-    [self.tableView reloadData];
-    
-}
+
 //MARK: - tableView代理
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NewsCell *cell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NewsCell"];
-    cell.textLabel.text = self.model.oneNewsItem.dataArray[indexPath.row].date;
-    cell.detailTextLabel.text = self.model.oneNewsItem.dataArray[indexPath.row].title;
+    cell.textLabel.text = self.model.jwzxNews.news[indexPath.row].date;
+    cell.detailTextLabel.text = self.model.jwzxNews.news[indexPath.row].title;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //    cell.haveFileLabel.text = @"有附件";
     return cell;
@@ -114,10 +114,10 @@
     return 86;
 }
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.model.oneNewsItem.dataArray.count;
+    return self.model.jwzxNews.news.count;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewDetailViewController *vc = [[NewDetailViewController alloc]initWithNewsTime:self.model.oneNewsItem.dataArray[indexPath.row].date NewsTitle:self.model.oneNewsItem.dataArray[indexPath.row].title NewsID:self.model.oneNewsItem.dataArray[indexPath.row].NewsID] ;
+    NewDetailViewController *vc = [[NewDetailViewController alloc]initWithNewsTime:self.model.jwzxNews.news[indexPath.row].date NewsTitle:self.model.jwzxNews.news[indexPath.row].title NewsID:self.model.jwzxNews.news[indexPath.row].NewsID] ;
     [self.navigationController pushViewController:vc animated:YES];
 }
 /*
