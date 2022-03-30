@@ -2,8 +2,8 @@
 //  DiscoverAD.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 千千 on 2020/5/11.
-//  Copyright © 2020 Redrock. All rights reserved.
+//  Created by SSR on 2022/3/30.
+//  Copyright © 2022 Redrock. All rights reserved.
 //
 
 #import "DiscoverAD.h"

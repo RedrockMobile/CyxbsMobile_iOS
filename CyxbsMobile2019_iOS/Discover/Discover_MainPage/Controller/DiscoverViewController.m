@@ -408,7 +408,7 @@ static int requestCheckinInfo = 0;
 
 - (void)request {
     [self.ADModel
-     GETADsSuccess:^(DiscoverADModel * _Nonnull ADModel) {
+     GETADsSuccess:^ {
         [self UpdateBannerViewUI];
     }];
 }

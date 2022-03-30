@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1404746C27F446DF00307209 /* DiscoverADBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404746B27F446DF00307209 /* DiscoverADBannerView.m */; };
+		1404747227F459B500307209 /* DiscoverADItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747127F459B500307209 /* DiscoverADItem.m */; };
+		1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747C27F46F0D00307209 /* DiscoverADController.m */; };
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
@@ -707,6 +710,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1404746A27F446DF00307209 /* DiscoverADBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADBannerView.h; sourceTree = "<group>"; };
+		1404746B27F446DF00307209 /* DiscoverADBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADBannerView.m; sourceTree = "<group>"; };
+		1404747027F459B500307209 /* DiscoverADItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADItem.h; sourceTree = "<group>"; };
+		1404747127F459B500307209 /* DiscoverADItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADItem.m; sourceTree = "<group>"; };
+		1404747B27F46F0D00307209 /* DiscoverADController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADController.h; sourceTree = "<group>"; };
+		1404747C27F46F0D00307209 /* DiscoverADController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADController.m; sourceTree = "<group>"; };
 		147842E827F0758F002359BA /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		147842E927F0758F002359BA /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		147842EC27F07A59002359BA /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
@@ -1966,8 +1975,45 @@
 				18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */,
 				1404746827F324C100307209 /* DiscoverADs */,
 			);
-			name = DiscoverADModel;
-			path = DiscoverADModel/DiscoverADModel;
+			path = DiscoverADModel;
+			sourceTree = "<group>";
+		};
+		1404747327F4654400307209 /* DiscoverADItem */ = {
+			isa = PBXGroup;
+			children = (
+				1404747027F459B500307209 /* DiscoverADItem.h */,
+				1404747127F459B500307209 /* DiscoverADItem.m */,
+			);
+			path = DiscoverADItem;
+			sourceTree = "<group>";
+		};
+		1404747427F4682D00307209 /* DiscoverADBannerView */ = {
+			isa = PBXGroup;
+			children = (
+				1404746A27F446DF00307209 /* DiscoverADBannerView.h */,
+				1404746B27F446DF00307209 /* DiscoverADBannerView.m */,
+				1404747327F4654400307209 /* DiscoverADItem */,
+			);
+			path = DiscoverADBannerView;
+			sourceTree = "<group>";
+		};
+		1404747E27F47F0F00307209 /* DiscoverADController */ = {
+			isa = PBXGroup;
+			children = (
+				1404747B27F46F0D00307209 /* DiscoverADController.h */,
+				1404747C27F46F0D00307209 /* DiscoverADController.m */,
+			);
+			path = DiscoverADController;
+			sourceTree = "<group>";
+		};
+		1404747F27F47F2A00307209 /* DiscoverAD */ = {
+			isa = PBXGroup;
+			children = (
+				1404747E27F47F0F00307209 /* DiscoverADController */,
+				1404746927F32B0D00307209 /* DiscoverADModel */,
+				1404747427F4682D00307209 /* DiscoverADBannerView */,
+			);
+			path = DiscoverAD;
 			sourceTree = "<group>";
 		};
 		147842EB27F07A30002359BA /* UIView+Frame */ = {
@@ -2378,6 +2424,7 @@
 		18CDF4D5257F91BC006E8E5C /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
+				1404747F27F47F2A00307209 /* DiscoverAD */,
 				18CDF4D9257F91BC006E8E5C /* Controller */,
 				18CDF4DC257F91BC006E8E5C /* Model */,
 				18CDF4F6257F91BC006E8E5C /* View */,
@@ -2397,7 +2444,6 @@
 		18CDF4DC257F91BC006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1404746927F32B0D00307209 /* DiscoverADModel */,
 				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
 				18CDF4E2257F91BC006E8E5C /* PickerView */,
 				18CDF4E5257F91BC006E8E5C /* News */,
@@ -5810,6 +5856,7 @@
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
+				1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */,
 				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
@@ -5968,6 +6015,7 @@
 				BE7CBD8027535FC000094AE8 /* ReportModel.m in Sources */,
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
+				1404746C27F446DF00307209 /* DiscoverADBannerView.m in Sources */,
 				AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */,
 				18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
 				18CDF68B257F91BD006E8E5C /* ChoosePeopleListView.m in Sources */,
@@ -6214,6 +6262,7 @@
 				18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */,
 				18CDF6CE257F91BE006E8E5C /* SchoolBusContentView.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
+				1404747227F459B500307209 /* DiscoverADItem.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
 				BE7CBD8627535FC000094AE8 /* NewQAMainPageTableViewController+delegateMethod.m in Sources */,
 				73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */,

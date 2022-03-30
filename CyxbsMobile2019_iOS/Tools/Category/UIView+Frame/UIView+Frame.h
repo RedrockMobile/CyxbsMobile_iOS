@@ -117,6 +117,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**父控件的中心：(width / 2, height / 2)*/
 @property (nonatomic, readonly) CGPoint SuperCenter;
 
+/**父控件的整体：(0, 0, width, height)*/
+@property (nonatomic, readonly) CGRect SuperFrame;
+
 // Layout
 
 /**距离左边某点(x,0)多少距离*/
