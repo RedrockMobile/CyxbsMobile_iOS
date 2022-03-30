@@ -6,10 +6,6 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**广告位的封装
- * 应采用
- */
-
 #import "DiscoverADController.h"
 
 #import "DiscoverADBannerView.h"

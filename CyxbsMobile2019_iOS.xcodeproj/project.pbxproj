@@ -255,11 +255,8 @@
 		1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141351235F524B0001417E /* UIImage+Helper.m */; };
 		1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141352235F524B0001417E /* NSString+Emoji.m */; };
 		1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141353235F524B0001417E /* UserDefaultTool.m */; };
-		1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141355235F524B0001417E /* UILabel+Adapter.m */; };
 		1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141356235F524B0001417E /* CAShapeLayer+ViewMask.m */; };
-		1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141357235F524B0001417E /* NSDate+schoolDate.m */; };
 		1A141373235F524B0001417E /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141358235F524B0001417E /* UIColor+Helper.m */; };
-		1A141374235F524B0001417E /* NSNull+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141359235F524B0001417E /* NSNull+Helper.m */; };
 		1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14135A235F524B0001417E /* UIImage+ImageEffects.m */; };
 		1A141376235F524B0001417E /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A14135B235F524B0001417E /* UIImage+Color.m */; };
 		1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141361235F524B0001417E /* SYCSegmentViewButton.m */; };
@@ -395,8 +392,6 @@
 		AA4CD60A25EF6747002D9394 /* IgnoreDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4CD60925EF6747002D9394 /* IgnoreDataModel.m */; };
 		AA4CD61025EF7E0F002D9394 /* NothingStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4CD60F25EF7E0F002D9394 /* NothingStateView.m */; };
 		AA4CD61925F13757002D9394 /* MainMsgCntModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4CD61825F13757002D9394 /* MainMsgCntModel.m */; };
-		AA4CD67D25F28A24002D9394 /* NSDictionary+ChineseCharacterLog.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4CD67C25F28A24002D9394 /* NSDictionary+ChineseCharacterLog.m */; };
-		AA4CD68325F28A32002D9394 /* NSArray+ChineseCharacterLog.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4CD68225F28A32002D9394 /* NSArray+ChineseCharacterLog.m */; };
 		AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FA1DE25C2DE5F005139BA /* LearnMoreViewController.m */; };
 		AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FA1F325C2E1E3005139BA /* PraiseViewController.m */; };
 		AA4FA1FA25C2E2E5005139BA /* PraiseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4FA1F925C2E2E5005139BA /* PraiseTableViewCell.m */; };
@@ -1127,13 +1122,10 @@
 		1A14131F235F521C0001417E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		1A14132E235F523B0001417E /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
 		1A14132F235F523B0001417E /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
-		1A14133A235F524B0001417E /* UILabel+Adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Adapter.h"; sourceTree = "<group>"; };
 		1A14133B235F524B0001417E /* UIFont+AdaptiveFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+AdaptiveFont.m"; sourceTree = "<group>"; };
-		1A14133C235F524B0001417E /* NSNull+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+Helper.h"; sourceTree = "<group>"; };
 		1A14133E235F524B0001417E /* AESCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCipher.m; sourceTree = "<group>"; };
 		1A14133F235F524B0001417E /* AESCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCipher.h; sourceTree = "<group>"; };
 		1A141340235F524B0001417E /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
-		1A141341235F524B0001417E /* NSDate+schoolDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+schoolDate.h"; sourceTree = "<group>"; };
 		1A141342235F524B0001417E /* CAShapeLayer+ViewMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAShapeLayer+ViewMask.h"; sourceTree = "<group>"; };
 		1A141343235F524B0001417E /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
 		1A141344235F524B0001417E /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -1144,11 +1136,8 @@
 		1A141352235F524B0001417E /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		1A141353235F524B0001417E /* UserDefaultTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultTool.m; sourceTree = "<group>"; };
 		1A141354235F524B0001417E /* UIFont+AdaptiveFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AdaptiveFont.h"; sourceTree = "<group>"; };
-		1A141355235F524B0001417E /* UILabel+Adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Adapter.m"; sourceTree = "<group>"; };
 		1A141356235F524B0001417E /* CAShapeLayer+ViewMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+ViewMask.m"; sourceTree = "<group>"; };
-		1A141357235F524B0001417E /* NSDate+schoolDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+schoolDate.m"; sourceTree = "<group>"; };
 		1A141358235F524B0001417E /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
-		1A141359235F524B0001417E /* NSNull+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+Helper.m"; sourceTree = "<group>"; };
 		1A14135A235F524B0001417E /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		1A14135B235F524B0001417E /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		1A14135C235F524B0001417E /* UserDefaultTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultTool.h; sourceTree = "<group>"; };
@@ -1412,10 +1401,6 @@
 		AA4CD60F25EF7E0F002D9394 /* NothingStateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NothingStateView.m; sourceTree = "<group>"; };
 		AA4CD61725F13757002D9394 /* MainMsgCntModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainMsgCntModel.h; sourceTree = "<group>"; };
 		AA4CD61825F13757002D9394 /* MainMsgCntModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainMsgCntModel.m; sourceTree = "<group>"; };
-		AA4CD67B25F28A24002D9394 /* NSDictionary+ChineseCharacterLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ChineseCharacterLog.h"; sourceTree = "<group>"; };
-		AA4CD67C25F28A24002D9394 /* NSDictionary+ChineseCharacterLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ChineseCharacterLog.m"; sourceTree = "<group>"; };
-		AA4CD68125F28A32002D9394 /* NSArray+ChineseCharacterLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+ChineseCharacterLog.h"; sourceTree = "<group>"; };
-		AA4CD68225F28A32002D9394 /* NSArray+ChineseCharacterLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+ChineseCharacterLog.m"; sourceTree = "<group>"; };
 		AA4FA1DD25C2DE5E005139BA /* LearnMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearnMoreViewController.h; sourceTree = "<group>"; };
 		AA4FA1DE25C2DE5F005139BA /* LearnMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearnMoreViewController.m; sourceTree = "<group>"; };
 		AA4FA1F225C2E1E3005139BA /* PraiseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PraiseViewController.h; sourceTree = "<group>"; };
@@ -2033,6 +2018,15 @@
 				1404748027F48C2100307209 /* JWZXNew */,
 			);
 			path = JWZXNews;
+			sourceTree = "<group>";
+		};
+		1404748227F4A89600307209 /* UITextView+Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				D0101D6924352092004337ED /* UITextView+Placeholder.h */,
+				D0101D6824352092004337ED /* UITextView+Placeholder.m */,
+			);
+			path = "UITextView+Placeholder";
 			sourceTree = "<group>";
 		};
 		147842EB27F07A30002359BA /* UIView+Frame */ = {
@@ -4313,22 +4307,11 @@
 				147842EF27F07A5E002359BA /* UIColor+Color */,
 				147842EB27F07A30002359BA /* UIView+Frame */,
 				147842F327F080B5002359BA /* NSDate+Day */,
-				AA4CD67B25F28A24002D9394 /* NSDictionary+ChineseCharacterLog.h */,
-				AA4CD67C25F28A24002D9394 /* NSDictionary+ChineseCharacterLog.m */,
-				AA4CD68125F28A32002D9394 /* NSArray+ChineseCharacterLog.h */,
-				AA4CD68225F28A32002D9394 /* NSArray+ChineseCharacterLog.m */,
-				1A14133A235F524B0001417E /* UILabel+Adapter.h */,
-				1A141355235F524B0001417E /* UILabel+Adapter.m */,
-				D0101D6924352092004337ED /* UITextView+Placeholder.h */,
-				D0101D6824352092004337ED /* UITextView+Placeholder.m */,
-				1A14133B235F524B0001417E /* UIFont+AdaptiveFont.m */,
+				1404748227F4A89600307209 /* UITextView+Placeholder */,
 				1A141354235F524B0001417E /* UIFont+AdaptiveFont.h */,
-				1A14133C235F524B0001417E /* NSNull+Helper.h */,
-				1A141359235F524B0001417E /* NSNull+Helper.m */,
+				1A14133B235F524B0001417E /* UIFont+AdaptiveFont.m */,
 				1A141340235F524B0001417E /* UIColor+Helper.h */,
 				1A141358235F524B0001417E /* UIColor+Helper.m */,
-				1A141341235F524B0001417E /* NSDate+schoolDate.h */,
-				1A141357235F524B0001417E /* NSDate+schoolDate.m */,
 				1A141342235F524B0001417E /* CAShapeLayer+ViewMask.h */,
 				1A141356235F524B0001417E /* CAShapeLayer+ViewMask.m */,
 				1A141343235F524B0001417E /* UIImage+Color.h */,
@@ -5884,7 +5867,6 @@
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
 				BE7CBD9927535FC000094AE8 /* MGDImageCollectionViewCell.m in Sources */,
 				18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */,
-				1A141374235F524B0001417E /* NSNull+Helper.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				BE7CBD8827535FC000094AE8 /* NewQAMainPageMainView.m in Sources */,
 				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
@@ -5946,7 +5928,6 @@
 				18CDF69E257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m in Sources */,
 				7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
-				AA4CD68325F28A32002D9394 /* NSArray+ChineseCharacterLog.m in Sources */,
 				18CDF6A5257F91BD006E8E5C /* CQUPTMapDetailView.m in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
 				7F101AC2260613E800F2034C /* YYZTopicGroupVC.m in Sources */,
@@ -6075,7 +6056,6 @@
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				18CDF668257F91BD006E8E5C /* JWZXNew.m in Sources */,
 				B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */,
-				1A141372235F524B0001417E /* NSDate+schoolDate.m in Sources */,
 				4931630A26CD7B6800140412 /* MyTableViewCell.m in Sources */,
 				B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
@@ -6107,7 +6087,6 @@
 				AAC7CA0125F5130900E6B5D5 /* PraiseParseModel.m in Sources */,
 				18CDF69F257F91BD006E8E5C /* CQUPTMapSearchView.m in Sources */,
 				4931630C26CD7B6800140412 /* GotoButton.m in Sources */,
-				AA4CD67D25F28A24002D9394 /* NSDictionary+ChineseCharacterLog.m in Sources */,
 				18CDF693257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
@@ -6301,7 +6280,6 @@
 				1A141330235F523B0001417E /* MineViewController.m in Sources */,
 				7311328726CCEC2400EF88C1 /* Balance.m in Sources */,
 				B845737925C0408E005EFB91 /* SZHSearchDataModel.m in Sources */,
-				1A141370235F524B0001417E /* UILabel+Adapter.m in Sources */,
 				18CDF4C3257F8DBD006E8E5C /* questionAndEmail.m in Sources */,
 				738C15CA26E2176700E24F8C /* ImgViewCollectionViewCell.m in Sources */,
 			);
