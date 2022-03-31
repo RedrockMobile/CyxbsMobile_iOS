@@ -8,9 +8,9 @@
 
 #import "QuestionButton.h"
 
-@implementation QuestionButton
+#pragma mark - QuestionButton
 
-#pragma mark - Init
+@implementation QuestionButton
 
 #pragma mark - Lazy
 

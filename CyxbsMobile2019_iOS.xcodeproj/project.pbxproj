@@ -15,6 +15,8 @@
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
 		14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A527F5762500B67469 /* QuestionSelectView.m */; };
 		14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A727F5762500B67469 /* QuestionButton.m */; };
+		14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */; };
+		14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */; };
 		185AFA5627022258007F40F9 /* MGDCommen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AFA5527022258007F40F9 /* MGDCommen.swift */; };
 		185AFA5727022258007F40F9 /* MGDCommen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AFA5527022258007F40F9 /* MGDCommen.swift */; };
 		187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4AF260310DD000BCDE9 /* LYEmptyBaseView.m */; };
@@ -723,6 +725,10 @@
 		14E7E4A527F5762500B67469 /* QuestionSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionSelectView.m; sourceTree = "<group>"; };
 		14E7E4A627F5762500B67469 /* QuestionSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionSelectView.h; sourceTree = "<group>"; };
 		14E7E4A727F5762500B67469 /* QuestionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionButton.m; sourceTree = "<group>"; };
+		14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackQuestionButton.m; sourceTree = "<group>"; };
+		14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackSelectView.m; sourceTree = "<group>"; };
+		14E7E4B027F57FC800B67469 /* FeedBackQuestionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackQuestionButton.h; sourceTree = "<group>"; };
+		14E7E4B127F57FC800B67469 /* FeedBackSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackSelectView.h; sourceTree = "<group>"; };
 		185AFA5427022256007F40F9 /* CyxbsMobile2019_iOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsMobile2019_iOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		185AFA5527022258007F40F9 /* MGDCommen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGDCommen.swift; sourceTree = "<group>"; };
 		187DF4AF260310DD000BCDE9 /* LYEmptyBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYEmptyBaseView.m; sourceTree = "<group>"; };
@@ -2313,6 +2319,25 @@
 				14E7E4AA27F5762C00B67469 /* QuestionButton */,
 			);
 			path = QuestionSelectView;
+			sourceTree = "<group>";
+		};
+		14E7E4B427F57FE100B67469 /* FeedBackSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				14E7E4B127F57FC800B67469 /* FeedBackSelectView.h */,
+				14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */,
+				14E7E4B527F57FF100B67469 /* FeedBackQuestionButton */,
+			);
+			path = FeedBackSelectView;
+			sourceTree = "<group>";
+		};
+		14E7E4B527F57FF100B67469 /* FeedBackQuestionButton */ = {
+			isa = PBXGroup;
+			children = (
+				14E7E4B027F57FC800B67469 /* FeedBackQuestionButton.h */,
+				14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */,
+			);
+			path = FeedBackQuestionButton;
 			sourceTree = "<group>";
 		};
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
@@ -3971,6 +3996,7 @@
 		49C2E77F26D5634400AFBE6F /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				14E7E4B427F57FE100B67469 /* FeedBackSelectView */,
 				4975628726D59701004499E6 /* FeedBackView */,
 				49C2E78026D5637F00AFBE6F /* TypeSelectView */,
 				49343A1E26D4E9DE001A2892 /* HintView */,
@@ -6062,6 +6088,7 @@
 				18CDF683257F91BD006E8E5C /* EmptyClassModel.m in Sources */,
 				7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
+				14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */,
 				18CDF681257F91BD006E8E5C /* EmptyClassPresenter.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				18CDF6AF257F91BD006E8E5C /* SCGenericChart.m in Sources */,
@@ -6274,6 +6301,7 @@
 				FE2C136C27AEF680001CF7AF /* NewQAHud.m in Sources */,
 				B89B8E632603974400497814 /* CYSearchEndKnowledgeDetailModel.m in Sources */,
 				BE7CBD8F27535FC000094AE8 /* PostTableViewCell.m in Sources */,
+				14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */,
 				18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */,
 				1AFD151F237D81F1004D9CEA /* EditMyInfoModel.m in Sources */,
 				18CDF677257F91BD006E8E5C /* ScorePresentAnimation.m in Sources */,

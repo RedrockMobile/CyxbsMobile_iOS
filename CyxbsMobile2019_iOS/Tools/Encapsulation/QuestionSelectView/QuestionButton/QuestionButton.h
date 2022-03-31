@@ -6,11 +6,19 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**QuestionButton
+ * 当个button的简单封装
+ * 应该继承这个类做更多的UI操作
+ * 主要是有一个属性和一个标题方法
+ */
+
 #import <UIKit/UIKit.h>
 
 #import "UIView+Frame.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+#pragma mark - QuestionButton
 
 @interface QuestionButton : UIButton
 

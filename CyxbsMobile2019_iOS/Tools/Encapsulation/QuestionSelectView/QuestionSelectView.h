@@ -6,6 +6,12 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**QuestionSelectView
+ * 选择问题的整体View
+ * 应选择继承这个类，
+ * 并遵循两个代理，
+ */
+
 #import <UIKit/UIKit.h>
 
 #import "QuestionButton.h"
