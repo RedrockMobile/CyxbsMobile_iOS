@@ -61,7 +61,7 @@
 
 #pragma mark - Method
 
-- (DiscoverADItem *)Default {
+- (DiscoverADItem *)withDefaultStyle {
     self.imgView.image = [UIImage imageNamed:@"Discover_placeholder"];
     return self;
 }

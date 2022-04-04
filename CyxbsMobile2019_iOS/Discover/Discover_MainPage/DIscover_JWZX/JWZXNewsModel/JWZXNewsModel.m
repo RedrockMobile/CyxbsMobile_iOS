@@ -12,7 +12,7 @@
 
 @implementation JWZXNewsModel
 
-- (void)GET_JWZXPage:(NSUInteger)page success:(void (^)(void))setJWZX {
+- (void)requestJWZXPage:(NSUInteger)page success:(void (^)(void))setJWZX {
     NSDictionary *parameters = @{
         @"page" : [NSNumber numberWithLong:page]
     };
@@ -26,9 +26,11 @@
      success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"🟢JWZX:\n%@", responseObject);
         
-        self.jwzxNews = [[JWZXNews alloc] initWithDictionary:responseObject];
+        self.jwzxNews = [[JWZXNewsInformation alloc] initWithDictionary:responseObject];
         
-        setJWZX();
+        if (setJWZX) {
+            setJWZX();
+        }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"🔴JWZX ERROR:\n%@", error);
     }];

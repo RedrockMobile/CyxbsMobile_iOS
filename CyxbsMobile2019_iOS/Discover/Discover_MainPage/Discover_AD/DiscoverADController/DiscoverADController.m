@@ -46,18 +46,18 @@
 
 #pragma mark - Life cycle
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    // 初始化
-    [self.view addSubview:self.ADBannerView];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 初始化
+    [self.view addSubview:self.ADBannerView];
+    
     // 网络请求
     [self.ADModel
-     GETADsSuccess:^{
+     requestBannerSuccess:^{
         [self.ADBannerView reloadData];
+    }
+     failure:^(NSError * _Nonnull error) {
+        NSLog(@"error");
     }];
 }
 
@@ -76,7 +76,7 @@
     if (_ADBannerView == nil) {
         _ADBannerView = [[DiscoverADBannerView alloc] initWithFrame:self.view.SuperFrame];
         
-        _ADBannerView.ssr_delegate = self;
+        _ADBannerView.bannerDelegate = self;
         _ADBannerView.dataSource = self.ADModel;
     }
     return _ADBannerView;
@@ -92,7 +92,7 @@
 
 - (__kindof UICollectionViewCell *)discoverAD:(DiscoverAD *)AD cellForCollectionView:(UICollectionView *)collectionView {
     return AD == nil ?
-        self.ADBannerView.getReusableDiscoverADItem.Default :
+        self.ADBannerView.getReusableDiscoverADItem.withDefaultStyle :
         [self.ADBannerView.getReusableDiscoverADItem
             setImgURL:AD.pictureUrl];
 }

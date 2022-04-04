@@ -1,5 +1,5 @@
 //
-//  JWZXNews.h
+//  JWZXNewsInformation.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/3/30.
@@ -16,7 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface JWZXNews : NSObject
+@interface JWZXNewsInformation : NSObject
 
 /// 共几页（目前只有1页）
 @property (nonatomic) NSUInteger page;
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)NSNumber *status;
 
 /// 请求状态分析信息
-@property (nonatomic, copy)NSString *info;
+@property (nonatomic, copy)NSString *netMessage;
 
 /// 新闻内容
 @property (nonatomic, strong)NSArray <JWZXNew *> *news;

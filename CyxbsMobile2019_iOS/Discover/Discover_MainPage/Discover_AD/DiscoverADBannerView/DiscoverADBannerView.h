@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSUInteger ADsCount;
 
 /// 代理
-@property (nonatomic, weak) id <DiscoverADBannerViewDelegate> ssr_delegate;
+@property (nonatomic, weak) id <DiscoverADBannerViewDelegate> bannerDelegate;
 
 /// 得到DiscoverADItem
 - (DiscoverADItem *)getReusableDiscoverADItem;

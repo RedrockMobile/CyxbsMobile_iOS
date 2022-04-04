@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (DiscoverADItem *)setImgURL:(NSString *)imgURL;
 
 /// 用于资源复用池初始化
-- (DiscoverADItem *)Default;
+- (DiscoverADItem *)withDefaultStyle;
 
 @end
 

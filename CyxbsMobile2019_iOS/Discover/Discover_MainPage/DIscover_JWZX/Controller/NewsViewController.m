@@ -81,7 +81,7 @@
 
 - (void)requestData {
     [self.model
-     GET_JWZXPage:1 success:^{
+     requestJWZXPage:1 success:^{
         [self.tableView reloadData];
     }];
 }

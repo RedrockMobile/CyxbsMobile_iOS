@@ -350,7 +350,7 @@
     //----------------------------改变新旧按钮的字体----------------------------
         //更改旧按钮的的字体
         NSNumber *oldIndex = change[@"old"];
-        UIButton *oldBtn = self.weekChooseBtnArray[0];
+        UIButton *oldBtn = self.weekChooseBtnArray[oldIndex.intValue];
         oldBtn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
         oldBtn.alpha = 0.81;
         

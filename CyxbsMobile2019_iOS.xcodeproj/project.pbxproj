@@ -58,7 +58,7 @@
 		18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4DF257F91BC006E8E5C /* ElectricFeeModel.m */; };
 		18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4E3257F91BC006E8E5C /* PickerModel.m */; };
 		18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */; };
-		18CDF667257F91BD006E8E5C /* JWZXNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4EA257F91BC006E8E5C /* JWZXNews.m */; };
+		18CDF667257F91BD006E8E5C /* JWZXNewsInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4EA257F91BC006E8E5C /* JWZXNewsInformation.m */; };
 		18CDF668257F91BD006E8E5C /* JWZXNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4EB257F91BC006E8E5C /* JWZXNew.m */; };
 		18CDF669257F91BD006E8E5C /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4ED257F91BC006E8E5C /* VolunteerModel.m */; };
 		18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */; };
@@ -800,10 +800,10 @@
 		18CDF4E3257F91BC006E8E5C /* PickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerModel.m; sourceTree = "<group>"; };
 		18CDF4E4257F91BC006E8E5C /* PickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerModel.h; sourceTree = "<group>"; };
 		18CDF4E6257F91BC006E8E5C /* JWZXNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsModel.h; sourceTree = "<group>"; };
-		18CDF4E7257F91BC006E8E5C /* JWZXNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNews.h; sourceTree = "<group>"; };
+		18CDF4E7257F91BC006E8E5C /* JWZXNewsInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsInformation.h; sourceTree = "<group>"; };
 		18CDF4E8257F91BC006E8E5C /* JWZXNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNew.h; sourceTree = "<group>"; };
 		18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsModel.m; sourceTree = "<group>"; };
-		18CDF4EA257F91BC006E8E5C /* JWZXNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNews.m; sourceTree = "<group>"; };
+		18CDF4EA257F91BC006E8E5C /* JWZXNewsInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsInformation.m; sourceTree = "<group>"; };
 		18CDF4EB257F91BC006E8E5C /* JWZXNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNew.m; sourceTree = "<group>"; };
 		18CDF4ED257F91BC006E8E5C /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
 		18CDF4EE257F91BC006E8E5C /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
@@ -2025,8 +2025,8 @@
 		1404748127F48C2B00307209 /* JWZXNews */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF4E7257F91BC006E8E5C /* JWZXNews.h */,
-				18CDF4EA257F91BC006E8E5C /* JWZXNews.m */,
+				18CDF4E7257F91BC006E8E5C /* JWZXNewsInformation.h */,
+				18CDF4EA257F91BC006E8E5C /* JWZXNewsInformation.m */,
 				1404748027F48C2100307209 /* JWZXNew */,
 			);
 			path = JWZXNews;
@@ -6333,7 +6333,7 @@
 				18CDF6A9257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m in Sources */,
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
-				18CDF667257F91BD006E8E5C /* JWZXNews.m in Sources */,
+				18CDF667257F91BD006E8E5C /* JWZXNewsInformation.m in Sources */,
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
 				BE7CBD8C27535FC000094AE8 /* NewQATool.m in Sources */,
 				BE7CBD9F27535FC000094AE8 /* RecommendedTableView.m in Sources */,

@@ -12,7 +12,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "JWZXNews.h"
+#import "JWZXNewsInformation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,10 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JWZXNewsModel : NSObject
 
 /// 教务在线信息
-@property (nonatomic, strong) JWZXNews *jwzxNews;
+@property (nonatomic, strong) JWZXNewsInformation *jwzxNews;
 
 /// 网络请求教务在线信息
-- (void)GET_JWZXPage:(NSUInteger)page success:(void (^)(void))setJWZX;
+- (void)requestJWZXPage:(NSUInteger)page success:(void (^)(void))setJWZX;
 
 @end
 

@@ -352,7 +352,7 @@ static int requestCheckinInfo = 0;
 - (void)UpdateBannerViewUI {
     NSMutableArray *urlStrings = [NSMutableArray array];
     NSMutableArray *bannerGoToURL = [NSMutableArray array];
-    for(DiscoverAD *item in self.ADModel.discoverADs.ADs) {
+    for(DiscoverAD *item in self.ADModel.ADCollectionInformation.ADCollection) {
         [urlStrings addObject:item.pictureUrl];
         [bannerGoToURL addObject:item.pictureGoToUrl];
     }
@@ -408,8 +408,11 @@ static int requestCheckinInfo = 0;
 
 - (void)request {
     [self.ADModel
-     GETADsSuccess:^ {
+     requestBannerSuccess:^{
         [self UpdateBannerViewUI];
+    }
+     failure:^(NSError * _Nonnull error) {
+        NSLog(@"error");
     }];
 }
 

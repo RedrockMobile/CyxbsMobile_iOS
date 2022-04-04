@@ -8,20 +8,20 @@
 
 #import "DiscoverADBannerView.h"
 
-#pragma mark - _DiscoverADBannerViewDelegate
+#pragma mark - DiscoverADBannerViewDelegateFlags
 
-struct {
+typedef struct {
     
     /// discoverADBannerViewBeginScroll:
-    unsigned int beginScroll : 1;
+    BOOL beginScroll;
     
     /// discoverADBannerViewDidScroll:
-    unsigned int didScroll : 1;
+    BOOL didScroll;
     
     /// discoverADBannerViewEndScroll:
-    unsigned int endScroll : 1;
+    BOOL endScroll;
     
-} _DiscoverADBannerViewDelegate;
+} DiscoverADBannerViewDelegateFlags;
 
 #pragma mark - DiscoverADBannerView ()
 
@@ -30,7 +30,11 @@ struct {
 /// 计时器控件
 @property (nonatomic, weak) NSTimer *timer;
 
+/// 是否在自动滚动
 @property (nonatomic) BOOL isAutoScroll;
+
+/// 关于delegateFlags
+@property (nonatomic) DiscoverADBannerViewDelegateFlags delegateFlags;
 
 @end
 
@@ -87,18 +91,18 @@ struct {
 
 #pragma mark - Lazy
 
-- (void)setSsr_delegate:(id<DiscoverADBannerViewDelegate>)ssr_delegate {
-    _ssr_delegate = ssr_delegate;
+- (void)setBannerDelegate:(id<DiscoverADBannerViewDelegate>)ssr_delegate {
+    _bannerDelegate = ssr_delegate;
     
     [self set_DiscoverADBannerViewDelegate];
 }
 
 - (void)set_DiscoverADBannerViewDelegate {
-    _DiscoverADBannerViewDelegate.beginScroll = [self.ssr_delegate respondsToSelector:@selector(discoverADBannerViewBeginScroll:)];
+    self->_delegateFlags.beginScroll = [self.bannerDelegate respondsToSelector:@selector(discoverADBannerViewBeginScroll:)];
     
-    _DiscoverADBannerViewDelegate.didScroll = [self.ssr_delegate respondsToSelector:@selector(discoverADBannerViewDidScroll:)];
+    self->_delegateFlags.didScroll = [self.bannerDelegate respondsToSelector:@selector(discoverADBannerViewDidScroll:)];
     
-    _DiscoverADBannerViewDelegate.endScroll = [self.ssr_delegate respondsToSelector:@selector(discoverADBannerViewEndScroll:)];
+    self->_delegateFlags.endScroll = [self.bannerDelegate respondsToSelector:@selector(discoverADBannerViewEndScroll:)];
 }
 
 - (void)setIsAutoScroll:(BOOL)isAutoScroll {
@@ -126,9 +130,12 @@ struct {
 - (DiscoverADItem *)getReusableDiscoverADItem {
     DiscoverADItem *cell = [self dequeueReusableCellWithReuseIdentifier:DiscoverADItemReuseIdentifier forIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     
-    return cell.Default;
+    return cell.withDefaultStyle;
 }
 
+/**开启循环
+ * 当用户停止手势，或视图被加载时开启
+ */
 - (void)startTimer {
     [self endTimer];
     
@@ -144,11 +151,18 @@ struct {
     [NSRunLoop.mainRunLoop addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
+/**结束timmer
+ * 当用户开始手势，或视图将被移除时结束
+ */
 - (void)endTimer {
     [self.timer invalidate];
     self.timer = nil;
 }
 
+/**自动开始滑动
+ * 会先判断是不是越界，越界会无animated滑到第0个
+ * 然后再往后面一个去滑动就好了
+ */
 - (void)automaticScroll {
     NSUInteger currentPage = self.currentPage;
     if (currentPage >= self.ADsCount) {
@@ -170,12 +184,14 @@ struct {
 #pragma mark - Life cycle
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
+    // 离开时，应该将timmer停止
     if (!newSuperview) {
         [self endTimer];
     }
 }
 
 - (void)dealloc {
+    // 为了防止timmer出现bug，这里的双代理要设置为nil
     self.delegate = nil;
     self.dataSource = nil;
 }
@@ -183,8 +199,8 @@ struct {
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.ssr_delegate) {
-        [self.ssr_delegate discoverADBannerView:self didSelectedAtItem:indexPath.item];
+    if (self.bannerDelegate) {
+        [self.bannerDelegate discoverADBannerView:self didSelectedAtItem:indexPath.item];
     }
 }
 
@@ -197,32 +213,40 @@ struct {
 #pragma mark - <UIScrollViewDelegate>
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    // 用户开始手势，关闭timer
     if (self.isAutoScroll) {
         [self endTimer];
+        self.isAutoScroll = NO;
     }
-    
-    if (_DiscoverADBannerViewDelegate.beginScroll) {
-        [self.ssr_delegate discoverADBannerViewBeginScroll:self];
+    // 为了和其他UI配合，外传
+    if (self.delegateFlags.beginScroll) {
+        [self.bannerDelegate discoverADBannerViewBeginScroll:self];
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    if (self.isAutoScroll) {
+    // 用户停止手势，开启timer
+    if (!self.isAutoScroll) {
         [self startTimer];
+        self.isAutoScroll = YES;
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self scrollViewDidEndScrollingAnimation:self];
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // 配合其他UI
+    if (self.delegateFlags.didScroll) {
+        [self.bannerDelegate discoverADBannerViewDidScroll:self];
+    }
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    if (!self.ADsCount) {
-        return;
+    // 如果是用户停止的scroll，那就要开循环
+    if (!self.isAutoScroll) {
+        [self startTimer];
     }
-    
-    if (_DiscoverADBannerViewDelegate.endScroll) {
-        [self.ssr_delegate discoverADBannerViewEndScroll:self];
+    // 配合其他UI
+    if (self.delegateFlags.endScroll) {
+        [self.bannerDelegate discoverADBannerViewEndScroll:self];
     }
 }
 

@@ -32,13 +32,14 @@ NS_ASSUME_NONNULL_BEGIN
 >
 
 /// 所有广告位持有
-@property (nonatomic, strong) DiscoverADs *discoverADs;
+@property (nonatomic, strong) DiscoverADs *ADCollectionInformation;
 
 /// 代理
 @property (nonatomic, weak) id <DiscoverADModelDelegate> delegate;
 
 /// 网络请求
-- (void)GETADsSuccess:(void (^)(void))setModel;
+- (void)requestBannerSuccess:(void (^)(void))setModel
+                     failure:(void (^)(NSError *error))failure;
 
 @end
 

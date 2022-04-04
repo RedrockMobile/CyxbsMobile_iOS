@@ -18,8 +18,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - QuestionButton
-
 @interface QuestionButton : UIButton
 
 /// 用于多button的标识符

@@ -27,17 +27,25 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 
 /// 单击了哪个button
+/// @param view 所在QuestionSelectView
+/// @param index button下标
 - (void)questionSelectView:(QuestionSelectView *)view selectedButtonAtIndex:(NSUInteger)index;
 
 @optional
 
-/// 如果是，则会根据自己的宽度和高度进行布局，否则则会liā在一起，默认YES。
-- (BOOL)questionSelectViewNeedAutoLay:(QuestionSelectView *)view;
+/// button间间距
+/// @param view button所在QuestionSelectView
+- (CGFloat)gapBetweenButtonsAtQuestionSelectView:(QuestionSelectView *)view;
 
 /// 设置btn没被选中的样式
+/// @param view 所在QuestionSelectView
+/// @param btn btn取消选中了
 - (void)questionSelectView:(QuestionSelectView *)view buttonUnselected:(QuestionButton *)btn;
 
+
 /// 设置btn被选中的样式
+/// @param view 所在QuestionSelectView
+/// @param btn btn被选中了
 - (void)questionSelectView:(QuestionSelectView *)view buttonSelected:(QuestionButton *)btn;
 
 @end
@@ -49,11 +57,14 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 
 /// button的个数
+/// @param view 所在QuestionSelectView
 - (NSUInteger)numberOfButtonsInQuestionSelectView:(QuestionSelectView *)view;
 
 @optional
 
-/// 传回button
+/// button的样式
+/// @param view 所在QuestionSelectView
+/// @param index btn所在下标
 - (__kindof QuestionButton *)questionSelectView:(QuestionSelectView *)view buttonAtIndex:(NSUInteger)index;
 
 @end

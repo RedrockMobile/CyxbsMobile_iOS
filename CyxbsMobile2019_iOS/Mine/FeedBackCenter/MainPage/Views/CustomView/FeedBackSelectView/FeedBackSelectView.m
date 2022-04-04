@@ -8,8 +8,6 @@
 
 #import "FeedBackSelectView.h"
 
-#pragma mark - FeedBackSelectView
-
 @implementation FeedBackSelectView
 
 #pragma mark - Init
@@ -32,8 +30,8 @@
 
 - (void)initializer {
     self.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
-    self.delegate = self;
     self.dataSourse = self;
+    self.delegate = self;
 }
 
 #pragma mark - <QuestionSelectViewDelegate>
@@ -42,8 +40,8 @@
     // ----- 单击实现(不做UI处理) -----
 }
 
-- (BOOL)questionSelectViewNeedAutoLay:(QuestionSelectView *)view {
-    return YES;
+- (CGFloat)gapBetweenButtonsAtQuestionSelectView:(QuestionSelectView *)view {
+    return 5;
 }
 
 #pragma mark - <QuestionSelectViewDataSource>

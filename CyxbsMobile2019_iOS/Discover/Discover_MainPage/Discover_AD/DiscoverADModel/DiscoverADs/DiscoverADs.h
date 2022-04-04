@@ -24,10 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *status;
 
 /// 请求简介信息
-@property (nonatomic, copy)NSString *info;
+@property (nonatomic, copy)NSString *netMessage;
 
 /// 所有广告位
-@property (nonatomic, copy)NSArray <DiscoverAD *> *ADs;
+@property (nonatomic, copy)NSArray <DiscoverAD *> *ADCollection;
 
 - (instancetype)init NS_UNAVAILABLE;
 
