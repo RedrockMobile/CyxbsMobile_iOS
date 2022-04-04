@@ -1,8 +1,8 @@
 //
 //  NSDate+Day.h
-//  ZhiHu
+//  SSRSwipe
 //
-//  Created by SSR on 2022/2/6.
+//  Created by SSR on 2022/3/29.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,42 +13,32 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDate (Day)
 
-/**返回[NSDate date]*/
+/// 今天
 + (NSDate *)today;
 
-/**设置为昨天*/
+/// 这天的前一天
 - (NSDate *)yesterday;
 
-/**设置为明天*/
+/// 这天的后一天
 - (NSDate *)tomorrow;
 
-/**根据formatter取时间nsdate*/
-+ (NSDate *)dateString:(NSString *)date WithFormatter:(NSString *)formatter;
+/// 通过dateStr和formatter一一对应获取date
++ (NSDate *)dateString:(NSString *)dateStr fromFormatter:(NSDateFormatter *)formatter withDateFormat:(NSString *)format;
 
-/**根据formater取出nsstring*/
-- (NSString *)stringWithFormatter:(NSString *)formatter;
-
-/**快速取出日期(数字)*/
-- (NSString *)day;
-
-/**快速取出月(数字)*/
-- (NSString *)month;
+/// 通过formate形式取出数据
+- (NSString *)stringFromFormatter:(NSDateFormatter *)formatter withDateFormat:(NSString *)format;
 
 @end
 
-typedef NS_ENUM(NSUInteger, DateTranslateMonth) {
-    DateTranslateMonthSimpleChinese,// 12 = @"十二月"
-    DateTranslateMonthTraditionalChinese,// 12 = @"腊月"
-    DateTranslateMonthShortEnglish,// 12 = @"Dec."
-    DateTranslateMonthLongEnglish// 12 = @"December"
-};
+#pragma mark - NSDateFormatter (NSDate)
 
-#pragma mark - NSDate (TranslateMonth)
+@interface NSDateFormatter (NSDate)
 
-@interface NSDate (TranslateMonth)
+/// 默认formatter
+@property (nonatomic, readonly, strong, class) NSDateFormatter *defaultFormatter;
 
-/// 将month翻译
-- (NSString *)monthWithTranslate:(DateTranslateMonth)translate;
+/// 中文formatter
+@property (nonatomic, readonly, strong, class) NSDateFormatter *ChineseFormatter;
 
 @end
 

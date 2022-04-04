@@ -236,6 +236,10 @@
     return CGPointMake(self.width / 2, self.height / 2);
 }
 
+- (CGRect)SuperFrame {
+    return CGRectMake(0, 0, self.width, self.height);
+}
+
 #pragma mark Layout
 
 /**距离左边某点(x,0)多少距离*/
