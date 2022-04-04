@@ -414,6 +414,15 @@ static int requestCheckinInfo = 0;
      failure:^(NSError * _Nonnull error) {
         NSLog(@"error");
     }];
+    
+    [self.oneNewsModel
+     requestJWZXPage:1
+     success:^{
+        [self updateNewsUI];
+    }
+     failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
+    }];
 }
 
 - (void)requestData {

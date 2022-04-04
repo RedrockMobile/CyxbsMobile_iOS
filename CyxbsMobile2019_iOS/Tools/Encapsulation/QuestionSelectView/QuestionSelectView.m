@@ -41,7 +41,7 @@ typedef struct {
 @interface QuestionSelectView ()
 
 /// 问题反馈的button
-@property (nonatomic, strong) NSArray <__kindof QuestionButton *> *buttons;
+@property (nonatomic, copy) NSArray <__kindof QuestionButton *> *buttons;
 
 /// 被选中的button
 @property (nonatomic, nullable, weak) QuestionButton *selectedButton;

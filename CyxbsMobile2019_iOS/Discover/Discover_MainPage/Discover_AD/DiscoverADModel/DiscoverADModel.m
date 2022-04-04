@@ -32,6 +32,9 @@
     }
      failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"🔴AD ERROR:\n%@", error);
+        if (failure) {
+            failure(error);
+        }
     }];
 }
 

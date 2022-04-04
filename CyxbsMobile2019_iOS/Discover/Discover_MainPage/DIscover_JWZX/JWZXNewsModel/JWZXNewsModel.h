@@ -24,7 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) JWZXNewsInformation *jwzxNews;
 
 /// 网络请求教务在线信息
-- (void)requestJWZXPage:(NSUInteger)page success:(void (^)(void))setJWZX;
+- (void)requestJWZXPage:(NSUInteger)page
+                success:(void (^)(void))setJWZX
+                failure:(void (^) (NSError * error))failure;
 
 @end
 

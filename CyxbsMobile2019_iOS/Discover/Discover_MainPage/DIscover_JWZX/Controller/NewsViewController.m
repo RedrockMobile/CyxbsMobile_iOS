@@ -80,10 +80,15 @@
 }
 
 - (void)requestData {
+    
     [self.model
      requestJWZXPage:1 success:^{
         [self.tableView reloadData];
+    }
+     failure:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error);
     }];
+    
 }
 
 - (void)addTableView {
