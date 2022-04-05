@@ -17,13 +17,13 @@
 typedef struct {
     
     /// gapBetweenButtonsAtQuestionSelectView
-    unsigned int gapBetweenButtons : 1;
+    BOOL gapBetweenButtons;
     
     /// questionSelectView:buttonUnselected:
-    unsigned int buttonUnselected : 1;
+    BOOL buttonUnselected;
     
     /// questionSelectView:buttonSelected:
-    unsigned int buttonSelected : 1;
+    BOOL buttonSelected;
     
 } QuestionSelectViewDelegateFlags;
 
@@ -69,7 +69,7 @@ typedef struct {
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self initializer];
+        [self QuestionSelectView_initializer];
     }
     return self;
 }
@@ -77,12 +77,12 @@ typedef struct {
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initializer];
+        [self QuestionSelectView_initializer];
     }
     return self;
 }
 
-- (void)initializer {
+- (void)QuestionSelectView_initializer {
     self.selectedButton = nil;
     self.gap = 0;
     self.isLay = NO;
