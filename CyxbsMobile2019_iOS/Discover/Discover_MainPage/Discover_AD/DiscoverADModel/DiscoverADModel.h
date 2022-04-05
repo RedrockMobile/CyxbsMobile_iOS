@@ -6,6 +6,11 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**模型，用于获取数据
+ * 以及MVP的逻辑处理能力
+ * 包括网络请求
+ */
+
 #import <UIKit/UIKit.h>
 
 #import "DiscoverADs.h"
@@ -26,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 #pragma mark - DiscoverADModel
+
+/**DiscoverADModel
+ * 图片轮播的逻辑控制Model
+ * 数据在ADCollectionInformation里面
+ */
 
 @interface DiscoverADModel : NSObject <
     UICollectionViewDataSource

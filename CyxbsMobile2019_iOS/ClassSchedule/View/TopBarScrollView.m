@@ -66,9 +66,10 @@
         
         //初始化weekChooseBtnArray
         self.weekChooseBtnArray = [NSMutableArray arrayWithCapacity:self.weekTextArray.count];
-        
+        // _correctIndex初始化为 @(0) 避免第一次触发 KVO 时，发生错误。
+        _correctIndex = @(0);
         //对correctIndex进行kvo，改变correctIndex就可以自动进行一系列操作
-        [self addObserver:self forKeyPath:@"correctIndex" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:@"TopBarScrollView.correctIndex"];
+        [self addObserver:self forKeyPath:@"correctIndex" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:@"TopBarScrollView.correctIndex"];
 
         //添加周选择条和左箭头按钮，周选择条在self的左侧
         [self addWeekChooseBarAndLeftArrowBtn];
@@ -368,7 +369,7 @@
         
     //------------------------让新按钮移到周选择条的中央---------------------------
         //动画时长
-        float duration = abs(newIndex.intValue-0)*0.3;
+        float duration = abs(newIndex.intValue-oldIndex.intValue)*0.3;
         if(duration>0.6)duration=0.6;
         
         //weekChooseBar的contentOffset的x会用contentOffsetX赋值

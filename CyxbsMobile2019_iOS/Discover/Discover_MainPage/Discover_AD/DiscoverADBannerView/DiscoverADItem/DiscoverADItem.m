@@ -26,7 +26,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self initializer];
+        [self DiscoverADItem_initializer];
     }
     return self;
 }
@@ -34,12 +34,12 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initializer];
+        [self DiscoverADItem_initializer];
     }
     return self;
 }
 
-- (void)initializer {
+- (void)DiscoverADItem_initializer {
     [self addSubview:self.imgView];
 }
 

@@ -6,10 +6,6 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**JWZXNewsModel
- * 教务在线新闻模型
- */
-
 #import <Foundation/Foundation.h>
 
 #import "JWZXNewsInformation.h"
@@ -17,6 +13,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - JWZXNewsModel
+
+/**JWZXNewsModel
+ * 教务在线新闻模型
+ */
 
 @interface JWZXNewsModel : NSObject
 

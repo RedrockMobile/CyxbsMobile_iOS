@@ -6,6 +6,11 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**发现-图片轮播视图
+ * 可以直接addChildViewController
+ * 然后addSubview就可以使用
+ */
+
 #import "DiscoverADController.h"
 
 #import "DiscoverADBannerView.h"
@@ -13,6 +18,10 @@
 #import "DiscoverADModel.h"
 
 #pragma mark - DiscoverADController ()
+
+/**DiscoverADController
+ * 实现图片轮播，单击跳转页面（待确认）
+ */
 
 @interface DiscoverADController () <
     DiscoverADBannerViewDelegate,
@@ -25,16 +34,13 @@
 /// 广告Model
 @property (nonatomic, strong) DiscoverADModel <UICollectionViewDataSource> *ADModel;
 
-/// timer
-@property (nonatomic, weak) NSTimer *timer;
-
 @end
 
 #pragma mark - DiscoverADController
 
 @implementation DiscoverADController
 
-#pragma mark - Init
+#pragma mark - Life cycle
 
 - (instancetype)initWithViewFrame:(CGRect)frame {
     self = [super init];
@@ -43,8 +49,6 @@
     }
     return self;
 }
-
-#pragma mark - Life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
