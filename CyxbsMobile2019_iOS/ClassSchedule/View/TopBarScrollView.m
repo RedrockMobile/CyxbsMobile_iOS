@@ -368,7 +368,7 @@
         
     //------------------------让新按钮移到周选择条的中央---------------------------
         //动画时长
-        float duration = abs(newIndex.intValue-0)*0.3;
+        float duration = abs(newIndex.intValue-oldIndex.intValue)*0.3;
         if(duration>0.6)duration=0.6;
         
         //weekChooseBar的contentOffset的x会用contentOffsetX赋值

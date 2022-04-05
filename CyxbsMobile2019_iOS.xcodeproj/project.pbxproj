@@ -2022,14 +2022,14 @@
 			path = JWZXNew;
 			sourceTree = "<group>";
 		};
-		1404748127F48C2B00307209 /* JWZXNews */ = {
+		1404748127F48C2B00307209 /* JWZXNewsInformation */ = {
 			isa = PBXGroup;
 			children = (
 				18CDF4E7257F91BC006E8E5C /* JWZXNewsInformation.h */,
 				18CDF4EA257F91BC006E8E5C /* JWZXNewsInformation.m */,
 				1404748027F48C2100307209 /* JWZXNew */,
 			);
-			path = JWZXNews;
+			path = JWZXNewsInformation;
 			sourceTree = "<group>";
 		};
 		1404748227F4A89600307209 /* UITextView+Placeholder */ = {
@@ -2547,7 +2547,7 @@
 			children = (
 				18CDF4E6257F91BC006E8E5C /* JWZXNewsModel.h */,
 				18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */,
-				1404748127F48C2B00307209 /* JWZXNews */,
+				1404748127F48C2B00307209 /* JWZXNewsInformation */,
 			);
 			path = JWZXNewsModel;
 			sourceTree = "<group>";

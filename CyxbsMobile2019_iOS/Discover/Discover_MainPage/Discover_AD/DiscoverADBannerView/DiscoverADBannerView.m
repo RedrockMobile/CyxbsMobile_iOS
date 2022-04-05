@@ -47,7 +47,7 @@ typedef struct {
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self initializer];
+        [self DiscoverADBannerView_initializer];
     }
     return self;
 }
@@ -69,12 +69,12 @@ typedef struct {
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
-        [self initializer];
+        [self DiscoverADBannerView_initializer];
     }
     return self;
 }
 
-- (void)initializer {
+- (void)DiscoverADBannerView_initializer {
     self.backgroundColor = UIColor.grayColor;
     self.showsVerticalScrollIndicator = NO;
     self.showsHorizontalScrollIndicator = NO;
