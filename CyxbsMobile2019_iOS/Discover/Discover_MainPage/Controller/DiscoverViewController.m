@@ -6,8 +6,8 @@
 //  Copyright © 2019 Redrock. All rights reserved.
 //
 
-#import "TODOMainViewController.h"  //邮子清单
 #import "DiscoverViewController.h"
+
 //#import "LoginViewController.h"
 #import "FinderToolViewController.h"
 #import "FinderView.h"
@@ -17,6 +17,8 @@
 #import "CheckInViewController.h"
 #import "WeDateViewController.h"//没课约
 #import "CQUPTMapViewController.h"
+
+#import "TODOMainViewController.h"  //邮子清单
 //#import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
 #import "NewsViewController.h"
