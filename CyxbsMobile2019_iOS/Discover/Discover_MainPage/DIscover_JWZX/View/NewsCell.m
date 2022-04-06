@@ -14,11 +14,6 @@
 
 
 @implementation NewsCell
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-
-}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -31,6 +26,7 @@
         }
         self.textLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
         self.detailTextLabel.font = [UIFont fontWithName:PingFangSCRegular size:13];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self addHaveFileLabel];
         [self addSeperateLine];
     }

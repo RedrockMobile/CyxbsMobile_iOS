@@ -14,7 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *NewsTime;
 @property (nonatomic, copy)NSString *NewsTitle;
 @property (nonatomic, copy)NSString *NewsID;
-- (instancetype) initWithNewsTime: (NSString *)time NewsTitle: (NSString *)NewsTitle NewsID: (NSString *)NewsID;
+
+- (instancetype)init NS_UNAVAILABLE;
+
+- (instancetype)initWithNewsTime:(NSString *)time NewsTitle:(NSString *)NewsTitle NewsID: (NSString *)NewsID;
 @end
 
 NS_ASSUME_NONNULL_END

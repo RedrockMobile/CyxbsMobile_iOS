@@ -1,5 +1,5 @@
 //
-//  NewsViewController.h
+//  JWZXNewsViewController.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 千千 on 2020/2/8.
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - NewsViewController
 
-@interface NewsViewController : UIViewController
+@interface JWZXNewsViewController : UIViewController
 
 /// 当外界已经请求过一遍后，可以不再请求
 /// @param model 被请求过的model

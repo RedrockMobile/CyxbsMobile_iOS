@@ -21,7 +21,7 @@
 #import "TODOMainViewController.h"  //邮子清单
 //#import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
-#import "NewsViewController.h"
+#import "JWZXNewsViewController.h"
 #import "ClassScheduleTabBarView.h"
 #import "ClassTabBar.h"
 #import "QueryLoginViewController.h"
@@ -136,8 +136,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    self.hidesBottomBarWhenPushed = YES;
-    
 //    self.tabBarController.tabBar.translucent = NO;
 
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
@@ -202,9 +200,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.view.backgroundColor = self.finderView.backgroundColor;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    self.hidesBottomBarWhenPushed = NO;
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    self.hidesBottomBarWhenPushed = NO;
+//}
 
 - (void)addNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"Login_LoginSuceeded" object:nil];
@@ -843,14 +841,15 @@ static int requestCheckinInfo = 0;
 
 - (void)touchNewsSender {
     NSLog(@"点击了“教务在线”");
-    NewsViewController *vc = [[NewsViewController alloc]init];
+    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchNews {
     NSLog(@"👆点击了新闻");
-    NewsViewController *vc = [[NewsViewController alloc] initWithJWZXNewsModel:self.jwzxNewsModel];
+    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithJWZXNewsModel:self.jwzxNewsModel];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

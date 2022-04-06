@@ -1,12 +1,12 @@
 //
-//  NewsViewController.m
+//  JWZXNewsViewController.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by 千千 on 2020/2/8.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "NewsViewController.h"
+#import "JWZXNewsViewController.h"
 
 #import "NewsCell.h"
 #import "JWZXNewsModel.h"
@@ -17,7 +17,7 @@
 
 #pragma mark - NewsViewController ()
 
-@interface NewsViewController () <
+@interface JWZXNewsViewController () <
     UITableViewDelegate,
     UITableViewDataSource
 >
@@ -36,7 +36,7 @@
 
 #pragma mark - NewsViewController
 
-@implementation NewsViewController
+@implementation JWZXNewsViewController
 
 #pragma mark - Life cycle
 
@@ -142,17 +142,24 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
     NewsCell *cell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NewsCell"];
     cell.textLabel.text = self.jwzxNewsModel.jwzxNews.news[indexPath.row].date;
     cell.detailTextLabel.text = self.jwzxNewsModel.jwzxNews.news[indexPath.row].title;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 // MARK: <UITableViewDelegate>
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewDetailViewController *vc = [[NewDetailViewController alloc]initWithNewsTime:self.jwzxNewsModel.jwzxNews.news[indexPath.row].date NewsTitle:self.jwzxNewsModel.jwzxNews.news[indexPath.row].title NewsID:self.jwzxNewsModel.jwzxNews.news[indexPath.row].NewsID] ;
+    JWZXNew *aNew = self.jwzxNewsModel.jwzxNews.news[indexPath.row];
+    
+    NewDetailViewController *vc =
+        [[NewDetailViewController alloc]
+         initWithNewsTime:aNew.date
+         NewsTitle:aNew.title
+         NewsID:aNew.NewsID];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
