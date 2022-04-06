@@ -125,7 +125,7 @@
 		18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF585257F91BD006E8E5C /* NewDetailViewController.m */; };
 		18CDF6A8257F91BD006E8E5C /* News.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF586257F91BD006E8E5C /* News.xcassets */; };
 		18CDF6A9257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF588257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m */; };
-		18CDF6AA257F91BD006E8E5C /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF589257F91BD006E8E5C /* NewsCell.m */; };
+		18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */; };
 		18CDF6AB257F91BD006E8E5C /* SCLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF58D257F91BD006E8E5C /* SCLineChart.m */; };
 		18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF58F257F91BD006E8E5C /* SCTool.m */; };
 		18CDF6AD257F91BD006E8E5C /* SCCircleChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF591257F91BD006E8E5C /* SCCircleChart.m */; };
@@ -932,9 +932,9 @@
 		18CDF585257F91BD006E8E5C /* NewDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewDetailViewController.m; sourceTree = "<group>"; };
 		18CDF586257F91BD006E8E5C /* News.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = News.xcassets; sourceTree = "<group>"; };
 		18CDF588257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownFileDetailCellTableViewCell.m; sourceTree = "<group>"; };
-		18CDF589257F91BD006E8E5C /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsCell.m; sourceTree = "<group>"; };
 		18CDF58A257F91BD006E8E5C /* DownFileDetailCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownFileDetailCellTableViewCell.h; sourceTree = "<group>"; };
-		18CDF58B257F91BD006E8E5C /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		18CDF58B257F91BD006E8E5C /* JWZXNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsCell.h; sourceTree = "<group>"; };
 		18CDF58D257F91BD006E8E5C /* SCLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLineChart.m; sourceTree = "<group>"; };
 		18CDF58E257F91BD006E8E5C /* SCChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartDelegate.h; sourceTree = "<group>"; };
 		18CDF58F257F91BD006E8E5C /* SCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTool.m; sourceTree = "<group>"; };
@@ -1965,14 +1965,14 @@
 			path = DiscoverADs;
 			sourceTree = "<group>";
 		};
-		1404746927F32B0D00307209 /* DiscoverADModel */ = {
+		1404746927F32B0D00307209 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				18CDF4F3257F91BC006E8E5C /* DiscoverADModel.h */,
 				18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */,
 				1404746827F324C100307209 /* DiscoverADs */,
 			);
-			path = DiscoverADModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1404747327F4654400307209 /* DiscoverADItem */ = {
@@ -1984,31 +1984,31 @@
 			path = DiscoverADItem;
 			sourceTree = "<group>";
 		};
-		1404747427F4682D00307209 /* DiscoverADBannerView */ = {
+		1404747427F4682D00307209 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				1404746A27F446DF00307209 /* DiscoverADBannerView.h */,
 				1404746B27F446DF00307209 /* DiscoverADBannerView.m */,
 				1404747327F4654400307209 /* DiscoverADItem */,
 			);
-			path = DiscoverADBannerView;
+			path = View;
 			sourceTree = "<group>";
 		};
-		1404747E27F47F0F00307209 /* DiscoverADController */ = {
+		1404747E27F47F0F00307209 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				1404747B27F46F0D00307209 /* DiscoverADController.h */,
 				1404747C27F46F0D00307209 /* DiscoverADController.m */,
 			);
-			path = DiscoverADController;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		1404747F27F47F2A00307209 /* Discover_AD */ = {
 			isa = PBXGroup;
 			children = (
-				1404747E27F47F0F00307209 /* DiscoverADController */,
-				1404746927F32B0D00307209 /* DiscoverADModel */,
-				1404747427F4682D00307209 /* DiscoverADBannerView */,
+				1404747E27F47F0F00307209 /* ViewController */,
+				1404746927F32B0D00307209 /* Model */,
+				1404747427F4682D00307209 /* View */,
 			);
 			path = Discover_AD;
 			sourceTree = "<group>";
@@ -2294,13 +2294,32 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		14D03A0027FDB76200D6AE93 /* JWZXNewsViewController */ = {
+		14D03A0027FDB76200D6AE93 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				18CDF584257F91BD006E8E5C /* JWZXNewsViewController.h */,
 				18CDF582257F91BD006E8E5C /* JWZXNewsViewController.m */,
 			);
-			path = JWZXNewsViewController;
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14D03A0727FDD31B00D6AE93 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF58B257F91BD006E8E5C /* JWZXNewsCell.h */,
+				18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14D03A0827FDD3BB00D6AE93 /* JWZXNews */ = {
+			isa = PBXGroup;
+			children = (
+				14D03A0027FDB76200D6AE93 /* ViewController */,
+				18CDF4E5257F91BC006E8E5C /* Model */,
+				14D03A0727FDD31B00D6AE93 /* View */,
+			);
+			path = JWZXNews;
 			sourceTree = "<group>";
 		};
 		14E7E4A327F5760D00B67469 /* Encapsulation */ = {
@@ -2506,7 +2525,6 @@
 				18CDF4D9257F91BC006E8E5C /* Controller */,
 				1404747F27F47F2A00307209 /* Discover_AD */,
 				18CDF580257F91BD006E8E5C /* DIscover_JWZX */,
-				18CDF4DC257F91BC006E8E5C /* Model */,
 				18CDF4F6257F91BC006E8E5C /* View */,
 			);
 			path = Discover_MainPage;
@@ -2517,6 +2535,8 @@
 			children = (
 				18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */,
 				18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */,
+				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
+				18CDF4DC257F91BC006E8E5C /* Model */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2524,7 +2544,6 @@
 		18CDF4DC257F91BC006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
 				18CDF4E2257F91BC006E8E5C /* PickerView */,
 				18CDF4EC257F91BC006E8E5C /* Volunteer */,
 			);
@@ -2551,14 +2570,14 @@
 			path = PickerView;
 			sourceTree = "<group>";
 		};
-		18CDF4E5257F91BC006E8E5C /* JWZXNewsModel */ = {
+		18CDF4E5257F91BC006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				18CDF4E6257F91BC006E8E5C /* JWZXNewsModel.h */,
 				18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */,
 				1404748127F48C2B00307209 /* JWZXNewsInformation */,
 			);
-			path = JWZXNewsModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		18CDF4EC257F91BC006E8E5C /* Volunteer */ = {
@@ -2886,9 +2905,9 @@
 		18CDF580257F91BD006E8E5C /* DIscover_JWZX */ = {
 			isa = PBXGroup;
 			children = (
+				14D03A0827FDD3BB00D6AE93 /* JWZXNews */,
 				18CDF586257F91BD006E8E5C /* News.xcassets */,
 				18CDF581257F91BD006E8E5C /* Controller */,
-				18CDF4E5257F91BC006E8E5C /* JWZXNewsModel */,
 				18CDF587257F91BD006E8E5C /* View */,
 			);
 			path = DIscover_JWZX;
@@ -2897,7 +2916,6 @@
 		18CDF581257F91BD006E8E5C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				14D03A0027FDB76200D6AE93 /* JWZXNewsViewController */,
 				18CDF583257F91BD006E8E5C /* NewDetailViewController.h */,
 				18CDF585257F91BD006E8E5C /* NewDetailViewController.m */,
 			);
@@ -2909,8 +2927,6 @@
 			children = (
 				18CDF58A257F91BD006E8E5C /* DownFileDetailCellTableViewCell.h */,
 				18CDF588257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m */,
-				18CDF58B257F91BD006E8E5C /* NewsCell.h */,
-				18CDF589257F91BD006E8E5C /* NewsCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6055,7 +6071,7 @@
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
-				18CDF6AA257F91BD006E8E5C /* NewsCell.m in Sources */,
+				18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */,
 				AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
 				AA536DF5258C4F7600F69E73 /* IgnoreViewController.m in Sources */,

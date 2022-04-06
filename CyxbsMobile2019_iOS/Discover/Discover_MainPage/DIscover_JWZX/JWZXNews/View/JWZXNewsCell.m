@@ -1,20 +1,20 @@
 //
-//  NewsCell.m
+//  JWZXNewsCell.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by 千千 on 2020/2/8.
 //  Copyright © 2020 Redrock. All rights reserved.
 //
 
-#import "NewsCell.h"
+#import "JWZXNewsCell.h"
 #define ColorHaveFile  [UIColor colorNamed:@"ColorHaveFile" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorNewsTime  [UIColor colorNamed:@"ColorNewsTime" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorNewsCellTitle  [UIColor colorNamed:@"ColorNewsCellTitle" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorSeperateLine  [UIColor colorNamed:@"ColorSeperateLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-#pragma mark - NewsCell ()
+#pragma mark - JWZXNewsCell ()
 
-@interface NewsCell ()
+@interface JWZXNewsCell ()
 
 @property (nonatomic, strong) UILabel *timeLab;
 
@@ -24,9 +24,9 @@
 
 @end
 
-#pragma mark - NewsCell
+#pragma mark - JWZXNewsCell
 
-@implementation NewsCell
+@implementation JWZXNewsCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

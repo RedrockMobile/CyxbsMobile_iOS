@@ -8,7 +8,7 @@
 
 #import "JWZXNewsViewController.h"
 
-#import "NewsCell.h"
+#import "JWZXNewsCell.h"
 #import "JWZXNewsModel.h"
 #import "NewDetailViewController.h"
 
@@ -145,7 +145,7 @@
     
     JWZXNew *aNew = self.jwzxNewsModel.jwzxNews.news[indexPath.row];
     
-    NewsCell *cell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NewsCell"];
+    JWZXNewsCell *cell = [[JWZXNewsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NewsCell"];
     
     [cell showNewsWithTimeString:aNew.date withDetail:aNew.title];
     return cell;
