@@ -135,6 +135,9 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 #pragma mark - Life cycle
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    
 //    self.tabBarController.tabBar.translucent = NO;
 
     self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
@@ -197,6 +200,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self layoutSubviews];
     [self addNotifications];
     self.view.backgroundColor = self.finderView.backgroundColor;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)addNotifications {
@@ -842,9 +849,8 @@ static int requestCheckinInfo = 0;
 }
 
 - (void)touchNews {
-    NSLog(@"点击了新闻");
-    NewsViewController *vc = [[NewsViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
+    NSLog(@"👆点击了新闻");
+    NewsViewController *vc = [[NewsViewController alloc] initWithJWZXNewsModel:self.jwzxNewsModel];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -40,6 +40,14 @@
 
 #pragma mark - Life cycle
 
+- (instancetype)initWithJWZXNewsModel:(JWZXNewsModel *)model {
+    self = [super init];
+    if (self) {
+        self.jwzxNewsModel = model;
+    }
+    return self;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -57,13 +65,12 @@
     [self.view addSubview:self.backButton];
     [self.view addSubview:self.titleLab];
     
-    //
+    // 正常的逻辑交互
     [self.view addSubview:self.jwzxNewsTableView];
     [self requestData];
-    // Do any additional setup after loading the view.
 }
 
-#pragma mark - New Add By SSR
+#pragma mark - Getter
 
 - (UITableView *)jwzxNewsTableView {
     if (_jwzxNewsTableView == nil) {
@@ -75,8 +82,6 @@
     }
     return _jwzxNewsTableView;
 }
-
-#pragma mark - End
 
 - (UIButton *)backButton {
     if (_backButton == nil) {
@@ -103,20 +108,25 @@
     return _titleLab;
 }
 
+#pragma mark - Method
+
 - (void)popController {
     [self.navigationController popViewControllerAnimated:YES];
-    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)requestData {
-    self.jwzxNewsModel = [[JWZXNewsModel alloc] init];
-    [self.jwzxNewsModel
-     requestJWZXPage:1 success:^{
+    if (self.jwzxNewsModel) {
         [self.jwzxNewsTableView reloadData];
+    } else {
+        self.jwzxNewsModel = [[JWZXNewsModel alloc] init];
+        [self.jwzxNewsModel
+         requestJWZXPage:1 success:^{
+            [self.jwzxNewsTableView reloadData];
+         }
+         failure:^(NSError * _Nonnull error) {
+            NSLog(@"%@", error);
+         }];
     }
-     failure:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
 }
 
 #pragma mark - Delegate
