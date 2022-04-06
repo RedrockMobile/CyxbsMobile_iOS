@@ -12,60 +12,80 @@
 #define ColorNewsCellTitle  [UIColor colorNamed:@"ColorNewsCellTitle" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorSeperateLine  [UIColor colorNamed:@"ColorSeperateLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
+#pragma mark - NewsCell ()
+
+@interface NewsCell ()
+
+@property (nonatomic, strong) UILabel *timeLab;
+
+@property (nonatomic, strong) UILabel *detailLab;
+
+@property (nonatomic, strong) UIView *seperateLine;
+
+@end
+
+#pragma mark - NewsCell
 
 @implementation NewsCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        if (@available(iOS 11.0, *)) {
-            self.textLabel.textColor = ColorNewsTime;
-            self.detailTextLabel.textColor = ColorNewsCellTitle;
-        } else {
-            // Fallback on earlier versions
-        }
-        self.textLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
-        self.detailTextLabel.font = [UIFont fontWithName:PingFangSCRegular size:13];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if(self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [self addHaveFileLabel];
-        [self addSeperateLine];
+
+        [self addSubview:self.timeLab];
+        [self addSubview:self.detailLab];
+        [self addSubview:self.seperateLine];
+        [self NewsCell_laySubviews];
     }
     return self;
 }
-- (void)addHaveFileLabel {
-    UILabel *label = [[UILabel alloc]init];
-    [self.contentView addSubview:label];
-    self.haveFileLabel = label;
-    label.font = [UIFont fontWithName:PingFangSCRegular size:11];
-    if (@available(iOS 11.0, *)) {
-        label.textColor = ColorHaveFile;
-    } else {
-        // Fallback on earlier versions
+
+#pragma mark - Getter
+
+- (UILabel *)timeLab {
+    if (_timeLab == nil) {
+        _timeLab = [[UILabel alloc] init];
+        _timeLab.textColor = ColorNewsTime;
+        _timeLab.font = [UIFont fontWithName:PingFangSCBold size:16];
     }
+    return _timeLab;
 }
-- (void)addSeperateLine {
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0,1000, 2)];
-    [self.contentView addSubview:view];
-    if (@available(iOS 11.0, *)) {
-        view.backgroundColor = ColorSeperateLine;
-    } else {
-        // Fallback on earlier versions
+
+- (UILabel *)detailLab {
+    if (_detailLab == nil) {
+        _detailLab = [[UILabel alloc] init];
+        _detailLab.textColor = ColorNewsCellTitle;
+        _detailLab.font = [UIFont fontWithName:PingFangSCRegular size:18];
     }
-    
+    return _detailLab;
 }
-- (void)layoutSubviews {
-    [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+- (UIView *)seperateLine {
+    if (_seperateLine == nil) {
+        _seperateLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2)];
+        _seperateLine.backgroundColor = ColorSeperateLine;
+    }
+    return _seperateLine;;
+}
+
+#pragma mark - Method
+
+- (void)showNewsWithTimeString:(NSString *)timeStr withDetail:(NSString *)detailStr {
+    self.timeLab.text = timeStr;
+    self.detailLab.text = detailStr;
+}
+
+- (void)NewsCell_laySubviews {
+    [self.timeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(15);
-        make.top.equalTo(self).offset(21);
+        make.top.equalTo(self).offset(11);
     }];
-    [self.detailTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.textLabel);
-        make.top.equalTo(self.textLabel.mas_bottom).offset(11);
-        make.right.lessThanOrEqualTo(self).offset(-59);
-    }];
-    [self.haveFileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.textLabel);
-        make.right.equalTo(self).offset(-15);
+    [self.detailLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.timeLab);
+        make.top.equalTo(self.timeLab.mas_bottom).offset(11);
+        make.right.lessThanOrEqualTo(self).offset(-15);
     }];
 }
+
 @end

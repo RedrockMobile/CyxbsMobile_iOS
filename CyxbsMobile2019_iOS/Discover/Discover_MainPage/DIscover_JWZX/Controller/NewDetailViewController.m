@@ -50,6 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // 待适配黑夜
     self.view.backgroundColor = UIColor.whiteColor;
 }
 

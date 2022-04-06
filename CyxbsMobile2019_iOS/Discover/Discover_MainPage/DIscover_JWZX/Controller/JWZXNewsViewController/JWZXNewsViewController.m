@@ -143,9 +143,11 @@
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
+    JWZXNew *aNew = self.jwzxNewsModel.jwzxNews.news[indexPath.row];
+    
     NewsCell *cell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NewsCell"];
-    cell.textLabel.text = self.jwzxNewsModel.jwzxNews.news[indexPath.row].date;
-    cell.detailTextLabel.text = self.jwzxNewsModel.jwzxNews.news[indexPath.row].title;
+    
+    [cell showNewsWithTimeString:aNew.date withDetail:aNew.title];
     return cell;
 }
 
