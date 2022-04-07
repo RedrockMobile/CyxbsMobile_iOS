@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
     地图View
  */
-@interface SchoolBusMapView : UIView <MAMapViewDelegate,MAMultiPointOverlayRendererDelegate>
+@interface SchoolBusMapView : UIView <MAMapViewDelegate,MAMultiPointOverlayRendererDelegate,AMapLocationManagerDelegate>
 
 /// 地图视图
 @property (nonatomic, strong) MAMapView *mapView;
