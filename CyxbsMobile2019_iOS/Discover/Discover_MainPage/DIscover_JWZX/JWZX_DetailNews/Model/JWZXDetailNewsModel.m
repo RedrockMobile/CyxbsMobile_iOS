@@ -12,6 +12,8 @@
 
 @implementation JWZXDetailNewsModel
 
+#pragma mark - Iint
+
 - (instancetype)initWithNewsID:(NSString *)newsID {
     self = [super init];
     if (self) {
@@ -19,6 +21,8 @@
     }
     return self;
 }
+
+#pragma mark - Method
 
 - (void)requestNewsSuccess:(void (^)(void))success
                    failure:(void (^)(NSError * _Nonnull))failure {
@@ -30,6 +34,7 @@
      prepareExecute:nil
      progress:nil
      success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"🟢JWZX Detail News Model:\n%@", responseObject);
         [self loadWithDictionary:responseObject[@"data"]];
         if (success) {
             success();
@@ -56,6 +61,14 @@
         }
         self.annexModels = [annexMA copy];
     }
+}
+
+#pragma mark - Setter
+
+- (void)setDate:(NSString *)date {
+    NSDate *theDate = [NSDate dateWithString:date format:@"yyyy-MM-dd H:m:ss.SSS"];
+    NSString *dateStr = [theDate stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-MM-dd"];
+    _date = dateStr;
 }
 
 @end

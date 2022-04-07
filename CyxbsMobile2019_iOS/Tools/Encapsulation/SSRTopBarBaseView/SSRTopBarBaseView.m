@@ -128,15 +128,15 @@
 #pragma mark - Setter
 
 - (void)shouldHaveLine:(BOOL)hadLine {
+    if (_hadLine == hadLine) {
+        return;
+    }
     _hadLine = hadLine;
     if (_hadLine) {
         [self.safeView addSubview:self.seperateLine];
         self.seperateLine.bottom = self.safeView.SuperBottom;
     } else {
-        if (_seperateLine) {
-            [self.seperateLine removeFromSuperview];
-        }
-        self.seperateLine = nil;
+        [self.seperateLine removeFromSuperview];
     }
 }
 
