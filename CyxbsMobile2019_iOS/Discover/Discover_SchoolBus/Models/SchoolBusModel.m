@@ -28,19 +28,34 @@
     NSDate *datenow = [NSDate date];
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)([datenow timeIntervalSince1970]*1000)];
     timeSp = [timeSp substringToIndex:10];
-    NSDictionary *parameters = @{
-        @"s": [self md5:[timeSp stringByAppendingString:@".Redrock"]],
-        @"t": timeSp,
-        @"r": [self md5:[NSString stringWithFormat:@"%d", [timeSp intValue] + 1]]
-    };
+    
+    NSString *s = [self md5:[timeSp stringByAppendingString:@".Redrock"]];
+    
+    NSString *t = timeSp;
+    
+    NSString *r = [self md5:[NSString stringWithFormat:@"%d", [timeSp intValue] - 1]];
     
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:url method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        success(responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        failure(error);
-        NSLog(@"%@", error);
-    }];
+    
+    [client.httpSessionManager POST:url parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                //参数转二进制
+            NSData *sData = [s dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *tData = [t dataUsingEncoding:NSUTF8StringEncoding];
+            NSData *rData = [r dataUsingEncoding:NSUTF8StringEncoding];
+            
+            [formData appendPartWithFormData:sData name:@"s"];
+            [formData appendPartWithFormData:tData name:@"t"];
+            [formData appendPartWithFormData:rData name:@"r"];
+            
+          
+        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            
+            success(responseObject);
+//            NSLog(@"%@",responseObject);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                failure(error);
+                NSLog(@"%@", error);
+        }];
 }
 
 @end

@@ -79,7 +79,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         protocolCheckButton.layer.cornerRadius = 8
         protocolCheckButton.clipsToBounds = true
         protocolCheckButton.layer.borderWidth = 1
-        protocolCheckButton.layer.borderColor = UIColor(hexString: "4B44E4")?.cgColor
+        protocolCheckButton.layer.borderColor = UIColor.blue.cgColor;
         
         if #available(iOS 11.0, *) {
             self.loginTitleLabel.textColor = UIColor(named: "LoginTitleColor")

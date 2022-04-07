@@ -12,11 +12,14 @@
 
 - (instancetype)initWithDict:(NSDictionary *)dict {
     if (self = [super init]) {
-        self.lon = (CGFloat)[dict[@"lon"] doubleValue];
+        self.lng = (CGFloat)[dict[@"lng"] doubleValue];
         self.lat = (CGFloat)[dict[@"lat"] doubleValue];
         self.busID = (CGFloat)[dict[@"id"] doubleValue];
     }
     return self;
 }
 
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key{
+    
+}
 @end

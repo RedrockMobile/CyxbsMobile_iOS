@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SchoolBusItem : NSObject
 
 @property (nonatomic, assign) CGFloat lat;
-@property (nonatomic, assign) CGFloat lon;
+@property (nonatomic, assign) CGFloat lng;
 @property (nonatomic, assign) CGFloat busID;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;

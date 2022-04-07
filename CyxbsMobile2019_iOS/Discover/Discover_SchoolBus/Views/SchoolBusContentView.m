@@ -31,9 +31,18 @@
     self = [super initWithFrame:frame];
     if (self) {
         // 这个key出问题了找我，QQ：1374872604，别再其他软件里用这个key，会出问题
-        [AMapServices sharedServices].apiKey = @"7252742ad6f47069544dbf9213f68b56";
+        [AMapServices sharedServices].apiKey = @"0de229ab86861128f7fec123538aa109";
+        [[AMapServices sharedServices] setEnableHTTPS:YES];
+        
+        UIView *v = [[UIView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+        v.backgroundColor = [UIColor redColor];
+        [self addSubview:v];
+        
         
         MAMapView *map = [[MAMapView alloc] initWithFrame:self.bounds];
+        
+        MAMapView *mapview = [[MAMapView alloc]initWithFrame:self.bounds];
+        
         map.showsUserLocation = YES;
         map.userTrackingMode = MAUserTrackingModeFollow;
 //        map.color
@@ -120,10 +129,10 @@
         NSString * todayStr = [dateFormat stringFromDate:today];//将日期转换成字符串
         today = [dateFormat dateFromString:todayStr];//转换成NSDate类型。日期置为方法默认日期
 
-        NSDate *start = [dateFormat dateFromString:@"11:00"];
-        NSDate *expire = [dateFormat dateFromString:@"14:00"];
-        
-        NSDate *start2 = [dateFormat dateFromString:@"17:00"];
+        NSDate *start = [dateFormat dateFromString:@"8:00"];
+        NSDate *expire = [dateFormat dateFromString:@"12:00"];
+
+        NSDate *start2 = [dateFormat dateFromString:@"13:00"];
         NSDate *expire2 = [dateFormat dateFromString:@"22:00"];
 
         if (([today compare:start] == NSOrderedDescending && [today compare:expire] == NSOrderedAscending) || (([today compare:start2] == NSOrderedDescending && [today compare:expire2] == NSOrderedAscending))) {
@@ -162,6 +171,8 @@
 
 
 - (void)updateSchoolBusLocation:(NSArray<SchoolBusItem *> *)busArray {
+    
+    NSLog(@"正在更新校车位置,STBY -- %@ %@",busArray[0],busArray[1]);
     // 更新校车位置
     self.lastItemArray = self.latestItemArray;
     self.latestItemArray = busArray;
@@ -171,7 +182,7 @@
         [self.mapView addAnnotation:pinA];
         self.schoolBusPinA = pinA;
     }
-    self.schoolBusPinA.coordinate = CLLocationCoordinate2DMake(self.latestItemArray[0].lat, self.latestItemArray[1].lon);
+    self.schoolBusPinA.coordinate = CLLocationCoordinate2DMake(self.latestItemArray[0].lat, self.latestItemArray[1].lng);
     self.schoolBusPinA.title = @"校车A";
     
     if (self.schoolBusPinB == nil) {
@@ -179,7 +190,7 @@
         [self.mapView addAnnotation:pinB];
         self.schoolBusPinB = pinB;
     }
-    self.schoolBusPinB.coordinate = CLLocationCoordinate2DMake(self.latestItemArray[0].lat, self.latestItemArray[1].lon);
+    self.schoolBusPinB.coordinate = CLLocationCoordinate2DMake(self.latestItemArray[0].lat, self.latestItemArray[1].lng);
     self.schoolBusPinB.title = @"校车B";
 }
 

@@ -14,12 +14,19 @@
 
 - (void)requestSchoolBusLocation {
     [self.model requestSchoolBusLocation:SCHOOLBUSAPI success:^(NSDictionary * _Nonnull responseObject) {
-        NSMutableArray *arr = [NSMutableArray array];
-        for (NSDictionary *dict in responseObject[@"data"]) {
-            SchoolBusItem *item = [[SchoolBusItem alloc] initWithDict:dict];
-            [arr addObject:item];
-        }
-        [self.view schoolBusLocationRequestsSuccess:[arr copy]];
+        NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:10];
+        NSArray *array = responseObject[@"data"][@"data"];
+//        for (NSDictionary *dict in responseObject[@"data"]) {
+//            SchoolBusItem *item = [[SchoolBusItem alloc] initWithDict:dict];
+//            [arr addObject:item];
+//        }
+        
+        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    SchoolBusItem *item = [[SchoolBusItem alloc]initWithDict:obj];
+                    [mArray addObject:item];
+        }];
+        
+        [self.view schoolBusLocationRequestsSuccess:[mArray copy]];
     } failure:^(NSError * _Nonnull error) {
         [self.view schoolBusLocationRequestsFailure];
     }];

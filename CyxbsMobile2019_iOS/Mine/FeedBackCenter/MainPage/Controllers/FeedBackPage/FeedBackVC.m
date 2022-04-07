@@ -208,7 +208,7 @@
         
         [client.httpSessionManager POST:SUBMIT parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             
-            //字段转二进制
+            //反馈内容（文字）转二进制
             NSData *data1 = [type dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data2 = [title dataUsingEncoding:NSUTF8StringEncoding];
             NSData *data3 = [content dataUsingEncoding:NSUTF8StringEncoding];
