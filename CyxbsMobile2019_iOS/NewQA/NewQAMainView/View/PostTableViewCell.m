@@ -175,7 +175,7 @@
     [_nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).mas_offset(SCREEN_WIDTH * 0.0427 + 2);
         make.left.mas_equalTo(self.iconImageView.mas_right).mas_offset(SCREEN_WIDTH * 0.04);
-        make.right.mas_equalTo(self.funcBtn.mas_right).mas_offset(-SCREEN_WIDTH * 0.04);
+        make.right.mas_equalTo(self.funcBtn.mas_left).mas_offset(-SCREEN_WIDTH * 0.1);
         make.height.mas_equalTo(SCREEN_WIDTH * 0.1381 * 14.5/43.5);
     }];
     

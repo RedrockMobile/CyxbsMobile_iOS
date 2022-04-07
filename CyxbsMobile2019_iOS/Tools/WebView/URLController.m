@@ -70,7 +70,7 @@
         make.left.equalTo(self.view).offset(8.6);
     }];
     [button setImageEdgeInsets:UIEdgeInsetsMake(6, 10, 6, 10)];//增大点击范围
-    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(JWZXNewVC_pop) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)addTitle {

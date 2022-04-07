@@ -70,7 +70,7 @@
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
-    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(JWZXNewVC_pop) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //添加显示“同学课表”四个字的label

@@ -8,6 +8,7 @@
 
 #import "NewDetailViewController.h"
 #import "DownFileDetailCellTableViewCell.h"
+
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorNewsTime  [UIColor colorNamed:@"ColorNewsTime" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -16,7 +17,10 @@
 #define ColorButtonHighLighted  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 
-@interface NewDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface NewDetailViewController () <
+    UITableViewDelegate,
+    UITableViewDataSource
+>
 
 @property (nonatomic, weak)UIButton *backButton;
 @property (nonatomic, weak)UILabel *titleLabel;
@@ -33,6 +37,7 @@
 @end
 
 @implementation NewDetailViewController
+
 - (instancetype)initWithNewsTime:(NSString *)time NewsTitle:(NSString*)NewsTitle NewsID:(NSString *)NewsID{
     if(self = [super init]) {
         self.NewsTitle = NewsTitle;
@@ -42,13 +47,15 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // 待适配黑夜
+    self.view.backgroundColor = UIColor.whiteColor;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = ColorWhite;
-    } else {
-        self.view.backgroundColor = UIColor.whiteColor;
-    }
     self.fileNameArray = [NSMutableArray array];
     self.fileIDArray = [NSMutableArray array];
     [self addBackButton];
@@ -79,7 +86,7 @@
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
-    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(JWZXNewVC_pop) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)popController {
     [self.navigationController popViewControllerAnimated:YES];
@@ -174,13 +181,12 @@
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:NEWSDETAIL method:HttpRequestGet parameters:@{@"id": self.NewsID} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self.NewsDetailTextView.text = responseObject[@"data"][@"content"];
-        if(![responseObject[@"data"][@"files"]  isEqual: @[]]) {
-            for (NSDictionary *dic in responseObject[@"data"][@"files"]) {
-                [self.fileNameArray addObject:dic[@"name"]];
-                [self.fileIDArray addObject:dic[@"id"]];
-            }
-            [self addDownButton];
-        }
+        
+        [self.fileNameArray addObject:responseObject[@"data"][@"title"]];
+        [self.fileIDArray addObject:responseObject[@"id"]];
+        
+        [self addDownButton];
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
     }];
@@ -192,11 +198,8 @@
     [self.view addSubview:button];
     [button setTitle:@"下载附件" forState:normal];
     [button setTitleColor:self.titleLabel.textColor forState:normal];
-    if (@available(iOS 11.0, *)) {
-        [button setTitleColor:ColorButtonHighLighted forState:UIControlStateHighlighted];
-    } else {
-        // Fallback on earlier versions
-    }
+    [button setTitleColor:ColorButtonHighLighted forState:UIControlStateHighlighted];
+    
     [button addTarget:self action:@selector(chooseAndDownFile) forControlEvents:UIControlEventTouchUpInside];
     button.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -220,11 +223,8 @@
     
     [shadowButton addTarget:self action:@selector(cancelDownload:) forControlEvents:UIControlEventTouchUpInside];
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    if (@available(iOS 11.0, *)) {
-        tableView.backgroundColor = ColorWhite;
-    } else {
-        // Fallback on earlier versions
-    }
+    
+    tableView.backgroundColor = ColorWhite;
     tableView.alpha = 0;
     [UIView animateWithDuration:0.2 animations:^{
         tableView.alpha = 0.8;
@@ -247,6 +247,9 @@
     [self.chooseFileTableView removeFromSuperview];
     [sender removeFromSuperview];
 }
+
+#pragma mark - Delegate
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
    DownFileDetailCellTableViewCell *cell = [[DownFileDetailCellTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"DownFileDetailCellTableViewCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -260,7 +263,13 @@
     return self.fileNameArray.count;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"%@?id=%@", [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/file"],self.fileIDArray[indexPath.row]]]];
-   
+    [UIApplication.sharedApplication
+      openURL:[NSURL URLWithString:
+        [NSString stringWithFormat: @"%@?id=%@",
+        [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/file"],
+         self.fileIDArray[indexPath.row]]
+      ]
+      options:@{}
+      completionHandler:nil];
 }
 @end

@@ -73,7 +73,7 @@
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
-    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(JWZXNewVC_pop) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //添加显示没课约的那几个字的label
