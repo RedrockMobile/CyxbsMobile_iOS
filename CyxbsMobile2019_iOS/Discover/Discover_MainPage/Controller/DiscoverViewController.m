@@ -29,6 +29,7 @@
 #import "DiscoverADModel.h"
 #import "TestArrangeViewController.h"
 #import "SchoolBusViewController.h"
+#import "SchoolBusVC.h"
 #import "PickerModel.h"
 #import <MBProgressHUD.h>
 #import "ElectricityView.h"
@@ -862,7 +863,8 @@ static int requestCheckinInfo = 0;
 
 - (void)touchSchoolCar {
     NSLog(@"点击了校车查询");
-    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+//    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+    SchoolBusVC *vc = [[SchoolBusVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

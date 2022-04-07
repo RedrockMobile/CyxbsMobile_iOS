@@ -11,6 +11,7 @@
 #import "ScheduleInquiryViewController.h"
 #import "TestArrangeViewController.h"
 #import "SchoolBusViewController.h"
+#import "SchoolBusVC.h"
 #import "EmptyClassViewController.h"
 #import "CalendarViewController.h"
 #import "WeDateViewController.h"
@@ -338,7 +339,8 @@
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     }else {
-        SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+//        SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+        SchoolBusVC *vc = [[SchoolBusVC alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
         
