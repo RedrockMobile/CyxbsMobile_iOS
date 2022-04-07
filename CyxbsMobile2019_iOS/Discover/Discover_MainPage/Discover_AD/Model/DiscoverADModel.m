@@ -31,7 +31,7 @@
         setModel();
     }
      failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"🔴AD ERROR:\n%@", error);
+        NSLog(@"🔴Discover AD Model Error:\n%@", error);
         if (failure) {
             failure(error);
         }

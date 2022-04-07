@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, SSRTopBarBaseViewTitleLabLay) {
 /// 可用的视图，所有子视图应该加载这上面
 @property (nonatomic, strong) UIView *safeView;
 
-/// 是否应该有条线，线的底部将对齐此Bar底部
+/// 是否应该有条线，线的底部将对齐此Bar底部，默认有
 @property (nonatomic, setter = shouldHaveLine:) BOOL hadLine;
 
 // MARK: Init

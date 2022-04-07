@@ -34,7 +34,7 @@
             setJWZX();
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"🔴JWZX ERROR:\n%@", error);
+        NSLog(@"🔴JWZX News Model Error:\n%@", error);
         if (failure) {
             failure(error);
         }

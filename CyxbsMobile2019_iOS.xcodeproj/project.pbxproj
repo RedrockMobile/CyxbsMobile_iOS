@@ -13,7 +13,11 @@
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
+		14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */; };
+		14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */; };
+		14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */; };
 		14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */; };
+		14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0E27FE725E00D6AE93 /* JWZXDetailNewsModel.m */; };
 		14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A527F5762500B67469 /* QuestionSelectView.m */; };
 		14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A727F5762500B67469 /* QuestionButton.m */; };
 		14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */; };
@@ -125,7 +129,6 @@
 		18CDF6A6257F91BD006E8E5C /* JWZXNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF582257F91BD006E8E5C /* JWZXNewsViewController.m */; };
 		18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF585257F91BD006E8E5C /* NewDetailViewController.m */; };
 		18CDF6A8257F91BD006E8E5C /* News.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF586257F91BD006E8E5C /* News.xcassets */; };
-		18CDF6A9257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF588257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m */; };
 		18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */; };
 		18CDF6AB257F91BD006E8E5C /* SCLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF58D257F91BD006E8E5C /* SCLineChart.m */; };
 		18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF58F257F91BD006E8E5C /* SCTool.m */; };
@@ -722,8 +725,16 @@
 		147842ED27F07A59002359BA /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
 		147842F027F080A6002359BA /* NSDate+Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Day.h"; sourceTree = "<group>"; };
 		147842F127F080A7002359BA /* NSDate+Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Day.m"; sourceTree = "<group>"; };
+		14981FF427FEA8F200AD2A29 /* JWZXNewsAnnexModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXNewsAnnexModel.h; sourceTree = "<group>"; };
+		14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsAnnexModel.m; sourceTree = "<group>"; };
+		14981FF727FEAEB800AD2A29 /* JWZXDetailNewsTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailNewsTopView.h; sourceTree = "<group>"; };
+		14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailNewsTopView.m; sourceTree = "<group>"; };
+		14981FFA27FEB41B00AD2A29 /* JWZXDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailView.h; sourceTree = "<group>"; };
+		14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailView.m; sourceTree = "<group>"; };
 		14D03A0927FE69A800D6AE93 /* SSRTopBarBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTopBarBaseView.h; sourceTree = "<group>"; };
 		14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTopBarBaseView.m; sourceTree = "<group>"; };
+		14D03A0D27FE725E00D6AE93 /* JWZXDetailNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailNewsModel.h; sourceTree = "<group>"; };
+		14D03A0E27FE725E00D6AE93 /* JWZXDetailNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailNewsModel.m; sourceTree = "<group>"; };
 		14E7E4A427F5762500B67469 /* QuestionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionButton.h; sourceTree = "<group>"; };
 		14E7E4A527F5762500B67469 /* QuestionSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionSelectView.m; sourceTree = "<group>"; };
 		14E7E4A627F5762500B67469 /* QuestionSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionSelectView.h; sourceTree = "<group>"; };
@@ -934,9 +945,7 @@
 		18CDF584257F91BD006E8E5C /* JWZXNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsViewController.h; sourceTree = "<group>"; };
 		18CDF585257F91BD006E8E5C /* NewDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewDetailViewController.m; sourceTree = "<group>"; };
 		18CDF586257F91BD006E8E5C /* News.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = News.xcassets; sourceTree = "<group>"; };
-		18CDF588257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownFileDetailCellTableViewCell.m; sourceTree = "<group>"; };
 		18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsCell.m; sourceTree = "<group>"; };
-		18CDF58A257F91BD006E8E5C /* DownFileDetailCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownFileDetailCellTableViewCell.h; sourceTree = "<group>"; };
 		18CDF58B257F91BD006E8E5C /* JWZXNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsCell.h; sourceTree = "<group>"; };
 		18CDF58D257F91BD006E8E5C /* SCLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLineChart.m; sourceTree = "<group>"; };
 		18CDF58E257F91BD006E8E5C /* SCChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartDelegate.h; sourceTree = "<group>"; };
@@ -2071,6 +2080,61 @@
 			path = "NSDate+Day";
 			sourceTree = "<group>";
 		};
+		14981FFD27FEC15900AD2A29 /* JWZXNewsAnnexModel */ = {
+			isa = PBXGroup;
+			children = (
+				14981FF427FEA8F200AD2A29 /* JWZXNewsAnnexModel.h */,
+				14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */,
+			);
+			path = JWZXNewsAnnexModel;
+			sourceTree = "<group>";
+		};
+		14981FFE27FEC16800AD2A29 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14D03A0D27FE725E00D6AE93 /* JWZXDetailNewsModel.h */,
+				14D03A0E27FE725E00D6AE93 /* JWZXDetailNewsModel.m */,
+				14981FFD27FEC15900AD2A29 /* JWZXNewsAnnexModel */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14981FFF27FEC17500AD2A29 /* TopView */ = {
+			isa = PBXGroup;
+			children = (
+				14981FF727FEAEB800AD2A29 /* JWZXDetailNewsTopView.h */,
+				14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */,
+			);
+			path = TopView;
+			sourceTree = "<group>";
+		};
+		1498200027FEC18D00AD2A29 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				14981FFA27FEB41B00AD2A29 /* JWZXDetailView.h */,
+				14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		1498200127FEC1AC00AD2A29 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF583257F91BD006E8E5C /* NewDetailViewController.h */,
+				18CDF585257F91BD006E8E5C /* NewDetailViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1498200227FEC1C000AD2A29 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1498200027FEC18D00AD2A29 /* DetailView */,
+				14981FFF27FEC17500AD2A29 /* TopView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		14B3F21427F16DE3007B421C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -2315,14 +2379,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		14D03A0827FDD3BB00D6AE93 /* JWZXNews */ = {
+		14D03A0827FDD3BB00D6AE93 /* JWZX_News */ = {
 			isa = PBXGroup;
 			children = (
 				14D03A0027FDB76200D6AE93 /* ViewController */,
 				18CDF4E5257F91BC006E8E5C /* Model */,
 				14D03A0727FDD31B00D6AE93 /* View */,
 			);
-			path = JWZXNews;
+			path = JWZX_News;
 			sourceTree = "<group>";
 		};
 		14D03A0C27FE6BE200D6AE93 /* SSRTopBarBaseView */ = {
@@ -2538,7 +2602,6 @@
 				18CDF4D9257F91BC006E8E5C /* Controller */,
 				1404747F27F47F2A00307209 /* Discover_AD */,
 				18CDF580257F91BD006E8E5C /* DIscover_JWZX */,
-				18CDF4F6257F91BC006E8E5C /* View */,
 			);
 			path = Discover_MainPage;
 			sourceTree = "<group>";
@@ -2546,6 +2609,7 @@
 		18CDF4D9257F91BC006E8E5C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18CDF4F6257F91BC006E8E5C /* View */,
 				18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */,
 				18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */,
 				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
@@ -2918,30 +2982,21 @@
 		18CDF580257F91BD006E8E5C /* DIscover_JWZX */ = {
 			isa = PBXGroup;
 			children = (
-				14D03A0827FDD3BB00D6AE93 /* JWZXNews */,
+				14D03A0827FDD3BB00D6AE93 /* JWZX_News */,
+				18CDF581257F91BD006E8E5C /* JWZX_DetailNews */,
 				18CDF586257F91BD006E8E5C /* News.xcassets */,
-				18CDF581257F91BD006E8E5C /* Controller */,
-				18CDF587257F91BD006E8E5C /* View */,
 			);
 			path = DIscover_JWZX;
 			sourceTree = "<group>";
 		};
-		18CDF581257F91BD006E8E5C /* Controller */ = {
+		18CDF581257F91BD006E8E5C /* JWZX_DetailNews */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF583257F91BD006E8E5C /* NewDetailViewController.h */,
-				18CDF585257F91BD006E8E5C /* NewDetailViewController.m */,
+				1498200127FEC1AC00AD2A29 /* ViewController */,
+				1498200227FEC1C000AD2A29 /* View */,
+				14981FFE27FEC16800AD2A29 /* Model */,
 			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		18CDF587257F91BD006E8E5C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF58A257F91BD006E8E5C /* DownFileDetailCellTableViewCell.h */,
-				18CDF588257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m */,
-			);
-			path = View;
+			path = JWZX_DetailNews;
 			sourceTree = "<group>";
 		};
 		18CDF58C257F91BD006E8E5C /* SCChart */ = {
@@ -5897,6 +5952,7 @@
 				D0101D5B2433C885004337ED /* SDMaskGuidBGView.m in Sources */,
 				AAE3307225E367E400324750 /* MainPageTableViewCell.m in Sources */,
 				73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */,
+				14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				FE2C135827AEF629001CF7AF /* ToDoDetailBar.m in Sources */,
@@ -6069,6 +6125,7 @@
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
+				14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				B82D115525E35FF400690FA6 /* SZHReleaseTopBarView.m in Sources */,
 				14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */,
@@ -6175,6 +6232,7 @@
 				147842EA27F0758F002359BA /* UIView+Frame.m in Sources */,
 				18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */,
 				7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */,
+				14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */,
 				FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
 				BE7CBD9E27535FC000094AE8 /* ShareBtn.m in Sources */,
@@ -6269,6 +6327,7 @@
 				6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */,
 				B82CA680263159BA00786685 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
+				14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */,
 				18CDF6C6257F91BE006E8E5C /* ScoreTwoTitleView.m in Sources */,
 				18CDF6BB257F91BD006E8E5C /* GPAItem.m in Sources */,
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
@@ -6368,7 +6427,6 @@
 				18CDF4BB257F8DBD006E8E5C /* ResetPwdViewController.m in Sources */,
 				18CDF67C257F91BD006E8E5C /* ClassmatesList.m in Sources */,
 				7311328826CCEC2400EF88C1 /* ContentScrollView.m in Sources */,
-				18CDF6A9257F91BD006E8E5C /* DownFileDetailCellTableViewCell.m in Sources */,
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
 				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				18CDF667257F91BD006E8E5C /* JWZXNewsInformation.m in Sources */,

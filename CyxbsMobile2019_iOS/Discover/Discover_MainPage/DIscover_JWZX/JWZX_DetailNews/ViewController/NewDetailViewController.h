@@ -11,13 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NewDetailViewController : UIViewController
-@property (nonatomic, copy)NSString *NewsTime;
-@property (nonatomic, copy)NSString *NewsTitle;
-@property (nonatomic, copy)NSString *NewsID;
 
 - (instancetype)init NS_UNAVAILABLE;
 
-- (instancetype)initWithNewsTime:(NSString *)time NewsTitle:(NSString *)NewsTitle NewsID: (NSString *)NewsID;
+- (instancetype)initWithNewsID:(NSString *)newsID
+                          date:(NSString *)time
+                         title:(NSString *)title;
+
 @end
 
 NS_ASSUME_NONNULL_END
