@@ -59,23 +59,12 @@
             //请求成功
             NSArray *array = responseObject[@"data"][@"data"];
             NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
-            
-            
-            SchoolBusData *data = [[SchoolBusData alloc]init];
-            data.longitude = 106.603377;
-            data.latitude = 29.530296;
-            
-            SchoolBusData *data2 = [[SchoolBusData alloc]init];
-            data2.longitude = 106.605375;
-            data2.latitude = 29.530294;
-            
-            [mArray addObject:data];
-            [mArray addObject:data2];
-//            //字典转模型
-//            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                SchoolBusData *data = [self SchoolBusDataWithDict:obj];
-//                [mArray addObject:data];
-//            }];
+
+            //字典转模型
+            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                SchoolBusData *data = [self SchoolBusDataWithDict:obj];
+                [mArray addObject:data];
+            }];
             
             //调用成功的回调
             if (success) {

@@ -26,13 +26,6 @@
 //当获取到数据时调用
 - (void)setSchoolBusDataArray:(NSArray *)schoolBusDataArray{
     _schoolBusDataArray = schoolBusDataArray;
-    
-    
-    
-    
-    
-    
-    
     //创建经纬度数组items
     NSMutableArray *items = [NSMutableArray array];
     
@@ -107,7 +100,7 @@
 }
 
 - (void)refreshSchoolBusData{
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
     
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }

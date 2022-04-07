@@ -157,7 +157,6 @@
 		18CDF6C6257F91BE006E8E5C /* ScoreTwoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5C7257F91BD006E8E5C /* ScoreTwoTitleView.m */; };
 		18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */; };
 		18CDF6C9257F91BE006E8E5C /* SchoolBus.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF5CE257F91BD006E8E5C /* SchoolBus.xcassets */; };
-		18CDF6CE257F91BE006E8E5C /* SchoolBusContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5DB257F91BD006E8E5C /* SchoolBusContentView.m */; };
 		18CDF6CF257F91BE006E8E5C /* Volunteer.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF5DF257F91BD006E8E5C /* Volunteer.xcassets */; };
 		18CDF6D0257F91BE006E8E5C /* MGDSliderBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5E2257F91BD006E8E5C /* MGDSliderBarItem.m */; };
 		18CDF6D1257F91BE006E8E5C /* MGDSliderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5E4257F91BD006E8E5C /* MGDSliderBar.m */; };
@@ -995,8 +994,6 @@
 		18CDF5CA257F91BD006E8E5C /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		18CDF5CE257F91BD006E8E5C /* SchoolBus.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SchoolBus.xcassets; sourceTree = "<group>"; };
-		18CDF5D8257F91BD006E8E5C /* SchoolBusContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolBusContentView.h; sourceTree = "<group>"; };
-		18CDF5DB257F91BD006E8E5C /* SchoolBusContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolBusContentView.m; sourceTree = "<group>"; };
 		18CDF5DF257F91BD006E8E5C /* Volunteer.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Volunteer.xcassets; sourceTree = "<group>"; };
 		18CDF5E1257F91BD006E8E5C /* MGDSliderBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDSliderBar.h; sourceTree = "<group>"; };
 		18CDF5E2257F91BD006E8E5C /* MGDSliderBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDSliderBarItem.m; sourceTree = "<group>"; };
@@ -3064,8 +3061,6 @@
 		18CDF5D7257F91BD006E8E5C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF5D8257F91BD006E8E5C /* SchoolBusContentView.h */,
-				18CDF5DB257F91BD006E8E5C /* SchoolBusContentView.m */,
 				FE1119D527FF230B00616D83 /* SchoolBusMapView.h */,
 				FE1119D627FF230B00616D83 /* SchoolBusMapView.m */,
 				FE1119D927FF2E0D00616D83 /* SchoolBusBottomView.h */,
@@ -6337,7 +6332,6 @@
 				18CDF695257F91BD006E8E5C /* CQUPTMapPlaceItem.m in Sources */,
 				18CDF69A257F91BD006E8E5C /* CQUPTMapProgressView.m in Sources */,
 				18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */,
-				18CDF6CE257F91BE006E8E5C /* SchoolBusContentView.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				1404747227F459B500307209 /* DiscoverADItem.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
@@ -6540,7 +6534,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 66;
-				DEVELOPMENT_TEAM = XXQ7M2A3K6;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -6596,7 +6590,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 66;
-				DEVELOPMENT_TEAM = XXQ7M2A3K6;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
