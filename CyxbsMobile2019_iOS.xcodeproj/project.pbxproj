@@ -682,8 +682,6 @@
 		FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134927AEF629001CF7AF /* TodoSyncMsg.m */; };
 		FE2C136C27AEF680001CF7AF /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C136927AEF680001CF7AF /* NewQAHud.m */; };
 		FE2C136F27AEF952001CF7AF /* NewDiscover6.0Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE2C136E27AEF952001CF7AF /* NewDiscover6.0Media.xcassets */; };
-		FE505CC0273D441E0022B872 /* SchoolBusUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */; };
-		FE505CC1273D441E0022B872 /* SchoolBusUnavailableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */; };
 		FE82934427EC323500CF0148 /* Update.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE82934327EC323500CF0148 /* Update.xcassets */; };
 		FEBA676427E9BAC000C4D231 /* updatePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBA676327E9BAC000C4D231 /* updatePopView.m */; };
 		FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED345E0273D51DA004073C0 /* EmptyClassUnavailableViewController.m */; };
@@ -1908,9 +1906,6 @@
 		FE2C136927AEF680001CF7AF /* NewQAHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAHud.m; sourceTree = "<group>"; };
 		FE2C136B27AEF680001CF7AF /* NewQAHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHud.h; sourceTree = "<group>"; };
 		FE2C136E27AEF952001CF7AF /* NewDiscover6.0Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = NewDiscover6.0Media.xcassets; sourceTree = "<group>"; };
-		FE505CBD273D441E0022B872 /* SchoolBusUnavailableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusUnavailableViewController.h; sourceTree = "<group>"; };
-		FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolBusUnavailableViewController.m; sourceTree = "<group>"; };
-		FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SchoolBusUnavailableViewController.xib; sourceTree = "<group>"; };
 		FE82934327EC323500CF0148 /* Update.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Update.xcassets; sourceTree = "<group>"; };
 		FEBA676227E9BAC000C4D231 /* updatePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = updatePopView.h; sourceTree = "<group>"; };
 		FEBA676327E9BAC000C4D231 /* updatePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = updatePopView.m; sourceTree = "<group>"; };
@@ -3086,9 +3081,6 @@
 				18CDF5D9257F91BD006E8E5C /* SchoolBusViewController.m */,
 				18CDF5DA257F91BD006E8E5C /* SchoolBusViewController.h */,
 				18CDF5DB257F91BD006E8E5C /* SchoolBusContentView.m */,
-				FE505CBD273D441E0022B872 /* SchoolBusUnavailableViewController.h */,
-				FE505CBE273D441E0022B872 /* SchoolBusUnavailableViewController.m */,
-				FE505CBF273D441E0022B872 /* SchoolBusUnavailableViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -5698,7 +5690,6 @@
 				18CDF6FC257F91BE006E8E5C /* 2@3x.png in Resources */,
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				DB34EAEE239BD4550052B65E /* remind_image_content@2x.png in Resources */,
-				FE505CC1273D441E0022B872 /* SchoolBusUnavailableViewController.xib in Resources */,
 				492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */,
 				DB34EAE2239BD4550052B65E /* 书@3x.png in Resources */,
 				DB34EB13239BD4550052B65E /* 提醒@2x.png in Resources */,
@@ -5882,7 +5873,6 @@
 				73AAA1D326C918250084E44D /* PurchaseinfoViewController.m in Sources */,
 				187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */,
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
-				FE505CC0273D441E0022B872 /* SchoolBusUnavailableViewController.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
