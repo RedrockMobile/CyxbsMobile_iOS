@@ -74,6 +74,7 @@
 - (SSRTopBarBaseView *)topView {
     if (_topView == nil) {
         _topView = [[SSRTopBarBaseView alloc] initWithSafeViewHeight:44];
+        _topView.hadLine = NO;
         [_topView addTitle:@"教务新闻"
               withTitleLay:SSRTopBarBaseViewTitleLabLayLeft
                  withStyle:nil];
@@ -149,9 +150,9 @@
     
     NewDetailViewController *vc =
         [[NewDetailViewController alloc]
-         initWithNewsTime:aNew.date
-         NewsTitle:aNew.title
-         NewsID:aNew.NewsID];
+         initWithNewsID:aNew.NewsID
+         date:aNew.date
+         title:aNew.title];
     
     [self.navigationController pushViewController:vc animated:YES];
 }

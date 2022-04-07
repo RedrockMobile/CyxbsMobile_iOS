@@ -17,6 +17,9 @@
 /// 标题Label
 @property (nonatomic, strong, nullable) UILabel *titleLab;
 
+/// 分割线
+@property (nonatomic, strong) UIView *seperateLine;
+
 @end
 
 #pragma mark - SSRTopBarBaseView
@@ -34,6 +37,8 @@
             
             [self.safeView addSubview:self.backBtn];
             self.backBtn.centerY = self.safeView.SuperCenter.y;
+            
+            self.hadLine = YES;
         }
     }
     return self;
@@ -110,6 +115,29 @@
         _titleLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     }
     return _titleLab;
+}
+
+- (UIView *)seperateLine {
+    if (_seperateLine == nil) {
+        _seperateLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.safeView.width, 2)];
+        _seperateLine.backgroundColor = [UIColor colorNamed:@"ColorSeperateLine"];
+    }
+    return _seperateLine;
+}
+
+#pragma mark - Setter
+
+- (void)shouldHaveLine:(BOOL)hadLine {
+    _hadLine = hadLine;
+    if (_hadLine) {
+        [self.safeView addSubview:self.seperateLine];
+        self.seperateLine.bottom = self.safeView.SuperBottom;
+    } else {
+        if (_seperateLine) {
+            [self.seperateLine removeFromSuperview];
+        }
+        self.seperateLine = nil;
+    }
 }
 
 @end
