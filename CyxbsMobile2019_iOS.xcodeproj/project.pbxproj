@@ -13,6 +13,7 @@
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
+		14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */; };
 		14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A527F5762500B67469 /* QuestionSelectView.m */; };
 		14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A727F5762500B67469 /* QuestionButton.m */; };
 		14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */; };
@@ -721,6 +722,8 @@
 		147842ED27F07A59002359BA /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
 		147842F027F080A6002359BA /* NSDate+Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Day.h"; sourceTree = "<group>"; };
 		147842F127F080A7002359BA /* NSDate+Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Day.m"; sourceTree = "<group>"; };
+		14D03A0927FE69A800D6AE93 /* SSRTopBarBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTopBarBaseView.h; sourceTree = "<group>"; };
+		14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTopBarBaseView.m; sourceTree = "<group>"; };
 		14E7E4A427F5762500B67469 /* QuestionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionButton.h; sourceTree = "<group>"; };
 		14E7E4A527F5762500B67469 /* QuestionSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionSelectView.m; sourceTree = "<group>"; };
 		14E7E4A627F5762500B67469 /* QuestionSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionSelectView.h; sourceTree = "<group>"; };
@@ -2322,9 +2325,19 @@
 			path = JWZXNews;
 			sourceTree = "<group>";
 		};
+		14D03A0C27FE6BE200D6AE93 /* SSRTopBarBaseView */ = {
+			isa = PBXGroup;
+			children = (
+				14D03A0927FE69A800D6AE93 /* SSRTopBarBaseView.h */,
+				14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */,
+			);
+			path = SSRTopBarBaseView;
+			sourceTree = "<group>";
+		};
 		14E7E4A327F5760D00B67469 /* Encapsulation */ = {
 			isa = PBXGroup;
 			children = (
+				14D03A0C27FE6BE200D6AE93 /* SSRTopBarBaseView */,
 				14E7E4AB27F5763700B67469 /* QuestionSelectView */,
 			);
 			path = Encapsulation;
@@ -5874,6 +5887,7 @@
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
+				14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */,
 				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
 				18CDF710257F91BE006E8E5C /* QueryLoginViewController.m in Sources */,
 				18CDF676257F91BD006E8E5C /* TestArrangeViewController.m in Sources */,

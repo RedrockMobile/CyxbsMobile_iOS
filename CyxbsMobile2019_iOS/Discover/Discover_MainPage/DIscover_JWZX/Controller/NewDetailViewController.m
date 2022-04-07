@@ -86,7 +86,7 @@
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
-    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(JWZXNewVC_pop) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)popController {
     [self.navigationController popViewControllerAnimated:YES];

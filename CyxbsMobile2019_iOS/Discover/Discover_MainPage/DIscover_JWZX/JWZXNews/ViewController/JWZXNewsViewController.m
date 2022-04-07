@@ -8,9 +8,11 @@
 
 #import "JWZXNewsViewController.h"
 
+#import "NewDetailViewController.h"
+
+#import "SSRTopBarBaseView.h"
 #import "JWZXNewsCell.h"
 #import "JWZXNewsModel.h"
-#import "NewDetailViewController.h"
 
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
@@ -22,9 +24,8 @@
     UITableViewDataSource
 >
 
-@property (nonatomic, strong) UIButton *backButton;
-
-@property (nonatomic, strong) UILabel *titleLab;
+/// 干掉系统的topView
+@property (nonatomic, strong) SSRTopBarBaseView *topView;
 
 /// 教务新闻视图
 @property (nonatomic, strong) UITableView *jwzxNewsTableView;
@@ -61,9 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 下面两个需要被封装到navigation的替代View
-    [self.view addSubview:self.backButton];
-    [self.view addSubview:self.titleLab];
+    [self.view addSubview:self.topView];
     
     // 正常的逻辑交互
     [self.view addSubview:self.jwzxNewsTableView];
@@ -72,10 +71,22 @@
 
 #pragma mark - Getter
 
+- (SSRTopBarBaseView *)topView {
+    if (_topView == nil) {
+        _topView = [[SSRTopBarBaseView alloc] initWithSafeViewHeight:44];
+        [_topView addTitle:@"教务新闻"
+              withTitleLay:SSRTopBarBaseViewTitleLabLayLeft
+                 withStyle:nil];
+        [_topView addBackButtonTarget:self action:@selector(JWZXNewVC_pop)];
+    }
+    return _topView;
+}
+
 - (UITableView *)jwzxNewsTableView {
     if (_jwzxNewsTableView == nil) {
-        CGFloat top = self.titleLab.bottom;
+        CGFloat top = self.topView.bottom;
         _jwzxNewsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, top + 5, self.view.width, self.view.height - top) style:UITableViewStylePlain];
+        [_jwzxNewsTableView registerClass:[JWZXNewsCell class] forCellReuseIdentifier:JWZXNewsCellReuseIdentifier];
         _jwzxNewsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _jwzxNewsTableView.delegate = self;
         _jwzxNewsTableView.dataSource = self;
@@ -83,34 +94,9 @@
     return _jwzxNewsTableView;
 }
 
-- (UIButton *)backButton {
-    if (_backButton == nil) {
-        _backButton = [[UIButton alloc] init];
-        [_backButton setImage:[UIImage imageNamed:@"LQQBackButton"] forState:normal];
-        [_backButton setImage: [UIImage imageNamed:@"EmptyClassBackButton"] forState:UIControlStateHighlighted];
-        // UI需要封装
-        _backButton.left = 17;
-        _backButton.top = (IS_IPHONEX ? 53 : 35);
-        _backButton.width = 7;
-        _backButton.height = 14;
-        [_backButton addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _backButton;
-}
-
-- (UILabel *)titleLab {
-    if (_titleLab == nil) {
-        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(self.backButton.right + 10, self.backButton.top - 2, 200, 18)];
-        
-        _titleLab.text = @"教务新闻";
-        _titleLab.textColor = Color21_49_91_F0F0F2;
-    }
-    return _titleLab;
-}
-
 #pragma mark - Method
 
-- (void)popController {
+- (void)JWZXNewVC_pop {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -145,9 +131,14 @@
     
     JWZXNew *aNew = self.jwzxNewsModel.jwzxNews.news[indexPath.row];
     
-    JWZXNewsCell *cell = [[JWZXNewsCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NewsCell"];
+    JWZXNewsCell *cell = [self.jwzxNewsTableView dequeueReusableCellWithIdentifier:JWZXNewsCellReuseIdentifier];
+    
+    if (cell == nil) {
+        cell = [[JWZXNewsCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NewsCell"];
+    }
     
     [cell showNewsWithTimeString:aNew.date withDetail:aNew.title];
+    
     return cell;
 }
 

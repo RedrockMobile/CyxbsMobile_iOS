@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define JWZXNewsCellReuseIdentifier @"JWZXNewsCell"
+
 /// 教务新闻页面tableView的cell，日期显示采用默认的textLabel, 主题显示采用默认的detailLabel,然后自定义了有附件的lebel
 @interface JWZXNewsCell : UITableViewCell
 
