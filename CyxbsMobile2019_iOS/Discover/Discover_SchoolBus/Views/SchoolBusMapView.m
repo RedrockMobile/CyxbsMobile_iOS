@@ -23,26 +23,33 @@
     return self;
 }
 
+//当获取到数据时调用
 - (void)setSchoolBusDataArray:(NSArray *)schoolBusDataArray{
-    //当获取到数据时调用
-    NSMutableArray *items = [NSMutableArray array];
-    
     _schoolBusDataArray = schoolBusDataArray;
     
-    SchoolBusData *data = _schoolBusDataArray[0];
     
-    MAMultiPointItem *item = [[MAMultiPointItem alloc] init];
     
-    item.coordinate = CLLocationCoordinate2DMake(data.latitude, data.longitude);
     
-    [items addObject:item];
     
+    
+    
+    //创建经纬度数组items
+    NSMutableArray *items = [NSMutableArray array];
+    
+    //遍历校车数据
+    for (int i = 0; i < _schoolBusDataArray.count; i++) {
+        
+        SchoolBusData *data = _schoolBusDataArray[i];
+        MAMultiPointItem *item = [[MAMultiPointItem alloc] init];
+        item.coordinate = CLLocationCoordinate2DMake(data.latitude, data.longitude);
+        //将经纬度数据写入数组
+        [items addObject:item];
+    }
+    //根据items创建点
     MAMultiPointOverlay *overlay = [[MAMultiPointOverlay alloc] initWithMultiPointItems:items];
     
+    //把Overlay添加进mapView
     [self.mapView addOverlay:overlay];
-    
-    
-    
 }
 
 
@@ -100,12 +107,11 @@
 }
 
 - (void)refreshSchoolBusData{
-    [SchoolBusData SchoolBusDataWithSuccess:^(NSArray * _Nonnull array) {
-            self.schoolBusDataArray = array;
-        } error:^{
-            
-        }];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
+    
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
 }
+
 
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay{
     if ([overlay isKindOfClass:[MAMultiPointOverlay class]])
@@ -122,6 +128,18 @@
     return nil;
 }
 
+- (void)setupSchoolBusData{
+    [SchoolBusData SchoolBusDataWithSuccess:^(NSArray * _Nonnull array) {
+            self.schoolBusDataArray = array;
+        } error:^{
 
+        }];
+    
+    NSLog(@"-- STBY --");
+}
+
+- (void)dealloc{
+    
+}
 
 @end
