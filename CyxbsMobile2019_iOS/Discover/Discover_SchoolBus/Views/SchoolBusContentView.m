@@ -33,15 +33,10 @@
         // 这个key出问题了找我，QQ：1374872604，别再其他软件里用这个key，会出问题
         [AMapServices sharedServices].apiKey = @"0de229ab86861128f7fec123538aa109";
         [[AMapServices sharedServices] setEnableHTTPS:YES];
-        
-        UIView *v = [[UIView alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
-        v.backgroundColor = [UIColor redColor];
-        [self addSubview:v];
-        
+        [MAMapView updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
+        [MAMapView updatePrivacyAgree:AMapPrivacyAgreeStatusDidAgree];
         
         MAMapView *map = [[MAMapView alloc] initWithFrame:self.bounds];
-        
-        MAMapView *mapview = [[MAMapView alloc]initWithFrame:self.bounds];
         
         map.showsUserLocation = YES;
         map.userTrackingMode = MAUserTrackingModeFollow;
@@ -63,7 +58,7 @@
             //指定定位是否会被系统自动暂停。默认为NO。
             [locationManager setPausesLocationUpdatesAutomatically:NO];
             //设定定位的最小更新距离。单位米，默认为 kCLDistanceFilterNone，表示只要检测到设备位置发生变化就会更新位置信息
-            [locationManager setDistanceFilter:20];
+            [locationManager setDistanceFilter:1];
             //设定期望的定位精度。单位米，默认为 kCLLocationAccuracyBest
             [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
             //开始定位服务

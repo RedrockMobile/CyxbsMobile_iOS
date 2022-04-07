@@ -61,7 +61,7 @@
     
     // 校车位置加载成功后，隔2秒再加载下一个位置。
     if (!self.dismissed) {
-        [self.presenter performSelector:@selector(requestSchoolBusLocation) afterDelay:2];
+        [self.presenter performSelector:@selector(requestSchoolBusLocation) afterDelay:0.5];
     }
 }
 
