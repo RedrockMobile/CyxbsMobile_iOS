@@ -51,15 +51,6 @@
             }
         SchoolBusBottomView *schoolBusBottomView = [[SchoolBusBottomView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-offset, SCREEN_WIDTH, offset)];
         _schoolBusBottomView = schoolBusBottomView;
-//        [_schoolBusBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.leading.trailing.equalTo(self.view);
-//            make.bottom.equalTo(self.view).offset(16);
-//            if (IS_IPHONEX) {
-//                make.height.equalTo(@103);
-//            } else {
-//                make.height.equalTo(@88);
-//            }
-//        }];
     }
     return _schoolBusBottomView;
 }

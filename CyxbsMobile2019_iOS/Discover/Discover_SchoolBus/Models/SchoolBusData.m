@@ -73,16 +73,7 @@
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 
         }];
-    
-    
-    
-    
-    
 }
-
-
-
-
 
 ///MD5加密
 + (NSString *)md5:(NSString *)str {

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
     地图View
  */
-@interface SchoolBusMapView : UIView <MAMapViewDelegate,MAMultiPointOverlayRendererDelegate,AMapLocationManagerDelegate>
+@interface SchoolBusMapView : UIView <MAMapViewDelegate,AMapLocationManagerDelegate>
 
 /// 地图视图
 @property (nonatomic, strong) MAMapView *mapView;
@@ -37,8 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<SchoolBusMapViewDelegate> delegate;
 
 ///校车位置数组
-@property (nonatomic, copy) NSArray *schoolBusDataArray;
+@property (nonatomic, copy) NSArray *schoolBusPointArray;
 
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 

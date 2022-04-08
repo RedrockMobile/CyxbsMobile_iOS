@@ -23,26 +23,17 @@
     return self;
 }
 
-//当获取到数据时调用
-- (void)setSchoolBusDataArray:(NSArray *)schoolBusDataArray{
-    _schoolBusDataArray = schoolBusDataArray;
-    //创建经纬度数组items
-    NSMutableArray *items = [NSMutableArray array];
+
+- (void)setSchoolBusPointArray:(NSArray *)schoolBusPointArray{
     
-    //遍历校车数据
-    for (int i = 0; i < _schoolBusDataArray.count; i++) {
-        
-        SchoolBusData *data = _schoolBusDataArray[i];
-        MAMultiPointItem *item = [[MAMultiPointItem alloc] init];
-        item.coordinate = CLLocationCoordinate2DMake(data.latitude, data.longitude);
-        //将经纬度数据写入数组
-        [items addObject:item];
+    if (_schoolBusPointArray) {
+        [_mapView removeAnnotations:self.schoolBusPointArray];
     }
-    //根据items创建点
-    MAMultiPointOverlay *overlay = [[MAMultiPointOverlay alloc] initWithMultiPointItems:items];
     
-    //把Overlay添加进mapView
-    [self.mapView addOverlay:overlay];
+    _schoolBusPointArray = schoolBusPointArray;
+    
+    [_mapView addAnnotations:_schoolBusPointArray];
+    
 }
 
 
@@ -64,18 +55,22 @@
         mapView.delegate = self;
         
         if([CLLocationManager locationServicesEnabled]){
-
             AMapLocationManager *locationManager = [[AMapLocationManager alloc] init];
 
             [locationManager setDelegate:self];
+            
             //是否允许后台定位。默认为NO。只在iOS 9.0及之后起作用。设置为YES的时候必须保证 Background Modes 中的 Location updates 处于选中状态，否则会抛出异常。由于iOS系统限制，需要在定位未开始之前或定位停止之后，修改该属性的值才会有效果。
             [locationManager setAllowsBackgroundLocationUpdates:NO];
+            
             //指定定位是否会被系统自动暂停。默认为NO。
             [locationManager setPausesLocationUpdatesAutomatically:NO];
+            
             //设定定位的最小更新距离。单位米，默认为 kCLDistanceFilterNone，表示只要检测到设备位置发生变化就会更新位置信息
             [locationManager setDistanceFilter:1];
+            
             //设定期望的定位精度。单位米，默认为 kCLLocationAccuracyBest
             [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+            
             //开始定位服务
             [locationManager startUpdatingLocation];
 
@@ -99,31 +94,33 @@
     return _backBtn;
 }
 
+
+
 - (void)refreshSchoolBusData{
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
-    
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+    if (!_timer) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
+        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    }
+
 }
 
 
-- (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay{
-    if ([overlay isKindOfClass:[MAMultiPointOverlay class]])
-       {
-           MAMultiPointOverlayRenderer * renderer = [[MAMultiPointOverlayRenderer alloc] initWithMultiPointOverlay:(MAMultiPointOverlay *)overlay];
-           
-           ///设置图片
-           renderer.icon = [UIImage imageNamed:@"BusIcon"];
-           ///设置锚点
-           renderer.anchor = CGPointMake(0.5, 1.0);
-           renderer.delegate = self;
-           return renderer;
-       }
-    return nil;
-}
 
+
+//将原始数据转换为地图上的标记点
 - (void)setupSchoolBusData{
     [SchoolBusData SchoolBusDataWithSuccess:^(NSArray * _Nonnull array) {
-            self.schoolBusDataArray = array;
+        NSMutableArray *mArray = [NSMutableArray array];
+        for (int i = 0; i < array.count; i++) {
+            MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+            SchoolBusData *data = array[i];
+            pointAnnotation.coordinate = CLLocationCoordinate2DMake(data.latitude, data.longitude);
+            pointAnnotation.title = [NSString stringWithFormat:@"BusID : %d",data.busID];
+            
+            [mArray addObject:pointAnnotation];
+        }
+        self.schoolBusPointArray = mArray;
+        NSLog(@"%lu",(unsigned long)array.count);
         } error:^{
 
         }];
@@ -132,7 +129,28 @@
 }
 
 - (void)dealloc{
-    
+    [self.timer invalidate];
 }
 
+
+- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation{
+    
+    if ([annotation isKindOfClass:[MAPointAnnotation class]])
+        {
+            static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
+            MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
+            if (annotationView == nil)
+            {
+                annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
+            }
+            annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
+            annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
+            annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
+            annotationView.pinColor = MAPinAnnotationColorPurple;
+            return annotationView;
+        }
+        return nil;
+    
+    
+}
 @end
