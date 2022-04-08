@@ -23,7 +23,6 @@
     return self;
 }
 
-
 - (void)setSchoolBusPointArray:(NSArray *)schoolBusPointArray{
     
     if (_schoolBusPointArray) {
@@ -97,15 +96,14 @@
 
 
 - (void)refreshSchoolBusData{
+
+    
     if (!_timer) {
         self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
-        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+//        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     }
 
 }
-
-
-
 
 //将原始数据转换为地图上的标记点
 - (void)setupSchoolBusData{
@@ -129,7 +127,8 @@
 }
 
 - (void)dealloc{
-    [self.timer invalidate];
+    [_timer invalidate];
+    _timer = nil;
 }
 
 

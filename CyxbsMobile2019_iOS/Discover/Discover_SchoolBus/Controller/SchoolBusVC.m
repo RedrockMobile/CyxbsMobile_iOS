@@ -29,7 +29,11 @@
     [self.view addSubview:self.schoolBusMapView];
     
     [self.schoolBusMapView addSubview:self.schoolBusBottomView];
+}
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [self.schoolBusMapView.timer invalidate];
+    self.schoolBusMapView.timer = nil;
 }
 
 - (SchoolBusMapView *)schoolBusMapView{

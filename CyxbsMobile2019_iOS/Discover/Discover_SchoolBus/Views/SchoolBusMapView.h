@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///校车位置数组
 @property (nonatomic, copy) NSArray *schoolBusPointArray;
 
-@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, weak) NSTimer *timer;
 
 @end
 
