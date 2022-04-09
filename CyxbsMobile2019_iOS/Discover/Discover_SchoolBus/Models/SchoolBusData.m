@@ -42,7 +42,7 @@
     
     //网络请求 表单数据 (FormData)
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager POST:SCHOOLBUSAPI_DEV parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:SCHOOLBUSAPI parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
             //数据转二进制
             NSData *sData = [s dataUsingEncoding:NSUTF8StringEncoding];
