@@ -138,7 +138,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
 //    self.tabBarController.tabBar.translucent = NO;
 
-    self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
+//    self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
     
     self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
     
