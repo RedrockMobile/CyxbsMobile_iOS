@@ -839,13 +839,6 @@ static int requestCheckinInfo = 0;
     }];
 }
 
-- (void)touchNewsSender {
-    NSLog(@"点击了“教务在线”");
-    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)touchNews {
     NSLog(@"👆点击了新闻");
     JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithJWZXNewsModel:self.jwzxNewsModel];

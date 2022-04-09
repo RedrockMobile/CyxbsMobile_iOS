@@ -140,7 +140,7 @@
         make.width.equalTo(@7);
         make.height.equalTo(@14);
     }];
-    [button addTarget:self action:@selector(JWZXNewVC_pop) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(popController) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)addBackButtonTitle {
     UILabel *label = [[UILabel alloc]init];
