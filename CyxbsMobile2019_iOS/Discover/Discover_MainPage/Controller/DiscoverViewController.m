@@ -28,7 +28,7 @@
 #import "CalendarViewController.h"
 #import "DiscoverADModel.h"
 #import "TestArrangeViewController.h"
-#import "SchoolBusViewController.h"
+#import "SchoolBusVC.h"
 #import "PickerModel.h"
 #import <MBProgressHUD.h>
 #import "ElectricityView.h"
@@ -138,7 +138,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
 //    self.tabBarController.tabBar.translucent = NO;
 
-    self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
+//    self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
     
     self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
     
@@ -855,7 +855,7 @@ static int requestCheckinInfo = 0;
 
 - (void)touchSchoolCar {
     NSLog(@"点击了校车查询");
-    SchoolBusViewController *vc = [[SchoolBusViewController alloc] init];
+    SchoolBusVC *vc = [[SchoolBusVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
