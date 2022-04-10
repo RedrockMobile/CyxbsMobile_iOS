@@ -13,6 +13,7 @@
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
+		1490FC8B28031BC200958892 /* FinderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490FC8A28031BC200958892 /* FinderTopView.m */; };
 		14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */; };
 		14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */; };
 		14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */; };
@@ -725,6 +726,8 @@
 		147842ED27F07A59002359BA /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
 		147842F027F080A6002359BA /* NSDate+Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Day.h"; sourceTree = "<group>"; };
 		147842F127F080A7002359BA /* NSDate+Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Day.m"; sourceTree = "<group>"; };
+		1490FC8928031BC200958892 /* FinderTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderTopView.h; sourceTree = "<group>"; };
+		1490FC8A28031BC200958892 /* FinderTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinderTopView.m; sourceTree = "<group>"; };
 		14981FF427FEA8F200AD2A29 /* JWZXNewsAnnexModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXNewsAnnexModel.h; sourceTree = "<group>"; };
 		14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsAnnexModel.m; sourceTree = "<group>"; };
 		14981FF727FEAEB800AD2A29 /* JWZXDetailNewsTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailNewsTopView.h; sourceTree = "<group>"; };
@@ -832,7 +835,6 @@
 		18CDF4F9257F91BC006E8E5C /* FinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderView.m; sourceTree = "<group>"; };
 		18CDF4FA257F91BC006E8E5C /* VolunteerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerView.h; sourceTree = "<group>"; };
 		18CDF4FB257F91BC006E8E5C /* ElectricityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
-		18CDF4FC257F91BC006E8E5C /* LQQFinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQQFinderView.h; sourceTree = "<group>"; };
 		18CDF4FD257F91BC006E8E5C /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
 		18CDF4FE257F91BC006E8E5C /* VolunteerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerView.m; sourceTree = "<group>"; };
 		18CDF4FF257F91BC006E8E5C /* FinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderView.h; sourceTree = "<group>"; };
@@ -2080,6 +2082,15 @@
 			path = "NSDate+Day";
 			sourceTree = "<group>";
 		};
+		1490FC8C28032A2100958892 /* FinderTopView */ = {
+			isa = PBXGroup;
+			children = (
+				1490FC8928031BC200958892 /* FinderTopView.h */,
+				1490FC8A28031BC200958892 /* FinderTopView.m */,
+			);
+			path = FinderTopView;
+			sourceTree = "<group>";
+		};
 		14981FFD27FEC15900AD2A29 /* JWZXNewsAnnexModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2669,7 +2680,6 @@
 		18CDF4F6257F91BC006E8E5C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF4FC257F91BC006E8E5C /* LQQFinderView.h */,
 				18CDF4FB257F91BC006E8E5C /* ElectricityView.h */,
 				18CDF4F7257F91BC006E8E5C /* ElectricityView.m */,
 				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
@@ -2678,6 +2688,7 @@
 				18CDF4FE257F91BC006E8E5C /* VolunteerView.m */,
 				18CDF4FF257F91BC006E8E5C /* FinderView.h */,
 				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
+				1490FC8C28032A2100958892 /* FinderTopView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6304,6 +6315,7 @@
 				18CDF697257F91BD006E8E5C /* CQUPTVRMapController.m in Sources */,
 				FEBA676427E9BAC000C4D231 /* updatePopView.m in Sources */,
 				18CDF6A2257F91BD006E8E5C /* CQUPTMapImageLayout.m in Sources */,
+				1490FC8B28031BC200958892 /* FinderTopView.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				18CDF70F257F91BE006E8E5C /* BackgroundTableViewCell.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,

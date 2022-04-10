@@ -7,6 +7,10 @@
 
 #import "NSDate+Day.h"
 
+const NSTimeInterval aDayTimeInterval = 24 * 60 * 60;
+
+const NSTimeInterval aWeekTimeInterval = 7 * 24 * 60 * 60;
+
 #pragma mark - NSDate (Day)
 
 @implementation NSDate (Day)
@@ -31,6 +35,27 @@
 - (NSString *)stringFromFormatter:(NSDateFormatter *)formatter withDateFormat:(NSString *)format {
     [formatter setDateFormat:format];
     return [formatter stringFromDate:self];
+}
+
++ (NSString * _Nullable)stringForSchoolWeek:(NSInteger)week {
+    NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
+    return week > weekArray.count ? nil : weekArray[week];
+}
+
+- (NSString *)stringForFastival {
+    NSDictionary *lunDic = @{
+         @"0101":@"元旦",
+         @"0308":@"妇女节",
+         @"0312":@"植树节",
+         @"0501":@"劳动节",
+         @"0601":@"儿童节",
+         @"0801":@"建军节",
+         @"0910":@"教师节",
+         @"1001":@"国庆节",
+         @"1024":@"程序员日"
+    };
+    NSString *md = [self stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"MMdd"];
+    return lunDic[md] ? lunDic[md] : @"";
 }
 
 @end
@@ -66,7 +91,8 @@ static NSDateFormatter *_chineseFormatter = nil;
             _chineseFormatter.standaloneMonthSymbols = _chineseFormatter.shortStandaloneMonthSymbols = _chineseFormatter.monthSymbols;
             
             _chineseFormatter.weekdaySymbols = @[@"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六", @"星期天"];
-            _chineseFormatter.shortWeekdaySymbols = @[@"一", @"二", @"三", @"四", @"五", @"六", @"天"];
+            _chineseFormatter.shortWeekdaySymbols = @[@"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周天"];
+            _chineseFormatter.veryShortWeekdaySymbols = @[@"一", @"二", @"三", @"四", @"五", @"六", @"天"];
             _chineseFormatter.AMSymbol = @"上午";
             _chineseFormatter.PMSymbol = @"下午";
         });

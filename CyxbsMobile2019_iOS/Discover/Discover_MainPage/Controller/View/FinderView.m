@@ -10,32 +10,37 @@
 #import <SDCycleScrollView.h>
 #import "URLController.h"
 
+#import "FinderTopView.h"
+
 #define PingFangSC @".PingFang SC"
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
 
 #define color21_49_91_F2F4FF [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-@interface FinderView()<SDCycleScrollViewDelegate>
-@property NSUserDefaults *defaults;
+@interface FinderView() <
+    SDCycleScrollViewDelegate
+>
+
+/// 顶端视图
+@property (nonatomic, strong) FinderTopView *topView;
+
 @property (nonatomic, weak)SDCycleScrollView *cycleScrollView;
+
 @end
+
 @implementation FinderView
 //MARK: - 初始化部分
 - (instancetype) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-        } else {
-            // Fallback on earlier versions
-        }
+        self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
         self.bannerURLStrings = [NSMutableArray array];
-        [self configUserDefaults];
-        [self addWeekTimeLabel];
-        [self addFinderTitle];
-        [self addWriteButton];
+        
+        // Remake by SSR
+        [self addSubview:self.topView];
+        
         [self addBannerView];
         [self addNewsSender];
         [self addNews];
@@ -44,110 +49,17 @@
     return self;
 }
 
-- (void)configUserDefaults {
-    self.defaults = [NSUserDefaults standardUserDefaults];
+#pragma mark - Getter // Remake by SSR
+
+- (FinderTopView *)topView {
+    if (_topView == nil) {
+        _topView = [[FinderTopView alloc] init];
+        [_topView addSignBtnTarget:self action:@selector(touchWriteButton)];
+        // -- 我的消息 --
+    }
+    return _topView;
 }
-//MARK: - 添加子控件部分
-- (void) addWeekTimeLabel {
-    UILabel *weekTimeLabel = [[UILabel alloc]init];
-    self.weekTime = weekTimeLabel;
-    
-    // 从字符串转换日期
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:DateFormat];
-    NSDate *resDate = [formatter dateFromString:getDateStart_NSString];
-    // 计算当前是第几周
-    NSInteger beginTime=[resDate timeIntervalSince1970];
-    NSDate *now = [NSDate date];
-    NSInteger nowTime = [now timeIntervalSince1970];
-    double day = (float)(nowTime - beginTime)/(float)86400/(float)7;
-    NSInteger nowWeek = (int)ceil(day) - 1;
-    
-    NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
-    
-    //计算星期几
-    NSArray *weekday = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
-    NSDate *nowDate = [NSDate date];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
-    
-    
-    //阳历节日
-       NSDictionary *lunDic = @{
-                                @"1-1":@"元旦",
-                                @"3-8":@"妇女节",
-                                @"3-12":@"植树节",
-                                @"5-1":@"劳动节",
-                                @"6-1":@"儿童节",
-                                @"8-1":@"建军节",
-                                @"9-10":@"教师节",
-                                @"10-1":@"国庆节",
-                                @"10-24":@"程序员日"
-       };
-    NSString *hoildayString = @"";
-    for (NSString *hoilday in lunDic.allKeys) {
-        if([hoilday isEqual:[NSString stringWithFormat:@"%ld-%ld",now.month,now.day]]) {
-            hoildayString = [lunDic objectForKey:hoilday];
-        }
-    }
-    
-    if (nowWeek < 0 || nowWeek >= weekArray.count) {
-        weekTimeLabel.text =[NSString stringWithFormat:@"欢迎新同学～"];
-    } else {
-        weekTimeLabel.text = [NSString stringWithFormat:@"%@ %@ %@", weekArray[nowWeek], weekday[components.weekday - 1],hoildayString];
-    }
-//    weekTimeLabel.text = @"";
-    if (@available(iOS 11.0, *)) {
-        [weekTimeLabel setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
-    } else {
-        [weekTimeLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    }
-    weekTimeLabel.font = [UIFont fontWithName:PingFangSCLight size: 10];
-    [self addSubview:weekTimeLabel];
-    
-}
-- (void) addFinderTitle {
-    UILabel *finderTitle = [[UILabel alloc]init];
-    self.finderTitle = finderTitle;
-    finderTitle .text = @"发现";
-    finderTitle.font = [UIFont fontWithName:PingFangSCBold size: 34];
-    if (@available(iOS 11.0, *)) {
-        finderTitle.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-    }
-    [self addSubview:finderTitle];
-}
-- (void) addWriteButton {
-    UIButton *writeButton = [[UIButton alloc]init];
-    self.writeButton = writeButton;
-    [writeButton addTarget:self action:@selector(touchWriteButton) forControlEvents:UIControlEventTouchUpInside];
-    writeButton.contentMode = UIViewContentModeScaleToFill;
-    writeButton.imageView.contentMode = UIViewContentModeScaleToFill;
-    [writeButton setImage:[UIImage imageNamed:@"writeDiscover"] forState:normal];
-    [self addSubview:writeButton];
-    
-    //++++++++++++++++++检测刷新token的接口是否有问题的代码++++++++++++++++++++  Begain
-    //在掌邮主页签到按钮附近有个小点，正常为绿色，未知状态(一般是刚刚登录)为黄色，不正常为红色
-    UIView *ball = [[UIView alloc] init];
-    [self addSubview:ball];
-    switch ([[NSUserDefaults standardUserDefaults] integerForKey:IS_TOKEN_URL_ERROR_INTEGER]) {
-        case -1:
-            ball.backgroundColor = UIColor.greenColor;
-            break;
-        case 1:
-            ball.backgroundColor = UIColor.redColor;
-            break;
-        default:
-            ball.backgroundColor = UIColor.yellowColor;
-            break;
-    }
-    [ball mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.top.equalTo(self.writeButton);
-        make.height.width.equalTo(@2);
-    }];
-    ball.layer.cornerRadius = 1;
-    //++++++++++++++++++检测刷新token的接口是否有问题的代码++++++++++++++++++++  End
-}
+
 - (void) addBannerView {
 
     NSArray *imagesURLStrings = self.bannerURLStrings;
@@ -190,7 +102,7 @@
 - (void) addNews {
     UIButton *newsButton = [[UIButton alloc]init];
     self.news = newsButton;
-    NSString *title = [self.defaults objectForKey:@"OneNews_oneNews"];
+    NSString *title = [NSUserDefaults.standardUserDefaults objectForKey:@"OneNews_oneNews"];
 
     [newsButton setTitle: title forState:normal];
     if (@available(iOS 11.0, *)) {
@@ -261,26 +173,9 @@
 //MARK: - 约束部分
 - (void) layoutSubviews {
     [super layoutSubviews];
-    [self.weekTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(1.7);
-        make.left.equalTo(self).offset(17);
-    }];
-    [self.finderTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.weekTime.mas_bottom).offset(1);
-        make.left.equalTo(self.weekTime);
-    }];
-    [self.writeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.finderTitle);
-        make.width.height.equalTo(@28);
-        make.right.equalTo(self).offset(-15.6);
-    }];
-    [self.writeButton.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.writeButton);
-        make.width.height.equalTo(@28);
-    }];
     [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(16);
-        make.top.equalTo(self.finderTitle.mas_bottom).offset(5);
+        make.top.equalTo(self.topView.mas_bottom).offset(5);
         make.right.equalTo(self).offset(-16);
         make.height.equalTo(@134);
     }];

@@ -30,19 +30,27 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - FinderView
 
 @interface FinderView : UIView
-@property (nonatomic, weak) UILabel *weekTime;//当前周数
-@property (nonatomic, weak) UILabel *finderTitle;//“发现”标题
-@property (nonatomic, weak) UIButton *writeButton;//签到按钮
+
 @property (nonatomic, weak) SDCycleScrollView *bannerView;//
+
 @property (nonatomic, weak) UIButton *newsSender;//教务在线标题
+
 @property (nonatomic, weak) UIButton *news;//教务在线具体新闻标题
+
 @property (nonatomic, copy)NSMutableArray <EnterButton*>*enterButtonArray;//四个入口按钮
+
 @property (nonatomic, weak)id<LQQFinderViewDelegate> delegate;
+
 @property (nonatomic)NSMutableArray * bannerURLStrings;//轮播图urlString
+
 @property (nonatomic)NSMutableArray * bannerGoToURL;//轮播图目标网页url
+
 -(void)remoreAllEnters;//移除四个入口
+
 -(void)addSomeEnters;//添加四个入口
+
 -(void)updateBannerViewIfNeeded;//在需要的时候更新bannerView
+
 @end
 
 NS_ASSUME_NONNULL_END
