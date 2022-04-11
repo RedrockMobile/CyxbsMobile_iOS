@@ -56,7 +56,6 @@
     [self.messageBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
-
 #pragma mark - Getter
 
 - (UILabel *)detailLab {
@@ -73,7 +72,7 @@
         // about week
         NSString *weekStr = [NSDate.today
                              stringFromFormatter:NSDateFormatter.ChineseFormatter
-                             withDateFormat:@"EEEE"];
+                             withDateFormat:@"EEE"];
         // about fastival
         NSString *fastivalStr = NSDate.today.stringForFastival;
         
