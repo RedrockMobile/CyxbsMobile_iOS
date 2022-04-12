@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @class SDCycleScrollView;
 @protocol LQQFinderViewDelegate <NSObject>
 
-//- (void) touchNewsSender;
-//- (void) touchNews;
 - (void) touchWriteButton;
 - (void) touchFindClass;
 - (void) touchSchoolCar;
@@ -35,10 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FinderView : UIView
 
 @property (nonatomic, weak) SDCycleScrollView *bannerView;//
-
-//@property (nonatomic, weak) UIButton *newsSender;//教务在线标题
-//
-//@property (nonatomic, weak) UIButton *news;//教务在线具体新闻标题
 
 @property (nonatomic, copy)NSMutableArray <EnterButton*>*enterButtonArray;//四个入口按钮
 

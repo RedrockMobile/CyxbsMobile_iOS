@@ -99,22 +99,6 @@ typedef struct {
     self.page = self.page + 1;
 }
 
-#pragma mark - Setter
-
-- (void)setTextCycleView_delegate:
-    (id<TextCycleViewDelegate>)textCycleView_delegate {
-    _textCycleView_delegate = textCycleView_delegate;
-    
-    if ([_textCycleView_delegate respondsToSelector:@selector(textCycleView:setCellStyle:forIndex:)]) {
-        self->_delegateFlags.cellForIndex = YES;
-    }
-}
-
-- (void)setTextAry:(NSArray<NSString *> *)textAry {
-    _textAry = textAry;
-    [self reloadData];
-}
-
 #pragma mark - <UITableViewDelegate>
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -152,6 +136,22 @@ typedef struct {
     }
     cell.ssrTextLab.text = self.textAry[indexPath.row % self.textAry.count];
     return cell;
+}
+
+#pragma mark - Setter
+
+- (void)setTextCycleView_delegate:
+    (id<TextCycleViewDelegate>)textCycleView_delegate {
+    _textCycleView_delegate = textCycleView_delegate;
+    
+    if ([_textCycleView_delegate respondsToSelector:@selector(textCycleView:setCellStyle:forIndex:)]) {
+        self->_delegateFlags.cellForIndex = YES;
+    }
+}
+
+- (void)setTextAry:(NSArray<NSString *> *)textAry {
+    _textAry = textAry;
+    [self reloadData];
 }
 
 @end

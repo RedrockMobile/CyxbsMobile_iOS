@@ -12,6 +12,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - SSRTextCycleCell
+
+/// 文字单个Cell
 @interface SSRTextCycleCell : UITableViewCell
 
 - (instancetype)init NS_UNAVAILABLE;

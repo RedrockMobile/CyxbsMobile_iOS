@@ -8,7 +8,11 @@
 
 #import "SSRTextCycleCell.h"
 
+#pragma mark - SSRTextCycleCell
+
 @implementation SSRTextCycleCell
+
+#pragma mark - Life cycle
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -18,6 +22,8 @@
     }
     return self;
 }
+
+#pragma mark - Getter
 
 - (UILabel *)ssrTextLab {
     if (_ssrTextLab == nil) {
