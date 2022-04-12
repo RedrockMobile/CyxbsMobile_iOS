@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "EnterButton.h"
+
+#import "DiscoverJWZXVC.h"
+
 NS_ASSUME_NONNULL_BEGIN
 @class SDCycleScrollView;
 @protocol LQQFinderViewDelegate <NSObject>
 
-- (void) touchNewsSender;
-- (void) touchNews;
+//- (void) touchNewsSender;
+//- (void) touchNews;
 - (void) touchWriteButton;
 - (void) touchFindClass;
 - (void) touchSchoolCar;
@@ -33,9 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) SDCycleScrollView *bannerView;//
 
-@property (nonatomic, weak) UIButton *newsSender;//教务在线标题
-
-@property (nonatomic, weak) UIButton *news;//教务在线具体新闻标题
+//@property (nonatomic, weak) UIButton *newsSender;//教务在线标题
+//
+//@property (nonatomic, weak) UIButton *news;//教务在线具体新闻标题
 
 @property (nonatomic, copy)NSMutableArray <EnterButton*>*enterButtonArray;//四个入口按钮
 
@@ -44,6 +47,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic)NSMutableArray * bannerURLStrings;//轮播图urlString
 
 @property (nonatomic)NSMutableArray * bannerGoToURL;//轮播图目标网页url
+
+/// 应该在addChildViewController掉用这个 / Remake by SSR
+- (UIViewController *)jwzxViewController;
 
 -(void)remoreAllEnters;//移除四个入口
 

@@ -347,7 +347,13 @@ static int requestCheckinInfo = 0;
 }
 
 - (void)addFinderView {
-    FinderView *finderView = [[FinderView alloc]init];
+    FinderView *finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 0)];
+    
+    // Remake by SSR
+    [self addChildViewController:finderView.jwzxViewController];
+    
+    
+    
     self.finderView = finderView;
     self.finderView.delegate = self;
     [self.contentView addSubview:finderView];
@@ -482,7 +488,7 @@ static int requestCheckinInfo = 0;
 #pragma mark - 即将要被更改的地方
 - (void)updateNewsUI {
     if(self.jwzxNewsModel.jwzxNews.news != nil){
-        [self.finderView.news setTitle:self.jwzxNewsModel.jwzxNews.news.firstObject.title forState:normal];
+//        [self.finderView.news setTitle:self.jwzxNewsModel.jwzxNews.news.firstObject.title forState:normal];
         //同时写入缓存
         [self.defaults setObject:self.jwzxNewsModel.jwzxNews.news.firstObject.title forKey:@"OneNews_oneNews"];
     }

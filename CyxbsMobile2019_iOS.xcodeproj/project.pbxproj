@@ -23,6 +23,9 @@
 		14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A727F5762500B67469 /* QuestionButton.m */; };
 		14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */; };
 		14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */; };
+		14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */; };
+		14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */; };
+		14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */; };
 		185AFA5627022258007F40F9 /* MGDCommen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AFA5527022258007F40F9 /* MGDCommen.swift */; };
 		185AFA5727022258007F40F9 /* MGDCommen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AFA5527022258007F40F9 /* MGDCommen.swift */; };
 		187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4AF260310DD000BCDE9 /* LYEmptyBaseView.m */; };
@@ -746,6 +749,12 @@
 		14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackSelectView.m; sourceTree = "<group>"; };
 		14E7E4B027F57FC800B67469 /* FeedBackQuestionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackQuestionButton.h; sourceTree = "<group>"; };
 		14E7E4B127F57FC800B67469 /* FeedBackSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackSelectView.h; sourceTree = "<group>"; };
+		14FBBD392805050300D5B05D /* DiscoverJWZXVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverJWZXVC.h; sourceTree = "<group>"; };
+		14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverJWZXVC.m; sourceTree = "<group>"; };
+		14FBBD3E280505CC00D5B05D /* SSRTextCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTextCycleView.h; sourceTree = "<group>"; };
+		14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTextCycleView.m; sourceTree = "<group>"; };
+		14FBBD4C2805489A00D5B05D /* SSRTextCycleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSRTextCycleCell.h; sourceTree = "<group>"; };
+		14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSRTextCycleCell.m; sourceTree = "<group>"; };
 		185AFA5427022256007F40F9 /* CyxbsMobile2019_iOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsMobile2019_iOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		185AFA5527022258007F40F9 /* MGDCommen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGDCommen.swift; sourceTree = "<group>"; };
 		187DF4AF260310DD000BCDE9 /* LYEmptyBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYEmptyBaseView.m; sourceTree = "<group>"; };
@@ -2412,6 +2421,7 @@
 		14E7E4A327F5760D00B67469 /* Encapsulation */ = {
 			isa = PBXGroup;
 			children = (
+				14FBBD43280505E700D5B05D /* TextCycleView */,
 				14D03A0C27FE6BE200D6AE93 /* SSRTopBarBaseView */,
 				14E7E4AB27F5763700B67469 /* QuestionSelectView */,
 			);
@@ -2454,6 +2464,34 @@
 				14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */,
 			);
 			path = FeedBackQuestionButton;
+			sourceTree = "<group>";
+		};
+		14FBBD43280505E700D5B05D /* TextCycleView */ = {
+			isa = PBXGroup;
+			children = (
+				14FBBD3E280505CC00D5B05D /* SSRTextCycleView.h */,
+				14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */,
+				14FBBD4F28054AE000D5B05D /* SSRTextCycleCell */,
+			);
+			path = TextCycleView;
+			sourceTree = "<group>";
+		};
+		14FBBD48280541AD00D5B05D /* DiscoverJWZXVC */ = {
+			isa = PBXGroup;
+			children = (
+				14FBBD392805050300D5B05D /* DiscoverJWZXVC.h */,
+				14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */,
+			);
+			path = DiscoverJWZXVC;
+			sourceTree = "<group>";
+		};
+		14FBBD4F28054AE000D5B05D /* SSRTextCycleCell */ = {
+			isa = PBXGroup;
+			children = (
+				14FBBD4C2805489A00D5B05D /* SSRTextCycleCell.h */,
+				14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */,
+			);
+			path = SSRTextCycleCell;
 			sourceTree = "<group>";
 		};
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
@@ -2682,12 +2720,12 @@
 			children = (
 				18CDF4FB257F91BC006E8E5C /* ElectricityView.h */,
 				18CDF4F7257F91BC006E8E5C /* ElectricityView.m */,
-				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
-				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
 				18CDF4FA257F91BC006E8E5C /* VolunteerView.h */,
 				18CDF4FE257F91BC006E8E5C /* VolunteerView.m */,
 				18CDF4FF257F91BC006E8E5C /* FinderView.h */,
 				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
+				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
+				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
 				1490FC8C28032A2100958892 /* FinderTopView */,
 			);
 			path = View;
@@ -2993,6 +3031,7 @@
 		18CDF580257F91BD006E8E5C /* DIscover_JWZX */ = {
 			isa = PBXGroup;
 			children = (
+				14FBBD48280541AD00D5B05D /* DiscoverJWZXVC */,
 				14D03A0827FDD3BB00D6AE93 /* JWZX_News */,
 				18CDF581257F91BD006E8E5C /* JWZX_DetailNews */,
 				18CDF586257F91BD006E8E5C /* News.xcassets */,
@@ -6153,6 +6192,7 @@
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
+				14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */,
 				18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */,
 				AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
@@ -6299,6 +6339,7 @@
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
+				14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */,
 				18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
@@ -6331,6 +6372,7 @@
 				735BC52A26D387C200F22678 /* HistoricalFeedBackViewController.m in Sources */,
 				73AAA1D126C918250084E44D /* DetailsTasksTableView.m in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
+				14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */,
 				B82CA688263159BA00786685 /* DKSKeyboardView.m in Sources */,
 				BE7CBD9627535FC000094AE8 /* MGDCircleLayer.m in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,

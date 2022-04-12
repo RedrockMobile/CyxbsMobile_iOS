@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// "发现"顶视图，直接init
 @interface FinderTopView : UIView
 
+/// 刷新数据
+- (void)reloadData;
+
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
 
 /// 单击了签到

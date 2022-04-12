@@ -24,6 +24,9 @@
 /// 消息按钮
 @property (nonatomic, strong) UIButton *messageBtn;
 
+/// 小圆球（因为需要在外界手动刷新，必须得property）
+@property (nonatomic, strong) UIView *statusBall;
+
 @end
 
 #pragma mark - FinderTopView
@@ -35,13 +38,15 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.frame = CGRectMake(0, 0, SCREEN_WIDTH, 74);
+        self.frame = CGRectMake(0, 0, SCREEN_WIDTH, 60);
         self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
         
         [self addSubview:self.detailLab];
         [self addSubview:self.titleLab];
         [self addSubview:self.signBtn];
 //        [self addSubview:self.messageBtn];
+        
+        [self reloadData];
     }
     return self;
 }
@@ -54,6 +59,20 @@
 
 - (void)addMessageBtnTarget:(id)target action:(SEL)action {
     [self.messageBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)reloadData {
+    switch ([NSUserDefaults.standardUserDefaults integerForKey:IS_TOKEN_URL_ERROR_INTEGER]) {
+        case -1:
+            self.statusBall.backgroundColor = UIColor.greenColor;
+            break;
+        case 1:
+            self.statusBall.backgroundColor = UIColor.redColor;
+            break;
+        default:
+            self.statusBall.backgroundColor = UIColor.yellowColor;
+            break;
+    }
 }
 
 #pragma mark - Getter
@@ -101,25 +120,20 @@
         _signBtn.contentMode = UIViewContentModeScaleToFill;
         _signBtn.imageView.contentMode = UIViewContentModeScaleToFill;
         [_signBtn setImage:[UIImage imageNamed:@"writeDiscover"] forState:UIControlStateNormal];
-        { // 小红点 检测刷新token的接口是否有问题的代码
-            UIView *ball = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 2)];
-            ball.right = _signBtn.SuperRight;
-            ball.layer.cornerRadius = 1;
-            switch ([NSUserDefaults.standardUserDefaults integerForKey:IS_TOKEN_URL_ERROR_INTEGER]) {
-                case -1:
-                    ball.backgroundColor = UIColor.greenColor;
-                    break;
-                case 1:
-                    ball.backgroundColor = UIColor.redColor;
-                    break;
-                default:
-                    ball.backgroundColor = UIColor.yellowColor;
-                    break;
-            }
-            [_signBtn addSubview:ball];
-        }
+        
+        [_signBtn addSubview:self.statusBall];
     }
     return _signBtn;
+}
+
+- (UIView *)statusBall {
+    if (_statusBall == nil) {
+        // 小红点 检测刷新token的接口是否有问题的代码
+        _statusBall = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 2, 2)];
+        _statusBall.right = _signBtn.SuperRight;
+        _statusBall.layer.cornerRadius = 1;
+    }
+    return _statusBall;
 }
 
 - (UIButton *)messageBtn {
