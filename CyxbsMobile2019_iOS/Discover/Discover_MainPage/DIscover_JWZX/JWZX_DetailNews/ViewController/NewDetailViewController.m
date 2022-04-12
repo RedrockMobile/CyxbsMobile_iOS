@@ -49,8 +49,7 @@
     
     self.navigationController.navigationBarHidden = YES;
     
-    // 待适配黑夜
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
 }
 
 - (void)viewDidLoad {

@@ -2149,8 +2149,8 @@
 		1498200227FEC1C000AD2A29 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1498200027FEC18D00AD2A29 /* DetailView */,
 				14981FFF27FEC17500AD2A29 /* TopView */,
+				1498200027FEC18D00AD2A29 /* DetailView */,
 			);
 			path = View;
 			sourceTree = "<group>";

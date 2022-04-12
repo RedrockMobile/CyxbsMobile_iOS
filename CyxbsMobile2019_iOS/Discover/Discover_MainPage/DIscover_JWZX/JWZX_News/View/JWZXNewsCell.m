@@ -7,10 +7,6 @@
 //
 
 #import "JWZXNewsCell.h"
-#define ColorHaveFile  [UIColor colorNamed:@"ColorHaveFile" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define ColorNewsTime  [UIColor colorNamed:@"ColorNewsTime" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define ColorNewsCellTitle  [UIColor colorNamed:@"ColorNewsCellTitle" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define ColorSeperateLine  [UIColor colorNamed:@"ColorSeperateLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 #pragma mark - JWZXNewsCell ()
 
@@ -46,7 +42,7 @@
 - (UILabel *)timeLab {
     if (_timeLab == nil) {
         _timeLab = [[UILabel alloc] init];
-        _timeLab.textColor = ColorNewsTime;
+        _timeLab.textColor = [UIColor colorNamed:@"ColorNewsTime"];
         _timeLab.font = [UIFont fontWithName:PingFangSCBold size:16];
     }
     return _timeLab;
@@ -55,7 +51,7 @@
 - (UILabel *)detailLab {
     if (_detailLab == nil) {
         _detailLab = [[UILabel alloc] init];
-        _detailLab.textColor = ColorNewsCellTitle;
+        _detailLab.textColor = [UIColor colorNamed:@"ColorNewsCellTitle"];
         _detailLab.font = [UIFont fontWithName:PingFangSCRegular size:18];
     }
     return _detailLab;
@@ -64,7 +60,7 @@
 - (UIView *)seperateLine {
     if (_seperateLine == nil) {
         _seperateLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2)];
-        _seperateLine.backgroundColor = ColorSeperateLine;
+        _seperateLine.backgroundColor = [UIColor colorNamed:@"ColorSeperateLine"];
     }
     return _seperateLine;;
 }

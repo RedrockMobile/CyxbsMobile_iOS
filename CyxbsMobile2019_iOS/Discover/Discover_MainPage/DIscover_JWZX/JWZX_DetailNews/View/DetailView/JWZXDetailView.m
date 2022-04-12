@@ -32,6 +32,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
         [self addSubview:self.dateLab];
         [self addSubview:self.titleLab];
         [self addSubview:self.detailView];
