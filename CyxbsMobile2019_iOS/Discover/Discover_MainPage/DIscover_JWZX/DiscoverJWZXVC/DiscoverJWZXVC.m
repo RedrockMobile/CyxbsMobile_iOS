@@ -126,15 +126,23 @@
      animated:YES];
 }
 
-- (void)textCycleView:(SSRTextCycleView *)view setCellStyle:(SSRTextCycleCell *)cell forIndex:(NSInteger)index {
-    cell.ssrTextLab.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
-    cell.ssrTextLab.backgroundColor = UIColor.clearColor;
-    cell.ssrTextLab.font = [UIFont fontWithName:@".PingFang SC" size: 15];
-    cell.backgroundColor = UIColor.clearColor;
-    cell.contentView.backgroundColor = UIColor.clearColor;
-    cell.frame = view.SuperFrame;
-    cell.contentView.frame = cell.SuperFrame;
-    [cell drawTextLab];
+- (SSRTextCycleCell *)textCycleView:(SSRTextCycleView *)view cellForIndex:(NSInteger)index {
+    SSRTextCycleCell *cell = [self.textCycleView dequeueReusableCellWithIdentifier:SSRTextCycleCellReuseIdentifier];
+    
+    if (cell) {
+        cell = [[SSRTextCycleCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:SSRTextCycleCellReuseIdentifier];
+        cell.ssrTextLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        cell.ssrTextLab.backgroundColor = UIColor.clearColor;
+        cell.ssrTextLab.font = [UIFont fontWithName:@".PingFang SC" size:15];
+        cell.backgroundColor = UIColor.clearColor;
+        cell.contentView.backgroundColor = UIColor.clearColor;
+        cell.frame = view.SuperFrame;
+        cell.contentView.frame = cell.SuperFrame;
+        [cell drawTextLab];
+    }
+    return cell;
 }
 
 @end

@@ -125,14 +125,21 @@ typedef struct {
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SSRTextCycleCell *cell = [self dequeueReusableCellWithIdentifier:SSRTextCycleCellReuseIdentifier];
-    if (cell) {
-        cell = [[SSRTextCycleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SSRTextCycleCellReuseIdentifier];
-    }
     // 有代理则代理确定，无代理则默认
     if (self.textCycleView_delegate
         && self.delegateFlags.cellForIndex) {
-        [self.textCycleView_delegate textCycleView:self setCellStyle:cell forIndex:indexPath.row];
+        
+        SSRTextCycleCell *cell = [self.textCycleView_delegate
+                textCycleView:self
+                cellForIndex:indexPath.row];
+
+        cell.ssrTextLab.text = self.textAry[indexPath.row % self.textAry.count];
+        return cell;
+    }
+    
+    SSRTextCycleCell *cell = [self dequeueReusableCellWithIdentifier:SSRTextCycleCellReuseIdentifier];
+    if (cell == nil) {
+        cell = [[SSRTextCycleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SSRTextCycleCellReuseIdentifier];
     }
     cell.ssrTextLab.text = self.textAry[indexPath.row % self.textAry.count];
     return cell;
@@ -144,7 +151,7 @@ typedef struct {
     (id<TextCycleViewDelegate>)textCycleView_delegate {
     _textCycleView_delegate = textCycleView_delegate;
     
-    if ([_textCycleView_delegate respondsToSelector:@selector(textCycleView:setCellStyle:forIndex:)]) {
+    if ([_textCycleView_delegate respondsToSelector:@selector(textCycleView:cellForIndex:)]) {
         self->_delegateFlags.cellForIndex = YES;
     }
 }

@@ -26,6 +26,8 @@
 		14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */; };
 		14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */; };
 		14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */; };
+		14FBBD552805907E00D5B05D /* JWZXNewDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD542805907E00D5B05D /* JWZXNewDownloadVC.m */; };
+		14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD57280591E200D5B05D /* NewDownloadCell.m */; };
 		185AFA5627022258007F40F9 /* MGDCommen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AFA5527022258007F40F9 /* MGDCommen.swift */; };
 		185AFA5727022258007F40F9 /* MGDCommen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AFA5527022258007F40F9 /* MGDCommen.swift */; };
 		187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4AF260310DD000BCDE9 /* LYEmptyBaseView.m */; };
@@ -755,6 +757,10 @@
 		14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTextCycleView.m; sourceTree = "<group>"; };
 		14FBBD4C2805489A00D5B05D /* SSRTextCycleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSRTextCycleCell.h; sourceTree = "<group>"; };
 		14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSRTextCycleCell.m; sourceTree = "<group>"; };
+		14FBBD532805907E00D5B05D /* JWZXNewDownloadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXNewDownloadVC.h; sourceTree = "<group>"; };
+		14FBBD542805907E00D5B05D /* JWZXNewDownloadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXNewDownloadVC.m; sourceTree = "<group>"; };
+		14FBBD56280591E200D5B05D /* NewDownloadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewDownloadCell.h; sourceTree = "<group>"; };
+		14FBBD57280591E200D5B05D /* NewDownloadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewDownloadCell.m; sourceTree = "<group>"; };
 		185AFA5427022256007F40F9 /* CyxbsMobile2019_iOSTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsMobile2019_iOSTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		185AFA5527022258007F40F9 /* MGDCommen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGDCommen.swift; sourceTree = "<group>"; };
 		187DF4AF260310DD000BCDE9 /* LYEmptyBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYEmptyBaseView.m; sourceTree = "<group>"; };
@@ -2494,6 +2500,25 @@
 			path = SSRTextCycleCell;
 			sourceTree = "<group>";
 		};
+		14FBBD592805B13C00D5B05D /* NewDownloadCell */ = {
+			isa = PBXGroup;
+			children = (
+				14FBBD56280591E200D5B05D /* NewDownloadCell.h */,
+				14FBBD57280591E200D5B05D /* NewDownloadCell.m */,
+			);
+			path = NewDownloadCell;
+			sourceTree = "<group>";
+		};
+		14FBBD5A2805B14A00D5B05D /* JWZXNewDownloadVC */ = {
+			isa = PBXGroup;
+			children = (
+				14FBBD532805907E00D5B05D /* JWZXNewDownloadVC.h */,
+				14FBBD542805907E00D5B05D /* JWZXNewDownloadVC.m */,
+				14FBBD592805B13C00D5B05D /* NewDownloadCell */,
+			);
+			path = JWZXNewDownloadVC;
+			sourceTree = "<group>";
+		};
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
 			isa = PBXGroup;
 			children = (
@@ -3034,6 +3059,7 @@
 				14FBBD48280541AD00D5B05D /* DiscoverJWZXVC */,
 				14D03A0827FDD3BB00D6AE93 /* JWZX_News */,
 				18CDF581257F91BD006E8E5C /* JWZX_DetailNews */,
+				14FBBD5A2805B14A00D5B05D /* JWZXNewDownloadVC */,
 				18CDF586257F91BD006E8E5C /* News.xcassets */,
 			);
 			path = DIscover_JWZX;
@@ -6094,6 +6120,7 @@
 				18CDF718257F91BE006E8E5C /* VolunteeringEventItem.m in Sources */,
 				B82CA685263159BA00786685 /* DynamicSpecificCell.m in Sources */,
 				B83766F325C150C000A8666A /* SZHSearchEndCv.m in Sources */,
+				14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
@@ -6313,6 +6340,7 @@
 				18CDF6D2257F91BE006E8E5C /* MGDSliderContentView.m in Sources */,
 				1AD038C023F6BF6B00D5C90E /* EditMyInfoView.m in Sources */,
 				18CDF6D0257F91BE006E8E5C /* MGDSliderBarItem.m in Sources */,
+				14FBBD552805907E00D5B05D /* JWZXNewDownloadVC.m in Sources */,
 				18CDF715257F91BE006E8E5C /* VolunteerActivity.m in Sources */,
 				18CDF71A257F91BE006E8E5C /* ActivityView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,

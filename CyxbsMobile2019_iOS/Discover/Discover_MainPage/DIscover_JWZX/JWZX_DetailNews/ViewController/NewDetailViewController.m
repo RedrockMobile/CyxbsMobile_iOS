@@ -8,6 +8,8 @@
 
 #import "NewDetailViewController.h"
 
+#import "JWZXNewDownLoadVC.h"
+
 #import "JWZXDetailNewsModel.h"
 
 #import "JWZXDetailNewsTopView.h"
@@ -105,13 +107,18 @@
 }
 
 - (void)downLoadFiles {
-    [UIApplication.sharedApplication
-      openURL:[NSURL URLWithString:
-        [NSString stringWithFormat: @"%@?id=%@",
-        [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/file"],
-         self.detailNewsModel.annexModels[0].annexID]]
-      options:@{}
-      completionHandler:nil];
+    
+    if (self.detailNewsModel.annexModels.count == 1) {
+        [UIApplication.sharedApplication
+          openURL:[NSURL URLWithString:
+            [NSString stringWithFormat: @"%@?id=%@",
+            [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/file"],
+             self.detailNewsModel.annexModels[0].annexID]]
+          options:@{}
+          completionHandler:nil];
+    } else {
+        [self presentViewController:[[JWZXNewDownloadVC alloc] initWithDetailNewsModel:self.detailNewsModel] animated:YES completion:nil];
+    }
 }
 
 - (void)popController {

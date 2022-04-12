@@ -30,9 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 自定义Cell样式，最好为分类（而不是继承）
 /// @param view 文字轮播器
-/// @param cell cell样式
 /// @param index 第index个cell
-- (void)textCycleView:(SSRTextCycleView *)view setCellStyle:(SSRTextCycleCell *)cell forIndex:(NSInteger)index;
+- (SSRTextCycleCell *)textCycleView:(SSRTextCycleView *)view cellForIndex:(NSInteger)index;
 
 @end
 
