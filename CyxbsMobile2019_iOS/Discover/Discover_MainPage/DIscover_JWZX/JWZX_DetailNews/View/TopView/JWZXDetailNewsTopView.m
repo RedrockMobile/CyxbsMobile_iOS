@@ -27,6 +27,7 @@
     self = [super initWithSafeViewHeight:height];
     if (self) {
         self.hadLine = YES;
+        self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
         [self
          addTitle:@"教务新闻"
          withTitleLay:SSRTopBarBaseViewTitleLabLayLeft

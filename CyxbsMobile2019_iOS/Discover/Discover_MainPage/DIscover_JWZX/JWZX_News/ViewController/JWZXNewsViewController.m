@@ -53,7 +53,7 @@
     [super viewWillAppear:animated];
     
     // 白天和黑夜的颜色适配未完成
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
     
     // 替代navigation的需要封装
     self.navigationController.navigationBar.hidden = YES;

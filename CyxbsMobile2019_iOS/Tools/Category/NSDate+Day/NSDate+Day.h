@@ -9,6 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+UIKIT_EXTERN const NSTimeInterval aDayTimeInterval;
+
+UIKIT_EXTERN const NSTimeInterval aWeekTimeInterval;
+
 #pragma mark - NSDate (Day)
 
 @interface NSDate (Day)
@@ -27,6 +31,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 通过formate形式取出数据
 - (NSString *)stringFromFormatter:(NSDateFormatter *)formatter withDateFormat:(NSString *)format;
+
+/// 返回“第n周”或nil
+/// @param week 传入星期
++ (NSString * _Nullable)stringForSchoolWeek:(NSInteger)week;
+
+/// 如果是节日则返回节日，没有则为@""
+- (NSString *)stringForFastival;
 
 @end
 

@@ -10,148 +10,78 @@
 #import <SDCycleScrollView.h>
 #import "URLController.h"
 
+#import "FinderTopView.h"
+
 #define PingFangSC @".PingFang SC"
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
 
 #define color21_49_91_F2F4FF [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
-@interface FinderView()<SDCycleScrollViewDelegate>
-@property NSUserDefaults *defaults;
+@interface FinderView() <
+    SDCycleScrollViewDelegate
+>
+
+/// 顶端视图 / Remake by SSR
+@property (nonatomic, strong) FinderTopView *topView;
+
+/// 教务在线 / Remake by SSR
+@property (nonatomic, strong) DiscoverJWZXVC *jwzxVC;
+
 @property (nonatomic, weak)SDCycleScrollView *cycleScrollView;
+
 @end
+
 @implementation FinderView
 //MARK: - 初始化部分
 - (instancetype) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ColorBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-        } else {
-            // Fallback on earlier versions
-        }
+        self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
         self.bannerURLStrings = [NSMutableArray array];
-        [self configUserDefaults];
-        [self addWeekTimeLabel];
-        [self addFinderTitle];
-        [self addWriteButton];
+        
+        // Remake by SSR
+        [self addSubview:self.topView];
+        
         [self addBannerView];
-        [self addNewsSender];
-        [self addNews];
+        
+        [self addSubview:self.jwzxVC.view];
+//        [self addNewsSender];
+//        [self addNews];
         [self addSomeEnters];
     }
     return self;
 }
 
-- (void)configUserDefaults {
-    self.defaults = [NSUserDefaults standardUserDefaults];
+#pragma mark - Getter // Remake by SSR
+
+- (FinderTopView *)topView {
+    if (_topView == nil) {
+        _topView = [[FinderTopView alloc] init];
+        [_topView addSignBtnTarget:self action:@selector(touchWriteButton)];
+        // -- 我的消息 --
+    }
+    return _topView;
 }
-//MARK: - 添加子控件部分
-- (void) addWeekTimeLabel {
-    UILabel *weekTimeLabel = [[UILabel alloc]init];
-    self.weekTime = weekTimeLabel;
-    
-    // 从字符串转换日期
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:DateFormat];
-    NSDate *resDate = [formatter dateFromString:getDateStart_NSString];
-    // 计算当前是第几周
-    NSInteger beginTime=[resDate timeIntervalSince1970];
-    NSDate *now = [NSDate date];
-    NSInteger nowTime = [now timeIntervalSince1970];
-    double day = (float)(nowTime - beginTime)/(float)86400/(float)7;
-    NSInteger nowWeek = (int)ceil(day) - 1;
-    
-    NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
-    
-    //计算星期几
-    NSArray *weekday = @[@"周日", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
-    NSDate *nowDate = [NSDate date];
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *components = [calendar components:NSCalendarUnitWeekday fromDate:nowDate];
-    
-    
-    //阳历节日
-       NSDictionary *lunDic = @{
-                                @"1-1":@"元旦",
-                                @"3-8":@"妇女节",
-                                @"3-12":@"植树节",
-                                @"5-1":@"劳动节",
-                                @"6-1":@"儿童节",
-                                @"8-1":@"建军节",
-                                @"9-10":@"教师节",
-                                @"10-1":@"国庆节",
-                                @"10-24":@"程序员日"
-       };
-    NSString *hoildayString = @"";
-    for (NSString *hoilday in lunDic.allKeys) {
-        if([hoilday isEqual:[NSString stringWithFormat:@"%ld-%ld",now.month,now.day]]) {
-            hoildayString = [lunDic objectForKey:hoilday];
-        }
+
+- (DiscoverJWZXVC *)jwzxVC {
+    if (_jwzxVC == nil) {
+        _jwzxVC = [[DiscoverJWZXVC alloc] initWithViewFrame:CGRectMake(0, self.bannerView.bottom + 14, self.width, 19.52)];
     }
-    
-    if (nowWeek < 0 || nowWeek >= weekArray.count) {
-        weekTimeLabel.text =[NSString stringWithFormat:@"欢迎新同学～"];
-    } else {
-        weekTimeLabel.text = [NSString stringWithFormat:@"%@ %@ %@", weekArray[nowWeek], weekday[components.weekday - 1],hoildayString];
-    }
-//    weekTimeLabel.text = @"";
-    if (@available(iOS 11.0, *)) {
-        [weekTimeLabel setTextColor:[UIColor colorNamed:@"QANavigationTitleColor"]];
-    } else {
-        [weekTimeLabel setTextColor:[UIColor colorWithHexString:@"#15315B"]];
-    }
-    weekTimeLabel.font = [UIFont fontWithName:PingFangSCLight size: 10];
-    [self addSubview:weekTimeLabel];
-    
+    return _jwzxVC;
 }
-- (void) addFinderTitle {
-    UILabel *finderTitle = [[UILabel alloc]init];
-    self.finderTitle = finderTitle;
-    finderTitle .text = @"发现";
-    finderTitle.font = [UIFont fontWithName:PingFangSCBold size: 34];
-    if (@available(iOS 11.0, *)) {
-        finderTitle.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-    }
-    [self addSubview:finderTitle];
+
+#pragma mark - Method
+
+- (UIViewController *)jwzxViewController {
+    return self.jwzxVC;
 }
-- (void) addWriteButton {
-    UIButton *writeButton = [[UIButton alloc]init];
-    self.writeButton = writeButton;
-    [writeButton addTarget:self action:@selector(touchWriteButton) forControlEvents:UIControlEventTouchUpInside];
-    writeButton.contentMode = UIViewContentModeScaleToFill;
-    writeButton.imageView.contentMode = UIViewContentModeScaleToFill;
-    [writeButton setImage:[UIImage imageNamed:@"writeDiscover"] forState:normal];
-    [self addSubview:writeButton];
-    
-    //++++++++++++++++++检测刷新token的接口是否有问题的代码++++++++++++++++++++  Begain
-    //在掌邮主页签到按钮附近有个小点，正常为绿色，未知状态(一般是刚刚登录)为黄色，不正常为红色
-    UIView *ball = [[UIView alloc] init];
-    [self addSubview:ball];
-    switch ([[NSUserDefaults standardUserDefaults] integerForKey:IS_TOKEN_URL_ERROR_INTEGER]) {
-        case -1:
-            ball.backgroundColor = UIColor.greenColor;
-            break;
-        case 1:
-            ball.backgroundColor = UIColor.redColor;
-            break;
-        default:
-            ball.backgroundColor = UIColor.yellowColor;
-            break;
-    }
-    [ball mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.top.equalTo(self.writeButton);
-        make.height.width.equalTo(@2);
-    }];
-    ball.layer.cornerRadius = 1;
-    //++++++++++++++++++检测刷新token的接口是否有问题的代码++++++++++++++++++++  End
-}
+
 - (void) addBannerView {
 
     NSArray *imagesURLStrings = self.bannerURLStrings;
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectZero delegate:self placeholderImage:[UIImage imageNamed:@"Discover_placeholder"]];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(16, self.topView.bottom + 16, self.width - 2 * 16, 134) delegate:self placeholderImage:[UIImage imageNamed:@"Discover_placeholder"]];
     self.bannerView = cycleScrollView;
     cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     cycleScrollView.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
@@ -172,35 +102,7 @@
     [self.cycleScrollView removeFromSuperview];
     [self addBannerView];
 }
-- (void) addNewsSender {
-    UIButton *button = [[UIButton alloc]init];
-    self.newsSender = button;
-    [button addTarget:self action:@selector(touchNewsSender) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"教务在线" forState:normal];
-    button.titleLabel.textColor = [UIColor whiteColor];
-    if (@available(iOS 11.0, *)) {
-        [button setBackgroundImage:[UIImage imageNamed:@"教务在线背景"] forState:normal];
-        [button setTitleColor:[UIColor colorNamed:@"whiteColor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil] forState:normal];
-    }
-    button.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 11];
-    
-    button.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:button];
-}
-- (void) addNews {
-    UIButton *newsButton = [[UIButton alloc]init];
-    self.news = newsButton;
-    NSString *title = [self.defaults objectForKey:@"OneNews_oneNews"];
 
-    [newsButton setTitle: title forState:normal];
-    if (@available(iOS 11.0, *)) {
-        [newsButton setTitleColor:color21_49_91_F2F4FF forState:normal];
-    }
-    newsButton.titleLabel.font = [UIFont fontWithName:PingFangSC size: 15];
-    newsButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    [newsButton addTarget:self action:@selector(touchNews) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:newsButton];
-}
 -(void) remoreAllEnters {
     for (EnterButton *enterButton in self.enterButtonArray) {
         [enterButton removeFromSuperview];
@@ -219,18 +121,21 @@
         //nameArray = [@[@"空教室", @"校车轨迹", @"查课表", @"更多功能"] mutableCopy];//用来保存图片和名称
         nameArray = [@[@"空教室", @"查课表",@"我的考试", @"更多功能"] mutableCopy];//用来保存图片和名称
     }
-        
     NSMutableArray *array = [NSMutableArray array];
     for (NSString *name in nameArray){
-        UIButton *imageButton= [[UIButton alloc]init];
-        UILabel *label = [[UILabel alloc]init];
+        UIButton *imageButton= [[UIButton alloc]initWithFrame:CGRectMake(0, 0, EnterButtonWidth, EnterButtonWidth)];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, EnterButtonWidth, EnterButtonWidth, 20)];
         EnterButton *button;
         [imageButton setImage:[UIImage imageNamed:name] forState:normal];
         label.text = name;
         button = [[EnterButton alloc]initWithImageButton:imageButton label:label];
+        button.top = self.jwzxVC.view.bottom + 15;
+        button.width = imageButton.width;
+        button.height = imageButton.height + label.height;
         [array addObject:button];
     }
     self.enterButtonArray = array;
+    
     
 
     for (EnterButton *enterButton in self.enterButtonArray) {
@@ -256,82 +161,20 @@
         [self addSubview:enterButton];
     }
 
+    // UI Remake by SSR : Need to Remake again
+    EnterButton *firstBtn = self.enterButtonArray[0];
+    firstBtn.left = Gap;
+    
+    EnterButton *lastBtn = self.enterButtonArray[3];
+    lastBtn.right = self.SuperRight - Gap;
+    
+    CGFloat midleGap = (lastBtn.left - firstBtn.left) / 3;
+    for (NSInteger i = 1; i < 3; i++) {
+        self.enterButtonArray[i].left = firstBtn.left + i * midleGap;
+    }
     
 }
-//MARK: - 约束部分
-- (void) layoutSubviews {
-    [super layoutSubviews];
-    [self.weekTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(1.7);
-        make.left.equalTo(self).offset(17);
-    }];
-    [self.finderTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.weekTime.mas_bottom).offset(1);
-        make.left.equalTo(self.weekTime);
-    }];
-    [self.writeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.finderTitle);
-        make.width.height.equalTo(@28);
-        make.right.equalTo(self).offset(-15.6);
-    }];
-    [self.writeButton.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.writeButton);
-        make.width.height.equalTo(@28);
-    }];
-    [self.bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(16);
-        make.top.equalTo(self.finderTitle.mas_bottom).offset(5);
-        make.right.equalTo(self).offset(-16);
-        make.height.equalTo(@134);
-    }];
-    [self.newsSender mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.bannerView.mas_bottom).offset(13);
-        make.left.equalTo(self.bannerView);
-        make.width.equalTo(@68);
-        make.height.equalTo(@19.52);
-    }];
-    [self.news mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.newsSender);
-        make.left.equalTo(self.newsSender.mas_right).offset(14);
-        make.right.lessThanOrEqualTo(self.bannerView);
-        make.height.equalTo(self.newsSender);
-    }];
-    
-    // 下面是按钮入口的约束
 
-    /*这里的实现思路是：将第一个和最后一个控件的位置写定，然后剩下的控件平分的排列在中央*/
-    
-        //i是用来记录当前正在设置哪一个控件的约束
-        int i = 0;
-        for (EnterButton *button in self.enterButtonArray) {
-            if (button == self.enterButtonArray[0]) {
-                [button mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.left.equalTo(self).offset(Gap);
-                    make.top.equalTo(self.newsSender.mas_bottom).offset(15);
-                    make.width.height.equalTo(@EnterButtonWidth);
-                }];
-            } else if (button == self.enterButtonArray[self.enterButtonArray.count - 1]) {
-                [button mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.right.equalTo(self).offset(-Gap);
-                    make.top.equalTo(self.enterButtonArray[0].imageButton);
-                    make.width.height.equalTo(@EnterButtonWidth);
-                }];
-            } else {
-                //x表示第一个button的右边和最后一个button的左边中间的距离
-                float x = self.width - 2 * Gap - 2 * EnterButtonWidth;
-                //y表示x减去控件长度之后剩下的长度
-                float y = x - (self.enterButtonArray.count - 2) * EnterButtonWidth;
-                //z代表每个控件左边距离self的距离
-                float z = Gap + EnterButtonWidth + i * y / (self.enterButtonArray.count - 1) + (i - 1) * EnterButtonWidth;
-                [button mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.equalTo(self.enterButtonArray[0].imageButton);
-                    make.width.height.equalTo(@EnterButtonWidth);
-                    make.left.equalTo(@(z));
-                }];
-            }
-            i++;
-        }
-}
 //MARK: - bannerView按钮触发事件
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     
@@ -358,16 +201,7 @@
         [self.delegate touchMyTest];
     }
 }
-- (void) touchNewsSender {
-    if([self.delegate respondsToSelector:@selector(touchNewsSender)]) {
-        [self.delegate touchNewsSender];
-    }
-}
-- (void) touchNews {
-    if([self.delegate respondsToSelector:@selector(touchNews)]) {
-        [self.delegate touchNews];
-    }
-}
+
 - (void) touchWriteButton {
     if([self.delegate respondsToSelector:@selector(touchWriteButton)]) {
         [self.delegate touchWriteButton];
