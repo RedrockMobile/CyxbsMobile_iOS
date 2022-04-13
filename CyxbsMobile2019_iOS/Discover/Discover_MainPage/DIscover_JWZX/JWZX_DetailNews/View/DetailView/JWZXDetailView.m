@@ -77,6 +77,7 @@
         _detailView.editable = NO;
         _detailView.font = [UIFont fontWithName:PingFangSCRegular size:15];
         _detailView.textColor = [UIColor colorNamed:@"ColorNewsCellTitle"];
+        _detailView.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
     }
     return _detailView;
 }
