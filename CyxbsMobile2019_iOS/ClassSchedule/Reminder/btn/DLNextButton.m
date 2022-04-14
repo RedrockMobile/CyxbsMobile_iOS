@@ -14,7 +14,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         CGFloat rateX = [UIScreen mainScreen].bounds.size.width / 375;
-//        CGFloat rateY = [UIScreen mainScreen].bounds.size.height / 812;
         self.layer.cornerRadius = 20 * rateX;
         self.layer.masksToBounds = YES;
         self.backgroundColor = [UIColor colorWithHexString:@"#5D5DF7"];
@@ -23,7 +22,10 @@
         gl.frame = CGRectMake(154.0,438.0,66.0,66.0);
         gl.startPoint = CGPointMake(0.03191028907895088, 0.9692919254302979);
         gl.endPoint = CGPointMake(3.1294407844543457, -1.995104193687439);
-        gl.colors = @[(__bridge id)[UIColor colorWithHexString:@"#4841E2"].CGColor,(__bridge id)[UIColor colorWithHexString:@"#5D5DF7"].CGColor];
+        gl.colors = @[
+            (__bridge id)[UIColor colorWithHexString:@"#4841E2"].CGColor,
+            (__bridge id)[UIColor colorWithHexString:@"#5D5DF7"].CGColor
+        ];
         gl.locations = @[@(0),@(1.0f)];
         [self.layer addSublayer: gl];
         

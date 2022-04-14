@@ -14,12 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIColor (Color)
 
 /**16进制颜色转换为UIColor*/
-+ (UIColor *)colorWithHexString:(NSString *)hexColor
-                          alpha:(float)opacity;
+//+ (UIColor *)colorWithHexString:(NSString *)hexColor
+//                          alpha:(float)opacity;
 
 /**十六进制数值转换为UIColor*/
-+ (UIColor*)colorWith0xUInteger:(NSUInteger)hex
-                          alpha:(CGFloat)alpha;
+//+ (UIColor*)colorWith0xUInteger:(NSUInteger)hex
+//                          alpha:(CGFloat)alpha;
 
 /**类方法比较两个color*/
 + (BOOL)color:(UIColor *)oneColor isEquelToAnotherColor:(UIColor *)anotherColor;
