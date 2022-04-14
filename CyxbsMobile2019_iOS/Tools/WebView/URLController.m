@@ -160,4 +160,23 @@
     }
 }
 
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    WKNavigationActionPolicy policy = WKNavigationActionPolicyAllow;
+
+     NSLog(@"url = %@",navigationAction.request.URL);
+     NSLog(@"host = %@",[navigationAction.request.URL host]);
+     NSLog(@"scheme = %@",[navigationAction.request.URL scheme]);
+
+     /*
+         如果是域名，判断itunes的host链接 ；
+         如果是scheme跳转，就判断是否是 App Store 的 scheme
+     */
+
+     if([[navigationAction.request.URL host] isEqualToString:@"itunes.apple.com"] || [[navigationAction.request.URL scheme] isEqualToString:@"itms-apps"]) {
+         [UIApplication.sharedApplication
+          openURL:navigationAction.request.URL options:@{} completionHandler:nil];
+     }
+     decisionHandler(policy);
+}
+
 @end
