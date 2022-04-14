@@ -49,9 +49,6 @@ typedef struct {
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self registerClass:SSRTextCycleCell.class
-     forCellReuseIdentifier:SSRTextCycleCellReuseIdentifier];
-        
         self.page = 0;
         self.autoTimeInterval = 2;
     }

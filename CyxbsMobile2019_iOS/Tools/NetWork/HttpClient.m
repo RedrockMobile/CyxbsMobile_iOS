@@ -41,7 +41,7 @@
 }
 
 - (void)requestWithPath:(NSString *)url
-                 method:(NSInteger)method
+                 method:(HttpRequestType)method
              parameters:(id)parameters
          prepareExecute:(PrepareExecuteBlock) prepare
                progress:(void (^)(NSProgress * progress))progress
@@ -72,7 +72,7 @@
 }
 
 - (void)requestWithJson:(NSString *)url
-                 method:(NSInteger)method
+                 method:(HttpRequestType)method
              parameters:(id)parameters
          prepareExecute:(PrepareExecuteBlock) prepare
                progress:(void (^)(NSProgress * progress))progress

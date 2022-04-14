@@ -20,9 +20,6 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.ssrTextLab];
-        if (self.cellStyle) {
-            self.cellStyle(self);
-        }
     }
     return self;
 }
@@ -38,17 +35,6 @@
 
 - (void)drawTextLab {
     self.ssrTextLab.frame = self.contentView.SuperFrame;
-}
-
-#pragma mark - Setter
-
-- (void)setCellStyle:(cellStyle)cellStyle {
-    if (_cellStyle) {
-        return;
-    }else {
-        cellStyle(self);
-    }
-    _cellStyle = cellStyle;
 }
 
 @end

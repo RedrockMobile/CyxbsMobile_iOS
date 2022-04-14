@@ -12,10 +12,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SSRTextCycleCell;
-
-typedef void (^cellStyle)(SSRTextCycleCell *);
-
 #pragma mark - SSRTextCycleCell
 
 /// 文字单个Cell
@@ -23,9 +19,6 @@ typedef void (^cellStyle)(SSRTextCycleCell *);
 
 /// 全frame屏Lab
 @property (nonatomic, strong) UILabel *ssrTextLab;
-
-/// 设置cell的style
-@property (nonatomic, copy) cellStyle cellStyle;
 
 /// 绘制，可重写
 - (void)drawTextLab;
