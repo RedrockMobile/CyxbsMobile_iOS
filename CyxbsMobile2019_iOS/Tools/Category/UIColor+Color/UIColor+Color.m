@@ -18,7 +18,7 @@
  @return 16进制字符串对应的颜色
  */
 + (UIColor *)colorWithHexString:(NSString *)hexColor
-                          alpha:(float)opacity {
+                          alpha:(CGFloat)opacity {
     NSString * cString = [[hexColor stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
 
     // String should be 6 or 8 characters

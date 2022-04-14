@@ -17,8 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 文字单个Cell
 @interface SSRTextCycleCell : UITableViewCell
 
-- (instancetype)init NS_UNAVAILABLE;
-
 /// 全frame屏Lab
 @property (nonatomic, strong) UILabel *ssrTextLab;
 

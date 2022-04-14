@@ -57,6 +57,7 @@
         for (JWZXNew *aNew in self.newsModel.jwzxNews.news) {
             [titleAry addObject:aNew.title];
         }
+        [NSUserDefaults.standardUserDefaults setObject:titleAry[0] forKey:@"OneNews_oneNews"];
         self.textCycleView.textAry = titleAry.copy;
     }
      failure:^(NSError * _Nonnull error) {
@@ -102,7 +103,7 @@
         _textCycleView.autoTimeInterval = 3;
         
         NSString *oneNew = [NSUserDefaults.standardUserDefaults objectForKey:@"OneNews_oneNews"];
-        _textCycleView.textAry = oneNew ? @[oneNew] : @[];
+        _textCycleView.textAry = oneNew ? @[oneNew] : @[@"教务新闻正在请求中..."];
         _textCycleView.textCycleView_delegate = self;
     }
     return _textCycleView;
@@ -129,7 +130,7 @@
 - (SSRTextCycleCell *)textCycleView:(SSRTextCycleView *)view cellForIndex:(NSInteger)index {
     SSRTextCycleCell *cell = [self.textCycleView dequeueReusableCellWithIdentifier:SSRTextCycleCellReuseIdentifier];
     
-    if (cell) {
+    if (cell == nil) {
         cell = [[SSRTextCycleCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:SSRTextCycleCellReuseIdentifier];

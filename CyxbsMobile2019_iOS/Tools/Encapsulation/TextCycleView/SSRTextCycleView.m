@@ -49,9 +49,6 @@ typedef struct {
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [self registerClass:UITableViewCell.class
-     forCellReuseIdentifier:SSRTextCycleCellReuseIdentifier];
-        
         self.page = 0;
         self.autoTimeInterval = 2;
     }
@@ -128,7 +125,7 @@ typedef struct {
     // 有代理则代理确定，无代理则默认
     if (self.textCycleView_delegate
         && self.delegateFlags.cellForIndex) {
-        
+
         SSRTextCycleCell *cell = [self.textCycleView_delegate
                 textCycleView:self
                 cellForIndex:indexPath.row];
@@ -157,7 +154,7 @@ typedef struct {
 }
 
 - (void)setTextAry:(NSArray<NSString *> *)textAry {
-    _textAry = textAry;
+    _textAry = textAry.copy;
     [self reloadData];
 }
 

@@ -76,7 +76,7 @@
             break;
         }
         case SSRTopBarBaseViewTitleLabLayLeft: {
-            self.titleLab.left = self.backBtn.right + 6;
+            self.titleLab.left = self.backBtn.right + 10;
             break;
         }
     }
@@ -100,7 +100,7 @@
 
 - (UIButton *)backBtn {
     if (_backBtn == nil) {
-        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(6, 0, 44, 44)];
+        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 0, 15, 30)];
         [_backBtn setImage:[UIImage imageNamed:@"navBar_back"] forState:UIControlStateNormal];
         _backBtn.layer.cornerRadius = 10;
         _backBtn.backgroundColor = [UIColor clearColor];
