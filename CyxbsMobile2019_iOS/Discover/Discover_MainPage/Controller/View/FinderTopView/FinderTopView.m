@@ -21,11 +21,14 @@
 /// 签到按钮
 @property (nonatomic, strong) UIButton *signBtn;
 
+/// 小圆球（因为需要在外界手动刷新，必须得property）
+@property (nonatomic, strong) UIView *statusBall;
+
 /// 消息按钮
 @property (nonatomic, strong) UIButton *messageBtn;
 
-/// 小圆球（因为需要在外界手动刷新，必须得property）
-@property (nonatomic, strong) UIView *statusBall;
+/// 已读的Ball
+@property (nonatomic, strong) UIView *readBall;
 
 @end
 
@@ -138,9 +141,34 @@
 
 - (UIButton *)messageBtn {
     if (_messageBtn == nil) {
-        
+        _messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.signBtn.top, 24, 24)];
+        _messageBtn.right = self.signBtn.left - 10;
+        _messageBtn.backgroundColor = UIColor.greenColor;
     }
     return _messageBtn;
+}
+
+- (UIView *)readBall {
+    if (_readBall == nil) {
+        _readBall = [[UIView alloc] initWithFrame:CGRectMake(self.signBtn.SuperRight + 2, -2, 4, 4)];
+        _readBall.backgroundColor = UIColor.redColor;
+        _readBall.layer.cornerRadius = _readBall.width / 2;
+        _readBall.clipsToBounds = YES;
+    }
+    return _readBall;
+}
+
+#pragma mark - Setter
+
+- (void)setHadRead:(BOOL)hadRead {
+    if (_hadRead == hadRead) {
+        return;
+    }
+    if (hadRead) {
+        [self.messageBtn addSubview:self.readBall];
+    } else {
+        [self.readBall removeFromSuperview];
+    }
 }
 
 @end

@@ -2684,8 +2684,6 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4F6257F91BC006E8E5C /* View */,
-				18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */,
-				18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */,
 				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
 				18CDF4DC257F91BC006E8E5C /* Model */,
 			);
@@ -2751,6 +2749,8 @@
 				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
 				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
 				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
+				18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */,
+				18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */,
 				1490FC8C28032A2100958892 /* FinderTopView */,
 			);
 			path = View;

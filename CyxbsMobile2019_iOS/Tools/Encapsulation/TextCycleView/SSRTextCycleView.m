@@ -115,10 +115,12 @@ typedef struct {
     if (self.textAry == nil || self.textAry.count <= 1) {
         [self endTimer];
         return 1;
-    }
+    }else {
     // 如果有数据，那就开循环
-    [self startTimer];
-    return self.textAry.count + 1;
+        [self startTimer];
+        return self.textAry.count + 1;
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -155,7 +157,9 @@ typedef struct {
 
 - (void)setTextAry:(NSArray<NSString *> *)textAry {
     _textAry = textAry.copy;
+    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
     [self reloadData];
 }
+
 
 @end
