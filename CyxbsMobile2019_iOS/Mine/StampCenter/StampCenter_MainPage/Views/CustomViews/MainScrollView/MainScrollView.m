@@ -8,7 +8,7 @@
 
 #import "MainScrollView.h"
 #import "GoodsCollectionViewCell.h"
-#import "SecondHeaderView.h"
+#import "StampCenterSecondHeaderView.h"
 @implementation MainScrollView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -41,8 +41,8 @@
         _collection.bounces = NO;
         _collection.backgroundColor = [UIColor colorNamed:@"#FBFCFF"];
         [_collection registerClass:[GoodsCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-        [_collection registerClass:[SecondHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-        _collectionHeaderView = [[CollectionHeaderView alloc]initWithFrame:CGRectMake(0, 215, SCREEN_WIDTH, COLLECTIONHEADER_H)];
+        [_collection registerClass:[StampCenterSecondHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+        _collectionHeaderView = [[StampCenterCollectionHeaderView alloc]initWithFrame:CGRectMake(0, 215, SCREEN_WIDTH, COLLECTIONHEADER_H)];
         UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 215+65)];
         v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
         [v addSubview:_collectionHeaderView];

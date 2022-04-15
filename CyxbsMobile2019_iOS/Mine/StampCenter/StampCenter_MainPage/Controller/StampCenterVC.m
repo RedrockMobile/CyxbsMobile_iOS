@@ -11,7 +11,7 @@
 #import "DetailsMainViewController.h"
 #import "ExchangeCenterViewController.h"
 #import "GoodsCollectionViewCell.h"
-#import "SecondHeaderView.h"
+#import "StampCenterSecondHeaderView.h"
 #import "TaskTableViewCellWithProgress.h"
 #import "SZHReleaseDynamic.h"
 #import "QueryLoginViewController.h"
@@ -328,7 +328,7 @@
 //HeaderView
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     if (kind == UICollectionElementKindSectionHeader) {
-        SecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
+        StampCenterSecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
         collectionheader.backgroundColor = [UIColor colorNamed:@"#FBFCFF"];
         if (indexPath.section == 0) {
             collectionheader.height = 0;

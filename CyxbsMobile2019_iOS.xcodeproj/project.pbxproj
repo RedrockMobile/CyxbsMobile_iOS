@@ -319,8 +319,8 @@
 		4931630A26CD7B6800140412 /* TaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162E926CD7B6800140412 /* TaskTableViewCell.m */; };
 		4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162ED26CD7B6800140412 /* GoodsCollectionViewCell.m */; };
 		4931630C26CD7B6800140412 /* GotoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F026CD7B6800140412 /* GotoButton.m */; };
-		4931630D26CD7B6800140412 /* CollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F426CD7B6800140412 /* CollectionHeaderView.m */; };
-		4931630E26CD7B6800140412 /* SecondHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F526CD7B6800140412 /* SecondHeaderView.m */; };
+		4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F426CD7B6800140412 /* StampCenterCollectionHeaderView.m */; };
+		4931630E26CD7B6800140412 /* StampCenterSecondHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F526CD7B6800140412 /* StampCenterSecondHeaderView.m */; };
 		4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162FC26CD7B6800140412 /* StampCenterTopView.m */; };
 		4931631226CD7B6800140412 /* MainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630226CD7B6800140412 /* MainScrollView.m */; };
 		4931631326CD7B6800140412 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630426CD7B6800140412 /* TableHeaderView.m */; };
@@ -1269,10 +1269,10 @@
 		493162ED26CD7B6800140412 /* GoodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCollectionViewCell.m; sourceTree = "<group>"; };
 		493162F026CD7B6800140412 /* GotoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GotoButton.m; sourceTree = "<group>"; };
 		493162F126CD7B6800140412 /* GotoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GotoButton.h; sourceTree = "<group>"; };
-		493162F326CD7B6800140412 /* SecondHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondHeaderView.h; sourceTree = "<group>"; };
-		493162F426CD7B6800140412 /* CollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHeaderView.m; sourceTree = "<group>"; };
-		493162F526CD7B6800140412 /* SecondHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondHeaderView.m; sourceTree = "<group>"; };
-		493162F626CD7B6800140412 /* CollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionHeaderView.h; sourceTree = "<group>"; };
+		493162F326CD7B6800140412 /* StampCenterSecondHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterSecondHeaderView.h; sourceTree = "<group>"; };
+		493162F426CD7B6800140412 /* StampCenterCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterCollectionHeaderView.m; sourceTree = "<group>"; };
+		493162F526CD7B6800140412 /* StampCenterSecondHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterSecondHeaderView.m; sourceTree = "<group>"; };
+		493162F626CD7B6800140412 /* StampCenterCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterCollectionHeaderView.h; sourceTree = "<group>"; };
 		493162FB26CD7B6800140412 /* StampCenterTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterTopView.h; sourceTree = "<group>"; };
 		493162FC26CD7B6800140412 /* StampCenterTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterTopView.m; sourceTree = "<group>"; };
 		4931630126CD7B6800140412 /* MainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScrollView.h; sourceTree = "<group>"; };
@@ -3944,7 +3944,7 @@
 			children = (
 				493162EF26CD7B6800140412 /* GotoButton */,
 				493162F226CD7B6800140412 /* CollectionHeaderView */,
-				493162FA26CD7B6800140412 /* TopView */,
+				493162FA26CD7B6800140412 /* StampCenterTopView */,
 				4931630026CD7B6800140412 /* MainScrollView */,
 				4931630326CD7B6800140412 /* TableHeader */,
 			);
@@ -3963,21 +3963,21 @@
 		493162F226CD7B6800140412 /* CollectionHeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				493162F326CD7B6800140412 /* SecondHeaderView.h */,
-				493162F526CD7B6800140412 /* SecondHeaderView.m */,
-				493162F626CD7B6800140412 /* CollectionHeaderView.h */,
-				493162F426CD7B6800140412 /* CollectionHeaderView.m */,
+				493162F326CD7B6800140412 /* StampCenterSecondHeaderView.h */,
+				493162F526CD7B6800140412 /* StampCenterSecondHeaderView.m */,
+				493162F626CD7B6800140412 /* StampCenterCollectionHeaderView.h */,
+				493162F426CD7B6800140412 /* StampCenterCollectionHeaderView.m */,
 			);
 			path = CollectionHeaderView;
 			sourceTree = "<group>";
 		};
-		493162FA26CD7B6800140412 /* TopView */ = {
+		493162FA26CD7B6800140412 /* StampCenterTopView */ = {
 			isa = PBXGroup;
 			children = (
 				493162FB26CD7B6800140412 /* StampCenterTopView.h */,
 				493162FC26CD7B6800140412 /* StampCenterTopView.m */,
 			);
-			path = TopView;
+			path = StampCenterTopView;
 			sourceTree = "<group>";
 		};
 		4931630026CD7B6800140412 /* MainScrollView */ = {
@@ -6042,7 +6042,7 @@
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				AA4CD61925F13757002D9394 /* MainMsgCntModel.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
-				4931630D26CD7B6800140412 /* CollectionHeaderView.m in Sources */,
+				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
 				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
@@ -6141,7 +6141,7 @@
 				AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */,
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
-				4931630E26CD7B6800140412 /* SecondHeaderView.m in Sources */,
+				4931630E26CD7B6800140412 /* StampCenterSecondHeaderView.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
 				FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */,

@@ -7,24 +7,16 @@
 
 #import "GoodsCollectionViewCell.h"
 
-#define W self.myFrame.size.width
-#define H self.myFrame.size.height
+#define W self.frame.size.width
+#define H self.frame.size.height
 
-//167x237
+
 @implementation GoodsCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self=[super initWithFrame:frame];
     if (self) {
-        self.myFrame = frame;
-        self.contentView.backgroundColor = [UIColor colorNamed:@"#FFFFFF"];
-        self.contentView.layer.cornerRadius = 0.047*W;
-        self.contentView.layer.shadowColor = [UIColor colorNamed:@"shadow"].CGColor;
-        self.contentView.layer.shadowOpacity = 0.3;
-        self.contentView.layer.shadowRadius = 5;
-        self.contentView.layer.shadowOffset = CGSizeMake(1, 1);
-        self.contentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.contentView.bounds].CGPath;
-
+        [self SetupUI];
         [self.contentView addSubview:self.goodsImageView];
         [self.contentView addSubview:self.exchangeBtn];
         [self.contentView addSubview:self.stampRequirementLbl];
@@ -123,5 +115,14 @@
     return _showBtn;
 }
 
+- (void)SetupUI{
+    self.contentView.backgroundColor = [UIColor colorNamed:@"#FFFFFF"];
+    self.contentView.layer.cornerRadius = 0.047*W;
+    self.contentView.layer.shadowColor = [UIColor colorNamed:@"shadow"].CGColor;
+    self.contentView.layer.shadowOpacity = 0.3;
+    self.contentView.layer.shadowRadius = 5;
+    self.contentView.layer.shadowOffset = CGSizeMake(1, 1);
+    self.contentView.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.contentView.bounds].CGPath;
+}
 
 @end

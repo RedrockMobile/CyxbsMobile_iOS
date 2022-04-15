@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CollectionHeaderView.h"
+#import "StampCenterCollectionHeaderView.h"
 #import "TableHeaderView.h"
 
 
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///collection
 @property (nonatomic,strong) UICollectionView *collection;
 ///collection头视图
-@property (nonatomic,strong) CollectionHeaderView *collectionHeaderView;
+@property (nonatomic,strong) StampCenterCollectionHeaderView *collectionHeaderView;
 ///table
 @property (nonatomic,strong) UITableView *table;
 

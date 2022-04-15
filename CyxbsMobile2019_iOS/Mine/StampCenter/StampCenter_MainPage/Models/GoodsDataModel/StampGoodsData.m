@@ -21,9 +21,11 @@
 }
 
 + (void)GoodsDataWithSuccess:(void (^)(NSArray * _Nonnull))success error:(void (^)(void))error{
+    
+    //网络请求
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:Stamp_Store_Main_Page method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            //字典转模型
+        //字典转模型
         NSArray *array = responseObject[@"data"][@"shop"];
         NSLog(@"%@",responseObject);
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];

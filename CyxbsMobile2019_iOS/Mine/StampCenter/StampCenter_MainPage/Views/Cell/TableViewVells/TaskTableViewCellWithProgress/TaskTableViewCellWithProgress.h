@@ -15,19 +15,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///主要内容
 @property (nonatomic,strong) UILabel *mainLabel;
+
 ///次要内容
 @property (nonatomic,strong) UILabel *detailLabel;
+
 ///进度条
 @property (nonatomic,strong) UIView *progressBar;
+
 ///已完成的部分
 @property (nonatomic,strong) UIView *progressBarHaveDone;
+
 ///已完成的比例
 @property (nonatomic,strong) UILabel *progressNumberLabel;
+
 ///去完成按钮
 @property (nonatomic,strong) GotoButton *gotoButton;
+
 ///数据
 @property (nonatomic,strong) StampTaskData *data;
-///Row
+
+///当前的行数
 @property (nonatomic,assign) NSInteger row;
 
 
