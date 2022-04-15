@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///MyTableViewCell
-@interface MyTableViewCell : UITableViewCell
+@interface TaskTableViewCell : UITableViewCell
 
 ///主要内容
 @property (nonatomic,strong) UILabel *mainLabel;

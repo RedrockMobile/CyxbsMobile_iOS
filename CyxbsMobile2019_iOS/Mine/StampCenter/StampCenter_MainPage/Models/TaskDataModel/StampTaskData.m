@@ -6,13 +6,13 @@
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
-#import "TaskData.h"
-@implementation TaskData
+#import "StampTaskData.h"
+@implementation StampTaskData
 
 @dynamic description;
 
 + (instancetype)TaskDataWithDict:(NSDictionary *)dict{
-    TaskData *data = [self new];
+    StampTaskData *data = [self new];
     [data setValuesForKeysWithDictionary:dict];
     return data;
 }
@@ -24,7 +24,7 @@
                 NSArray *array = responseObject[@"data"][@"task"];
                 NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
                     [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        TaskData *data = [self TaskDataWithDict:obj];
+                        StampTaskData *data = [self TaskDataWithDict:obj];
                         [mArray addObject:data];
                     }];
                     //调用成功的回调

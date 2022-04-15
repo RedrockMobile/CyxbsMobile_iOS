@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///任务数据
-@interface TaskData : NSObject
+@interface StampTaskData : NSObject
 
 ///标题
 @property (nonatomic,copy) NSString *title;

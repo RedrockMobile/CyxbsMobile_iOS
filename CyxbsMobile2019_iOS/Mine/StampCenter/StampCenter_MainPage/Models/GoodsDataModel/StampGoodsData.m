@@ -6,12 +6,12 @@
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
-#import "GoodsData.h"
-@implementation GoodsData
+#import "StampGoodsData.h"
+@implementation StampGoodsData
 
 
 + (instancetype)GoodsDataWithDict:(NSDictionary *)dict{
-    GoodsData *data = [[self alloc]init];
+    StampGoodsData *data = [[self alloc]init];
     [data setValuesForKeysWithDictionary:dict];
     return data;
 }
@@ -28,7 +28,7 @@
         NSLog(@"%@",responseObject);
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                GoodsData *data = [self GoodsDataWithDict:obj];
+                StampGoodsData *data = [self GoodsDataWithDict:obj];
                 [mArray addObject:data];
             }];
             //调用成功的回调

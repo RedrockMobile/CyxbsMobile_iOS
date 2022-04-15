@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GoodsData.h"
+#import "StampGoodsData.h"
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 ///MyCollectionViewCell
-@interface MyCollectionViewCell : UICollectionViewCell
+@interface GoodsCollectionViewCell : UICollectionViewCell
 
 ///图片
 @property (nonatomic,strong) UIImageView *goodsImageView;
@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///兑换按钮
 @property (nonatomic,strong) UIButton *exchangeBtn;
 ///数据
-@property (nonatomic,strong) GoodsData *data;
+@property (nonatomic,strong) StampGoodsData *data;
 ///整体按钮
 @property (nonatomic,strong) UIButton *showBtn;
 ///frame

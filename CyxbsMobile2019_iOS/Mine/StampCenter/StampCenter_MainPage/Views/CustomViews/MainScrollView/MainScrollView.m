@@ -7,7 +7,7 @@
 //
 
 #import "MainScrollView.h"
-#import "MyCollectionViewCell.h"
+#import "GoodsCollectionViewCell.h"
 #import "SecondHeaderView.h"
 @implementation MainScrollView
 
@@ -40,7 +40,7 @@
         _collection.showsHorizontalScrollIndicator = NO;
         _collection.bounces = NO;
         _collection.backgroundColor = [UIColor colorNamed:@"#FBFCFF"];
-        [_collection registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        [_collection registerClass:[GoodsCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         [_collection registerClass:[SecondHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
         _collectionHeaderView = [[CollectionHeaderView alloc]initWithFrame:CGRectMake(0, 215, SCREEN_WIDTH, COLLECTIONHEADER_H)];
         UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 215+65)];

@@ -1,5 +1,5 @@
 //
-//  GoodsData.h
+//  StampGoodsData.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 钟文韬 on 2021/8/15.
@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///商品数据
-@interface GoodsData : NSObject
+@interface StampGoodsData : NSObject
 
 ///id
 @property (nonatomic,assign) int id;

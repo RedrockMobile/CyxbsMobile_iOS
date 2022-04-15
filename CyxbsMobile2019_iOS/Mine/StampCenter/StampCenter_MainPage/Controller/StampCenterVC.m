@@ -10,17 +10,17 @@
 #import "StampCenterTopView.h"
 #import "DetailsMainViewController.h"
 #import "ExchangeCenterViewController.h"
-#import "MyCollectionViewCell.h"
+#import "GoodsCollectionViewCell.h"
 #import "SecondHeaderView.h"
-#import "MyTableViewCellWithProgress.h"
+#import "TaskTableViewCellWithProgress.h"
 #import "SZHReleaseDynamic.h"
 #import "QueryLoginViewController.h"
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
 
 //Model
-#import "GoodsData.h"
-#import "TaskData.h"
+#import "StampGoodsData.h"
+#import "StampTaskData.h"
 
 
 ///邮票中心主界面
@@ -61,7 +61,7 @@
         NSMutableArray *mArray =[[NSMutableArray alloc]initWithCapacity:99];
         NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
         for (int i = 0; i < goodsAry.count; i++) {
-            GoodsData *data = goodsAry[i];
+            StampGoodsData *data = goodsAry[i];
             if (data.type == 0) {
                 //第二分区数据
                 [mArray2 addObject:data];
@@ -86,7 +86,7 @@
     NSMutableArray *mArray =[[NSMutableArray alloc]initWithCapacity:99];
     NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
     for (int i = 0; i < taskAry.count; i++) {
-        TaskData *data = taskAry[i];
+        StampTaskData *data = taskAry[i];
         if ([data.type isEqualToString:@"base"]) {
             [mArray addObject:data];
         }
@@ -138,7 +138,7 @@
     if (!self.goodsAry) {
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:4];
         for (int i = 0; i < 4; i++) {
-            GoodsData *data = [[GoodsData alloc]init];
+            StampGoodsData *data = [[StampGoodsData alloc]init];
             data.url = @"NULL";
             data.title = @" NULL";
             data.type = 0;
@@ -151,7 +151,7 @@
     if (!self.taskAry) {
         NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:4];
         for (int i = 0; i < 4; i++) {
-            TaskData *data = [[TaskData alloc]init];
+            StampTaskData *data = [[StampTaskData alloc]init];
             data.title = @"NULL";
             data.type = @"base";
             data.Description = @"NULL";
@@ -219,14 +219,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
         
     if (indexPath.section == 0) {
-        MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
-        TaskData *data = self.taskAry[indexPath.row];
+        TaskTableViewCellWithProgress *cell = [[TaskTableViewCellWithProgress alloc]init];
+        StampTaskData *data = self.taskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
         return cell;
     }if (indexPath.section == 1){
-        MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
-        TaskData *data = self.extraTaskAry[indexPath.row];
+        TaskTableViewCellWithProgress *cell = [[TaskTableViewCellWithProgress alloc]init];
+        StampTaskData *data = self.extraTaskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
         return cell;
@@ -303,14 +303,14 @@
 
 //Cell
 -(UICollectionViewCell *)collectionView:(UICollectionView*)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    MyCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    GoodsCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        GoodsData *data = self.goodsAry[indexPath.item];
+        StampGoodsData *data = self.goodsAry[indexPath.item];
         cell.data = data;
         [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
         [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
     }else{
-        GoodsData *data =self.section2GoodsAry[(indexPath.item)];
+        StampGoodsData *data =self.section2GoodsAry[(indexPath.item)];
         cell.data = data;
         [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
         [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
@@ -621,13 +621,13 @@
 
 //获取数据
 - (void)setupData{
-    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+    [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
         [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
     
-    [GoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
+    [StampGoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
         self.goodsAry = array;
     } error:^{
         [NewQAHud showHudWith:@"网络异常" AddView:self.view];
@@ -653,7 +653,7 @@
 }
 
 - (void)refreshPage{
-    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+    [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
         [NewQAHud showHudWith:@"网络异常" AddView:self.view];

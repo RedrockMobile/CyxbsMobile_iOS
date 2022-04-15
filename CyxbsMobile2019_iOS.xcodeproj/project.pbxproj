@@ -313,11 +313,11 @@
 		49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49252DA926D39CC9003A8A7F /* FeedBackMainPageViewController.m */; };
 		492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */; };
 		493162C526CD7B4900140412 /* stampcenter.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 493162C426CD7B4900140412 /* stampcenter.xcassets */; };
-		493162DE26CD7B6300140412 /* TaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162D826CD7B6300140412 /* TaskData.m */; };
-		493162DF26CD7B6300140412 /* GoodsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162DB26CD7B6300140412 /* GoodsData.m */; };
-		4931630926CD7B6800140412 /* MyTableViewCellWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162E726CD7B6800140412 /* MyTableViewCellWithProgress.m */; };
-		4931630A26CD7B6800140412 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162E926CD7B6800140412 /* MyTableViewCell.m */; };
-		4931630B26CD7B6800140412 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162ED26CD7B6800140412 /* MyCollectionViewCell.m */; };
+		493162DE26CD7B6300140412 /* StampTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162D826CD7B6300140412 /* StampTaskData.m */; };
+		493162DF26CD7B6300140412 /* StampGoodsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162DB26CD7B6300140412 /* StampGoodsData.m */; };
+		4931630926CD7B6800140412 /* TaskTableViewCellWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162E726CD7B6800140412 /* TaskTableViewCellWithProgress.m */; };
+		4931630A26CD7B6800140412 /* TaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162E926CD7B6800140412 /* TaskTableViewCell.m */; };
+		4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162ED26CD7B6800140412 /* GoodsCollectionViewCell.m */; };
 		4931630C26CD7B6800140412 /* GotoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F026CD7B6800140412 /* GotoButton.m */; };
 		4931630D26CD7B6800140412 /* CollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F426CD7B6800140412 /* CollectionHeaderView.m */; };
 		4931630E26CD7B6800140412 /* SecondHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F526CD7B6800140412 /* SecondHeaderView.m */; };
@@ -1257,16 +1257,16 @@
 		49252DA926D39CC9003A8A7F /* FeedBackMainPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedBackMainPageViewController.m; sourceTree = "<group>"; };
 		492C19AD26CE458000C485D9 /* Bauhaus-93.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bauhaus-93.ttf"; sourceTree = "<group>"; };
 		493162C426CD7B4900140412 /* stampcenter.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = stampcenter.xcassets; sourceTree = "<group>"; };
-		493162D826CD7B6300140412 /* TaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskData.m; sourceTree = "<group>"; };
-		493162D926CD7B6300140412 /* TaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskData.h; sourceTree = "<group>"; };
-		493162DB26CD7B6300140412 /* GoodsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsData.m; sourceTree = "<group>"; };
-		493162DC26CD7B6300140412 /* GoodsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsData.h; sourceTree = "<group>"; };
-		493162E626CD7B6800140412 /* MyTableViewCellWithProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCellWithProgress.h; sourceTree = "<group>"; };
-		493162E726CD7B6800140412 /* MyTableViewCellWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCellWithProgress.m; sourceTree = "<group>"; };
-		493162E926CD7B6800140412 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
-		493162EA26CD7B6800140412 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
-		493162EC26CD7B6800140412 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
-		493162ED26CD7B6800140412 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
+		493162D826CD7B6300140412 /* StampTaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampTaskData.m; sourceTree = "<group>"; };
+		493162D926CD7B6300140412 /* StampTaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampTaskData.h; sourceTree = "<group>"; };
+		493162DB26CD7B6300140412 /* StampGoodsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampGoodsData.m; sourceTree = "<group>"; };
+		493162DC26CD7B6300140412 /* StampGoodsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampGoodsData.h; sourceTree = "<group>"; };
+		493162E626CD7B6800140412 /* TaskTableViewCellWithProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTableViewCellWithProgress.h; sourceTree = "<group>"; };
+		493162E726CD7B6800140412 /* TaskTableViewCellWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTableViewCellWithProgress.m; sourceTree = "<group>"; };
+		493162E926CD7B6800140412 /* TaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskTableViewCell.m; sourceTree = "<group>"; };
+		493162EA26CD7B6800140412 /* TaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskTableViewCell.h; sourceTree = "<group>"; };
+		493162EC26CD7B6800140412 /* GoodsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsCollectionViewCell.h; sourceTree = "<group>"; };
+		493162ED26CD7B6800140412 /* GoodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCollectionViewCell.m; sourceTree = "<group>"; };
 		493162F026CD7B6800140412 /* GotoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GotoButton.m; sourceTree = "<group>"; };
 		493162F126CD7B6800140412 /* GotoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GotoButton.h; sourceTree = "<group>"; };
 		493162F326CD7B6800140412 /* SecondHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondHeaderView.h; sourceTree = "<group>"; };
@@ -3870,36 +3870,28 @@
 		493162D226CD7B6300140412 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				493162D326CD7B6300140412 /* DataModels */,
+				493162DA26CD7B6300140412 /* GoodsDataModel */,
+				493162D726CD7B6300140412 /* TaskDataModel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		493162D326CD7B6300140412 /* DataModels */ = {
+		493162D726CD7B6300140412 /* TaskDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				493162D726CD7B6300140412 /* StampTaskDataModel */,
-				493162DA26CD7B6300140412 /* StampStoreGoodsDataModel */,
+				493162D826CD7B6300140412 /* StampTaskData.m */,
+				493162D926CD7B6300140412 /* StampTaskData.h */,
 			);
-			path = DataModels;
+			path = TaskDataModel;
 			sourceTree = "<group>";
 		};
-		493162D726CD7B6300140412 /* StampTaskDataModel */ = {
+		493162DA26CD7B6300140412 /* GoodsDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				493162D826CD7B6300140412 /* TaskData.m */,
-				493162D926CD7B6300140412 /* TaskData.h */,
+				493162DB26CD7B6300140412 /* StampGoodsData.m */,
+				493162DC26CD7B6300140412 /* StampGoodsData.h */,
 			);
-			path = StampTaskDataModel;
-			sourceTree = "<group>";
-		};
-		493162DA26CD7B6300140412 /* StampStoreGoodsDataModel */ = {
-			isa = PBXGroup;
-			children = (
-				493162DB26CD7B6300140412 /* GoodsData.m */,
-				493162DC26CD7B6300140412 /* GoodsData.h */,
-			);
-			path = StampStoreGoodsDataModel;
+			path = GoodsDataModel;
 			sourceTree = "<group>";
 		};
 		493162E326CD7B6800140412 /* Views */ = {
@@ -3914,35 +3906,35 @@
 		493162E426CD7B6800140412 /* TableViewVells */ = {
 			isa = PBXGroup;
 			children = (
-				493162E526CD7B6800140412 /* MyTableViewCellWithProgress */,
-				493162E826CD7B6800140412 /* MyTableViewCell */,
+				493162E526CD7B6800140412 /* TaskTableViewCellWithProgress */,
+				493162E826CD7B6800140412 /* TaskTableViewCell */,
 			);
 			path = TableViewVells;
 			sourceTree = "<group>";
 		};
-		493162E526CD7B6800140412 /* MyTableViewCellWithProgress */ = {
+		493162E526CD7B6800140412 /* TaskTableViewCellWithProgress */ = {
 			isa = PBXGroup;
 			children = (
-				493162E626CD7B6800140412 /* MyTableViewCellWithProgress.h */,
-				493162E726CD7B6800140412 /* MyTableViewCellWithProgress.m */,
+				493162E626CD7B6800140412 /* TaskTableViewCellWithProgress.h */,
+				493162E726CD7B6800140412 /* TaskTableViewCellWithProgress.m */,
 			);
-			path = MyTableViewCellWithProgress;
+			path = TaskTableViewCellWithProgress;
 			sourceTree = "<group>";
 		};
-		493162E826CD7B6800140412 /* MyTableViewCell */ = {
+		493162E826CD7B6800140412 /* TaskTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				493162E926CD7B6800140412 /* MyTableViewCell.m */,
-				493162EA26CD7B6800140412 /* MyTableViewCell.h */,
+				493162E926CD7B6800140412 /* TaskTableViewCell.m */,
+				493162EA26CD7B6800140412 /* TaskTableViewCell.h */,
 			);
-			path = MyTableViewCell;
+			path = TaskTableViewCell;
 			sourceTree = "<group>";
 		};
 		493162EB26CD7B6800140412 /* CollectionVIewVells */ = {
 			isa = PBXGroup;
 			children = (
-				493162EC26CD7B6800140412 /* MyCollectionViewCell.h */,
-				493162ED26CD7B6800140412 /* MyCollectionViewCell.m */,
+				493162EC26CD7B6800140412 /* GoodsCollectionViewCell.h */,
+				493162ED26CD7B6800140412 /* GoodsCollectionViewCell.m */,
 			);
 			path = CollectionVIewVells;
 			sourceTree = "<group>";
@@ -6142,7 +6134,7 @@
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
 				FE2C135127AEF629001CF7AF /* ToDoEmptyCell.m in Sources */,
-				4931630B26CD7B6800140412 /* MyCollectionViewCell.m in Sources */,
+				4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
 				18CDF6BF257F91BE006E8E5C /* GPA.m in Sources */,
@@ -6184,7 +6176,7 @@
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
-				4931630926CD7B6800140412 /* MyTableViewCellWithProgress.m in Sources */,
+				4931630926CD7B6800140412 /* TaskTableViewCellWithProgress.m in Sources */,
 				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
 				7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */,
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
@@ -6232,7 +6224,7 @@
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
 				18CDF707257F91BE006E8E5C /* AllYearsViewController.m in Sources */,
 				B82CA6B726315CA100786685 /* ReleaseDynamicModel.m in Sources */,
-				493162DE26CD7B6300140412 /* TaskData.m in Sources */,
+				493162DE26CD7B6300140412 /* StampTaskData.m in Sources */,
 				18CDF683257F91BD006E8E5C /* EmptyClassModel.m in Sources */,
 				7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
@@ -6266,7 +6258,7 @@
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				18CDF668257F91BD006E8E5C /* JWZXNew.m in Sources */,
 				B892096C25BEDEA600386451 /* SearchBeginVC.m in Sources */,
-				4931630A26CD7B6800140412 /* MyTableViewCell.m in Sources */,
+				4931630A26CD7B6800140412 /* TaskTableViewCell.m in Sources */,
 				B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
 				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
@@ -6321,7 +6313,7 @@
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
 				18CDF6C4257F91BE006E8E5C /* DetailSubjectScoreCell.m in Sources */,
-				493162DF26CD7B6300140412 /* GoodsData.m in Sources */,
+				493162DF26CD7B6300140412 /* StampGoodsData.m in Sources */,
 				18CDF71C257F91BE006E8E5C /* YearChooseBar.m in Sources */,
 				18CDF6C2257F91BE006E8E5C /* UserInfoView.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,

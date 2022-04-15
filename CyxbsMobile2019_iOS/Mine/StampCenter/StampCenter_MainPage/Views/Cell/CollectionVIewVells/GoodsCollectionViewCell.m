@@ -5,13 +5,13 @@
 //  Created by 钟文韬 on 2021/8/7.
 //
 
-#import "MyCollectionViewCell.h"
+#import "GoodsCollectionViewCell.h"
 
 #define W self.myFrame.size.width
 #define H self.myFrame.size.height
 
 //167x237
-@implementation MyCollectionViewCell
+@implementation GoodsCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self=[super initWithFrame:frame];
@@ -38,7 +38,7 @@
 
 
 #pragma mark - setter
-- (void)setData:(GoodsData *)data{
+- (void)setData:(StampGoodsData *)data{
     self.mainLbl.text = data.title;
     self.stampRequirementLbl.text = [NSString stringWithFormat:@"%d",data.price];
     self.stockLbl.text = [NSString stringWithFormat:@"库存: %d",data.amount];
