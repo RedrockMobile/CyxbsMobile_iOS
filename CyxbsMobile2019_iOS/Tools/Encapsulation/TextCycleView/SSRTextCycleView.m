@@ -18,10 +18,7 @@ typedef struct {
 
 #pragma mark - TextCycleView ()
 
-@interface SSRTextCycleView () <
-    UITableViewDelegate,
-    UITableViewDataSource
->
+@interface SSRTextCycleView ()
 
 /// 计时器控件
 @property (nonatomic, weak) NSTimer *timer;
@@ -79,7 +76,6 @@ typedef struct {
      repeats:YES];
     
     _timer = timer;
-    [NSRunLoop.mainRunLoop addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)endTimer {
@@ -97,6 +93,10 @@ typedef struct {
 }
 
 #pragma mark - <UITableViewDelegate>
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.textCycleView_delegate) {

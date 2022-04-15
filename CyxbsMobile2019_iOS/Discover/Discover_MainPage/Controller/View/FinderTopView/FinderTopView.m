@@ -38,7 +38,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.frame = CGRectMake(0, 0, SCREEN_WIDTH, 60);
+        self.frame = CGRectMake(0, 0, SCREEN_WIDTH, 55);
         self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
         
         [self addSubview:self.detailLab];
@@ -79,9 +79,9 @@
 
 - (UILabel *)detailLab {
     if (_detailLab == nil) {
-        _detailLab = [[UILabel alloc] initWithFrame:CGRectMake(17, 1.7, 100, 10)];
-        _detailLab.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
-        _detailLab.font = [UIFont fontWithName:PingFangSCLight size: 10];
+        _detailLab = [[UILabel alloc] initWithFrame:CGRectMake(17, 1.7, 100, 13)];
+        _detailLab.textColor = [UIColor colorNamed:@"color21_49_91_&#8c8c8c"];
+        _detailLab.font = [UIFont fontWithName:PingFangSCMedium size: 14];
         // about detail
         NSString *detailStr = [NSDate stringForSchoolWeek:
           ([NSDate.today timeIntervalSinceDate:
@@ -106,7 +106,7 @@
     if (_titleLab == nil) {
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(self.detailLab.left, self.detailLab.bottom + 1, 200, 50)];
         _titleLab .text = @"发现";
-        _titleLab.font = [UIFont fontWithName:PingFangSCBold size: 34];
+        _titleLab.font = [UIFont fontWithName:PingFangSCSemibold size: 27];
         _titleLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
     }
     return _titleLab;
@@ -114,7 +114,7 @@
 
 - (UIButton *)signBtn {
     if (_signBtn == nil) {
-        _signBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 28, 28)];
+        _signBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
         _signBtn.right = self.SuperRight - 18;
         _signBtn.centerY = self.titleLab.centerY;
         _signBtn.contentMode = UIViewContentModeScaleToFill;

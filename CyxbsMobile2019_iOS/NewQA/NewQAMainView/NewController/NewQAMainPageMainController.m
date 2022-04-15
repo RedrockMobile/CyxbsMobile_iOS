@@ -151,7 +151,8 @@
     [_publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.view.top).mas_offset(SCREEN_HEIGHT * 0.7256);
         make.right.mas_equalTo(self.view.mas_right).mas_offset(-SCREEN_WIDTH * 0.0427);
-        make.width.height.mas_equalTo(SCREEN_WIDTH * 0.20);
+        make.height.mas_equalTo(SCREEN_WIDTH * 0.20);
+        make.width.mas_equalTo(SCREEN_WIDTH * 0.185);
     }];
     _publishBtn.layer.cornerRadius = SCREEN_WIDTH * 0.20 * 1/2;
     _publishBtn.layer.masksToBounds = YES;

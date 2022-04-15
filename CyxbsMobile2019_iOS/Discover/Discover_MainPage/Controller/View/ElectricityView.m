@@ -87,11 +87,7 @@
     self.electricFeeTitle = title;
     title.text = @"电费查询";
     title.font = [UIFont fontWithName:PingFangSCBold size: 18];
-    if (@available(iOS 11.0, *)) {
-        title.textColor = Color21_49_91_F0F0F2;
-    } else {
-        // Fallback on earlier versions
-    }
+    title.textColor = Color21_49_91_F0F0F2;
     [self addSubview:title];
 
     
@@ -105,11 +101,7 @@
     self.hintLabel = hintLabel;
     hintLabel.text = @"还未绑定账号哦～";
     hintLabel.font = [UIFont fontWithName:PingFangSCLight size: 15];
-    if (@available(iOS 11.0, *)) {
-        hintLabel.textColor = Color21_49_91_F0F0F2;
-    } else {
-        // Fallback on earlier versions
-    }
+    hintLabel.textColor = Color21_49_91_F0F0F2;
     [self addSubview:hintLabel];
 
 }
@@ -139,25 +131,24 @@
     if(self.electricFeeTime) {
         [self.electricFeeTime removeFromSuperview];
     }
-    UILabel *time = [[UILabel alloc]init];//右上角抄表时间
-    self.electricFeeTime = time;
-    if ([self.defaults objectForKey:@"ElectricFee_time"]!= NULL) {
-        NSRange range = {5,2};
-        NSString *strMonth = [[self.defaults objectForKey:@"ElectricFee_time"] substringWithRange:range];
-        NSString *strDay = [[self.defaults objectForKey:@"ElectricFee_time"] substringFromIndex:7];
-        time.text =[NSString stringWithFormat:@"%@月%@日抄表",strMonth,strDay];
-;
+    UILabel *timeLab = [[UILabel alloc]init];//右上角抄表时间
+    self.electricFeeTime = timeLab;
+    NSString *timeStr = [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_time"];
+    if (timeLab != NULL) {
+        NSString *elecTime =
+        [[NSDate dateString:timeStr
+              fromFormatter:NSDateFormatter.defaultFormatter
+             withDateFormat:@"yyyy.M.dd"]
+         stringFromFormatter:NSDateFormatter.defaultFormatter
+         withDateFormat:@"M月d日抄表"];
+        timeLab.text = elecTime;
     }else {
-        time.text = @"加载失败";
+        timeLab.text = @"加载失败";
     }
-    if (@available(iOS 11.0, *)) {
-        time.textColor = Color21_49_91_F0F0F2;
-    } else {
-        // Fallback on earlier versions
-    }
-    time.alpha = 0.54;
-    time.font = [UIFont fontWithName:PingFangSCLight size: 10];
-    [self addSubview:time];
+    timeLab.textColor = Color21_49_91_F0F0F2;
+    timeLab.alpha = 0.54;
+    timeLab.font = [UIFont fontWithName:PingFangSCLight size: 10];
+    [self addSubview:timeLab];
 }
 
 - (void)addMoney {
@@ -211,12 +202,8 @@
     }
     UILabel *yuan = [[UILabel alloc]init];//汉字“元”
     self.electricFeeYuan = yuan;
-        yuan.text = @"元";
-    if (@available(iOS 11.0, *)) {
-        yuan.textColor = Color21_49_91_F0F0F2;
-    } else {
-        // Fallback on earlier versions
-    }
+    yuan.text = @"元";
+    yuan.textColor = Color21_49_91_F0F0F2;
     yuan.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self addSubview:yuan];
 
@@ -228,12 +215,8 @@
     }
     UILabel *du = [[UILabel alloc]init];//汉字“度”
     self.electricFeeDu = du;
-        du.text = @"度";
-    if (@available(iOS 11.0, *)) {
-        du.textColor = Color21_49_91_F0F0F2;
-    } else {
-        // Fallback on earlier versions
-    }
+    du.text = @"度";
+    du.textColor = Color21_49_91_F0F0F2;
     du.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self addSubview:du];
 
@@ -247,11 +230,7 @@
     self.electricFeeHintLeft = hintLeft;
     hintLeft.text = @"费用/本月";
     hintLeft.font = [UIFont fontWithName:PingFangSCLight size: 13];
-    if (@available(iOS 11.0, *)) {
-        hintLeft.textColor = Color21_49_91_F0F0F2;
-    } else {
-        // Fallback on earlier versions
-    }
+    hintLeft.textColor = Color21_49_91_F0F0F2;
     hintLeft.alpha = 0.6;
     [self addSubview:hintLeft];
 
@@ -265,11 +244,7 @@
     self.electricFeeHintRight = hintRight;
         hintRight.text = @"使用度数/本月";
     hintRight.font = [UIFont fontWithName:PingFangSCLight size: 13];
-    if (@available(iOS 11.0, *)) {
-        hintRight.textColor = Color21_49_91_F0F0F2;
-    } else {
-        // Fallback on earlier versions
-    }
+    hintRight.textColor = Color21_49_91_F0F0F2;
     hintRight.alpha = 0.6;
     [self addSubview:hintRight];
 
