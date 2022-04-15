@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///邮票按钮
 @property (nonatomic) UIButton *detailBtn;
 
-///悬停view
+///悬停view （邮票小店 和 邮票任务 所在的View）
 @property (nonatomic,strong) UIView *holder;
 
 ///邮票数量

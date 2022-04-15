@@ -41,7 +41,7 @@
 ///额外任务数据
 @property (nonatomic,copy) NSArray *extraTaskAry;
 ///左右划的scroll
-@property (nonatomic,strong) MainScrollView *mainScrollView;
+@property (nonatomic,strong) StampCenterMainScrollView *mainScrollView;
 ///小型邮票数量View
 @property (nonatomic,strong) UIView *stampCountView;
 ///邮票数量
@@ -78,7 +78,7 @@
         _goodsAry = mArray;
     self.section2GoodsAry = mArray2;
     //刷新控件
-    [self.mainScrollView.collection reloadData];
+    [self.mainScrollView.collectionView reloadData];
 }
 
 //任务数据
@@ -98,7 +98,7 @@
     _taskAry = mArray;
     _extraTaskAry = mArray2;
     //刷新控件
-    [self.mainScrollView.table reloadData];
+    [self.mainScrollView.tableView reloadData];
 }
 
 //邮票数量
@@ -461,20 +461,20 @@
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
-        self.mainScrollView.table.contentOffset = self.mainScrollView.collection.contentOffset;
+        self.mainScrollView.tableView.contentOffset = self.mainScrollView.collectionView.contentOffset;
     }
     if ([scrollView isKindOfClass:[UITableView class]]) {
-        self.mainScrollView.collection.contentOffset = self.mainScrollView.table.contentOffset;
+        self.mainScrollView.collectionView.contentOffset = self.mainScrollView.tableView.contentOffset;
     }
 }
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
-        self.mainScrollView.table.contentOffset = self.mainScrollView.collection.contentOffset;
+        self.mainScrollView.tableView.contentOffset = self.mainScrollView.collectionView.contentOffset;
     }
     if ([scrollView isKindOfClass:[UITableView class]]) {
-        self.mainScrollView.collection.contentOffset = self.mainScrollView.table.contentOffset;
+        self.mainScrollView.collectionView.contentOffset = self.mainScrollView.tableView.contentOffset;
     }
 }
 
@@ -502,13 +502,13 @@
 }
 
 //主界面
-- (MainScrollView *)mainScrollView{
+- (StampCenterMainScrollView *)mainScrollView{
     if (!_mainScrollView) {
-        _mainScrollView = [[MainScrollView alloc]initWithFrame:CGRectMake(0, Bar_H, SCREEN_WIDTH, SCREEN_HEIGHT-Bar_H)];
-        _mainScrollView.collection.delegate = self;
-        _mainScrollView.collection.dataSource = self;
-        _mainScrollView.table.delegate = self;
-        _mainScrollView.table.dataSource = self;
+        _mainScrollView = [[StampCenterMainScrollView alloc]initWithFrame:CGRectMake(0, Bar_H, SCREEN_WIDTH, SCREEN_HEIGHT-Bar_H)];
+        _mainScrollView.collectionView.delegate = self;
+        _mainScrollView.collectionView.dataSource = self;
+        _mainScrollView.tableView.delegate = self;
+        _mainScrollView.tableView.dataSource = self;
         _mainScrollView.delegate = self;
     }
     return _mainScrollView;

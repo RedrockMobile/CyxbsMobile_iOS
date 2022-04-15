@@ -322,7 +322,7 @@
 		4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F426CD7B6800140412 /* StampCenterCollectionHeaderView.m */; };
 		4931630E26CD7B6800140412 /* StampCenterSecondHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162F526CD7B6800140412 /* StampCenterSecondHeaderView.m */; };
 		4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 493162FC26CD7B6800140412 /* StampCenterTopView.m */; };
-		4931631226CD7B6800140412 /* MainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630226CD7B6800140412 /* MainScrollView.m */; };
+		4931631226CD7B6800140412 /* StampCenterMainScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630226CD7B6800140412 /* StampCenterMainScrollView.m */; };
 		4931631326CD7B6800140412 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931630426CD7B6800140412 /* TableHeaderView.m */; };
 		4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4931631B26CD7B7900140412 /* StampCenterVC.m */; };
 		49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49343A2126D4EAB2001A2892 /* CommonQuestionCell.m */; };
@@ -1275,8 +1275,8 @@
 		493162F626CD7B6800140412 /* StampCenterCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterCollectionHeaderView.h; sourceTree = "<group>"; };
 		493162FB26CD7B6800140412 /* StampCenterTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterTopView.h; sourceTree = "<group>"; };
 		493162FC26CD7B6800140412 /* StampCenterTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterTopView.m; sourceTree = "<group>"; };
-		4931630126CD7B6800140412 /* MainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScrollView.h; sourceTree = "<group>"; };
-		4931630226CD7B6800140412 /* MainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScrollView.m; sourceTree = "<group>"; };
+		4931630126CD7B6800140412 /* StampCenterMainScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterMainScrollView.h; sourceTree = "<group>"; };
+		4931630226CD7B6800140412 /* StampCenterMainScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StampCenterMainScrollView.m; sourceTree = "<group>"; };
 		4931630426CD7B6800140412 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		4931630526CD7B6800140412 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		4931631926CD7B7900140412 /* StampCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StampCenterVC.h; sourceTree = "<group>"; };
@@ -3983,8 +3983,8 @@
 		4931630026CD7B6800140412 /* MainScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				4931630126CD7B6800140412 /* MainScrollView.h */,
-				4931630226CD7B6800140412 /* MainScrollView.m */,
+				4931630126CD7B6800140412 /* StampCenterMainScrollView.h */,
+				4931630226CD7B6800140412 /* StampCenterMainScrollView.m */,
 			);
 			path = MainScrollView;
 			sourceTree = "<group>";
@@ -6398,7 +6398,7 @@
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */,
-				4931631226CD7B6800140412 /* MainScrollView.m in Sources */,
+				4931631226CD7B6800140412 /* StampCenterMainScrollView.m in Sources */,
 				18CDF4BC257F8DBD006E8E5C /* selfSafeViewController.m in Sources */,
 				18CDF698257F91BD006E8E5C /* CQUPTMapHotPlaceButton.m in Sources */,
 				B82CA67F263159BA00786685 /* DynamicDetailTopBarView.m in Sources */,

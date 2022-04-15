@@ -1,5 +1,5 @@
 //
-//  MainScrollView.h
+//  StampCenterMainScrollView.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 钟文韬 on 2021/8/18.
@@ -13,15 +13,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 ///主左右划view
-@interface MainScrollView : UIScrollView 
+@interface StampCenterMainScrollView : UIScrollView 
 
-///collection
-@property (nonatomic,strong) UICollectionView *collection;
+///collectionView
+@property (nonatomic,strong) UICollectionView *collectionView;
+
 ///collection头视图
 @property (nonatomic,strong) StampCenterCollectionHeaderView *collectionHeaderView;
-///table
-@property (nonatomic,strong) UITableView *table;
 
+///tableView
+@property (nonatomic,strong) UITableView *tableView;
 
 
 @end
