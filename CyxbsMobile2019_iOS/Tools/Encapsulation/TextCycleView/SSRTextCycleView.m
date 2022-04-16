@@ -18,10 +18,7 @@ typedef struct {
 
 #pragma mark - TextCycleView ()
 
-@interface SSRTextCycleView () <
-    UITableViewDelegate,
-    UITableViewDataSource
->
+@interface SSRTextCycleView ()
 
 /// 计时器控件
 @property (nonatomic, weak) NSTimer *timer;
@@ -79,7 +76,6 @@ typedef struct {
      repeats:YES];
     
     _timer = timer;
-    [NSRunLoop.mainRunLoop addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)endTimer {
@@ -98,6 +94,10 @@ typedef struct {
 
 #pragma mark - <UITableViewDelegate>
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.textCycleView_delegate) {
         [self.textCycleView_delegate textCycleView:self didSelectedAtIndex:indexPath.row];
@@ -115,10 +115,12 @@ typedef struct {
     if (self.textAry == nil || self.textAry.count <= 1) {
         [self endTimer];
         return 1;
-    }
+    }else {
     // 如果有数据，那就开循环
-    [self startTimer];
-    return self.textAry.count + 1;
+        [self startTimer];
+        return self.textAry.count + 1;
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -155,7 +157,9 @@ typedef struct {
 
 - (void)setTextAry:(NSArray<NSString *> *)textAry {
     _textAry = textAry.copy;
+    [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:NO];
     [self reloadData];
 }
+
 
 @end

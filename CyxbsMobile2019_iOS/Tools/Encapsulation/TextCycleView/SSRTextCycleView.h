@@ -38,7 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - TextCycleView
 
 /// 文字轮播器（竖）
-@interface SSRTextCycleView : UITableView
+@interface SSRTextCycleView : UITableView <
+    UITableViewDelegate,
+    UITableViewDataSource
+>
 
 /// 如果为 nil 或 count == 0 则空，如果count == 1则不循环，其他情况会循环
 @property (nonatomic, copy) NSArray <NSString *> *textAry;

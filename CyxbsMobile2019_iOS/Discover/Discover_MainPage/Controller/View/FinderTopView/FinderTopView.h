@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// "发现"顶视图，直接init
 @interface FinderTopView : UIView
 
+/// 计算属性，决定有没有红点，默认没有
+@property (nonatomic) BOOL hadRead;
+
 /// 刷新数据
 - (void)reloadData;
 

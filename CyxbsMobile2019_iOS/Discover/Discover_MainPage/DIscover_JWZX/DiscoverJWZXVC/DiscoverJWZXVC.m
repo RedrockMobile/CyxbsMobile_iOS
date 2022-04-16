@@ -101,10 +101,10 @@
         _textCycleView = [[SSRTextCycleView alloc] initWithFrame:CGRectMake(left, 0, self.view.width - left - 16, self.view.height)];
         _textCycleView.backgroundColor = UIColor.clearColor;
         _textCycleView.autoTimeInterval = 3;
+        _textCycleView.textCycleView_delegate = self;
         
         NSString *oneNew = [NSUserDefaults.standardUserDefaults objectForKey:@"OneNews_oneNews"];
-        _textCycleView.textAry = oneNew ? @[oneNew] : @[@"教务新闻正在请求中..."];
-        _textCycleView.textCycleView_delegate = self;
+        self.textCycleView.textAry = oneNew ? @[oneNew] : @[@"教务新闻正在请求中..."];
     }
     return _textCycleView;
 }

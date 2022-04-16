@@ -36,6 +36,7 @@
 // Category
 #import "UIView+Frame.h"
 #import "NSDate+Day.h"
+#import "UIColor+Color.h"
 
 //自定义hud
 #import "NewQAHud.h"
