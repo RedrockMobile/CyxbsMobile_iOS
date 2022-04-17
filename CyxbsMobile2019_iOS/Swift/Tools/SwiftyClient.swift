@@ -36,7 +36,7 @@ class SwiftyClient: NSObject {
         }
         
         if UserItemTool.defaultItem().token != "" {
-            requestHeaders["Authorization"] = "Bearer \(UserItemTool.defaultItem().token)"
+            requestHeaders["Authorization"] = "Bearer \(UserItemTool.defaultItem().token!)"
         }
         
             

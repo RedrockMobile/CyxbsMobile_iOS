@@ -80,9 +80,9 @@
         }
     }
     [UIView animateWithDuration:0.2 animations:^{
-        CGRect rect = _redLine.frame;
+        CGRect rect = self->_redLine.frame;
         rect.origin.x = index*rect.size.width;
-        _redLine.frame = rect;
+        self->_redLine.frame = rect;
     }];
 }
 

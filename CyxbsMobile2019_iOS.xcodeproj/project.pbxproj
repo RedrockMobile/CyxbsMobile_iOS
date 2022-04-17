@@ -261,7 +261,6 @@
 		1A141368235F524B0001417E /* HttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141347235F524B0001417E /* HttpClient.m */; };
 		1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141350235F524B0001417E /* UIViewController+BackButtonHandler.m */; };
 		1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141351235F524B0001417E /* UIImage+Helper.m */; };
-		1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141352235F524B0001417E /* NSString+Emoji.m */; };
 		1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141353235F524B0001417E /* UserDefaultTool.m */; };
 		1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141356235F524B0001417E /* CAShapeLayer+ViewMask.m */; };
 		1A141373235F524B0001417E /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A141358235F524B0001417E /* UIColor+Helper.m */; };
@@ -1159,7 +1158,6 @@
 		1A14134C235F524B0001417E /* HttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpClient.h; sourceTree = "<group>"; };
 		1A141350235F524B0001417E /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		1A141351235F524B0001417E /* UIImage+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helper.m"; sourceTree = "<group>"; };
-		1A141352235F524B0001417E /* NSString+Emoji.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Emoji.m"; sourceTree = "<group>"; };
 		1A141353235F524B0001417E /* UserDefaultTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultTool.m; sourceTree = "<group>"; };
 		1A141354235F524B0001417E /* UIFont+AdaptiveFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+AdaptiveFont.h"; sourceTree = "<group>"; };
 		1A141356235F524B0001417E /* CAShapeLayer+ViewMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAShapeLayer+ViewMask.m"; sourceTree = "<group>"; };
@@ -1167,7 +1165,6 @@
 		1A14135A235F524B0001417E /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		1A14135B235F524B0001417E /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		1A14135C235F524B0001417E /* UserDefaultTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultTool.h; sourceTree = "<group>"; };
-		1A14135D235F524B0001417E /* NSString+Emoji.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Emoji.h"; sourceTree = "<group>"; };
 		1A14135E235F524B0001417E /* UIImage+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helper.h"; sourceTree = "<group>"; };
 		1A14135F235F524B0001417E /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		1A141361235F524B0001417E /* SYCSegmentViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYCSegmentViewButton.m; sourceTree = "<group>"; };
@@ -4479,8 +4476,6 @@
 				1A141350235F524B0001417E /* UIViewController+BackButtonHandler.m */,
 				1A14135E235F524B0001417E /* UIImage+Helper.h */,
 				1A141351235F524B0001417E /* UIImage+Helper.m */,
-				1A14135D235F524B0001417E /* NSString+Emoji.h */,
-				1A141352235F524B0001417E /* NSString+Emoji.m */,
 				1AF4B6052362EBFE00A0823A /* NSDate+Timestamp.h */,
 				1AF4B6062362EBFE00A0823A /* NSDate+Timestamp.m */,
 				18FE64F425FDA186008748AE /* UIControl+MGD.h */,
@@ -6476,7 +6471,6 @@
 				18CDF67C257F91BD006E8E5C /* ClassmatesList.m in Sources */,
 				7311328826CCEC2400EF88C1 /* ContentScrollView.m in Sources */,
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
-				1A14136E235F524B0001417E /* NSString+Emoji.m in Sources */,
 				18CDF667257F91BD006E8E5C /* JWZXNewsInformation.m in Sources */,
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
 				BE7CBD8C27535FC000094AE8 /* NewQATool.m in Sources */,
