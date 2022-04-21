@@ -340,72 +340,77 @@
 //改变nowWeekBar的周信息
 //改变correctIndex，KVO会根据correctIndex的改变完成一系列相关操作,0代表在整学期页
 */
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (context == @"TopBarScrollView.correctIndex") {
-        
-        if([change[@"new"]isEqual:change[@"old"]]){
-            return;
-        }
-        
-    //----------------------------改变新旧按钮的字体----------------------------
-        //更改旧按钮的的字体
-        NSNumber *oldIndex = change[@"old"];
-        UIButton *oldBtn = self.weekChooseBtnArray[oldIndex.intValue];
-        oldBtn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
-        oldBtn.alpha = 0.81;
-        
-        //要先改旧按钮，因为如果是第一次调用，那么change[@"old"]就是nil，
-        //会导致oldBtn==newBtn，所以先改新按钮会导致新按钮的修改被旧按钮的修改覆盖
-        
-        //更改新按钮的的字体
-        NSNumber *newIndex = change[@"new"];
-        UIButton *newBtn = self.weekChooseBtnArray[newIndex.intValue];
-        newBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
-        newBtn.alpha = 1;
-    //------------------------------------------------------------------------------
-       
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    
+
+    if (![change[@"new"] isKindOfClass:[NSNull class]]) {
         
         
-    //------------------------让新按钮移到周选择条的中央---------------------------
-        //动画时长
-        float duration = abs(newIndex.intValue-oldIndex.intValue)*0.3;
-        if(duration>0.6)duration=0.6;
-        
-        //weekChooseBar的contentOffset的x会用contentOffsetX赋值
-        float contentOffsetX = newBtn.center.x-0.5*MAIN_SCREEN_W;
-        //下面的两个判断是为了避免第一个按钮和最后一个按钮被移到中间，导致条出现空白处
-        if(contentOffsetX < 0) contentOffsetX = 0;
-        if(contentOffsetX > self.weekChooseBar.contentSize.width-self.weekChooseBar.frame.size.width){
-            contentOffsetX = self.weekChooseBar.contentSize.width-self.weekChooseBar.frame.size.width;
-        }
-        
-        [UIView animateWithDuration:duration animations:^{
-            [self.weekChooseBar setContentOffset:CGPointMake(contentOffsetX, 0)];
-        }];
-    //------------------------------------------------------------------------------
-        
-        
-        //改变nowWeekBar上面显示当前周数的label的字为新按钮的标题
-        self.weekLabel.text = newBtn.titleLabel.text;
-        
-        //根据新下标判断当前显示的课表是不是本周的课表，
-        //如果是，那么nowWeekLabel的标题为@" (本周) "，且隐藏回到本周按钮
-        //如果不是那标题就为@" "，且显示回到本周按钮
-        if(newIndex.intValue==self.dateModel.nowWeek.intValue){
-            self.nowWeekLabel.text = @" (本周) ";
-            [UIView animateWithDuration:0.5 animations:^{
-                self.backCurrentWeekBtn.alpha = 0;
+        if (context == @"TopBarScrollView.correctIndex") {
+            
+            if([change[@"new"]isEqual:change[@"old"]]){
+                return;
+            }
+            
+        //----------------------------改变新旧按钮的字体----------------------------
+            //更改旧按钮的的字体
+            NSNumber *oldIndex = change[@"old"];
+            UIButton *oldBtn = self.weekChooseBtnArray[oldIndex.intValue];
+            oldBtn.titleLabel.font =  [UIFont fontWithName:PingFangSCRegular size: 15];
+            oldBtn.alpha = 0.81;
+            
+            //要先改旧按钮，因为如果是第一次调用，那么change[@"old"]就是nil，
+            //会导致oldBtn==newBtn，所以先改新按钮会导致新按钮的修改被旧按钮的修改覆盖
+            
+            //更改新按钮的的字体
+            NSNumber *newIndex = change[@"new"];
+            UIButton *newBtn = self.weekChooseBtnArray[newIndex.intValue];
+            newBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
+            newBtn.alpha = 1;
+        //------------------------------------------------------------------------------
+           
+            
+            
+        //------------------------让新按钮移到周选择条的中央---------------------------
+            //动画时长
+            float duration = abs(newIndex.intValue-oldIndex.intValue)*0.3;
+            if(duration>0.6)duration=0.6;
+            
+            //weekChooseBar的contentOffset的x会用contentOffsetX赋值
+            float contentOffsetX = newBtn.center.x-0.5*MAIN_SCREEN_W;
+            //下面的两个判断是为了避免第一个按钮和最后一个按钮被移到中间，导致条出现空白处
+            if(contentOffsetX < 0) contentOffsetX = 0;
+            if(contentOffsetX > self.weekChooseBar.contentSize.width-self.weekChooseBar.frame.size.width){
+                contentOffsetX = self.weekChooseBar.contentSize.width-self.weekChooseBar.frame.size.width;
+            }
+            
+            [UIView animateWithDuration:duration animations:^{
+                [self.weekChooseBar setContentOffset:CGPointMake(contentOffsetX, 0)];
             }];
-        }else{
-            [UIView animateWithDuration:0.5 animations:^{
-                self.backCurrentWeekBtn.alpha = 1;
-            }];
-            self.nowWeekLabel.text = @" ";
+        //------------------------------------------------------------------------------
+            
+            
+            //改变nowWeekBar上面显示当前周数的label的字为新按钮的标题
+            self.weekLabel.text = newBtn.titleLabel.text;
+            
+            //根据新下标判断当前显示的课表是不是本周的课表，
+            //如果是，那么nowWeekLabel的标题为@" (本周) "，且隐藏回到本周按钮
+            //如果不是那标题就为@" "，且显示回到本周按钮
+            if(newIndex.intValue==self.dateModel.nowWeek.intValue){
+                self.nowWeekLabel.text = @" (本周) ";
+                [UIView animateWithDuration:0.5 animations:^{
+                    self.backCurrentWeekBtn.alpha = 0;
+                }];
+            }else{
+                [UIView animateWithDuration:0.5 animations:^{
+                    self.backCurrentWeekBtn.alpha = 1;
+                }];
+                self.nowWeekLabel.text = @" ";
+            }
+            
+        } else {
+            [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
-        
-    } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
