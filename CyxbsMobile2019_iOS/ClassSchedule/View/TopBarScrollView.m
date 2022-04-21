@@ -343,7 +343,12 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
     
 
-    if (![change[@"new"] isKindOfClass:[NSNull class]]) {
+    if ([change[@"new"] isKindOfClass:[NSNull class]]) {
+        return;
+    }
+    if ([change[@"old"] isKindOfClass:[NSNull class]]) {
+        return;
+    }
         
         
         if (context == @"TopBarScrollView.correctIndex") {
@@ -411,7 +416,7 @@
         } else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         }
-    }
+    
 }
 
 ///移除KVO

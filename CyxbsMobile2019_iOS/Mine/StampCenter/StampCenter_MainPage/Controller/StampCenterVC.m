@@ -133,7 +133,7 @@
 #pragma mark - viewWillAppear
 - (void)viewWillAppear:(BOOL)animated{
     
-    //初始化一些数据，避免token失效导致请求不到数据导致数组越界x的闪退
+    //初始化一些数据，避免token失效导致请求不到数据导致数组越界的闪退
     //初始化商品数据
     if (!self.goodsAry) {
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:4];
@@ -173,6 +173,9 @@
     //加载数据
     [self setupData];
     
+    //加载通知中心
+    [self setupNotification];
+    
     //加载TopBar
     [self setupBar];
     
@@ -191,7 +194,6 @@
     //设置小点
     [self setupPoint];
 
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"Lookin_3D" object:nil];
 }
 
 #pragma mark - table数据源
@@ -562,15 +564,6 @@
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     self.splitLineHidden = YES;
     self.CorrectHeaderY = Bar_H;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
 }
 
 //小型邮票数量View
@@ -634,24 +627,24 @@
     }];
 }
 
+//网络异常警告
 - (void)netWorkAlert{
     [NewQAHud showHudWith:@"网络异常" AddView:self.view];
 }
 
+//跳转至QA
 - (void)jumpToNewQA{
-    NSLog(@"正在跳转至邮问主页");
     self.tabBarController.selectedIndex = 1;
     [self.navigationController popViewControllerAnimated:NO];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
-  
 }
 
+//跳转至发动态界面
 - (void)jumpToReleaseDynamic{
     SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
-    
     [self.navigationController pushViewController:SVC animated:YES];
 }
 
+//刷新界面
 - (void)refreshPage{
     [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
@@ -668,16 +661,20 @@
         }];
 }
 
+//跳转至界面
 - (void)jumpToZhiyuan{
     QueryLoginViewController *QVC = [[QueryLoginViewController alloc]init];
     [self.navigationController pushViewController:QVC animated:YES];
 }
 
+//跳转至个人中心
 - (void)jumpToProfile{
     EditMyInfoViewController *EVC = [[EditMyInfoViewController alloc]init];
     [self.navigationController presentViewController:EVC animated:YES completion:nil];
 }
 
+
+//检查是否有未领取的货物
 - (void)checkAlertLbl{
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:COMMON_QUESTION method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -693,11 +690,24 @@
 
 }
 
+//签到成功
 - (void)checkInSucceeded{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = @"签到成功";
     [hud hide:YES afterDelay:1];
+}
+
+//设置通知中心
+- (void)setupNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
 }
 
 @end
