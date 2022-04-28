@@ -10,17 +10,17 @@
 #import "StampCenterTopView.h"
 #import "DetailsMainViewController.h"
 #import "ExchangeCenterViewController.h"
-#import "MyCollectionViewCell.h"
-#import "SecondHeaderView.h"
-#import "MyTableViewCellWithProgress.h"
+#import "GoodsCollectionViewCell.h"
+#import "StampCenterSecondHeaderView.h"
+#import "TaskTableViewCellWithProgress.h"
 #import "SZHReleaseDynamic.h"
 #import "QueryLoginViewController.h"
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
 
 //Model
-#import "GoodsData.h"
-#import "TaskData.h"
+#import "StampGoodsData.h"
+#import "StampTaskData.h"
 
 
 ///邮票中心主界面
@@ -41,7 +41,7 @@
 ///额外任务数据
 @property (nonatomic,copy) NSArray *extraTaskAry;
 ///左右划的scroll
-@property (nonatomic,strong) MainScrollView *mainScrollView;
+@property (nonatomic,strong) StampCenterMainScrollView *mainScrollView;
 ///小型邮票数量View
 @property (nonatomic,strong) UIView *stampCountView;
 ///邮票数量
@@ -61,7 +61,7 @@
         NSMutableArray *mArray =[[NSMutableArray alloc]initWithCapacity:99];
         NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
         for (int i = 0; i < goodsAry.count; i++) {
-            GoodsData *data = goodsAry[i];
+            StampGoodsData *data = goodsAry[i];
             if (data.type == 0) {
                 //第二分区数据
                 [mArray2 addObject:data];
@@ -78,7 +78,7 @@
         _goodsAry = mArray;
     self.section2GoodsAry = mArray2;
     //刷新控件
-    [self.mainScrollView.collection reloadData];
+    [self.mainScrollView.collectionView reloadData];
 }
 
 //任务数据
@@ -86,7 +86,7 @@
     NSMutableArray *mArray =[[NSMutableArray alloc]initWithCapacity:99];
     NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:99];
     for (int i = 0; i < taskAry.count; i++) {
-        TaskData *data = taskAry[i];
+        StampTaskData *data = taskAry[i];
         if ([data.type isEqualToString:@"base"]) {
             [mArray addObject:data];
         }
@@ -98,7 +98,7 @@
     _taskAry = mArray;
     _extraTaskAry = mArray2;
     //刷新控件
-    [self.mainScrollView.table reloadData];
+    [self.mainScrollView.tableView reloadData];
 }
 
 //邮票数量
@@ -133,12 +133,12 @@
 #pragma mark - viewWillAppear
 - (void)viewWillAppear:(BOOL)animated{
     
-    //初始化一些数据，避免token失效导致请求不到数据导致数组越界x的闪退
+    //初始化一些数据，避免token失效导致请求不到数据导致数组越界的闪退
     //初始化商品数据
     if (!self.goodsAry) {
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:4];
         for (int i = 0; i < 4; i++) {
-            GoodsData *data = [[GoodsData alloc]init];
+            StampGoodsData *data = [[StampGoodsData alloc]init];
             data.url = @"NULL";
             data.title = @" NULL";
             data.type = 0;
@@ -151,7 +151,7 @@
     if (!self.taskAry) {
         NSMutableArray *mArray2 = [[NSMutableArray alloc]initWithCapacity:4];
         for (int i = 0; i < 4; i++) {
-            TaskData *data = [[TaskData alloc]init];
+            StampTaskData *data = [[StampTaskData alloc]init];
             data.title = @"NULL";
             data.type = @"base";
             data.Description = @"NULL";
@@ -173,6 +173,9 @@
     //加载数据
     [self setupData];
     
+    //加载通知中心
+    [self setupNotification];
+    
     //加载TopBar
     [self setupBar];
     
@@ -191,7 +194,6 @@
     //设置小点
     [self setupPoint];
 
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"Lookin_3D" object:nil];
 }
 
 #pragma mark - table数据源
@@ -219,14 +221,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
         
     if (indexPath.section == 0) {
-        MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
-        TaskData *data = self.taskAry[indexPath.row];
+        TaskTableViewCellWithProgress *cell = [[TaskTableViewCellWithProgress alloc]init];
+        StampTaskData *data = self.taskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
         return cell;
     }if (indexPath.section == 1){
-        MyTableViewCellWithProgress *cell = [[MyTableViewCellWithProgress alloc]init];
-        TaskData *data = self.extraTaskAry[indexPath.row];
+        TaskTableViewCellWithProgress *cell = [[TaskTableViewCellWithProgress alloc]init];
+        StampTaskData *data = self.extraTaskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
         return cell;
@@ -303,14 +305,14 @@
 
 //Cell
 -(UICollectionViewCell *)collectionView:(UICollectionView*)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    MyCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    GoodsCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        GoodsData *data = self.goodsAry[indexPath.item];
+        StampGoodsData *data = self.goodsAry[indexPath.item];
         cell.data = data;
         [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
         [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
     }else{
-        GoodsData *data =self.section2GoodsAry[(indexPath.item)];
+        StampGoodsData *data =self.section2GoodsAry[(indexPath.item)];
         cell.data = data;
         [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
         [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
@@ -328,7 +330,7 @@
 //HeaderView
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     if (kind == UICollectionElementKindSectionHeader) {
-        SecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
+        StampCenterSecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
         collectionheader.backgroundColor = [UIColor colorNamed:@"#FBFCFF"];
         if (indexPath.section == 0) {
             collectionheader.height = 0;
@@ -461,20 +463,20 @@
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
-        self.mainScrollView.table.contentOffset = self.mainScrollView.collection.contentOffset;
+        self.mainScrollView.tableView.contentOffset = self.mainScrollView.collectionView.contentOffset;
     }
     if ([scrollView isKindOfClass:[UITableView class]]) {
-        self.mainScrollView.collection.contentOffset = self.mainScrollView.table.contentOffset;
+        self.mainScrollView.collectionView.contentOffset = self.mainScrollView.tableView.contentOffset;
     }
 }
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if ([scrollView isKindOfClass:[UICollectionView class]]) {
-        self.mainScrollView.table.contentOffset = self.mainScrollView.collection.contentOffset;
+        self.mainScrollView.tableView.contentOffset = self.mainScrollView.collectionView.contentOffset;
     }
     if ([scrollView isKindOfClass:[UITableView class]]) {
-        self.mainScrollView.collection.contentOffset = self.mainScrollView.table.contentOffset;
+        self.mainScrollView.collectionView.contentOffset = self.mainScrollView.tableView.contentOffset;
     }
 }
 
@@ -502,13 +504,13 @@
 }
 
 //主界面
-- (MainScrollView *)mainScrollView{
+- (StampCenterMainScrollView *)mainScrollView{
     if (!_mainScrollView) {
-        _mainScrollView = [[MainScrollView alloc]initWithFrame:CGRectMake(0, Bar_H, SCREEN_WIDTH, SCREEN_HEIGHT-Bar_H)];
-        _mainScrollView.collection.delegate = self;
-        _mainScrollView.collection.dataSource = self;
-        _mainScrollView.table.delegate = self;
-        _mainScrollView.table.dataSource = self;
+        _mainScrollView = [[StampCenterMainScrollView alloc]initWithFrame:CGRectMake(0, Bar_H, SCREEN_WIDTH, SCREEN_HEIGHT-Bar_H)];
+        _mainScrollView.collectionView.delegate = self;
+        _mainScrollView.collectionView.dataSource = self;
+        _mainScrollView.tableView.delegate = self;
+        _mainScrollView.tableView.dataSource = self;
         _mainScrollView.delegate = self;
     }
     return _mainScrollView;
@@ -562,15 +564,6 @@
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     self.splitLineHidden = YES;
     self.CorrectHeaderY = Bar_H;
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
 }
 
 //小型邮票数量View
@@ -621,39 +614,39 @@
 
 //获取数据
 - (void)setupData{
-    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+    [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
         [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
     
-    [GoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
+    [StampGoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
         self.goodsAry = array;
     } error:^{
         [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
 }
 
+//网络异常警告
 - (void)netWorkAlert{
     [NewQAHud showHudWith:@"网络异常" AddView:self.view];
 }
 
+//跳转至QA
 - (void)jumpToNewQA{
-    NSLog(@"正在跳转至邮问主页");
     self.tabBarController.selectedIndex = 1;
     [self.navigationController popViewControllerAnimated:NO];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
-  
 }
 
+//跳转至发动态界面
 - (void)jumpToReleaseDynamic{
     SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
-    
     [self.navigationController pushViewController:SVC animated:YES];
 }
 
+//刷新界面
 - (void)refreshPage{
-    [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+    [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
         [NewQAHud showHudWith:@"网络异常" AddView:self.view];
@@ -668,16 +661,20 @@
         }];
 }
 
+//跳转至界面
 - (void)jumpToZhiyuan{
     QueryLoginViewController *QVC = [[QueryLoginViewController alloc]init];
     [self.navigationController pushViewController:QVC animated:YES];
 }
 
+//跳转至个人中心
 - (void)jumpToProfile{
     EditMyInfoViewController *EVC = [[EditMyInfoViewController alloc]init];
     [self.navigationController presentViewController:EVC animated:YES completion:nil];
 }
 
+
+//检查是否有未领取的货物
 - (void)checkAlertLbl{
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:COMMON_QUESTION method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -693,11 +690,24 @@
 
 }
 
+//签到成功
 - (void)checkInSucceeded{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = @"签到成功";
     [hud hide:YES afterDelay:1];
+}
+
+//设置通知中心
+- (void)setupNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToNewQA) name:@"jumpToNewQA" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToReleaseDynamic) name:@"jumpToReleaseDynamic" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPage) name:@"refreshPage" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
 }
 
 @end

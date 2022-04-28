@@ -19,6 +19,7 @@
     if (self) {
         self.frame = CGRectMake(0, Bar_H, SCREEN_WIDTH, 215);
         self.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+        
         [self addSubview:self.holder];
         [self.holder addSubview:self.stampStoreLbl];
         [self.holder addSubview:self.stampTaskLbl];
@@ -27,10 +28,6 @@
         [self.holder addSubview:self.page1btn];
         [self.holder addSubview:self.page2btn];
         [self addSubview:self.bannerImage];
-        
-        
-
-        
         [self.stampTaskLbl addSubview: self.point];
     }
     return self;

@@ -5,9 +5,9 @@
 //  Created by 钟文韬 on 2021/8/11.
 //
 
-#import "CollectionHeaderView.h"
+#import "StampCenterCollectionHeaderView.h"
 #import "PrefixHeader.pch"
-@implementation CollectionHeaderView
+@implementation StampCenterCollectionHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {

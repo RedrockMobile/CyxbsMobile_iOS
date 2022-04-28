@@ -10,18 +10,23 @@
 NS_ASSUME_NONNULL_BEGIN
 
 ///任务数据
-@interface TaskData : NSObject
+@interface StampTaskData : NSObject
 
 ///标题
 @property (nonatomic,copy) NSString *title;
+
 ///最大进度
 @property (nonatomic,assign) int max_progress;
+
 ///已完成的进度
 @property (nonatomic,assign) int current_progress;
+
 ///描述
 @property (nonatomic,copy) NSString *Description;
+
 ///类型
 @property (nonatomic,copy) NSString *type;
+
 ///获得的邮票
 @property (nonatomic,assign) int gain_stamp;
 

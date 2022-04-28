@@ -7,14 +7,14 @@ use_frameworks!
 target 'CyxbsMobile2019_iOS' do
   	pod 'MGJRouter'
 	pod 'TZImagePickerController','~> 3.3.2'
-	pod 'YBImageBrowser'
+	pod 'YBImageBrowser',:inhibit_warnings => true
 	pod 'NudeIn'
 	pod 'SDWebImage'
 	pod 'AFNetworking'
 	pod 'FMDB'
 	pod 'MBProgressHUD', '~> 0.9.2'
-	pod 'YYKit'
-	pod 'YYImage'
+	pod 'YYKit',:inhibit_warnings => true
+	pod 'YYImage',:inhibit_warnings => true
 	pod 'Masonry'
 	pod 'MJRefresh'
 	pod 'AMapLocation-NO-IDFA'
@@ -55,19 +55,3 @@ target 'CyxbsMobile2019_iOS' do
     end
   
 end
-
-#去除AFN中的UIWebView模块
-pre_install do |installer|
-    puts 'pre_install begin....'
-    dir_af = File.join(installer.sandbox.pod_dir('AFNetworking'), 'UIKit+AFNetworking')
-    Dir.foreach(dir_af) {|x|
-      real_path = File.join(dir_af, x)
-      if (!File.directory?(real_path) && File.exists?(real_path))
-        if((x.start_with?('UIWebView') || x == 'UIKit+AFNetworking.h'))
-          File.delete(real_path)
-          puts 'delete:'+ x
-        end
-      end
-    }
-    puts 'end pre_install.'
-    end

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostItem : NSObject <NSCoding>
+@interface PostItem : NSObject
 
 ///帖子唯一id
 @property (nonatomic, strong) NSString *post_id;

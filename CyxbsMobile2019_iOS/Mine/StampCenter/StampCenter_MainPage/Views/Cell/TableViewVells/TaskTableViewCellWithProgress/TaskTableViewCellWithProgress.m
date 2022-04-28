@@ -1,13 +1,13 @@
 //
-//  MyTableViewCellWithProgress.m
+//  TaskTableViewCellWithProgress.m
 //  Demo5
 //
 //  Created by 钟文韬 on 2021/8/9.
 //
 
-#import "MyTableViewCellWithProgress.h"
+#import "TaskTableViewCellWithProgress.h"
 
-@implementation MyTableViewCellWithProgress
+@implementation TaskTableViewCellWithProgress
 
 - (instancetype)init{
     if (self = [super init]) {
@@ -83,7 +83,7 @@
     return _progressNumberLabel;
 }
 
-- (void)setData:(TaskData *)data{
+- (void)setData:(StampTaskData *)data{
     self.mainLabel.text = data.title;
     self.detailLabel.text =[ NSString stringWithFormat:@"%@ +%d",data.Description,data.gain_stamp];
     float f = (float)data.current_progress/(float)data.max_progress;//必须强转float，不然全都是0

@@ -9,13 +9,15 @@
 #import "GotoButton.h"
 NS_ASSUME_NONNULL_BEGIN
 
-///MyTableViewCell
-@interface MyTableViewCell : UITableViewCell
+///不带进度条的Cell
+@interface TaskTableViewCell : UITableViewCell
 
 ///主要内容
 @property (nonatomic,strong) UILabel *mainLabel;
+
 ///次要内容
 @property (nonatomic,strong) UILabel *detailLabel;
+
 ///去完成按钮
 @property (nonatomic,strong) GotoButton *gotoButton;
 

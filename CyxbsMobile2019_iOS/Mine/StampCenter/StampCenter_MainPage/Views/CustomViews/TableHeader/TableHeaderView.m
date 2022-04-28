@@ -7,7 +7,7 @@
 
 #import "TableHeaderView.h"
 #import "PrefixHeader.pch"
-#import "TaskData.h"
+#import "StampTaskData.h"
 #import "CheckInModel.h"
 
 @implementation TableHeaderView
@@ -34,8 +34,8 @@
 - (GotoButton *)button{
     if (!_button) {
        GotoButton *button = [[GotoButton alloc]initWithFrame:CGRectMake(0.781*SCREEN_WIDTH, 32, 66, 28) AndTitle:@"去签到"];
-        [TaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
-            TaskData *data = array[0];
+        [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+            StampTaskData *data = array[0];
             if ([data.title isEqualToString:@"NULL"]) {
                 [NewQAHud showHudWith:@"Token失效了，重启掌邮试试吧" AddView:self];
             }

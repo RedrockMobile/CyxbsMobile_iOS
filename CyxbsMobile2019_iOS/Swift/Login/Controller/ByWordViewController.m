@@ -95,7 +95,6 @@
 -(void) setTextView{
     UITextView *tf = [[UITextView alloc]initWithFrame:(CGRectMake(20,218-100 + TOTAL_TOP_HEIGHT,339,100))];
     self.tf = tf;
-    tf.delegate = tf;
     tf.layer.cornerRadius = 13;//设置边框圆角
     tf.layer.masksToBounds = YES;
     tf.textContainerInset = UIEdgeInsetsMake(15, 10, 10, 10);//设置边界间距

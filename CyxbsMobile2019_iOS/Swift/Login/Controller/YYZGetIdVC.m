@@ -47,7 +47,6 @@
     [self.navigationController.navigationBar setTintColor:[UIColor colorNamed:@"YYZColor5"]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorNamed:@"YYZColor5"]];
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
     self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
     [self setBtn];
     [self setText];

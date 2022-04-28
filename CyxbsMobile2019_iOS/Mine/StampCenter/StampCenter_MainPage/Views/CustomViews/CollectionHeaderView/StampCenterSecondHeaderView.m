@@ -1,13 +1,14 @@
 //
-//  SecondHeaderView.m
+//  StampCenterSecondHeaderView.m
 //  Demo5
 //
 //  Created by 钟文韬 on 2021/8/11.
 //
 
-#import "SecondHeaderView.h"
+#import "StampCenterSecondHeaderView.h"
 #import "PrefixHeader.pch"
-@implementation SecondHeaderView
+@implementation StampCenterSecondHeaderView
+
 - (UILabel *)mainLabel{
     if (!_mainLabel) {
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.04*SCREEN_WIDTH, 14, 40, 28)];

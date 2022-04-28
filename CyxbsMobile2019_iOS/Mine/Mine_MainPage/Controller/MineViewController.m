@@ -400,18 +400,18 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
     [EditMyInfoModel uploadProfile:img success:^(NSDictionary * _Nonnull responseObject) {
-        if ([responseObject[@"status"] intValue] == 200) {
-            [UserItemTool defaultItem].headImgUrl = responseObject[@"data"][@"photosrc"];
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.mode = MBProgressHUDModeText;
-            hud.labelText = @"上传成功～";
-            [hud hide:YES afterDelay:1];
-        }
+//        if ([responseObject[@"status"] intValue] == 200) { //崩溃
+//            [UserItemTool defaultItem].headImgUrl = responseObject[@"data"][@"photosrc"];
+//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            hud.mode = MBProgressHUDModeText;
+//            hud.labelText = @"上传成功～";
+//            [hud hide:YES afterDelay:1];
+//        }
     } failure:^(NSError * _Nonnull error) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"上传成功～";
-        [hud hide:YES afterDelay:1];
+//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        hud.mode = MBProgressHUDModeText;
+//        hud.labelText = @"上传成功～";
+//        [hud hide:YES afterDelay:1];
     }];
 }
 

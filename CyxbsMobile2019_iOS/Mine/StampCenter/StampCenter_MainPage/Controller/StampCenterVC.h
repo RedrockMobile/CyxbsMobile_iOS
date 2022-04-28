@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TopBarBasicViewController.h"
-#import "MainScrollView.h"
+#import "StampCenterMainScrollView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

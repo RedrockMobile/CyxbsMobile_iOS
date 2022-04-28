@@ -449,9 +449,9 @@ void getSortedChainaIntWeekArr(NSArray<NSString*>* weekStrArr, NSInteger* intWee
 }
 
 //从[1, 2, ... 7]转化为[2, 3, ... 1]
-static inline int ChinaWeekToForeignWeek(int week) {
-    return week%7+1;
-}
+//static inline int ChinaWeekToForeignWeek(int week) {
+//    return week%7+1;
+//}
 //从[2, 3, ... 1]转化为[1, 2, ... 7]
 static inline int ForeignWeekToChinaWeek(int week) {
     return (week+5)%7+1;

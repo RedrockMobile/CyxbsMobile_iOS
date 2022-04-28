@@ -6,12 +6,12 @@
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
-#import "GoodsData.h"
-@implementation GoodsData
+#import "StampGoodsData.h"
+@implementation StampGoodsData
 
 
 + (instancetype)GoodsDataWithDict:(NSDictionary *)dict{
-    GoodsData *data = [[self alloc]init];
+    StampGoodsData *data = [[self alloc]init];
     [data setValuesForKeysWithDictionary:dict];
     return data;
 }
@@ -21,14 +21,16 @@
 }
 
 + (void)GoodsDataWithSuccess:(void (^)(NSArray * _Nonnull))success error:(void (^)(void))error{
+    
+    //网络请求
     HttpClient *client = [HttpClient defaultClient];
     [client requestWithPath:Stamp_Store_Main_Page method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            //字典转模型
+        //字典转模型
         NSArray *array = responseObject[@"data"][@"shop"];
         NSLog(@"%@",responseObject);
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                GoodsData *data = [self GoodsDataWithDict:obj];
+                StampGoodsData *data = [self GoodsDataWithDict:obj];
                 [mArray addObject:data];
             }];
             //调用成功的回调
