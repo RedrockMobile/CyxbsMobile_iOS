@@ -2129,15 +2129,6 @@
 		145AF229281BD5AF00AABC53 /* Discover_MineMessage */ = {
 			isa = PBXGroup;
 			children = (
-				145AF265281BD5AF00AABC53 /* DiscoverMineMessageVC */,
-			);
-			name = Discover_MineMessage;
-			path = ../../../../../../Downloads/Discover_MineMessage;
-			sourceTree = "<group>";
-		};
-		145AF265281BD5AF00AABC53 /* DiscoverMineMessageVC */ = {
-			isa = PBXGroup;
-			children = (
 				14B73F20281BE60E00D08ADD /* DiscoverMineMessage_module */,
 				14B73F25281BE67300D08ADD /* ActiveMessage_module */,
 				14B73F1F281BE5FB00D08ADD /* MessageSetting_module */,
@@ -2145,9 +2136,18 @@
 				14B73F1C281BE5BE00D08ADD /* MessagePresent_module */,
 				14B73F15281BE54F00D08ADD /* MineMessage_module */,
 				14B73F11281BE4F600D08ADD /* SystemMessage_module */,
+				145AF265281BD5AF00AABC53 /* Source */,
+			);
+			name = Discover_MineMessage;
+			path = ../../../../../../Downloads/Discover_MineMessage;
+			sourceTree = "<group>";
+		};
+		145AF265281BD5AF00AABC53 /* Source */ = {
+			isa = PBXGroup;
+			children = (
 				14B73ED5281BE43500D08ADD /* MineMessageHeader.h */,
 			);
-			path = DiscoverMineMessageVC;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		147842EB27F07A30002359BA /* UIView+Frame */ = {
