@@ -53,7 +53,7 @@
             view.right = self.signBtn.left - 34;
             view.top = self.signBtn.top;
             
-            [self addSubview:view];
+//            [self addSubview:view];
         }
         
         [self reloadData];

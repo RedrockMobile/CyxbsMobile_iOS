@@ -36,7 +36,7 @@ typedef struct {
 @implementation SSRTextCycleView
 
 - (instancetype)initWithFrame:(CGRect)frame{
-    self = [super initWithFrame:frame style:UITableViewStyleGrouped];
+    self = [super initWithFrame:frame style:UITableViewStylePlain];
     if (self) {
         self.bounces = NO;
         self.showsVerticalScrollIndicator = NO;

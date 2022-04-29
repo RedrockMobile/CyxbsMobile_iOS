@@ -111,9 +111,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     self.dismiss(animated: true, completion: nil)
                     //完成登录成功后todo的一些配置
                     TodoSyncTool.share().logInSuccess();
-                } failed: {
+                } failed: { isNet in
                     self.hideHud()
-                    self.showHud("账号或密码错误", time: 1)
+                    if isNet {
+                        self.showHud("请检查网络连接", time: 1)
+                        
+                    } else {
+                        self.showHud("账号或密码错误", time: 1)
+                    }
+                    
                 }
                 
             case .lackAccount:
