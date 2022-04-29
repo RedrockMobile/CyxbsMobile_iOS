@@ -19,27 +19,27 @@
 		14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */; };
 		14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */; };
 		14B73EC2281BDE9C00D08ADD /* CyxbsMobileColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73EC1281BDE9C00D08ADD /* CyxbsMobileColor.xcassets */; };
-		14B73EF8281BE43600D08ADD /* MineMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73ECF281BE43500D08ADD /* MineMessageModel.m */; };
-		14B73EF9281BE43600D08ADD /* MessagePresentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73ED2281BE43500D08ADD /* MessagePresentController.m */; };
-		14B73EFA281BE43600D08ADD /* SystemMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73ED3281BE43500D08ADD /* SystemMessageView.m */; };
-		14B73EFB281BE43600D08ADD /* MessageMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73ED4281BE43500D08ADD /* MessageMoreModel.m */; };
-		14B73EFC281BE43600D08ADD /* ActiveMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73ED7281BE43500D08ADD /* ActiveMessageModel.m */; };
-		14B73EFD281BE43600D08ADD /* SystemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73ED9281BE43500D08ADD /* SystemMessage.m */; };
-		14B73EFE281BE43600D08ADD /* ActiveMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EDA281BE43500D08ADD /* ActiveMessageVC.m */; };
-		14B73EFF281BE43600D08ADD /* SystemMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EDB281BE43500D08ADD /* SystemMsgModel.m */; };
-		14B73F00281BE43600D08ADD /* MessageSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EDD281BE43500D08ADD /* MessageSettingVC.m */; };
-		14B73F01281BE43600D08ADD /* MineMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EDE281BE43500D08ADD /* MineMessageVC.m */; };
-		14B73F02281BE43600D08ADD /* SystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EDF281BE43500D08ADD /* SystemMessageCell.m */; };
-		14B73F03281BE43600D08ADD /* ActiveMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EE3281BE43500D08ADD /* ActiveMessageCell.m */; };
-		14B73F04281BE43600D08ADD /* SystemMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EE4281BE43500D08ADD /* SystemMessageVC.m */; };
-		14B73F05281BE43600D08ADD /* MessagePresentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EE5281BE43500D08ADD /* MessagePresentView.m */; };
-		14B73F06281BE43600D08ADD /* DiscoverMineMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EE6281BE43600D08ADD /* DiscoverMineMessageVC.m */; };
-		14B73F07281BE43600D08ADD /* MineMessageTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EE7281BE43600D08ADD /* MineMessageTopView.m */; };
-		14B73F08281BE43600D08ADD /* ActiveMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EE9281BE43600D08ADD /* ActiveMessage.m */; };
-		14B73F09281BE43600D08ADD /* MessageMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EEC281BE43600D08ADD /* MessageMoreCell.m */; };
-		14B73F0A281BE43600D08ADD /* MineMessageMoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EF4281BE43600D08ADD /* MineMessageMoreVC.m */; };
-		14B73F0B281BE43600D08ADD /* MessageSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73EF6281BE43600D08ADD /* MessageSettingCell.m */; };
 		14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */; };
+		14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */; };
+		14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F30281BED7B00D08ADD /* MessageSettingVC.m */; };
+		14B73F70281BED7B00D08ADD /* ActiveMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F36281BED7B00D08ADD /* ActiveMessageModel.m */; };
+		14B73F71281BED7B00D08ADD /* ActiveMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F39281BED7B00D08ADD /* ActiveMessage.m */; };
+		14B73F72281BED7B00D08ADD /* ActiveMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F3C281BED7B00D08ADD /* ActiveMessageCell.m */; };
+		14B73F73281BED7B00D08ADD /* ActiveMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F3F281BED7B00D08ADD /* ActiveMessageVC.m */; };
+		14B73F74281BED7B00D08ADD /* SystemMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F42281BED7B00D08ADD /* SystemMsgModel.m */; };
+		14B73F75281BED7B00D08ADD /* SystemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F46281BED7B00D08ADD /* SystemMessage.m */; };
+		14B73F76281BED7B00D08ADD /* SystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F4A281BED7B00D08ADD /* SystemMessageCell.m */; };
+		14B73F77281BED7B00D08ADD /* SystemMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F4C281BED7B00D08ADD /* SystemMessageView.m */; };
+		14B73F78281BED7B00D08ADD /* SystemMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F4F281BED7B00D08ADD /* SystemMessageVC.m */; };
+		14B73F79281BED7B00D08ADD /* MessageMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F52281BED7B00D08ADD /* MessageMoreModel.m */; };
+		14B73F7A281BED7B00D08ADD /* MessageMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F55281BED7B00D08ADD /* MessageMoreCell.m */; };
+		14B73F7B281BED7B00D08ADD /* MineMessageMoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F58281BED7B00D08ADD /* MineMessageMoreVC.m */; };
+		14B73F7C281BED7B00D08ADD /* MineMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F5C281BED7B00D08ADD /* MineMessageModel.m */; };
+		14B73F7D281BED7B00D08ADD /* MineMessageTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F60281BED7B00D08ADD /* MineMessageTopView.m */; };
+		14B73F7E281BED7B00D08ADD /* MineMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F63281BED7B00D08ADD /* MineMessageVC.m */; };
+		14B73F7F281BED7B00D08ADD /* DiscoverMineMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F65281BED7B00D08ADD /* DiscoverMineMessageVC.m */; };
+		14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F69281BED7B00D08ADD /* MessagePresentView.m */; };
+		14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F6D281BED7B00D08ADD /* MessagePresentController.m */; };
 		14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */; };
 		14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0E27FE725E00D6AE93 /* JWZXDetailNewsModel.m */; };
 		14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A527F5762500B67469 /* QuestionSelectView.m */; };
@@ -761,48 +761,48 @@
 		14981FFA27FEB41B00AD2A29 /* JWZXDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailView.h; sourceTree = "<group>"; };
 		14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailView.m; sourceTree = "<group>"; };
 		14B73EC1281BDE9C00D08ADD /* CyxbsMobileColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileColor.xcassets; sourceTree = "<group>"; };
-		14B73ECF281BE43500D08ADD /* MineMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineMessageModel.m; sourceTree = "<group>"; };
-		14B73ED0281BE43500D08ADD /* MessagePresentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePresentView.h; sourceTree = "<group>"; };
-		14B73ED1281BE43500D08ADD /* SystemMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessage.h; sourceTree = "<group>"; };
-		14B73ED2281BE43500D08ADD /* MessagePresentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePresentController.m; sourceTree = "<group>"; };
-		14B73ED3281BE43500D08ADD /* SystemMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageView.m; sourceTree = "<group>"; };
-		14B73ED4281BE43500D08ADD /* MessageMoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageMoreModel.m; sourceTree = "<group>"; };
-		14B73ED5281BE43500D08ADD /* MineMessageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageHeader.h; sourceTree = "<group>"; };
-		14B73ED6281BE43500D08ADD /* SystemMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageVC.h; sourceTree = "<group>"; };
-		14B73ED7281BE43500D08ADD /* ActiveMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMessageModel.m; sourceTree = "<group>"; };
-		14B73ED8281BE43500D08ADD /* MineMessageTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageTopView.h; sourceTree = "<group>"; };
-		14B73ED9281BE43500D08ADD /* SystemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessage.m; sourceTree = "<group>"; };
-		14B73EDA281BE43500D08ADD /* ActiveMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMessageVC.m; sourceTree = "<group>"; };
-		14B73EDB281BE43500D08ADD /* SystemMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMsgModel.m; sourceTree = "<group>"; };
-		14B73EDC281BE43500D08ADD /* MessageMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageMoreCell.h; sourceTree = "<group>"; };
-		14B73EDD281BE43500D08ADD /* MessageSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSettingVC.m; sourceTree = "<group>"; };
-		14B73EDE281BE43500D08ADD /* MineMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineMessageVC.m; sourceTree = "<group>"; };
-		14B73EDF281BE43500D08ADD /* SystemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageCell.m; sourceTree = "<group>"; };
-		14B73EE0281BE43500D08ADD /* MessageSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSettingCell.h; sourceTree = "<group>"; };
-		14B73EE1281BE43500D08ADD /* ActiveMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMessageModel.h; sourceTree = "<group>"; };
-		14B73EE2281BE43500D08ADD /* MessageMoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageMoreModel.h; sourceTree = "<group>"; };
-		14B73EE3281BE43500D08ADD /* ActiveMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMessageCell.m; sourceTree = "<group>"; };
-		14B73EE4281BE43500D08ADD /* SystemMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageVC.m; sourceTree = "<group>"; };
-		14B73EE5281BE43500D08ADD /* MessagePresentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePresentView.m; sourceTree = "<group>"; };
-		14B73EE6281BE43600D08ADD /* DiscoverMineMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverMineMessageVC.m; sourceTree = "<group>"; };
-		14B73EE7281BE43600D08ADD /* MineMessageTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineMessageTopView.m; sourceTree = "<group>"; };
-		14B73EE8281BE43600D08ADD /* ActiveMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMessage.h; sourceTree = "<group>"; };
-		14B73EE9281BE43600D08ADD /* ActiveMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMessage.m; sourceTree = "<group>"; };
-		14B73EEA281BE43600D08ADD /* MineMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageModel.h; sourceTree = "<group>"; };
-		14B73EEB281BE43600D08ADD /* SystemMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageView.h; sourceTree = "<group>"; };
-		14B73EEC281BE43600D08ADD /* MessageMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageMoreCell.m; sourceTree = "<group>"; };
-		14B73EED281BE43600D08ADD /* MineMessageMoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageMoreVC.h; sourceTree = "<group>"; };
-		14B73EEE281BE43600D08ADD /* MineMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageVC.h; sourceTree = "<group>"; };
-		14B73EEF281BE43600D08ADD /* ActiveMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMessageVC.h; sourceTree = "<group>"; };
-		14B73EF0281BE43600D08ADD /* ActiveMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMessageCell.h; sourceTree = "<group>"; };
-		14B73EF1281BE43600D08ADD /* DiscoverMineMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverMineMessageVC.h; sourceTree = "<group>"; };
-		14B73EF2281BE43600D08ADD /* SystemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageCell.h; sourceTree = "<group>"; };
-		14B73EF3281BE43600D08ADD /* MessagePresentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePresentController.h; sourceTree = "<group>"; };
-		14B73EF4281BE43600D08ADD /* MineMessageMoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineMessageMoreVC.m; sourceTree = "<group>"; };
-		14B73EF5281BE43600D08ADD /* MessageSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSettingVC.h; sourceTree = "<group>"; };
-		14B73EF6281BE43600D08ADD /* MessageSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSettingCell.m; sourceTree = "<group>"; };
-		14B73EF7281BE43600D08ADD /* SystemMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMsgModel.h; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
+		14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSettingCell.m; sourceTree = "<group>"; };
+		14B73F2D281BED7B00D08ADD /* MessageSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSettingCell.h; sourceTree = "<group>"; };
+		14B73F2F281BED7B00D08ADD /* MessageSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSettingVC.h; sourceTree = "<group>"; };
+		14B73F30281BED7B00D08ADD /* MessageSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSettingVC.m; sourceTree = "<group>"; };
+		14B73F32281BED7B00D08ADD /* MineMessageHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageHeader.h; sourceTree = "<group>"; };
+		14B73F35281BED7B00D08ADD /* ActiveMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMessageModel.h; sourceTree = "<group>"; };
+		14B73F36281BED7B00D08ADD /* ActiveMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMessageModel.m; sourceTree = "<group>"; };
+		14B73F38281BED7B00D08ADD /* ActiveMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMessage.h; sourceTree = "<group>"; };
+		14B73F39281BED7B00D08ADD /* ActiveMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMessage.m; sourceTree = "<group>"; };
+		14B73F3B281BED7B00D08ADD /* ActiveMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMessageCell.h; sourceTree = "<group>"; };
+		14B73F3C281BED7B00D08ADD /* ActiveMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMessageCell.m; sourceTree = "<group>"; };
+		14B73F3E281BED7B00D08ADD /* ActiveMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveMessageVC.h; sourceTree = "<group>"; };
+		14B73F3F281BED7B00D08ADD /* ActiveMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveMessageVC.m; sourceTree = "<group>"; };
+		14B73F42281BED7B00D08ADD /* SystemMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMsgModel.m; sourceTree = "<group>"; };
+		14B73F43281BED7B00D08ADD /* SystemMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMsgModel.h; sourceTree = "<group>"; };
+		14B73F45281BED7B00D08ADD /* SystemMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessage.h; sourceTree = "<group>"; };
+		14B73F46281BED7B00D08ADD /* SystemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessage.m; sourceTree = "<group>"; };
+		14B73F49281BED7B00D08ADD /* SystemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageCell.h; sourceTree = "<group>"; };
+		14B73F4A281BED7B00D08ADD /* SystemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageCell.m; sourceTree = "<group>"; };
+		14B73F4B281BED7B00D08ADD /* SystemMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageView.h; sourceTree = "<group>"; };
+		14B73F4C281BED7B00D08ADD /* SystemMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageView.m; sourceTree = "<group>"; };
+		14B73F4E281BED7B00D08ADD /* SystemMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageVC.h; sourceTree = "<group>"; };
+		14B73F4F281BED7B00D08ADD /* SystemMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageVC.m; sourceTree = "<group>"; };
+		14B73F52281BED7B00D08ADD /* MessageMoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageMoreModel.m; sourceTree = "<group>"; };
+		14B73F53281BED7B00D08ADD /* MessageMoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageMoreModel.h; sourceTree = "<group>"; };
+		14B73F55281BED7B00D08ADD /* MessageMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageMoreCell.m; sourceTree = "<group>"; };
+		14B73F56281BED7B00D08ADD /* MessageMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageMoreCell.h; sourceTree = "<group>"; };
+		14B73F58281BED7B00D08ADD /* MineMessageMoreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineMessageMoreVC.m; sourceTree = "<group>"; };
+		14B73F59281BED7B00D08ADD /* MineMessageMoreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageMoreVC.h; sourceTree = "<group>"; };
+		14B73F5C281BED7B00D08ADD /* MineMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineMessageModel.m; sourceTree = "<group>"; };
+		14B73F5D281BED7B00D08ADD /* MineMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageModel.h; sourceTree = "<group>"; };
+		14B73F5F281BED7B00D08ADD /* MineMessageTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageTopView.h; sourceTree = "<group>"; };
+		14B73F60281BED7B00D08ADD /* MineMessageTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineMessageTopView.m; sourceTree = "<group>"; };
+		14B73F62281BED7B00D08ADD /* MineMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineMessageVC.h; sourceTree = "<group>"; };
+		14B73F63281BED7B00D08ADD /* MineMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineMessageVC.m; sourceTree = "<group>"; };
+		14B73F65281BED7B00D08ADD /* DiscoverMineMessageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverMineMessageVC.m; sourceTree = "<group>"; };
+		14B73F66281BED7B00D08ADD /* DiscoverMineMessageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverMineMessageVC.h; sourceTree = "<group>"; };
+		14B73F69281BED7B00D08ADD /* MessagePresentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePresentView.m; sourceTree = "<group>"; };
+		14B73F6A281BED7B00D08ADD /* MessagePresentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePresentView.h; sourceTree = "<group>"; };
+		14B73F6C281BED7B00D08ADD /* MessagePresentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePresentController.h; sourceTree = "<group>"; };
+		14B73F6D281BED7B00D08ADD /* MessagePresentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePresentController.m; sourceTree = "<group>"; };
 		14D03A0927FE69A800D6AE93 /* SSRTopBarBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTopBarBaseView.h; sourceTree = "<group>"; };
 		14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTopBarBaseView.m; sourceTree = "<group>"; };
 		14D03A0D27FE725E00D6AE93 /* JWZXDetailNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailNewsModel.h; sourceTree = "<group>"; };
@@ -2126,30 +2126,6 @@
 			path = "UITextView+Placeholder";
 			sourceTree = "<group>";
 		};
-		145AF229281BD5AF00AABC53 /* Discover_MineMessage */ = {
-			isa = PBXGroup;
-			children = (
-				14B73F20281BE60E00D08ADD /* DiscoverMineMessage_module */,
-				14B73F25281BE67300D08ADD /* ActiveMessage_module */,
-				14B73F1F281BE5FB00D08ADD /* MessageSetting_module */,
-				14B73F19281BE57A00D08ADD /* MessageMore_module */,
-				14B73F1C281BE5BE00D08ADD /* MessagePresent_module */,
-				14B73F15281BE54F00D08ADD /* MineMessage_module */,
-				14B73F11281BE4F600D08ADD /* SystemMessage_module */,
-				145AF265281BD5AF00AABC53 /* Source */,
-			);
-			name = Discover_MineMessage;
-			path = ../../../../../../Downloads/Discover_MineMessage;
-			sourceTree = "<group>";
-		};
-		145AF265281BD5AF00AABC53 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				14B73ED5281BE43500D08ADD /* MineMessageHeader.h */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
 		147842EB27F07A30002359BA /* UIView+Frame */ = {
 			isa = PBXGroup;
 			children = (
@@ -2467,245 +2443,269 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		14B73F0C281BE4AF00D08ADD /* Model */ = {
+		14B73F29281BED7B00D08ADD /* Discover_MineMessage */ = {
 			isa = PBXGroup;
 			children = (
-				14B73EF7281BE43600D08ADD /* SystemMsgModel.h */,
-				14B73EDB281BE43500D08ADD /* SystemMsgModel.m */,
-				14B73F0E281BE4C300D08ADD /* SystemMessage */,
+				14B73F2A281BED7B00D08ADD /* MessageSetting_module */,
+				14B73F31281BED7B00D08ADD /* Source */,
+				14B73F33281BED7B00D08ADD /* ActiveMessage_module */,
+				14B73F40281BED7B00D08ADD /* SystemMessage_module */,
+				14B73F50281BED7B00D08ADD /* MessageMore_module */,
+				14B73F5A281BED7B00D08ADD /* MineMessage_module */,
+				14B73F64281BED7B00D08ADD /* DiscoverMineMessage_module */,
+				14B73F67281BED7B00D08ADD /* MessagePresent_module */,
 			);
-			path = Model;
-			sourceTree = "<group>";
+			name = Discover_MineMessage;
+			path = CyxbsMobile2019_iOS/Discover/Discover_MineMessage;
+			sourceTree = SOURCE_ROOT;
 		};
-		14B73F0D281BE4BB00D08ADD /* View */ = {
+		14B73F2A281BED7B00D08ADD /* MessageSetting_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73EEB281BE43600D08ADD /* SystemMessageView.h */,
-				14B73ED3281BE43500D08ADD /* SystemMessageView.m */,
-				14B73F0F281BE4D600D08ADD /* SystemMessageCell */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		14B73F0E281BE4C300D08ADD /* SystemMessage */ = {
-			isa = PBXGroup;
-			children = (
-				14B73ED1281BE43500D08ADD /* SystemMessage.h */,
-				14B73ED9281BE43500D08ADD /* SystemMessage.m */,
-			);
-			path = SystemMessage;
-			sourceTree = "<group>";
-		};
-		14B73F0F281BE4D600D08ADD /* SystemMessageCell */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EF2281BE43600D08ADD /* SystemMessageCell.h */,
-				14B73EDF281BE43500D08ADD /* SystemMessageCell.m */,
-			);
-			path = SystemMessageCell;
-			sourceTree = "<group>";
-		};
-		14B73F10281BE4E400D08ADD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				14B73ED6281BE43500D08ADD /* SystemMessageVC.h */,
-				14B73EE4281BE43500D08ADD /* SystemMessageVC.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		14B73F11281BE4F600D08ADD /* SystemMessage_module */ = {
-			isa = PBXGroup;
-			children = (
-				14B73F10281BE4E400D08ADD /* ViewController */,
-				14B73F0D281BE4BB00D08ADD /* View */,
-				14B73F0C281BE4AF00D08ADD /* Model */,
-			);
-			path = SystemMessage_module;
-			sourceTree = "<group>";
-		};
-		14B73F12281BE51800D08ADD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EEE281BE43600D08ADD /* MineMessageVC.h */,
-				14B73EDE281BE43500D08ADD /* MineMessageVC.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		14B73F13281BE52500D08ADD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				14B73ED8281BE43500D08ADD /* MineMessageTopView.h */,
-				14B73EE7281BE43600D08ADD /* MineMessageTopView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		14B73F14281BE53400D08ADD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EEA281BE43600D08ADD /* MineMessageModel.h */,
-				14B73ECF281BE43500D08ADD /* MineMessageModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		14B73F15281BE54F00D08ADD /* MineMessage_module */ = {
-			isa = PBXGroup;
-			children = (
-				14B73F14281BE53400D08ADD /* Model */,
-				14B73F13281BE52500D08ADD /* View */,
-				14B73F12281BE51800D08ADD /* ViewController */,
-			);
-			path = MineMessage_module;
-			sourceTree = "<group>";
-		};
-		14B73F16281BE55F00D08ADD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EED281BE43600D08ADD /* MineMessageMoreVC.h */,
-				14B73EF4281BE43600D08ADD /* MineMessageMoreVC.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		14B73F17281BE56B00D08ADD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EDC281BE43500D08ADD /* MessageMoreCell.h */,
-				14B73EEC281BE43600D08ADD /* MessageMoreCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		14B73F18281BE57000D08ADD /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EE2281BE43500D08ADD /* MessageMoreModel.h */,
-				14B73ED4281BE43500D08ADD /* MessageMoreModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		14B73F19281BE57A00D08ADD /* MessageMore_module */ = {
-			isa = PBXGroup;
-			children = (
-				14B73F16281BE55F00D08ADD /* ViewController */,
-				14B73F17281BE56B00D08ADD /* View */,
-				14B73F18281BE57000D08ADD /* Model */,
-			);
-			path = MessageMore_module;
-			sourceTree = "<group>";
-		};
-		14B73F1A281BE58F00D08ADD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EF3281BE43600D08ADD /* MessagePresentController.h */,
-				14B73ED2281BE43500D08ADD /* MessagePresentController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		14B73F1B281BE59900D08ADD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				14B73ED0281BE43500D08ADD /* MessagePresentView.h */,
-				14B73EE5281BE43500D08ADD /* MessagePresentView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		14B73F1C281BE5BE00D08ADD /* MessagePresent_module */ = {
-			isa = PBXGroup;
-			children = (
-				14B73F1A281BE58F00D08ADD /* ViewController */,
-				14B73F1B281BE59900D08ADD /* View */,
-			);
-			path = MessagePresent_module;
-			sourceTree = "<group>";
-		};
-		14B73F1D281BE5D000D08ADD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EE0281BE43500D08ADD /* MessageSettingCell.h */,
-				14B73EF6281BE43600D08ADD /* MessageSettingCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		14B73F1E281BE5D600D08ADD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EF5281BE43600D08ADD /* MessageSettingVC.h */,
-				14B73EDD281BE43500D08ADD /* MessageSettingVC.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		14B73F1F281BE5FB00D08ADD /* MessageSetting_module */ = {
-			isa = PBXGroup;
-			children = (
-				14B73F1E281BE5D600D08ADD /* ViewController */,
-				14B73F1D281BE5D000D08ADD /* View */,
+				14B73F2B281BED7B00D08ADD /* View */,
+				14B73F2E281BED7B00D08ADD /* ViewController */,
 			);
 			path = MessageSetting_module;
 			sourceTree = "<group>";
 		};
-		14B73F20281BE60E00D08ADD /* DiscoverMineMessage_module */ = {
+		14B73F2B281BED7B00D08ADD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				14B73EF1281BE43600D08ADD /* DiscoverMineMessageVC.h */,
-				14B73EE6281BE43600D08ADD /* DiscoverMineMessageVC.m */,
-			);
-			path = DiscoverMineMessage_module;
-			sourceTree = "<group>";
-		};
-		14B73F21281BE64500D08ADD /* ActiveMessage */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EE8281BE43600D08ADD /* ActiveMessage.h */,
-				14B73EE9281BE43600D08ADD /* ActiveMessage.m */,
-			);
-			path = ActiveMessage;
-			sourceTree = "<group>";
-		};
-		14B73F22281BE65100D08ADD /* View */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EF0281BE43600D08ADD /* ActiveMessageCell.h */,
-				14B73EE3281BE43500D08ADD /* ActiveMessageCell.m */,
+				14B73F2D281BED7B00D08ADD /* MessageSettingCell.h */,
+				14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		14B73F23281BE65F00D08ADD /* Movel */ = {
+		14B73F2E281BED7B00D08ADD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				14B73EE1281BE43500D08ADD /* ActiveMessageModel.h */,
-				14B73ED7281BE43500D08ADD /* ActiveMessageModel.m */,
-				14B73F21281BE64500D08ADD /* ActiveMessage */,
-			);
-			path = Movel;
-			sourceTree = "<group>";
-		};
-		14B73F24281BE66900D08ADD /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				14B73EEF281BE43600D08ADD /* ActiveMessageVC.h */,
-				14B73EDA281BE43500D08ADD /* ActiveMessageVC.m */,
+				14B73F2F281BED7B00D08ADD /* MessageSettingVC.h */,
+				14B73F30281BED7B00D08ADD /* MessageSettingVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		14B73F25281BE67300D08ADD /* ActiveMessage_module */ = {
+		14B73F31281BED7B00D08ADD /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F24281BE66900D08ADD /* ViewController */,
-				14B73F22281BE65100D08ADD /* View */,
-				14B73F23281BE65F00D08ADD /* Movel */,
+				14B73F32281BED7B00D08ADD /* MineMessageHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		14B73F33281BED7B00D08ADD /* ActiveMessage_module */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F34281BED7B00D08ADD /* Movel */,
+				14B73F3A281BED7B00D08ADD /* View */,
+				14B73F3D281BED7B00D08ADD /* ViewController */,
 			);
 			path = ActiveMessage_module;
+			sourceTree = "<group>";
+		};
+		14B73F34281BED7B00D08ADD /* Movel */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F35281BED7B00D08ADD /* ActiveMessageModel.h */,
+				14B73F36281BED7B00D08ADD /* ActiveMessageModel.m */,
+				14B73F37281BED7B00D08ADD /* ActiveMessage */,
+			);
+			path = Movel;
+			sourceTree = "<group>";
+		};
+		14B73F37281BED7B00D08ADD /* ActiveMessage */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F38281BED7B00D08ADD /* ActiveMessage.h */,
+				14B73F39281BED7B00D08ADD /* ActiveMessage.m */,
+			);
+			path = ActiveMessage;
+			sourceTree = "<group>";
+		};
+		14B73F3A281BED7B00D08ADD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F3B281BED7B00D08ADD /* ActiveMessageCell.h */,
+				14B73F3C281BED7B00D08ADD /* ActiveMessageCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B73F3D281BED7B00D08ADD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F3E281BED7B00D08ADD /* ActiveMessageVC.h */,
+				14B73F3F281BED7B00D08ADD /* ActiveMessageVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14B73F40281BED7B00D08ADD /* SystemMessage_module */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F41281BED7B00D08ADD /* Model */,
+				14B73F47281BED7B00D08ADD /* View */,
+				14B73F4D281BED7B00D08ADD /* ViewController */,
+			);
+			path = SystemMessage_module;
+			sourceTree = "<group>";
+		};
+		14B73F41281BED7B00D08ADD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F42281BED7B00D08ADD /* SystemMsgModel.m */,
+				14B73F43281BED7B00D08ADD /* SystemMsgModel.h */,
+				14B73F44281BED7B00D08ADD /* SystemMessage */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14B73F44281BED7B00D08ADD /* SystemMessage */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F45281BED7B00D08ADD /* SystemMessage.h */,
+				14B73F46281BED7B00D08ADD /* SystemMessage.m */,
+			);
+			path = SystemMessage;
+			sourceTree = "<group>";
+		};
+		14B73F47281BED7B00D08ADD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F4B281BED7B00D08ADD /* SystemMessageView.h */,
+				14B73F4C281BED7B00D08ADD /* SystemMessageView.m */,
+				14B73F48281BED7B00D08ADD /* SystemMessageCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B73F48281BED7B00D08ADD /* SystemMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F49281BED7B00D08ADD /* SystemMessageCell.h */,
+				14B73F4A281BED7B00D08ADD /* SystemMessageCell.m */,
+			);
+			path = SystemMessageCell;
+			sourceTree = "<group>";
+		};
+		14B73F4D281BED7B00D08ADD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F4E281BED7B00D08ADD /* SystemMessageVC.h */,
+				14B73F4F281BED7B00D08ADD /* SystemMessageVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14B73F50281BED7B00D08ADD /* MessageMore_module */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F51281BED7B00D08ADD /* Model */,
+				14B73F54281BED7B00D08ADD /* View */,
+				14B73F57281BED7B00D08ADD /* ViewController */,
+			);
+			path = MessageMore_module;
+			sourceTree = "<group>";
+		};
+		14B73F51281BED7B00D08ADD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F52281BED7B00D08ADD /* MessageMoreModel.m */,
+				14B73F53281BED7B00D08ADD /* MessageMoreModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14B73F54281BED7B00D08ADD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F55281BED7B00D08ADD /* MessageMoreCell.m */,
+				14B73F56281BED7B00D08ADD /* MessageMoreCell.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B73F57281BED7B00D08ADD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F58281BED7B00D08ADD /* MineMessageMoreVC.m */,
+				14B73F59281BED7B00D08ADD /* MineMessageMoreVC.h */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14B73F5A281BED7B00D08ADD /* MineMessage_module */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F5B281BED7B00D08ADD /* Model */,
+				14B73F5E281BED7B00D08ADD /* View */,
+				14B73F61281BED7B00D08ADD /* ViewController */,
+			);
+			path = MineMessage_module;
+			sourceTree = "<group>";
+		};
+		14B73F5B281BED7B00D08ADD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F5C281BED7B00D08ADD /* MineMessageModel.m */,
+				14B73F5D281BED7B00D08ADD /* MineMessageModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14B73F5E281BED7B00D08ADD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F5F281BED7B00D08ADD /* MineMessageTopView.h */,
+				14B73F60281BED7B00D08ADD /* MineMessageTopView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B73F61281BED7B00D08ADD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F62281BED7B00D08ADD /* MineMessageVC.h */,
+				14B73F63281BED7B00D08ADD /* MineMessageVC.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14B73F64281BED7B00D08ADD /* DiscoverMineMessage_module */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F65281BED7B00D08ADD /* DiscoverMineMessageVC.m */,
+				14B73F66281BED7B00D08ADD /* DiscoverMineMessageVC.h */,
+			);
+			path = DiscoverMineMessage_module;
+			sourceTree = "<group>";
+		};
+		14B73F67281BED7B00D08ADD /* MessagePresent_module */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F68281BED7B00D08ADD /* View */,
+				14B73F6B281BED7B00D08ADD /* ViewController */,
+			);
+			path = MessagePresent_module;
+			sourceTree = "<group>";
+		};
+		14B73F68281BED7B00D08ADD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F69281BED7B00D08ADD /* MessagePresentView.m */,
+				14B73F6A281BED7B00D08ADD /* MessagePresentView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14B73F6B281BED7B00D08ADD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F6C281BED7B00D08ADD /* MessagePresentController.h */,
+				14B73F6D281BED7B00D08ADD /* MessagePresentController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		14D03A0027FDB76200D6AE93 /* ViewController */ = {
@@ -2997,7 +2997,7 @@
 				18CDF4D9257F91BC006E8E5C /* Controller */,
 				1404747F27F47F2A00307209 /* Discover_AD */,
 				18CDF580257F91BD006E8E5C /* DIscover_JWZX */,
-				145AF229281BD5AF00AABC53 /* Discover_MineMessage */,
+				14B73F29281BED7B00D08ADD /* Discover_MineMessage */,
 			);
 			path = Discover_MainPage;
 			sourceTree = "<group>";
@@ -6314,12 +6314,15 @@
 				1AFD151C237D81DD004D9CEA /* EditMyInfoPresenter.m in Sources */,
 				18CDF6A1257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.m in Sources */,
 				18CDF4C2257F8DBD006E8E5C /* changePassword.m in Sources */,
+				14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */,
 				73AAA1D326C918250084E44D /* PurchaseinfoViewController.m in Sources */,
 				187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */,
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
+				14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */,
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
+				14B73F72281BED7B00D08ADD /* ActiveMessageCell.m in Sources */,
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
 				14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */,
 				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
@@ -6353,14 +6356,12 @@
 				1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */,
 				B83766ED25C14FD600A8666A /* SearchEndNoResultCV.m in Sources */,
 				4975628A26D5975F004499E6 /* FeedBackView.m in Sources */,
-				14B73F06281BE43600D08ADD /* DiscoverMineMessageVC.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				18CDF6B0257F91BD006E8E5C /* SCChartLabel.m in Sources */,
 				BE7CBD8727535FC000094AE8 /* NewQAPostDetailLabel.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				18CDF6BD257F91BE006E8E5C /* Credits.m in Sources */,
-				14B73EFE281BE43600D08ADD /* ActiveMessageVC.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				1893DC8D26EA32F1007E871E /* MGDQueue.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
@@ -6371,11 +6372,15 @@
 				73AAA1CD26C918250084E44D /* DetailsMainViewController.m in Sources */,
 				BE7CBD8B27535FC000094AE8 /* MGDCurrentTimeStr.m in Sources */,
 				187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */,
+				14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */,
 				AA4FA1FA25C2E2E5005139BA /* PraiseTableViewCell.m in Sources */,
 				AA4FF36525879CD500C31286 /* MineSettingViewController.m in Sources */,
+				14B73F76281BED7B00D08ADD /* SystemMessageCell.m in Sources */,
+				14B73F7B281BED7B00D08ADD /* MineMessageMoreVC.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				7F101AC5260613E800F2034C /* YYZTopicCell.m in Sources */,
 				FE0D60442801702B00319A9E /* SchoolBusData.m in Sources */,
+				14B73F7F281BED7B00D08ADD /* DiscoverMineMessageVC.m in Sources */,
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				AA4CD61925F13757002D9394 /* MainMsgCntModel.m in Sources */,
@@ -6390,6 +6395,7 @@
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
+				14B73F73281BED7B00D08ADD /* ActiveMessageVC.m in Sources */,
 				1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */,
 				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
@@ -6406,6 +6412,7 @@
 				BE7CBD8827535FC000094AE8 /* NewQAMainPageMainView.m in Sources */,
 				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
 				B8A981F725E1452B0020CD86 /* SZHCircleLabelView.m in Sources */,
+				14B73F70281BED7B00D08ADD /* ActiveMessageModel.m in Sources */,
 				18CDF717257F91BE006E8E5C /* ActivityItem.m in Sources */,
 				AAE3304725E2A0D800324750 /* ArticleViewController.m in Sources */,
 				B89B8E5D2603928F00497814 /* CYSearchEndKnowledgeDetailView.m in Sources */,
@@ -6413,7 +6420,7 @@
 				18CDF6B8257F91BD006E8E5C /* ScoreViewController.m in Sources */,
 				18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */,
 				BE7CBD9327535FC000094AE8 /* MGDClickParams.m in Sources */,
-				14B73F0B281BE43600D08ADD /* MessageSettingCell.m in Sources */,
+				14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
 				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
@@ -6424,13 +6431,12 @@
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				7311328A26CCEC2400EF88C1 /* TopView.m in Sources */,
 				18CDF718257F91BE006E8E5C /* VolunteeringEventItem.m in Sources */,
-				14B73F03281BE43600D08ADD /* ActiveMessageCell.m in Sources */,
+				14B73F7C281BED7B00D08ADD /* MineMessageModel.m in Sources */,
 				B82CA685263159BA00786685 /* DynamicSpecificCell.m in Sources */,
 				B83766F325C150C000A8666A /* SZHSearchEndCv.m in Sources */,
 				14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */,
-				14B73F01281BE43600D08ADD /* MineMessageVC.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
 				185AFA5627022258007F40F9 /* MGDCommen.swift in Sources */,
 				BE7CBD7B27535FC000094AE8 /* DeletePostModel.m in Sources */,
@@ -6442,6 +6448,7 @@
 				18CDF682257F91BD006E8E5C /* EmptyClassItem.m in Sources */,
 				18CDF688257F91BD006E8E5C /* EmptyClassContentView.m in Sources */,
 				FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */,
+				14B73F79281BED7B00D08ADD /* MessageMoreModel.m in Sources */,
 				B82CA6602631599900786685 /* DynamicDetailCommentTableCellModel.m in Sources */,
 				18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */,
 				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
@@ -6465,7 +6472,6 @@
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				18CDF69E257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m in Sources */,
-				14B73EFC281BE43600D08ADD /* ActiveMessageModel.m in Sources */,
 				7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				18CDF6A5257F91BD006E8E5C /* CQUPTMapDetailView.m in Sources */,
@@ -6508,11 +6514,9 @@
 				18CDF671257F91BD006E8E5C /* ExamArrangeModel.m in Sources */,
 				7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
-				14B73F05281BE43600D08ADD /* MessagePresentView.m in Sources */,
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
-				14B73F02281BE43600D08ADD /* SystemMessageCell.m in Sources */,
 				14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				B82D115525E35FF400690FA6 /* SZHReleaseTopBarView.m in Sources */,
@@ -6528,10 +6532,8 @@
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				FED345E7273D5DD8004073C0 /* GPAUnavailableViewController.m in Sources */,
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
-				14B73F04281BE43600D08ADD /* SystemMessageVC.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
-				14B73F07281BE43600D08ADD /* MineMessageTopView.m in Sources */,
 				14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */,
 				18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */,
 				AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */,
@@ -6589,7 +6591,6 @@
 				18CDF6BA257F91BD006E8E5C /* TermGrade.m in Sources */,
 				147842F227F080A7002359BA /* NSDate+Day.m in Sources */,
 				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
-				14B73EFD281BE43600D08ADD /* SystemMessage.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				B83766E725C13E0E00A8666A /* SZHSearchTableViewCell.m in Sources */,
 				FE2C136127AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m in Sources */,
@@ -6625,6 +6626,7 @@
 				18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */,
 				7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */,
 				14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */,
+				14B73F77281BED7B00D08ADD /* SystemMessageView.m in Sources */,
 				FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */,
 				1A141373235F524B0001417E /* UIColor+Helper.m in Sources */,
 				BE7CBD9E27535FC000094AE8 /* ShareBtn.m in Sources */,
@@ -6647,6 +6649,7 @@
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				FE2C135D27AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m in Sources */,
+				14B73F75281BED7B00D08ADD /* SystemMessage.m in Sources */,
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
 				BE7CBD9127535FC000094AE8 /* ShareView.m in Sources */,
 				4999FA8326D44EA8005D0ADE /* HintView.m in Sources */,
@@ -6666,7 +6669,6 @@
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */,
-				14B73EFF281BE43600D08ADD /* SystemMsgModel.m in Sources */,
 				FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */,
 				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
 				1A7BAC692369B28400CA512D /* MineHeaderView.m in Sources */,
@@ -6675,9 +6677,7 @@
 				7311328B26CCEC2400EF88C1 /* BottomView.m in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
 				BE7CBD8227535FC000094AE8 /* GroupModel.m in Sources */,
-				14B73F00281BE43600D08ADD /* MessageSettingVC.m in Sources */,
 				B82CA682263159BA00786685 /* zhPopupController.m in Sources */,
-				14B73F0A281BE43600D08ADD /* MineMessageMoreVC.m in Sources */,
 				AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */,
 				18CDF696257F91BD006E8E5C /* FYHCycleLabel.m in Sources */,
 				18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */,
@@ -6691,6 +6691,7 @@
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
 				18CDF720257F91BE006E8E5C /* VolunteerLabel.m in Sources */,
 				B845737325C03A9E005EFB91 /* SZHHotSearchView.m in Sources */,
+				14B73F7D281BED7B00D08ADD /* MineMessageTopView.m in Sources */,
 				AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */,
 				FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
@@ -6718,7 +6719,6 @@
 				735BC52A26D387C200F22678 /* HistoricalFeedBackViewController.m in Sources */,
 				73AAA1D126C918250084E44D /* DetailsTasksTableView.m in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
-				14B73EF9281BE43600D08ADD /* MessagePresentController.m in Sources */,
 				14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */,
 				B82CA688263159BA00786685 /* DKSKeyboardView.m in Sources */,
 				BE7CBD9627535FC000094AE8 /* MGDCircleLayer.m in Sources */,
@@ -6728,6 +6728,7 @@
 				6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */,
 				B82CA680263159BA00786685 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
+				14B73F78281BED7B00D08ADD /* SystemMessageVC.m in Sources */,
 				14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */,
 				18CDF6C6257F91BE006E8E5C /* ScoreTwoTitleView.m in Sources */,
 				18CDF6BB257F91BD006E8E5C /* GPAItem.m in Sources */,
@@ -6736,8 +6737,6 @@
 				18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */,
 				18CDF684257F91BD006E8E5C /* EmptyClassCollectionViewCell.m in Sources */,
 				18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */,
-				14B73F09281BE43600D08ADD /* MessageMoreCell.m in Sources */,
-				14B73EFB281BE43600D08ADD /* MessageMoreModel.m in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
 				735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */,
@@ -6759,16 +6758,16 @@
 				BE7CBD9727535FC000094AE8 /* TopFollowView.m in Sources */,
 				7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */,
 				FE2C135727AEF629001CF7AF /* ToDoDetailCurrencyView.m in Sources */,
-				14B73EFA281BE43600D08ADD /* SystemMessageView.m in Sources */,
 				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
 				18CDF709257F91BE006E8E5C /* segmentTableViewCell.m in Sources */,
 				B82CA6612631599900786685 /* DynamicDetailViewModel.m in Sources */,
 				BE7CBD8927535FC000094AE8 /* MGDStatusBarHeight.m in Sources */,
+				14B73F7E281BED7B00D08ADD /* MineMessageVC.m in Sources */,
 				BE7CBD9C27535FC000094AE8 /* SelfFuncView.m in Sources */,
+				14B73F74281BED7B00D08ADD /* SystemMsgModel.m in Sources */,
 				147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */,
 				7FBF39F3257B79F30077494E /* LoginViewController.swift in Sources */,
 				735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */,
-				14B73F08281BE43600D08ADD /* ActiveMessage.m in Sources */,
 				AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */,
 				B82CA69C26315BB700786685 /* SZHReleasView.m in Sources */,
 				73AAA1CC26C918250084E44D /* DetailsGoodsModel.m in Sources */,
@@ -6785,6 +6784,7 @@
 				B83766FC25C150F400A8666A /* SZHReleaseDynamic.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				BE7CBD8A27535FC000094AE8 /* PostArchiveTool.m in Sources */,
+				14B73F7A281BED7B00D08ADD /* MessageMoreCell.m in Sources */,
 				18CDF69D257F91BD006E8E5C /* CQUPTMapSearchResultCell.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				7311328626CCEC2400EF88C1 /* Goods.m in Sources */,
@@ -6793,7 +6793,6 @@
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				BE7CBD7927535FC000094AE8 /* PostItem.m in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
-				14B73EF8281BE43600D08ADD /* MineMessageModel.m in Sources */,
 				18CDF70B257F91BE006E8E5C /* HeaderTableViewCell.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				FE2C135427AEF629001CF7AF /* ToDoDetailRemarkView.m in Sources */,
@@ -6825,6 +6824,7 @@
 				1404747227F459B500307209 /* DiscoverADItem.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
 				BE7CBD8627535FC000094AE8 /* NewQAMainPageTableViewController+delegateMethod.m in Sources */,
+				14B73F71281BED7B00D08ADD /* ActiveMessage.m in Sources */,
 				73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */,
 				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
 				BE7CBD7E27535FC000094AE8 /* ShieldModel.m in Sources */,
