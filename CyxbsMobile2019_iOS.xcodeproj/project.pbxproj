@@ -2141,9 +2141,9 @@
 		145AF22A281BD5AF00AABC53 /* MineMessage */ = {
 			isa = PBXGroup;
 			children = (
+				145AF23C281BD5AF00AABC53 /* MineMessage_Main */,
 				145AF22B281BD5AF00AABC53 /* MineMessage_More */,
 				145AF235281BD5AF00AABC53 /* MessagePresent */,
-				145AF23C281BD5AF00AABC53 /* MineMessage_Main */,
 				145AF246281BD5AF00AABC53 /* SystemMessage */,
 				145AF256281BD5AF00AABC53 /* ActiveMessage */,
 			);
@@ -2153,9 +2153,9 @@
 		145AF22B281BD5AF00AABC53 /* MineMessage_More */ = {
 			isa = PBXGroup;
 			children = (
-				145AF22C281BD5AF00AABC53 /* Model */,
-				145AF22F281BD5AF00AABC53 /* View */,
 				145AF232281BD5AF00AABC53 /* ViewController */,
+				145AF22F281BD5AF00AABC53 /* View */,
+				145AF22C281BD5AF00AABC53 /* Model */,
 			);
 			path = MineMessage_More;
 			sourceTree = "<group>";
@@ -2163,8 +2163,8 @@
 		145AF22C281BD5AF00AABC53 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				145AF22D281BD5AF00AABC53 /* MessageMoreModel.m */,
 				145AF22E281BD5AF00AABC53 /* MessageMoreModel.h */,
+				145AF22D281BD5AF00AABC53 /* MessageMoreModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2172,8 +2172,8 @@
 		145AF22F281BD5AF00AABC53 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				145AF230281BD5AF00AABC53 /* MessageMoreCell.m */,
 				145AF231281BD5AF00AABC53 /* MessageMoreCell.h */,
+				145AF230281BD5AF00AABC53 /* MessageMoreCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2181,8 +2181,8 @@
 		145AF232281BD5AF00AABC53 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				145AF233281BD5AF00AABC53 /* MineMessageMoreVC.m */,
 				145AF234281BD5AF00AABC53 /* MineMessageMoreVC.h */,
+				145AF233281BD5AF00AABC53 /* MineMessageMoreVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -2190,8 +2190,8 @@
 		145AF235281BD5AF00AABC53 /* MessagePresent */ = {
 			isa = PBXGroup;
 			children = (
-				145AF236281BD5AF00AABC53 /* View */,
 				145AF239281BD5AF00AABC53 /* ViewController */,
+				145AF236281BD5AF00AABC53 /* View */,
 			);
 			path = MessagePresent;
 			sourceTree = "<group>";
@@ -2199,8 +2199,8 @@
 		145AF236281BD5AF00AABC53 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				145AF237281BD5AF00AABC53 /* MessagePresentView.m */,
 				145AF238281BD5AF00AABC53 /* MessagePresentView.h */,
+				145AF237281BD5AF00AABC53 /* MessagePresentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2217,9 +2217,9 @@
 		145AF23C281BD5AF00AABC53 /* MineMessage_Main */ = {
 			isa = PBXGroup;
 			children = (
-				145AF23D281BD5AF00AABC53 /* Model */,
-				145AF240281BD5AF00AABC53 /* View */,
 				145AF243281BD5AF00AABC53 /* ViewController */,
+				145AF240281BD5AF00AABC53 /* View */,
+				145AF23D281BD5AF00AABC53 /* Model */,
 			);
 			path = MineMessage_Main;
 			sourceTree = "<group>";
@@ -2227,8 +2227,8 @@
 		145AF23D281BD5AF00AABC53 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				145AF23E281BD5AF00AABC53 /* MineMessageModel.m */,
 				145AF23F281BD5AF00AABC53 /* MineMessageModel.h */,
+				145AF23E281BD5AF00AABC53 /* MineMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2254,9 +2254,9 @@
 		145AF246281BD5AF00AABC53 /* SystemMessage */ = {
 			isa = PBXGroup;
 			children = (
-				145AF247281BD5AF00AABC53 /* Model */,
-				145AF24D281BD5AF00AABC53 /* View */,
 				145AF253281BD5AF00AABC53 /* ViewController */,
+				145AF24D281BD5AF00AABC53 /* View */,
+				145AF247281BD5AF00AABC53 /* Model */,
 			);
 			path = SystemMessage;
 			sourceTree = "<group>";
@@ -2264,8 +2264,8 @@
 		145AF247281BD5AF00AABC53 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				145AF248281BD5AF00AABC53 /* SystemMsgModel.m */,
 				145AF249281BD5AF00AABC53 /* SystemMsgModel.h */,
+				145AF248281BD5AF00AABC53 /* SystemMsgModel.m */,
 				145AF24A281BD5AF00AABC53 /* SystemMessage */,
 			);
 			path = Model;
@@ -2283,9 +2283,9 @@
 		145AF24D281BD5AF00AABC53 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				145AF24E281BD5AF00AABC53 /* SystemMessageCell */,
 				145AF251281BD5AF00AABC53 /* SystemMessageView.h */,
 				145AF252281BD5AF00AABC53 /* SystemMessageView.m */,
+				145AF24E281BD5AF00AABC53 /* SystemMessageCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2311,9 +2311,9 @@
 		145AF256281BD5AF00AABC53 /* ActiveMessage */ = {
 			isa = PBXGroup;
 			children = (
-				145AF257281BD5AF00AABC53 /* Model */,
-				145AF25D281BD5AF00AABC53 /* View */,
 				145AF260281BD5AF00AABC53 /* ViewController */,
+				145AF25D281BD5AF00AABC53 /* View */,
+				145AF257281BD5AF00AABC53 /* Model */,
 			);
 			path = ActiveMessage;
 			sourceTree = "<group>";
@@ -2367,8 +2367,8 @@
 		145AF265281BD5AF00AABC53 /* DiscoverMineMessageVC */ = {
 			isa = PBXGroup;
 			children = (
-				145AF266281BD5AF00AABC53 /* DiscoverMineMessageVC.m */,
 				145AF267281BD5AF00AABC53 /* DiscoverMineMessageVC.h */,
+				145AF266281BD5AF00AABC53 /* DiscoverMineMessageVC.m */,
 			);
 			path = DiscoverMineMessageVC;
 			sourceTree = "<group>";
@@ -2376,8 +2376,8 @@
 		145AF283281BD5AF00AABC53 /* MessageSetting */ = {
 			isa = PBXGroup;
 			children = (
-				145AF284281BD5AF00AABC53 /* View */,
 				145AF287281BD5AF00AABC53 /* ViewController */,
+				145AF284281BD5AF00AABC53 /* View */,
 			);
 			path = MessageSetting;
 			sourceTree = "<group>";
@@ -2385,8 +2385,8 @@
 		145AF284281BD5AF00AABC53 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				145AF285281BD5AF00AABC53 /* MessageSettingCell.m */,
 				145AF286281BD5AF00AABC53 /* MessageSettingCell.h */,
+				145AF285281BD5AF00AABC53 /* MessageSettingCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
