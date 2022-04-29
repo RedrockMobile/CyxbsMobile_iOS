@@ -226,6 +226,8 @@ fprintf(stderr,"\n");\
 //邮票中心的适配
 #define COLLECTIONHEADER_H  65
 #pragma mark - 字体
+
+#define PingFangSC @"PingFang SC"
 //苹方-简 极细体
 #define PingFangSCUltralight    @"PingFangSC-Ultralight"
 //苹方-简 纤细体

@@ -36,7 +36,7 @@
             self.safeView.bottom = self.SuperBottom;
             
             [self.safeView addSubview:self.backBtn];
-            self.backBtn.centerY = self.safeView.SuperCenter.y;
+            self.backBtn.top = self.safeView.SuperTop + 5;
             
             self.hadLine = YES;
         }
@@ -68,7 +68,7 @@
         NSFontAttributeName : self.titleLab.font
     }];
     self.titleLab.size = size;
-    self.titleLab.centerY = self.safeView.SuperCenter.y;
+    self.titleLab.top = self.backBtn.top;
     // Lay
     switch (titleLay) {
         case SSRTopBarBaseViewTitleLabLayMiddle: {
@@ -88,6 +88,26 @@
     [self.backBtn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)addSwithLineWithOrigin:(CGPoint)origin {
+    if (_swithLine == nil) {
+        UIImageView *_switchbar = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 62, 3)];
+        _switchbar.image = [UIImage imageNamed:@"switchbar"];
+        UIImageView *swithimage1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 3)];
+        swithimage1.image = [UIImage imageNamed:@"switchimage1"];
+        [_switchbar addSubview:swithimage1];
+        
+        UIImageView *_swithPoint = [[UIImageView alloc]initWithFrame:CGRectMake(_switchbar.right + 3, 0, 3, 3)];
+        _swithPoint.image = [UIImage imageNamed:@"swithPoint"];
+        
+        _swithLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 69, 3)];
+        [_swithLine addSubview:_switchbar];
+        [_swithLine addSubview:_swithPoint];
+        
+        [self.safeView addSubview:_swithLine];
+    }
+    _swithLine.origin = origin;
+}
+
 #pragma mark - Getter
 
 - (UIView *)safeView {
@@ -100,9 +120,8 @@
 
 - (UIButton *)backBtn {
     if (_backBtn == nil) {
-        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(15, 0, 15, 30)];
+        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 20, 30)];
         [_backBtn setImage:[UIImage imageNamed:@"navBar_back"] forState:UIControlStateNormal];
-        _backBtn.layer.cornerRadius = 10;
         _backBtn.backgroundColor = [UIColor clearColor];
     }
     return _backBtn;
@@ -120,7 +139,7 @@
 - (UIView *)seperateLine {
     if (_seperateLine == nil) {
         _seperateLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.safeView.width, 2)];
-        _seperateLine.backgroundColor = [UIColor colorNamed:@"ColorSeperateLine"];
+        _seperateLine.backgroundColor = [UIColor colorNamed:@"#BDCCE5'30^#676767'10"];
     }
     return _seperateLine;
 }
