@@ -60,6 +60,7 @@
 		145AF2F8281BD5AF00AABC53 /* JWZXNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF2C1281BD5AF00AABC53 /* JWZXNewsCell.m */; };
 		145AF2F9281BD5AF00AABC53 /* JWZXNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF2C4281BD5AF00AABC53 /* JWZXNewsViewController.m */; };
 		145AF2FA281BD5AF00AABC53 /* DiscoverJWZXVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF2C7281BD5AF00AABC53 /* DiscoverJWZXVC.m */; };
+		145AF2FC281BD79E00AABC53 /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 145AF2FB281BD79E00AABC53 /* CyxbsMobileImage.xcassets */; };
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
@@ -871,6 +872,7 @@
 		145AF2C5281BD5AF00AABC53 /* JWZXNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsViewController.h; sourceTree = "<group>"; };
 		145AF2C7281BD5AF00AABC53 /* DiscoverJWZXVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverJWZXVC.m; sourceTree = "<group>"; };
 		145AF2C8281BD5AF00AABC53 /* DiscoverJWZXVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverJWZXVC.h; sourceTree = "<group>"; };
+		145AF2FB281BD79E00AABC53 /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
 		147842E827F0758F002359BA /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		147842E927F0758F002359BA /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		147842EC27F07A59002359BA /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
@@ -2444,6 +2446,7 @@
 			isa = PBXGroup;
 			children = (
 				145AF264281BD5AF00AABC53 /* MineMessageHeader.h */,
+				145AF2FB281BD79E00AABC53 /* CyxbsMobileImage.xcassets */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -6598,6 +6601,7 @@
 				DB34EAF7239BD4550052B65E /* remind_image_content@3x.png in Resources */,
 				DB34EB17239BD4550052B65E /* 提醒@3x.png in Resources */,
 				DB34EB04239BD4550052B65E /* 多课0@2x.png in Resources */,
+				145AF2FC281BD79E00AABC53 /* CyxbsMobileImage.xcassets in Resources */,
 				18FBAEB826F35DF7004CED7D /* NewQA.xcassets in Resources */,
 				DB34EB16239BD4550052B65E /* remind_image_confirm@3x.png in Resources */,
 			);
