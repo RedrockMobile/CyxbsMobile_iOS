@@ -43,9 +43,25 @@
     [self.view addSubview:self.tableView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    if ([USER_DEFAULT boolForKey:MineMessage_needSignWarn_BOOL]) {
+        NSDateComponents *components = [[NSDateComponents alloc] init];
+        components.hour = 18;
+        
+        UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+        content.title = @"今日你签到了吗？";
+        content.body = @"一定要记得签到哟～";
+        content.sound = UNNotificationSound.defaultSound;
+        
+        UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:MineMessage_notificationRequest_identifier content:content.copy trigger:trigger];
+        [center addNotificationRequest:request withCompletionHandler:nil];
+    } else {
+        [center removePendingNotificationRequestsWithIdentifiers:@[MineMessage_notificationRequest_identifier]];
+    }
 }
 
 #pragma mark - Method
@@ -110,14 +126,10 @@
     switch (indexPath.section) {
         case 0: {
             [USER_DEFAULT setBool:aSwitch.on forKey:MineMessage_needMsgWarn_BOOL];
-            // -- 开启 / 关闭 消息推送
-            NSLog(@"-- 开启 / 关闭 消息推送");
             return;
         }
         case 1: {
             [USER_DEFAULT setBool:aSwitch.on forKey:MineMessage_needSignWarn_BOOL];
-            // -- 开启 / 关闭 签到提醒
-            NSLog(@"-- 开启 / 关闭 签到提醒");
             return;
         }
     }

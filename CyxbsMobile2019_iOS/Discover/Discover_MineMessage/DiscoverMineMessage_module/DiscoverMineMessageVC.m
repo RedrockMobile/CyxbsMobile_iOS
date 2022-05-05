@@ -33,31 +33,31 @@
     self.view.frame = CGRectMake(0, 0, 24 * cap, 24);
     
     [self.view addSubview:self.messageBtn];
-    
-    // *** begin - 用于测试，否则就没红点了
-    [USER_DEFAULT setBool:NO forKey:MineMessage_hadSettle_BOOL];
-    
+    self.hadRead = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self reloadData];
 }
 
 #pragma mark - Method
 
-- (void)requestData {
-    
-}
-
 - (void)reloadData {
-    // 如果没设置，那必给红点
-    if (![USER_DEFAULT boolForKey:MineMessage_hadSettle_BOOL]) {
-        self.hadRead = YES;
-    } else {
-        // 设置了，但没完全设置：需要提醒
-        if ([USER_DEFAULT boolForKey:MineMessage_needMsgWarn_BOOL]) {
-            self.hadRead = YES;
-        } else {
-            self.hadRead = NO;
-        }
+    [HttpClient.defaultClient.httpSessionManager
+     GET:MineMessage_GET_userHadRead_API
+     parameters:nil
+     headers:@{
+        @"authorization" : [NSString stringWithFormat:@"Bearer %@", UserItemTool.defaultItem.token]
     }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        BOOL hadread = [responseObject[@"data"][@"has"] boolValue];
+        self.hadRead = hadread;
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
 }
 
 // MARK: SEL

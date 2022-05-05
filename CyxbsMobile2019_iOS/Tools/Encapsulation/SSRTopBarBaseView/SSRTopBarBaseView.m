@@ -7,12 +7,14 @@
 
 #import "SSRTopBarBaseView.h"
 
+#import "SSRButton.h"
+
 #pragma mark - SSRTopBarBaseView ()
 
 @interface SSRTopBarBaseView ()
 
 /// 返回按钮
-@property (nonatomic, strong) UIButton *backBtn;
+@property (nonatomic, strong) SSRButton *backBtn;
 
 /// 标题Label
 @property (nonatomic, strong, nullable) UILabel *titleLab;
@@ -118,9 +120,10 @@
     return _safeView;
 }
 
-- (UIButton *)backBtn {
+- (SSRButton *)backBtn {
     if (_backBtn == nil) {
-        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 20, 30)];
+        _backBtn = [[SSRButton alloc] initWithFrame:CGRectMake(10, 0, 20, 30)];
+        _backBtn.expandHitEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
         [_backBtn setImage:[UIImage imageNamed:@"navBar_back"] forState:UIControlStateNormal];
         _backBtn.backgroundColor = [UIColor clearColor];
     }

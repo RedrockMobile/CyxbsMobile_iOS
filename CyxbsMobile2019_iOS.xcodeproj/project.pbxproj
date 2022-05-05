@@ -40,6 +40,8 @@
 		14B73F7F281BED7B00D08ADD /* DiscoverMineMessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F65281BED7B00D08ADD /* DiscoverMineMessageVC.m */; };
 		14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F69281BED7B00D08ADD /* MessagePresentView.m */; };
 		14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F6D281BED7B00D08ADD /* MessagePresentController.m */; };
+		14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F83281CCC3000D08ADD /* MessageDetailVC.m */; };
+		14B73F8B2823577600D08ADD /* SSRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F8A2823577600D08ADD /* SSRButton.m */; };
 		14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */; };
 		14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0E27FE725E00D6AE93 /* JWZXDetailNewsModel.m */; };
 		14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A527F5762500B67469 /* QuestionSelectView.m */; };
@@ -803,6 +805,10 @@
 		14B73F6A281BED7B00D08ADD /* MessagePresentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePresentView.h; sourceTree = "<group>"; };
 		14B73F6C281BED7B00D08ADD /* MessagePresentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagePresentController.h; sourceTree = "<group>"; };
 		14B73F6D281BED7B00D08ADD /* MessagePresentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagePresentController.m; sourceTree = "<group>"; };
+		14B73F82281CCC3000D08ADD /* MessageDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailVC.h; sourceTree = "<group>"; };
+		14B73F83281CCC3000D08ADD /* MessageDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailVC.m; sourceTree = "<group>"; };
+		14B73F892823577600D08ADD /* SSRButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSRButton.h; sourceTree = "<group>"; };
+		14B73F8A2823577600D08ADD /* SSRButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSRButton.m; sourceTree = "<group>"; };
 		14D03A0927FE69A800D6AE93 /* SSRTopBarBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTopBarBaseView.h; sourceTree = "<group>"; };
 		14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTopBarBaseView.m; sourceTree = "<group>"; };
 		14D03A0D27FE725E00D6AE93 /* JWZXDetailNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailNewsModel.h; sourceTree = "<group>"; };
@@ -2446,14 +2452,15 @@
 		14B73F29281BED7B00D08ADD /* Discover_MineMessage */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F2A281BED7B00D08ADD /* MessageSetting_module */,
-				14B73F31281BED7B00D08ADD /* Source */,
-				14B73F33281BED7B00D08ADD /* ActiveMessage_module */,
-				14B73F40281BED7B00D08ADD /* SystemMessage_module */,
-				14B73F50281BED7B00D08ADD /* MessageMore_module */,
-				14B73F5A281BED7B00D08ADD /* MineMessage_module */,
 				14B73F64281BED7B00D08ADD /* DiscoverMineMessage_module */,
+				14B73F5A281BED7B00D08ADD /* MineMessage_module */,
+				14B73F40281BED7B00D08ADD /* SystemMessage_module */,
+				14B73F33281BED7B00D08ADD /* ActiveMessage_module */,
+				14B73F50281BED7B00D08ADD /* MessageMore_module */,
 				14B73F67281BED7B00D08ADD /* MessagePresent_module */,
+				14B73F2A281BED7B00D08ADD /* MessageSetting_module */,
+				14B73F852822BC5800D08ADD /* MessageDetail_module */,
+				14B73F31281BED7B00D08ADD /* Source */,
 			);
 			name = Discover_MineMessage;
 			path = CyxbsMobile2019_iOS/Discover/Discover_MineMessage;
@@ -2497,9 +2504,9 @@
 		14B73F33281BED7B00D08ADD /* ActiveMessage_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F34281BED7B00D08ADD /* Movel */,
-				14B73F3A281BED7B00D08ADD /* View */,
 				14B73F3D281BED7B00D08ADD /* ViewController */,
+				14B73F3A281BED7B00D08ADD /* View */,
+				14B73F34281BED7B00D08ADD /* Movel */,
 			);
 			path = ActiveMessage_module;
 			sourceTree = "<group>";
@@ -2544,9 +2551,9 @@
 		14B73F40281BED7B00D08ADD /* SystemMessage_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F41281BED7B00D08ADD /* Model */,
-				14B73F47281BED7B00D08ADD /* View */,
 				14B73F4D281BED7B00D08ADD /* ViewController */,
+				14B73F47281BED7B00D08ADD /* View */,
+				14B73F41281BED7B00D08ADD /* Model */,
 			);
 			path = SystemMessage_module;
 			sourceTree = "<group>";
@@ -2554,8 +2561,8 @@
 		14B73F41281BED7B00D08ADD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F42281BED7B00D08ADD /* SystemMsgModel.m */,
 				14B73F43281BED7B00D08ADD /* SystemMsgModel.h */,
+				14B73F42281BED7B00D08ADD /* SystemMsgModel.m */,
 				14B73F44281BED7B00D08ADD /* SystemMessage */,
 			);
 			path = Model;
@@ -2638,9 +2645,9 @@
 		14B73F5A281BED7B00D08ADD /* MineMessage_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F5B281BED7B00D08ADD /* Model */,
-				14B73F5E281BED7B00D08ADD /* View */,
 				14B73F61281BED7B00D08ADD /* ViewController */,
+				14B73F5E281BED7B00D08ADD /* View */,
+				14B73F5B281BED7B00D08ADD /* Model */,
 			);
 			path = MineMessage_module;
 			sourceTree = "<group>";
@@ -2648,8 +2655,8 @@
 		14B73F5B281BED7B00D08ADD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F5C281BED7B00D08ADD /* MineMessageModel.m */,
 				14B73F5D281BED7B00D08ADD /* MineMessageModel.h */,
+				14B73F5C281BED7B00D08ADD /* MineMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2675,8 +2682,8 @@
 		14B73F64281BED7B00D08ADD /* DiscoverMineMessage_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F65281BED7B00D08ADD /* DiscoverMineMessageVC.m */,
 				14B73F66281BED7B00D08ADD /* DiscoverMineMessageVC.h */,
+				14B73F65281BED7B00D08ADD /* DiscoverMineMessageVC.m */,
 			);
 			path = DiscoverMineMessage_module;
 			sourceTree = "<group>";
@@ -2706,6 +2713,24 @@
 				14B73F6D281BED7B00D08ADD /* MessagePresentController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14B73F852822BC5800D08ADD /* MessageDetail_module */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F82281CCC3000D08ADD /* MessageDetailVC.h */,
+				14B73F83281CCC3000D08ADD /* MessageDetailVC.m */,
+			);
+			path = MessageDetail_module;
+			sourceTree = "<group>";
+		};
+		14B73F8C282357DF00D08ADD /* SSRButton */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F892823577600D08ADD /* SSRButton.h */,
+				14B73F8A2823577600D08ADD /* SSRButton.m */,
+			);
+			path = SSRButton;
 			sourceTree = "<group>";
 		};
 		14D03A0027FDB76200D6AE93 /* ViewController */ = {
@@ -4800,6 +4825,7 @@
 				1404748227F4A89600307209 /* UITextView+Placeholder */,
 				1A141354235F524B0001417E /* UIFont+AdaptiveFont.h */,
 				1A14133B235F524B0001417E /* UIFont+AdaptiveFont.m */,
+				14B73F8C282357DF00D08ADD /* SSRButton */,
 				145AF3E4281BDA0000AABC53 /* NSString+UILabel.h */,
 				145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */,
 				1A141340235F524B0001417E /* UIColor+Helper.h */,
@@ -6393,6 +6419,7 @@
 				18CDF6D1257F91BE006E8E5C /* MGDSliderBar.m in Sources */,
 				B82CA683263159BA00786685 /* SHPopMenu.m in Sources */,
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
+				14B73F8B2823577600D08ADD /* SSRButton.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
 				14B73F73281BED7B00D08ADD /* ActiveMessageVC.m in Sources */,
@@ -6436,6 +6463,7 @@
 				B83766F325C150C000A8666A /* SZHSearchEndCv.m in Sources */,
 				14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
+				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
 				18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
 				185AFA5627022258007F40F9 /* MGDCommen.swift in Sources */,
@@ -7021,7 +7049,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 70;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7077,7 +7105,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 70;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (

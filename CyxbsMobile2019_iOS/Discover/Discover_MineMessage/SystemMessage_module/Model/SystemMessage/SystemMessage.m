@@ -17,12 +17,12 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dic {
     self = [super init];
     if (self) {
-        // -- 等待接口，测试数据 --
-        self.title = @"古谓冬至一阳始生，因以冬至至立春以前的一段时间为初阳";
-        self.content = @"芜湖！芜湖！芜湖！芜湖！芜湖！芜湖！芜湖！芜湖！芜湖！芜湖！";
-        self.date = @"2022-1-6";
-        BOOL a = arc4random() % 6 < 3;
-        self.hadRead = a;
+        self.title = dic[@"title"];
+        self.content = dic[@"content"];
+        self.msgID = [dic[@"id"] longValue];
+        self.url = dic[@"redirect_url"];
+        self.date = [[NSDate dateString:[dic[@"date"] substringToIndex:10] fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-MM-dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-M-d"];
+        self.hadRead = [dic[@"has_read"] boolValue];
     }
     return self;
 }

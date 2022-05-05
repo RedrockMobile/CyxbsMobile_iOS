@@ -10,6 +10,8 @@
 
 #import "NSString+UILabel.h"
 
+CGFloat _activeMessageCellMaxHeight = 0;
+
 #pragma mark - ActiveMessageCell ()
 
 @interface ActiveMessageCell ()
@@ -67,15 +69,16 @@
 #pragma mark - Method
 
 - (void)drawRect:(CGRect)rect {
-    [self.msgTitleLab stretchRight_toPointX:self.contentView.SuperRight offset:17];
+    [self.msgTitleLab stretchRight_toPointX:self.contentView.SuperRight offset:30];
     
     [self.authorNameLab stretchRight_toPointX:self.msgTitleLab.right offset:0];
     
     self.msgContentLab.width = self.msgTitleLab.width;
-    self.msgContentLab.height =
+    CGFloat height =
     [self.msgContentLab.text
      heightForSize:CGSizeMake(SCREEN_WIDTH - 2 * 17, 0)
      font:[UIFont fontWithName:PingFangSC size:14]];
+    self.msgContentLab.height = height < _activeMessageCellMaxHeight ? height : _activeMessageCellMaxHeight;
     
     self.msgImgView.top = self.msgContentLab.bottom + 12;
     self.msgImgView.width = self.msgContentLab.width;
@@ -94,9 +97,15 @@
 
 + (CGFloat)heightForContent:(NSString *)content
                    forWidth:(CGFloat)width {
-    return [content
-     heightForSize:CGSizeMake(width, 0)
-     font:[UIFont fontWithName:PingFangSC size:14]] + 334;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _activeMessageCellMaxHeight = [@"r\ni\ns\ne" heightForSize:CGSizeMake(width, 0) font:[UIFont fontWithName:PingFangSC size:14]];
+    });
+    CGFloat contentHeight = [content
+                             heightForSize:CGSizeMake(width, 0)
+                             font:[UIFont fontWithName:PingFangSC size:14]];
+    
+    return (_activeMessageCellMaxHeight < contentHeight ? _activeMessageCellMaxHeight : contentHeight) + 140 + (SCREEN_WIDTH - 2 * 30) * 193.0 / 343.0;
 }
 
 - (CGSize)drawTitle:(NSString *)title
@@ -117,7 +126,7 @@
     
     self.msgContentLab.text = content;
     
-    self.msgImgView.image = [UIImage imageNamed:@"default_background"];
+    [self.msgImgView setImageWithURL:[NSURL URLWithString:imgUrl] placeholder:[UIImage imageNamed:@"default_background"]];
     return CGSizeZero;
 }
 
@@ -125,7 +134,7 @@
 
 - (UILabel *)msgTitleLab {
     if (_msgTitleLab == nil) {
-        _msgTitleLab = [[UILabel alloc] initWithFrame:CGRectMake(17, 24, 0, 25)];
+        _msgTitleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 24, 0, 25)];
         _msgTitleLab.font = [UIFont fontWithName:PingFangSC size:18];
         _msgTitleLab.textColor = [UIColor colorNamed:@"#112C54'00^#DFDFE3'00"];
     }
@@ -173,7 +182,8 @@
 - (UIImageView *)msgImgView {
     if (_msgImgView == nil) {
         _msgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.msgTitleLab.left, self.msgContentLab.bottom + 12, 0, 0)];
-        _msgImgView.layer.cornerRadius = 10;
+        _msgImgView.layer.cornerRadius = 15;
+        _msgImgView.clipsToBounds = YES;
         _msgImgView.contentMode = UIViewContentModeScaleToFill;
         _msgImgView.backgroundColor = UIColor.grayColor;
     }

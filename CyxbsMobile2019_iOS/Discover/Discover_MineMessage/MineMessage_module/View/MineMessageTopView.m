@@ -8,12 +8,14 @@
 
 #import "MineMessageTopView.h"
 
+#import "SSRButton.h"
+
 #pragma mark - MineMessageTopView ()
 
 @interface MineMessageTopView ()
 
 /// 多选
-@property (nonatomic, strong) UIButton *moreBtn;
+@property (nonatomic, strong) SSRButton *moreBtn;
 
 /// 系统
 @property (nonatomic, strong) UIButton *systemBtn;
@@ -132,10 +134,12 @@
 
 - (UIButton *)moreBtn {
     if (_moreBtn == nil) {
-        _moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+        _moreBtn = [[SSRButton alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
         [_moreBtn setImage:[UIImage imageNamed:@"more_d"] forState:UIControlStateNormal];
         _moreBtn.right = self.SuperRight - 26;
         _moreBtn.centerY = 20;
+        _moreBtn.expandHitEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+        
         _moreBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
         _moreBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
         _moreBtn.tag = 0;

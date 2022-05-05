@@ -25,21 +25,12 @@
 - (instancetype)initWithArray:(NSArray <NSDictionary *> *)ary {
     self = [super init];
     if (self) {
-        NSArray <ActiveMessage *> *ary = @[
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}],
-            [[ActiveMessage alloc] initWithDictionary:@{}]
-        ];
-        self.activeMsgAry = [NSMutableArray arrayWithArray:ary];
+        NSMutableArray <ActiveMessage *> *ma = NSMutableArray.array;
+        for (NSDictionary *dic in ary) {
+            ActiveMessage *msg = [[ActiveMessage alloc] initWithDictionary:dic];
+            [ma addObject:msg];
+        }
+        self.activeMsgAry = ma.copy;
     }
     return self;
 }
@@ -57,17 +48,28 @@
         }
         msg.hadRead = YES;
     }
+    NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idnums.copy};
     
-//    [HttpClient.defaultClient.httpSessionManager setValue:[NSString stringWithFormat:@"Bearer %@", UserItem.defaultItem.token] forKey:@"authorization"];
-//    [HttpClient.defaultClient.httpSessionManager
-//     PUT:@""
-//     parameters:ary.copy
-//     headers:nil
-//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//
-//    }];
+    // -- 网络请求：put 已读 --
+    AFHTTPSessionManager *session = HttpClient.defaultClient.httpSessionManager;
+    session.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    [HttpClient.defaultClient
+     requestWithPath:MineMessage_PUT_hasRead_API
+     method:HttpRequestPut
+     parameters:parameter
+     prepareExecute:nil
+     progress:nil
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (success) {
+            success();
+        }
+    }
+     failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 @end

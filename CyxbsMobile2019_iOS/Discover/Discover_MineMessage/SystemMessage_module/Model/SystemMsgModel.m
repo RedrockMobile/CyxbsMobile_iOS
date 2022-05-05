@@ -23,30 +23,12 @@
 - (instancetype)initWithArray:(NSArray<NSDictionary *> *)ary {
     self = [super init];
     if (self) {
-        // -- 等待接口 --
-        { // 测试数据
-            NSArray <SystemMessage *> *ary = @[
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}],
-                [[SystemMessage alloc] initWithDictionary:@{}]
-            ];
-            self.msgAry = [NSMutableArray arrayWithArray:ary];
+        NSMutableArray <SystemMessage *> *ma = NSMutableArray.array;
+        for (NSDictionary *dic in ary) {
+            SystemMessage *msg = [[SystemMessage alloc] initWithDictionary:dic];
+            [ma addObject:msg];
         }
+        self.msgAry = ma.copy;
     }
     return self;
 }
@@ -64,26 +46,29 @@
         }
         msg.hadRead = YES;
     }
+    NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
+    
     // -- 网络请求：put 已读 --
+    AFHTTPSessionManager *session = HttpClient.defaultClient.httpSessionManager;
+    session.requestSerializer = [AFJSONRequestSerializer serializer];
+    
     [HttpClient.defaultClient
-     requestWithJson:@""
+     requestWithPath:MineMessage_PUT_hasRead_API
      method:HttpRequestPut
-     parameters:@{
-        @"token" : UserItem.defaultItem.token,
-        @"read_ids" : idNums.copy
-     }
+     parameters:parameter
      prepareExecute:nil
      progress:nil
      success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
         if (success) {
             success();
         }
-     }
+    }
      failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (failure) {
             failure(error);
         }
-     }];
+    }];
 }
 
 - (void)requestRemoveForIndexSet:(NSIndexSet *)set
@@ -93,27 +78,34 @@
     [set enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
         [idNums addObject:[NSString stringWithFormat:@"%ld", self.msgAry[idx].msgID]];
     }];
-    // -- 网络请求：delete 删除 --
-    [self.msgAry removeObjectsAtIndexes:set];
+    NSMutableArray *ma = [NSMutableArray arrayWithArray:self.msgAry];
+    [ma removeObjectsAtIndexes:set];
+    self.msgAry = ma;
+    
+    NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
+    
+    // -- 网络请求：put 已读 --
+    AFHTTPSessionManager *session = HttpClient.defaultClient.httpSessionManager;
+    session.requestSerializer = [AFJSONRequestSerializer serializer];
+    session.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"GET", @"HEAD"]];
+    
     [HttpClient.defaultClient
-     requestWithJson:@""
+     requestWithPath:MineMessage_DELETE_sysMsg_API
      method:HttpRequestDelete
-     parameters:@{
-        @"token" : UserItem.defaultItem.token,
-        @"delete_ids" : idNums.copy
-     }
+     parameters:parameter
      prepareExecute:nil
      progress:nil
      success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", responseObject);
         if (success) {
             success();
         }
-     }
+    }
      failure:^(NSURLSessionDataTask *task, NSError *error) {
         if (failure) {
             failure(error);
         }
-     }];
+    }];
 }
 
 @end

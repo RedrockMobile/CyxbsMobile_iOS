@@ -10,6 +10,8 @@
 
 #import "ActiveMessageCell.h"
 
+#import "MessageDetailVC.h"
+
 #pragma mark - ActiveMessageVC ()
 
 @interface ActiveMessageVC () <
@@ -54,7 +56,7 @@
     [self.msgTableView reloadData];
     BOOL needBall = NO;
     for (ActiveMessage *msg in self.sysModel.activeMsgAry) {
-        needBall |= msg.hadRead;
+        needBall |= !msg.hadRead;
     }
     return needBall;
 }
@@ -84,6 +86,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.sysModel
+     requestReadForIndexSet:[NSIndexSet indexSetWithIndex:indexPath.row]
+     success:^{
+         // 什么都可以不用做
+    }
+     failure:^(NSError * _Nonnull error) {
+         // 什么都可以不用做
+    }];
+    
     ActiveMessage *msg = self.sysModel.activeMsgAry[indexPath.row];
     // -- 选中了哪个 --
     msg.hadRead = YES;
@@ -98,6 +109,8 @@
     if (!needBall && self.delegate) {
         [self.delegate activeMessageVC_hadReadAllMsg:self];
     }
+    
+    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:msg.url]] animated:YES];
 }
 
 #pragma mark - <UITableViewDataSource>

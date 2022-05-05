@@ -12,6 +12,8 @@
 
 #import "SystemMessageView.h"
 
+#import "MessageDetailVC.h"
+
 #pragma mark - SystemMessageVC ()
 
 @interface SystemMessageVC () <
@@ -112,8 +114,8 @@
 #pragma mark - <SystemMessageViewDelegate>
 
 - (void)systemMessageTableView:(UITableView *)view didSelectedAtIndex:(NSInteger)index {
-    // -- 选择了，应该跳转
-    NSLog(@"选择了cell，应该跳转");
+    // 选择了，应该跳转
+    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:self.sysMsgModel.msgAry[index].url]] animated:YES];
 }
 
 - (void)systemMessageTableView:(UITableView *)view willDeletePathWithIndexSet:(nonnull NSIndexSet *)set showPresent:(nonnull void (^)(BOOL))needCancel {

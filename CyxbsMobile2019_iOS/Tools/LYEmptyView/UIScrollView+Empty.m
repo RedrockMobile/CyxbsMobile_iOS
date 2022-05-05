@@ -198,7 +198,7 @@ static char kEmptyViewKey;
     [self getDataAndSet];
 }
 - (void)ly_deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation{
-    [self ly_insertSections:sections withRowAnimation:animation];
+    [self ly_deleteSections:sections withRowAnimation:animation];
     [self getDataAndSet];
 }
 

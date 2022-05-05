@@ -9,6 +9,8 @@
 #ifndef MineMessageHeader_h
 #define MineMessageHeader_h
 
+#pragma mark - UserDefault
+
 /// 是否设置了（默认没设置）
 #define MineMessage_hadSettle_BOOL @"MineMessage_hadSettle"
 
