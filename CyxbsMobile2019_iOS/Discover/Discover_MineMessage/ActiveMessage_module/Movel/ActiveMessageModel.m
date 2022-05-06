@@ -8,6 +8,8 @@
 
 #import "ActiveMessageModel.h"
 
+#import "HttpTool.h"
+
 #pragma mark - ActiveMessageModel
 
 @implementation ActiveMessageModel
@@ -51,21 +53,18 @@
     NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idnums.copy};
     
     // -- 网络请求：put 已读 --
-    AFHTTPSessionManager *session = HttpClient.defaultClient.httpSessionManager;
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [HttpClient.defaultClient
-     requestWithPath:MineMessage_PUT_hasRead_API
-     method:HttpRequestPut
-     parameters:parameter
-     prepareExecute:nil
+    [HttpTool.shareTool
+     request:MineMessage_PUT_hasRead_API
+     type:HttpToolRequestTypePut
+     serializer:HttpToolRequestSerializerJSON
+     bodyParameters:parameter
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
+     success:^(NSURLSessionDataTask * tast, id respon) {
         if (success) {
             success();
         }
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     failure:^(NSURLSessionDataTask * task, NSError * error) {
         if (failure) {
             failure(error);
         }

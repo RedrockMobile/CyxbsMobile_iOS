@@ -14,6 +14,7 @@
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
+		147E2CEB28240C3A00DCC312 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 147E2CEA28240C3A00DCC312 /* HttpTool.m */; };
 		1490FC8B28031BC200958892 /* FinderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490FC8A28031BC200958892 /* FinderTopView.m */; };
 		14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */; };
 		14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */; };
@@ -754,6 +755,8 @@
 		147842ED27F07A59002359BA /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
 		147842F027F080A6002359BA /* NSDate+Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Day.h"; sourceTree = "<group>"; };
 		147842F127F080A7002359BA /* NSDate+Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Day.m"; sourceTree = "<group>"; };
+		147E2CE928240C3A00DCC312 /* HttpTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
+		147E2CEA28240C3A00DCC312 /* HttpTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		1490FC8928031BC200958892 /* FinderTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderTopView.h; sourceTree = "<group>"; };
 		1490FC8A28031BC200958892 /* FinderTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinderTopView.m; sourceTree = "<group>"; };
 		14981FF427FEA8F200AD2A29 /* JWZXNewsAnnexModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXNewsAnnexModel.h; sourceTree = "<group>"; };
@@ -3866,6 +3869,8 @@
 			children = (
 				1A14134C235F524B0001417E /* HttpClient.h */,
 				1A141347235F524B0001417E /* HttpClient.m */,
+				147E2CE928240C3A00DCC312 /* HttpTool.h */,
+				147E2CEA28240C3A00DCC312 /* HttpTool.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -6530,6 +6535,7 @@
 				AA4CD60A25EF6747002D9394 /* IgnoreDataModel.m in Sources */,
 				18CDF6C0257F91BE006E8E5C /* IdsBinding.m in Sources */,
 				18CDF71E257F91BE006E8E5C /* LogOutView.m in Sources */,
+				147E2CEB28240C3A00DCC312 /* HttpTool.m in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				18CDF4BE257F8DBD006E8E5C /* questionItem.m in Sources */,
 				18CDF69C257F91BD006E8E5C /* CQUPTMapViewController.m in Sources */,

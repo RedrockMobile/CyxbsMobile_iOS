@@ -17,8 +17,10 @@
         self.content = dic[@"content"];
         self.userHeadURL = dic[@"user_head_url"];
         self.author = dic[@"user_name"];
+        self.msgID = [dic[@"id"] longValue];
         self.date = [[NSDate dateString:[dic[@"date"] substringToIndex:10] fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-MM-dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-M-d"];
         self.imgURL = dic[@"pic_url"];
+        self.url = dic[@"redirect_url"];
         self.hadRead = [dic[@"has_read"] boolValue];
     }
     return self;
