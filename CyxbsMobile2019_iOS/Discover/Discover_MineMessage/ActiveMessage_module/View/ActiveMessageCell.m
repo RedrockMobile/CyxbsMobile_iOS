@@ -104,7 +104,7 @@ CGFloat _activeMessageCellMaxHeight = 0;
     CGFloat contentHeight = [content
                              heightForSize:CGSizeMake(width, 0)
                              font:[UIFont fontWithName:PingFangSC size:14]];
-    
+    /// 计算高度，由文字最小高度+固定的头部高度+imgeView的计算高度组成
     return (_activeMessageCellMaxHeight < contentHeight ? _activeMessageCellMaxHeight : contentHeight) + 140 + (SCREEN_WIDTH - 2 * 30) * 193.0 / 343.0;
 }
 

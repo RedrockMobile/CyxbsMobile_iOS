@@ -12,13 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - MineMessageViewController
 
-/// mine message that show outside in, use init
 @interface DiscoverMineMessageVC : UIViewController
 
-/// default is NO, and without red boll
+/// 是否需要小红点
 @property (nonatomic) BOOL hadRead;
 
-/// if userdefault don't need show boll, maybe use this
+/// 刷新，会网络请求
 - (void)reloadData;
 
 @end

@@ -44,10 +44,14 @@ static HttpTool *_shareTool;
     return _shareTool;
 }
 
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    return self.shareTool;
+}
+
 - (AFHTTPSessionManager *)sessionManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sessionManager = AFHTTPSessionManager.manager;
+        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:CyxbsMobileBaseURL_1];
         
         _sessionManager.requestSerializer = self.defaultJSONRequest;
         
@@ -147,10 +151,10 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
         _defaultJSONRequest = AFJSONRequestSerializer.serializer;
         _defaultJSONRequest.timeoutInterval = 15;
         _defaultJSONRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
-        NSString *token = UserItem.defaultItem.token;
-        if (token) {
-            [_defaultJSONRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
-        }
+    }
+    NSString *token = UserItem.defaultItem.token;
+    if (token) {
+        [_defaultJSONRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }
     return _defaultJSONRequest;
 }
@@ -160,10 +164,10 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
         _HTTPRequest = AFHTTPRequestSerializer.serializer;
         _HTTPRequest.timeoutInterval = 15;
         _HTTPRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
-        NSString *token = UserItem.defaultItem.token;
-        if (token) {
-            [_HTTPRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
-        }
+    }
+    NSString *token = UserItem.defaultItem.token;
+    if (token) {
+        [_HTTPRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }
     return _HTTPRequest;
 }
@@ -173,10 +177,10 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
         _propertyListRequest = AFPropertyListRequestSerializer.serializer;
         _propertyListRequest.timeoutInterval = 15;
         _propertyListRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
-        NSString *token = UserItem.defaultItem.token;
-        if (token) {
-            [_propertyListRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
-        }
+    }
+    NSString *token = UserItem.defaultItem.token;
+    if (token) {
+        [_propertyListRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }
     return _propertyListRequest;
 }
