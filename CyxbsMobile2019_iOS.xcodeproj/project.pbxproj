@@ -2611,9 +2611,9 @@
 		14B73F50281BED7B00D08ADD /* MessageMore_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F51281BED7B00D08ADD /* Model */,
-				14B73F54281BED7B00D08ADD /* View */,
 				14B73F57281BED7B00D08ADD /* ViewController */,
+				14B73F54281BED7B00D08ADD /* View */,
+				14B73F51281BED7B00D08ADD /* Model */,
 			);
 			path = MessageMore_module;
 			sourceTree = "<group>";
@@ -2621,8 +2621,8 @@
 		14B73F51281BED7B00D08ADD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F52281BED7B00D08ADD /* MessageMoreModel.m */,
 				14B73F53281BED7B00D08ADD /* MessageMoreModel.h */,
+				14B73F52281BED7B00D08ADD /* MessageMoreModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2630,8 +2630,8 @@
 		14B73F54281BED7B00D08ADD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F55281BED7B00D08ADD /* MessageMoreCell.m */,
 				14B73F56281BED7B00D08ADD /* MessageMoreCell.h */,
+				14B73F55281BED7B00D08ADD /* MessageMoreCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2639,8 +2639,8 @@
 		14B73F57281BED7B00D08ADD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F58281BED7B00D08ADD /* MineMessageMoreVC.m */,
 				14B73F59281BED7B00D08ADD /* MineMessageMoreVC.h */,
+				14B73F58281BED7B00D08ADD /* MineMessageMoreVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

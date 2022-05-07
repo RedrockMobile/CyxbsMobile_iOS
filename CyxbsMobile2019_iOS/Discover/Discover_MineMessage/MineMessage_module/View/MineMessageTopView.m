@@ -68,6 +68,7 @@
         self.systemBtn.selected = YES;
         _lineIsScroll = NO;
         self.hadLine = NO;
+        _moreHadSet = YES;
     }
     return self;
 }
@@ -228,10 +229,9 @@
     if (_moreHadSet == moreHadSet) {
         return;
     }
-    if (moreHadSet) {
+    if (!moreHadSet) {
         [self.moreBtn addSubview:self.moreBall];
     } else {
-        
         [self.moreBall removeFromSuperview];
     }
     _moreHadSet = moreHadSet;

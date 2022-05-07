@@ -72,13 +72,10 @@
 #pragma mark - Getter
 
 - (void)setNeedBall:(BOOL)needBall {
-    if (_needBall == needBall) {
-        return;
-    }
     if (needBall) {
         self.moreImgView.image = [UIImage imageNamed:@"setting_s"];
     } else {
-        self.moreImgView.image = [UIImage imageNamed:@"setting_d"];
+        self.moreImgView.image = [UIImage imageNamed:@"setting"];
     }
     _needBall = needBall;
 }

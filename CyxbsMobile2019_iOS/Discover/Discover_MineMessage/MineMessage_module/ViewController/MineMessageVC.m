@@ -188,6 +188,7 @@
         // 单击了设置，小红点无了，但需要我们去标记UserDefualt
         [USER_DEFAULT setBool:YES forKey:MineMessage_hadSettle_BOOL];
         
+        self.topView.moreHadSet = [USER_DEFAULT boolForKey:MineMessage_hadSettle_BOOL];
         [self.navigationController pushViewController:[[MessageSettingVC alloc] init] animated:YES];
     }
 }
@@ -215,7 +216,7 @@
         
         _topView.systemHadMsg = YES;
         _topView.activeHadMsg = YES;
-        _topView.moreHadSet = YES;
+        _topView.moreHadSet = [USER_DEFAULT boolForKey:MineMessage_hadSettle_BOOL];
     }
     return _topView;
 }

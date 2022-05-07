@@ -135,8 +135,7 @@
      title:model.msgStr];
     
     if ([model.msgStr isEqualToString:@"设置"]) {
-        // -- 这里以后要用userdefault --
-        cell.needBall = YES;
+        cell.needBall = ![USER_DEFAULT boolForKey:MineMessage_hadSettle_BOOL];
     }
     
     return cell;
