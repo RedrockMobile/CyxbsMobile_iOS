@@ -48,23 +48,18 @@
     }
     NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
     
-    // -- 网络请求：put 已读 --
-    AFHTTPSessionManager *session = HttpClient.defaultClient.httpSessionManager;
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [HttpClient.defaultClient
-     requestWithPath:MineMessage_PUT_hasRead_API
-     method:HttpRequestPut
-     parameters:parameter
-     prepareExecute:nil
+    [HttpTool.shareTool
+     request:MineMessage_PUT_hasRead_API
+     type:HttpToolRequestTypePut
+     serializer:HttpToolRequestSerializerJSON
+     bodyParameters:parameter
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+     success:^(NSURLSessionDataTask * task, id responseObject) {
         if (success) {
             success();
         }
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     failure:^(NSURLSessionDataTask * task, NSError * error) {
         if (failure) {
             failure(error);
         }
@@ -84,24 +79,18 @@
     
     NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
     
-    // -- 网络请求：put 已读 --
-    AFHTTPSessionManager *session = HttpClient.defaultClient.httpSessionManager;
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
-    session.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"GET", @"HEAD"]];
-    
-    [HttpClient.defaultClient
-     requestWithPath:MineMessage_DELETE_sysMsg_API
-     method:HttpRequestDelete
-     parameters:parameter
-     prepareExecute:nil
+    [HttpTool.shareTool
+     request:MineMessage_DELETE_sysMsg_API
+     type:HttpToolRequestTypeDelete
+     serializer:HttpToolRequestSerializerJSON
+     bodyParameters:parameter
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+     success:^(NSURLSessionDataTask * task, id responseObject) {
         if (success) {
             success();
         }
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     failure:^(NSURLSessionDataTask * task, NSError * error) {
         if (failure) {
             failure(error);
         }

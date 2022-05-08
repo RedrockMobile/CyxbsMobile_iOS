@@ -7054,8 +7054,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 71;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7091,7 +7091,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.3;
+				MARKETING_VERSION = 6.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7110,8 +7110,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 70;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 71;
+				DEVELOPMENT_TEAM = D67VC378K4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7147,7 +7147,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.3;
+				MARKETING_VERSION = 6.3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
