@@ -234,7 +234,6 @@
         return cell;
     }else{
         UITableViewCell *cell = [[UITableViewCell alloc]init];
-        cell.backgroundColor = [UIColor whiteColor];
         return cell;
     }
 }

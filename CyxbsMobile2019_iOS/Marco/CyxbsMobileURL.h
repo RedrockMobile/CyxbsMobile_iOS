@@ -135,6 +135,35 @@
 
 
 #pragma mark - “发现”接口
+
+// MARK: MineMessage
+
+/**获取所有信息
+ * @Header Authorization : Bearer ${token}
+ */
+#define MineMessage_GET_allMsg_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/allMsg"]
+
+/**更改已读状态
+ * @Header Content-Type : application//json
+ * @Header Authorization : Bearer ${token}
+ * @Body @ {"ids" : [String]}
+ */
+#define MineMessage_PUT_hasRead_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/msgHasRead"]
+
+/**是否有未读消息
+ * @Header Authorization : Bearer ${token}
+ */
+#define MineMessage_GET_userHadRead_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/msgHasRead"]
+
+/**删除消息
+ * @Header Authorization : Bearer ${token}
+ * @Body @ {"ids" : [String]}
+ */
+#define MineMessage_DELETE_sysMsg_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/msg"]
+
+
+// MARK: -
+
 //校历接口
 #define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/schoolCalendar"]
 /// 教务新闻列表

@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DiscoverMineMessageVC.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// "发现"顶视图，直接init
 @interface FinderTopView : UIView
+
+@property (nonatomic, strong) DiscoverMineMessageVC *msgVC;
 
 /// 计算属性，决定有没有红点，默认没有
 @property (nonatomic) BOOL hadRead;

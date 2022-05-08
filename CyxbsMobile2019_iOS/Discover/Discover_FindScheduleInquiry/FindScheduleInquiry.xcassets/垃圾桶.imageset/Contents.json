@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "组 26.png",
+      "filename" : "Image-2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "组 26 2.png",
+      "filename" : "Image-7.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "组 26@2x.png",
+      "filename" : "Image-3.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "组 26@2x 2.png",
+      "filename" : "Image-5.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "组 26@3x.png",
+      "filename" : "Image-4.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "组 26@3x 2.png",
+      "filename" : "Image-6.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

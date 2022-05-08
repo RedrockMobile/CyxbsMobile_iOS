@@ -72,6 +72,10 @@
     return _jwzxVC;
 }
 
+- (UIViewController *)msgViewController {
+    return self.topView.msgVC;
+}
+
 #pragma mark - Method
 
 - (UIViewController *)jwzxViewController {

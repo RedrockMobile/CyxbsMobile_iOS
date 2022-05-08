@@ -351,7 +351,7 @@ static int requestCheckinInfo = 0;
     
     // Remake by SSR
     [self addChildViewController:finderView.jwzxViewController];
-    
+    [self addChildViewController:finderView.msgViewController];
     
     
     self.finderView = finderView;
