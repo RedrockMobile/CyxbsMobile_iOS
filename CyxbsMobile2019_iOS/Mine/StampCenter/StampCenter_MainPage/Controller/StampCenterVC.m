@@ -674,6 +674,12 @@
 }
 
 
+
+
+
+
+
+
 //检查是否有未领取的货物
 - (void)checkAlertLbl{
     HttpClient *client = [HttpClient defaultClient];
