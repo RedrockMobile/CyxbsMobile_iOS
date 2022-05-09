@@ -20,13 +20,13 @@ static HttpTool *_shareTool;
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
 
 /// 默认JSON格式上传
-@property (nonatomic, strong) AFJSONRequestSerializer *defaultJSONRequest;
+@property (nonatomic, readonly) AFJSONRequestSerializer *defaultJSONRequest;
 
 /// 以HTTP格式上传
-@property (nonatomic, strong) AFHTTPRequestSerializer *HTTPRequest;
+@property (nonatomic, readonly) AFHTTPRequestSerializer *HTTPRequest;
 
 /// PropertyList格式上传
-@property (nonatomic, strong) AFPropertyListRequestSerializer *propertyListRequest;
+@property (nonatomic, readonly) AFPropertyListRequestSerializer *propertyListRequest;
 
 @end
 
@@ -146,6 +146,7 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 #pragma mark - Getter
 
 - (AFJSONRequestSerializer *)defaultJSONRequest {
+    AFJSONRequestSerializer *_defaultJSONRequest = AFJSONRequestSerializer.serializer;
     _defaultJSONRequest = AFJSONRequestSerializer.serializer;
     _defaultJSONRequest.timeoutInterval = 15;
     _defaultJSONRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
@@ -157,6 +158,7 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 }
 
 - (AFHTTPRequestSerializer *)HTTPRequest {
+    AFHTTPRequestSerializer *_HTTPRequest = AFHTTPRequestSerializer.serializer;
     _HTTPRequest = AFHTTPRequestSerializer.serializer;
     _HTTPRequest.timeoutInterval = 15;
     _HTTPRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
@@ -168,6 +170,7 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 }
 
 - (AFPropertyListRequestSerializer *)propertyListRequest {
+    AFPropertyListRequestSerializer *_propertyListRequest = AFPropertyListRequestSerializer.serializer;
     _propertyListRequest = AFPropertyListRequestSerializer.serializer;
     _propertyListRequest.timeoutInterval = 15;
     _propertyListRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
