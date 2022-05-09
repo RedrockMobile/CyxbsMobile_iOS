@@ -132,11 +132,20 @@
         [pc addDetail:[NSString stringWithFormat:@"确定要删除选中%ld条信息吗", ary.count]];
     } else if (notReadCount == 1 && ary.count == 1) {
         // 1:此条消息未读\n确定删除此消息吗
-        [pc addTitle:@"此条消息未读" textColor:[UIColor colorNamed:@"#112C54'00^#DFDFE3'00"]];
+        [pc addTitle:@"此条消息未读"
+           textColor:
+         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
+                               darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]]];
+        
         [pc addDetail:@"确定删除此消息吗"];
     } else {
         // ♾️:选中的信息包含notReadCount条未读信息，\n确定删除选中的ary.count条消息吗？
-        [pc addTitle:[NSString stringWithFormat:@"选中的信息包含%ld条未读信息,", notReadCount] textColor:[UIColor colorNamed:@"#4944E3'00^#9A97FF'00"]];
+        
+        [pc addTitle:[NSString stringWithFormat:@"选中的信息包含%ld条未读信息,", notReadCount]
+           textColor:
+         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4944E3" alpha:1]
+                               darkColor:[UIColor colorWithHexString:@"#9A97FF" alpha:1]]];
+        
         [pc addDetail:[NSString stringWithFormat:@"确定删除选中的%ld条消息吗？ ", ary.count]];
     }
     [pc addDismiss:needCancel];

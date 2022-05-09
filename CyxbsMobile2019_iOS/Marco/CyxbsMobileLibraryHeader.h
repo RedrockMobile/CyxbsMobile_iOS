@@ -33,6 +33,8 @@
 #import <MGJRouter.h>
 #import <SDWebImage/SDWebImage.h>
 
+#import <FluentDarkModeKit.h> // 基于iOS11.0的黑暗适配
+
 // Category
 #import "UIView+Frame.h"
 #import "NSDate+Day.h"

@@ -49,7 +49,11 @@
         
         UIPopoverPresentationController *popVC = self.popoverPresentationController;
         popVC.canOverlapSourceViewRect = NO;
-        popVC.backgroundColor = [UIColor colorNamed:@"#F2F2F1'00^#1D1D1D'00"];
+        
+        
+        popVC.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F2F1" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+        
         popVC.permittedArrowDirections = UIPopoverArrowDirectionUp;
         popVC.delegate = self;
     }
@@ -148,7 +152,11 @@
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 13, 120, 60) style:UITableViewStylePlain];
         _tableView.layer.cornerRadius = 10;
         _tableView.clipsToBounds = YES;
-        _tableView.backgroundColor = [UIColor colorNamed:@"#FFFFFF'00^#2C2C2C'00"];
+        
+        _tableView.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
+        
         _tableView.bounces = NO;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;

@@ -2472,8 +2472,8 @@
 		14B73F2A281BED7B00D08ADD /* MessageSetting_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F2B281BED7B00D08ADD /* View */,
 				14B73F2E281BED7B00D08ADD /* ViewController */,
+				14B73F2B281BED7B00D08ADD /* View */,
 			);
 			path = MessageSetting_module;
 			sourceTree = "<group>";
@@ -2694,8 +2694,8 @@
 		14B73F67281BED7B00D08ADD /* MessagePresent_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F68281BED7B00D08ADD /* View */,
 				14B73F6B281BED7B00D08ADD /* ViewController */,
+				14B73F68281BED7B00D08ADD /* View */,
 			);
 			path = MessagePresent_module;
 			sourceTree = "<group>";
@@ -2703,8 +2703,8 @@
 		14B73F68281BED7B00D08ADD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F69281BED7B00D08ADD /* MessagePresentView.m */,
 				14B73F6A281BED7B00D08ADD /* MessagePresentView.h */,
+				14B73F69281BED7B00D08ADD /* MessagePresentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

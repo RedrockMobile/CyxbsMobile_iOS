@@ -39,7 +39,8 @@
     self = [super init];
     if (self) {
         self.url = url;
-        self.view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
+        self.view.backgroundColor = 
+        [UIColor dm_colorWithLightColor:[UIColor xFF_R:248 G:249 B:252 Alpha:1] darkColor:[UIColor xFF_R:0 G:1 B:1 Alpha:1]];
     }
     return self;
 }

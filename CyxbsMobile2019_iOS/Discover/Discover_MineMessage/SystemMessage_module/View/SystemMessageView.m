@@ -206,7 +206,10 @@
         
         _cancelBtn.layer.cornerRadius = _cancelBtn.height / 2;
         _cancelBtn.clipsToBounds = YES;
-        _cancelBtn.backgroundColor = [UIColor colorNamed:@"#C3D4EE'00^#5A5A5A'80"];
+        
+        _cancelBtn.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D4EE" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:0.8]];
         
         [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
         _cancelBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:18];
@@ -224,7 +227,9 @@
         
         _deleteBtn.layer.cornerRadius = _deleteBtn.height / 2;
         _deleteBtn.clipsToBounds = YES;
-        _deleteBtn.backgroundColor = [UIColor colorNamed:@"#4A44E4'00^#5852FF'00"];
+        
+        _deleteBtn.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4A44E4" alpha:1] darkColor:[UIColor colorWithHexString:@"#5852FF" alpha:1]];
         
         [_deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
         _deleteBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:18];

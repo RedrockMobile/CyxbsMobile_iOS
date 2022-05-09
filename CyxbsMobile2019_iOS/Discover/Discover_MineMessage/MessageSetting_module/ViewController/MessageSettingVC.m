@@ -37,7 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&29_29_29_1"];
+    self.view.backgroundColor =
+    [UIColor dm_colorWithLightColor:[UIColor xFF_R:242 G:243 B:248 Alpha:1]
+                          darkColor:[UIColor xFF_R:29 G:29 B:29 Alpha:1]];
     
     [self.view addSubview:self.topView];
     [self.view addSubview:self.tableView];
