@@ -199,6 +199,7 @@
 
 - (void)systemMessageVC_hadReadAllMsg:(SystemMessageVC *)vc {
     self.topView.systemHadMsg = NO;
+    [NewQAHud showHudWith:@"全部已读" AddView:self.view];
 }
 
 #pragma mark - <ActiveMessageVCDelegate>
@@ -216,8 +217,8 @@
         [_topView addMoreBtnTarget:self action:@selector(showMore:)];
         _topView.delegate = self;
         
-        _topView.systemHadMsg = YES;
-        _topView.activeHadMsg = YES;
+        _topView.systemHadMsg = NO;
+        _topView.activeHadMsg = NO;
         _topView.moreHadSet = [USER_DEFAULT boolForKey:MineMessage_hadSettle_BOOL];
     }
     return _topView;

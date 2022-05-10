@@ -42,7 +42,7 @@
     NSMutableArray <NSString *> *idNums = NSMutableArray.array;
     for (SystemMessage *msg in ary) {
         if (msg.hadRead == NO) {
-            [idNums addObject:[NSString stringWithFormat:@"%ld", msg.msgID]];
+            [idNums addObject:msg.otherThings];
         }
         msg.hadRead = YES;
     }
@@ -71,7 +71,7 @@
                          failure:(void (^)(NSError *error))failure {
     NSMutableArray <NSString *> *idNums = NSMutableArray.array;
     [set enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
-        [idNums addObject:[NSString stringWithFormat:@"%ld", self.msgAry[idx].msgID]];
+        [idNums addObject:self.msgAry[idx].otherThings];
     }];
     NSMutableArray *ma = [NSMutableArray arrayWithArray:self.msgAry];
     [ma removeObjectsAtIndexes:set];

@@ -55,6 +55,9 @@
     [super viewDidAppear:animated];
     
     self.view.hidden = NO;
+    if (!self.sysMsgModel || !self.sysMsgModel.msgAry || !self.sysMsgModel.msgAry.count) {
+        [NewQAHud showHudWith:@"系统没有消息了" AddView:self.view];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -115,7 +118,7 @@
 
 - (void)systemMessageTableView:(UITableView *)view didSelectedAtIndex:(NSInteger)index {
     // 选择了，应该跳转
-    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:self.sysMsgModel.msgAry[index].url]] animated:YES];
+    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:self.sysMsgModel.msgAry[index].articleURL]] animated:YES];
 }
 
 - (void)systemMessageTableView:(UITableView *)view willDeletePathWithIndexSet:(nonnull NSIndexSet *)set showPresent:(nonnull void (^)(BOOL))needCancel {
@@ -201,7 +204,10 @@
     
     SystemMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemMessageCellReuseIdentifier forIndexPath:indexPath];
     
-    [cell drawWithTitle:model.title content:model.content date:model.date];
+    [cell drawWithTitle:model.title
+                content:model.title
+                   date:model.uploadDate];
+    
     cell.hadRead = model.hadRead;
     
     return cell;

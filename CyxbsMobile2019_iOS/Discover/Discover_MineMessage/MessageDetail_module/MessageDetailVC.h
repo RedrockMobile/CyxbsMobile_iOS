@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UserPublishModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MessageDetailVC : UIViewController

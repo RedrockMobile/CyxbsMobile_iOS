@@ -110,7 +110,7 @@
         [self.delegate activeMessageVC_hadReadAllMsg:self];
     }
     
-    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:msg.url]] animated:YES];
+    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:msg.articleURL]] animated:YES];
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -126,11 +126,11 @@
     
     [cell
      drawTitle:msg.title
-     headURL:msg.userHeadURL
+     headURL:msg.headURL
      author:msg.author
-     date:msg.date
+     date:msg.uploadDate
      content:msg.content
-     msgImgURL:msg.imgURL];
+     msgImgURL:msg.picURL];
     
     cell.hadRead = msg.hadRead;
     

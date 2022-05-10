@@ -14,7 +14,9 @@
 
 #pragma mark - MessageDetailVC ()
 
-@interface MessageDetailVC ()
+@interface MessageDetailVC () <
+    WKNavigationDelegate
+>
 
 /// 顶视图
 @property (nonatomic, strong) SSRTopBarBaseView *topView;
@@ -40,7 +42,8 @@
     if (self) {
         self.url = url;
         self.view.backgroundColor = 
-        [UIColor dm_colorWithLightColor:[UIColor xFF_R:248 G:249 B:252 Alpha:1] darkColor:[UIColor xFF_R:0 G:1 B:1 Alpha:1]];
+        [UIColor dm_colorWithLightColor:[UIColor xFF_R:248 G:249 B:252 Alpha:1]
+                              darkColor:[UIColor xFF_R:0 G:1 B:1 Alpha:1]];
     }
     return self;
 }
@@ -60,6 +63,33 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)messageDetailVC_showWebView {
+    self.webView.hidden = NO;
+}
+
+#pragma mark - <WKNavigationDelegate>
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    NSString *backgroundColor = @"#F8F9FC";
+    NSString *textColor = @"#112C54";
+    if (DMTraitCollection.overrideTraitCollection.userInterfaceStyle != DMUserInterfaceStyleLight) {
+        backgroundColor = @"#000000";
+        textColor = @"#F0F0F0";
+    }
+    
+    [webView evaluateJavaScript:
+     [NSString stringWithFormat:@"document.body.style.backgroundColor = \"%@\"", backgroundColor]
+              completionHandler:nil];
+    
+    [webView evaluateJavaScript:
+     [NSString stringWithFormat:@"document.body.style.webkitTextFillColor = \"%@\"", textColor]
+              completionHandler:nil];
+    
+    [webView evaluateJavaScript:@"document.body.style.fontFamily = \"PingFang SC\"" completionHandler:nil];
+    
+    [self performSelector:@selector(messageDetailVC_showWebView) afterDelay:0.1];
+}
+
 #pragma mark - Getter
 
 - (SSRTopBarBaseView *)topView {
@@ -76,6 +106,8 @@
     if (_webView == nil) {
         _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, self.topView.bottom, self.view.width, self.view.height - self.topView.bottom)];
         [_webView loadRequest:[NSURLRequest requestWithURL:self.url]];
+        _webView.hidden = YES;
+        _webView.navigationDelegate = self;
     }
     return _webView;
 }

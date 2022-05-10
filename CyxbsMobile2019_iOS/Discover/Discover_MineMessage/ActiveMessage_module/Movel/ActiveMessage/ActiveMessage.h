@@ -8,33 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#import "UserPublishModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ActiveMessage
 
 /// 活动消息
-@interface ActiveMessage : NSObject
+@interface ActiveMessage : UserPublishModel <NSString *>
 
-/// 标题
-@property (nonatomic, copy) NSString *title;
-
-/// 内容，有点多的那种
-@property (nonatomic, copy) NSString *content;
-
-/// 作者
-@property (nonatomic, copy) NSString *author;
-
-/// 头像来源
-@property (nonatomic, copy) NSString *userHeadURL;
-
-/// 日期
-@property (nonatomic, copy) NSString *date;
-
-/// 一张简介图
-@property (nonatomic, copy) NSString *imgURL;
-
-/// 抵达的URL
-@property (nonatomic, copy) NSString *url;
+/// 在外部的一个图片url
+@property (nonatomic, copy) NSString *picURL;
 
 /// 是否已读
 @property (nonatomic) BOOL hadRead;

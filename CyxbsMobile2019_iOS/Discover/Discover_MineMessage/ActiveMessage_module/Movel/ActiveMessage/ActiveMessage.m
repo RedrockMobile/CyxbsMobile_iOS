@@ -13,15 +13,16 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dic {
     self = [super init];
     if (self) {
-        self.title = dic[@"title"];
-        self.content = dic[@"content"];
-        self.userHeadURL = dic[@"user_head_url"];
-        self.author = dic[@"user_name"];
-        self.msgID = [dic[@"id"] longValue];
-        self.date = [[NSDate dateString:[dic[@"date"] substringToIndex:10] fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-MM-dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-M-d"];
-        self.imgURL = dic[@"pic_url"];
-        self.url = dic[@"redirect_url"];
+        self.otherThings = [dic[@"id"] stringValue];
+        self.articleURL = dic[@"redirect_url"];
+        self.identify = dic[@"stu_num"];
         self.hadRead = [dic[@"has_read"] boolValue];
+        self.title = dic[@"title"];
+        self.picURL = dic[@"pic_url"];
+        self.uploadDate = [[NSDate dateString:[dic[@"date"] substringToIndex:10] fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-MM-dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-M-d"];
+        self.author = dic[@"user_name"];
+        self.headURL = dic[@"user_head_url"];
+        self.content = dic[@"content"];
     }
     return self;
 }
