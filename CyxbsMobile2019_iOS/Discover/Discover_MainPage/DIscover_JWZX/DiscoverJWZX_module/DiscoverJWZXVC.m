@@ -49,7 +49,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.newsModel = [[JWZXNewsModel alloc] init];
+    
+    [self request];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.view addSubview:self.jwNewsBtn];
+    [self.view addSubview:self.textCycleView];
+}
+
+#pragma mark - Method
+
+- (void)request {
     [self.newsModel
      requestJWZXPage:1
      success:^{
@@ -65,15 +80,6 @@
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.view addSubview:self.jwNewsBtn];
-    [self.view addSubview:self.textCycleView];
-}
-
-#pragma mark - Method
-
 - (void)pushToJWZXNewsController {
     JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithJWZXNewsModel:self.newsModel];
     vc.hidesBottomBarWhenPushed = YES;
@@ -87,7 +93,12 @@
         _jwNewsBtn = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, 68, self.view.height)];
         [_jwNewsBtn setTitle:@"教务在线" forState:UIControlStateNormal];
         [_jwNewsBtn setBackgroundImage:[UIImage imageNamed:@"教务在线背景"] forState:normal];
-        [_jwNewsBtn setTitleColor:[UIColor colorNamed:@"whiteColor"] forState:normal];
+        
+        [_jwNewsBtn setTitleColor:
+         [UIColor dm_colorWithLightColor:UIColor.whiteColor
+                               darkColor:UIColor.blackColor]
+                         forState:UIControlStateNormal];
+        
         _jwNewsBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 11];
         _jwNewsBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_jwNewsBtn addTarget:self action:@selector(pushToJWZXNewsController) forControlEvents:UIControlEventTouchUpInside];
