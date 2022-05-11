@@ -87,10 +87,22 @@
         self.activeMessageVC.sysModel = self.mineMsgModel.activeMsgModel;
         BOOL needActBall = [self.activeMessageVC hadReadAfterReloadData];
         self.topView.activeHadMsg = needActBall;
+        
+        if (self.contentView.left < self.view.width / 2) {
+            if (!self.systemMessageVC.sysMsgModel || !self.systemMessageVC.sysMsgModel.msgAry.count) {
+                [NewQAHud showHudWith:@"没有系统消息了" AddView:self.systemMessageVC.view];
+            }
+        } else {
+            if (!self.activeMessageVC.sysModel || !self.systemMessageVC.sysMsgModel.msgAry.count) {
+                [NewQAHud showHudWith:@"没有活动消息了" AddView:self.activeMessageVC.view];
+            }
+        }
     }
      failure:^(NSError * _Nonnull error) {
-        // -- 无网操作 --
-        NSLog(@"-- 未连接网络:%@", self.class);
+        [NewQAHud showHudWith:@"网络异常"
+                      AddView:(self.contentView.left < self.view.width / 2 ?
+                               self.systemMessageVC.view :
+                               self.activeMessageVC.view)];
     }];
 }
 

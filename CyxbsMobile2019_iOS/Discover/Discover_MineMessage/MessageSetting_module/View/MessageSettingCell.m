@@ -31,8 +31,8 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        self.backgroundColor =
-        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFF" alpha:1]
+        self.backgroundColor = self.contentView.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]
                               darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
         
         self.layer.cornerRadius = 10;
@@ -71,8 +71,8 @@
         _msgTitleLab.font = [UIFont fontWithName:PingFangSCBold size:16];
         
         _msgTitleLab.textColor =
-        [UIColor dm_colorWithLightColor:[UIColor xFF_R:17 G:44 B:84 Alpha:1]
-                              darkColor:[UIColor xFF_R:240 G:240 B:240 Alpha:1]];
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
     }
     return _msgTitleLab;
 }
@@ -83,8 +83,8 @@
         _msgSwitch.onTintColor = [UIColor xFF_R:42 G:33 B:209 Alpha:1];
         
         _msgSwitch.subviews.firstObject.subviews.firstObject.backgroundColor =
-        [UIColor dm_colorWithLightColor:[UIColor xFF_R:195 G:212 B:238 Alpha:1]
-                              darkColor:[UIColor xFF_R:90 G:90 B:90 Alpha:1]];
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D4EE" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         
         [_msgSwitch addTarget:self action:@selector(swipeSwitch:) forControlEvents:UIControlEventValueChanged];
     }

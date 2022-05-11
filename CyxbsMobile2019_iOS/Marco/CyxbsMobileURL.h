@@ -161,6 +161,10 @@
  */
 #define MineMessage_DELETE_sysMsg_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/msg"]
 
+/**单个md文档转为h5
+ * WKWebView
+ */
+#define MineMessage_HTML_md(msgID) [CyxbsMobileBaseURL_1 stringByAppendingFormat:@"message-system/user/html/%@", msgID]
 
 // MARK: -
 

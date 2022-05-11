@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         self.otherThings = [dic[@"id"] stringValue];
-        self.articleURL = dic[@"redirect_url"];
+        self.articleURL = MineMessage_HTML_md(self.otherThings);
         self.identify = dic[@"stu_num"];
         self.title = dic[@"title"];
         self.uploadDate = [[NSDate dateString:[dic[@"date"] substringToIndex:10] fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-MM-dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-M-d"];
@@ -26,27 +26,6 @@
         self.headURL = dic[@"user_head_url"];
         self.content = dic[@"content"];
         self.hadRead = [dic[@"has_read"] boolValue];
-    }
-    return self;
-}
-
-@end
-
-#pragma mark - UserPublishModel (SystemMessage)
-
-@implementation UserPublishModel (SystemMessage)
-
-- (instancetype)initWithSysDic:(NSDictionary *)dic {
-    self = [super init];
-    if (self) {
-        self.otherThings = [dic[@"id"] stringValue];
-        self.articleURL = dic[@"redirect_url"];
-        self.identify = dic[@"stu_num"];
-        self.title = dic[@"title"];
-        self.uploadDate = [[NSDate dateString:[dic[@"date"] substringToIndex:10] fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-MM-dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-M-d"];
-        self.author = dic[@"user_name"];
-        self.headURL = dic[@"user_head_url"];
-        self.content = dic[@"content"];
     }
     return self;
 }

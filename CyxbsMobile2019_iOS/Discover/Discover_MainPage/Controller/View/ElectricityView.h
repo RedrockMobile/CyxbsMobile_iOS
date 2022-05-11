@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-///平方字体部分
-#define PingFangSC @".PingFang SC"
 //Bahnschrift字体部分
 #define ImpactMedium @"Impact"
 #define ImpactRegular @"Impact"

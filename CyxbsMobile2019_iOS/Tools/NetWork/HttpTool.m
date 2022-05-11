@@ -182,3 +182,13 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 }
 
 @end
+
+@implementation HttpTool (WKWebView)
+
+- (NSURLRequest *)requestURL:(NSString *)url
+              bodyParameters:(id _Nullable)parameters {
+    return [[self.defaultJSONRequest requestWithMethod:@"GET" URLString:url parameters:parameters error:nil] mutableCopy];
+}
+
+
+@end

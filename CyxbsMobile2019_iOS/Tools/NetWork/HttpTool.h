@@ -88,4 +88,13 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 
 @end
 
+#pragma mark - HttpTool (WKWebView)
+
+@interface HttpTool (WKWebView)
+
+- (NSURLRequest *)requestURL:(NSString *)url
+              bodyParameters:(id _Nullable)parameters;
+
+@end
+
 NS_ASSUME_NONNULL_END

@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 活动消息
 @interface ActiveMessage : UserPublishModel <NSString *>
 
+/// 第二层级跳转URL
+@property (nonatomic, copy, nullable) NSString *redirectURL;
+
 /// 在外部的一个图片url
 @property (nonatomic, copy) NSString *picURL;
 

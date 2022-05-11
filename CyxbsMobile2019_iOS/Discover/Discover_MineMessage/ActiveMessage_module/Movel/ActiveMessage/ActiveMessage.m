@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         self.otherThings = [dic[@"id"] stringValue];
-        self.articleURL = dic[@"redirect_url"];
+        self.articleURL = MineMessage_HTML_md(self.otherThings);
         self.identify = dic[@"stu_num"];
         self.hadRead = [dic[@"has_read"] boolValue];
         self.title = dic[@"title"];
@@ -23,6 +23,7 @@
         self.author = dic[@"user_name"];
         self.headURL = dic[@"user_head_url"];
         self.content = dic[@"content"];
+        self.redirectURL = dic[@"redirect_url"];
     }
     return self;
 }

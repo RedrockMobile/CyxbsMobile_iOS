@@ -91,7 +91,7 @@
         _nameLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.width - 28, 28)];
         _nameLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
         _nameLab.backgroundColor = UIColor.clearColor;
-        _nameLab.font = [UIFont fontWithName:@".PingFang SC" size:18];
+        _nameLab.font = [UIFont fontWithName:PingFangSC size:18];
     }
     return _nameLab;
 }

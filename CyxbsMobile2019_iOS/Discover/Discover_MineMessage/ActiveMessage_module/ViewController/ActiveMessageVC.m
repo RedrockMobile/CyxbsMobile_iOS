@@ -110,7 +110,13 @@
         [self.delegate activeMessageVC_hadReadAllMsg:self];
     }
     
-    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:msg.articleURL]] animated:YES];
+    [self.navigationController
+     pushViewController:
+         [[MessageDetailVC alloc]
+          initWithURL:self.sysModel.activeMsgAry[indexPath.row].articleURL
+          useSpecialModel:nil
+          moreURL:self.sysModel.activeMsgAry[indexPath.row].redirectURL]
+     animated:YES];
 }
 
 #pragma mark - <UITableViewDataSource>

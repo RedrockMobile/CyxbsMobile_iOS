@@ -147,7 +147,7 @@
                 reuseIdentifier:SSRTextCycleCellReuseIdentifier];
         cell.ssrTextLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
         cell.ssrTextLab.backgroundColor = UIColor.clearColor;
-        cell.ssrTextLab.font = [UIFont fontWithName:@".PingFang SC" size:15];
+        cell.ssrTextLab.font = [UIFont fontWithName:PingFangSC size:15];
         cell.backgroundColor = UIColor.clearColor;
         cell.contentView.backgroundColor = UIColor.clearColor;
         cell.frame = view.SuperFrame;

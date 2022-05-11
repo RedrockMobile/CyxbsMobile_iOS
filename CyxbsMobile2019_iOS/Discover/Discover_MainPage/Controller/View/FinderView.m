@@ -12,7 +12,6 @@
 
 #import "FinderTopView.h"
 
-#define PingFangSC @".PingFang SC"
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
 

@@ -55,9 +55,6 @@
     [super viewDidAppear:animated];
     
     self.view.hidden = NO;
-    if (!self.sysMsgModel || !self.sysMsgModel.msgAry || !self.sysMsgModel.msgAry.count) {
-        [NewQAHud showHudWith:@"系统没有消息了" AddView:self.view];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -87,8 +84,7 @@
         // 什么都不用干
      }
      failure:^(NSError * _Nonnull error) {
-        // -- 没有网络，请连接网络再次尝试 --
-        NSLog(@"-- 没有网络，系统消息 无法标为 已读");
+        [NewQAHud showHudWith:@"无法连接网络" AddView:self.view];
      }];
     [self.messageView reloadData];
     if (self.delegate) {
@@ -118,7 +114,13 @@
 
 - (void)systemMessageTableView:(UITableView *)view didSelectedAtIndex:(NSInteger)index {
     // 选择了，应该跳转
-    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:self.sysMsgModel.msgAry[index].articleURL]] animated:YES];
+    [self.navigationController
+     pushViewController:
+         [[MessageDetailVC alloc]
+          initWithURL:self.sysMsgModel.msgAry[index].articleURL
+          useSpecialModel:nil
+          moreURL:self.sysMsgModel.msgAry[index].articleURL]
+     animated:YES];
 }
 
 - (void)systemMessageTableView:(UITableView *)view willDeletePathWithIndexSet:(nonnull NSIndexSet *)set showPresent:(nonnull void (^)(BOOL))needCancel {
@@ -205,7 +207,7 @@
     SystemMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemMessageCellReuseIdentifier forIndexPath:indexPath];
     
     [cell drawWithTitle:model.title
-                content:model.title
+                content:model.content
                    date:model.uploadDate];
     
     cell.hadRead = model.hadRead;
