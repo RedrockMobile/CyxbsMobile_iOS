@@ -12,11 +12,16 @@
 
 #import "SSRTopBarBaseView.h"
 
+#import "MessageDetailTitleView.h"
+
 #pragma mark - MessageDetailVC ()
 
 @interface MessageDetailVC () <
     WKNavigationDelegate
 >
+
+/// 顶视图，可能会有的那种
+@property (nonatomic, strong) MessageDetailTitleView *titleView;
 
 /// 用户发布信息
 @property (nonatomic, strong) UserPublishModel __kindof *publishModel;
@@ -60,9 +65,14 @@
     self = [super init];
     if (self) {
         self.url = url;
+        
         if (useModel) {
-            self.publishModel = useModel();
+            UserPublishModel *model = useModel();
+            if (model) {
+                self.publishModel = model;
+            }
         }
+        
         if (moreURL && ![moreURL isEqualToString:@""]) {
             self.moreURL = moreURL;
         }
@@ -83,6 +93,14 @@
         self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.webView.scrollView.contentInset.top, 0, 116, 0);
         [self.webView.scrollView addSubview:self.moreBtn];
     }
+    
+    if (self.publishModel) {
+        self.titleView = [[MessageDetailTitleView alloc] initWithWidth:self.webView.width specialUserPublishModel:self.publishModel];
+        self.titleView.top = -self.titleView.height;
+        
+        self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.titleView.height, 0, self.webView.scrollView.contentInset.bottom, 0);
+        [self.webView.scrollView addSubview:self.titleView];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -100,9 +118,13 @@
 
 - (void)messageDetailVC_showWebView {
     self.webView.hidden = NO;
-    NSLog(@"%lf", self.webView.scrollView.contentSize.height);
     self.moreBtn.top = self.webView.scrollView.contentSize.height + 36;
     [self.webView.scrollView scrollToTopAnimated:NO];
+    
+//    if (self.titleView) {
+//        self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.titleView.height, 0, self.webView.scrollView.contentInset.bottom, 0);
+//        [self.webView.scrollView addSubview:self.titleView];
+//    }
 }
 
 - (void)messageDetailVC_push {

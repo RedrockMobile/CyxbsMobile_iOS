@@ -211,7 +211,6 @@
 
 - (void)systemMessageVC_hadReadAllMsg:(SystemMessageVC *)vc {
     self.topView.systemHadMsg = NO;
-    [NewQAHud showHudWith:@"全部已读" AddView:self.view];
 }
 
 #pragma mark - <ActiveMessageVCDelegate>

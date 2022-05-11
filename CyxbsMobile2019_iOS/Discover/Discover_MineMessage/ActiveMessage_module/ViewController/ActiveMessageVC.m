@@ -113,9 +113,10 @@
     [self.navigationController
      pushViewController:
          [[MessageDetailVC alloc]
-          initWithURL:self.sysModel.activeMsgAry[indexPath.row].articleURL
-          useSpecialModel:nil
-          moreURL:self.sysModel.activeMsgAry[indexPath.row].redirectURL]
+          initWithURL:msg.articleURL useSpecialModel:^__kindof UserPublishModel * _Nonnull{
+                return msg;
+          }
+          moreURL:msg.redirectURL]
      animated:YES];
 }
 

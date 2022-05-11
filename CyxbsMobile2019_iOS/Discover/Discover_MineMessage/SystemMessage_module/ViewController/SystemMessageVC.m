@@ -81,7 +81,7 @@
     [self.sysMsgModel
      requestReadForIndexSet:set
      success:^{
-        // 什么都不用干
+        [NewQAHud showHudWith:@"已全部已读" AddView:self.view];
      }
      failure:^(NSError * _Nonnull error) {
         [NewQAHud showHudWith:@"无法连接网络" AddView:self.view];
@@ -114,12 +114,16 @@
 
 - (void)systemMessageTableView:(UITableView *)view didSelectedAtIndex:(NSInteger)index {
     // 选择了，应该跳转
+    SystemMessage *msg = self.sysMsgModel.msgAry[index];
+    
     [self.navigationController
      pushViewController:
          [[MessageDetailVC alloc]
-          initWithURL:self.sysMsgModel.msgAry[index].articleURL
-          useSpecialModel:nil
-          moreURL:self.sysMsgModel.msgAry[index].articleURL]
+          initWithURL:msg.articleURL
+          useSpecialModel:^__kindof UserPublishModel * _Nonnull{
+             return msg;
+          }
+          moreURL:msg.articleURL]
      animated:YES];
 }
 
