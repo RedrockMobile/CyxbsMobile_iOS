@@ -44,7 +44,6 @@
 #import "NewQAHud.h"
 
 #import "MGDStatusBarHeight.h"
-#import "UIColor+SYColor.h"
 
 
 #pragma mark - Group共享
