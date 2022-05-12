@@ -2145,12 +2145,30 @@
 			path = UserPublishModel;
 			sourceTree = "<group>";
 		};
-		1451EA55282A294200A5BB55 /* CyxbsMobileShare */ = {
+		1451EA55282A294200A5BB55 /* CyxbsMobileTool */ = {
 			isa = PBXGroup;
 			children = (
 				1451EA54282A11FB00A5BB55 /* UserPublishModel */,
 			);
-			path = CyxbsMobileShare;
+			path = CyxbsMobileTool;
+			sourceTree = "<group>";
+		};
+		1451EA59282BE2C900A5BB55 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1451EA56282BAF0C00A5BB55 /* MessageDetailTitleView.h */,
+				1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1451EA5A282BE2CF00A5BB55 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14B73F82281CCC3000D08ADD /* MessageDetailVC.h */,
+				14B73F83281CCC3000D08ADD /* MessageDetailVC.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		147842EB27F07A30002359BA /* UIView+Frame */ = {
@@ -2739,10 +2757,8 @@
 		14B73F852822BC5800D08ADD /* MessageDetail_module */ = {
 			isa = PBXGroup;
 			children = (
-				14B73F82281CCC3000D08ADD /* MessageDetailVC.h */,
-				14B73F83281CCC3000D08ADD /* MessageDetailVC.m */,
-				1451EA56282BAF0C00A5BB55 /* MessageDetailTitleView.h */,
-				1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */,
+				1451EA5A282BE2CF00A5BB55 /* ViewController */,
+				1451EA59282BE2C900A5BB55 /* View */,
 			);
 			path = MessageDetail_module;
 			sourceTree = "<group>";
@@ -4048,7 +4064,7 @@
 				1A141339235F524B0001417E /* Tools */,
 				FE87CE1A27E876FE008D7148 /* Marco */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
-				1451EA55282A294200A5BB55 /* CyxbsMobileShare */,
+				1451EA55282A294200A5BB55 /* CyxbsMobileTool */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
@@ -4850,6 +4866,7 @@
 				1404748227F4A89600307209 /* UITextView+Placeholder */,
 				1A141354235F524B0001417E /* UIFont+AdaptiveFont.h */,
 				1A14133B235F524B0001417E /* UIFont+AdaptiveFont.m */,
+				B82CA669263159B900786685 /* UIColor */,
 				14B73F8C282357DF00D08ADD /* SSRButton */,
 				145AF3E4281BDA0000AABC53 /* NSString+UILabel.h */,
 				145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */,
@@ -5086,7 +5103,6 @@
 			children = (
 				B82CA66C263159B900786685 /* popView */,
 				B82CA671263159B900786685 /* SHPopMenu */,
-				B82CA669263159B900786685 /* UIColor */,
 				B82CA677263159BA00786685 /* DKSKeyBoard */,
 				B82CA665263159B800786685 /* DynamicDetailTopBarView.h */,
 				B82CA667263159B800786685 /* DynamicDetailTopBarView.m */,

@@ -13,9 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIColor (Color)
 
-/**16进制颜色转换为UIColor*/
-//+ (UIColor *)colorWithHexString:(NSString *)hexColor
-//                          alpha:(float)opacity;
+/// 十六进制字符串获取颜色
+/// @param color 16进制色值  支持@“#123456”、 @“0X123456”、 @“123456”三种格式
+/// @param alpha 透明度
++ (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
 
 /**十六进制数值转换为UIColor*/
 //+ (UIColor*)colorWith0xUInteger:(NSUInteger)hex

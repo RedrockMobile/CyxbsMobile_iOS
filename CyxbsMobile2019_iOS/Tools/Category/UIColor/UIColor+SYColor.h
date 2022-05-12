@@ -31,12 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 十六进制字符串获取颜色
 /// @param color 16进制色值  支持@“#123456”、 @“0X123456”、 @“123456”三种格式
-+ (UIColor *)colorWithHexString:(NSString *)color;
+//+ (UIColor *)colorWithHexString:(NSString *)color;
 
 /// 十六进制字符串获取颜色
 /// @param color 16进制色值  支持@“#123456”、 @“0X123456”、 @“123456”三种格式
 /// @param alpha 透明度
-+ (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
+//+ (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
 @end
 
 NS_ASSUME_NONNULL_END

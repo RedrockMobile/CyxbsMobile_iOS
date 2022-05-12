@@ -37,7 +37,7 @@
     if (self) {
         _userPublishModel = model;
         [self addSubview:self.titleLab];
-        if (!self.userPublishModel.headURL || ![self.userPublishModel.headURL isEqualToString:@""] || !self.userPublishModel.author) {
+        if ((model.headURL && ![model.headURL isEqualToString:@""]) && model.author) {
             // 状态：多
             [self addSubview:self.headImgView];
             [self addSubview:self.userLab];

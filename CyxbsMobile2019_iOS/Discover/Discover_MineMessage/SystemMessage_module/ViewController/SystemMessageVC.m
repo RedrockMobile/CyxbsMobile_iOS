@@ -118,11 +118,13 @@
     
     [self.navigationController
      pushViewController:
-         [[MessageDetailVC alloc]
-          initWithURL:msg.articleURL
-          useSpecialModel:^__kindof UserPublishModel * _Nonnull{
-             return msg;
-          }
+     [[MessageDetailVC alloc]
+      initWithURL:msg.articleURL
+      useSpecialModel:^__kindof UserPublishModel * _Nonnull{
+        msg.headURL = nil;
+        msg.author = nil;
+        return msg;
+    }
           moreURL:msg.articleURL]
      animated:YES];
 }

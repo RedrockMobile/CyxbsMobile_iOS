@@ -120,11 +120,6 @@
     self.webView.hidden = NO;
     self.moreBtn.top = self.webView.scrollView.contentSize.height + 36;
     [self.webView.scrollView scrollToTopAnimated:NO];
-    
-//    if (self.titleView) {
-//        self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.titleView.height, 0, self.webView.scrollView.contentInset.bottom, 0);
-//        [self.webView.scrollView addSubview:self.titleView];
-//    }
 }
 
 - (void)messageDetailVC_push {
