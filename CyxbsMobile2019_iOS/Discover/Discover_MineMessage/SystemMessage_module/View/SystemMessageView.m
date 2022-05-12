@@ -209,7 +209,7 @@
         
         _cancelBtn.backgroundColor =
         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D4EE" alpha:1]
-                              darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:0.8]];
+                              darkColor:[UIColor colorWithHexString:@"#484848" alpha:1]];
         
         [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
         _cancelBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:18];

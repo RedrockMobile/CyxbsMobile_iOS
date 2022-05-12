@@ -94,7 +94,7 @@
         _msgTimeLab.font = [UIFont fontWithName:PingFangSC size:12];
         
         _msgTimeLab.textColor =
-        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:0.55]];
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.7] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:0.55]];
     }
     return _msgTimeLab;
 }

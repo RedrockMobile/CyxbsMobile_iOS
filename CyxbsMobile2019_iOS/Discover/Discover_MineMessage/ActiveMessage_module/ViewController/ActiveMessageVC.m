@@ -149,6 +149,12 @@
 - (UITableView *)msgTableView {
     if (_msgTableView == nil) {
         _msgTableView = [[UITableView alloc] initWithFrame:self.view.SuperFrame style:UITableViewStylePlain];
+        
+        _msgTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        _msgTableView.separatorColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.8]
+                              darkColor:[UIColor colorWithHexString:@"#676767" alpha:0.8]];
+        
         _msgTableView.backgroundColor = UIColor.clearColor;
         _msgTableView.showsVerticalScrollIndicator = NO;
         _msgTableView.showsHorizontalScrollIndicator = NO;

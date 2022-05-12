@@ -135,12 +135,13 @@
 #pragma mark - <WKNavigationDelegate>
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    NSString *backgroundColor = @"#F8F9FC";
-    NSString *textColor = @"#112C54";
-    if (DMTraitCollection.overrideTraitCollection.userInterfaceStyle == DMUserInterfaceStyleDark) {
-        backgroundColor = @"#000000";
-        textColor = @"#F0F0F0";
-    }
+    NSString *backgroundColor =
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]
+                          darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]].hexString;
+    
+    NSString *textColor =
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
+                          darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]].hexString;
     
     [webView evaluateJavaScript:
      [NSString stringWithFormat:@"document.body.style.backgroundColor = \"%@\"", backgroundColor]

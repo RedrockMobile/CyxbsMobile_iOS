@@ -80,6 +80,31 @@
     return 50;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 33;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 50)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 4, 282, 26)];
+    switch (section) {
+        case 0:
+            label.text = @"关闭后不再显示活动消息";
+            break;
+        case 1:
+            label.text = @"打开后18点提醒签到（需要获取系统消息推送权限）";
+            break;
+    }
+    label.font = [UIFont fontWithName:PingFangSC size:12];
+    
+    label.textColor =
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1]
+                          darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:0.55]];
+    
+    [view addSubview:label];
+    return view;
+}
+
 #pragma mark - <UITableViewDataSource>
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -88,14 +113,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    switch (section) {
-        case 0: return @"关闭后不再显示活动消息";
-        case 1: return @"打开后18点提醒签到（需要获取系统消息推送权限）";
-    }
-    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
