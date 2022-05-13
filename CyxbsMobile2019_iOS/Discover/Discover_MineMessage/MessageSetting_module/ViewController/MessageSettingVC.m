@@ -98,7 +98,7 @@
     label.font = [UIFont fontWithName:PingFangSC size:12];
     
     label.textColor =
-    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1]
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.7]
                           darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:0.55]];
     
     [view addSubview:label];
