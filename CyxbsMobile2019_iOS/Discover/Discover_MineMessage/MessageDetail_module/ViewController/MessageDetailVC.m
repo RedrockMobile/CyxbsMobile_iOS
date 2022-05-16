@@ -181,7 +181,7 @@
         
         [_webView loadRequest:
          [HttpTool.shareTool
-          requestURL:self.url
+          ULRRequestWithURL:self.url
           bodyParameters:nil]];
         
         _webView.hidden = YES;

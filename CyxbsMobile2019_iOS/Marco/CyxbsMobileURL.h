@@ -136,7 +136,11 @@
 
 #pragma mark - “发现”接口
 
+
+
 // MARK: MineMessage
+
+// 负责人：SSR
 
 /**获取所有信息
  * @Header Authorization : Bearer ${token}
@@ -166,7 +170,17 @@
  */
 #define MineMessage_HTML_md(msgID) [CyxbsMobileBaseURL_1 stringByAppendingFormat:@"message-system/user/html/%@", msgID]
 
-// MARK: -
+// MARK: - JWZX
+
+// 负责人： SSR
+
+/**教务在线接口(HTTP)
+ * @URI @{@"page" : Long}
+ */
+#define JWZX_GET_NewsPage_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/list"]
+
+
+#pragma mark - ###
 
 //校历接口
 #define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/schoolCalendar"]

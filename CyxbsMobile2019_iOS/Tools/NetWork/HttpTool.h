@@ -68,9 +68,9 @@ typedef NS_ENUM(NSUInteger, HttpToolRequestSerializer) {
            type:(HttpToolRequestType)requestType
      serializer:(HttpToolRequestSerializer)requestSerializer
  bodyParameters:(id _Nullable)parameters
-       progress:(nullable void (^)(NSProgress * _Nonnull))progress
-        success:(nullable void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
-        failure:(nullable void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure;
+       progress:(nullable void (^)(NSProgress *progress))progress
+        success:(nullable void (^)(NSURLSessionDataTask * task, id _Nullable object))success
+        failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * error))failure;
 
 /// POST特殊请求(multipartForm请求)
 /// @param URLString 请求URL全名
@@ -81,10 +81,10 @@ typedef NS_ENUM(NSUInteger, HttpToolRequestSerializer) {
 /// @param failure 请求失败返回
 - (void)POST:(NSString * _Nonnull)URLString
   parameters:(nullable id)parameters
-bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
-    progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
-     success:(nullable void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
-     failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure;
+bodyConstructing:(nullable void (^)(id<AFMultipartFormData> body))block
+    progress:(nullable void (^)(NSProgress * progress))uploadProgress
+     success:(nullable void (^)(NSURLSessionDataTask * task, id _Nullable object))success
+     failure:(void (^)(NSURLSessionDataTask * _Nullable task, NSError * error))failure;
 
 @end
 
@@ -92,8 +92,8 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 
 @interface HttpTool (WKWebView)
 
-- (NSURLRequest *)requestURL:(NSString *)url
-              bodyParameters:(id _Nullable)parameters;
+- (NSURLRequest *)ULRRequestWithURL:(NSString *)url
+                     bodyParameters:(id _Nullable)parameters;
 
 @end
 
