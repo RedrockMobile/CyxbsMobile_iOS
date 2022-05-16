@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, HttpToolRequestSerializer) {
 /// 一般请求方式(dataTask请求)
 /// @param URLString 请求URL全名
 /// @param requestType 请求的类型
-/// @param parameters 请求体(默认在body)
+/// @param parameters 请求体(URI和Body请参考文档)
 /// @param progress 进度(GET、POST独有)
 /// @param success 请求成功返回
 /// @param failure 请求失败返回

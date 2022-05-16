@@ -83,6 +83,12 @@
     if (editing) {
         [self customMultipleChioce];
     }
+    [UIView
+     animateWithDuration:0.17
+     animations:^{
+        self.msgTimeLab.right = self.contentView.SuperRight - 16;
+        [self.msgDetailLab stretchRight_toPointX:self.contentView.SuperRight offset:16];
+    }];
 }
 
 #pragma mark - Getter

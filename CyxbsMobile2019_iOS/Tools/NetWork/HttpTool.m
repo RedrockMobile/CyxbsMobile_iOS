@@ -161,7 +161,6 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
     AFHTTPRequestSerializer *_HTTPRequest = AFHTTPRequestSerializer.serializer;
     _HTTPRequest = AFHTTPRequestSerializer.serializer;
     _HTTPRequest.timeoutInterval = 15;
-    _HTTPRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
     NSString *token = UserItem.defaultItem.token;
     if (token) {
         [_HTTPRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
@@ -173,7 +172,6 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
     AFPropertyListRequestSerializer *_propertyListRequest = AFPropertyListRequestSerializer.serializer;
     _propertyListRequest = AFPropertyListRequestSerializer.serializer;
     _propertyListRequest.timeoutInterval = 15;
-    _propertyListRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
     NSString *token = UserItem.defaultItem.token;
     if (token) {
         [_propertyListRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];

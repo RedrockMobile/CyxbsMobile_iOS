@@ -50,9 +50,6 @@
     // 长按开启编辑
     if (!self.mainTableView.editing) {
         [self.mainTableView setEditing:YES animated:YES];
-        for (SystemMessageCell *cell in self.mainTableView.visibleCells) {
-            [cell setNeedsDisplay];
-        }
         [self addSubview:self.cancelBtn];
         [self addSubview:self.deleteBtn];
         self.mainTableView.contentInset =
@@ -113,9 +110,6 @@
 - (void)closeEdit {
     // 关闭编辑
     [self.mainTableView setEditing:NO animated:YES];
-    for (SystemMessageCell *cell in self.mainTableView.visibleCells) {
-        [cell setNeedsDisplay];
-    }
     [self.cancelBtn removeFromSuperview];
     [self.deleteBtn removeFromSuperview];
     self.mainTableView.contentInset =
