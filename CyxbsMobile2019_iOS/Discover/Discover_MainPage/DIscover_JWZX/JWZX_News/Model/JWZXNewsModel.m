@@ -12,29 +12,32 @@
 
 @implementation JWZXNewsModel
 
-- (void)requestJWZXPage:(NSUInteger)page
-                success:(void (^)(void))setJWZX
-                failure:(void (^) (NSError * error))failure {
-    NSDictionary *parameters = @{
-        @"page" : [NSNumber numberWithLong:page]
-    };
-    
-    [HttpClient.defaultClient
-     requestWithPath:NEWSLIST
-     method:HttpRequestGet
-     parameters:parameters
-     prepareExecute:nil
-     progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"🟢JWZX:\n%@", responseObject);
-        
-        self.jwzxNews = [[JWZXNewsInformation alloc] initWithDictionary:responseObject];
-        
-        if (setJWZX) {
-            setJWZX();
+- (instancetype)initWithRootNews:(JWZXSectionNews *)sectionNews {
+    self = [super init];
+    if (self) {
+        self.sectionNewsAry = [NSMutableArray arrayWithArray:@[sectionNews]];
+    }
+    return self;
+}
+
+- (void)requestMoreSuccess:(void (^)(BOOL))success
+                   failure:(void (^)(NSError * _Nonnull))failure {
+    [JWZXSectionNews
+     requestWithPage:self.sectionNewsAry.lastObject.page + 1
+     success:^(JWZXSectionNews * _Nullable sectionNews) {
+        if (!sectionNews || sectionNews.page == self.sectionNewsAry.lastObject.page) {
+            if (success) {
+                success(NO);
+            }
+            return;
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"🔴JWZX News Model Error:\n%@", error);
+        
+        [self.sectionNewsAry addObject:sectionNews];
+        if (success) {
+            success(YES);
+        }
+    } failure:^(NSError * _Nonnull error) {
+        NSLog(@"🔴%s:\n%@", __func__, error);
         if (failure) {
             failure(error);
         }

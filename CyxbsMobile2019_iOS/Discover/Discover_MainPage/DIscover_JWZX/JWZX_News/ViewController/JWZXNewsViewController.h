@@ -14,15 +14,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class JWZXNewsModel;
+@class JWZXSectionNews;
 
 #pragma mark - NewsViewController
 
 @interface JWZXNewsViewController : UIViewController
 
 /// 当外界已经请求过一遍后，可以不再请求
-/// @param model 被请求过的model
-- (instancetype)initWithJWZXNewsModel:(JWZXNewsModel *)model;
+/// @param rootModel 请求一次的模型
+- (instancetype)initWithRootJWZXSectionModel:(JWZXSectionNews *)rootModel;
 
 @end
 

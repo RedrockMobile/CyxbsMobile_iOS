@@ -14,9 +14,6 @@
 #import "JWZXNewsCell.h"
 #import "JWZXNewsModel.h"
 
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
 #pragma mark - NewsViewController ()
 
 @interface JWZXNewsViewController () <
@@ -41,10 +38,10 @@
 
 #pragma mark - Life cycle
 
-- (instancetype)initWithJWZXNewsModel:(JWZXNewsModel *)model {
+- (instancetype)initWithRootJWZXSectionModel:(JWZXSectionNews *)rootModel {
     self = [super init];
     if (self) {
-        self.jwzxNewsModel = model;
+        self.jwzxNewsModel = [[JWZXNewsModel alloc] initWithRootNews:rootModel];
     }
     return self;
 }
@@ -64,9 +61,29 @@
     
     [self.view addSubview:self.topView];
     
-    // 正常的逻辑交互
     [self.view addSubview:self.jwzxNewsTableView];
+    
     [self requestData];
+}
+
+#pragma mark - Method
+
+- (void)requestData {
+    [self.jwzxNewsModel
+    requestMoreSuccess:^(BOOL hadMore) {
+        if (hadMore) {
+            [self.jwzxNewsTableView reloadData];
+        }
+    }
+     failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+// MARK: SEL
+
+- (void)JWZXNewVC_pop {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Getter
@@ -95,42 +112,19 @@
     return _jwzxNewsTableView;
 }
 
-#pragma mark - Method
+#pragma mark - <UITableViewDataSource>
 
-- (void)JWZXNewVC_pop {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)requestData {
-    if (self.jwzxNewsModel) {
-        [self.jwzxNewsTableView reloadData];
-    } else {
-        self.jwzxNewsModel = [[JWZXNewsModel alloc] init];
-        [self.jwzxNewsModel
-         requestJWZXPage:1 success:^{
-            [self.jwzxNewsTableView reloadData];
-         }
-         failure:^(NSError * _Nonnull error) {
-            NSLog(@"%@", error);
-         }];
-    }
-}
-
-#pragma mark - Delegate
-
-// MARK: <UITableViewDataSource>
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 86;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.jwzxNewsModel.sectionNewsAry.count;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.jwzxNewsModel.jwzxNews.news.count;
+    return self.jwzxNewsModel.sectionNewsAry[section].newsAry.count;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    JWZXNew *aNew = self.jwzxNewsModel.jwzxNews.news[indexPath.row];
+    JWZXNew *aNew = self.jwzxNewsModel.sectionNewsAry[indexPath.section].newsAry[indexPath.row];
     
     JWZXNewsCell *cell = [self.jwzxNewsTableView dequeueReusableCellWithIdentifier:JWZXNewsCellReuseIdentifier];
     
@@ -143,10 +137,10 @@
     return cell;
 }
 
-// MARK: <UITableViewDelegate>
+#pragma mark - <UITableViewDelegate>
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    JWZXNew *aNew = self.jwzxNewsModel.jwzxNews.news[indexPath.row];
+    JWZXNew *aNew = self.jwzxNewsModel.sectionNewsAry[indexPath.section].newsAry[indexPath.row];
     
     NewDetailViewController *vc =
         [[NewDetailViewController alloc]
@@ -155,6 +149,26 @@
          title:aNew.title];
     
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 86;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == self.jwzxNewsModel.sectionNewsAry.count - 1) {
+        if (indexPath.row == self.jwzxNewsModel.sectionNewsAry[indexPath.section].newsAry.count - 1) {
+            [self requestData];
+        }
+    }
 }
 
 @end

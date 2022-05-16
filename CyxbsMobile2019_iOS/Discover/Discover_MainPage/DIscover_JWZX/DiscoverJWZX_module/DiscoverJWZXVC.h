@@ -15,9 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init NS_UNAVAILABLE;
 
-/// 通过确定top和height（left应为0，width应为父视图width）
-/// @param frame 主视图的frame
-- (instancetype)initWithViewFrame:(CGRect)frame;
+/// 指定width（因为width根据父视图确定）
+/// @param width 真正的宽度，高度确定
+- (instancetype)initWithWidth:(CGFloat)width;
 
 @end
 

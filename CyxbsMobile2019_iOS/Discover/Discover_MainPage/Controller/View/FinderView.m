@@ -66,7 +66,10 @@
 
 - (DiscoverJWZXVC *)jwzxVC {
     if (_jwzxVC == nil) {
-        _jwzxVC = [[DiscoverJWZXVC alloc] initWithViewFrame:CGRectMake(0, self.bannerView.bottom + 14, self.width, 19.52)];
+        _jwzxVC = [[DiscoverJWZXVC alloc] initWithWidth:self.width];
+        _jwzxVC.view.top = self.bannerView.bottom + 14;
+        
+//        _jwzxVC = [[DiscoverJWZXVC alloc] initWithViewFrame:CGRectMake(0, self.bannerView.bottom + 14, self.width, 19.52)];
     }
     return _jwzxVC;
 }
