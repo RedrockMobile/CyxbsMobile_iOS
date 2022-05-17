@@ -185,7 +185,11 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 
 - (NSURLRequest *)ULRRequestWithURL:(NSString *)url
                      bodyParameters:(id _Nullable)parameters {
-    return [[self.defaultJSONRequest requestWithMethod:@"GET" URLString:url parameters:parameters error:nil] mutableCopy];
+    return [self.defaultJSONRequest
+            requestWithMethod:@"GET"
+            URLString:url
+            parameters:parameters
+            error:nil];
 }
 
 

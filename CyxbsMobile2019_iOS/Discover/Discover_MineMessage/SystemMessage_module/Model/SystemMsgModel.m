@@ -38,14 +38,12 @@
 - (void)requestReadForIndexSet:(NSIndexSet *)set
                        success:(void (^)(void))success
                        failure:(void (^)(NSError *error))failure {
-    NSArray <SystemMessage *> *ary = [self.msgAry objectsAtIndexes:set];
     NSMutableArray <NSString *> *idNums = NSMutableArray.array;
-    for (SystemMessage *msg in ary) {
-        if (msg.hadRead == NO) {
-            [idNums addObject:msg.otherThings];
-        }
+    [set enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+        SystemMessage *msg = self.msgAry[idx];
+        [idNums addObject:msg.otherThings];
         msg.hadRead = YES;
-    }
+    }];
     NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
     
     [HttpTool.shareTool

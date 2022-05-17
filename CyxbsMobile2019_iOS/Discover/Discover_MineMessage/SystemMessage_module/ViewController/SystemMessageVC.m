@@ -125,7 +125,7 @@
         msg.author = nil;
         return msg;
     }
-          moreURL:msg.articleURL]
+      moreURL:nil]
      animated:YES];
 }
 

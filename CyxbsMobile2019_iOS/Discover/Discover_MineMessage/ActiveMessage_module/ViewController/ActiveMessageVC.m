@@ -113,7 +113,8 @@
     [self.navigationController
      pushViewController:
          [[MessageDetailVC alloc]
-          initWithURL:msg.articleURL useSpecialModel:^__kindof UserPublishModel * _Nonnull{
+          initWithURL:msg.articleURL
+          useSpecialModel:^__kindof UserPublishModel * _Nonnull {
                 return msg;
           }
           moreURL:msg.redirectURL]

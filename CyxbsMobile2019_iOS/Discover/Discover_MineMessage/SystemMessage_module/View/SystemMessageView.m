@@ -169,7 +169,7 @@
         // 通知已读
         [self.delegate systemMessageTableView:self.mainTableView hadReadForIndex:indexPath.section];
         // 选中
-        [self.delegate systemMessageTableView:self.mainTableView didSelectedAtIndex:indexPath.row];
+        [self.delegate systemMessageTableView:self.mainTableView didSelectedAtIndex:indexPath.section];
     }
 }
 

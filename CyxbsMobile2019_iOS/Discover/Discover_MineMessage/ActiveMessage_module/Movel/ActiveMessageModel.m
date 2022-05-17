@@ -42,15 +42,13 @@
 - (void)requestReadForIndexSet:(NSIndexSet *)set
                        success:(void (^)(void))success
                        failure:(void (^)(NSError *error))failure {
-    NSArray <ActiveMessage *> *ary = [self.activeMsgAry objectsAtIndexes:set];
-    NSMutableArray <NSString *> *idnums = NSMutableArray.array;
-    for (ActiveMessage *msg in ary) {
-        if (!msg.hadRead) {
-            [idnums addObject:[NSString stringWithFormat:@"%ld", msg.msgID]];
-        }
+    NSMutableArray <NSString *> *idNums = NSMutableArray.array;
+    [set enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+        ActiveMessage *msg = self.activeMsgAry[idx];
+        [idNums addObject:msg.otherThings];
         msg.hadRead = YES;
-    }
-    NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idnums.copy};
+    }];
+    NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
     
     // -- 网络请求：put 已读 --
     [HttpTool.shareTool
