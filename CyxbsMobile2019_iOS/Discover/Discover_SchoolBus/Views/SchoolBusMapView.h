@@ -14,11 +14,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
+@class SchoolBusMapView;
 
 @protocol SchoolBusMapViewDelegate <NSObject>
 
 - (void)backBtnClicked;
+- (void)schoolBusMapView:(SchoolBusMapView *)view didSelectedLinesWithTitleName:(NSString *)titleName;
 
 @end
 
@@ -39,7 +40,14 @@ NS_ASSUME_NONNULL_BEGIN
 ///校车位置数组
 @property (nonatomic, copy) NSArray *schoolBusPointArray;
 
+@property (nonatomic, copy) NSArray *stationPointArray;
+/// 被选中站点
+@property (nonatomic, copy) NSString *selectedStationName;
+
 @property (nonatomic, weak) NSTimer *timer;
+
+- (void)removeOldAnnotationsAndaddNew:(NSArray *)aStationAry;
+
 
 @end
 
