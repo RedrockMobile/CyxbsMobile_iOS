@@ -2115,14 +2115,14 @@
 			path = JWZXNew;
 			sourceTree = "<group>";
 		};
-		1404748127F48C2B00307209 /* JWZXNewsInformation */ = {
+		1404748127F48C2B00307209 /* JWZXSectionNews */ = {
 			isa = PBXGroup;
 			children = (
 				14F0D3CE2831DB670046D8F5 /* JWZXSectionNews.h */,
 				14F0D3CF2831DB670046D8F5 /* JWZXSectionNews.m */,
 				1404748027F48C2100307209 /* JWZXNew */,
 			);
-			path = JWZXNewsInformation;
+			path = JWZXSectionNews;
 			sourceTree = "<group>";
 		};
 		1404748227F4A89600307209 /* UITextView+Placeholder */ = {
@@ -2770,6 +2770,14 @@
 			path = SSRButton;
 			sourceTree = "<group>";
 		};
+		14BB7B632834A30600C19A34 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				14F0D3D128329EAF0046D8F5 /* JWZXHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		14D03A0027FDB76200D6AE93 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2792,8 +2800,8 @@
 			isa = PBXGroup;
 			children = (
 				14D03A0027FDB76200D6AE93 /* ViewController */,
-				18CDF4E5257F91BC006E8E5C /* Model */,
 				14D03A0727FDD31B00D6AE93 /* View */,
+				18CDF4E5257F91BC006E8E5C /* Model */,
 			);
 			path = JWZX_News;
 			sourceTree = "<group>";
@@ -3108,7 +3116,7 @@
 			children = (
 				18CDF4E6257F91BC006E8E5C /* JWZXNewsModel.h */,
 				18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */,
-				1404748127F48C2B00307209 /* JWZXNewsInformation */,
+				1404748127F48C2B00307209 /* JWZXSectionNews */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3444,7 +3452,7 @@
 				14D03A0827FDD3BB00D6AE93 /* JWZX_News */,
 				18CDF581257F91BD006E8E5C /* JWZX_DetailNews */,
 				14FBBD5A2805B14A00D5B05D /* JWZXNewDownloadVC */,
-				14F0D3D128329EAF0046D8F5 /* JWZXHeader.h */,
+				14BB7B632834A30600C19A34 /* Source */,
 			);
 			path = DIscover_JWZX;
 			sourceTree = "<group>";
