@@ -272,8 +272,8 @@
     else{
         [UIView animateWithDuration:0.3 animations:^{
             self.pullImageView.transform = CGAffineTransformMakeScale(1.0,-1.0);
-            self.weekScrollView.frame = CGRectMake(0, HEADERHEIGHT, SCREEN_WIDTH, _weekScrollViewHeight);
-            self.mainView.frame = CGRectMake(0, HEADERHEIGHT+_weekScrollViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-(TABBARHEIGHT+HEADERHEIGHT+_weekScrollViewHeight));
+            self.weekScrollView.frame = CGRectMake(0, HEADERHEIGHT, SCREEN_WIDTH, self->_weekScrollViewHeight);
+            self.mainView.frame = CGRectMake(0, HEADERHEIGHT+self->_weekScrollViewHeight, SCREEN_WIDTH, SCREEN_HEIGHT-(TABBARHEIGHT+HEADERHEIGHT+_weekScrollViewHeight));
             
         }completion:^(BOOL finished) {
             self.weekScrollView.hidden = NO;
