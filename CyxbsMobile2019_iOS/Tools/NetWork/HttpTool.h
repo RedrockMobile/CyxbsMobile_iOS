@@ -92,7 +92,7 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> body))block
 
 @interface HttpTool (WKWebView)
 
-- (NSURLRequest *)ULRRequestWithURL:(NSString *)url
+- (NSURLRequest *)URLRequestWithURL:(NSString *)url
                      bodyParameters:(id _Nullable)parameters;
 
 @end
