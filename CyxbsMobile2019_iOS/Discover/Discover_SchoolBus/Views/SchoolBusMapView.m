@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "BusMAPointAnnotation.h"
 #import "StationMAPointAnnotation.h"
+#import "CircleMAPointAnnotation.h"
 
 @implementation SchoolBusMapView
 
@@ -57,7 +58,8 @@
         mapView.showsUserLocation = YES;
         mapView.userTrackingMode = MAUserTrackingModeFollow;
         mapView.zoomLevel = 17.4;
-        mapView.centerCoordinate = CLLocationCoordinate2DMake(29.529332, 106.607517);
+        //中心点位置
+//        mapView.centerCoordinate = CLLocationCoordinate2DMake(29.529332, 106.607517);
         mapView.scaleOrigin = CGPointMake(50, STATUSBARHEIGHT + 10);
         mapView.showsCompass = NO;
         mapView.delegate = self;
@@ -157,6 +159,22 @@
         if ([annotation isKindOfClass:[StationMAPointAnnotation class]] ) {
             
             annotationView.image = [UIImage imageNamed:@"station.purple"];
+            return annotationView;
+        }
+        else if ([annotation isKindOfClass: [CircleMAPointAnnotation class]]) {
+            
+            if ([annotation.subtitle isEqual:@"1号线"]) {
+                annotationView.image = [UIImage imageNamed:@"circle.pink"];
+            }
+            else if ([annotation.subtitle isEqual:@"2号线"]){
+                annotationView.image = [UIImage imageNamed:@"orange.circle"];
+            }
+            else if ([annotation.subtitle isEqual:@"3号线"]){
+                annotationView.image = [UIImage imageNamed:@"circle.blue"];
+            }
+            else if ([annotation.subtitle isEqual:@"4号线"]){
+                annotationView.image = [UIImage imageNamed:@"circle.green"];
+            }
             return annotationView;
         }
         else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle  isEqual: @"1号线"] ) {

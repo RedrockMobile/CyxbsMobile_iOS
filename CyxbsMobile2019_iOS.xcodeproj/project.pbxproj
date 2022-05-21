@@ -344,6 +344,7 @@
 		646B199A28313CB20015DF28 /* StationScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 646B199928313CB10015DF28 /* StationScrollView.m */; };
 		646B199D28313CDB0015DF28 /* StationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 646B199C28313CDB0015DF28 /* StationView.m */; };
 		646B19A02833983E0015DF28 /* NextStationBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 646B199F2833983D0015DF28 /* NextStationBtn.m */; };
+		646B19A5283885740015DF28 /* CircleMAPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 646B19A4283885730015DF28 /* CircleMAPointAnnotation.m */; };
 		647AC30A2826CCB0009A2E35 /* StationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 647AC3092826CCB0009A2E35 /* StationData.m */; };
 		647AC3102828012F009A2E35 /* SchoolBusMapSideBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 647AC30F2828012F009A2E35 /* SchoolBusMapSideBar.m */; };
 		7311328426CCEC2400EF88C1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7311327126CCEC2400EF88C1 /* Media.xcassets */; };
@@ -1329,6 +1330,8 @@
 		646B199C28313CDB0015DF28 /* StationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StationView.m; sourceTree = "<group>"; };
 		646B199E2833983D0015DF28 /* NextStationBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NextStationBtn.h; sourceTree = "<group>"; };
 		646B199F2833983D0015DF28 /* NextStationBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NextStationBtn.m; sourceTree = "<group>"; };
+		646B19A3283885730015DF28 /* CircleMAPointAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleMAPointAnnotation.h; sourceTree = "<group>"; };
+		646B19A4283885730015DF28 /* CircleMAPointAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleMAPointAnnotation.m; sourceTree = "<group>"; };
 		647AC3082826CCB0009A2E35 /* StationData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StationData.h; sourceTree = "<group>"; };
 		647AC3092826CCB0009A2E35 /* StationData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StationData.m; sourceTree = "<group>"; };
 		647AC30E2828012E009A2E35 /* SchoolBusMapSideBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusMapSideBar.h; sourceTree = "<group>"; };
@@ -4197,6 +4200,8 @@
 				646B198C282FFC460015DF28 /* BusMAPointAnnotation.m */,
 				646B198E283001A60015DF28 /* StationMAPointAnnotation.h */,
 				646B198F283001A60015DF28 /* StationMAPointAnnotation.m */,
+				646B19A3283885730015DF28 /* CircleMAPointAnnotation.h */,
+				646B19A4283885730015DF28 /* CircleMAPointAnnotation.m */,
 			);
 			path = Annotation;
 			sourceTree = "<group>";
@@ -6230,6 +6235,7 @@
 				18CDF672257F91BD006E8E5C /* ExamArrangeData.m in Sources */,
 				1AFD1524237D826A004D9CEA /* EditMyInfoContentView.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
+				646B19A5283885740015DF28 /* CircleMAPointAnnotation.m in Sources */,
 				18CDF69E257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m in Sources */,
 				7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,

@@ -15,7 +15,7 @@
 #import "StationsCollectionViewCell.h"
 #import "StationGuideBar.h"
 #import "StationMAPointAnnotation.h"
-
+#import "CircleMAPointAnnotation.h"
 
 @interface SchoolBusVC ()<SchoolBusMapViewDelegate,SchoolBusBottomViewDelegate>
 
@@ -199,11 +199,20 @@
             pointAnnotation.subtitle = data.line_name;
             pointAnnotation.coordinate = CLLocationCoordinate2DMake([data.stations[j][@"lat"] doubleValue], [data.stations[j][@"lng"] doubleValue]);
             
+            if (_selectedStationName == data.stations[j][@"name"]) {
+                CircleMAPointAnnotation *circlepointAnnotation = [[CircleMAPointAnnotation alloc]init];
+                circlepointAnnotation.title = data.stations[j][@"name"];
+                circlepointAnnotation.subtitle = data.line_name;
+                circlepointAnnotation.coordinate = CLLocationCoordinate2DMake([data.stations[j][@"lat"] doubleValue], [data.stations[j][@"lng"] doubleValue]);
+                [mutAry addObject: circlepointAnnotation];
+            }
             [mutAry addObject: pointAnnotation];
         }
         [self.schoolBusMapView removeOldAnnotationsAndaddNew: mutAry.copy];
+//        _selectedStationName = nil;
     }else{
         [self.schoolBusMapView removeOldAnnotationsAndaddNew: _allStationPointArray];
+        _selectedStationName = nil;
     }
 }
 /// 设置stationbar数据
