@@ -56,7 +56,9 @@
     if (_dateLab == nil) {
         _dateLab = [[UILabel alloc] initWithFrame:CGRectMake(2, 22, 100, 22)];
         _dateLab.font = [UIFont fontWithName:PingFangSCRegular size:13];
-        _dateLab.textColor = [UIColor colorNamed:@"ColorNewsTime"];
+        _dateLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#294169" alpha:0.7]
+                              darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     }
     return _dateLab;
 }
@@ -66,7 +68,10 @@
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(self.dateLab.left, self.dateLab.bottom + 8, self.width - 2 * self.dateLab.left, 80)];
         _titleLab.numberOfLines = 0;
         _titleLab.font = [UIFont fontWithName:PingFangSCBold size:18];
-        _titleLab.textColor = [UIColor colorNamed:@"ColorNewsCellTitle"];
+        
+        _titleLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     }
     return _titleLab;
 }
@@ -76,7 +81,11 @@
         _detailView = [[UITextView alloc] initWithFrame:CGRectMake(self.titleLab.left, self.titleLab.bottom + 14, self.width - 2 * self.dateLab.left, self.height - self.titleLab.bottom)];
         _detailView.editable = NO;
         _detailView.font = [UIFont fontWithName:PingFangSCRegular size:15];
-        _detailView.textColor = [UIColor colorNamed:@"ColorNewsCellTitle"];
+        
+        _detailView.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+        
         _detailView.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
     }
     return _detailView;

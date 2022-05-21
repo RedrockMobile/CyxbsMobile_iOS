@@ -22,14 +22,22 @@
     TextCycleViewDelegate
 >
 
-/// 教务在线数据模型
-@property (nonatomic, strong) JWZXNewsModel *newsModel;
+/// 教务在线数据模型（旧用）
+//@property (nonatomic, strong) JWZXNewsModel *newsModel;
+
+
+
+/// 一个sectionNew
+@property (nonatomic, strong) JWZXSectionNews *sectionNewsModel;
 
 /// 进入主页的btn
 @property (nonatomic, strong) UIButton *jwNewsBtn;
 
 /// 直接进入详情页的btn
 @property (nonatomic, strong) SSRTextCycleView *textCycleView;
+
+/// 临时宽度
+@property (nonatomic) CGFloat width;
 
 @end
 
@@ -39,43 +47,47 @@
 
 #pragma mark - Life cycle
 
-- (instancetype)initWithViewFrame:(CGRect)frame {
+- (instancetype)initWithWidth:(CGFloat)width {
     self = [super init];
     if (self) {
-        self.view.frame = frame;
+        self.width = width;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.newsModel = [[JWZXNewsModel alloc] init];
-    [self.newsModel
-     requestJWZXPage:1
-     success:^{
-        NSMutableArray <NSString *> *titleAry = NSMutableArray.array;
-        for (JWZXNew *aNew in self.newsModel.jwzxNews.news) {
-            [titleAry addObject:aNew.title];
-        }
-        [NSUserDefaults.standardUserDefaults setObject:titleAry[0] forKey:@"OneNews_oneNews"];
-        self.textCycleView.textAry = titleAry.copy;
-    }
-     failure:^(NSError * _Nonnull error) {
-        NSLog(@"%@", error);
-    }];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    
+    self.view.frame = CGRectMake(0, 0, self.width, 20);
     
     [self.view addSubview:self.jwNewsBtn];
     [self.view addSubview:self.textCycleView];
+    
+    [self request];
 }
 
 #pragma mark - Method
 
+- (void)request {
+    [JWZXSectionNews
+     requestWithPage:1
+     success:^(JWZXSectionNews * _Nullable sectionNews) {
+        self.sectionNewsModel = sectionNews;
+        NSMutableArray <NSString *> * mtAry = NSMutableArray.array;
+        for (JWZXNew *new in sectionNews.newsAry) {
+            [mtAry addObject:new.title];
+        }
+        self.textCycleView.textAry = mtAry.copy;
+    }
+     failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
 - (void)pushToJWZXNewsController {
-    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithJWZXNewsModel:self.newsModel];
+    JWZXNewsViewController *vc =
+    [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
+    
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -87,7 +99,12 @@
         _jwNewsBtn = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, 68, self.view.height)];
         [_jwNewsBtn setTitle:@"教务在线" forState:UIControlStateNormal];
         [_jwNewsBtn setBackgroundImage:[UIImage imageNamed:@"教务在线背景"] forState:normal];
-        [_jwNewsBtn setTitleColor:[UIColor colorNamed:@"whiteColor"] forState:normal];
+        
+        [_jwNewsBtn setTitleColor:
+         [UIColor dm_colorWithLightColor:UIColor.whiteColor
+                               darkColor:UIColor.blackColor]
+                         forState:UIControlStateNormal];
+        
         _jwNewsBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 11];
         _jwNewsBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_jwNewsBtn addTarget:self action:@selector(pushToJWZXNewsController) forControlEvents:UIControlEventTouchUpInside];
@@ -103,7 +120,7 @@
         _textCycleView.autoTimeInterval = 3;
         _textCycleView.textCycleView_delegate = self;
         
-        NSString *oneNew = [NSUserDefaults.standardUserDefaults objectForKey:@"OneNews_oneNews"];
+        NSString *oneNew = [NSUserDefaults.standardUserDefaults stringForKey:JWZX_oneNews_String];
         self.textCycleView.textAry = oneNew ? @[oneNew] : @[@"教务新闻正在请求中..."];
     }
     return _textCycleView;
@@ -112,8 +129,8 @@
 #pragma mark - <TextCycleViewDelegate>
 
 - (void)textCycleView:(SSRTextCycleView *)view didSelectedAtIndex:(NSInteger)index {
-    JWZXNew *aNew = self.newsModel.jwzxNews.news
-    [index % self.newsModel.jwzxNews.news.count];
+    JWZXNew *aNew = self.sectionNewsModel
+        .newsAry[index % self.sectionNewsModel.newsAry.count];
     
     NewDetailViewController *vc =
     [[NewDetailViewController alloc]
@@ -134,9 +151,13 @@
         cell = [[SSRTextCycleCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:SSRTextCycleCellReuseIdentifier];
-        cell.ssrTextLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        
+        cell.ssrTextLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+        
         cell.ssrTextLab.backgroundColor = UIColor.clearColor;
-        cell.ssrTextLab.font = [UIFont fontWithName:@".PingFang SC" size:15];
+        cell.ssrTextLab.font = [UIFont fontWithName:PingFangSC size:15];
         cell.backgroundColor = UIColor.clearColor;
         cell.contentView.backgroundColor = UIColor.clearColor;
         cell.frame = view.SuperFrame;

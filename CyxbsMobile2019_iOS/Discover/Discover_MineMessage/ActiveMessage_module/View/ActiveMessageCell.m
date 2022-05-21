@@ -136,7 +136,10 @@ CGFloat _activeMessageCellMaxHeight = 0;
     if (_msgTitleLab == nil) {
         _msgTitleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 24, 0, 25)];
         _msgTitleLab.font = [UIFont fontWithName:PingFangSC size:18];
-        _msgTitleLab.textColor = [UIColor colorNamed:@"#112C54'00^#DFDFE3'00"];
+        
+        _msgTitleLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     }
     return _msgTitleLab;
 }
@@ -155,7 +158,9 @@ CGFloat _activeMessageCellMaxHeight = 0;
     if (_authorNameLab == nil) {
         _authorNameLab = [[UILabel alloc] initWithFrame:CGRectMake(self.headImgView.right + 12, self.headImgView.top, 0, 17)];
         _authorNameLab.font = [UIFont fontWithName:PingFangSC size:12];
-        _authorNameLab.textColor = [UIColor colorNamed:@"#112C54'00^#DFDFE3'00"];
+        
+        _authorNameLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     }
     return _authorNameLab;
 }
@@ -164,7 +169,10 @@ CGFloat _activeMessageCellMaxHeight = 0;
     if (_msgTimeLab == nil) {
         _msgTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(self.authorNameLab.left, self.authorNameLab.bottom, 100, 15)];
         _msgTimeLab.font = [UIFont fontWithName:PingFangSC size:11];
-        _msgTimeLab.textColor = [UIColor colorNamed:@"#142C52'40^#F0F0F0'55"];
+        
+        _msgTimeLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4]
+                              darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:0.55]];
     }
     return _msgTimeLab;
 }
@@ -174,7 +182,9 @@ CGFloat _activeMessageCellMaxHeight = 0;
         _msgContentLab = [[UILabel alloc] initWithFrame:CGRectMake(self.msgTitleLab.left, self.headImgView.bottom + 14, 0, 80)];
         _msgContentLab.numberOfLines = 4;
         _msgContentLab.font = [UIFont fontWithName:PingFangSC size:14];
-        _msgContentLab.textColor = [UIColor colorNamed:@"#112C54'00^#DFDFE3'00"];
+        
+        _msgContentLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     }
     return _msgContentLab;
 }

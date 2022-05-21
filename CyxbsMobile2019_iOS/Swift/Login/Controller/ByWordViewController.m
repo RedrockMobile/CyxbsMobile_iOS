@@ -64,7 +64,7 @@
     label1.frame = CGRectMake(20,20 + TOTAL_TOP_HEIGHT,120,21);
     label1.numberOfLines = 0;
     [self.view addSubview:label1];
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"你的密保问题是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"你的密保问题是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label1.attributedText = string;
     label1.textColor = [UIColor colorNamed:@"YYZColor8"];
     label1.alpha = 0.64;
@@ -73,7 +73,7 @@
     label2.frame = CGRectMake(20,85 + TOTAL_TOP_HEIGHT,120,21);
     label2.numberOfLines = 0;
     [self.view addSubview:label2];
-    NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:@"你的问题答案是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
+    NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:@"你的问题答案是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label2.attributedText = string2;
     label2.textColor = [UIColor colorNamed:@"YYZColor2"];
     label2.alpha = 0.64;
@@ -83,7 +83,7 @@
     label3.frame = CGRectMake(20,45 + TOTAL_TOP_HEIGHT,213,22);
     label3.numberOfLines = 0;
     [self.view addSubview:label3];
-    NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:@" " attributes:@{NSFontAttributeName: [UIFont fontWithName:@".PingFang SC" size: 16], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
+    NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:@" " attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 16], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label3.attributedText = string3;
     label3.textColor = [UIColor colorNamed:@"YYZColor2"];
     label3.alpha = 1.0;

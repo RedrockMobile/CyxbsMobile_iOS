@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework
+${BUILT_PRODUCTS_DIR}/FluentDarkModeKit/FluentDarkModeKit.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework
 ${BUILT_PRODUCTS_DIR}/LookinServer/LookinServer.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework

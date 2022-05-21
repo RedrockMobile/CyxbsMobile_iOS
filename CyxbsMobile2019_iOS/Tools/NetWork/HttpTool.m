@@ -20,13 +20,13 @@ static HttpTool *_shareTool;
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
 
 /// 默认JSON格式上传
-@property (nonatomic, strong) AFJSONRequestSerializer *defaultJSONRequest;
+@property (nonatomic, readonly) AFJSONRequestSerializer *defaultJSONRequest;
 
 /// 以HTTP格式上传
-@property (nonatomic, strong) AFHTTPRequestSerializer *HTTPRequest;
+@property (nonatomic, readonly) AFHTTPRequestSerializer *HTTPRequest;
 
 /// PropertyList格式上传
-@property (nonatomic, strong) AFPropertyListRequestSerializer *propertyListRequest;
+@property (nonatomic, readonly) AFPropertyListRequestSerializer *propertyListRequest;
 
 @end
 
@@ -51,7 +51,7 @@ static HttpTool *_shareTool;
 - (AFHTTPSessionManager *)sessionManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:CyxbsMobileBaseURL_1];
+        _sessionManager = [[AFHTTPSessionManager alloc] init];
         
         _sessionManager.requestSerializer = self.defaultJSONRequest;
         
@@ -67,7 +67,6 @@ static HttpTool *_shareTool;
            @"application/xml",
            @"text/xml",
            @"application/x-www-form-urlencoded"]];
-        _sessionManager.responseSerializer = response;
     });
     return _sessionManager;
 }
@@ -147,11 +146,10 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 #pragma mark - Getter
 
 - (AFJSONRequestSerializer *)defaultJSONRequest {
-    if (_defaultJSONRequest == nil) {
-        _defaultJSONRequest = AFJSONRequestSerializer.serializer;
-        _defaultJSONRequest.timeoutInterval = 15;
-        _defaultJSONRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
-    }
+    AFJSONRequestSerializer *_defaultJSONRequest = AFJSONRequestSerializer.serializer;
+    _defaultJSONRequest = AFJSONRequestSerializer.serializer;
+    _defaultJSONRequest.timeoutInterval = 15;
+    _defaultJSONRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
     NSString *token = UserItem.defaultItem.token;
     if (token) {
         [_defaultJSONRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
@@ -160,11 +158,9 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 }
 
 - (AFHTTPRequestSerializer *)HTTPRequest {
-    if (_HTTPRequest == nil) {
-        _HTTPRequest = AFHTTPRequestSerializer.serializer;
-        _HTTPRequest.timeoutInterval = 15;
-        _HTTPRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
-    }
+    AFHTTPRequestSerializer *_HTTPRequest = AFHTTPRequestSerializer.serializer;
+    _HTTPRequest = AFHTTPRequestSerializer.serializer;
+    _HTTPRequest.timeoutInterval = 15;
     NSString *token = UserItem.defaultItem.token;
     if (token) {
         [_HTTPRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
@@ -173,16 +169,28 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 }
 
 - (AFPropertyListRequestSerializer *)propertyListRequest {
-    if (_propertyListRequest == nil) {
-        _propertyListRequest = AFPropertyListRequestSerializer.serializer;
-        _propertyListRequest.timeoutInterval = 15;
-        _propertyListRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
-    }
+    AFPropertyListRequestSerializer *_propertyListRequest = AFPropertyListRequestSerializer.serializer;
+    _propertyListRequest = AFPropertyListRequestSerializer.serializer;
+    _propertyListRequest.timeoutInterval = 15;
     NSString *token = UserItem.defaultItem.token;
     if (token) {
         [_propertyListRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
     }
     return _propertyListRequest;
 }
+
+@end
+
+@implementation HttpTool (WKWebView)
+
+- (NSURLRequest *)URLRequestWithURL:(NSString *)url
+                     bodyParameters:(id _Nullable)parameters {
+    return [self.defaultJSONRequest
+            requestWithMethod:@"GET"
+            URLString:url
+            parameters:parameters
+            error:nil];
+}
+
 
 @end

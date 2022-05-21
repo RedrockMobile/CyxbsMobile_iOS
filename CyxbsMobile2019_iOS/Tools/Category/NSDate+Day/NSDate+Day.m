@@ -90,9 +90,9 @@ static NSDateFormatter *_chineseFormatter = nil;
             
             _chineseFormatter.standaloneMonthSymbols = _chineseFormatter.shortStandaloneMonthSymbols = _chineseFormatter.monthSymbols;
             
-            _chineseFormatter.weekdaySymbols = @[@"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六", @"星期天"];
-            _chineseFormatter.shortWeekdaySymbols = @[@"周一", @"周二", @"周三", @"周四", @"周五", @"周六", @"周天"];
-            _chineseFormatter.veryShortWeekdaySymbols = @[@"一", @"二", @"三", @"四", @"五", @"六", @"天"];
+            _chineseFormatter.weekdaySymbols = @[@"星期天", @"星期一", @"星期二", @"星期三", @"星期四", @"星期五", @"星期六"];
+            _chineseFormatter.shortWeekdaySymbols = @[@"周天", @"周一", @"周二", @"周三", @"周四", @"周五", @"周六"];
+            _chineseFormatter.veryShortWeekdaySymbols = @[@"天", @"一", @"二", @"三", @"四", @"五", @"六"];
             _chineseFormatter.AMSymbol = @"上午";
             _chineseFormatter.PMSymbol = @"下午";
         });

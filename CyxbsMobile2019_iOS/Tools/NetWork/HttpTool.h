@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, HttpToolRequestSerializer) {
 /// 一般请求方式(dataTask请求)
 /// @param URLString 请求URL全名
 /// @param requestType 请求的类型
-/// @param parameters 请求体(默认在body)
+/// @param parameters 请求体(URI和Body请参考文档)
 /// @param progress 进度(GET、POST独有)
 /// @param success 请求成功返回
 /// @param failure 请求失败返回
@@ -68,9 +68,9 @@ typedef NS_ENUM(NSUInteger, HttpToolRequestSerializer) {
            type:(HttpToolRequestType)requestType
      serializer:(HttpToolRequestSerializer)requestSerializer
  bodyParameters:(id _Nullable)parameters
-       progress:(nullable void (^)(NSProgress * _Nonnull))progress
-        success:(nullable void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
-        failure:(nullable void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure;
+       progress:(nullable void (^)(NSProgress *progress))progress
+        success:(nullable void (^)(NSURLSessionDataTask * task, id _Nullable object))success
+        failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError * error))failure;
 
 /// POST特殊请求(multipartForm请求)
 /// @param URLString 请求URL全名
@@ -81,10 +81,19 @@ typedef NS_ENUM(NSUInteger, HttpToolRequestSerializer) {
 /// @param failure 请求失败返回
 - (void)POST:(NSString * _Nonnull)URLString
   parameters:(nullable id)parameters
-bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
-    progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
-     success:(nullable void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
-     failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure;
+bodyConstructing:(nullable void (^)(id<AFMultipartFormData> body))block
+    progress:(nullable void (^)(NSProgress * progress))uploadProgress
+     success:(nullable void (^)(NSURLSessionDataTask * task, id _Nullable object))success
+     failure:(void (^)(NSURLSessionDataTask * _Nullable task, NSError * error))failure;
+
+@end
+
+#pragma mark - HttpTool (WKWebView)
+
+@interface HttpTool (WKWebView)
+
+- (NSURLRequest *)URLRequestWithURL:(NSString *)url
+                     bodyParameters:(id _Nullable)parameters;
 
 @end
 

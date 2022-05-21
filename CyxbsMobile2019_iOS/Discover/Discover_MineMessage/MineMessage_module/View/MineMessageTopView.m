@@ -43,7 +43,10 @@
 - (instancetype)initWithSafeViewHeight:(CGFloat)height {
     self = [super initWithSafeViewHeight:height];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"255_255_255&29_29_29"];
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor xFF_R:255 G:255 B:255 Alpha:1]
+                              darkColor:[UIColor xFF_R:29 G:29 B:29 Alpha:1]];
+        
         [self addTitle:@"我的消息"
           withTitleLay:SSRTopBarBaseViewTitleLabLayLeft
              withStyle:nil];
@@ -105,8 +108,15 @@
     anotherBtn.selected = NO;
     self.moreBtn.tag = (btn == self.activeBtn);
     
-    [btn setTitleColor:[UIColor colorNamed:@"#112C54'00^#DFDFE3'00"] forState:UIControlStateNormal];
-    [anotherBtn setTitleColor:[UIColor colorNamed:@"#142C52'40^#F0F0F0'55"] forState:UIControlStateNormal];
+    [btn setTitleColor:
+     [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
+                           darkColor:[UIColor colorWithHexString:@"#DFDFE3"alpha:1]]
+              forState:UIControlStateNormal];
+    
+    [anotherBtn setTitleColor:
+     [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4]
+                           darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:55]]
+              forState:UIControlStateNormal];
 }
 
 - (void)lineScrollToCenterX:(CGFloat)centerX more:(CGFloat)more{
@@ -154,7 +164,12 @@
         _systemBtn.bottom = self.safeView.SuperBottom - 10;
         [_systemBtn setTitle:@"系统通知" forState:UIControlStateNormal];
         _systemBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC" size:18];
-        [_systemBtn setTitleColor:[UIColor colorNamed:@"#112C54'00^#DFDFE3'00"] forState:UIControlStateNormal];
+        
+        [_systemBtn setTitleColor:
+         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
+                               darkColor:[UIColor colorWithHexString:@"#DFDFE3"alpha:1]]
+         forState:UIControlStateNormal];
+        
         [_systemBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _systemBtn;
@@ -166,7 +181,12 @@
         _activeBtn.bottom = self.systemBtn.bottom;
         [_activeBtn setTitle:@"活动通知" forState:UIControlStateNormal];
         _activeBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC" size:18];
-        [_activeBtn setTitleColor:[UIColor colorNamed:@"#142C52'40^#F0F0F0'55"] forState:UIControlStateNormal];
+        
+        [_activeBtn setTitleColor:
+         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4]
+                               darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:55]]
+                  forState:UIControlStateNormal];
+        
         [_activeBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _activeBtn;

@@ -81,11 +81,10 @@
     [self.sysMsgModel
      requestReadForIndexSet:set
      success:^{
-        // 什么都不用干
+        [NewQAHud showHudWith:@"已全部已读" AddView:self.view];
      }
      failure:^(NSError * _Nonnull error) {
-        // -- 没有网络，请连接网络再次尝试 --
-        NSLog(@"-- 没有网络，系统消息 无法标为 已读");
+        [NewQAHud showHudWith:@"无法连接网络" AddView:self.view];
      }];
     [self.messageView reloadData];
     if (self.delegate) {
@@ -115,7 +114,19 @@
 
 - (void)systemMessageTableView:(UITableView *)view didSelectedAtIndex:(NSInteger)index {
     // 选择了，应该跳转
-    [self.navigationController pushViewController:[[MessageDetailVC alloc] initWithURL:[NSURL URLWithString:self.sysMsgModel.msgAry[index].url]] animated:YES];
+    SystemMessage *msg = self.sysMsgModel.msgAry[index];
+    
+    [self.navigationController
+     pushViewController:
+     [[MessageDetailVC alloc]
+      initWithURL:msg.articleURL
+      useSpecialModel:^__kindof UserPublishModel * _Nonnull{
+        msg.headURL = nil;
+        msg.author = nil;
+        return msg;
+    }
+      moreURL:nil]
+     animated:YES];
 }
 
 - (void)systemMessageTableView:(UITableView *)view willDeletePathWithIndexSet:(nonnull NSIndexSet *)set showPresent:(nonnull void (^)(BOOL))needCancel {
@@ -132,11 +143,20 @@
         [pc addDetail:[NSString stringWithFormat:@"确定要删除选中%ld条信息吗", ary.count]];
     } else if (notReadCount == 1 && ary.count == 1) {
         // 1:此条消息未读\n确定删除此消息吗
-        [pc addTitle:@"此条消息未读" textColor:[UIColor colorNamed:@"#112C54'00^#DFDFE3'00"]];
+        [pc addTitle:@"此条消息未读"
+           textColor:
+         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
+                               darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]]];
+        
         [pc addDetail:@"确定删除此消息吗"];
     } else {
         // ♾️:选中的信息包含notReadCount条未读信息，\n确定删除选中的ary.count条消息吗？
-        [pc addTitle:[NSString stringWithFormat:@"选中的信息包含%ld条未读信息,", notReadCount] textColor:[UIColor colorNamed:@"#4944E3'00^#9A97FF'00"]];
+        
+        [pc addTitle:[NSString stringWithFormat:@"选中的信息包含%ld条未读信息,", notReadCount]
+           textColor:
+         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4944E3" alpha:1]
+                               darkColor:[UIColor colorWithHexString:@"#9A97FF" alpha:1]]];
+        
         [pc addDetail:[NSString stringWithFormat:@"确定删除选中的%ld条消息吗？ ", ary.count]];
     }
     [pc addDismiss:needCancel];
@@ -192,7 +212,10 @@
     
     SystemMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:SystemMessageCellReuseIdentifier forIndexPath:indexPath];
     
-    [cell drawWithTitle:model.title content:model.content date:model.date];
+    [cell drawWithTitle:model.title
+                content:model.content
+                   date:model.uploadDate];
+    
     cell.hadRead = model.hadRead;
     
     return cell;

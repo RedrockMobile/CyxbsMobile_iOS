@@ -9,8 +9,7 @@
 #import "VolunteerView.h"
 #import "VolunteerItem.h"
 #import "ArchiveTool.h"
-///平方字体部分
-#define PingFangSC @".PingFang SC"
+
 //Bahnschrift字体部分
 #define ImpactMedium @"Impact"
 #define ImpactRegular @"Impact"

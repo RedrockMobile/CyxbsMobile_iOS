@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "JWZXNewsInformation.h"
+#import "JWZXSectionNews.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,13 +20,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JWZXNewsModel : NSObject
 
-/// 教务在线信息
-@property (nonatomic, strong) JWZXNewsInformation *jwzxNews;
+/// 教务在线
+@property (nonatomic, strong) NSMutableArray <JWZXSectionNews *> *sectionNewsAry;
 
-/// 网络请求教务在线信息
-- (void)requestJWZXPage:(NSUInteger)page
-                success:(void (^)(void))setJWZX
-                failure:(void (^) (NSError * error))failure;
+/// 创建时，指定一个sectionNews，之后使用newsAry去加
+/// @param sectionNews 应该为已经请求过的
+- (instancetype)initWithRootNews:(JWZXSectionNews *)sectionNews;
+
+/// 请求新的，会给予是不是更多的
+/// @param success 成功
+/// @param failure 失败
+- (void)requestMoreSuccess:(void (^)(BOOL hadMore))success
+                   failure:(void (^)(NSError *error))failure;
 
 @end
 

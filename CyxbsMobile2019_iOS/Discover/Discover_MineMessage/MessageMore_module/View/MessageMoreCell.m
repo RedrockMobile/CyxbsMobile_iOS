@@ -64,7 +64,10 @@
     if (_moreTitleLab == nil) {
         _moreTitleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 58, 20)];
         _moreTitleLab.font = [UIFont fontWithName:PingFangSC size:14];
-        _moreTitleLab.textColor = [UIColor colorNamed:@"#112C54'00^#DFDFE3'00"];
+        
+        _moreTitleLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     }
     return _moreTitleLab;
 }

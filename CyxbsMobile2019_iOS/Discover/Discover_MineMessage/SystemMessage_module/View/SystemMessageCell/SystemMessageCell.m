@@ -83,6 +83,12 @@
     if (editing) {
         [self customMultipleChioce];
     }
+    [UIView
+     animateWithDuration:0.17
+     animations:^{
+        self.msgTimeLab.right = self.contentView.SuperRight - 16;
+        [self.msgDetailLab stretchRight_toPointX:self.contentView.SuperRight offset:16];
+    }];
 }
 
 #pragma mark - Getter
@@ -92,7 +98,9 @@
         _msgTimeLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 70, 15)];
         _msgTimeLab.backgroundColor = UIColor.clearColor;
         _msgTimeLab.font = [UIFont fontWithName:PingFangSC size:12];
-        _msgTimeLab.textColor = [UIColor colorNamed:@"#142C52'40^#F0F0F0'55"];
+        
+        _msgTimeLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.7] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:0.55]];
     }
     return _msgTimeLab;
 }
@@ -103,7 +111,10 @@
         [_msgTitleLab stretchRight_toPointX:self.msgTimeLab.left offset:5];
         _msgTitleLab.backgroundColor = UIColor.clearColor;
         _msgTitleLab.font = [UIFont fontWithName:PingFangSCBold size:16];
-        _msgTitleLab.textColor = [UIColor colorNamed:@"17_44_84&240_240_240"];
+        
+        _msgTitleLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor xFF_R:17 G:44 B:84 Alpha:1]
+                              darkColor:[UIColor xFF_R:240 G:240 B:240 Alpha:1]];
     }
     return _msgTitleLab;
 }
@@ -113,7 +124,9 @@
         _msgDetailLab = [[UILabel alloc] initWithFrame:CGRectMake(self.msgTitleLab.left, self.msgTitleLab.bottom + 6, 0, 20)];
         _msgDetailLab.backgroundColor = UIColor.clearColor;
         _msgDetailLab.font = [UIFont fontWithName:PingFangSC size:14];
-        _msgDetailLab.textColor = [UIColor colorNamed:@"17_44_84&240_240_240"];
+        _msgDetailLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor xFF_R:17 G:44 B:84 Alpha:1]
+                              darkColor:[UIColor xFF_R:240 G:240 B:240 Alpha:1]];
     }
     return _msgDetailLab;
 }

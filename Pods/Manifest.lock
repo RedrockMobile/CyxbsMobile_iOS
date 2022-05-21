@@ -21,6 +21,7 @@ PODS:
   - AMapLocation-NO-IDFA (2.8.0):
     - AMapFoundation-NO-IDFA (~> 1.6.9)
   - Bugly (2.5.91)
+  - FluentDarkModeKit (1.0.4)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - AMap3DMap-NO-IDFA
   - AMapLocation-NO-IDFA
   - Bugly
+  - FluentDarkModeKit
   - FMDB
   - IQKeyboardManager
   - LookinServer
@@ -121,6 +123,7 @@ SPEC REPOS:
     - AMapFoundation-NO-IDFA
     - AMapLocation-NO-IDFA
     - Bugly
+    - FluentDarkModeKit
     - FMDB
     - IQKeyboardManager
     - LookinServer
@@ -156,6 +159,7 @@ SPEC CHECKSUMS:
   AMapFoundation-NO-IDFA: cc2ec7a2828ef292358ad594b7ee0ae21a7f097b
   AMapLocation-NO-IDFA: 9d7ec9b052405356600b59fe0a9a65261bacc54e
   Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
+  FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   IQKeyboardManager: 241cc94ccabc9deb8f8bd7d12f00d73288d13ecc
   LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
@@ -184,6 +188,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8e6a6de195a29b0c447a1e52e2b098a1faf03b3a
+PODFILE CHECKSUM: 36feba9392839d851db8b606a117e69733254cc5
 
 COCOAPODS: 1.11.3

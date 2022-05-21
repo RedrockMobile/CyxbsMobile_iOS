@@ -8,7 +8,6 @@
 
 #import "DKSKeyboardView.h"
 #import "UITextView+WZB.h"
-#import "UIColor+SYColor.h"
 //状态栏和导航栏的总高度
 #define StatusNav_Height (IS_IPHONEX ? 88 : 64)
 //判断是否是iPhoneX
@@ -38,7 +37,10 @@ static float viewHeight = 38.0f; //按钮视图高度
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xF1F3F8) DarkColor:KUIColorFromRGB(0x2D2D2D)];
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
+        
         self.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, viewHeight);
         //创建视图
         [self creatView];
@@ -135,7 +137,8 @@ static float viewHeight = 38.0f; //按钮视图高度
 
         [_moreBtn setTitle:@"发送" forState:UIControlStateNormal];
         _moreBtn.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size:13];
-        [_moreBtn setTitleColor:[UIColor colorWithLightColor:KUIColorFromRGB(0xFFFFFF) DarkColor:KUIColorFromRGB(0xFFFFFF)] forState:UIControlStateNormal];
+        [_moreBtn setTitleColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] forState:UIControlStateNormal];
+        
         
         [_moreBtn setBackgroundImage:[UIImage imageNamed:@"icon_more_nomal"] forState:UIControlStateNormal];
         [_moreBtn setBackgroundImage:[UIImage imageNamed:@"icon_more_hig"] forState:UIControlStateHighlighted];
@@ -161,7 +164,11 @@ static float viewHeight = 38.0f; //按钮视图高度
         _textView.enablesReturnKeyAutomatically = YES;
         
         _textView.placeholder = @"说点什么吧，万一火了呢";
-        _textView.placeholderColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x94A6C4) DarkColor:KUIColorFromRGB(0x838384)];
+        _textView.placeholderColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#94A6C4" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
+        
+        
         _textView.font = [UIFont fontWithName:PingFangSCMedium size:15];
         self.maxTextViewheight = ceil(_textView.font.lineHeight * 4 + _textView.contentInset.top + _textView.contentInset.bottom);
     }

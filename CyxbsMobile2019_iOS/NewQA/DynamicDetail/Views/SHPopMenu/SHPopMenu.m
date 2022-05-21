@@ -7,7 +7,6 @@
 //
 
 #import "SHPopMenu.h"
-#import "UIColor+SYColor.h"
 /**
  *  下拉菜单
  **/
@@ -55,7 +54,10 @@ static NSString *reuseIdentifier = @"cell";
         _container.layer.cornerRadius = 15;
         _container.layer.borderWidth = 1;
         _container.layer.masksToBounds = YES;
-        _container.layer.borderColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xF1F3F8) DarkColor:KUIColorFromRGB(0x000000)].CGColor;
+        
+        _container.layer.borderColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]].CGColor;
         
         [self addSubview:_container];
     }
@@ -71,7 +73,9 @@ static NSString *reuseIdentifier = @"cell";
         _contentView.separatorInset = UIEdgeInsetsMake(0, 18, 0, 18);
         _contentView.bounces = NO;
         _contentView.showsVerticalScrollIndicator = NO;
-        _contentView.backgroundColor = [UIColor colorWithLightColor:KUIColorFromRGB(0xF1F3F8) DarkColor:KUIColorFromRGB(0x000000)];
+        _contentView.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         //内容
         [self.container addSubview:_contentView];
     }
@@ -171,8 +175,9 @@ static NSString *reuseIdentifier = @"cell";
     self.contentH = self.contentH?:44;
     self.font = self.font?:[UIFont systemFontOfSize:14];
     self.textColor = self.textColor?:[UIColor whiteColor];
-    self.separatorColor = self.separatorColor?:[UIColor colorWithLightColor:KUIColorFromRGB(0xE2E8EE) DarkColor:KUIColorFromRGB(0x252525)];
-    
+    self.separatorColor =
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1]
+                          darkColor:[UIColor colorWithHexString:@"#252525" alpha:1]];
     //赋值
     self.block = block;
     
@@ -237,7 +242,9 @@ static NSString *reuseIdentifier = @"cell";
         
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.font = self.font;
-        cell.textLabel.textColor = [UIColor colorWithLightColor:self.textColor DarkColor:KUIColorFromRGB(0xF0F0F2)];
+        cell.textLabel.textColor =
+        [UIColor dm_colorWithLightColor:self.textColor
+                              darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     
     //取出内容

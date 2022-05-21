@@ -51,7 +51,9 @@ typedef void(^TapCancelBlock)(BOOL);
     if (self) {
         self.layer.cornerRadius = 15;
         self.clipsToBounds = YES;
-        self.backgroundColor = [UIColor colorNamed:@"#FFFFFF'00^#2C2C2C'00"];
+        
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
         
         [self addSubview:self.cancelBtn];
         [self addSubview:self.okBtn];
@@ -121,7 +123,9 @@ typedef void(^TapCancelBlock)(BOOL);
         
         _cancelBtn.layer.cornerRadius = _cancelBtn.height / 2;
         
-        _cancelBtn.backgroundColor = [UIColor colorNamed:@"195_212_238&90_90_90"];
+        _cancelBtn.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor xFF_R:195 G:212 B:238 Alpha:1] darkColor:[UIColor xFF_R:90 G:90 B:90 Alpha:1]];
+        
         [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
         [_cancelBtn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         
@@ -157,7 +161,10 @@ typedef void(^TapCancelBlock)(BOOL);
     if (_titleLab == nil) {
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, 19)];
         _titleLab.font = [UIFont fontWithName:PingFangSC size:14];
-        _titleLab.textColor = [UIColor colorNamed:@"#112C54'00^#DFDFE3'00"];
+        
+        _titleLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
+        
         _titleLab.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLab;
@@ -167,7 +174,10 @@ typedef void(^TapCancelBlock)(BOOL);
     if (_detailLab == nil) {
         _detailLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, 19)];
         _detailLab.font = [UIFont fontWithName:PingFangSC size:14];
-        _detailLab.textColor = [UIColor colorNamed:@"#112C54'00^#DFDFE3'00"];
+        
+        _detailLab.textColor = 
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
+        
         _detailLab.textAlignment = NSTextAlignmentCenter;
     }
     return _detailLab;

@@ -38,33 +38,26 @@
 - (void)requestReadForIndexSet:(NSIndexSet *)set
                        success:(void (^)(void))success
                        failure:(void (^)(NSError *error))failure {
-    NSArray <SystemMessage *> *ary = [self.msgAry objectsAtIndexes:set];
     NSMutableArray <NSString *> *idNums = NSMutableArray.array;
-    for (SystemMessage *msg in ary) {
-        if (msg.hadRead == NO) {
-            [idNums addObject:[NSString stringWithFormat:@"%ld", msg.msgID]];
-        }
+    [set enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+        SystemMessage *msg = self.msgAry[idx];
+        [idNums addObject:msg.otherThings];
         msg.hadRead = YES;
-    }
+    }];
     NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
     
-    // -- 网络请求：put 已读 --
-    AFHTTPSessionManager *session = HttpClient.defaultClient.httpSessionManager;
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
-    
-    [HttpClient.defaultClient
-     requestWithPath:MineMessage_PUT_hasRead_API
-     method:HttpRequestPut
-     parameters:parameter
-     prepareExecute:nil
+    [HttpTool.shareTool
+     request:MineMessage_PUT_hasRead_API
+     type:HttpToolRequestTypePut
+     serializer:HttpToolRequestSerializerJSON
+     bodyParameters:parameter
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+     success:^(NSURLSessionDataTask * task, id responseObject) {
         if (success) {
             success();
         }
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     failure:^(NSURLSessionDataTask * task, NSError * error) {
         if (failure) {
             failure(error);
         }
@@ -76,7 +69,7 @@
                          failure:(void (^)(NSError *error))failure {
     NSMutableArray <NSString *> *idNums = NSMutableArray.array;
     [set enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
-        [idNums addObject:[NSString stringWithFormat:@"%ld", self.msgAry[idx].msgID]];
+        [idNums addObject:self.msgAry[idx].otherThings];
     }];
     NSMutableArray *ma = [NSMutableArray arrayWithArray:self.msgAry];
     [ma removeObjectsAtIndexes:set];
@@ -84,24 +77,18 @@
     
     NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
     
-    // -- 网络请求：put 已读 --
-    AFHTTPSessionManager *session = HttpClient.defaultClient.httpSessionManager;
-    session.requestSerializer = [AFJSONRequestSerializer serializer];
-    session.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[@"GET", @"HEAD"]];
-    
-    [HttpClient.defaultClient
-     requestWithPath:MineMessage_DELETE_sysMsg_API
-     method:HttpRequestDelete
-     parameters:parameter
-     prepareExecute:nil
+    [HttpTool.shareTool
+     request:MineMessage_DELETE_sysMsg_API
+     type:HttpToolRequestTypeDelete
+     serializer:HttpToolRequestSerializerJSON
+     bodyParameters:parameter
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+     success:^(NSURLSessionDataTask * task, id responseObject) {
         if (success) {
             success();
         }
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     failure:^(NSURLSessionDataTask * task, NSError * error) {
         if (failure) {
             failure(error);
         }

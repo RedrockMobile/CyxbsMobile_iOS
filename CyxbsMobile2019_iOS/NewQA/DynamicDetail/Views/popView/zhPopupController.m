@@ -195,8 +195,8 @@ static void *zhPopupControllerNSTimerKey = &zhPopupControllerNSTimerKey;
     _popupView.center = [self prepareCenter];
     
     void (^presentCallback)(void) = ^() {
-        _isPresenting = YES;
-        _popupView.userInteractionEnabled = YES;
+        self->_isPresenting = YES;
+        self->_popupView.userInteractionEnabled = YES;
         if (nil != self.didPresent) {
             self.didPresent(self);
         } else {
@@ -217,7 +217,7 @@ static void *zhPopupControllerNSTimerKey = &zhPopupControllerNSTimerKey;
             
             [self finishedDropAnimated];
             [self finishedBackground];
-            _popupView.center = [self finishedCenter];
+            self->_popupView.center = [self finishedCenter];
             
         } completion:^(BOOL finished) {
             
@@ -229,7 +229,7 @@ static void *zhPopupControllerNSTimerKey = &zhPopupControllerNSTimerKey;
             
             [self finishedDropAnimated];
             [self finishedBackground];
-            _popupView.center = [self finishedCenter];
+            self->_popupView.center = [self finishedCenter];
             
         } completion:^(BOOL finished) {
             
@@ -274,10 +274,10 @@ static void *zhPopupControllerNSTimerKey = &zhPopupControllerNSTimerKey;
     }
     
     void (^dismissCallback)(void) = ^() {
-        _slideStyle = [objc_getAssociatedObject(self, @selector(fadeDismiss)) integerValue];
+        self->_slideStyle = [objc_getAssociatedObject(self, @selector(fadeDismiss)) integerValue];
         [self removeSubviews];
-        _isPresenting = NO;
-        _popupView.transform = CGAffineTransformIdentity;
+        self->_isPresenting = NO;
+        self->_popupView.transform = CGAffineTransformIdentity;
         if (nil != self.didDismiss) {
             self.didDismiss(self);
         } else {
@@ -301,14 +301,14 @@ static void *zhPopupControllerNSTimerKey = &zhPopupControllerNSTimerKey;
         [UIView animateWithDuration:duration1 delay:0.f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             
             [self bufferBackground];
-            _popupView.center = [self bufferCenter:30];
+            self->_popupView.center = [self bufferCenter:30];
             
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:duration2 delay:0.f options:animOpts(self.slideStyle) animations:^{
                 
                 [self dismissedDropAnimated];
                 [self dismissedBackground];
-                _popupView.center = [self dismissedCenter];
+                self->_popupView.center = [self dismissedCenter];
                 
             } completion:^(BOOL finished) {
                 if (finished) dismissCallback();
@@ -321,7 +321,7 @@ static void *zhPopupControllerNSTimerKey = &zhPopupControllerNSTimerKey;
             
             [self dismissedDropAnimated];
             [self dismissedBackground];
-            _popupView.center = [self dismissedCenter];
+            self->_popupView.center = [self dismissedCenter];
 
         } completion:^(BOOL finished) {
             if (finished) dismissCallback();
@@ -702,7 +702,7 @@ static CGFloat zh_randomValue(int i, int j) {
             
             CGFloat offsetSpacing = self.offsetSpacingOfKeyboard, changeHeight = 0;
             
-            switch (_layoutType) {
+            switch (self->_layoutType) {
                 case zhPopupLayoutTypeTop:
                     break;
                 case zhPopupLayoutTypeBottom:
@@ -713,19 +713,19 @@ static CGFloat zh_randomValue(int i, int j) {
                     break;
             }
             
-            if (!CGPointEqualToPoint(CGPointZero, _markerCenter)) {
-                _popupView.center = CGPointMake(_markerCenter.x, _markerCenter.y - changeHeight);
+            if (!CGPointEqualToPoint(CGPointZero, self->_markerCenter)) {
+                self->_popupView.center = CGPointMake(_markerCenter.x, self->_markerCenter.y - changeHeight);
             } else {
-                _popupView.center = CGPointMake(_popupView.center.x, _popupView.center.y - changeHeight);
+                self->_popupView.center = CGPointMake(_popupView.center.x, self->_popupView.center.y - changeHeight);
             }
             
         } else {
             if (self.isPresenting) {
-                _popupView.center = [self finishedCenter];
+                self->_popupView.center = [self finishedCenter];
             }
         }
     } completion:^(BOOL finished) {
-        _markerCenter = [self finishedCenter];
+        self->_markerCenter = [self finishedCenter];
     }];
 }
 
@@ -814,7 +814,7 @@ static CGFloat zh_randomValue(int i, int j) {
                     }
                     CGFloat alpha = factor / 2 - fabs(changeValue - factor / 2);
                     [UIView animateWithDuration:0.15 animations:^{
-                        _maskView.alpha = alpha;
+                        self->_maskView.alpha = alpha;
                     } completion:NULL];
                     
                 } break;
