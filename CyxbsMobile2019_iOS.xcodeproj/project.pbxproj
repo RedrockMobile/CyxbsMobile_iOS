@@ -6823,7 +6823,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.3.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pty.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -6879,7 +6879,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.3.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pty.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
