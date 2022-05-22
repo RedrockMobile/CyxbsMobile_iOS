@@ -42,7 +42,11 @@
 - (UILabel *)timeLab {
     if (_timeLab == nil) {
         _timeLab = [[UILabel alloc] init];
-        _timeLab.textColor = [UIColor colorNamed:@"ColorNewsTime"];
+        
+        _timeLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#294169" alpha:0.7]
+                              darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+        
         _timeLab.font = [UIFont fontWithName:PingFangSCBold size:16];
     }
     return _timeLab;
@@ -51,7 +55,11 @@
 - (UILabel *)detailLab {
     if (_detailLab == nil) {
         _detailLab = [[UILabel alloc] init];
-        _detailLab.textColor = [UIColor colorNamed:@"ColorNewsCellTitle"];
+        
+        _detailLab.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+        
         _detailLab.font = [UIFont fontWithName:PingFangSCRegular size:18];
     }
     return _detailLab;
@@ -60,7 +68,9 @@
 - (UIView *)seperateLine {
     if (_seperateLine == nil) {
         _seperateLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2)];
-        _seperateLine.backgroundColor = [UIColor colorNamed:@"ColorSeperateLine"];
+        
+        _seperateLine.backgroundColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#BDCCE5" alpha:0.3] darkColor:[UIColor colorWithHexString:@"#676767" alpha:0.1]];
     }
     return _seperateLine;;
 }

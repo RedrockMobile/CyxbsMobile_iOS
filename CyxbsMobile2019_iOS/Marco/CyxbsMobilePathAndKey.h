@@ -9,6 +9,8 @@
 #ifndef CyxbsMobilePathAndKey_h
 #define CyxbsMobilePathAndKey_h
 
+#define USER_DEFAULT NSUserDefaults.standardUserDefaults
+
 //课表、备忘数据文件的文件夹
 #define remAndLesDataDirectoryPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/rem&les"]
 
@@ -49,5 +51,11 @@
 
 //缓存的键，用来确定刷新token的接口是否出问题了，ToolMacro里面有定义了相关block，1代表error，-1正常
 #define IS_TOKEN_URL_ERROR_INTEGER @"IS_TOKEN_URL_ERROR_INTEGER"
+
+#pragma mark - UserDefault From Module
+
+#import "JWZXHeader.h"
+
+#import "MineMessageHeader.h"
 
 #endif /* CyxbsMobilePathAndKey_h */

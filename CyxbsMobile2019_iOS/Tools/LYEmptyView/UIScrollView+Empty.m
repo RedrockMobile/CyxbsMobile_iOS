@@ -142,7 +142,11 @@ static char kEmptyViewKey;
     self.ly_emptyView = [LYEmptyView emptyViewWithImageStr:imageName titleStr:str detailStr:detailStr];
     self.ly_emptyView.contentViewOffset = offset;
     self.ly_emptyView.titleLabFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 13];
-    self.ly_emptyView.titleLabTextColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x556C89) DarkColor:KUIColorFromRGB(0xffffff)];
+    
+    self.ly_emptyView.titleLabTextColor =
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1]
+                          darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+    
     [self ly_showEmptyView];
 }
 - (void)hideNoDataStatus {
@@ -198,7 +202,7 @@ static char kEmptyViewKey;
     [self getDataAndSet];
 }
 - (void)ly_deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation{
-    [self ly_insertSections:sections withRowAnimation:animation];
+    [self ly_deleteSections:sections withRowAnimation:animation];
     [self getDataAndSet];
 }
 

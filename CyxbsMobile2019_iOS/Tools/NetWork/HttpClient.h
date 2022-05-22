@@ -6,6 +6,10 @@
 //  Copyright © 2016年 zhanlee. All rights reserved.
 //
 
+/**事件
+ * 2022.5.16 SSR 请使用HttpTool.shareTool
+ */
+
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
 typedef NS_ENUM(NSInteger, HttpRequestType) {

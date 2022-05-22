@@ -71,11 +71,11 @@
         self.btnArray[self.currentIndex].selected = NO;
         self.currentIndex = currentIndex;
         [UIView animateWithDuration:0.2f animations:^{
-            _sliderView.frame = CGRectMake(currentIndex * _titleBtnWidth, self.height - 2, _titleBtnWidth, 2);
+            self->_sliderView.frame = CGRectMake(currentIndex * self->_titleBtnWidth, self.height - 2, self->_titleBtnWidth, 2);
             if (self.btnArray[currentIndex].frame.origin.x < self.width/2) {
                 [self setContentOffset:CGPointMake(0, 0) animated:YES];
             } else if (self.contentSize.width - self.btnArray[currentIndex].frame.origin.x <= self.width/2) {
-                [self setContentOffset:CGPointMake(self.btnArray.count*_titleBtnWidth-self.width, 0) animated:YES];
+                [self setContentOffset:CGPointMake(self.btnArray.count*self->_titleBtnWidth-self.width, 0) animated:YES];
             } else {
                 [self setContentOffset:CGPointMake(self.btnArray[currentIndex].frame.origin.x-self.width/2+self.titleBtnWidth/2, 0) animated:YES];
             }

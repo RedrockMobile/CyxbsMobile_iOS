@@ -30,6 +30,9 @@ typedef NS_ENUM(NSUInteger, SSRTopBarBaseViewTitleLabLay) {
 /// 是否应该有条线，线的底部将对齐此Bar底部，默认有
 @property (nonatomic, setter = shouldHaveLine:) BOOL hadLine;
 
+/// 掌邮的特殊小line，用addSwithLineWithOrigin:才可以得到
+@property (nonatomic, strong, readonly, nullable) UIView *swithLine;
+
 // MARK: Init
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -56,6 +59,10 @@ typedef NS_ENUM(NSUInteger, SSRTopBarBaseViewTitleLabLay) {
 /// @param target 应该为控制器
 /// @param action 应该为返回上一个控制器事件
 - (void)addBackButtonTarget:(id)target action:(SEL)action;
+
+/// 加一个条在哪个地方，不做UI，如果重复掉用，则直接到origin，而不是生成
+/// @param origin 初位置
+- (void)addSwithLineWithOrigin:(CGPoint)origin;
 
 @end
 

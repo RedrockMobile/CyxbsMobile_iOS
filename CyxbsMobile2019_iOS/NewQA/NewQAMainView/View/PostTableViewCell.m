@@ -10,7 +10,6 @@
 #import "MGDImageCollectionViewCell.h"
 #import "PostModel.h"
 #import "StarPostModel.h"
-//#import "UIControl+MGD.h"
 #import <YBImageBrowser.h>
 
 

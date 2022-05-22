@@ -13,7 +13,6 @@
 #import <MBProgressHUD.h>
 #import <MJExtension.h>
 #import "HttpClient.h"
-#import "UIColor+Helper.h"
 #import "UITextView+Placeholder.h"
 #import "UserDefaultTool.h"
 #import "UserItemTool.h"

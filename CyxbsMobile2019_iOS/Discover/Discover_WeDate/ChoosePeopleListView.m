@@ -99,7 +99,7 @@
     } else {
         [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:(UIControlStateNormal)];
     }
-    btn.titleLabel.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+    btn.titleLabel.font = [UIFont fontWithName:PingFangSC size: 15];
     [btn addTarget:self action:@selector(cancelBtnClicked) forControlEvents:(UIControlEventTouchUpInside)];
     
     

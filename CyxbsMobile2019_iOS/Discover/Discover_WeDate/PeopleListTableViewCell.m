@@ -50,7 +50,7 @@
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
-    label.font = [UIFont fontWithName:@".PingFang SC" size: 16];
+    label.font = [UIFont fontWithName:PingFangSC size: 16];
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(MAIN_SCREEN_H*0.0062);
@@ -71,7 +71,7 @@
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
-    label.font = [UIFont fontWithName:@".PingFang SC" size: 11];
+    label.font = [UIFont fontWithName:PingFangSC size: 11];
     
     
     [label mas_makeConstraints:^(MASConstraintMaker *make) {

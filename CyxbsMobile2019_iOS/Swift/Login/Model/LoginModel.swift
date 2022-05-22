@@ -14,7 +14,7 @@ class LoginModel: NSObject {
     class func loginWith(stuNum: String,
                          idNum: String,
                          success: @escaping () -> Void,
-                         failed: @escaping () -> Void) {
+                         failed: @escaping (_ isNet : Bool) -> Void) {
         let params = [
             "stuNum": stuNum,
             "idNum": idNum
@@ -25,7 +25,7 @@ class LoginModel: NSObject {
         SwiftyClient.shared.request(url, method: .post, headers: nil, parameters: params) { (response) in
             
             guard let response = response else {
-                failed()
+                failed(true)
                 return
             }
             
@@ -57,12 +57,12 @@ class LoginModel: NSObject {
                         
                     } catch {
                         // 解码失败调用failed
-                        failed()
+                        failed(false)
                     }
                 }
                 
             } else {
-                failed()
+                failed(false)
                 
             }
             

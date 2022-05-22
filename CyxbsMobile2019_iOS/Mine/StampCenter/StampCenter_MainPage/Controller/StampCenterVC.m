@@ -193,6 +193,9 @@
     
     //设置小点
     [self setupPoint];
+    
+    
+    NSLog(@"token: %@",UserItemTool.defaultItem.token);
 
 }
 
@@ -234,7 +237,6 @@
         return cell;
     }else{
         UITableViewCell *cell = [[UITableViewCell alloc]init];
-        cell.backgroundColor = [UIColor whiteColor];
         return cell;
     }
 }

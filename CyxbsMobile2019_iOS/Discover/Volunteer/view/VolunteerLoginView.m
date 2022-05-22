@@ -146,7 +146,7 @@
         ///数据来源标题
         UILabel *sourceLab = [[UILabel alloc] init];
         sourceLab.text = @"部分信息来源:中国志愿服务网";
-        sourceLab.font = [UIFont fontWithName:@".PingFang SC" size: 11];
+        sourceLab.font = [UIFont fontWithName:PingFangSC size: 11];
         if (@available(iOS 11.0, *)) {
             sourceLab.textColor = [UIColor colorNamed:@"MGDLoginSmallTextColor"];
         } else {

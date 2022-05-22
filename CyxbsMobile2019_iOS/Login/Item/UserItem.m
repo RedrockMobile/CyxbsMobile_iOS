@@ -50,6 +50,9 @@ static UserItem *item = nil;
 
 - (void)getUserInfo {
     [[HttpClient defaultClient] requestWithPath:getPersonData method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        
+        NSLog(@"%@",responseObject);
         [UserItem mj_objectWithKeyValues:responseObject[@"data"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(YES)];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

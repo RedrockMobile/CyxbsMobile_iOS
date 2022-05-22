@@ -59,6 +59,7 @@
             [self.httpSessionManager POST:url parameters:parameters headers:nil progress:nil success:success failure:failure];
             break;
         case HttpRequestPut:
+            self.httpSessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
             [self.httpSessionManager PUT:url parameters:parameters headers:nil success:success failure:failure];
             break;
         case HttpRequestDelete:

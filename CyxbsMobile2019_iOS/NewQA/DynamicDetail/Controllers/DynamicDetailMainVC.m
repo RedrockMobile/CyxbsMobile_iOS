@@ -8,7 +8,6 @@
 
 //tool
 #import "MGDRefreshTool.h"      //表格的刷新控件
-#import "UIColor+SYColor.h"
 #import "UIScrollView+Empty.h"
 
 //VC
@@ -1010,7 +1009,10 @@
         _menu.arrowX = 0;
         _menu.arrowImage = [UIImage imageNamed:@""];
 
-        _menu.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x0C3573) DarkColor:KUIColorFromRGB(0x0C3573)];
+        _menu.textColor =
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1]
+                              darkColor:[UIColor colorWithHexString:@"#0C3573" alpha:1]];
+    
         _menu.font = [UIFont fontWithName:PingFangSCMedium size:12];
         _menu.layer.cornerRadius = 15;
         _menu.layer.masksToBounds = YES;

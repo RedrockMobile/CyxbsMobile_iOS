@@ -15,6 +15,8 @@
 //#define CyxbsMobileBaseURL_1 @"https://be-dev.redrock.cqupt.edu.cn/"
 //#define CyxbsMobileBaseURL_2 @"https://be-dev.redrock.cqupt.edu.cn/"
 
+
+
 //#define CyxbsMobileBaseURL_1 @"https://be-prod.redrock.team/"
 #define CyxbsMobileBaseURL_1 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
 //#define CyxbsMobileBaseURL_2 @"https://be-prod.redrock.team/"
@@ -135,6 +137,53 @@
 
 
 #pragma mark - “发现”接口
+
+
+
+// MARK: MineMessage
+
+// 负责人：SSR
+
+/**获取所有信息
+ * @Header Authorization : Bearer ${token}
+ */
+#define MineMessage_GET_allMsg_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/allMsg"]
+
+/**更改已读状态
+ * @Header Content-Type : application//json
+ * @Header Authorization : Bearer ${token}
+ * @Body @ {"ids" : [String]}
+ */
+#define MineMessage_PUT_hasRead_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/msgHasRead"]
+
+/**是否有未读消息
+ * @Header Authorization : Bearer ${token}
+ */
+#define MineMessage_GET_userHadRead_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/msgHasRead"]
+
+/**删除消息
+ * @Header Authorization : Bearer ${token}
+ * @Body @ {"ids" : [String]}
+ */
+#define MineMessage_DELETE_sysMsg_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"message-system/user/msg"]
+
+/**单个md文档转为h5
+ * WKWebView
+ */
+#define MineMessage_HTML_md(msgID) [CyxbsMobileBaseURL_1 stringByAppendingFormat:@"message-system/user/html/%@", msgID]
+
+// MARK: - JWZX
+
+// 负责人： SSR
+
+/**教务在线接口(HTTP)
+ * @URI @{@"page" : Long}
+ */
+#define JWZX_GET_NewsPage_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/jwNews/list"]
+
+
+#pragma mark - ###
+
 //校历接口
 #define schoolCalendar [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/schoolCalendar"]
 /// 教务新闻列表

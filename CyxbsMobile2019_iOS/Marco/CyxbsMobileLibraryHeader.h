@@ -19,7 +19,6 @@
 #import <MBProgressHUD.h>
 #import <MJExtension.h>
 #import "HttpClient.h"
-#import "UIColor+Helper.h"
 #import "UITextView+Placeholder.h"
 #import "UserDefaultTool.h"
 #import "UserItemTool.h"
@@ -33,16 +32,18 @@
 #import <MGJRouter.h>
 #import <SDWebImage/SDWebImage.h>
 
+#import <FluentDarkModeKit.h> // 基于iOS11.0的黑暗适配
+
 // Category
 #import "UIView+Frame.h"
 #import "NSDate+Day.h"
 #import "UIColor+Color.h"
+#import "HttpTool.h"
 
 //自定义hud
 #import "NewQAHud.h"
 
 #import "MGDStatusBarHeight.h"
-#import "UIColor+SYColor.h"
 
 
 #pragma mark - Group共享

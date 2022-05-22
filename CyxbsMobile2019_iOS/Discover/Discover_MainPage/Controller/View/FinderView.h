@@ -45,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 应该在addChildViewController掉用这个 / Remake by SSR
 - (UIViewController *)jwzxViewController;
 
+- (UIViewController *)msgViewController;
+
 -(void)remoreAllEnters;//移除四个入口
 
 -(void)addSomeEnters;//添加四个入口

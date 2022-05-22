@@ -126,7 +126,7 @@
     textField.placeholder = @"添加同学";
     [textField setReturnKeyType:(UIReturnKeySearch)];
     textField.delegate = self;
-    textField.font = [UIFont fontWithName:@".PingFang SC" size: 15];
+    textField.font = [UIFont fontWithName:PingFangSC size: 15];
     
     if (@available(iOS 11.0, *)) {
         textField.textColor = Color21_49_91_F0F0F2;
