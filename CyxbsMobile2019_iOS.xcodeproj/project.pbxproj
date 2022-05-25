@@ -2835,14 +2835,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		14D03A0827FDD3BB00D6AE93 /* JWZX_News */ = {
+		14D03A0827FDD3BB00D6AE93 /* JWNews_module */ = {
 			isa = PBXGroup;
 			children = (
 				14D03A0027FDB76200D6AE93 /* ViewController */,
 				14D03A0727FDD31B00D6AE93 /* View */,
 				18CDF4E5257F91BC006E8E5C /* Model */,
 			);
-			path = JWZX_News;
+			path = JWNews_module;
 			sourceTree = "<group>";
 		};
 		14D03A0C27FE6BE200D6AE93 /* SSRTopBarBaseView */ = {
@@ -2939,14 +2939,14 @@
 			path = NewDownloadCell;
 			sourceTree = "<group>";
 		};
-		14FBBD5A2805B14A00D5B05D /* JWZXNewDownloadVC */ = {
+		14FBBD5A2805B14A00D5B05D /* JWDownload_module */ = {
 			isa = PBXGroup;
 			children = (
 				14FBBD532805907E00D5B05D /* JWZXNewDownloadVC.h */,
 				14FBBD542805907E00D5B05D /* JWZXNewDownloadVC.m */,
 				14FBBD592805B13C00D5B05D /* NewDownloadCell */,
 			);
-			path = JWZXNewDownloadVC;
+			path = JWDownload_module;
 			sourceTree = "<group>";
 		};
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
@@ -3488,22 +3488,22 @@
 			isa = PBXGroup;
 			children = (
 				14FBBD48280541AD00D5B05D /* DiscoverJWZX_module */,
-				14D03A0827FDD3BB00D6AE93 /* JWZX_News */,
-				18CDF581257F91BD006E8E5C /* JWZX_DetailNews */,
-				14FBBD5A2805B14A00D5B05D /* JWZXNewDownloadVC */,
+				14D03A0827FDD3BB00D6AE93 /* JWNews_module */,
+				18CDF581257F91BD006E8E5C /* JWDetailNews_module */,
+				14FBBD5A2805B14A00D5B05D /* JWDownload_module */,
 				14BB7B632834A30600C19A34 /* Source */,
 			);
 			path = DIscover_JWZX;
 			sourceTree = "<group>";
 		};
-		18CDF581257F91BD006E8E5C /* JWZX_DetailNews */ = {
+		18CDF581257F91BD006E8E5C /* JWDetailNews_module */ = {
 			isa = PBXGroup;
 			children = (
 				1498200127FEC1AC00AD2A29 /* ViewController */,
 				1498200227FEC1C000AD2A29 /* View */,
 				14981FFE27FEC16800AD2A29 /* Model */,
 			);
-			path = JWZX_DetailNews;
+			path = JWDetailNews_module;
 			sourceTree = "<group>";
 		};
 		18CDF58C257F91BD006E8E5C /* SCChart */ = {
