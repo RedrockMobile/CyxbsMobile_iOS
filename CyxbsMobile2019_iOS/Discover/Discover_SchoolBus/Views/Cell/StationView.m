@@ -33,14 +33,14 @@
     }
     return _backImageView;
 }
-- (UIButton *)stationBtn {
+- (UILabel *)stationBtn {
     if (!_stationBtn) {
-        _stationBtn = [[UIButton alloc]initWithFrame:CGRectMake(16, 22, 18, 145)];
-        _stationBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
-        _stationBtn.titleLabel.numberOfLines = 0;
-        _stationBtn.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _stationBtn.titleLabel.font = [UIFont fontWithName:PingFangSCLight size: 12];
-        [_stationBtn setTitleColor: [UIColor colorNamed:@"42_78_132"] forState:UIControlStateNormal];
+        _stationBtn = [[UILabel alloc]initWithFrame:CGRectMake(16, 22, 18, 145)];
+        _stationBtn.textAlignment = NSTextAlignmentCenter;
+        _stationBtn.numberOfLines = 0;
+//        _stationBtn.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _stationBtn.font = [UIFont fontWithName:PingFangSCLight size: 12];
+        _stationBtn.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1]];
     }
     return _stationBtn;
 }

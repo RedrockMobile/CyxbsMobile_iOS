@@ -47,7 +47,7 @@
         _sendtypeBtn.titleLabel.font = [UIFont fontWithName:PingFangSCLight size: 11];
         [_sendtypeBtn setTitleColor: [UIColor colorNamed:@"7_191_225_1"] forState:UIControlStateNormal];
         _sendtypeBtn.backgroundColor = [UIColor colorNamed:@"7_191_225_0.09"];
-        _sendtypeBtn.layer.cornerRadius = 16;
+        _sendtypeBtn.layer.cornerRadius = _sendtypeBtn.height / 2;
         _sendtypeBtn.right = _runtypeBtn.left - 8;
         _sendtypeBtn.top = _runtimeLabel.bottom + 8;
         _sendtypeBtn.userInteractionEnabled = NO;
@@ -61,7 +61,7 @@
         _runtypeBtn.right = self.right - 16;
         _runtypeBtn.top = _runtimeLabel.bottom + 8;
         _runtypeBtn.userInteractionEnabled = NO;
-        _runtypeBtn.layer.cornerRadius = 16;
+        _runtypeBtn.layer.cornerRadius = _runtypeBtn.height / 2;
         [_runtypeBtn setTitleColor:[UIColor colorNamed:@"255_69_185_1"] forState:UIControlStateNormal];
         _runtypeBtn.backgroundColor = [UIColor colorNamed:@"255_69_185_0.08"];
     }

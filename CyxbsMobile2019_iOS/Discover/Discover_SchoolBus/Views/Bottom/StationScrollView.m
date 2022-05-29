@@ -33,8 +33,11 @@
         self.contentSize = CGSizeMake(count * 46, 163);
         for (NSUInteger i = 0; i < count; i++) {
             StationView *view = [[StationView alloc]initWithFrame:CGRectMake(i * 46, 0, 46, 163)];
-            [view.stationBtn setTitle:data.stations[i][@"name"] forState:UIControlStateNormal];
+            view.stationBtn.text = data.stations[i][@"name"];
             view.stationBtn.tag = i;
+            
+            view.stationBtn.height = [view.stationBtn.text heightForFont:view.stationBtn.font width:view.stationBtn.width];
+            
             if (i == 0) {
                 view.frontImageView.alpha = 1;
                 view.frontImageView.image = [UIImage imageNamed:@"originstation"];

@@ -59,7 +59,7 @@
         mapView.userTrackingMode = MAUserTrackingModeFollow;
         mapView.zoomLevel = 17.4;
         //中心点位置
-//        mapView.centerCoordinate = CLLocationCoordinate2DMake(29.529332, 106.607517);
+        mapView.centerCoordinate = CLLocationCoordinate2DMake(29.529332, 106.607517);
         mapView.scaleOrigin = CGPointMake(50, STATUSBARHEIGHT + 10);
         mapView.showsCompass = NO;
         mapView.delegate = self;
@@ -111,7 +111,7 @@
 
     
     if (!_timer) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:[YYWeakProxy proxyWithTarget:self] selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
 //        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     }
 
@@ -133,11 +133,6 @@
         } error:^{
 
         }];
-}
-    
-- (void)dealloc{
-    [_timer invalidate];
-    _timer = nil;
 }
 
 
@@ -167,7 +162,7 @@
                 annotationView.image = [UIImage imageNamed:@"circle.pink"];
             }
             else if ([annotation.subtitle isEqual:@"2号线"]){
-                annotationView.image = [UIImage imageNamed:@"orange.circle"];
+                annotationView.image = [UIImage imageNamed:@"circle.orange"];
             }
             else if ([annotation.subtitle isEqual:@"3号线"]){
                 annotationView.image = [UIImage imageNamed:@"circle.blue"];
@@ -227,8 +222,6 @@
     }
     
 }
-
-
 
 //设置myposion图片
 - (void)setLocationRepresentation{

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIImageView *frontImageView;
 @property (nonatomic, strong) UIImageView *backImageView;
-@property (nonatomic, strong) UIButton *stationBtn;
+@property (nonatomic, strong) UILabel *stationBtn;
 
 @end
 
