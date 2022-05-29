@@ -82,6 +82,8 @@
          // cell间的间距
          layout.minimumLineSpacing  = 0;
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 80, kScreenWidth, 163) collectionViewLayout:layout];
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]];
         [_collectionView registerClass: [StationsCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
 
     }
@@ -117,6 +119,7 @@
         _sendtypeBtn.backgroundColor = [UIColor colorNamed:@"7_191_225_0.09"];
         _sendtypeBtn.right = _runtypeBtn.left - 8;
         _sendtypeBtn.top = _runtimeLabel.bottom + 8;
+        _sendtypeBtn.layer.cornerRadius = _sendtypeBtn.height / 2;
         _sendtypeBtn.userInteractionEnabled = NO;
     }
     return _sendtypeBtn;
@@ -127,6 +130,7 @@
         _runtypeBtn.titleLabel.font = [UIFont fontWithName:PingFangSCLight size: 11];
         _runtypeBtn.right = self.right - 16;
         _runtypeBtn.top = _runtimeLabel.bottom + 8;
+        _runtypeBtn.layer.cornerRadius = _runtypeBtn.height / 2;
         _runtypeBtn.userInteractionEnabled = NO;
         [_runtypeBtn setTitleColor:[UIColor colorNamed:@"255_69_185_1"] forState:UIControlStateNormal];
         _runtypeBtn.backgroundColor = [UIColor colorNamed:@"255_69_185_0.08"];

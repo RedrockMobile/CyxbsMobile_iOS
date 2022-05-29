@@ -30,15 +30,15 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&0_0_0_1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]];
     [self.view addSubview:self.busGuideScrollView];
     [self addstationGuideViews];
     self.VCTitleStr = @"校车指南";
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.splitLineHidden = YES;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
-    self.titleColor = [UIColor colorNamed:@"21_49_91"];
-    self.topBarView.backgroundColor = [UIColor colorNamed:@"white&black"];
+    self.titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#112C54" alpha:1]];
+    self.topBarView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]];
 }
 
 #pragma mark - Getter
@@ -55,9 +55,13 @@
 }
 - (void)addstationGuideViews {
     for (NSUInteger i = 0; i < self.stationsArray.count; i++) {
-        StationGuideView *view = [[StationGuideView alloc]initWithFrame:CGRectMake(0, 264 * i, kScreenWidth, 256) AndStationsData:self.stationsArray[i]];
-        view.backgroundColor = [UIColor colorNamed:@"Whiter&Black"];
+        StationGuideView *view = [[StationGuideView alloc]initWithFrame:CGRectMake(0, 272 * i, kScreenWidth, 256) AndStationsData:self.stationsArray[i]];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]];
+        UIView *intervalView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 8)];
+        intervalView.top = view.bottom;
+        intervalView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.9] darkColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.9]];
         [self.busGuideScrollView addSubview:view];
+        [self.busGuideScrollView addSubview:intervalView];
     }
 }
 @end
