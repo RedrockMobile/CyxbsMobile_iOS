@@ -55,7 +55,7 @@
 - (void)addDragHintView{
     UIView *dragHintView = [[UIView alloc]init];
     [self addSubview:dragHintView];
-        dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
+        dragHintView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     dragHintView.layer.cornerRadius = 2.5;
     [dragHintView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@36);
