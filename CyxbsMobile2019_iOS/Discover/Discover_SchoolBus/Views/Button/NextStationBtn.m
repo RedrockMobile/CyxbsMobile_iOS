@@ -8,13 +8,6 @@
 
 #import "NextStationBtn.h"
 
-@interface NextStationBtn()
-
-/// 双箭头切换标
-@property (nonatomic, strong) UIImageView *imgView;
-
-@end
-
 @implementation NextStationBtn
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -36,7 +29,6 @@
 - (UIImageView *)imgView {
     if (!_imgView) {
         _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(54, 10, 14.05, 10.26)];
-        _imgView.image = [UIImage imageNamed:@"WhiteChangeArrow"];
     }
     return _imgView;
 }

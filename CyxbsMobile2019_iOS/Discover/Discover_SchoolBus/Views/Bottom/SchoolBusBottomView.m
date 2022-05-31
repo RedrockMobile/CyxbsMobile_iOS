@@ -32,7 +32,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         
-        self.backgroundColor = [UIColor colorNamed:@"SchoolBusBottomColor"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         self.layer.cornerRadius = 16;
         [self addBusbtn];
         [self addLineLabelAry];

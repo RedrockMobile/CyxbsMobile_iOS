@@ -105,7 +105,24 @@
 - (void)showSelectedLinesWithselectedlinesArray:(NSArray *)array {
     [self.schoolBusBottomView busButtonControllerWithBtnTag:[array[0] intValue]];
     _selectedIndex = 1;
-    self.stationScrollView.stationsViewArray[[_selectedstationArray[0] intValue]].frontImageView.alpha = 1;
+    int index = [_selectedstationArray[0] intValue];
+    self.stationScrollView.stationsViewArray[index].frontImageView.alpha = 1;
+    switch ([array[0] intValue]) {
+        case 1:
+            self.stationScrollView.stationsViewArray[index].stationBtn.textColor = [UIColor colorWithHexString:@"FF45B9" alpha:1];
+            break;
+        case 2:
+            self.stationScrollView.stationsViewArray[index].stationBtn.textColor = [UIColor colorWithHexString:@"#FF8015" alpha:1];
+            break;
+        case 3:
+            self.stationScrollView.stationsViewArray[index].stationBtn.textColor = [UIColor colorWithHexString:@"#06A3FC" alpha:1];
+            break;
+        case 4:
+            self.stationScrollView.stationsViewArray[index].stationBtn.textColor = [UIColor colorWithHexString:@"#18D19A" alpha:1];
+            break;
+        default:
+            break;
+    }
     self.stationGuideBar.titleLabel.text = _selectedStationName;
     self.stationGuideBar.runtimeLabel.alpha = 0;
     self.stationGuideBar.runtypeBtn.alpha = 0;
@@ -114,12 +131,16 @@
     [self.stationGuideBar.lineBtn setTitle:@"" forState:UIControlStateNormal];
     self.stationGuideBar.lineBtn.alpha = 1;
     if (_selectedlinesArray.count > 1 ) {
-        self.stationGuideBar.lineBtn.backgroundColor = [UIColor colorNamed:@"41_33_209"];
-        self.stationGuideBar.lineBtn.lineLabel.textColor = UIColor.whiteColor;
+        self.stationGuideBar.lineBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2921D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2921D1" alpha:1]];
+        self.stationGuideBar.lineBtn.lineLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
+        self.stationGuideBar.lineBtn.imgView.image = [UIImage imageNamed:@"WhiteChangeArrow"];
+        self.stationGuideBar.lineBtn.userInteractionEnabled = YES;
         [self.stationGuideBar.lineBtn addTarget:self action:@selector(nextLine) forControlEvents:UIControlEventTouchUpInside];
     } else {
-        self.stationGuideBar.lineBtn.backgroundColor = [UIColor colorNamed:@"232_240_252"];
-        self.stationGuideBar.lineBtn.lineLabel.textColor = UIColor.blackColor;
+        self.stationGuideBar.lineBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#C3D4EE" alpha:0.1]];
+        self.stationGuideBar.lineBtn.lineLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
+        self.stationGuideBar.lineBtn.imgView.image = [UIImage imageNamed:@"BlackChangeArrow"];
+        self.stationGuideBar.lineBtn.userInteractionEnabled = NO;
     }
     
 }
@@ -306,7 +327,24 @@
     self.stationGuideBar.lineBtn.lineLabel.text = [NSString stringWithFormat:@"%@号线", _selectedlinesArray[_selectedIndex]];
     self.stationGuideBar.lineBtn.lineLabel.textColor = UIColor.whiteColor;
     [self.stationGuideBar.lineBtn setTitle:@"" forState:UIControlStateNormal];
-    self.stationScrollView.stationsViewArray[[_selectedstationArray[_selectedIndex] intValue]].frontImageView.alpha = 1;
+    int index = [_selectedstationArray[_selectedIndex] intValue];
+    self.stationScrollView.stationsViewArray[index].frontImageView.alpha = 1;
+    switch ([_selectedlinesArray[_selectedIndex] intValue]) {
+        case 1:
+            self.stationScrollView.stationsViewArray[index].stationBtn.textColor = [UIColor colorWithHexString:@"FF45B9" alpha:1];
+            break;
+        case 2:
+            self.stationScrollView.stationsViewArray[index].stationBtn.textColor = [UIColor colorWithHexString:@"#FF8015" alpha:1];
+            break;
+        case 3:
+            self.stationScrollView.stationsViewArray[index].stationBtn.textColor = [UIColor colorWithHexString:@"#06A3FC" alpha:1];
+            break;
+        case 4:
+            self.stationScrollView.stationsViewArray[index].stationBtn.textColor = [UIColor colorWithHexString:@"#18D19A" alpha:1];
+            break;
+        default:
+            break;
+    }
         _selectedIndex += 1;
 }
 

@@ -12,8 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NextStationBtn : UIButton
 
+/// 线路Label
 @property (nonatomic, strong) UILabel *lineLabel;
-
+/// 双箭头切换标
+@property (nonatomic, strong) UIImageView *imgView;
 @end
 
 NS_ASSUME_NONNULL_END
