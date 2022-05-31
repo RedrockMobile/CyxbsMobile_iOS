@@ -9,10 +9,8 @@
 #import "StationGuideView.h"
 #import "StationsCollectionViewCell.h"
 
-@interface StationGuideView ()<UICollectionViewDelegate, UICollectionViewDataSource>
-
+@interface StationGuideView ()
 @property (nonatomic, copy) NSArray *stationArray;
-@property(nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic, strong) StationScrollView *stationScrollView;
 @property (nonatomic, strong) UIImageView *busimgView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -50,6 +48,8 @@
 - (StationScrollView *)stationScrollView {
     if (!_stationScrollView) {
         _stationScrollView = [[StationScrollView alloc] initWithFrame:CGRectMake(0, 65, kScreenWidth, 163)];
+        _stationScrollView.showsVerticalScrollIndicator = NO;
+        _stationScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _stationScrollView;
 }
