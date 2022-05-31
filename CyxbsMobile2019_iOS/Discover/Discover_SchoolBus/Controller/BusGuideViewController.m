@@ -30,15 +30,15 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     [self.view addSubview:self.busGuideScrollView];
     [self addstationGuideViews];
     self.VCTitleStr = @"校车指南";
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.splitLineHidden = YES;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
-    self.titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#112C54" alpha:1]];
-    self.topBarView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]];
+    self.titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
+    self.topBarView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
 }
 
 #pragma mark - Getter
@@ -56,10 +56,10 @@
 - (void)addstationGuideViews {
     for (NSUInteger i = 0; i < self.stationsArray.count; i++) {
         StationGuideView *view = [[StationGuideView alloc]initWithFrame:CGRectMake(0, 272 * i, kScreenWidth, 256) AndStationsData:self.stationsArray[i]];
-        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         UIView *intervalView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 8)];
         intervalView.top = view.bottom;
-        intervalView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.9] darkColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.9]];
+        intervalView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.9] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [self.busGuideScrollView addSubview:view];
         [self.busGuideScrollView addSubview:intervalView];
     }

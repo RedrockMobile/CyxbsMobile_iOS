@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol SchoolBusMapViewDelegate <NSObject>
 
 - (void)backBtnClicked;
-- (void)schoolBusMapView:(SchoolBusMapView *)view didSelectedLinesWithTitleName:(NSString *)titleName;
+- (void)schoolBusMapView:(SchoolBusMapView *)view didSelectedLinesWithTitleName:(NSString *)titleName andSubtitleName:(NSString *)subtitleName;
 
 @end
 

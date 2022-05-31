@@ -36,7 +36,7 @@
 - (UIImageView *)imgView {
     if (!_imgView) {
         _imgView = [[UIImageView alloc]initWithFrame:CGRectMake(54, 10, 14.05, 10.26)];
-        _imgView.image = [UIImage imageNamed:@"ChangeArrow"];
+        _imgView.image = [UIImage imageNamed:@"WhiteChangeArrow"];
     }
     return _imgView;
 }

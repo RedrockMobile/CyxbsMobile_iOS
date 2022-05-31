@@ -29,6 +29,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(16, 19, 200, 31)];
         _titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 22];
+        _titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
     }
     return _titleLabel;
 }
@@ -38,6 +39,7 @@
         _runtimeLabel.right = self.right - 16;
         _runtimeLabel.font = [UIFont fontWithName:PingFangSCLight size: 12];
         _runtimeLabel.textAlignment = NSTextAlignmentRight;
+        _runtimeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
     }
     return _runtimeLabel;
 }
@@ -45,8 +47,8 @@
     if (!_sendtypeBtn) {
         _sendtypeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 62, 17)];
         _sendtypeBtn.titleLabel.font = [UIFont fontWithName:PingFangSCLight size: 11];
-        [_sendtypeBtn setTitleColor: [UIColor colorNamed:@"7_191_225_1"] forState:UIControlStateNormal];
-        _sendtypeBtn.backgroundColor = [UIColor colorNamed:@"7_191_225_0.09"];
+        [_sendtypeBtn setTitleColor: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#07BFE1" alpha:1] darkColor:[UIColor colorWithHexString:@"#07BFE1" alpha:1]] forState:UIControlStateNormal];
+        _sendtypeBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#07BFE1" alpha:0.09] darkColor:[UIColor colorWithHexString:@"#07BFE1" alpha:0.09]];
         _sendtypeBtn.layer.cornerRadius = _sendtypeBtn.height / 2;
         _sendtypeBtn.right = _runtypeBtn.left - 8;
         _sendtypeBtn.top = _runtimeLabel.bottom + 8;
@@ -62,8 +64,8 @@
         _runtypeBtn.top = _runtimeLabel.bottom + 8;
         _runtypeBtn.userInteractionEnabled = NO;
         _runtypeBtn.layer.cornerRadius = _runtypeBtn.height / 2;
-        [_runtypeBtn setTitleColor:[UIColor colorNamed:@"255_69_185_1"] forState:UIControlStateNormal];
-        _runtypeBtn.backgroundColor = [UIColor colorNamed:@"255_69_185_0.08"];
+        [_runtypeBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF45B9" alpha:1] darkColor:[UIColor colorWithHexString:@"#FF45B9" alpha:1]] forState:UIControlStateNormal];
+        _runtypeBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF45B9" alpha:0.08] darkColor:[UIColor colorWithHexString:@"#FF45B9" alpha:0.08]];
     }
     return _runtypeBtn;
 }

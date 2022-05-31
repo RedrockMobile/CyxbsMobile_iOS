@@ -66,23 +66,39 @@
 }
 
 #pragma mark - SchoolBusMapViewDelegate
-- (void)schoolBusMapView:(SchoolBusMapView *)view didSelectedLinesWithTitleName:(NSString *)titleName {
-    _selectedStationName = titleName;
-    NSMutableArray *MuLineArray = NSMutableArray.array;
-    NSMutableArray *MuStationArray = NSMutableArray.array;
-    for (int i = 0; i < self.stationArray.count; i++) {
-        StationData *data = self.stationArray[i];
-        for (int j = 0; j < data.stations.count; j++) {
-            if (data.stations[j][@"name"] == titleName) {
-                NSLog(@"%d", data.line_id);
-                [MuLineArray addObject: @(data.line_id+1)];
-                [MuStationArray addObject: @(j)];
+- (void)schoolBusMapView:(SchoolBusMapView *)view didSelectedLinesWithTitleName:(NSString *)titleName andSubtitleName:(NSString *)subtitleName {
+    if ([titleName containsString:@"BusID"]) { //点击的是车辆
+        if ([subtitleName containsString:@"1"]) {
+            [self.schoolBusBottomView busButtonControllerWithBtnTag: 1];
+        }
+        else if ([subtitleName containsString:@"2"]) {
+            [self.schoolBusBottomView busButtonControllerWithBtnTag: 2];
+        }
+        else if ([subtitleName containsString:@"3"]) {
+            [self.schoolBusBottomView busButtonControllerWithBtnTag: 3];
+        }
+        else if ([subtitleName containsString:@"4"]) {
+            [self.schoolBusBottomView busButtonControllerWithBtnTag: 4];
+        }
+    }else { // 点击的是站点
+        _selectedStationName = titleName;
+        NSMutableArray *MuLineArray = NSMutableArray.array;
+        NSMutableArray *MuStationArray = NSMutableArray.array;
+        for (int i = 0; i < self.stationArray.count; i++) {
+            StationData *data = self.stationArray[i];
+            for (int j = 0; j < data.stations.count; j++) {
+                if (data.stations[j][@"name"] == titleName) {
+                    NSLog(@"%d", data.line_id);
+                    [MuLineArray addObject: @(data.line_id+1)];
+                    [MuStationArray addObject: @(j)];
+                }
             }
         }
+        _selectedlinesArray = MuLineArray;
+        _selectedstationArray = MuStationArray;
+        [self showSelectedLinesWithselectedlinesArray:MuLineArray];
     }
-    _selectedlinesArray = MuLineArray;
-    _selectedstationArray = MuStationArray;
-    [self showSelectedLinesWithselectedlinesArray:MuLineArray];
+
     
 }
 

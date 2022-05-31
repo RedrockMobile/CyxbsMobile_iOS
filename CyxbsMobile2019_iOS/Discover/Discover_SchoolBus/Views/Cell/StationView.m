@@ -33,6 +33,7 @@
     }
     return _backImageView;
 }
+//button变为label
 - (UILabel *)stationBtn {
     if (!_stationBtn) {
         _stationBtn = [[UILabel alloc]initWithFrame:CGRectMake(16, 22, 18, 145)];
@@ -40,7 +41,7 @@
         _stationBtn.numberOfLines = 0;
 //        _stationBtn.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _stationBtn.font = [UIFont fontWithName:PingFangSCLight size: 12];
-        _stationBtn.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1]];
+        _stationBtn.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
     }
     return _stationBtn;
 }

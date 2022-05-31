@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface StationScrollView : UIScrollView
 
 @property (nonatomic, strong) NSArray <StationView *> *stationsViewArray;
+/// 设置数据
 @property (nonatomic, strong) StationData *stationData;
 @end
 
