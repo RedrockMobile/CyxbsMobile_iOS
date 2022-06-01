@@ -218,7 +218,7 @@
 
 - (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
     if (self.delegate) {
-        [self.delegate schoolBusMapView:self didSelectedLinesWithTitleName:view.annotation.title andSubtitleName:view.annotation.subtitle];
+        [self.delegate schoolBusMapView:self didSelectedLinesWithAnnotationView:view];
     }
     
 }

@@ -39,9 +39,12 @@
 @property (nonatomic, copy) NSArray *selectedstationArray;
 /// 被选中站点属于几条线路
 @property (nonatomic, assign) int selectedIndex;
-/// 被选中站点
-@property (nonatomic, copy) NSString *selectedStationName;
-
+/// 被选中校车 站点
+@property (nonatomic, copy) NSString *selectedName;
+/// 被选中校车 站点经纬度
+@property (nonatomic, assign) CLLocationCoordinate2D selectedCoordinate;
+/// 被选中是校车
+@property (nonatomic, assign) BOOL isBus;
 @end
 
 @implementation SchoolBusVC
@@ -66,8 +69,13 @@
 }
 
 #pragma mark - SchoolBusMapViewDelegate
-- (void)schoolBusMapView:(SchoolBusMapView *)view didSelectedLinesWithTitleName:(NSString *)titleName andSubtitleName:(NSString *)subtitleName {
+- (void)schoolBusMapView:(SchoolBusMapView *)view didSelectedLinesWithAnnotationView:(MAAnnotationView *)annotationView {
+    NSString *titleName = annotationView.annotation.title;
+    NSString *subtitleName = annotationView.annotation.subtitle;
     if ([titleName containsString:@"BusID"]) { //点击的是车辆
+        _isBus = YES;
+        _selectedName = subtitleName;
+        _selectedCoordinate = annotationView.annotation.coordinate;
         if ([subtitleName containsString:@"1"]) {
             [self.schoolBusBottomView busButtonControllerWithBtnTag: 1];
         }
@@ -81,7 +89,7 @@
             [self.schoolBusBottomView busButtonControllerWithBtnTag: 4];
         }
     }else { // 点击的是站点
-        _selectedStationName = titleName;
+        _selectedName = titleName;
         NSMutableArray *MuLineArray = NSMutableArray.array;
         NSMutableArray *MuStationArray = NSMutableArray.array;
         for (int i = 0; i < self.stationArray.count; i++) {
@@ -98,8 +106,6 @@
         _selectedstationArray = MuStationArray;
         [self showSelectedLinesWithselectedlinesArray:MuLineArray];
     }
-
-    
 }
 
 - (void)showSelectedLinesWithselectedlinesArray:(NSArray *)array {
@@ -123,7 +129,7 @@
         default:
             break;
     }
-    self.stationGuideBar.titleLabel.text = _selectedStationName;
+    self.stationGuideBar.titleLabel.text = _selectedName;
     self.stationGuideBar.runtimeLabel.alpha = 0;
     self.stationGuideBar.runtypeBtn.alpha = 0;
     self.stationGuideBar.sendtypeBtn.alpha = 0;
@@ -230,27 +236,36 @@
         StationData *data = _stationArray[index-1];
         //设置stationbar数据
         [self setStationGuideBarwithData:data];
+        if (_selectedName != nil && _isBus) {
+            CircleMAPointAnnotation *circlepointAnnotation = [[CircleMAPointAnnotation alloc]init];
+            circlepointAnnotation.title = _selectedName;
+            circlepointAnnotation.subtitle = data.line_name;
+            circlepointAnnotation.coordinate = CLLocationCoordinate2DMake(_selectedCoordinate.latitude, _selectedCoordinate.longitude);
+            [mutAry addObject: circlepointAnnotation];
+        }
         for (int j = 0; j < data.stations.count; j++) {
             MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc]init];
             pointAnnotation.title = data.stations[j][@"name"];
             pointAnnotation.subtitle = data.line_name;
             pointAnnotation.coordinate = CLLocationCoordinate2DMake([data.stations[j][@"lat"] doubleValue], [data.stations[j][@"lng"] doubleValue]);
             
-            if (_selectedStationName == data.stations[j][@"name"]) {
+            if (_selectedName == data.stations[j][@"name"]) {
                 CircleMAPointAnnotation *circlepointAnnotation = [[CircleMAPointAnnotation alloc]init];
                 circlepointAnnotation.title = data.stations[j][@"name"];
                 circlepointAnnotation.subtitle = data.line_name;
                 circlepointAnnotation.coordinate = CLLocationCoordinate2DMake([data.stations[j][@"lat"] doubleValue], [data.stations[j][@"lng"] doubleValue]);
                 [mutAry addObject: circlepointAnnotation];
             }
+            
             [mutAry addObject: pointAnnotation];
         }
         [self.schoolBusMapView removeOldAnnotationsAndaddNew: mutAry.copy];
-//        _selectedStationName = nil;
+//        _selectedName = nil;
     }else{
         [self.schoolBusMapView removeOldAnnotationsAndaddNew: _allStationPointArray];
-        _selectedStationName = nil;
+        _selectedName = nil;
     }
+    _isBus = NO;
 }
 /// 设置stationbar数据
 /// @param data data
@@ -320,7 +335,7 @@
     _selectedIndex = _selectedIndex  % _selectedlinesArray.count;
     [self.schoolBusBottomView busButtonControllerWithBtnTag:[_selectedlinesArray[_selectedIndex] intValue]];
     self.stationGuideBar.lineBtn.alpha = 1;
-    self.stationGuideBar.titleLabel.text = _selectedStationName;
+    self.stationGuideBar.titleLabel.text = _selectedName;
     self.stationGuideBar.runtimeLabel.alpha = 0;
     self.stationGuideBar.runtypeBtn.alpha = 0;
     self.stationGuideBar.sendtypeBtn.alpha = 0;

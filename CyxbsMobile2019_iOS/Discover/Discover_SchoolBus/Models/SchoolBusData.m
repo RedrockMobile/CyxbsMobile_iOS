@@ -71,7 +71,7 @@
                 success(mArray.copy);
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                
+            errors();
         }];
 }
 
