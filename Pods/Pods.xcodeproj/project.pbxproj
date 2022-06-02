@@ -16,6 +16,7 @@
 				94B9DDBFF51537AC594C25BC8DE52796 /* PBXTargetDependency */,
 			);
 			name = UMCShare;
+			productName = UMCShare;
 		};
 		4A68CFD979D413A619DF631BB121D98F /* Bugly */ = {
 			isa = PBXAggregateTarget;
@@ -25,6 +26,7 @@
 			dependencies = (
 			);
 			name = Bugly;
+			productName = Bugly;
 		};
 		4BD4E22D3419D68A85BDD6119CB37C6C /* AMapLocation-NO-IDFA */ = {
 			isa = PBXAggregateTarget;
@@ -35,6 +37,7 @@
 				D2B1339786B16F7A480FE3DD100406ED /* PBXTargetDependency */,
 			);
 			name = "AMapLocation-NO-IDFA";
+			productName = "AMapLocation-NO-IDFA";
 		};
 		59CEE9D6F6016BD1B1C9DB3F7774066F /* UMCErrorCatch */ = {
 			isa = PBXAggregateTarget;
@@ -45,6 +48,7 @@
 				D4DB786D617C2FA640F4220DFB8E74ED /* PBXTargetDependency */,
 			);
 			name = UMCErrorCatch;
+			productName = UMCErrorCatch;
 		};
 		6075E73CE9761233A64B697DA4780D60 /* UMCCommonLog */ = {
 			isa = PBXAggregateTarget;
@@ -54,6 +58,7 @@
 			dependencies = (
 			);
 			name = UMCCommonLog;
+			productName = UMCCommonLog;
 		};
 		6F6B630FA5213AB083E7CEF1F986FE44 /* UMCCommon */ = {
 			isa = PBXAggregateTarget;
@@ -63,6 +68,7 @@
 			dependencies = (
 			);
 			name = UMCCommon;
+			productName = UMCCommon;
 		};
 		8B5BB4D9C85FBB3B774B6C624239821A /* UMCSecurityPlugins */ = {
 			isa = PBXAggregateTarget;
@@ -72,6 +78,7 @@
 			dependencies = (
 			);
 			name = UMCSecurityPlugins;
+			productName = UMCSecurityPlugins;
 		};
 		8FBAE66FA6352AB9D5094143816D813B /* UMCPush */ = {
 			isa = PBXAggregateTarget;
@@ -82,6 +89,7 @@
 				38551B4CDCF075FB2CA9FE9D6D331F58 /* PBXTargetDependency */,
 			);
 			name = UMCPush;
+			productName = UMCPush;
 		};
 		9B182CB4E1716E9070813D3C59736001 /* AMapFoundation-NO-IDFA */ = {
 			isa = PBXAggregateTarget;
@@ -91,6 +99,7 @@
 			dependencies = (
 			);
 			name = "AMapFoundation-NO-IDFA";
+			productName = "AMapFoundation-NO-IDFA";
 		};
 		B44FB02BD2D3FEAD1F36808AD405A543 /* AMap3DMap-NO-IDFA */ = {
 			isa = PBXAggregateTarget;
@@ -101,6 +110,7 @@
 				5C0416867F9F18960A7E198908D3AFC4 /* PBXTargetDependency */,
 			);
 			name = "AMap3DMap-NO-IDFA";
+			productName = "AMap3DMap-NO-IDFA";
 		};
 		FD2E8643412994484A50DA7D3BFB1EFC /* UMCAnalytics */ = {
 			isa = PBXAggregateTarget;
@@ -111,6 +121,7 @@
 				7F6BDC728CAB511BC9B7E06479D7CC20 /* PBXTargetDependency */,
 			);
 			name = UMCAnalytics;
+			productName = UMCAnalytics;
 		};
 /* End PBXAggregateTarget section */
 
@@ -2621,7 +2632,7 @@
 		9D56F05C3456144A1FAC3CB197DCA6C1 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Sources/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		9D651A2E42582A2AB79EC4B68BE66978 /* YYWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYWebImageManager.m; path = YYKit/Image/YYWebImageManager.m; sourceTree = "<group>"; };
 		9D6C14FBB92ACA98E75B07CAA8CF8D57 /* AMap3DMap-NO-IDFA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "AMap3DMap-NO-IDFA.release.xcconfig"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E261DD63CF368E9530FE71C5A029C50 /* SDImageCachesManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCachesManager.h; path = SDWebImage/Core/SDImageCachesManager.h; sourceTree = "<group>"; };
 		9E2C3D7D657FA6D5959840958EBC1941 /* YBIBIconManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YBIBIconManager.h; path = YBImageBrowser/Helper/YBIBIconManager.h; sourceTree = "<group>"; };
 		9E5A9C426348BB41DB2A511DA9B8F05D /* AFNetworking-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AFNetworking-Info.plist"; sourceTree = "<group>"; };
@@ -2711,7 +2722,7 @@
 		AAD43E39D901ABE8E4FC0F876C102F4F /* RecursiveScheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RecursiveScheduler.swift; path = RxSwift/Schedulers/RecursiveScheduler.swift; sourceTree = "<group>"; };
 		AB0FA3DDC817E3187A9451D1AB6A8517 /* UIProgressView+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIProgressView+AFNetworking.h"; path = "UIKit+AFNetworking/UIProgressView+AFNetworking.h"; sourceTree = "<group>"; };
 		AB6334BEDAD83431BAF2A1873F31C84F /* CachedResponseHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CachedResponseHandler.swift; path = Source/CachedResponseHandler.swift; sourceTree = "<group>"; };
-		AB951415E872D7D1BD9E1B2E1FCCA810 /* Pods-CyxbsMobile2019_iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CyxbsMobile2019_iOS"; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB951415E872D7D1BD9E1B2E1FCCA810 /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABCB42DEC67B7BD46D5D5F7F9216316A /* YYDispatchQueuePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYDispatchQueuePool.m; path = YYKit/Utility/YYDispatchQueuePool.m; sourceTree = "<group>"; };
 		ABF445702C8F354E4CC0A04ECEE66C3A /* MJRefresh.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = MJRefresh.bundle; path = MJRefresh/MJRefresh.bundle; sourceTree = "<group>"; };
 		AC0FD7248B12967B458DB956C296B0D5 /* UMSocialWechatHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = UMSocialWechatHandler.h; path = UMShare/SocialLibraries/WeChat/UMSocialWechatHandler.h; sourceTree = "<group>"; };
@@ -3607,7 +3618,6 @@
 				215B33A33B75161D2899028BC09A22D6 /* SwiftyJSON.swift */,
 				8AB092065F0477D22E1D7D3897A770EF /* Support Files */,
 			);
-			name = SwiftyJSON;
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
@@ -3625,7 +3635,6 @@
 				5A4CC11BA3C384384C9771F1D2865B15 /* Frameworks */,
 				CEBA7722AC278545ECEBF09CE2B38ECA /* Support Files */,
 			);
-			name = "AMapLocation-NO-IDFA";
 			path = "AMapLocation-NO-IDFA";
 			sourceTree = "<group>";
 		};
@@ -3659,7 +3668,6 @@
 				667891286C2F7CC69518A70E830ADE76 /* ViewController+MASAdditions.m */,
 				8E444797BFE0B8EE3069C2EFBFCCF321 /* Support Files */,
 			);
-			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -3699,7 +3707,6 @@
 				3C0B251C4511A6BD5166CE504E8B15BE /* Resources */,
 				D04A1C9FFE397459794982BED8098D99 /* Support Files */,
 			);
-			name = TZImagePickerController;
 			path = TZImagePickerController;
 			sourceTree = "<group>";
 		};
@@ -3712,7 +3719,6 @@
 				DAD4D07E4434ECE58B5E496C6A83A5C2 /* Utils.swift */,
 				E54AA675AA07BE14F75906AAE9B68FDA /* Support Files */,
 			);
-			name = RxRelay;
 			path = RxRelay;
 			sourceTree = "<group>";
 		};
@@ -3737,7 +3743,6 @@
 				FA7E1F2B96C8F1C185752192560D277F /* Core */,
 				FD2E7D79C02FD9E874B9A4C6D4245F86 /* Support Files */,
 			);
-			name = YYImage;
 			path = YYImage;
 			sourceTree = "<group>";
 		};
@@ -3747,7 +3752,6 @@
 				FC9008DCB1C72731FB15DCCA594F8631 /* standard */,
 				98A459A1AAF0318AC46EAA88CCD5FF43 /* Support Files */,
 			);
-			name = FMDB;
 			path = FMDB;
 			sourceTree = "<group>";
 		};
@@ -3851,7 +3855,6 @@
 				030E94890B58EDFB617167099EB90342 /* NSString+MJExtension.m */,
 				A86C81E5BD1B6B4B47071E9589D9BB6F /* Support Files */,
 			);
-			name = MJExtension;
 			path = MJExtension;
 			sourceTree = "<group>";
 		};
@@ -3882,7 +3885,6 @@
 				6FF8466359795C2164670811977B9F50 /* MGJRouter.m */,
 				CA2039343FBCB0F7EF2375856439905D /* Support Files */,
 			);
-			name = MGJRouter;
 			path = MGJRouter;
 			sourceTree = "<group>";
 		};
@@ -3919,7 +3921,6 @@
 				16490FCD44E34BCBDEB783C46BA3CCF0 /* IQUIViewController+Additions.m */,
 				79853DFCF21B187C9A80B47370623DE8 /* Support Files */,
 			);
-			name = IQKeyboardManager;
 			path = IQKeyboardManager;
 			sourceTree = "<group>";
 		};
@@ -4018,7 +4019,6 @@
 				D42EEC45C69C7AABC5C832A41A1B2B4E /* Resources */,
 				62861D9F33ADEB785A95DB5825483BF6 /* Support Files */,
 			);
-			name = MJRefresh;
 			path = MJRefresh;
 			sourceTree = "<group>";
 		};
@@ -4197,7 +4197,6 @@
 				33FB5F1A511065743AABFD38A013F030 /* Zip+Collection.swift */,
 				735D87FD13069F26E5C0092A4C4327FF /* Support Files */,
 			);
-			name = RxSwift;
 			path = RxSwift;
 			sourceTree = "<group>";
 		};
@@ -4209,7 +4208,6 @@
 				D25DA269A3D446786DDCF537793A7C66 /* Support Files */,
 				9C18837629D1748298C64ADAB1269E2A /* UI */,
 			);
-			name = UMCShare;
 			path = UMCShare;
 			sourceTree = "<group>";
 		};
@@ -4257,7 +4255,6 @@
 				A37019A26D6913941074038DC7FA92D6 /* Support Files */,
 				FE6C30E9A75467C284F2B8963C4E52AF /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
@@ -4358,7 +4355,6 @@
 				5B1B1C5244ABFC65FFC6BF2AA02873E4 /* Resources */,
 				34E1DC9C480808C04AEA93F627446339 /* Support Files */,
 			);
-			name = UMCCommonLog;
 			path = UMCCommonLog;
 			sourceTree = "<group>";
 		};
@@ -4461,7 +4457,6 @@
 				5D44894F8BAA2F678B1A1E026E5328AB /* Resources */,
 				37531E85EEC047EDC27DBCEAE3FF5787 /* Support Files */,
 			);
-			name = "AMap3DMap-NO-IDFA";
 			path = "AMap3DMap-NO-IDFA";
 			sourceTree = "<group>";
 		};
@@ -4519,7 +4514,6 @@
 				8427862267117F85E183AC6FAD2C30F7 /* Frameworks */,
 				9C0202D8C3F3B0D85042FBE42285002C /* Support Files */,
 			);
-			name = UMCCommon;
 			path = UMCCommon;
 			sourceTree = "<group>";
 		};
@@ -4572,7 +4566,6 @@
 				C94184A11269FCE9B1B95601029C9DFE /* Validation.swift */,
 				7CA4CFBD333036832B3B20844AE38DE8 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -4688,7 +4681,6 @@
 				D977201DC08180B982E2084E05C5A15A /* UIView+SDExtension.m */,
 				FA094FA5813D271FD8B5284C7D690E82 /* Support Files */,
 			);
-			name = SDCycleScrollView;
 			path = SDCycleScrollView;
 			sourceTree = "<group>";
 		};
@@ -4713,7 +4705,6 @@
 				4EA935D145392DDC1D46184B9B266981 /* Frameworks */,
 				5AB0B757E4F17FA4A5AB72188EA89DE6 /* Support Files */,
 			);
-			name = UMCAnalytics;
 			path = UMCAnalytics;
 			sourceTree = "<group>";
 		};
@@ -4884,7 +4875,6 @@
 				6BAAD37AA0788BED846A6396ABB4F835 /* no-arc */,
 				2859E6E41AF2AE33C9C2DEB2CDEFD726 /* Support Files */,
 			);
-			name = YYKit;
 			path = YYKit;
 			sourceTree = "<group>";
 		};
@@ -4943,7 +4933,6 @@
 				2213CF231075BCCB6465E0CE3A181402 /* Frameworks */,
 				E5175B5A7D66B483CCAA39C4AB9929C0 /* Support Files */,
 			);
-			name = UMCSecurityPlugins;
 			path = UMCSecurityPlugins;
 			sourceTree = "<group>";
 		};
@@ -4991,7 +4980,6 @@
 				C7D6477143AD64ABBFAFB59FDBEF1C3B /* Frameworks */,
 				880DC7157907B19BE6D000E4D177E82A /* Support Files */,
 			);
-			name = Bugly;
 			path = Bugly;
 			sourceTree = "<group>";
 		};
@@ -5048,7 +5036,6 @@
 				3D2A254987C6F798CF1167761D40C26A /* Frameworks */,
 				4A81398114024F0205C40B9400D2E7B0 /* Support Files */,
 			);
-			name = UMCPush;
 			path = UMCPush;
 			sourceTree = "<group>";
 		};
@@ -5059,7 +5046,6 @@
 				6964FC832BA1ABF764DF458F9FBD39CC /* MBProgressHUD.m */,
 				B9DF98DAC704934929E3BF18F57E663F /* Support Files */,
 			);
-			name = MBProgressHUD;
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -5109,7 +5095,6 @@
 				41CF3B24FA1D339C15734C33BAA6D920 /* Frameworks */,
 				3AE8609C270F04CA328E6D1783D526E6 /* Support Files */,
 			);
-			name = UMCErrorCatch;
 			path = UMCErrorCatch;
 			sourceTree = "<group>";
 		};
@@ -5128,7 +5113,7 @@
 				2B276B0A79173A1D6E83C9B4FB9A4A57 /* MJExtension */,
 				E49D6D248DD1CEE584E6776B9164A1B2 /* MJRefresh */,
 				DD1FCAF8A30C8C9B3811B1926E1246CA /* NudeIn */,
-				AB951415E872D7D1BD9E1B2E1FCCA810 /* Pods-CyxbsMobile2019_iOS */,
+				AB951415E872D7D1BD9E1B2E1FCCA810 /* Pods_CyxbsMobile2019_iOS.framework */,
 				BC432FD48A5932251F1CAFBC4BF74894 /* RxCocoa */,
 				FF8B264DFE802855D5D67E7CDDABFC3C /* RxRelay */,
 				809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift */,
@@ -5375,7 +5360,6 @@
 				BE47C2A5E93C34D16267DB810F152C4B /* UIVisualEffectView+LookinServer.m */,
 				8D68A72840F1BF9BB7F80EF76EB3A615 /* Support Files */,
 			);
-			name = LookinServer;
 			path = LookinServer;
 			sourceTree = "<group>";
 		};
@@ -5429,7 +5413,6 @@
 				2C150C0A9A36D648A71B35ECF4DE6682 /* UILayoutSupport+Extensions.swift */,
 				9571505A2BDF8400A4F590884B56F09F /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
@@ -5561,7 +5544,6 @@
 				C4418596AA0669959DB6128E1D52C848 /* WKWebView+Rx.swift */,
 				7E7FECC3393AD1A3F3D724B236D11648 /* Support Files */,
 			);
-			name = RxCocoa;
 			path = RxCocoa;
 			sourceTree = "<group>";
 		};
@@ -5661,7 +5643,6 @@
 				2F65BB5EA2BF359AE8660A0438C1AA40 /* Core */,
 				53D8930A1D88FA9427391D9CDAE8CFD0 /* Support Files */,
 			);
-			name = YBImageBrowser;
 			path = YBImageBrowser;
 			sourceTree = "<group>";
 		};
@@ -5708,7 +5689,6 @@
 				D59249D9035CCA317678FD09C1C862B1 /* UIViewController+DarkModeKit.m */,
 				B6947A30B857BC8AB944E17F1EE99A56 /* Support Files */,
 			);
-			name = FluentDarkModeKit;
 			path = FluentDarkModeKit;
 			sourceTree = "<group>";
 		};
@@ -5740,7 +5720,6 @@
 				21C5BD4358E67A147605E2123988ADDF /* UIImage+NUDPainter.m */,
 				8C1434217BC2B01D7927794A9F5777F9 /* Support Files */,
 			);
-			name = NudeIn;
 			path = NudeIn;
 			sourceTree = "<group>";
 		};
@@ -5758,7 +5737,6 @@
 				C4EDA86AA74178498BD6D54273BB5268 /* Frameworks */,
 				DB1CEF7D0BAF03C40795DAE9CFF51FDD /* Support Files */,
 			);
-			name = "AMapFoundation-NO-IDFA";
 			path = "AMapFoundation-NO-IDFA";
 			sourceTree = "<group>";
 		};
@@ -5768,7 +5746,6 @@
 				0539A8B0CDDE95ADD01453C8B968B748 /* Core */,
 				6436E04C7285DFA019CED5901DF2FC3C /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -6648,7 +6625,7 @@
 			);
 			name = "Pods-CyxbsMobile2019_iOS";
 			productName = Pods_CyxbsMobile2019_iOS;
-			productReference = AB951415E872D7D1BD9E1B2E1FCCA810 /* Pods-CyxbsMobile2019_iOS */;
+			productReference = AB951415E872D7D1BD9E1B2E1FCCA810 /* Pods_CyxbsMobile2019_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */ = {
