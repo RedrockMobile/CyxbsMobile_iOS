@@ -7,7 +7,10 @@
 //
 
 #import "SchoolBusMapView.h"
-
+#import <Masonry/Masonry.h>
+#import "BusMAPointAnnotation.h"
+#import "StationMAPointAnnotation.h"
+#import "CircleMAPointAnnotation.h"
 
 @implementation SchoolBusMapView
 
@@ -17,7 +20,8 @@
     if (self) {
         
         [self addSubview:self.mapView];
-        [self.mapView addSubview:self.backBtn];
+        [self setLocationRepresentation];
+        [self addSubview:self.backBtn];
         [self refreshSchoolBusData];
     }
     return self;
@@ -36,6 +40,12 @@
 }
 
 
+- (void)removeOldAnnotationsAndaddNew:(NSArray *)aStationAry {
+    [_mapView removeAnnotations:self.stationPointArray];
+    self.stationPointArray = aStationAry;
+    [_mapView addAnnotations: self.stationPointArray];
+}
+
 - (MAMapView *)mapView{
     if (!_mapView) {
         
@@ -47,7 +57,8 @@
         MAMapView *mapView = [[MAMapView alloc] initWithFrame:self.bounds];
         mapView.showsUserLocation = YES;
         mapView.userTrackingMode = MAUserTrackingModeFollow;
-        mapView.zoomLevel = 15.4;
+        mapView.zoomLevel = 17.4;
+        //中心点位置
         mapView.centerCoordinate = CLLocationCoordinate2DMake(29.529332, 106.607517);
         mapView.scaleOrigin = CGPointMake(50, STATUSBARHEIGHT + 10);
         mapView.showsCompass = NO;
@@ -75,6 +86,7 @@
 
         }
         _mapView = mapView;
+        
     }
     return _mapView;
 }
@@ -99,7 +111,7 @@
 
     
     if (!_timer) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:2 target:[YYWeakProxy proxyWithTarget:self] selector:@selector(setupSchoolBusData) userInfo:nil repeats:YES];
 //        [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     }
 
@@ -114,42 +126,110 @@
             SchoolBusData *data = array[i];
             pointAnnotation.coordinate = CLLocationCoordinate2DMake(data.latitude, data.longitude);
             pointAnnotation.title = [NSString stringWithFormat:@"BusID : %d",data.busID];
-            
+            pointAnnotation.subtitle = [NSString stringWithFormat:@"Line:%d",data.type+1];
             [mArray addObject:pointAnnotation];
         }
         self.schoolBusPointArray = mArray;
-        NSLog(@"%lu",(unsigned long)array.count);
         } error:^{
 
         }];
-    
-    NSLog(@"-- STBY --");
-}
-
-- (void)dealloc{
-    [_timer invalidate];
-    _timer = nil;
 }
 
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation{
+    static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
+    MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
     
-    if ([annotation isKindOfClass:[MAPointAnnotation class]])
-        {
-            static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
-            MAPinAnnotationView*annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
-            if (annotationView == nil)
-            {
-                annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
-            }
-            annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
-            annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
-            annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
-            annotationView.pinColor = MAPinAnnotationColorPurple;
+    if (annotationView == nil)
+    {
+        annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
+    }
+    if ([annotation isKindOfClass: [MAUserLocation class]]){
+        return nil;
+    }else {
+        annotationView.canShowCallout= YES;       //设置气泡可以弹出，默认为NO
+        annotationView.animatesDrop = NO;        //设置标注动画显示，默认为NO
+        annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
+        
+        if ([annotation isKindOfClass:[StationMAPointAnnotation class]] ) {
+            
+            annotationView.image = [UIImage imageNamed:@"station.purple"];
             return annotationView;
         }
-        return nil;
-    
+        else if ([annotation isKindOfClass: [CircleMAPointAnnotation class]]) {
+            
+            if ([annotation.subtitle isEqual:@"1号线"]) {
+                annotationView.image = [UIImage imageNamed:@"circle.pink"];
+            }
+            else if ([annotation.subtitle isEqual:@"2号线"]){
+                annotationView.image = [UIImage imageNamed:@"circle.orange"];
+            }
+            else if ([annotation.subtitle isEqual:@"3号线"]){
+                annotationView.image = [UIImage imageNamed:@"circle.blue"];
+            }
+            else if ([annotation.subtitle isEqual:@"4号线"]){
+                annotationView.image = [UIImage imageNamed:@"circle.green"];
+            }
+            return annotationView;
+        }
+        else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle  isEqual: @"1号线"] ) {
+            
+            annotationView.image = [UIImage imageNamed:@"station.pink"];
+            
+            return annotationView;
+        }
+        else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle  isEqual: @"2号线"]) {
+            annotationView.image = [UIImage imageNamed:@"station.orange"];
+            return annotationView;
+        }
+        else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle  isEqual: @"3号线"]) {
+        
+            annotationView.image = [UIImage imageNamed:@"station.blue"];
+            return annotationView;
+        }
+        else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle  isEqual: @"4号线"]) {
+            
+            annotationView.image = [UIImage imageNamed:@"station.green"];
+            return annotationView;
+        }
+        else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle isEqual:@"Line:1"])
+        {
+                    
+                    annotationView.image = [UIImage imageNamed:@"schoolbus.pink"];
+                    return annotationView;
+        }else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle isEqual:@"Line:2"])
+        {
+                    
+                    annotationView.image = [UIImage imageNamed:@"schoolbus.orange"];
+                    return annotationView;
+        }else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle isEqual:@"Line:3"])
+        {
+                    
+                    annotationView.image = [UIImage imageNamed:@"schoolbus.blue"];
+                    return annotationView;
+        }else if ([annotation isKindOfClass:[MAPointAnnotation class]] && [annotation.subtitle isEqual:@"Line:4"])
+        {
+                    annotationView.image = [UIImage imageNamed:@"schoolbus.green"];
+                    return annotationView;
+        }
+    }
+    return nil;
+}
+
+- (void)mapView:(MAMapView *)mapView didSelectAnnotationView:(MAAnnotationView *)view {
+    if (self.delegate) {
+        [self.delegate schoolBusMapView:self didSelectedLinesWithAnnotationView:view];
+    }
     
 }
+
+//设置myposion图片
+- (void)setLocationRepresentation{
+    MAUserLocationRepresentation *r = [[MAUserLocationRepresentation alloc] init];
+    r.showsAccuracyRing = YES;///精度圈是否显示，默认YES
+    r.image = [UIImage imageNamed:@"MyPosition"]; ///定位图标, 与蓝色原点互斥
+    [_mapView updateUserLocationRepresentation:r];
+}
+    
+
 @end

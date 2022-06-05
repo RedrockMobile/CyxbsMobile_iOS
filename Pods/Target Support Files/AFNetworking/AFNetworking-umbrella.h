@@ -24,6 +24,7 @@
 #import "UIActivityIndicatorView+AFNetworking.h"
 #import "UIButton+AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIKit+AFNetworking.h"
 #import "UIProgressView+AFNetworking.h"
 #import "UIRefreshControl+AFNetworking.h"
 #import "WKWebView+AFNetworking.h"
