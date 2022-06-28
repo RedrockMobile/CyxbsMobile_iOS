@@ -469,6 +469,7 @@
 		AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3308625E3AD5E00324750 /* MainPageNumBtn.m */; };
 		AAE3309025E3D59100324750 /* ShareViewPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3308F25E3D59100324750 /* ShareViewPlus.m */; };
 		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
+		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
 		B82C451D25DBC09000340C12 /* SearchEndModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C451C25DBC09000340C12 /* SearchEndModel.m */; };
 		B82C454325DC302100340C12 /* SZHArchiveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C454225DC302100340C12 /* SZHArchiveTool.m */; };
@@ -1603,6 +1604,7 @@
 		AAE3308F25E3D59100324750 /* ShareViewPlus.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewPlus.m; sourceTree = "<group>"; };
 		AAE3309725E4E5CD00324750 /* DeleteArticleTipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeleteArticleTipView.h; sourceTree = "<group>"; };
 		AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteArticleTipView.m; sourceTree = "<group>"; };
+		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
 		B82C451B25DBC09000340C12 /* SearchEndModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchEndModel.h; sourceTree = "<group>"; };
@@ -4061,6 +4063,7 @@
 			isa = PBXGroup;
 			children = (
 				7FBF39E7257B79F20077494E /* FindPasswordView.swift */,
+				AAE87796286B304E0091656B /* PrivacyTipView.swift */,
 				7FBF3A11257CBCCC0077494E /* YYZpopView.h */,
 				7FBF3A12257CBCCC0077494E /* YYZpopView.m */,
 			);
@@ -6685,6 +6688,7 @@
 				18CDF6C0257F91BE006E8E5C /* IdsBinding.m in Sources */,
 				18CDF71E257F91BE006E8E5C /* LogOutView.m in Sources */,
 				147E2CEB28240C3A00DCC312 /* HttpTool.m in Sources */,
+				AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				18CDF4BE257F8DBD006E8E5C /* questionItem.m in Sources */,
 				18CDF69C257F91BD006E8E5C /* CQUPTMapViewController.m in Sources */,
