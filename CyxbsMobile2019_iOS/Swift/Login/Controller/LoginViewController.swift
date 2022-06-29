@@ -18,7 +18,7 @@ private enum LoginState {
     case OK
 }
 
-class LoginViewController: UIViewController,UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, PrivacyTipViewDelegate {
     
     @IBOutlet private weak var stuNumTextField: UITextField! //学号
     
@@ -96,7 +96,39 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             self.stuNumTextField.textColor = UIColor(red: 28/255.0, green: 48/255.0, blue: 88/255.0, alpha: 1)
             self.idNumTextField.textColor = UIColor(red: 28/255.0, green: 48/255.0, blue: 88/255.0, alpha: 1)
         }
+        showPrivacyTip()
     }
+    
+    // MARK: - PrivacyTipViewDelegate 的代理方法
+    func showPrivacyPolicy(_ view: PrivacyTipView) {
+        self.present(UserProtocolViewController(), animated: true, completion: nil)
+    }
+    // 点击 “同意” 按钮后调用
+    func allowBtnClik(_ view: PrivacyTipView) {
+        self.protocolCheckButton.isSelected = true
+    }
+    
+    // 点击 “不同意” 按钮后调用
+    func notAllowBtnClik(_ view: PrivacyTipView) {
+        self.protocolCheckButton.isSelected = false
+    }
+    
+    func showPrivacyTip() {
+        let pathStr = URL.init(string: NSHomeDirectory())!.appendingPathComponent("/Documents/privacy_policy_is_showed").absoluteString
+        
+        let val = try? String.init(contentsOfFile: pathStr, encoding: .utf8)
+        
+        if val == nil {
+            // 标记为已经显示过隐私协议
+            try? "privacy_policy_is_showed".write(toFile: pathStr, atomically: true, encoding: .utf8)
+            
+            // 弹出隐私政策更新窗口
+            let tipView = PrivacyTipView.init()
+            tipView.delegate = self
+            self.view.addSubview(tipView)
+        }
+    }
+   
     
     
     // MARK: - 按钮

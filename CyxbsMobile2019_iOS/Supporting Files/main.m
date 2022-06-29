@@ -16,8 +16,7 @@ int main(int argc, char * argv[]) {
     NSString * appDelegateClassName;
     StartTime = CFAbsoluteTimeGetCurrent();
     @autoreleasepool {
-        NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSLog(@"App home path: %@", documentPath);
+        printf("NSHomeDirectory = %s\n", NSHomeDirectory().UTF8String);
         appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
     return UIApplicationMain(argc, argv, nil, appDelegateClassName);
