@@ -1,0 +1,87 @@
+//
+//  PMPInfoModel.m
+//  CyxbsMobile2019_iOS
+//
+//  Created by Edioth Jin on 2021/10/24.
+//  Copyright © 2021 Redrock. All rights reserved.
+//
+
+#import "PMPInfoModel.h"
+
+// 获取信息
+#define GetInfo @"magipoke/person/info"
+// 关注
+#define FocusUser @"magipoke-loop/user/focus"
+// 换背景图片
+#define UploadBackground @"magipoke/person/background_url"
+
+@implementation PMPInfoModel
+
++ (void)getDataWithRedid:(NSString *)redid
+                 Success:(void (^)(PMPInfoModel * _Nonnull))success
+                 failure:(void (^)(void))failure {
+    NSDictionary * parameters = @{
+        @"redid" : redid
+    };
+    [[HttpClient defaultClient]
+     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:GetInfo]
+     method:HttpRequestGet
+     parameters:parameters
+     prepareExecute:nil
+     progress:nil
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+        PMPInfoModel * infoModel = [PMPInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
+        success(infoModel);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failure");
+        failure();
+    }];
+}
+
++ (void)uploadbackgroundImage:(UIImage *)backgroundImage
+                      success:(void (^)(NSDictionary * _Nonnull))success
+                      failure:(void (^)(NSError * _Nonnull))failure {
+    /*
+     [[HttpClient defaultClient]
+      PUT:[CyxbsMobileBaseURL_1 stringByAppendingString:UploadBackground]
+      parameters:nil
+      image:backgroundImage
+      imageField:@"pic"
+      prepareExecute:nil
+      progress:nil
+      success:^(AFHTTPRequestOperation *operation, id responseObject) {
+         success(responseObject);
+     }
+      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+         failure(error);
+     }];
+     */
+}
+
++ (void)focusWithRedid:(NSString *)redid
+               success:(nonnull void (^)(BOOL))success
+               failure:(nonnull void (^)(void))failure {
+    NSDictionary * parameters = @{
+        @"redid" : redid
+    };
+    [[HttpClient defaultClient]
+     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:FocusUser]
+     method:HttpRequestPost
+     parameters:parameters
+     prepareExecute:nil
+     progress:nil
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+        BOOL result = [responseObject[@"info"] isEqualToString:@"success"];
+        success(result);
+    }
+     failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
+- (NSString*)getUserWithTailURL:(NSString*)tailURL {
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
+}
+
+@end

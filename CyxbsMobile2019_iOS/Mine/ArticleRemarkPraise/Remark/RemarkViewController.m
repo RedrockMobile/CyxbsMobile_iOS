@@ -9,6 +9,8 @@
 #import "RemarkViewController.h"
 #import "RemarkTableViewCell.h"
 #import "RemarkModel.h"
+//是否开启CCLog
+#define CCLogEnable 0
 
 //GYY的动态详情页控制器
 //#import "GYYDynamicDetailViewController.h"
@@ -104,9 +106,9 @@
     if(model==nil) {
         model = [[RemarkParseModel alloc]initWithDict:self.remarkModel.dataArr[indexPath.row]];
         self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]] = model;
-        CLog(@"1%ld,,%@",indexPath.row,self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]]);
+        CCLog(@"1%ld,,%@",indexPath.row,self.parseModelDict[[NSString stringWithFormat:@"%ld",indexPath.row]]);
     }else {
-        CLog(@"2%ld,,%@",indexPath.row,model);
+        CCLog(@"2%ld,,%@",indexPath.row,model);
     }
     [cell setModel:model];
     return cell;

@@ -240,12 +240,12 @@
  - (void)changePraiseBtnToState:(BOOL)is {
      self.praiseBtn.selected = is;
      if (is) {
-         [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"点赞"] forState:UIControlStateNormal];
+         [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"MinePraiseBtnImg"] forState:UIControlStateNormal];
          [self.praiseBtn mas_updateConstraints:^(MASConstraintMaker *make) {
              make.height.mas_equalTo(0.0675*SCREEN_WIDTH);
          }];
      }else {
-         [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"未点赞"] forState:UIControlStateNormal];
+         [self.praiseBtn setBackgroundImage:[UIImage imageNamed:@"MineUnpraiseBtnImg"] forState:UIControlStateNormal];
          [self.praiseBtn mas_updateConstraints:^(MASConstraintMaker *make) {
              make.height.mas_equalTo(0.05426*SCREEN_WIDTH);
          }];

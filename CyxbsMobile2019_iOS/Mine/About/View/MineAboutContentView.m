@@ -112,7 +112,7 @@
         self.corporationLabel = corporationLabel;
         
         UILabel *copyrightLabel = [[UILabel alloc] init];
-        copyrightLabel.text = @"Copyright © 2015-2022 All Rights Reserverd";
+        copyrightLabel.text = @"Copyright © 2015-2020 All Rights Reserverd";
         copyrightLabel.textAlignment = NSTextAlignmentCenter;
         copyrightLabel.font = [UIFont systemFontOfSize:11*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {

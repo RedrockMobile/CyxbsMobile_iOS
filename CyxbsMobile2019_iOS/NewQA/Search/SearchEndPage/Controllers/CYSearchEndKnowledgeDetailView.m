@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-//    self.view.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
+    self.view.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
 }
 
 #pragma mark- private methonds

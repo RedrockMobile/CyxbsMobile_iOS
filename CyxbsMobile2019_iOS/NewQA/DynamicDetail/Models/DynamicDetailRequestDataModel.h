@@ -38,12 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 根据帖子的id获取帖子下的评论
-/// @param target_id 帖子的id或者一级评论的id
-/// @param page 页数，一页是6条
-/// @param comment_type 评论的类型，1则是一级评论，2则是二级评论
+/// @param post_id 帖子的id
 /// @param sucess 成功后传出数据数组，进行后续操作
 /// @param failure 失败后的操作
-- (void)getCommentDataWithTarget_id:(int)target_id andPage:(int)page andComent_type:(int)comment_type Sucess:(void(^)(NSArray *commentAry))sucess Failure:(void(^)(void))failure;
+- (void)getCommentDataWithPost_id:(int)post_id Sucess:(void(^)(NSArray *commentAry))sucess Failure:(void(^)(void))failure;
 
 ///根据id举报评论
 /// @param comment_id id

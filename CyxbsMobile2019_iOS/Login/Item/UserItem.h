@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 //DEPRECATED_MSG_ATTRIBUTE("\n不要使用UserItem来获取你需要的信息，使用UserDefaultTool")
-@interface UserItem : NSObject<NSCoding> 
+@interface UserItem : NSObject<NSCoding>
 //MARK: - 个人信息/登录相关的
 /// Token
 @property (nonatomic, copy) NSString *__nullable token;
@@ -55,7 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// QQ号
 @property (nonatomic, copy) NSString *qq;
 
-
+/// 生日
+@property (nonatomic, copy) NSString * birthday;
 
 //MARK: - 积分商城相关
 /// 已连续签到天数
@@ -76,6 +77,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否能签到
 @property (nonatomic, assign) BOOL canCheckIn;
 
+
+/// 今日是否已经签到
+@property (nonatomic, assign)BOOL isCheckedToday;
 
 
 //MARK: - 电费相关（可能）

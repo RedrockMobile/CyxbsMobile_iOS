@@ -12,7 +12,9 @@
 #import "DeleteArticleTipView.h"
 #import "ArticleModel.h"
 #import "StarPostModel.h"
-#import "PostItem.h"
+//与cell高度计算相关
+#import "PostTableViewCellFrame.h"
+
 //动态详情页控制器
 #import "DynamicDetailMainVC.h"
 @interface ArticleViewController ()<UITableViewDelegate, UITableViewDataSource,PostTableViewCellDelegate,ShareViewPlusDelegate,ArticleModelDelegate>
@@ -20,6 +22,8 @@
 @property(nonatomic,strong)ShareViewPlus *shareView;
 @property(nonatomic,strong)ArticleModel *articleModel;
 @property(nonatomic,strong)NothingStateView *nothingView;
+@property (nonatomic, strong)NSMutableArray <PostItem*>*postItemArr;
+@property (nonatomic, strong)NSMutableArray <PostTableViewCellFrame*>*cellFrameArr;
 @end
 
 @implementation ArticleViewController
@@ -27,9 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.VCTitleStr = @"动态";
+    self.postItemArr = [NSMutableArray array];
+    self.cellFrameArr = [NSMutableArray array];
     self.articleModel = [[ArticleModel alloc] init];
     self.articleModel.delegate = self;
-//    [self.articleModel loadMoreData];
     [self addTableView];
 }
 
@@ -58,7 +63,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.articleModel.dataArr.count;
+    return self.postItemArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -67,28 +72,20 @@
         cell = [[ArticleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ArticleTableViewCellID"];
     }
     cell.delegate = self;
-    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
-    [cell setItem:item];
+    cell.cellFrame = self.cellFrameArr[indexPath.row];
+    [cell setItem:self.postItemArr[indexPath.row]];
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat height;
-    CGFloat imageHeight;
-    PostItem *item = [[PostItem alloc] initWithDic:self.articleModel.dataArr[indexPath.row]];
-    imageHeight = [item.pics count] != 0 ? SCREEN_WIDTH * 0.944 / 3 : 0;
-    // 计算cell中detailLabel的高度
-    NSString *fiveString = item.content;
-    NSMutableAttributedString *fiveStr = [[NSMutableAttributedString alloc] initWithString:fiveString];
-    NSRange fiveRange = [fiveString rangeOfString:fiveString];
-    [fiveStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:PingFangSCRegular size:16] range:fiveRange];
-    [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
-    NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
-    // 获取label的最大宽度
-    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.9, CGFLOAT_MAX)options:fiveOptions context:nil];
-    CGFloat detailHeight = fiveRect.size.height + 3 > [item getDetailLabelHeight] ? [item getDetailLabelHeight] : ceilf(fiveRect.size.height);
-    height = detailHeight + item.initHeight + imageHeight;
-    return height;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return self.cellFrameArr[indexPath.row].cellHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+    dynamicDetailVC.post_id = self.postItemArr[indexPath.row].post_id;
+    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 //MARK:-ArticleModel的代理方法：
@@ -106,7 +103,13 @@
         default:
             break;
     }
-    
+    for (NSDictionary *dict in self.articleModel.dataArr) {
+        PostItem *item = [[PostItem alloc] initWithDic:dict];
+        [self.postItemArr addObject:item];
+        PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+        [cellFrame setItem:item];
+        [self.cellFrameArr addObject:cellFrame];
+    }
     [self.tableView reloadData];
     if (self.articleModel.dataArr.count==0) {
         self.nothingView.alpha = 1;
@@ -168,28 +171,27 @@
 }
 //点赞
 - (void)ClickedStarBtn:(PostTableViewCell *)cell {
+    cell.starBtn.isFirst = NO;
     if (cell.starBtn.selected == YES) {
         cell.starBtn.selected = NO;
+        //MineUnpraiseBtnImg
         cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
-        if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
-        } else {
-            // Fallback on earlier versions
-        }
+        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        PostItem *item = self.postItemArr[[self.tableView indexPathForCell:cell].row];
+        item.is_praised = @(0);
+        item.praise_count = @(item.praise_count.intValue-1);
     }else {
         cell.starBtn.selected = YES;
+        //MinePraiseBtnImg
         cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
-        if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
-            
-        } else {
-            // Fallback on earlier versions
-        }
-        
+        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+        PostItem *item = self.postItemArr[[self.tableView indexPathForCell:cell].row];
+        item.is_praised = @(1);
+        item.praise_count = @(item.praise_count.intValue+1);
     }
     StarPostModel *model = [[StarPostModel alloc] init];
     [model starPostWithPostID:cell.item.post_id.numberValue];

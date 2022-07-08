@@ -12,6 +12,8 @@
 
 #import <Foundation/Foundation.h>
 #import <AFNetworking.h>
+#import "AFHTTPSessionManager+compatibility.h"
+
 typedef NS_ENUM(NSInteger, HttpRequestType) {
     HttpRequestGet,
     HttpRequestPost,
@@ -23,6 +25,8 @@ typedef void (^PrepareExecuteBlock)(void);
 
 @interface HttpClient : NSObject
 @property(strong,nonatomic)AFHTTPSessionManager *httpSessionManager;
+/* merge_error @property(strong,nonatomic)AFHTTPRequestOperationManager *httpRequestOperationManager;
+ */
 
 + (HttpClient *)defaultClient;
 
@@ -43,7 +47,17 @@ typedef void (^PrepareExecuteBlock)(void);
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
-
+/*
+ merge_error
+ - (void)PUT:(NSString *)URLString
+  parameters:(id)parameters
+       image:(UIImage *)image
+  imageField:(NSString *)imageField
+ prepareExecute:(PrepareExecuteBlock) prepare
+    progress:(void (^)(NSProgress * progress))progress
+     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+ */
 
 - (void)requestWithJson:(NSString *)url
                  method:(HttpRequestType)method
@@ -52,18 +66,21 @@ typedef void (^PrepareExecuteBlock)(void);
                progress:(void (^)(NSProgress * progress))progress
                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-
-- (void)uploadImageWithJson:(NSString *)url
-                     method:(NSInteger)method
-                 parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
-             prepareExecute:(PrepareExecuteBlock) prepare
-                   progress:(void (^)(NSProgress * progress))progress
-                    success:(void (^)(id responseObject))success
-                    failure:(void (^)(NSError *error))failure;
-
-
+/*
+ merge_error
+ - (void)uploadImageWithJson:(NSString *)url
+                      method:(NSInteger)method
+                  parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
+              prepareExecute:(PrepareExecuteBlock) prepare
+                    progress:(void (^)(NSProgress * progress))progress
+                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+ */
 
 - (void)cancelRequest;
 ///获取baseURL
 - (void)baseUrlRequestSuccess:(void(^)(NSString *str))success;
+
+- (void)logInWithStuNum:(NSString*)stuNum idnum:(NSString*)idNum success:(void(^_Nonnull)(NSString * _Nonnull refreshToken, NSString * _Nonnull token))success failure:(void(^_Nonnull)(void))failure;
+
 @end

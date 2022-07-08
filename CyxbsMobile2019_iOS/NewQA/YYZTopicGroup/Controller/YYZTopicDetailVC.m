@@ -21,12 +21,22 @@
 #import "ShieldModel.h"
 #import "ReportModel.h"
 #import "DeletePostModel.h"
-//#import "PostTableViewCellFrame.h"
+#import "PostTableViewCellFrame.h"
 #import <objc/runtime.h>
 
 
     
-@interface YYZTopicDetailVC ()<UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,UITableViewDelegate,ReportViewDelegate,FuncViewProtocol,ShareViewDelegate,UIScrollViewDelegate,SelfFuncViewProtocol,UIGestureRecognizerDelegate>
+@interface YYZTopicDetailVC ()
+<UITableViewDelegate,
+UITableViewDataSource,
+PostTableViewCellDelegate,
+UITableViewDelegate,
+ReportViewDelegate,
+FuncViewProtocol,
+ShareViewDelegate,
+UIScrollViewDelegate,
+SelfFuncViewProtocol,
+UIGestureRecognizerDelegate>
 @property(nonatomic,strong ) NSArray *array;  //所有圈子信息
 @property(nonatomic,strong) YYZTopicCell *cell; //顶部cell
 @property(nonatomic,strong) UIScrollView *backgroundScrollView;//最底部的scrollview
@@ -54,6 +64,7 @@
 @property (nonatomic, assign) NSInteger offestInt;
 @property (nonatomic, assign) NSInteger stausHeight;
 @property (nonatomic, assign) NSInteger navHeight;
+
 /// 是否已经显示reportView
 @property (nonatomic, assign) BOOL isShowedReportView;
 @property (nonatomic, assign) BOOL isChanged;
@@ -79,7 +90,8 @@
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar
     self.navigationItem.title = @"";
-//    //按钮标题的宽度
+    
+    //按钮标题的宽度
     CGFloat stringWidth = [self.topicIdString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:21]} context:0].size.width;
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, stringWidth + 40 + 5, 40)];
@@ -107,6 +119,7 @@
     
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cnt1=0;
@@ -130,6 +143,7 @@
     self.leftPostmodel = [[YYZTopicModel alloc]init];
     self.rightTableArray = [[NSMutableArray alloc]init];
     self.rightPostmodel = [[YYZTopicModel alloc]init];
+    self.heightArray = [NSMutableArray array];
     
     [self setScroll];
     [self setMiddleLable];
@@ -155,13 +169,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reportViewKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 - (void) setScroll {
-    UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    UIScrollView *backgroundScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0,getStatusBarHeight_Double, SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.backgroundScrollView = backgroundScrollView;
     backgroundScrollView.bounces = NO;
     backgroundScrollView.showsVerticalScrollIndicator = FALSE;
     backgroundScrollView.showsHorizontalScrollIndicator = FALSE;
     backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125-self.navHeight-self.stausHeight+4);
+    backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125-getStatusBarHeight_Double-25);
     //设置kvo监听
     [backgroundScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"2"];
     [self.view addSubview:backgroundScrollView];
@@ -184,8 +198,8 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
         UIViewController *frontVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-        if ([frontVC isKindOfClass:[NewQAMainPageMainController class]]) {
-            NewQAMainPageMainController * QAMainVC = (NewQAMainPageMainController *)frontVC;
+        if ([frontVC isKindOfClass:[NewQAMainVC class]]) {
+            NewQAMainVC * QAMainVC = (NewQAMainVC *)frontVC;
             QAMainVC.isNeedFresh = _isChanged;
             [self.navigationController popToViewController:QAMainVC animated:YES];
         }else{
@@ -278,26 +292,9 @@
 }
 #pragma mark 设置cell自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    /*UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;*/
-//    return UITableViewAutomaticDimension;
-    CGFloat height;
-       CGFloat imageHeight;
-       _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
-       imageHeight = [_item.pics count] != 0 ? SCREEN_WIDTH * 0.944 / 3 : 0;
-       // 计算cell中detailLabel的高度
-       NSString *fiveString = _item.content;
-       NSMutableAttributedString *fiveStr = [[NSMutableAttributedString alloc] initWithString:fiveString];
-       NSRange fiveRange = [fiveString rangeOfString:fiveString];
-       [fiveStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:PingFangSCRegular size:16] range:fiveRange];
-       [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
-       NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
-           // 获取label的最大宽度
-       CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.9, CGFLOAT_MAX)options:fiveOptions context:nil];
-       CGFloat detailHeight = fiveRect.size.height + 3 > [_item getDetailLabelHeight] ? [_item getDetailLabelHeight] : ceilf(fiveRect.size.height);
-       height = detailHeight + _item.initHeight + imageHeight;
-       return height;
-
+    PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+    cellFrame = self.heightArray[indexPath.row];
+    return cellFrame.cellHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -321,6 +318,7 @@
                 cell.layer.cornerRadius = 10;
             }
         }
+        cell.cellFrame = self.heightArray[indexPath.row];
         [cell layoutSubviews];
         [cell layoutIfNeeded];
         self.cnt2 = 1;
@@ -343,6 +341,7 @@
             if (cell.tag == 0) {
                 cell.layer.cornerRadius = 10;
             }
+            cell.cellFrame = self.heightArray[indexPath.row];
         }
         [cell layoutSubviews];
         [cell layoutIfNeeded];
@@ -477,8 +476,20 @@
         if (self.leftPage == 1) {
             //[self.leftTableArray removeAllObjects];
             self.leftTableArray = self.leftPostmodel.postArray;
+            for (NSDictionary *dic in self.leftTableArray) {
+                self.item = [[PostItem alloc] initWithDic:dic];
+                PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+                cellFrame.item = self.item;
+                [self.heightArray addObject:cellFrame];
+            }
         }else {
             [self.leftTableArray addObjectsFromArray:self.leftPostmodel.postArray];
+            for (NSDictionary *dic in self.leftTableArray) {
+                self.item = [[PostItem alloc] initWithDic:dic];
+                PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+                cellFrame.item = self.item;
+                [self.heightArray addObject:cellFrame];
+            }
         }
         //根据当前加载的问题页数判断是上拉刷新还是下拉刷新
         if (self.leftPage == 1) {
@@ -658,27 +669,19 @@
 }
 ///点赞的逻辑：根据点赞按钮的tag来获取post_id，并传入后端
 - (void)ClickedStarBtn:(PostTableViewCell *)cell{
+    cell.starBtn.isFirst = NO;
     if (cell.starBtn.selected == YES) {
         cell.starBtn.selected = NO;
         cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
-        if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
-        } else {
-            // Fallback on earlier versions
-        }
+        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
     }else {
         cell.starBtn.selected = YES;
         cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
-        if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
-        } else {
-            // Fallback on earlier versions
-        }
-        
+        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
     }
     CGFloat pageWidth = self.topicScrollView.frame.size.width;
     int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -801,7 +804,7 @@
 }
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:FOLLOWTOPIC method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                         //改变button状态
             NSDictionary *dic = @{@"topic_ID":stringIsFollow};
             [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];

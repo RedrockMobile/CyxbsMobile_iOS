@@ -35,6 +35,7 @@
 #import "SearchTopView.h"
 #import "SelfFuncView.h"    //动态是自己的时候的多功能View
 #import "LYEmptyView.h"
+#import "PostTableViewCellFrame.h"  //动态cell的高度抽象类
 
 @interface SZHSearchEndCv ()<UITextFieldDelegate,SearchTopViewDelegate,SZHHotSearchViewDelegate,UITableViewDelegate,UITableViewDataSource,PostTableViewCellDelegate,ShareViewDelegate,FuncViewProtocol,ReportViewDelegate,SelfFuncViewProtocol>
 @property (nonatomic, strong) SearchBeiginView *searchEndTopView;   //上半部分视图
@@ -58,6 +59,7 @@
 @property (nonatomic, strong) MJRefreshBackNormalFooter *footer;    //列表底部刷新控件
 @property (nonatomic, strong) MJRefreshNormalHeader *header;        //列表顶部刷新控件
 @property (nonatomic, assign) NSInteger page;   //列表分页展示
+@property (nonatomic, strong) NSMutableArray <PostTableViewCellFrame *>*tableHeightAry; //cell的高度数组
     //cell相关
 ///多功能View（点击cell上的三个小点后出来的view）
 @property (nonatomic, strong) FuncView *popView;
@@ -79,6 +81,7 @@
 ///背景蒙版
 @property (nonatomic, strong) UIView *backViewWithGesture;
 
+
 @end
 
 @implementation SZHSearchEndCv
@@ -89,6 +92,7 @@
     self.searchDynamicDic = nil;
     self.searchKnowledgeDic = nil;
     self.isShowedReportView = NO;
+    
     self.staticReleventLaeblHeight = MAIN_SCREEN_H*0.0802 + 17;
     
     [self setBackViewWithGesture];
@@ -98,6 +102,15 @@
     if (self.tableDataAry.count == 0) {
         [self buildFrameWhenNoDynamic];
     }else{
+        //初始化高度数组
+        self.tableHeightAry = [NSMutableArray array];
+        for (NSDictionary *dic in self.tableDataAry) {
+            PostItem *item = [[PostItem alloc] initWithDic:dic];
+            PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+            cellFrame.item = item;
+            [self.tableHeightAry addObject:cellFrame];
+            
+        }
         [self buildFrameWhenHaveDynamic];
     }
     
@@ -203,12 +216,29 @@
     if (self.page == 1) {
         NSLog(@"%@",array);
         self.tableDataAry = array;
+        
+        //重装高度数组
+        [self.tableHeightAry removeAllObjects];
+        for (NSDictionary *dic in self.tableDataAry) {
+            PostItem *item = [[PostItem alloc] initWithDic:dic];
+            PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+            cellFrame.item = item;
+            [self.tableHeightAry addObject:cellFrame];
+        }
+        
         [self.relevantDynamicTable reloadData];
         [self.relevantDynamicTable.mj_header endRefreshing];
     }else{
         NSMutableArray *ary = [NSMutableArray arrayWithArray:self.tableDataAry];
         [ary addObjectsFromArray:array];
         self.tableDataAry = ary;
+        for (NSDictionary *dic in array) {
+            PostItem *item = [[PostItem alloc] initWithDic:dic];
+            PostTableViewCellFrame *cellFrame = [[PostTableViewCellFrame alloc] init];
+            cellFrame.item = item;
+            [self.tableHeightAry addObject:cellFrame];
+        }
+        
         [self.relevantDynamicTable reloadData];
         [self.relevantDynamicTable.mj_footer endRefreshing];
     }
@@ -400,7 +430,6 @@
 //返回上一界面
 - (void)jumpBack{
     [self.navigationController popToRootViewControllerAnimated:YES];
-    
 }
 
 //点击重邮知识库按钮 弹出详细界面
@@ -427,15 +456,14 @@
 }
 
 
-//MARK:==============================相关动态table的数据源和代理方法==================================
+//MARK:==============================相关动态table的数据源和代理方法=====================================
 ///数据源
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.tableDataAry.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //创建单元格（用复用池）
-    ///给每一个cell的identifier设置为唯一的
-    NSString *identifier = [NSString stringWithFormat:@"dynamicCell%ld",indexPath.row];
+    NSString *identifier = [NSString stringWithFormat:@"dynamicCell"];
     PostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if(cell == nil) {
         PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[indexPath.row]];
@@ -451,6 +479,7 @@
             cell.layer.cornerRadius = 10;
         }
     }
+    cell.cellFrame = self.tableHeightAry[indexPath.row];
     return cell;
 }
 ///点击跳转到具体的帖子（与下方commentBtn的事件相同）
@@ -463,23 +492,10 @@
 }
 //自适应高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat height;
-    CGFloat imageHeight;
-    PostItem *item = [[PostItem alloc] initWithDic:self.tableDataAry[indexPath.row]];
-    imageHeight = [item.pics count] != 0 ? SCREEN_WIDTH * 0.944 / 3 : 0;
-    // 计算cell中detailLabel的高度
-    NSString *fiveString = item.content;
-    NSMutableAttributedString *fiveStr = [[NSMutableAttributedString alloc] initWithString:fiveString];
-    NSRange fiveRange = [fiveString rangeOfString:fiveString];
-    [fiveStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:PingFangSCRegular size:16] range:fiveRange];
-    [fiveStr addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor]range:fiveRange];
-    NSStringDrawingOptions fiveOptions =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
-    // 获取label的最大宽度
-    CGRect fiveRect = [fiveStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH * 0.9, CGFLOAT_MAX)options:fiveOptions context:nil];
-    CGFloat detailHeight = fiveRect.size.height + 3 > [item getDetailLabelHeight] ? [item getDetailLabelHeight] : ceilf(fiveRect.size.height);
-    height = detailHeight + item.initHeight + imageHeight;
-    return height;
-
+//    return UITableViewAutomaticDimension;
+    PostTableViewCellFrame *cellFrame;
+    cellFrame = self.tableHeightAry[indexPath.row];
+    return cellFrame.cellHeight;
 }
 
 //MARK:==============================相关动态cell的代理方法==============================
@@ -784,7 +800,7 @@
             [_searchEndTopView updateHotSearchViewFrame];
              
         }
-        _searchEndTopView.frame = CGRectMake(0, 0, MAIN_SCREEN_W, [self.searchEndTopView searchBeginViewHeight]);
+        _searchEndTopView.frame = CGRectMake(0, 0, MAIN_SCREEN_W, [_searchEndTopView searchBeginViewHeight]);
     }
     return _searchEndTopView;
 }

@@ -9,6 +9,8 @@
 #import "HttpClient.h"
 #import "UIImage+Helper.h"
 #import "NSDate+Timestamp.h"
+//是否开启CCLog
+#define CCLogEnable 1
 
 @implementation HttpClient
 
@@ -26,22 +28,46 @@
     if(self)
     {
         self.httpSessionManager = [AFHTTPSessionManager manager];
+        /*
+         merge_error
+         self.httpRequestOperationManager = [AFHTTPRequestOperationManager manager];
+         */
+        
         
         AFHTTPRequestSerializer *requestSerializer = [AFHTTPRequestSerializer serializer];
         requestSerializer.timeoutInterval = 15.0;
         [self.httpSessionManager setRequestSerializer:requestSerializer];
+        /*
+         merge_error
+         [self.httpRequestOperationManager setRequestSerializer:requestSerializer];
+         */
+        
         
         AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
         [responseSerializer setRemovesKeysWithNullValues:YES];
         [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",@"application/x-www-form-urlencoded", nil]];
         [self.httpSessionManager setResponseSerializer:responseSerializer];
         
+        /*
+         merge_error
+         [self.httpRequestOperationManager setResponseSerializer:responseSerializer];
+         */
+        [self.httpSessionManager.securityPolicy setValidatesDomainName:NO];
+        
+        //++++++++++++++++++debug++++++++++++++++++++  Begain
+//#ifdef DEBUG
+//        AFSecurityPolicy *policy = [AFSecurityPolicy defaultPolicy];
+//        self.httpSessionManager.securityPolicy = policy;
+//        policy.allowInvalidCertificates = YES;
+//        [policy setValidatesDomainName:NO];
+//#endif
+        //++++++++++++++++++debug++++++++++++++++++++  End
     }
     return self;
 }
 
 - (void)requestWithPath:(NSString *)url
-                 method:(HttpRequestType)method
+                 method:(NSInteger)method
              parameters:(id)parameters
          prepareExecute:(PrepareExecuteBlock) prepare
                progress:(void (^)(NSProgress * progress))progress
@@ -53,27 +79,26 @@
     }
     switch (method) {
         case HttpRequestGet:
-            [self.httpSessionManager GET:url parameters:parameters headers:nil progress:nil success:success failure:failure];
+            [self.httpSessionManager GET:url parameters:parameters success:success failure:failure];
             break;
         case HttpRequestPost:
-            [self.httpSessionManager POST:url parameters:parameters headers:nil progress:nil success:success failure:failure];
+            [self.httpSessionManager POST:url parameters:parameters success:success failure:failure];
             break;
         case HttpRequestPut:
-            self.httpSessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
-            [self.httpSessionManager PUT:url parameters:parameters headers:nil success:success failure:failure];
+            [self.httpSessionManager PUT:url parameters:parameters success:success failure:failure];
             break;
         case HttpRequestDelete:
-            [self.httpSessionManager DELETE:url parameters:parameters headers:nil success:success failure:failure];
+            [self.httpSessionManager DELETE:url parameters:parameters success:success failure:failure];
             break;
         case HttpRequestPatch:
-            [self.httpSessionManager PATCH:url parameters:parameters headers:nil success:success failure:failure];
+            [self.httpSessionManager PATCH:url parameters:parameters success:success failure:failure];
         default:
             break;
     }
 }
 
 - (void)requestWithJson:(NSString *)url
-                 method:(HttpRequestType)method
+                 method:(NSInteger)method
              parameters:(id)parameters
          prepareExecute:(PrepareExecuteBlock) prepare
                progress:(void (^)(NSProgress * progress))progress
@@ -86,18 +111,26 @@
     }
     // 请求需要json
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    //++++++++++++++++++debug++++++++++++++++++++  Begain
+//#ifdef DEBUG
+//    AFSecurityPolicy *policy = [AFSecurityPolicy defaultPolicy];
+//    manager.securityPolicy = policy;
+//    policy.allowInvalidCertificates = YES;
+//    [policy setValidatesDomainName:NO];
+//#endif
+    //++++++++++++++++++debug++++++++++++++++++++  End
     switch (method) {
         case HttpRequestGet:
-            [self.httpSessionManager GET:url parameters:parameters headers:nil progress:nil success:success failure:failure];
+            [manager GET:url parameters:parameters success:success failure:failure];
             break;
         case HttpRequestPost:
-            [self.httpSessionManager POST:url parameters:parameters headers:nil progress:nil success:success failure:failure];
+            [manager POST:url parameters:parameters success:success failure:failure];
             break;
         case HttpRequestPut:
-            [self.httpSessionManager PUT:url parameters:parameters headers:nil success:success failure:failure];
+            [manager PUT:url parameters:parameters success:success failure:failure];
             break;
         case HttpRequestDelete:
-            [self.httpSessionManager DELETE:url parameters:parameters headers:nil success:success failure:failure];
+            [manager DELETE:url parameters:parameters success:success failure:failure];
             break;
         case HttpRequestPatch:
             [self.httpSessionManager PATCH:url parameters:parameters headers:nil success:success failure:failure];
@@ -120,7 +153,7 @@
 //    for (int i = 0; i < head.count; i++) {
 //        [manager.requestSerializer setValue:head.allValues[i]  forHTTPHeaderField:head.allKeys[i]];
 //    }
-//    
+//
 //    switch (method) {
 //        case HttpRequestGet:
 //            
@@ -142,62 +175,93 @@
 //    
 //}
 
-- (void)uploadImageWithJson:(NSString *)url
-                     method:(NSInteger)method
-                 parameters:(id)parameters imageArray:(NSArray<UIImage  *> *)imageArray imageNames:(NSArray<NSString *> *)imageNames
-             prepareExecute:(PrepareExecuteBlock) prepare
-                   progress:(void (^)(NSProgress * progress))progress
-                    success:(void (^)(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject))success
-                    failure:(void (^)(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error))failure{
-    NSString *token = [UserItem defaultItem].token;
-    if (token) {
-        [self.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
-    }
-    //发送网络请求
-//    [self.httpSessionManager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        for (int i = 0; i < imageArray.count; i++) {
-//            UIImage *image = imageArray[i];
-//            UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
-//            NSData *data = UIImageJPEGRepresentation(image1, 0.8);
-//            NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
-//            [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/png"];
-//        }
-//
-//    } success:success failure:failure];
-    
-    
-    [self.httpSessionManager POST:url parameters:parameters headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-            for (int i = 0; i < imageArray.count; i++) {
-                      UIImage *image = imageArray[i];
-                      UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
-                      NSData *data = UIImageJPEGRepresentation(image1, 0.8);
-                      NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
-                      [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/png"];
-                  }
-        } progress:nil success:success
-                          failure:failure];
-}
+/*
+ merge_error
+ - (void)uploadImageWithJson:(NSString *)url
+                      method:(NSInteger)method
+                  parameters:(id)parameters
+                  imageArray:(NSArray<UIImage  *> *)imageArray
+                  imageNames:(NSArray<NSString *> *)imageNames
+              prepareExecute:(PrepareExecuteBlock) prepare
+                    progress:(void (^)(NSProgress * progress))progress
+                     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure{
+     NSString *token = [UserItem defaultItem].token;
+     if (token) {
+         [self.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
+     }
+     //发送网络请求
+     [self.httpRequestOperationManager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+         for (int i = 0; i < imageArray.count; i++) {
+             UIImage *image = imageArray[i];
+             UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+             NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+             NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
+             [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/png"];
+         }
+         
+     } success:success failure:failure];
+ }
+
+ - (void)PUT:(NSString *)URLString
+  parameters:(id)parameters
+       image:(UIImage *)image
+  imageField:(NSString *)imageField
+ prepareExecute:(PrepareExecuteBlock) prepare
+    progress:(void (^)(NSProgress * progress))progress
+     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+     NSString *token = [UserItem defaultItem].token;
+     if (token) {
+         [self.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
+     }
+     [self.httpRequestOperationManager
+      PUT:URLString
+      parameters:parameters
+      constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+         if (image) {
+             [formData
+              appendPartWithFileData:UIImagePNGRepresentation(image)
+              name:imageField
+              fileName:[NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]]
+              mimeType:@"image/png"];
+         }
+         if (parameters) {
+             for (NSString * key in (NSDictionary *)parameters) {
+                 [formData
+                  appendPartWithFormData:parameters[key]
+                  name:key];
+             }
+         }
+     }
+      success:success
+      failure:failure];
+ }
+ */
+
+
 
 - (void)cancelRequest
 {
-        if ([self.httpSessionManager.tasks count] > 0) {
-                NSLog(@"返回时取消网络请求");
-                [self.httpSessionManager.tasks makeObjectsPerformSelector:@selector(cancel)];
-                //NSLog(@"tasks = %@",manager.tasks);
-            }
+    if ([self.httpSessionManager.tasks count] > 0) {
+        NSLog(@"返回时取消网络请求");
+        [self.httpSessionManager.tasks makeObjectsPerformSelector:@selector(cancel)];
+        //NSLog(@"tasks = %@",manager.tasks);
+    }
 }
 
 - (void)baseUrlRequestSuccess:(void (^)(NSString *))success{
-
-    [self.httpSessionManager GET:@"https://be-prod.redrock.team/cloud-manager/check" parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSDictionary *dic = responseObject[@"data"];
-                    NSString *basURl = [NSString stringWithFormat:@"https://%@/",dic[@"base_url"]];
-                    NSLog(@"%@",basURl);
-                    success(basURl);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
-        }];
-    
+    /*
+     merge_error
+     [self.httpRequestOperationManager GET:@"https://be-prod.redrock.team/cloud-manager/check" parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+         NSDictionary *dic = responseObject[@"data"];
+         NSString *basURl = [NSString stringWithFormat:@"https://%@/",dic[@"base_url"]];
+         NSLog(@"%@",basURl);
+         success(basURl);
+     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+         
+     }];
+     */
 }
 //- (BOOL)isReachability{
 //    AFNetworkReachabilityManager *reachabilityManager = [AFNetworkReachabilityManager sharedManager];
@@ -218,4 +282,21 @@
 //        }
 //    }];
 //}
+
+- (void)logInWithStuNum:(NSString *)stuNum idnum:(NSString *)idNum success:(void (^)(NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^)(void))failure {
+    [self requestWithJson:LOGINAPI method:HttpRequestPost parameters:@{
+        @"stuNum":stuNum,
+        @"idNum":idNum
+    } prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSDictionary *dataDict = responseObject[@"data"];
+        if (success) {
+            success(dataDict[@"refreshToken"], dataDict[@"token"]);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (failure) {
+            failure();
+        }
+        CCLog(@"%@",error);
+    }];
+}
 @end
