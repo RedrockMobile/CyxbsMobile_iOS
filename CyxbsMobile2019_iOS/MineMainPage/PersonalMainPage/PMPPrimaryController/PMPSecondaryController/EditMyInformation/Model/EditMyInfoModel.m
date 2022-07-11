@@ -30,6 +30,18 @@
          failure(error);
      }];
      */
+    [[HttpClient defaultClient]
+     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:PutPersonInfo]
+     method:HttpRequestPut
+     parameters:@{@"photo_src": UIImagePNGRepresentation(profile)}
+     prepareExecute:nil
+     progress:nil
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(responseObject);
+    }
+     failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(error);
+    }];
 }
 
 + (void)uploadUserInfo:(NSDictionary *)userInfo success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
@@ -49,6 +61,18 @@
          failure(error);
      }];
      */
+    [[HttpClient defaultClient]
+     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:PutPersonInfo]
+     method:(HttpRequestPut)
+     parameters:userInfo
+     prepareExecute:nil
+     progress:nil
+     success:^(NSURLSessionDataTask *task, id responseObject) {
+        success(responseObject);
+    }
+     failure:^(NSURLSessionDataTask *task, NSError *error) {
+        failure(error);
+    }];
 }
 
 - (NSString*)getUserWithTailURL:(NSString*)tailURL {
