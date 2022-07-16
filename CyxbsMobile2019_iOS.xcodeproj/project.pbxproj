@@ -5064,7 +5064,7 @@
 				AA0DDAD9286C8B1900802324 /* PMPTools */,
 				AA0DDAE3286C8B1900802324 /* PMPColorSets.xcassets */,
 				AA0DDAE4286C8B1900802324 /* PMPBasicClass */,
-				AA0DDAED286C8B1900802324 /*  AuthenticationSetting */,
+				AA0DDAED286C8B1900802324 /* AuthenticationSetting */,
 				AA0DDAFF286C8B1900802324 /* PMPPrimaryController */,
 				AA0DDB50286C8B1900802324 /* PMPImagesSets.xcassets */,
 			);
@@ -5130,14 +5130,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AA0DDAED286C8B1900802324 /*  AuthenticationSetting */ = {
+		AA0DDAED286C8B1900802324 /* AuthenticationSetting */ = {
 			isa = PBXGroup;
 			children = (
 				AA0DDAEE286C8B1900802324 /* Controller */,
 				AA0DDAF1286C8B1900802324 /* View */,
 				AA0DDAFA286C8B1900802324 /* Tool */,
 			);
-			path = " AuthenticationSetting";
+			path = AuthenticationSetting;
 			sourceTree = "<group>";
 		};
 		AA0DDAEE286C8B1900802324 /* Controller */ = {

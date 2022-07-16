@@ -224,6 +224,8 @@ PMPIDCardTableViewCellDelegate>
         _defaultTextView.delegate = self;
         _defaultTextView.editable = NO;        //必须禁止输入，否则点击将弹出输入键盘
         _defaultTextView.scrollEnabled = NO;
+        _defaultTextView.showsHorizontalScrollIndicator = NO;
+        _defaultTextView.showsVerticalScrollIndicator = NO;
     }
     return _defaultTextView;
 }

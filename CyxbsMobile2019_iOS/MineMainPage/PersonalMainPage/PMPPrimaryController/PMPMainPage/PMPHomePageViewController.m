@@ -51,7 +51,7 @@ UIImagePickerControllerDelegate>
 @property (nonatomic, assign) CGFloat headerViewHeight;
 @property (nonatomic, strong) NSArray * titles;
 /// 当前的控制器的redid
-@property (nonatomic, strong) NSString * currentRedid;
+@property (nonatomic, copy) NSString * currentRedid;
 
 @property (nonatomic, strong) PMPDynamicTableViewController * dynamicTVC;
 @property (nonatomic, strong) PMPIdentityTableViewController * identityTVC;
@@ -97,6 +97,7 @@ UIImagePickerControllerDelegate>
      getDataWithRedid:self.currentRedid
      Success:^(PMPInfoModel * _Nonnull infoModel) {
         self.infoModel = infoModel;
+        self.infoModel.isSelf = [infoModel.redid isEqualToString:[UserItem defaultItem].redid];
         self.VCTitleLabel2.text = infoModel.nickname;
         [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.background_url] placeholderImage:[UIImage imageNamed:@"UserDefaultBackgroundImg"] options:SDWebImageRefreshCached];
         [self.headerView

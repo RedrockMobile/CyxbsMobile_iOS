@@ -11,66 +11,58 @@
 // 修改信息
 #define PutPersonInfo @"magipoke/person/info"
 
+// 修改头像
+#define PutUploadAvatar @"magipoke/upload/avatar"
+
 @implementation EditMyInfoModel
 
-+ (void)uploadProfile:(UIImage *)profile success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
-    /*
-     merge_error
-     [[HttpClient defaultClient]
-      PUT:[CyxbsMobileBaseURL_1 stringByAppendingString:PutPersonInfo]
-      parameters:nil
-      image:profile
-      imageField:@"photo_src"
-      prepareExecute:nil
-      progress:nil
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         success(responseObject);
-     }
-      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         failure(error);
-     }];
-     */
-    [[HttpClient defaultClient]
-     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:PutPersonInfo]
-     method:HttpRequestPut
-     parameters:@{@"photo_src": UIImagePNGRepresentation(profile)}
-     prepareExecute:nil
-     progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        success(responseObject);
++ (void)uploadProfile:(UIImage *)profile
+              success:(void (^)(NSDictionary * _Nonnull))success
+              failure:(void (^)(NSError * _Nonnull))failure {
+    [HttpTool.shareTool
+     form:[CyxbsMobileBaseURL_1 stringByAppendingString:PutUploadAvatar]
+     type:(HttpToolRequestTypePut)
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+        if (profile) {
+            [body
+             appendPartWithFileData:UIImagePNGRepresentation(profile)
+             name:@"fold"
+             fileName:[NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]]
+             mimeType:@"image/png"];
+            [body
+             appendPartWithFormData:[[UserDefaultTool getStuNum] dataValue]
+             name:@"stunum"];
+        }
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        success(object);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];
 }
 
-+ (void)uploadUserInfo:(NSDictionary *)userInfo success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
-    /*
-     merge_error
-     [[HttpClient defaultClient]
-      PUT:[CyxbsMobileBaseURL_1 stringByAppendingString:PutPersonInfo]
-      parameters:userInfo
-      image:nil
-      imageField:nil
-      prepareExecute:nil
-      progress:nil
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         success(responseObject);
-     }
-      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         failure(error);
-     }];
-     */
-    [[HttpClient defaultClient]
-     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:PutPersonInfo]
-     method:(HttpRequestPut)
-     parameters:userInfo
-     prepareExecute:nil
-     progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        success(responseObject);
++ (void)uploadUserInfo:(NSDictionary *)userInfo
+               success:(void (^)(NSDictionary * _Nonnull))success
+               failure:(void (^)(NSError * _Nonnull))failure {
+    [HttpTool.shareTool
+     form:[CyxbsMobileBaseURL_1 stringByAppendingString:PutPersonInfo]
+     type:(HttpToolRequestTypePut)
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+        for (NSString * key in userInfo) {
+            [body
+             appendPartWithFormData:userInfo[key]
+             name:key];
+        }
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        success(object);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];
 }

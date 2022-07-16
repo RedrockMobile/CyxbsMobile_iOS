@@ -20,13 +20,13 @@ static HttpTool *_shareTool;
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
 
 /// 默认JSON格式上传
-@property (nonatomic, readonly) AFJSONRequestSerializer *defaultJSONRequest;
+@property (nonatomic, strong) AFJSONRequestSerializer *defaultJSONRequest;
 
 /// 以HTTP格式上传
-@property (nonatomic, readonly) AFHTTPRequestSerializer *HTTPRequest;
+@property (nonatomic, strong) AFHTTPRequestSerializer *HTTPRequest;
 
 /// PropertyList格式上传
-@property (nonatomic, readonly) AFPropertyListRequestSerializer *propertyListRequest;
+@property (nonatomic, strong) AFPropertyListRequestSerializer *propertyListRequest;
 
 @end
 
@@ -113,25 +113,43 @@ static HttpTool *_shareTool;
     }
     
     [[self.sessionManager
-         dataTaskWithHTTPMethod:methodType
-         URLString:URLString
-         parameters:parameters
-         headers:nil
-         uploadProgress:nil // 这里源码有if...else判断
-         downloadProgress:progress
-         success:success
-         failure:failure]
+      dataTaskWithHTTPMethod:methodType
+      URLString:URLString
+      parameters:parameters
+      headers:nil
+      uploadProgress:nil // 这里源码有if...else判断
+      downloadProgress:progress
+      success:success
+      failure:failure]
      resume];
 }
 
-- (void)POST:(NSString * _Nonnull)URLString
-  parameters:(nullable id)parameters
-bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
-    progress:(nullable void (^)(NSProgress * _Nonnull))uploadProgress
-     success:(nullable void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
+- (void)form:(NSString *)URLString
+        type:(HttpToolRequestType)requestType
+  parameters:(id)parameters
+bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
+    progress:(void (^)(NSProgress * _Nonnull))uploadProgress
+     success:(void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
      failure:(void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure {
     
-    self.sessionManager.requestSerializer = self.defaultJSONRequest;
+    NSString *methodType = @"";
+    switch (requestType) {
+        case HttpToolRequestTypeGet:
+            methodType = @"GET";
+            break;
+        case HttpToolRequestTypePost:
+            methodType = @"POST";
+            break;
+        case HttpToolRequestTypeDelete:
+            methodType = @"DELETE";
+            break;
+        case HttpToolRequestTypePut:
+            methodType = @"PUT";
+            break;
+        case HttpToolRequestTypePatch:
+            methodType = @"PATCH";
+            break;
+    }
     
     [self.sessionManager
      POST:URLString
@@ -146,35 +164,41 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> _Nonnull))block
 #pragma mark - Getter
 
 - (AFJSONRequestSerializer *)defaultJSONRequest {
-    AFJSONRequestSerializer *_defaultJSONRequest = AFJSONRequestSerializer.serializer;
-    _defaultJSONRequest = AFJSONRequestSerializer.serializer;
-    _defaultJSONRequest.timeoutInterval = 15;
-    _defaultJSONRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
-    NSString *token = UserItem.defaultItem.token;
-    if (token) {
-        [_defaultJSONRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
+    if (_defaultJSONRequest == nil) {
+        _defaultJSONRequest = AFJSONRequestSerializer.serializer;
+        _defaultJSONRequest = AFJSONRequestSerializer.serializer;
+        _defaultJSONRequest.timeoutInterval = 15;
+        _defaultJSONRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
+        NSString *token = UserItem.defaultItem.token;
+        if (token) {
+            [_defaultJSONRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
+        }
     }
     return _defaultJSONRequest;
 }
 
 - (AFHTTPRequestSerializer *)HTTPRequest {
-    AFHTTPRequestSerializer *_HTTPRequest = AFHTTPRequestSerializer.serializer;
-    _HTTPRequest = AFHTTPRequestSerializer.serializer;
-    _HTTPRequest.timeoutInterval = 15;
-    NSString *token = UserItem.defaultItem.token;
-    if (token) {
-        [_HTTPRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
+    if (_HTTPRequest == nil) {
+        _HTTPRequest = AFHTTPRequestSerializer.serializer;
+        _HTTPRequest = AFHTTPRequestSerializer.serializer;
+        _HTTPRequest.timeoutInterval = 15;
+        NSString *token = UserItem.defaultItem.token;
+        if (token) {
+            [_HTTPRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
+        }
     }
     return _HTTPRequest;
 }
 
 - (AFPropertyListRequestSerializer *)propertyListRequest {
-    AFPropertyListRequestSerializer *_propertyListRequest = AFPropertyListRequestSerializer.serializer;
-    _propertyListRequest = AFPropertyListRequestSerializer.serializer;
-    _propertyListRequest.timeoutInterval = 15;
-    NSString *token = UserItem.defaultItem.token;
-    if (token) {
-        [_propertyListRequest setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
+    if (_propertyListRequest == nil) {
+        _propertyListRequest = AFPropertyListRequestSerializer.serializer;
+        _propertyListRequest = AFPropertyListRequestSerializer.serializer;
+        _propertyListRequest.timeoutInterval = 15;
+        NSString *token = UserItem.defaultItem.token;
+        if (token) {
+            [_propertyListRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
+        }
     }
     return _propertyListRequest;
 }

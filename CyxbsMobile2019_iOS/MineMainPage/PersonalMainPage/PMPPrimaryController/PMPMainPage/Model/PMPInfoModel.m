@@ -42,21 +42,29 @@
 + (void)uploadbackgroundImage:(UIImage *)backgroundImage
                       success:(void (^)(NSDictionary * _Nonnull))success
                       failure:(void (^)(NSError * _Nonnull))failure {
-    /*
-     [[HttpClient defaultClient]
-      PUT:[CyxbsMobileBaseURL_1 stringByAppendingString:UploadBackground]
-      parameters:nil
-      image:backgroundImage
-      imageField:@"pic"
-      prepareExecute:nil
-      progress:nil
-      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-         success(responseObject);
-     }
-      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-         failure(error);
-     }];
-     */
+    [HttpTool.shareTool
+     form:[CyxbsMobileBaseURL_1 stringByAppendingString:UploadBackground]
+     type:(HttpToolRequestTypePut)
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+        if (backgroundImage) {
+            [body
+             appendPartWithFileData:UIImagePNGRepresentation(backgroundImage)
+             name:@"pic"
+             fileName:[NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]]
+             mimeType:@"image/png"];
+            [body
+             appendPartWithFormData:[[UserDefaultTool getStuNum] dataValue]
+             name:@"stunum"];
+        }
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        success(object);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
 }
 
 + (void)focusWithRedid:(NSString *)redid
