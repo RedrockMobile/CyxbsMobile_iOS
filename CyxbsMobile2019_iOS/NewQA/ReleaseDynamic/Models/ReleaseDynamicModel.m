@@ -25,32 +25,28 @@
     
     
     HttpClient *client = [HttpClient defaultClient];
-    /*
-     merge_error
-     [client.httpRequestOperationManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
-     [client.httpRequestOperationManager POST:NEWQA_RELEASEDYNAMIC_RELEASE_API parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-             NSMutableArray *imageNames = [NSMutableArray array];
-         for (int i = 0; i < imageAry.count; i++)  {
-             [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
-         }
-             for (int i = 0; i < imageAry.count; i++) {
-                 UIImage *image = imageAry[i];
-                 UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
-                 NSData *data = UIImageJPEGRepresentation(image1, 0.8);
-                 NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
-                 [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/jpeg"];
-             }
-         } success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-                 sucess();
-         } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-             NSLog(@"-----%@",error);
-             if (error.code == -1001) {
-                 sucess();
-             }else{
-                 failure();
-             }
-         }];
-     */
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+    [client.httpSessionManager POST:NEWQA_RELEASEDYNAMIC_RELEASE_API parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        NSMutableArray *imageNames = [NSMutableArray array];
+        for (int i = 0; i < imageAry.count; i++)  {
+            [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
+        }
+        for (int i = 0; i < imageAry.count; i++) {
+            UIImage *image = imageAry[i];
+            UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+            NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+            NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+            [formData appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/jpeg"];
+        }
+        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            sucess();
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (error.code == -1001) {
+                sucess();
+            }else{
+                failure();
+            }
+        }];
 }
 
 - (void)getAllTopicsSucess:(void (^)(NSArray * _Nonnull))sucess{
