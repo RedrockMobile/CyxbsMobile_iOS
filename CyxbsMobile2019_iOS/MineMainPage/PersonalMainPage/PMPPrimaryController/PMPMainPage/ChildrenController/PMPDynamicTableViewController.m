@@ -61,15 +61,14 @@ ReportViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.backgroundColor =
-    [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:RGBColor(29, 29, 29, 1)];
+    self.tableView.backgroundColor = [UIColor colorNamed:@"white&29_29_29_1"];
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerClass:[PMPDynamicTableViewCell class] forCellReuseIdentifier:[PMPDynamicTableViewCell reuseIdentifier]];
     [self funcPopViewinit];
     [self setBackViewWithGesture];
     [self setUpModel];
     
-//    self.tableView.mj_footer = self.refreshFooter;
+    //    self.tableView.mj_footer = self.refreshFooter;
     [self.view addSubview:self.defaultLabel];
     [self.defaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
@@ -490,6 +489,7 @@ ReportViewDelegate>
         _defaultLabel = [[UILabel alloc] init];
         _defaultLabel.text = @"嘿,说点什么吧...";
         _defaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        //        _defaultLabel.textColor = [UIColor colorNamed:@"17_44_84&240_240_240"];
         _defaultLabel.textColor = [UIColor blackColor];
         [_defaultLabel sizeToFit];
     }

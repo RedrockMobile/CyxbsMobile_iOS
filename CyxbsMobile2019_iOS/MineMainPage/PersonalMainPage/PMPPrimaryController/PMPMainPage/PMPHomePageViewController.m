@@ -255,7 +255,7 @@ UIImagePickerControllerDelegate>
     }
     
     self.topBarView2.hidden = offsetY >= maxOffsetY / 3 * 2 ? NO : YES;
-    self.visualEffectView.alpha = 1 - scale;
+    self.visualEffectView.hidden = offsetY >= maxOffsetY / 3 * 2 ? NO : YES;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
@@ -263,9 +263,7 @@ UIImagePickerControllerDelegate>
     CGFloat maxOffsetY = self.headerViewHeight - self.getTopBarViewHeight - self.pageController.menuHeight;
     CGFloat offsetY = scrollView.jh_contentOffset_y;
     
-    [UIView animateWithDuration:0.5 animations:^{
-        [self.containerScrollView setContentOffset:offsetY <= maxOffsetY / 3 * 2 ? CGPointMake(0, -[self getTopBarViewHeight]) : CGPointMake(0, maxOffsetY + self.pageController.menuHeight) animated:YES];
-    }];
+    [self.containerScrollView setContentOffset:offsetY <= maxOffsetY / 3 * 2 ? CGPointMake(0, -[self getTopBarViewHeight]) : CGPointMake(0, maxOffsetY + self.pageController.menuHeight) animated:YES];
 }
 
 #pragma mark - PMPHomePageHeaderViewDelegate
@@ -402,7 +400,7 @@ UIImagePickerControllerDelegate>
 
 - (PMPIdentityTableViewController *)identityTVC {
     if (_identityTVC == nil) {
-        _identityTVC = [[PMPIdentityTableViewController alloc] initWithRedid:self.currentRedid];
+        _identityTVC = [[PMPIdentityTableViewController alloc] initWithStyle:UITableViewStylePlain redid:self.currentRedid];
         [self addChildViewController:_identityTVC];
     }
     return _identityTVC;
@@ -411,7 +409,7 @@ UIImagePickerControllerDelegate>
 - (UIView *)topBarView2 {
     if (_topBarView2 == nil) {
         _topBarView2 = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _topBarView2.backgroundColor = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UIColor.blackColor];
+        _topBarView2.backgroundColor = [UIColor colorNamed:@"white&black"];
     }
     return _topBarView2;
 }
@@ -431,7 +429,7 @@ UIImagePickerControllerDelegate>
     if (_VCTitleLabel2 == nil) {
         _VCTitleLabel2 = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _VCTitleLabel2.font = [UIFont fontWithName:PingFangSCSemibold size:22];
-        _VCTitleLabel2.textColor = [UIColor dm_colorWithLightColor:RGBColor(21, 49, 91, 1) darkColor:KUIColorFromRGB(0xf0f0f2)];
+        _VCTitleLabel2.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
         [_VCTitleLabel2 sizeToFit];
     }
     return _VCTitleLabel2;

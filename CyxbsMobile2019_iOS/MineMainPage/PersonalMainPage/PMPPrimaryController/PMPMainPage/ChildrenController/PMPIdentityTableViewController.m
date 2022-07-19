@@ -6,8 +6,6 @@
 //  Copyright © 2021 Redrock. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
-#import "PMPIDCardTableViewCell.h"
 #import "PMPIdentityTableViewController.h"
 // model
 
@@ -15,15 +13,10 @@
 #import "StampCenterVC.h"
 
 @interface PMPIdentityTableViewController ()
-<UITextViewDelegate,
-UITableViewDataSource,
-UITableViewDelegate,
-PMPIDCardTableViewCellDelegate>
+<UITextViewDelegate>
 
 @property (nonatomic, strong) UIImageView * defaultImgView;
 @property (nonatomic, strong) UITextView * defaultTextView;
-
-@property (nonatomic, strong) UITableView * tableView;
 
 @property (nonatomic, assign) BOOL canScroll;
 
@@ -37,9 +30,10 @@ PMPIDCardTableViewCellDelegate>
 
 @implementation PMPIdentityTableViewController
 
-- (instancetype)initWithRedid:(NSString *)redid
+- (instancetype)initWithStyle:(UITableViewStyle)style
+                        redid:(NSString *)redid
 {
-    self = [super init];
+    self = [super initWithStyle:style];
     if (self) {
         _redid = redid;
     }
@@ -48,19 +42,14 @@ PMPIDCardTableViewCellDelegate>
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _cellHeight = 0.3866666667*SCREEN_WIDTH;
-    self.view.backgroundColor =
-    [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:RGBColor(29, 29, 29, 1)];
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.mas_equalTo(self.view);
-        make.left.mas_offset(8);
-        make.right.mas_offset(-8);
-    }];
-    
+    self.tableView.backgroundColor = [UIColor colorNamed:@"white&29_29_29_1"];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    [self.tableView registerClass:[IDCardTableViewCell class] forCellReuseIdentifier:NSStringFromClass(IDCardTableViewCell.class)];
     [self addNotification];
     [self loadData];
-    [self.tableView addSubview:self.defaultTextView];
+    [self.view addSubview:self.defaultTextView];
     [self.defaultTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_centerY);
         make.centerX.mas_equalTo(self.view);
@@ -68,7 +57,7 @@ PMPIDCardTableViewCellDelegate>
     }];
     self.defaultTextView.hidden = YES;
     
-    [self.tableView addSubview:self.defaultImgView];
+    [self.view addSubview:self.defaultImgView];
     [self.defaultImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.defaultTextView.mas_top).offset(-10);
         make.centerX.mas_equalTo(self.view);
@@ -87,14 +76,14 @@ PMPIDCardTableViewCellDelegate>
     }
      failure:^{
         self.defaultTextView.hidden = NO;
-        self.defaultTextView.hidden = NO;
+        self.defaultImgView.hidden = NO;
         [NewQAHud
          showHudWith:@" 获取身份失败!网络出现了问题. "
          AddView:self.view];
     }];
 }
 
-#pragma mark - notification
+#pragma mark - notifivation
 
 - (void)addNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(acceptMsg:) name:kHomeGoTopNotification object:nil];
@@ -142,32 +131,6 @@ PMPIDCardTableViewCellDelegate>
     return true;
 }
 
-#pragma mark - cell delegate
-
-- (void)settingButtonDidClicked:(UIButton *)button {
-    {
-        [self.parentViewController.navigationController pushViewController:[[AuthenticViewController alloc] init] animated:YES];
-    }
-}
-
-- (void)deleteButtonDidClicked:(UIButton *)button cell:(nonnull PMPIDCardTableViewCell *)cell{
-    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
-    [IDModel
-     deleteIdentityWithIdentityId:self.identityAry[indexPath.row].idStr
-     success:^{
-        [NewQAHud showHudWith:@"删除成功!"
-                      AddView:self.view
-                      AndToDo:^{
-            [self.identityAry removeObjectAtIndex:indexPath.row];
-            [self.tableView reloadData];
-        }];
-    }
-     failure:^{
-        [NewQAHud showHudWith:@"删除失败!"
-                      AddView:self.view];
-    }];
-}
-
 #pragma mark - private
 
 - (NSAttributedString *)getContentLabelAttributedText:(NSString *)text
@@ -189,20 +152,18 @@ PMPIDCardTableViewCellDelegate>
 #pragma mark - Table view dataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.identityAry.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.identityAry.count;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PMPIDCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(PMPIDCardTableViewCell.class)];
+    IDCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(IDCardTableViewCell.class)];
     
     // Configure the cell...
-    cell.model = self.identityAry[indexPath.section];
-    cell.delegate = self;
-    cell.containerScrollView.scrollEnabled = [self.redid isEqualToString:UserItem.defaultItem.redid];
+    cell.model = self.identityAry[indexPath.row];
     
     return cell;
 }
@@ -213,6 +174,44 @@ PMPIDCardTableViewCellDelegate>
 
 #pragma mark - Table view delegate
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    //    return [self.redid isEqualToString:[UserItem defaultItem].redid];
+    return true;
+}
+
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //    if (![self.redid isEqualToString:[UserItem defaultItem].redid]) {
+    //        return [UISwipeActionsConfiguration configurationWithActions:@[]];
+    //    }
+    UIContextualAction *SettingRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"设置" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        [self.parentViewController.navigationController pushViewController:[[AuthenticViewController alloc] init] animated:YES];
+    }];
+    SettingRowAction.image = [UIImage imageNamed:@"identity_setting"];
+    SettingRowAction.backgroundColor = [UIColor colorNamed:@"white&white"];
+    
+    UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        [IDModel
+         deleteIdentityWithIdentityId:self.identityAry[indexPath.row].idStr
+         success:^{
+            [NewQAHud showHudWith:@"删除成功!"
+                          AddView:self.view
+                          AndToDo:^{
+                [self.identityAry removeObjectAtIndex:indexPath.row];
+                completionHandler(true);
+                [self.tableView reloadData];
+            }];
+        }
+         failure:^{
+            [NewQAHud showHudWith:@"删除失败!"
+                          AddView:self.view];
+        }];
+    }];
+    deleteRowAction.image = [UIImage imageNamed:@"trash"];
+    deleteRowAction.backgroundColor = [UIColor redColor];
+    
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[SettingRowAction, deleteRowAction]];
+    return config;
+}
 
 #pragma mark - lazy
 
@@ -224,8 +223,6 @@ PMPIDCardTableViewCellDelegate>
         _defaultTextView.delegate = self;
         _defaultTextView.editable = NO;        //必须禁止输入，否则点击将弹出输入键盘
         _defaultTextView.scrollEnabled = NO;
-        _defaultTextView.showsHorizontalScrollIndicator = NO;
-        _defaultTextView.showsVerticalScrollIndicator = NO;
     }
     return _defaultTextView;
 }
@@ -236,23 +233,6 @@ PMPIDCardTableViewCellDelegate>
         [_defaultImgView sizeToFit];
     }
     return _defaultImgView;
-}
-
-- (UITableView *)tableView {
-    if (_tableView == NULL) {
-        UITableView * view = [[UITableView alloc] initWithFrame:(CGRectZero) style:(UITableViewStyleGrouped)];
-        view.delegate = self;
-        view.dataSource = self;
-        view.showsHorizontalScrollIndicator = NO;
-        view.showsVerticalScrollIndicator = NO;
-        view.backgroundColor =
-        [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:RGBColor(29, 29, 29, 1)];
-        view.separatorStyle = false;
-        [view registerClass:[PMPIDCardTableViewCell class]
-     forCellReuseIdentifier:NSStringFromClass(PMPIDCardTableViewCell.class)];
-        _tableView = view;
-    }
-    return _tableView;
 }
 
 @end

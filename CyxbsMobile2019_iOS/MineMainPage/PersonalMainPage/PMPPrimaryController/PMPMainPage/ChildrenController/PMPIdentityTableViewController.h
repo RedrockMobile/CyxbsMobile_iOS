@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IDCardTableViewCell.h"
 #import "IDDataManager.h"
 #import "UIViewController+CanScroll.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PMPIdentityTableViewController : UIViewController
+@interface PMPIdentityTableViewController : UITableViewController
 
-- (instancetype)initWithRedid:(NSString *)redid;
+- (instancetype)initWithStyle:(UITableViewStyle)style
+                        redid:(NSString *)redid;
 
 @end
 
