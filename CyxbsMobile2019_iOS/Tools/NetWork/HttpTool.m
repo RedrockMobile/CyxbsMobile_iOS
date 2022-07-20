@@ -67,6 +67,7 @@ static HttpTool *_shareTool;
            @"application/xml",
            @"text/xml",
            @"application/x-www-form-urlencoded"]];
+        _sessionManager.responseSerializer = response;
     });
     return _sessionManager;
 }

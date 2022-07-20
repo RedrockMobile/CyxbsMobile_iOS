@@ -26,6 +26,8 @@
 #import "FeedBackMainPageViewController.h" //意见反馈
 #import "CheckInModel.h" //签到的网络请求
 
+#import "MineMessageVC.h"//消息中心模块by ssr，将接入router技术
+
 //获取用户关注的人和粉丝的个人信息
 #define fansAndFollowsInfo @"/magipoke-loop/user/fansAndFollowsInfo"
 
@@ -397,7 +399,9 @@
 /// 点击消息中心按钮后调用
 - (void)msgCenterBtnClicked {
 //    CCLog(@"%s",__func__);
-    [NewQAHud showHudAtWindowWithStr:@"消息中心正在搭建，待开放ing" enableInteract:YES];
+    MineMessageVC *vc = [[MineMessageVC alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 点击邮票中心按钮后调用
