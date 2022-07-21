@@ -8,6 +8,7 @@
 
 //tool
 #import "MGDRefreshTool.h"      //表格的刷新控件
+#import "UIColor+SYColor.h"
 #import "UIScrollView+Empty.h"
 
 //VC
@@ -46,6 +47,11 @@
 @property (nonatomic, strong) DynamicDetailTopBarView *topBarView;
 
 @property (nonatomic, strong) DynamicSpecificCell *dynamicSpecifiCell;
+/// table的头视图
+@property (nonatomic, strong) UIView *tableHeaderView;
+
+/// 评论的Table
+@property (nonatomic, strong) UITableView *commentTable;
 
 /// 无评论时放置的ScrollView
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -74,6 +80,11 @@
 /// 评论table的数据源数组
 @property (nonatomic, strong)NSMutableArray *commentTableDataAry;
 
+/// 存储一级评论cell的高度的数组
+@property (nonatomic, strong) NSMutableArray *oneLeveCommentHeight;
+///存储二级评论cell的高度的数组
+@property (nonatomic, strong) NSMutableArray *twoLevelCommentHeight;
+
 
 /// 请求数据的model
 @property (nonatomic, strong) DynamicDetailRequestDataModel *requestModel;
@@ -82,6 +93,9 @@
 
 ///
 @property (nonatomic, strong) DynamicDetailCommentTableCellModel *actionCommentModel;
+
+/// table头视图的高度
+@property (nonatomic, assign) double tableHedaerViewHeight;
 
 /// 请求动态信息数据失败
 @property (nonatomic, assign) BOOL isGetDynamicDataFailure;
@@ -98,11 +112,6 @@
 @property (nonatomic, assign) BOOL isFirstEnter;
 /// 是否是动态详情页
 @property (nonatomic, assign) BOOL isDynamicDetailVC;
-
-/// 评论的Table
-@property (nonatomic, strong) UITableView *commentTable;
-///table的页数，每页是六个一级评论
-@property (nonatomic, assign) int page;
 @end
 
 @implementation DynamicDetailMainVC
@@ -116,10 +125,11 @@
     self.isFirstEnter = YES;
     self.isDynamicDetailVC = YES;
     self.isShowedReportView = NO;
-    self.page = 1;
     
     self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
     self.commentTableDataAry = [NSMutableArray array];
+    self.oneLeveCommentHeight = [NSMutableArray array];
+    self.twoLevelCommentHeight = [NSMutableArray array];
     
     self.waiLoadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.waiLoadHud.labelText = @"正在加载中...";
@@ -130,7 +140,7 @@
     [super viewWillAppear:YES];
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = YES;//隐藏nav_bar
-    if (!self.isFirstEnter) {
+    if (self.isFirstEnter != YES) {
         [self rebuildFrameByComentCount];
     }
     //注册通知中心
@@ -153,7 +163,7 @@
     
     [self.waiLoadHud hide:YES];
     
-    
+    [self.view addSubview:self.topBarView];
 
     //无评论时的布局策略：底部为一个scrollView，scrollView的滑动高度为动态信息页和无评论的view的高度总和
     if (self.commentTableDataAry.count <= 0) {
@@ -168,7 +178,6 @@
 - (void)setFrameWhenHaveComents{
     //有评论时的布局策略：动态详情信息为评论table的头视图
     //评论的table
-    [self.view addSubview:self.topBarView];
     [self.view addSubview:self.commentTable];
     [self.commentTable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -176,6 +185,8 @@
         make.bottom.equalTo(self.view).offset(-54);
     }];
     //添加头视图
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MAIN_SCREEN_W, 200)];
+    view.backgroundColor = [UIColor redColor];
     self.dynamicSpecifiCell.frame = CGRectMake(0, 0, MAIN_SCREEN_W, [self.dynamicDataModel getModelHeight]);
     self.dynamicSpecifiCell.dynamicDataModel = self.dynamicDataModel;
     
@@ -192,7 +203,6 @@
 ///当没有评论的时候设置UI
 - (void)setFrameWhenNoComent{
     //底层的scrollView
-    [self.view addSubview:self.topBarView];
     [self.view addSubview:self.scrollView];
 //        self.scrollView.backgroundColor = [UIColor redColor];
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -214,13 +224,12 @@
     
     [self.scrollView addSubview:self.noCommentView];
     [self.noCommentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.scrollView.mas_centerX);
+        make.centerX.equalTo(self.scrollView);
         make.top.equalTo(self.dynamicSpecifiCell.mas_bottom);
         make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W * 0.445, MAIN_SCREEN_H * 0.251));
     }];
     
-    //输入框
-    [self.view addSubview:self.inputView];
+    [self.view addSubview:self.inputView];  //输入框
     [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(IS_IPHONE8 ? 54 : 70);
@@ -254,105 +263,72 @@
         }];
     
     //请求评论的数据
-    [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:self.page andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
+    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
         //模型数组
         [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
         
+        //高度数组
+        for (int i = 0; i < commentAry.count; i++) {
+            NSMutableArray *muteAry = [NSMutableArray array];
+            [self.twoLevelCommentHeight addObject:muteAry];
+        }
+        
         self.isGetCommentDtaFailure = NO;
         [self buildFrame];
-        } Failure:^{
-            self.isGetCommentDtaFailure = YES;
-            [self getDataFailure];
-        }];
+    } Failure:^{
+        self.isGetCommentDtaFailure = YES;
+        [self getDataFailure];
+    }];
 }
+
 ///第一次进入页面网络请求失败
 - (void)getDataFailure{
     [self.waiLoadHud hide:YES];
-    
-    if (self.isGetCommentDtaFailure == YES && self.isGetDynamicDataFailure == YES) {
-        MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"请检查网络";
-        [hud hide:YES afterDelay:1];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = @"请检查网络";
+    [hud hide:YES afterDelay:1];
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
 ///添加或者删除评论后调用的方法
 - (void)rebuildFrameByComentCount{
-    
     DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
-    
-    //请求动态信息的数据,更新评论数量
-    [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
-        DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
-        //字典转模型
-        [model setValuesForKeysWithDictionary:dic];
-        //更改评论数量
-        self.dynamicSpecifiCell.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",model.comment_count];
-        } Failure:^{
-            [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
-        }];
-    
-    __weak UIScrollView  *weakScroll = _scrollView;
-    [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:1 andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
-        //如果删除评论后此时还有评论，则更新table的数量
-        if (commentAry.count > 0) {
-            //移除数组内所有元素
-            [self.commentTableDataAry removeAllObjects];
-            //向评论列表数据源数组添加元素
-            [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
-            
-            //如果scrollview存在，说明之前是无评论的状态，这里要刷新界面
-            if (!weakScroll) {
-                [self.commentTable reloadData];
-            } else {
-                [self.view removeAllSubviews];
-                [self setFrameWhenHaveComents];
-            }
-            
-        }else{
-            //如果无评论的情况下
-            [self.view removeAllSubviews];
-            [self setFrameWhenNoComent];
-        }
-        } Failure:^{
-            [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
-        }];
-}
-///下拉刷新数据
-- (void)refreshData{
-    self.page = 1;
-    DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
-    [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:self.page andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
-        //移除数组内所有元素
+    //请求评论的数据
+    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
+        //移除原所有数据
         [self.commentTableDataAry removeAllObjects];
+        [self.oneLeveCommentHeight removeAllObjects];
+        [self.twoLevelCommentHeight removeAllObjects];
         //向评论列表数据源数组添加元素
         [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
+
+        //高度数组
+        for (int i = 0; i < commentAry.count; i++) {
+            NSMutableArray *muteAry = [NSMutableArray array];
+            [self.twoLevelCommentHeight addObject:muteAry];
+        }
+        
+        [self.view removeAllSubviews];
+        [self buildFrame];
         [self.commentTable reloadData];
         
-        } Failure:^{
-            [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
+        //请求动态信息的数据,更新评论数量
+        DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
+        [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
+            //数据请求成功先进行赋值
+            [model setValuesForKeysWithDictionary:dic];
+            //获取该cell的缓存高度
+            [model getModelHeight];
+            self.dynamicSpecifiCell.dynamicDataModel = model;
+            self.dynamicDataModel = model;
+            self.dynamicSpecifiCell.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",model.comment_count];
+            } Failure:^{
+            }];
+    } Failure:^{
+        [self.commentTable.mj_header endRefreshing];
+        [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
         }];
-    [self.commentTable.mj_header endRefreshing];
-}
-///上滑加载更多数据
-- (void)loadData{
-    //新增加一页数据
-    self.page += 1;
-    
-    //请求新一页的数据
-    DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
-    [requestModel getCommentDataWithTarget_id:self.post_id.intValue andPage:self.page andComent_type:1 Sucess:^(NSArray * _Nonnull commentAry) {
-        //向评论列表数据源数组添加元素
-        [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
-        [self.commentTable reloadData];
-        } Failure:^{
-            [NewQAHud showHudWith:@"啊哦，网络跑路了" AddView:self.view.window];
-        }];
-    
-    //停止刷新
-    [self.commentTable.mj_footer endRefreshing];
-    
 }
 
 #pragma mark- event respomse
@@ -377,11 +353,11 @@
     HttpClient *client = [HttpClient defaultClient];
     //完成围观吃瓜任务
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSString *target = @"围观吃瓜";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];
-    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSLog(@"成功了");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -477,12 +453,12 @@
 }
 #pragma mark- Delegate
 
-//MARK: DynamicDetailTopBarViewDelegate
+//MARK:=================================DynamicDetailTopBarViewDelegate==========================
 - (void)pop{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//MARK: 动态信息cell的代理方法
+//MARK:======================================动态信息cell的代理方法================
 /**
  点击多功能按钮
  逻辑：接收到cell里传来的多功能按钮的frame，在此frame上放置多功能View，同时加上蒙版
@@ -545,7 +521,7 @@
     pasteboard.string = shareURL;
 }
 
-//MARK: 多功能View的代理方法
+//MARK:======================================多功能View的代理方法======================================
 ///点击关注按钮
 - (void)ClickedStarGroupBtn:(UIButton *)sender {
     FollowGroupModel *model = [[FollowGroupModel alloc] init];
@@ -618,7 +594,7 @@
     self.isReportComment = NO;
 }
 
-//MARK: 是自己的动态的多功能View的代理方法
+//MARK:=====================是自己的动态的多功能View的代理方法================
 - (void)ClickedDeletePostBtn:(UIButton *)sender{
 //    [self.selfPopView removeFromSuperview];
 //    [self.backViewWithGesture removeFromSuperview];
@@ -631,7 +607,7 @@
 //        }];
 }
 
-//MARK: 举报页面的代理方法
+//MARK:======================================举报页面的代理方法======================================
 /// 举报页面点击确定按钮
 - (void)ClickedSureBtn {
     //隐藏视图
@@ -685,7 +661,7 @@
     [self.reportView.textView resignFirstResponder];
 }
 
-//MARK: 分享View的代理方法
+//MARK:======================================分享View的代理方法======================================
 ///点击取消
 - (void)ClickedCancel {
     [self.shareView removeFromSuperview];
@@ -728,7 +704,7 @@
     [self shareSuccessful];
 }
 
-//MARK: DKSKeyboardDelegate
+//MARK:======================================DKSKeyboardDelegate===============================
 //发送的文案
 - (void)textViewContentText:(NSString *)textStr {
     [self reportComment:textStr];
@@ -749,12 +725,9 @@
     }
     commentVC.post_id = [self.post_id intValue];
     if (self.actionCommentModel.comment_id > 0) {
-        commentVC.reply_id = self.actionCommentModel.comment_id.intValue;
+        commentVC.reply_id = self.actionCommentModel.comment_id;
     }
     commentVC.tampComment = textStr;
-    commentVC.freshBlock = ^{
-        [self rebuildFrameByComentCount];
-    };
     [self.navigationController pushViewController:commentVC animated:YES];
 }
 ///发送按钮
@@ -762,8 +735,6 @@
     [self reportComment:textStr];
     [self.hideKeyBoardView removeFromSuperview];
 }
-
-///发布评论
 - (void)reportComment:(NSString *)textStr{
     
     //设置参数
@@ -772,22 +743,26 @@
     [param setObject:self.post_id forKey:@"post_id"];
     //当不是一级评论的时候才加回复id作为二级评论
     if (self.isCommentFirstLevel != YES) {
-        [param setObject:self.actionCommentModel.comment_id forKey:@"reply_id"];
+        [param setObject:@(self.actionCommentModel.comment_id) forKey:@"reply_id"];
     }
 
     [[HttpClient defaultClient]requestWithPath:New_QA_Comment_Release method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
-        
-        //清除文字内容，收回键盘
-        self.inputView.textView.text = @"";
-        self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
-        //更新textView的高度
-        [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(self.inputView.originTextViewSize);
-        }];
-        [self.inputView.textView resignFirstResponder];
-        
-        [self rebuildFrameByComentCount];
+        if ([responseObject[@"status"] intValue] == 200) {
+            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
+            
+            //清除文字内容，收回键盘
+            self.inputView.textView.text = @"";
+            self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
+            //更新textView的高度
+            [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(self.inputView.originTextViewSize);
+            }];
+            [self.inputView.textView resignFirstResponder];
+            
+            [self rebuildFrameByComentCount];
+            
+        }
+
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
     }];
@@ -798,11 +773,11 @@
     HttpClient *client = [HttpClient defaultClient];
     //完成能说会道任务
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSString *target = @"能说会道";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];
-    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSLog(@"成功了");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -810,7 +785,7 @@
         }];
 }
 
-//MARK: UITextViewDelegate
+//MARK:UITextViewDelegate
 //实现return按钮的方法 + 限制输入字数
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     //限制字数
@@ -919,141 +894,132 @@
     }
     self.inputView.oldTextViewHeight = height;
 }
-
-//MARK: UITableViewDataSource
+//MARK:====================================表格的数据源方法============================================
 - (NSInteger )numberOfSectionsInTableView:(UITableView *)tableView{
     return self.commentTableDataAry.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[section];
-    //如果一级评论下二级评论超过三条，则最后插入一条更多回复的cell
-//    unsigned long count = model.has_more_reply ? (model.reply_list.count + 2) : (model.reply_list.count + 1);
-    unsigned long count = model.reply_list.count + 1;
-    return count;
+    return model.reply_list.count + 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    UITableViewCell *cell = [UITableViewCell alloc] initWithStyle:<#(UITableViewCellStyle)#> reuseIdentifier:<#(nullable NSString *)#>
     NSString *identifier = @"commentCell";
         DynamicDetailComentTableCell *cell = [[DynamicDetailComentTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier commentType:(indexPath.row == 0 ? DynamicCommentType_stair : DynamicCommentType_secondLevel)];
-
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
         DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
         if (indexPath.row == 0) {
             cell.dataModel = model;
             if (indexPath.section == 0) {
                 cell.lineLB.hidden = YES;
             }
-        } else {
-//           if (model.has_more_reply && (indexPath.row == model.reply_list.count + 1)) {
-//               //用于点击更多评论的cell
-//               UITableViewCell *hasMoreCommentCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reminedCell"];
-//               hasMoreCommentCell.backgroundColor = [UIColor redColor];
-//               hasMoreCommentCell.textLabel.text = @"我是更多评论呀";
-//               return hasMoreCommentCell;
-//           } else {
-               cell.dataModel = model.reply_list[indexPath.row-1];
-//           }
+            //存储一级评论的高度
+            NSString *height = [NSString stringWithFormat:@"%f",[model getCellHeight]];
+            [self.oneLeveCommentHeight addObject:height];
+           
+        }else{
+            cell.dataModel = model.reply_list[indexPath.row-1];
+            
+            //存储二级评论的高度
+            NSString *height = [NSString stringWithFormat:@"%f",[cell.dataModel getCellHeight]];
+            NSMutableArray *muteAry = self.twoLevelCommentHeight[indexPath.section];
+            [muteAry addObject:height];
         }
     return cell;
 }
     
 
-//MARK: UITableViewDelegate
+//MARK:====================================表格的代理方法==============================================
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
-
+    
     if (indexPath.row == 0) {
-        CGFloat height = [model getCellHeight];
-        return height ;
-    } else {
-//        if (model.has_more_reply && (indexPath.row == model.reply_list.count + 1)) {
-//            return  100;
-//        } else {
-            DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
-            CGFloat height = [secondCommentModel getCellHeight];
-            
-            //后面的20是回复的label的高度
-            return height + 22;
-//        }
+        NSString *height = [NSString stringWithFormat:@"%f",[model getCellHeight]];
+//        return [self.oneLeveCommentHeight[indexPath.section] doubleValue];
+        return [height doubleValue];
+    }else{
+        DynamicDetailCommentTableCellModel *secondCommentModel = model.reply_list[indexPath.row-1];
+        NSString *height = [NSString stringWithFormat:@"%f",[secondCommentModel getCellHeight]];
+        //后面的20是回复的label的高度
+        return [height doubleValue] + 22;
+//        NSMutableArray *muteAry =  self.twoLevelCommentHeight[indexPath.section];
+//        return [muteAry[indexPath.row - 1] doubleValue];
     }
-}
    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.view endEditing:YES];
     DynamicDetailCommentTableCellModel *model = self.commentTableDataAry[indexPath.section];
-//    if (model.has_more_reply && indexPath.row == model.reply_list.count + 1) {
-//        NSLog(@"更多评论哟");
-//    } else {
-        if (indexPath.row !=0 ) {
-            model = model.reply_list[indexPath.row-1];
-        }
-        self.actionCommentModel = model;
-        DynamicDetailComentTableCell *cell = (DynamicDetailComentTableCell *)[self.commentTable cellForRowAtIndexPath:indexPath];
-
-        CGRect rectInTableView = [tableView rectForRowAtIndexPath:indexPath];
-        //获取cell在tableView中的位置,后面点击之后弹出来的View是根据这个frame设定的
-        CGRect rectInSuperview = [tableView convertRect:rectInTableView toView:[tableView superview]];
-
-        //弹出视图在屏幕下方被隐藏时，设置它的最低的弹出位置
-        CGFloat rectYMargin = rectInSuperview.origin.y+40;
-        if (rectYMargin >= SCREEN_HEIGHT-NVGBARHEIGHT-STATUSBARHEIGHT-54) {
-            rectYMargin = rectInSuperview.origin.y-SCREEN_WIDTH*0.0773;
-        }
-
-        //设置点击cell后弹出的cell
-        SHPopMenu *_menu = [[SHPopMenu alloc]init];
-        _menu.dimBackground = YES;
-        _menu.menuW = SCREEN_WIDTH * 0.4747;
-        _menu.contentH = SCREEN_WIDTH * 0.0773;
-        _menu.mList = @[@"回复",@"复制",(model.is_self ? @"删除" : @"举报")];
-        _menu.arrowX = 0;
-        _menu.arrowImage = [UIImage imageNamed:@""];
-
-        _menu.textColor =
-        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1]
-                              darkColor:[UIColor colorWithHexString:@"#0C3573" alpha:1]];
+    if (indexPath.row !=0 ) {
+        model = model.reply_list[indexPath.row-1];
+    }
+    self.actionCommentModel = model;
+    DynamicDetailComentTableCell *cell = (DynamicDetailComentTableCell *)[self.commentTable cellForRowAtIndexPath:indexPath];
     
-        _menu.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        _menu.layer.cornerRadius = 15;
-        _menu.layer.masksToBounds = YES;
-
-        __weak typeof(self)weakSelf = self;
-        //显示菜单
-        [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:rectYMargin block:^(SHPopMenu *menu, NSInteger index) {
-
-            if (index <= 1){
-                if (index == 0) {
-                    //回复评论
-                    weakSelf.isCommentFirstLevel = NO;  //此处是二级评论
-                    [weakSelf.inputView startInputAction];
-                }else{
-                    //复制
-                    UIPasteboard *pab = [UIPasteboard generalPasteboard];
-                    pab.string = model.content;
-                    [NewQAHud showHudWith:@"已复制内容" AddView:self.view];
-                }
+    CGRect rectInTableView = [tableView rectForRowAtIndexPath:indexPath];
+    //获取cell在tableView中的位置,后面点击之后弹出来的View是根据这个frame设定的
+    CGRect rectInSuperview = [tableView convertRect:rectInTableView toView:[tableView superview]];
+    
+    //弹出视图在屏幕下方被隐藏时，设置它的最低的弹出位置
+    CGFloat rectYMargin = rectInSuperview.origin.y+40;
+    if (rectYMargin >= SCREEN_HEIGHT-NVGBARHEIGHT-STATUSBARHEIGHT-54) {
+        rectYMargin = rectInSuperview.origin.y-SCREEN_WIDTH*0.0773;
+    }
+    
+    //设置点击cell后弹出的cell
+    SHPopMenu *_menu = [[SHPopMenu alloc]init];
+    _menu.dimBackground = YES;
+    _menu.menuW = SCREEN_WIDTH * 0.4747;
+    _menu.contentH = SCREEN_WIDTH * 0.0773;
+    _menu.mList = @[@"回复",@"复制",(model.is_self ? @"删除" : @"举报")];
+    _menu.arrowX = 0;
+    _menu.arrowImage = [UIImage imageNamed:@""];
+    
+    _menu.textColor = [UIColor colorWithLightColor:KUIColorFromRGB(0x0C3573) DarkColor:KUIColorFromRGB(0x0C3573)];
+    _menu.font = [UIFont fontWithName:PingFangSCMedium size:12];
+    _menu.layer.cornerRadius = 15;
+    _menu.layer.masksToBounds = YES;
+    
+    __weak typeof(self)weakSelf = self;
+    //显示菜单
+    [_menu showInRectX:(cell.frame.size.width-_menu.menuW)/2.0 rectY:rectYMargin block:^(SHPopMenu *menu, NSInteger index) {
+        
+        if (index <= 1){
+            if (index == 0) {
+                //回复评论
+                weakSelf.isCommentFirstLevel = NO;  //此处是二级评论
+                [weakSelf.inputView startInputAction];
             }else{
-                if (model.is_self) {
-                    //如果这条评论是自己的，就执行删除操作
-                    [weakSelf deleteAction:model.comment_id.intValue];
-                }else{
-                    //举报功能
-                    weakSelf.isReportComment = YES;
-                    [weakSelf.view.window addSubview:weakSelf.backViewWithGesture]; //添加背景蒙板
-                    weakSelf.reportView.postID = [NSNumber numberWithInteger:model.comment_id.intValue];
-
-                    //每次添加到屏幕上时内容置空
-                    weakSelf.reportView.textView.text = @"";
-                    [weakSelf.view.window addSubview:weakSelf.reportView];
-                    [weakSelf.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.center.equalTo(self.view);
-                        make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
-                    }];
-                    weakSelf.isShowedReportView = YES;  //标记转为已经显示举报
-                }
+                //复制
+                UIPasteboard *pab = [UIPasteboard generalPasteboard];
+                pab.string = model.content;
+                [NewQAHud showHudWith:@"已复制内容" AddView:self.view];
             }
-        }];
-//    }
+        }else{
+            if (model.is_self) {
+                //如果这条评论是自己的，就执行删除操作
+                [weakSelf deleteAction:model.comment_id];
+            }else{
+                //举报功能
+                weakSelf.isReportComment = YES;
+                [weakSelf.view.window addSubview:weakSelf.backViewWithGesture]; //添加背景蒙板
+                weakSelf.reportView.postID = [NSNumber numberWithInteger:model.comment_id];
+                
+                //每次添加到屏幕上时内容置空
+                weakSelf.reportView.textView.text = @"";
+                [weakSelf.view.window addSubview:weakSelf.reportView];
+                [weakSelf.reportView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.center.equalTo(self.view);
+                    make.size.mas_equalTo(CGSizeMake(MAIN_SCREEN_W - MAIN_SCREEN_W*2*0.1587, MAIN_SCREEN_W * 0.6827 * 329/256));
+                }];
+                weakSelf.isShowedReportView = YES;  //标记转为已经显示举报
+            }
+        }
+    }];
 }
 
 #pragma mark- getter
@@ -1080,31 +1046,15 @@
         _commentTable.dataSource = self;
         //设置预加载高度
         _commentTable.estimatedRowHeight = SCREEN_HEIGHT * 0.461;
-//        cell高度自适应
+        //cell高度自适应
         _commentTable.rowHeight = UITableViewAutomaticDimension;
-        if (@available(iOS 13.0, *)) {
-            _commentTable.automaticallyAdjustsScrollIndicatorInsets = NO;
-        } else {
-            // Fallback on earlier versions
-        }
-        //cell之间的颜色
+        _commentTable.automaticallyAdjustsScrollIndicatorInsets = NO;
+        //cell间的颜色
         _commentTable.separatorColor = [UIColor colorNamed:@"ShareLineViewColor"];
-        //设置分割线样式为无
+        _commentTable.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        //分割线样式为无
         _commentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
-        //注册celll
         [_commentTable registerClass:[DynamicDetailComentTableCell class] forCellReuseIdentifier:@"commentCell"];
-        
-        //给table添加MJRefresh控件，用来下拉刷新，上滑加载更多
-            //头刷新
-        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
-            //尾刷新
-        MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-            //进行刷新时的个性化设置
-        [MGDRefreshTool setUPHeader:header AndFooter:footer];
-            //添加到table上
-        _commentTable.mj_header = header;
-        _commentTable.mj_footer = footer;
-        
     }
     return _commentTable;
 }
@@ -1138,7 +1088,10 @@
 
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
+        
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50 * HScaleRate_SE, MAIN_SCREEN_W, IS_IPHONE8 ? (MAIN_SCREEN_H - 54) : (MAIN_SCREEN_H - 70))];
+        
+        _scrollView.contentSize = CGSizeMake(MAIN_SCREEN_W, MAIN_SCREEN_H * 1.5);
         
     }
     return _scrollView;

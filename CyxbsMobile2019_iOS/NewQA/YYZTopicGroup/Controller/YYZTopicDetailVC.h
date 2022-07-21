@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///多功能View -- 自己
 @property (nonatomic, strong) SelfFuncView *selfPopView;
 
+@property (nonatomic, strong) NSMutableArray *heightArray;
 ///举报页面
 @property (nonatomic, strong) ReportView *reportView;
 

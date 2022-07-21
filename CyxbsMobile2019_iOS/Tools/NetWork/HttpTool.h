@@ -79,7 +79,8 @@ typedef NS_ENUM(NSUInteger, HttpToolRequestSerializer) {
 /// @param uploadProgress 上传进度
 /// @param success 请求成功返回
 /// @param failure 请求失败返回
-- (void)POST:(NSString * _Nonnull)URLString
+- (void)form:(NSString * _Nonnull)URLString
+        type:(HttpToolRequestType)requestType
   parameters:(nullable id)parameters
 bodyConstructing:(nullable void (^)(id<AFMultipartFormData> body))block
     progress:(nullable void (^)(NSProgress * progress))uploadProgress

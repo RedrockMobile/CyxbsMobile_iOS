@@ -51,8 +51,9 @@
         
         [AMapServices sharedServices].apiKey = @"0de229ab86861128f7fec123538aa109";
         [[AMapServices sharedServices] setEnableHTTPS:YES];
-        [MAMapView updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
-        [MAMapView updatePrivacyAgree:AMapPrivacyAgreeStatusDidAgree];
+        // remember
+//        [MAMapView updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
+//        [MAMapView updatePrivacyAgree:AMapPrivacyAgreeStatusDidAgree];
         
         MAMapView *mapView = [[MAMapView alloc] initWithFrame:self.bounds];
         mapView.showsUserLocation = YES;

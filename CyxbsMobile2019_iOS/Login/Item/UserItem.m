@@ -7,6 +7,8 @@
 //
 
 #import "UserItem.h"
+//开启CCLog
+#define CCLogEnable 1
 
 @implementation UserItem
 @synthesize stuNum = _stuNum;
@@ -98,6 +100,11 @@ static UserItem *item = nil;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
+- (void)setBirthday:(NSString *)birthday {
+    _birthday = birthday;
+    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
+
 - (void)setRedid:(NSString *)redid {
     _redid = redid;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
@@ -160,6 +167,11 @@ static UserItem *item = nil;
 
 - (void)setCanCheckIn:(BOOL)canCheckIn {
     _canCheckIn = canCheckIn;
+    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+}
+
+- (void)setIsCheckedToday:(BOOL)isCheckedToday {
+    _isCheckedToday = isCheckedToday;
     [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 

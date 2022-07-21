@@ -39,6 +39,7 @@
 #import "NSDate+Day.h"
 #import "UIColor+Color.h"
 #import "HttpTool.h"
+#import "UIImage+Helper.h"
 
 //自定义hud
 #import "NewQAHud.h"

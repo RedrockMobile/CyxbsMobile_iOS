@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 动态个数是用UIButton的titleLabel来显示的
 
-/// 未读消息数
-@property(nonatomic,assign)NSString* msgCount;
+/// 是否隐藏蓝色的点，YES则隐藏
+@property(nonatomic)BOOL hideTipView;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,8 @@
 //  Copyright © 2020 Redrock. All rights reserved.
 
 #import "TopBarBasicViewController.h"
+//是否开启CCLog
+#define CCLogEnable 1
 
 @interface TopBarBasicViewController ()
 
@@ -26,6 +28,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupView];
+    // 用延时，使 topBarView 的层级更靠近用户，避免有其它 View 覆盖在
+    // topBarView 上面导致返回按钮无法点击
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.view bringSubviewToFront:self.topBarView];
+        });
+    });
 }
 
 - (void)setupView {

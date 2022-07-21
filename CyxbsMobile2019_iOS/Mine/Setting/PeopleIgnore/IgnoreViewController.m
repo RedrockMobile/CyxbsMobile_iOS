@@ -58,7 +58,7 @@
     tableView.dataSource = self;
 }
 
-// 通知邮问主页重新加载帖子数据  
+// 通知邮问主页重新加载帖子数据
 - (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shieldReloadNEWQAList" object:nil];
 }

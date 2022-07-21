@@ -147,10 +147,9 @@
     if (self.isFirstCommentLevel != YES) {
         [param setObject:@(self.reply_id) forKey:@"reply_id"];
     }
-//
-    HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
     
+    HttpClient *client = [HttpClient defaultClient];
+    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
     [client.httpSessionManager POST:New_QA_Comment_Release parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSMutableArray *imageNames = [NSMutableArray array];
         for (int i = 0; i < self.imagesAry.count; i++)  {
@@ -165,17 +164,21 @@
         }
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [hud hide:YES];
-        [NewQAHud showHudWith:@"评论成功" AddView:self.view];
-        self.freshBlock();
-        [self.navigationController popViewControllerAnimated:YES];
-        
+        if ([responseObject[@"status"] intValue] == 200) {
+            [NewQAHud showHudWith:@"评论成功" AddView:self.view];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [hud hide:YES];
+            //设置发布按钮恢复正常
+            self.topBarView.releaseBtn.enabled = YES;
+            [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [hud hide:YES];
         //设置发布按钮恢复正常
         self.topBarView.releaseBtn.enabled = YES;
         [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
     }];
-
 }
 
 //MARK:UITExteView代理方法

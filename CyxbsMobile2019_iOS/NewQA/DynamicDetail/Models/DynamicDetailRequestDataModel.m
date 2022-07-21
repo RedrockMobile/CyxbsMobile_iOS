@@ -20,11 +20,11 @@
         }];
     //完成拍案叫绝任务
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSString *target = @"拍案叫绝";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];
-    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSLog(@"成功了");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -45,11 +45,11 @@
     
         //完成逛逛邮问任务
         [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             NSString *target = @"逛逛邮问";
             NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
             [formData appendPartWithFormData:data name:@"title"];
-    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
                 NSLog(@"成功了");
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -58,16 +58,11 @@
     
 }
 
-- (void)getCommentDataWithTarget_id:(int)target_id andPage:(int)page andComent_type:(int)comment_type Sucess:(void (^)(NSArray * _Nonnull))sucess Failure:(void (^)(void))failure{
+- (void)getCommentDataWithPost_id:(int)post_id Sucess:(void (^)(NSArray * _Nonnull))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *parameters = @{
-        @"target_id" : @(target_id),
-        @"comment_type" : @(comment_type),
-        @"page" : @(page),
-        @"size" : @6
-    };
-    [client requestWithPath:NEW_QA_Comment_Reply method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NEW_QA_Comment_Reply method:HttpRequestGet parameters:@{@"post_id":@(post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
+//        NSLog(@"请求评论数据成功,内容为%@",responseObject);
         sucess(array);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure();
@@ -80,7 +75,11 @@
     NSDictionary *param = @{@"id":@(comment_id),@"model":@1,@"content":content};
 
     [client requestWithPath:NEW_QA_REPORT method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        sucess();
+        if ([responseObject[@"status"] intValue] == 200) {
+            sucess();
+        }else{
+            failure();
+        }
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure();
         }];
@@ -92,7 +91,12 @@
 //    @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId"
     [client requestWithPath:NEW_QA_Dynamic_OR_Comment_Deleted method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"删除评论后得到的数据为%@",responseObject);
-        sucess();
+        if ([responseObject[@"status"] intValue] == 200) {
+            NSLog(@"删除成功");
+            sucess();
+        }else{
+            failure();
+        }
         
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             if ([error.domain isEqualToString:AFURLResponseSerializationErrorDomain]){

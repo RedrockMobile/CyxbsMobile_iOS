@@ -12,10 +12,13 @@
 
 #import "SearchBeginVC.h"
 #import "SearchBeiginView.h"
-#import "SZHSearchDataModel.h"
 #import "SZHSearchTableViewCell.h"
+
+#import "SZHSearchDataModel.h"
 #import "SearchEndNoResultCV.h"     //搜索无结果cv
 #import "SZHSearchEndCv.h"
+#import "QASearchResultVC.h"    //搜索结果VC
+
 @interface SearchBeginVC ()<SearchTopViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,SZHHotSearchViewDelegate,SZHSearchTableViewCellDelegate>
 /// 上半部分视图
 @property (nonatomic, strong) SearchBeiginView *searchBeginTopView;
@@ -234,6 +237,10 @@
             vc.tableDataAry = dynamicAry;
             vc.knowlegeAry = knowledgeAry;
             vc.searchStr = str;
+//            QASearchResultVC *vc = [[QASearchResultVC alloc] init];
+            //暂时砍掉知识库
+            vc.knowlegeAry = knowledgeAry;
+//            vc.searchStr = str;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
