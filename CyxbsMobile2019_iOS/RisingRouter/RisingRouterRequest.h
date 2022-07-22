@@ -15,6 +15,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, RisingRouterRequestType) {
+    RouterRequestPush,       // 默认，需要push
+    RouterRequestController, // 不push，只要VC
+    RouterRequestParameters, // 不是VC，只要参数
+};
+
 #pragma mark - RisingRouterRequest
 
 @interface RisingRouterRequest : NSObject
@@ -25,7 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) __kindof UIViewController *requestController;
 
 /// 路由请求所抵达路径
-@property (nonatomic, copy) NSString *responsePath;
+@property (nonatomic, readonly) NSString *responsePath;
+
+/// 请求的情况，默认为RouterRequestPush
+@property (nonatomic) RisingRouterRequestType requestType;
 
 #pragma mark Use
 
@@ -36,6 +45,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable) NSDictionary *parameters;
 
 #pragma mark - Method
+
+- (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
 

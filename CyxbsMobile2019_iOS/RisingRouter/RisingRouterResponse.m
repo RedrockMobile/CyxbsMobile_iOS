@@ -11,22 +11,6 @@
 
 @implementation RisingRouterResponse
 
-+ (instancetype)responseSuccessPushed:(BOOL)isPushed {
-    RisingRouterResponse *response = [[RisingRouterResponse alloc] init];
-    response.pushed = isPushed;
-    return response;
-}
-
-+ (instancetype)responseErrorPushed:(BOOL)isPushed
-                          errorCode:(RisingRouterResponseError)code
-                   errorDescription:(NSString *)description; {
-    RisingRouterResponse *response = [[RisingRouterResponse alloc] init];
-    response.pushed = isPushed;
-    response.errorCode = code;
-    response.errorDescription = description;
-    return response;
-}
-
 - (NSString *)description {
     NSMutableString *string = NSMutableString.string;
     
@@ -35,8 +19,6 @@
     } else {
         [string appendString:@"无响应的类, "];
     }
-    
-    [string appendString:self.pushed ? @"已切换页面" : @"未切换页面"];
     
     switch (self.errorCode) {
         case RouterResponseSuccess: {
