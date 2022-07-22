@@ -474,10 +474,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
             controller.toUrl = userInfo[@"uri"];
             [navigationController pushViewController:controller animated:YES];
         } else if ([userInfo[@"uri"] hasPrefix:@"cyxbs"]) {
-            NSDictionary *params = @{
-                kMGJNavigationControllerKey: navigationController
-            };
-            [MGJRouter openURL:userInfo[@"aps"][@"uri"] withUserInfo:params completion:nil];
+            
+            // TODO: 使用RisingRouter
+            
         }
         
         

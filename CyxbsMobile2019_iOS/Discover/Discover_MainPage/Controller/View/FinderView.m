@@ -193,11 +193,7 @@
 
     } else if ([self.bannerGoToURL[index] hasPrefix:@"cyxbs"]) {
         
-        NSDictionary *userInfo = @{
-            kMGJNavigationControllerKey: self.viewController.navigationController
-        };
-        
-        [MGJRouter openURL:self.bannerGoToURL[index] withUserInfo:userInfo completion:nil];
+        // TODO: 使用RisingRouter
     }
     
 }

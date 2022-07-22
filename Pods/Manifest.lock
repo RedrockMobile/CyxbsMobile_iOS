@@ -29,7 +29,6 @@ PODS:
   - LookinServer (1.0.6)
   - Masonry (1.1.0)
   - MBProgressHUD (0.9.2)
-  - MGJRouter (0.10.0)
   - MJExtension (3.4.1)
   - MJRefresh (3.7.5)
   - NudeIn (1.2.8)
@@ -91,7 +90,6 @@ DEPENDENCIES:
   - LookinServer
   - Masonry
   - MBProgressHUD (~> 0.9.2)
-  - MGJRouter
   - MJExtension
   - MJRefresh
   - NudeIn
@@ -129,7 +127,6 @@ SPEC REPOS:
     - LookinServer
     - Masonry
     - MBProgressHUD
-    - MGJRouter
     - MJExtension
     - MJRefresh
     - NudeIn
@@ -165,7 +162,6 @@ SPEC CHECKSUMS:
   LookinServer: 18155b1e4a08213c236a1dd6b7ca52328a70a1e3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
-  MGJRouter: 15d94541eb2cc81eff7d577337288feb7ae9575f
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   NudeIn: e428b516a60a241d47c9d8882a8a00d0f42cfcb4
@@ -188,6 +184,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 36feba9392839d851db8b606a117e69733254cc5
+PODFILE CHECKSUM: 3b0ca19a61b8841e92b26782c99f9b2b6065c8e2
 
 COCOAPODS: 1.11.3
