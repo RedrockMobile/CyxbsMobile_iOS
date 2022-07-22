@@ -5,7 +5,6 @@ use_frameworks!
 
 # 请阅读《Pod & 第三方库》
 target 'CyxbsMobile2019_iOS' do
-  	pod 'MGJRouter'
 	pod 'TZImagePickerController','~> 3.3.2'
 	pod 'YBImageBrowser',:inhibit_warnings => true
 	pod 'NudeIn'

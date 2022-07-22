@@ -29,7 +29,6 @@
 #import "SDMask.h"
 #import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
 #import "AESCipher.h"           // AES加密算法
-#import <MGJRouter.h>
 #import <SDWebImage/SDWebImage.h>
 
 #import <FluentDarkModeKit.h> // 基于iOS11.0的黑暗适配
@@ -59,12 +58,6 @@
 #pragma mark - 友盟
 // 友盟DeciveToken
 #define kUMDeviceToken @"kUMDeviceToken"
-
-
-#pragma mark - MGJRouter用到的宏
-// MGJRouter中用到的一些宏
-// UserInfo的key：
-#define kMGJNavigationControllerKey @"MGJNavigationControllerKey"
 
 
 #endif /* CyxbsMobileLibraryHeader_h */
