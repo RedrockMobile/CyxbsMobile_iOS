@@ -197,6 +197,13 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
     if (!exifOrientation) {
         exifOrientation = kCGImagePropertyOrientationUp;
     }
+    
+    CFStringRef uttype = CGImageSourceGetType(source);
+    // Check vector format
+    BOOL isVector = NO;
+    if ([NSData sd_imageFormatFromUTType:uttype] == SDImageFormatPDF) {
+        isVector = YES;
+    }
 
     NSMutableDictionary *decodingOptions;
     if (options) {
@@ -207,6 +214,22 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
     CGImageRef imageRef;
     BOOL createFullImage = thumbnailSize.width == 0 || thumbnailSize.height == 0 || pixelWidth == 0 || pixelHeight == 0 || (pixelWidth <= thumbnailSize.width && pixelHeight <= thumbnailSize.height);
     if (createFullImage) {
+        if (isVector) {
+            if (thumbnailSize.width == 0 || thumbnailSize.height == 0) {
+                // Provide the default pixel count for vector images, simply just use the screen size
+#if SD_WATCH
+                thumbnailSize = WKInterfaceDevice.currentDevice.screenBounds.size;
+#elif SD_UIKIT
+                thumbnailSize = UIScreen.mainScreen.bounds.size;
+#elif SD_MAC
+                thumbnailSize = NSScreen.mainScreen.frame.size;
+#endif
+            }
+            CGFloat maxPixelSize = MAX(thumbnailSize.width, thumbnailSize.height);
+            NSUInteger DPIPerPixel = 2;
+            NSUInteger rasterizationDPI = maxPixelSize * DPIPerPixel;
+            decodingOptions[kSDCGImageSourceRasterizationDPI] = @(rasterizationDPI);
+        }
         imageRef = CGImageSourceCreateImageAtIndex(source, index, (__bridge CFDictionaryRef)[decodingOptions copy]);
     } else {
         decodingOptions[(__bridge NSString *)kCGImageSourceCreateThumbnailWithTransform] = @(preserveAspectRatio);
@@ -215,9 +238,9 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
             CGFloat pixelRatio = pixelWidth / pixelHeight;
             CGFloat thumbnailRatio = thumbnailSize.width / thumbnailSize.height;
             if (pixelRatio > thumbnailRatio) {
-                maxPixelSize = MAX(thumbnailSize.width, thumbnailSize.width / pixelRatio);
+                maxPixelSize = thumbnailSize.width;
             } else {
-                maxPixelSize = MAX(thumbnailSize.height, thumbnailSize.height * pixelRatio);
+                maxPixelSize = thumbnailSize.height;
             }
         } else {
             maxPixelSize = MAX(thumbnailSize.width, thumbnailSize.height);
@@ -288,14 +311,11 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
     // Which decode frames in time and reduce memory usage
     if (thumbnailSize.width == 0 || thumbnailSize.height == 0) {
         SDAnimatedImageRep *imageRep = [[SDAnimatedImageRep alloc] initWithData:data];
-        if (imageRep) {
-            NSSize size = NSMakeSize(imageRep.pixelsWide / scale, imageRep.pixelsHigh / scale);
-            imageRep.size = size;
-            NSImage *animatedImage = [[NSImage alloc] initWithSize:size];
-            [animatedImage addRepresentation:imageRep];
-            animatedImage.sd_imageFormat = self.class.imageFormat;
-            return animatedImage;
-        }
+        NSSize size = NSMakeSize(imageRep.pixelsWide / scale, imageRep.pixelsHigh / scale);
+        imageRep.size = size;
+        NSImage *animatedImage = [[NSImage alloc] initWithSize:size];
+        [animatedImage addRepresentation:imageRep];
+        return animatedImage;
     }
 #endif
     
@@ -479,15 +499,13 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
     CGFloat pixelWidth = (CGFloat)CGImageGetWidth(imageRef);
     CGFloat pixelHeight = (CGFloat)CGImageGetHeight(imageRef);
     CGFloat finalPixelSize = 0;
-    BOOL encodeFullImage = maxPixelSize.width == 0 || maxPixelSize.height == 0 || pixelWidth == 0 || pixelHeight == 0 || (pixelWidth <= maxPixelSize.width && pixelHeight <= maxPixelSize.height);
-    if (!encodeFullImage) {
-        // Thumbnail Encoding
+    if (maxPixelSize.width > 0 && maxPixelSize.height > 0 && pixelWidth > maxPixelSize.width && pixelHeight > maxPixelSize.height) {
         CGFloat pixelRatio = pixelWidth / pixelHeight;
         CGFloat maxPixelSizeRatio = maxPixelSize.width / maxPixelSize.height;
         if (pixelRatio > maxPixelSizeRatio) {
-            finalPixelSize = MAX(maxPixelSize.width, maxPixelSize.width / pixelRatio);
+            finalPixelSize = maxPixelSize.width;
         } else {
-            finalPixelSize = MAX(maxPixelSize.height, maxPixelSize.height * pixelRatio);
+            finalPixelSize = maxPixelSize.height;
         }
         properties[(__bridge NSString *)kCGImageDestinationImageMaxPixelSize] = @(finalPixelSize);
     }

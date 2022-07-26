@@ -17,7 +17,7 @@
         @"size":size,
     };
     
-    [self.client requestWithPath:getArticle method:HttpRequestGet parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.client requestWithPath:Mine_GET_getArticle_API method:HttpRequestGet parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.dataArr addObjectsFromArray:responseObject[@"data"]];
         
         if ([responseObject[@"data"] count]<size.integerValue) {
@@ -36,7 +36,7 @@
         @"id":ID,
         @"model":@"0"
     };
-    [self.client requestWithPath:deleteArticle method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.client requestWithPath:Mine_POST_deleteArticle_API method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dict;
         for (int i=0; i<self.dataArr.count; i++) {
             dict = self.dataArr[i];

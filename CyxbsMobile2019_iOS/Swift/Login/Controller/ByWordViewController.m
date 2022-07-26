@@ -166,7 +166,7 @@
 {
     if(_tf.text.length>=2)
     {
-        [[HttpClient defaultClient]requestWithPath:CHECKQUESTION method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
+        [[HttpClient defaultClient]requestWithPath:Mine_POST_checkQuestion_API method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
         {
             if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
             {
@@ -223,7 +223,7 @@
     else
         num = stuNum;
     
-    [[HttpClient defaultClient] requestWithPath:GETQUESTION method:HttpRequestPost  parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Mine_POST_getQuestion_API method:HttpRequestPost  parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSString *questWord = responseObject[@"data"][@"content"];
 //        NSString *questWord = responseObject[@"data"][@"content"];
         NSArray *array = responseObject[@"data"];

@@ -28,7 +28,7 @@
 
 /// 数据加载模型
 - (void)addPraiseModel {
-    self.praiseModel = [[PraiseModel alloc] initWithUrl:getPraiseAPI];
+    self.praiseModel = [[PraiseModel alloc] initWithUrl:Mine_GET_getPraise_API];
     self.praiseModel.delegate = self;
 //    [self.praiseModel loadMoreData];
 }

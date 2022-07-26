@@ -96,7 +96,7 @@
 }
 
 - (void)ff{
-    [[HttpClient defaultClient] requestWithJson:GetaboutUsMsg method:HttpRequestPost parameters:@{@"name":@"zscy-main-userAgreement"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithJson:Mine_POST_getAboutUsMsg_API method:HttpRequestPost parameters:@{@"name":@"zscy-main-userAgreement"} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CCLog(@"yyy=%@",responseObject[@"data"]);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         CCLog(@"yyy=%@",error);

@@ -158,7 +158,7 @@
 - (void)cancelBtnClicked{
     [self.cancelBtn setEnabled:NO];
     if ([self.cancelBtn.titleLabel.text isEqualToString:@"取消屏蔽"]) {
-        [[HttpClient defaultClient] requestWithPath:cancelIgnorePeopleUrl method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:Mine_POST_cancelIgnorePeople_API method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self.cancelBtn setTitle:@"屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"已成功解除对该用户的屏蔽～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];
@@ -166,7 +166,7 @@
             [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
         }];
     }else {
-        [[HttpClient defaultClient] requestWithPath:ignorePeopleUrl method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:Mine_POST_ignorePeople_API method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             [self.cancelBtn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"屏蔽成功～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];

@@ -13,7 +13,7 @@
 - (void)sendEmail:(NSString *)email{
     NSDictionary *param = @{@"email":email};
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:SENDEMAILCODEAPI method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:Mine_POST_sendEmailCode_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWorkToBindingEmail" object:nil userInfo:nil];

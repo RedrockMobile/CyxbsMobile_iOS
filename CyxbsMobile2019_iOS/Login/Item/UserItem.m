@@ -51,7 +51,7 @@ static UserItem *item = nil;
 }
 
 - (void)getUserInfo {
-    [[HttpClient defaultClient] requestWithPath:getPersonData method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Mine_POST_getPersonData_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         
         NSLog(@"%@",responseObject);

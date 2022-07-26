@@ -14,7 +14,7 @@
         @"page":@(self.page),
         @"size":@"10",
     };
-    [self.client requestWithPath:getIgnoreUid method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.client requestWithPath:Mine_POST_getIgnoreUid_API method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.dataArr addObjectsFromArray:responseObject[@"data"]];
         if ([responseObject[@"data"] count] < 10) {
             [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateNoMoreDate];

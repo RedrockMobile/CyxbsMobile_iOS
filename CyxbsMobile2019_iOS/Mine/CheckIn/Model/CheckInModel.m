@@ -18,7 +18,7 @@
     
     HttpClient *client = [HttpClient defaultClient];
     
-    [client requestWithPath:CHECKINAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:Mine_POST_checkIn_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
     
         
@@ -32,7 +32,7 @@
 + (void)requestCheckInInfoWithParams:(NSDictionary *)params succeeded:(void (^)(void))succeded {
     HttpClient *client = [HttpClient defaultClient];
     
-    [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:Mine_POST_checkInInfo_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
         [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];

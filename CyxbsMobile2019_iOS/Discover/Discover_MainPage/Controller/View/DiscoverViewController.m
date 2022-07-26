@@ -303,7 +303,7 @@ static int requestCheckinInfo = 0;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[UserDefaultTool getStuNum],@"stunum",[UserDefaultTool getIdNum],@"idnum",nil];
 
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:Mine_POST_checkInInfo_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
         [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
         [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];

@@ -87,7 +87,7 @@ static dispatch_once_t _onceToken = 0;
             
             //用自定义AFHTTPSessionManager，因为这里用了多线程，用HttpClient怕有多线程的问题
             AFHTTPSessionManager *man = [self getHTTPSessionManager];
-            [man GET:getMsgCnt parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+            [man GET:Mine_GET_getMsgCnt_API parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
                 NSDictionary *dataDict = responseObject[@"data"];
                 if (dataDict==nil) {
                 }else if (i==0) {

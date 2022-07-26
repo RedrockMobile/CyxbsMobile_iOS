@@ -121,7 +121,7 @@
         [NewQAHud showHudWith:@" 请输入正确格式的学号  " AddView:self.view];
         return;
     }
-    [[HttpClient defaultClient]requestWithPath :IFORIGINPASSWORD method:HttpRequestPost parameters:@{@"stu_num":self.testF.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath :Mine_POST_ifOriginPassword_API method:HttpRequestPost parameters:@{@"stu_num":self.testF.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         //如果是默认密码，弹出提示框
         if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
             self->_popView.alpha = 1.0;

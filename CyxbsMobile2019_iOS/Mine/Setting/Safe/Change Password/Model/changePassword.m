@@ -14,7 +14,7 @@
     if([UserDefaultTool getIdNum] != nil){
         NSDictionary *param = @{@"origin_password":[UserDefaultTool getIdNum],@"new_password":password};
         HttpClient *client = [HttpClient defaultClient];
-        [client requestWithPath:CHANGEPASSWORDAPI method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [client requestWithPath:Mine_POST_changePassword_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 self->_Block(responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"失败了");
@@ -24,7 +24,7 @@
     else{
         NSDictionary *param = @{@"stu_num":stuId,@"new_password":password,@"code":code};
         HttpClient *client = [HttpClient defaultClient];
-        [client requestWithPath:RESSETPASSWORDAPI method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [client requestWithPath:Mine_POST_ressetPassword_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 self->_Block(responseObject);
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             NSLog(@"失败了");

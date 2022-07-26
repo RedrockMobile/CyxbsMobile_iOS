@@ -188,7 +188,7 @@
 //跳转界面，判断验证码是否正确
 -(void) jumpTOset{
     NSNumber *codeNum = [NSNumber numberWithString:self.tf.text];
-    [[HttpClient defaultClient] requestWithPath:CHECKEMAILCODE method:HttpRequestPost parameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Mine_POST_checkEmailCode_API method:HttpRequestPost parameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
             self.code = responseObject[@"data"][@"code"];
             ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
@@ -250,7 +250,7 @@
         num = self.idString;
     else
         num = stuNum;
-    [[HttpClient defaultClient] requestWithPath:GETEMAILDETAIL method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Mine_POST_getEmailDetail_API method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *email = responseObject[@"data"][@"email"];
         self.lable3.text = email;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -260,7 +260,7 @@
 //发送验证码
 -(void) getMailCode{
     [self openCountdown];
-    [[HttpClient defaultClient] requestWithPath:GETEMAILCODE method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
+    [[HttpClient defaultClient] requestWithPath:Mine_POST_getEmailCode_API method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
             [NewQAHud showHudWith:@" 验证码已发送，可能会被归为垃圾邮件，请注意查收 " AddView:self.view];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];

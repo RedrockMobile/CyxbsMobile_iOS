@@ -140,46 +140,46 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #pragma mark - “我的”接口
 
 /// 登录接口
-#define LOGINAPI @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token"
+#define Mine_POST_logIn_API @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token"
 /// 刷新token
-//#define REFRESHTOKENAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/token/refresh"
-#define REFRESHTOKENAPI @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token/refresh"
+
+#define Mine_POST_refreshToken_API @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token/refresh"
 
 
 /// 上传头像
-#define UPLOADPROFILEAPI @"https://cyxbsmobile.redrock.team/app/index.php/Home/Photo/uploadArticle"
+#define Mine_GET_upLoadProfile_API @"https://cyxbsmobile.redrock.team/app/index.php/Home/Photo/uploadArticle"
 /// 上传用户信息
-#define UPLOADUSERINFOAPI @"http://api-234.redrock.team/magipoke/Person/SetInfo"
+#define Mine_GET_upLoadUserInfo_API @"http://api-234.redrock.team/magipoke/Person/SetInfo"
 
 
 /// 获取签到信息
-#define CHECKININFOAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getScoreStatus"
+#define Mine_POST_checkInInfo_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/getScoreStatus"
 /// 签到
-#define CHECKINAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/Integral/checkIn"
+#define Mine_POST_checkIn_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Integral/checkIn"
 /// 积分商城
-#define INTEGRALSTORELISTAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-intergral/QA/Integral/getItemList"
+#define Mine_GET_integralStoreList_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-intergral/QA/Integral/getItemList"
 /// 兑换商品
-#define INTEGRALSTOREORDER @"https://cyxbsmobile.redrock.team/wxapi/magipoke-intergral/QA/Integral/order"
+#define Mine_GET_integralStoreOrder_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-intergral/QA/Integral/order"
 /// 我的商品
-#define MYGOODSLISTAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-intergral/QA/Integral/myRepertory"
+#define Mine_GET_myGoodsList_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-intergral/QA/Integral/myRepertory"
 
 
 /// “我的”邮问数据
-#define MINEQADATAAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/mine"
+#define Mine_GET_mineQAData_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/mine"
 /// 我的提问
-#define MYQUESTIONSAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/question"
+#define Mine_GET_myQuestions_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/question"
 /// 提问草稿箱
-#define MYQUESTIONDRAFTAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/getDraftQuestionList"
+#define Mine_GET_myQuestionDraft_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/getDraftQuestionList"
 /// 我的回答
-#define MYANSWERSAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/answer"
+#define Mine_GET_myAnswers_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/answer"
 /// 回答草稿箱
-#define MYANSWERSDRAFTAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/getDraftAnswerList"
+#define Mine_GET_myAnswersDraft_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/getDraftAnswerList"
 /// 发出的评论
-#define MYCOMMENTAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/comment"
+#define Mine_GET_myComment_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/comment"
 /// 收到的评论
-#define MYRECOMMENTAPI @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/reComment"
+#define Mine_GET_myRecomment_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/User/reComment"
 /// 删除草稿
-#define DELETEDRAFT @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/deleteItemInDraft"
+#define Mine_GET_deleteDraft_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/deleteItemInDraft"
 
 
 
