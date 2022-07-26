@@ -24,7 +24,7 @@
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:paramters options:NSJSONWritingPrettyPrinted error: nil];
     
-    NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:IDSBINDINGAPI parameters:nil error:nil];
+    NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:Discover_POST_idsBinding_API parameters:nil error:nil];
     req.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
     [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [req setValue:@"*/*" forHTTPHeaderField:@"Accept"];

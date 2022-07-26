@@ -30,7 +30,7 @@
            room = item.room;
         NSDictionary *parameters = @{@"building":building, @"room":room};
         
-        [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [client requestWithPath:Discover_POST_electricFee_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSLog(@"%@",responseObject);
             ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
             self.electricFeeItem = item;
@@ -49,7 +49,7 @@
     }else {
         //用户没有绑定，后端尝试读取他以前绑定过的宿舍
         NSDictionary *parameters = @{@"building":@"", @"room":@""};
-               [client requestWithPath:ELECTRICFEE method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+               [client requestWithPath:Discover_POST_electricFee_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                    NSLog(@"%@",responseObject);
                    ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
                    self.electricFeeItem = item;

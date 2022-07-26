@@ -45,7 +45,7 @@
 
 - (void)reloadData {
     [HttpClient.defaultClient.httpSessionManager
-     GET:MineMessage_GET_userHadRead_API
+     GET:Discover_GET_userHadRead_API
      parameters:nil
      headers:@{
         @"authorization" : [NSString stringWithFormat:@"Bearer %@", UserItemTool.defaultItem.token]

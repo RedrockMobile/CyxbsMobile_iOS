@@ -62,7 +62,7 @@
     [self addBottomBar];//添加下方学分成绩入口的按钮
     
     
-    [[HttpClient defaultClient] requestWithPath:EXAM_MODEL method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Discover_GET_examModel_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *type = responseObject[@"data"][@"ExamModel"];
         if ([type isEqualToString:@"magipoke"]) {//掌邮显示
             [self displayByAPP];

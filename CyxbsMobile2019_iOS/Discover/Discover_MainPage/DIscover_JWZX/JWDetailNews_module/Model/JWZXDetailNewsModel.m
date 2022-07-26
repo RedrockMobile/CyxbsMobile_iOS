@@ -28,7 +28,7 @@
                    failure:(void (^)(NSError * _Nonnull))failure {
     
     [HttpClient.defaultClient
-     requestWithPath:NEWSDETAIL
+     requestWithPath:Discover_GET_newsDetail_API
      method:HttpRequestGet
      parameters:@{@"id" : self.newsID}
      prepareExecute:nil

@@ -16,7 +16,7 @@
                      failure:(void (^)(NSError *error))failure {
     // 网络请求，因为必须alloc，所以传出不需要东西
     [HttpClient.defaultClient
-     requestWithPath:BANNERVIEWAPI
+     requestWithPath:Discover_GET_bannerView_API
      method:HttpRequestGet
      parameters:nil
      prepareExecute:nil

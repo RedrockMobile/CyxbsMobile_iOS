@@ -186,40 +186,40 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #pragma mark - “发现”接口
 
 /// 教务新闻列表
-#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
+#define Discover_GET_newsList_API @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"//参数page，方法Get
 /// 教务新闻详情
-#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
+#define Discover_GET_newsDetail_API @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
 /// 教务新闻附件
-#define NEWSFILE @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
+#define Discover_GET_newsFile_API @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 
 /// 电费
-#define ELECTRICFEE @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
-//#define ELECTRICFEE @"http://api-234.redrock.team/wxapi/magipoke-elecquery/getElectric"   // 这好像也是电费接口
+#define Discover_POST_electricFee_API @"https://cyxbsmobile.redrock.team/MagicLoop/index.php?s=/addon/ElectricityQuery/ElectricityQuery/queryElecByRoom"
+//#define Discover_POST_electricFee_API @"http://api-234.redrock.team/wxapi/magipoke-elecquery/getElectric"   // 这好像也是电费接口
 
 /// 教务新闻列表
-#define NEWSLIST @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
+#define Discover_GET_newsList_API @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/list"
 /// 教务新闻详情
-#define NEWSDETAIL @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
+#define Discover_GET_newsDetail_API @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/content"
 /// 教务新闻附件下载
 #define NEWSDOWNLOAD @"https://cyxbsmobile.redrock.team/234/newapi/jwNews/file"
 
 ///查询绩点需要先绑定ids
-#define IDSBINDINGAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
+#define Discover_POST_idsBinding_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke/ids/bind"
 ///绩点查询
-//#define GPAAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke/gpa"
+//#define Discover_GET_GPA_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke/gpa"
 
 /// 考试安排接口
-#define EXAMARRANGEAPI @"https://cyxbsmobile.redrock.team/api/examSchedule"
+#define Discover_POST_examArrange_API @"https://cyxbsmobile.redrock.team/api/examSchedule"
 
 /// 校车位置
-#define SCHOOLBUSAPI @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
+#define Discover_POST_schoolBus_API @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
 
 /// banner
-#define BANNERVIEWAPI @"http://api-234.redrock.team/magipoke-text/banner/get"
+#define Discover_GET_bannerView_API @"http://api-234.redrock.team/magipoke-text/banner/get"
 
 /// 志愿查询
-#define VOLUNTEERBIND @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
-#define VOLUNTEERREQUEST @"https://cyxbsmobile.redrock.team/wxapi/volunteer/select"
+#define Discover_POST_volunteerBind_API @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
+#define Discover_POST_volunteerRequest_API @"https://cyxbsmobile.redrock.team/wxapi/volunteer/select"
 
 
 

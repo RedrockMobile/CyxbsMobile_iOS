@@ -60,6 +60,6 @@
 
 #import "MineHeader.h"
 
-
+#import "DiscoverHeader.h"
 
 #endif /* CyxbsMobilePathAndKey_h */

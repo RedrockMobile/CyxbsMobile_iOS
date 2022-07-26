@@ -19,7 +19,7 @@
 }
 - (void)fetchData {
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:EXAMARRANGEAPI method:HttpRequestPost parameters:@{@"stuNum":[UserDefaultTool getStuNum]} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:Discover_POST_examArrange_API method:HttpRequestPost parameters:@{@"stuNum":[UserDefaultTool getStuNum]} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         ExamArrangeData *data = [[ExamArrangeData alloc]initWithDic:responseObject];
         self.examArrangeData = data;
         CCLog(@"%@",responseObject);

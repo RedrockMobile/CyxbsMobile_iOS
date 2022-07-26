@@ -47,7 +47,7 @@
     NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
     
     [HttpTool.shareTool
-     request:MineMessage_PUT_hasRead_API
+     request:Discover_PUT_hasRead_API
      type:HttpToolRequestTypePut
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:parameter
@@ -78,7 +78,7 @@
     NSDictionary <NSString *, NSArray <NSString *> *> *parameter = @{@"ids" : idNums.copy};
     
     [HttpTool.shareTool
-     request:MineMessage_DELETE_sysMsg_API
+     request:Discover_DELETE_sysMsg_API
      type:HttpToolRequestTypeDelete
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:parameter

@@ -25,7 +25,7 @@
 
 - (void)requestSuccess:(void (^)(void))success failure:(void (^)(NSError * _Nonnull))failure {
     [HttpClient.defaultClient
-     requestWithPath:MineMessage_GET_allMsg_API
+     requestWithPath:Discover_GET_allMsg_API
      method:HttpRequestGet
      parameters:nil
      prepareExecute:nil

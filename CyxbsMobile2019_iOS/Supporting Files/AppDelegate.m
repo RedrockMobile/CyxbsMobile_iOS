@@ -124,7 +124,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         
         VolunteerItem *volunteer = [[VolunteerItem alloc] init];
 
-        [manager POST:VOLUNTEERREQUEST parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [manager POST:Discover_POST_volunteerRequest_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
             for (NSDictionary *dict in responseObject[@"record"]) {
                 VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];

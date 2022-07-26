@@ -9,7 +9,7 @@
 #import "SchoolBusData.h"
 #import <CommonCrypto/CommonCrypto.h>
 
-#define SCHOOLBUSAPI_DEV @"https://be-dev.redrock.cqupt.edu.cn/schoolbus/status"
+#define Discover_POST_schoolBus_API_DEV @"https://be-dev.redrock.cqupt.edu.cn/schoolbus/status"
 
 @implementation SchoolBusData
 
@@ -42,7 +42,7 @@
     
     //网络请求 表单数据 (FormData)
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager POST:SCHOOLBUSAPI parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:Discover_POST_schoolBus_API parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
             //数据转二进制
             NSData *sData = [s dataUsingEncoding:NSUTF8StringEncoding];
