@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"没课约控制器的view背景色"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         self.view.backgroundColor = UIColor.whiteColor;
     }
@@ -104,7 +104,7 @@
     
     backgroundView.layer.cornerRadius = MAIN_SCREEN_H*0.0271;
     if (@available(iOS 11.0, *)) {
-        backgroundView.backgroundColor = [UIColor colorNamed:@"Color#E8F1FC&2C2C2C"];
+        backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:0.77] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.72]];
     } else {
         backgroundView.backgroundColor = [UIColor colorWithHexString:@"#E8F1FC"];
     }
@@ -215,7 +215,7 @@
     
     btn.layer.cornerRadius = MAIN_SCREEN_H*0.02465;
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"enquiryBtnColor"];
+        btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#453DD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#495CF5" alpha:1]];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:0.271 green:0.242 blue:0.850 alpha:1];
     }

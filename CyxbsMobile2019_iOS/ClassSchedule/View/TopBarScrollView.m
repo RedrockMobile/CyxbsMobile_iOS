@@ -277,7 +277,7 @@
     [backBtn setTitle:@"回到本周" forState:(UIControlStateNormal)];
     [backBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     if (@available(iOS 11.0, *)) {
-        [backBtn setBackgroundColor:[UIColor colorNamed:@"enquiryBtnColor"]];
+        [backBtn setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#453DD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#495CF5" alpha:1]]];
     } else {
         [backBtn setBackgroundColor:[UIColor colorWithRed:69/255.0 green:62/255.0 blue:217/255.0 alpha:1]];
     }

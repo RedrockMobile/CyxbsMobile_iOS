@@ -127,6 +127,7 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     if (@available(iOS 11.0, *)) {
+        
         cell.textLabel.textColor = [UIColor colorNamed:@"25_56_102&240_240_242"];
     } else {
         cell.textLabel.textColor = [UIColor colorWithRed:25/255.0 green:56/255.0 blue:102/255.0 alpha:1];

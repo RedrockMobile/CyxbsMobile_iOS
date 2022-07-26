@@ -94,7 +94,7 @@
         _repeatLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _repeatLbl.text = @"设置重复提醒";
         _repeatLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _repeatLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        _repeatLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _repeatLbl.alpha = 0.4;
         _repeatLbl.userInteractionEnabled = YES;
         

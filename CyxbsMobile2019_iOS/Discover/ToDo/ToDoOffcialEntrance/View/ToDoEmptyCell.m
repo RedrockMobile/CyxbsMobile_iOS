@@ -94,7 +94,7 @@
     if (!_todoLbl) {
         _todoLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _todoLbl.text = @"还没有待做事项哦，快去添加吧！";
-        _todoLbl.textColor = [UIColor colorNamed:@"17_44_84&223_223_227"];
+        _todoLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         _todoLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
     }
     return _todoLbl;
@@ -104,7 +104,7 @@
     if (!_doneLbl) {
         _doneLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _doneLbl.text = @"还没有已完成事项哦，期待你的好消息！";
-        _doneLbl.textColor = [UIColor colorNamed:@"17_44_84&223_223_227"];
+        _doneLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         _doneLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
     }
     return _doneLbl;

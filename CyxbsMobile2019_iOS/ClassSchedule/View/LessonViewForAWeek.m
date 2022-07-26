@@ -56,7 +56,7 @@
     [self addSubview:label];
     label.text = @"一片寂静";
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"17_44_84&240_240_240"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
     }

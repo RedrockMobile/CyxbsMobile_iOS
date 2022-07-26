@@ -198,7 +198,7 @@
         
 //        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
         
-//        label.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+//        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
         label.font = [UIFont fontWithName:PingFangSCMedium size:15];
         label.text = @"还没有待做事项哦～快去添加吧！";
@@ -271,11 +271,11 @@
         NSForegroundColorAttributeName:[UIColor colorNamed:@"color21_49_91&#F0F0F2"]
     } range:NSMakeRange(0, attStr.length)];
     [attStr addAttributes:@{
-        NSForegroundColorAttributeName:[UIColor colorNamed:@"41_35_210&44_222_255"]
+        NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]]
     } range:[tipStr rangeOfString:serverTimeStr]];
     
     [attStr addAttributes:@{
-        NSForegroundColorAttributeName:[UIColor colorNamed:@"41_35_210&44_222_255"]
+        NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]]
     } range:[tipStr rangeOfString:localTimeStr]];
     
     view.tipMsgLabel.attributedText = attStr;

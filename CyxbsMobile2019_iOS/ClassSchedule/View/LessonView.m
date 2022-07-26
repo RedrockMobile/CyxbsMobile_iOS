@@ -86,7 +86,7 @@
         
         if(self.isEmptyLesson==YES){
             if (@available(iOS 11.0, *)) {
-                color = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
+                color = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#294D83" alpha:1] darkColor:[UIColor colorWithHexString:@"#EBF2FA" alpha:1]];
             } else {
                 color = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
             }

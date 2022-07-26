@@ -73,7 +73,7 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"Todo紫色边框按钮"] forState:UIControlStateNormal];
     
     btn.layer.cornerRadius = 0.04533333333*SCREEN_WIDTH;
-    [btn setTitleColor:[UIColor colorNamed:@"41_35_210&44_222_255"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:16];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(0.32*SCREEN_WIDTH);

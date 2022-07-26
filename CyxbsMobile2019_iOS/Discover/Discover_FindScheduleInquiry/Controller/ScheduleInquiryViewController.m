@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&29_29_29"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         self.view.backgroundColor = UIColor.whiteColor;
     }
@@ -51,7 +51,7 @@
     }
     self.backgroundView = backgroundView;
     if (@available(iOS 11.0, *)) {
-        backgroundView.backgroundColor = [UIColor colorNamed:@"255_255_255&29_29_29"];
+        backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         backgroundView.backgroundColor = UIColor.whiteColor;
     }

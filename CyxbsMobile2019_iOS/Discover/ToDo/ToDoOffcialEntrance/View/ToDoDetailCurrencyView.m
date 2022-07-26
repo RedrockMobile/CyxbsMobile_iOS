@@ -46,7 +46,7 @@
 - (UILabel *)titleLbl{
     if (!_titleLbl) {
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
-        _titleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        _titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _titleLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
     }
     return _titleLbl;
@@ -55,7 +55,7 @@
 - (UIView *)botttomDividerView{
     if (!_botttomDividerView) {
         _botttomDividerView = [[UIView alloc] initWithFrame:CGRectZero];
-        _botttomDividerView.backgroundColor = [UIColor colorNamed:@"189_204_229_0.2&248_249_252_0.1"];
+        _botttomDividerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#BDCCE5" alpha:0.2] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:0.1]];
     }
     return _botttomDividerView;
 }

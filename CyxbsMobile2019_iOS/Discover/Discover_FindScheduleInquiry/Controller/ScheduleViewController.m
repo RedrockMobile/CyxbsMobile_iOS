@@ -13,7 +13,7 @@
 #define MAXLEN 9
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define BACKGROUNDCOLOR  [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define SEARCHBARCOLOR  [UIColor colorNamed:@"Color#E8F1FC&2C2C2C" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define SEARCHBARCOLOR  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:0.77] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.72]]
 
 
 

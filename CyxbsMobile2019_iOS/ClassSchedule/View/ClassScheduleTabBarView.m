@@ -34,7 +34,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
                } else {
                   self.backgroundColor = [UIColor whiteColor];
                }

@@ -29,7 +29,7 @@
     if(self){
 //        self.frame = [UIScreen mainScreen].bounds;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ChoosePeopleListViewBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#666666" alpha:0.14] darkColor:[UIColor colorWithHexString:@"#EA" alpha:0]];
         } else {
             self.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.14];
         }
@@ -74,7 +74,7 @@
     [self.scrollView addSubview:backgroundView];
     
     if (@available(iOS 11.0, *)) {
-        backgroundView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+        backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         backgroundView.backgroundColor = [UIColor whiteColor];
     }

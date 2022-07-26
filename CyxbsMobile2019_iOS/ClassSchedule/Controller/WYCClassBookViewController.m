@@ -82,7 +82,7 @@
     self.scBackViewDict = [[NSMutableDictionary alloc] init];
     
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
     }

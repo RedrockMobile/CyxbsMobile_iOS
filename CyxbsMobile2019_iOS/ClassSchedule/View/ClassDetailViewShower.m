@@ -99,7 +99,7 @@
 //    PC.currentPageIndicatorTintColor = [UIColor colorWithHexString:@"#5599FF"];
     
     if (@available(iOS 11.0, *)) {
-        PC.currentPageIndicatorTintColor = [UIColor colorNamed:@"184_82_255&black"];
+        PC.currentPageIndicatorTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#92A9EC" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     } else {
         PC.currentPageIndicatorTintColor = [UIColor colorWithRed:184/255.0 green:82/255.0 blue:255/255.0 alpha:1];
     }

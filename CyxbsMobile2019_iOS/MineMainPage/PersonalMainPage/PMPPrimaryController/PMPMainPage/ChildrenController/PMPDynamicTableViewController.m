@@ -489,7 +489,7 @@ ReportViewDelegate>
         _defaultLabel = [[UILabel alloc] init];
         _defaultLabel.text = @"嘿,说点什么吧...";
         _defaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        //        _defaultLabel.textColor = [UIColor colorNamed:@"17_44_84&240_240_240"];
+        //        _defaultLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]];
         _defaultLabel.textColor = [UIColor blackColor];
         [_defaultLabel sizeToFit];
     }

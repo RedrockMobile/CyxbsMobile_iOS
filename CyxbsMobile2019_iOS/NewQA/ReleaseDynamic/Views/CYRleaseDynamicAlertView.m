@@ -133,7 +133,7 @@
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLbl.text = @"是否保存草稿";
         _titleLbl.font = [UIFont fontWithName:PingFangSCMedium size:13];
-        _titleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        _titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         
     }
     return _titleLbl;

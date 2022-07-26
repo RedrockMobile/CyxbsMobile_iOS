@@ -178,7 +178,7 @@
     UILabel *replyLbl = [[UILabel alloc] initWithFrame:CGRectZero];
     replyLbl.text = @"回复";
     replyLbl.font = [UIFont fontWithName:PingFangSCSemibold size:18 * fontSizeScaleRate_SE];
-    replyLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+    replyLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self addSubview:replyLbl];
     [replyLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconImageView);

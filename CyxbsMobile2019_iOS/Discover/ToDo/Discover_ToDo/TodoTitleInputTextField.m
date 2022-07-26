@@ -22,7 +22,7 @@
     if (self) {
         offset = 0.04533333333*SCREEN_WIDTH;
         self.layer.cornerRadius = 22;
-        self.backgroundColor = [UIColor colorNamed:@"232_241_252&31_31_31"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1F1F1F" alpha:1]];
         self.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
         self.font = [UIFont fontWithName:PingFangSCMedium size:15];
         self.placeholder = @"添加代办事项";

@@ -129,9 +129,9 @@
     [[NSAttributedString alloc]initWithString:toDoCell.model.titleStr
                                    attributes:
      @{NSFontAttributeName:toDoCell.titleLbl.font,
-       NSForegroundColorAttributeName:[UIColor colorNamed:@"112_129_155&255_255_255"],
+       NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#70819B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]],
        NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
-       NSStrikethroughColorAttributeName:[UIColor colorNamed:@"137_151_173&240_240_242"]}];
+       NSStrikethroughColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#8997AD" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]}];
     toDoCell.titleLbl.attributedText = attrStr;
         //进行动画，使得变化不那么僵硬
     NSIndexPath *indexPath = [self.tableView indexPathForCell:toDoCell];
@@ -283,7 +283,7 @@
         firstview.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
         UILabel *toDoLbl = [[UILabel alloc] initWithFrame:CGRectMake(15,30,50,34)];
         toDoLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
-        toDoLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        toDoLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         toDoLbl.text = @"待办";
         [firstview addSubview:toDoLbl];
         return firstview;
@@ -293,7 +293,7 @@
         //完成的label
         UILabel *doneLbl = [[UILabel alloc ]initWithFrame:CGRectMake(15,30,100,34) ];
         doneLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
-        doneLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        doneLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         doneLbl.text = @"已完成";
         [secondview addSubview:doneLbl];
         

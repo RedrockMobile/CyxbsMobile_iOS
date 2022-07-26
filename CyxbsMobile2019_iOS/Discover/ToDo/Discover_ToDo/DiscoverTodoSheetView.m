@@ -85,7 +85,7 @@
     UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] init];
     [view addGestureRecognizer:tgr];
     
-    view.backgroundColor = [UIColor colorNamed:@"255_255_255&45_45_45"];
+    view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
     CGRect rect = CGRectMake(0, 0, SCREEN_WIDTH, 0.7389162562*SCREEN_HEIGHT);
     UIBezierPath* path = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(16, 16)];
     CAShapeLayer* layer = [[CAShapeLayer alloc] init];
@@ -136,8 +136,9 @@
 /// 这里面会完成选择提醒时间、重复时间的按钮的一些相同的设置
 - (UIButton*)getStdBtn {
     UIButton* btn = [[UIButton alloc] init];
-    [btn setTitleColor:[UIColor colorNamed:@"21_49_91_40&#F0F0F2_40"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.4]] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor colorNamed:@"21_49_91_80&#F0F0F2_80"] forState:UIControlStateHighlighted];
+    
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:15]];
     return btn;
 }
@@ -160,7 +161,7 @@
     [self addSubview:btn];
     self.deleteBtn = btn;
     
-    [btn setTitleColor:[UIColor colorNamed:@"124_163_233&131_131_133"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#7BA2E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838385" alpha:1]] forState:UIControlStateNormal];
     [btn setTitle:@"删除" forState:UIControlStateNormal];
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:15]];
     btn.alpha = 0;
@@ -182,7 +183,7 @@
 - (void)textFieldDidChangeSelection:(UITextField *)textField {
     if (textField.text!=nil&&![textField.text isEqualToString:@""]) {
         self.saveBtn.alpha = 1;
-        [self.saveBtn setTitleColor:[UIColor colorNamed:@"41_35_210&44_222_255"] forState:UIControlStateNormal];
+        [self.saveBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]] forState:UIControlStateNormal];
     }else {
         self.saveBtn.alpha = 0.4;
         [self.saveBtn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
@@ -195,7 +196,7 @@
     self.remindTimeBtn = btn;
     
     [btn setTitle:@"设置提醒时间" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor colorNamed:@"42_78_132&223_223_227"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"todo提醒的小铃铛"] forState:UIControlStateNormal];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backView).offset(0.048*SCREEN_WIDTH);
@@ -220,7 +221,7 @@
     self.repeatModelBtn = btn;
     
     [btn setTitle:@"设置重复提醒" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor colorNamed:@"42_78_132&223_223_227"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]] forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"todo的小闹钟"] forState:UIControlStateNormal];
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backView).offset(0.048*SCREEN_WIDTH);
