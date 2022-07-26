@@ -13,24 +13,24 @@
 #pragma mark - ”重邮地图“接口
 
 /// 重邮地图历史记录偏好设置Key
-#define CQUPTMAPHISTORYKEY @"MapSearchHistory"
+#define Discover_cquptMapHistoryKey_String @"MapSearchHistory"
 
 /// 重邮地图主页
-#define CQUPTMAPBASICDATA [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/basic"]
+#define Discover_GET_cquptMapBasicData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/basic"]
 /// 重邮地图热搜
-#define CQUPTMAPHOTPLACE [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/button"]
+#define Discover_GET_cquptMapHotPlace_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/button"]
 /// 重邮地图：我的收藏
-#define CQUPTMAPMYSTAR [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/rockmap/collect"]
+#define Discover_GET_cquptMapMyStar_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/rockmap/collect"]
 /// 重邮地图：搜索地点
-#define CQUPTMAPSEARCH [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/placesearch"]
+#define Discover_POST_cquptMapSearch_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/placesearch"]
 /// 重邮地图：地点详情
-#define CQUPTMAPPLACEDETAIL [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/detailsite"]
+#define Discover_POST_cquptMapPlaceDetail_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/detailsite"]
 /// 重邮地图：上传图片
-#define CQUPTMAPUPLOADIMAGE [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/rockmap/upload"]
+#define Discover_POST_cquptMapUploadMage_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/rockmap/upload"]
 /// 重邮地图：添加收藏
-#define CQUPTMAPADDCOLLECT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/rockmap/addkeep"]
+#define Discover_PATCH_cquptMapAddCollect_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/rockmap/addkeep"]
 /// 重邮地图：删除收藏
-#define CQUPTMAPDELETECOLLECT [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/rockmap/delete"]
+#define Discover_POST_cquptMapDeleteCollect_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-stumap/rockmap/delete"]
 
 
 

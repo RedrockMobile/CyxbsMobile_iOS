@@ -35,7 +35,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.historyArray = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] copy];
+        self.historyArray = [[UserDefaultTool valueWithKey:Discover_cquptMapHistoryKey_String] copy];
         
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
@@ -198,7 +198,7 @@
         self.historyTableView.alpha = 0;
         self.resultTableView.alpha = 1;
     } completion:^(BOOL finished) {
-        self.historyArray = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] copy];
+        self.historyArray = [[UserDefaultTool valueWithKey:Discover_cquptMapHistoryKey_String] copy];
         [self.historyTableView reloadData];
     }];
 }
@@ -206,7 +206,7 @@
 
 #pragma mark - 删除记录
 - (void)clearAllHistory {
-    [UserDefaultTool saveValue:@[] forKey:CQUPTMAPHISTORYKEY];
+    [UserDefaultTool saveValue:@[] forKey:Discover_cquptMapHistoryKey_String];
     self.historyArray = @[];
     [self.historyTableView reloadData];
 }
@@ -214,10 +214,10 @@
 - (void)deleteAHistory:(UIButton *)sender {
     NSString *removeData = ((CQUPTMapBeforeSearchCell *)(sender.superview.superview)).titleLabel.text;
     
-    NSMutableArray *historys = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] mutableCopy];
+    NSMutableArray *historys = [[UserDefaultTool valueWithKey:Discover_cquptMapHistoryKey_String] mutableCopy];
     [historys removeObject:removeData];
     
-    [UserDefaultTool saveValue:historys forKey:CQUPTMAPHISTORYKEY];
+    [UserDefaultTool saveValue:historys forKey:Discover_cquptMapHistoryKey_String];
     
     self.historyArray = historys;
     

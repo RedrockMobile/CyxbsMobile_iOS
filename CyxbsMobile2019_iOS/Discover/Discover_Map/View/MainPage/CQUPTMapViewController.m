@@ -148,7 +148,7 @@
 }
 
 - (void)searchPlaceWithString:(NSString *)string {
-    NSMutableArray *history = [[UserDefaultTool valueWithKey:CQUPTMAPHISTORYKEY] mutableCopy];
+    NSMutableArray *history = [[UserDefaultTool valueWithKey:Discover_cquptMapHistoryKey_String] mutableCopy];
     if (!history) {
         history = [NSMutableArray array];
     }
@@ -157,7 +157,7 @@
         [history insertObject:string atIndex:0];
     }
     
-    [UserDefaultTool saveValue:history forKey:CQUPTMAPHISTORYKEY];
+    [UserDefaultTool saveValue:history forKey:Discover_cquptMapHistoryKey_String];
     
     [self.presenter searchPlaceWithString:string];
 }

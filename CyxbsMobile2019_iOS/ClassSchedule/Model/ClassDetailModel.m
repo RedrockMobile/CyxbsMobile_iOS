@@ -15,7 +15,7 @@
         @"place_search": placeName
     };
     
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPSEARCH method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Discover_POST_cquptMapSearch_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         

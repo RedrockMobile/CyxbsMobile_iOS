@@ -14,7 +14,7 @@
 + (void)requestMapDataSuccess:(void (^)(CQUPTMapDataItem * _Nonnull, NSArray<CQUPTMapHotPlaceItem *> * _Nonnull))success
                        failed:(void (^)(NSError * _Nonnull))failed {
     
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPBASICDATA method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Discover_GET_cquptMapBasicData_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             
             // 继续请求热词
@@ -34,7 +34,7 @@
 
 + (void)requestHotPlaceSuccess:(void (^)(NSArray<CQUPTMapHotPlaceItem *> * _Nonnull))success {
     
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPHOTPLACE method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Discover_GET_cquptMapHotPlace_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             NSMutableArray *tmpArray = [NSMutableArray array];
             for (NSDictionary *dict in responseObject[@"data"][@"button_info"]) {
@@ -51,7 +51,7 @@
 
 + (void)requestStarListSuccess:(void (^)(CQUPTMapStarPlaceItem * _Nonnull))success
                         failed:(void (^)(NSError * _Nonnull))failed {
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPMYSTAR method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Discover_GET_cquptMapMyStar_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             
             CQUPTMapStarPlaceItem *item = [[CQUPTMapStarPlaceItem alloc] initWithDice:responseObject];
@@ -74,7 +74,7 @@
         @"place_id": placeID
     };
     
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPPLACEDETAIL method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Discover_POST_cquptMapPlaceDetail_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             CQUPTMapPlaceDetailItem *item = [[CQUPTMapPlaceDetailItem alloc] initWithDict:responseObject[@"data"]];
             item.placeID = placeID;
@@ -90,7 +90,7 @@
         @"place_id": placeID
     };
     
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPADDCOLLECT method:HttpRequestPatch parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Discover_PATCH_cquptMapAddCollect_API method:HttpRequestPatch parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
         [item.starPlaceArray addObject:placeID];
@@ -106,7 +106,7 @@
         @"place_id": placeID
     };
     
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPDELETECOLLECT method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:Discover_POST_cquptMapDeleteCollect_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
         [item.starPlaceArray removeObject:placeID];
         [item archiveItem];

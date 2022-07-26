@@ -207,13 +207,13 @@
                     }
                     /*
                      merge_error
-                     [[HttpClient defaultClient] uploadImageWithJson:CQUPTMAPUPLOADIMAGE method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(id responseObject) {
+                     [[HttpClient defaultClient] uploadImageWithJson:Discover_POST_cquptMapUploadMage_API method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(id responseObject) {
                          NSLog(@"%@", responseObject);
                      } failure:^(NSError *error) {
                          
                      }];
                      */
-                    [[HttpClient defaultClient].httpSessionManager POST:CQUPTMAPUPLOADIMAGE parameters:params headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                    [[HttpClient defaultClient].httpSessionManager POST:Discover_POST_cquptMapUploadMage_API parameters:params headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                         for (int i = 0; i < photos.count; i++) {
                             UIImage *image = photos[i];
                             UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
