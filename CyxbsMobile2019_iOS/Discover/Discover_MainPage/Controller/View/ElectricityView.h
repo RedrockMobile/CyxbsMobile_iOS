@@ -10,13 +10,7 @@
 //Bahnschrift字体部分
 #define ImpactMedium @"Impact"
 #define ImpactRegular @"Impact"
-//颜色部分
-#define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
 NS_ASSUME_NONNULL_BEGIN
-
 
 @protocol ElectricityViewDelegate <NSObject>
 -(void)touchElectrictyView;

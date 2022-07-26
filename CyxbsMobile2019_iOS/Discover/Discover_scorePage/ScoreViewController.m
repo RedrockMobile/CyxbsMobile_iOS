@@ -17,8 +17,6 @@
 #import "GPAItem.h"
 #import "IdsBindingView.h"
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 #define Color_WhiteTo222222 [UIColor colorNamed:@"Color_WhiteTo222222" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource,IdsBindingViewDelegate>
@@ -158,7 +156,7 @@
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.contentSize = CGSizeMake(0, 0);
     if (@available(iOS 11.0, *)) {
-        scrollView.backgroundColor = Color42_78_132to2D2D2D;
+        scrollView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:0.5]];
     }
     [self.view addSubview:scrollView];
 }
@@ -208,7 +206,7 @@
     UILabel *termLabel = [[UILabel alloc]initWithFrame:CGRectMake(16, 27, 200, 26)];
     termLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
     if (@available(iOS 11.0, *)) {
-        termLabel.textColor = Color21_49_91_F0F0F2;
+        termLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

@@ -7,7 +7,6 @@
 //
 
 #import "PointAndDottedLineView.h"
-#define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface PointAndDottedLineView()
 @property (nonatomic, assign) int pointCount;
@@ -58,7 +57,7 @@
     for(int i = 0 ; i < self.pointCount; i++) {
         UIView *smallCircle = [[UIView alloc]init];
         self.smallCircle = smallCircle;
-        smallCircle.backgroundColor = color242_243_248toFFFFFF;
+        smallCircle.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         smallCircle.layer.cornerRadius = 2.5;
         [self addSubview:smallCircle];
         [self.smallCircleArray addObject:smallCircle];

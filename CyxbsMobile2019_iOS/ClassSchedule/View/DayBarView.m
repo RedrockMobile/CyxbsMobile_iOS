@@ -90,7 +90,7 @@
     week.font = [UIFont fontWithName:PingFangSCRegular size: 12];
     week.text = dict[@"week"];
     if (@available(iOS 11.0, *)) {
-        week.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        week.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         week.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -110,7 +110,7 @@
     day.font = [UIFont fontWithName:PingFangSCRegular size: 12];
     day.text = dict[@"day"];
     if (@available(iOS 11.0, *)) {
-        day.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        day.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         day.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -145,7 +145,7 @@
         month.text = [NSString stringWithFormat:@"%@月",num];
     }
     if (@available(iOS 11.0, *)) {
-        month.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        month.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         month.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }

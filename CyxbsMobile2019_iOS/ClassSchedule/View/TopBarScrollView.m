@@ -169,7 +169,7 @@
     btn.tag = tag;
     self.weekChooseBtnArray[tag] = btn;
     if(@available(iOS 11.0, *)){
-        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     }else{
         [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
     }
@@ -216,7 +216,7 @@
     
     weekLabel.text = @"整学期";
     if (@available(iOS 11.0, *)) {
-        weekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        weekLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         weekLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -237,7 +237,7 @@
     nowWeekLabel.text = @" (本周) ";
     nowWeekLabel.font = [UIFont fontWithName:PingFangSCRegular size: 15];
     if (@available(iOS 11.0, *)) {
-        nowWeekLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        nowWeekLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         nowWeekLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }

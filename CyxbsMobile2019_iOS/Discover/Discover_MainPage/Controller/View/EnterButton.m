@@ -26,7 +26,7 @@
     [self addSubview:self.label];
     self.label.contentMode = UIViewContentModeCenter;
     self.label.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:11];
-    self.label.textColor = [UIColor colorNamed:@"color21_49_91_&#8c8c8c"];
+    self.label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
 }
 - (void)layoutSubviews {
     [super layoutSubviews];

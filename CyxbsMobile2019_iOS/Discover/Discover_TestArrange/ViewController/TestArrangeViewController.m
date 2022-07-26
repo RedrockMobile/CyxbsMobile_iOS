@@ -17,11 +17,6 @@
 #import <WebKit/WebKit.h>
 #import "GPAUnavailableViewController.h"
 
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
-#define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define tableViewColor [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 @interface TestArrangeViewController ()<UITableViewDelegate,UITableViewDataSource,UIViewControllerTransitioningDelegate,WKNavigationDelegate>
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak)UILabel *titleLabel;
@@ -50,7 +45,7 @@
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.navigationBar.topItem.title = @"";
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = tableViewColor;
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];;
     } else {
         self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
     }
@@ -150,7 +145,7 @@
     label.text = @"我的考试";
     [label setFont:[UIFont fontWithName:PingFangSCBold size:21]];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithHexString:@"#15315B"];
     }
@@ -193,7 +188,7 @@
     label.text = @"考试安排";
     [label setFont:[UIFont fontWithName:PingFangSCBold size:22]];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithHexString:@"#15315B"];
     }

@@ -85,7 +85,7 @@
             classTimeLabel.cycleLabel.textColor =
             classroomLabel.cycleLabel.textColor =
             classLabel.cycleLabel.textColor =
-            [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+            [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             classTimeLabel.cycleLabel.textColor =
             classroomLabel.cycleLabel.textColor =

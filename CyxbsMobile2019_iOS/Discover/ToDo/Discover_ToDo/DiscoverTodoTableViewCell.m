@@ -60,7 +60,7 @@
     self.titleLabel = label;
     
     label.font = [UIFont fontWithName:PingFangSCMedium size:15];
-    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     
 }
 
@@ -120,7 +120,7 @@
             notiTimeAndBellAlpha = 0.4;
             attributeDict = @{
                 NSStrikethroughStyleAttributeName:@1,
-                NSForegroundColorAttributeName:[UIColor colorNamed:@"color21_49_91&#F0F0F2"]
+                NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]
             };
             break;
         case TodoDataModelStateOverdue:
@@ -136,7 +136,7 @@
             notiTimeAndBellAlpha = 1;
             attributeDict = @{
                 NSStrikethroughStyleAttributeName:@0,
-                NSForegroundColorAttributeName:[UIColor colorNamed:@"color21_49_91&#F0F0F2"],
+                NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]
             };
             break;
     }

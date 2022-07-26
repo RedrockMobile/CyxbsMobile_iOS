@@ -23,7 +23,7 @@
         offset = 0.04533333333*SCREEN_WIDTH;
         self.layer.cornerRadius = 22;
         self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1F1F1F" alpha:1]];
-        self.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        self.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         self.font = [UIFont fontWithName:PingFangSCMedium size:15];
         self.placeholder = @"添加代办事项";
     }

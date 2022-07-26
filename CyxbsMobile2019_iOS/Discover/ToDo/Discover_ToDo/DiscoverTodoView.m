@@ -166,7 +166,7 @@
     
     label.text = @"邮子清单";
     label.font = [UIFont fontWithName:PingFangSCBold size:18];
-    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
 }
 
 /// 添加一个加号按钮，点击这个加号按钮后调用代理方法，来添加事项，代理是DiscoverViewController
@@ -196,10 +196,10 @@
         [self addSubview:label];
         _nothingLabel = label;
         
-//        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+//        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
         
 //        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         label.font = [UIFont fontWithName:PingFangSCMedium size:15];
         label.text = @"还没有待做事项哦～快去添加吧！";
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -268,7 +268,7 @@
 
     [attStr addAttributes:@{
         NSFontAttributeName:[UIFont fontWithName:PingFangSCRegular size:15],
-        NSForegroundColorAttributeName:[UIColor colorNamed:@"color21_49_91&#F0F0F2"]
+        NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]
     } range:NSMakeRange(0, attStr.length)];
     [attStr addAttributes:@{
         NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]]

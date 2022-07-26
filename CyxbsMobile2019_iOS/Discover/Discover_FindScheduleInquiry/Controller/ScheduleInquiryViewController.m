@@ -11,8 +11,6 @@
 #import "ScheduleViewController.h"
 #define STU_FIND_HISTORY @"FindStudentSchedule_historyArray"
 #define TEA_FIND_HISTORY @"FindTeacherSchedule_historyArray"
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
 
 @interface ScheduleInquiryViewController () <ScheduleViewControllerDelegate>
 /**显示"查课表"三个字delabel*/
@@ -67,7 +65,7 @@
         make.centerY.equalTo(self.backgroundView);
     }];
     if (@available(iOS 11.0, *)) {
-        titleLabel.textColor = Color21_49_91_F0F0F2;
+        titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         titleLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
     }
@@ -106,7 +104,7 @@
     QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-60) controllers:@[stu, tea]];
     [self.view addSubview:segmentView];
     if (@available(iOS 11.0, *)) {
-        [segmentView setValue:Color21_49_91_F0F0F2 forKey:@"titleColor"];
+        [segmentView setValue:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forKey:@"titleColor"];
     } else {
         [segmentView setValue:[UIColor colorWithHexString:@"#15315B"] forKey:@"titleColor"];
     }

@@ -95,7 +95,7 @@
     
     [btn setTitle:@"取消" forState:(UIControlStateNormal)];
     if (@available(iOS 11.0, *)) {
-        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:(UIControlStateNormal)];
+        [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:(UIControlStateNormal)];
     } else {
         [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:(UIControlStateNormal)];
     }

@@ -140,7 +140,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 //    self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
     
-    self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
+    self.tabBarController.tabBar.barTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     
     self.navigationController.navigationBar.hidden = YES;
     
@@ -322,11 +322,11 @@ static int requestCheckinInfo = 0;
     self.navigationController.navigationBar.translucent = NO;
 
     if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        self.navigationController.navigationBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     //隐藏导航栏的分割线
     if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     }
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
@@ -336,7 +336,7 @@ static int requestCheckinInfo = 0;
     self.contentView = contentView;
     self.contentView.delegate = self;
     if (@available(iOS 11.0, *)) {
-        self.contentView.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000"];
+        self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         self.contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
@@ -515,7 +515,7 @@ static int requestCheckinInfo = 0;
     UIView *bindingView = [[UIView alloc]init];
     bindingView.layer.cornerRadius = 8;
     if (@available(iOS 11.0, *)) {
-        bindingView.backgroundColor = [UIColor colorNamed:@"whiteColor"];
+        bindingView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         bindingView.backgroundColor = UIColor.whiteColor;
     }
@@ -541,7 +541,7 @@ static int requestCheckinInfo = 0;
     roomNumberLabel.font = [UIFont fontWithName:PingFangSCBold size: 24];
     roomNumberLabel.text = @"宿舍号：";
     if (@available(iOS 11.0, *)) {
-        roomNumberLabel.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+        roomNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
     } else {
     }
     [bindingView addSubview:roomNumberLabel];
@@ -575,7 +575,7 @@ static int requestCheckinInfo = 0;
     buildingNumberLabel.text = @"01栋";
 
     if (@available(iOS 11.0, *)) {
-        buildingNumberLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59"];
+        buildingNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]];
     } else {
         // Fallback on earlier versions
     }

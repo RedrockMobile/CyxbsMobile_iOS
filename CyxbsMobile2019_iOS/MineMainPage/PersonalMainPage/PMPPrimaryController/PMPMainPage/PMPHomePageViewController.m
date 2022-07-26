@@ -429,7 +429,7 @@ UIImagePickerControllerDelegate>
     if (_VCTitleLabel2 == nil) {
         _VCTitleLabel2 = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _VCTitleLabel2.font = [UIFont fontWithName:PingFangSCSemibold size:22];
-        _VCTitleLabel2.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        _VCTitleLabel2.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         [_VCTitleLabel2 sizeToFit];
     }
     return _VCTitleLabel2;

@@ -7,7 +7,6 @@
 //
 
 #import "IdsBindingView.h"
-#define Color_BindingButton [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2921D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#736CFF" alpha:1]]
 
 @interface IdsBindingView()
 @property (nonatomic, weak)UILabel *hintLabel;
@@ -66,7 +65,7 @@
         button.clipsToBounds = YES;
         [button addTarget:self action:@selector(touchIDSBindingButton) forControlEvents:UIControlEventTouchUpInside];
         if (@available(iOS 11.0, *)) {
-            [button setBackgroundColor:Color_BindingButton];
+            [button setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2921D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#736CFF" alpha:1]]];
         } else {
             // Fallback on earlier versions
         }

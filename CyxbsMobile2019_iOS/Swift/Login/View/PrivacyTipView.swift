@@ -93,7 +93,7 @@ final class PrivacyTipView: UIView, UITextViewDelegate {
         }
         
         lbl.text = "隐私政策更新"
-        lbl.textColor = UIColor.init(named: "color21_49_91&#F0F0F2")
+        lbl.textColor = UIColor(.dm ,light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#F0F0F2")!)
         lbl.font = UIFont.init(name: PingFangSCSemibold, size: 18)
     }
     
@@ -130,7 +130,7 @@ final class PrivacyTipView: UIView, UITextViewDelegate {
                 break
             }
         } while (true)
-        attStr.color = UIColor.init(named: "color21_49_91&#F0F0F2")
+        attStr.color = UIColor(.dm ,light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#F0F0F2")!)
         txtView.delegate = self
         txtView.attributedText = attStr
         txtView.font = UIFont.init(name: PingFangSCMedium, size: 16)

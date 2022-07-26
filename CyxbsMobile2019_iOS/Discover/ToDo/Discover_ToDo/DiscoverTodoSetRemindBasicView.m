@@ -46,7 +46,7 @@
     [btn setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#EDF4FD" alpha:1] darkColor:[UIColor colorWithHexString:@"#484A4D" alpha:1]]];
     
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:18]];
-    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.128*SCREEN_WIDTH);

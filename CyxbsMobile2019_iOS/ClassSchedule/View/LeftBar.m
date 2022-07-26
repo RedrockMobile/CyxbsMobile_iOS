@@ -59,7 +59,7 @@
     }];
     if (@available(iOS 11.0, *)) {
         longView.backgroundColor =
-        bollView.backgroundColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        bollView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         longView.backgroundColor =
         bollView.backgroundColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
@@ -72,7 +72,7 @@
 - (UILabel*)getLabelWithString:(NSString*)text{
     UILabel *label = [[UILabel alloc] init];
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }

@@ -9,13 +9,10 @@
 #import "FinderView.h"
 #import <SDCycleScrollView.h>
 #import "URLController.h"
-
 #import "FinderTopView.h"
 
 #define Gap 17                   //控件距离两边的距离
 #define EnterButtonWidth 38      //首页的几个入口的按钮的宽度
-
-#define color21_49_91_F2F4FF [UIColor colorNamed:@"color21_49_91_&#F2F4FF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface FinderView() <
     SDCycleScrollViewDelegate
@@ -37,7 +34,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         self.bannerURLStrings = [NSMutableArray array];
         
         // Remake by SSR

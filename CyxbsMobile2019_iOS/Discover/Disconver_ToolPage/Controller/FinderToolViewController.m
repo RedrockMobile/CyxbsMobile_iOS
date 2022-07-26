@@ -17,10 +17,6 @@
 #import "CQUPTMapViewController.h"
 #import "EmptyClassUnavailableViewController.h"
 #import "TODOMainViewController.h"
-#define color242_243_248to000000 [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
 
 @interface FinderToolViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
@@ -47,7 +43,7 @@
     [self addToolViewItems];//将每个工具添加到当前页面
 
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = color242_243_248to000000;
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -84,7 +80,7 @@
     self.scrollView = contentView;
     self.scrollView.delegate = self;
     if (@available(iOS 11.0, *)) {
-        contentView.backgroundColor = color242_243_248to000000;
+        contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
@@ -115,13 +111,13 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(scrollView.contentOffset.y >= self.navigationController.navigationBar.height + self.toolTitle.height){
         if (@available(iOS 11.0, *)) {
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:color242_243_248toFFFFFF}];
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]]}];
         } else {
             // Fallback on earlier versions
         }
     }else{
         if (@available(iOS 11.0, *)) {
-            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:color242_243_248to000000}];
+            [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]}];
         } else {
             // Fallback on earlier versions
         }
@@ -133,7 +129,7 @@
     toolTitle.text = @"工具";
     toolTitle.font = [UIFont fontWithName:PingFangSCBold size: 34];
     if (@available(iOS 11.0, *)) {
-        toolTitle.textColor = Color21_49_91_F0F0F2;
+        toolTitle.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

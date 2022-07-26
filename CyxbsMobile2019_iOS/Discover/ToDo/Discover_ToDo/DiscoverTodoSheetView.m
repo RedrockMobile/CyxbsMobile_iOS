@@ -111,7 +111,7 @@
     
     
     btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
-    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     [btn setTitle:@"取消" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     
@@ -128,7 +128,7 @@
     }];
     
     btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
-    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     [btn setAlpha:0.4];
     [btn setTitle:@"保存" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(saveBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -186,7 +186,7 @@
         [self.saveBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]] forState:UIControlStateNormal];
     }else {
         self.saveBtn.alpha = 0.4;
-        [self.saveBtn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+        [self.saveBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     }
 }
 //这边约束好像有warming
