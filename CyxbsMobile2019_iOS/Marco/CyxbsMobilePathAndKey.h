@@ -62,4 +62,8 @@
 
 #import "DiscoverHeader.h"
 
+#import "ClassScheduleHeader.h"
+
+#import "NewQAHeader.h"
+
 #endif /* CyxbsMobilePathAndKey_h */

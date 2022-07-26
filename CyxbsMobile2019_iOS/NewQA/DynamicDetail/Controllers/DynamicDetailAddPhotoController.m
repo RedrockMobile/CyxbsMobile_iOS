@@ -150,7 +150,7 @@
     
     HttpClient *client = [HttpClient defaultClient];
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:New_QA_Comment_Release parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:NewQA_POST_QACommentRelease_API parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSMutableArray *imageNames = [NSMutableArray array];
         for (int i = 0; i < self.imagesAry.count; i++)  {
             [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];

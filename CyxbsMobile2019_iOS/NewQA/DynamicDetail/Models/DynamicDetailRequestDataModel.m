@@ -13,7 +13,7 @@
     HttpClient *client = [HttpClient defaultClient];
     //model为2表示这是评论点赞
     NSDictionary *param = @{@"id":@(comment_id),@"model":@2};
-    [client requestWithPath:NEW_QA_STAR method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         sucess();
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             failure();
@@ -35,7 +35,7 @@
 - (void)requestDynamicDetailDataWithDynamic_id:(int)dynamic_id Sucess:(void (^)(NSDictionary * _Nonnull))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"id":@(dynamic_id)};
-    [client requestWithPath:NEW_QA_DynamicDetail method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_GET_QADynamicDetail_API method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = responseObject[@"data"];
         sucess(dic);
         
@@ -60,7 +60,7 @@
 
 - (void)getCommentDataWithPost_id:(int)post_id Sucess:(void (^)(NSArray * _Nonnull))sucess Failure:(void (^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:NEW_QA_Comment_Reply method:HttpRequestGet parameters:@{@"post_id":@(post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_GET_QACommentReply_API method:HttpRequestGet parameters:@{@"post_id":@(post_id)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
 //        NSLog(@"请求评论数据成功,内容为%@",responseObject);
         sucess(array);
@@ -74,7 +74,7 @@
     //请求参数字典
     NSDictionary *param = @{@"id":@(comment_id),@"model":@1,@"content":content};
 
-    [client requestWithPath:NEW_QA_REPORT method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_POST_QAReport_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             sucess();
         }else{
@@ -89,7 +89,7 @@
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"id":@(post_id),@"model":@1};
 //    @"https://cyxbsmobile.redrock.team/wxapi/magipoke-loop/comment/deleteId"
-    [client requestWithPath:NEW_QA_Dynamic_OR_Comment_Deleted method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_POST_QADynamicOrCommentDeleted_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"删除评论后得到的数据为%@",responseObject);
         if ([responseObject[@"status"] intValue] == 200) {
             NSLog(@"删除成功");
@@ -112,7 +112,7 @@
 - (void)deletSelfDynamicWithID:(int)post_id Success:(void(^)(void))success Failure:(void(^)(void))failure{
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"id":@(post_id),@"model":@0};
-    [client requestWithPath:NEW_QA_DELETEPOST method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_POST_QADeletePost_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             success();
         }else{

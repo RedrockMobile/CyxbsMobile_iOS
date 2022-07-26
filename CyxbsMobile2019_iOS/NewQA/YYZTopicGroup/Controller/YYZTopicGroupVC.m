@@ -41,7 +41,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     //网络请求
-    [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
         NSArray *array = responseObject[@"data"];
         self.array = array;
@@ -147,7 +147,7 @@
 
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:FOLLOWTOPIC method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:NewQA_POST_followTopic_API method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = @{@"topic_ID":stringIsFollow};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
             //改变button状态

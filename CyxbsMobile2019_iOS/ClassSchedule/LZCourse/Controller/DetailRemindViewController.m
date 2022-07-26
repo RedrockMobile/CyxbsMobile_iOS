@@ -208,7 +208,7 @@
     [parameters setObject:idNum forKey:@"idNum"];
     [parameters setObject:identifier forKey:@"id"];
     
-    [client requestWithPath:DELETEREMINDAPI method:HttpRequestPost parameters:parameters prepareExecute:^{
+    [client requestWithPath:ClassSchedule_POST_deleteRemind_API method:HttpRequestPost parameters:parameters prepareExecute:^{
         
     } progress:^(NSProgress *progress) {
         

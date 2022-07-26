@@ -13,7 +13,7 @@
 - (void)FollowGroupWithName:(NSString *)name {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *dic = @{@"topic_name":name};
-    [client requestWithPath:NEW_QA_STARGROUP method:HttpRequestPost parameters:dic prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_POST_QAStarGroup_API method:HttpRequestPost parameters:dic prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"关注圈子失败");

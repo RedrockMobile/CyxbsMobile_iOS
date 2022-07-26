@@ -13,7 +13,7 @@
 - (void)deletePostWithID:(NSNumber *)postID AndModel:(NSNumber *)model {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"id":postID,@"model":model};
-    [client requestWithPath:NEW_QA_DELETEPOST method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_POST_QADeletePost_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self->_Block(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     

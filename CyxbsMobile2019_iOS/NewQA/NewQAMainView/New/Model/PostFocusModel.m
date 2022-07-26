@@ -15,7 +15,7 @@
                       failure:(void(^)(NSError *error))failure {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"page":@(page),@"size":@(6)};
-    [client requestWithPath:NEW_QA_FOCUSLIST method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_GET_QAFocusList_API method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             if ([responseObject objectForKey:@"data"] != nil) {

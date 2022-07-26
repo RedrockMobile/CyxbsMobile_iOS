@@ -286,7 +286,7 @@
     NSString *stuNum = [UserDefaultTool valueWithKey:@"stuNum"];
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameter = @{@"stuNum":stuNum,@"forceFetch":@"true"};
-    [client requestWithPath:kebiaoAPI method:HttpRequestPost parameters:parameter prepareExecute:nil progress:^(NSProgress *progress) {
+    [client requestWithPath:ClassSchedule_GET_keBiao_API method:HttpRequestPost parameters:parameter prepareExecute:nil progress:^(NSProgress *progress) {
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         //NSLog(@"%@",responseObject);
@@ -320,7 +320,7 @@
     NSString *idNum =  [UserDefaultTool getIdNum];
     NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
-    [client requestWithPath:GETREMINDAPI method:HttpRequestPost parameters:@{@"stuNum":stuNum,@"idNum":idNum} prepareExecute:^{
+    [client requestWithPath:ClassSchedule_POST_getRemind_API method:HttpRequestPost parameters:@{@"stuNum":stuNum,@"idNum":idNum} prepareExecute:^{
         
     } progress:^(NSProgress *progress) {
         
@@ -367,15 +367,15 @@
         HttpClient *client = [HttpClient defaultClient];
         NSString *path = [NSString string];
         if ([type isEqualToString:@"edit"]) {
-            path = EDITREMINDAPI;
+            path = ClassSchedule_POST_editRemind_API;
             realParameters = jsonParameters;
         }
         else if([type isEqualToString:@"delete"]){
-            path = DELETEREMINDAPI;
+            path = ClassSchedule_POST_deleteRemind_API;
             realParameters = parameters;
         }
         else if([type isEqualToString:@"add"]){
-            path = ADDREMINDAPI;
+            path = ClassSchedule_POST_addRemind_API;
             realParameters = jsonParameters;
         }
         [client requestWithPath:path method:HttpRequestPost parameters:realParameters prepareExecute:^{

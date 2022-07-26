@@ -343,7 +343,7 @@
             [center postNotificationName:@"addRemind" object:identifier];
             [[RemindNotification shareInstance] addNotifictaion];
         }
-        [client requestWithPath:ADDREMINDAPI method:HttpRequestPost parameters:jsonParameters prepareExecute:^{
+        [client requestWithPath:ClassSchedule_POST_addRemind_API method:HttpRequestPost parameters:jsonParameters prepareExecute:^{
             
         } progress:^(NSProgress *progress) {
             
@@ -379,7 +379,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"editRemind" object:self.idNum];
              [[RemindNotification shareInstance] updateNotificationWithIdetifiers:self.idNum.stringValue];
         }
-        [client requestWithPath:EDITREMINDAPI method:HttpRequestPost parameters:jsonParameters prepareExecute:^{
+        [client requestWithPath:ClassSchedule_POST_editRemind_API method:HttpRequestPost parameters:jsonParameters prepareExecute:^{
             
         } progress:^(NSProgress *progress) {
             

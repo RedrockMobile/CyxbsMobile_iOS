@@ -26,7 +26,7 @@
     
     HttpClient *client = [HttpClient defaultClient];
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:NEWQA_RELEASEDYNAMIC_RELEASE_API parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:NewQA_POST_releaseDynamicRelease_API parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSMutableArray *imageNames = [NSMutableArray array];
         for (int i = 0; i < imageAry.count; i++)  {
             [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
@@ -51,7 +51,7 @@
 
 - (void)getAllTopicsSucess:(void (^)(NSArray * _Nonnull))sucess{
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSLog(@"圈子广场请求成功------%@",responseObject);
         NSArray *dataAry = responseObject[@"data"];
         NSMutableArray *muteAry = [NSMutableArray array];

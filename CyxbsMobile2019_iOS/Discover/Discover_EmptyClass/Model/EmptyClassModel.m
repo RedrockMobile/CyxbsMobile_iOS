@@ -11,7 +11,7 @@
 @implementation EmptyClassModel
 
 + (void)RequestEmptyClassDataWithParams:(NSDictionary *)params success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(NSError * _Nonnull))failure {
-    [[HttpClient defaultClient] requestWithPath:EMPTYCLASSAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:ClassSchedule_POST_emptyClass_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         success(responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         failure(error);

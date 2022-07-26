@@ -79,7 +79,7 @@ UIGestureRecognizerDelegate>
     self.leftPage = 1;//初始化当前页数
     self.rightPage = 1;
     //网络请求
-    [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSArray *array = responseObject[@"data"];
         self.array = array;
         [self setCell];//设置cell;

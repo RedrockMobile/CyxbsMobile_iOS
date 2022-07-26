@@ -331,7 +331,7 @@
     //所以我直接用网络请求来获取 TopicID 其实也不会慢多少
     //具体怎么修 看你们 我只是提供一个可行的思路 
     
-//        [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //               int topicID = 0;
 //               NSArray *array = responseObject[@"data"];
 //               self.topicArray = [[NSMutableArray alloc]initWithArray:array];

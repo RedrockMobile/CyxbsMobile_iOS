@@ -15,7 +15,7 @@ MJCodingImplementation
 
 - (void)loadMyFollowGroup {
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:NEW_QA_FOLLOWGROUP method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_GET_QAFollowGroup_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self.dataArray = [NSMutableArray array];
         NSArray *tmpArray = responseObject[@"data"];
         for (NSDictionary *dic in tmpArray) {

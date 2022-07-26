@@ -249,29 +249,29 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 
 #pragma mark - “课表”、“备忘”接口
 
-#define kebiaoAPI @"https://cyxbsmobile.redrock.team/api/kebiao"
+#define ClassSchedule_GET_keBiao_API @"https://cyxbsmobile.redrock.team/api/kebiao"
 
 
-#define ADDREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
+#define ClassSchedule_POST_addRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
 
 
-#define GETREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
+#define ClassSchedule_POST_getRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
 
 
-#define EDITREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
+#define ClassSchedule_POST_editRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
 
 
-#define DELETEREMINDAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
+#define ClassSchedule_POST_deleteRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
 
-#define TEAkebiaoAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
+#define ClassSchedule_POST_teaKeBiao_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaKb"
 /// 空教室接口
-#define EMPTYCLASSAPI @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
+#define ClassSchedule_POST_emptyClass_API @"https://cyxbsmobile.redrock.team/234/newapi/roomEmpty"
 
 /// 同学课表之查找同学
-#define SEARCHPEOPLEAPI @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
+#define ClassSchedule_GET_searchPeople_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/home/searchPeople/peopleList"
 /// 查找老师
-#define SEARCHTEACHERAPI @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch"
+#define ClassSchedule_POST_searchTeacher_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-teaKb/api/teaSearch"
 
 
 
@@ -282,28 +282,28 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
  */
 
 //全部问题列表
-#define QA_ALL_QUESTIONS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getQuestionList"
+#define QA_GET_allQuestions_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getQuestionList"
 
 //添加新问题
-#define QA_ADD_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/add"
+#define QA_GET_addQuestion_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/add"
 
 //问题图片上传
-#define QA_UPLOAD_PIC_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/uploadPicture"
+#define QA_GET_uploadPic_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/uploadPicture"
 
 //取消提问
-#define QA_CANCEL_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/cancelQuestion"
+#define QA_GET_cancelQuestion_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/cancelQuestion"
 
 //问题详情
-#define QA_QUESTION_DETAIL_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getDetailedInfo"
+#define QA_GET_questionDetail_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getDetailedInfo"
 
 // 阅读量统计
-#define QA_BROWSENUMBER_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/addView"
+#define QA_GET_browseNumber_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/addView"
 
 //问题回答列表
-#define QA_QUESTION_ANSWERLIST @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getAnswerlist"
+#define QA_GET_questionAnswerList_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getAnswerlist"
 
 //忽略问题
-#define QA_IGNORE_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/ignore"
+#define QA_GET_ignoreQuestion_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/ignore"
 
 
 
@@ -312,40 +312,40 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
  */
 
 //回答问题
-#define QA_ANSWER_QUESTION_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
+#define QA_GET_answerQuestion_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
 
 //上传答案图片
-#define QA_ANSWER_ANSWERIMAGE_UPLOAD @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/uploadPicture"
+#define QA_GET_answerAnswerImageUpload_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/uploadPicture"
 //某个问题下的回答列表
-#define QA_QUESTION_ANSWER_LIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
+#define QA_GET_questionAnswerLIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
 
 //采纳答案
-#define QA_ADOPT_ANSWER_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/adopt"
+#define QA_GET_adoptAnswer_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/adopt"
 
 //赞接口
-#define QA_ADD_LIKE_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/praise"
+#define QA_GET_addLike_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/praise"
 
 //取消赞接口
-#define QA_CANCEL_LIKE_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/cancelPraise"
+#define QA_GET_cancelLike_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/cancelPraise"
 
 //某个回答下的评论列表
-#define QA_QUESTION_DISUCESS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getRemarkList"
+#define QA_GET_questionDiscuss_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getRemarkList"
 
 //在回答下添加评论
-#define QA_ADD_DISCUSS_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/remark"
+#define QA_GET_addDiscuss_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/remark"
 
 /*
 举报部分
 */
-#define QA_ADD_REPORT_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
+#define QA_GET_addReport_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
 
 /*
  草稿箱
  */
 //添加到草稿箱
-#define QA_ADD_DRAFT_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/addItemInDraft"
+#define QA_GET_addDraft_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/addItemInDraft"
 //更新草稿箱内容
-#define QA_UPDATE_DRAFT_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/updateItemInDraft"
+#define QA_GET_updateDraft_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/updateItemInDraft"
 
 
 typedef NS_ENUM(NSInteger, PeopleType) {

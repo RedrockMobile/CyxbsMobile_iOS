@@ -13,7 +13,7 @@
 - (void)starPostWithPostID:(NSNumber *)postID {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"id":postID,@"model":@"1"};
-    [client requestWithPath:NEW_QA_STAR method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"已点赞");
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {

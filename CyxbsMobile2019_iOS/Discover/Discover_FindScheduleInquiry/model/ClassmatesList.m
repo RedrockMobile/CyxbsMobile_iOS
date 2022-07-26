@@ -25,7 +25,7 @@
     NSDictionary *parameters = @{@"stu": name};
     HttpClient *client = [HttpClient defaultClient];
     
-    [client requestWithPath:SEARCHPEOPLEAPI method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:ClassSchedule_GET_searchPeople_API method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSMutableArray *tmpArray = [NSMutableArray array];
         for (NSDictionary *classmateInfo in responseObject[@"data"]) {
             ClassmateItem *classmate = [ClassmateItem classmateWithDictionary:classmateInfo];
@@ -44,7 +44,7 @@
     HttpClient *client = [HttpClient defaultClient];
     
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:SEARCHTEACHERAPI parameters:nil headers:nil  constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:ClassSchedule_POST_searchTeacher_API parameters:nil headers:nil  constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             
             NSData *data = [name dataUsingEncoding:NSUTF8StringEncoding];
             [formData appendPartWithFormData:data name:@"teaName"];

@@ -836,7 +836,7 @@
 
 - (NSMutableArray *)topicArray {
     if (!_topicArray) {
-        [[HttpClient defaultClient] requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [[HttpClient defaultClient] requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             NSArray *array = responseObject[@"data"];
             self.topicArray = [NSMutableArray arrayWithArray:array];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {

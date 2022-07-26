@@ -19,7 +19,7 @@ MJCodingImplementation
                       failure:(void(^)(NSError *error))failure {
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"type":@"recommend",@"page":@(page),@"size":@(6)};
-    [client requestWithPath:NEW_QA_POST method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:NewQA_GET_QAPost_API method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSString *info = [responseObject objectForKey:@"info"];
         if ([info isEqualToString:@"success"]) {
             if ([responseObject objectForKey:@"data"] != nil) {

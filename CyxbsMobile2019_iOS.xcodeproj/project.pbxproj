@@ -1543,6 +1543,8 @@
 		73AAA1C926C918240084E44D /* DetailsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsBaseTableViewCell.h; sourceTree = "<group>"; };
 		7AA4C469288D23A700E204C8 /* MineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeader.h; sourceTree = "<group>"; };
 		7AA4C46B288F811100E204C8 /* DiscoverHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverHeader.h; sourceTree = "<group>"; };
+		7AA4C46E288FCEA800E204C8 /* ClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleHeader.h; sourceTree = "<group>"; };
+		7AA4C470288FD30B00E204C8 /* NewQAHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewQAHeader.h; sourceTree = "<group>"; };
 		7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicGroupVC.m; sourceTree = "<group>"; };
 		7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
 		7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
@@ -3179,6 +3181,7 @@
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
 			isa = PBXGroup;
 			children = (
+				7AA4C46F288FD2F200E204C8 /* Source */,
 				AA7ABB002878253300BA6790 /* NewQA.xcassets */,
 				AA7ABA2D2873EA5300BA6790 /* NewQAMainView */,
 				AA7ABAC72873EA6D00BA6790 /* DynamicDetail */,
@@ -5023,6 +5026,22 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
+		7AA4C46D288FCE9800E204C8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4C46E288FCEA800E204C8 /* ClassScheduleHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7AA4C46F288FD2F200E204C8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4C470288FD30B00E204C8 /* NewQAHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		7F101AB5260613E800F2034C /* YYZTopicGroup */ = {
 			isa = PBXGroup;
 			children = (
@@ -6194,6 +6213,7 @@
 		DB34EA28239BD4540052B65E /* ClassSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				7AA4C46D288FCE9800E204C8 /* Source */,
 				DB4064DA2466D888006CE5BC /* Reminder */,
 				1A1691F92430ECA60076EDC7 /* ClassTabBarController.h */,
 				1A1691FA2430ECA60076EDC7 /* ClassTabBarController.m */,

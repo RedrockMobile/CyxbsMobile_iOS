@@ -169,7 +169,7 @@
         @"model":self.type
     };
     
-    [[HttpClient defaultClient] requestWithPath:NEW_QA_STAR method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[HttpClient defaultClient] requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (self.praiseBtn.selected) {
             [self changePraiseBtnToState:NO];
             self.model.is_praised = @"0";
