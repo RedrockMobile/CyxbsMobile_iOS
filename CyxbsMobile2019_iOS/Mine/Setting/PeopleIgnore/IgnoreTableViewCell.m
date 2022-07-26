@@ -158,21 +158,23 @@
 - (void)cancelBtnClicked{
     [self.cancelBtn setEnabled:NO];
     if ([self.cancelBtn.titleLabel.text isEqualToString:@"取消屏蔽"]) {
-        [[HttpClient defaultClient] requestWithPath:Mine_POST_cancelIgnorePeople_API method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [HttpTool.shareTool request:Mine_POST_cancelIgnorePeople_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"uid":self.model.uid} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             [self.cancelBtn setTitle:@"屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"已成功解除对该用户的屏蔽～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
         }];
+        
     }else {
-        [[HttpClient defaultClient] requestWithPath:Mine_POST_ignorePeople_API method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [self.cancelBtn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
-            [NewQAHud showHudWith:@"屏蔽成功～" AddView:self.viewController.view];
-            [self.cancelBtn setEnabled:YES];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
-        }];
+        [HttpTool.shareTool request:Mine_POST_ignorePeople_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"uid":self.model.uid} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+                    [self.cancelBtn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
+                    [NewQAHud showHudWith:@"屏蔽成功～" AddView:self.viewController.view];
+                    [self.cancelBtn setEnabled:YES];
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
+                }];
     }
     
 }

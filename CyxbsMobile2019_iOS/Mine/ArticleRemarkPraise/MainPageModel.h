@@ -28,7 +28,6 @@ typedef enum : NSUInteger {
 @interface MainPageModel : NSObject
 @property(nonatomic,strong)NSMutableArray <NSDictionary*> *dataArr;
 @property(nonatomic,assign)long page;
-@property(nonatomic,strong)HttpClient *client;
 - (void)loadMoreData;
 @end
 

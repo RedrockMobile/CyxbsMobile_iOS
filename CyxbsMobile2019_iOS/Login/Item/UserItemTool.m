@@ -116,27 +116,23 @@
         @"refreshToken": item.refreshToken
     };
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    // 这个请求需要上传json
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserDefaultTool getStuNum] forHTTPHeaderField:@"STU-NUM" ];
-    [manager POST:Mine_POST_refreshToken_API parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [HttpTool.shareTool request:Mine_POST_refreshToken_API type:HttpToolRequestTypePost serializer:nil bodyParameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
-        NSString *token = responseObject[@"data"][@"token"];
+        NSString *token = object[@"data"][@"token"];
         NSString *payload_BASE64 = [token componentsSeparatedByString:@"."][0];
         
         // json字符串转换字典
         NSData *payloadData = [[NSData alloc] initWithBase64EncodedString:payload_BASE64 options:0];
         NSError *error;
         NSMutableDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:payloadData options:NSJSONReadingMutableContainers error:&error];
-        jsonObject[@"token"] = responseObject[@"data"][@"token"];
-        jsonObject[@"refreshToken"] = responseObject[@"data"][@"refreshToken"];
+        jsonObject[@"token"] = object[@"data"][@"token"];
+        jsonObject[@"refreshToken"] = object[@"data"][@"refreshToken"];
         
         item = [UserItem mj_objectWithKeyValues:jsonObject];
         [UserItemTool archive:item];
         // 保存token和refreshToken
-        [UserDefaultTool saveToken:responseObject[@"data"][@"token"]];
-        [UserDefaultTool saveRefreshToken:responseObject[@"data"][@"refreshToken"]];
+        [UserDefaultTool saveToken:object[@"data"][@"token"]];
+        [UserDefaultTool saveRefreshToken:object[@"data"][@"refreshToken"]];
         
         NSLog(@"token:%@", [UserItemTool defaultItem].token);
 

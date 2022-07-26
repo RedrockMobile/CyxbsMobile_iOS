@@ -302,15 +302,15 @@ static int requestCheckinInfo = 0;
     requestCheckinInfo = 0;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[UserDefaultTool getStuNum],@"stunum",[UserDefaultTool getIdNum],@"idnum",nil];
 
-    HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:Mine_POST_checkInInfo_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
-        [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
-        [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
-        [UserItemTool defaultItem].rank_Persent = responseObject[@"data"][@"percent"];
-        [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
-        [UserItemTool defaultItem].canCheckIn = [responseObject[@"data"][@"can_check_in"] boolValue];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    [HttpTool.shareTool request:Mine_POST_checkInInfo_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [UserItemTool defaultItem].checkInDay = object[@"data"][@"check_in_days"];
+        [UserItemTool defaultItem].integral = object[@"data"][@"integral"];
+        [UserItemTool defaultItem].rank = object[@"data"][@"rank"];
+        [UserItemTool defaultItem].rank_Persent = object[@"data"][@"percent"];
+        [UserItemTool defaultItem].week_info = object[@"data"][@"week_info"];
+        [UserItemTool defaultItem].canCheckIn = [object[@"data"][@"can_check_in"] boolValue];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
     }];
 }
 

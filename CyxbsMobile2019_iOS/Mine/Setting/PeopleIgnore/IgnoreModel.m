@@ -14,15 +14,16 @@
         @"page":@(self.page),
         @"size":@"10",
     };
-    [self.client requestWithPath:Mine_POST_getIgnoreUid_API method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self.dataArr addObjectsFromArray:responseObject[@"data"]];
-        if ([responseObject[@"data"] count] < 10) {
+    
+    [HttpTool.shareTool request:Mine_POST_getIgnoreUid_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [self.dataArr addObjectsFromArray:object[@"data"]];
+        if ([object[@"data"] count] < 10) {
             [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateNoMoreDate];
         }else {
             [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateEndRefresh];
             self.page++;
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateFailure];
     }];
 }

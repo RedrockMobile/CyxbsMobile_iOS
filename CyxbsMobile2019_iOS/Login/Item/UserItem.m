@@ -51,16 +51,26 @@ static UserItem *item = nil;
 }
 
 - (void)getUserInfo {
-    [[HttpClient defaultClient] requestWithPath:Mine_POST_getPersonData_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        
-        NSLog(@"%@",responseObject);
-        [UserItem mj_objectWithKeyValues:responseObject[@"data"]];
+    
+    [HttpTool.shareTool request:Mine_POST_getPersonData_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"%@",object);
+        [UserItem mj_objectWithKeyValues:object[@"data"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(YES)];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         CCLog(@"fai,%@",error);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(NO)];
     }];
+    
+//    [[HttpClient defaultClient] requestWithPath:Mine_POST_getPersonData_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//
+//
+//        NSLog(@"%@",responseObject);
+//        [UserItem mj_objectWithKeyValues:responseObject[@"data"]];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(YES)];
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        CCLog(@"fai,%@",error);
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(NO)];
+//    }];
 }
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone {

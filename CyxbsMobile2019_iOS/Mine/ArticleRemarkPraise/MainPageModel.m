@@ -16,7 +16,6 @@
     if (self) {
         self.page = 1;
         self.dataArr = [[NSMutableArray alloc] init];
-        self.client = [HttpClient defaultClient];
     }
     return self;
 }

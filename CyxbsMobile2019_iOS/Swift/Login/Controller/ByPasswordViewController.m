@@ -186,11 +186,12 @@
 }
 
 //跳转界面，判断验证码是否正确
--(void) jumpTOset{
+- (void)jumpTOset{
     NSNumber *codeNum = [NSNumber numberWithString:self.tf.text];
-    [[HttpClient defaultClient] requestWithPath:Mine_POST_checkEmailCode_API method:HttpRequestPost parameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
-            self.code = responseObject[@"data"][@"code"];
+    
+    [HttpTool.shareTool request:Mine_POST_checkEmailCode_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        if ([object[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
+            self.code = object[@"data"][@"code"];
             ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
             rView.stuID = self.idString;
             rView.changeCode = self.code;
@@ -210,9 +211,35 @@
             [NewQAHud showHudWith:@" 验证码有误或过期 " AddView:self.view];
 
         }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient] requestWithPath:Mine_POST_checkEmailCode_API method:HttpRequestPost parameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
+//            self.code = responseObject[@"data"][@"code"];
+//            ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
+//            rView.stuID = self.idString;
+//            rView.changeCode = self.code;
+//            rView.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:rView animated:YES];
+//        }
+//        else{
+//            UILabel *tipsLable = [[UILabel alloc]init];
+//            tipsLable.text = @"验证码有误或过期，请重新获取。 ";
+//            tipsLable.font =[UIFont fontWithName:nil size:12];
+//            tipsLable.textColor = [UIColor colorWithRed:11/225.0 green:204/225.0 blue:240/225.0 alpha:1.0];
+//            [self.view addSubview:tipsLable];
+//            [tipsLable mas_makeConstraints:^(MASConstraintMaker *make) {
+//                        make.top.mas_equalTo(self.tf).offset(53);
+//                        make.left.mas_equalTo(self.view).mas_offset(SCREEN_WIDTH * 0.053);
+//                        make.width.mas_equalTo(SCREEN_WIDTH * 0.50);  }];
+//            [NewQAHud showHudWith:@" 验证码有误或过期 " AddView:self.view];
+//
+//        }
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+//        }];
     
 }
 // 开启倒计时效果
@@ -250,21 +277,36 @@
         num = self.idString;
     else
         num = stuNum;
-    [[HttpClient defaultClient] requestWithPath:Mine_POST_getEmailDetail_API method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSString *email = responseObject[@"data"][@"email"];
+    
+    [HttpTool.shareTool request:Mine_POST_getEmailDetail_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"stu_num":num} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSString *email = object[@"data"][@"email"];
         self.lable3.text = email;
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient] requestWithPath:Mine_POST_getEmailDetail_API method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSString *email = responseObject[@"data"][@"email"];
+//        self.lable3.text = email;
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+//        }];
 }
 //发送验证码
--(void) getMailCode{
+- (void)getMailCode{
     [self openCountdown];
-    [[HttpClient defaultClient] requestWithPath:Mine_POST_getEmailCode_API method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
-            [NewQAHud showHudWith:@" 验证码已发送，可能会被归为垃圾邮件，请注意查收 " AddView:self.view];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }];
+    
+    [HttpTool.shareTool request:Mine_POST_getEmailCode_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"stu_num":self.idString} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [NewQAHud showHudWith:@" 验证码已发送，可能会被归为垃圾邮件，请注意查收 " AddView:self.view];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient] requestWithPath:Mine_POST_getEmailCode_API method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
+//            [NewQAHud showHudWith:@" 验证码已发送，可能会被归为垃圾邮件，请注意查收 " AddView:self.view];
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+//        }];
 }
 
 @end

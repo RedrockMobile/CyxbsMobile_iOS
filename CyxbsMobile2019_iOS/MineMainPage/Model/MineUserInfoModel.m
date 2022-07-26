@@ -85,10 +85,8 @@ static dispatch_once_t _onceToken = 0;
                 @"type":@(i+1),
             };
             
-            //用自定义AFHTTPSessionManager，因为这里用了多线程，用HttpClient怕有多线程的问题
-            AFHTTPSessionManager *man = [self getHTTPSessionManager];
-            [man GET:Mine_GET_getMsgCnt_API parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
-                NSDictionary *dataDict = responseObject[@"data"];
+            [HttpTool.shareTool request:Mine_GET_getMsgCnt_API type:HttpToolRequestTypeGet serializer:HttpToolRequestSerializerHTTP bodyParameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+                NSDictionary *dataDict = object[@"data"];
                 if (dataDict==nil) {
                 }else if (i==0) {
                     model.hasNewRemark = [dataDict[@"uncheckedComment"] intValue] > 0;
@@ -101,12 +99,34 @@ static dispatch_once_t _onceToken = 0;
                     }
                     model.hasNewPraise = [dataDict[@"uncheckedPraise"] intValue] > 0;
                 }
-                CCLog(@"%dresp::%@", i, responseObject);
+                CCLog(@"%dresp::%@", i, object);
                 dispatch_semaphore_signal(sema);
-            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 CCLog(@"error::%@", error);
                 dispatch_semaphore_signal(sema);
             }];
+//            //用自定义AFHTTPSessionManager，因为这里用了多线程，用HttpClient怕有多线程的问题
+//            AFHTTPSessionManager *man = [self getHTTPSessionManager];
+//            [man GET:Mine_GET_getMsgCnt_API parameters:paramDict success:^(NSURLSessionDataTask *task, id responseObject) {
+//                NSDictionary *dataDict = responseObject[@"data"];
+//                if (dataDict==nil) {
+//                }else if (i==0) {
+//                    model.hasNewRemark = [dataDict[@"uncheckedComment"] intValue] > 0;
+//                    @synchronized (syncKey) {
+//                        state |= 0b1;
+//                    }
+//                }else if (i==1) {
+//                    @synchronized (syncKey) {
+//                        state |= 0b10;
+//                    }
+//                    model.hasNewPraise = [dataDict[@"uncheckedPraise"] intValue] > 0;
+//                }
+//                CCLog(@"%dresp::%@", i, responseObject);
+//                dispatch_semaphore_signal(sema);
+//            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//                CCLog(@"error::%@", error);
+//                dispatch_semaphore_signal(sema);
+//            }];
             
             dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, (int64_t)20*NSEC_PER_SEC));
         });
@@ -123,18 +143,30 @@ static dispatch_once_t _onceToken = 0;
         //@"https://be-prod.redrock.cqupt.edu.cn/magipoke-loop/user/getUserCount";
         //@"https://be-dev.redrock.cqupt.edu.cn/magipoke-loop/user/getUserCount";
         
-        AFHTTPSessionManager *man = [self getHTTPSessionManager];
-        [man GET:url parameters:@{@"redid":redidStr} success:^(NSURLSessionDataTask *task, id responseObject) {
-            [model mj_setKeyValues:responseObject[@"data"]];
+        [HttpTool.shareTool request:url type:HttpToolRequestTypeGet serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"redid":redidStr} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            [model mj_setKeyValues:object[@"data"]];
             @synchronized (syncKey) {
                 state |= 0b100;
             }
-            CCLog(@"resp::%@", responseObject);
+            CCLog(@"resp::%@", object);
             dispatch_semaphore_signal(sema);
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             CCLog(@"error::%@", error);
             dispatch_semaphore_signal(sema);
         }];
+        
+//        AFHTTPSessionManager *man = [self getHTTPSessionManager];
+//        [man GET:url parameters:@{@"redid":redidStr} success:^(NSURLSessionDataTask *task, id responseObject) {
+//            [model mj_setKeyValues:responseObject[@"data"]];
+//            @synchronized (syncKey) {
+//                state |= 0b100;
+//            }
+//            CCLog(@"resp::%@", responseObject);
+//            dispatch_semaphore_signal(sema);
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            CCLog(@"error::%@", error);
+//            dispatch_semaphore_signal(sema);
+//        }];
         
         dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, (int64_t)20*NSEC_PER_SEC));
     });
@@ -150,18 +182,18 @@ static dispatch_once_t _onceToken = 0;
     });
 }
 
-- (AFHTTPSessionManager*)getHTTPSessionManager {
-    AFHTTPSessionManager *man = [AFHTTPSessionManager manager];
-    man.requestSerializer = [AFHTTPRequestSerializer serializer];
-    NSString *token = [UserItem defaultItem].token;
-    if (token) {
-        [man.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
-    }
-    man.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [man.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",@"application/x-www-form-urlencoded", nil]];
-    return man;
-}
+//- (AFHTTPSessionManager*)getHTTPSessionManager {
+//    AFHTTPSessionManager *man = [AFHTTPSessionManager manager];
+//    man.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    NSString *token = [UserItem defaultItem].token;
+//    if (token) {
+//        [man.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",token]  forHTTPHeaderField:@"authorization"];
+//    }
+//    man.responseSerializer = [AFJSONResponseSerializer serializer];
+//    
+//    [man.responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",@"application/x-www-form-urlencoded", nil]];
+//    return man;
+//}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@", [self mj_keyValues]];
