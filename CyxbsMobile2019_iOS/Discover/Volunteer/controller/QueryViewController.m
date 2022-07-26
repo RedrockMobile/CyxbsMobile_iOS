@@ -67,13 +67,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"MGDHeaderColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
     _tableView=[[GestureTableView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.0837, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
     if (@available(iOS 11.0, *)) {
-        _tableView.backgroundColor = [UIColor colorNamed:@"MGDHeaderColor"];
+        _tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -162,7 +162,7 @@
 
     ///bar标题
     if (@available(iOS 11.0, *)) {
-        UILabel *barTitle = [self creatLabelWithText:@"志愿查询" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor colorNamed:@"MGDLoginTitleColor"]];
+        UILabel *barTitle = [self creatLabelWithText:@"志愿查询" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]]];
         barTitle.textAlignment = NSTextAlignmentLeft;
         barTitle.backgroundColor = [UIColor clearColor];
         [self.view addSubview:barTitle];
@@ -173,7 +173,7 @@
         logOutBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 11];
         logOutBtn.titleLabel.alpha = 0.54;
         logOutBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
-        [logOutBtn setTintColor:[UIColor colorNamed:@"MGDTimeCellTextColor"]];
+        [logOutBtn setTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
         [logOutBtn addTarget:self action:@selector(logOut) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:logOutBtn];
         
@@ -356,7 +356,7 @@
     [self.view addSubview:_backView];
     UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.6576, SCREEN_WIDTH, SCREEN_WIDTH * 278/375)];
     if (@available(iOS 11.0, *)) {
-        pickerView.backgroundColor = [UIColor colorNamed:@"MGDTimeCellBackColor"];
+        pickerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#3A3A3A" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -397,7 +397,7 @@
         pickerLabel.adjustsFontSizeToFitWidth = YES;
         [pickerLabel setBackgroundColor:[UIColor clearColor]];
         if (@available(iOS 11.0, *)) {
-            [pickerLabel setTextColor:[UIColor colorNamed:@"MGDTimeCellHourColor"]];
+            [pickerLabel setTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
         } else {
             // Fallback on earlier versions
         }

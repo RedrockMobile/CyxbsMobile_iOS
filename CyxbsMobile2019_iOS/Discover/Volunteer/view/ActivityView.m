@@ -31,7 +31,7 @@
         UIView *popView = [[UIView alloc] init];
         popView.layer.cornerRadius = 16;
         if (@available(iOS 11.0, *)) {
-            popView.backgroundColor = [UIColor colorNamed:@"MGDActivityBackColor"];
+            popView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -40,7 +40,7 @@
         _popView = popView;
         
         if (@available(iOS 11.0, *)) {
-            UILabel *activityLabel = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 22] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:1.0];
+            UILabel *activityLabel = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 22] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:1.0];
             activityLabel.textAlignment = NSTextAlignmentLeft;
             [_popView addSubview:activityLabel];
             _activityLabel = activityLabel;
@@ -49,7 +49,7 @@
         }
         
         if (@available(iOS 11.0, *)) {
-            UILabel *describeLabel = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 13] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:0.6];
+            UILabel *describeLabel = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 13] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:0.6];
             describeLabel.numberOfLines = 1;
             describeLabel.textAlignment = NSTextAlignmentLeft;
             [_popView addSubview:describeLabel];
@@ -59,7 +59,7 @@
         }
         
         if (@available(iOS 11.0, *)) {
-            UILabel *signUpTimeLabel = [self LabelWithText:@"报名截至时间" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 15] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:0.8];
+            UILabel *signUpTimeLabel = [self LabelWithText:@"报名截至时间" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 15] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:0.8];
             signUpTimeLabel.textAlignment = NSTextAlignmentLeft;
             [_popView addSubview:signUpTimeLabel];
             _signUpTimeLabel = signUpTimeLabel;
@@ -68,7 +68,7 @@
         }
         
         if (@available(iOS 11.0, *)) {
-            UILabel *activityTimeLabel = [self LabelWithText:@"志愿服务时间" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:0.8];
+            UILabel *activityTimeLabel = [self LabelWithText:@"志愿服务时间" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:0.8];
             activityTimeLabel.textAlignment = NSTextAlignmentLeft;
             [_popView addSubview:activityTimeLabel];
             _activityTimeLabel = activityTimeLabel;
@@ -77,7 +77,7 @@
         }
         
         if (@available(iOS 11.0, *)) {
-            UILabel *activityHourLabel = [self LabelWithText:@"志愿服务时长" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:1.0];
+            UILabel *activityHourLabel = [self LabelWithText:@"志愿服务时长" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:1.0];
             activityHourLabel.textAlignment = NSTextAlignmentLeft;
             [_popView addSubview:activityHourLabel];
             _activityHourLabel = activityHourLabel;
@@ -86,7 +86,7 @@
         }
         
         if (@available(iOS 11.0, *)) {
-            UILabel *signUpTime = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 15] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:1.0];
+            UILabel *signUpTime = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 15] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:1.0];
             signUpTime.textAlignment = NSTextAlignmentRight;
             [_popView addSubview:signUpTime];
             _signUpTime = signUpTime;
@@ -95,7 +95,7 @@
         }
         
         if (@available(iOS 11.0, *)) {
-            UILabel *activityTime = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 15] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:1.0];
+            UILabel *activityTime = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 15] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:1.0];
             activityTime.textAlignment = NSTextAlignmentRight;
             [_popView addSubview:activityTime];
             _activityTime = activityTime;
@@ -104,7 +104,7 @@
         }
         
         if (@available(iOS 11.0, *)) {
-            UILabel *activityHour = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 15] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:1.0];
+            UILabel *activityHour = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 15] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:1.0];
             activityHour.textAlignment = NSTextAlignmentRight;
             [_popView addSubview:activityHour];
             _activityHour = activityHour;
@@ -122,7 +122,7 @@
         _lineView = lineView;
         
         if (@available(iOS 11.0, *)) {
-            UILabel *placeholderLabel = [self LabelWithText:@"可前往微信小程序：重邮帮参与该志愿服务的报名" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 12] AndTintColor:[UIColor colorNamed:@"MGDYearCellTotalColor"] AndAlpha:0.8];
+            UILabel *placeholderLabel = [self LabelWithText:@"可前往微信小程序：重邮帮参与该志愿服务的报名" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 12] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3A39D3" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] AndAlpha:0.8];
             placeholderLabel.numberOfLines = 1;
             placeholderLabel.textAlignment = NSTextAlignmentLeft;
             [_popView addSubview:placeholderLabel];

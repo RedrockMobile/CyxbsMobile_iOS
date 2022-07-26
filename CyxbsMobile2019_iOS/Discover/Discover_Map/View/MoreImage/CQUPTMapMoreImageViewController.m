@@ -39,7 +39,7 @@
     [super viewDidLoad];
     
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
     }
@@ -54,7 +54,7 @@
     titleLabel.text = @"所有图片";
     titleLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
     if (@available(iOS 11.0, *)) {
-        titleLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+        titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         titleLabel.textColor = [UIColor colorWithHexString:@"15305B"];
     }
@@ -69,7 +69,7 @@
     shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
     [shareButton setTitle:@"与大家分享你拍摄的此地点" forState:UIControlStateNormal];
     if (@available(iOS 11.0, *)) {
-        [shareButton setTitleColor:[UIColor colorNamed:@"Map_ShareButtonColor_MoreImage"] forState:UIControlStateNormal];
+        [shareButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#01CAF0" alpha:1] darkColor:[UIColor colorWithHexString:@"#47DAFA" alpha:1]] forState:UIControlStateNormal];
     } else {
         [shareButton setTitleColor:[UIColor colorWithHexString:@"01CAF0"] forState:UIControlStateNormal];
     }
@@ -89,7 +89,7 @@
     noMoreImageLabel.text = @"暂无更多图片";
     noMoreImageLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
     if (@available(iOS 11.0, *)) {
-        noMoreImageLabel.textColor = [UIColor colorNamed:@"Map_SearchClearColor"];
+        noMoreImageLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD8" alpha:1] darkColor:[UIColor colorWithHexString:@"#979797" alpha:1]];
     } else {
         noMoreImageLabel.textColor = [UIColor colorWithHexString:@"ABBCD8"];
     }

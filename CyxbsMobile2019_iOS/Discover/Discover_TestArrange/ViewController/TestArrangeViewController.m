@@ -302,7 +302,7 @@
     if(lastDay.intValue < 0) {
         cell.leftDayLabel.text = [NSString stringWithFormat:@"考试已结束"];
         if (@available(iOS 11.0, *)) {
-            cell.leftDayLabel.textColor =[UIColor colorNamed:@"Color#2A4E84&#858585" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+            cell.leftDayLabel.textColor =[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.56] darkColor:[UIColor colorWithHexString:@"#858585" alpha:1]];;
         } else {
             cell.leftDayLabel.textColor = [UIColor colorWithHexString:@"#2A4E84"];
         }

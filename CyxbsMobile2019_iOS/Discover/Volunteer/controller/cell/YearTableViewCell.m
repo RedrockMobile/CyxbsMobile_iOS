@@ -25,7 +25,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         ///设置cell的背景色和cell.contentView的背景色
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"MGDActivityBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -45,7 +45,7 @@
 - (void)BuildUI {
     UILabel *yearLabel = [[UILabel alloc] init];
     if (@available(iOS 11.0, *)) {
-        yearLabel.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+        yearLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -79,7 +79,7 @@
     totalLabel.textAlignment = NSTextAlignmentRight;
     totalLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 12];
     if (@available(iOS 11.0, *)) {
-        totalLabel.textColor = [UIColor colorNamed:@"MGDYearCellTotalColor"];
+        totalLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3A39D3" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -95,7 +95,7 @@
     
     UIView *lineView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        lineView.backgroundColor = [UIColor colorNamed:@"MGDTimeCellHourColor"];
+        lineView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

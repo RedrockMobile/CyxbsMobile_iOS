@@ -137,7 +137,7 @@
 - (UIButton*)getStdBtn {
     UIButton* btn = [[UIButton alloc] init];
     [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.4]] forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor colorNamed:@"21_49_91_80&#F0F0F2_80"] forState:UIControlStateHighlighted];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]] forState:UIControlStateHighlighted];
     
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size:15]];
     return btn;

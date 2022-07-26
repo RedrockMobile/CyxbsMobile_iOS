@@ -23,7 +23,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"MGDHeaderColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -35,7 +35,7 @@
 
         ///总时长（文字）
         if (@available(iOS 11.0, *)) {
-            UILabel *totalTime = [self LabelWithText:@"总时长" AndFont:[UIFont fontWithName:@"PingFangSC-Light" size: 13] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:0.6];
+            UILabel *totalTime = [self LabelWithText:@"总时长" AndFont:[UIFont fontWithName:@"PingFangSC-Light" size: 13] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:0.6];
             [_backView addSubview:totalTime];
             _totalTime = totalTime;
         } else {
@@ -44,7 +44,7 @@
 
         ///总次数（文字）
         if (@available(iOS 11.0, *)) {
-            UILabel * frequency= [self LabelWithText:@"总次数" AndFont:[UIFont fontWithName:@"PingFangSC-Light" size: 13] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:0.6];
+            UILabel * frequency= [self LabelWithText:@"总次数" AndFont:[UIFont fontWithName:@"PingFangSC-Light" size: 13] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:0.6];
             [_backView addSubview:frequency];
             _frequency = frequency;
         } else {
@@ -53,7 +53,7 @@
 
         ///总时长（数字）
         if (@available(iOS 11.0, *)) {
-            UILabel *totalText = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"Impact" size: 32] AndTintColor:[UIColor colorNamed:@"MGDTimeCellHourColor"] AndAlpha:1.0];
+            UILabel *totalText = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"Impact" size: 32] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] AndAlpha:1.0];
             totalText.textAlignment = NSTextAlignmentRight;
             [_backView addSubview:totalText];
             _totalText = totalText;
@@ -62,7 +62,7 @@
         }
 
         if (@available(iOS 11.0, *)) {
-            UILabel *frequencyText = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"Impact" size: 32] AndTintColor:[UIColor colorNamed:@"MGDTimeCellHourColor"] AndAlpha:1.0];
+            UILabel *frequencyText = [self LabelWithText:@"" AndFont:[UIFont fontWithName:@"Impact" size: 32] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] AndAlpha:1.0];
             frequencyText.textAlignment = NSTextAlignmentRight;
             [_backView addSubview:frequencyText];
             _frequencyText = frequencyText;
@@ -72,7 +72,7 @@
 
         ///时间单位
         if (@available(iOS 11.0, *)) {
-            UILabel *timeUnit = [self LabelWithText:@"时" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 13] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:1.0];
+            UILabel *timeUnit = [self LabelWithText:@"时" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 13] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:1.0];
             timeUnit.textAlignment = NSTextAlignmentRight;
             [_backView addSubview:timeUnit];
             _timeUnit = timeUnit;
@@ -82,7 +82,7 @@
 
         ///次数单位
         if (@available(iOS 11.0, *)) {
-            UILabel *frequencyUnit = [self LabelWithText:@"次" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 13] AndTintColor:[UIColor colorNamed:@"MGDLoginTitleColor"] AndAlpha:1.0];
+            UILabel *frequencyUnit = [self LabelWithText:@"次" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 13] AndTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]] AndAlpha:1.0];
             frequencyUnit.textAlignment = NSTextAlignmentRight;
             [_backView addSubview:frequencyUnit];
             _frequencyUnit = frequencyUnit;

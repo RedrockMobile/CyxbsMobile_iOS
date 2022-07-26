@@ -7,7 +7,7 @@
 //
 
 #import "IdsBindingView.h"
-#define Color_BindingButton [UIColor colorNamed:@"Color_chartLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color_BindingButton [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2921D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#736CFF" alpha:1]]
 
 @interface IdsBindingView()
 @property (nonatomic, weak)UILabel *hintLabel;

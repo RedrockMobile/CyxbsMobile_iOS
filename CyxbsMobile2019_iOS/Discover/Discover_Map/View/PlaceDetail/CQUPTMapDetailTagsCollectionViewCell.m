@@ -18,7 +18,7 @@
         taglabel.font = [UIFont fontWithName:PingFangSCMedium size:13];
         taglabel.textAlignment = NSTextAlignmentCenter;
         if (@available(iOS 11.0, *)) {
-            taglabel.textColor = [UIColor colorNamed:@"Map_SearchCellColor"];
+            taglabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#234780" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {
             taglabel.textColor = [UIColor colorWithHexString:@"234780"];
         }

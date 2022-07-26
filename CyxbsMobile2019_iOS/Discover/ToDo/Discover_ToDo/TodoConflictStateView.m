@@ -20,7 +20,7 @@
         [self addTipMsgLabel];
         [self addLocalBtn];
         [self addCloudBtn];
-        self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     }
     return self;
 }

@@ -49,14 +49,14 @@
         
         self.layer.cornerRadius = 20;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Map_DetailViewColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             self.backgroundColor = [UIColor whiteColor];
         }
 
         UIView *dragBar = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            dragBar.backgroundColor = [UIColor colorNamed:@"Map_DetailDragColor"];
+            dragBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E1EDFB" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
         } else {
             dragBar.backgroundColor = [UIColor colorWithHexString:@"#E1EDFB"];
         }
@@ -65,7 +65,7 @@
         
         FYHCycleLabel *placeNameLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(15, 40, 280, 30)];
         if (@available(iOS 11.0, *)) {
-            placeNameLabel.cycleLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+            placeNameLabel.cycleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             placeNameLabel.cycleLabel.textColor = [UIColor colorWithHexString:@"#15305B"];
         }
@@ -88,7 +88,7 @@
         detailLabel.text = @"详情";
         detailLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
         if (@available(iOS 11.0, *)) {
-            detailLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+            detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             detailLabel.textColor = [UIColor colorWithHexString:@"#15305C"];
         }
@@ -99,7 +99,7 @@
         [showMoreButton setTitle:@"查看更多" forState:UIControlStateNormal];
         showMoreButton.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         if (@available(iOS 11.0, *)) {
-            [showMoreButton setTitleColor:[UIColor colorNamed:@"Map_SearchClearColor"] forState:UIControlStateNormal];
+            [showMoreButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD8" alpha:1] darkColor:[UIColor colorWithHexString:@"#979797" alpha:1]] forState:UIControlStateNormal];
         } else {
             [showMoreButton setTitleColor:[UIColor colorWithHexString:@"ABBCD8"] forState:UIControlStateNormal];
         }
@@ -125,7 +125,7 @@
         [shareButton setTitle:@"与大家分享你拍摄的此地点" forState:UIControlStateNormal];
         shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
         if (@available(iOS 11.0, *)) {
-            [shareButton setTitleColor:[UIColor colorNamed:@"Map_SearchCellColor"] forState:UIControlStateNormal];
+            [shareButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#234780" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]] forState:UIControlStateNormal];
         } else {
             [shareButton setTitleColor:[UIColor colorWithHexString:@"234780"] forState:UIControlStateNormal];
         }
@@ -278,7 +278,7 @@
         attributeLabel.textAlignment = NSTextAlignmentCenter;
         attributeLabel.alpha = 0;
         if (@available(iOS 11.0, *)) {
-            attributeLabel.textColor = [UIColor colorNamed:@"Map_StarLabelColor"];
+            attributeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#778AA9" alpha:1] darkColor:[UIColor colorWithHexString:@"#A1A1A1" alpha:1]];
         } else {
             attributeLabel.textColor = [UIColor colorWithHexString:@"778AA9"];
         }

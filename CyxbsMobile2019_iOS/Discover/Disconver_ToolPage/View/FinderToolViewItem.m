@@ -7,8 +7,8 @@
 //
 
 #import "FinderToolViewItem.h"
-#define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#DFDFE3" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-#define Color_isFavoriteTool [UIColor colorNamed:@"Color_isFavoriteTool" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+#define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#DFDFE3" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define Color_isFavoriteTool [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E5EAF2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]]
 
 @interface FinderToolViewItem()
 @property (nonatomic, weak)UIImageView *iconView;

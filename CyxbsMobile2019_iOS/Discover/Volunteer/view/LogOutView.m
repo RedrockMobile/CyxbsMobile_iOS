@@ -29,7 +29,7 @@
         
         UIView *popView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            popView.backgroundColor = [UIColor colorNamed:@"MGDActivityBackColor"];
+            popView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -45,7 +45,7 @@
         UILabel *logOutLabel = [[UILabel alloc] init];
         logOutLabel.text = @"取消绑定";
         if (@available(iOS 11.0, *)) {
-            logOutLabel.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+            logOutLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -58,7 +58,7 @@
         queryLogOutLabel.text = @"是否取消志愿者账号绑定？";
         queryLogOutLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
         if (@available(iOS 11.0, *)) {
-            queryLogOutLabel.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+            queryLogOutLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

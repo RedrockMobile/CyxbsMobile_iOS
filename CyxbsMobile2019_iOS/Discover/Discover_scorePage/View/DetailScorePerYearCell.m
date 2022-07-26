@@ -9,7 +9,7 @@
 #import "DetailScorePerYearCell.h"
 #import "DetailSubjectScoreCell.h"
 #define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define ColorBackView  [UIColor colorNamed:@"Color_E8F1FC&#5A5A5A" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
+#define ColorBackView  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]]
 #define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface DetailScorePerYearCell()

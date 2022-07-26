@@ -56,7 +56,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
         } else {
             self.backgroundColor = [UIColor whiteColor];
         }
@@ -94,7 +94,7 @@
         UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [cancelButton setTitle:@"取消" forState:UIControlStateNormal];
         if (@available(iOS 11.0, *)) {
-            [cancelButton setTitleColor:[UIColor colorNamed:@"Map_SearchHistoryColor"] forState:UIControlStateNormal];
+            [cancelButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#234780" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]] forState:UIControlStateNormal];
         } else {
             [cancelButton setTitleColor:[UIColor colorWithHexString:@"788AAA"] forState:UIControlStateNormal];
         }
@@ -160,8 +160,8 @@
         
         // 深色模式
         if (@available(iOS 11.0, *)) {
-            searchBar.backgroundColor = [UIColor colorNamed:@"Map_SearchBarColor"];
-            searchBar.textColor = [UIColor colorNamed:@"Map_TextColor"];
+            searchBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F4FD" alpha:1] darkColor:[UIColor colorWithHexString:@"#1F1F1F" alpha:1]];;
+            searchBar.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             searchBar.backgroundColor = [UIColor colorWithHexString:@"#F0F4FD"];
             searchBar.textColor = [UIColor colorWithHexString:@"#15305B"];
