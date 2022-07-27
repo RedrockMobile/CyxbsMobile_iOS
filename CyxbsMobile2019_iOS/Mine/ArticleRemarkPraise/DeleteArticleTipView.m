@@ -51,7 +51,7 @@
     
     //无色背景色
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F7F8FB" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
@@ -136,7 +136,7 @@
     [self.tipWindow addSubview:blackLine];
     
     if (@available(iOS 11.0, *)) {
-        blackLine.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
+        blackLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.2] darkColor:[UIColor colorWithHexString:@"#E6E6E6" alpha:0.4]];
     } else {
         blackLine.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
     }

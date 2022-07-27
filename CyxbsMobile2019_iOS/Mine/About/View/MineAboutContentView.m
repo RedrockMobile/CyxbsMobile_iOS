@@ -176,7 +176,7 @@
 - (UIButton*)getLearnMoreBtn{
     UIButton *btn = [[UIButton alloc] init];
     if (@available(iOS 11.0, *)) {
-        [btn setTitleColor:[UIColor colorNamed:@"44_223_255&94_223_250"] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2CDFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#5EDFF9" alpha:1]] forState:UIControlStateNormal];
     } else {
         [btn setTitleColor:[UIColor colorWithRed:44/255.0 green:223/255.0 blue:255/255.0 alpha:1] forState:UIControlStateNormal];
     }

@@ -22,7 +22,7 @@
     if (@available(iOS 15.0, *)) {
         UITabBarAppearance *appearance = [[UITabBarAppearance alloc]init];
 //        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-        appearance.backgroundColor = [UIColor colorNamed:@"TabBar"];
+        appearance.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
         self.tabBar.scrollEdgeAppearance = appearance;
         self.tabBar.standardAppearance = appearance;
     }

@@ -23,7 +23,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"MGDSafeMainBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -52,7 +52,7 @@
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         tableView.layer.cornerRadius = 16;
         if (@available(iOS 11.0, *)) {
-            tableView.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+            tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -114,7 +114,7 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
     if (@available(iOS 11.0, *)) {
-        cell.textColor = [UIColor colorNamed:@"MGDSafeCellTextColor"];
+        cell.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#193866" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

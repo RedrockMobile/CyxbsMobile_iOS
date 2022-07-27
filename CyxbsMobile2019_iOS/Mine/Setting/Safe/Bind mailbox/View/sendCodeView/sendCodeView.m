@@ -22,7 +22,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -47,7 +47,7 @@
         ///分割线
         UIView *line = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            line.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+            line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -70,8 +70,8 @@
         codeField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
         if (@available(iOS 11.0, *)) {
             codeField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
-            codeField.backgroundColor = [UIColor colorNamed:@"MGDSafeFieldBackColor"];
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入验证码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:15], NSForegroundColorAttributeName:[UIColor colorNamed:@"MGDSafePlaceholderColor"]}];
+            codeField.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入验证码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:15], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
             codeField.attributedPlaceholder = string;
         } else {
             // Fallback on earlier versions

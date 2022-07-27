@@ -123,7 +123,7 @@
     self.checkInView = checkInView;
     
     if (@available(iOS 11.0, *)) {
-        checkInView.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
+        checkInView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F7F8FB" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         checkInView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1.0];
     }
@@ -169,7 +169,7 @@
     [checkInView addSubview:checkInButton];
     self.checkInButton = checkInButton;
     if (@available(iOS 11.0, *)) {
-        checkInButton.backgroundColor = [UIColor colorNamed:@"93_93_247&85_77_250"];
+        checkInButton.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#5D5CF7" alpha:1] darkColor:[UIColor colorWithHexString:@"#544DF9" alpha:1]];
     } else {
         checkInButton.backgroundColor = [UIColor colorWithRed:93/255.0 green:93/255.0 blue:247/255.0 alpha:1];
     }

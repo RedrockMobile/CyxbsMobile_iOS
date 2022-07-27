@@ -53,7 +53,7 @@
     view.layer.cornerRadius = 12.5;
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"248_249_252&44_44_44"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F8FB" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
@@ -78,7 +78,7 @@
     }];
     
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"87_86_242&86_86_242"];
+        btn.backgroundColor = [UIColor colorWithHexString:@"#5655F2"];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:87/255.0 green:86/255.0 blue:242/255.0 alpha:1];
     }

@@ -39,7 +39,7 @@
         UIView *dragHintView = [[UIView alloc] init];
         
         if (@available(iOS 11.0, *)) {
-            dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
+            dragHintView.backgroundColor =[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2EDFB" alpha:1] darkColor:[UIColor colorWithHexString:@"#010101" alpha:1]];
         } else {
             // Fallback on earlier versions
             dragHintView.backgroundColor = [UIColor whiteColor];

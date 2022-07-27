@@ -79,7 +79,7 @@
     [self.contentView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"85_108_139&131_131_132"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#546C8A" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:85/255.0 green:108/255.0 blue:139/255.0 alpha:1];
     }

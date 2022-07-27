@@ -39,7 +39,7 @@
 
 - (void)setupView {
     // configure self
-    self.view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F7F8FB" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     
     if (@available(iOS 15.0, *)) {
           UINavigationBarAppearance *barApp = [UINavigationBarAppearance new];
@@ -203,7 +203,7 @@
 - (UIView *)splitLine {
     if (_splitLine == nil) {
         _splitLine = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _splitLine.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
+        _splitLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.2] darkColor:[UIColor colorWithHexString:@"#E6E6E6" alpha:0.4]];
     }
     return _splitLine;
 }

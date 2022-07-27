@@ -344,7 +344,7 @@
 - (UILabel *)goodsDefaultLabel {
     if (_goodsDefaultLabel == nil) {
         _goodsDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _goodsDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        _goodsDefaultLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         _goodsDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         [_goodsDefaultLabel sizeToFit];
     }
@@ -362,7 +362,7 @@
 - (UILabel *)taskDefaultLabel {
     if (_taskDefaultLabel == nil) {
         _taskDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _taskDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        _taskDefaultLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         _taskDefaultLabel.text = @"还没有获取记录，快去做任务吧";
         _taskDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         [_taskDefaultLabel sizeToFit];

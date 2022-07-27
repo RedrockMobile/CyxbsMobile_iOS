@@ -76,7 +76,7 @@
     UILabel * label = [[UILabel alloc] initWithFrame:(CGRectZero)];
     [label sizeToFit];
     label.font = [UIFont fontWithName:PingFangSCMedium size:14];
-    label.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+    label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     label.translatesAutoresizingMaskIntoConstraints = NO;
     return label;
 }
@@ -110,7 +110,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
-        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _titleLabel.text = @"商品详情";
         [_titleLabel sizeToFit];
     }

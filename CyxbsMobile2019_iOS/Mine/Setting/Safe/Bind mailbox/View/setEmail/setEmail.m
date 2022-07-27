@@ -22,7 +22,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -46,7 +46,7 @@
         ///分割线
         UIView *line = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            line.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+            line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -69,10 +69,10 @@
         UITextField *emailField = [[UITextField alloc] init];
         emailField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
         if (@available(iOS 11.0, *)) {
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入邮箱地址" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:15], NSForegroundColorAttributeName:[UIColor colorNamed:@"MGDSafePlaceholderColor"]}];
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入邮箱地址" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:15], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
             emailField.attributedPlaceholder = string;
             emailField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
-            emailField.backgroundColor = [UIColor colorNamed:@"MGDSafeFieldBackColor"];
+            emailField.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

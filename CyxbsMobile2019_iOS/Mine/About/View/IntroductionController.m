@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"LoginBackgroundColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
@@ -126,8 +126,8 @@
     }];
     introductionTextView.frame = CGRectMake(20, 40, MAIN_SCREEN_W - 40, self.view.frame.size.height - 100);
     if (@available(iOS 11.0, *)) {
-        introductionTextView.textColor = [UIColor colorNamed:@"LoginTitleColor"];
-        introductionTextView.backgroundColor = [UIColor colorNamed:@"LoginBackgroundColor"];
+        introductionTextView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]];
+        introductionTextView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         introductionTextView.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
         introductionTextView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];

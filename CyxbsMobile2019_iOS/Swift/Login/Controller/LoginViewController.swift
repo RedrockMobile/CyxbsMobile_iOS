@@ -82,12 +82,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, PrivacyTipView
         protocolCheckButton.layer.borderColor = UIColor.blue.cgColor
         
         if #available(iOS 11.0, *) {
-            self.loginTitleLabel.textColor = UIColor(named: "LoginTitleColor")
-            self.loginSubTitleLabel.textColor = UIColor(named: "LoginTitleColor")
+            self.loginTitleLabel.textColor = UIColor(.dm ,light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#EFEFEF")!)
+            self.loginSubTitleLabel.textColor = UIColor(.dm ,light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#EFEFEF")!)
             self.loginSubTitleLabel.alpha = 0.6;
-            self.view.backgroundColor = UIColor(named: "LoginBackgroundColor")
-            self.stuNumTextField.textColor = UIColor(named: "LoginTextFieldColor")
-            self.idNumTextField.textColor = UIColor(named: "LoginTextFieldColor")
+            self.view.backgroundColor = UIColor(.dm ,light: UIColor(hexString: "#F8F9FC")!, dark: UIColor(hexString: "#000101")!)
+            self.stuNumTextField.textColor = UIColor(.dm ,light: UIColor(hexString: "#1C3058")!, dark: UIColor(hexString: "#DFDFE2")!)
+            self.idNumTextField.textColor = UIColor(.dm ,light: UIColor(hexString: "#1C3058")!, dark: UIColor(hexString: "#DFDFE2")!)
         } else {
             self.loginTitleLabel.textColor = UIColor(red: 21/255.0, green: 49/255.0, blue: 91/255.0, alpha: 1)
             self.loginSubTitleLabel.textColor = UIColor(red: 21/255.0, green: 49/255.0, blue: 91/255.0, alpha: 1)

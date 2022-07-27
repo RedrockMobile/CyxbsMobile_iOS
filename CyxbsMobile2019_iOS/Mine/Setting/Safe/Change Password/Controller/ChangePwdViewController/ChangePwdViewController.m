@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -86,7 +86,7 @@
     ///分割线
     UIView *line = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        line.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+        line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -131,7 +131,7 @@
     passwordField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
     if (@available(iOS 11.0, *)) {
         passwordField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"请输入旧密码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor colorNamed:@"MGDSafePlaceholderColor"]}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"请输入旧密码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
         passwordField.attributedPlaceholder = string;
     } else {
         // Fallback on earlier versions
@@ -218,7 +218,7 @@
     ///弹出页面
     UIView *popView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        popView.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+        popView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
