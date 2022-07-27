@@ -96,9 +96,16 @@
 }
 
 - (void)ff{
-    [HttpTool.shareTool request:Mine_POST_getAboutUsMsg_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerJSON bodyParameters:@{@"name":@"zscy-main-userAgreement"} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_getAboutUsMsg_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerJSON
+     bodyParameters:@{@"name":@"zscy-main-userAgreement"}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         CCLog(@"yyy=%@",object[@"data"]);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         CCLog(@"yyy=%@",error);
     }];
     

@@ -44,20 +44,35 @@
 #pragma mark - Method
 
 - (void)reloadData {
-    [HttpClient.defaultClient.httpSessionManager
-     GET:Discover_GET_userHadRead_API
-     parameters:nil
-     headers:@{
-        @"authorization" : [NSString stringWithFormat:@"Bearer %@", UserItemTool.defaultItem.token]
-    }
+    
+    [HttpTool.shareTool
+     request:Discover_GET_userHadRead_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
      progress:nil
-     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        BOOL hadread = [responseObject[@"data"][@"has"] boolValue];
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        BOOL hadread = [object[@"data"][@"has"] boolValue];
         self.hadRead = hadread;
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+    
+//    [HttpClient.defaultClient.httpSessionManager
+//     GET:Discover_GET_userHadRead_API
+//     parameters:nil
+//     headers:@{
+//        @"authorization" : [NSString stringWithFormat:@"Bearer %@", UserItemTool.defaultItem.token]
+//    }
+//     progress:nil
+//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        BOOL hadread = [responseObject[@"data"][@"has"] boolValue];
+//        self.hadRead = hadread;
+//    }
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        
+//    }];
 }
 
 // MARK: SEL

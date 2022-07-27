@@ -281,16 +281,22 @@
     }
 }
 
-- (void)getLessonData{
+- (void)getLessonData {
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
     NSString *stuNum = [UserDefaultTool valueWithKey:@"stuNum"];
-    HttpClient *client = [HttpClient defaultClient];
+//    HttpClient *client = [HttpClient defaultClient];
     NSDictionary *parameter = @{@"stuNum":stuNum,@"forceFetch":@"true"};
-    [client requestWithPath:ClassSchedule_GET_keBiao_API method:HttpRequestPost parameters:parameter prepareExecute:nil progress:^(NSProgress *progress) {
+    
+    [HttpTool.shareTool
+     request:ClassSchedule_GET_keBiao_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:parameter
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
         //NSLog(@"%@",responseObject);
-        NSNumber *nowWeek = responseObject[@"nowWeek"];
+        NSNumber *nowWeek = object[@"nowWeek"];
         self.nowWeek = nowWeek.integerValue;
         if (self.nowWeek <0 ) {
             self.nowWeek = 0;
@@ -298,49 +304,93 @@
             self.nowWeek = 20;
         }
         [UserDefaultTool saveValue:nowWeek forKey:@"nowWeek"];
-        [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
+        [UserDefaultTool saveValue:object forKey:@"lessonResponse"];
     
         // 共享数据
         NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
-        [shared setObject:responseObject forKey:@"lessonResponse"];
+        [shared setObject:object forKey:@"lessonResponse"];
         [shared synchronize];
         //
         dispatch_semaphore_signal(sema);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_semaphore_signal(sema);
         NSLog(@"%@",error);
     }];
+    
+//    [client requestWithPath:ClassSchedule_GET_keBiao_API method:HttpRequestPost parameters:parameter prepareExecute:nil progress:^(NSProgress *progress) {
+//
+//    } success:^(NSURLSessionDataTask *task, id responseObject) {
+//        //NSLog(@"%@",responseObject);
+//        NSNumber *nowWeek = responseObject[@"nowWeek"];
+//        self.nowWeek = nowWeek.integerValue;
+//        if (self.nowWeek <0 ) {
+//            self.nowWeek = 0;
+//        }else if(self.nowWeek > 20){
+//            self.nowWeek = 20;
+//        }
+//        [UserDefaultTool saveValue:nowWeek forKey:@"nowWeek"];
+//        [UserDefaultTool saveValue:responseObject forKey:@"lessonResponse"];
+//
+//        // 共享数据
+//        NSUserDefaults *shared = [[NSUserDefaults alloc]initWithSuiteName:kAPPGroupID];
+//        [shared setObject:responseObject forKey:@"lessonResponse"];
+//        [shared synchronize];
+//        //
+//        dispatch_semaphore_signal(sema);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        dispatch_semaphore_signal(sema);
+//        NSLog(@"%@",error);
+//    }];
     dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
 
 - (void)getRemindData{
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    HttpClient *client = [HttpClient defaultClient];
     NSString *stuNum = [UserDefaultTool getStuNum];
     NSString *idNum =  [UserDefaultTool getIdNum];
     NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
-    [client requestWithPath:ClassSchedule_POST_getRemind_API method:HttpRequestPost parameters:@{@"stuNum":stuNum,@"idNum":idNum} prepareExecute:^{
+    
+    [HttpTool.shareTool
+     request:ClassSchedule_POST_getRemind_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"stuNum":stuNum,@"idNum":idNum}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         
-    } progress:^(NSProgress *progress) {
-        
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSMutableArray *reminds = [responseObject objectForKey:@"data"];
-//        NSMutableArray *handledReminds = [NSMutableArray array];
-//        for (NSDictionary *dic in reminds) {
-//            NSMutableDictionary *newDic = dic.mutableCopy;
-//            NSString *title = dic[@"title"];
-//            NSString *content = dic[@"content"];
-//            [newDic setObject:title forKey:@"title"];
-//            [newDic setObject:content forKey:@"content"];
-//            [handledReminds addObject:newDic];
-//        }
+        NSMutableArray *reminds = [object objectForKey:@"data"];
         [reminds writeToFile:remindPath atomically:YES];
         dispatch_semaphore_signal(sema);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         dispatch_semaphore_signal(sema);
         NSLog(@"%@",error);
     }];
+    
+//    [client requestWithPath:ClassSchedule_POST_getRemind_API method:HttpRequestPost parameters:@{@"stuNum":stuNum,@"idNum":idNum} prepareExecute:^{
+//
+//    } progress:^(NSProgress *progress) {
+//
+//    } success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSMutableArray *reminds = [responseObject objectForKey:@"data"];
+////        NSMutableArray *handledReminds = [NSMutableArray array];
+////        for (NSDictionary *dic in reminds) {
+////            NSMutableDictionary *newDic = dic.mutableCopy;
+////            NSString *title = dic[@"title"];
+////            NSString *content = dic[@"content"];
+////            [newDic setObject:title forKey:@"title"];
+////            [newDic setObject:content forKey:@"content"];
+////            [handledReminds addObject:newDic];
+////        }
+//        [reminds writeToFile:remindPath atomically:YES];
+//        dispatch_semaphore_signal(sema);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        dispatch_semaphore_signal(sema);
+//        NSLog(@"%@",error);
+//    }];
     dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
 }
 
@@ -364,37 +414,57 @@
             [jsonParameters setObject:jsonString forKey:@"date"];
         }
         NSMutableDictionary *realParameters;
-        HttpClient *client = [HttpClient defaultClient];
         NSString *path = [NSString string];
         if ([type isEqualToString:@"edit"]) {
             path = ClassSchedule_POST_editRemind_API;
             realParameters = jsonParameters;
         }
-        else if([type isEqualToString:@"delete"]){
+        else if ([type isEqualToString:@"delete"]) {
             path = ClassSchedule_POST_deleteRemind_API;
             realParameters = parameters;
         }
-        else if([type isEqualToString:@"add"]){
+        else if ([type isEqualToString:@"add"]) {
             path = ClassSchedule_POST_addRemind_API;
             realParameters = jsonParameters;
         }
-        [client requestWithPath:path method:HttpRequestPost parameters:realParameters prepareExecute:^{
-            
-        } progress:^(NSProgress *progress) {
-            
-        } success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@",responseObject);
+        
+        [HttpTool.shareTool
+         request:path
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:realParameters
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            NSLog(@"%@",object);
             [failureRequests removeObject:failure];
             if ([failureRequests writeToFile:failurePath atomically:YES]) {
                  dispatch_async(dispatch_get_global_queue(0, 0), ^{
                      [self reTryRequest];
                  });
             }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@",error);
             return;
-            
         }];
+        
+//        [client requestWithPath:path method:HttpRequestPost parameters:realParameters prepareExecute:^{
+//
+//        } progress:^(NSProgress *progress) {
+//
+//        } success:^(NSURLSessionDataTask *task, id responseObject) {
+//            NSLog(@"%@",responseObject);
+//            [failureRequests removeObject:failure];
+//            if ([failureRequests writeToFile:failurePath atomically:YES]) {
+//                 dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//                     [self reTryRequest];
+//                 });
+//            }
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            NSLog(@"%@",error);
+//            return;
+//
+//        }];
     }
 }
 

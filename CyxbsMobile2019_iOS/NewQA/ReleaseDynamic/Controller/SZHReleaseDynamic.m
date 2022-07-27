@@ -193,7 +193,7 @@
 ///网络请求归档处理
 - (void)saveDataFromNet{
     //标签
-    [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+    [self.releaseDynamicModel getAllTopicsSuccess:^(NSArray * _Nonnull topicsAry) {
         [SZHArchiveTool saveTopicsAry:topicsAry];
     }];
 }
@@ -206,7 +206,7 @@
     hud.labelFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
     [hud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
     
-    [self.releaseDynamicModel sumitDynamicDataWithContent:self.releaseView.releaseTextView.text TopicID:self.circleLabelText ImageAry:self.imagesAry IsOriginPhoto:self.isSumitOriginPhoto Sucess:^{
+    [self.releaseDynamicModel sumitDynamicDataWithContent:self.releaseView.releaseTextView.text TopicID:self.circleLabelText ImageAry:self.imagesAry IsOriginPhoto:self.isSumitOriginPhoto Success:^{
 //            [NewQAHud showHudWith:@"发布动态成功" AddView:self.view];
         dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{
@@ -646,7 +646,7 @@
     //先从缓存中读取数据，如果缓存中没有则进行网络请求。
     self.topicAry = [SZHArchiveTool getTopicsAry];
     if (self.topicAry == nil ) {
-        [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+        [self.releaseDynamicModel getAllTopicsSuccess:^(NSArray * _Nonnull topicsAry) {
 //            [self.circleLabelView updateViewWithAry:topicsAry];
 //            NSLog(@"得到全部标签----%@",topicsAry);
             self.topicAry = topicsAry;
@@ -670,7 +670,7 @@
     }
     
     //网络请求然后归档，作为数据更新
-    [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+    [self.releaseDynamicModel getAllTopicsSuccess:^(NSArray * _Nonnull topicsAry) {
         [SZHArchiveTool saveTopicsAry:topicsAry];
     }];
 }

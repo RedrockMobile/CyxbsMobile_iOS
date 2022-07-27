@@ -14,28 +14,51 @@
 
 - (void)requestBannerSuccess:(void (^)(void))setModel
                      failure:(void (^)(NSError *error))failure {
-    // 网络请求，因为必须alloc，所以传出不需要东西
-    [HttpClient.defaultClient
-     requestWithPath:Discover_GET_bannerView_API
-     method:HttpRequestGet
-     parameters:nil
-     prepareExecute:nil
+    
+    [HttpTool.shareTool
+     request:Discover_GET_bannerView_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"🟢AD:\n%@", responseObject);
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"🟢AD:\n%@", object);
         
-        DiscoverADs *ADs = [[DiscoverADs alloc] initWithDictionary:responseObject];
+        DiscoverADs *ADs = [[DiscoverADs alloc] initWithDictionary:object];
         
         self.ADCollectionInformation = ADs;
         
         setModel();
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"🔴Discover AD Model Error:\n%@", error);
         if (failure) {
             failure(error);
         }
     }];
+    
+    // 网络请求，因为必须alloc，所以传出不需要东西
+//    [HttpClient.defaultClient
+//     requestWithPath:Discover_GET_bannerView_API
+//     method:HttpRequestGet
+//     parameters:nil
+//     prepareExecute:nil
+//     progress:nil
+//     success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"🟢AD:\n%@", responseObject);
+//
+//        DiscoverADs *ADs = [[DiscoverADs alloc] initWithDictionary:responseObject];
+//
+//        self.ADCollectionInformation = ADs;
+//
+//        setModel();
+//    }
+//     failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"🔴Discover AD Model Error:\n%@", error);
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
 }
 
 #pragma mark - <UICollectionViewDataSource>

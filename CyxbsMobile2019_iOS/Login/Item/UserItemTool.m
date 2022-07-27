@@ -116,7 +116,13 @@
         @"refreshToken": item.refreshToken
     };
     
-    [HttpTool.shareTool request:Mine_POST_refreshToken_API type:HttpToolRequestTypePost serializer:nil bodyParameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_refreshToken_API
+     type:HttpToolRequestTypePost
+     serializer:nil
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
         NSString *token = object[@"data"][@"token"];
         NSString *payload_BASE64 = [token componentsSeparatedByString:@"."][0];
@@ -139,7 +145,8 @@
         if (error) {
             NSLog(@"tokenError1%@", error);
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
         NSLog(@"tokenError2：%@", error);
 //        if (error.code == NSURLErrorBadServerResponse) {

@@ -167,7 +167,13 @@
     if(_tf.text.length>=2)
     {
         
-        [HttpTool.shareTool request:Mine_POST_checkQuestion_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [HttpTool.shareTool
+         request:Mine_POST_checkQuestion_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text}
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             if ([object[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
             {
                 self.code = object[@"data"][@"code"];
@@ -191,7 +197,8 @@
                 }];
                 [NewQAHud showHudWith:@" 密保答案错误 " AddView:self.view];
         }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
         }];
         
@@ -252,15 +259,22 @@
     else
         num = stuNum;
     
-    [HttpTool.shareTool request:Mine_POST_getQuestion_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"stu_num":num} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_getQuestion_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"stu_num":num}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             NSArray *array = object[@"data"];
             NSDictionary *dic = array[0];
             self.questNum = dic[@"id"];
             NSString *str = dic[@"content"];
             self.label3.text = str;
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }];
+    }];
     
     
 //    [[HttpClient defaultClient] requestWithPath:Mine_POST_getQuestion_API method:HttpRequestPost  parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {

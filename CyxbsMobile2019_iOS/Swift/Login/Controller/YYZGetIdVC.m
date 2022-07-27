@@ -121,9 +121,16 @@
         [NewQAHud showHudWith:@" 请输入正确格式的学号  " AddView:self.view];
         return;
     }
-    [[HttpClient defaultClient]requestWithPath :Mine_POST_ifOriginPassword_API method:HttpRequestPost parameters:@{@"stu_num":self.testF.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    [HttpTool.shareTool
+     request:Mine_POST_ifOriginPassword_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"stu_num":self.testF.text}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         //如果是默认密码，弹出提示框
-        if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
+        if([object[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
             self->_popView.alpha = 1.0;
             [self.view addSubview:self->_backView];
             [self.view addSubview:self.popView];
@@ -146,10 +153,41 @@
             [self.view addSubview:findPasswordView];
             
         }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"——————————错误信息如下————————%@",error);
-            [NewQAHud showHudWith:@" 请求失败,请检查网络  " AddView:self.view];
-        }];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"——————————错误信息如下————————%@",error);
+        [NewQAHud showHudWith:@" 请求失败,请检查网络  " AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient]requestWithPath :Mine_POST_ifOriginPassword_API method:HttpRequestPost parameters:@{@"stu_num":self.testF.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        //如果是默认密码，弹出提示框
+//        if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
+//            self->_popView.alpha = 1.0;
+//            [self.view addSubview:self->_backView];
+//            [self.view addSubview:self.popView];
+//            [self->_popView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                        make.centerX.equalTo(self.view);
+//                //make.top.equalTo(self.view).offset = 267;
+//                make.centerY.equalTo(self.view);
+//                make.width.mas_offset(255);
+//                make.height.mas_offset(329);
+//            }];
+//            [self.popView showPop];
+//            [self.popView.backBtn addTarget:self action:@selector(backToLogin) forControlEvents:UIControlEventTouchUpInside];
+//            
+//        }
+//        else{
+//            
+//            FindPasswordView *findPasswordView= [[FindPasswordView alloc] initWithFrame:self.view.bounds];
+//            findPasswordView.id2 = self.testF.text;
+//            self.findPasswordView = findPasswordView;
+//            [self.view addSubview:findPasswordView];
+//            
+//        }
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            NSLog(@"——————————错误信息如下————————%@",error);
+//            [NewQAHud showHudWith:@" 请求失败,请检查网络  " AddView:self.view];
+//        }];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{

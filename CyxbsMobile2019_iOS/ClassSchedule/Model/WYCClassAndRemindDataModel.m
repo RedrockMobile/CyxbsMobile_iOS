@@ -12,7 +12,6 @@
 @interface WYCClassAndRemindDataModel()
 /// 未解析的课表数据
 @property (nonatomic, strong)NSArray *rowDataArray;
-@property (nonatomic, strong)AFHTTPSessionManager *afhttpSeMan;
 /// 数组内放着 初始化备忘模型时传入的字典
 @property (nonatomic, strong)NSMutableArray *noteDateDictArr;
 @end
@@ -28,7 +27,6 @@
             //清除旧的课表数据，等过几版后，去掉这个代码
             [self clear];
         }
-        self.afhttpSeMan = [HttpClient defaultClient].httpSessionManager;
     }
     return self;
 }
@@ -70,17 +68,23 @@
 - (void)getPersonalClassBookArrayFromNet:(NSString *)stuNum{
     NSDictionary *paramDict = @{@"stu_num":stuNum};
     
-    [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [HttpTool.shareTool
+     request:ClassSchedule_GET_keBiao_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:paramDict
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         //拿到课表数据
-        NSArray *rowLessonDataArr = responseObject[@"data"];
-        if (rowLessonDataArr==nil) {
+        NSArray *rowLessonDataArr = object[@"data"];
+        if (rowLessonDataArr == nil) {
             rowLessonDataArr = @[];
         }
         //储存当前周数，计算开学日期
-        [self storeDate:[NSString stringWithFormat:@"%@",responseObject[@"nowWeek"]]];
+        [self storeDate:[NSString stringWithFormat:@"%@", object[@"nowWeek"]]];
         
         //如果没有数据，或者数据和本地数据一样，那么return
-        if (rowLessonDataArr==nil||[rowLessonDataArr isEqualToArray:self.rowDataArray]) {
+        if (rowLessonDataArr == nil || [rowLessonDataArr isEqualToArray:self.rowDataArray]) {
             return;
         }
         
@@ -96,10 +100,42 @@
         //通知代理数据加载完毕
         [self.delegate ModelDataLoadSuccess];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //通知代理数据加载失败
         [self.delegate ModelDataLoadFailure];
     }];
+
+//    [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        //拿到课表数据
+//        NSArray *rowLessonDataArr = responseObject[@"data"];
+//        if (rowLessonDataArr==nil) {
+//            rowLessonDataArr = @[];
+//        }
+//        //储存当前周数，计算开学日期
+//        [self storeDate:[NSString stringWithFormat:@"%@",responseObject[@"nowWeek"]]];
+//
+//        //如果没有数据，或者数据和本地数据一样，那么return
+//        if (rowLessonDataArr==nil||[rowLessonDataArr isEqualToArray:self.rowDataArray]) {
+//            return;
+//        }
+//
+//        //保存未解析的课表数据
+//        [rowLessonDataArr writeToFile:rowDataArrPath atomically:YES];
+//
+//        //解析课表数据
+//        [self parseClassBookData:rowLessonDataArr];
+//
+//        //保存已解析的课表数据到文件
+//        [self.orderlySchedulArray writeToFile:parsedDataArrPath atomically:YES];
+//
+//        //通知代理数据加载完毕
+//        [self.delegate ModelDataLoadSuccess];
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        //通知代理数据加载失败
+//        [self.delegate ModelDataLoadFailure];
+//    }];
 }
 
 /// 查同学课表用这个方法来网络请求
@@ -107,11 +143,16 @@
 - (void)getClassBookArrayFromNet:(NSString *)stu_Num{
     NSDictionary *parameters = @{@"stu_num":stu_Num};
     
-    [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        
+    [HttpTool.shareTool
+     request:ClassSchedule_GET_keBiao_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:parameters
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         //拿到课表数据
-        NSArray *lessonArray = [responseObject objectForKey:@"data"];
-        if (lessonArray==nil) {
+        NSArray *lessonArray = [object objectForKey:@"data"];
+        if (lessonArray == nil) {
             lessonArray = @[];
         }
         //解析课表数据
@@ -120,11 +161,30 @@
         //通知代理数据加载成功
         [self.delegate ModelDataLoadSuccess];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //通知代理数据加载失败
         [self.delegate ModelDataLoadFailure];
     }];
+    
+//    [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//
+//        //拿到课表数据
+//        NSArray *lessonArray = [responseObject objectForKey:@"data"];
+//        if (lessonArray==nil) {
+//            lessonArray = @[];
+//        }
+//        //解析课表数据
+//        [self parseClassBookData:lessonArray];
+//
+//        //通知代理数据加载成功
+//        [self.delegate ModelDataLoadSuccess];
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//        //通知代理数据加载失败
+//        [self.delegate ModelDataLoadFailure];
+//    }];
 }
 
 
@@ -132,10 +192,17 @@
 /// @param parameters 参数结构： @{ @"teaName": name, @"tea": teaNum }
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
 
-    [self.afhttpSeMan POST:ClassSchedule_POST_teaKeBiao_API parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [HttpTool.shareTool
+     request:ClassSchedule_POST_teaKeBiao_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:parameters
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         
         //拿到课表数据
-        NSArray *lessonArray = [responseObject objectForKey:@"data"];
+        NSArray *lessonArray = [object objectForKey:@"data"];
+        
         if (lessonArray==nil) {
             lessonArray = @[];
         }
@@ -145,11 +212,31 @@
         //通知代理数据加载成功
         [self.delegate ModelDataLoadSuccess];
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         //通知代理数据加载失败
         [self.delegate ModelDataLoadFailure];
+        
     }];
+    
+//    [self.afhttpSeMan POST:ClassSchedule_POST_teaKeBiao_API parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//
+//        //拿到课表数据
+//        NSArray *lessonArray = [responseObject objectForKey:@"data"];
+//        if (lessonArray==nil) {
+//            lessonArray = @[];
+//        }
+//        //解析课表数据
+//        [self parseClassBookData:lessonArray];
+//
+//        //通知代理数据加载成功
+//        [self.delegate ModelDataLoadSuccess];
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//        //通知代理数据加载失败
+//        [self.delegate ModelDataLoadFailure];
+//    }];
 }
 
 /// 没课约查多人课表用底下的这个方法
@@ -176,22 +263,45 @@
     __block BOOL isAllSuccess = YES;
     
     int i,count = (int)infoDictArray.count;
-    for (i=0; i<count; i++) {
+    for (i = 0; i<count; i++) {
         infoDict = infoDictArray[i];
         dispatch_async(que, ^{
-            [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:@{@"stuNum":infoDict[@"stuNum"]} headers:nil progress:nil  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                NSArray* lessonArray = [responseObject objectForKey:@"data"];
+            
+            [HttpTool.shareTool
+             request:ClassSchedule_GET_keBiao_API
+             type:HttpToolRequestTypeGet
+             serializer:HttpToolRequestSerializerHTTP
+             bodyParameters:@{@"stuNum":infoDict[@"stuNum"]}
+             progress:nil
+             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+                
+                NSArray *lessonArray = [object objectForKey:@"data"];
                 //查很久以前的重邮学生时，lessonArray会是空的，所以如果不加判断，就会导致崩溃
-                if (lessonArray==nil) {
+                if (lessonArray == nil) {
                     lessonOfAllPeople[i] = @[];
                 }else {
                     lessonOfAllPeople[i] = lessonArray;
                 }
                 dispatch_semaphore_signal(semaphore);
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                
+            }
+             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 isAllSuccess = NO;
                 dispatch_semaphore_signal(semaphore);
             }];
+//            [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:@{@"stuNum":infoDict[@"stuNum"]} headers:nil progress:nil  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//                NSArray* lessonArray = [responseObject objectForKey:@"data"];
+//                //查很久以前的重邮学生时，lessonArray会是空的，所以如果不加判断，就会导致崩溃
+//                if (lessonArray==nil) {
+//                    lessonOfAllPeople[i] = @[];
+//                }else {
+//                    lessonOfAllPeople[i] = lessonArray;
+//                }
+//                dispatch_semaphore_signal(semaphore);
+//            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                isAllSuccess = NO;
+//                dispatch_semaphore_signal(semaphore);
+//            }];
             dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
         });
     }

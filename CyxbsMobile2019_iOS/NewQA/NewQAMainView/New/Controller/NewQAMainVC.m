@@ -836,12 +836,27 @@
 
 - (NSMutableArray *)topicArray {
     if (!_topicArray) {
-        [[HttpClient defaultClient] requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSArray *array = responseObject[@"data"];
+        
+        [HttpTool.shareTool
+         request:NewQA_POST_QATopicGroup_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:nil
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            NSArray *array = object[@"data"];
             self.topicArray = [NSMutableArray arrayWithArray:array];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
         }];
+        
+//        [[HttpClient defaultClient] requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//            NSArray *array = responseObject[@"data"];
+//            self.topicArray = [NSMutableArray arrayWithArray:array];
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//        }];
     }
     return self.topicArray;
 }

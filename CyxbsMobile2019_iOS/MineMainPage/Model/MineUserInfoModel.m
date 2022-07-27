@@ -85,7 +85,13 @@ static dispatch_once_t _onceToken = 0;
                 @"type":@(i+1),
             };
             
-            [HttpTool.shareTool request:Mine_GET_getMsgCnt_API type:HttpToolRequestTypeGet serializer:HttpToolRequestSerializerHTTP bodyParameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            [HttpTool.shareTool
+             request:Mine_GET_getMsgCnt_API
+             type:HttpToolRequestTypeGet
+             serializer:HttpToolRequestSerializerHTTP
+             bodyParameters:paramDict
+             progress:nil
+             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
                 NSDictionary *dataDict = object[@"data"];
                 if (dataDict==nil) {
                 }else if (i==0) {
@@ -101,7 +107,8 @@ static dispatch_once_t _onceToken = 0;
                 }
                 CCLog(@"%dresp::%@", i, object);
                 dispatch_semaphore_signal(sema);
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            }
+             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 CCLog(@"error::%@", error);
                 dispatch_semaphore_signal(sema);
             }];

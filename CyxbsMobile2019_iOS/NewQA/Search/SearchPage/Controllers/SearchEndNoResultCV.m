@@ -127,7 +127,7 @@
     self.getKnowledgeFailure = NO;
     __weak typeof(self)weakSelf = self;
     //请求相关动态
-    [self.searchDataModel getSearchDynamicWithStr:searchString Sucess:^(NSDictionary * _Nonnull dynamicDic) {
+    [self.searchDataModel getSearchDynamicWithStr:searchString Success:^(NSDictionary * _Nonnull dynamicDic) {
         weakSelf.searchDynamicDic = dynamicDic;
         [weakSelf processDataWithString:searchString];
         } Failure:^{
@@ -136,7 +136,7 @@
             [weakSelf processDataWithString:searchString];
         }];
     //请求帖子
-    [self.searchDataModel getSearchKnowledgeWithStr:searchString Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
+    [self.searchDataModel getSearchKnowledgeWithStr:searchString Success:^(NSDictionary * _Nonnull knowledgeDic) {
         weakSelf.searchKnowledgeDic = knowledgeDic;
         [weakSelf processDataWithString:searchString];
         } Failure:^{

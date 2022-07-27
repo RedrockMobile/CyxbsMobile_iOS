@@ -159,20 +159,34 @@
     [self.cancelBtn setEnabled:NO];
     if ([self.cancelBtn.titleLabel.text isEqualToString:@"取消屏蔽"]) {
         
-        [HttpTool.shareTool request:Mine_POST_cancelIgnorePeople_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"uid":self.model.uid} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [HttpTool.shareTool
+         request:Mine_POST_cancelIgnorePeople_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:@{@"uid":self.model.uid}
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             [self.cancelBtn setTitle:@"屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"已成功解除对该用户的屏蔽～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
         }];
         
     }else {
-        [HttpTool.shareTool request:Mine_POST_ignorePeople_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:@{@"uid":self.model.uid} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [HttpTool.shareTool
+         request:Mine_POST_ignorePeople_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:@{@"uid":self.model.uid}
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
                     [self.cancelBtn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
                     [NewQAHud showHudWith:@"屏蔽成功～" AddView:self.viewController.view];
                     [self.cancelBtn setEnabled:YES];
-                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
                 }];
     }

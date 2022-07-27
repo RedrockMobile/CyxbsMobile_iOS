@@ -16,16 +16,29 @@
         @"idnum": [UserDefaultTool getIdNum]
     };
     
-    [HttpTool.shareTool request:Mine_POST_checkIn_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_checkIn_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:params
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [self requestCheckInInfoWithParams:params succeeded:succeded];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failed(error);
     }];
 }
 
 + (void)requestCheckInInfoWithParams:(NSDictionary *)params succeeded:(void (^)(void))succeded {
     
-    [HttpTool.shareTool request:Mine_POST_checkInInfo_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_checkInInfo_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:params
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [UserItemTool defaultItem].checkInDay = object[@"data"][@"check_in_days"];
         [UserItemTool defaultItem].integral = object[@"data"][@"integral"];
         [UserItemTool defaultItem].rank = object[@"data"][@"rank"];
@@ -34,7 +47,8 @@
         [UserItemTool defaultItem].canCheckIn = [object[@"data"][@"can_check_in"] boolValue];
         [UserItemTool defaultItem].isCheckedToday = [object[@"data"][@"is_check_today"] boolValue];
         succeded();
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
 }

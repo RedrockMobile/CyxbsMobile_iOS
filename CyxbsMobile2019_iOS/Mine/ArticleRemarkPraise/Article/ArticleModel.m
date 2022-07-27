@@ -17,7 +17,13 @@
         @"size":size,
     };
     
-    [HttpTool.shareTool request:Mine_GET_getArticle_API type:HttpToolRequestTypeGet serializer:HttpToolRequestSerializerHTTP bodyParameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_GET_getArticle_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:paramDict
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [self.dataArr addObjectsFromArray:object[@"data"]];
         
         if ([object[@"data"] count]<size.integerValue) {
@@ -26,7 +32,8 @@
             [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateEndRefresh];
         }
         self.page++;
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.delegate mainPageModelLoadDataFinishWithState:MainPageModelStateFailure];
     }];
 }
@@ -37,7 +44,13 @@
         @"model":@"0"
     };
     
-    [HttpTool.shareTool request:Mine_POST_deleteArticle_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:paramDict progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_deleteArticle_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:paramDict
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             NSDictionary *dict;
             for (int i=0; i<self.dataArr.count; i++) {
                 dict = self.dataArr[i];
@@ -46,7 +59,8 @@
                     break;
                 }
             }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [self.delegate deleteArticleFailure];
         }];
 }

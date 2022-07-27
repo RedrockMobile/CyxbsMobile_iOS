@@ -20,48 +20,76 @@
     return self;
 }
 
-- (void)getListWithName:(NSString *)name success:(void (^)(ClassmatesList * _Nonnull))succeededCallBack failure:(nonnull void (^)(NSURLSessionDataTask * _Nonnull, NSError * _Nonnull))failedCallBack  {
+- (void)getListWithName:(NSString *)name success:(void (^)(ClassmatesList * _Nonnull))succeededCallBack failure:(nonnull void (^)(NSURLSessionDataTask * _Nonnull, NSError * _Nonnull))failedCallBack {
     
     NSDictionary *parameters = @{@"stu": name};
-    HttpClient *client = [HttpClient defaultClient];
     
-    [client requestWithPath:ClassSchedule_GET_searchPeople_API method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HttpTool.shareTool
+     request:ClassSchedule_GET_searchPeople_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:parameters
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSMutableArray *tmpArray = [NSMutableArray array];
-        for (NSDictionary *classmateInfo in responseObject[@"data"]) {
+        for (NSDictionary *classmateInfo in object[@"data"]) {
             ClassmateItem *classmate = [ClassmateItem classmateWithDictionary:classmateInfo];
             [tmpArray addObject:classmate];
         }
         self.classmatesArray = tmpArray;
         succeededCallBack(self);
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failedCallBack(task, error);
     }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//
+//    [client requestWithPath:ClassSchedule_GET_searchPeople_API method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSMutableArray *tmpArray = [NSMutableArray array];
+//        for (NSDictionary *classmateInfo in responseObject[@"data"]) {
+//            ClassmateItem *classmate = [ClassmateItem classmateWithDictionary:classmateInfo];
+//            [tmpArray addObject:classmate];
+//        }
+//        self.classmatesArray = tmpArray;
+//        succeededCallBack(self);
+//
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        failedCallBack(task, error);
+//    }];
 }
 
 - (void)getTeaListWithName:(NSString *)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack{
 
-    HttpClient *client = [HttpClient defaultClient];
-    
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:ClassSchedule_POST_searchTeacher_API parameters:nil headers:nil  constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-            
-            NSData *data = [name dataUsingEncoding:NSUTF8StringEncoding];
-            [formData appendPartWithFormData:data name:@"teaName"];
-            
-    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            
-            NSMutableArray *tmpArray = [NSMutableArray array];
-            for (NSDictionary *classmateInfo in responseObject[@"data"]) {
-                ClassmateItem *classmate = [ClassmateItem teaItemWithDictionary:classmateInfo];
-                [tmpArray addObject:classmate];
-            }
-            self.classmatesArray = tmpArray;
+    [HttpTool.shareTool
+     form:ClassSchedule_POST_searchTeacher_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+        
+        NSData *data = [name dataUsingEncoding:NSUTF8StringEncoding];
+        [body appendPartWithFormData:data name:@"teaName"];
+        
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        
+        NSMutableArray *tmpArray = [NSMutableArray array];
+        for (NSDictionary *classmateInfo in object[@"data"]) {
+            ClassmateItem *classmate = [ClassmateItem teaItemWithDictionary:classmateInfo];
+            [tmpArray addObject:classmate];
+        }
+        self.classmatesArray = tmpArray;
+        if (succeededCallBack) {
             succeededCallBack(self);
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }
+        
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failedCallBack) {
             failedCallBack(task,error);
-        }];
-  
+        }
+    }];
 }
 
 - (void)getPeopleListWithName:(NSString*)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack{

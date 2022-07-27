@@ -79,13 +79,29 @@ UIGestureRecognizerDelegate>
     self.leftPage = 1;//初始化当前页数
     self.rightPage = 1;
     //网络请求
-    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSArray *array = responseObject[@"data"];
+    
+    [HttpTool.shareTool
+     request:NewQA_POST_QATopicGroup_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSArray *array = object[@"data"];
         self.array = array;
-        [self setCell];//设置cell;
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
-        }];
+        [self setCell];  //设置cell;
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSArray *array = responseObject[@"data"];
+//        self.array = array;
+//        [self setCell];//设置cell;
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
+//        }];
     //设置导航栏
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar

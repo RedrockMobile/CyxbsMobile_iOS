@@ -14,10 +14,17 @@
 - (void)isBindEmailAndQuestion {
     NSDictionary *param = @{@"stu_num":[UserDefaultTool getStuNum]};
     
-    [HttpTool.shareTool request:Mine_POST_bindingEmailAndQuestion_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_bindingEmailAndQuestion_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:param
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSLog(@"%@",[object[@"status"] class]);
         self->_Block(object);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"请求失败");
     }];
     

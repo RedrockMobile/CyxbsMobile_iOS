@@ -13,9 +13,16 @@
 
 - (void)loadQuestionList {
     
-    [HttpTool.shareTool request:Mine_GET_questionList_API type:HttpToolRequestTypeGet serializer:HttpToolRequestSerializerHTTP bodyParameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_GET_questionList_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         self->_Block(object);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWorkToGetQuestionList" object:nil userInfo:nil];
     }];
     

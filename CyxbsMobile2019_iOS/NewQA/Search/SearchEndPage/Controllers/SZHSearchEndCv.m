@@ -158,7 +158,7 @@
     self.getKnowledgeFailure = NO;
     __weak typeof(self)weakSelf = self;
     //请求相关动态
-    [self.searchDataModel getSearchDynamicWithStr:searchString Sucess:^(NSDictionary * _Nonnull dynamicDic) {
+    [self.searchDataModel getSearchDynamicWithStr:searchString Success:^(NSDictionary * _Nonnull dynamicDic) {
         weakSelf.searchDynamicDic = dynamicDic;
         [weakSelf processDataWithStr:searchString];
         } Failure:^{
@@ -167,7 +167,7 @@
             [weakSelf processDataWithStr:searchString];
         }];
     //请求帖子
-    [self.searchDataModel getSearchKnowledgeWithStr:searchString Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
+    [self.searchDataModel getSearchKnowledgeWithStr:searchString Success:^(NSDictionary * _Nonnull knowledgeDic) {
         weakSelf.searchKnowledgeDic = knowledgeDic;
         [weakSelf processDataWithStr:searchString];
         } Failure:^{
@@ -189,9 +189,9 @@
     self.page +=1;
     __weak typeof(self)weakSelf = self;
     __strong typeof(weakSelf)strongSelf = weakSelf;
-    [self.searchEndDataModel loadRelevantDynamicDataWithStr:self.searchStr Page:self.page Sucess:^(NSArray * _Nonnull array) {
-        [strongSelf loadDynamicTableSucessWithAry:array];
-        [self loadDynamicTableSucessWithAry:array];
+    [self.searchEndDataModel loadRelevantDynamicDataWithStr:self.searchStr Page:self.page Success:^(NSArray * _Nonnull array) {
+        [strongSelf loadDynamicTableSuccessWithAry:array];
+        [self loadDynamicTableSuccessWithAry:array];
         } Failure:^{
             [strongSelf loadDynamicTableFailure];
         }];    
@@ -202,16 +202,16 @@
 //    self.tableDataAry = [NSArray array];
     __weak typeof(self)weakSelf = self;
     __strong typeof(weakSelf)strongSelf = weakSelf;
-    [self.searchEndDataModel loadRelevantDynamicDataWithStr:self.searchStr Page:self.page Sucess:^(NSArray * _Nonnull array) {
-        [strongSelf loadDynamicTableSucessWithAry:array];
-        [self loadDynamicTableSucessWithAry:array];
+    [self.searchEndDataModel loadRelevantDynamicDataWithStr:self.searchStr Page:self.page Success:^(NSArray * _Nonnull array) {
+        [strongSelf loadDynamicTableSuccessWithAry:array];
+        [self loadDynamicTableSuccessWithAry:array];
         } Failure:^{
             [strongSelf loadDynamicTableFailure];
         }];
 }
 
 ///动态列表成功请求数据后的操作
-- (void)loadDynamicTableSucessWithAry:(NSArray *)array{
+- (void)loadDynamicTableSuccessWithAry:(NSArray *)array{
     //根据当前页数判断是下拉刷新还是上滑增加内容
     if (self.page == 1) {
         NSLog(@"%@",array);

@@ -52,11 +52,18 @@ static UserItem *item = nil;
 
 - (void)getUserInfo {
     
-    [HttpTool.shareTool request:Mine_POST_getPersonData_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_getPersonData_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSLog(@"%@",object);
         [UserItem mj_objectWithKeyValues:object[@"data"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(YES)];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         CCLog(@"fai,%@",error);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"UserItemGetUserInfo" object:@(NO)];
     }];

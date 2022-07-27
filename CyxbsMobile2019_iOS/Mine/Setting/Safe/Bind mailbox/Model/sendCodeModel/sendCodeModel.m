@@ -23,9 +23,16 @@
 //
     NSDictionary *param = @{@"email":email,@"code":code};
     
-    [HttpTool.shareTool request:Mine_POST_emailCode_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    [HttpTool.shareTool
+     request:Mine_POST_emailCode_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:param
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         self->_Block(object);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWorkToBindingEmail" object:nil userInfo:nil];
     }];
     

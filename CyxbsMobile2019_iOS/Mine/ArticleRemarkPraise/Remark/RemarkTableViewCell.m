@@ -159,7 +159,7 @@
 //    CCLog(@"%@,%@,%@",self.comment_id,self.type,self.post_id);
 //    CCLog(@"mmcon=%@,\tcomID=%@,\tform=%@,\tpoID=%@,\ttype=%@,\tisP=t%@",self.model.content,self.model.comment_id,self.model.from,self.model.post_id,self.model.type,self.model.is_praised);
     self.praiseBtn.enabled = NO;
-    if (self.comment_id==nil||self.type==nil) {
+    if (self.comment_id == nil || self.type == nil) {
         [NewQAHud showHudWith:@"网络错误～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
         return;
     }
@@ -169,7 +169,13 @@
         @"model":self.type
     };
     
-    [[HttpClient defaultClient] requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HttpTool.shareTool
+     request:NewQA_POST_QAStar_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:paramDict
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         if (self.praiseBtn.selected) {
             [self changePraiseBtnToState:NO];
             self.model.is_praised = @"0";
@@ -178,10 +184,25 @@
             self.model.is_praised = @"1";
         }
         self.praiseBtn.enabled = YES;
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [NewQAHud showHudWith:@"网络错误～～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
         self.praiseBtn.enabled = YES;
     }];
+    
+//    [[HttpClient defaultClient] requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        if (self.praiseBtn.selected) {
+//            [self changePraiseBtnToState:NO];
+//            self.model.is_praised = @"0";
+//        }else {
+//            [self changePraiseBtnToState:YES];
+//            self.model.is_praised = @"1";
+//        }
+//        self.praiseBtn.enabled = YES;
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        [NewQAHud showHudWith:@"网络错误～～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
+//        self.praiseBtn.enabled = YES;
+//    }];
 }
 
 /// 点击评论按钮后调用

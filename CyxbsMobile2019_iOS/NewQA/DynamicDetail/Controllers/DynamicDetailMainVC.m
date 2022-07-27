@@ -248,7 +248,7 @@
     //动态信息的数据model
     DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
         //网络请求
-    [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
+    [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Success:^(NSDictionary * _Nonnull dic) {
         //数据请求成功先进行赋值
         [model setValuesForKeysWithDictionary:dic];
         //获取该cell的缓存高度
@@ -263,7 +263,7 @@
         }];
     
     //请求评论的数据
-    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
+    [requestModel getCommentDataWithPost_id:self.post_id.intValue Success:^(NSArray * _Nonnull commentAry) {
         //模型数组
         [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
         
@@ -295,7 +295,7 @@
 - (void)rebuildFrameByComentCount{
     DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
     //请求评论的数据
-    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
+    [requestModel getCommentDataWithPost_id:self.post_id.intValue Success:^(NSArray * _Nonnull commentAry) {
         //移除原所有数据
         [self.commentTableDataAry removeAllObjects];
         [self.oneLeveCommentHeight removeAllObjects];
@@ -315,7 +315,7 @@
         
         //请求动态信息的数据,更新评论数量
         DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
-        [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
+        [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Success:^(NSDictionary * _Nonnull dic) {
             //数据请求成功先进行赋值
             [model setValuesForKeysWithDictionary:dic];
             //获取该cell的缓存高度
@@ -368,7 +368,7 @@
 - (void)deleteAction:(int)comment_id{
     DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         DynamicDetailRequestDataModel *model = [[DynamicDetailRequestDataModel alloc] init];
-        [model deleteCommentWithId:comment_id Sucess:^{
+        [model deleteCommentWithId:comment_id Success:^{
             [NewQAHud showHudWith:@"删除成功" AddView:self.view];
             [self rebuildFrameByComentCount];
             
@@ -598,7 +598,7 @@
 - (void)ClickedDeletePostBtn:(UIButton *)sender{
 //    [self.selfPopView removeFromSuperview];
 //    [self.backViewWithGesture removeFromSuperview];
-//    [[DynamicDetailRequestDataModel new] deletSelfDynamicWithID:self.dynamicDataModel.post_id.intValue Success:^{
+//    [[DynamicDetailRequestDataModel new] deleteSelfDynamicWithID:self.dynamicDataModel.post_id.intValue Success:^{
 //            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view];
 ////            [self.navigationController popToRootViewControllerAnimated:YES];
 //        [self.navigationController popViewControllerAnimated:YES];
@@ -630,7 +630,7 @@
     }else{
         //举报评论时，在添加举报视图的时候就已经将举报的id更换了要举报的评论的id
         DynamicDetailRequestDataModel *model = [[DynamicDetailRequestDataModel alloc] init];
-        [model reportCommentWithId:[self.reportView.postID intValue] Content:self.reportView.textView.text Sucess:^{
+        [model reportCommentWithId:[self.reportView.postID intValue] Content:self.reportView.textView.text Success:^{
                     //举报成功后的操作
                     [self.popView removeFromSuperview];
                     [NewQAHud showHudWith:@"  举报成功  " AddView:self.view];
@@ -746,8 +746,15 @@
         [param setObject:@(self.actionCommentModel.comment_id) forKey:@"reply_id"];
     }
 
-    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QACommentRelease_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        if ([responseObject[@"status"] intValue] == 200) {
+    
+    [HttpTool.shareTool
+     request:NewQA_POST_QACommentRelease_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:param
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        if ([object[@"status"] intValue] == 200) {
             [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
             
             //清除文字内容，收回键盘
@@ -760,12 +767,32 @@
             [self.inputView.textView resignFirstResponder];
             
             [self rebuildFrameByComentCount];
-            
         }
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
     }];
+    
+//    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QACommentRelease_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        if ([responseObject[@"status"] intValue] == 200) {
+//            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
+//
+//            //清除文字内容，收回键盘
+//            self.inputView.textView.text = @"";
+//            self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
+//            //更新textView的高度
+//            [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+//                make.size.mas_equalTo(self.inputView.originTextViewSize);
+//            }];
+//            [self.inputView.textView resignFirstResponder];
+//
+//            [self rebuildFrameByComentCount];
+//
+//        }
+//
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
+//    }];
     
     //初始化设置
     self.isCommentFirstLevel = YES;

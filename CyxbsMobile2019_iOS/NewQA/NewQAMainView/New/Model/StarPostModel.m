@@ -11,14 +11,31 @@
 @implementation StarPostModel
 
 - (void)starPostWithPostID:(NSNumber *)postID {
-    HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *param = @{@"id":postID,@"model":@"1"};
-    [client requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"已点赞");
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
     
+    NSDictionary *param = @{@"id":postID,@"model":@"1"};
+    
+    [HttpTool.shareTool
+     request:NewQA_POST_QAStar_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:param
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"已点赞");
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
     }];
+
+
+    
+    HttpClient *client = [HttpClient defaultClient];
+//    [client requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"已点赞");
+//
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//    }];
     
     //完成拍案叫绝任务
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];

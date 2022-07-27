@@ -70,7 +70,7 @@
             sender.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
         }
     }
-    [model starCommentWithComent_id:self.dataModel.comment_id Sucess:^{
+    [model starCommentWithComent_id:self.dataModel.comment_id Success:^{
         } Failure:^{
         }];
 }

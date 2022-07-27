@@ -411,28 +411,41 @@
                         [names addObject:@"file"];
                     }
                     
-                    /*
-                     merge_error
-                     [[HttpClient defaultClient] uploadImageWithJson:Discover_POST_cquptMapUploadMage_API method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(id responseObject) {
-                         NSLog(@"%@", responseObject);
-                     } failure:^(NSError *error) {
-                         
-                     }];
-                     */
-                    [[HttpClient defaultClient].httpSessionManager POST:Discover_POST_cquptMapUploadMage_API parameters:params headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                    [HttpTool.shareTool
+                     form:Discover_POST_cquptMapUploadMage_API
+                     type:HttpToolRequestTypePost
+                     parameters:params
+                     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
                         for (int i = 0; i < photos.count; i++) {
                             UIImage *image = photos[i];
                             UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
                             NSData *data = UIImageJPEGRepresentation(image1, 0.8);
                             NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
-                            [formData appendPartWithFileData:data name:names[i] fileName:fileName mimeType:@"image/png"];
+                            [body appendPartWithFileData:data name:names[i] fileName:fileName mimeType:@"image/png"];
                         }
-                                        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                            NSLog(@"图片上传成功");
-                                            
-                                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                                            NSLog(@"图片上传失败，错误信息：\n %@", error);
-                                        }];
+                    }
+                     progress:nil
+                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+                        NSLog(@"图片上传成功");
+                    }
+                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        NSLog(@"图片上传失败，错误信息：\n %@", error);
+                    }];
+                    
+//                    [[HttpClient defaultClient].httpSessionManager POST:Discover_POST_cquptMapUploadMage_API parameters:params headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//                        for (int i = 0; i < photos.count; i++) {
+//                            UIImage *image = photos[i];
+//                            UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+//                            NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+//                            NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
+//                            [formData appendPartWithFileData:data name:names[i] fileName:fileName mimeType:@"image/png"];
+//                        }
+//                                        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//                                            NSLog(@"图片上传成功");
+//                                            
+//                                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                                            NSLog(@"图片上传失败，错误信息：\n %@", error);
+//                                        }];
                     
                 }];
                 
