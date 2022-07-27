@@ -60,6 +60,12 @@
 
 #import "MineHeader.h"
 
+#import "ChangePasswordHeader.h"
+
+#import "StampCenterHeader.h"
+
+#import "FeedBackCenterHeader.h"
+
 #import "DiscoverHeader.h"
 
 #import "ClassScheduleHeader.h"
