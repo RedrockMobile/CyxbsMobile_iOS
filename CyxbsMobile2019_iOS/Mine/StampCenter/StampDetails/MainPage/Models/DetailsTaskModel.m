@@ -20,7 +20,7 @@
         @"page" : @(page),
         @"size" : @(size)
     };
-    [[HttpClient defaultClient] requestWithPath:Stamp_store_details_getRecord
+    [[HttpClient defaultClient] requestWithPath:Mine_GET_stampStoreDetailsGetRecord_API
                                          method:HttpRequestGet
                                      parameters:dict
                                  prepareExecute:nil

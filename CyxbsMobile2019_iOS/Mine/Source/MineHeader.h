@@ -148,6 +148,43 @@
 ///判断是否为默认密码
 #define Mine_POST_ifOriginPassword_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/judge/origin"]
 
+#pragma mark - 邮票中心
 
+// 积分兑换记录, 对应 =兑换记录= 界面
+#define Mine_GET_stampStoreDetailsExchange_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/exchange"]
+
+// 积分获得信息, 对应 =获取记录= 界面
+#define Mine_GET_stampStoreDetailsGetRecord_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/getRecord"]
+
+//主页信息
+#define Mine_GET_stampStoreMainPage_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/User/info"]
+
+//任务
+#define Mine_POST_task_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/progress"]
+
+// 商品
+#define Mine_GET_stampStoreGoods_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/getItemInfo"]
+
+// 兑换
+#define Mine_POST_stampStoreExchange_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/Integral/purchase"]
+
+
+#pragma mark - 反馈中心
+
+// 测试环境, 请在正式环境出来的时候
+// 历史反馈列表
+// 参数 product_id 区分数据来源, 掌邮只填1
+#define Mine_GET_feedBackCenterHistoryList_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/list"]
+
+// 历史反馈页, 点击一个进入详情
+// 参数 feedback_id 信息的id
+// 参数 product_id 区分数据来源, 掌邮只填1
+#define Mine_GET_feedBackCenterHistoryView_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/view"]
+
+//常见问题
+#define Mine_GET_commonQuestion_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/question/list?product_id=1"]
+
+//提交反馈
+#define Mine_POST_submit_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"feedback-center/feedback/create?product_id=1"]
 
 #endif /* MineHeader_h */

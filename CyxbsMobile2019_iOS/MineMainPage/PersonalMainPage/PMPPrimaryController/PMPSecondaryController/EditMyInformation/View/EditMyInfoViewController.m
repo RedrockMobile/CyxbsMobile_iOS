@@ -94,7 +94,7 @@ UIImagePickerControllerDelegate
    HttpClient *client = [HttpClient defaultClient];
     //完成完善个人信息任务
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSString *target = @"完善个人信息";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];

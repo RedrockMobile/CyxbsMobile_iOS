@@ -353,7 +353,7 @@
     HttpClient *client = [HttpClient defaultClient];
     //完成围观吃瓜任务
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSString *target = @"围观吃瓜";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];
@@ -773,7 +773,7 @@
     HttpClient *client = [HttpClient defaultClient];
     //完成能说会道任务
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSString *target = @"能说会道";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
         [formData appendPartWithFormData:data name:@"title"];

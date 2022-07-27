@@ -12,7 +12,7 @@
 @implementation Balance
 
 + (void)getDataDictWithBalance:(NSString *)goodsid Success:(void (^)(NSDictionary * _Nonnull))success failure:(void (^)(void))failure {
-    [[HttpClient defaultClient] requestWithPath:Stamp_Store_Main_Page
+    [[HttpClient defaultClient] requestWithPath:Mine_GET_stampStoreMainPage_API
                                          method:HttpRequestGet
                                      parameters:nil
                                  prepareExecute:nil

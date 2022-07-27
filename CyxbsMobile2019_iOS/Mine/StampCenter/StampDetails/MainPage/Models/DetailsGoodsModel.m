@@ -14,7 +14,7 @@
 /// 正式环境网络请求
 + (void)getDataArySuccess:(void (^)(NSArray * array))success
                   failure:(void (^)(void))failure {
-    [[HttpClient defaultClient] requestWithPath:Stamp_Store_details_exchange
+    [[HttpClient defaultClient] requestWithPath:Mine_GET_stampStoreDetailsExchange_API
                                          method:HttpRequestGet
                                      parameters:nil
                                  prepareExecute:nil

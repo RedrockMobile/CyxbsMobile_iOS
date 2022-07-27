@@ -18,7 +18,7 @@
     
 //    HttpClient *client = [HttpClient defaultClient];
 //    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",FEED_BACK_TOKEN]  forHTTPHeaderField:@"authorization"];
-//    [client.httpSessionManager GET:FeedBack_Center_History_View
+//    [client.httpSessionManager GET:Mine_GET_feedBackCenterHistoryView_API
 //                        parameters:@{
 //                            @"feedback_id" : @(feedback_id),
 //                            @"product_id" : @1
@@ -45,7 +45,7 @@
 //    }];
      
 
-    [[HttpClient defaultClient] requestWithPath:FeedBack_Center_History_View
+    [[HttpClient defaultClient] requestWithPath:Mine_GET_feedBackCenterHistoryView_API
                                          method:HttpRequestGet
                                      parameters:@{
                                          @"feedback_id" : @(feedback_id),

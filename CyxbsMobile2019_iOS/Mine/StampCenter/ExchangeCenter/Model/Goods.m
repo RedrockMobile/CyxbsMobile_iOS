@@ -19,7 +19,7 @@
         @"id":goodsid
     };
     
-    [[HttpClient defaultClient] requestWithPath:Stamp_Store_Goods
+    [[HttpClient defaultClient] requestWithPath:Mine_GET_stampStoreGoods_API
                                          method:HttpRequestGet
                                      parameters:paramDict
                                  prepareExecute:nil

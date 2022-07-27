@@ -14,7 +14,7 @@
     HttpClient *client = [HttpClient defaultClient];
     NSDictionary *param = @{@"id":ID
     };
-    [client requestWithPath:Stamp_Store_Exchange method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:Mine_POST_stampStoreExchange_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self->_Block(responseObject[@"status"]);
         
         

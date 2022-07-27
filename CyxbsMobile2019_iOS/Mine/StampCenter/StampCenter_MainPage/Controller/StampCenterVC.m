@@ -572,7 +572,7 @@
 - (UIView *)stampCountView{
     if (!_stampCountView) {
         HttpClient *client = [HttpClient defaultClient];
-        [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             self.number = responseObject[@"data"][@"user_amount"];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"==========================出错了");
@@ -655,7 +655,7 @@
     }];
     
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.number = responseObject[@"data"][@"user_amount"];
         self.topView.number = responseObject[@"data"][@"user_amount"];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -679,7 +679,7 @@
 //检查是否有未领取的货物
 - (void)checkAlertLbl{
     HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:COMMON_QUESTION method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [client requestWithPath:Mine_GET_commonQuestion_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             BOOL un_got_good = responseObject[@"un_got_good"];
         if (un_got_good == YES) {
             self.topView.alertLbl.hidden = NO;

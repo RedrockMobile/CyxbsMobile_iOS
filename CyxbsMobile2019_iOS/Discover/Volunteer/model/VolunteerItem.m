@@ -63,7 +63,7 @@ MJExtensionCodingImplementation
                 
 //                client.httpSessionManager POST:<#(nonnull NSString *)#> parameters:<#(nullable id)#> headers:<#(nullable NSDictionary<NSString *,NSString *> *)#> constructingBodyWithBlock:<#^(id<AFMultipartFormData>  _Nonnull formData)block#> progress:<#^(NSProgress * _Nonnull uploadProgress)uploadProgress#> success:<#^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)success#> failure:<#^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)failure#>
                 
-                [client.httpSessionManager POST:TASK parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                [client.httpSessionManager POST:Mine_POST_task_API parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                     NSString *target = @"绑定志愿者账号";
                     NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
                     [formData appendPartWithFormData:data name:@"title"];

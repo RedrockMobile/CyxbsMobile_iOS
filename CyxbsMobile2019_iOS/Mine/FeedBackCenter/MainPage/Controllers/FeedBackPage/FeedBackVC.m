@@ -206,7 +206,7 @@
         
         [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
         
-        [client.httpSessionManager POST:SUBMIT parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [client.httpSessionManager POST:Mine_POST_submit_API parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
             
             //字段转二进制
             NSData *data1 = [type dataUsingEncoding:NSUTF8StringEncoding];

@@ -16,7 +16,7 @@
                   failure:(void (^)(void))failure {
     
     [[HttpClient defaultClient]
-     requestWithPath:FeedBack_Center_History_List
+     requestWithPath:Mine_GET_feedBackCenterHistoryList_API
      method:HttpRequestGet
      parameters:@{@"product_id" : @1}
      prepareExecute:nil
