@@ -22,7 +22,7 @@
     if (self) {
         UIView *dot = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            dot.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_DidntCheckedBarColor"];
+            dot.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E1E6EF" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             dot.backgroundColor = [UIColor colorWithRed:225/255.0 green:230/255.0 blue:240/255.0 alpha:1];
         }

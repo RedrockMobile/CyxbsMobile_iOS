@@ -44,7 +44,7 @@
         _heading.font = [UIFont fontWithName:PingFangSCBold size:18];
         _heading.delegate = self;
         [_heading addTarget:self action:@selector(getlength:) forControlEvents:UIControlEventEditingChanged];
-        [_heading setTextColor:[UIColor colorNamed:@"#15315B"]];
+        [_heading setTextColor:[UIColor colorWithHexString:@"#15315B"]];
         Ivar ivar =  class_getInstanceVariable([UITextField class], "_placeholderLabel");
         UILabel *placeholderLabel = object_getIvar(self.heading, ivar);
         placeholderLabel.textColor = [UIColor colorNamed:@"heading"];
@@ -65,7 +65,7 @@
         _feedBackMain = [[UITextView alloc]initWithFrame:CGRectMake(14, 65, self.width - 36, 140)];
         _feedBackMain.backgroundColor = [UIColor colorNamed:@"FeedBackBG"];
         _feedBackMain.delegate = self;
-        [_feedBackMain setTextColor:[UIColor colorNamed:@"#15315B"]];
+        [_feedBackMain setTextColor:[UIColor colorWithHexString:@"#15315B"]];
         _feedBackMain.font = [UIFont fontWithName:PingFangSCMedium size:15];
         [_feedBackMain addSubview:self.placeholder];
     }

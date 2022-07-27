@@ -68,7 +68,7 @@
     barTitle.text = @"账号与安全";
     barTitle.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 21];
     if (@available(iOS 11.0, *)) {
-        barTitle.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        barTitle.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -130,7 +130,7 @@
     UITextField *passwordField = [[UITextField alloc] init];
     passwordField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
     if (@available(iOS 11.0, *)) {
-        passwordField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        passwordField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"请输入旧密码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
         passwordField.attributedPlaceholder = string;
     } else {
@@ -237,7 +237,7 @@
     [findByEmail setBackgroundColor:[UIColor clearColor]];
     [findByEmail setTitle:@"邮箱找回" forState:UIControlStateNormal];
     if (@available(iOS 11.0, *)) {
-        findByEmail.titleLabel.tintColor = [UIColor colorNamed:@"MGDSafeTwoColor"];
+        findByEmail.titleLabel.tintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -250,7 +250,7 @@
     [findByQuestion setBackgroundColor:[UIColor clearColor]];
     [findByQuestion setTitle:@"密保找回" forState:UIControlStateNormal];
     if (@available(iOS 11.0, *)) {
-        findByQuestion.titleLabel.tintColor = [UIColor colorNamed:@"MGDSafeTwoColor"];
+        findByQuestion.titleLabel.tintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

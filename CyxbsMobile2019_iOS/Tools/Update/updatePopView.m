@@ -159,7 +159,7 @@
         remindLbl.textAlignment = NSTextAlignmentCenter;
         remindLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 17];
         if (@available(iOS 11.0, *)) {
-            remindLbl.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+            remindLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

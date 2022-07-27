@@ -67,7 +67,7 @@
         if (flag == 1) {
             UIView *bar = [[UIView alloc] init];
             if (@available(iOS 11.0, *)) {
-                bar.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_CheckedBarColor"];
+                bar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3934D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2BDEFF" alpha:1]];
             } else {
                 bar.backgroundColor = [UIColor colorWithRed:58/255.0 green:53/255.0 blue:210/255.0 alpha:1];
             }
@@ -77,7 +77,7 @@
         } else {
             UIView *bar = [[UIView alloc] init];
             if (@available(iOS 11.0, *)) {
-                bar.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_DidntCheckedBarColor"];
+                bar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E1E6EF" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
             } else {
                 bar.backgroundColor = [UIColor colorWithRed:225/255.0 green:230/255.0 blue:240/255.0 alpha:1];
             }
@@ -138,7 +138,7 @@
         weekdayLabel.text = weekdays[i];
         weekdayLabel.font = [UIFont systemFontOfSize:11];
         if (@available(iOS 11.0, *)) {
-            weekdayLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+            weekdayLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]];
         } else {
             weekdayLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.35];
         }
@@ -170,7 +170,7 @@
     integralLabel.text = [NSString stringWithFormat:@"%ld积分", integral];
     integralLabel.textAlignment = NSTextAlignmentCenter;
     if (@available(iOS 11.0, *)) {
-        integralLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_IntegralLabelColor"];
+        integralLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4841E2" alpha:1] darkColor:[UIColor colorWithHexString:@"#1C1C1C" alpha:1]];
     } else {
         integralLabel.textColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:0.73];
     }

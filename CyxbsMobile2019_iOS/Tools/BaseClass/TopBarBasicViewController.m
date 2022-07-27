@@ -43,7 +43,7 @@
     
     if (@available(iOS 15.0, *)) {
           UINavigationBarAppearance *barApp = [UINavigationBarAppearance new];
-        barApp.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+        barApp.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
           self.navigationController.navigationBar.scrollEdgeAppearance = barApp;
           self.navigationController.navigationBar.standardAppearance = barApp;
       }

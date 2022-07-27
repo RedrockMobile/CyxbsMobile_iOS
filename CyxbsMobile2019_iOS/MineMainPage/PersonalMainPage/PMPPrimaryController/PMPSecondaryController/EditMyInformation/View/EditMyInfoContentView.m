@@ -10,7 +10,6 @@
 #import "EditMyInfoContentView.h"
 
 #define LABELCOLOR [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]
-#define PLACEHOLDERCOLOR [UIColor colorNamed:@"Mine_EditInfo_PlaceholderColor"]
 
 #define LABELFONT [UIFont fontWithName:@"PingFangSC-Semibold" size:15]
 #define PLACEHOLDERFONT [UIFont fontWithName:@"PingFangSC-Regular" size:15]
@@ -135,7 +134,7 @@ PMPDatePickerDelegate
     UILabel *nicknameLabel = [[UILabel alloc] init];
     nicknameLabel.text = @"昵称(0/10)";
     
-    nicknameLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    nicknameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     
     nicknameLabel.font = LABELFONT;
     [self.contentScrollView addSubview:nicknameLabel];
@@ -152,12 +151,12 @@ PMPDatePickerDelegate
     NSString *oldNickname = [UserItemTool defaultItem].nickname;
     if (oldNickname==nil || [oldNickname isEqualToString:@""]) {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         nicknameTextField.attributedPlaceholder = string;
         
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldNickname attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         nicknameTextField.attributedPlaceholder = string;
         
     }
@@ -169,7 +168,7 @@ PMPDatePickerDelegate
 - (void)addIntroductionLabel{
     UILabel *introductionLabel = [[UILabel alloc] init];
     introductionLabel.text = @"个性签名(0/20)";
-    introductionLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    introductionLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     introductionLabel.font = LABELFONT;
     [self.contentScrollView addSubview:introductionLabel];
     self.introductionLabel = introductionLabel;
@@ -184,11 +183,11 @@ PMPDatePickerDelegate
     
     NSString *oldIntroduction = [UserItemTool defaultItem].introduction;
     if (oldIntroduction==nil || [oldIntroduction isEqualToString:@""]) {
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         introductionField.attributedPlaceholder = string;
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldIntroduction attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldIntroduction attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         introductionField.attributedPlaceholder = string;
         
     }
@@ -202,7 +201,7 @@ PMPDatePickerDelegate
 - (void)addGenderLabel {
     UILabel *genderLabel = [[UILabel alloc] init];
     genderLabel.text = @"性别";
-    genderLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    genderLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     genderLabel.font = LABELFONT;
     [self.contentScrollView addSubview:genderLabel];
     self.genderLabel = genderLabel;
@@ -217,11 +216,11 @@ PMPDatePickerDelegate
     
     NSString *oldGender = [UserItemTool defaultItem].gender;
     if (oldGender==nil || [oldGender isEqualToString:@""]) {
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"请选择性别" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"请选择性别" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         genderTextField.attributedPlaceholder = string;
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldGender attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldGender attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         genderTextField.attributedPlaceholder = string;
         
     }
@@ -230,7 +229,7 @@ PMPDatePickerDelegate
 - (void)addBirthdayLabel {
     UILabel *birthdayLabel = [[UILabel alloc] init];
     birthdayLabel.text = @"生日";
-    birthdayLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    birthdayLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     birthdayLabel.font = LABELFONT;
     [self.contentScrollView addSubview:birthdayLabel];
     self.birthdayLabel = birthdayLabel;
@@ -246,11 +245,11 @@ PMPDatePickerDelegate
     // 这里需要添加一个储存生日的本地储存
     NSString *oldIntroduction = [UserItemTool defaultItem].birthday;
     if (oldIntroduction==nil || [oldIntroduction isEqualToString:@""]) {
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"填写生日后会匹配出对应的星座哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"填写生日后会匹配出对应的星座哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         birthdayTextField.attributedPlaceholder = string;
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldIntroduction attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldIntroduction attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         birthdayTextField.attributedPlaceholder = string;
         
     }
@@ -260,7 +259,7 @@ PMPDatePickerDelegate
     UILabel *QQLabel = [[UILabel alloc] init];
     QQLabel.text = @"QQ";
     
-    QQLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    QQLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     
     QQLabel.font = LABELFONT;
     [self.contentScrollView addSubview:QQLabel];
@@ -272,13 +271,13 @@ PMPDatePickerDelegate
     NSString *oldQQ = [UserItemTool defaultItem].qq;
     if (oldQQ==nil || [oldQQ isEqualToString:@""]) {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         QQTextField.attributedPlaceholder = string;
         
         
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         QQTextField.attributedPlaceholder = string;
         
     }
@@ -290,7 +289,7 @@ PMPDatePickerDelegate
     UILabel *phoneNumberLabel = [[UILabel alloc] init];
     phoneNumberLabel.text = @"电话";
     
-    phoneNumberLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    phoneNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     
     phoneNumberLabel.font = LABELFONT;
     [self.contentScrollView addSubview:phoneNumberLabel];
@@ -302,12 +301,12 @@ PMPDatePickerDelegate
     NSString *oldPhoneNumber = [UserItemTool defaultItem].phone;
     if (oldPhoneNumber==nil || [oldPhoneNumber isEqualToString:@""]) {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         phoneNumberTextField.attributedPlaceholder = string;
         
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: PLACEHOLDERCOLOR}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         phoneNumberTextField.attributedPlaceholder = string;
         
     }
@@ -319,7 +318,7 @@ PMPDatePickerDelegate
     UILabel *academyLabel = [[UILabel alloc] init];
     academyLabel.text = @"学院";
     
-    academyLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    academyLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     
     academyLabel.font = LABELFONT;
     [self.contentScrollView addSubview:academyLabel];
@@ -330,7 +329,7 @@ PMPDatePickerDelegate
     UILabel *myAcademyLabel = [[UILabel alloc] init];
     myAcademyLabel.text = [UserItemTool defaultItem].college;
     
-    myAcademyLabel.textColor = [UIColor colorNamed:@"Mine_Store_LabelColor"];
+    myAcademyLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     
     myAcademyLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
     myAcademyLabel.numberOfLines = 0;

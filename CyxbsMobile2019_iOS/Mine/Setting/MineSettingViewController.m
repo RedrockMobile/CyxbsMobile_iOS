@@ -263,8 +263,8 @@
     UISwitch *settingSwitch = [[UISwitch alloc] init];
     settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);
     if (@available(iOS 11.0, *)) {
-        settingSwitch.onTintColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_On"];
-        settingSwitch.backgroundColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_Off"];
+        settingSwitch.onTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2927D0" alpha:1] darkColor:[UIColor colorWithHexString:@"#465FFF" alpha:1]];
+        settingSwitch.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D3EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#2F2F2F" alpha:1]];
     } else {
         settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
         settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];

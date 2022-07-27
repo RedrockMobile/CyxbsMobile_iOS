@@ -36,10 +36,10 @@
     self.stockLbl.text = [NSString stringWithFormat:@"库存: %d",data.amount];
     [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:data.url]];
     if (data.amount < 1) {
-        self.exchangeBtn.backgroundColor = [UIColor colorNamed:@"cannotbuy"];
+        self.exchangeBtn.backgroundColor = [UIColor colorWithHexString:@"#CACACA"];
     }
     else{
-        self.exchangeBtn.backgroundColor = [UIColor colorNamed:@"#4A44E4"];
+        self.exchangeBtn.backgroundColor = [UIColor colorWithHexString:@"#4A44E4"];
     }
     self.exchangeBtn.tag = data.id;
     self.showBtn.tag = data.id;
@@ -63,7 +63,7 @@
     if (!_mainLbl) {
         _mainLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.071*W, 0.65*H, 0.85*W, 20)];
         _mainLbl.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
-        _mainLbl.textColor = [UIColor colorNamed:@"#15315B"];
+        _mainLbl.textColor = [UIColor colorWithHexString:@"#15315B"];
         _mainLbl.text = @"挂件";
     }
     return _mainLbl;
@@ -73,7 +73,7 @@
     if (!_stockLbl) {
         _stockLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.071*W, 0.74*H, 0.928*W, 15)];
         _stockLbl.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
-       _stockLbl.textColor = [UIColor colorNamed:@"#15315BB2"];
+       _stockLbl.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.7];
         _stockLbl.text = @"库存:0";
     }
     return _stockLbl;
@@ -91,7 +91,7 @@
     if (!_stampRequirementLbl) {
         _stampRequirementLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.203*W,0.856*H,130, 17)];
         _stampRequirementLbl.font = [UIFont fontWithName:@"DIN-Medium" size:14];
-        _stampRequirementLbl.textColor = [UIColor colorNamed:@"#5177FF"];
+        _stampRequirementLbl.textColor = [UIColor colorWithHexString:@"#5177FF"];
         _stampRequirementLbl.text = @"0";
     }
     return _stampRequirementLbl;
@@ -100,7 +100,7 @@
 - (UIButton *)exchangeBtn{
     if (!_exchangeBtn) {
        _exchangeBtn = [[UIButton alloc]initWithFrame:CGRectMake(0.64*W, 0.839*H, 0.287*W, 26)];
-        _exchangeBtn.backgroundColor = [UIColor colorNamed:@"#4A44E4"];
+        _exchangeBtn.backgroundColor = [UIColor colorWithHexString:@"#4A44E4"];
         _exchangeBtn.layer.cornerRadius = 13;
         [_exchangeBtn setTitle:@"兑换" forState:UIControlStateNormal];
         _exchangeBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
@@ -116,9 +116,9 @@
 }
 
 - (void)SetupUI{
-    self.contentView.backgroundColor = [UIColor colorNamed:@"#FFFFFF"];
+    self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     self.contentView.layer.cornerRadius = 0.047*W;
-    self.contentView.layer.shadowColor = [UIColor colorNamed:@"shadow"].CGColor;
+    self.contentView.layer.shadowColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#B4BBD1" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:0]].CGColor;
     self.contentView.layer.shadowOpacity = 0.3;
     self.contentView.layer.shadowRadius = 5;
     self.contentView.layer.shadowOffset = CGSizeMake(1, 1);

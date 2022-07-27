@@ -35,7 +35,7 @@
         
         ///标题
         if (@available(iOS 11.0, *)) {
-            UILabel *barTitle = [self creatLabelWithText:@"绑定邮箱" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            UILabel *barTitle = [self creatLabelWithText:@"绑定邮箱" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             barTitle.textAlignment = NSTextAlignmentLeft;
             [self addSubview:barTitle];
             _barTitle = barTitle;
@@ -55,7 +55,7 @@
         
         ///绑定邮箱描述 / 发送邮箱描述
         if (@available(iOS 11.0, *)) {
-            UILabel *sendEmailLab = [self creatLabelWithText:@"请输入邮箱地址:" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 16] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            UILabel *sendEmailLab = [self creatLabelWithText:@"请输入邮箱地址:" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 16] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             sendEmailLab.alpha = 0.64;
             sendEmailLab.numberOfLines = 0;
             sendEmailLab.textAlignment = NSTextAlignmentLeft;
@@ -71,7 +71,7 @@
         if (@available(iOS 11.0, *)) {
             NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入邮箱地址" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:15], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
             emailField.attributedPlaceholder = string;
-            emailField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+            emailField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
             emailField.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions

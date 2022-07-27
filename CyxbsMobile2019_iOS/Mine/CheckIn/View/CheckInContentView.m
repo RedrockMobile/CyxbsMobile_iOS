@@ -90,7 +90,7 @@
         UIView *boardView = [[UIView alloc] init];
         boardView.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
-            boardView.backgroundColor = [UIColor colorNamed:@"Mine_CheckIn_BaordColor"];
+            boardView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:0] darkColor:[UIColor colorWithHexString:@"#000101" alpha:0.33]];
         } else {
             boardView.backgroundColor = [UIColor clearColor];
         }
@@ -137,7 +137,7 @@
     [checkInView addSubview:checkInRankLabel];
     self.checkInRankLabel = checkInRankLabel;
     if (@available(iOS 11.0, *)) {
-        checkInRankLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+        checkInRankLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]];
     } else {
         checkInRankLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
     }
@@ -196,7 +196,7 @@
         backColor = RGBColor(63, 64, 225, 1);
     }else {
         if (@available(iOS 11.0, *)) {
-            backColor = [UIColor colorNamed:@"Mine_CanNotCheckInColor"];
+            backColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDDDEA" alpha:1] darkColor:[UIColor colorWithHexString:@"#AFAFAF" alpha:1]];
         } else {
             backColor = [UIColor colorWithHexString:@"DDDDEE"];
         }
@@ -357,7 +357,7 @@
     self.daysLabel.text = [NSString stringWithFormat:@"已连续打卡%@天", [UserItemTool defaultItem].checkInDay];
     
     if (@available(iOS 11.0, *)) {
-        _checkInButton.backgroundColor = [UIColor colorNamed:@"Mine_CanNotCheckInColor"];
+        _checkInButton.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDDDEA" alpha:1] darkColor:[UIColor colorWithHexString:@"#AFAFAF" alpha:1]];
     } else {
         _checkInButton.backgroundColor = [UIColor colorWithHexString:@"DDDDEE"];
     }
