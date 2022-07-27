@@ -21,7 +21,7 @@
 }
 
 - (void)configureView {
-    self.rightTitleLabel.textColor = [UIColor colorNamed:@"255_169_47_1&*"];
+    self.rightTitleLabel.textColor = [UIColor colorWithHexString:@"#FFA92F"];
     self.rightIndicatorHidden = YES;
     self.titleImgHidden = YES;
     self.separatorLineHidden = YES;

@@ -24,7 +24,7 @@
 
 - (void)configureView {
     self.titleImgView.image = [UIImage imageNamed:@"details_isReceived"];
-    self.rightTitleLabel.textColor = [UIColor colorNamed:@"75_102_240_1&*"];
+    self.rightTitleLabel.textColor = [UIColor colorWithHexString:@"#4B66F0"];
     self.separatorLineHidden = YES;
 }
 

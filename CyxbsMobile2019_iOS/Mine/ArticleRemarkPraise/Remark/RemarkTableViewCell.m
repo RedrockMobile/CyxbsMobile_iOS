@@ -101,7 +101,7 @@
     [self.contentView addSubview:view];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"226_232_238&90_90_90"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E1E8ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:226/255.0 green:232/255.0 blue:238/255.0 alpha:1];
     }

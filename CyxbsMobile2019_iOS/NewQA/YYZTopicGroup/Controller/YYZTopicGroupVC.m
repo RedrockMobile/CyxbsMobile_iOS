@@ -27,7 +27,7 @@
     //设置nav
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
     [self.navigationController.navigationBar setTitleTextAttributes:attributes];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
+    self.navigationController.navigationBar.barTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
 
     // 自定义返回按钮
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -79,8 +79,8 @@
 - (void)setTableView {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     self.tableView = tableView;
-    self.tableView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    self.tableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    self.tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    self.tableView.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     self.tableView.separatorInset = UIEdgeInsetsMake(0,0,0,0);
     tableView.delegate = self;
     tableView.dataSource = self;

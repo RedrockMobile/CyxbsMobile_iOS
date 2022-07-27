@@ -40,7 +40,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     
     //设置导航栏
     self.navigationController.navigationBar.hidden = NO;
@@ -73,7 +73,7 @@
     [self.view addSubview:label1];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"你的保密邮箱是, 请点击获取验证码" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label1.attributedText = string;
-    label1.textColor = [UIColor colorNamed:@"YYZColor8"];
+    label1.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     label1.alpha = 0.64;
     
     UILabel *label3 = [[UILabel alloc] init];

@@ -409,7 +409,7 @@ UIImagePickerControllerDelegate>
 - (UIView *)topBarView2 {
     if (_topBarView2 == nil) {
         _topBarView2 = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _topBarView2.backgroundColor = [UIColor colorNamed:@"white&black"];
+        _topBarView2.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     return _topBarView2;
 }

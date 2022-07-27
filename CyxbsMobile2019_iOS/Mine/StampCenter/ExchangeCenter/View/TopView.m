@@ -41,7 +41,7 @@
 - (UIButton *)backBtn {
     if (_backBtn == nil) {
         _backBtn = [[UIButton alloc]initWithFrame:CGRectZero];
-        _backBtn.backgroundColor = [UIColor colorNamed:@"White&Black"];
+        _backBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [_backBtn setImage: [UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     }
     return _backBtn;
@@ -50,7 +50,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         _titleLabel.font = [UIFont boldSystemFontOfSize:22];
-        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     }
     return _titleLabel;
 }

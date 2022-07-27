@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy)NSString *VCTitleStr;
 /// 标题字体 Font， default is [UIFont fontWithName:PingFangSCSemibold size:21]
 @property (nonatomic, strong) UIFont * titleFont;
-/// 标题颜色，default is [UIColor colorNamed:@"white&white"]
+/// 标题颜色，default is [UIColor colorWithHexString:@"FFFFFF"]
 @property (nonatomic, strong) UIColor * titleColor;
 /// 导航栏的颜色
 @property (nonatomic, strong) UIColor * topBarBackgroundColor;

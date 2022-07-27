@@ -44,10 +44,10 @@
     [UIColor colorNamed:@"YYZColor2"], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTintColor:[UIColor colorNamed:@"YYZColor5"]];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorNamed:@"YYZColor5"]];
+    [self.navigationController.navigationBar setTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]];
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     [self setBtn];
     [self setText];
     [self setImage];

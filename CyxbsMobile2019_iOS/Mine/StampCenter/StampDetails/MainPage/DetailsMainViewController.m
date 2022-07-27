@@ -71,10 +71,10 @@
 #pragma mark - configure
 
 - (void)configureView {
-    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&0_0_0_1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.8]];
     self.VCTitleStr = @"邮票明细";
     self.titlePosition = TopBarViewTitlePositionLeft;
-    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1&0_0_0_1"];
+    self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     
     CGSize size = self.view.frame.size;
@@ -273,7 +273,7 @@
 - (UIScrollView *)horizontalScrollView {
     if (_horizontalScrollView == nil) {
         _horizontalScrollView = [[UIScrollView alloc] initWithFrame:(CGRectZero)];
-        _horizontalScrollView.backgroundColor = [UIColor colorNamed:@"255_255_255_1&29_29_29_1"];
+        _horizontalScrollView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:0.9] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:0.8]];
         _horizontalScrollView.showsHorizontalScrollIndicator = NO;
         _horizontalScrollView.pagingEnabled = YES;
         _horizontalScrollView.layer.cornerRadius = 20;

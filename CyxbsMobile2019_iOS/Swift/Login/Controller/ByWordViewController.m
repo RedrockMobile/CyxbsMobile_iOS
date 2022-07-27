@@ -36,7 +36,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     //设置导航栏
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ找回密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
@@ -66,7 +66,7 @@
     [self.view addSubview:label1];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"你的密保问题是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label1.attributedText = string;
-    label1.textColor = [UIColor colorNamed:@"YYZColor8"];
+    label1.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     label1.alpha = 0.64;
     
     UILabel *label2 = [[UILabel alloc] init];

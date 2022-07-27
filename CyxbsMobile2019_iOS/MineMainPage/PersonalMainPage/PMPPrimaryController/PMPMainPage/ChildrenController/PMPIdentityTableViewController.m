@@ -187,7 +187,7 @@
         [self.parentViewController.navigationController pushViewController:[[AuthenticViewController alloc] init] animated:YES];
     }];
     SettingRowAction.image = [UIImage imageNamed:@"identity_setting"];
-    SettingRowAction.backgroundColor = [UIColor colorNamed:@"white&white"];
+    SettingRowAction.backgroundColor = [UIColor colorWithHexString:@"FFFFFF"];
     
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         [IDModel

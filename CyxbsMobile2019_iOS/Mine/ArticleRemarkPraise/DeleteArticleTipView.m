@@ -97,7 +97,7 @@
     [btn setTitle:@"取消" forState:UIControlStateNormal];
     
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"195_212_238&90_90_90"];
+        btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D3ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1];
     }
@@ -116,7 +116,7 @@
     [btn setTitle:@"确定" forState:UIControlStateNormal];
     
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+        btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4943E3" alpha:1] darkColor:[UIColor colorWithHexString:@"#5555FF" alpha:1]];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:74/255.0 green:67/255.0 blue:228/255.0 alpha:1];
     }

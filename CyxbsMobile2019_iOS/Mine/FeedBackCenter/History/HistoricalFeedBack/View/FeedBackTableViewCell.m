@@ -113,7 +113,7 @@
 - (UIView *)separateLine {
     if (_separateLine == nil) {
         _separateLine = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _separateLine.backgroundColor = [UIColor colorNamed:@"221_230_244_1&43_44_45_1"];
+        _separateLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE6F4" alpha:1] darkColor:[UIColor colorWithHexString:@"#2B2C2D" alpha:0.8]];
     }
     return _separateLine;
 }
