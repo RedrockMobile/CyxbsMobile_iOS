@@ -17,7 +17,7 @@
     if ([super init]) {
         self.postID = PostID;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ReportViewBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -26,7 +26,7 @@
         titleLabel.text = @"请填写举报理由";
         titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 15];
         if (@available(iOS 11.0, *)) {
-            titleLabel.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
+            titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -40,9 +40,9 @@
         textView.textContainerInset = UIEdgeInsetsMake(13.5, 8, 0, 0);
         textView.text = @"150字以内(选填)";
         if (@available(iOS 11.0, *)) {
-            textView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
+            textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#94A6C4" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
             textView.font = [UIFont fontWithName:PingFangSCMedium size:12];
-            textView.layer.borderColor = [UIColor colorNamed:@"LineColor"].CGColor;
+            textView.layer.borderColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]].CGColor;
         } else {
             textView.textColor = [UIColor colorWithRed:12/255.0 green:53/255.0 blue:115/255.0 alpha:1];
         }
@@ -64,7 +64,7 @@
         UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
         if (@available(iOS 11.0, *)) {
-            [cancelBtn setBackgroundColor:[UIColor colorNamed:@"ReportBtnBackColor"]];
+            [cancelBtn setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D4EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]]];
         } else {
             // Fallback on earlier versions
         }
@@ -124,7 +124,7 @@
 {
     if(textView.text.length < 1){
         textView.text = @"150字以内(选填)";
-        textView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
+        textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#94A6C4" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     }
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -136,9 +136,9 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
     if ([textView.text isEqualToString:@"150字以内(选填)"]) {
-        textView.textColor = [UIColor colorNamed:@"ReportViewPlaceholderColor"];
+        textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#94A6C4" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     }else {
-        textView.textColor = [UIColor colorNamed:@"ReportTextColor"];
+        textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
 }
 @end

@@ -19,7 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame AndTextAry:(nonnull NSArray *)textAry IsHaveQAKnowledge:(BOOL)isHaveQAKnowledge{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
 //        self.segementBtnTextAry = @[@"用户", @"内容"];
         self.isHaveQAKnowledge = isHaveQAKnowledge;
         self.segementBtnTextAry = textAry;
@@ -95,9 +95,9 @@
 - (SearchTopView *)searchBarView{
     if (!_searchBarView) {
         _searchBarView = [[SearchTopView alloc] init];
-        _searchBarView.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        _searchBarView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         _searchBarView.searchFieldBackgroundView.image = nil;
-        _searchBarView.searchFieldBackgroundView.backgroundColor = [UIColor colorNamed:@"232_240_252&72_72_72"];
+        _searchBarView.searchFieldBackgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#484848" alpha:1]];;
     }
     return _searchBarView;
 }
@@ -105,7 +105,7 @@
 - (SZHHotSearchView *)knowledgeView{
     if (!_knowledgeView) {
         _knowledgeView = [[SZHHotSearchView alloc] initWithString:@"邮问知识库"];
-        _knowledgeView.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        _knowledgeView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     return _knowledgeView;
 }
@@ -113,7 +113,7 @@
 - (UIView *)topSeparation{
     if (_topSeparation == nil) {
         _topSeparation = [[UIView alloc] initWithFrame:CGRectZero];
-        _topSeparation.backgroundColor = [UIColor colorNamed:@"SZH分割条颜色"];
+        _topSeparation.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#252525" alpha:1]];
     }
     return _topSeparation;
 }

@@ -59,7 +59,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     return self;
 }
@@ -242,11 +242,11 @@
         [self.groupBtn setTitle:[NSString stringWithFormat:@"# %@",dynamicDataModel.topic] forState:UIControlStateNormal];
         //评论按钮
         self.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",dynamicDataModel.comment_count];
-        self.commendBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        self.commendBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
         //点赞按钮
         self.starBtn.countLabel.text = [NSString stringWithFormat:@"%@",dynamicDataModel.praise_count];
         self.starBtn.selected = [dynamicDataModel.is_praised intValue] == 1 ? YES : NO;
-        self.starBtn.countLabel.textColor = self.starBtn.selected == YES ? [UIColor colorNamed:@"countLabelColor"] : [UIColor colorNamed:@"FuncBtnColor"];
+        self.starBtn.countLabel.textColor = self.starBtn.selected == YES ? [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]] : [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
         [self.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
         
         //图片的设置
@@ -282,8 +282,7 @@
         _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _nicknameLabel.textAlignment = NSTextAlignmentLeft;
         _nicknameLabel.font = [UIFont fontWithName:PingFangSCSemibold size: 15 ];
-        _nicknameLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
-        
+        _nicknameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     return _nicknameLabel;
 }
@@ -294,7 +293,7 @@
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _timeLabel.textAlignment = NSTextAlignmentLeft;
         _timeLabel.font = [UIFont fontWithName:PingFangSCMedium size: 11];
-        _timeLabel.textColor = [UIColor colorNamed:@"85_108_137"];
+        _timeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#556C89" alpha:1]];
     }
     return _timeLabel;
 }
@@ -315,7 +314,7 @@
 - (UILabel *)detailLabel{
     if (!_detailLabel) {
         _detailLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _detailLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
+        _detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C57" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
         _detailLabel.textAlignment = NSTextAlignmentLeft;
         //多行设置
@@ -338,8 +337,8 @@
         _groupBtn.layer.cornerRadius = SCREEN_WIDTH * 0.2707 * 25.5/101.5 * 1/2;  //设置圆角
         _groupBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_groupBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08 * fontSizeScaleRate_SE]];
-        [_groupBtn setTitleColor:[UIColor colorNamed:@"CellGroupColor"] forState:UIControlStateNormal];
-        _groupBtn.backgroundColor = [UIColor colorNamed:@"CELLTOPICBACKCOLOR"];
+        [_groupBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#255295" alpha:0.7] darkColor:[UIColor colorWithHexString:@"#CBD3E9" alpha:0.7]] forState:UIControlStateNormal];
+        _groupBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#444650" alpha:1]];
 //        [_groupBtn addTarget:self.delegate action:@selector(clickedGroupTopicBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _groupBtn;
@@ -378,7 +377,7 @@
 - (UIView *)bottomDividerView{
     if (!_bottomDividerView) {
         _bottomDividerView = [[UIView alloc] initWithFrame:CGRectZero];
-        _bottomDividerView.backgroundColor = [UIColor colorNamed:@"227_232_237_&52_52_52"];
+        _bottomDividerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E3E8ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
     }
     return _bottomDividerView;
 }

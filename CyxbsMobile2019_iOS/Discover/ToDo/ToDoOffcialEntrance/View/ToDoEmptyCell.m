@@ -83,7 +83,7 @@
 
 - (UIImageView *)doneImageView{
     if (!_doneImageView) {
-        _doneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.23466, SCREEN_HEIGHT * 0.0449,SCREEN_WIDTH * 0.6133, SCREEN_WIDTH * 0.3466)];;
+        _doneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.23466, SCREEN_HEIGHT * 0.0449,SCREEN_WIDTH * 0.6133, SCREEN_WIDTH * 0.3466)];
         _doneImageView.image = [UIImage imageNamed:@"已完成"];
         [self.contentView addSubview:_doneImageView];
     }

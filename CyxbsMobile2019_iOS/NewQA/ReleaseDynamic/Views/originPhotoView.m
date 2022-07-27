@@ -34,7 +34,7 @@
     label.text = @"原图";
     label.font = [UIFont fontWithName:PingFangSCMedium size:13];
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"SZHClearBtnTextColor"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#93A3BF" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

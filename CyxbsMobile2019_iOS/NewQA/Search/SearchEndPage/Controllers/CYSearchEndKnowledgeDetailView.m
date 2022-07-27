@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
 }
 
 #pragma mark- private methonds
@@ -35,7 +35,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.text = @"邮问知识库";
     label.font = [UIFont fontWithName:PingFangSCSemibold size:21*fontSizeScaleRate_SE];
-    label.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+    label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -66,7 +66,7 @@
     
     //底部的分割线
     UIView *bottomDividerView = [[UIView alloc] initWithFrame:CGRectZero];
-    bottomDividerView.backgroundColor = [UIColor colorNamed:@"227_232_237_&52_52_52"];
+    bottomDividerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E3E8ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
     [self.view addSubview:bottomDividerView];
     [bottomDividerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -113,7 +113,7 @@
     if (!_titleLbl) {
         UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         titleLbl.font = [UIFont fontWithName:PingFangSCBold size:16*fontSizeScaleRate_SE];
-        titleLbl.textColor = [UIColor colorNamed:@"RGB17_44_87&&240_240_242"];
+        titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C57" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         titleLbl.backgroundColor = [UIColor clearColor];
         //设置字体以及颜色
         _titleLbl = titleLbl;
@@ -124,13 +124,13 @@
 - (UILabel *)contentTextLbl{
     if (!_contentTextLbl) {
         UILabel *contentTextView = [[UILabel alloc] initWithFrame:CGRectZero];
-        contentTextView.textColor = [UIColor colorNamed:@"RGB85_108_137&&181_181_181"];
+        contentTextView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#B5B5B5" alpha:1]];
         contentTextView.font = [UIFont fontWithName:PingFangSCMedium size:13*fontSizeScaleRate_SE];
         contentTextView.backgroundColor = [UIColor clearColor];
         _contentTextLbl = contentTextView;
         _contentTextLbl.preferredMaxLayoutWidth = MAIN_SCREEN_W * (1 - 0.0427*2);
         _contentTextLbl.numberOfLines = 0;
-//        _contentTextLbl.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
+//        _contentTextLbl.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     }
     return _contentTextLbl;
 }

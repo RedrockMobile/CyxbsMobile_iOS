@@ -31,7 +31,7 @@
     if ([super init]) {
         self.layer.cornerRadius = 8;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ReportViewBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -41,7 +41,7 @@
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 14];
         if (@available(iOS 11.0, *)) {
-            _titleLabel.textColor = [UIColor colorNamed:@"MainPageLabelColor"];
+            _titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -49,7 +49,7 @@
         
         _lineView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            _lineView.backgroundColor = [UIColor colorNamed:@"ShareLineViewColor"];
+            _lineView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -79,7 +79,7 @@
         
         _cancelLineView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            _cancelLineView.backgroundColor = [UIColor colorNamed:@"ShareLineViewColor"];
+            _cancelLineView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -91,7 +91,7 @@
         [_cancelBtn addTarget:self action:@selector(ClickedCancel) forControlEvents:UIControlEventTouchUpInside];
         _cancelBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Heavy" size: 15];
         if (@available(iOS 11.0, *)) {
-            [_cancelBtn setTitleColor:[UIColor colorNamed:@"ShareCancelColor"] forState:UIControlStateNormal];
+            [_cancelBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#94A6C4" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }

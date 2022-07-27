@@ -19,7 +19,7 @@
         
         //设置title颜色
         if (@available(iOS 11.0, *)) {
-            [self setTitleColor:[UIColor colorNamed:@"SZHSearchBtnTextColor"] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }
@@ -31,7 +31,7 @@
         //边框宽度，不设置边框宽度就无法看到边框，以及边框颜色
         self.layer.borderWidth = 1;
         //设置边框颜色。边框颜深色模式需要手动调。见下方的代理方法
-        self.layer.borderColor = [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
+        self.layer.borderColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]].CGColor;
     }
     return self;
 }
@@ -43,10 +43,10 @@
               UIUserInterfaceStyle  mode = UITraitCollection.currentTraitCollection.userInterfaceStyle;
                 if (mode == UIUserInterfaceStyleDark) {
                     NSLog(@"深色模式");
-                    self.layer.borderColor =  [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
+                    self.layer.borderColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]].CGColor;
                 } else if (mode == UIUserInterfaceStyleLight) {
                     NSLog(@"浅色模式");
-                    self.layer.borderColor = [UIColor colorNamed:@"SZHSearchBtnTextColor"].CGColor;
+                    self.layer.borderColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]].CGColor;
                 } else {
                     NSLog(@"未知模式");
                 }

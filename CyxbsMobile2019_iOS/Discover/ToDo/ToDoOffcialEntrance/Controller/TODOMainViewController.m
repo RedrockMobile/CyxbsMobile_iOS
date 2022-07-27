@@ -43,7 +43,7 @@
 //    //重置数据库
 //    [[TodoSyncTool share] resetDB];
     //一些初始化-
-    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.isFold = NO;
     //先获取到数据库的数据，再进行frame设置
     [self  dataFromSqlite];
@@ -280,7 +280,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         UIView* firstview = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 60.0)];
-        firstview.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        firstview.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         UILabel *toDoLbl = [[UILabel alloc] initWithFrame:CGRectMake(15,30,50,34)];
         toDoLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
         toDoLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
@@ -289,7 +289,7 @@
         return firstview;
     }else{
         UIView * secondview = [[UIView alloc] initWithFrame:CGRectMake(0,30, SCREEN_WIDTH,60.0)];
-        secondview.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        secondview.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         //完成的label
         UILabel *doneLbl = [[UILabel alloc ]initWithFrame:CGRectMake(15,30,100,34) ];
         doneLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
@@ -298,7 +298,7 @@
         [secondview addSubview:doneLbl];
         
         //折叠的按钮
-        UIButton *foldBtn = [[UIButton alloc] initWithFrame:CGRectZero];;
+        UIButton *foldBtn = [[UIButton alloc] initWithFrame:CGRectZero];
         [foldBtn setImage:[UIImage imageNamed:@"foldImage"] forState:(UIControlStateNormal)];
         [foldBtn addTarget:self action:@selector(foldAction) forControlEvents:(UIControlEventTouchUpInside)];
         foldBtn.imageView.transform = !self.isFold ? CGAffineTransformIdentity :  CGAffineTransformMakeRotation(M_PI);
@@ -359,7 +359,7 @@
         [tableView reloadData];
     }];
     deleteRowAction.image = [UIImage imageNamed:@"垃圾桶图"];
-    deleteRowAction.backgroundColor = [UIColor colorWithRed:255/225.0 green:98/225.0 blue:95/225.0 alpha:1];;
+    deleteRowAction.backgroundColor = [UIColor colorWithRed:255/225.0 green:98/225.0 blue:95/225.0 alpha:1];
     deleteRowAction.title = @"";
     UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:@[deleteRowAction]];
     return config;

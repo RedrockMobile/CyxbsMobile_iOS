@@ -72,7 +72,7 @@
         _seperateLine.backgroundColor =
         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#BDCCE5" alpha:0.3] darkColor:[UIColor colorWithHexString:@"#676767" alpha:0.1]];
     }
-    return _seperateLine;;
+    return _seperateLine;
 }
 
 #pragma mark - Method

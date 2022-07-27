@@ -95,7 +95,7 @@
                 case 0:
                 case 1:
                     if(@available(iOS 11.0, *)){
-                        color = [UIColor colorNamed:@"ClassLabelColor1"];
+                        color = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF8015" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
                     }else{
                         color = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
                     }
@@ -191,7 +191,7 @@
             case 1:
                 if(@available(iOS 11.0, *)){
                     self.backgroundColor = [UIColor colorNamed:@"hash_lesson.integerValue<2"];
-                    textColor = [UIColor colorNamed:@"ClassLabelColor1"];
+                    textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF8015" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
                 }else{
                     self.backgroundColor = [UIColor colorWithRed:249/255.0 green:231/255.0 blue:216/255.0 alpha:1.0];
                     textColor = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];

@@ -87,7 +87,7 @@
         CGFloat collectionWidth = 0;
         f4.size = CGSizeMake(collectionWidth, 0);
     } else {
-        CGFloat collectionWidth = cellWidth * self.cellModel.pictures.count + spaceWidth * (self.cellModel.pictures.count - 1);;
+        CGFloat collectionWidth = cellWidth * self.cellModel.pictures.count + spaceWidth * (self.cellModel.pictures.count - 1);
         f4.size = CGSizeMake(collectionWidth, cellWidth);
     }
     

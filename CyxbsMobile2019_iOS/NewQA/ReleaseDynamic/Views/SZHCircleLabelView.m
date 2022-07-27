@@ -28,7 +28,7 @@
     //分割view
     self.topSeparationView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        self.topSeparationView.backgroundColor = [UIColor colorNamed:@"SZH分割条颜色"];
+        self.topSeparationView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#252525" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -43,7 +43,7 @@
     self.tittleLbl = [[UILabel alloc] init];
     self.tittleLbl.text = @"请选择一个圈子";
     if (@available(iOS 11.0, *)) {
-        self.tittleLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+        self.tittleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

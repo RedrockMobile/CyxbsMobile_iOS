@@ -45,7 +45,7 @@
     self.navigationController.navigationBar.hidden = YES;
     self.navigationController.navigationBar.topItem.title = @"";
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];;
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         self.view.backgroundColor = [UIColor colorWithHexString:@"#F8F9FC"];
     }
@@ -297,7 +297,7 @@
     if(lastDay.intValue < 0) {
         cell.leftDayLabel.text = [NSString stringWithFormat:@"考试已结束"];
         if (@available(iOS 11.0, *)) {
-            cell.leftDayLabel.textColor =[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.56] darkColor:[UIColor colorWithHexString:@"#858585" alpha:1]];;
+            cell.leftDayLabel.textColor =[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.56] darkColor:[UIColor colorWithHexString:@"#858585" alpha:1]];
         } else {
             cell.leftDayLabel.textColor = [UIColor colorWithHexString:@"#2A4E84"];
         }

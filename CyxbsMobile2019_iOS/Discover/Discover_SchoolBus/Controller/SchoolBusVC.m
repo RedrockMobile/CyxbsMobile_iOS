@@ -304,7 +304,7 @@
             self->_schoolBusSideBar.transform = CGAffineTransformIdentity;
             self->_stationScrollView.transform = CGAffineTransformIdentity;
         }];
-        BusGuideViewController *busGuideVC = [[BusGuideViewController alloc]initWithstationsArray:self.stationArray];;
+        BusGuideViewController *busGuideVC = [[BusGuideViewController alloc]initWithstationsArray:self.stationArray];
         [self.navigationController pushViewController:busGuideVC animated: YES];
     }
     else if(isSelected == YES){

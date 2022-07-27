@@ -160,7 +160,7 @@
         
         // 深色模式
         if (@available(iOS 11.0, *)) {
-            searchBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F4FD" alpha:1] darkColor:[UIColor colorWithHexString:@"#1F1F1F" alpha:1]];;
+            searchBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F4FD" alpha:1] darkColor:[UIColor colorWithHexString:@"#1F1F1F" alpha:1]];
             searchBar.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             searchBar.backgroundColor = [UIColor colorWithHexString:@"#F0F4FD"];

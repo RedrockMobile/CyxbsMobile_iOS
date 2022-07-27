@@ -55,7 +55,7 @@
     [super viewDidLoad];
     //设置背景颜色
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"SZH发布动态主板颜色"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -218,7 +218,7 @@
             for (int i = 0; i < self.topicAry.count; i++) {
                 if ([self.circleLabelText isEqualToString:self.topicAry[i]]) {
                     topicID = i + 1;
-                    break;;
+                    break;
                 }
             }
             YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
@@ -281,7 +281,7 @@
         //设置按钮为可用状态并设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
         } else {
             // Fallback on earlier versions
         }
@@ -515,7 +515,7 @@
         //设置按钮为可用状态并设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
         } else {
             // Fallback on earlier versions
         }
@@ -525,7 +525,7 @@
         //设置按钮为禁用状态并且设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor =  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

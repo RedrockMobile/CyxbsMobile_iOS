@@ -58,7 +58,7 @@
     [self addSubview:AScore];
     AScore.font = [UIFont fontWithName:@"Impact" size: 32];
     if (@available(iOS 11.0, *)) {
-        AScore.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];;
+        AScore.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -74,7 +74,7 @@
     UIView *seperateLine = [[UIView alloc]init];
     self.seperateLine = seperateLine;
     if (@available(iOS 11.0, *)) {
-        seperateLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];;
+        seperateLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

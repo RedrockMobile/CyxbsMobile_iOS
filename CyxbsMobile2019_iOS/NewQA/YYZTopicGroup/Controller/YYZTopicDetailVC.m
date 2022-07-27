@@ -101,7 +101,7 @@ UIGestureRecognizerDelegate>
     UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, stringWidth, 40)];
     titleLbl.text = self.topicIdString;
     [titleLbl setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
-    titleLbl.textColor = [UIColor colorNamed:@"21_49_91&131_131_132"];
+    titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     [view addSubview:titleLbl];
     view.userInteractionEnabled = YES;
     //添加返回的手势
@@ -538,7 +538,7 @@ UIGestureRecognizerDelegate>
         UILabel *noneLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-83+40, 330, 167,127)];
         noneLable.text = @"还没有动态哦~";
         noneLable.font = [UIFont fontWithName:nil size:13];
-        noneLable.textColor = [UIColor colorNamed:@"YYZColor2"];;
+        noneLable.textColor = [UIColor colorNamed:@"YYZColor2"];
         leftImageview.image = image;
         [self.backgroundScrollView addSubview:leftImageview];
         [self.backgroundScrollView addSubview:noneLable];
@@ -675,13 +675,13 @@ UIGestureRecognizerDelegate>
         cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
-        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     }else {
         cell.starBtn.selected = YES;
         cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
-        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+        cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]];
     }
     CGFloat pageWidth = self.topicScrollView.frame.size.width;
     int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;

@@ -25,7 +25,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [self addSomeConstraints];
     }
     return self;
@@ -95,7 +95,7 @@
 - (UIView *)bottomDividerView{
     if (!_bottomDividerView) {
         _bottomDividerView = [[UIView alloc] initWithFrame:CGRectZero];
-        _bottomDividerView.backgroundColor = [UIColor colorNamed:@"227_232_237_&52_52_52"];
+        _bottomDividerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E3E8ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
     }
     return _bottomDividerView;
 }

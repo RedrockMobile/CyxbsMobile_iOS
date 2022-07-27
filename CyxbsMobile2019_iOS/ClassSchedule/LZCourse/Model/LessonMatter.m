@@ -13,7 +13,7 @@
     self = [self init];
     if (self) {
         self.hash_day = [lesson objectForKey:@"hash_day"];
-        self.hash_lesson = [lesson objectForKey:@"hash_lesson"];;
+        self.hash_lesson = [lesson objectForKey:@"hash_lesson"];
         self.begin_lesson = [lesson objectForKey:@"begin_lesson"];//课程从第几节开始
         self.day = [lesson objectForKey:@"day"];//星期几
         self.lesson = [lesson objectForKey:@"lesson"];//课程节数

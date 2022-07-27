@@ -60,7 +60,7 @@
 //MARK: - 初始化子控件的一些方法：
 //添加返回按钮
 - (void)addBackButton {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];;
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.view addSubview:button];
     self.backButton = button;
     [button setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];

@@ -119,7 +119,7 @@ typedef NS_ENUM(NSInteger, zhPopupSlideStyle) {
                   duration:(NSTimeInterval)duration
             springAnimated:(BOOL)isSpringAnimated;
 
-- (void)presentContentView:(nullable UIView *)contentView displayTime:(NSTimeInterval)displayTime;;
+- (void)presentContentView:(nullable UIView *)contentView displayTime:(NSTimeInterval)displayTime;
 
 - (void)presentContentView:(nullable UIView *)contentView; // duration is 0.25 / springAnimated is NO / show in window
 

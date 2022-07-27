@@ -20,7 +20,7 @@
 - (instancetype)initWithFrame:(CGRect)frame AndTextAry:(NSArray *)textAry{
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         self.btnMuteAry = [NSMutableArray array];
         self.btnTextAry = textAry;
         [self creatAndConstriantBtn];
@@ -71,7 +71,7 @@
     if (_topSeparation == nil) {
         _topSeparation = [[UIView alloc] initWithFrame:CGRectZero];
         _topSeparation.frame = CGRectMake(0, self.selectedImageView.maxY, SCREEN_WIDTH, 1);
-//        _topSeparation.backgroundColor = [UIColor colorNamed:@"SZH分割条颜色"];
+//        _topSeparation.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#252525" alpha:1]];
         //设置阴影
         _topSeparation.layer.shadowColor = [UIColor colorWithRed:0.153 green:0.245 blue:0.383 alpha:0.08].CGColor;
     }

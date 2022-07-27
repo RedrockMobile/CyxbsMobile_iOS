@@ -17,7 +17,7 @@
     if (self) {
 //        CGFloat rateY = [UIScreen mainScreen].bounds.size.height / 812;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"DLTextFieldColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
              self.backgroundColor = [UIColor colorWithHexString:@"#F2F3F7"];
             // Fallback on earlier versions
@@ -27,14 +27,14 @@
         self.layer.cornerRadius = 0.033867*MAIN_SCREEN_H;
         self.layer.masksToBounds = YES;
         if (@available(iOS 11.0, *)) {
-            self.textColor = [UIColor colorNamed:@"titleLabelColor"];
+            self.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#122D55" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
              self.textColor = [UIColor colorWithHexString:@"#15315B"];
             // Fallback on earlier versions
         }
         self.font = [UIFont fontWithName:PingFangSCRegular size:20];
         if (@available(iOS 11.0, *)) {
-            self.tintColor = [UIColor colorNamed:@"tintColor"];
+            self.tintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4841E2" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
              self.tintColor = [UIColor colorWithHexString:@"#4841E2"];
             // Fallback on earlier versions

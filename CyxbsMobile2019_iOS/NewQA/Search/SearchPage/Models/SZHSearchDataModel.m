@@ -23,7 +23,7 @@
         progress(array);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"------请求失败");
-        NSArray *array = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];;
+        NSArray *array = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
         progress(array);
     }];
 }

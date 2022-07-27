@@ -62,7 +62,7 @@
 }
 
 - (void)historyBtnAddConstraints{
-    if(self.buttonArray.count==0)return;;
+    if(self.buttonArray.count==0)return;
     __block int k = 0;
     [self.buttonArray[0] mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.historyLabel.mas_bottom).offset(LINESPLIT);

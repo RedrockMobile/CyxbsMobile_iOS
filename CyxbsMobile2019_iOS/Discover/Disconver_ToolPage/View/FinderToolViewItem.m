@@ -47,7 +47,7 @@
     UILabel *label = [[UILabel alloc]init];
     self.myTitleLabel = label;
     if (@available(iOS 11.0, *)) {
-      label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];;
+      label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -58,7 +58,7 @@
     UILabel *label =[[UILabel alloc]init];
     self.myDetailLabel = label;
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

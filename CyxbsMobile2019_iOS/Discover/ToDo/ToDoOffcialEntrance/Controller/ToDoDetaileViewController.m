@@ -87,7 +87,7 @@
     self.temporaryModel = [[TodoDataModel alloc] init];
     self.temporaryModel = self.model;
     self.instialState = self.temporaryModel.isDone;
-    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.repeatLblsAry = [NSMutableArray array];
     
     self.isChange = NO;
@@ -562,7 +562,7 @@ self.model = self.temporaryModel;
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT+STATUSBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NVGBARHEIGHT+STATUSBARHEIGHT)];
-        _scrollView.backgroundColor =  [UIColor colorNamed:@"255_255_255&0_0_0"];
+        _scrollView.backgroundColor =  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         //设置scroll距离屏幕顶端无间距
         _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         _scrollView.scrollEnabled = YES;
