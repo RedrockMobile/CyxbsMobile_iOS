@@ -288,7 +288,7 @@
     NSDictionary *parameter = @{@"stuNum":stuNum,@"forceFetch":@"true"};
     
     [HttpTool.shareTool
-     request:ClassSchedule_GET_keBiao_API
+     request:ClassSchedule_POST_keBiao_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameter
@@ -318,7 +318,7 @@
         NSLog(@"%@",error);
     }];
     
-//    [client requestWithPath:ClassSchedule_GET_keBiao_API method:HttpRequestPost parameters:parameter prepareExecute:nil progress:^(NSProgress *progress) {
+//    [client requestWithPath:ClassSchedule_POST_keBiao_API method:HttpRequestPost parameters:parameter prepareExecute:nil progress:^(NSProgress *progress) {
 //
 //    } success:^(NSURLSessionDataTask *task, id responseObject) {
 //        //NSLog(@"%@",responseObject);

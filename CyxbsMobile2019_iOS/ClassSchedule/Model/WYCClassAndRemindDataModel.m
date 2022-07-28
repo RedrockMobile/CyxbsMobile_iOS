@@ -69,7 +69,7 @@
     NSDictionary *paramDict = @{@"stu_num":stuNum};
     
     [HttpTool.shareTool
-     request:ClassSchedule_GET_keBiao_API
+     request:ClassSchedule_POST_keBiao_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:paramDict
@@ -106,7 +106,7 @@
         [self.delegate ModelDataLoadFailure];
     }];
 
-//    [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    [self.afhttpSeMan POST:ClassSchedule_POST_keBiao_API parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 //        //拿到课表数据
 //        NSArray *rowLessonDataArr = responseObject[@"data"];
 //        if (rowLessonDataArr==nil) {
@@ -144,7 +144,7 @@
     NSDictionary *parameters = @{@"stu_num":stu_Num};
     
     [HttpTool.shareTool
-     request:ClassSchedule_GET_keBiao_API
+     request:ClassSchedule_POST_keBiao_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameters
@@ -167,7 +167,7 @@
         [self.delegate ModelDataLoadFailure];
     }];
     
-//    [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//    [self.afhttpSeMan POST:ClassSchedule_POST_keBiao_API parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 //
 //        //拿到课表数据
 //        NSArray *lessonArray = [responseObject objectForKey:@"data"];
@@ -268,7 +268,7 @@
         dispatch_async(que, ^{
             
             [HttpTool.shareTool
-             request:ClassSchedule_GET_keBiao_API
+             request:ClassSchedule_POST_keBiao_API
              type:HttpToolRequestTypeGet
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{@"stuNum":infoDict[@"stuNum"]}
@@ -289,7 +289,7 @@
                 isAllSuccess = NO;
                 dispatch_semaphore_signal(semaphore);
             }];
-//            [self.afhttpSeMan POST:ClassSchedule_GET_keBiao_API parameters:@{@"stuNum":infoDict[@"stuNum"]} headers:nil progress:nil  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            [self.afhttpSeMan POST:ClassSchedule_POST_keBiao_API parameters:@{@"stuNum":infoDict[@"stuNum"]} headers:nil progress:nil  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 //                NSArray* lessonArray = [responseObject objectForKey:@"data"];
 //                //查很久以前的重邮学生时，lessonArray会是空的，所以如果不加判断，就会导致崩溃
 //                if (lessonArray==nil) {

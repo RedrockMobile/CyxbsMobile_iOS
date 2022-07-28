@@ -249,7 +249,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 
 #pragma mark - “课表”、“备忘”接口
 
-#define ClassSchedule_GET_keBiao_API @"https://cyxbsmobile.redrock.team/api/kebiao"
+#define ClassSchedule_POST_keBiao_API @"https://cyxbsmobile.redrock.team/api/kebiao"
 
 
 #define ClassSchedule_POST_addRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"

@@ -1542,12 +1542,19 @@
 		73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCustomizeNavigationBar.m; sourceTree = "<group>"; };
 		73AAA1C926C918240084E44D /* DetailsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsBaseTableViewCell.h; sourceTree = "<group>"; };
 		7AA4C469288D23A700E204C8 /* MineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeader.h; sourceTree = "<group>"; };
-		7AA4C46B288F811100E204C8 /* DiscoverHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverHeader.h; sourceTree = "<group>"; };
 		7AA4C46E288FCEA800E204C8 /* ClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleHeader.h; sourceTree = "<group>"; };
 		7AA4C470288FD30B00E204C8 /* NewQAHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewQAHeader.h; sourceTree = "<group>"; };
 		7AA4C4712891230900E204C8 /* ChangePasswordHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordHeader.h; sourceTree = "<group>"; };
 		7AA4C4722891237600E204C8 /* StampCenterHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StampCenterHeader.h; sourceTree = "<group>"; };
 		7AA4C473289123B700E204C8 /* FeedBackCenterHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackCenterHeader.h; sourceTree = "<group>"; };
+		7AA4C47628921BF400E204C8 /* SchoolCalendarHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolCalendarHeader.h; sourceTree = "<group>"; };
+		7AA4C47828921E9400E204C8 /* ElectricHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricHeader.h; sourceTree = "<group>"; };
+		7AA4C47A28921F0B00E204C8 /* ScorePageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScorePageHeader.h; sourceTree = "<group>"; };
+		7AA4C47C28921F7C00E204C8 /* TestArrangeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestArrangeHeader.h; sourceTree = "<group>"; };
+		7AA4C47E2892206200E204C8 /* SchoolBusHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusHeader.h; sourceTree = "<group>"; };
+		7AA4C480289220CE00E204C8 /* ADHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADHeader.h; sourceTree = "<group>"; };
+		7AA4C4822892213200E204C8 /* VolunteerHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerHeader.h; sourceTree = "<group>"; };
+		7AA4C4842892217100E204C8 /* MapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapHeader.h; sourceTree = "<group>"; };
 		7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicGroupVC.m; sourceTree = "<group>"; };
 		7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
 		7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
@@ -2743,7 +2750,6 @@
 				14B73F67281BED7B00D08ADD /* MessagePresent_module */,
 				14B73F2A281BED7B00D08ADD /* MessageSetting_module */,
 				14B73F852822BC5800D08ADD /* MessageDetail_module */,
-				14B73F31281BED7B00D08ADD /* Source */,
 			);
 			name = Discover_MineMessage;
 			path = CyxbsMobile2019_iOS/Discover/Discover_MineMessage;
@@ -2774,14 +2780,6 @@
 				14B73F30281BED7B00D08ADD /* MessageSettingVC.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		14B73F31281BED7B00D08ADD /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				14B73F32281BED7B00D08ADD /* MineMessageHeader.h */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		14B73F33281BED7B00D08ADD /* ActiveMessage_module */ = {
@@ -3014,14 +3012,6 @@
 				14B73F8A2823577600D08ADD /* SSRButton.m */,
 			);
 			path = SSRButton;
-			sourceTree = "<group>";
-		};
-		14BB7B632834A30600C19A34 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				14F0D3D128329EAF0046D8F5 /* JWZXHeader.h */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		14CED375288A590F00BADA8B /* Extension */ = {
@@ -3315,7 +3305,7 @@
 		18CDF4D4257F91BC006E8E5C /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				7AA4C46C288F811F00E204C8 /* Source */,
+				7AA4C48528922AE300E204C8 /* Source */,
 				FE0D60362801702B00319A9E /* Discover_SchoolBus */,
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
 				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
@@ -3725,7 +3715,6 @@
 				14D03A0827FDD3BB00D6AE93 /* JWNews_module */,
 				18CDF581257F91BD006E8E5C /* JWDetailNews_module */,
 				14FBBD5A2805B14A00D5B05D /* JWDownload_module */,
-				14BB7B632834A30600C19A34 /* Source */,
 			);
 			path = DIscover_JWZX;
 			sourceTree = "<group>";
@@ -5024,14 +5013,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		7AA4C46C288F811F00E204C8 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				7AA4C46B288F811100E204C8 /* DiscoverHeader.h */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
 		7AA4C46D288FCE9800E204C8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -5044,6 +5025,23 @@
 			isa = PBXGroup;
 			children = (
 				7AA4C470288FD30B00E204C8 /* NewQAHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7AA4C48528922AE300E204C8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4C47E2892206200E204C8 /* SchoolBusHeader.h */,
+				7AA4C47828921E9400E204C8 /* ElectricHeader.h */,
+				7AA4C480289220CE00E204C8 /* ADHeader.h */,
+				14F0D3D128329EAF0046D8F5 /* JWZXHeader.h */,
+				14B73F32281BED7B00D08ADD /* MineMessageHeader.h */,
+				7AA4C47C28921F7C00E204C8 /* TestArrangeHeader.h */,
+				7AA4C4842892217100E204C8 /* MapHeader.h */,
+				7AA4C47A28921F0B00E204C8 /* ScorePageHeader.h */,
+				7AA4C47628921BF400E204C8 /* SchoolCalendarHeader.h */,
+				7AA4C4822892213200E204C8 /* VolunteerHeader.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
