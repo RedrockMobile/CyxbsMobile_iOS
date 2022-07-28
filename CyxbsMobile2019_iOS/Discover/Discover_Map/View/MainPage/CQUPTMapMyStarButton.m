@@ -23,7 +23,7 @@
     if (self) {
         UIView *separateLine = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            separateLine.backgroundColor = [UIColor colorNamed:@"Map_StarLabelColor"];
+            separateLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#778AA9" alpha:1] darkColor:[UIColor colorWithHexString:@"#A1A1A1" alpha:1]];
         } else {
             separateLine.backgroundColor = [UIColor colorWithHexString:@"#778AA9"];
         }
@@ -35,7 +35,7 @@
         starLabel.text = @"我的收藏";
         starLabel.font = [UIFont fontWithName:PingFangSCBold size:14];
         if (@available(iOS 11.0, *)) {
-            starLabel.textColor = [UIColor colorNamed:@"Map_HotWordColor"];
+            starLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0E2A53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {
             starLabel.textColor = [UIColor colorWithHexString:@"#0E2A53"];
         }

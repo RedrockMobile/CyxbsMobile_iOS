@@ -59,7 +59,7 @@
     [self.contentView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -79,7 +79,7 @@
     [self.contentView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"85_108_139&131_131_132"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#546C8A" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:85/255.0 green:108/255.0 blue:139/255.0 alpha:1];
     }
@@ -101,7 +101,7 @@
     [self.contentView addSubview:view];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"226_232_238&90_90_90"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E1E8ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:226/255.0 green:232/255.0 blue:238/255.0 alpha:1];
     }

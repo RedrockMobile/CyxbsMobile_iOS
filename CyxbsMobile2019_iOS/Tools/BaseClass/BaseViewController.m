@@ -33,7 +33,7 @@
 }
 - (void)configNavagationBar {
     if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        self.navigationController.navigationBar.backgroundColor = UIColor.grayColor;
     } else {
         // Fallback on earlier versions
     }
@@ -41,7 +41,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]}];
     //隐藏导航栏的分割线
     if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"navicolor" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:UIColor.grayColor] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     } else {
         // Fallback on earlier versions
     }

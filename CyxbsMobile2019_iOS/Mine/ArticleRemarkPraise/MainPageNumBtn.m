@@ -19,7 +19,7 @@
     if (self) {
         self.titleLabel.font = [UIFont fontWithName:@"Impact" size:35];
         if (@available(iOS 11.0, *)) {
-            [self setTitleColor:[UIColor colorNamed:@"Mine_Main_QANumberLabelColor"] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
         } else {
             [self setTitleColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1] forState:UIControlStateNormal];
         }
@@ -47,7 +47,7 @@
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
     }

@@ -29,7 +29,7 @@
 }
 
 - (void)initializer {
-    self.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
+    self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     self.dataSourse = self;
     self.delegate = self;
 }

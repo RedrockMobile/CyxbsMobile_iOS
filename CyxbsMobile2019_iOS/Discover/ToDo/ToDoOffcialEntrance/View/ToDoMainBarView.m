@@ -24,7 +24,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [self setFrame];
     }
     return self;
@@ -115,7 +115,7 @@
     if (!_titleLbl) {
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLbl.text = @"邮子清单";
-        _titleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        _titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _titleLbl.font = [UIFont fontWithName:PingFangSCBold  size:21];
     }
     return _titleLbl;
@@ -133,7 +133,7 @@
 - (UIView *)spliteLine{
     if (!_spliteLine) {
         _spliteLine = [[UIView alloc] initWithFrame:CGRectZero];
-        _spliteLine.backgroundColor = [UIColor colorNamed:@"42_78_132&223_223_227"];
+        _spliteLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         _spliteLine.alpha = 0.1;
     }
     return _spliteLine;

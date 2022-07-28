@@ -89,7 +89,7 @@
 - (UILabel *)nameLab {
     if (_nameLab == nil) {
         _nameLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.width - 28, 28)];
-        _nameLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        _nameLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _nameLab.backgroundColor = UIColor.clearColor;
         _nameLab.font = [UIFont fontWithName:PingFangSC size:18];
     }

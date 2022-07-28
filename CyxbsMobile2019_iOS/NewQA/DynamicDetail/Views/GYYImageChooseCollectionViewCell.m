@@ -57,7 +57,7 @@
     label.text = @"添加图片";
     label.font = [UIFont fontWithName:@"PingFangSC-Medium" size:12];
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"SZH发布动态提示文字颜色"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#838383" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

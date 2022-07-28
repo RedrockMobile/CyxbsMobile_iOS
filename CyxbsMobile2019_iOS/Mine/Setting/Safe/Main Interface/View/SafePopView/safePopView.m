@@ -36,7 +36,7 @@
         
         UIView *AlertView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            AlertView.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+            AlertView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -54,7 +54,7 @@
         placeholderLab1.textAlignment = NSTextAlignmentCenter;
         placeholderLab1.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
         if (@available(iOS 11.0, *)) {
-            placeholderLab1.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+            placeholderLab1.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -66,7 +66,7 @@
         placeholderLab2.textAlignment = NSTextAlignmentCenter;
         placeholderLab2.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 11];
         if (@available(iOS 11.0, *)) {
-            placeholderLab2.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+            placeholderLab2.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

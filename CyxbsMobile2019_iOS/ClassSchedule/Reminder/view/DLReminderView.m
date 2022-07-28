@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"backgroundColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             self.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
         }
@@ -52,7 +52,7 @@
     
     self.titleLab.font = [UIFont fontWithName:PingFangSCMedium size: 34];
     if (@available(iOS 11.0, *)) {
-        self.titleLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
+        self.titleLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#122D55" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         self.titleLab.textColor = [UIColor colorWithHexString:@"#122D55"];
     }
@@ -70,7 +70,7 @@
     self.notoiceLab.numberOfLines = 1;
     self.notoiceLab.font = [UIFont fontWithName:PingFangSCSemibold size: 15];
     if (@available(iOS 11.0, *)) {
-        self.notoiceLab.textColor = [UIColor colorNamed:@"titleLabelColor"];
+        self.notoiceLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#122D55" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         self.notoiceLab.textColor = [UIColor colorWithHexString:@"#122D55"];
         // Fallback on earlier versions

@@ -71,10 +71,10 @@
 #pragma mark - configure
 
 - (void)configureView {
-    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&0_0_0_1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.8]];
     self.VCTitleStr = @"邮票明细";
     self.titlePosition = TopBarViewTitlePositionLeft;
-    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1&0_0_0_1"];
+    self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     
     CGSize size = self.view.frame.size;
@@ -273,7 +273,7 @@
 - (UIScrollView *)horizontalScrollView {
     if (_horizontalScrollView == nil) {
         _horizontalScrollView = [[UIScrollView alloc] initWithFrame:(CGRectZero)];
-        _horizontalScrollView.backgroundColor = [UIColor colorNamed:@"255_255_255_1&29_29_29_1"];
+        _horizontalScrollView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:0.9] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:0.8]];
         _horizontalScrollView.showsHorizontalScrollIndicator = NO;
         _horizontalScrollView.pagingEnabled = YES;
         _horizontalScrollView.layer.cornerRadius = 20;
@@ -344,7 +344,7 @@
 - (UILabel *)goodsDefaultLabel {
     if (_goodsDefaultLabel == nil) {
         _goodsDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _goodsDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        _goodsDefaultLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         _goodsDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         [_goodsDefaultLabel sizeToFit];
     }
@@ -362,7 +362,7 @@
 - (UILabel *)taskDefaultLabel {
     if (_taskDefaultLabel == nil) {
         _taskDefaultLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        _taskDefaultLabel.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        _taskDefaultLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         _taskDefaultLabel.text = @"还没有获取记录，快去做任务吧";
         _taskDefaultLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         [_taskDefaultLabel sizeToFit];

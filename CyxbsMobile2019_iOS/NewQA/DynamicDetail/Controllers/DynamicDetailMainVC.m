@@ -126,7 +126,7 @@
     self.isDynamicDetailVC = YES;
     self.isShowedReportView = NO;
     
-    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.commentTableDataAry = [NSMutableArray array];
     self.oneLeveCommentHeight = [NSMutableArray array];
     self.twoLevelCommentHeight = [NSMutableArray array];
@@ -503,13 +503,13 @@
         btn.selected = NO;
         btn.iconView.image = [UIImage imageNamed:@"未点赞"];
         btn.countLabel.text = [NSString stringWithFormat:@"%d",[btn.countLabel.text intValue] - 1];
-        btn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        btn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     }else{
         btn.enabled = NO;
         btn.selected = YES;
         btn.iconView.image = [UIImage imageNamed:@"点赞"];
         btn.countLabel.text = [NSString stringWithFormat:@"%d",[btn.countLabel.text intValue] + 1];
-        btn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+        btn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]];
     }
     //数据传入后端
     StarPostModel *model = [[StarPostModel alloc] init];
@@ -658,7 +658,7 @@
                 }];
         //还原初始化设置
         self.isReportComment = NO;
-        self.reportView.postID = [NSNumber numberWithInt:[self.post_id intValue]];;
+        self.reportView.postID = [NSNumber numberWithInt:[self.post_id intValue]];
     }
     self.reportView.textView.text = @"";
 }
@@ -1105,7 +1105,7 @@
 - (UITableView *)commentTable{
     if (!_commentTable) {
         _commentTable = [[UITableView alloc] initWithFrame:CGRectZero];
-        _commentTable.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        _commentTable.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         _commentTable.delegate = self;
         _commentTable.dataSource = self;
         //设置预加载高度
@@ -1114,7 +1114,7 @@
         _commentTable.rowHeight = UITableViewAutomaticDimension;
         _commentTable.automaticallyAdjustsScrollIndicatorInsets = NO;
         //cell间的颜色
-        _commentTable.separatorColor = [UIColor colorNamed:@"ShareLineViewColor"];
+        _commentTable.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
         _commentTable.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         //分割线样式为无
         _commentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -1139,12 +1139,12 @@
         //下面的文字
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.text = @"还没有评论哦～";
-        label.textColor = [UIColor colorNamed:@"85_108_137&240_240_242"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         label.font = [UIFont fontWithName:PingFangSCMedium size:13];
         [_noCommentView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(imageView);
-            make.top.equalTo(imageView.mas_bottom).offset(MAIN_SCREEN_H * 0.03);;
+            make.top.equalTo(imageView.mas_bottom).offset(MAIN_SCREEN_H * 0.03);
         }];
     }
     return _noCommentView;
@@ -1219,7 +1219,7 @@
         _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectZero];
         UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
         _inputView.textView.inputAccessoryView = toolbar;
-        _inputView.textView.textColor = [UIColor colorNamed:@"CellDetailColor"];
+        _inputView.textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C57" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         //设置代理方法
         _inputView.delegate = self;
         _inputView.textView.delegate = self;

@@ -163,13 +163,13 @@
     }];
 //    HistodayButtonLabelColor
     if (@available(iOS 11.0, *)) {
-        [weekChooseBtn setTitleColor:[UIColor colorNamed:@"HistoryBtnTextColor"] forState:UIControlStateNormal];
+        [weekChooseBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]] forState:UIControlStateNormal];
     } else {
         [weekChooseBtn setTitleColor:[UIColor colorWithHexString:@"F0F0F2"] forState:UIControlStateNormal];
     }
     
     if (@available(iOS 11.0, *)) {
-        weekChooseBtn.backgroundColor = [UIColor colorNamed:@"HistodayButtonBackGroundColor"];
+        weekChooseBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5E5E" alpha:1]];
     } else {
          weekChooseBtn.backgroundColor = [UIColor colorWithHexString:@"#5E5E5E"];
     }

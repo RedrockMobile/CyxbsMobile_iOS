@@ -102,7 +102,7 @@
         [_maskActionView addTarget:self
                             action:@selector(maskActionViewClicked:)];
     }
-    return _maskActionView;;
+    return _maskActionView;
 }
 
 - (UIView *)whiteView {

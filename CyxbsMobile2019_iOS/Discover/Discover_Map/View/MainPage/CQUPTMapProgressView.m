@@ -26,7 +26,7 @@
         
         UIView *backgroundView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            backgroundView.backgroundColor = [UIColor colorNamed:@"Map_DetailViewColor"];
+            backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             backgroundView.backgroundColor = [UIColor whiteColor];
         }
@@ -37,7 +37,7 @@
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.text = title;
         if (@available(iOS 11.0, *)) {
-            titleLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+            titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             titleLabel.textColor = [UIColor colorWithHexString:@"15305C"];
         }

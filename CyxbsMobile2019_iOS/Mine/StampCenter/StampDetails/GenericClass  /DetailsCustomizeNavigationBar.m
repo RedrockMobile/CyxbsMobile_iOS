@@ -27,7 +27,7 @@
     if (self) {
         [self setupView];
         self.title = title;
-        self.backgroundColor = [UIColor colorNamed:@"242_243_248_1"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     }
     return self;
 }
@@ -166,7 +166,7 @@
 - (UIView *)splitLine {
     if (_splitLine == nil) {
         _splitLine = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _splitLine.backgroundColor = [UIColor colorNamed:@"42_78_132_0.1"];
+        _splitLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         _splitLineHidden = NO;
     }
     return _splitLine;

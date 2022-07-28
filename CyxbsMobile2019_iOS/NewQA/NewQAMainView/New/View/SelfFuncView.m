@@ -12,13 +12,13 @@
 
 - (instancetype)init{
     if ([super init]) {
-        self.backgroundColor = [UIColor colorNamed:@"ReportBackColor"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
 
         _deleteBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [_deleteBtn setTitle:@"删除帖子" forState:UIControlStateNormal];
         _deleteBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Light" size: 14];
         if (@available(iOS 11.0, *)) {
-            [_deleteBtn setTitleColor:[UIColor colorNamed:@"ReportTextColor"] forState:UIControlStateNormal];
+            [_deleteBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }

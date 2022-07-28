@@ -17,7 +17,7 @@
         UILabel *roomLabel = [[UILabel alloc] init];
         roomLabel.font = [UIFont systemFontOfSize:13];
         if (@available(iOS 11.0, *)) {
-            roomLabel.textColor = [UIColor colorNamed:@"Discover_EmptyClass_TextColor"];
+            roomLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]];
         } else {
             roomLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
         }

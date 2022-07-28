@@ -8,9 +8,6 @@
 
 #import "DetailScorePerYearCell.h"
 #import "DetailSubjectScoreCell.h"
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define ColorBackView  [UIColor colorNamed:@"Color_E8F1FC&#5A5A5A" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface DetailScorePerYearCell()
 @end
@@ -34,7 +31,7 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = ColorWhite;
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -59,7 +56,7 @@
     self.timeLabel = label;
     label.font = [UIFont fontWithName:PingFangSCBold size:15];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -70,7 +67,7 @@
     UIView *backView = [[UIView alloc]init];
     self.blueBackgroundView = backView;
     if (@available(iOS 11.0, *)) {
-        backView.backgroundColor = ColorBackView;
+        backView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -81,7 +78,7 @@
         self.averangePointLabel = averangePointLabel;
         averangePointLabel.font = [UIFont fontWithName:PingFangSCBold size:21];
         if (@available(iOS 11.0, *)) {
-            averangePointLabel.textColor = Color21_49_91_F0F0F2;
+            averangePointLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -93,7 +90,7 @@
     self.averangePointTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -105,7 +102,7 @@
         self.averangeScoreLabel = label;
         label.font = [UIFont fontWithName:PingFangSCBold size:21];
         if (@available(iOS 11.0, *)) {
-            label.textColor = Color21_49_91_F0F0F2;
+            label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -117,7 +114,7 @@
     self.averangeScoreTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -129,7 +126,7 @@
     self.averangeRankLabel = label;
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -141,7 +138,7 @@
     self.averangeRankTitleLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -154,7 +151,7 @@
     [button.titleLabel setFont:[UIFont fontWithName:PingFangSCRegular size:11]];
     button.alpha = 0.35;
     if (@available(iOS 11.0, *)) {
-        [button setTitleColor:Color21_49_91_F0F0F2 forState:normal];
+        [button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:normal];
     } else {
         // Fallback on earlier versions
     }

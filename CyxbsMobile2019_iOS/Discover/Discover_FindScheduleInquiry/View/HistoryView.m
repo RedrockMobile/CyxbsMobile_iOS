@@ -62,7 +62,7 @@
 }
 
 - (void)historyBtnAddConstraints{
-    if(self.buttonArray.count==0)return;;
+    if(self.buttonArray.count==0)return;
     __block int k = 0;
     [self.buttonArray[0] mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.historyLabel.mas_bottom).offset(LINESPLIT);
@@ -227,7 +227,7 @@
     self.historyLabel = label;
     label.text = @"历史记录";
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }

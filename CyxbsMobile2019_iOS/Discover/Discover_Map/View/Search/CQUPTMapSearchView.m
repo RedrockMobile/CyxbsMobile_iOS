@@ -38,7 +38,7 @@
         self.historyArray = [[UserDefaultTool valueWithKey:Discover_cquptMapHistoryKey_String] copy];
         
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
         } else {
             self.backgroundColor = [UIColor whiteColor];
         }
@@ -63,7 +63,7 @@
         historyTableView.dataSource = self;
         historyTableView.delegate = self;
         if (@available(iOS 11.0, *)) {
-            historyTableView.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+            historyTableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
         } else {
             historyTableView.backgroundColor = [UIColor whiteColor];
         }
@@ -74,8 +74,8 @@
         
         
         if (@available(iOS 11.0, *)) {
-            historyLabel.textColor = [UIColor colorNamed:@"Map_SearchHistoryColor"];
-            [clearAllButton setTitleColor:[UIColor colorNamed:@"Map_SearchClearColor"] forState:UIControlStateNormal];
+            historyLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#234780" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
+            [clearAllButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD8" alpha:1] darkColor:[UIColor colorWithHexString:@"#979797" alpha:1]] forState:UIControlStateNormal];
         } else {
             historyLabel.textColor = [UIColor colorWithHexString:@"#778AA9"];
             [clearAllButton setTitleColor:[UIColor colorWithHexString:@"#ABBCD8"] forState:UIControlStateNormal];
@@ -175,7 +175,7 @@
         resultTableView.dataSource = self;
         resultTableView.delegate = self;
         if (@available(iOS 11.0, *)) {
-            resultTableView.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+            resultTableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
         } else {
             resultTableView.backgroundColor = [UIColor whiteColor];
         }

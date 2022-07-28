@@ -53,11 +53,11 @@
         _currentIndex = 0;
         _titleHeight = SCREEN_HEIGHT * 0.06;
         if (@available(iOS 11.0, *)) {
-            _titleColor = [UIColor colorNamed:@"QANavigationTitleColor"];
-            _selectedTitleColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+            _titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
+            _selectedTitleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {
-            _titleColor = [UIColor colorWithHexString:@"#15315B"];
-            _selectedTitleColor = [UIColor colorWithHexString:@"#15315B"];
+            _titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+            _selectedTitleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         }
         
         _titleFont = [UIFont fontWithName:@"PingFangSC" size:16];

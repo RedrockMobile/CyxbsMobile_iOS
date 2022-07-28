@@ -13,7 +13,7 @@
 
 - (instancetype)init{
     if (self = [super init]) {
-        self.contentView.backgroundColor = [UIColor colorNamed:@"table"];
+        self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         [self.contentView addSubview:self.mainLabel];
         [self.contentView addSubview:self.gotoButton];
         [self.contentView addSubview:self.detailLabel];
@@ -25,7 +25,7 @@
     if (!_mainLabel) {
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 18, 200, 22)];
         mainLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-        mainLabel.textColor = [UIColor colorNamed:@"#15315B"];
+        mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         mainLabel.text = @"每日打卡";
         _mainLabel = mainLabel;
     }
@@ -36,7 +36,7 @@
     if (!_detailLabel) {
         UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH,45,200, 20)];
         detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
-        detailLabel.textColor = [UIColor colorNamed:@"#15315B66"];
+        detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];;
         detailLabel.text = @"每日签到 +15";
         _detailLabel = detailLabel;
     }

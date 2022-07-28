@@ -118,7 +118,7 @@
     if (_orderIDLabel == nil) {
         _orderIDLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _orderIDLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
-        _orderIDLabel.textColor = [UIColor colorNamed:@"255_255_255_0.9&*"];
+        _orderIDLabel.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:0.9];
         [_orderIDLabel sizeToFit];
     }
     return _orderIDLabel;

@@ -68,7 +68,7 @@
     [view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender){ }]];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         view.backgroundColor = [UIColor whiteColor];
     }
@@ -99,7 +99,7 @@
 //    PC.currentPageIndicatorTintColor = [UIColor colorWithHexString:@"#5599FF"];
     
     if (@available(iOS 11.0, *)) {
-        PC.currentPageIndicatorTintColor = [UIColor colorNamed:@"184_82_255&black"];
+        PC.currentPageIndicatorTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#92A9EC" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     } else {
         PC.currentPageIndicatorTintColor = [UIColor colorWithRed:184/255.0 green:82/255.0 blue:255/255.0 alpha:1];
     }

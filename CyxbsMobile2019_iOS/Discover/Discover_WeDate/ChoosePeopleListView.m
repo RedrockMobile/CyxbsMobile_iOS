@@ -29,7 +29,7 @@
     if(self){
 //        self.frame = [UIScreen mainScreen].bounds;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ChoosePeopleListViewBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#666666" alpha:0.14] darkColor:[UIColor colorWithHexString:@"#EA" alpha:0]];
         } else {
             self.backgroundColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.14];
         }
@@ -74,7 +74,7 @@
     [self.scrollView addSubview:backgroundView];
     
     if (@available(iOS 11.0, *)) {
-        backgroundView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+        backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         backgroundView.backgroundColor = [UIColor whiteColor];
     }
@@ -95,7 +95,7 @@
     
     [btn setTitle:@"取消" forState:(UIControlStateNormal)];
     if (@available(iOS 11.0, *)) {
-        [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:(UIControlStateNormal)];
+        [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:(UIControlStateNormal)];
     } else {
         [btn setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:(UIControlStateNormal)];
     }

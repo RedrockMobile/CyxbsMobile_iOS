@@ -44,7 +44,7 @@
     [super viewDidLoad];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _cellHeight = 0.3866666667*SCREEN_WIDTH;
-    self.tableView.backgroundColor = [UIColor colorNamed:@"white&29_29_29_1"];
+    self.tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerClass:[IDCardTableViewCell class] forCellReuseIdentifier:NSStringFromClass(IDCardTableViewCell.class)];
     [self addNotification];
@@ -187,7 +187,7 @@
         [self.parentViewController.navigationController pushViewController:[[AuthenticViewController alloc] init] animated:YES];
     }];
     SettingRowAction.image = [UIImage imageNamed:@"identity_setting"];
-    SettingRowAction.backgroundColor = [UIColor colorNamed:@"white&white"];
+    SettingRowAction.backgroundColor = [UIColor colorWithHexString:@"FFFFFF"];
     
     UIContextualAction *deleteRowAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"删除" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         [IDModel

@@ -87,7 +87,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
-        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         [_titleLabel sizeToFit];
     }
     return _titleLabel;
@@ -97,7 +97,7 @@
     if (_subtitleLabel == nil) {
         _subtitleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _subtitleLabel.font = [UIFont fontWithName:PingFangSCMedium size:13];
-        _subtitleLabel.textColor = [UIColor colorNamed:@"41_65_105_1&223_223_227_1"];
+        _subtitleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#294169" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     }
     return _subtitleLabel;
 }
@@ -113,7 +113,7 @@
 - (UIView *)separateLine {
     if (_separateLine == nil) {
         _separateLine = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _separateLine.backgroundColor = [UIColor colorNamed:@"221_230_244_1&43_44_45_1"];
+        _separateLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE6F4" alpha:1] darkColor:[UIColor colorWithHexString:@"#2B2C2D" alpha:0.8]];
     }
     return _separateLine;
 }

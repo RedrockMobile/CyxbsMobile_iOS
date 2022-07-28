@@ -34,7 +34,7 @@
     self.eventArray = self.volunteer.eventsArray;
     self.eventsSortedByYears = self.volunteer.eventsSortedByYears;
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"MGDActivityBackColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

@@ -411,7 +411,7 @@
         _historyLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
         _historyLabel.text = @"历史记录";
         if (@available(iOS 11.0, *)) {
-            _historyLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+            _historyLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -426,7 +426,7 @@
         _clearAllHistoryRecordbtn = [[UIButton alloc] init];
         [_clearAllHistoryRecordbtn setTitle:@"清除全部" forState:UIControlStateNormal];
         if (@available(iOS 11.0, *)) {
-            [_clearAllHistoryRecordbtn setTitleColor:[UIColor colorNamed:@"SZHClearBtnTextColor"] forState:UIControlStateNormal];
+            [_clearAllHistoryRecordbtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#93A3BF" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }

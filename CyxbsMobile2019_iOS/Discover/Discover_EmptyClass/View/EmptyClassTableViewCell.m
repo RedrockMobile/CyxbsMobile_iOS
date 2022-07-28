@@ -19,7 +19,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     if (@available(iOS 11.0, *)) {
-        self.floorLabel.textColor = [UIColor colorNamed:@"Discover_EmptyClass_TextColor"];
+        self.floorLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]];
     } else {
         self.floorLabel.textColor = [UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1];
     }

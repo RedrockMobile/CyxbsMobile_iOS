@@ -20,8 +20,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.selectedBackgroundColor = [UIColor colorNamed:@"237_244_253&34_34_34"];
-        self.unSelectedBackgroundColor = [UIColor colorNamed:@"246_249_254&50_50_50"];
+        self.selectedBackgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ECF4FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#212121" alpha:1]];
+        self.unSelectedBackgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F6F8FD" alpha:1] darkColor:[UIColor colorWithHexString:@"#313131" alpha:1]];
         [self addScrollView];
         [self addYearBtns];
         //
@@ -80,8 +80,8 @@
     UIButton* btn = [[UIButton alloc] init];
     [self.scrollViewContentView addSubview:btn];
     
-    [btn setTitleColor:[UIColor colorNamed:@"21_49_91&240_240_242"] forState:UIControlStateSelected];
-    [btn setTitleColor:[UIColor colorNamed:@"156_169_189&131_131_133"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateSelected];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#9CA9BC" alpha:1] darkColor:[UIColor colorWithHexString:@"#838385" alpha:1]] forState:UIControlStateNormal];
     
     btn.layer.cornerRadius = 0.01908866995*SCREEN_HEIGHT;
     btn.tag = year;

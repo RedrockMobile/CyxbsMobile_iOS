@@ -75,7 +75,7 @@ final class PrivacyTipView: UIView, UITextViewDelegate {
             make.right.equalTo(self).offset(-0.1253333333 * SW)
         }
         
-        view.backgroundColor = UIColor.init(named: "248_249_252&44_44_44")
+        view.backgroundColor = UIColor(.dm ,light: UIColor(hexString: "#F8F8FB")!, dark: UIColor(hexString: "#2C2C2C")!)
         view.layer.cornerRadius = 23
         addTitleLbl()
         addTextField()
@@ -93,7 +93,7 @@ final class PrivacyTipView: UIView, UITextViewDelegate {
         }
         
         lbl.text = "隐私政策更新"
-        lbl.textColor = UIColor.init(named: "color21_49_91&#F0F0F2")
+        lbl.textColor = UIColor(.dm ,light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#F0F0F2")!)
         lbl.font = UIFont.init(name: PingFangSCSemibold, size: 18)
     }
     
@@ -108,7 +108,7 @@ final class PrivacyTipView: UIView, UITextViewDelegate {
         }
         
         txtView.isEditable = false
-        txtView.backgroundColor = UIColor.init(named: "248_249_252&44_44_44")
+        txtView.backgroundColor = UIColor(.dm ,light: UIColor(hexString: "#F8F8FB")!, dark: UIColor(hexString: "#2C2C2C")!)
         let str =
         """
             根据最近的法律和监管要求，我们更新了《掌上重邮用户协议》，以下是更新内容，请您查阅：
@@ -130,7 +130,7 @@ final class PrivacyTipView: UIView, UITextViewDelegate {
                 break
             }
         } while (true)
-        attStr.color = UIColor.init(named: "color21_49_91&#F0F0F2")
+        attStr.color = UIColor(.dm ,light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#F0F0F2")!)
         txtView.delegate = self
         txtView.attributedText = attStr
         txtView.font = UIFont.init(name: PingFangSCMedium, size: 16)

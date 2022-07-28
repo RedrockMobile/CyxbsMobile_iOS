@@ -31,7 +31,7 @@
     if (self) {
         
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Mine_Store_ContainerColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#EEF2F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             self.backgroundColor = [UIColor colorWithRed:239/255.0 green:242/255.0 blue:247/255.0 alpha:1];
         }
@@ -47,7 +47,7 @@
         titleLabel.text = @"关于我们";
         titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:21*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
-            titleLabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+            titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]];
         } else {
             titleLabel.textColor = [UIColor colorWithRed:21/255.0 green:48/255.0 blue:91/255.0 alpha:1];
         }
@@ -68,7 +68,7 @@
         appNameLabel.text = @"掌上重邮";
         appNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
-            appNameLabel.textColor = [UIColor colorNamed:@"Mine_Main_QALableColor"];
+            appNameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]];
         } else {
             appNameLabel.textColor = [UIColor colorWithRed:41/255.0 green:78/255.0 blue:132/255.0 alpha:1];
         }
@@ -86,7 +86,7 @@
         
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         if (@available(iOS 11.0, *)) {
-            tableView.backgroundColor = [UIColor colorNamed:@"Mine_Main_HeaderColor"];
+            tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             tableView.backgroundColor = [UIColor whiteColor];
         }
@@ -104,7 +104,7 @@
         corporationLabel.text = @"红岩网校工作站出品";
         corporationLabel.font = [UIFont systemFontOfSize:11*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
-            corporationLabel.textColor = [UIColor colorNamed:@"Mine_About_CopyrightColor"];
+            corporationLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#294169" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:0.29]];
         } else {
             corporationLabel.textColor = [UIColor colorWithRed:41/255.0 green:65/255.0 blue:105/255.0 alpha:0.4];
         }
@@ -116,7 +116,7 @@
         copyrightLabel.textAlignment = NSTextAlignmentCenter;
         copyrightLabel.font = [UIFont systemFontOfSize:11*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
-            copyrightLabel.textColor = [UIColor colorNamed:@"Mine_About_CopyrightColor"];
+            copyrightLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#294169" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:0.29]];
         } else {
             copyrightLabel.textColor = [UIColor colorWithRed:41/255.0 green:65/255.0 blue:105/255.0 alpha:0.4];
         }
@@ -176,7 +176,7 @@
 - (UIButton*)getLearnMoreBtn{
     UIButton *btn = [[UIButton alloc] init];
     if (@available(iOS 11.0, *)) {
-        [btn setTitleColor:[UIColor colorNamed:@"44_223_255&94_223_250"] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2CDFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#5EDFF9" alpha:1]] forState:UIControlStateNormal];
     } else {
         [btn setTitleColor:[UIColor colorWithRed:44/255.0 green:223/255.0 blue:255/255.0 alpha:1] forState:UIControlStateNormal];
     }

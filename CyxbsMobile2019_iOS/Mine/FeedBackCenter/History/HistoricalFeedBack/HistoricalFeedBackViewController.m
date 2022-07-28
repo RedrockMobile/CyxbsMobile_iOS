@@ -38,12 +38,12 @@
 
 - (void)configureView {
     // config self
-    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&29_29_29_1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     self.VCTitleStr = @"历史反馈";
     self.titlePosition = TopBarViewTitlePositionLeft;
-    self.splitLineColor = [UIColor colorNamed:@"221_230_244_1&43_44_45_1"];
+    self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE6F4" alpha:1] darkColor:[UIColor colorWithHexString:@"#2B2C2D" alpha:0.8]];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
-    self.titleColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+    self.titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     
     // config historicalFeedBackTableView
     [self.view addSubview:self.historicalFeedBackTableView];

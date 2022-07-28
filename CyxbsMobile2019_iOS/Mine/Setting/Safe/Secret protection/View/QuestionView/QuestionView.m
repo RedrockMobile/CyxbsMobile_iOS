@@ -39,7 +39,7 @@ NSString *ID1 = @"Sport_cell";
         UITableView *questionTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         questionTableView.layer.cornerRadius = 16;
         if (@available(iOS 11.0, *)) {
-            questionTableView.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+            questionTableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -92,7 +92,7 @@ NSString *ID1 = @"Sport_cell";
     ///头视图分割线
     UIView *lineView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        lineView.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+        lineView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -103,7 +103,7 @@ NSString *ID1 = @"Sport_cell";
     UILabel *placeholder = [[UILabel alloc] init];
     placeholder.text = @"选择一个密保问题";
     if (@available(iOS 11.0, *)) {
-        placeholder.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+        placeholder.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -167,8 +167,8 @@ NSString *ID1 = @"Sport_cell";
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:16*fontSizeScaleRate_SE];
     if (@available(iOS 11.0, *)) {
-        cell.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
-        cell.backgroundColor = [UIColor colorNamed:@"MGDSafeMainTableColor"];
+        cell.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+        cell.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

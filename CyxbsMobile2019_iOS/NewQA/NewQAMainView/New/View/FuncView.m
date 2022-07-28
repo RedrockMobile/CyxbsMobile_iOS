@@ -13,7 +13,7 @@
 - (instancetype)init{
     if ([super init]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"ReportBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -21,7 +21,7 @@
         _starGroupBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         _starGroupBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
         if (@available(iOS 11.0, *)) {
-            [_starGroupBtn setTitleColor:[UIColor colorNamed:@"ReportTextColor"] forState:UIControlStateNormal];
+            [_starGroupBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }
@@ -32,7 +32,7 @@
         [shieldBtn setTitle:@"屏蔽此人" forState:UIControlStateNormal];
         shieldBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
         if (@available(iOS 11.0, *)) {
-            [shieldBtn setTitleColor:[UIColor colorNamed:@"ReportTextColor"] forState:UIControlStateNormal];
+            [shieldBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }
@@ -44,7 +44,7 @@
         [reportBtn setTitle:@"举报" forState:UIControlStateNormal];
         reportBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
         if (@available(iOS 11.0, *)) {
-            [reportBtn setTitleColor:[UIColor colorNamed:@"ReportTextColor"] forState:UIControlStateNormal];
+            [reportBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0C3573" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }

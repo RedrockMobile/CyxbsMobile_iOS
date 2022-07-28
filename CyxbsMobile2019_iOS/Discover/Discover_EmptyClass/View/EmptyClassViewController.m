@@ -119,7 +119,7 @@
             self.contentView.weekButtonArray[self.choosedWeek - 1].backgroundColor = [UIColor clearColor];
         }
         if (@available(iOS 11.0, *)) {
-            sender.backgroundColor = [UIColor colorNamed:@"Discover_EmptyClass_ButtonBackground"];
+            sender.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE2F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             sender.backgroundColor = [UIColor colorWithRed:221/255.0 green:227/255.0 blue:248/255.0 alpha:1.0];
         }
@@ -145,7 +145,7 @@
             self.contentView.weekDayButtonArray[self.choosedWeekday - 1].backgroundColor = [UIColor clearColor];
         }
         if (@available(iOS 11.0, *)) {
-            sender.backgroundColor = [UIColor colorNamed:@"Discover_EmptyClass_ButtonBackground"];
+            sender.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE2F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             sender.backgroundColor = [UIColor colorWithRed:221/255.0 green:227/255.0 blue:248/255.0 alpha:1.0];
         }
@@ -164,7 +164,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         if (sender.selected) {
             if (@available(iOS 11.0, *)) {
-                sender.backgroundColor = [UIColor colorNamed:@"Discover_EmptyClass_ButtonBackground"];
+                sender.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE2F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
             } else {
                 sender.backgroundColor = [UIColor colorWithRed:221/255.0 green:227/255.0 blue:248/255.0 alpha:1.0];
             }
@@ -216,7 +216,7 @@
         }
 
         if (@available(iOS 11.0, *)) {
-            sender.backgroundColor = [UIColor colorNamed:@"Discover_EmptyClass_ButtonBackground"];
+            sender.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE2F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             sender.backgroundColor = [UIColor colorWithRed:221/255.0 green:227/255.0 blue:248/255.0 alpha:1.0];
         }

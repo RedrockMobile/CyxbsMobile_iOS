@@ -38,7 +38,7 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        self.backgroundColor = [UIColor colorNamed:@"241_243_248&45_45_45"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         self.layer.cornerRadius = 15;    //设置圆角
         [self addViews];
         [self addViewsConstraint];
@@ -133,7 +133,7 @@
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLbl.text = @"是否保存草稿";
         _titleLbl.font = [UIFont fontWithName:PingFangSCMedium size:13];
-        _titleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        _titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         
     }
     return _titleLbl;
@@ -143,10 +143,10 @@
     if (!_savebtn) {
         _savebtn = [[CYRleaseSaveDraftAlertBtn alloc] initWithFrame:CGRectZero];
         _savebtn.textLbl.text = @"保存";
-        _savebtn.textLbl.textColor = [UIColor colorNamed:@"12_53_115&240_240_242"];
+        _savebtn.textLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#153573" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         [_savebtn addTarget:self.delegate action:@selector(saveDrafts) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _savebtn;;
+    return _savebtn;
 }
 
 - (UIButton *)noteSaveBtn{
@@ -163,7 +163,7 @@
     if (!_cancelBtn) {
         _cancelBtn = [[CYRleaseSaveDraftAlertBtn alloc] initWithFrame:CGRectZero];
         _cancelBtn.textLbl.text = @"取消";
-        _cancelBtn.textLbl.textColor = [UIColor colorNamed:@"148_166_196&131_131_132"];
+        _cancelBtn.textLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#94A6C4" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
         [_cancelBtn addTarget:self.delegate action:@selector(dismisAlertViews) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cancelBtn;
@@ -172,7 +172,7 @@
 - (UIView *)firstSegementationView{
     if (!_firstSegementationView) {
         _firstSegementationView = [[UIView alloc] initWithFrame:CGRectZero];
-        _firstSegementationView.backgroundColor = [UIColor colorNamed:@"226_232_238&52_52_52"];
+        _firstSegementationView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
     }
     return _firstSegementationView;
 }
@@ -180,7 +180,7 @@
 - (UIView *)secondSegementationView{
     if (!_secondSegementationView) {
         _secondSegementationView = [[UIView alloc] initWithFrame:CGRectZero];
-        _secondSegementationView.backgroundColor = [UIColor colorNamed:@"226_232_238&52_52_52"];
+        _secondSegementationView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
     }
     return _secondSegementationView;
 }
@@ -188,7 +188,7 @@
 - (UIView *)intervalView{
     if (!_intervalView) {
         _intervalView = [[UIView alloc] initWithFrame:CGRectZero];
-        _intervalView.backgroundColor = [UIColor colorNamed:@"227_232_237_&52_52_52"];
+        _intervalView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E3E8ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
     }
     return _intervalView;
 }

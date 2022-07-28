@@ -74,7 +74,7 @@
 - (UIView*)getLabelViewWithDict:(NSDictionary*)dict{
     UIView *backView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        backView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+        backView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         backView.backgroundColor = [UIColor whiteColor];
     }
@@ -90,7 +90,7 @@
     week.font = [UIFont fontWithName:PingFangSCRegular size: 12];
     week.text = dict[@"week"];
     if (@available(iOS 11.0, *)) {
-        week.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        week.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         week.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -110,7 +110,7 @@
     day.font = [UIFont fontWithName:PingFangSCRegular size: 12];
     day.text = dict[@"day"];
     if (@available(iOS 11.0, *)) {
-        day.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        day.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         day.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -129,7 +129,7 @@
 - (UIView*)getMonthViewWithNum:(NSNumber*)num{
     UIView *backView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        backView.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+        backView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         backView.backgroundColor = [UIColor whiteColor];
     }
@@ -145,7 +145,7 @@
         month.text = [NSString stringWithFormat:@"%@月",num];
     }
     if (@available(iOS 11.0, *)) {
-        month.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        month.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         month.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -248,7 +248,7 @@
             [view removeFromSuperview];
             [tipView addSubview:view];
             if(@available(iOS 11.0,*)){
-                tipView.backgroundColor = [UIColor colorNamed:@"231_240_255_0.59&1_1_1_0.16"];
+                tipView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E7EFFF" alpha:0.587] darkColor:[UIColor colorWithHexString:@"#010101" alpha:0.161]];
             }else{
                 tipView.backgroundColor = [UIColor colorWithRed:232/255.0 green:240/255.0 blue:252/255.0 alpha:0.59];
             }
@@ -262,14 +262,14 @@
             
             
             if (@available(iOS 11.0, *)) {
-                view.backgroundColor = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
+                view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#294D83" alpha:1] darkColor:[UIColor colorWithHexString:@"#EBF2FA" alpha:1]];
             } else {
                 view.backgroundColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
             }
             
             for (UILabel *label in view.subviews) {
                 if (@available(iOS 11.0, *)) {
-                    label.textColor = [UIColor colorNamed:@"white_51_46_72_dayBar_today_textColor"];
+                    label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#332D47" alpha:1]];
                 } else {
                     label.textColor = [UIColor whiteColor];
                 }

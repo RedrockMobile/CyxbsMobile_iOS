@@ -22,7 +22,7 @@
 - (void)BuildUI {
     ///日期
     if (@available(iOS 11.0, *)) {
-        UILabel *dateLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 15] AndTextColor:[UIColor colorNamed:@"MGDLoginTitleColor"]];
+        UILabel *dateLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 15] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]]];
         dateLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:dateLabel];
         _dateLabel = dateLabel;
@@ -53,7 +53,7 @@
     ///背景
     UIView *backView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        backView.backgroundColor = [UIColor colorNamed:@"MGDTimeCellBackColor"];
+        backView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#3A3A3A" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -65,7 +65,7 @@
     VolunteerLabel *volunteerLabel = [[VolunteerLabel alloc] init];
     volunteerLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 16];
     if (@available(iOS 11.0, *)) {
-        volunteerLabel.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+        volunteerLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -76,7 +76,7 @@
     
     ///时长
     if (@available(iOS 11.0, *)) {
-        UILabel *timeLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"Impact" size: 30] AndTextColor:[UIColor colorNamed:@"MGDTimeCellHourColor"]];
+        UILabel *timeLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"Impact" size: 30] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
         timeLabel.textAlignment = NSTextAlignmentRight;
         [_backView addSubview:timeLabel];
         _timeLabel = timeLabel;
@@ -86,7 +86,7 @@
     
     ///单位
     if (@available(iOS 11.0, *)) {
-        UILabel *unitLabel = [self creatLabelWithText:@"时" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 8] AndTextColor:[UIColor colorNamed:@"MGDTimeCellHourColor"]];
+        UILabel *unitLabel = [self creatLabelWithText:@"时" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 8] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
         [_backView addSubview:unitLabel];
         _unitLabel = unitLabel;
     } else {
@@ -101,7 +101,7 @@
     
     ///地区文字
     if (@available(iOS 11.0, *)) {
-        UILabel *areaLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTextColor:[UIColor colorNamed:@"MGDTimeCellTextColor"]];
+        UILabel *areaLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
         areaLabel.textAlignment = NSTextAlignmentLeft;
         [_backView addSubview:areaLabel];
         _areaLabel = areaLabel;
@@ -117,7 +117,7 @@
     
     ///组织文字
     if (@available(iOS 11.0, *)) {
-        UILabel *groupLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTextColor:[UIColor colorNamed:@"MGDTimeCellTextColor"]];
+        UILabel *groupLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
         groupLabel.textAlignment = NSTextAlignmentLeft;
         [_backView addSubview:groupLabel];
         _groupLabel = groupLabel;

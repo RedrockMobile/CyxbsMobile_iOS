@@ -32,7 +32,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [self addSubview:self.dateLab];
         [self addSubview:self.titleLab];
         [self addSubview:self.detailView];
@@ -83,10 +83,9 @@
         _detailView.font = [UIFont fontWithName:PingFangSCRegular size:15];
         
         _detailView.textColor =
-        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1]
-                              darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         
-        _detailView.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
+        _detailView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     return _detailView;
 }

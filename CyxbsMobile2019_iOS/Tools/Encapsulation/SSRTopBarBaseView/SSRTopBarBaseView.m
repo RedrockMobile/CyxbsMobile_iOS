@@ -134,7 +134,7 @@
     if (_titleLab == nil) {
         _titleLab = [[UILabel alloc] init];
         _titleLab.font = [UIFont fontWithName:PingFangSCSemibold size:22];
-        _titleLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        _titleLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     return _titleLab;
 }
@@ -142,7 +142,7 @@
 - (UIView *)seperateLine {
     if (_seperateLine == nil) {
         _seperateLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.safeView.width, 2)];
-        _seperateLine.backgroundColor = [UIColor colorNamed:@"#BDCCE5'30^#676767'10"];
+        _seperateLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#BDCCE5" alpha:0.3] darkColor:[UIColor colorWithHexString:@"#676767" alpha:0.1]];
     }
     return _seperateLine;
 }

@@ -41,12 +41,12 @@
     [self.view addSubview:tableView];
     
 //    if (@available(iOS 11.0, *)) {
-//        tableView.backgroundColor = [UIColor colorNamed:@"241_243_248&0_0_0"];
+//        tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
 //    } else {
 //        tableView.backgroundColor = [UIColor colorWithRed:241/255.0 green:243/255.0 blue:248/255.0 alpha:1];
 //    }
     tableView.backgroundColor = self.view.backgroundColor;
-    
+
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.top.equalTo(self.topBarView.mas_bottom);

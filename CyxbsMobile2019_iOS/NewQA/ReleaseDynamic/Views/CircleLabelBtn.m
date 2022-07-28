@@ -26,7 +26,7 @@
         self.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         
         if(@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"圈子标签按钮未选中时背景颜色"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#3F3F3F" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

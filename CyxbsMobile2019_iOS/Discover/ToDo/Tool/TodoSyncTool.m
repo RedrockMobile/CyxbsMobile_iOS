@@ -893,7 +893,7 @@ static TodoSyncTool* _instance;
     if (str==nil||[str isEqualToString:@""]) {
         return @[];
     }
-    return [str componentsSeparatedByString:@", "];;
+    return [str componentsSeparatedByString:@", "];
 }
 
 

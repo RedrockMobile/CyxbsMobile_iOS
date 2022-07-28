@@ -37,7 +37,7 @@
     self.searchDynamicDic = nil;
     self.searchKnowledgeDic = nil;
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -242,7 +242,7 @@
         _NoContentlabel.text = @"没有相关内容哦～";
         _NoContentlabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
         if (@available(iOS 11.0, *)) {
-            _NoContentlabel.textColor = [UIColor colorNamed:@"SZHNOContentLableColor"];
+            _NoContentlabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

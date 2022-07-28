@@ -34,12 +34,12 @@
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.bounces = NO;
-        _collectionView.backgroundColor = [UIColor colorNamed:@"#FBFCFF"];
+        _collectionView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         [_collectionView registerClass:[GoodsCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         [_collectionView registerClass:[StampCenterSecondHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
         _collectionHeaderView = [[StampCenterCollectionHeaderView alloc]initWithFrame:CGRectMake(0, 215, SCREEN_WIDTH, COLLECTIONHEADER_H)];
         UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 215+65)];
-        v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+        v.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [v addSubview:_collectionHeaderView];
         [_collectionView addSubview: v];
     }
@@ -52,7 +52,7 @@
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.bounces = NO;
-        _tableView.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+        _tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;

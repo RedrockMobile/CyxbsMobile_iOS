@@ -54,7 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
    
     //初始化图片和图片框数组
     self.imagesAry = [NSMutableArray array];
@@ -85,7 +85,7 @@
     if (![self.tampComment isEqual:@""]) {
         [self.releaseView.placeHolderLabel setHidden:YES];
         self.topBarView.releaseBtn.userInteractionEnabled = YES;
-        self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+        self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
     }
    
 }
@@ -312,7 +312,7 @@
         //设置按钮为可用状态并设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
         } else {
             // Fallback on earlier versions
         }
@@ -322,7 +322,7 @@
         //设置按钮为禁用状态并且设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor =  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

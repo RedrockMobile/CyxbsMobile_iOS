@@ -7,7 +7,6 @@
 //
 
 #import "DetailSubjectScoreCell.h"
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @implementation DetailSubjectScoreCell
 
@@ -37,7 +36,7 @@
     self.nameLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -50,7 +49,7 @@
     self.scoreLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -63,7 +62,7 @@
     self.majorLabel = label;
     label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

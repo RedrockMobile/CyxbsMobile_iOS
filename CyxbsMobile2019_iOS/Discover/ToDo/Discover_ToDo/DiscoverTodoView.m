@@ -43,12 +43,12 @@
         self.dataModelArr = @[];
         
 //        if (@available(iOS 11.0, *)) {
-//            self.backgroundColor = [UIColor colorNamed:@"248_249_252&#1D1D1D"];
+//            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
 //        } else {
 //            self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
 //        }
         
-        self.backgroundColor = [UIColor colorNamed:@"TodoBG"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         
         self.layer.cornerRadius = 20;
         
@@ -166,7 +166,7 @@
     
     label.text = @"邮子清单";
     label.font = [UIFont fontWithName:PingFangSCBold size:18];
-    label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+    label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
 }
 
 /// 添加一个加号按钮，点击这个加号按钮后调用代理方法，来添加事项，代理是DiscoverViewController
@@ -196,10 +196,10 @@
         [self addSubview:label];
         _nothingLabel = label;
         
-//        label.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+//        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
         
-//        label.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+//        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         label.font = [UIFont fontWithName:PingFangSCMedium size:15];
         label.text = @"还没有待做事项哦～快去添加吧！";
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -268,14 +268,14 @@
 
     [attStr addAttributes:@{
         NSFontAttributeName:[UIFont fontWithName:PingFangSCRegular size:15],
-        NSForegroundColorAttributeName:[UIColor colorNamed:@"color21_49_91&#F0F0F2"]
+        NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]
     } range:NSMakeRange(0, attStr.length)];
     [attStr addAttributes:@{
-        NSForegroundColorAttributeName:[UIColor colorNamed:@"41_35_210&44_222_255"]
+        NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]]
     } range:[tipStr rangeOfString:serverTimeStr]];
     
     [attStr addAttributes:@{
-        NSForegroundColorAttributeName:[UIColor colorNamed:@"41_35_210&44_222_255"]
+        NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]]
     } range:[tipStr rangeOfString:localTimeStr]];
     
     view.tipMsgLabel.attributedText = attStr;

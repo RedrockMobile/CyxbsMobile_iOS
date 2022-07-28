@@ -25,11 +25,11 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
-        self.searchTextfield.placeholder = [NSString stringWithFormat:@"大家都在搜%@",self.placeholderArray[0]];;
+        self.searchTextfield.placeholder = [NSString stringWithFormat:@"大家都在搜%@",self.placeholderArray[0]];
         //设置placeholder轮播
         self.second = 0;
         self.i = 0;
@@ -147,7 +147,7 @@
         
             //字体颜色
         if (@available(iOS 11.0, *)) {
-            _searchTextfield.textColor = [UIColor colorNamed:@"SZHSearchTextColor"];
+            _searchTextfield.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#8796AB" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
             
         } else {
             // Fallback on earlier versions

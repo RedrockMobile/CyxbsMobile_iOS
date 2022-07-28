@@ -47,7 +47,7 @@
     [self addSubview:self.backViewOfWeeKBtns];
     
     if (@available(iOS 11.0, *)) {
-        self.backViewOfWeeKBtns.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+        self.backViewOfWeeKBtns.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
          self.backViewOfWeeKBtns.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         // Fallback on earlier versions

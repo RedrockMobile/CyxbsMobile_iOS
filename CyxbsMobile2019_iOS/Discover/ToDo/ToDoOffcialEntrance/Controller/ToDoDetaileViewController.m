@@ -87,7 +87,7 @@
     self.temporaryModel = [[TodoDataModel alloc] init];
     self.temporaryModel = self.model;
     self.instialState = self.temporaryModel.isDone;
-    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.repeatLblsAry = [NSMutableArray array];
     
     self.isChange = NO;
@@ -181,7 +181,7 @@ self.model = self.temporaryModel;
     if (self.temporaryModel.isDone) {
         //titleView变化
         [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
-        self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        self.titleView.textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         self.titleView.textView.alpha = 0.46;
         self.titleView.textView.editable = NO;
         self.repeatView.repeatContentScrollView.alpha = 0.6;
@@ -240,7 +240,7 @@ self.model = self.temporaryModel;
             
         }else{
             [self.titleView.cycleBtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
-            self.titleView.textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+            self.titleView.textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         }
     }
 }
@@ -352,11 +352,11 @@ self.model = self.temporaryModel;
 ///判断是否可用保存按钮
 - (void)isUseSaveBtn{
     if ((self.isChangeStatuBtn || self.isChange) && !self.isTitleNil) {
-        self.topBar.saveLbl.textColor = [UIColor colorNamed:@"41_35_210&44_222_255"];
+        self.topBar.saveLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]];
         self.topBar.saveLbl.alpha = 1;
         self.topBar.saveBtn.userInteractionEnabled = YES;
     }else{
-        self.topBar.saveLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        self.topBar.saveLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         self.topBar.saveLbl.alpha = 0.6;
         self.topBar.saveBtn.userInteractionEnabled = NO;
     }
@@ -562,7 +562,7 @@ self.model = self.temporaryModel;
 - (UIScrollView *)scrollView{
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NVGBARHEIGHT+STATUSBARHEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NVGBARHEIGHT+STATUSBARHEIGHT)];
-        _scrollView.backgroundColor =  [UIColor colorNamed:@"255_255_255&0_0_0"];
+        _scrollView.backgroundColor =  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         //设置scroll距离屏幕顶端无间距
         _scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         _scrollView.scrollEnabled = YES;
@@ -626,7 +626,7 @@ self.model = self.temporaryModel;
 - (UIView *)maskView{
     if (!_maskView) {
         _maskView = [[UIView alloc] initWithFrame:self.view.frame];
-        _maskView.backgroundColor = [UIColor colorNamed:@"0_15_37_0.14&0_0_0_0.7"];
+        _maskView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#000F25" alpha:0.14] darkColor:[UIColor colorWithHexString:@"#000000" alpha:0.7]];
         _maskView.alpha = 0;
     }
     return _maskView;

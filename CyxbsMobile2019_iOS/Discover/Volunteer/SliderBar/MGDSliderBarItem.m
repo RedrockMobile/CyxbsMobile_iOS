@@ -24,7 +24,7 @@
     if (self = [super init]) {
         _fontSize = DEFAULT_TITLE_FONTSIZE;
         if (@available(iOS 11.0, *)) {
-            _color = [UIColor colorNamed:@"MGDLoginTitleColor"];
+            _color = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
             self.backgroundColor = [UIColor clearColor];
         } else {
             // Fallback on earlier versions

@@ -15,7 +15,7 @@
         self.string = string;
         self.textLabel.text = string;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -48,7 +48,7 @@
         _textLbl = [[UILabel alloc] init];
         _textLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
         if (@available(iOS 11.0, *)) {
-            _textLbl.textColor = [UIColor colorNamed:@"SZHHistoryCellLblColor"];
+            _textLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#60718D" alpha:1] darkColor:[UIColor colorWithHexString:@"#838484" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

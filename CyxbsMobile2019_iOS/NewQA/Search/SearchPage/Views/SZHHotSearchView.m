@@ -22,7 +22,7 @@
 - (instancetype)initWithString:(NSString *)string{
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
         
         //一些初始化
         self.btnLine = 1;
@@ -165,7 +165,7 @@
         _hotSearch_KnowledgeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _hotSearch_KnowledgeLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
         if (@available(iOS 11.0, *)) {
-            _hotSearch_KnowledgeLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+            _hotSearch_KnowledgeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

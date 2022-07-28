@@ -8,10 +8,6 @@
 
 #import "ABScoreView.h"
 
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#DFDFE3" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-#define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
 @interface ABScoreView()
 @property (nonatomic, weak)UILabel *AScoreLabel;
 @property (nonatomic, weak)UILabel *BScoreLbabel;
@@ -23,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = ColorWhite;
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -40,7 +36,7 @@
     [self addSubview:AScoreLabel];
     AScoreLabel.font = [UIFont fontWithName:PingFangSCRegular size:11];
     if (@available(iOS 11.0, *)) {
-        AScoreLabel.textColor = Color21_49_91_F0F0F2;
+        AScoreLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -60,7 +56,7 @@
     [self addSubview:AScore];
     AScore.font = [UIFont fontWithName:@"Impact" size: 32];
     if (@available(iOS 11.0, *)) {
-        AScore.textColor = Color42_78_132;
+        AScore.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -76,7 +72,7 @@
     UIView *seperateLine = [[UIView alloc]init];
     self.seperateLine = seperateLine;
     if (@available(iOS 11.0, *)) {
-        seperateLine.backgroundColor = Color42_78_132;
+        seperateLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

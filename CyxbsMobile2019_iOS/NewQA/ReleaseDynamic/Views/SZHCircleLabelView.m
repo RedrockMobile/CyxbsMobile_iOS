@@ -28,7 +28,7 @@
     //分割view
     self.topSeparationView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        self.topSeparationView.backgroundColor = [UIColor colorNamed:@"SZH分割条颜色"];
+        self.topSeparationView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#252525" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -43,7 +43,7 @@
     self.tittleLbl = [[UILabel alloc] init];
     self.tittleLbl.text = @"请选择一个圈子";
     if (@available(iOS 11.0, *)) {
-        self.tittleLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+        self.tittleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -68,7 +68,7 @@
         button.tag = 100 + i;      //设置每个button的tag
         [button addTarget:self action:@selector(changeBtnState:) forControlEvents:UIControlEventTouchUpInside];
         if (@available(iOS 11.0, *)) {
-            [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮未选中时文本颜色"] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }

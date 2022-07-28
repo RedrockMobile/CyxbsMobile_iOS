@@ -97,7 +97,7 @@
     
     [self setBackViewWithGesture];
     
-    self.view.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
     //如果数据源数组为空，无数据，则不展示下半部分页面
     if (self.tableDataAry.count == 0) {
         [self buildFrameWhenNoDynamic];
@@ -505,7 +505,7 @@
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
         if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+            cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -515,7 +515,7 @@
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
         if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+            cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]];
             
         } else {
             // Fallback on earlier versions
@@ -810,8 +810,8 @@
         _relevantDynamicLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
             //设置字体和背景颜色
         if (@available(iOS 11.0, *)) {
-            _relevantDynamicLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
-            _relevantDynamicLbl.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+            _relevantDynamicLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+            _relevantDynamicLbl.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

@@ -171,7 +171,7 @@
         _textView.textContainer.lineFragmentPadding = 0;
         _textView.scrollEnabled = NO;
         _textView.font = [UIFont fontWithName:PingFangSCBold size:22];
-        _textView.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        _textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     return _textView;
 }
@@ -182,7 +182,7 @@
         _textViewPlaceHolderLbl.alpha = 0.4;
         _textViewPlaceHolderLbl.text = @"请输入标题";
         _textViewPlaceHolderLbl.font = [UIFont fontWithName:PingFangSCMedium size:22];
-        _textViewPlaceHolderLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        _textViewPlaceHolderLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _textViewPlaceHolderLbl.hidden = YES;
     }
     return _textViewPlaceHolderLbl;

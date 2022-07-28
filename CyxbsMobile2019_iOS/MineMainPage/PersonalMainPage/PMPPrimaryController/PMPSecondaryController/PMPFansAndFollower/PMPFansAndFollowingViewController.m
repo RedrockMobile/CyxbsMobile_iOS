@@ -113,8 +113,7 @@ BaseTableViewCellDelegate>
     self.VCTitleStr = @"详情";
     self.titleColor = [UIColor dm_colorWithLightColor:RGBColor(21, 49, 91, 1) darkColor:RGBColor(223, 223, 227, 1)];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
-#warning "找不到 ‘white_1&black_1’ 对应的颜色"
-    self.topBarBackgroundColor = [UIColor colorNamed:@"white_1&black_1"];
+    self.topBarBackgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.backBtnImage = [UIImage imageNamed:@"navBar_back"];
     
     // segmentView

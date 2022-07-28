@@ -117,7 +117,7 @@ UIGestureRecognizerDelegate>
     UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, stringWidth, 40)];
     titleLbl.text = self.topicIdString;
     [titleLbl setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
-    titleLbl.textColor = [UIColor colorNamed:@"21_49_91&131_131_132"];
+    titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     [view addSubview:titleLbl];
     view.userInteractionEnabled = YES;
     //添加返回的手势
@@ -127,9 +127,9 @@ UIGestureRecognizerDelegate>
     UIBarButtonItem *spacebutton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spacebutton.width = -1000;//这个数值可以调整
     self.navigationItem.leftBarButtonItems = @[spacebutton,leftBarItem];
-        self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
-    self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
+        self.navigationController.navigationBar.barTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    self.navigationController.navigationBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    self.navigationController.navigationBar.tintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];//设置颜色
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
@@ -153,7 +153,7 @@ UIGestureRecognizerDelegate>
         }
     [self setNotification];//设置通知中心
     [self setBackViewWithGesture];//设置弹出view
-    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
 
     self.leftTableArray = [[NSMutableArray alloc]init];
     self.leftPostmodel = [[YYZTopicModel alloc]init];
@@ -190,7 +190,7 @@ UIGestureRecognizerDelegate>
     backgroundScrollView.bounces = NO;
     backgroundScrollView.showsVerticalScrollIndicator = FALSE;
     backgroundScrollView.showsHorizontalScrollIndicator = FALSE;
-    backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+    backgroundScrollView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125-getStatusBarHeight_Double-25);
     //设置kvo监听
     [backgroundScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"2"];
@@ -231,13 +231,13 @@ UIGestureRecognizerDelegate>
             CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
             int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
             if(currentPage == 0){
-                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+                [self.leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
             }
             else if(currentPage == 1){
                 [self.topicRightTableView reloadData];
-                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
-                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+                [self.leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
             }
             //改变提示线位置
             double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
@@ -277,7 +277,7 @@ UIGestureRecognizerDelegate>
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
     topicLeftTableView.scrollEnabled = NO;
-    topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    topicLeftTableView.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     topicLeftTableView.tableFooterView = [[UIView alloc]init];
     //[topicLeftTableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"3"];
@@ -287,7 +287,7 @@ UIGestureRecognizerDelegate>
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
     topicRightTableView.scrollEnabled = NO;
-    topicRightTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    topicRightTableView.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     topicRightTableView.tableFooterView = [[UIView alloc]init];
     //[topicRightTableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"3"];
@@ -399,13 +399,13 @@ UIGestureRecognizerDelegate>
 - (void) setMiddleLable {
     //现在是我自己写的，以后重构直接用HMSegmentedControl简单一点
     UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 50)];
-    middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    middleLable.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1B1B1B" alpha:1]];
     middleLable.layer.cornerRadius = 15;
     middleLable.clipsToBounds = YES;
     UILabel *middleLeftLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 165, 15, 20)];
-    middleLeftLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    middleLeftLable.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1B1B1B" alpha:1]];
     UILabel *middleRightLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-15, 165, 15, 20)];
-    middleRightLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    middleRightLable.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1B1B1B" alpha:1]];
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -415,8 +415,8 @@ UIGestureRecognizerDelegate>
     [rightButton setTitle:@"热门" forState:UIControlStateNormal];
     [leftButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
     [rightButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
-    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
     leftButton.frame = CGRectMake(15, 140, 40, 25);
     rightButton.frame = CGRectMake(70, 140, 40, 25);
     //leftButton.highlighted = YES;//默认显示最新
@@ -554,7 +554,7 @@ UIGestureRecognizerDelegate>
         UILabel *noneLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-83+40, 330, 167,127)];
         noneLable.text = @"还没有动态哦~";
         noneLable.font = [UIFont fontWithName:nil size:13];
-        noneLable.textColor = [UIColor colorNamed:@"YYZColor2"];;
+        noneLable.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         leftImageview.image = image;
         [self.backgroundScrollView addSubview:leftImageview];
         [self.backgroundScrollView addSubview:noneLable];
@@ -691,13 +691,13 @@ UIGestureRecognizerDelegate>
         cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
-        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     }else {
         cell.starBtn.selected = YES;
         cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
-        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+        cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]];
     }
     CGFloat pageWidth = self.topicScrollView.frame.size.width;
     int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
