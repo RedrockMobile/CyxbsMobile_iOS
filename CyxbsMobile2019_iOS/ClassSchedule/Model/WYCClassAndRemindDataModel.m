@@ -70,7 +70,7 @@
     
     [HttpTool.shareTool
      request:ClassSchedule_POST_keBiao_API
-     type:HttpToolRequestTypeGet
+     type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:paramDict
      progress:nil
@@ -145,7 +145,7 @@
     
     [HttpTool.shareTool
      request:ClassSchedule_POST_keBiao_API
-     type:HttpToolRequestTypeGet
+     type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameters
      progress:nil
@@ -269,7 +269,7 @@
             
             [HttpTool.shareTool
              request:ClassSchedule_POST_keBiao_API
-             type:HttpToolRequestTypeGet
+             type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{@"stuNum":infoDict[@"stuNum"]}
              progress:nil
