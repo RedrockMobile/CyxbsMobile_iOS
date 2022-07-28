@@ -31,8 +31,15 @@
         @"page":@(_page),
         @"size":@"10",
     };
-    [[HttpClient defaultClient] requestWithPath:_url method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSArray *dataArr = responseObject[@"data"];
+    
+    [HttpTool.shareTool
+     request:_url
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:paramDict
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSArray *dataArr = object[@"data"];
         [self.dataArr addObjectsFromArray:dataArr];
         self.page++;
         if (dataArr.count < 10) {
@@ -42,10 +49,27 @@
             self.state = MainPage2RequestModelStateEndRefresh;
             [self.delegate MainPage2RequestModelLoadDataFinishWithState:MainPage2RequestModelStateEndRefresh];
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         self.state = MainPage2RequestModelStateFailure;
         [self.delegate MainPage2RequestModelLoadDataFinishWithState:(MainPage2RequestModelStateFailure)];
     }];
+    
+//    [[HttpClient defaultClient] requestWithPath:_url method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSArray *dataArr = responseObject[@"data"];
+//        [self.dataArr addObjectsFromArray:dataArr];
+//        self.page++;
+//        if (dataArr.count < 10) {
+//            self.state = MainPage2RequestModelStateNoMoreDate;
+//            [self.delegate MainPage2RequestModelLoadDataFinishWithState:MainPage2RequestModelStateNoMoreDate];
+//        }else {
+//            self.state = MainPage2RequestModelStateEndRefresh;
+//            [self.delegate MainPage2RequestModelLoadDataFinishWithState:MainPage2RequestModelStateEndRefresh];
+//        }
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        self.state = MainPage2RequestModelStateFailure;
+//        [self.delegate MainPage2RequestModelLoadDataFinishWithState:(MainPage2RequestModelStateFailure)];
+//    }];
 }
 
 @end
