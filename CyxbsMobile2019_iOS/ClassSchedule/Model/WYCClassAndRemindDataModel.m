@@ -461,9 +461,9 @@
     
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:startDate];
     
-    [[NSUserDefaults standardUserDefaults]setValue:[NSString stringWithFormat:@"%ld-%02ld-%02ld",components.year,components.month,components.day] forKey:DateStartKey_NSString];
+    [NSUserDefaults.standardUserDefaults setValue:[NSString stringWithFormat:@"%ld-%02ld-%02ld",components.year,components.month,components.day] forKey:DateStartKey_NSString];
     
-    [[NSUserDefaults standardUserDefaults] setValue:week forKey:nowWeekKey_NSString];
+    [NSUserDefaults.standardUserDefaults setValue:week forKey:nowWeekKey_NSString];
 }
 
 @end
