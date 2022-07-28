@@ -16,28 +16,28 @@
  问题部分
  */
 
-//全部问题列表。未使用
+// 全部问题列表。未使用
 #define QA_GET_allQuestions_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Question/getQuestionList"]
 
-//添加新问题。未使用
+// 添加新问题。未使用
 #define QA_GET_addQuestion_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Question/add"]
 
-//问题图片上传。未使用
+// 问题图片上传。未使用
 #define QA_GET_uploadPic_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Question/uploadPicture"]
 
-//取消提问。未使用
+// 取消提问。未使用
 #define QA_GET_cancelQuestion_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Question/cancelQuestion"]
 
-//问题详情。未使用
+// 问题详情。未使用
 #define QA_GET_questionDetail_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Question/getDetailedInfo"]
 
 // 阅读量统计。未使用
 #define QA_GET_browseNumber_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Question/addView"]
 
-//问题回答列表。未使用
+// 问题回答列表。未使用
 #define QA_GET_questionAnswerList_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/getAnswerlist"]
 
-//忽略问题。未使用
+// 忽略问题。未使用
 #define QA_GET_ignoreQuestion_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Question/ignore"]
 
 
@@ -46,28 +46,28 @@
  回答部分
  */
 
-//回答问题。未使用
+// 回答问题。未使用
 #define QA_GET_answerQuestion_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/add"]
 
-//上传答案图片。未使用
+// 上传答案图片。未使用
 #define QA_GET_answerAnswerImageUpload [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/uploadPicture"]
 
-//某个问题下的回答列表。未使用
+// 某个问题下的回答列表。未使用
 #define QA_GET_questionAnswerLIST_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/add"]
 
-//采纳答案。未使用
+// 采纳答案。未使用
 #define QA_GET_adoptAnswer_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/adopt"]
 
-//赞接口。未使用
+// 赞接口。未使用
 #define QA_GET_addLike_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/praise"]
 
-//取消赞接口。未使用
+// 取消赞接口。未使用
 #define QA_GET_cancelLike_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/cancelPraise"]
 
-//某个回答下的评论列表。未使用
+// 某个回答下的评论列表。未使用
 #define QA_GET_questionDiscuss_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/getRemarkList"]
 
-//在回答下添加评论。未使用
+// 在回答下添加评论。未使用
 #define QA_GET_addDiscuss_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Answer/remark"]
 
 /*
@@ -78,10 +78,10 @@
 /*
  草稿箱
  */
-//添加到草稿箱。未使用
+// 添加到草稿箱。未使用
 #define QA_GET_addDraft_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-draft/User/addItemInDraft"]
 
-//更新草稿箱内容。未使用
+// 更新草稿箱内容。未使用
 #define QA_GET_updateDraft_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-draft/User/updateItemInDraft"]
 
 #pragma mark - “新版邮问”接口
@@ -89,19 +89,19 @@
 /*
  搜索部分
  */
-//热词搜索列表（非搜索框内）
+// 热词搜索列表（非搜索框内）
 #define NewQA_GET_hotWords_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/search/getSearchHotWord"]
 
-//搜索结果：
-    //相关动态
+// 搜索结果：
+    // 相关动态
 #define NewQA_GET_searchDynamic_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/search/searchPost"]
-    //重邮知识库
+    // 重邮知识库
 #define NewQA_GET_searchKnowledge_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/search/searchKnowledge"]
 
 /*
  发布动态页
  */
-//发布动态
+// 发布动态
 #define NewQA_POST_releaseDynamicRelease_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/releaseDynamic"]
 
 // 推荐帖子
@@ -138,22 +138,22 @@
  圈子详情页
  */
 
-//圈子页帖子内容
+// 圈子页帖子内容
 #define NewQA_GET_QATopicContent_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getLoopPage"]
-//圈子广场
+// 圈子广场
 #define NewQA_POST_QATopicGroup_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/getTopicGround"]
-//关注和取消圈子
+// 关注和取消圈子
 #define NewQA_POST_followTopic_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/ground/followTopicGround"]
 /**
  动态详情页
  */
-//根据帖子id获取帖子的具体信息
+// 根据帖子id获取帖子的具体信息
 #define NewQA_GET_QADynamicDetail_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/post/getPostInfo"]
 
-//根据id获取评论/回复
+// 根据id获取评论/回复
 #define NewQA_GET_QACommentReply_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment"]
 
-//回复评论
+// 回复评论
 #define NewQA_POST_QACommentRelease_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/releaseComment"]
 /*
  删除帖子或评论（POST）     说明：

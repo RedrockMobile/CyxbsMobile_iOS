@@ -9,7 +9,7 @@
 #import "SchoolBusData.h"
 #import <CommonCrypto/CommonCrypto.h>
 
-#define Discover_POST_schoolBus_API_DEV @"https://be-dev.redrock.cqupt.edu.cn/schoolbus/status"
+
 
 @implementation SchoolBusData
 

@@ -23,6 +23,8 @@
 //@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/todos"
 #define ToDo_GET_downloadData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-todo/todos"]
 
-
+//
+//@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create"
+#define ToDo_POST_firstPush_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-todo/batch-create"]
 
 #endif /* ToDoHeader_h */
