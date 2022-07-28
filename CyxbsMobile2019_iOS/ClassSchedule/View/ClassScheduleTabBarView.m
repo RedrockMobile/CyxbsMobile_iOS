@@ -196,7 +196,7 @@
         self.classroomLabel.labelText = paramDict[@"classroomLabel"];
         self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
         self.classLabel.labelText = paramDict[@"classLabel"];
-        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_RemindBeforeClass"]!=nil){
+        if([NSUserDefaults.standardUserDefaults objectForKey:@"Mine_RemindBeforeClass"]!=nil){
             
             int weekNum,weekday,lesson;
             weekday = [paramDict[@"hash_day"] intValue];

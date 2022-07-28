@@ -10,7 +10,7 @@
 
 @implementation ColorManager
 + (UIColor *)xxBtnBackColor {
-    NSInteger mark = [[NSUserDefaults standardUserDefaults] integerForKey:@"skinkey"];
+    NSInteger mark = [NSUserDefaults.standardUserDefaults integerForKey:@"skinkey"];
     switch (mark) {
         case 1:
             return [UIColor redColor];

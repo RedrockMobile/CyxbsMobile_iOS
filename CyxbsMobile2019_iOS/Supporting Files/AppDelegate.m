@@ -34,8 +34,8 @@ extern CFAbsoluteTime StartTime;
     self.reaManager = man;
     [man setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         //把网络状态写入缓存
-        [[NSUserDefaults standardUserDefaults] setInteger:status forKey:@"AFNetworkReachabilityStatus"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults setInteger:status forKey:@"AFNetworkReachabilityStatus"];
+        [NSUserDefaults.standardUserDefaults synchronize];
         
         //发送网络发送变化的通知
         [[NSNotificationCenter defaultCenter] postNotificationName:@"AFNetworkReachabilityStatusChanges" object:@(status)];
@@ -112,7 +112,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
 //    [UserItemTool refresh];
     if ([UserDefaultTool getStuNum] && [UserItemTool defaultItem].token && [ArchiveTool getPersonalInfo]) {
-        // 刷新志愿信息
+//         刷新志愿信息
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
         [responseSerializer setRemovesKeysWithNullValues:YES];
@@ -124,6 +124,38 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         
         VolunteerItem *volunteer = [[VolunteerItem alloc] init];
 
+        
+//        [HttpTool.shareTool
+//         request:Discover_POST_volunteerRequest_API
+//         type:HttpToolRequestTypePost
+//         serializer:HttpToolRequestSerializerHTTP
+//         bodyParameters:nil
+//         progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//            NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
+//            for (NSDictionary *dict in object[@"record"]) {
+//                VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
+//                [temp addObject:volEvent];
+//            }
+//            volunteer.eventsArray = temp;
+//            [volunteer sortEvents];
+//
+//            NSInteger hour = 0;
+//            int count = 0;
+//            for (VolunteeringEventItem *event in volunteer.eventsArray) {
+//                hour += [event.hour integerValue];
+//                count++;
+//            }
+//            volunteer.hour = [NSString stringWithFormat:@"%ld", hour];
+//            volunteer.count = [NSString stringWithFormat:@"%d", count];
+//            [ArchiveTool saveVolunteerInfomationWith:volunteer];
+//
+//        }
+//         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//        }];
+        
+        
         [manager POST:Discover_POST_volunteerRequest_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
             NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
             for (NSDictionary *dict in responseObject[@"record"]) {
@@ -132,7 +164,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
             }
             volunteer.eventsArray = temp;
             [volunteer sortEvents];
-            
+
             NSInteger hour = 0;
             int count = 0;
             for (VolunteeringEventItem *event in volunteer.eventsArray) {
@@ -142,9 +174,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
             volunteer.hour = [NSString stringWithFormat:@"%ld", hour];
             volunteer.count = [NSString stringWithFormat:@"%d", count];
             [ArchiveTool saveVolunteerInfomationWith:volunteer];
-            
+
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
+
         }];
     }
     
@@ -221,18 +253,18 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 ///设置存储、更换baseURL
 - (void)settingBaseURL{
 #ifdef DEBUG
-    [[NSUserDefaults standardUserDefaults] setObject:@"https://be-dev.redrock.cqupt.edu.cn/" forKey:@"baseURL"];
+    [NSUserDefaults.standardUserDefaults setObject:@"https://be-dev.redrock.cqupt.edu.cn/" forKey:@"baseURL"];
 #else
     //如果最开始无baseURL，则设置为学校服务器
-    NSString *baseURL= [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"];
+    NSString *baseURL= [NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"];
     if (baseURL == nil || [baseURL isEqualToString:@""]) {
 //        baseURL = @"https://be-prod.redrock.team/";
         baseURL = @"https://be-prod.redrock.cqupt.edu.cn/";
-        [[NSUserDefaults standardUserDefaults] setObject:baseURL forKey:@"baseURL"];
+        [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
     }
     //更新baseURL
     [[HttpClient defaultClient] baseUrlRequestSuccess:^(NSString *str) {
-        [[NSUserDefaults standardUserDefaults] setObject:str forKey:@"baseURL"];
+        [NSUserDefaults.standardUserDefaults setObject:str forKey:@"baseURL"];
     }];
 //    @"https://be-dev.redrock.cqupt.edu.cn/"
 //    NS，，，，，，，，Log(@"baseURL%@",CyxbsMobileBaseURL_1);
@@ -266,11 +298,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     NSString *nowWeek = getNowWeek_NSString;
     
     //如果没有打开每日推送课表开关，或者当前已配置的推送的周 和 当前真正的周相同，那么return
-    if([[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_RemindEveryDay"]==nil || [[NSUserDefaults standardUserDefaults] valueForKey:@"当前每天晚上推送的课表对应的周"]==nowWeek){
+    if([NSUserDefaults.standardUserDefaults valueForKey:@"Mine_RemindEveryDay"]==nil || [NSUserDefaults.standardUserDefaults valueForKey:@"当前每天晚上推送的课表对应的周"]==nowWeek){
         return;
     }
     //更新已配置的推送的周
-    [[NSUserDefaults standardUserDefaults] setValue:nowWeek forKey:@"当前每天晚上推送的课表对应的周"];
+    [NSUserDefaults.standardUserDefaults setValue:nowWeek forKey:@"当前每天晚上推送的课表对应的周"];
     //下面的代码，功能是完成一周7天的通知配置
     
     //week[j][k]代表（星期j+1）的（第k+1节大课
@@ -491,7 +523,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
            isEqualToString:@"remindBeforeCourseBegin"];
         
         //如果本地通知信息是这两个且没有打开“启动APP时显示课表”的开关
-        if(is&&[UserItem defaultItem].stuNum&&[[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_LaunchingWithClassScheduleView"]){
+        if(is&&[UserItem defaultItem].stuNum&&[NSUserDefaults.standardUserDefaults valueForKey:@"Mine_LaunchingWithClassScheduleView"]){
             dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.2 * NSEC_PER_SEC);
             dispatch_after(time, dispatch_get_main_queue(), ^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"DiscoverVCShouldPresentMySchedul" object:nil];

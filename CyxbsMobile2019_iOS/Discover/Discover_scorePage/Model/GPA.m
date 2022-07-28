@@ -34,7 +34,7 @@
 //    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
 //    
 //    NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"GET" URLString:Discover_GET_GPA_API parameters:nil error:nil];
-//    req.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
+//    req.timeoutInterval= [[NSUserDefaults.standardUserDefaults valueForKey:@"timeoutInterval"] longValue];
 //    [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 //    [req setValue:@"*/*" forHTTPHeaderField:@"Accept"];
 //    [req setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"Authorization"];

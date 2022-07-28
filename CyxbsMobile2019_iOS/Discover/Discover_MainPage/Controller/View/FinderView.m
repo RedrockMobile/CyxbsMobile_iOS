@@ -116,7 +116,7 @@
 }
 - (void) addSomeEnters {
     //循环将四个按钮添加到数组self.enterButtonArray
-    NSArray <NSString*>*favToolArray =[[NSUserDefaults standardUserDefaults] objectForKey:@"ToolPage_UserFavoriteToolsName"];
+    NSArray <NSString*>*favToolArray = [NSUserDefaults.standardUserDefaults objectForKey:@"ToolPage_UserFavoriteToolsName"];
     NSMutableArray <NSString*>*nameArray = [NSMutableArray array];
     if(favToolArray) {
         for(NSString *str in favToolArray) {

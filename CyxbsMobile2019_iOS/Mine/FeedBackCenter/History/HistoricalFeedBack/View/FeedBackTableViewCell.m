@@ -75,7 +75,7 @@
     if (cellModel.replied == NO) {
         self.redSpotView.hidden = YES;
     } else {
-        self.redSpotView.hidden = [[[NSUserDefaults standardUserDefaults] valueForKey:[NSString stringWithFormat:@"feedback_history_%zd", cellModel.ID]] boolValue];
+        self.redSpotView.hidden = [[NSUserDefaults.standardUserDefaults valueForKey:[NSString stringWithFormat:@"feedback_history_%zd", cellModel.ID]] boolValue];
     }
     
     [self setupFrame];

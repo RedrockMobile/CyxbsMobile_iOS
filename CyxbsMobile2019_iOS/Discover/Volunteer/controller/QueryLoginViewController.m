@@ -81,13 +81,12 @@
     dispatch_async(dispatch_queue_create("build volunteer model", DISPATCH_QUEUE_CONCURRENT), ^{
         [self.volunteer getVolunteerInfoWithUserName:self.account andPassWord:self.password finishBlock:^(VolunteerItem *volunteer) {
             self.volunteer = volunteer;
-            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
             NSDictionary *volAcc = @{
                 @"volunteer_account": self.account,
                 @"volunteer_password": self.password
             };
-            [user setObject:volAcc forKey:@"volunteer_information"];
-            [user synchronize];
+            [NSUserDefaults.standardUserDefaults setObject:volAcc forKey:@"volunteer_information"];
+            [NSUserDefaults.standardUserDefaults synchronize];
             QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:self.volunteer];
             [self.navigationController pushViewController:queryVC animated:YES];
             

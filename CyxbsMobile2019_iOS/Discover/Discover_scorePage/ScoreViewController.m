@@ -60,13 +60,13 @@
     
 }
 -(void)tryIDSBinding {
-    NSString *idsPasswd = [[NSUserDefaults standardUserDefaults] objectForKey:@"idsPasswd"];
-    if([UserItem defaultItem].idsBindingSuccess) {
+    NSString *idsPasswd = [NSUserDefaults.standardUserDefaults objectForKey:@"idsPasswd"];
+    if ([UserItem defaultItem].idsBindingSuccess) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
         return;
     }
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"idsAccount"] && idsPasswd) {
-        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:[[NSUserDefaults standardUserDefaults] objectForKey:@"idsAccount"] isPassword:idsPasswd];
+    if ([NSUserDefaults.standardUserDefaults objectForKey:@"idsAccount"] && idsPasswd) {
+        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:[NSUserDefaults.standardUserDefaults objectForKey:@"idsAccount"] isPassword:idsPasswd];
         [binding fetchData];
     }else {
         [self addIdsBindingView];//提示用户绑定统一认证码的title;

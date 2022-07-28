@@ -19,16 +19,15 @@ static MineUserInfoModel *_modelInstance;
 static dispatch_once_t _onceToken = 0;
 
 - (void)synchronizeDataToFile {
-    NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
-    [userdefault setValue:[NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:nil] forKey:MineUserInfoModelUserDefaultsKey];
-    [userdefault synchronize];
+    [NSUserDefaults.standardUserDefaults setValue:[NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:nil] forKey:MineUserInfoModelUserDefaultsKey];
+    [NSUserDefaults.standardUserDefaults synchronize];
 }
 
 //MARK: - 实现单例必要的方法：
 + (instancetype)shareModel {
     if (_modelInstance==nil) {
         [self allocWithZone:nil];
-        [NSKeyedUnarchiver unarchivedObjectOfClass:MineUserInfoModel.class fromData:[[NSUserDefaults standardUserDefaults] valueForKey:MineUserInfoModelUserDefaultsKey] error:nil];
+        [NSKeyedUnarchiver unarchivedObjectOfClass:MineUserInfoModel.class fromData:[NSUserDefaults.standardUserDefaults valueForKey:MineUserInfoModelUserDefaultsKey] error:nil];
     }
     return _modelInstance;
 }
@@ -53,7 +52,7 @@ static dispatch_once_t _onceToken = 0;
 }
 
 - (void)userDidLogOut {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MineUserInfoModelUserDefaultsKey];
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:MineUserInfoModelUserDefaultsKey];
     _modelInstance = nil;
     _onceToken = 0;
 }
@@ -71,7 +70,7 @@ static dispatch_once_t _onceToken = 0;
     for (int i=0; i<2; i++) {
         dispatch_async(que, ^{
             //获取上次点击进入 获赞/评论 页面的时间
-            NSInteger t = [[NSUserDefaults standardUserDefaults] integerForKey:timeKeyArr[i]];
+            NSInteger t = [NSUserDefaults.standardUserDefaults integerForKey:timeKeyArr[i]];
             if (t==0) {
                 //如果取出来的时间是0，那么把时间设置成3天前。
                 t = (NSInteger)([NSDate.date timeIntervalSince1970]-259200);

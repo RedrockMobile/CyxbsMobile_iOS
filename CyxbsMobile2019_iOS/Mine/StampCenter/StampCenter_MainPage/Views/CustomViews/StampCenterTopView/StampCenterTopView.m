@@ -51,12 +51,27 @@
         _detailBtn = [[UIButton alloc]initWithFrame:CGRectMake(72, 20, 8.9, 8.9)];
         [_detailBtn setImage:[UIImage imageNamed:@"mingxi"] forState:UIControlStateNormal];
         _detailBtn.alpha = 0.7;
-        HttpClient *client = [HttpClient defaultClient];
-        [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            self.number = responseObject[@"data"][@"user_amount"];
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"==========================出错了");
-            }];
+        
+        [HttpTool.shareTool
+         request:Mine_GET_stampStoreMainPage_API
+         type:HttpToolRequestTypeGet
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:nil
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            self.number = object[@"data"][@"user_amount"];
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"==========================出错了");
+        }];
+        
+//        HttpClient *client = [HttpClient defaultClient];
+//        [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            self.number = responseObject[@"data"][@"user_amount"];
+//            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                NSLog(@"==========================出错了");
+//            }];
+        
         _mingxiLbl = [[UILabel alloc]initWithFrame:CGRectMake(83, 18, 23, 13)];
         _mingxiLbl.font = [UIFont fontWithName:PingFangSCRegular size:10];
         _mingxiLbl.text = @"明细";

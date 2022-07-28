@@ -19,18 +19,37 @@
         @"id":goodsid
     };
     
-    [[HttpClient defaultClient] requestWithPath:Mine_GET_stampStoreGoods_API
-                                         method:HttpRequestGet
-                                     parameters:paramDict
-                                 prepareExecute:nil
-                                       progress:nil
-                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HttpTool.shareTool
+     request:Mine_GET_stampStoreGoods_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:paramDict
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSLog(@"success-goods");
-        success(responseObject[@"data"]);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        if (success) {
+            success(object[@"data"]);
+        }
+
+    }
+    failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failure-goods");
-        failure();
+        if (failure) {
+            failure();
+        }
     }];
+//    [[HttpClient defaultClient] requestWithPath:Mine_GET_stampStoreGoods_API
+//                                         method:HttpRequestGet
+//                                     parameters:paramDict
+//                                 prepareExecute:nil
+//                                       progress:nil
+//                                        success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"success-goods");
+//        success(responseObject[@"data"]);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"failure-goods");
+//        failure();
+//    }];
     
 }
 @end

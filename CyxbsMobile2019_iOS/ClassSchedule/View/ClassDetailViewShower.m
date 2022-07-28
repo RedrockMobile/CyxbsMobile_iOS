@@ -152,11 +152,11 @@
         [self.backViewOfScrollView setFrame:CGRectMake(0, MAIN_SCREEN_H-DETAILVIEW_H+10, MAIN_SCREEN_W, DETAILVIEW_H+40)];
     } completion:^(BOOL is){
         //判断是否已经展示过功能，不为空，则展示过。
-        if([[NSUserDefaults standardUserDefaults] stringForKey:@"isClassDetailViewShower_Displayed"]!=nil)return;
+        if([NSUserDefaults.standardUserDefaults stringForKey:@"isClassDetailViewShower_Displayed"]!=nil)return;
         if(self.PC.numberOfPages!=1){
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self displayOnce];
-                [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"isClassDetailViewShower_Displayed"];
+                [NSUserDefaults.standardUserDefaults setValue:@"YES" forKey:@"isClassDetailViewShower_Displayed"];
             });
         }
     }];

@@ -30,8 +30,8 @@
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         if ([object[@"status"] isEqual:@"10000"]) {
             //ids绑定成功
-            [[NSUserDefaults standardUserDefaults] setObject:self.idsNum forKey:@"idsAccount"];
-            [[NSUserDefaults standardUserDefaults]setObject:self.idsPassword forKey:@"idsPasswd"];
+            [NSUserDefaults.standardUserDefaults setObject:self.idsNum forKey:@"idsAccount"];
+            [NSUserDefaults.standardUserDefaults setObject:self.idsPassword forKey:@"idsPasswd"];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
             NSLog(@"ids绑定成功");
             [UserItem defaultItem].idsBindingSuccess = YES;

@@ -15,9 +15,47 @@
 MJExtensionCodingImplementation
 
 - (void)getVolunteerInfoWithUserName:(NSString *)userName andPassWord:(NSString *)passWord finishBlock:(void (^)(VolunteerItem *volunteer))finish {
+    NSLog(@"--%@--", [self aesEncrypt:passWord]);
+
+    NSDictionary *bindParams = @{
+        @"account": userName,
+        @"password": [self aesEncrypt:passWord],
+    };
+    
+    __weak typeof(self)weakSelf = self;
+    [HttpTool.shareTool
+     request:Discover_POST_volunteerBind_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:bindParams
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        if ([object[@"code"] isEqualToNumber:[NSNumber numberWithInt:0]]) {
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            [strongSelf InquireAccount:finish];
+        }else if ([object[@"code"] isEqualToNumber:[NSNumber numberWithInt:-1]]) {
+            NSLog(@"志愿网服务异常");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QueryVolunteerInfoFailed" object:nil];
+        }else if ([object[@"code"] isEqualToNumber:[NSNumber numberWithInt:-2]]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"QueryVolunteerInfoFailed" object:nil];
+        }
+        
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"QueryVolunteerInfoFailed" object:nil];
+        NSLog(@"志愿信息绑定失败");
+    }];
+}
+
+- (void)getVolunteerInfoWithUserName:(NSString *)userName andPssWord:(NSString *)passWord finishBlock:(void (^)(VolunteerItem *volunteer))finish {
     
     NSLog(@"--%@--", [self aesEncrypt:passWord]);
 
+    NSDictionary *bindParams = @{
+        @"account": userName,
+        @"password": [self aesEncrypt:passWord],
+    };
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer.timeoutInterval = 8.f;
     AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
@@ -27,11 +65,6 @@ MJExtensionCodingImplementation
     manager.responseSerializer = responseSerializer;
     
     [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [UserItemTool defaultItem].token]  forHTTPHeaderField:@"Authorization"];
-    
-    NSDictionary *bindParams = @{
-        @"account": userName,
-        @"password": [self aesEncrypt:passWord],
-    };
     
     [manager POST:Discover_POST_volunteerBind_API parameters:bindParams headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         
@@ -60,14 +93,7 @@ MJExtensionCodingImplementation
                 HttpClient *client = [HttpClient defaultClient];
                 //完成绑定志愿者账号任务 (需要绑定成功)
                 [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-                
-//<<<<<<< Updated upstream
-//                client.httpSessionManager POST:<#(nonnull NSString *)#> parameters:<#(nullable id)#> headers:<#(nullable NSDictionary<NSString *,NSString *> *)#> constructingBodyWithBlock:<#^(id<AFMultipartFormData>  _Nonnull formData)block#> progress:<#^(NSProgress * _Nonnull uploadProgress)uploadProgress#> success:<#^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)success#> failure:<#^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)failure#>
-                
                 [client.httpSessionManager POST:Mine_POST_task_API parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//=======
-                
-//>>>>>>> Stashed changes
                     NSString *target = @"绑定志愿者账号";
                     NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
                     [formData appendPartWithFormData:data name:@"title"];
@@ -92,8 +118,63 @@ MJExtensionCodingImplementation
     }];
 }
 
+/// 志愿信息查询
+- (void)InquireAccount:(void (^)(VolunteerItem *volunteer))finish {
+    [HttpTool.shareTool
+     request:Discover_POST_volunteerRequest_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
+        for (NSDictionary *dict in object[@"record"]) {
+            VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
+            [temp addObject:volEvent];
+        }
+        self.eventsArray = temp;
+        [self sortEvents];
+        
+        float hour = 0;
+        int count = 0;
+        for (VolunteeringEventItem *event in self.eventsArray) {
+            hour += [event.hour floatValue];
+            count++;
+        }
+        self.hour = [NSString stringWithFormat:@"%.1f",hour];
+        self.count = [NSString stringWithFormat:@"%d",count];
+        
+        [ArchiveTool saveVolunteerInfomationWith:self];
+        if (finish) {
+            finish(self);
+        }
+        NSLog(@"志愿信息查询成功");
+        // 绑定志愿者账号
+        [self bindAccount];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
+
+/// 绑定志愿者账号
+- (void)bindAccount {
+    [HttpTool.shareTool form:Mine_POST_task_API type:HttpToolRequestTypePost parameters:nil bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+        NSString *target = @"绑定志愿者账号";
+        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+        [body appendPartWithFormData:data name:@"title"];
+        
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"成功了");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败了");
+    }];
+}
+
 // 加密
--(NSString *)aesEncrypt:(NSString *)plainText{
+- (NSString *)aesEncrypt:(NSString *)plainText{
     NSString *secretkey = @"redrockvolunteer";
     NSString *cipherText = aesEncryptString(plainText, secretkey);
     return cipherText;

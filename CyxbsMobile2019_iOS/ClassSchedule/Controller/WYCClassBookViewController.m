@@ -626,8 +626,8 @@
 
 //检查更新
 - (void)checkUpdate{
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CancelUpdateDate"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NeedUpdate"];
+    if (![NSUserDefaults.standardUserDefaults objectForKey:@"CancelUpdateDate"]) {
+        [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"NeedUpdate"];
     }
 
     //先判断用户是否需要更新
@@ -668,9 +668,9 @@
         if (finished) {
             NSDate *nowDate = [NSDate date];
             
-            [[NSUserDefaults standardUserDefaults]setObject:nowDate forKey:@"CancelUpdateDate"];
+            [NSUserDefaults.standardUserDefaults setObject:nowDate forKey:@"CancelUpdateDate"];
             
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NeedUpdate"];
+            [NSUserDefaults.standardUserDefaults setBool:NO forKey:@"NeedUpdate"];
             
             [self.updatePopView removeFromSuperview];
         }
@@ -695,7 +695,7 @@
 
 - (BOOL)isNeedtoUpdate{
     
-    NSDate *lastCancelDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"CancelUpdateDate"];
+    NSDate *lastCancelDate = [NSUserDefaults.standardUserDefaults objectForKey:@"CancelUpdateDate"];
     NSTimeInterval interval = 60 * 60 * 24 * 7;
     NSDate *nextRemindDate = [NSDate dateWithTimeInterval:interval sinceDate:lastCancelDate];
     NSDate *date = [NSDate date];
@@ -703,10 +703,10 @@
     NSComparisonResult result = [date compare:nextRemindDate];
     
     if (result == NSOrderedDescending) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NeedUpdate"];
+        [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"NeedUpdate"];
     }
     
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"NeedUpdate"];
+    return [NSUserDefaults.standardUserDefaults boolForKey:@"NeedUpdate"];
 }
 
 @end

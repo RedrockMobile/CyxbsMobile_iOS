@@ -31,24 +31,43 @@
         }
     }];
     
-    HttpClient *client = [HttpClient defaultClient];
+//    HttpClient *client = [HttpClient defaultClient];
 //    [client requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        success();
 //        } failure:^(NSURLSessionDataTask *task, NSError *error) {
 //            failure();
 //        }];
-    //完成拍案叫绝任务
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    // 完成拍案叫绝任务
+    [HttpTool.shareTool
+     form:Mine_POST_task_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
         NSString *target = @"拍案叫绝";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-        [formData appendPartWithFormData:data name:@"title"];
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
-        }];
+        [body appendPartWithFormData:data name:@"title"];
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"成功了");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败了");
+    }];
+    
+    
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *target = @"拍案叫绝";
+//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:data name:@"title"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
 }
 
 - (void)requestDynamicDetailDataWithDynamic_id:(int)dynamic_id Success:(void (^)(NSDictionary * _Nonnull))success Failure:(void (^)(void))failure{
@@ -74,7 +93,7 @@
     }];
     
 
-    HttpClient *client = [HttpClient defaultClient];
+//    HttpClient *client = [HttpClient defaultClient];
     
 //    [client requestWithPath:NewQA_GET_QADynamicDetail_API method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSDictionary *dic = responseObject[@"data"];
@@ -84,18 +103,36 @@
 //            failure();
 //        }];
     
-        //完成逛逛邮问任务
-        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-        [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-            NSString *target = @"逛逛邮问";
-            NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-            [formData appendPartWithFormData:data name:@"title"];
-            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-                NSLog(@"成功了");
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"失败了");
-            }];
+    // 完成逛逛邮问任务
+    [HttpTool.shareTool
+     form:Mine_POST_task_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+        NSString *target = @"逛逛邮问";
+        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+        [body appendPartWithFormData:data name:@"title"];
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"成功了");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败了");
+    }];
+    
+//        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//        [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//            NSString *target = @"逛逛邮问";
+//            NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//            [formData appendPartWithFormData:data name:@"title"];
+//            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//                NSLog(@"成功了");
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+//            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                NSLog(@"失败了");
+//            }];
     
 }
 

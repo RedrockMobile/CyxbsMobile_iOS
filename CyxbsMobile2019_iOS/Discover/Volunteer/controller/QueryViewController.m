@@ -422,8 +422,7 @@
 
 #pragma mark -LogOutViewDelegate
 - (void)ClickedSureBtn {
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user removeObjectForKey:@"volunteer_information"];
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:@"volunteer_information"];
     [self->_popView removeFromSuperview];
     VolunteerUnbinding *unbindingModel = [[VolunteerUnbinding alloc] init];
     [unbindingModel VolunteerUnbinding];

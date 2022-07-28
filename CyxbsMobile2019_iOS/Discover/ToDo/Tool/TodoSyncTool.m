@@ -515,20 +515,20 @@ static TodoSyncTool* _instance;
 
 /// 网络状态
 - (AFNetworkReachabilityStatus)netWorkStatus {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:@"AFNetworkReachabilityStatus"];
+    return [NSUserDefaults.standardUserDefaults integerForKey:@"AFNetworkReachabilityStatus"];
 }
 
 - (void)setLastSyncTimeStamp:(long)lastSyncTimeStamp {
     _lastSyncTimeStamp = lastSyncTimeStamp;
     self.isSyncTimeExist = YES;
-    [[NSUserDefaults standardUserDefaults] setInteger:lastSyncTimeStamp forKey:TodoSyncToolKeyLastSyncTimeStamp];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [NSUserDefaults.standardUserDefaults setInteger:lastSyncTimeStamp forKey:TodoSyncToolKeyLastSyncTimeStamp];
+    [NSUserDefaults.standardUserDefaults synchronize];
 }
 
 - (void)setIsModified:(BOOL)isModified {
     _isModified = isModified;
-    [[NSUserDefaults standardUserDefaults] setBool:isModified forKey:TodoSyncToolKeyIsModified];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [NSUserDefaults.standardUserDefaults setBool:isModified forKey:TodoSyncToolKeyIsModified];
+    [NSUserDefaults.standardUserDefaults synchronize];
 }
 
 //MARK: +++++++++++++++++++++增删改查++++++++++++++++++++++++++++
@@ -788,14 +788,14 @@ static TodoSyncTool* _instance;
 //MARK: +++++++++++++++++++++一些基础的工具方法++++++++++++++++++++++++++++
 
 - (void)updateTodoState {
-//    [[NSUserDefaults standardUserDefaults] setInteger:(long)0 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
+//    [NSUserDefaults.standardUserDefaults setInteger:(long)0 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
     
     //状态更新，一天调用一次就好了
-    NSInteger lastUpdateTime = [[NSUserDefaults standardUserDefaults] integerForKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
+    NSInteger lastUpdateTime = [NSUserDefaults.standardUserDefaults integerForKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
     if (lastUpdateTime > (self.todayEndTimeStamp - 86400)) {
         return;
     }
-    [[NSUserDefaults standardUserDefaults] setInteger:(long)[NSDate date].timeIntervalSince1970 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
+    [NSUserDefaults.standardUserDefaults setInteger:(long)[NSDate date].timeIntervalSince1970 forKey:TodoSyncToolKeyLastUpdateTodoTimeStamp];
     NSString* code;
     /*
     FMResultSet* set;
@@ -1046,8 +1046,8 @@ static inline int ForeignWeekToChinaWeek(int week) {
     dispatch_once(&onceToken, ^{
         _instance = [[super allocWithZone:nil] init];
         [_instance initDataBase];
-        _instance->_lastSyncTimeStamp = [[NSUserDefaults standardUserDefaults] integerForKey:TodoSyncToolKeyLastSyncTimeStamp];
-        _instance.isModified = [[NSUserDefaults standardUserDefaults] boolForKey:TodoSyncToolKeyIsModified];
+        _instance->_lastSyncTimeStamp = [NSUserDefaults.standardUserDefaults integerForKey:TodoSyncToolKeyLastSyncTimeStamp];
+        _instance.isModified = [NSUserDefaults.standardUserDefaults boolForKey:TodoSyncToolKeyIsModified];
         [[NSNotificationCenter defaultCenter] addObserver:_instance selector:@selector(netWorkStateChanges:) name:@"AFNetworkReachabilityStatusChanges" object:nil];
     });
     return _instance;

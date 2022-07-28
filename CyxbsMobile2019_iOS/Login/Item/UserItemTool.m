@@ -57,11 +57,10 @@
     NSString *filePath = [self userItemPath];
     
     // 删除偏好设置，删除时保留baseURL的偏好信息
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *dic = [defaults dictionaryRepresentation];
+    NSDictionary *dic = [NSUserDefaults.standardUserDefaults dictionaryRepresentation];
     for (id key in dic) {
         if (![key  isEqual: @"baseURL"]) {
-            [defaults removeObjectForKey:key];
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
         }
     }
     
@@ -119,11 +118,11 @@
     [HttpTool.shareTool
      request:Mine_POST_refreshToken_API
      type:HttpToolRequestTypePost
-     serializer:nil
-     bodyParameters:nil
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:params
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
+        [NSUserDefaults.standardUserDefaults setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
         NSString *token = object[@"data"][@"token"];
         NSString *payload_BASE64 = [token componentsSeparatedByString:@"."][0];
         
@@ -147,12 +146,12 @@
         }
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
+        [NSUserDefaults.standardUserDefaults setInteger:1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
         NSLog(@"tokenError2：%@", error);
 //        if (error.code == NSURLErrorBadServerResponse) {
         
         //获取上次登录的时间戳(和1970.1.1的秒间隔)
-        double lastLogInTime = [[NSUserDefaults standardUserDefaults] doubleForKey:LastLogInTimeKey_double];
+        double lastLogInTime = [NSUserDefaults.standardUserDefaults doubleForKey:LastLogInTimeKey_double];
         
         //如果错误码是400或者403，并且上次登录的时间是30天前(2592000秒)，那么提示需要重新登录
         if (([error.localizedDescription hasSuffix:@"(400)"]||[error.localizedDescription hasSuffix:@"(403)"])&&(NSDate.nowTimestamp - lastLogInTime > 2592000)) {

@@ -17,9 +17,9 @@
 //#define CyxbsMobileBaseURL_2 @"https://be-dev.redrock.cqupt.edu.cn/"
 
 //#define CyxbsMobileBaseURL_1 @"https://be-prod.redrock.team/"
-#define CyxbsMobileBaseURL_1 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
+#define CyxbsMobileBaseURL_1 [NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"]
 //#define CyxbsMobileBaseURL_2 @"https://be-prod.redrock.team/"
-#define CyxbsMobileBaseURL_2 [[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"]
+#define CyxbsMobileBaseURL_2 [NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"]
 
 
 

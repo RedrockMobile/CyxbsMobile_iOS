@@ -22,8 +22,6 @@
 
 @interface VolunteerView()
 
-@property (nonatomic, strong) NSUserDefaults *defaults;
-
 @property (nonatomic, strong) VolunteerItem *volunteerItem;
 
 @end
@@ -40,10 +38,9 @@
         } else {
             // Fallback on earlier versions
         }
-        [self loadUserDefaults];//加载缓存用作视图的初始化
         [self addNoBindingView];
         
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_information"]) {
+        if ([NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
             self.volunteerItem = [ArchiveTool getPersonalInfo];
             [self refreshViewIfNeeded];
         }
@@ -51,8 +48,8 @@
     }
     return self;
 }
--(void)refreshViewIfNeeded {
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"volunteer_information"]) {
+- (void)refreshViewIfNeeded {
+    if ([NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
         [self removeUnbindingView];
         [self addBindingView];
         [self updateAllHour];//总时长刷新
@@ -64,17 +61,14 @@
     }
 
 }
--(void)updateAllHour {
+- (void)updateAllHour {
     self.allTime.text = [NSString stringWithFormat:@"%d",[self.volunteerItem.hour intValue]];
 }
--(void)removeUnbindingView {
+- (void)removeUnbindingView {
     [self.hintLabel removeFromSuperview];
 }
-- (void)loadUserDefaults {
-    NSUserDefaults *defualts = [NSUserDefaults standardUserDefaults];
-    self.defaults = defualts;
-}
--(void) addClearButton {
+
+- (void) addClearButton {
     UIButton * button = [[UIButton alloc]init];
     [button addTarget:self action:@selector(touchSelf) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];

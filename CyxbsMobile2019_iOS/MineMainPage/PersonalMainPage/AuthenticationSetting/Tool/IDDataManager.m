@@ -424,7 +424,7 @@ static dispatch_once_t _IDDataManagerDispatchOnceToken = 0;
 
 /// 进行 URL 的拼接
 - (NSString*)getUserWithTailURL:(NSString*)tailURL {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
+    return [[NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
 }
 /// 获取一个在当前这个页面通用的 AFHTTPSessionManager
 - (AFHTTPSessionManager*)getHttpManager {

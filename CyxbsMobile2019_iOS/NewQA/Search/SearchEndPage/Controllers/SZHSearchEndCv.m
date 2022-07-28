@@ -322,10 +322,8 @@
 /// 将搜索的内容添加到历史记录
 /// @param string 搜索的内容
 - (void)wirteHistoryRecord:(NSString *)string{
-    //1.取出userDefault的历史数组
-    NSUserDefaults *userdefaulte = [NSUserDefaults standardUserDefaults];
-        //从缓存中取出数组的时候要mutablyCopy一下，不然会崩溃
-    NSMutableArray *array = [[userdefaulte objectForKey:@"historyRecords"] mutableCopy];
+    //1.取出userDefault的历史数组，从缓存中取出数组的时候要mutablyCopy一下，不然会崩溃
+    NSMutableArray *array = [[NSUserDefaults.standardUserDefaults objectForKey:@"historyRecords"] mutableCopy];
     
     //2.判断当前搜素内容是否与历史记录重合，如果重合就删除历史记录中原存在的数组
     for (NSString *historyStr in array) {
@@ -338,7 +336,7 @@
     [array insertObject:string atIndex:0];
     
     //4.将历史数组重新存入UserDefault
-    [userdefaulte setObject:array forKey:@"historyRecords"];
+    [NSUserDefaults.standardUserDefaults setObject:array forKey:@"historyRecords"];
     
     //5.发出通知，在搜索开始页去刷新历史记录（在willAppear里面调用）
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadHistory" object:nil];

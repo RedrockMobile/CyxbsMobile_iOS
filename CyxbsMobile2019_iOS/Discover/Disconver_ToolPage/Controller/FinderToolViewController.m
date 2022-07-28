@@ -224,7 +224,7 @@
             [array addObject:item.title];
         }
     }
-    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"ToolPage_UserFavoriteToolsName"];
+    [NSUserDefaults.standardUserDefaults setObject:array forKey:@"ToolPage_UserFavoriteToolsName"];
 }
 - (void)addToolViewItems {
     FinderToolViewItem *item1 = [[FinderToolViewItem alloc]initWithIconView:@"没课约" Title:@"没课约" Detail:@"多人空课表同步查询"];
@@ -305,7 +305,11 @@
     }else {
         UserItem *item = [UserItem defaultItem];
         //点击了没课约
-        WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":item.realName,@"stuNum":item.stuNum}] mutableCopy]];
+        NSDictionary *dic = @{
+            @"name" : item.realName,
+            @"stuNum" : item.stuNum
+        };
+        WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:@[dic].modelCopy];
         
         [self.navigationController pushViewController:vc animated:YES];
     }

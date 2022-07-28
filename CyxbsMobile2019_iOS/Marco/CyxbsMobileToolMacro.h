@@ -187,7 +187,7 @@ fprintf(stderr,"\n");\
 
 //第一周从1开始，不是从0开始 
 #define getNowWeek_NSString ^(void) {\
-    NSString *nowWeek = [[NSUserDefaults standardUserDefaults] stringForKey:nowWeekKey_NSString];\
+    NSString *nowWeek = [NSUserDefaults.standardUserDefaults stringForKey:nowWeekKey_NSString];\
     if (nowWeek == nil || nowWeek.intValue > 25 || nowWeek.intValue < 0) {\
         return @"0";\
     }\
@@ -203,7 +203,7 @@ fprintf(stderr,"\n");\
 
 //返回开学日期的NSString
 #define getDateStart_NSString ^(void) {\
-    NSString *dateStr = [[NSUserDefaults standardUserDefaults] stringForKey:DateStartKey_NSString];\
+    NSString *dateStr = [NSUserDefaults.standardUserDefaults stringForKey:DateStartKey_NSString];\
     if (dateStr==nil) {\
         return @"1970-01-01";\
     }\

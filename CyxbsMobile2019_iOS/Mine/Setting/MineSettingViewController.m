@@ -39,7 +39,7 @@
     }
     self.cellTitleStrArr = @[@"启动APP时最先显示课表页面", @"上课前提醒我", @"每天晚上推送课表给我", @"账号与安全", @"屏蔽的人"];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"zxsd"];
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:@"zxsd"];
     //父类是TopBarBasicViewController，调用父类的vcTitleStr的set方法，自动完成顶部的bar的设置
     self.VCTitleStr = @"设置";
 //    [self addTitleBar];
@@ -137,7 +137,7 @@
         switch (indexPath.row) {
             case 0:
                 s = @selector(switchedLaunchingWithClassScheduleView:);
-                settingSwitch.on = ![[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_LaunchingWithClassScheduleView"];
+                settingSwitch.on = ![NSUserDefaults.standardUserDefaults valueForKey:@"Mine_LaunchingWithClassScheduleView"];
                 break;
             case 1:
                 s = @selector(switchedRemindBeforeClass:);
@@ -214,8 +214,8 @@
         //移除未发送的通知
         [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:idStrArr];
         
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindEveryDay"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:@"Mine_RemindEveryDay"];
+        [NSUserDefaults.standardUserDefaults synchronize];
     }
 }
 
@@ -233,8 +233,8 @@
         //通知WYCClassBookViewController要课前提醒
         [[NSNotificationCenter defaultCenter] postNotificationName:@"remindBeforeClass" object:nil];
     } else {                    // 关闭开关
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindBeforeClass"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:@"Mine_RemindBeforeClass"];
+        [NSUserDefaults.standardUserDefaults synchronize];
         //通知WYCClassBookViewController不要课前提醒
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notRemindBeforeClass" object:nil];
     }
@@ -244,11 +244,11 @@
 /// @param sender 开关
 - (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender{
     if (sender.on) {            // 打开开关
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
+        [NSUserDefaults.standardUserDefaults synchronize];
     } else {                    // 关闭开关
-        [[NSUserDefaults standardUserDefaults] setValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults setValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
+        [NSUserDefaults.standardUserDefaults synchronize];
     }
 }
 

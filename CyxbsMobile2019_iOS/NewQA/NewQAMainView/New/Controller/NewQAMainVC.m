@@ -848,9 +848,9 @@
             self.topicArray = [NSMutableArray arrayWithArray:array];
         }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            
+
         }];
-        
+//
 //        [[HttpClient defaultClient] requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //            NSArray *array = responseObject[@"data"];
 //            self.topicArray = [NSMutableArray arrayWithArray:array];

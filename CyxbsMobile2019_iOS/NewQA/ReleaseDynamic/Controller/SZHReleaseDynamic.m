@@ -84,7 +84,7 @@
     self.buttonStateNumber = 1;
     self.clickReleaseDynamicBtnNumber = 0;
     //判断是上次退出时是否有草稿，有草稿的话就显示草稿内容
-    NSString *string1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"isSaveDrafts"];
+    NSString *string1 = [NSUserDefaults.standardUserDefaults objectForKey:@"isSaveDrafts"];
     if ([string1 isEqualToString:@"yes"]) {
         [self showDrafts];
     }
@@ -232,19 +232,38 @@
             [NewQAHud showHudWith:@"请检查你的网络设置" AddView:self.view];
         }];
     
-    HttpClient *client = [HttpClient defaultClient];
-    //完成斐然成章任务
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    // 完成斐然成章任务
+    [HttpTool.shareTool
+     form:Mine_POST_task_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
         NSString *target = @"斐然成章";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-        [formData appendPartWithFormData:data name:@"title"];
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
-        }];
+        [body appendPartWithFormData:data name:@"title"];
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"成功了");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败了");
+    }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//    //完成斐然成章任务
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *target = @"斐然成章";
+//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:data name:@"title"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
 }
 
 /// 显示草稿
@@ -399,7 +418,7 @@
 
     //保存有草稿的信号
     NSString *string = @"yes";
-    [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"isSaveDrafts"];
+    [NSUserDefaults.standardUserDefaults setObject:string forKey:@"isSaveDrafts"];
 }
 
 /// 不保存草稿
@@ -409,7 +428,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     [SZHArchiveTool removeDrafts];      //删除之前的草稿缓存
     //保存无草稿的信号
-    [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"isSaveDrafts"];
+    [NSUserDefaults.standardUserDefaults setObject:@"no" forKey:@"isSaveDrafts"];
 }
 
 /// 取消

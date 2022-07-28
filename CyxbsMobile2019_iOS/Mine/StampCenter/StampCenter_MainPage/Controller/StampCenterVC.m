@@ -366,8 +366,7 @@
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
             formatter.dateFormat = @"yyyy-MM-dd";
             NSString *str = [formatter stringFromDate:date];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:str forKey:@"NowDate"];
+            [NSUserDefaults.standardUserDefaults setObject:str forKey:@"NowDate"];
             self.topView.point.hidden = YES;
         }
 
@@ -571,12 +570,26 @@
 //小型邮票数量View
 - (UIView *)stampCountView{
     if (!_stampCountView) {
-        HttpClient *client = [HttpClient defaultClient];
-        [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            self.number = responseObject[@"data"][@"user_amount"];
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"==========================出错了");
-            }];
+    
+        [HttpTool.shareTool
+         request:Mine_GET_stampStoreMainPage_API
+         type:HttpToolRequestTypeGet
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:nil
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            self.number = object[@"data"][@"user_amount"];
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"==========================出错了");
+        }];
+        
+//        HttpClient *client = [HttpClient defaultClient];
+//        [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            self.number = responseObject[@"data"][@"user_amount"];
+//            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                NSLog(@"==========================出错了");
+//            }];
         _stampCountView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH,7, 75, 27)];
         _stampCountView.backgroundColor = [UIColor colorNamed:@"#2B333F66"];
         _stampCountView.layer.cornerRadius = 14;
@@ -598,7 +611,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.dateFormat = @"yyyy-MM-dd";
     NSString *str = [formatter stringFromDate:date];
-    if ([str isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"NowDate"]]) {
+    if ([str isEqualToString:[NSUserDefaults.standardUserDefaults objectForKey:@"NowDate"]]) {
         self.topView.point.hidden = YES;
     }
     else{
@@ -654,13 +667,27 @@
         [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
     
-    HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        self.number = responseObject[@"data"][@"user_amount"];
-        self.topView.number = responseObject[@"data"][@"user_amount"];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"==========================出错了");
-        }];
+    [HttpTool.shareTool
+     request:Mine_GET_stampStoreMainPage_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        self.number = object[@"data"][@"user_amount"];
+        self.topView.number = object[@"data"][@"user_amount"];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"==========================出错了");
+    }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        self.number = responseObject[@"data"][@"user_amount"];
+//        self.topView.number = responseObject[@"data"][@"user_amount"];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"==========================出错了");
+//        }];
 }
 
 //跳转至界面
@@ -677,18 +704,37 @@
 
 
 //检查是否有未领取的货物
-- (void)checkAlertLbl{
-    HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:Mine_GET_commonQuestion_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            BOOL un_got_good = responseObject[@"un_got_good"];
+- (void)checkAlertLbl {
+    
+    [HttpTool.shareTool
+     request:Mine_GET_commonQuestion_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        BOOL un_got_good = object[@"un_got_good"];
         if (un_got_good == YES) {
             self.topView.alertLbl.hidden = NO;
-        }else{
+        }else {
             self.topView.alertLbl.hidden = YES;
         }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"==========================出错了");
-        }];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"==========================出错了");
+    }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client requestWithPath:Mine_GET_commonQuestion_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//            BOOL un_got_good = responseObject[@"un_got_good"];
+//        if (un_got_good == YES) {
+//            self.topView.alertLbl.hidden = NO;
+//        }else{
+//            self.topView.alertLbl.hidden = YES;
+//        }
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            NSLog(@"==========================出错了");
+//        }];
 
 }
 

@@ -59,7 +59,7 @@
         [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
     }];
     
-//    //网络请求
+//////网络请求
 //    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 //        NSArray *array = responseObject[@"data"];
@@ -70,7 +70,7 @@
 //            [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
 //        }
 //     ];
-    
+//    
 }
 // 自定义返回方法
 - (void)back {

@@ -97,9 +97,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 /// Model
 @property ElectricFeeModel *elecModel;
+
 @property (nonatomic, strong)JWZXNewsModel *jwzxNewsModel;
-@property NSUserDefaults *defaults;
+
 @property (nonatomic, strong) DiscoverADModel *ADModel;
+
 @property PickerModel *pickerModel;
 
 /// pickerView
@@ -107,10 +109,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 /// Data
 @property (nonatomic, assign)int classTabbarHeight;
+
 @property(nonatomic, assign)int classTabbarCornerRadius;
 
 @property(nonatomic,strong)UIWindow *window;
+
 @property(nonatomic, strong)DiscoverTodoView* todoView;
+
 @property(nonatomic, strong)TodoSyncTool* todoSyncTool;
 
 
@@ -169,7 +174,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         ((ClassTabBar *)(self.tabBarController.tabBar))
             .classScheduleTabBarView.userInteractionEnabled = YES;
             
-        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
+        if(![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
             [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
@@ -187,8 +192,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.todoSyncTool = [TodoSyncTool share];
-//    [self.todoSyncTool resetDB];
-    [self configDefaults];
     [self requestData];
     [self addContentView];
     [self addFinderView];
@@ -321,9 +324,6 @@ static int requestCheckinInfo = 0;
     }];
 }
 
-- (void)configDefaults {
-    self.defaults = [NSUserDefaults standardUserDefaults];
-}
 
 - (void)configNavagationBar {
     self.navigationController.navigationBar.translucent = NO;
@@ -412,7 +412,7 @@ static int requestCheckinInfo = 0;
 }
 - (void)bindingVolunteerButton {
     ///需要在此处判断一下是否已经登陆了志愿者的界面，如果登陆了，则直接跳QueryViewController，如果未登陆的话则跳登陆的viewController
-    if (![self.defaults objectForKey:@"volunteer_information"]) {
+    if (![NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
         QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -474,9 +474,9 @@ static int requestCheckinInfo = 0;
 }
 - (void)updateElectricFeeUI {
     //先写入缓存
-    [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
-    [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
-    [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
+    [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
+    [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
+    [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;

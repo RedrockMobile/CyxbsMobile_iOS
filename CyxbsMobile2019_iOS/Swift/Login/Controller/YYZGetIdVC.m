@@ -35,7 +35,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSUserDefaults *userdfa = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userdfa = NSUserDefaults.standardUserDefaults;
     [userdfa setBool:0 forKey:@"isLogin"];
     //设置导航栏
     self.navigationController.navigationBar.hidden = NO;

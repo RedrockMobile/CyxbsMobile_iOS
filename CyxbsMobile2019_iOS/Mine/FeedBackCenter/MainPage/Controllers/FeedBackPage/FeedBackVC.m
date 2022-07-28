@@ -202,11 +202,11 @@
     //如果选择了类型
     if (self.correctBtn) {
 
-        HttpClient *client = [HttpClient defaultClient];
-        
-        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
-        
-        [client.httpSessionManager POST:Mine_POST_submit_API parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [HttpTool.shareTool
+         form:Mine_POST_submit_API
+         type:HttpToolRequestTypePost
+         parameters:nil
+         bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
             
             //字段转二进制
             NSData *data1 = [type dataUsingEncoding:NSUTF8StringEncoding];
@@ -218,47 +218,109 @@
             if (self.photoAry.count == 1) {
                 NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
                 NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
-                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+                [body appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
             }
             if (self.photoAry.count == 2) {
                 NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
                 NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
-                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+                [body appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
                 NSData *imageData2 = UIImageJPEGRepresentation(self.photoAry[1], 0.6);
                 NSString *fileName2 = [NSString stringWithFormat:@"%ld2.jpeg", [NSDate nowTimestamp]];
-                [formData appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
+                [body appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
             }
             if (self.photoAry.count == 3) {
                 NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
                 NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
-                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+                [body appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
                 NSData *imageData2 = UIImageJPEGRepresentation(self.photoAry[1], 0.6);
                 NSString *fileName2 = [NSString stringWithFormat:@"%ld2.jpeg", [NSDate nowTimestamp]];
-                [formData appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
+                [body appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
                 NSData *imageData3 = UIImageJPEGRepresentation(self.photoAry[2], 0.6);
                 NSString *fileName3 = [NSString stringWithFormat:@"%ld3.jpeg", [NSDate nowTimestamp]];
-                [formData appendPartWithFileData:imageData3 name:@"file" fileName:fileName3 mimeType:@"image/jpeg"];
+                [body appendPartWithFileData:imageData3 name:@"file" fileName:fileName3 mimeType:@"image/jpeg"];
             }
                 [NewQAHud showHudWith:@"正在上传，请稍候" AddView:self.view AndToDo:^{
                     self.view.userInteractionEnabled = NO;
                 }];
 
-            [formData appendPartWithFormData:data1 name:@"type"];
-            [formData appendPartWithFormData:data2 name:@"title"];
-            [formData appendPartWithFormData:data3 name:@"content"];
-            [formData appendPartWithFormData:data4 name:@"product_id"];
-
-        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [body appendPartWithFormData:data1 name:@"type"];
+            [body appendPartWithFormData:data2 name:@"title"];
+            [body appendPartWithFormData:data3 name:@"content"];
+            [body appendPartWithFormData:data4 name:@"product_id"];
+            
+        }
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             [NewQAHud showHudWith:@"提交成功，我们会在十四个工作日内回复~" AddView:self.view AndToDo:^{
                 [self.navigationController popViewControllerAnimated:YES];
                 self.view.userInteractionEnabled = YES;
             }];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [NewQAHud showHudWith:@"提交失败 网络异常" AddView:self.view AndToDo:^{
                     [self.navigationController popViewControllerAnimated:YES];
                     self.view.userInteractionEnabled = YES;
                 }];
-            }];
+        }];
+        
+//        HttpClient *client = [HttpClient defaultClient];
+//
+//        [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token]  forHTTPHeaderField:@"authorization"];
+//
+//        [client.httpSessionManager POST:Mine_POST_submit_API parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//
+//            //字段转二进制
+//            NSData *data1 = [type dataUsingEncoding:NSUTF8StringEncoding];
+//            NSData *data2 = [title dataUsingEncoding:NSUTF8StringEncoding];
+//            NSData *data3 = [content dataUsingEncoding:NSUTF8StringEncoding];
+//            NSData *data4 = [cyxbs_id dataUsingEncoding:NSUTF8StringEncoding];
+//
+//            //图片转二进制
+//            if (self.photoAry.count == 1) {
+//                NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
+//                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+//                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+//            }
+//            if (self.photoAry.count == 2) {
+//                NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
+//                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+//                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+//                NSData *imageData2 = UIImageJPEGRepresentation(self.photoAry[1], 0.6);
+//                NSString *fileName2 = [NSString stringWithFormat:@"%ld2.jpeg", [NSDate nowTimestamp]];
+//                [formData appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
+//            }
+//            if (self.photoAry.count == 3) {
+//                NSData *imageData = UIImageJPEGRepresentation(self.photoAry[0], 0.6);
+//                NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+//                [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/jpeg"];
+//                NSData *imageData2 = UIImageJPEGRepresentation(self.photoAry[1], 0.6);
+//                NSString *fileName2 = [NSString stringWithFormat:@"%ld2.jpeg", [NSDate nowTimestamp]];
+//                [formData appendPartWithFileData:imageData2 name:@"file" fileName:fileName2 mimeType:@"image/jpeg"];
+//                NSData *imageData3 = UIImageJPEGRepresentation(self.photoAry[2], 0.6);
+//                NSString *fileName3 = [NSString stringWithFormat:@"%ld3.jpeg", [NSDate nowTimestamp]];
+//                [formData appendPartWithFileData:imageData3 name:@"file" fileName:fileName3 mimeType:@"image/jpeg"];
+//            }
+//                [NewQAHud showHudWith:@"正在上传，请稍候" AddView:self.view AndToDo:^{
+//                    self.view.userInteractionEnabled = NO;
+//                }];
+//
+//            [formData appendPartWithFormData:data1 name:@"type"];
+//            [formData appendPartWithFormData:data2 name:@"title"];
+//            [formData appendPartWithFormData:data3 name:@"content"];
+//            [formData appendPartWithFormData:data4 name:@"product_id"];
+//
+//        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//            [NewQAHud showHudWith:@"提交成功，我们会在十四个工作日内回复~" AddView:self.view AndToDo:^{
+//                [self.navigationController popViewControllerAnimated:YES];
+//                self.view.userInteractionEnabled = YES;
+//            }];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            [NewQAHud showHudWith:@"提交失败 网络异常" AddView:self.view AndToDo:^{
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                    self.view.userInteractionEnabled = YES;
+//                }];
+//            }];
                 }else{//没有选择问题类型
                     [NewQAHud showHudWith:@"请选择问题类型" AddView:self.view];
                 }

@@ -30,99 +30,99 @@
            room = item.room;
         NSDictionary *parameters = @{@"building":building, @"room":room};
         
-        [HttpTool.shareTool
-         request:Discover_POST_electricFee_API
-         type:HttpToolRequestTypePost
-         serializer:HttpToolRequestSerializerHTTP
-         bodyParameters:parameters
-         progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-            NSLog(@"%@",object);
-            ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:object];
-            self.electricFeeItem = item;
-            //发消息告诉ViewController更新数据
-            if (![object[@"elec_inf"][@"room"]  isEqual: @""]) {
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
-            }else {
-                NSLog(@"可能是房间号输入错误");//发送消息提醒用户重新绑定
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
-            }
-           
-        }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"电费信息请求失败");//发送消息提醒用户可能是服务器开小差了
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRequestFailed" object:nil];
-        }];
-        
-//        [client requestWithPath:Discover_POST_electricFee_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//            NSLog(@"%@",responseObject);
-//            ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
+//        [HttpTool.shareTool
+//         request:Discover_POST_electricFee_API
+//         type:HttpToolRequestTypePost
+//         serializer:HttpToolRequestSerializerHTTP
+//         bodyParameters:parameters
+//         progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//            NSLog(@"%@",object);
+//            ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:object];
 //            self.electricFeeItem = item;
 //            //发消息告诉ViewController更新数据
-//            if (![responseObject[@"elec_inf"][@"room"]  isEqual: @""]) {
+//            if (![object[@"elec_inf"][@"room"]  isEqual: @""]) {
 //                 [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
 //            }else {
 //                NSLog(@"可能是房间号输入错误");//发送消息提醒用户重新绑定
 //                [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
 //            }
 //
-//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        }
+//         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //            NSLog(@"电费信息请求失败");//发送消息提醒用户可能是服务器开小差了
 //            [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRequestFailed" object:nil];
 //        }];
+        
+        [[HttpClient defaultClient] requestWithPath:Discover_POST_electricFee_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"%@",responseObject);
+            ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
+            self.electricFeeItem = item;
+            //发消息告诉ViewController更新数据
+            if (![responseObject[@"elec_inf"][@"room"]  isEqual: @""]) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
+            }else {
+                NSLog(@"可能是房间号输入错误");//发送消息提醒用户重新绑定
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
+            }
+
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"电费信息请求失败");//发送消息提醒用户可能是服务器开小差了
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRequestFailed" object:nil];
+        }];
     }else {
         //用户没有绑定，后端尝试读取他以前绑定过的宿舍
         NSDictionary *parameters = @{@"building":@"", @"room":@""};
         
-        [HttpTool.shareTool
-         request:Discover_POST_electricFee_API
-         type:HttpToolRequestTypePost
-         serializer:HttpToolRequestSerializerHTTP
-         bodyParameters:parameters
-         progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-            NSLog(@"%@",object);
-            ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:object];
-            self.electricFeeItem = item;
-            //发消息告诉ViewController更新数据
-            if (![object[@"elec_inf"][@"room"]  isEqual: @""]) {
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
-                NSLog(@"%@",object);
-                NSString *buildAndRoom = object[@"elec_inf"][@"room"];
-                [UserItem defaultItem].building = [buildAndRoom substringToIndex:2];
-                [UserItem defaultItem].room = [buildAndRoom substringFromIndex:3];
-                NSLog(@"%@,%@",[UserItem defaultItem].building,[UserItem defaultItem].room);
-            }else {
-                NSLog(@"可能是房间号输入错误");  //发送消息提醒用户重新绑定
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
-            }
-        }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"电费信息请求失败");  //发送消息提醒用户可能是服务器开小差了
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRequestFailed" object:nil];
-        }];
+//        [HttpTool.shareTool
+//         request:Discover_POST_electricFee_API
+//         type:HttpToolRequestTypePost
+//         serializer:HttpToolRequestSerializerHTTP
+//         bodyParameters:parameters
+//         progress:nil
+//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//            NSLog(@"%@",object);
+//            ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:object];
+//            self.electricFeeItem = item;
+//            //发消息告诉ViewController更新数据
+//            if (![object[@"elec_inf"][@"room"]  isEqual: @""]) {
+//                 [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
+//                NSLog(@"%@",object);
+//                NSString *buildAndRoom = object[@"elec_inf"][@"room"];
+//                [UserItem defaultItem].building = [buildAndRoom substringToIndex:2];
+//                [UserItem defaultItem].room = [buildAndRoom substringFromIndex:3];
+//                NSLog(@"%@,%@",[UserItem defaultItem].building,[UserItem defaultItem].room);
+//            }else {
+//                NSLog(@"可能是房间号输入错误");  //发送消息提醒用户重新绑定
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
+//            }
+//        }
+//         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"电费信息请求失败");  //发送消息提醒用户可能是服务器开小差了
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRequestFailed" object:nil];
+//        }];
         
-//               [client requestWithPath:Discover_POST_electricFee_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//                   NSLog(@"%@",responseObject);
-//                   ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
-//                   self.electricFeeItem = item;
-//                   //发消息告诉ViewController更新数据
-//                   if (![responseObject[@"elec_inf"][@"room"]  isEqual: @""]) {
-//                        [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
-//                       NSLog(@"%@",responseObject);
-//                       NSString *buildAndRoom = responseObject[@"elec_inf"][@"room"];
-//                       [UserItem defaultItem].building = [buildAndRoom substringToIndex:2];
-//                       [UserItem defaultItem].room = [buildAndRoom substringFromIndex:3];
-//                       NSLog(@"%@,%@",[UserItem defaultItem].building,[UserItem defaultItem].room);
-//                   }else {
-//                       NSLog(@"可能是房间号输入错误");//发送消息提醒用户重新绑定
-//                       [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
-//                   }
-//
-//               } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                   NSLog(@"电费信息请求失败");//发送消息提醒用户可能是服务器开小差了
-//                   [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRequestFailed" object:nil];
-//               }];
+               [[HttpClient defaultClient] requestWithPath:Discover_POST_electricFee_API method:HttpRequestPost parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                   NSLog(@"%@",responseObject);
+                   ElectricFeeItem *item = [[ElectricFeeItem alloc]initWithDict:responseObject];
+                   self.electricFeeItem = item;
+                   //发消息告诉ViewController更新数据
+                   if (![responseObject[@"elec_inf"][@"room"]  isEqual: @""]) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeDataSucceed" object:nil];
+                       NSLog(@"%@",responseObject);
+                       NSString *buildAndRoom = responseObject[@"elec_inf"][@"room"];
+                       [UserItem defaultItem].building = [buildAndRoom substringToIndex:2];
+                       [UserItem defaultItem].room = [buildAndRoom substringFromIndex:3];
+                       NSLog(@"%@,%@",[UserItem defaultItem].building,[UserItem defaultItem].room);
+                   }else {
+                       NSLog(@"可能是房间号输入错误");//发送消息提醒用户重新绑定
+                       [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomFailed" object:nil];
+                   }
+
+               } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                   NSLog(@"电费信息请求失败");//发送消息提醒用户可能是服务器开小差了
+                   [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRequestFailed" object:nil];
+               }];
     }
 
     

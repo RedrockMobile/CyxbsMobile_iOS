@@ -37,7 +37,7 @@
 }
 
 - (NSString*)getUserWithTailURL:(NSString*)tailURL {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
+    return [[NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "ElectricityView.h"
 @interface ElectricityView()
-@property NSUserDefaults *defaults;
+
 @end
 
 @implementation ElectricityView
@@ -25,7 +25,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self loadUserDefaults];//加载缓存用作视图的初始化
         [self addTitle];
         [self setUIDefaults];//对自身进行设置
         if([UserItem defaultItem].building && [UserItem defaultItem].room) {
@@ -73,11 +72,6 @@
 -(void)refreshViewIfNeeded {
     [self removeUnbindingView];
     [self addBindingView];
-}
-
-- (void)loadUserDefaults {
-    NSUserDefaults *defualts = [NSUserDefaults standardUserDefaults];
-    self.defaults = defualts;
 }
 
 
@@ -157,8 +151,8 @@
     }
     UIButton *money = [[UIButton alloc]init];//左边数字
     self.electricFeeMoney = money;
-    if ([self.defaults objectForKey:@"ElectricFee_money"] != NULL) {
-        [money setTitle:[self.defaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
+    if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] != NULL) {
+        [money setTitle:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
     }else {
         [money setTitle:@"0" forState:UIControlStateNormal];
     }
@@ -179,8 +173,8 @@
     }
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
-    if ([self.defaults objectForKey:@"ElectricFee_degree"]){
-        degree.text = [NSString stringWithFormat:@"%@", [self.defaults objectForKey:@"ElectricFee_degree"]];
+    if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]){
+        degree.text = [NSString stringWithFormat:@"%@", [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]];
         
     }else {
         degree.text = @"0";
