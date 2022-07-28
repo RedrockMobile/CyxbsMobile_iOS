@@ -13,7 +13,7 @@
     if (!_mainLabel) {
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.04*SCREEN_WIDTH, 14, 40, 28)];
         mainLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20];
-        mainLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+        mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         mainLabel.text = @"邮货";
         _mainLabel = mainLabel;
     }

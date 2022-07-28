@@ -56,8 +56,8 @@
             _titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
             _selectedTitleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {
-            _titleColor = [UIColor colorWithHexString:@"#15315B"];
-            _selectedTitleColor = [UIColor colorWithHexString:@"#15315B"];
+            _titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+            _selectedTitleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         }
         
         _titleFont = [UIFont fontWithName:@"PingFangSC" size:16];

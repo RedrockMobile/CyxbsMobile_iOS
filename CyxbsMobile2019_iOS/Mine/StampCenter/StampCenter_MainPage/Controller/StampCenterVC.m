@@ -272,7 +272,7 @@
         footerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         UILabel *la = [[UILabel alloc]init];
         la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
-        la.textColor = [UIColor colorWithHexString:@"#15315B"];
+        la.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         la.text = @"更多任务";
         la.font = [UIFont fontWithName:PingFangSCBold size:20];
         [footerView addSubview:la];

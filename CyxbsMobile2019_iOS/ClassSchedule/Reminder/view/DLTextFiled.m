@@ -29,7 +29,7 @@
         if (@available(iOS 11.0, *)) {
             self.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#122D55" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
-             self.textColor = [UIColor colorWithHexString:@"#15315B"];
+             self.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
             // Fallback on earlier versions
         }
         self.font = [UIFont fontWithName:PingFangSCRegular size:20];

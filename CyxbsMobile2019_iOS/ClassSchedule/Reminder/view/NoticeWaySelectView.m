@@ -109,7 +109,7 @@
         if (@available(iOS 11.0, *)) {
             pickerLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#122D55" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
-             pickerLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+             pickerLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         }
         [pickerLabel setFont: [UIFont fontWithName:PingFangSCSemibold size: 16]];
     }

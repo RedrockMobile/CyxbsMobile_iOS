@@ -63,7 +63,7 @@
     if (!_mainLbl) {
         _mainLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.071*W, 0.65*H, 0.85*W, 20)];
         _mainLbl.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
-        _mainLbl.textColor = [UIColor colorWithHexString:@"#15315B"];
+        _mainLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _mainLbl.text = @"挂件";
     }
     return _mainLbl;
@@ -73,7 +73,7 @@
     if (!_stockLbl) {
         _stockLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.071*W, 0.74*H, 0.928*W, 15)];
         _stockLbl.font = [UIFont fontWithName:@"PingFangSC-Light" size:12];
-       _stockLbl.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.7];
+        _stockLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.7] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.7]];
         _stockLbl.text = @"库存:0";
     }
     return _stockLbl;

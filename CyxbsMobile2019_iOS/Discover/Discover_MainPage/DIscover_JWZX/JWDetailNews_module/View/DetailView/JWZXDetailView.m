@@ -83,8 +83,7 @@
         _detailView.font = [UIFont fontWithName:PingFangSCRegular size:15];
         
         _detailView.textColor =
-        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1]
-                              darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+        [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         
         _detailView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }

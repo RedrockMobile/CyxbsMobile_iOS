@@ -26,7 +26,7 @@
     if (!_mainLabel) {
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 8, 200, 22)];
         mainLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-        mainLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+        mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         mainLabel.text = @"逛逛邮问";
         _mainLabel = mainLabel;
     }

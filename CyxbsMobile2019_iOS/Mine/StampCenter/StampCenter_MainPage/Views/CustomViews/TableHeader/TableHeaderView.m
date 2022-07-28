@@ -60,7 +60,7 @@
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 24, 64, 22)];
         mainLabel.text = @"今日打卡";
         mainLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-        mainLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+        mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _mainLabel = mainLabel;
     }
     return _mainLabel;

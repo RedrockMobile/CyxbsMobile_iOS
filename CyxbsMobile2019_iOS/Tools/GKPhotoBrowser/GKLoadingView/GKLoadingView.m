@@ -200,7 +200,7 @@
 - (UIImageView *)failureImgView {
     if (!_failureImgView) {
         _failureImgView = [UIImageView new];
-        _failureImgView.image = self.failImage ? self.failImage : GKPhotoBrowserImage(@"loading_error");
+        _failureImgView.image = [UIImage imageNamed:@"loading_error"];
         [_failureImgView sizeToFit];
         
         _failureImgView.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5);
@@ -232,7 +232,7 @@
     
     CALayer *maskLayer = [CALayer layer];
     
-    maskLayer.contents  = (__bridge id)[GKPhotoBrowserImage(@"angle-mask") CGImage];
+    maskLayer.contents = [UIImage imageNamed:@"angle-mask"];
     maskLayer.frame     = layer.bounds;
     layer.mask          = maskLayer;
 }

@@ -85,7 +85,7 @@
     if (!_stampStoreLbl) {
         _stampStoreLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.192*SCREEN_WIDTH, 181-138, 72, 25)];
         _stampStoreLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
-        _stampStoreLbl.textColor = [UIColor colorWithHexString:@"#15315B"];
+        _stampStoreLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _stampStoreLbl.text = @"邮票小店";
         _stampStoreLbl.userInteractionEnabled = YES;
 
@@ -97,7 +97,7 @@
     if (!_stampTaskLbl) {
         _stampTaskLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.624*SCREEN_WIDTH,181-138,72,25)];
         _stampTaskLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
-        _stampTaskLbl.textColor = [UIColor colorWithHexString:@"#15315B"];
+        _stampTaskLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _stampTaskLbl.text = @"邮票任务";
         _stampTaskLbl.userInteractionEnabled =YES;
     }
