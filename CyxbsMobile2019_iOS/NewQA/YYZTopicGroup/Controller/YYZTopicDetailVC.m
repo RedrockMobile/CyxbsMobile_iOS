@@ -820,27 +820,57 @@ UIGestureRecognizerDelegate>
 }
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:NewQA_POST_followTopic_API method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                        //改变button状态
-            NSDictionary *dic = @{@"topic_ID":stringIsFollow};
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
-            if([btn.titleLabel.text isEqualToString:@"已关注"]){
-                [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
-                btn.clipsToBounds = YES;
-                btn.layer.cornerRadius = 14;
-                [btn setTitle:@"+关注" forState:UIControlStateNormal];
-                btn.backgroundColor = RGBColor(93, 94, 247, 1);
-            } else{
-                [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
-                btn.clipsToBounds = YES;
-                btn.layer.cornerRadius = 14;
-                [btn setTitle:@"已关注" forState:UIControlStateNormal];
-                btn.backgroundColor = RGBColor(171, 189, 215, 1);
-            }
-            self->_isChanged = YES;
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
+    
+    [HttpTool.shareTool
+     request:NewQA_POST_followTopic_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"topic_id":stringIsFollow}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        //改变button状态
+        NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
+        if([btn.titleLabel.text isEqualToString:@"已关注"]){
+            [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
+            btn.clipsToBounds = YES;
+            btn.layer.cornerRadius = 14;
+            [btn setTitle:@"+关注" forState:UIControlStateNormal];
+            btn.backgroundColor = RGBColor(93, 94, 247, 1);
+        } else{
+            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
+            btn.clipsToBounds = YES;
+            btn.layer.cornerRadius = 14;
+            [btn setTitle:@"已关注" forState:UIControlStateNormal];
+            btn.backgroundColor = RGBColor(171, 189, 215, 1);
+        }
+        self->_isChanged = YES;
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
     }];
+    
+//    [[HttpClient defaultClient]requestWithPath:NewQA_POST_followTopic_API method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//            //改变button状态
+//            NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
+//            if([btn.titleLabel.text isEqualToString:@"已关注"]){
+//                [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
+//                btn.clipsToBounds = YES;
+//                btn.layer.cornerRadius = 14;
+//                [btn setTitle:@"+关注" forState:UIControlStateNormal];
+//                btn.backgroundColor = RGBColor(93, 94, 247, 1);
+//            } else{
+//                [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
+//                btn.clipsToBounds = YES;
+//                btn.layer.cornerRadius = 14;
+//                [btn setTitle:@"已关注" forState:UIControlStateNormal];
+//                btn.backgroundColor = RGBColor(171, 189, 215, 1);
+//            }
+//            self->_isChanged = YES;
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
+//    }];
 }
 
 #pragma mark -多功能View的代理方法

@@ -32,9 +32,15 @@
 }
 + (void)StationWithSuccess:(void (^)(NSArray * _Nonnull array))success
                    Failure:(void (^)(NSError *error))failure {
-    HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager GET: Discover_GET_schoolStation_API parameters: nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSArray *array = responseObject[@"data"][@"lines"];
+    
+    [HttpTool.shareTool
+     request:Discover_GET_schoolStation_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSArray *array = object[@"data"][@"lines"];
         NSLog(@"qwe%@", array);
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
         for (NSDictionary *dic in array) {
@@ -45,9 +51,29 @@
         if (success) {
             success(mArray.copy);
         }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
             failure(error);
-        }];
+        }
+    }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client.httpSessionManager GET: Discover_GET_schoolStation_API parameters: nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSArray *array = responseObject[@"data"][@"lines"];
+//        NSLog(@"qwe%@", array);
+//        NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
+//        for (NSDictionary *dic in array) {
+//            StationData *data = [self LineDataWithDict: dic];
+//            [mArray addObject:data];
+//        }
+//        //调用成功的回调
+//        if (success) {
+//            success(mArray.copy);
+//        }
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            failure(error);
+//        }];
 }
 
 @end

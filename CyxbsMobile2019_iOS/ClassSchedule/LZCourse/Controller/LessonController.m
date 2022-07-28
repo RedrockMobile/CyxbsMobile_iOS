@@ -289,7 +289,7 @@
     
     [HttpTool.shareTool
      request:ClassSchedule_POST_keBiao_API
-     type:HttpToolRequestTypeGet
+     type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameter
      progress:nil
