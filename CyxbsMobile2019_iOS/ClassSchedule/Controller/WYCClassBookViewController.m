@@ -636,26 +636,54 @@
     //获取当前发布的版本的Version
     NSString *localVersion = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     //获取Store上的掌邮的版本id
-    [[HttpClient defaultClient] requestWithPath:ClassSchedule_GET_getNewVersionID_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NSArray *array = responseObject[@"results"];
-        NSDictionary *dict = array[0];
-        NSString *appstoreVersion = dict[@"version"];
-        
-        //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
-        NSComparisonResult result = [localVersion compare:appstoreVersion];
-        
-        //需要更新 -> 弹窗提示
-        if (result == NSOrderedAscending) {
-                self.updatePopView = [[updatePopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) WithUpdateInfo:dict];
-                self.updatePopView.delegate = self;
-                [self.view addSubview:self.updatePopView];
-            [self.view bringSubviewToFront:self.updatePopView];
+        [HttpTool.shareTool
+         request:ClassSchedule_GET_getNewVersionID_API
+         type:HttpToolRequestTypeGet
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:nil
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            NSArray *array = object[@"results"];
+            NSDictionary *dict = array[0];
+            NSString *appstoreVersion = dict[@"version"];
+            
+            //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
+            NSComparisonResult result = [localVersion compare:appstoreVersion];
+            
+            //需要更新 -> 弹窗提示
+            if (result == NSOrderedAscending) {
+                    self.updatePopView = [[updatePopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) WithUpdateInfo:dict];
+                    self.updatePopView.delegate = self;
+                    [self.view addSubview:self.updatePopView];
+                [self.view bringSubviewToFront:self.updatePopView];
             }
-        
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
         }];
+        
+        
+//    [[HttpClient defaultClient] requestWithPath:ClassSchedule_GET_getNewVersionID_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        
+//        NSArray *array = responseObject[@"results"];
+//        NSDictionary *dict = array[0];
+//        NSString *appstoreVersion = dict[@"version"];
+//        
+//        //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
+//        NSComparisonResult result = [localVersion compare:appstoreVersion];
+//        
+//        //需要更新 -> 弹窗提示
+//        if (result == NSOrderedAscending) {
+//                self.updatePopView = [[updatePopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) WithUpdateInfo:dict];
+//                self.updatePopView.delegate = self;
+//                [self.view addSubview:self.updatePopView];
+//            [self.view bringSubviewToFront:self.updatePopView];
+//            }
+//        
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//        }];
         
     }
 }

@@ -77,10 +77,17 @@ static TodoSyncTool* _instance;
 //        return;
 //    }
     //获取上次同步时间
-    [[HttpClient defaultClient] requestWithPath:ToDo_GET_lastSyncTime_API method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        CCLog(@"resp::%@",responseObject);
-        NSDictionary *dataDict = responseObject[@"data"];
-        if (![responseObject[@"info"] isEqualToString:@"success"] || dataDict==nil || [dataDict isEqualToDictionary:@{}]) {
+    
+    [HttpTool.shareTool
+     request:ToDo_GET_lastSyncTime_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"sync_time":@(self.lastSyncTimeStamp)}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        CCLog(@"resp::%@",object);
+        NSDictionary *dataDict = object[@"data"];
+        if (![object[@"info"] isEqualToString:@"success"] || dataDict==nil || [dataDict isEqualToDictionary:@{}]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateUnexpectedError;
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
@@ -92,7 +99,7 @@ static TodoSyncTool* _instance;
 //            [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
         });
 #endif
-        if ([dataDict[@"is_sync_time_exist"] intValue]==0&&self.lastSyncTimeStamp!=0) {
+        if ([dataDict[@"is_sync_time_exist"] intValue] == 0 && self.lastSyncTimeStamp != 0) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateConflict;
             msg.serverLastSyncTime = syncTime;
@@ -139,26 +146,102 @@ static TodoSyncTool* _instance;
             msg.syncState = TodoSyncStateSuccess;
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         CCLog(@"error::%@",error);
         TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
         msg.syncState = TodoSyncStateFailure;
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
     }];
+    
+//    [[HttpClient defaultClient] requestWithPath:ToDo_GET_lastSyncTime_API method:HttpRequestGet parameters:@{@"sync_time":@(self.lastSyncTimeStamp)} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        CCLog(@"resp::%@",responseObject);
+//        NSDictionary *dataDict = responseObject[@"data"];
+//        if (![responseObject[@"info"] isEqualToString:@"success"] || dataDict==nil || [dataDict isEqualToDictionary:@{}]) {
+//            TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//            msg.syncState = TodoSyncStateUnexpectedError;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//            return;
+//        }
+//        long syncTime = [dataDict[@"sync_time"] longValue];
+//#ifdef DEBUG
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////            [NewQAHud showHudAtWindowWithStr:[NSString stringWithFormat:@"%ld", syncTime] enableInteract:YES];
+//        });
+//#endif
+//        if ([dataDict[@"is_sync_time_exist"] intValue]==0&&self.lastSyncTimeStamp!=0) {
+//            TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//            msg.syncState = TodoSyncStateConflict;
+//            msg.serverLastSyncTime = syncTime;
+//            msg.clientLastSyncTime = self.lastSyncTimeStamp;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//            self.isSyncTimeExist = NO;
+//            return;
+//        }
+//        self.isSyncTimeExist = YES;
+//        CCLog(@"%ld, %ld", syncTime, self.lastSyncTimeStamp);
+//        self.serverTimeStamp = syncTime;
+//        if (syncTime!=self.lastSyncTimeStamp) {
+//            //时间不相等，代表需要下载数据
+//            if (self.needSynchronize) {
+//                //冲突(即使本地只是新增，也应当视为冲突)，提示用户进行取舍
+//                TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//                msg.syncState = TodoSyncStateConflict;
+//                msg.serverLastSyncTime = syncTime;
+//                msg.clientLastSyncTime = self.lastSyncTimeStamp;
+//                [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//            }else {
+//                if (self.lastSyncTimeStamp==0) {
+//                    //第一次下载数据，然后合并数据（并且不记录修改）
+//                    [self firstDownload];
+//                }else{
+//                    //需要下载数据，然后合并数据（并且不记录修改）
+//                    [self downloadDataAndMerge];
+//                }
+//            }
+//        }else if (self.needSynchronize) {
+//
+//            if (syncTime==0) {
+//                CCLog(@"firstPush");
+//                //服务器没有数据，进行首次推送
+//                [self firstPush];
+//
+//            }else {
+//                CCLog(@"Push");
+//                //需要同步，把离线时的增删该数据推送上去
+//                [self pushModifiedDataForce:NO];
+//            }
+//        }else {
+//            TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//            msg.syncState = TodoSyncStateSuccess;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//        }
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        CCLog(@"error::%@",error);
+//        TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//        msg.syncState = TodoSyncStateFailure;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//    }];
 }
 
 /// 第一次从服务器下载数据
 - (void)firstDownload {
-    [[HttpClient defaultClient] requestWithPath:ToDo_GET_firstDownload_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        CCLog(@"resp::%@",responseObject);
-        if (![responseObject[@"info"] isEqualToString:@"success"]) {
+    [HttpTool.shareTool
+     request:ToDo_GET_firstDownload_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        CCLog(@"resp::%@",object);
+        if (![object[@"info"] isEqualToString:@"success"]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateFailure;
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
             return;
         }
         
-        NSDictionary* dataDitc = responseObject[@"data"];
+        NSDictionary* dataDitc = object[@"data"];
         //增加的序列
         NSArray* changeArr = dataDitc[@"changed_todo_array"];
         TodoDataModel* model = [[TodoDataModel alloc] init];
@@ -170,7 +253,8 @@ static TodoSyncTool* _instance;
         TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
         msg.syncState = TodoSyncStateSuccess;
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateFailure;
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
@@ -178,6 +262,37 @@ static TodoSyncTool* _instance;
         
         CCLog(@"error::%@",error);
     }];
+    
+    
+//    [[HttpClient defaultClient] requestWithPath:ToDo_GET_firstDownload_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        CCLog(@"resp::%@",responseObject);
+//        if (![responseObject[@"info"] isEqualToString:@"success"]) {
+//            TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//            msg.syncState = TodoSyncStateFailure;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//            return;
+//        }
+//
+//        NSDictionary* dataDitc = responseObject[@"data"];
+//        //增加的序列
+//        NSArray* changeArr = dataDitc[@"changed_todo_array"];
+//        TodoDataModel* model = [[TodoDataModel alloc] init];
+//        for (NSDictionary* todoDict in changeArr) {
+//            [model setDataWithDict:todoDict];
+//            [self saveTodoWithModel:model needRecord:NO];
+//        }
+//        self.lastSyncTimeStamp = [dataDitc[@"sync_time"] longValue];
+//        TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//        msg.syncState = TodoSyncStateSuccess;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//            msg.syncState = TodoSyncStateFailure;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//
+//
+//        CCLog(@"error::%@",error);
+//    }];
 }
 
 /// 下载数据，并合并，调用的前提是没有冲突
@@ -257,10 +372,16 @@ static TodoSyncTool* _instance;
 //        [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
 //
 //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
 //            TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
 //                msg.syncState = TodoSyncStateFailure;
 //                [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
 //            CCLog(@"error::%@",error);
+
+//        TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//            msg.syncState = TodoSyncStateFailure;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+
 //    }];
 }
 
@@ -317,8 +438,13 @@ static TodoSyncTool* _instance;
 //    }
 //    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
 //    man.responseSerializer = responseSerializer;
+
     
 //    [man POST:ToDo_POST_firstPush_API parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+
+//
+//    [man POST:@"https://be-prod.redrock.cqupt.edu.cn/magipoke-todo/batch-create" parameters:paramDict headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+
 //        CCLog(@"%@", responseObject);
 //
 //        NSString* state = responseObject[@"info"];
@@ -592,10 +718,15 @@ static TodoSyncTool* _instance;
 /// 强制拉取服务器的数据
 - (void)forceLoadServerData {
     //抹除本地修改，再进行同步，性能会更好，但是这样会使结构变得更复杂，所以这里选择重置数据库
-    
-    [[HttpClient defaultClient] requestWithPath:ToDo_GET_firstDownload_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        CCLog(@"resp::%@",responseObject);
-        if (![responseObject[@"info"] isEqualToString:@"success"]) {
+    [HttpTool.shareTool
+     request:ToDo_GET_firstDownload_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        CCLog(@"resp::%@",object);
+        if (![object[@"info"] isEqualToString:@"success"]) {
             TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateFailure;
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
@@ -606,7 +737,7 @@ static TodoSyncTool* _instance;
         [self resetDB];
         self.isModified = NO;
         
-        NSDictionary* dataDitc = responseObject[@"data"];
+        NSDictionary* dataDitc = object[@"data"];
         //增加的序列
         NSArray* changeArr = dataDitc[@"changed_todo_array"];
         TodoDataModel* model = [[TodoDataModel alloc] init];
@@ -618,12 +749,45 @@ static TodoSyncTool* _instance;
         TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
         msg.syncState = TodoSyncStateSuccess;
         [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
             msg.syncState = TodoSyncStateFailure;
             [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
         CCLog(@"error::%@",error);
     }];
+    
+//    [[HttpClient defaultClient] requestWithPath:ToDo_GET_firstDownload_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        CCLog(@"resp::%@",responseObject);
+//        if (![responseObject[@"info"] isEqualToString:@"success"]) {
+//            TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//            msg.syncState = TodoSyncStateFailure;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//            return;
+//        }
+//
+//        //等网络请求成功后，再抹除本地修改
+//        [self resetDB];
+//        self.isModified = NO;
+//
+//        NSDictionary* dataDitc = responseObject[@"data"];
+//        //增加的序列
+//        NSArray* changeArr = dataDitc[@"changed_todo_array"];
+//        TodoDataModel* model = [[TodoDataModel alloc] init];
+//        for (NSDictionary* todoDict in changeArr) {
+//            [model setDataWithDict:todoDict];
+//            [self saveTodoWithModel:model needRecord:NO];
+//        }
+//        self.lastSyncTimeStamp = [dataDitc[@"sync_time"] longValue];
+//        TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//        msg.syncState = TodoSyncStateSuccess;
+//        [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        TodoSyncMsg *msg = [[TodoSyncMsg alloc] init];
+//            msg.syncState = TodoSyncStateFailure;
+//            [[NSNotificationCenter defaultCenter] postNotificationName:TodoSyncToolSyncNotification object:msg];
+//        CCLog(@"error::%@",error);
+//    }];
 }
 
 /// 强制把本地的数据推到服务器

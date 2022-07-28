@@ -52,7 +52,7 @@
 - (instancetype)initWithInfoDictArray:(NSMutableArray*)infoDictArray{
     self = [super init];
     if(self){
-        self.infoDictArray = infoDictArray;
+        self.infoDictArray = infoDictArray.mutableCopy;
     }
     return self;
 }
