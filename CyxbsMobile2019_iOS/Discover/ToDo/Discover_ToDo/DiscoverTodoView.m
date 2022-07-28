@@ -48,7 +48,7 @@
 //            self.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
 //        }
         
-        self.backgroundColor = [UIColor colorNamed:@"TodoBG"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         
         self.layer.cornerRadius = 20;
         

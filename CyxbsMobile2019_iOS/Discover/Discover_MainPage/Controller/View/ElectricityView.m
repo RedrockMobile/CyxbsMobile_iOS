@@ -39,7 +39,7 @@
 }
 -(void)setUIDefaults {
      if (@available(iOS 11.0, *)) {
-        self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+         self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

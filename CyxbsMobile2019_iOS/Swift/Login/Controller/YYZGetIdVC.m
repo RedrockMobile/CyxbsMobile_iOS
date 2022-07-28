@@ -41,7 +41,7 @@
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ忘记密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
-    [UIColor colorNamed:@"YYZColor2"], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setTintColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]];

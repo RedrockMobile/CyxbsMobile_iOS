@@ -104,9 +104,7 @@
                     forState:UIControlStateNormal];
         [_followBtn setBackgroundImage:[UIImage imageNamed:@"Rectangle_27_normal"]
                               forState:UIControlStateNormal];
-#warning "找不到 ‘white_1&white_1’ 对应的颜色"
-        [_followBtn setTitleColor:[UIColor colorNamed:@"white_1&white_1"]
-                         forState:UIControlStateNormal];
+        [_followBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]] forState:UIControlStateNormal];
         
         [_followBtn setTitle:@"互相关注"
                     forState:UIControlStateSelected];

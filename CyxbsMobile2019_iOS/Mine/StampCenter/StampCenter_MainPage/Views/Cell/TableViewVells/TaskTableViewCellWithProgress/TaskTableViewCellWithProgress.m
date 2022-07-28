@@ -65,7 +65,7 @@
 - (UIView *)progressBarHaveDone{
     if (!_progressBarHaveDone) {
         UIView *progressBarHaveDone = [[UIView alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 59, 0, 8)];
-        progressBarHaveDone.backgroundColor = [UIColor colorNamed:@"#7D8AFF"];
+        progressBarHaveDone.backgroundColor = [UIColor colorWithHexString:@"#7D8AFF"];
         progressBarHaveDone.layer.cornerRadius = 4;
         _progressBarHaveDone = progressBarHaveDone;
     }

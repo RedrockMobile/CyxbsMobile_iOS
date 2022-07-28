@@ -562,7 +562,7 @@
     self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.VCTitleStr = @"邮票中心";
     self.titlePosition = TopBarViewTitlePositionLeft;
-    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1"];
+    self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     self.splitLineHidden = YES;
     self.CorrectHeaderY = Bar_H;

@@ -16,7 +16,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"225_225_225&0_0_0"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         //设置cell无分割线
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.estimatedRowHeight = 64;   //设置一个预估高度

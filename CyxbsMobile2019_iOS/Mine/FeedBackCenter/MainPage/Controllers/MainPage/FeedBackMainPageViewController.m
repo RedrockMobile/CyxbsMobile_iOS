@@ -77,7 +77,7 @@
 - (UILabel *)commonQuestionsLbl{
     if (!_commonQuestionsLbl) {
         _commonQuestionsLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.042*SCREEN_WIDTH, Bar_H+27, 83, 28)];
-        _commonQuestionsLbl.textColor = [UIColor colorNamed:@"21_49_91_1"];
+        _commonQuestionsLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _commonQuestionsLbl.text = @"常见问题";
         _commonQuestionsLbl.font = [UIFont fontWithName:PingFangSCSemibold size:20];
     }
@@ -89,7 +89,7 @@
         _table = [[UITableView alloc]initWithFrame:CGRectMake(0, Bar_H+65, SCREEN_WIDTH, 500)];
         _table.delegate = self;
         _table.dataSource = self;
-        _table.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
+        _table.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         _table.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     }
     return _table;
@@ -137,10 +137,10 @@
 
 #pragma mark - 私有方法
 - (void)setupBar{
-    self.view.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     self.VCTitleStr = @"意见与反馈";
-    self.topBarView.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
-    self.splitLineColor = [UIColor colorNamed:@"BarLine"];
+    self.topBarView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+    self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E4E4E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2B2E" alpha:1]];
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }

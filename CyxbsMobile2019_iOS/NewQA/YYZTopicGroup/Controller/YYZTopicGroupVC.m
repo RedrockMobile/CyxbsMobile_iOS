@@ -25,7 +25,7 @@
 //    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;
     //设置nav
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
     [self.navigationController.navigationBar setTitleTextAttributes:attributes];
     self.navigationController.navigationBar.barTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
 

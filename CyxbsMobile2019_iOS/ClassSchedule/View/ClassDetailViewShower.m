@@ -68,7 +68,7 @@
     [view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender){ }]];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         view.backgroundColor = [UIColor whiteColor];
     }

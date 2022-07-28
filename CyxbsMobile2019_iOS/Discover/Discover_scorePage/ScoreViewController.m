@@ -16,8 +16,6 @@
 #import "GPA.h"
 #import "GPAItem.h"
 #import "IdsBindingView.h"
-#define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color_WhiteTo222222 [UIColor colorNamed:@"Color_WhiteTo222222" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource,IdsBindingViewDelegate>
 @property (nonatomic, weak)UserInfoView *userInfoView;
@@ -198,7 +196,7 @@
     UIView *termBackView = [[UIView alloc]initWithFrame:CGRectMake(0, self.ABScoreView.origin.y + self.ABScoreView.height + 2, self.view.width, 53)];
     self.termBackView = termBackView;
     if (@available(iOS 11.0, *)) {
-        termBackView.backgroundColor = ColorWhite;
+        termBackView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

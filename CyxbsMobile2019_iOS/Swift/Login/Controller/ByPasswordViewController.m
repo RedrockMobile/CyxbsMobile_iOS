@@ -46,7 +46,7 @@
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ找回密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
-    [UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]],NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
     
     //获取学号
@@ -82,7 +82,7 @@
     label3.numberOfLines = 0;
     [self.view addSubview:label3];
     label3.text = @" ";
-    label3.textColor = [UIColor colorNamed:@"YYZColor2"];
+    label3.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(20);

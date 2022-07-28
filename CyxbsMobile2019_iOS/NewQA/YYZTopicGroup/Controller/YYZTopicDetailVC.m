@@ -215,13 +215,13 @@ UIGestureRecognizerDelegate>
             CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
             int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
             if(currentPage == 0){
-                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+                [self.leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
                 [self.rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
             }
             else if(currentPage == 1){
                 [self.topicRightTableView reloadData];
                 [self.leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
-                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
             }
             //改变提示线位置
             double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
@@ -399,7 +399,7 @@ UIGestureRecognizerDelegate>
     [rightButton setTitle:@"热门" forState:UIControlStateNormal];
     [leftButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
     [rightButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
-    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
     [rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
     leftButton.frame = CGRectMake(15, 140, 40, 25);
     rightButton.frame = CGRectMake(70, 140, 40, 25);
@@ -538,7 +538,7 @@ UIGestureRecognizerDelegate>
         UILabel *noneLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-83+40, 330, 167,127)];
         noneLable.text = @"还没有动态哦~";
         noneLable.font = [UIFont fontWithName:nil size:13];
-        noneLable.textColor = [UIColor colorNamed:@"YYZColor2"];
+        noneLable.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         leftImageview.image = image;
         [self.backgroundScrollView addSubview:leftImageview];
         [self.backgroundScrollView addSubview:noneLable];

@@ -40,7 +40,7 @@
     //设置导航栏
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ找回密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
-    [UIColor colorNamed:@"YYZColor2"], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
     
     //获取学号
@@ -75,7 +75,7 @@
     [self.view addSubview:label2];
     NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:@"你的问题答案是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label2.attributedText = string2;
-    label2.textColor = [UIColor colorNamed:@"YYZColor2"];
+    label2.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     label2.alpha = 0.64;
 
     UILabel *label3 = [[UILabel alloc] init];
@@ -85,7 +85,7 @@
     [self.view addSubview:label3];
     NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:@" " attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 16], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label3.attributedText = string3;
-    label3.textColor = [UIColor colorNamed:@"YYZColor2"];
+    label3.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     label3.alpha = 1.0;
 }
 -(void) dismissKeyBoard{

@@ -68,7 +68,7 @@
         button.tag = 100 + i;      //设置每个button的tag
         [button addTarget:self action:@selector(changeBtnState:) forControlEvents:UIControlEventTouchUpInside];
         if (@available(iOS 11.0, *)) {
-            [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮未选中时文本颜色"] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }

@@ -293,7 +293,7 @@
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _timeLabel.textAlignment = NSTextAlignmentLeft;
         _timeLabel.font = [UIFont fontWithName:PingFangSCMedium size: 11];
-        _timeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#556C89" alpha:1]];
+        _timeLabel.textColor = [UIColor colorWithHexString:@"#556C89"];
     }
     return _timeLabel;
 }

@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.layer.cornerRadius = 8;
-        self.backgroundColor = [UIColor colorNamed:@"FeedBackBG"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
         
         [self addSubview:self.feedBackMain];
         [self addSubview:self.splitLine];
@@ -47,7 +47,7 @@
         [_heading setTextColor:[UIColor colorWithHexString:@"#15315B"]];
         Ivar ivar =  class_getInstanceVariable([UITextField class], "_placeholderLabel");
         UILabel *placeholderLabel = object_getIvar(self.heading, ivar);
-        placeholderLabel.textColor = [UIColor colorNamed:@"heading"];
+        placeholderLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#A0ADBC" alpha:1] darkColor:[UIColor colorWithHexString:@"#7A7A7C" alpha:1]];
     }
     return _heading;
 }
@@ -55,7 +55,7 @@
 - (UIView *)splitLine{
     if (!_splitLine) {
         _splitLine = [[UIView alloc]initWithFrame:CGRectMake(16, 55, self.width - 32, 1)];
-        _splitLine.backgroundColor = [UIColor colorNamed:@"FeedBackViewLine"];
+        _splitLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E4E4E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#414141" alpha:1]];
     }
     return _splitLine;
 }
@@ -63,7 +63,7 @@
 - (UITextView *)feedBackMain{
     if (!_feedBackMain) {
         _feedBackMain = [[UITextView alloc]initWithFrame:CGRectMake(14, 65, self.width - 36, 140)];
-        _feedBackMain.backgroundColor = [UIColor colorNamed:@"FeedBackBG"];
+        _feedBackMain.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
         _feedBackMain.delegate = self;
         [_feedBackMain setTextColor:[UIColor colorWithHexString:@"#15315B"]];
         _feedBackMain.font = [UIFont fontWithName:PingFangSCMedium size:15];
@@ -75,7 +75,7 @@
 - (UILabel *)placeholder{
     if (!_placeholder) {
         _placeholder = [[UILabel alloc]initWithFrame:CGRectMake(5, 2, 200, 30)];
-        _placeholder.textColor = [UIColor colorNamed:@"heading"];
+        _placeholder.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#A0ADBC" alpha:1] darkColor:[UIColor colorWithHexString:@"#7A7A7C" alpha:1]];
         _placeholder.text = @"添加问题描述";
         _placeholder.font = [UIFont fontWithName:PingFangSCMedium size:15];
         
@@ -87,7 +87,7 @@
     if (!_headingCountLbl) {
         _headingCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.84*SCREEN_WIDTH, 25, 15, 17)];
         _headingCountLbl.font = [UIFont fontWithName:PingFangSCMedium size:13];
-        _headingCountLbl.textColor = [UIColor colorNamed:@"Count"];
+        _headingCountLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#6A82A8" alpha:1] darkColor:[UIColor colorWithHexString:@"#A8A9AB" alpha:1]];
         _headingCountLbl.text = @"12";
     }
     return _headingCountLbl;
@@ -97,7 +97,7 @@
     if (!_textCountLbl) {
         _textCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.773*SCREEN_WIDTH, 177, 50, 17)];
         _textCountLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        _textCountLbl.textColor = [UIColor colorNamed:@"Count"];
+        _textCountLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#6A82A8" alpha:1] darkColor:[UIColor colorWithHexString:@"#A8A9AB" alpha:1]];
         _textCountLbl.text = @"0/200";
     }
     return _textCountLbl;
@@ -105,7 +105,7 @@
 - (UIView *)splitLine2{
     if (!_splitLine2) {
         _splitLine2 = [[UIView alloc]initWithFrame:CGRectMake(16, 204, self.width - 32, 1)];
-        _splitLine2.backgroundColor = [UIColor colorNamed:@"FeedBackViewLine"];
+        _splitLine2.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E4E4E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#414141" alpha:1]];
     }
     return _splitLine2;
 }
@@ -115,7 +115,7 @@
         _photoLbl = [[UILabel alloc]initWithFrame:CGRectMake(18, 221, 150, 21)];
         _photoLbl.text = @"相关问题的截图或图片";
         _photoLbl.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _photoLbl.textColor = [UIColor colorNamed:@"photo"];
+        _photoLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#73829D" alpha:1] darkColor:[UIColor colorWithHexString:@"#97979A" alpha:1]];
     }
     return _photoLbl;
 }
@@ -124,7 +124,7 @@
     if (!_photoCountLbl) {
         _photoCountLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.81*SCREEN_WIDTH, 223, 21, 17)];
         _photoCountLbl.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        _photoCountLbl.textColor = [UIColor colorNamed:@"Count"];
+        _photoCountLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#6A82A8" alpha:1] darkColor:[UIColor colorWithHexString:@"#A8A9AB" alpha:1]];
         _photoCountLbl.text = @"0/3";
     }
     return _photoCountLbl;

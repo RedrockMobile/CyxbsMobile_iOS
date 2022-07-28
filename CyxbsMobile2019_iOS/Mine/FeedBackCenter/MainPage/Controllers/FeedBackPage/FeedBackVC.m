@@ -57,9 +57,9 @@
             //若第一次选择
             if (!weakSelf.correctBtn) {
                 //设置正要选的为选中
-                sender.backgroundColor = [UIColor colorNamed:@"typeBG"];
-                [sender setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateNormal];
-                sender.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
+                sender.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E7E6FA" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2C5A" alpha:1]];
+                [sender setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4E49E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#5D5BF7" alpha:1]] forState:UIControlStateNormal];
+                sender.layer.borderColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4E49E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#5D5BF7" alpha:1]].CGColor;
                 weakSelf.correctBtn = sender;
             }else{
                 /*
@@ -68,11 +68,11 @@
                  再设置新的为已选择
                  */
                 weakSelf.correctBtn.backgroundColor = [UIColor clearColor];
-                [weakSelf.correctBtn setTitleColor:[UIColor colorNamed:@"TypeBtn"] forState:UIControlStateNormal];
-                weakSelf.correctBtn.layer.borderColor = [UIColor colorNamed:@"TypeBtn"].CGColor;
-                sender.backgroundColor = [UIColor colorNamed:@"typeBG"];
-                [sender setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateNormal];
-                sender.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
+                [weakSelf.correctBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#91A3BF" alpha:1] darkColor:[UIColor colorWithHexString:@"#7C7D7F" alpha:1]] forState:UIControlStateNormal];
+                weakSelf.correctBtn.layer.borderColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#91A3BF" alpha:1] darkColor:[UIColor colorWithHexString:@"#7C7D7F" alpha:1]].CGColor;
+                sender.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E7E6FA" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2C5A" alpha:1]];
+                [sender setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4E49E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#5D5BF7" alpha:1]] forState:UIControlStateNormal];
+                sender.layer.borderColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4E49E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#5D5BF7" alpha:1]].CGColor;
                 weakSelf.correctBtn = sender;
             }
         }];
@@ -135,10 +135,10 @@
 
 #pragma mark - 私有方法
 - (void)setupBar{
-    self.view.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     self.VCTitleStr = @"意见反馈";
-    self.topBarView.backgroundColor = [UIColor colorNamed:@"248_249_252_1"];
-    self.splitLineColor = [UIColor colorNamed:@"BarLine"];
+    self.topBarView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+    self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E4E4E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2B2E" alpha:1]];
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
 }

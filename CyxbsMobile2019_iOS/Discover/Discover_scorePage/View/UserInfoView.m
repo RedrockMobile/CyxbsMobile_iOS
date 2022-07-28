@@ -7,7 +7,6 @@
 //
 
 #import "UserInfoView.h"
-#define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface UserInfoView()
 @property (nonatomic, weak)UIImageView *userImage;//头像

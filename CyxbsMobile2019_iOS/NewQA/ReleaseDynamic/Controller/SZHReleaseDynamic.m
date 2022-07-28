@@ -587,15 +587,15 @@
     for (UIButton *button in self.circleLabelView.buttonArray) {
         if (button.tag != sender.tag) {
             if (@available(iOS 11.0, *)) {
-                button.backgroundColor = [UIColor colorNamed:@"圈子标签按钮未选中时背景颜色"];
-                [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮未选中时文本颜色"] forState:UIControlStateNormal];
+                button.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#3F3F3F" alpha:1]];
+                [button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]] forState:UIControlStateNormal];
             } else {
                 // Fallback on earlier versions
             }
         }else{
             if (@available(iOS 11.0, *)) {
-                button.backgroundColor = [UIColor colorNamed:@"圈子标签按钮选中时背景颜色"];
-                [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮选中时文本颜色"] forState:UIControlStateNormal];
+                button.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2DBD8" alpha:1] darkColor:[UIColor colorWithHexString:@"#6ADBFB" alpha:1]];
+                [button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF9C8D" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]] forState:UIControlStateNormal];
     
             } else {
                 // Fallback on earlier versions

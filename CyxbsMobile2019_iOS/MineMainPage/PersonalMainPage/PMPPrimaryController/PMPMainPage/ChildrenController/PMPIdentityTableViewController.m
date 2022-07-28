@@ -44,7 +44,7 @@
     [super viewDidLoad];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _cellHeight = 0.3866666667*SCREEN_WIDTH;
-    self.tableView.backgroundColor = [UIColor colorNamed:@"white&29_29_29_1"];
+    self.tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerClass:[IDCardTableViewCell class] forCellReuseIdentifier:NSStringFromClass(IDCardTableViewCell.class)];
     [self addNotification];

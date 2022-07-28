@@ -61,7 +61,7 @@ ReportViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.backgroundColor = [UIColor colorNamed:@"white&29_29_29_1"];
+    self.tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     self.tableView.showsVerticalScrollIndicator = NO;
     [self.tableView registerClass:[PMPDynamicTableViewCell class] forCellReuseIdentifier:[PMPDynamicTableViewCell reuseIdentifier]];
     [self funcPopViewinit];
