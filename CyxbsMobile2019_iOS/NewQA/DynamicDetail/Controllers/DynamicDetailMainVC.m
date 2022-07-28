@@ -766,34 +766,14 @@
     }
 
     
-    [HttpTool.shareTool
-     request:NewQA_POST_QACommentRelease_API
-     type:HttpToolRequestTypePost
-     serializer:HttpToolRequestSerializerHTTP
-     bodyParameters:param
-     progress:nil
-     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        if ([object[@"status"] intValue] == 200) {
-            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
-            
-            //清除文字内容，收回键盘
-            self.inputView.textView.text = @"";
-            self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
-            //更新textView的高度
-            [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(self.inputView.originTextViewSize);
-            }];
-            [self.inputView.textView resignFirstResponder];
-            
-            [self rebuildFrameByComentCount];
-        }
-    }
-     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
-    }];
-    
-//    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QACommentRelease_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        if ([responseObject[@"status"] intValue] == 200) {
+//    [HttpTool.shareTool
+//     request:NewQA_POST_QACommentRelease_API
+//     type:HttpToolRequestTypePost
+//     serializer:HttpToolRequestSerializerHTTP
+//     bodyParameters:param
+//     progress:nil
+//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//        if ([object[@"status"] intValue] == 200) {
 //            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
 //
 //            //清除文字内容，收回键盘
@@ -806,12 +786,32 @@
 //            [self.inputView.textView resignFirstResponder];
 //
 //            [self rebuildFrameByComentCount];
-//
 //        }
-//
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//    }
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //        [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
 //    }];
+    
+    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QACommentRelease_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        if ([responseObject[@"status"] intValue] == 200) {
+            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
+
+            //清除文字内容，收回键盘
+            self.inputView.textView.text = @"";
+            self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
+            //更新textView的高度
+            [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.size.mas_equalTo(self.inputView.originTextViewSize);
+            }];
+            [self.inputView.textView resignFirstResponder];
+
+            [self rebuildFrameByComentCount];
+
+        }
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
+    }];
     
     //初始化设置
     self.isCommentFirstLevel = YES;

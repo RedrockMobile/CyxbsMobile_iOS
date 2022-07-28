@@ -41,7 +41,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
     
-    //网络请求
+    // 网络请求
     [HttpTool.shareTool
      request:NewQA_POST_QATopicGroup_API
      type:HttpToolRequestTypePost
@@ -59,7 +59,7 @@
         [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
     }];
     
-//////网络请求
+//网络请求
 //    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
 //        NSArray *array = responseObject[@"data"];
@@ -200,7 +200,7 @@
 //        NSDictionary *dic = @{@"topic_ID":stringIsFollow};
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
 //            //改变button状态
-//        if([btn.titleLabel.text isEqualToString:@"已关注"]){
+//        if ([btn.titleLabel.text isEqualToString:@"已关注"]){
 //            [NewQAHud showHudWith:@" 取消关注圈子成功  " AddView:self.view];
 //            btn.clipsToBounds = YES;
 //            btn.layer.cornerRadius = 14;
@@ -214,7 +214,8 @@
 //            btn.backgroundColor = RGBColor(171, 189, 215, 1);
 //        }
 //        self->_isChanged = YES;
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//    }
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //        [NewQAHud showHudWith:@"  关注失败,请检查网络  " AddView:self.view];
 //    }];
 }

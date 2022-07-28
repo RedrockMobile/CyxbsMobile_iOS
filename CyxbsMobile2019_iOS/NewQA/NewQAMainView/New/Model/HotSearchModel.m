@@ -28,7 +28,7 @@ MJCodingImplementation
             [self.hotWordsArray addObject:hotWord];
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"HotWordsDataLoadSuccess" object:nil];
-        
+
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"HotWordsDataLoadError" object:nil];

@@ -29,7 +29,7 @@
     }];
     
 //    HttpClient *client = [HttpClient defaultClient];
-//    [client requestWithPath:NewQA_POST_QAStarGroup_API method:HttpRequestPost parameters:dic prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//    [client requestWithPath:NewQA_POST_QAStarGroup_API method:HttpRequestPost parameters:parameter prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        self->_Block(responseObject);
 //    } failure:^(NSURLSessionDataTask *task, NSError *error) {
 //        NSLog(@"关注圈子失败");

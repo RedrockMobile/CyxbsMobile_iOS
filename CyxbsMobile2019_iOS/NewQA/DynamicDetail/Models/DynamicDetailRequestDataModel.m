@@ -87,6 +87,7 @@
         }
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"动态详情页加载失败");
         if (failure) {
             failure();
         }
@@ -94,12 +95,13 @@
     
 
 //    HttpClient *client = [HttpClient defaultClient];
-    
+//
 //    [client requestWithPath:NewQA_GET_QADynamicDetail_API method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSDictionary *dic = responseObject[@"data"];
 //        success(dic);
 //
 //        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            NSLog(@"动态详情页加载失败");
 //            failure();
 //        }];
     
@@ -150,7 +152,7 @@
         if (success) {
             success(array);
         }
-        
+
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
@@ -197,7 +199,7 @@
     }];
     
 
-//    [client requestWithPath:NewQA_POST_QAReport_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//    [[HttpClient defaultClient] requestWithPath:NewQA_POST_QAReport_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        if ([responseObject[@"status"] intValue] == 200) {
 //            success();
 //        }else{
@@ -244,7 +246,7 @@
     }];
     
 //    HttpClient *client = [HttpClient defaultClient];
-    //    [client requestWithPath:NewQA_POST_QADynamicOrCommentDeleted_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        [client requestWithPath:NewQA_POST_QADynamicOrCommentDeleted_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 //        NSLog(@"删除评论后得到的数据为%@",responseObject);
 //        if ([responseObject[@"status"] intValue] == 200) {
 //            NSLog(@"删除成功");

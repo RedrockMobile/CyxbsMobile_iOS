@@ -836,7 +836,7 @@
 
 - (NSMutableArray *)topicArray {
     if (!_topicArray) {
-        
+//
         [HttpTool.shareTool
          request:NewQA_POST_QATopicGroup_API
          type:HttpToolRequestTypePost

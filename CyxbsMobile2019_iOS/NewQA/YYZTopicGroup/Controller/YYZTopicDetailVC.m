@@ -102,6 +102,7 @@ UIGestureRecognizerDelegate>
 //        } failure:^(NSURLSessionDataTask *task, NSError *error) {
 //            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
 //        }];
+    
     //设置导航栏
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar

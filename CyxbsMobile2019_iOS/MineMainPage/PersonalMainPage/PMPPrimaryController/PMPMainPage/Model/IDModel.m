@@ -88,11 +88,15 @@ const IDModelIDType IDModelIDTypeCus = @"个性身份";
 //     parameters:@{@"identityId":identityId}
 //     prepareExecute:nil
 //     progress:nil
-//     success:^(NSURLSessionDataTask *task, id responseObject) {
-//        success();
+//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//        if (success) {
+//            success();
+//        }
 //    }
-//     failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        failue();
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        if (failue) {
+//            failue();
+//        }
 //    }];
 }
 

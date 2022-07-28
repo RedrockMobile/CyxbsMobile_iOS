@@ -21,28 +21,7 @@
         @"page" : @(page),
         @"size" : @6
     };
-//    [CyxbsMobileBaseURL_1 stringByAppendingString:PostDynamic];
-//    [[HttpClient defaultClient]
-//     requestWithPath:[self getUserWithTailURL:PostDynamic]
-//     method:HttpRequestGet
-//     parameters:parameters
-//     prepareExecute:nil
-//     progress:nil
-//     success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//        NSMutableArray * tempAry = [NSMutableArray arrayWithCapacity:6];
-//        for (NSDictionary * dict in responseObject[@"data"]) {
-//            PMPPostItem * item = [PMPPostItem mj_objectWithKeyValues:dict];
-//            item.itemMDict = [dict mutableCopy];
-//            if (item) {
-//                [tempAry addObject:item];
-//            }
-//        }
-//        success([tempAry copy]);
-//    }
-//     failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        failure();
-//    }];
+
     
     [HttpTool.shareTool
      request:MineMainPage_GET_postDynamic_API
@@ -68,7 +47,7 @@
     }];
     
 //    [[HttpClient defaultClient]
-//     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:PostDynamic]
+//     requestWithPath:MineMainPage_GET_postDynamic_API
 //     method:HttpRequestGet
 //     parameters:parameters
 //     prepareExecute:nil

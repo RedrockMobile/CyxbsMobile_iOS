@@ -37,7 +37,7 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithFormat:@"TopicDataLoadFailure"] object:nil];
     }];
-    
+
 //    HttpClient *client = [HttpClient defaultClient];
 //
 //    [client requestWithPath:NewQA_GET_QATopicContent_API method:HttpRequestGet parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {

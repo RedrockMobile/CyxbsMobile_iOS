@@ -42,13 +42,17 @@
 //     parameters:parameters
 //     prepareExecute:nil
 //     progress:nil
-//     success:^(NSURLSessionDataTask *task, id responseObject) {
-//        PMPInfoModel * infoModel = [PMPInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
-//        success(infoModel);
+//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//        PMPInfoModel * infoModel = [PMPInfoModel mj_objectWithKeyValues:object[@"data"]];
+//        if (success) {
+//            success(infoModel);
+//        }
 //    }
 //     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //        NSLog(@"failure");
-//        failure();
+//        if (failure) {
+//            failure();
+//        }
 //    }];
 }
 
@@ -73,10 +77,14 @@
     }
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        success(object);
+        if (success) {
+            success(object);
+        }
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        failure(error);
+        if (failure) {
+            failure(error);
+        }
     }];
 }
 
@@ -109,11 +117,13 @@
 //     parameters:parameters
 //     prepareExecute:nil
 //     progress:nil
-//     success:^(NSURLSessionDataTask *task, id responseObject) {
-//        BOOL result = [responseObject[@"info"] isEqualToString:@"success"];
-//        success(result);
+//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//        BOOL result = [object[@"info"] isEqualToString:@"success"];
+//        if (success) {
+//            success(result);
+//        }
 //    }
-//     failure:^(NSURLSessionDataTask *task, NSError *error) {
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 //
 //    }];
 }

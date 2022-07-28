@@ -33,7 +33,9 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"------请求失败");
         NSArray *array = @[@"红岩网校",@"校庆",@"啦啦操比赛",@"话剧表演",@"奖学金",@"建模"];
-        progress(array);
+        if (progress) {
+            progress(array);
+        }
     }];
     
 //    HttpClient *client = [HttpClient defaultClient];
@@ -107,7 +109,7 @@
         if (success) {
             success(dic);
         }
-        
+
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {

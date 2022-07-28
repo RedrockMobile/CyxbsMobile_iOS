@@ -22,7 +22,7 @@ MJCodingImplementation
      bodyParameters:nil
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        
+
         self.dataArray = [NSMutableArray array];
         NSArray *tmpArray = object[@"data"];
         for (NSDictionary *dic in tmpArray) {
@@ -30,7 +30,7 @@ MJCodingImplementation
             [self.dataArray addObject:item];
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MyFollowGroupDataLoadSuccess" object:nil];
-        
+
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MyFollowGroupDataLoadError" object:nil];

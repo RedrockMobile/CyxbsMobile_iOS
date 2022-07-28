@@ -24,7 +24,7 @@
         self->_Block(object);
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+
     }];
     
 //    HttpClient *client = [HttpClient defaultClient];
