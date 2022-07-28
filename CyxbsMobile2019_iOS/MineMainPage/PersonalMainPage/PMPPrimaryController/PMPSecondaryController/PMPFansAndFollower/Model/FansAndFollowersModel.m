@@ -8,7 +8,6 @@
 
 #import "FansAndFollowersModel.h"
 
-#define GetFansAndFollowsInfo @"magipoke-loop/user/fansAndFollowsInfo"
 
 @implementation FansAndFollowersModel
 
@@ -19,7 +18,7 @@
         @"redid" : redid
     };
     [[HttpClient defaultClient]
-     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:GetFansAndFollowsInfo]
+     requestWithPath:MineMainPage_GET_getFansAndFollowsInfo_API
      method:HttpRequestGet
      parameters:parameters
      prepareExecute:nil

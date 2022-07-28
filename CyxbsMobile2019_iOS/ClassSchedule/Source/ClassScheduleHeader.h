@@ -9,8 +9,9 @@
 #ifndef ClassScheduleHeader_h
 #define ClassScheduleHeader_h
 
-#pragma mark - “课表”、“备忘”接口
+// “课表”、“备忘”接口
 #pragma mark - API
+
 //查课表数据，POST，参数：@{@"stu_num"]:学号}
 #define ClassSchedule_POST_keBiao_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/kebiao"]
 
@@ -38,5 +39,8 @@
 /// 查找老师，POST，参数：@{@"teaName"]: 用来搜索的数据}
 #define ClassSchedule_POST_searchTeacher_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaSearch"]
 
+//获取Store上的掌邮的版本id
+//@"http://itunes.apple.com/cn/lookup?id=974026615"
+#define ClassSchedule_GET_getNewVersionID_API @"http://itunes.apple.com/cn/lookup?id=974026615"
 
 #endif /* ClassScheduleHeader_h */

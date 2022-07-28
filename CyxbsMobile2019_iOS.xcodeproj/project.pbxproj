@@ -1555,6 +1555,8 @@
 		7AA4C480289220CE00E204C8 /* ADHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADHeader.h; sourceTree = "<group>"; };
 		7AA4C4822892213200E204C8 /* VolunteerHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerHeader.h; sourceTree = "<group>"; };
 		7AA4C4842892217100E204C8 /* MapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapHeader.h; sourceTree = "<group>"; };
+		7AA4C48628922F9A00E204C8 /* ToDoHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoHeader.h; sourceTree = "<group>"; };
+		7AA4C4882892368C00E204C8 /* MineMainPageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMainPageHeader.h; sourceTree = "<group>"; };
 		7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicGroupVC.m; sourceTree = "<group>"; };
 		7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
 		7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
@@ -5042,6 +5044,15 @@
 				7AA4C47A28921F0B00E204C8 /* ScorePageHeader.h */,
 				7AA4C47628921BF400E204C8 /* SchoolCalendarHeader.h */,
 				7AA4C4822892213200E204C8 /* VolunteerHeader.h */,
+				7AA4C48628922F9A00E204C8 /* ToDoHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7AA4C4872892368200E204C8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4C4882892368C00E204C8 /* MineMainPageHeader.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -5103,6 +5114,7 @@
 		AA0DDAC8286C8B1900802324 /* MineMainPage */ = {
 			isa = PBXGroup;
 			children = (
+				7AA4C4872892368200E204C8 /* Source */,
 				AA0DDAC9286C8B1900802324 /* Controller */,
 				AA0DDACC286C8B1900802324 /* Model */,
 				AA0DDACF286C8B1900802324 /* View */,

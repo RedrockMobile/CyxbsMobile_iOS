@@ -164,4 +164,9 @@
 #define NewQA_POST_QADynamicOrCommentDeleted_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-loop/comment/deleteId"]
 
 
+//举报
+#define NewQA_POST_report_API @"http://localhost:8080/new/report"
+
+
+
 #endif /* NewQAHeader_h */

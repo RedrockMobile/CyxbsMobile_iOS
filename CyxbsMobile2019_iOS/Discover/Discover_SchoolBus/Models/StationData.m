@@ -8,7 +8,7 @@
 
 #import "StationData.h"
 
-#define SCHOOLSTATIONAPI_DEV @"https://be-prod.redrock.cqupt.edu.cn/schoolbus/map/line"
+
 @implementation StationData
 
 + (instancetype)LineDataWithDict:(NSDictionary *)dict {
@@ -33,7 +33,7 @@
 + (void)StationWithSuccess:(void (^)(NSArray * _Nonnull array))success
                    Failure:(void (^)(NSError *error))failure {
     HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager GET: SCHOOLSTATIONAPI_DEV parameters: nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [client.httpSessionManager GET: Discover_GET_schoolStation_API parameters: nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *array = responseObject[@"data"][@"lines"];
         NSLog(@"qwe%@", array);
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
