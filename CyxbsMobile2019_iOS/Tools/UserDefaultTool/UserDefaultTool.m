@@ -10,7 +10,6 @@
 
 @implementation UserDefaultTool
 +(void)saveValue:(id) value forKey:(NSString *)key{
-    NSUserDefaults *userDefaults = NSUserDefaults.standardUserDefaults;
     if ([key isEqualToString:@"nowWeek"]) {
         NSInteger nowWeek = [value integerValue];
         NSTimeInterval oneDay = 24*60*60;
@@ -24,11 +23,11 @@
         NSDate *beginDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         NSString *beginString = [formatter stringFromDate:beginDate];
         beginDate =  [formatter dateFromString:beginString];
-        [userDefaults setObject:beginDate forKey:@"beginDate"];
+        [NSUserDefaults.standardUserDefaults setObject:beginDate forKey:@"beginDate"];
         
     }
-    [userDefaults setObject:value forKey:key];
-    [userDefaults synchronize];
+    [NSUserDefaults.standardUserDefaults setObject:value forKey:key];
+    [NSUserDefaults.standardUserDefaults synchronize];
 }
 
 +(id)valueWithKey:(NSString *)key{
