@@ -36,7 +36,7 @@
         
         ///bar标题
         if (@available(iOS 11.0, *)) {
-            UILabel *barTitle = [self creatLabelWithText:@"重设密码" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor colorNamed:@"MGDSafeTextColor"]];
+            UILabel *barTitle = [self creatLabelWithText:@"重设密码" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             barTitle.textAlignment = NSTextAlignmentLeft;
             [self addSubview:barTitle];
             _barTitle = barTitle;
@@ -47,7 +47,7 @@
         ///分割线
         UIView *line = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            line.backgroundColor = [UIColor colorNamed:@"MGDSafeLineColor"];
+            line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -301,8 +301,8 @@
     textField.borderStyle = UITextBorderStyleNone;
     textField.placeholder = placeholder;
     if (@available(iOS 11.0, *)) {
-        textField.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:placeholder attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor colorNamed:@"MGDSafePlaceholderColor"]}];
+        textField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:placeholder attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
         textField.attributedPlaceholder = string;
     } else {
         // Fallback on earlier versions

@@ -104,7 +104,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _titleLabel.numberOfLines = 0;
     }
     return _titleLabel;
@@ -132,7 +132,7 @@
 - (UIView *)maskView {
     if (_maskView == nil) {
         _maskView = [[UIView alloc] initWithFrame:CGRectZero];
-        _maskView.backgroundColor = [UIColor colorNamed:@"white_1&45_45_45_1"];
+        _maskView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         _maskView.layer.cornerRadius = 8;
     }
     return _maskView;
@@ -142,7 +142,7 @@
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _timeLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _timeLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _timeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _timeLabel.textAlignment = NSTextAlignmentCenter;
         _timeLabel.backgroundColor = [UIColor clearColor];
     }

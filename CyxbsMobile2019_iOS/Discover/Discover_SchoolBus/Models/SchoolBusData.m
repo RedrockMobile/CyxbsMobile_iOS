@@ -9,7 +9,7 @@
 #import "SchoolBusData.h"
 #import <CommonCrypto/CommonCrypto.h>
 
-#define SCHOOLBUSAPI_DEV @"https://be-dev.redrock.cqupt.edu.cn/schoolbus/status"
+
 
 @implementation SchoolBusData
 
@@ -40,39 +40,76 @@
     NSString *t = timeStamp;
     NSString *r = [self md5:[NSString stringWithFormat:@"%d", [timeStamp intValue] - 1]];
     
-    //网络请求 表单数据 (FormData)
-    HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager POST:SCHOOLBUSAPI parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [HttpTool.shareTool
+     form:Discover_POST_schoolBus_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+        //数据转二进制
+        NSData *sData = [s dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *tData = [t dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *rData = [r dataUsingEncoding:NSUTF8StringEncoding];
         
-            //数据转二进制
-            NSData *sData = [s dataUsingEncoding:NSUTF8StringEncoding];
-            NSData *tData = [t dataUsingEncoding:NSUTF8StringEncoding];
-            NSData *rData = [r dataUsingEncoding:NSUTF8StringEncoding];
-            
-            //往表单添加数据
-            [formData appendPartWithFormData:sData name:@"s"];
-            [formData appendPartWithFormData:tData name:@"t"];
-            [formData appendPartWithFormData:rData name:@"r"];
-        
-        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
-            //请求成功
-            NSArray *array = responseObject[@"data"][@"data"];
-            NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
+        //往表单添加数据
+        [body appendPartWithFormData:sData name:@"s"];
+        [body appendPartWithFormData:tData name:@"t"];
+        [body appendPartWithFormData:rData name:@"r"];
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        //请求成功
+        NSArray *array = object[@"data"][@"data"];
+        NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
 
-            //字典转模型
-            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                SchoolBusData *data = [self SchoolBusDataWithDict:obj];
-                [mArray addObject:data];
-            }];
-            
-            //调用成功的回调
-            if (success) {
-                success(mArray.copy);
-            }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            errors();
+        //字典转模型
+        [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            SchoolBusData *data = [self SchoolBusDataWithDict:obj];
+            [mArray addObject:data];
         }];
+        
+        //调用成功的回调
+        if (success) {
+            success(mArray.copy);
+        }
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        errors();
+    }];
+    
+    
+//    //网络请求 表单数据 (FormData)
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client.httpSessionManager POST:Discover_POST_schoolBus_API parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//
+//            //数据转二进制
+//            NSData *sData = [s dataUsingEncoding:NSUTF8StringEncoding];
+//            NSData *tData = [t dataUsingEncoding:NSUTF8StringEncoding];
+//            NSData *rData = [r dataUsingEncoding:NSUTF8StringEncoding];
+//
+//            //往表单添加数据
+//            [formData appendPartWithFormData:sData name:@"s"];
+//            [formData appendPartWithFormData:tData name:@"t"];
+//            [formData appendPartWithFormData:rData name:@"r"];
+//
+//        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//
+//            //请求成功
+//            NSArray *array = responseObject[@"data"][@"data"];
+//            NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
+//
+//            //字典转模型
+//            [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                SchoolBusData *data = [self SchoolBusDataWithDict:obj];
+//                [mArray addObject:data];
+//            }];
+//
+//            //调用成功的回调
+//            if (success) {
+//                success(mArray.copy);
+//            }
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            errors();
+//        }];
 }
 
 ///MD5加密

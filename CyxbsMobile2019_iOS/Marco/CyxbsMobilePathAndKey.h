@@ -58,4 +58,36 @@
 
 #import "MineMessageHeader.h"
 
+#import "SchoolCalendarHeader.h"
+
+#import "ElectricHeader.h"
+
+#import "ScorePageHeader.h"
+
+#import "TestArrangeHeader.h"
+
+#import "SchoolBusHeader.h"
+
+#import "ADHeader.h"
+
+#import "VolunteerHeader.h"
+
+#import "ToDoHeader.h"
+
+#import "MapHeader.h"
+
+#import "MineHeader.h"
+
+#import "ChangePasswordHeader.h"
+
+#import "StampCenterHeader.h"
+
+#import "FeedBackCenterHeader.h"
+
+#import "ClassScheduleHeader.h"
+
+#import "NewQAHeader.h"
+
+#import "MineMainPageHeader.h"
+
 #endif /* CyxbsMobilePathAndKey_h */

@@ -45,8 +45,7 @@
         CCLog(@"%.2f, %.2f, %.2f",2*M_PI*radius, straightLineLength, timeOfCircle/totalAnimationTime);
         center = CGPointMake(labelFrame.origin.x-radius-0.02666666667*SCREEN_WIDTH, labelFrame.origin.y + labelFrame.size.height/2);
         straightLineStart = CGPointMake(center.x + radius, center.y);
-        lineColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-        
+        lineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     return self;
 }

@@ -7,12 +7,8 @@
 //
 
 #import "TestCardTableViewCell.h"
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define color242_243_248toFFFFFF [UIColor colorNamed:@"color242_243_248&#FFFFFF" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color21_49_91_F0F0F2_alpha59  [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define ColorbackgroundColor [UIColor colorNamed:@"Color#F8F9FC&#000101" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-@implementation TestCardTableViewCell
 
+@implementation TestCardTableViewCell
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -22,7 +18,7 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = ColorbackgroundColor;
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
         } else {
             self.backgroundColor = [UIColor colorWithHexString:@"F8F9FC"];
         }
@@ -45,7 +41,7 @@
     label.text = @"十一周周一";
     label.font = [UIFont fontWithName:PingFangSCBold size:15];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -57,9 +53,9 @@
     label.text = @"还剩5天考试";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"Color#3A39D3&#0BCCF0" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3A39D3" alpha:1] darkColor:[UIColor colorWithHexString:@"#0BCCF0" alpha:1]];
     } else {
-        label.textColor = [UIColor colorWithHexString:@"Color#3A39D3&#0BCCF0"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3A39D3" alpha:1] darkColor:[UIColor colorWithHexString:@"#0BCCF0" alpha:1]];
     }
     self.leftDayLabel = label;
     [self.contentView addSubview:label];
@@ -69,7 +65,7 @@
     self.bottomView = backgroundView;
 
     if (@available(iOS 11.0, *)) {
-        backgroundView.backgroundColor =  [UIColor colorNamed:@"TestCardCellBackground" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:0.7] darkColor:[UIColor colorWithHexString:@"#3A3A3A" alpha:0.54]];
     } else {
         backgroundView.backgroundColor = [UIColor colorWithRed:232/255.0 green:241/255.0 blue:252/255.0 alpha:0.7];
     }
@@ -82,7 +78,7 @@
     label.text = @"大学物理";
     label.font = [UIFont fontWithName:PingFangSCBold size:18];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -106,7 +102,7 @@
     label.text = @"半期";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -119,7 +115,7 @@
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
 
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2_alpha59;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]];
     } else {
     label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.59];
     }
@@ -132,7 +128,7 @@
     label.text = @"14:00 - 16:00";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2_alpha59;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]];
     } else {
     label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.59];
     }
@@ -144,7 +140,7 @@
     label.text = @"3402";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2_alpha59;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]];
     } else {
     label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.59];
     }
@@ -156,7 +152,7 @@
     label.text = @"58号";
     label.font = [UIFont fontWithName:PingFangSCRegular size:13];
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color21_49_91_F0F0F2_alpha59;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]];
     } else {
     label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:0.59];
     }

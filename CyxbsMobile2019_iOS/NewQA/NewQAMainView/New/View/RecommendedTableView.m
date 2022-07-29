@@ -23,8 +23,8 @@
     if ([super initWithFrame:frame]) {
         
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
-            self.separatorColor = [UIColor colorNamed:@"ShareLineViewColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+            self.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
         } else {
             self.backgroundColor = [UIColor colorWithRed:241.0/255.0 green:243.0/255.0 blue:248.0/255.0 alpha:1];
         }

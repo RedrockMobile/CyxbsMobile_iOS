@@ -12,7 +12,7 @@
 
 - (instancetype)initWithNodataImage:(UIImage *)image AndText:(NSString *)text {
     if (self = [super init]) {
-        self.backgroundColor = [UIColor colorNamed:@"QATABLENODATACOLOR"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         _nodataImageView = [[UIImageView alloc] init];
         _nodataImageView.image = image;
         [self addSubview:_nodataImageView];
@@ -27,7 +27,7 @@
         nodataLabel.text = text;
         nodataLabel.textAlignment = NSTextAlignmentCenter;
         nodataLabel.font = [UIFont fontWithName:PingFangSCRegular size:12];
-        nodataLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
+        nodataLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C57" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         [self addSubview:nodataLabel];
         [nodataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(_nodataImageView.mas_bottom).mas_offset(HScaleRate_SE * 10);

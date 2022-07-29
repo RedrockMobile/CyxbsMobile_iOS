@@ -16,12 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param topic_id 标题
 /// @param imageAry 图片数组
 /// @param isOriginPhoto 是否支持上传原图
-/// @param sucess 成功上传后的操作
+/// @param success 成功上传后的操作
 /// @param failure 失败上传后的操作
-- (void)sumitDynamicDataWithContent:(NSString *)content TopicID:(NSString *)topic_id ImageAry:(NSArray *)imageAry IsOriginPhoto:(BOOL)isOriginPhoto Sucess:(void(^)(void))sucess Failure:(void(^)(void))failure;
+- (void)sumitDynamicDataWithContent:(NSString *)content TopicID:(NSString *)topic_id ImageAry:(NSArray *)imageAry IsOriginPhoto:(BOOL)isOriginPhoto Success:(void(^)(void))success Failure:(void(^)(void))failure;
 
 //获取所有的标题
-- (void)getAllTopicsSucess:(void(^)(NSArray *topicsAry))sucess;
+- (void)getAllTopicsSuccess:(void(^)(NSArray *topicsAry))success;
 @end
 
 NS_ASSUME_NONNULL_END

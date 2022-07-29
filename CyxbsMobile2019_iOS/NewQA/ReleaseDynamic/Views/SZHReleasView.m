@@ -24,7 +24,7 @@
     if (self) {
         //设置背景颜色
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"SZH发布动态主板颜色"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -46,8 +46,8 @@
         _releaseTextView = [[UITextView alloc] init];
         _releaseTextView.font = [UIFont fontWithName:PingFangSCBold size:16];
         if (@available(iOS 11.0, *)) {
-            _releaseTextView.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
-            _releaseTextView.backgroundColor = [UIColor colorNamed:@"SZH发布动态主板颜色"];
+            _releaseTextView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+            _releaseTextView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -67,7 +67,7 @@
         _placeHolderLabel.text = @"分享你的新鲜事～";
         _placeHolderLabel.font = [UIFont fontWithName:@"PingFangSC-Bold" size:16];
         if (@available(iOS 11.0, *)) {
-            _placeHolderLabel.textColor = [UIColor colorNamed:@"SZH发布动态提示文字颜色"];
+            _placeHolderLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#838383" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -87,7 +87,7 @@
         _numberOfTextLbl = [[UILabel alloc] init];
         _numberOfTextLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:10.92];
         if (@available(iOS 11.0, *)) {
-            _numberOfTextLbl.textColor = [UIColor colorNamed:@"SZHHistoryCellLblColor"];
+            _numberOfTextLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#60718D" alpha:1] darkColor:[UIColor colorWithHexString:@"#838484" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -130,7 +130,7 @@
     label.text = @"添加图片";
     label.font = [UIFont fontWithName:@"PingFangSC-Medium" size:12];
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"SZH发布动态提示文字颜色"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#838383" alpha:1]];
     } else {
         // Fallback on earlier versions
     }

@@ -24,7 +24,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Discover_EmptyClassBackgroundColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#EEF2F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             self.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
         }
@@ -47,7 +47,7 @@
         for (int i = 0; i < weekArray.count; i++) {
             UIButton *weekButton = [[UIButton alloc] init];
             if (@available(iOS 11.0, *)) {
-                [weekButton setTitleColor:[UIColor colorNamed:@"Discover_EmptyClass_TextColor"] forState:UIControlStateNormal];
+                [weekButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]] forState:UIControlStateNormal];
             } else {
                 [weekButton setTitleColor:[UIColor colorWithRed:18/255.0 green:45/255.0 blue:85/255.0 alpha:1] forState:UIControlStateNormal];
             }
@@ -67,7 +67,7 @@
         for (int i = 0; i < weekDayArray.count; i++) {
             UIButton *weekdayButton = [[UIButton alloc] init];
             if (@available(iOS 11.0, *)) {
-                [weekdayButton setTitleColor:[UIColor colorNamed:@"Discover_EmptyClass_TextColor"] forState:UIControlStateNormal];
+                [weekdayButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]] forState:UIControlStateNormal];
             } else {
                 [weekdayButton setTitleColor:[UIColor colorWithRed:18/255.0 green:45/255.0 blue:85/255.0 alpha:1] forState:UIControlStateNormal];
             }
@@ -83,7 +83,7 @@
         
         UITableView *resultTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         if (@available(iOS 11.0, *)) {
-            resultTableView.backgroundColor = [UIColor colorNamed:@"Discover_EmptyClass_TableColor"];
+            resultTableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F7F8FB" alpha:1] darkColor:[UIColor colorWithHexString:@"#0F0F0F" alpha:1]];
         } else {
             resultTableView.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
         }
@@ -97,7 +97,7 @@
         
         UIView *bottomView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            bottomView.backgroundColor = [UIColor colorNamed:@"Discover_EmptyClass_BottomViewColor"];
+            bottomView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1E1E1E" alpha:1]];
         } else {
             bottomView.backgroundColor = [UIColor whiteColor];
         }
@@ -111,7 +111,7 @@
         for (int i = 0; i < classesArray.count; i++) {
             UIButton * classButton = [[UIButton alloc] init];
             if (@available(iOS 11.0, *)) {
-                [classButton setTitleColor:[UIColor colorNamed:@"Discover_EmptyClass_TextColor"] forState:UIControlStateNormal];
+                [classButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]] forState:UIControlStateNormal];
             } else {
                 [classButton setTitleColor:[UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1] forState:UIControlStateNormal];
             }
@@ -130,7 +130,7 @@
         for (int i = 0; i < buildingArray.count; i++) {
             UIButton * buidingButton = [[UIButton alloc] init];
             if (@available(iOS 11.0, *)) {
-                [buidingButton setTitleColor:[UIColor colorNamed:@"Discover_EmptyClass_TextColor"] forState:UIControlStateNormal];
+                [buidingButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]] forState:UIControlStateNormal];
             } else {
                 [buidingButton setTitleColor:[UIColor colorWithRed:17/255.0 green:44/255.0 blue:84/255.0 alpha:1] forState:UIControlStateNormal];
             }

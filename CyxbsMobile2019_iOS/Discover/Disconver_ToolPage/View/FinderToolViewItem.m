@@ -7,8 +7,6 @@
 //
 
 #import "FinderToolViewItem.h"
-#define Color42_78_132 [UIColor colorNamed:@"color42_78_132&#DFDFE3" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
-#define Color_isFavoriteTool [UIColor colorNamed:@"Color_isFavoriteTool" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
 
 @interface FinderToolViewItem()
 @property (nonatomic, weak)UIImageView *iconView;
@@ -21,7 +19,7 @@
 - (instancetype)initWithIconView:(NSString *)iconViewName Title:(NSString *)title Detail:(NSString *)detail {
     if(self = [super init]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -49,7 +47,7 @@
     UILabel *label = [[UILabel alloc]init];
     self.myTitleLabel = label;
     if (@available(iOS 11.0, *)) {
-      label.textColor = Color42_78_132;
+      label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -60,7 +58,7 @@
     UILabel *label =[[UILabel alloc]init];
     self.myDetailLabel = label;
     if (@available(iOS 11.0, *)) {
-        label.textColor = Color42_78_132;
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -87,11 +85,11 @@
 - (void)changeBackgroundColorIfNeeded {
     if (self.isFavorite == YES) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = Color_isFavoriteTool;
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E5EAF2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         }
     }else {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         }
     }
 }

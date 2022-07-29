@@ -12,8 +12,6 @@
 #import "ClassmatesList.h"
 #import "WYCClassBookViewController.h"
 
-
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2"]
 @interface WeDateViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateDelete,PeopleListTableViewCellDelegateAdd>
 /**推出没课约的按钮*/
 @property (nonatomic, strong)UIButton *backButton;
@@ -34,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"没课约控制器的view背景色"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         self.view.backgroundColor = UIColor.whiteColor;
     }
@@ -54,7 +52,7 @@
 - (instancetype)initWithInfoDictArray:(NSMutableArray*)infoDictArray{
     self = [super init];
     if(self){
-        self.infoDictArray = infoDictArray;
+        self.infoDictArray = infoDictArray.mutableCopy;
     }
     return self;
 }
@@ -62,7 +60,7 @@
 //MARK: - 初始化子控件的一些方法：
 //添加返回按钮
 - (void)addBackButton {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];;
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     [self.view addSubview:button];
     self.backButton = button;
     [button setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
@@ -86,7 +84,7 @@
     label.font = [UIFont fontWithName:PingFangSCBold size:21];
     //蓝白
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     };
@@ -104,7 +102,7 @@
     
     backgroundView.layer.cornerRadius = MAIN_SCREEN_H*0.0271;
     if (@available(iOS 11.0, *)) {
-        backgroundView.backgroundColor = [UIColor colorNamed:@"Color#E8F1FC&2C2C2C"];
+        backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:0.77] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.72]];
     } else {
         backgroundView.backgroundColor = [UIColor colorWithHexString:@"#E8F1FC"];
     }
@@ -129,13 +127,13 @@
     textField.font = [UIFont fontWithName:PingFangSC size: 15];
     
     if (@available(iOS 11.0, *)) {
-        textField.textColor = Color21_49_91_F0F0F2;
+        textField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         textField.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
     
     if (@available(iOS 11.0, *)) {
-        textField.tintColor = Color21_49_91_F0F0F2;
+        textField.tintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         textField.tintColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -194,7 +192,7 @@
     self.peoleAddedList = tableView;
     
     
-//    tableView.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
+//    tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     tableView.showsVerticalScrollIndicator = NO;
     [tableView setSeparatorStyle:(UITableViewCellSeparatorStyleNone)];
     tableView.allowsSelection = NO;
@@ -215,7 +213,7 @@
     
     btn.layer.cornerRadius = MAIN_SCREEN_H*0.02465;
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"enquiryBtnColor"];
+        btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#453DD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#495CF5" alpha:1]];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:0.271 green:0.242 blue:0.850 alpha:1];
     }

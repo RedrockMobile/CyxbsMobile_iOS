@@ -27,25 +27,45 @@
 - (void)requestNewsSuccess:(void (^)(void))success
                    failure:(void (^)(NSError * _Nonnull))failure {
     
-    [HttpClient.defaultClient
-     requestWithPath:NEWSDETAIL
-     method:HttpRequestGet
-     parameters:@{@"id" : self.newsID}
-     prepareExecute:nil
+    [HttpTool.shareTool
+     request:Discover_GET_newsDetail_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"id" : self.newsID}
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"🟢JWZX Detail News Model:\n%@", responseObject);
-        [self loadWithDictionary:responseObject[@"data"]];
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"🟢JWZX Detail News Model:\n%@", object);
+        [self loadWithDictionary:object[@"data"]];
         if (success) {
             success();
         }
     }
-      failure:^(NSURLSessionDataTask *task, NSError *error) {
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"🔴JWZX Detail News Model Error:\n%@", error);
         if (failure) {
             failure(error);
         }
     }];
+    
+//    [HttpClient.defaultClient
+//     requestWithPath:Discover_GET_newsDetail_API
+//     method:HttpRequestGet
+//     parameters:@{@"id" : self.newsID}
+//     prepareExecute:nil
+//     progress:nil
+//     success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"🟢JWZX Detail News Model:\n%@", responseObject);
+//        [self loadWithDictionary:responseObject[@"data"]];
+//        if (success) {
+//            success();
+//        }
+//    }
+//      failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"🔴JWZX Detail News Model Error:\n%@", error);
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
 }
 
 - (void)loadWithDictionary:(NSDictionary *)dic {

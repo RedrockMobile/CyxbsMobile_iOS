@@ -11,13 +11,28 @@
 @implementation DeletePostModel
 
 - (void)deletePostWithID:(NSNumber *)postID AndModel:(NSNumber *)model {
-    HttpClient *client = [HttpClient defaultClient];
-    NSDictionary *param = @{@"id":postID,@"model":model};
-    [client requestWithPath:NEW_QA_DELETEPOST method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        self->_Block(responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
     
+    NSDictionary *param = @{@"id":postID,@"model":model};
+    
+    [HttpTool.shareTool
+     request:NewQA_POST_QADeletePost_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:param
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        self->_Block(object);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
     }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client requestWithPath:NewQA_POST_QADeletePost_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        self->_Block(responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//    }];
 }
 
 @end

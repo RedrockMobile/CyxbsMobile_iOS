@@ -23,7 +23,7 @@
     ///背景
     UIView *backView = [[UIView alloc] init];
     if (@available(iOS 11.0, *)) {
-        backView.backgroundColor = [UIColor colorNamed:@"MGDTimeCellBackColor"];
+        backView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F1FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#3A3A3A" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -35,7 +35,7 @@
     VolunteerLabel *activityLabel = [[VolunteerLabel alloc] init];
     activityLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 16];
     if (@available(iOS 11.0, *)) {
-        activityLabel.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+        activityLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -45,7 +45,7 @@
     
     ///时长
     if (@available(iOS 11.0, *)) {
-        UILabel *hourLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTextColor:[UIColor colorNamed:@"MGDTimeCellTextColor"]];
+        UILabel *hourLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
         [_backView addSubview:hourLabel];
         _hourLabel = hourLabel;
     } else {
@@ -54,7 +54,7 @@
     
     ///日期
     if (@available(iOS 11.0, *)) {
-        UILabel *dateLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTextColor:[UIColor colorNamed:@"MGDTimeCellTextColor"]];
+        UILabel *dateLabel = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 13] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
         [_backView addSubview:dateLabel];
         _dateLabel = dateLabel;
     } else {

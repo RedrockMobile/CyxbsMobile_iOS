@@ -84,7 +84,7 @@
     
     label.font = [UIFont fontWithName:PingFangSCBold size:22];
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -103,8 +103,8 @@
     [self addSubview:btn];
     
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"230_240_252&45_45_47"];
-        [btn setTitleColor:[UIColor colorNamed:@"130_166_218&231_239_251"] forState:UIControlStateNormal];
+        btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E7EEFA" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2D2E" alpha:1]];
+        [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#82A6DA" alpha:1] darkColor:[UIColor colorWithHexString:@"#E7EEFA" alpha:1]] forState:UIControlStateNormal];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:230/255.0 green:240/255.0 blue:252/255.0 alpha:1];
         [btn setTitleColor:[UIColor colorWithRed:130/255.0 green:166/255.0 blue:218/255.0 alpha:1] forState:UIControlStateNormal];
@@ -126,8 +126,8 @@
     [self addSubview:btn];
     
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"enquiryBtnColor"];
-        [btn setTitleColor:[UIColor colorNamed:@"white&218_239_251"] forState:UIControlStateNormal];
+        btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#453DD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#495CF5" alpha:1]];
+        [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#D9EFFA" alpha:1]] forState:UIControlStateNormal];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:69/255.0 green:62/255.0 blue:217/255.0 alpha:1];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -150,7 +150,7 @@
     
     label.backgroundColor = [UIColor clearColor];
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -172,7 +172,7 @@
     
     label.backgroundColor = [UIColor clearColor];
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }

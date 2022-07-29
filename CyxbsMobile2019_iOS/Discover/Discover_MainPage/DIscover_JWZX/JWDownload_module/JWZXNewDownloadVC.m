@@ -45,7 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -94,7 +94,7 @@
     if (_titleLab == nil) {
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.downLoadTableView.width - 30, 100)];
         _titleLab.numberOfLines = 0;
-        _titleLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        _titleLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _titleLab.font = [UIFont fontWithName:PingFangSCSemibold size:22];
         
         _titleLab.text = self.detailModel.title;

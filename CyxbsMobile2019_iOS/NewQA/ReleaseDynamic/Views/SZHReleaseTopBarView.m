@@ -53,7 +53,7 @@
 //        _titleLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:21];
         _titleLbl.font = [UIFont fontWithName:PingFangSCSemibold size:21];
         if (@available(iOS 11.0, *)) {
-            _titleLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+            _titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -82,7 +82,7 @@
         }
         [_releaseBtn addTarget:self.delegate action:@selector(releaseDynamic) forControlEvents:UIControlEventTouchUpInside];
         if (@available(iOS 11.0, *)) {
-            self.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+            self.releaseBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -101,7 +101,7 @@
     if (_topSeparationView == nil) {
         _topSeparationView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            _topSeparationView.backgroundColor = [UIColor colorNamed:@"SZH分割条颜色"];
+            _topSeparationView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#252525" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

@@ -51,7 +51,7 @@
     
     //无色背景色
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F7F8FB" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
@@ -81,7 +81,7 @@
     label.text = @"确定删除此条动态吗?";
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -97,7 +97,7 @@
     [btn setTitle:@"取消" forState:UIControlStateNormal];
     
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"195_212_238&90_90_90"];
+        btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D3ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1];
     }
@@ -116,7 +116,7 @@
     [btn setTitle:@"确定" forState:UIControlStateNormal];
     
     if (@available(iOS 11.0, *)) {
-        btn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+        btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4943E3" alpha:1] darkColor:[UIColor colorWithHexString:@"#5555FF" alpha:1]];
     } else {
         btn.backgroundColor = [UIColor colorWithRed:74/255.0 green:67/255.0 blue:228/255.0 alpha:1];
     }
@@ -136,7 +136,7 @@
     [self.tipWindow addSubview:blackLine];
     
     if (@available(iOS 11.0, *)) {
-        blackLine.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
+        blackLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.2] darkColor:[UIColor colorWithHexString:@"#E6E6E6" alpha:0.4]];
     } else {
         blackLine.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
     }

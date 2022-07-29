@@ -36,11 +36,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     //设置导航栏
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ找回密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
-    [UIColor colorNamed:@"YYZColor2"], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]], NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
     
     //获取学号
@@ -66,7 +66,7 @@
     [self.view addSubview:label1];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"你的密保问题是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label1.attributedText = string;
-    label1.textColor = [UIColor colorNamed:@"YYZColor8"];
+    label1.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     label1.alpha = 0.64;
     
     UILabel *label2 = [[UILabel alloc] init];
@@ -75,7 +75,7 @@
     [self.view addSubview:label2];
     NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:@"你的问题答案是：" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label2.attributedText = string2;
-    label2.textColor = [UIColor colorNamed:@"YYZColor2"];
+    label2.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     label2.alpha = 0.64;
 
     UILabel *label3 = [[UILabel alloc] init];
@@ -85,7 +85,7 @@
     [self.view addSubview:label3];
     NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:@" " attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 16], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label3.attributedText = string3;
-    label3.textColor = [UIColor colorNamed:@"YYZColor2"];
+    label3.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     label3.alpha = 1.0;
 }
 -(void) dismissKeyBoard{
@@ -166,11 +166,17 @@
 {
     if(_tf.text.length>=2)
     {
-        [[HttpClient defaultClient]requestWithPath:CHECKQUESTION method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
-        {
-            if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
+        
+        [HttpTool.shareTool
+         request:Mine_POST_checkQuestion_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text}
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            if ([object[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
             {
-                self.code = responseObject[@"data"][@"code"];
+                self.code = object[@"data"][@"code"];
                 ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
                 rView.stuID = self.idString;
                 rView.changeCode = self.code;
@@ -192,10 +198,40 @@
                 [NewQAHud showHudWith:@" 密保答案错误 " AddView:self.view];
         }
         }
-        failure:^(NSURLSessionDataTask *task, NSError *error){
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }
-            ];
+        }];
+        
+//        [[HttpClient defaultClient]requestWithPath:Mine_POST_checkQuestion_API method:HttpRequestPost parameters:@{@"stu_num":self.idString,@"question_id":self.questNum,@"content":self.tf.text} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
+//        {
+//            if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]])
+//            {
+//                self.code = responseObject[@"data"][@"code"];
+//                ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
+//                rView.stuID = self.idString;
+//                rView.changeCode = self.code;
+//                [self.navigationController pushViewController:rView animated:YES];
+//            }
+//            else
+//            {
+//                UILabel *tipsLable = [[UILabel alloc]init];
+//                tipsLable.text = @"密保答案错误";
+//                tipsLable.font =[UIFont fontWithName:nil size:12];
+//                tipsLable.textColor = [UIColor colorWithRed:11/225.0 green:204/225.0 blue:240/225.0 alpha:1.0];
+//                [self.view addSubview:tipsLable];
+//                [tipsLable mas_makeConstraints:^(MASConstraintMaker *make)
+//                {
+//                            make.top.mas_equalTo(self.view).mas_offset(SCREEN_HEIGHT * 0.29 + TOTAL_TOP_HEIGHT);
+//                            make.left.mas_equalTo(self.view).mas_offset(SCREEN_WIDTH * 0.053);
+//                            make.width.mas_equalTo(SCREEN_WIDTH * 0.31);
+//                }];
+//                [NewQAHud showHudWith:@" 密保答案错误 " AddView:self.view];
+//        }
+//        }
+//        failure:^(NSURLSessionDataTask *task, NSError *error){
+//            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+//        }
+//            ];
         }
     else
         {
@@ -223,17 +259,35 @@
     else
         num = stuNum;
     
-    [[HttpClient defaultClient] requestWithPath:GETQUESTION method:HttpRequestPost  parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSString *questWord = responseObject[@"data"][@"content"];
-//        NSString *questWord = responseObject[@"data"][@"content"];
-        NSArray *array = responseObject[@"data"];
-        NSDictionary *dic = array[0];
-        self.questNum = dic[@"id"];
-        NSString *str = dic[@"content"];
-        self.label3.text = str;
-            
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    [HttpTool.shareTool
+     request:Mine_POST_getQuestion_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"stu_num":num}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            NSArray *array = object[@"data"];
+            NSDictionary *dic = array[0];
+            self.questNum = dic[@"id"];
+            NSString *str = dic[@"content"];
+            self.label3.text = str;
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }];
+    }];
+    
+    
+//    [[HttpClient defaultClient] requestWithPath:Mine_POST_getQuestion_API method:HttpRequestPost  parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+////        NSString *questWord = responseObject[@"data"][@"content"];
+////        NSString *questWord = responseObject[@"data"][@"content"];
+//        NSArray *array = responseObject[@"data"];
+//        NSDictionary *dic = array[0];
+//        self.questNum = dic[@"id"];
+//        NSString *str = dic[@"content"];
+//        self.label3.text = str;
+//
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+//        }];
 }
 @end

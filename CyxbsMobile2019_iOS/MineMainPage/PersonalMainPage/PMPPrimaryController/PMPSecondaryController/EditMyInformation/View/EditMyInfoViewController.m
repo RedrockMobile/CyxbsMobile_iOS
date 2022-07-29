@@ -91,19 +91,38 @@ UIImagePickerControllerDelegate
     }
 
     NSLog(@"完成完善个人信息任务");
-   HttpClient *client = [HttpClient defaultClient];
-    //完成完善个人信息任务
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    
+    // 完成完善个人信息任务
+    [HttpTool.shareTool
+     form:Mine_POST_task_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
         NSString *target = @"完善个人信息";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-        [formData appendPartWithFormData:data name:@"title"];
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
-        }];
+        [body appendPartWithFormData:data name:@"title"];
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"成功了");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败了");
+    }];
+//   HttpClient *client = [HttpClient defaultClient];
+//    //完成完善个人信息任务
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *target = @"完善个人信息";
+//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:data name:@"title"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
 }
 
 - (void)headerImageTapped:(UIImageView *)sender {

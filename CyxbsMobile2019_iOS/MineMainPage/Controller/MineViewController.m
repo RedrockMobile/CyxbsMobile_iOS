@@ -378,7 +378,7 @@
 
 /// 点击评论按钮后调用
 - (void)remarkBtnClicked {
-    [[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:remarkLastClickTimeKey_NSInteger];
+    [NSUserDefaults.standardUserDefaults setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:remarkLastClickTimeKey_NSInteger];
     RemarkViewController *vc = [[RemarkViewController alloc] init];
     
     vc.hidesBottomBarWhenPushed = YES;
@@ -388,7 +388,7 @@
 
 /// 点击获赞按钮后调用
 - (void)praiseBtnClicked {
-    [[NSUserDefaults standardUserDefaults] setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:praiseLastClickTimeKey_NSInteger];
+    [NSUserDefaults.standardUserDefaults setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:praiseLastClickTimeKey_NSInteger];
     PraiseViewController *vc = [[PraiseViewController alloc] init];
     
     vc.hidesBottomBarWhenPushed = YES;

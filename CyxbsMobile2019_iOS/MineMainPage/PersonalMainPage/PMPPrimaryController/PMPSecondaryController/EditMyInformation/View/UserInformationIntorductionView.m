@@ -96,9 +96,9 @@
         userProtocolTextlabel.frame = CGRectMake(20, 20, self.frame.size.width - 40, self.frame.size.height - 70);
         
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"Mine_EditInfo_BackgroundColor"];
-            userProtocolTextlabel.backgroundColor = [UIColor colorNamed:@"Mine_EditInfo_BackgroundColor"];
-            userProtocolTextlabel.textColor = [UIColor colorNamed:@"Mine_CheckIn_TitleView"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
+            userProtocolTextlabel.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
+            userProtocolTextlabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]];
         } else {
             self.backgroundColor = [UIColor whiteColor];
             userProtocolTextlabel.backgroundColor = [UIColor whiteColor];
@@ -111,7 +111,7 @@
         backButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
         backButton.frame = CGRectMake(frame.size.width / 2.0 - 40, self.frame.size.height - 50, 80, 35);
         if (@available(iOS 11.0, *)) {
-            [backButton setTitleColor:[UIColor colorNamed:@"Mine_CheckIn_TitleView"] forState:UIControlStateNormal];
+            [backButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]] forState:UIControlStateNormal];
         } else {
             [backButton setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
         }

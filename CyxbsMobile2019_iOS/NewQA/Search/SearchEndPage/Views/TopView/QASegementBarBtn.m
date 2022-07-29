@@ -16,7 +16,7 @@
     if (self) {
         UILabel *btnLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         btnLbl.text = content;
-        btnLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        btnLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         btnLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
         [self addSubview:btnLbl];
         [btnLbl mas_makeConstraints:^(MASConstraintMaker *make) {

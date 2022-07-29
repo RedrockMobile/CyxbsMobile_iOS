@@ -82,7 +82,7 @@
     self.scBackViewDict = [[NSMutableDictionary alloc] init];
     
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
     }
@@ -148,7 +148,7 @@
     UIView *dragHintView = [[UIView alloc]init];
     [self.view addSubview:dragHintView];
     if (@available(iOS 11.0, *)) {
-        dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
+        dragHintView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2EDFB" alpha:1] darkColor:[UIColor colorWithHexString:@"#010101" alpha:1]];
     } else {
         dragHintView.backgroundColor = [UIColor whiteColor];
     }
@@ -626,8 +626,8 @@
 
 //检查更新
 - (void)checkUpdate{
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"CancelUpdateDate"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NeedUpdate"];
+    if (![NSUserDefaults.standardUserDefaults objectForKey:@"CancelUpdateDate"]) {
+        [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"NeedUpdate"];
     }
 
     //先判断用户是否需要更新
@@ -636,26 +636,54 @@
     //获取当前发布的版本的Version
     NSString *localVersion = [[[NSBundle mainBundle]infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     //获取Store上的掌邮的版本id
-    [[HttpClient defaultClient] requestWithPath:@"http://itunes.apple.com/cn/lookup?id=974026615" method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NSArray *array = responseObject[@"results"];
-        NSDictionary *dict = array[0];
-        NSString *appstoreVersion = dict[@"version"];
-        
-        //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
-        NSComparisonResult result = [localVersion compare:appstoreVersion];
-        
-        //需要更新 -> 弹窗提示
-        if (result == NSOrderedAscending) {
-                self.updatePopView = [[updatePopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) WithUpdateInfo:dict];
-                self.updatePopView.delegate = self;
-                [self.view addSubview:self.updatePopView];
-            [self.view bringSubviewToFront:self.updatePopView];
+        [HttpTool.shareTool
+         request:ClassSchedule_GET_getNewVersionID_API
+         type:HttpToolRequestTypeGet
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:nil
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            NSArray *array = object[@"results"];
+            NSDictionary *dict = array[0];
+            NSString *appstoreVersion = dict[@"version"];
+            
+            //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
+            NSComparisonResult result = [localVersion compare:appstoreVersion];
+            
+            //需要更新 -> 弹窗提示
+            if (result == NSOrderedAscending) {
+                    self.updatePopView = [[updatePopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) WithUpdateInfo:dict];
+                    self.updatePopView.delegate = self;
+                    [self.view addSubview:self.updatePopView];
+                [self.view bringSubviewToFront:self.updatePopView];
             }
-        
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
         }];
+        
+        
+//    [[HttpClient defaultClient] requestWithPath:ClassSchedule_GET_getNewVersionID_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        
+//        NSArray *array = responseObject[@"results"];
+//        NSDictionary *dict = array[0];
+//        NSString *appstoreVersion = dict[@"version"];
+//        
+//        //请求成功，判断版本大小,如果App Store版本大于本机版本，提示更新
+//        NSComparisonResult result = [localVersion compare:appstoreVersion];
+//        
+//        //需要更新 -> 弹窗提示
+//        if (result == NSOrderedAscending) {
+//                self.updatePopView = [[updatePopView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) WithUpdateInfo:dict];
+//                self.updatePopView.delegate = self;
+//                [self.view addSubview:self.updatePopView];
+//            [self.view bringSubviewToFront:self.updatePopView];
+//            }
+//        
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//        }];
         
     }
 }
@@ -668,9 +696,9 @@
         if (finished) {
             NSDate *nowDate = [NSDate date];
             
-            [[NSUserDefaults standardUserDefaults]setObject:nowDate forKey:@"CancelUpdateDate"];
+            [NSUserDefaults.standardUserDefaults setObject:nowDate forKey:@"CancelUpdateDate"];
             
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NeedUpdate"];
+            [NSUserDefaults.standardUserDefaults setBool:NO forKey:@"NeedUpdate"];
             
             [self.updatePopView removeFromSuperview];
         }
@@ -695,7 +723,7 @@
 
 - (BOOL)isNeedtoUpdate{
     
-    NSDate *lastCancelDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"CancelUpdateDate"];
+    NSDate *lastCancelDate = [NSUserDefaults.standardUserDefaults objectForKey:@"CancelUpdateDate"];
     NSTimeInterval interval = 60 * 60 * 24 * 7;
     NSDate *nextRemindDate = [NSDate dateWithTimeInterval:interval sinceDate:lastCancelDate];
     NSDate *date = [NSDate date];
@@ -703,10 +731,10 @@
     NSComparisonResult result = [date compare:nextRemindDate];
     
     if (result == NSOrderedDescending) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NeedUpdate"];
+        [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"NeedUpdate"];
     }
     
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"NeedUpdate"];
+    return [NSUserDefaults.standardUserDefaults boolForKey:@"NeedUpdate"];
 }
 
 @end

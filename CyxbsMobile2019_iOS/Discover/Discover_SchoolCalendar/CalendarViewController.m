@@ -28,7 +28,7 @@
     [self.view addSubview:scrollView];
     
     UIImageView *imageView = [[UIImageView alloc] init];
-    NSURL *url = [NSURL URLWithString:schoolCalendar];
+    NSURL *url = [NSURL URLWithString:Discover_schoolCalendar_API];
     [imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image==nil) {
             [NewQAHud showHudWith:@"加载失败～" AddView:self.view];

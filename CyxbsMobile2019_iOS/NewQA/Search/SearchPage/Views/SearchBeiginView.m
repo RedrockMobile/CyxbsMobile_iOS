@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -83,7 +83,7 @@
     if (_topSeparation == nil) {
         _topSeparation = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            _topSeparation.backgroundColor = [UIColor colorNamed:@"SZH分割条颜色"];
+            _topSeparation.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#252525" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

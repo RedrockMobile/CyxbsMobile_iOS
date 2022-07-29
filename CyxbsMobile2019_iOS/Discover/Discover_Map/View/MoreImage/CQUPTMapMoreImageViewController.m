@@ -39,7 +39,7 @@
     [super viewDidLoad];
     
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"Map_backgroundColor"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
     }
@@ -54,7 +54,7 @@
     titleLabel.text = @"所有图片";
     titleLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
     if (@available(iOS 11.0, *)) {
-        titleLabel.textColor = [UIColor colorNamed:@"Map_TextColor"];
+        titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         titleLabel.textColor = [UIColor colorWithHexString:@"15305B"];
     }
@@ -69,7 +69,7 @@
     shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
     [shareButton setTitle:@"与大家分享你拍摄的此地点" forState:UIControlStateNormal];
     if (@available(iOS 11.0, *)) {
-        [shareButton setTitleColor:[UIColor colorNamed:@"Map_ShareButtonColor_MoreImage"] forState:UIControlStateNormal];
+        [shareButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#01CAF0" alpha:1] darkColor:[UIColor colorWithHexString:@"#47DAFA" alpha:1]] forState:UIControlStateNormal];
     } else {
         [shareButton setTitleColor:[UIColor colorWithHexString:@"01CAF0"] forState:UIControlStateNormal];
     }
@@ -89,7 +89,7 @@
     noMoreImageLabel.text = @"暂无更多图片";
     noMoreImageLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
     if (@available(iOS 11.0, *)) {
-        noMoreImageLabel.textColor = [UIColor colorNamed:@"Map_SearchClearColor"];
+        noMoreImageLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD8" alpha:1] darkColor:[UIColor colorWithHexString:@"#979797" alpha:1]];
     } else {
         noMoreImageLabel.textColor = [UIColor colorWithHexString:@"ABBCD8"];
     }
@@ -205,28 +205,43 @@
                     for (int i = 0; i < photos.count; i++) {
                         [names addObject:@"file"];
                     }
-                    /*
-                     merge_error
-                     [[HttpClient defaultClient] uploadImageWithJson:CQUPTMAPUPLOADIMAGE method:HttpRequestPost parameters:params imageArray:photos imageNames:names prepareExecute:nil progress:nil success:^(id responseObject) {
-                         NSLog(@"%@", responseObject);
-                     } failure:^(NSError *error) {
-                         
-                     }];
-                     */
-                    [[HttpClient defaultClient].httpSessionManager POST:CQUPTMAPUPLOADIMAGE parameters:params headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                    
+                    [HttpTool.shareTool
+                     form:Discover_POST_cquptMapUploadMage_API
+                     type:HttpToolRequestTypePost
+                     parameters:params
+                     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
                         for (int i = 0; i < photos.count; i++) {
                             UIImage *image = photos[i];
                             UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
                             NSData *data = UIImageJPEGRepresentation(image1, 0.8);
                             NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
-                            [formData appendPartWithFileData:data name:names[i] fileName:fileName mimeType:@"image/png"];
+                            [body appendPartWithFileData:data name:names[i] fileName:fileName mimeType:@"image/png"];
                         }
-                                        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                            NSLog(@"图片上传成功");
-                                            
-                                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                                            NSLog(@"图片上传失败，错误信息：\n %@", error);
-                                        }];
+                    }
+                     progress:nil
+                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+                        NSLog(@"图片上传成功");
+                    }
+                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        NSLog(@"图片上传失败，错误信息：\n %@", error);
+                    }];
+                    
+                    
+//                    [[HttpClient defaultClient].httpSessionManager POST:Discover_POST_cquptMapUploadMage_API parameters:params headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//                        for (int i = 0; i < photos.count; i++) {
+//                            UIImage *image = photos[i];
+//                            UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+//                            NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+//                            NSString *fileName = [NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]];
+//                            [formData appendPartWithFileData:data name:names[i] fileName:fileName mimeType:@"image/png"];
+//                        }
+//                                        } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//                                            NSLog(@"图片上传成功");
+//                                            
+//                                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                                            NSLog(@"图片上传失败，错误信息：\n %@", error);
+//                                        }];
                 }];
                 
                 [uploadAlertController addAction:uploadCancelAction];

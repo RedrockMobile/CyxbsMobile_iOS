@@ -18,7 +18,7 @@
     self = [super init];
     if (self) {
         self.otherThings = [dic[@"id"] stringValue];
-        self.articleURL = MineMessage_HTML_md(self.otherThings);
+        self.articleURL = Discover_HTML_md_API(self.otherThings);
         self.identify = dic[@"stu_num"];
         self.title = dic[@"title"];
         self.uploadDate = [[NSDate dateString:[dic[@"date"] substringToIndex:10] fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-MM-dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy-M-d"];

@@ -21,7 +21,7 @@
     self = [super init];
     if (self) {
         UIView *underLine = [[UIView alloc] init];
-        underLine.backgroundColor = [UIColor colorNamed:@"Mine_EditInfo_SeparatorColor"];
+        underLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#BDCCE5" alpha:0.18] darkColor:[UIColor colorWithHexString:@"#56556A" alpha:0.16]];
         [self addSubview:underLine];
         self.underLine = underLine;
     }

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HttpClient.h"
 #import "NoteDataModel.h"
 
 @protocol WYCClassAndRemindDataModelDelegate <NSObject>

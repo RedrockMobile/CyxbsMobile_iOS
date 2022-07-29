@@ -25,9 +25,9 @@
 //    self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;
     //设置nav
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]],NSForegroundColorAttributeName,[UIFont boldSystemFontOfSize:21], NSFontAttributeName,nil];
     [self.navigationController.navigationBar setTitleTextAttributes:attributes];
-    self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
+    self.navigationController.navigationBar.barTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
 
     // 自定义返回按钮
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -40,18 +40,37 @@
     
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HideBottomClassScheduleTabBarView" object:nil userInfo:nil];
-    //网络请求
-    [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    // 网络请求
+    [HttpTool.shareTool
+     request:NewQA_POST_QATopicGroup_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-        NSArray *array = responseObject[@"data"];
+        NSArray *array = object[@"data"];
         self.array = array;
         NSLog(@"圈子数据请求成功");
         [self.tableView reloadData];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
-        }
-     ];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
+    }];
     
+//网络请求
+//    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+//        NSArray *array = responseObject[@"data"];
+//        self.array = array;
+//        NSLog(@"圈子数据请求成功");
+//        [self.tableView reloadData];
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@"  请求失败,请检查网络  " AddView:self.view];
+//        }
+//     ];
+//    
 }
 // 自定义返回方法
 - (void)back {
@@ -79,8 +98,8 @@
 - (void)setTableView {
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     self.tableView = tableView;
-    self.tableView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    self.tableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    self.tableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    self.tableView.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     self.tableView.separatorInset = UIEdgeInsetsMake(0,0,0,0);
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -147,11 +166,18 @@
 
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:FOLLOWTOPIC method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    [HttpTool.shareTool
+     request:NewQA_POST_followTopic_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"topic_id":stringIsFollow}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSDictionary *dic = @{@"topic_ID":stringIsFollow};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
             //改变button状态
-        if([btn.titleLabel.text isEqualToString:@"已关注"]){
+        if ([btn.titleLabel.text isEqualToString:@"已关注"]){
             [NewQAHud showHudWith:@" 取消关注圈子成功  " AddView:self.view];
             btn.clipsToBounds = YES;
             btn.layer.cornerRadius = 14;
@@ -165,9 +191,33 @@
             btn.backgroundColor = RGBColor(171, 189, 215, 1);
         }
         self->_isChanged = YES;
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [NewQAHud showHudWith:@"  关注失败,请检查网络  " AddView:self.view];
     }];
+    
+//    [[HttpClient defaultClient]requestWithPath:NewQA_POST_followTopic_API method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
+//            //改变button状态
+//        if ([btn.titleLabel.text isEqualToString:@"已关注"]){
+//            [NewQAHud showHudWith:@" 取消关注圈子成功  " AddView:self.view];
+//            btn.clipsToBounds = YES;
+//            btn.layer.cornerRadius = 14;
+//            [btn setTitle:@"+关注" forState:UIControlStateNormal];
+//            btn.backgroundColor = RGBColor(93, 94, 247, 1);
+//        } else{
+//            [NewQAHud showHudWith:@" 关注圈子成功  " AddView:self.view];
+//            btn.clipsToBounds = YES;
+//            btn.layer.cornerRadius = 14;
+//            [btn setTitle:@"已关注" forState:UIControlStateNormal];
+//            btn.backgroundColor = RGBColor(171, 189, 215, 1);
+//        }
+//        self->_isChanged = YES;
+//    }
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [NewQAHud showHudWith:@"  关注失败,请检查网络  " AddView:self.view];
+//    }];
 }
 
 @end

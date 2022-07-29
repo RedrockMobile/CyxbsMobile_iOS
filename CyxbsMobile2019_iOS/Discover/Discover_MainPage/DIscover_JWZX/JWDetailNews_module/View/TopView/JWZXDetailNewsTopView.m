@@ -27,7 +27,7 @@
     self = [super initWithSafeViewHeight:height];
     if (self) {
         self.hadLine = YES;
-        self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [self
          addTitle:@"教务新闻"
          withTitleLay:SSRTopBarBaseViewTitleLabLayLeft
@@ -48,8 +48,8 @@
     if (_downloadBtn == nil) {
         _downloadBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 87, 29)];
         [_downloadBtn setTitle:@"下载附件" forState:UIControlStateNormal];
-        [_downloadBtn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
-        [_downloadBtn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59"] forState:UIControlStateHighlighted];
+        [_downloadBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
+        [_downloadBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]] forState:UIControlStateHighlighted];
         _downloadBtn.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
     }
     return _downloadBtn;

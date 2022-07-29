@@ -16,34 +16,39 @@
         @"idnum": [UserDefaultTool getIdNum]
     };
     
-    HttpClient *client = [HttpClient defaultClient];
-    
-    [client requestWithPath:CHECKINAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-    
-        
+    [HttpTool.shareTool
+     request:Mine_POST_checkIn_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:params
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [self requestCheckInInfoWithParams:params succeeded:succeded];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failed(error);
     }];
 }
 
 + (void)requestCheckInInfoWithParams:(NSDictionary *)params succeeded:(void (^)(void))succeded {
-    HttpClient *client = [HttpClient defaultClient];
     
-    [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
-        [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
-        [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
-        [UserItemTool defaultItem].rank_Persent = responseObject[@"data"][@"percent"];
-        [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
-        [UserItemTool defaultItem].canCheckIn = [responseObject[@"data"][@"can_check_in"] boolValue];
-        [UserItemTool defaultItem].isCheckedToday = [responseObject[@"data"][@"is_check_today"] boolValue];
+    [HttpTool.shareTool
+     request:Mine_POST_checkInInfo_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:params
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [UserItemTool defaultItem].checkInDay = object[@"data"][@"check_in_days"];
+        [UserItemTool defaultItem].integral = object[@"data"][@"integral"];
+        [UserItemTool defaultItem].rank = object[@"data"][@"rank"];
+        [UserItemTool defaultItem].rank_Persent = object[@"data"][@"percent"];
+        [UserItemTool defaultItem].week_info = object[@"data"][@"week_info"];
+        [UserItemTool defaultItem].canCheckIn = [object[@"data"][@"can_check_in"] boolValue];
+        [UserItemTool defaultItem].isCheckedToday = [object[@"data"][@"is_check_today"] boolValue];
         succeded();
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
 }

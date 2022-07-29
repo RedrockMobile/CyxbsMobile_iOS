@@ -8,7 +8,7 @@
 
 #import "ElectricityView.h"
 @interface ElectricityView()
-@property NSUserDefaults *defaults;
+
 @end
 
 @implementation ElectricityView
@@ -25,7 +25,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self loadUserDefaults];//加载缓存用作视图的初始化
         [self addTitle];
         [self setUIDefaults];//对自身进行设置
         if([UserItem defaultItem].building && [UserItem defaultItem].room) {
@@ -39,7 +38,7 @@
 }
 -(void)setUIDefaults {
      if (@available(iOS 11.0, *)) {
-        self.backgroundColor = [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+         self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -75,11 +74,6 @@
     [self addBindingView];
 }
 
-- (void)loadUserDefaults {
-    NSUserDefaults *defualts = [NSUserDefaults standardUserDefaults];
-    self.defaults = defualts;
-}
-
 
 //MARK: 公共部分
 - (void)addTitle {
@@ -87,7 +81,7 @@
     self.electricFeeTitle = title;
     title.text = @"电费查询";
     title.font = [UIFont fontWithName:PingFangSCBold size: 18];
-    title.textColor = Color21_49_91_F0F0F2;
+    title.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self addSubview:title];
 
     
@@ -101,7 +95,7 @@
     self.hintLabel = hintLabel;
     hintLabel.text = @"还未绑定账号哦～";
     hintLabel.font = [UIFont fontWithName:PingFangSCLight size: 15];
-    hintLabel.textColor = Color21_49_91_F0F0F2;
+    hintLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self addSubview:hintLabel];
 
 }
@@ -145,7 +139,7 @@
     }else {
         timeLab.text = @"加载失败";
     }
-    timeLab.textColor = Color21_49_91_F0F0F2;
+    timeLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     timeLab.alpha = 0.54;
     timeLab.font = [UIFont fontWithName:PingFangSCLight size: 10];
     [self addSubview:timeLab];
@@ -157,14 +151,14 @@
     }
     UIButton *money = [[UIButton alloc]init];//左边数字
     self.electricFeeMoney = money;
-    if ([self.defaults objectForKey:@"ElectricFee_money"] != NULL) {
-        [money setTitle:[self.defaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
+    if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] != NULL) {
+        [money setTitle:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
     }else {
         [money setTitle:@"0" forState:UIControlStateNormal];
     }
 //    money.text = @"0";
     if (@available(iOS 11.0, *)) {
-        [money setTitleColor:Color42_78_132 forState:UIControlStateNormal];
+        [money setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]] forState:UIControlStateNormal];
     } else {
         // Fallback on earlier versions
     }
@@ -179,15 +173,15 @@
     }
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
-    if ([self.defaults objectForKey:@"ElectricFee_degree"]){
-        degree.text = [NSString stringWithFormat:@"%@", [self.defaults objectForKey:@"ElectricFee_degree"]];
+    if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]){
+        degree.text = [NSString stringWithFormat:@"%@", [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]];
         
     }else {
         degree.text = @"0";
     }
     
     if (@available(iOS 11.0, *)) {
-        degree.textColor = Color42_78_132;
+        degree.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -203,7 +197,7 @@
     UILabel *yuan = [[UILabel alloc]init];//汉字“元”
     self.electricFeeYuan = yuan;
     yuan.text = @"元";
-    yuan.textColor = Color21_49_91_F0F0F2;
+    yuan.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     yuan.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self addSubview:yuan];
 
@@ -216,7 +210,7 @@
     UILabel *du = [[UILabel alloc]init];//汉字“度”
     self.electricFeeDu = du;
     du.text = @"度";
-    du.textColor = Color21_49_91_F0F0F2;
+    du.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     du.font = [UIFont fontWithName:PingFangSCMedium size: 13];
     [self addSubview:du];
 
@@ -230,7 +224,7 @@
     self.electricFeeHintLeft = hintLeft;
     hintLeft.text = @"费用/本月";
     hintLeft.font = [UIFont fontWithName:PingFangSCLight size: 13];
-    hintLeft.textColor = Color21_49_91_F0F0F2;
+    hintLeft.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     hintLeft.alpha = 0.6;
     [self addSubview:hintLeft];
 
@@ -244,7 +238,7 @@
     self.electricFeeHintRight = hintRight;
         hintRight.text = @"使用度数/本月";
     hintRight.font = [UIFont fontWithName:PingFangSCLight size: 13];
-    hintRight.textColor = Color21_49_91_F0F0F2;
+    hintRight.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     hintRight.alpha = 0.6;
     [self addSubview:hintRight];
 

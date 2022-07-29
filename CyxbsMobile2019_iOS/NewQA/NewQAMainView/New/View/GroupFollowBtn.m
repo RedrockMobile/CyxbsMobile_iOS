@@ -33,7 +33,7 @@
         
         UILabel *findGroup = [[UILabel alloc] init];
         if (@available(iOS 11.0, *)) {
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"发现你喜欢的圈子~" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 16],NSForegroundColorAttributeName: [UIColor colorNamed:@"FollowGroupColor"]}];
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"发现你喜欢的圈子~" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size: 16],NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]}];
             findGroup.attributedText = string;
         } else {
             // Fallback on earlier versions

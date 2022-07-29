@@ -26,7 +26,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if ([super initWithFrame:frame]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"MGDLoginViewBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -42,7 +42,7 @@
         barTitle.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 21];
         barTitle.textAlignment = NSTextAlignmentLeft;
         if (@available(iOS 11.0, *)) {
-            barTitle.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+            barTitle.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -54,7 +54,7 @@
         VolunterLab.text = @"绑定志愿者账号";
         VolunterLab.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 34];
         if (@available(iOS 11.0, *)) {
-            VolunterLab.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+            VolunterLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -68,7 +68,7 @@
         NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
         attrs[NSFontAttributeName] = [UIFont fontWithName:@"PingFangSC-Medium" size:17];
         if (@available(iOS 11.0, *)) {
-            attrs[NSForegroundColorAttributeName] = [UIColor colorNamed:@"MGDLoginTextFieldColor"];
+            attrs[NSForegroundColorAttributeName] = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:0.36]];
         } else {
             // Fallback on earlier versions
         }
@@ -76,7 +76,7 @@
         accountField.attributedPlaceholder = attStr;
         accountField.clearButtonMode = UITextFieldViewModeWhileEditing;
         if (@available(iOS 11.0, *)) {
-            accountField.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+            accountField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -89,7 +89,7 @@
         NSMutableDictionary *attr = [NSMutableDictionary dictionary];
         attr[NSFontAttributeName] = [UIFont fontWithName:@"PingFangSC-Medium" size:17];
         if (@available(iOS 11.0, *)) {
-            attr[NSForegroundColorAttributeName] = [UIColor colorNamed:@"MGDLoginTextFieldColor"];
+            attr[NSForegroundColorAttributeName] = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:0.36]];
         } else {
             // Fallback on earlier versions
         }
@@ -98,7 +98,7 @@
         passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
 //        passwordField.alpha = 0.36;
         if (@available(iOS 11.0, *)) {
-            passwordField.textColor = [UIColor colorNamed:@"MGDLoginTitleColor"];
+            passwordField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -148,7 +148,7 @@
         sourceLab.text = @"部分信息来源:中国志愿服务网";
         sourceLab.font = [UIFont fontWithName:PingFangSC size: 11];
         if (@available(iOS 11.0, *)) {
-            sourceLab.textColor = [UIColor colorNamed:@"MGDLoginSmallTextColor"];
+            sourceLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD8" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

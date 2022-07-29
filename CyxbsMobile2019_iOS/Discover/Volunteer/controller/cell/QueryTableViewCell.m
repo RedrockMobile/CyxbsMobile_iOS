@@ -67,7 +67,7 @@
         cellTimeAddLabel.text = @"小时";
         cellTimeAddLabel.textAlignment = NSTextAlignmentLeft;
         cellTimeAddLabel.textColor = [UIColor colorWithRed:255/255.0 green:120/255.0 blue:20/255.0 alpha:1];
-        cellTimeAddLabel.font = [UIFont systemFontOfSize:11];;
+        cellTimeAddLabel.font = [UIFont systemFontOfSize:11];
         [self.contentView addSubview:cellTimeAddLabel];
         
         UILabel *cellHourLabel = [[UILabel alloc]initWithFrame:CGRectMake(MAIN_SCREEN_W-73,79,25, 13)];

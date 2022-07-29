@@ -33,7 +33,7 @@
         maskLayer.path = maskPath.CGPath;
         self.layer.mask = maskLayer;
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"MGDBackViewColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#060606" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

@@ -16,12 +16,6 @@
 #import "GPA.h"
 #import "GPAItem.h"
 #import "IdsBindingView.h"
-#define ColorWhite  [UIColor colorNamed:@"colorLikeWhite&#1D1D1D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color21_49_91_F0F0F2  [UIColor colorNamed:@"color21_49_91&#F0F0F2" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color42_78_132to2D2D2D [UIColor colorNamed:@"Color42_78_132&#2D2D2D" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-#define Color_WhiteTo222222 [UIColor colorNamed:@"Color_WhiteTo222222" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
-
-#define Color_chartLine [UIColor colorNamed:@"Color_chartLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource,IdsBindingViewDelegate>
 @property (nonatomic, weak)UserInfoView *userInfoView;
@@ -60,13 +54,13 @@
     
 }
 -(void)tryIDSBinding {
-    NSString *idsPasswd = [[NSUserDefaults standardUserDefaults] objectForKey:@"idsPasswd"];
-    if([UserItem defaultItem].idsBindingSuccess) {
+    NSString *idsPasswd = [NSUserDefaults.standardUserDefaults objectForKey:@"idsPasswd"];
+    if ([UserItem defaultItem].idsBindingSuccess) {
         [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
         return;
     }
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"idsAccount"] && idsPasswd) {
-        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:[[NSUserDefaults standardUserDefaults] objectForKey:@"idsAccount"] isPassword:idsPasswd];
+    if ([NSUserDefaults.standardUserDefaults objectForKey:@"idsAccount"] && idsPasswd) {
+        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:[NSUserDefaults.standardUserDefaults objectForKey:@"idsAccount"] isPassword:idsPasswd];
         [binding fetchData];
     }else {
         [self addIdsBindingView];//提示用户绑定统一认证码的title;
@@ -160,7 +154,7 @@
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.contentSize = CGSizeMake(0, 0);
     if (@available(iOS 11.0, *)) {
-        scrollView.backgroundColor = Color42_78_132to2D2D2D;
+        scrollView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:0.5]];
     }
     [self.view addSubview:scrollView];
 }
@@ -202,7 +196,7 @@
     UIView *termBackView = [[UIView alloc]initWithFrame:CGRectMake(0, self.ABScoreView.origin.y + self.ABScoreView.height + 2, self.view.width, 53)];
     self.termBackView = termBackView;
     if (@available(iOS 11.0, *)) {
-        termBackView.backgroundColor = ColorWhite;
+        termBackView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -210,7 +204,7 @@
     UILabel *termLabel = [[UILabel alloc]initWithFrame:CGRectMake(16, 27, 200, 26)];
     termLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
     if (@available(iOS 11.0, *)) {
-        termLabel.textColor = Color21_49_91_F0F0F2;
+        termLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -278,7 +272,7 @@
 
 - (NSArray *)SCChart_ColorArray:(SCChart *)chart {
     if (@available(iOS 11.0, *)) {
-        return @[Color_chartLine];
+        return [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2921D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#736CFF" alpha:1]];
     } else {
         // Fallback on earlier versions
         return @[[UIColor colorWithHexString:@"#2921D1"]];

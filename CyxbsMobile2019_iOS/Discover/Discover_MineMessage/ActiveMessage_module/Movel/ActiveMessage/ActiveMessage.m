@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         self.otherThings = [dic[@"id"] stringValue];
-        self.articleURL = MineMessage_HTML_md(self.otherThings);
+        self.articleURL = Discover_HTML_md_API(self.otherThings);
         self.identify = dic[@"stu_num"];
         self.hadRead = [dic[@"has_read"] boolValue];
         self.title = dic[@"title"];

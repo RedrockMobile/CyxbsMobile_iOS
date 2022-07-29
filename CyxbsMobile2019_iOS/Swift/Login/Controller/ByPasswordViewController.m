@@ -40,13 +40,13 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor5"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     
     //设置导航栏
     self.navigationController.navigationBar.hidden = NO;
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"ㄑ找回密码" style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftButton)];
     [leftButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Helvetica-Bold" size:21.0], NSFontAttributeName,
-    [UIColor colorNamed:@"YYZColor2"],NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
+    [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]],NSForegroundColorAttributeName,nil]forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem =leftButton;
     
     //获取学号
@@ -73,7 +73,7 @@
     [self.view addSubview:label1];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"你的保密邮箱是, 请点击获取验证码" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSC size: 15], NSForegroundColorAttributeName: [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0]}];
     label1.attributedText = string;
-    label1.textColor = [UIColor colorNamed:@"YYZColor8"];
+    label1.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     label1.alpha = 0.64;
     
     UILabel *label3 = [[UILabel alloc] init];
@@ -82,7 +82,7 @@
     label3.numberOfLines = 0;
     [self.view addSubview:label3];
     label3.text = @" ";
-    label3.textColor = [UIColor colorNamed:@"YYZColor2"];
+    label3.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(20);
@@ -186,11 +186,18 @@
 }
 
 //跳转界面，判断验证码是否正确
--(void) jumpTOset{
+- (void)jumpTOset{
     NSNumber *codeNum = [NSNumber numberWithString:self.tf.text];
-    [[HttpClient defaultClient] requestWithPath:CHECKEMAILCODE method:HttpRequestPost parameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
-            self.code = responseObject[@"data"][@"code"];
+    
+    [HttpTool.shareTool
+     request:Mine_POST_checkEmailCode_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        if ([object[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]) {
+            self.code = object[@"data"][@"code"];
             ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
             rView.stuID = self.idString;
             rView.changeCode = self.code;
@@ -210,9 +217,36 @@
             [NewQAHud showHudWith:@" 验证码有误或过期 " AddView:self.view];
 
         }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient] requestWithPath:Mine_POST_checkEmailCode_API method:HttpRequestPost parameters:@{@"stu_num":self.idString, @"email":self.lable3.text,@"code":codeNum} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        if([responseObject[@"status"] isEqualToNumber:[NSNumber numberWithInt:10000]]){
+//            self.code = responseObject[@"data"][@"code"];
+//            ResetPwdViewController *rView = [[ResetPwdViewController alloc]init];
+//            rView.stuID = self.idString;
+//            rView.changeCode = self.code;
+//            rView.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:rView animated:YES];
+//        }
+//        else{
+//            UILabel *tipsLable = [[UILabel alloc]init];
+//            tipsLable.text = @"验证码有误或过期，请重新获取。 ";
+//            tipsLable.font =[UIFont fontWithName:nil size:12];
+//            tipsLable.textColor = [UIColor colorWithRed:11/225.0 green:204/225.0 blue:240/225.0 alpha:1.0];
+//            [self.view addSubview:tipsLable];
+//            [tipsLable mas_makeConstraints:^(MASConstraintMaker *make) {
+//                        make.top.mas_equalTo(self.tf).offset(53);
+//                        make.left.mas_equalTo(self.view).mas_offset(SCREEN_WIDTH * 0.053);
+//                        make.width.mas_equalTo(SCREEN_WIDTH * 0.50);  }];
+//            [NewQAHud showHudWith:@" 验证码有误或过期 " AddView:self.view];
+//
+//        }
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+//        }];
     
 }
 // 开启倒计时效果
@@ -250,21 +284,50 @@
         num = self.idString;
     else
         num = stuNum;
-    [[HttpClient defaultClient] requestWithPath:GETEMAILDETAIL method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSString *email = responseObject[@"data"][@"email"];
+    
+    [HttpTool.shareTool
+     request:Mine_POST_getEmailDetail_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"stu_num":num}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSString *email = object[@"data"][@"email"];
         self.lable3.text = email;
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient] requestWithPath:Mine_POST_getEmailDetail_API method:HttpRequestPost parameters:@{@"stu_num":num} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSString *email = responseObject[@"data"][@"email"];
+//        self.lable3.text = email;
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+//        }];
 }
 //发送验证码
--(void) getMailCode{
+- (void)getMailCode{
     [self openCountdown];
-    [[HttpClient defaultClient] requestWithPath:GETEMAILCODE method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
-            [NewQAHud showHudWith:@" 验证码已发送，可能会被归为垃圾邮件，请注意查收 " AddView:self.view];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
-        }];
+    
+    [HttpTool.shareTool
+     request:Mine_POST_getEmailCode_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"stu_num":self.idString}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [NewQAHud showHudWith:@" 验证码已发送，可能会被归为垃圾邮件，请注意查收 " AddView:self.view];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient] requestWithPath:Mine_POST_getEmailCode_API method:HttpRequestPost parameters:@{@"stu_num":self.idString} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject){
+//            [NewQAHud showHudWith:@" 验证码已发送，可能会被归为垃圾邮件，请注意查收 " AddView:self.view];
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@" 网络请求错误 " AddView:self.view];
+//        }];
 }
 
 @end

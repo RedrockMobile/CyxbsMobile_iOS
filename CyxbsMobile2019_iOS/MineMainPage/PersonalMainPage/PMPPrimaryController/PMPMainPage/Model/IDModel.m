@@ -8,7 +8,7 @@
 
 #import "IDModel.h"
 
-#define DeleteIdentity @"magipoke-identity/DeleteIdentity"
+
 
 const IDModelIDType IDModelIDTypeAut = @"认证身份";
 const IDModelIDType IDModelIDTypeCus = @"个性身份";
@@ -64,22 +64,44 @@ const IDModelIDType IDModelIDTypeCus = @"个性身份";
 + (void)deleteIdentityWithIdentityId:(NSString *)identityId
                              success:(nonnull void (^)(void))success
                              failure:(nonnull void (^)(void))failue {
-    [[HttpClient defaultClient]
-     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:DeleteIdentity]
-     method:HttpRequestPost
-     parameters:@{@"identityId":identityId}
-     prepareExecute:nil
+    
+    [HttpTool.shareTool
+     request:MineMainPage_POST_deleteIdentity_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"identityId":identityId}
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        success();
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        if (success) {
+            success();
+        }
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
-        failue();
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failue) {
+            failue();
+        }
     }];
+    
+//    [[HttpClient defaultClient]
+//     requestWithPath:MineMainPage_POST_deleteIdentity_API
+//     method:HttpRequestPost
+//     parameters:@{@"identityId":identityId}
+//     prepareExecute:nil
+//     progress:nil
+//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//        if (success) {
+//            success();
+//        }
+//    }
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        if (failue) {
+//            failue();
+//        }
+//    }];
 }
 
 - (NSString*)getUserWithTailURL:(NSString*)tailURL {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
+    return [[NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
 }
 
 @end

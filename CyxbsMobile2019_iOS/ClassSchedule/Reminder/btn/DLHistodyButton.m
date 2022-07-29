@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"HistodayButtonBackGroundColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F7" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5E5E" alpha:1]];
         } else {
              self.backgroundColor = [UIColor colorWithHexString:@"#5E5E5E"];
         }
@@ -28,7 +28,7 @@
         self.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size:13];
         
         if (@available(iOS 11.0, *)) {
-            [self setTitleColor:[UIColor colorNamed:@"HistoryBtnTextColor"] forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]] forState:UIControlStateNormal];
         } else {
             [self setTitleColor:[UIColor colorWithHexString:@"F0F0F2"] forState:UIControlStateNormal];
         }

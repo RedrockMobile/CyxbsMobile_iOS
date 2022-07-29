@@ -31,16 +31,11 @@
 }
 
 - (void)initializer {
-//    self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:14];
-//    [self setTitleColor:[UIColor colorNamed:@"TypeBtn"] forState:UIControlStateNormal];
-//    [self setTitleColor:[UIColor colorNamed:@"type"] forState:UIControlStateHighlighted];
-    
     [self setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
     //边框
     self.layer.masksToBounds = NO;
     self.layer.cornerRadius = 15;
     self.layer.borderWidth = 1;
-//    self.layer.borderColor = [UIColor colorNamed:@"TypeBtn"].CGColor;
     self.layer.borderColor = UIColor.grayColor.CGColor;
 }
 
@@ -48,14 +43,12 @@
 
 - (void)setNormalStyle {
     self.backgroundColor = [UIColor clearColor];
-//    self.layer.borderColor = [UIColor colorNamed:@"TypeBtn"].CGColor;
     self.layer.borderColor = UIColor.grayColor.CGColor;
     [self setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
 }
 
 - (void)setHighLightStyle {
-    self.backgroundColor = [UIColor colorNamed:@"typeBG"];
-//    self.layer.borderColor = [UIColor colorNamed:@"type"].CGColor;
+    self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E7E6FA" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2C5A" alpha:1]];
     self.layer.borderColor = UIColor.orangeColor.CGColor;
     [self setTitleColor:UIColor.orangeColor forState:UIControlStateNormal];
 }

@@ -12,7 +12,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"255_255_255&45_45_45"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
         self.isViewHided = YES;
         self.alpha = 0;
         [self addTipView];
@@ -43,10 +43,10 @@
     
     [btn setTitle:@"取消" forState:UIControlStateNormal];
     btn.layer.cornerRadius = 20;
-    [btn setBackgroundColor:[UIColor colorNamed:@"237_244_253&72_74_77"]];
+    [btn setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#EDF4FD" alpha:1] darkColor:[UIColor colorWithHexString:@"#484A4D" alpha:1]]];
     
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:18]];
-    [btn setTitleColor:[UIColor colorNamed:@"color21_49_91&#F0F0F2"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.128*SCREEN_WIDTH);
@@ -63,7 +63,7 @@
     
     [btn setTitle:@"确定" forState:UIControlStateNormal];
     btn.layer.cornerRadius = 20;
-    [btn setBackgroundColor:[UIColor colorNamed:@"72_65_226&72_65_226"]];
+    [btn setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4841E2" alpha:1] darkColor:[UIColor colorWithHexString:@"#4841E2" alpha:1]]];
     
     [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:18]];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -86,7 +86,7 @@
     }];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.2] darkColor:[UIColor colorWithHexString:@"#E6E6E6" alpha:0.4]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
     }

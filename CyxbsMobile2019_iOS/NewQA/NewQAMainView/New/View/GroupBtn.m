@@ -21,7 +21,7 @@
         
         UILabel *groupBtnLabel = [[UILabel alloc] init];
         if (@available(iOS 11.0, *)) {
-            groupBtnLabel.textColor = [UIColor colorNamed:@"GroupBtnLabelColor"];
+            groupBtnLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

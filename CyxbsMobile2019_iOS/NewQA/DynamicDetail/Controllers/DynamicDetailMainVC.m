@@ -126,7 +126,7 @@
     self.isDynamicDetailVC = YES;
     self.isShowedReportView = NO;
     
-    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.commentTableDataAry = [NSMutableArray array];
     self.oneLeveCommentHeight = [NSMutableArray array];
     self.twoLevelCommentHeight = [NSMutableArray array];
@@ -248,7 +248,7 @@
     //动态信息的数据model
     DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
         //网络请求
-    [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
+    [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Success:^(NSDictionary * _Nonnull dic) {
         //数据请求成功先进行赋值
         [model setValuesForKeysWithDictionary:dic];
         //获取该cell的缓存高度
@@ -263,7 +263,7 @@
         }];
     
     //请求评论的数据
-    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
+    [requestModel getCommentDataWithPost_id:self.post_id.intValue Success:^(NSArray * _Nonnull commentAry) {
         //模型数组
         [self.commentTableDataAry addObjectsFromArray:[DynamicDetailCommentTableCellModel mj_objectArrayWithKeyValuesArray:commentAry]];
         
@@ -295,7 +295,7 @@
 - (void)rebuildFrameByComentCount{
     DynamicDetailRequestDataModel *requestModel = [[DynamicDetailRequestDataModel alloc] init];
     //请求评论的数据
-    [requestModel getCommentDataWithPost_id:self.post_id.intValue Sucess:^(NSArray * _Nonnull commentAry) {
+    [requestModel getCommentDataWithPost_id:self.post_id.intValue Success:^(NSArray * _Nonnull commentAry) {
         //移除原所有数据
         [self.commentTableDataAry removeAllObjects];
         [self.oneLeveCommentHeight removeAllObjects];
@@ -315,7 +315,7 @@
         
         //请求动态信息的数据,更新评论数量
         DynamicDetailViewModel *model = [[DynamicDetailViewModel alloc] init];
-        [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Sucess:^(NSDictionary * _Nonnull dic) {
+        [requestModel requestDynamicDetailDataWithDynamic_id:[self.post_id intValue] Success:^(NSDictionary * _Nonnull dic) {
             //数据请求成功先进行赋值
             [model setValuesForKeysWithDictionary:dic];
             //获取该cell的缓存高度
@@ -350,25 +350,44 @@
 //    self.backViewWithGesture.alpha = 0;
     [NewQAHud showHudWith:@"  已复制链接，可以去分享给小伙伴了～  " AddView:self.view];
     
-    HttpClient *client = [HttpClient defaultClient];
-    //完成围观吃瓜任务
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//    HttpClient *client = [HttpClient defaultClient];
+    // 完成围观吃瓜任务
+    [HttpTool.shareTool
+     form:Mine_POST_task_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
         NSString *target = @"围观吃瓜";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-        [formData appendPartWithFormData:data name:@"title"];
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
-        }];
+        [body appendPartWithFormData:data name:@"title"];
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"成功了");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败了");
+    }];
+    
+    
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *target = @"围观吃瓜";
+//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:data name:@"title"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
 }
 ///删除评论
 - (void)deleteAction:(int)comment_id{
     DeleteArticleTipView *tipView = [[DeleteArticleTipView alloc] initWithDeleteBlock:^{
         DynamicDetailRequestDataModel *model = [[DynamicDetailRequestDataModel alloc] init];
-        [model deleteCommentWithId:comment_id Sucess:^{
+        [model deleteCommentWithId:comment_id Success:^{
             [NewQAHud showHudWith:@"删除成功" AddView:self.view];
             [self rebuildFrameByComentCount];
             
@@ -484,13 +503,13 @@
         btn.selected = NO;
         btn.iconView.image = [UIImage imageNamed:@"未点赞"];
         btn.countLabel.text = [NSString stringWithFormat:@"%d",[btn.countLabel.text intValue] - 1];
-        btn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        btn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     }else{
         btn.enabled = NO;
         btn.selected = YES;
         btn.iconView.image = [UIImage imageNamed:@"点赞"];
         btn.countLabel.text = [NSString stringWithFormat:@"%d",[btn.countLabel.text intValue] + 1];
-        btn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+        btn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]];
     }
     //数据传入后端
     StarPostModel *model = [[StarPostModel alloc] init];
@@ -598,7 +617,7 @@
 - (void)ClickedDeletePostBtn:(UIButton *)sender{
 //    [self.selfPopView removeFromSuperview];
 //    [self.backViewWithGesture removeFromSuperview];
-//    [[DynamicDetailRequestDataModel new] deletSelfDynamicWithID:self.dynamicDataModel.post_id.intValue Success:^{
+//    [[DynamicDetailRequestDataModel new] deleteSelfDynamicWithID:self.dynamicDataModel.post_id.intValue Success:^{
 //            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view];
 ////            [self.navigationController popToRootViewControllerAnimated:YES];
 //        [self.navigationController popViewControllerAnimated:YES];
@@ -630,7 +649,7 @@
     }else{
         //举报评论时，在添加举报视图的时候就已经将举报的id更换了要举报的评论的id
         DynamicDetailRequestDataModel *model = [[DynamicDetailRequestDataModel alloc] init];
-        [model reportCommentWithId:[self.reportView.postID intValue] Content:self.reportView.textView.text Sucess:^{
+        [model reportCommentWithId:[self.reportView.postID intValue] Content:self.reportView.textView.text Success:^{
                     //举报成功后的操作
                     [self.popView removeFromSuperview];
                     [NewQAHud showHudWith:@"  举报成功  " AddView:self.view];
@@ -639,7 +658,7 @@
                 }];
         //还原初始化设置
         self.isReportComment = NO;
-        self.reportView.postID = [NSNumber numberWithInt:[self.post_id intValue]];;
+        self.reportView.postID = [NSNumber numberWithInt:[self.post_id intValue]];
     }
     self.reportView.textView.text = @"";
 }
@@ -746,10 +765,37 @@
         [param setObject:@(self.actionCommentModel.comment_id) forKey:@"reply_id"];
     }
 
-    [[HttpClient defaultClient]requestWithPath:New_QA_Comment_Release method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+//    [HttpTool.shareTool
+//     request:NewQA_POST_QACommentRelease_API
+//     type:HttpToolRequestTypePost
+//     serializer:HttpToolRequestSerializerHTTP
+//     bodyParameters:param
+//     progress:nil
+//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//        if ([object[@"status"] intValue] == 200) {
+//            [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
+//
+//            //清除文字内容，收回键盘
+//            self.inputView.textView.text = @"";
+//            self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
+//            //更新textView的高度
+//            [self.inputView.textView mas_updateConstraints:^(MASConstraintMaker *make) {
+//                make.size.mas_equalTo(self.inputView.originTextViewSize);
+//            }];
+//            [self.inputView.textView resignFirstResponder];
+//
+//            [self rebuildFrameByComentCount];
+//        }
+//    }
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [NewQAHud showHudWith:@"  发布评论失败，请重试  " AddView:self.view];
+//    }];
+    
+    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QACommentRelease_API method:HttpRequestPost parameters:param prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             [NewQAHud showHudWith:@"  发布评论成功  " AddView:self.view];
-            
+
             //清除文字内容，收回键盘
             self.inputView.textView.text = @"";
             self.inputView.originTextViewSize = CGSizeMake(MAIN_SCREEN_W*0.665, 38);
@@ -758,9 +804,9 @@
                 make.size.mas_equalTo(self.inputView.originTextViewSize);
             }];
             [self.inputView.textView resignFirstResponder];
-            
+
             [self rebuildFrameByComentCount];
-            
+
         }
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -770,19 +816,37 @@
     //初始化设置
     self.isCommentFirstLevel = YES;
     
-    HttpClient *client = [HttpClient defaultClient];
+//    HttpClient *client = [HttpClient defaultClient];
     //完成能说会道任务
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [HttpTool.shareTool
+     form:Mine_POST_task_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
         NSString *target = @"能说会道";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-        [formData appendPartWithFormData:data name:@"title"];
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
-        }];
+        [body appendPartWithFormData:data name:@"title"];
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"成功了");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败了");
+    }];
+    
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *target = @"能说会道";
+//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:data name:@"title"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
 }
 
 //MARK:UITextViewDelegate
@@ -1041,7 +1105,7 @@
 - (UITableView *)commentTable{
     if (!_commentTable) {
         _commentTable = [[UITableView alloc] initWithFrame:CGRectZero];
-        _commentTable.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+        _commentTable.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         _commentTable.delegate = self;
         _commentTable.dataSource = self;
         //设置预加载高度
@@ -1050,7 +1114,7 @@
         _commentTable.rowHeight = UITableViewAutomaticDimension;
         _commentTable.automaticallyAdjustsScrollIndicatorInsets = NO;
         //cell间的颜色
-        _commentTable.separatorColor = [UIColor colorNamed:@"ShareLineViewColor"];
+        _commentTable.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2E8EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#343434" alpha:1]];
         _commentTable.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         //分割线样式为无
         _commentTable.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -1075,12 +1139,12 @@
         //下面的文字
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.text = @"还没有评论哦～";
-        label.textColor = [UIColor colorNamed:@"85_108_137&240_240_242"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         label.font = [UIFont fontWithName:PingFangSCMedium size:13];
         [_noCommentView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(imageView);
-            make.top.equalTo(imageView.mas_bottom).offset(MAIN_SCREEN_H * 0.03);;
+            make.top.equalTo(imageView.mas_bottom).offset(MAIN_SCREEN_H * 0.03);
         }];
     }
     return _noCommentView;
@@ -1155,7 +1219,7 @@
         _inputView = [[DKSKeyboardView alloc] initWithFrame:CGRectZero];
         UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectZero];
         _inputView.textView.inputAccessoryView = toolbar;
-        _inputView.textView.textColor = [UIColor colorNamed:@"CellDetailColor"];
+        _inputView.textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C57" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         //设置代理方法
         _inputView.delegate = self;
         _inputView.textView.delegate = self;

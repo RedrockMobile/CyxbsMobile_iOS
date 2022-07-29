@@ -83,11 +83,7 @@ static NSString *reuseIdentifier = @"cell";
         //箭头
         UIImageView *imageArrow = [[UIImageView alloc]init];
         imageArrow.frame = CGRectMake(0, 0, 16, 7);
-        
-        NSBundle *bundle = [NSBundle bundleForClass:self.class];
-        NSString *file = [bundle pathForResource:@"pop_arrow" ofType:@"png"];
-        imageArrow.image = [UIImage imageWithContentsOfFile:file];
-        
+        imageArrow.image = [UIImage imageNamed:@"pop_arrow"];
         [self addSubview:imageArrow];
         _imageArrow = imageArrow;
     }

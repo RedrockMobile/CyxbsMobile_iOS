@@ -39,10 +39,10 @@
 }
 
 - (void)addHistoryBtnsFromUserDefaults{
-    self.dataArray = [[[NSUserDefaults standardUserDefaults] objectForKey:self.UserDefaultKey] mutableCopy];
+    self.dataArray = [[NSUserDefaults.standardUserDefaults objectForKey:self.UserDefaultKey] mutableCopy];
     if(self.dataArray==nil){
         self.dataArray = [[NSMutableArray alloc] init];
-        [[NSUserDefaults standardUserDefaults] setObject:self.dataArray forKey:self.UserDefaultKey];
+        [NSUserDefaults.standardUserDefaults setObject:self.dataArray forKey:self.UserDefaultKey];
     }
     
     for (NSString *text in self.dataArray) {
@@ -62,7 +62,7 @@
 }
 
 - (void)historyBtnAddConstraints{
-    if(self.buttonArray.count==0)return;;
+    if(self.buttonArray.count==0)return;
     __block int k = 0;
     [self.buttonArray[0] mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.historyLabel.mas_bottom).offset(LINESPLIT);
@@ -141,7 +141,7 @@
 - (void)write:(NSString*)str intoDataArrayWithUserDefaultKey:(NSString*)key{
     
     //写入缓存
-    NSUserDefaults *defa = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defa = NSUserDefaults.standardUserDefaults;
     
     //这里取出的是一个数组，内部是部分搜索历史记录，从缓存取出来后要mutableCopy一下，不然会崩
     NSMutableArray *array = [[defa objectForKey:key] mutableCopy];
@@ -169,7 +169,7 @@
 }
 
 - (void)remove:(NSString*)str fromDataArrayWithUserDefaultKey:(NSString*)key{
-    NSUserDefaults *defa = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defa = NSUserDefaults.standardUserDefaults;
     
     NSMutableArray *array = [[defa objectForKey:key] mutableCopy];
     
@@ -185,7 +185,7 @@
     [btn setBackgroundImage:[UIImage imageNamed:@"草稿箱垃圾桶"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(clearHistoryItemBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     //拿到存放历史记录的缓存数组
-    NSArray *array = [[NSUserDefaults standardUserDefaults] objectForKey:self.UserDefaultKey];
+    NSArray *array = [NSUserDefaults.standardUserDefaults objectForKey:self.UserDefaultKey];
     //如果没有历史记录，那就让按钮失效
     if(array.count==0)btn.enabled = NO;
     
@@ -206,7 +206,7 @@
     UIAlertAction *deleteAC = [UIAlertAction actionWithTitle:@"删除" style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction * _Nonnull action) {
         
         //1.从缓存去除记录
-        [[NSUserDefaults standardUserDefaults] setObject:[@[] mutableCopy] forKey:self.UserDefaultKey];
+        [NSUserDefaults.standardUserDefaults setObject:[@[] mutableCopy] forKey:self.UserDefaultKey];
         
         //2.去除控件上的记录
         [self removeHistoryBtn];
@@ -227,7 +227,7 @@
     self.historyLabel = label;
     label.text = @"历史记录";
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }

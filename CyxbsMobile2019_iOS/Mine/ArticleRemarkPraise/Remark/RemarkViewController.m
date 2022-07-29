@@ -35,7 +35,7 @@
 
 /// 数据加载模型
 - (void)addRemarkModel {
-    self.remarkModel = [[RemarkModel alloc] initWithUrl:getReplyAPI];
+    self.remarkModel = [[RemarkModel alloc] initWithUrl:Mine_GET_getReply_API];
     self.remarkModel.delegate = self;
 //    [self.remarkModel loadMoreData];
 }

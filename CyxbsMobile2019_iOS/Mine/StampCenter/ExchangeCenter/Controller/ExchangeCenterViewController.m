@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"White&Black"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     
@@ -45,12 +45,12 @@
 #pragma mark - configure
 ///设置
 - (void)configure {
-    self.view.backgroundColor = [UIColor colorNamed:@"242_243_248_1&0_0_0_1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:0.8]];
     self.VCTitleStr = @"";
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.splitLineHidden = YES;
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
-    self.titleColor = [UIColor colorNamed:@"21_49_91"];
+    self.titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     
     [self.view addSubview:self.contentView];
     
@@ -120,7 +120,7 @@
 - (ContentScrollView *)contentView {
     if (_contentView == nil) {
         _contentView = [[ContentScrollView alloc]initWithFrame:CGRectMake(0, 88.0 / 812 * iPhoneScreenHeight, iPhoneScreenWidth, iPhoneScreenHeight - 88.0 / 812 * iPhoneScreenHeight - 68) AndID:self.goodsID];
-        _contentView.backgroundColor = [UIColor colorNamed:@"White&Black"];
+        _contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         
         //设置contentSize
         [_contentView layoutIfNeeded];
@@ -136,7 +136,7 @@
     if (_bottomView == nil) {
         _bottomView = [[BottomView alloc]initWithFrame:CGRectZero AndID:self.goodsID];
         _bottomView.goodsID = self.goodsID;
-        _bottomView.backgroundColor = [UIColor colorNamed:@"White&Black"];
+        _bottomView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [_bottomView.exchangeBtn addTarget:self action:@selector(isExchange) forControlEvents:UIControlEventTouchUpInside];
         //设置数据
         _bottomView.balanceLabel.text = [@"余额：" stringByAppendingString:@""];

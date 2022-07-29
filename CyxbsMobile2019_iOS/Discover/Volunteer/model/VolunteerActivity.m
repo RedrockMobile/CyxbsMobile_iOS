@@ -11,21 +11,35 @@
 @implementation VolunteerActivity
 
 - (void)loadActivityList {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
-    [responseSerializer setRemovesKeysWithNullValues:YES];
-    [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
-
-    manager.responseSerializer = responseSerializer;
-
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [UserItemTool defaultItem].token]  forHTTPHeaderField:@"Authorization"];
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+//    [responseSerializer setRemovesKeysWithNullValues:YES];
+//    [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
+//
+//    manager.responseSerializer = responseSerializer;
+//
+//    [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [UserItemTool defaultItem].token]  forHTTPHeaderField:@"Authorization"];
     
-    [manager GET:VOLUNTEERACTIVITY parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [HttpTool.shareTool
+     request:Discover_GET_volunteerActivity_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSLog(@"获取志愿信息列表成功");
-        self->_Block(responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        self->_Block(object);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"获取志愿信息列表失败");
     }];
+    
+//    [manager GET:Discover_GET_volunteerActivity_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        NSLog(@"获取志愿信息列表成功");
+//        self->_Block(responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"获取志愿信息列表失败");
+//    }];
 }
 
 @end

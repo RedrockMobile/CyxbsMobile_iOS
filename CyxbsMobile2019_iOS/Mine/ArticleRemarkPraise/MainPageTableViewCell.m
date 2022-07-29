@@ -54,7 +54,7 @@
     self.nickNameLabel = label;
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -75,7 +75,7 @@
     self.interactionInfoLabel = label;
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"116_139_176&131_131_132"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:116/255.0 green:139/255.0 blue:176/255.0 alpha:1];
     }
@@ -96,7 +96,7 @@
     [self addSubview:label];
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"116_139_176&131_131_132"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:116/255.0 green:139/255.0 blue:176/255.0 alpha:1];
     }
@@ -122,7 +122,7 @@
     }];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.2] darkColor:[UIColor colorWithHexString:@"#E6E6E6" alpha:0.4]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
     }

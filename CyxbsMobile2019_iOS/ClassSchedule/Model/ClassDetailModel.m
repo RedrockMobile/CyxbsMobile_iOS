@@ -15,11 +15,27 @@
         @"place_search": placeName
     };
     
-    [[HttpClient defaultClient] requestWithPath:CQUPTMAPSEARCH method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        success(responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    [HttpTool.shareTool
+     request:Discover_POST_cquptMapSearch_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:params
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        if (success) {
+            success(object);
+        }
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+    
+    
+//    [[HttpClient defaultClient] requestWithPath:Discover_POST_cquptMapSearch_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        success(responseObject);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//    }];
 }
 
 @end

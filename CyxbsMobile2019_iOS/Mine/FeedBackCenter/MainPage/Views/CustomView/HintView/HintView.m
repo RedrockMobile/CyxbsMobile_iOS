@@ -22,7 +22,7 @@
 - (UILabel *)hintLbl{
     if (!_hintLbl) {
         _hintLbl = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 140, 15)];
-        _hintLbl.textColor = [UIColor colorNamed:@"QQLbl"];
+        _hintLbl.textColor = [UIColor colorWithHexString:@"#ABBBDA"];
         _hintLbl.font = [UIFont fontWithName:PingFangSCMedium size:11];
         _hintLbl.text = @"实时反馈可添加QQ反馈群：";
     }
@@ -31,7 +31,7 @@
 - (UILabel *)qqGroupLbl{
     if (!_qqGroupLbl) {
         _qqGroupLbl = [[UILabel alloc]initWithFrame:CGRectMake(140, 0, 62, 15)];
-        _qqGroupLbl.textColor = [UIColor colorNamed:@"QQ"];
+        _qqGroupLbl.textColor = [UIColor colorWithHexString:@"#0BCCF0"];
         _qqGroupLbl.font = [UIFont fontWithName:PingFangSCMedium size:11];
         _qqGroupLbl.text = @"570919844";
     }

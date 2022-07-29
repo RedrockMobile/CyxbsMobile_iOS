@@ -262,17 +262,17 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 280)];
-        view.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         TableHeaderView *headerView = [[TableHeaderView alloc]initWithFrame:CGRectMake(0, 217, SCREEN_WIDTH, 78)];
         [view addSubview:headerView];
         return view;
     }
     if (section == 1) {
         UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60.0)];
-        footerView.backgroundColor = [UIColor colorNamed:@"table"];
+        footerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         UILabel *la = [[UILabel alloc]init];
         la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
-        la.textColor = [UIColor colorNamed:@"#15315B"];
+        la.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         la.text = @"更多任务";
         la.font = [UIFont fontWithName:PingFangSCBold size:20];
         [footerView addSubview:la];
@@ -333,7 +333,7 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     if (kind == UICollectionElementKindSectionHeader) {
         StampCenterSecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
-        collectionheader.backgroundColor = [UIColor colorNamed:@"#FBFCFF"];
+        collectionheader.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         if (indexPath.section == 0) {
             collectionheader.height = 0;
         }
@@ -366,8 +366,7 @@
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
             formatter.dateFormat = @"yyyy-MM-dd";
             NSString *str = [formatter stringFromDate:date];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:str forKey:@"NowDate"];
+            [NSUserDefaults.standardUserDefaults setObject:str forKey:@"NowDate"];
             self.topView.point.hidden = YES;
         }
 
@@ -559,10 +558,10 @@
 
 //设置Bar
 - (void)setupBar{
-    self.view.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.VCTitleStr = @"邮票中心";
     self.titlePosition = TopBarViewTitlePositionLeft;
-    self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1"];
+    self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
     self.splitLineHidden = YES;
     self.CorrectHeaderY = Bar_H;
@@ -571,14 +570,28 @@
 //小型邮票数量View
 - (UIView *)stampCountView{
     if (!_stampCountView) {
-        HttpClient *client = [HttpClient defaultClient];
-        [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            self.number = responseObject[@"data"][@"user_amount"];
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"==========================出错了");
-            }];
+    
+        [HttpTool.shareTool
+         request:Mine_GET_stampStoreMainPage_API
+         type:HttpToolRequestTypeGet
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:nil
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            self.number = object[@"data"][@"user_amount"];
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"==========================出错了");
+        }];
+        
+//        HttpClient *client = [HttpClient defaultClient];
+//        [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            self.number = responseObject[@"data"][@"user_amount"];
+//            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                NSLog(@"==========================出错了");
+//            }];
         _stampCountView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH,7, 75, 27)];
-        _stampCountView.backgroundColor = [UIColor colorNamed:@"#2B333F66"];
+        _stampCountView.backgroundColor = [UIColor colorWithHexString:@"#2B333F" alpha:0.4];
         _stampCountView.layer.cornerRadius = 14;
         UIImageView *barstamp = [[UIImageView alloc]initWithFrame:CGRectMake(11.7, 2.3, 21.1, 21.1)];
         barstamp.image = [UIImage imageNamed:@"barstamp"];
@@ -598,7 +611,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     formatter.dateFormat = @"yyyy-MM-dd";
     NSString *str = [formatter stringFromDate:date];
-    if ([str isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"NowDate"]]) {
+    if ([str isEqualToString:[NSUserDefaults.standardUserDefaults objectForKey:@"NowDate"]]) {
         self.topView.point.hidden = YES;
     }
     else{
@@ -608,7 +621,7 @@
     //请勿移动此代码的位置，不然会引起UI错乱，连锁玄学问题
     //=============================================<<<
     UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBARHEIGHT)];
-    v.backgroundColor = [UIColor colorNamed:@"#F2F3F8"];
+    v.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     [self.view addSubview:v];
     //=============================================>>>
 }
@@ -654,13 +667,27 @@
         [NewQAHud showHudWith:@"网络异常" AddView:self.view];
     }];
     
-    HttpClient *client = [HttpClient defaultClient];
-    [client.httpSessionManager GET:Stamp_Store_Main_Page parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        self.number = responseObject[@"data"][@"user_amount"];
-        self.topView.number = responseObject[@"data"][@"user_amount"];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"==========================出错了");
-        }];
+    [HttpTool.shareTool
+     request:Mine_GET_stampStoreMainPage_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        self.number = object[@"data"][@"user_amount"];
+        self.topView.number = object[@"data"][@"user_amount"];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"==========================出错了");
+    }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client.httpSessionManager GET:Mine_GET_stampStoreMainPage_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        self.number = responseObject[@"data"][@"user_amount"];
+//        self.topView.number = responseObject[@"data"][@"user_amount"];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"==========================出错了");
+//        }];
 }
 
 //跳转至界面
@@ -677,18 +704,37 @@
 
 
 //检查是否有未领取的货物
-- (void)checkAlertLbl{
-    HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:COMMON_QUESTION method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            BOOL un_got_good = responseObject[@"un_got_good"];
+- (void)checkAlertLbl {
+    
+    [HttpTool.shareTool
+     request:Mine_GET_commonQuestion_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        BOOL un_got_good = object[@"un_got_good"];
         if (un_got_good == YES) {
             self.topView.alertLbl.hidden = NO;
-        }else{
+        }else {
             self.topView.alertLbl.hidden = YES;
         }
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSLog(@"==========================出错了");
-        }];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"==========================出错了");
+    }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//    [client requestWithPath:Mine_GET_commonQuestion_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//            BOOL un_got_good = responseObject[@"un_got_good"];
+//        if (un_got_good == YES) {
+//            self.topView.alertLbl.hidden = NO;
+//        }else{
+//            self.topView.alertLbl.hidden = YES;
+//        }
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            NSLog(@"==========================出错了");
+//        }];
 
 }
 

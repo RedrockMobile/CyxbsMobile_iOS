@@ -22,7 +22,7 @@
     if (!_mainLabel) {
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.04*SCREEN_WIDTH, 24, 40, 28)];
         mainLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20];
-        mainLabel.textColor = [UIColor colorNamed:@"#15315B"];
+        mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         mainLabel.text = @"装扮";
         _mainLabel = mainLabel;
     }
@@ -33,7 +33,7 @@
     if (!_detailLabel) {
         UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.663*SCREEN_WIDTH, 28, 108, 16)];
         detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
-        detailLabel.textColor = [UIColor colorNamed:@"#15315B66"];
+        detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
         detailLabel.text = @"请在个人资料里查看";
         _detailLabel = detailLabel;
     }
@@ -41,7 +41,7 @@
 }
 
 - (void)setup{
-    self.backgroundColor = [UIColor colorNamed:@"#FBFCFF"];
+    self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     UIBezierPath  *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(20, 20)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
     maskLayer.frame =self.bounds;

@@ -51,7 +51,7 @@
     backView.layer.cornerRadius = 16;
     backView.backgroundColor = [UIColor whiteColor];
     if (@available(iOS 11.0, *)) {
-        backView.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+        backView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
          backView.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
     }
@@ -107,9 +107,9 @@
         [pickerLabel setTextAlignment:NSTextAlignmentCenter];
         [pickerLabel setBackgroundColor:[UIColor clearColor]];
         if (@available(iOS 11.0, *)) {
-            pickerLabel.textColor = [UIColor colorNamed:@"titleLabelColor"];
+            pickerLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#122D55" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
-             pickerLabel.textColor = [UIColor colorWithHexString:@"#15315B"];
+             pickerLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         }
         [pickerLabel setFont: [UIFont fontWithName:PingFangSCSemibold size: 16]];
     }

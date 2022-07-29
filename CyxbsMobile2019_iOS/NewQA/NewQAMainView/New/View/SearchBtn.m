@@ -13,7 +13,7 @@
 - (instancetype)init {
     if ([super init]) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"SearchBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1F1F1F" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -26,7 +26,7 @@
         UILabel *searchBtnLabel = [[UILabel alloc] init];
         self.searchBtnLabel.text = @"大家都在搜：红岩网校";
         if (@available(iOS 11.0, *)) {
-            searchBtnLabel.textColor = [UIColor colorNamed:@"SearchTitleColor"];
+            searchBtnLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#8796AB" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

@@ -109,9 +109,9 @@
         [[NSAttributedString alloc]initWithString:model.titleStr
                                        attributes:
          @{NSFontAttributeName:self.titleLbl.font,
-           NSForegroundColorAttributeName:[UIColor colorNamed:@"112_129_155&255_255_255"],
+           NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#70819B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]],
            NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle|NSUnderlinePatternSolid),
-           NSStrikethroughColorAttributeName:[UIColor colorNamed:@"137_151_173&240_240_242"]}];
+           NSStrikethroughColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#8997AD" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]}];
         self.titleLbl.attributedText = attrStr;
         
         [self.circlebtn setBackgroundImage:[UIImage imageNamed:@"打勾"] forState:UIControlStateNormal];
@@ -125,7 +125,7 @@
             self.titleLbl.textColor = [UIColor redColor];
         }else{
         //待办情况
-            self.titleLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+            self.titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
             [self.circlebtn setBackgroundImage:[UIImage imageNamed:@"未打勾"] forState:UIControlStateNormal];
             self.titleLbl.text = model.titleStr;
         }
@@ -172,7 +172,7 @@
     if (!_timeLbl) {
         _timeLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _timeLbl.font = [UIFont fontWithName:PingFangSCMedium size:13];
-        _timeLbl.textColor = [UIColor colorNamed:@"21_49_91&240_240_242"];
+        _timeLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _timeLbl.alpha = 0.6;
     }
     return _timeLbl;
@@ -189,7 +189,7 @@
 - (UIView *)lineView{
     if (!_lineView) {
         _lineView = [[UIView alloc] initWithFrame:CGRectZero];
-        _lineView.backgroundColor =  [UIColor colorNamed:@"42_78_132&223_223_227"];
+        _lineView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         _lineView.alpha = 0.1;
     }
     return _lineView;

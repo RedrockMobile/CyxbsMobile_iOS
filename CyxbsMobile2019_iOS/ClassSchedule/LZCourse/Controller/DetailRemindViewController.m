@@ -202,23 +202,25 @@
         [center postNotificationName:@"deleteRemind" object:identifier];
         [[RemindNotification shareInstance] deleteNotificationAndIdentifiers];
     }
-    HttpClient *client = [HttpClient defaultClient];
+//    HttpClient *client = [HttpClient defaultClient];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:stuNum forKey:@"stuNum"];
     [parameters setObject:idNum forKey:@"idNum"];
     [parameters setObject:identifier forKey:@"id"];
     
-    [client requestWithPath:DELETEREMINDAPI method:HttpRequestPost parameters:parameters prepareExecute:^{
-        
-    } progress:^(NSProgress *progress) {
-        
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@",responseObject);
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    [HttpTool.shareTool
+     request:ClassSchedule_POST_deleteRemind_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:parameters
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"%@", object);
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
         NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:self.failurePath];
-        if(failureRequests == nil){
+        if (failureRequests == nil){
             failureRequests = [NSMutableArray array];
         }
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -227,6 +229,26 @@
         [failureRequests addObject:dic];
         [failureRequests writeToFile:self.failurePath atomically:YES];
     }];
+    
+//    [client requestWithPath:ClassSchedule_POST_deleteRemind_API method:HttpRequestPost parameters:parameters prepareExecute:^{
+//
+//    } progress:^(NSProgress *progress) {
+//
+//    } success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@",responseObject);
+//
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"%@",error);
+//        NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:self.failurePath];
+//        if(failureRequests == nil){
+//            failureRequests = [NSMutableArray array];
+//        }
+//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//        [dic setObject:parameters forKey:@"parameters"];
+//        [dic setObject:@"delete" forKey:@"type"];
+//        [failureRequests addObject:dic];
+//        [failureRequests writeToFile:self.failurePath atomically:YES];
+//    }];
     [tableView reloadData];
 
 }

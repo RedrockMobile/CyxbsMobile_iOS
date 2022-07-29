@@ -130,7 +130,7 @@
     if (!_AlertView) {
         UIView *AlertView = [[UIView alloc] init];
         if (@available(iOS 11.0, *)) {
-            AlertView.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+            AlertView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -159,7 +159,7 @@
         remindLbl.textAlignment = NSTextAlignmentCenter;
         remindLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 17];
         if (@available(iOS 11.0, *)) {
-            remindLbl.textColor = [UIColor colorNamed:@"MGDSafeTextColor"];
+            remindLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -173,7 +173,7 @@
         _detailTextView = [[UITextView alloc]init];
         _detailTextView.editable = NO;
         _detailTextView.text =  [NSString stringWithFormat:@"%@ ",self.info[@"releaseNotes"]];
-        _detailTextView.backgroundColor = [UIColor colorNamed:@"MGDSafePopBackColor"];
+        _detailTextView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     return _detailTextView;
 }

@@ -332,7 +332,7 @@
                                          @"content":self.contentTextView.text,
                                          } mutableCopy];
     NSLog(@"%@",jsonParameters);
-    HttpClient *client = [HttpClient defaultClient];
+//    HttpClient *client = [HttpClient defaultClient];
     if (!_isEditing) {
         [parameters setValue:identifier forKey:@"id"];
         [jsonParameters setValue:identifier forKey:@"id"];
@@ -343,15 +343,21 @@
             [center postNotificationName:@"addRemind" object:identifier];
             [[RemindNotification shareInstance] addNotifictaion];
         }
-        [client requestWithPath:ADDREMINDAPI method:HttpRequestPost parameters:jsonParameters prepareExecute:^{
+        
+        [HttpTool.shareTool
+         request:ClassSchedule_POST_addRemind_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:jsonParameters
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             
-        } progress:^(NSProgress *progress) {
+            NSLog(@"%@",object);
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"RemindAddSuccess" object:nil];
             
-        } success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@",responseObject);
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"RemindAddSuccess" object:nil];
-         
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
             NSLog(@"%@",error);
             NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:failurePath];
             if(failureRequests == nil){
@@ -363,8 +369,28 @@
             [failureRequests addObject:dic];
             [failureRequests writeToFile:failurePath atomically:YES]; //为了服务器与客户端同步，请求失败的存下等待下次重新请求
         }];
-    }
-    else{
+        
+//        [client requestWithPath:ClassSchedule_POST_addRemind_API method:HttpRequestPost parameters:jsonParameters prepareExecute:^{
+//
+//        } progress:^(NSProgress *progress) {
+//
+//        } success:^(NSURLSessionDataTask *task, id responseObject) {
+//            NSLog(@"%@",responseObject);
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"RemindAddSuccess" object:nil];
+//
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            NSLog(@"%@",error);
+//            NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:failurePath];
+//            if(failureRequests == nil){
+//                failureRequests = [NSMutableArray array];
+//            }
+//            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//            [dic setObject:parameters forKey:@"parameters"];
+//            [dic setObject:@"add" forKey:@"type"];
+//            [failureRequests addObject:dic];
+//            [failureRequests writeToFile:failurePath atomically:YES]; //为了服务器与客户端同步，请求失败的存下等待下次重新请求
+//        }];
+    }else {
         [parameters setValue:self.idNum forKey:@"id"]; //正在编辑的上传之前存在的时间戳
         [jsonParameters setValue:self.idNum forKey:@"id"];
         [remind setValue:self.idNum forKey:@"id"];
@@ -379,24 +405,47 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"editRemind" object:self.idNum];
              [[RemindNotification shareInstance] updateNotificationWithIdetifiers:self.idNum.stringValue];
         }
-        [client requestWithPath:EDITREMINDAPI method:HttpRequestPost parameters:jsonParameters prepareExecute:^{
-            
-        } progress:^(NSProgress *progress) {
-            
-        } success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSLog(@"%@",responseObject);
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"RemindEditSuccess" object:nil];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:failurePath];
-            if(failureRequests == nil){
-                failureRequests = [NSMutableArray array];
-            }
-            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-            [dic setObject:parameters forKey:@"parameters"];
-            [dic setObject:@"edit" forKey:@"type"];
-            [failureRequests addObject:dic];
-            [failureRequests writeToFile:failurePath atomically:YES];
+        
+        [HttpTool.shareTool
+         request:ClassSchedule_POST_editRemind_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:jsonParameters
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+                    NSLog(@"%@",object);
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"RemindEditSuccess" object:nil];
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:failurePath];
+                    if(failureRequests == nil){
+                        failureRequests = [NSMutableArray array];
+                    }
+                    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+                    [dic setObject:parameters forKey:@"parameters"];
+                    [dic setObject:@"edit" forKey:@"type"];
+                    [failureRequests addObject:dic];
+                    [failureRequests writeToFile:failurePath atomically:YES];
         }];
+        
+//        [client requestWithPath:ClassSchedule_POST_editRemind_API method:HttpRequestPost parameters:jsonParameters prepareExecute:^{
+//
+//        } progress:^(NSProgress *progress) {
+//
+//        } success:^(NSURLSessionDataTask *task, id responseObject) {
+//            NSLog(@"%@",responseObject);
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"RemindEditSuccess" object:nil];
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            NSMutableArray *failureRequests = [NSMutableArray arrayWithContentsOfFile:failurePath];
+//            if(failureRequests == nil){
+//                failureRequests = [NSMutableArray array];
+//            }
+//            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//            [dic setObject:parameters forKey:@"parameters"];
+//            [dic setObject:@"edit" forKey:@"type"];
+//            [failureRequests addObject:dic];
+//            [failureRequests writeToFile:failurePath atomically:YES];
+//        }];
     }
 }
 

@@ -41,7 +41,7 @@
         make.width.mas_equalTo(picScrollViewWidth);
         make.height.mas_equalTo(178);
     }];
-    _bannerView.backgroundColor = [UIColor colorNamed:@"white&black"];
+    _bannerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     
     NSString *s = self.goodsID;
     [Goods getDataDictWithId:s Success:^(NSDictionary * _Nonnull dict) {
@@ -168,7 +168,7 @@
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc]init];
-        _nameLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _nameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _nameLabel.font = [UIFont systemFontOfSize:20];
     }
     return _nameLabel;
@@ -178,7 +178,7 @@
     if (_amountLabel == nil) {
         _amountLabel = [[UILabel alloc]init];
         _amountLabel.textAlignment = NSTextAlignmentRight;
-        _amountLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _amountLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _amountLabel.alpha = 0.4;
         _amountLabel.font = [UIFont systemFontOfSize:13];
     }
@@ -189,7 +189,7 @@
     if (_textLabel == nil) {
         _textLabel = [[UILabel alloc]init];
         _textLabel.numberOfLines = 0;
-        _textLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _textLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _textLabel.alpha = 0.8;
         _textLabel.font = [UIFont systemFontOfSize:16];
     }
@@ -199,7 +199,7 @@
 - (UILabel *)lastdayLabel {
     if (_lastdayLabel == nil) {
         _lastdayLabel = [[UILabel alloc]init];
-        _lastdayLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _lastdayLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _lastdayLabel.alpha = 0.8;
         _lastdayLabel.font = [UIFont systemFontOfSize:13];
     }
@@ -215,14 +215,14 @@
                 make.top.equalTo(self.lastdayLabel.mas_bottom).offset(36);
                 make.width.mas_equalTo(100);
         }];
-        tipsLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        tipsLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         tipsLabel.alpha = 0.8;
         tipsLabel.font = [UIFont systemFontOfSize:14];
         tipsLabel.text = @"权益说明:";
         
         _tipsContentLabel = [[UILabel alloc]init];
         _tipsContentLabel.numberOfLines = 0;
-        _tipsContentLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+        _tipsContentLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _tipsContentLabel.alpha = 0.4;
         _tipsContentLabel.font = [UIFont systemFontOfSize:14];
         

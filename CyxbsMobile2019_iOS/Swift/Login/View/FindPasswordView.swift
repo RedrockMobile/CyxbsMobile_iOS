@@ -23,7 +23,7 @@ class FindPasswordView: UIView {
     
     lazy private var buttonBoard: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(named: "YYZColor5")
+        view.backgroundColor = UIColor(.dm ,light: UIColor(hexString: "#FFFFFF")!, dark: UIColor(hexString: "#000000")!)
         view.layer.cornerRadius = 8
         view.alpha = 0
         
@@ -33,7 +33,7 @@ class FindPasswordView: UIView {
     lazy private var findByEmailButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("邮箱找回", for: .normal)
-        button.setTitleColor(UIColor(named: "YYZColor2"), for: .normal)
+        button.setTitleColor(UIColor(.dm ,light: UIColor(hexString: "#14305B")!, dark: UIColor(hexString: "#FFFFFF")!), for: .normal)
         button.titleLabel?.font = UIFont(name: "PingFang SC", size: 18)
         button.addTarget(self, action: #selector(findByEmail), for: .touchUpInside)
         
@@ -43,7 +43,7 @@ class FindPasswordView: UIView {
     lazy private var findByQuestionButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("密保找回", for: .normal)
-        button.setTitleColor(UIColor(named: "YYZColor2"), for: .normal)
+        button.setTitleColor(UIColor(.dm ,light: UIColor(hexString: "#14305B")!, dark: UIColor(hexString: "#FFFFFF")!), for: .normal)
         button.titleLabel?.font = UIFont(name: "PingFang SC", size: 18)
         button.addTarget(self, action: #selector(findByQuestion), for: .touchUpInside)
         

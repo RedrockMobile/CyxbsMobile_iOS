@@ -19,25 +19,45 @@
         @"redid" : redid
     };
     
-    [[HttpClient defaultClient]
-     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:GetUserCount]
-     method:HttpRequestGet
-     parameters:parameters
-     prepareExecute:nil
+    [HttpTool.shareTool
+     request:Mine_GET_getUserCount_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:parameters
      progress:nil
-     success:^(NSURLSessionDataTask *task, id responseObject) {
-        PMPFansFollowsAndPraiseModel * infoModel = [PMPFansFollowsAndPraiseModel mj_objectWithKeyValues:responseObject[@"data"]];
-        success(infoModel);
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        PMPFansFollowsAndPraiseModel * infoModel = [PMPFansFollowsAndPraiseModel mj_objectWithKeyValues:object[@"data"]];
+        if (success) {
+            success(infoModel);
+        }
+        
     }
-     failure:^(NSURLSessionDataTask *task, NSError *error) {
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failure");
-        failure();
+        if (failure) {
+            failure();
+        }
     }];
+    
+//    [[HttpClient defaultClient]
+//     requestWithPath:[CyxbsMobileBaseURL_1 stringByAppendingString:GetUserCount]
+//     method:HttpRequestGet
+//     parameters:parameters
+//     prepareExecute:nil
+//     progress:nil
+//     success:^(NSURLSessionDataTask *task, id responseObject) {
+//        PMPFansFollowsAndPraiseModel * infoModel = [PMPFansFollowsAndPraiseModel mj_objectWithKeyValues:responseObject[@"data"]];
+//        success(infoModel);
+//    }
+//     failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"failure");
+//        failure();
+//    }];
     
 }
 
 - (NSString*)getUserWithTailURL:(NSString*)tailURL {
-    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
+    return [[NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"] stringByAppendingPathComponent:tailURL];
 }
 
 @end

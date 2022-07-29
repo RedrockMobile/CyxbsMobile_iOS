@@ -86,7 +86,7 @@
         
         if(self.isEmptyLesson==YES){
             if (@available(iOS 11.0, *)) {
-                color = [UIColor colorNamed:@"42_78_132&235_242_251_dayBar_today"];
+                color = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#294D83" alpha:1] darkColor:[UIColor colorWithHexString:@"#EBF2FA" alpha:1]];
             } else {
                 color = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0];
             }
@@ -95,7 +95,7 @@
                 case 0:
                 case 1:
                     if(@available(iOS 11.0, *)){
-                        color = [UIColor colorNamed:@"ClassLabelColor1"];
+                        color = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF8015" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
                     }else{
                         color = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
                     }
@@ -103,14 +103,14 @@
                 case 2:
                 case 3:
                 if(@available(iOS 11.0, *)){
-                    color = [UIColor colorNamed:@"ClassLabelColor2"];
+                    color = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF6262" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
                 }else{
                     color = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
                 }
                 break;
                 default:
                     if(@available(iOS 11.0, *)){
-                        color = [UIColor colorNamed:@"ClassLabelColor3"];
+                        color = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4066EA" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
                     }else{
                         color = [UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
                     }
@@ -190,8 +190,8 @@
             case 0:
             case 1:
                 if(@available(iOS 11.0, *)){
-                    self.backgroundColor = [UIColor colorNamed:@"hash_lesson.integerValue<2"];
-                    textColor = [UIColor colorNamed:@"ClassLabelColor1"];
+                    self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F9E7D8" alpha:1] darkColor:[UIColor colorWithHexString:@"#4C453E" alpha:1]];
+                    textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF8015" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
                 }else{
                     self.backgroundColor = [UIColor colorWithRed:249/255.0 green:231/255.0 blue:216/255.0 alpha:1.0];
                     textColor = [UIColor colorWithRed:255/255.0 green:128/255.0 blue:21/255.0 alpha:1.0];
@@ -202,8 +202,8 @@
             case 2:
             case 3:
             if(@available(iOS 11.0, *)){
-                self.backgroundColor = [UIColor colorNamed:@"hash_lesson.integerValue>=2&&hash_lesson.integerValue<4"];
-                textColor = [UIColor colorNamed:@"ClassLabelColor2"];
+                self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F9E3E4" alpha:1] darkColor:[UIColor colorWithHexString:@"#453636" alpha:1]];
+                textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF6262" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
             }else{
                 self.backgroundColor = [UIColor colorWithRed:249/255.0 green:227/255.0 blue:228/255.0 alpha:1.0];
                 textColor = [UIColor colorWithRed:255/255.0 green:98/255.0 blue:98/255.0 alpha:1.0];
@@ -213,8 +213,8 @@
                 
             default:
                 if(@available(iOS 11.0, *)){
-                    self.backgroundColor = [UIColor colorNamed:@"hash_lesson.integerValue>4"];
-                    textColor = [UIColor colorNamed:@"ClassLabelColor3"];
+                    self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#3D404B" alpha:1]];
+                    textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4066EA" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
                 }else{
                     self.backgroundColor = [UIColor colorWithRed:221/255.0 green:227/255.0 blue:248/255.0 alpha:1.0];
                     textColor = [UIColor colorWithRed:64/255.0 green:102/255.0 blue:234/255.0 alpha:1.0];
@@ -237,8 +237,8 @@
     //      移除model+reload
     
     if (@available(iOS 11.0, *)) {
-        self.titleLable.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
-        self.detailLable.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        self.titleLable.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+        self.detailLable.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         self.titleLable.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
         self.detailLable.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];

@@ -23,7 +23,7 @@
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
         if (@available(iOS 11.0, *)) {
-            titleLabel.textColor = [UIColor colorNamed:@"Map_SearchCellColor"];
+            titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#234780" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {
             titleLabel.textColor = [UIColor colorWithHexString:@"#234780"];
         }

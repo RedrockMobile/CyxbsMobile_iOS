@@ -52,7 +52,7 @@
     
     // -- 网络请求：put 已读 --
     [HttpTool.shareTool
-     request:MineMessage_PUT_hasRead_API
+     request:Discover_PUT_hasRead_API
      type:HttpToolRequestTypePut
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:parameter

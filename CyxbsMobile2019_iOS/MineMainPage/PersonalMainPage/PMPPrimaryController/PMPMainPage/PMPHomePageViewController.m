@@ -409,7 +409,7 @@ UIImagePickerControllerDelegate>
 - (UIView *)topBarView2 {
     if (_topBarView2 == nil) {
         _topBarView2 = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _topBarView2.backgroundColor = [UIColor colorNamed:@"white&black"];
+        _topBarView2.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     return _topBarView2;
 }
@@ -429,7 +429,7 @@ UIImagePickerControllerDelegate>
     if (_VCTitleLabel2 == nil) {
         _VCTitleLabel2 = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _VCTitleLabel2.font = [UIFont fontWithName:PingFangSCSemibold size:22];
-        _VCTitleLabel2.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        _VCTitleLabel2.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         [_VCTitleLabel2 sizeToFit];
     }
     return _VCTitleLabel2;

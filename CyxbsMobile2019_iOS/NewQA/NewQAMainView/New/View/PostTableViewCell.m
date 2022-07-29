@@ -30,11 +30,11 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.backgroundColor = [UIColor colorNamed:@"TableViewBackColor"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         [self BuildUI];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
+        [NSUserDefaults.standardUserDefaults setValue:@(NO) forKey:@"_UIConstraintBasedLayoutLogUnsatisfiable"];
     }
     return self;
 }
@@ -56,7 +56,7 @@
     _nicknameLabel.textAlignment = NSTextAlignmentLeft;
     _nicknameLabel.font = [UIFont fontWithName:PingFangSCSemibold size: 17];
     _nicknameLabel.backgroundColor = [UIColor clearColor];
-    _nicknameLabel.textColor = [UIColor colorNamed:@"CellUserNameColor"];
+    _nicknameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self.contentView addSubview:_nicknameLabel];
     
     _IdentifyBackImage = [[UIImageView alloc] init];
@@ -66,7 +66,7 @@
     _timeLabel = [[UILabel alloc] init];
     _timeLabel.textAlignment = NSTextAlignmentLeft;
     _timeLabel.font = [UIFont fontWithName:PingFangSCMedium size: 11];
-    _timeLabel.textColor = [UIColor colorNamed:@"CellDateColor"];
+    _timeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.7] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.7]];
     [self.contentView addSubview:_timeLabel];
     
     ///多功能按钮
@@ -78,7 +78,7 @@
     
     ///内容
     _detailLabel = [[NewQAPostDetailLabel alloc] initWithFrame:self.bounds];
-    _detailLabel.textColor = [UIColor colorNamed:@"CellDetailColor"];
+    _detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C57" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     self.detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:16];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.textAlignment = NSTextAlignmentLeft;
@@ -102,7 +102,7 @@
     _groupLabel = [[UIButton alloc] init];
     _groupLabel.titleLabel.textAlignment = NSTextAlignmentLeft;
     [_groupLabel.titleLabel setFont:[UIFont fontWithName:PingFangSCMedium size: 12.08]];
-    [_groupLabel setTitleColor:[UIColor colorNamed:@"CellGroupColor"] forState:UIControlStateNormal];
+    [_groupLabel setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#255295" alpha:0.7] darkColor:[UIColor colorWithHexString:@"#CBD3E9" alpha:0.7]] forState:UIControlStateNormal];
     _groupLabel.backgroundColor = [UIColor clearColor];
     [_groupLabel addTarget:self action:@selector(ClickedGroupTopicBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_groupLabel];
@@ -168,8 +168,8 @@
         self.commendBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.comment_count];
         self.starBtn.countLabel.text = [NSString stringWithFormat:@"%@",item.praise_count];
         self.starBtn.selected = [item.is_praised intValue] == 1 ? YES : NO;
-        self.starBtn.countLabel.textColor = self.starBtn.selected == YES ? [UIColor colorNamed:@"countLabelColor"] : [UIColor colorNamed:@"FuncBtnColor"];
-            self.commendBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        self.starBtn.countLabel.textColor = self.starBtn.selected == YES ? [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]] : [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
+            self.commendBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
         self.starBtn.isFirst = YES;
         [self.starBtn setIconViewSelectedImage:[UIImage imageNamed:@"点赞"] AndUnSelectedImage:[UIImage imageNamed:@"未点赞"]];
     }

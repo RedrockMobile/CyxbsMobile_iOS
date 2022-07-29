@@ -33,13 +33,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"248_249_252&0_1_1"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F7F8FB" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]];
     } else {
         self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
     self.cellTitleStrArr = @[@"启动APP时最先显示课表页面", @"上课前提醒我", @"每天晚上推送课表给我", @"账号与安全", @"屏蔽的人"];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"zxsd"];
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:@"zxsd"];
     //父类是TopBarBasicViewController，调用父类的vcTitleStr的set方法，自动完成顶部的bar的设置
     self.VCTitleStr = @"设置";
 //    [self addTitleBar];
@@ -127,7 +127,8 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     if (@available(iOS 11.0, *)) {
-        cell.textLabel.textColor = [UIColor colorNamed:@"25_56_102&240_240_242"];
+        
+        cell.textLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#193866" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]];
     } else {
         cell.textLabel.textColor = [UIColor colorWithRed:25/255.0 green:56/255.0 blue:102/255.0 alpha:1];
     }
@@ -137,7 +138,7 @@
         switch (indexPath.row) {
             case 0:
                 s = @selector(switchedLaunchingWithClassScheduleView:);
-                settingSwitch.on = ![[NSUserDefaults standardUserDefaults] valueForKey:@"Mine_LaunchingWithClassScheduleView"];
+                settingSwitch.on = ![NSUserDefaults.standardUserDefaults valueForKey:@"Mine_LaunchingWithClassScheduleView"];
                 break;
             case 1:
                 s = @selector(switchedRemindBeforeClass:);
@@ -214,8 +215,8 @@
         //移除未发送的通知
         [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:idStrArr];
         
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindEveryDay"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:@"Mine_RemindEveryDay"];
+        [NSUserDefaults.standardUserDefaults synchronize];
     }
 }
 
@@ -233,8 +234,8 @@
         //通知WYCClassBookViewController要课前提醒
         [[NSNotificationCenter defaultCenter] postNotificationName:@"remindBeforeClass" object:nil];
     } else {                    // 关闭开关
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_RemindBeforeClass"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:@"Mine_RemindBeforeClass"];
+        [NSUserDefaults.standardUserDefaults synchronize];
         //通知WYCClassBookViewController不要课前提醒
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notRemindBeforeClass" object:nil];
     }
@@ -244,11 +245,11 @@
 /// @param sender 开关
 - (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender{
     if (sender.on) {            // 打开开关
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
+        [NSUserDefaults.standardUserDefaults synchronize];
     } else {                    // 关闭开关
-        [[NSUserDefaults standardUserDefaults] setValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        [NSUserDefaults.standardUserDefaults setValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
+        [NSUserDefaults.standardUserDefaults synchronize];
     }
 }
 
@@ -262,8 +263,8 @@
     UISwitch *settingSwitch = [[UISwitch alloc] init];
     settingSwitch.frame = CGRectMake(MAIN_SCREEN_W - 80, 11.5, 53, 27);
     if (@available(iOS 11.0, *)) {
-        settingSwitch.onTintColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_On"];
-        settingSwitch.backgroundColor = [UIColor colorNamed:@"Mine_Main_SwitchBackground_Off"];
+        settingSwitch.onTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2927D0" alpha:1] darkColor:[UIColor colorWithHexString:@"#465FFF" alpha:1]];
+        settingSwitch.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D3EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#2F2F2F" alpha:1]];
     } else {
         settingSwitch.onTintColor = [UIColor colorWithRed:41/255.0 green:33/255.0 blue:214/255.0 alpha:1.0];
         settingSwitch.backgroundColor = [UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0];

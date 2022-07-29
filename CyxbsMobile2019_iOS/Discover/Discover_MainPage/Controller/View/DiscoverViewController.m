@@ -97,9 +97,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 /// Model
 @property ElectricFeeModel *elecModel;
+
 @property (nonatomic, strong)JWZXNewsModel *jwzxNewsModel;
-@property NSUserDefaults *defaults;
+
 @property (nonatomic, strong) DiscoverADModel *ADModel;
+
 @property PickerModel *pickerModel;
 
 /// pickerView
@@ -107,10 +109,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 /// Data
 @property (nonatomic, assign)int classTabbarHeight;
+
 @property(nonatomic, assign)int classTabbarCornerRadius;
 
 @property(nonatomic,strong)UIWindow *window;
+
 @property(nonatomic, strong)DiscoverTodoView* todoView;
+
 @property(nonatomic, strong)TodoSyncTool* todoSyncTool;
 
 
@@ -140,7 +145,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 //    self.tabBarController.tabBar.tintColor = [UIColor colorWithHexString:@"2527C8"];
     
-    self.tabBarController.tabBar.barTintColor = [UIColor colorNamed:@"Color#FFFFFF&#2D2D2D"];
+    self.tabBarController.tabBar.barTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     
     self.navigationController.navigationBar.hidden = YES;
     
@@ -169,7 +174,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         ((ClassTabBar *)(self.tabBarController.tabBar))
             .classScheduleTabBarView.userInteractionEnabled = YES;
             
-        if(![[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
+        if(![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
             [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
@@ -187,8 +192,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.todoSyncTool = [TodoSyncTool share];
-//    [self.todoSyncTool resetDB];
-    [self configDefaults];
     [self requestData];
     [self addContentView];
     [self addFinderView];
@@ -302,31 +305,35 @@ static int requestCheckinInfo = 0;
     requestCheckinInfo = 0;
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[UserDefaultTool getStuNum],@"stunum",[UserDefaultTool getIdNum],@"idnum",nil];
 
-    HttpClient *client = [HttpClient defaultClient];
-    [client requestWithPath:CHECKININFOAPI method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [UserItemTool defaultItem].checkInDay = responseObject[@"data"][@"check_in_days"];
-        [UserItemTool defaultItem].integral = responseObject[@"data"][@"integral"];
-        [UserItemTool defaultItem].rank = responseObject[@"data"][@"rank"];
-        [UserItemTool defaultItem].rank_Persent = responseObject[@"data"][@"percent"];
-        [UserItemTool defaultItem].week_info = responseObject[@"data"][@"week_info"];
-        [UserItemTool defaultItem].canCheckIn = [responseObject[@"data"][@"can_check_in"] boolValue];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    [HttpTool.shareTool
+     request:Mine_POST_checkInInfo_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:params
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [UserItemTool defaultItem].checkInDay = object[@"data"][@"check_in_days"];
+        [UserItemTool defaultItem].integral = object[@"data"][@"integral"];
+        [UserItemTool defaultItem].rank = object[@"data"][@"rank"];
+        [UserItemTool defaultItem].rank_Persent = object[@"data"][@"percent"];
+        [UserItemTool defaultItem].week_info = object[@"data"][@"week_info"];
+        [UserItemTool defaultItem].canCheckIn = [object[@"data"][@"can_check_in"] boolValue];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
     }];
 }
 
-- (void)configDefaults {
-    self.defaults = [NSUserDefaults standardUserDefaults];
-}
 
 - (void)configNavagationBar {
     self.navigationController.navigationBar.translucent = NO;
 
     if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil];
+        self.navigationController.navigationBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     //隐藏导航栏的分割线
     if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorNamed:@"color242_243_248&#000000" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     }
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
@@ -336,7 +343,7 @@ static int requestCheckinInfo = 0;
     self.contentView = contentView;
     self.contentView.delegate = self;
     if (@available(iOS 11.0, *)) {
-        self.contentView.backgroundColor = [UIColor colorNamed:@"color242_243_248&#000000"];
+        self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         self.contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
     }
@@ -405,7 +412,7 @@ static int requestCheckinInfo = 0;
 }
 - (void)bindingVolunteerButton {
     ///需要在此处判断一下是否已经登陆了志愿者的界面，如果登陆了，则直接跳QueryViewController，如果未登陆的话则跳登陆的viewController
-    if (![self.defaults objectForKey:@"volunteer_information"]) {
+    if (![NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
         QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -467,9 +474,9 @@ static int requestCheckinInfo = 0;
 }
 - (void)updateElectricFeeUI {
     //先写入缓存
-    [self.defaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
-    [self.defaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
-    [self.defaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
+    [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
+    [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
+    [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
@@ -515,7 +522,7 @@ static int requestCheckinInfo = 0;
     UIView *bindingView = [[UIView alloc]init];
     bindingView.layer.cornerRadius = 8;
     if (@available(iOS 11.0, *)) {
-        bindingView.backgroundColor = [UIColor colorNamed:@"whiteColor"];
+        bindingView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         bindingView.backgroundColor = UIColor.whiteColor;
     }
@@ -541,7 +548,7 @@ static int requestCheckinInfo = 0;
     roomNumberLabel.font = [UIFont fontWithName:PingFangSCBold size: 24];
     roomNumberLabel.text = @"宿舍号：";
     if (@available(iOS 11.0, *)) {
-        roomNumberLabel.textColor = [UIColor colorNamed:@"color21_49_91_&#F2F4FF"];
+        roomNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
     } else {
     }
     [bindingView addSubview:roomNumberLabel];
@@ -575,7 +582,7 @@ static int requestCheckinInfo = 0;
     buildingNumberLabel.text = @"01栋";
 
     if (@available(iOS 11.0, *)) {
-        buildingNumberLabel.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2_alpha0.59"];
+        buildingNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]];
     } else {
         // Fallback on earlier versions
     }

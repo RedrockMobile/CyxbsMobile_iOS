@@ -59,7 +59,7 @@
 - (UILabel *)tipLabel {
     if (_tipLabel == nil) {
         UILabel * label = [[UILabel alloc] init];
-        label.textColor = [UIColor colorNamed:@"17_44_84_1&223_223_227_1"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont fontWithName:PingFangSCMedium size:12];
         _tipLabel = label;

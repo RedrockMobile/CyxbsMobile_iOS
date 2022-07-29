@@ -87,7 +87,7 @@
         CGFloat collectionWidth = 0;
         f4.size = CGSizeMake(collectionWidth, 0);
     } else {
-        CGFloat collectionWidth = cellWidth * self.cellModel.pictures.count + spaceWidth * (self.cellModel.pictures.count - 1);;
+        CGFloat collectionWidth = cellWidth * self.cellModel.pictures.count + spaceWidth * (self.cellModel.pictures.count - 1);
         f4.size = CGSizeMake(collectionWidth, cellWidth);
     }
     
@@ -134,7 +134,7 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
-        _titleLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _titleLabel.numberOfLines = 0;
     }
     return _titleLabel;
@@ -144,7 +144,7 @@
     if (_subtitleLabel == nil) {
         _subtitleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _subtitleLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _subtitleLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _subtitleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _subtitleLabel.numberOfLines = 0;
     }
     return _subtitleLabel;
@@ -153,7 +153,7 @@
 - (UIView *)separateLine {
     if (_separateLine == nil) {
         _separateLine = [[UIView alloc] initWithFrame:(CGRectZero)];
-        _separateLine.backgroundColor = [UIColor colorNamed:@"189_204_229_1&248_249_252_1"];
+        _separateLine.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#BDCCE5" alpha:1] darkColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1]];
     }
     return _separateLine;
 }
@@ -181,8 +181,8 @@
     if (_typeButton == nil) {
         _typeButton = [[UIButton alloc] initWithFrame:CGRectZero];
         _typeButton.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:11];
-        [_typeButton setTitleColor:[UIColor colorNamed:@"122_153_204_1&black_1"] forState:UIControlStateNormal];
-        _typeButton.backgroundColor = [UIColor colorNamed:@"232_240_252_1&90_90_90_1"];
+        [_typeButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#7A99CC" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]] forState:UIControlStateNormal];
+        _typeButton.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         _typeButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     }
     return _typeButton;
@@ -191,7 +191,7 @@
 - (UIView *)maskView {
     if (_maskView == nil) {
         _maskView = [[UIView alloc] initWithFrame:CGRectZero];
-        _maskView.backgroundColor = [UIColor colorNamed:@"white_1&45_45_45_1"];
+        _maskView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         _maskView.layer.cornerRadius = 8;
     }
     return _maskView;
@@ -201,7 +201,7 @@
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _timeLabel.font = [UIFont fontWithName:PingFangSCMedium size:15];
-        _timeLabel.textColor = [UIColor colorNamed:@"21_49_91_1&240_240_242_1"];
+        _timeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _timeLabel.textAlignment = NSTextAlignmentCenter;
         _timeLabel.backgroundColor = [UIColor clearColor];
     }

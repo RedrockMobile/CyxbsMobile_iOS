@@ -7,7 +7,6 @@
 //
 
 #import "IdsBindingView.h"
-#define Color_BindingButton [UIColor colorNamed:@"Color_chartLine" inBundle:[NSBundle mainBundle] compatibleWithTraitCollection:nil]
 
 @interface IdsBindingView()
 @property (nonatomic, weak)UILabel *hintLabel;
@@ -25,7 +24,7 @@
         self.hintLabel = label;
         label.text = @"若要查询成绩，请输入您的统一认证码";
         if (@available(iOS 11.0, *)) {
-            label.textColor = [UIColor colorNamed:@"QANavigationTitleColor"];
+            label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -66,7 +65,7 @@
         button.clipsToBounds = YES;
         [button addTarget:self action:@selector(touchIDSBindingButton) forControlEvents:UIControlEventTouchUpInside];
         if (@available(iOS 11.0, *)) {
-            [button setBackgroundColor:Color_BindingButton];
+            [button setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2921D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#736CFF" alpha:1]]];
         } else {
             // Fallback on earlier versions
         }

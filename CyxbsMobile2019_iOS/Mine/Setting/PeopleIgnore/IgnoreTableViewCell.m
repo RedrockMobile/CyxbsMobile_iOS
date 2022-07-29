@@ -64,7 +64,7 @@
     self.nickNameLabel = label;
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -86,7 +86,7 @@
     [backView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"116_139_176&131_131_132"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:116/255.0 green:139/255.0 blue:176/255.0 alpha:1];
     }
@@ -148,7 +148,7 @@
     }];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"45_45_45_20&230_230_230_40"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:0.2] darkColor:[UIColor colorWithHexString:@"#E6E6E6" alpha:0.4]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:45/255.0 green:45/255.0 blue:45/255.0 alpha:0.64];
     }
@@ -158,21 +158,37 @@
 - (void)cancelBtnClicked{
     [self.cancelBtn setEnabled:NO];
     if ([self.cancelBtn.titleLabel.text isEqualToString:@"取消屏蔽"]) {
-        [[HttpClient defaultClient] requestWithPath:cancelIgnorePeopleUrl method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [HttpTool.shareTool
+         request:Mine_POST_cancelIgnorePeople_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:@{@"uid":self.model.uid}
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             [self.cancelBtn setTitle:@"屏蔽" forState:UIControlStateNormal];
             [NewQAHud showHudWith:@"已成功解除对该用户的屏蔽～" AddView:self.viewController.view];
             [self.cancelBtn setEnabled:YES];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
         }];
+        
     }else {
-        [[HttpClient defaultClient] requestWithPath:ignorePeopleUrl method:HttpRequestPost parameters:@{@"uid":self.model.uid} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            [self.cancelBtn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
-            [NewQAHud showHudWith:@"屏蔽成功～" AddView:self.viewController.view];
-            [self.cancelBtn setEnabled:YES];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
-        }];
+        [HttpTool.shareTool
+         request:Mine_POST_ignorePeople_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:@{@"uid":self.model.uid}
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+                    [self.cancelBtn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
+                    [NewQAHud showHudWith:@"屏蔽成功～" AddView:self.viewController.view];
+                    [self.cancelBtn setEnabled:YES];
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    [NewQAHud showHudWith:@"网络错误" AddView:self.viewController.view];
+                }];
     }
     
 }

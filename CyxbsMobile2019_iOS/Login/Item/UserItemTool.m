@@ -57,11 +57,10 @@
     NSString *filePath = [self userItemPath];
     
     // 删除偏好设置，删除时保留baseURL的偏好信息
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *dic = [defaults dictionaryRepresentation];
+    NSDictionary *dic = [NSUserDefaults.standardUserDefaults dictionaryRepresentation];
     for (id key in dic) {
         if (![key  isEqual: @"baseURL"]) {
-            [defaults removeObjectForKey:key];
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:key];
         }
     }
     
@@ -116,40 +115,43 @@
         @"refreshToken": item.refreshToken
     };
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    // 这个请求需要上传json
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[UserDefaultTool getStuNum] forHTTPHeaderField:@"STU-NUM" ];
-    [manager POST:REFRESHTOKENAPI parameters:params headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [[NSUserDefaults standardUserDefaults] setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
-        NSString *token = responseObject[@"data"][@"token"];
+    [HttpTool.shareTool
+     request:Mine_POST_refreshToken_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:params
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [NSUserDefaults.standardUserDefaults setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
+        NSString *token = object[@"data"][@"token"];
         NSString *payload_BASE64 = [token componentsSeparatedByString:@"."][0];
         
         // json字符串转换字典
         NSData *payloadData = [[NSData alloc] initWithBase64EncodedString:payload_BASE64 options:0];
         NSError *error;
         NSMutableDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:payloadData options:NSJSONReadingMutableContainers error:&error];
-        jsonObject[@"token"] = responseObject[@"data"][@"token"];
-        jsonObject[@"refreshToken"] = responseObject[@"data"][@"refreshToken"];
+        jsonObject[@"token"] = object[@"data"][@"token"];
+        jsonObject[@"refreshToken"] = object[@"data"][@"refreshToken"];
         
         item = [UserItem mj_objectWithKeyValues:jsonObject];
         [UserItemTool archive:item];
         // 保存token和refreshToken
-        [UserDefaultTool saveToken:responseObject[@"data"][@"token"]];
-        [UserDefaultTool saveRefreshToken:responseObject[@"data"][@"refreshToken"]];
+        [UserDefaultTool saveToken:object[@"data"][@"token"]];
+        [UserDefaultTool saveRefreshToken:object[@"data"][@"refreshToken"]];
         
         NSLog(@"token:%@", [UserItemTool defaultItem].token);
 
         if (error) {
             NSLog(@"tokenError1%@", error);
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NSUserDefaults.standardUserDefaults setInteger:1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
         NSLog(@"tokenError2：%@", error);
 //        if (error.code == NSURLErrorBadServerResponse) {
         
         //获取上次登录的时间戳(和1970.1.1的秒间隔)
-        double lastLogInTime = [[NSUserDefaults standardUserDefaults] doubleForKey:LastLogInTimeKey_double];
+        double lastLogInTime = [NSUserDefaults.standardUserDefaults doubleForKey:LastLogInTimeKey_double];
         
         //如果错误码是400或者403，并且上次登录的时间是30天前(2592000秒)，那么提示需要重新登录
         if (([error.localizedDescription hasSuffix:@"(400)"]||[error.localizedDescription hasSuffix:@"(403)"])&&(NSDate.nowTimestamp - lastLogInTime > 2592000)) {

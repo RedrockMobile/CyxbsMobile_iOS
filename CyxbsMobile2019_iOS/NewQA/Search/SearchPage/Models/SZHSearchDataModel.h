@@ -21,15 +21,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 获取搜索动态
 /// @param string 搜索的内容
-/// @param sucess 成功
+/// @param success 成功
 /// @param failure 失败
-- (void)getSearchDynamicWithStr:(NSString *)string Sucess:(void(^)(NSDictionary *dynamicDic))sucess Failure:(void(^)(void))failure;
+- (void)getSearchDynamicWithStr:(NSString *)string Success:(void(^)(NSDictionary *dynamicDic))success Failure:(void(^)(void))failure;
 
 /// 获取搜索知识库
 /// @param string 搜索内容
-/// @param sucess 成功
+/// @param success 成功
 /// @param failure 失败
-- (void)getSearchKnowledgeWithStr:(NSString *)string Sucess:(void(^)(NSDictionary *knowledgeDic))sucess Failure:(void(^)(void))failure;
+- (void)getSearchKnowledgeWithStr:(NSString *)string Success:(void(^)(NSDictionary *knowledgeDic))success Failure:(void(^)(void))failure;
                                                                         
                                             
 @end

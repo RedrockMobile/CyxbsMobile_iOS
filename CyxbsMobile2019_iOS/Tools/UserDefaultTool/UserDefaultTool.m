@@ -10,7 +10,6 @@
 
 @implementation UserDefaultTool
 +(void)saveValue:(id) value forKey:(NSString *)key{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([key isEqualToString:@"nowWeek"]) {
         NSInteger nowWeek = [value integerValue];
         NSTimeInterval oneDay = 24*60*60;
@@ -24,15 +23,15 @@
         NSDate *beginDate = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         NSString *beginString = [formatter stringFromDate:beginDate];
         beginDate =  [formatter dateFromString:beginString];
-        [userDefaults setObject:beginDate forKey:@"beginDate"];
+        [NSUserDefaults.standardUserDefaults setObject:beginDate forKey:@"beginDate"];
         
     }
-    [userDefaults setObject:value forKey:key];
-    [userDefaults synchronize];
+    [NSUserDefaults.standardUserDefaults setObject:value forKey:key];
+    [NSUserDefaults.standardUserDefaults synchronize];
 }
 
 +(id)valueWithKey:(NSString *)key{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = NSUserDefaults.standardUserDefaults;
     if ([key isEqualToString:@"nowWeek"]) {
         NSDate *beginDate = [self valueWithKey:@"beginDate"];
         if (beginDate) {
@@ -48,19 +47,19 @@
 
 +(BOOL)boolValueWithKey:(NSString *)key
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = NSUserDefaults.standardUserDefaults;
     return [userDefaults boolForKey:key];
 }
 
 +(void)saveBoolValue:(BOOL)value withKey:(NSString *)key
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = NSUserDefaults.standardUserDefaults;
     [userDefaults setBool:value forKey:key];
     [userDefaults synchronize];
 }
 
 + (void)saveParameter:(NSDictionary *)paramterDic{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = NSUserDefaults.standardUserDefaults;
     NSLock *lock = [[NSLock alloc] init];
     [lock lock];
     [paramterDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -88,7 +87,7 @@
 }
 
 +(void)print{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = NSUserDefaults.standardUserDefaults;
     NSDictionary *dic = [userDefaults dictionaryRepresentation];
     NSLog(@"%@",dic);
 }
@@ -130,7 +129,7 @@
 }
 
 +(void)removeALLData{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
     NSDictionary *dic = [defaults dictionaryRepresentation];
     for (id key in dic) {
         [defaults removeObjectForKey:key];

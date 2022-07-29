@@ -23,7 +23,7 @@
 }
 
 - (void)setup{
-    self.backgroundColor = [UIColor colorNamed:@"table"];
+    self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     UIBezierPath  *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(20, 20)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
     maskLayer.frame =self.bounds;
@@ -40,8 +40,8 @@
                 [NewQAHud showHudWith:@"Token失效了，重启掌邮试试吧" AddView:self];
             }
             if (data.current_progress == data.max_progress) {
-                self.button.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
-                [self.button setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
+                self.button.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C1C1C1" alpha:1] darkColor:[UIColor colorWithHexString:@"#474747" alpha:1]];
+                [self.button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]] forState:UIControlStateNormal];
                 self.button.enabled = NO;
                 [self.button setTitle:@"已签到" forState:UIControlStateNormal];
                 self.detailLabel.text = [NSString stringWithFormat:@"明日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
@@ -60,7 +60,7 @@
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 24, 64, 22)];
         mainLabel.text = @"今日打卡";
         mainLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
-        mainLabel.textColor = [UIColor colorNamed:@"#15315B"];
+        mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _mainLabel = mainLabel;
     }
     return _mainLabel;
@@ -71,7 +71,7 @@
         UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 50, 91, 20)];
         detailLabel.text = [NSString stringWithFormat:@"每日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
         detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
-        detailLabel.textColor = [UIColor colorNamed:@"#15315B66"];
+        detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
         _detailLabel = detailLabel;
     }
     return _detailLabel;
@@ -80,8 +80,8 @@
 
 - (void)checkIn{
     [CheckInModel CheckInSucceeded:^{
-        self.button.backgroundColor = [UIColor colorNamed:@"gotoBtnHaveDoneBG"];
-        [self.button setTitleColor:[UIColor colorNamed:@"gotoBtnTitleHaveDoneBG"] forState:UIControlStateNormal];
+        self.button.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C1C1C1" alpha:1] darkColor:[UIColor colorWithHexString:@"#474747" alpha:1]];
+        [self.button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000101" alpha:1]] forState:UIControlStateNormal];
         self.button.enabled = NO;
         [self.button setTitle:@"已签到" forState:UIControlStateNormal];
         self.detailLabel.text = [NSString stringWithFormat:@"明日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];

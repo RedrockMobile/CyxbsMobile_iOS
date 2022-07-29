@@ -26,38 +26,38 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DynamicDetailRequestDataModel : NSObject
 /// 点赞评论的网络请求
 /// @param comment_id 传入的评论的id
-/// @param sucess 网络请求成功后的操作
+/// @param success 网络请求成功后的操作
 /// @param failure  网络请求失败后的操作
-- (void)starCommentWithComent_id:(int)comment_id Sucess:(void(^)(void))sucess Failure:(void(^)(void))failure;
+- (void)starCommentWithComent_id:(int)comment_id Success:(void(^)(void))success Failure:(void(^)(void))failure;
 
 /// 请求具体的动态数据
 /// @param dynamic_id 传入的id
-/// @param sucess 成功后传出一个字典，进行后续操作
+/// @param success 成功后传出一个字典，进行后续操作
 /// @param failure 失败后的操作
-- (void)requestDynamicDetailDataWithDynamic_id:(int)dynamic_id Sucess:(void(^)(NSDictionary *dic))sucess Failure:(void(^)(void))failure;
+- (void)requestDynamicDetailDataWithDynamic_id:(int)dynamic_id Success:(void(^)(NSDictionary *dic))success Failure:(void(^)(void))failure;
 
 
 /// 根据帖子的id获取帖子下的评论
 /// @param post_id 帖子的id
-/// @param sucess 成功后传出数据数组，进行后续操作
+/// @param success 成功后传出数据数组，进行后续操作
 /// @param failure 失败后的操作
-- (void)getCommentDataWithPost_id:(int)post_id Sucess:(void(^)(NSArray *commentAry))sucess Failure:(void(^)(void))failure;
+- (void)getCommentDataWithPost_id:(int)post_id Success:(void(^)(NSArray *commentAry))success Failure:(void(^)(void))failure;
 
 ///根据id举报评论
 /// @param comment_id id
 /// @param content 评论的内容
-/// @param sucess 成功后的操作
+/// @param success 成功后的操作
 /// @param failure 失败后的操作
-- (void)reportCommentWithId:(int)comment_id Content:(NSString *)content Sucess:(void(^)(void))sucess Failure:(void(^)(void))failure;
+- (void)reportCommentWithId:(int)comment_id Content:(NSString *)content Success:(void(^)(void))success Failure:(void(^)(void))failure;
 
 ///根据评论的id删除评论
 /// @param post_id 评论的id
-/// @param sucess 成功后的操作
+/// @param success 成功后的操作
 /// @param failure 失败后的操作
-- (void)deleteCommentWithId:(int)post_id Sucess:(void(^)(void))sucess Failure:(void(^)(void))failure;
+- (void)deleteCommentWithId:(int)post_id Success:(void(^)(void))success Failure:(void(^)(void))failure;
 
 ///删除动态信息
-- (void)deletSelfDynamicWithID:(int)post_id Success:(void(^)(void))success Failure:(void(^)(void))failure;
+- (void)deleteSelfDynamicWithID:(int)post_id Success:(void(^)(void))success Failure:(void(^)(void))failure;
 @end
 
 NS_ASSUME_NONNULL_END

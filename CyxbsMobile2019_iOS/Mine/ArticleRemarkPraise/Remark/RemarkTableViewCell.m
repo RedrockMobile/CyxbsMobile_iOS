@@ -59,7 +59,7 @@
     [self.contentView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
     }
@@ -79,7 +79,7 @@
     [self.contentView addSubview:label];
     
     if (@available(iOS 11.0, *)) {
-        label.textColor = [UIColor colorNamed:@"85_108_139&131_131_132"];
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#546C8A" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     } else {
         label.textColor = [UIColor colorWithRed:85/255.0 green:108/255.0 blue:139/255.0 alpha:1];
     }
@@ -101,7 +101,7 @@
     [self.contentView addSubview:view];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"226_232_238&90_90_90"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E1E8ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
     } else {
         view.backgroundColor = [UIColor colorWithRed:226/255.0 green:232/255.0 blue:238/255.0 alpha:1];
     }
@@ -159,7 +159,7 @@
 //    CCLog(@"%@,%@,%@",self.comment_id,self.type,self.post_id);
 //    CCLog(@"mmcon=%@,\tcomID=%@,\tform=%@,\tpoID=%@,\ttype=%@,\tisP=t%@",self.model.content,self.model.comment_id,self.model.from,self.model.post_id,self.model.type,self.model.is_praised);
     self.praiseBtn.enabled = NO;
-    if (self.comment_id==nil||self.type==nil) {
+    if (self.comment_id == nil || self.type == nil) {
         [NewQAHud showHudWith:@"网络错误～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
         return;
     }
@@ -169,7 +169,13 @@
         @"model":self.type
     };
     
-    [[HttpClient defaultClient] requestWithPath:NEW_QA_STAR method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HttpTool.shareTool
+     request:NewQA_POST_QAStar_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:paramDict
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         if (self.praiseBtn.selected) {
             [self changePraiseBtnToState:NO];
             self.model.is_praised = @"0";
@@ -178,10 +184,25 @@
             self.model.is_praised = @"1";
         }
         self.praiseBtn.enabled = YES;
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [NewQAHud showHudWith:@"网络错误～～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
         self.praiseBtn.enabled = YES;
     }];
+    
+//    [[HttpClient defaultClient] requestWithPath:NewQA_POST_QAStar_API method:HttpRequestPost parameters:paramDict prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        if (self.praiseBtn.selected) {
+//            [self changePraiseBtnToState:NO];
+//            self.model.is_praised = @"0";
+//        }else {
+//            [self changePraiseBtnToState:YES];
+//            self.model.is_praised = @"1";
+//        }
+//        self.praiseBtn.enabled = YES;
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        [NewQAHud showHudWith:@"网络错误～～" AddView:[[[UIApplication sharedApplication] windows] firstObject]];
+//        self.praiseBtn.enabled = YES;
+//    }];
 }
 
 /// 点击评论按钮后调用

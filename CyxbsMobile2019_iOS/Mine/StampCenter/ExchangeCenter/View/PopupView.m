@@ -21,7 +21,7 @@
         [self addLabel];
         _is = 1;
         _grayView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.8];
-        _whiteView.backgroundColor = [UIColor colorNamed:@"255_255_255&28_28_28"];
+        _whiteView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1C1C1C" alpha:1]];
         NSLog(@"%d", amount);
         if (amount <= 0) {
             self.textLabel.text = @"啊哦！手慢了！下次再来吧！";
@@ -47,7 +47,7 @@
             make.height.mas_equalTo(34);
     }];
     btn.layer.cornerRadius = 18;
-    btn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+    btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4943E3" alpha:1] darkColor:[UIColor colorWithHexString:@"#5555FF" alpha:1]];
     [btn setTitle:@"确认" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
@@ -67,7 +67,7 @@
             make.height.mas_equalTo(34);
     }];
     btn.layer.cornerRadius = 18;
-    btn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+    btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4943E3" alpha:1] darkColor:[UIColor colorWithHexString:@"#5555FF" alpha:1]];
     [btn setTitle:@"确认" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
@@ -86,7 +86,7 @@
             make.height.mas_equalTo(34);
     }];
     btn.layer.cornerRadius = 18;
-    btn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+    btn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4943E3" alpha:1] darkColor:[UIColor colorWithHexString:@"#5555FF" alpha:1]];
     [btn setTitle:@"确认" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
@@ -124,7 +124,7 @@
             make.height.mas_equalTo(34);
     }];
     noamountcomfirmBtn.layer.cornerRadius = 18;
-    noamountcomfirmBtn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+    noamountcomfirmBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4943E3" alpha:1] darkColor:[UIColor colorWithHexString:@"#5555FF" alpha:1]];
     [noamountcomfirmBtn setTitle:@"确认" forState:UIControlStateNormal];
     [noamountcomfirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [noamountcomfirmBtn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
@@ -137,7 +137,7 @@
     [_whiteView addSubview:cancleBtn];
     cancleBtn.frame = CGRectMake(26, 110, 93, 34);
     cancleBtn.layer.cornerRadius = 18;
-    cancleBtn.backgroundColor = [UIColor colorNamed:@"195_212_238&78_78_78"];
+    cancleBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D3ED" alpha:1] darkColor:[UIColor colorWithHexString:@"#4E4E4E" alpha:1]];
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
     [cancleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cancleBtn addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
@@ -147,7 +147,7 @@
     _comfirmBtn = comfirmBtn;
     comfirmBtn.frame = CGRectMake(138, 110, 93, 34);
     comfirmBtn.layer.cornerRadius = 18;
-    comfirmBtn.backgroundColor = [UIColor colorNamed:@"74_67_228&86_86_242"];
+    comfirmBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4943E3" alpha:1] darkColor:[UIColor colorWithHexString:@"#5555FF" alpha:1]];
     [comfirmBtn setTitle:@"确定" forState:UIControlStateNormal];
     [comfirmBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [comfirmBtn addTarget:self action:@selector(comfirm) forControlEvents:UIControlEventTouchUpInside];
@@ -164,7 +164,7 @@
     }];
     textlabel.numberOfLines = 0;
     textlabel.textAlignment = NSTextAlignmentCenter;
-    textlabel.textColor = [UIColor colorNamed:@"21_49_91"];
+    textlabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     textlabel.font = [UIFont systemFontOfSize:14];
 }
 ///移除弹窗

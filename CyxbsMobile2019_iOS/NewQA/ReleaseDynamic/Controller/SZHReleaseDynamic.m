@@ -55,7 +55,7 @@
     [super viewDidLoad];
     //设置背景颜色
     if (@available(iOS 11.0, *)) {
-        self.view.backgroundColor = [UIColor colorNamed:@"SZH发布动态主板颜色"];
+        self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
@@ -84,7 +84,7 @@
     self.buttonStateNumber = 1;
     self.clickReleaseDynamicBtnNumber = 0;
     //判断是上次退出时是否有草稿，有草稿的话就显示草稿内容
-    NSString *string1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"isSaveDrafts"];
+    NSString *string1 = [NSUserDefaults.standardUserDefaults objectForKey:@"isSaveDrafts"];
     if ([string1 isEqualToString:@"yes"]) {
         [self showDrafts];
     }
@@ -193,7 +193,7 @@
 ///网络请求归档处理
 - (void)saveDataFromNet{
     //标签
-    [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+    [self.releaseDynamicModel getAllTopicsSuccess:^(NSArray * _Nonnull topicsAry) {
         [SZHArchiveTool saveTopicsAry:topicsAry];
     }];
 }
@@ -206,7 +206,7 @@
     hud.labelFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 11];
     [hud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
     
-    [self.releaseDynamicModel sumitDynamicDataWithContent:self.releaseView.releaseTextView.text TopicID:self.circleLabelText ImageAry:self.imagesAry IsOriginPhoto:self.isSumitOriginPhoto Sucess:^{
+    [self.releaseDynamicModel sumitDynamicDataWithContent:self.releaseView.releaseTextView.text TopicID:self.circleLabelText ImageAry:self.imagesAry IsOriginPhoto:self.isSumitOriginPhoto Success:^{
 //            [NewQAHud showHudWith:@"发布动态成功" AddView:self.view];
         dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{
@@ -218,7 +218,7 @@
             for (int i = 0; i < self.topicAry.count; i++) {
                 if ([self.circleLabelText isEqualToString:self.topicAry[i]]) {
                     topicID = i + 1;
-                    break;;
+                    break;
                 }
             }
             YYZTopicDetailVC *detailVC = [[YYZTopicDetailVC alloc] init];
@@ -232,19 +232,38 @@
             [NewQAHud showHudWith:@"请检查你的网络设置" AddView:self.view];
         }];
     
-    HttpClient *client = [HttpClient defaultClient];
-    //完成斐然成章任务
-    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:TASK parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    // 完成斐然成章任务
+    [HttpTool.shareTool
+     form:Mine_POST_task_API
+     type:HttpToolRequestTypePost
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
         NSString *target = @"斐然成章";
         NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-        [formData appendPartWithFormData:data name:@"title"];
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-            NSLog(@"成功了");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"失败了");
-        }];
+        [body appendPartWithFormData:data name:@"title"];
+    }
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSLog(@"成功了");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败了");
+    }];
+    
+//    HttpClient *client = [HttpClient defaultClient];
+//    //完成斐然成章任务
+//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
+//    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        NSString *target = @"斐然成章";
+//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
+//        [formData appendPartWithFormData:data name:@"title"];
+//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSLog(@"成功了");
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//            NSLog(@"失败了");
+//        }];
 }
 
 /// 显示草稿
@@ -281,7 +300,7 @@
         //设置按钮为可用状态并设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
         } else {
             // Fallback on earlier versions
         }
@@ -399,7 +418,7 @@
 
     //保存有草稿的信号
     NSString *string = @"yes";
-    [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"isSaveDrafts"];
+    [NSUserDefaults.standardUserDefaults setObject:string forKey:@"isSaveDrafts"];
 }
 
 /// 不保存草稿
@@ -409,7 +428,7 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     [SZHArchiveTool removeDrafts];      //删除之前的草稿缓存
     //保存无草稿的信号
-    [[NSUserDefaults standardUserDefaults] setObject:@"no" forKey:@"isSaveDrafts"];
+    [NSUserDefaults.standardUserDefaults setObject:@"no" forKey:@"isSaveDrafts"];
 }
 
 /// 取消
@@ -515,7 +534,7 @@
         //设置按钮为可用状态并设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
         } else {
             // Fallback on earlier versions
         }
@@ -525,7 +544,7 @@
         //设置按钮为禁用状态并且设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor =  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -587,15 +606,15 @@
     for (UIButton *button in self.circleLabelView.buttonArray) {
         if (button.tag != sender.tag) {
             if (@available(iOS 11.0, *)) {
-                button.backgroundColor = [UIColor colorNamed:@"圈子标签按钮未选中时背景颜色"];
-                [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮未选中时文本颜色"] forState:UIControlStateNormal];
+                button.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#3F3F3F" alpha:1]];
+                [button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]] forState:UIControlStateNormal];
             } else {
                 // Fallback on earlier versions
             }
         }else{
             if (@available(iOS 11.0, *)) {
-                button.backgroundColor = [UIColor colorNamed:@"圈子标签按钮选中时背景颜色"];
-                [button setTitleColor:[UIColor colorNamed:@"圈子标签按钮选中时文本颜色"] forState:UIControlStateNormal];
+                button.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2DBD8" alpha:1] darkColor:[UIColor colorWithHexString:@"#6ADBFB" alpha:1]];
+                [button setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FF9C8D" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]] forState:UIControlStateNormal];
     
             } else {
                 // Fallback on earlier versions
@@ -646,7 +665,7 @@
     //先从缓存中读取数据，如果缓存中没有则进行网络请求。
     self.topicAry = [SZHArchiveTool getTopicsAry];
     if (self.topicAry == nil ) {
-        [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+        [self.releaseDynamicModel getAllTopicsSuccess:^(NSArray * _Nonnull topicsAry) {
 //            [self.circleLabelView updateViewWithAry:topicsAry];
 //            NSLog(@"得到全部标签----%@",topicsAry);
             self.topicAry = topicsAry;
@@ -670,7 +689,7 @@
     }
     
     //网络请求然后归档，作为数据更新
-    [self.releaseDynamicModel getAllTopicsSucess:^(NSArray * _Nonnull topicsAry) {
+    [self.releaseDynamicModel getAllTopicsSuccess:^(NSArray * _Nonnull topicsAry) {
         [SZHArchiveTool saveTopicsAry:topicsAry];
     }];
 }

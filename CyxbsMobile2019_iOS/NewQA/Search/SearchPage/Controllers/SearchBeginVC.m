@@ -61,7 +61,7 @@
     self.view.backgroundColor = self.searchBeginTopView.backgroundColor;
 //
     self.historyRecordsAry = [NSMutableArray array];
-    NSMutableArray *array = [[[NSUserDefaults standardUserDefaults] objectForKey:@"historyRecords"] mutableCopy];
+    NSMutableArray *array = [[NSUserDefaults.standardUserDefaults objectForKey:@"historyRecords"] mutableCopy];
     if (array != nil) {
         self.historyRecordsAry = array;
     }
@@ -105,8 +105,7 @@
     NSMutableArray *array = [NSMutableArray array];
     self.historyRecordsAry = array;
     //2；再清除缓存数组
-    NSUserDefaults *dfl = [NSUserDefaults standardUserDefaults];
-    [dfl setObject:self.historyRecordsAry forKey:@"historyRecords"];
+    [NSUserDefaults.standardUserDefaults setObject:self.historyRecordsAry forKey:@"historyRecords"];
     //3.移除表格
     [self.historyTable removeFromSuperview];
     [self.historyLabel removeFromSuperview];
@@ -133,7 +132,7 @@
     self.getKnowledgeFailure = NO;
     __weak typeof(self)weakSelf = self;
     //请求相关动态
-    [self.searchDataModel getSearchDynamicWithStr:searchString Sucess:^(NSDictionary * _Nonnull dynamicDic) {
+    [self.searchDataModel getSearchDynamicWithStr:searchString Success:^(NSDictionary * _Nonnull dynamicDic) {
         weakSelf.searchDynamicDic = dynamicDic;
         [weakSelf processData:searchString];
         } Failure:^{
@@ -142,7 +141,7 @@
             [weakSelf processData:searchString];
         }];
     //请求帖子
-    [self.searchDataModel getSearchKnowledgeWithStr:searchString Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
+    [self.searchDataModel getSearchKnowledgeWithStr:searchString Success:^(NSDictionary * _Nonnull knowledgeDic) {
         weakSelf.searchKnowledgeDic = knowledgeDic;
         [weakSelf processData:searchString];
         } Failure:^{
@@ -169,8 +168,7 @@
         //如果是第一次，直接添加到UserDefaults里面
     if (self.historyRecordsAry.count == 0) {
         [self.historyRecordsAry addObject:string];
-        NSUserDefaults *defaluts = [NSUserDefaults standardUserDefaults];
-        [defaluts setObject:_historyRecordsAry forKey:@"historyRecords"];
+        [NSUserDefaults.standardUserDefaults setObject:_historyRecordsAry forKey:@"historyRecords"];
         
         //此时已经有历史记录，添加下半部分视图
             //延迟0.5秒后执行
@@ -179,11 +177,9 @@
         });
     }
     else{
-        //1.如果不是第一次，那么先获取到之前的数组
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        //2.从缓存取出来后要mutableCopy一下，不然会崩
-        NSMutableArray *array = [[defaults objectForKey:@"historyRecords"] mutableCopy];
-        //3.判断是否和以前的搜索内容一样，如果一样就移除旧的历史记录
+        //1.如果不是第一次，那么先获取到之前的数组，从缓存取出来后要mutableCopy一下，不然会崩
+        NSMutableArray *array = [[NSUserDefaults.standardUserDefaults objectForKey:@"historyRecords"] mutableCopy];
+        //2.判断是否和以前的搜索内容一样，如果一样就移除旧的历史记录
         for (NSString *historyStr in array) {
             if ([historyStr isEqualToString:string]) {
                 [array removeObject:historyStr];
@@ -195,18 +191,18 @@
         if (array.count > 10) {
             [array removeLastObject];
         }
-        //5.重新添加到UserDefalut里面
+        //4.重新添加到UserDefalut里面
         self.historyRecordsAry = array;
-        [defaults setObject:self.historyRecordsAry forKey:@"historyRecords"];
+        [NSUserDefaults.standardUserDefaults setObject:self.historyRecordsAry forKey:@"historyRecords"];
         
-        //6.刷新table
+        //5.刷新table
         [self.historyTable reloadData];
         NSLog(@"%@",array);
     }
 }
 /// 刷新历史记录表格
 - (void)reloadHistoryRecord{
-    self.historyRecordsAry = [[NSUserDefaults standardUserDefaults] objectForKey:@"historyRecords"];
+    self.historyRecordsAry = [NSUserDefaults.standardUserDefaults objectForKey:@"historyRecords"];
     [self.historyTable reloadData];
 }
 /// 处理网络请求的数据，进行逻辑判断跳转界面
@@ -318,8 +314,7 @@
         }
     }
     //2.删除储存在本地的历史记录
-    NSUserDefaults *userdef = [NSUserDefaults standardUserDefaults];
-    [userdef setObject:self.historyRecordsAry forKey:@"historyRecords"];
+    [NSUserDefaults.standardUserDefaults setObject:self.historyRecordsAry forKey:@"historyRecords"];
     [self.historyTable reloadData];
     
     NSLog(@"删除该cell");
@@ -416,7 +411,7 @@
         _historyLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
         _historyLabel.text = @"历史记录";
         if (@available(iOS 11.0, *)) {
-            _historyLabel.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
+            _historyLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -431,7 +426,7 @@
         _clearAllHistoryRecordbtn = [[UIButton alloc] init];
         [_clearAllHistoryRecordbtn setTitle:@"清除全部" forState:UIControlStateNormal];
         if (@available(iOS 11.0, *)) {
-            [_clearAllHistoryRecordbtn setTitleColor:[UIColor colorNamed:@"SZHClearBtnTextColor"] forState:UIControlStateNormal];
+            [_clearAllHistoryRecordbtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#93A3BF" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
         } else {
             // Fallback on earlier versions
         }

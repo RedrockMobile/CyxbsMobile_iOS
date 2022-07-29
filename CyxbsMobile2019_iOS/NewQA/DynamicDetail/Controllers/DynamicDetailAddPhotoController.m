@@ -54,7 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"255_255_255&0_0_0"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
    
     //初始化图片和图片框数组
     self.imagesAry = [NSMutableArray array];
@@ -85,7 +85,7 @@
     if (![self.tampComment isEqual:@""]) {
         [self.releaseView.placeHolderLabel setHidden:YES];
         self.topBarView.releaseBtn.userInteractionEnabled = YES;
-        self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+        self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
     }
    
 }
@@ -148,9 +148,46 @@
         [param setObject:@(self.reply_id) forKey:@"reply_id"];
     }
     
+//    [HttpTool.shareTool
+//     form:NewQA_POST_QACommentRelease_API
+//     type:HttpToolRequestTypePost
+//     parameters:param
+//     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+//        NSMutableArray *imageNames = [NSMutableArray array];
+//        for (int i = 0; i < self.imagesAry.count; i++)  {
+//            [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
+//        }
+//        for (int i = 0; i < self.imagesAry.count; i++) {
+//            UIImage *image = self.imagesAry[i];
+//            UIImage *image1 = [image cropEqualScaleImageToSize:image.size isScale:YES];
+//            NSData *data = UIImageJPEGRepresentation(image1, 0.8);
+//            NSString *fileName = [NSString stringWithFormat:@"%ld.jpeg", [NSDate nowTimestamp]];
+//            [body appendPartWithFileData:data name:imageNames[i] fileName:fileName mimeType:@"image/jpeg"];
+//        }
+//    }
+//     progress:nil
+//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+//        [hud hide:YES];
+//        if ([object[@"status"] intValue] == 200) {
+//            [NewQAHud showHudWith:@"评论成功" AddView:self.view];
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }else {
+//            [hud hide:YES];
+//            //设置发布按钮恢复正常
+//            self.topBarView.releaseBtn.enabled = YES;
+//            [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
+//        }
+//    }
+//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [hud hide:YES];
+//        //设置发布按钮恢复正常
+//        self.topBarView.releaseBtn.enabled = YES;
+//        [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
+//    }];
+    
     HttpClient *client = [HttpClient defaultClient];
     [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-    [client.httpSessionManager POST:New_QA_Comment_Release parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [client.httpSessionManager POST:NewQA_POST_QACommentRelease_API parameters:param headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSMutableArray *imageNames = [NSMutableArray array];
         for (int i = 0; i < self.imagesAry.count; i++)  {
             [imageNames addObject:[NSString stringWithFormat:@"photo%d",i+1]];
@@ -275,7 +312,7 @@
         //设置按钮为可用状态并设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor = [UIColor colorNamed:@"SZH发布动态按钮正常背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
         } else {
             // Fallback on earlier versions
         }
@@ -285,7 +322,7 @@
         //设置按钮为禁用状态并且设置颜色
         self.topBarView.releaseBtn.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor =  [UIColor colorNamed:@"SZH发布动态按钮禁用背景颜色"];
+            self.topBarView.releaseBtn.backgroundColor =  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

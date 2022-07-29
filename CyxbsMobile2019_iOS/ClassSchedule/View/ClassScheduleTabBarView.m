@@ -34,7 +34,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         if (@available(iOS 11.0, *)) {
-            self.backgroundColor = [UIColor colorNamed:@"peopleListViewBackColor"];
+            self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
                } else {
                   self.backgroundColor = [UIColor whiteColor];
                }
@@ -62,7 +62,7 @@
         UIView *dragHintView = [[UIView alloc] init];
         
         if (@available(iOS 11.0, *)) {
-            dragHintView.backgroundColor = [UIColor colorNamed:@"draghintviewcolor"];
+            dragHintView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E2EDFB" alpha:1] darkColor:[UIColor colorWithHexString:@"#010101" alpha:1]];
         } else {
             // Fallback on earlier versions
             dragHintView.backgroundColor = [UIColor whiteColor];
@@ -107,8 +107,7 @@
         if (@available(iOS 11.0, *)) {
             classTimeLabel.cycleLabel.textColor =
             classroomLabel.cycleLabel.textColor =
-            classLabel.cycleLabel.textColor =
-            [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+            classLabel.cycleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
             classTimeLabel.cycleLabel.textColor =
             classroomLabel.cycleLabel.textColor =
@@ -196,7 +195,7 @@
         self.classroomLabel.labelText = paramDict[@"classroomLabel"];
         self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
         self.classLabel.labelText = paramDict[@"classLabel"];
-        if([[NSUserDefaults standardUserDefaults] objectForKey:@"Mine_RemindBeforeClass"]!=nil){
+        if([NSUserDefaults.standardUserDefaults objectForKey:@"Mine_RemindBeforeClass"]!=nil){
             
             int weekNum,weekday,lesson;
             weekday = [paramDict[@"hash_day"] intValue];

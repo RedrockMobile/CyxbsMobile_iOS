@@ -79,13 +79,30 @@ UIGestureRecognizerDelegate>
     self.leftPage = 1;//初始化当前页数
     self.rightPage = 1;
     //网络请求
-    [[HttpClient defaultClient]requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSArray *array = responseObject[@"data"];
+    
+    [HttpTool.shareTool
+     request:NewQA_POST_QATopicGroup_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSArray *array = object[@"data"];
         self.array = array;
-        [self setCell];//设置cell;
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
-        }];
+        [self setCell];  //设置cell;
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
+    }];
+    
+//    [[HttpClient defaultClient]requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSArray *array = responseObject[@"data"];
+//        self.array = array;
+//        [self setCell];//设置cell;
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@"请求失败,请检查网络" AddView:self.view];
+//        }];
+    
     //设置导航栏
     self.tabBarController.tabBar.hidden = YES;//隐藏tabbar
     self.navigationController.navigationBar.hidden = NO;//显示nav_bar
@@ -101,7 +118,7 @@ UIGestureRecognizerDelegate>
     UILabel *titleLbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, stringWidth, 40)];
     titleLbl.text = self.topicIdString;
     [titleLbl setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
-    titleLbl.textColor = [UIColor colorNamed:@"21_49_91&131_131_132"];
+    titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     [view addSubview:titleLbl];
     view.userInteractionEnabled = YES;
     //添加返回的手势
@@ -111,9 +128,9 @@ UIGestureRecognizerDelegate>
     UIBarButtonItem *spacebutton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spacebutton.width = -1000;//这个数值可以调整
     self.navigationItem.leftBarButtonItems = @[spacebutton,leftBarItem];
-        self.navigationController.navigationBar.barTintColor = [UIColor colorNamed:@"YYZColor1"];
-    self.navigationController.navigationBar.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
-    self.navigationController.navigationBar.tintColor = [UIColor colorNamed:@"YYZColor3"];//设置颜色
+        self.navigationController.navigationBar.barTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    self.navigationController.navigationBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    self.navigationController.navigationBar.tintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#748AAF" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];//设置颜色
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     
@@ -137,7 +154,7 @@ UIGestureRecognizerDelegate>
         }
     [self setNotification];//设置通知中心
     [self setBackViewWithGesture];//设置弹出view
-    self.view.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
 
     self.leftTableArray = [[NSMutableArray alloc]init];
     self.leftPostmodel = [[YYZTopicModel alloc]init];
@@ -174,7 +191,7 @@ UIGestureRecognizerDelegate>
     backgroundScrollView.bounces = NO;
     backgroundScrollView.showsVerticalScrollIndicator = FALSE;
     backgroundScrollView.showsHorizontalScrollIndicator = FALSE;
-    backgroundScrollView.backgroundColor = [UIColor colorNamed:@"YYZColor1"];
+    backgroundScrollView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F0F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     backgroundScrollView.contentSize = CGSizeMake(SCREEN_WIDTH,SCREEN_HEIGHT+125-getStatusBarHeight_Double-25);
     //设置kvo监听
     [backgroundScrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"2"];
@@ -215,13 +232,13 @@ UIGestureRecognizerDelegate>
             CGFloat pageWidth = self.topicScrollView.frame.size.width;// 根据当前的x坐标和页宽度计算出当前页数
             int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
             if(currentPage == 0){
-                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+                [self.leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
             }
             else if(currentPage == 1){
                 [self.topicRightTableView reloadData];
-                [self.leftButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
-                [self.rightButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
+                [self.leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
+                [self.rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
             }
             //改变提示线位置
             double currentLocation = self.topicScrollView.contentOffset.x/pageWidth;
@@ -261,7 +278,7 @@ UIGestureRecognizerDelegate>
     topicLeftTableView.delegate = self;
     topicLeftTableView.dataSource = self;
     topicLeftTableView.scrollEnabled = NO;
-    topicLeftTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    topicLeftTableView.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     [topicLeftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     topicLeftTableView.tableFooterView = [[UIView alloc]init];
     //[topicLeftTableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"3"];
@@ -271,7 +288,7 @@ UIGestureRecognizerDelegate>
     topicRightTableView.delegate = self;
     topicRightTableView.dataSource = self;
     topicRightTableView.scrollEnabled = NO;
-    topicRightTableView.separatorColor = [UIColor colorNamed:@"YYZColor6"];
+    topicRightTableView.separatorColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     [topicRightTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     topicRightTableView.tableFooterView = [[UIView alloc]init];
     //[topicRightTableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:@"3"];
@@ -383,13 +400,13 @@ UIGestureRecognizerDelegate>
 - (void) setMiddleLable {
     //现在是我自己写的，以后重构直接用HMSegmentedControl简单一点
     UILabel *middleLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 130, SCREEN_WIDTH, 50)];
-    middleLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    middleLable.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1B1B1B" alpha:1]];
     middleLable.layer.cornerRadius = 15;
     middleLable.clipsToBounds = YES;
     UILabel *middleLeftLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 165, 15, 20)];
-    middleLeftLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    middleLeftLable.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1B1B1B" alpha:1]];
     UILabel *middleRightLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-15, 165, 15, 20)];
-    middleRightLable.backgroundColor = [UIColor colorNamed:@"YYZColor7"];
+    middleRightLable.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1B1B1B" alpha:1]];
     
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -399,8 +416,8 @@ UIGestureRecognizerDelegate>
     [rightButton setTitle:@"热门" forState:UIControlStateNormal];
     [leftButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
     [rightButton setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:18]];
-    [leftButton setTitleColor:[UIColor colorNamed:@"YYZColor2"] forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor colorNamed:@"YYZColor6"] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBBD7" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]] forState:UIControlStateNormal];
     leftButton.frame = CGRectMake(15, 140, 40, 25);
     rightButton.frame = CGRectMake(70, 140, 40, 25);
     //leftButton.highlighted = YES;//默认显示最新
@@ -538,7 +555,7 @@ UIGestureRecognizerDelegate>
         UILabel *noneLable = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-83+40, 330, 167,127)];
         noneLable.text = @"还没有动态哦~";
         noneLable.font = [UIFont fontWithName:nil size:13];
-        noneLable.textColor = [UIColor colorNamed:@"YYZColor2"];;
+        noneLable.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         leftImageview.image = image;
         [self.backgroundScrollView addSubview:leftImageview];
         [self.backgroundScrollView addSubview:noneLable];
@@ -675,13 +692,13 @@ UIGestureRecognizerDelegate>
         cell.starBtn.iconView.image = [UIImage imageNamed:@"未点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
-        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+        cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
     }else {
         cell.starBtn.selected = YES;
         cell.starBtn.iconView.image = [UIImage imageNamed:@"点赞"];
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
-        cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+        cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]];
     }
     CGFloat pageWidth = self.topicScrollView.frame.size.width;
     int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -804,27 +821,57 @@ UIGestureRecognizerDelegate>
 }
 - (void)changeFollow:(UIButton *) btn {
     NSString *stringIsFollow = [NSString stringWithFormat:@"%@",btn.tag];
-    [[HttpClient defaultClient]requestWithPath:@"https://be-prod.redrock.team/magipoke-loop/ground/followTopicGround" method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                        //改变button状态
-            NSDictionary *dic = @{@"topic_ID":stringIsFollow};
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
-            if([btn.titleLabel.text isEqualToString:@"已关注"]){
-                [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
-                btn.clipsToBounds = YES;
-                btn.layer.cornerRadius = 14;
-                [btn setTitle:@"+关注" forState:UIControlStateNormal];
-                btn.backgroundColor = RGBColor(93, 94, 247, 1);
-            } else{
-                [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
-                btn.clipsToBounds = YES;
-                btn.layer.cornerRadius = 14;
-                [btn setTitle:@"已关注" forState:UIControlStateNormal];
-                btn.backgroundColor = RGBColor(171, 189, 215, 1);
-            }
-            self->_isChanged = YES;
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
+    
+    [HttpTool.shareTool
+     request:NewQA_POST_followTopic_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:@{@"topic_id":stringIsFollow}
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        //改变button状态
+        NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
+        if([btn.titleLabel.text isEqualToString:@"已关注"]){
+            [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
+            btn.clipsToBounds = YES;
+            btn.layer.cornerRadius = 14;
+            [btn setTitle:@"+关注" forState:UIControlStateNormal];
+            btn.backgroundColor = RGBColor(93, 94, 247, 1);
+        } else{
+            [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
+            btn.clipsToBounds = YES;
+            btn.layer.cornerRadius = 14;
+            [btn setTitle:@"已关注" forState:UIControlStateNormal];
+            btn.backgroundColor = RGBColor(171, 189, 215, 1);
+        }
+        self->_isChanged = YES;
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
     }];
+    
+//    [[HttpClient defaultClient]requestWithPath:NewQA_POST_followTopic_API method:HttpRequestPost parameters:@{@"topic_id":stringIsFollow} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//            //改变button状态
+//            NSDictionary *dic = @{@"topic_ID":stringIsFollow};
+//            [[NSNotificationCenter defaultCenter] postNotificationName:@"MGD-FollowGroup" object:nil userInfo:dic];
+//            if([btn.titleLabel.text isEqualToString:@"已关注"]){
+//                [NewQAHud showHudWith:@"取消关注圈子成功" AddView:self.view];
+//                btn.clipsToBounds = YES;
+//                btn.layer.cornerRadius = 14;
+//                [btn setTitle:@"+关注" forState:UIControlStateNormal];
+//                btn.backgroundColor = RGBColor(93, 94, 247, 1);
+//            } else{
+//                [NewQAHud showHudWith:@"关注圈子成功" AddView:self.view];
+//                btn.clipsToBounds = YES;
+//                btn.layer.cornerRadius = 14;
+//                [btn setTitle:@"已关注" forState:UIControlStateNormal];
+//                btn.backgroundColor = RGBColor(171, 189, 215, 1);
+//            }
+//            self->_isChanged = YES;
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//            [NewQAHud showHudWith:@"关注失败,请检查网络" AddView:self.view];
+//    }];
 }
 
 #pragma mark -多功能View的代理方法

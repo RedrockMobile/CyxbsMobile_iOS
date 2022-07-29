@@ -42,7 +42,7 @@
     self = [super init];
     if (self) {
         self.frame = CGRectMake(0, 0, SCREEN_WIDTH, 55);
-        self.backgroundColor = [UIColor colorNamed:@"ColorBackground"];
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         
         [self addSubview:self.detailLab];
         [self addSubview:self.titleLab];
@@ -90,7 +90,7 @@
 - (UILabel *)detailLab {
     if (_detailLab == nil) {
         _detailLab = [[UILabel alloc] initWithFrame:CGRectMake(17, 1.7, 100, 13)];
-        _detailLab.textColor = [UIColor colorNamed:@"color21_49_91_&#8c8c8c"];
+        _detailLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _detailLab.font = [UIFont fontWithName:PingFangSCMedium size: 14];
         // about detail
         NSString *detailStr = [NSDate stringForSchoolWeek:
@@ -117,7 +117,7 @@
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(self.detailLab.left, self.detailLab.bottom + 1, 200, 50)];
         _titleLab .text = @"发现";
         _titleLab.font = [UIFont fontWithName:PingFangSCSemibold size: 27];
-        _titleLab.textColor = [UIColor colorNamed:@"color21_49_91&#F0F0F2"];
+        _titleLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     return _titleLab;
 }

@@ -97,7 +97,7 @@
     
     [self setBackViewWithGesture];
     
-    self.view.backgroundColor = [UIColor colorNamed:@"SZHMainBoardColor"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000001" alpha:1]];
     //如果数据源数组为空，无数据，则不展示下半部分页面
     if (self.tableDataAry.count == 0) {
         [self buildFrameWhenNoDynamic];
@@ -158,7 +158,7 @@
     self.getKnowledgeFailure = NO;
     __weak typeof(self)weakSelf = self;
     //请求相关动态
-    [self.searchDataModel getSearchDynamicWithStr:searchString Sucess:^(NSDictionary * _Nonnull dynamicDic) {
+    [self.searchDataModel getSearchDynamicWithStr:searchString Success:^(NSDictionary * _Nonnull dynamicDic) {
         weakSelf.searchDynamicDic = dynamicDic;
         [weakSelf processDataWithStr:searchString];
         } Failure:^{
@@ -167,7 +167,7 @@
             [weakSelf processDataWithStr:searchString];
         }];
     //请求帖子
-    [self.searchDataModel getSearchKnowledgeWithStr:searchString Sucess:^(NSDictionary * _Nonnull knowledgeDic) {
+    [self.searchDataModel getSearchKnowledgeWithStr:searchString Success:^(NSDictionary * _Nonnull knowledgeDic) {
         weakSelf.searchKnowledgeDic = knowledgeDic;
         [weakSelf processDataWithStr:searchString];
         } Failure:^{
@@ -189,9 +189,9 @@
     self.page +=1;
     __weak typeof(self)weakSelf = self;
     __strong typeof(weakSelf)strongSelf = weakSelf;
-    [self.searchEndDataModel loadRelevantDynamicDataWithStr:self.searchStr Page:self.page Sucess:^(NSArray * _Nonnull array) {
-        [strongSelf loadDynamicTableSucessWithAry:array];
-        [self loadDynamicTableSucessWithAry:array];
+    [self.searchEndDataModel loadRelevantDynamicDataWithStr:self.searchStr Page:self.page Success:^(NSArray * _Nonnull array) {
+        [strongSelf loadDynamicTableSuccessWithAry:array];
+        [self loadDynamicTableSuccessWithAry:array];
         } Failure:^{
             [strongSelf loadDynamicTableFailure];
         }];    
@@ -202,16 +202,16 @@
 //    self.tableDataAry = [NSArray array];
     __weak typeof(self)weakSelf = self;
     __strong typeof(weakSelf)strongSelf = weakSelf;
-    [self.searchEndDataModel loadRelevantDynamicDataWithStr:self.searchStr Page:self.page Sucess:^(NSArray * _Nonnull array) {
-        [strongSelf loadDynamicTableSucessWithAry:array];
-        [self loadDynamicTableSucessWithAry:array];
+    [self.searchEndDataModel loadRelevantDynamicDataWithStr:self.searchStr Page:self.page Success:^(NSArray * _Nonnull array) {
+        [strongSelf loadDynamicTableSuccessWithAry:array];
+        [self loadDynamicTableSuccessWithAry:array];
         } Failure:^{
             [strongSelf loadDynamicTableFailure];
         }];
 }
 
 ///动态列表成功请求数据后的操作
-- (void)loadDynamicTableSucessWithAry:(NSArray *)array{
+- (void)loadDynamicTableSuccessWithAry:(NSArray *)array{
     //根据当前页数判断是下拉刷新还是上滑增加内容
     if (self.page == 1) {
         NSLog(@"%@",array);
@@ -322,10 +322,8 @@
 /// 将搜索的内容添加到历史记录
 /// @param string 搜索的内容
 - (void)wirteHistoryRecord:(NSString *)string{
-    //1.取出userDefault的历史数组
-    NSUserDefaults *userdefaulte = [NSUserDefaults standardUserDefaults];
-        //从缓存中取出数组的时候要mutablyCopy一下，不然会崩溃
-    NSMutableArray *array = [[userdefaulte objectForKey:@"historyRecords"] mutableCopy];
+    //1.取出userDefault的历史数组，从缓存中取出数组的时候要mutablyCopy一下，不然会崩溃
+    NSMutableArray *array = [[NSUserDefaults.standardUserDefaults objectForKey:@"historyRecords"] mutableCopy];
     
     //2.判断当前搜素内容是否与历史记录重合，如果重合就删除历史记录中原存在的数组
     for (NSString *historyStr in array) {
@@ -338,7 +336,7 @@
     [array insertObject:string atIndex:0];
     
     //4.将历史数组重新存入UserDefault
-    [userdefaulte setObject:array forKey:@"historyRecords"];
+    [NSUserDefaults.standardUserDefaults setObject:array forKey:@"historyRecords"];
     
     //5.发出通知，在搜索开始页去刷新历史记录（在willAppear里面调用）
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadHistory" object:nil];
@@ -507,7 +505,7 @@
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] - 1];
         if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"FuncBtnColor"];
+            cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#ABBCD9" alpha:1] darkColor:[UIColor colorWithHexString:@"#838384" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
@@ -517,7 +515,7 @@
         NSString *count = cell.starBtn.countLabel.text;
         cell.starBtn.countLabel.text = [NSString stringWithFormat:@"%d",[count intValue] + 1];
         if (@available(iOS 11.0, *)) {
-            cell.starBtn.countLabel.textColor = [UIColor colorNamed:@"countLabelColor"];
+            cell.starBtn.countLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#3D35E1" alpha:1] darkColor:[UIColor colorWithHexString:@"#2CDEFF" alpha:1]];
             
         } else {
             // Fallback on earlier versions
@@ -812,8 +810,8 @@
         _relevantDynamicLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
             //设置字体和背景颜色
         if (@available(iOS 11.0, *)) {
-            _relevantDynamicLbl.textColor = [UIColor colorNamed:@"SZHHotHistoryKnowledgeLblColor"];
-            _relevantDynamicLbl.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+            _relevantDynamicLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+            _relevantDynamicLbl.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         } else {
             // Fallback on earlier versions
         }

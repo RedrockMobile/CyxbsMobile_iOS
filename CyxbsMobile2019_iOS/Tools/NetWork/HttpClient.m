@@ -284,7 +284,7 @@
 //}
 
 - (void)logInWithStuNum:(NSString *)stuNum idnum:(NSString *)idNum success:(void (^)(NSString * _Nonnull, NSString * _Nonnull))success failure:(void (^)(void))failure {
-    [self requestWithJson:LOGINAPI method:HttpRequestPost parameters:@{
+    [self requestWithJson:Mine_POST_logIn_API method:HttpRequestPost parameters:@{
         @"stuNum":stuNum,
         @"idNum":idNum
     } prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {

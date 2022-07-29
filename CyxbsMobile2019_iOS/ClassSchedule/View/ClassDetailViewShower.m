@@ -68,7 +68,7 @@
     [view addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender){ }]];
     
     if (@available(iOS 11.0, *)) {
-        view.backgroundColor = [UIColor colorNamed:@"white&37_39_44"];
+        view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         view.backgroundColor = [UIColor whiteColor];
     }
@@ -99,7 +99,7 @@
 //    PC.currentPageIndicatorTintColor = [UIColor colorWithHexString:@"#5599FF"];
     
     if (@available(iOS 11.0, *)) {
-        PC.currentPageIndicatorTintColor = [UIColor colorNamed:@"184_82_255&black"];
+        PC.currentPageIndicatorTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#92A9EC" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     } else {
         PC.currentPageIndicatorTintColor = [UIColor colorWithRed:184/255.0 green:82/255.0 blue:255/255.0 alpha:1];
     }
@@ -152,11 +152,11 @@
         [self.backViewOfScrollView setFrame:CGRectMake(0, MAIN_SCREEN_H-DETAILVIEW_H+10, MAIN_SCREEN_W, DETAILVIEW_H+40)];
     } completion:^(BOOL is){
         //判断是否已经展示过功能，不为空，则展示过。
-        if([[NSUserDefaults standardUserDefaults] stringForKey:@"isClassDetailViewShower_Displayed"]!=nil)return;
+        if([NSUserDefaults.standardUserDefaults stringForKey:@"isClassDetailViewShower_Displayed"]!=nil)return;
         if(self.PC.numberOfPages!=1){
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self displayOnce];
-                [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"isClassDetailViewShower_Displayed"];
+                [NSUserDefaults.standardUserDefaults setValue:@"YES" forKey:@"isClassDetailViewShower_Displayed"];
             });
         }
     }];

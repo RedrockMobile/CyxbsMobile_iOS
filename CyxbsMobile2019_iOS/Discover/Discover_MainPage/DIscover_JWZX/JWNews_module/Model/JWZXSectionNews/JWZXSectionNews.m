@@ -18,7 +18,7 @@
                 success:(void (^)(JWZXSectionNews * _Nullable))success
                 failure:(void (^)(NSError * _Nonnull))failure {
     [HttpTool.shareTool
-     request:JWZX_GET_NewsPage_API
+     request:Discover_GET_NewsPage_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:@{
@@ -39,7 +39,8 @@
         if (success) {
             success(sectionNews);
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);
         }

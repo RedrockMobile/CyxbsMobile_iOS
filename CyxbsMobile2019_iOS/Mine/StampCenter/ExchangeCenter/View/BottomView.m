@@ -33,7 +33,7 @@
     UIImageView *iconView = [[UIImageView alloc]init];
     [self addSubview:iconView];
     _iconView = iconView;
-    iconView.backgroundColor = [UIColor colorNamed:@"White&Black"];
+    iconView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     [iconView setImage:[UIImage imageNamed:@"icon"]];
     iconView.frame = CGRectMake(20, 10, 21, 21);
     
@@ -41,7 +41,7 @@
     [self addSubview:balanceLabel];
     _balanceLabel = balanceLabel;
     balanceLabel.font = [UIFont systemFontOfSize:11];
-    balanceLabel.textColor = [UIColor colorNamed:@"21_49_91"];
+    balanceLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     balanceLabel.frame = CGRectMake(20, 35, 300, 20);
     [Balance getDataDictWithBalance:_goodsID Success:^(NSDictionary * _Nonnull dict) {
         self.balanceLabel.text = [@"余额：" stringByAppendingString:[NSString stringWithFormat:@"%@",dict[@"user_amount"]]];
@@ -53,7 +53,7 @@
     UIButton *exchangeBtn = [[UIButton alloc]init];
     [self addSubview:exchangeBtn];
     _exchangeBtn = exchangeBtn;
-    [exchangeBtn setBackgroundColor:[UIColor colorNamed:@"93_93_247"]];
+    [exchangeBtn setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#5D5DF7" alpha:1] darkColor:[UIColor colorWithHexString:@"#5D5DF7" alpha:1]]];
     exchangeBtn.layer.cornerRadius = 20;
     [exchangeBtn setTitle:@"兑换" forState:UIControlStateNormal];
     [exchangeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -65,7 +65,7 @@
     
     _priceLabel = [[UILabel alloc]init];
     [self addSubview:_priceLabel];
-    _priceLabel.textColor = [UIColor colorNamed:@"81_119_255"];
+    _priceLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#5177FF" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     _priceLabel.font = [UIFont systemFontOfSize:18];
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(46);
@@ -77,7 +77,7 @@
         int amount = [dict[@"amount"] intValue];
         if (amount <= 0) {
             self.exchangeBtn.enabled = NO;
-            self.exchangeBtn.backgroundColor = [UIColor colorNamed:@"170_187_255&73_85_132"];
+            self.exchangeBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AABBFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#495584" alpha:1]];
         }
         self->_priceLabel.text = [NSString stringWithFormat:@"%@",dict[@"price"]];
         

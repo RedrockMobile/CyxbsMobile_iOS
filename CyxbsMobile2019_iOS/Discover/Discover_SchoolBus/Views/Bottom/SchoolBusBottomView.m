@@ -145,7 +145,7 @@
             }else{
                 label.text = @"乘车指南";
             }
-            label.textColor = [UIColor colorNamed:@"148_166_196"];
+            label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#94A6C4" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
             label.font = [UIFont fontWithName:PingFangSCLight size:10];
             [self addSubview:label];
         }

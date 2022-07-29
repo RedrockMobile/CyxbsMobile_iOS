@@ -54,7 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorNamed:@"QAMainPageBackGroudColor"];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F1F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     self.view.clipsToBounds = YES;
     
     // 顶部搜索区域初始化高度
@@ -836,12 +836,27 @@
 
 - (NSMutableArray *)topicArray {
     if (!_topicArray) {
-        [[HttpClient defaultClient] requestWithPath:NEW_QA_TOPICGROUP method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSArray *array = responseObject[@"data"];
+//
+        [HttpTool.shareTool
+         request:NewQA_POST_QATopicGroup_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:nil
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            NSArray *array = object[@"data"];
             self.topicArray = [NSMutableArray arrayWithArray:array];
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
         }];
+//
+//        [[HttpClient defaultClient] requestWithPath:NewQA_POST_QATopicGroup_API method:HttpRequestPost parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//            NSArray *array = responseObject[@"data"];
+//            self.topicArray = [NSMutableArray arrayWithArray:array];
+//        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//        }];
     }
     return self.topicArray;
 }
