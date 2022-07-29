@@ -47,6 +47,7 @@ MJExtensionCodingImplementation
     }];
 }
 
+/// 老版本：把andPssWord改为andPassWord，再把上面现用的方法注释掉
 - (void)getVolunteerInfoWithUserName:(NSString *)userName andPssWord:(NSString *)passWord finishBlock:(void (^)(VolunteerItem *volunteer))finish {
     
     NSLog(@"--%@--", [self aesEncrypt:passWord]);
