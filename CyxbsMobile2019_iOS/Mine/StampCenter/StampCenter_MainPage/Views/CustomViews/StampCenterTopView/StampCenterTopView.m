@@ -17,7 +17,7 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.frame = CGRectMake(0, Bar_H, SCREEN_WIDTH, 215);
+        self.frame = CGRectMake(0, Bar_H, SCREEN_WIDTH, 180);
         self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         
         [self addSubview:self.holder];
@@ -40,7 +40,7 @@
 
 - (UIImageView *)bannerImage{
     if (!_bannerImage) {
-        _bannerImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.042*SCREEN_WIDTH, 28, 0.914*SCREEN_WIDTH, 129)];
+        _bannerImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.042*SCREEN_WIDTH, 23, 0.914*SCREEN_WIDTH, 129)];
         _bannerImage.image = [UIImage imageNamed:@"Banner"];
         _bigStampImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.541*SCREEN_WIDTH, -25, 132, 119)];
         _bigStampImage.image = [UIImage imageNamed:@"BigStamp"];
@@ -98,7 +98,7 @@
 
 - (UILabel *)stampStoreLbl{
     if (!_stampStoreLbl) {
-        _stampStoreLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.192*SCREEN_WIDTH, 181-138, 72, 25)];
+        _stampStoreLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.192*SCREEN_WIDTH, 18, 72, 25)];
         _stampStoreLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
         _stampStoreLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _stampStoreLbl.text = @"邮票小店";
@@ -110,7 +110,7 @@
 
 - (UILabel *)stampTaskLbl{
     if (!_stampTaskLbl) {
-        _stampTaskLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.624*SCREEN_WIDTH,181-138,72,25)];
+        _stampTaskLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.624*SCREEN_WIDTH,18,72,25)];
         _stampTaskLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
         _stampTaskLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _stampTaskLbl.text = @"邮票任务";
@@ -121,7 +121,7 @@
 
 - (UIImageView *)switchbar{
     if (!_switchbar) {
-        _switchbar = [[UIImageView alloc]initWithFrame:CGRectMake(_stampStoreLbl.x+3, 212-138, 62, 3)];
+        _switchbar = [[UIImageView alloc]initWithFrame:CGRectMake(_stampStoreLbl.x+3, 46, 62, 3)];
         _switchbar.image = [UIImage imageNamed:@"switchbar"];
         UIImageView *swithimage1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 20, 3)];
         swithimage1.image = [UIImage imageNamed:@"switchimage1"];
@@ -132,7 +132,7 @@
 
 - (UIImageView *)swithPoint{
     if (!_swithPoint) {
-        _swithPoint = [[UIImageView alloc]initWithFrame:CGRectMake(_stampStoreLbl.x+66, 212-138, 3, 3)];
+        _swithPoint = [[UIImageView alloc]initWithFrame:CGRectMake(_stampStoreLbl.x+66, 46, 3, 3)];
         _swithPoint.image = [UIImage imageNamed:@"swithPoint"];
     }
     return _swithPoint;
@@ -166,7 +166,7 @@
 
 - (UIView *)holder{
     if (!_holder) {
-        _holder = [[UIView alloc]initWithFrame:CGRectMake(0, 138, SCREEN_WIDTH, 77)];
+        _holder = [[UIView alloc]initWithFrame:CGRectMake(0, 138, SCREEN_WIDTH, 50)];
         _holder.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     return _holder;
