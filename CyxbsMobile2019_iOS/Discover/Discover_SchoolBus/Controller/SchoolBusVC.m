@@ -17,8 +17,14 @@
 #import "StationMAPointAnnotation.h"
 #import "CircleMAPointAnnotation.h"
 
-@interface SchoolBusVC ()<SchoolBusMapViewDelegate,SchoolBusBottomViewDelegate>
+@interface SchoolBusVC ()<
+    SchoolBusMapViewDelegate,
+    SchoolBusBottomViewDelegate,
+    CLLocationManagerDelegate
+>
 
+/// 授权定位
+@property (nonatomic, strong) CLLocationManager *locationManager;
 ///地图View
 @property (nonatomic, strong) SchoolBusMapView *schoolBusMapView;
 ///底部View
@@ -45,12 +51,14 @@
 @property (nonatomic, assign) CLLocationCoordinate2D selectedCoordinate;
 /// 被选中是校车
 @property (nonatomic, assign) BOOL isBus;
+
 @end
 
 @implementation SchoolBusVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self GetLocationPermissionVerifcationWithController];
     [self setupStationData];
     [self.view addSubview:self.schoolBusMapView];
     [self.schoolBusMapView addSubview: self.schoolBusSideBar];
@@ -60,6 +68,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    
     _stationScrollView.stationData = self.stationArray[0];
 }
 
@@ -197,6 +206,22 @@
 }
 
 #pragma mark - Method
+/// 定位授权
+- (void)GetLocationPermissionVerifcationWithController{
+    BOOL enable = [CLLocationManager locationServicesEnabled];
+    NSInteger state = [CLLocationManager authorizationStatus];
+    
+    if (!enable || 2 > state) {// 尚未授权位置权限
+        if (8 <= [[UIDevice currentDevice].systemVersion floatValue]) {
+            NSLog(@"系统位置权限授权弹窗");
+            // 系统位置权限授权弹窗
+            self.locationManager = [[CLLocationManager alloc] init];
+            self.locationManager.delegate = self;
+//            [self.locationManager requestAlwaysAuthorization];
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+    }
+}
 /// 获取数据
 - (void)setupStationData {
     [StationData StationWithSuccess:^(NSArray * _Nonnull array) {
