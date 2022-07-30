@@ -18,7 +18,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        //更新App是否显示隐私弹窗的状态，隐私弹窗是否包含高德SDK隐私协议内容的状态
+        [MAMapView updatePrivacyShow:AMapPrivacyShowStatusDidShow privacyInfo:AMapPrivacyInfoStatusDidContain];
+        //更新用户授权高德SDK隐私协议状态
+        [MAMapView updatePrivacyAgree:AMapPrivacyAgreeStatusDidAgree];
         [self addSubview:self.mapView];
         [self setLocationRepresentation];
         [self addSubview:self.backBtn];
