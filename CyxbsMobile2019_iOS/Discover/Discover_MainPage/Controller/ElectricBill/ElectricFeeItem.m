@@ -11,7 +11,12 @@
 @implementation ElectricFeeItem
 -(instancetype)initWithDict: (NSDictionary *)dict {
     if (self = [super init]) {
-        self.money = [NSString stringWithFormat:@"%@.%@",dict[@"elec_inf"][@"elec_cost"][0],dict[@"elec_inf"][@"elec_cost"][1]];
+        if (dict[@"elec_inf"][@"elec_cost"][0] == NULL || dict[@"elec_inf"][@"elec_cost"][1] == NULL)
+        {
+            self.money = [NSString stringWithFormat:@"0"];
+        }else{
+            self.money = [NSString stringWithFormat:@"%@.%@",dict[@"elec_inf"][@"elec_cost"][0],dict[@"elec_inf"][@"elec_cost"][1]];
+        }
         self.degree = [dict[@"elec_inf"][@"elec_spend"] stringValue];
         NSString *returnTime = (NSString*)dict[@"elec_inf"][@"record_time"];
         if (![returnTime isEqual:@""]){

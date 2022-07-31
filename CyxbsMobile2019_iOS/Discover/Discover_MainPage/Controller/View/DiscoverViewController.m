@@ -513,6 +513,9 @@ static int requestCheckinInfo = 0;
         contentView.alpha = 1;
         hideTabbarView.alpha = 1;
 //        self.tabBarController.tabBar.hidden=YES;
+        self.tabBarController.tabBar.userInteractionEnabled = NO;
+        ((ClassTabBar *)(self.tabBarController.tabBar))
+            .classScheduleTabBarView.userInteractionEnabled = NO;
         [self.tabBarController.tabBar addSubview:hideTabbarView];
         [[UIApplication.sharedApplication.windows firstObject] bringSubviewToFront:hideTabbarView];
         self.view.backgroundColor = self.finderView.backgroundColor;
@@ -618,7 +621,9 @@ static int requestCheckinInfo = 0;
 //    self.tabBarController.tabBar.hidden=NO;
     [self.bindingDormitoryContentView removeFromSuperview];
     [self.hideTabbarView removeFromSuperview];
-
+    [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    [((ClassTabBar *)(self.tabBarController.tabBar))
+        .classScheduleTabBarView setUserInteractionEnabled:YES];
 }
 - (UIToolbar *)addToolbar {
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 35)];
@@ -654,6 +659,9 @@ static int requestCheckinInfo = 0;
     [self.bindingDormitoryContentView removeAllSubviews];
     [self.bindingDormitoryContentView removeFromSuperview];
     [self.hideTabbarView removeFromSuperview];
+    [self.tabBarController.tabBar setUserInteractionEnabled:YES];
+    [((ClassTabBar *)(self.tabBarController.tabBar))
+        .classScheduleTabBarView setUserInteractionEnabled:YES];
     [self reloadElectricViewIfNeeded];
 }
 - (void)getPickerViewData {

@@ -125,6 +125,10 @@
         self.stampCountView_X = 0.70*SCREEN_WIDTH;
         self.smallcountLbl.width = 50;
         self.stampCountView.width = 100;
+    }else{
+        self.stampCountView_X = 0.68*SCREEN_WIDTH;
+        self.smallcountLbl.width = 60;
+        self.stampCountView.width = 110;
     }
     self.smallcountLbl.text = [NSString stringWithFormat:@"%@",_number];
 }
@@ -507,7 +511,7 @@
 //主界面
 - (StampCenterMainScrollView *)mainScrollView{
     if (!_mainScrollView) {
-        _mainScrollView = [[StampCenterMainScrollView alloc]initWithFrame:CGRectMake(0, Bar_H, SCREEN_WIDTH, SCREEN_HEIGHT-Bar_H)];
+        _mainScrollView = [[StampCenterMainScrollView alloc]initWithFrame:CGRectMake(0, Bar_H - 20, SCREEN_WIDTH, SCREEN_HEIGHT-Bar_H)];
         _mainScrollView.collectionView.delegate = self;
         _mainScrollView.collectionView.dataSource = self;
         _mainScrollView.tableView.delegate = self;
