@@ -10,7 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MineViewController : UIViewController
+@interface MineViewController : UIViewController <
+    RisingRouterHandler
+>
 
 @end
 

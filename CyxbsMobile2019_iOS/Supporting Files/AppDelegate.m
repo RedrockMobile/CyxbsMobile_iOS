@@ -81,6 +81,16 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self BeforeRun:launchOptions]; //By ssr
+    
+    self.window = [[UIWindow alloc] init];
+    self.window.rootViewController = self.tabBarController;
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
+
+- (void)BeforeRun:(NSDictionary *)launchOptions { // SSR
     [Bugly startWithAppId:BUGLY_APP_ID];
     // Override point for customization after application launch.
     
@@ -239,8 +249,16 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [self settingBaseURL];
     [self addNotification];
     [self requestUserInfo];
-    return YES;
 }
+
+- (UIViewController *)tabBarController {
+    return [self.router controllerForRouterPath:@"SchoolTabBarController"];
+}
+
+
+
+
+
 
 - (void)addNotification {
     NSNotificationCenter* center = [NSNotificationCenter defaultCenter];

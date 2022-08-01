@@ -10,7 +10,9 @@
 
 #pragma mark - DiscoverViewController
 
-@interface DiscoverViewController: UIViewController
+@interface DiscoverViewController: UIViewController <
+    RisingRouterHandler
+>
 
 - (void)reloadViewController:(UIViewController *)viewController;
 

@@ -31,7 +31,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NewQAMainVC : UIViewController
+@interface NewQAMainVC : UIViewController <
+    RisingRouterHandler
+>
 
 @property (nonatomic, assign) CGPoint printPoint;
 @property (nonatomic, strong) NewQARecommenTableView *recommenTableView;   // 推荐TableView

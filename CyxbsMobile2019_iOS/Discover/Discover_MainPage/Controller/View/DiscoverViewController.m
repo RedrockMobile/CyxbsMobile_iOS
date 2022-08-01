@@ -123,6 +123,32 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 @implementation DiscoverViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.tabBarItem =
+        [[UITabBarItem alloc]
+         initWithTitle:@"发现"
+         image:[UIImage imageNamed:@"DiscoverVC.deselect"]
+         selectedImage:[UIImage imageNamed:@"DiscoverVC.select"]];
+        
+        [self.tabBarItem
+         setTitleTextAttributes:@{
+            NSFontAttributeName : [UIFont fontWithName:PingFangSC size:10],
+            NSForegroundColorAttributeName : [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AABCD8" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]]
+        }
+         forState:UIControlStateNormal];
+        
+        [self.tabBarItem
+         setTitleTextAttributes:@{
+            NSFontAttributeName : [UIFont fontWithName:PingFangSC size:10],
+            NSForegroundColorAttributeName : [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#465FFF" alpha:1]]
+        }
+         forState:UIControlStateSelected];
+    }
+    return self;
+}
+
 #pragma mark - Getter
 - (LoginStates)loginStatus {
     if (![UserItemTool defaultItem].token) {
@@ -159,28 +185,28 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
-    if(((ClassTabBar *)(self.tabBarController.tabBar))
-       .classScheduleTabBarView == nil) {
-        ClassScheduleTabBarView *classTabBarView =
-        [[ClassScheduleTabBarView alloc] initWithFrame:
-         CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
-        
-        classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
-        [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
-        
-        ((ClassTabBar *)(self.tabBarController.tabBar))
-            .classScheduleTabBarView = classTabBarView;
-        
-        ((ClassTabBar *)(self.tabBarController.tabBar))
-            .classScheduleTabBarView.userInteractionEnabled = YES;
-            
-        if(![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
-            [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
-            classTabBarView.mySchedul.fakeBar.alpha = 0;
-            [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
-        }
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
-    }
+//    if(((ClassTabBar *)(self.tabBarController.tabBar))
+//       .classScheduleTabBarView == nil) {
+//        ClassScheduleTabBarView *classTabBarView =
+//        [[ClassScheduleTabBarView alloc] initWithFrame:
+//         CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
+//
+//        classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
+//        [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
+//
+//        ((ClassTabBar *)(self.tabBarController.tabBar))
+//            .classScheduleTabBarView = classTabBarView;
+//
+//        ((ClassTabBar *)(self.tabBarController.tabBar))
+//            .classScheduleTabBarView.userInteractionEnabled = YES;
+//
+//        if(![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
+//            [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+//            classTabBarView.mySchedul.fakeBar.alpha = 0;
+//            [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
+//        }
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
+//    }
     [self.todoView reloadData];
 }
 - (void)presentMySchedul{
@@ -944,6 +970,52 @@ static int requestCheckinInfo = 0;
     self.navigationController.tabBarController.selectedIndex = 0;
     
     [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+#pragma mark - RisingRouterHandler
+
++ (NSArray<NSString *> *)routerPath {
+    return @[
+        @"DiscoverVC"
+    ];
+}
+
++ (void)responseRequest:(RisingRouterRequest *)request completion:(RisingRouterResponseBlock)completion {
+    
+    RisingRouterResponse *response = [[RisingRouterResponse alloc] init];
+    
+    switch (request.requestType) {
+        case RouterRequestPush: {
+            
+            UINavigationController *nav = (request.requestController ? request.requestController : RisingRouterRequest.useTopController).navigationController;
+            
+            if (nav) {
+                DiscoverViewController *vc = [[self alloc] init];
+                response.responseController = vc;
+                
+                [nav pushViewController:vc animated:YES];
+            } else {
+                
+                response.errorCode = RouterResponseWithoutNavagation;
+            }
+            
+        } break;
+            
+        case RouterRequestParameters: {
+            // TODO: 传回参数
+        } break;
+            
+        case RouterRequestController: {
+            
+            DiscoverViewController *vc = [[self alloc] init];
+            
+            response.responseController = vc;
+        } break;
+    }
+    
+    if (completion) {
+        completion(response);
+    }
 }
 
 @end

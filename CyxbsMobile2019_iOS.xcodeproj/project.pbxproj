@@ -11,6 +11,7 @@
 		1404747227F459B500307209 /* DiscoverADItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747127F459B500307209 /* DiscoverADItem.m */; };
 		1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747C27F46F0D00307209 /* DiscoverADController.m */; };
 		1442D6DC289764BC009CEB40 /* RisingRouter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1442D6DA289764BC009CEB40 /* RisingRouter+Extension.m */; };
+		1442D6F02897703A009CEB40 /* SchoolClassTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1442D6EF2897703A009CEB40 /* SchoolClassTabBarController.m */; };
 		1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA52282A09B800A5BB55 /* UserPublishModel.m */; };
 		1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */; };
 		145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */; };
@@ -601,7 +602,6 @@
 		DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC2239BD4540052B65E /* WeekChooseButton.m */; };
 		DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC9239BD4550052B65E /* DayLabel.m */; };
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
-		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
 		DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DC2466D888006CE5BC /* DLReminderViewController.m */; };
 		DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */; };
 		DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DE2466D888006CE5BC /* DLWeekButton.m */; };
@@ -681,6 +681,8 @@
 		1404747C27F46F0D00307209 /* DiscoverADController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADController.m; sourceTree = "<group>"; };
 		1442D6DA289764BC009CEB40 /* RisingRouter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RisingRouter+Extension.m"; sourceTree = "<group>"; };
 		1442D6DB289764BC009CEB40 /* RisingRouter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RisingRouter+Extension.h"; sourceTree = "<group>"; };
+		1442D6EE2897703A009CEB40 /* SchoolClassTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolClassTabBarController.h; sourceTree = "<group>"; };
+		1442D6EF2897703A009CEB40 /* SchoolClassTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolClassTabBarController.m; sourceTree = "<group>"; };
 		1451EA51282A09B800A5BB55 /* UserPublishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPublishModel.h; sourceTree = "<group>"; };
 		1451EA52282A09B800A5BB55 /* UserPublishModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPublishModel.m; sourceTree = "<group>"; };
 		1451EA56282BAF0C00A5BB55 /* MessageDetailTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailTitleView.h; sourceTree = "<group>"; };
@@ -1873,7 +1875,6 @@
 		DB34EAC9239BD4550052B65E /* DayLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayLabel.m; sourceTree = "<group>"; };
 		DB34EACB239BD4550052B65E /* ORWInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORWInputTextView.h; sourceTree = "<group>"; };
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
-		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DB4064DB2466D888006CE5BC /* DLReminderSetTimeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLReminderSetTimeVC.h; sourceTree = "<group>"; };
 		DB4064DC2466D888006CE5BC /* DLReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderViewController.m; sourceTree = "<group>"; };
 		DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderSetDetailVC.m; sourceTree = "<group>"; };
@@ -5347,10 +5348,10 @@
 		AA7ABA2F2873EA5300BA6790 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA302873EA5300BA6790 /* NewQAMainVC+delegateMethod.h */,
-				AA7ABA312873EA5300BA6790 /* NewQAMainVC.m */,
-				AA7ABA322873EA5300BA6790 /* NewQAMainVC+delegateMethod.m */,
 				AA7ABA332873EA5300BA6790 /* NewQAMainVC.h */,
+				AA7ABA312873EA5300BA6790 /* NewQAMainVC.m */,
+				AA7ABA302873EA5300BA6790 /* NewQAMainVC+delegateMethod.h */,
+				AA7ABA322873EA5300BA6790 /* NewQAMainVC+delegateMethod.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6247,9 +6248,10 @@
 			isa = PBXGroup;
 			children = (
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
-				DB34EB3E239BD4850052B65E /* Main.storyboard */,
 				1A9B766A235F50A600725937 /* AppDelegate.h */,
 				1A9B766B235F50A600725937 /* AppDelegate.m */,
+				1442D6EE2897703A009CEB40 /* SchoolClassTabBarController.h */,
+				1442D6EF2897703A009CEB40 /* SchoolClassTabBarController.m */,
 				1A9B7679235F50A800725937 /* main.m */,
 			);
 			path = "Supporting Files";
@@ -6389,7 +6391,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
-				DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */,
 				73A1588A26C2475A00287C9F /* DIN-Medium.otf in Resources */,
 				EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */,
 				1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */,
@@ -6787,6 +6788,7 @@
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
 				1893DC9126EA3375007E871E /* MGDGroup.m in Sources */,
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
+				1442D6F02897703A009CEB40 /* SchoolClassTabBarController.m in Sources */,
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
