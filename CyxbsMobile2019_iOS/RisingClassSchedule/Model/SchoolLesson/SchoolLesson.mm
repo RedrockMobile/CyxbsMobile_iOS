@@ -48,8 +48,6 @@ WCDB_PROPERTY(type)
 
 WCDB_PROPERTY(teacher)
 WCDB_PROPERTY(lesson)
-WCDB_PROPERTY(saveType)
-
 @end
 
 #pragma mark - SchoolLesson (WCDB_IMPLEMENTATION)
@@ -74,7 +72,6 @@ WCDB_SYNTHESIZE(SchoolLesson, type)
 
 WCDB_SYNTHESIZE(SchoolLesson, teacher)
 WCDB_SYNTHESIZE(SchoolLesson, lesson)
-WCDB_SYNTHESIZE(SchoolLesson, saveType)
 
 @end
 
@@ -112,7 +109,6 @@ WCDB_SYNTHESIZE(SchoolLesson, saveType)
         self.type = dic[@"type"];
         self.teacher = dic[@"teacher"];
         self.lesson = dic[@"lesson"];
-        // TODO: self.saveType = (SchoolLessonType)[dic[@"save_type"] unsignedLongValue];
     }
     return self;
 }
@@ -130,31 +126,8 @@ WCDB_SYNTHESIZE(SchoolLesson, saveType)
     model.type = self.type.copy;
     model.teacher = self.teacher.copy;
     model.lesson = self.lesson.copy;
-    model.saveType = self.saveType;
     
     return model;
-}
-
-#pragma mark - WCDB
-
-+ (void)deleteAll {
-    // TODO: 个别不删除
-    [schoolLessonDB deleteAllObjectsFromTable:SchoolLessonTableName];
-}
-
-- (void)save {
-    [schoolLessonDB insertObject:self into:SchoolLessonTableName];
-}
-
-+ (NSArray <SchoolLesson *> *)aryFromWCDB {
-    NSArray<SchoolLesson *> *modelAry = [schoolLessonDB getAllObjectsOfClass:SchoolLesson.class fromTable:SchoolLessonTableName];
-    return modelAry;
-}
-
-#pragma mark - Getter
-
-- (NSIndexPath *)weekIndexPath {
-    return [NSIndexPath indexPathForItem:self.inWeek inSection:self.inSection];
 }
 
 #pragma mark - Setter
@@ -173,6 +146,31 @@ WCDB_SYNTHESIZE(SchoolLesson, saveType)
 - (void)setPeriod_lenth:(NSInteger)period_lenth {
     _period_lenth = period_lenth;
     _period.length = period_lenth;
+}
+
+#pragma mark - WCDB
+
++ (void)deleteAll {
+    // TODO: 个别不删除
+    [schoolLessonDB deleteAllObjectsFromTable:SchoolLessonTableName];
+}
+
+- (void)save {
+    [schoolLessonDB insertObject:self into:SchoolLessonTableName];
+}
+
++ (NSArray <SchoolLesson *> *)aryFromWCDB {
+    NSArray<SchoolLesson *> *modelAry = [schoolLessonDB getAllObjectsOfClass:SchoolLesson.class fromTable:SchoolLessonTableName];
+    return modelAry;
+}
+
++ (NSArray<SchoolLesson *> *)request:(void (^)(SchoolLesson * _Nonnull))requestBlock {
+    NSArray<SchoolLesson *> *modelAry =
+    [schoolLessonDB
+     getObjectsOfClass:self.class
+     fromTable:SchoolLessonTableName
+     where:SchoolLesson.period_location > 3];
+    return modelAry;
 }
 
 @end

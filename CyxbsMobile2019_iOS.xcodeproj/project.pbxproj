@@ -48,7 +48,6 @@
 		14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F83281CCC3000D08ADD /* MessageDetailVC.m */; };
 		14B73F8B2823577600D08ADD /* SSRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F8A2823577600D08ADD /* SSRButton.m */; };
 		14CDC82128991F9F0009358F /* ClassScheduleLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC80828991F9F0009358F /* ClassScheduleLayout.m */; };
-		14CDC82328991F9F0009358F /* ClassBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC80F28991F9F0009358F /* ClassBookModel.m */; };
 		14CDC82428991F9F0009358F /* SchoolLesson.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC81128991F9F0009358F /* SchoolLesson.mm */; };
 		14CDC82528991F9F0009358F /* SchoolLessonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC81728991F9F0009358F /* SchoolLessonItem.m */; };
 		14CDC82728991F9F0009358F /* ClassBookCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC81C28991F9F0009358F /* ClassBookCollectionView.m */; };
@@ -766,10 +765,8 @@
 		14B73F8A2823577600D08ADD /* SSRButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSRButton.m; sourceTree = "<group>"; };
 		14CDC80728991F9F0009358F /* ClassScheduleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassScheduleLayout.h; sourceTree = "<group>"; };
 		14CDC80828991F9F0009358F /* ClassScheduleLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassScheduleLayout.m; sourceTree = "<group>"; };
-		14CDC80F28991F9F0009358F /* ClassBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBookModel.m; sourceTree = "<group>"; };
 		14CDC81128991F9F0009358F /* SchoolLesson.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SchoolLesson.mm; sourceTree = "<group>"; };
 		14CDC81228991F9F0009358F /* SchoolLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolLesson.h; sourceTree = "<group>"; };
-		14CDC81328991F9F0009358F /* ClassBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBookModel.h; sourceTree = "<group>"; };
 		14CDC81628991F9F0009358F /* SchoolLessonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolLessonItem.h; sourceTree = "<group>"; };
 		14CDC81728991F9F0009358F /* SchoolLessonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolLessonItem.m; sourceTree = "<group>"; };
 		14CDC81C28991F9F0009358F /* ClassBookCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBookCollectionView.m; sourceTree = "<group>"; };
@@ -790,6 +787,7 @@
 		14CDC83D2899217E0009358F /* RisingClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingClassScheduleHeader.h; sourceTree = "<group>"; };
 		14CDC83F28993E1E0009358F /* ClassScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleModel.h; sourceTree = "<group>"; };
 		14CDC84028993E1E0009358F /* ClassScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassScheduleModel.m; sourceTree = "<group>"; };
+		14CDC84A289982080009358F /* SchoolLessonDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolLessonDataSource.h; sourceTree = "<group>"; };
 		14CED376288A594500BADA8B /* RisingRouterResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingRouterResponse.h; sourceTree = "<group>"; };
 		14CED377288A594500BADA8B /* RisingRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingRouter.m; sourceTree = "<group>"; };
 		14CED378288A594500BADA8B /* RisingRouterResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingRouterResponse.m; sourceTree = "<group>"; };
@@ -2824,8 +2822,6 @@
 		14CDC80E28991F9F0009358F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14CDC81328991F9F0009358F /* ClassBookModel.h */,
-				14CDC80F28991F9F0009358F /* ClassBookModel.m */,
 				14CDC83F28993E1E0009358F /* ClassScheduleModel.h */,
 				14CDC84028993E1E0009358F /* ClassScheduleModel.m */,
 				14CDC81028991F9F0009358F /* SchoolLesson */,
@@ -2836,6 +2832,7 @@
 		14CDC81028991F9F0009358F /* SchoolLesson */ = {
 			isa = PBXGroup;
 			children = (
+				14CDC84A289982080009358F /* SchoolLessonDataSource.h */,
 				14CDC81228991F9F0009358F /* SchoolLesson.h */,
 				14CDC81128991F9F0009358F /* SchoolLesson.mm */,
 			);
@@ -6898,7 +6895,6 @@
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
 				14CDC83B28991FF30009358F /* NSDate+Rising.m in Sources */,
-				14CDC82328991F9F0009358F /* ClassBookModel.m in Sources */,
 				4931630E26CD7B6800140412 /* StampCenterSecondHeaderView.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,

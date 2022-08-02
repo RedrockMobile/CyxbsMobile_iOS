@@ -13,28 +13,18 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SchoolLessonDataSource.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
+/// 数据表
 FOUNDATION_EXPORT NSString *SchoolLessonTableName;
-
-#pragma mark - ENUM (SchoolLessonType)
-
-typedef NS_ENUM(NSUInteger, SchoolLessonType) {
-    
-    /// 自己的课表
-    SchoolLessonTypeDefault,
-    
-    /// 别人的课表
-    SchoolLessonTypeMulty,
-    
-    /// 自定义课表
-    SchoolLessonTypeCustom
-};
 
 #pragma mark - SchoolLesson
 
 @interface SchoolLesson : NSObject <
-    NSCopying
+    NSCopying,
+    SchoolLessonDataSource
 >
 
 // !!!: Save
@@ -52,9 +42,6 @@ typedef NS_ENUM(NSUInteger, SchoolLessonType) {
 
 /// 第几-几节课，中午为4-5，晚上为8-9
 @property (nonatomic) NSRange period;
-
-/// week, day，计算属性
-@property (nonatomic, readonly) NSIndexPath *weekIndexPath;
 
 // !!!: Source
 
@@ -83,25 +70,11 @@ typedef NS_ENUM(NSUInteger, SchoolLessonType) {
 /// @“xx节”
 @property (nonatomic, copy) NSString *lesson;
 
-/// 保存的类型
-@property (nonatomic) SchoolLessonType saveType;
-
 #pragma mark - Method
 
 /// 根据字典来赋值
 /// @param dic 字典（这里必须看文档，注意使用）
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
-
-// !!!: WCDBb
-
-/// 删库
-+ (void)deleteAll;
-
-/// 存储
-- (void)save;
-
-/// 从wcdb中取出
-+ (NSArray <SchoolLesson *> *)aryFromWCDB;
 
 @end
 
