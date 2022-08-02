@@ -1,5 +1,5 @@
 //
-//  SchoolClassTabBarController.h
+//  ClassScheduleTabBarController.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/8/1.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SchoolClassTabBarController : UITabBarController <
+@interface ClassScheduleTabBarController : UITabBarController <
     RisingRouterHandler
 >
 

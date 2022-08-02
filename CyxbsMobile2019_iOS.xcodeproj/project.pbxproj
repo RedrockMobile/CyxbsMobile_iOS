@@ -10,8 +10,9 @@
 		1404746C27F446DF00307209 /* DiscoverADBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404746B27F446DF00307209 /* DiscoverADBannerView.m */; };
 		1404747227F459B500307209 /* DiscoverADItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747127F459B500307209 /* DiscoverADItem.m */; };
 		1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747C27F46F0D00307209 /* DiscoverADController.m */; };
+		142B44852898C3F800627D6C /* RisingCycleSingleLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 142B44842898C3F800627D6C /* RisingCycleSingleLabelView.m */; };
 		1442D6DC289764BC009CEB40 /* RisingRouter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1442D6DA289764BC009CEB40 /* RisingRouter+Extension.m */; };
-		1442D6F02897703A009CEB40 /* SchoolClassTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1442D6EF2897703A009CEB40 /* SchoolClassTabBarController.m */; };
+		1442D6F02897703A009CEB40 /* ClassScheduleTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1442D6EF2897703A009CEB40 /* ClassScheduleTabBarController.m */; };
 		1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA52282A09B800A5BB55 /* UserPublishModel.m */; };
 		1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */; };
 		145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */; };
@@ -679,10 +680,12 @@
 		1404747127F459B500307209 /* DiscoverADItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADItem.m; sourceTree = "<group>"; };
 		1404747B27F46F0D00307209 /* DiscoverADController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADController.h; sourceTree = "<group>"; };
 		1404747C27F46F0D00307209 /* DiscoverADController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADController.m; sourceTree = "<group>"; };
+		142B44832898C3F800627D6C /* RisingCycleSingleLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingCycleSingleLabelView.h; sourceTree = "<group>"; };
+		142B44842898C3F800627D6C /* RisingCycleSingleLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingCycleSingleLabelView.m; sourceTree = "<group>"; };
 		1442D6DA289764BC009CEB40 /* RisingRouter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RisingRouter+Extension.m"; sourceTree = "<group>"; };
 		1442D6DB289764BC009CEB40 /* RisingRouter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RisingRouter+Extension.h"; sourceTree = "<group>"; };
-		1442D6EE2897703A009CEB40 /* SchoolClassTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolClassTabBarController.h; sourceTree = "<group>"; };
-		1442D6EF2897703A009CEB40 /* SchoolClassTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolClassTabBarController.m; sourceTree = "<group>"; };
+		1442D6EE2897703A009CEB40 /* ClassScheduleTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleTabBarController.h; sourceTree = "<group>"; };
+		1442D6EF2897703A009CEB40 /* ClassScheduleTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassScheduleTabBarController.m; sourceTree = "<group>"; };
 		1451EA51282A09B800A5BB55 /* UserPublishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPublishModel.h; sourceTree = "<group>"; };
 		1451EA52282A09B800A5BB55 /* UserPublishModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPublishModel.m; sourceTree = "<group>"; };
 		1451EA56282BAF0C00A5BB55 /* MessageDetailTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailTitleView.h; sourceTree = "<group>"; };
@@ -2099,6 +2102,15 @@
 			path = "UITextView+Placeholder";
 			sourceTree = "<group>";
 		};
+		142B44862898C44B00627D6C /* RisingCycleSigleLabelView */ = {
+			isa = PBXGroup;
+			children = (
+				142B44832898C3F800627D6C /* RisingCycleSingleLabelView.h */,
+				142B44842898C3F800627D6C /* RisingCycleSingleLabelView.m */,
+			);
+			path = RisingCycleSigleLabelView;
+			sourceTree = "<group>";
+		};
 		1451EA54282A11FB00A5BB55 /* UserPublishModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2108,12 +2120,13 @@
 			path = UserPublishModel;
 			sourceTree = "<group>";
 		};
-		1451EA55282A294200A5BB55 /* CyxbsMobileTool */ = {
+		1451EA55282A294200A5BB55 /* Basic Construction */ = {
 			isa = PBXGroup;
 			children = (
+				142B44862898C44B00627D6C /* RisingCycleSigleLabelView */,
 				1451EA54282A11FB00A5BB55 /* UserPublishModel */,
 			);
-			path = CyxbsMobileTool;
+			path = "Basic Construction";
 			sourceTree = "<group>";
 		};
 		1451EA59282BE2C900A5BB55 /* View */ = {
@@ -2724,6 +2737,27 @@
 				14B73F8A2823577600D08ADD /* SSRButton.m */,
 			);
 			path = SSRButton;
+			sourceTree = "<group>";
+		};
+		14CDC7B42898FE760009358F /* animate */ = {
+			isa = PBXGroup;
+			children = (
+				AA289B1324F29F7600FDF70C /* ClassSchedulPresentingAnimater.h */,
+				AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */,
+				AA49098424F3B6B4007CB3BC /* ClassSchedulInterController.h */,
+				AA49098524F3B6B4007CB3BC /* ClassSchedulInterController.m */,
+			);
+			path = animate;
+			sourceTree = "<group>";
+		};
+		14CDC7B52898FE860009358F /* animate manager */ = {
+			isa = PBXGroup;
+			children = (
+				AA49098724F3BF5A007CB3BC /* TransitionManager.h */,
+				AA49098824F3BF5A007CB3BC /* TransitionManager.m */,
+				14CDC7B42898FE760009358F /* animate */,
+			);
+			path = "animate manager";
 			sourceTree = "<group>";
 		};
 		14CED375288A590F00BADA8B /* Extension */ = {
@@ -3962,7 +3996,7 @@
 				14CED380288A594E00BADA8B /* RisingRouter */,
 				FE87CE1A27E876FE008D7148 /* Marco */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
-				1451EA55282A294200A5BB55 /* CyxbsMobileTool */,
+				1451EA55282A294200A5BB55 /* Basic Construction */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
@@ -5689,12 +5723,7 @@
 				AAAA1D8F24FE39F500DB9A81 /* NextLessonFinder.m */,
 				AA5D39B624F74A9800AB2DF5 /* LocalNotiManager.h */,
 				AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */,
-				AA289B1324F29F7600FDF70C /* ClassSchedulPresentingAnimater.h */,
-				AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */,
-				AA49098424F3B6B4007CB3BC /* ClassSchedulInterController.h */,
-				AA49098524F3B6B4007CB3BC /* ClassSchedulInterController.m */,
-				AA49098724F3BF5A007CB3BC /* TransitionManager.h */,
-				AA49098824F3BF5A007CB3BC /* TransitionManager.m */,
+				14CDC7B52898FE860009358F /* animate manager */,
 			);
 			path = "Tool&Animater";
 			sourceTree = "<group>";
@@ -6250,8 +6279,8 @@
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
 				1A9B766A235F50A600725937 /* AppDelegate.h */,
 				1A9B766B235F50A600725937 /* AppDelegate.m */,
-				1442D6EE2897703A009CEB40 /* SchoolClassTabBarController.h */,
-				1442D6EF2897703A009CEB40 /* SchoolClassTabBarController.m */,
+				1442D6EE2897703A009CEB40 /* ClassScheduleTabBarController.h */,
+				1442D6EF2897703A009CEB40 /* ClassScheduleTabBarController.m */,
 				1A9B7679235F50A800725937 /* main.m */,
 			);
 			path = "Supporting Files";
@@ -6521,6 +6550,7 @@
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */,
+				142B44852898C3F800627D6C /* RisingCycleSingleLabelView.m in Sources */,
 				AA7AB96B2873E5EA00BA6790 /* SegmentBarView.m in Sources */,
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
@@ -6788,7 +6818,7 @@
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
 				1893DC9126EA3375007E871E /* MGDGroup.m in Sources */,
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
-				1442D6F02897703A009CEB40 /* SchoolClassTabBarController.m in Sources */,
+				1442D6F02897703A009CEB40 /* ClassScheduleTabBarController.m in Sources */,
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,

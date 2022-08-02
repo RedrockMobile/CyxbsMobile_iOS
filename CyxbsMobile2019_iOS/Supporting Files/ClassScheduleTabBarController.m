@@ -1,18 +1,20 @@
 //
-//  SchoolClassTabBarController.m
+//  ClassScheduleTabBarController.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/8/1.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "SchoolClassTabBarController.h"
+#import "ClassScheduleTabBarController.h"
 
-@interface SchoolClassTabBarController ()
+@interface ClassScheduleTabBarController () <
+    UITabBarControllerDelegate
+>
 
 @end
 
-@implementation SchoolClassTabBarController
+@implementation ClassScheduleTabBarController
 
 - (instancetype)init {
     self = [super init];
@@ -22,7 +24,7 @@
           self.QAVC,
           self.MineVC];
         
-        UIControl *a;
+        self.delegate = self;
     }
     return self;
 }
@@ -38,6 +40,12 @@
     
     self.tabBar.tintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2923D2" alpha:1] darkColor:[UIColor colorWithHexString:@"#465FFF" alpha:1]];
 }
+
+#pragma mark - <UITabBarControllerDelegate>
+
+//- (id<UIViewControllerAnimatedTransitioning>)tabBarController:(UITabBarController *)tabBarController animationControllerForTransitionFromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+//    
+//}
 
 #pragma mark - RisingRouterHandler
 
@@ -57,7 +65,7 @@
             UINavigationController *nav = (request.requestController ? request.requestController : RisingRouterRequest.useTopController).navigationController;
             
             if (nav) {
-                SchoolClassTabBarController *vc = [[self alloc] init];
+                ClassScheduleTabBarController *vc = [[self alloc] init];
                 response.responseController = vc;
                 
                 [nav pushViewController:vc animated:YES];
@@ -74,7 +82,7 @@
             
         case RouterRequestController: {
             
-            SchoolClassTabBarController *vc = [[self alloc] init];
+            ClassScheduleTabBarController *vc = [[self alloc] init];
             
             response.responseController = vc;
         } break;
