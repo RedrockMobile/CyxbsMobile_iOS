@@ -8,26 +8,25 @@
 
 #import "RisingClassScheduleController.h"
 
-#import "ClassBookModel.h"
+#import "ClassScheduleModel.h"
 
 #import "ClassBookCollectionView.h"
 
-#import "ClassBookFL.h"
-
-#import "ClassBookDataSolve.h"
+#import "ClassScheduleLayout.h"
 
 #pragma mark - ClassBookController ()
 
-@interface RisingClassScheduleController ()
+@interface RisingClassScheduleController () <
+    ClassScheduleLayoutDelegate,
+    UICollectionViewDelegate,
+    UICollectionViewDataSource
+>
 
 /// 课表数据源
-@property (nonatomic, strong) ClassBookModel *classBookModel;
+@property (nonatomic, strong) ClassScheduleModel *scheduleModel;
 
 /// 课表视图
 @property (nonatomic, strong) ClassBookCollectionView *classBookCollectionView;
-
-/// sovle类
-@property (nonatomic, strong) ClassBookDataSolve *solve;
 
 @end
 
@@ -40,7 +39,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.classBookModel = [[ClassBookModel alloc] init];
+        self.scheduleModel = [[ClassScheduleModel alloc] init];
     }
     return self;
 }
@@ -48,11 +47,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.blueColor;
-    
-    [self solve];
-    
-    self.classBookModel.needSave = YES;
-    self.classBookModel.needReset = YES;
     
     [self.view addSubview:self.classBookCollectionView];
     
@@ -65,29 +59,20 @@
 #pragma mark - Method
 
 - (void)awakeFromWCDB {
-    [self.classBookModel readFromWCDB];
+//    [self.scheduleModel readFromWCDB];
     [self.classBookCollectionView reloadData];
 }
 
 - (void)request {
-    [self.classBookModel
-     requestWithNum:UserItemTool.defaultItem.stuNum
-     success:^{
+    [self.scheduleModel
+     request:@{
+        student : @[@"2021215154"]
+    }
+     success:^(NSProgress * _Nonnull progress) {
         [self.classBookCollectionView reloadData];
     }
      failure:^(NSError * _Nonnull error) {
-        NSLog(@"啊这");
-    }];
-}
-
-- (void)request2 {
-    [self.classBookModel
-     requestWithTeacher:@"040107"
-     success:^{
-        
-    }
-     failure:^(NSError * _Nonnull error) {
-        
+        RisingLog(R_error, @"啊这");
     }];
 }
 
@@ -95,27 +80,76 @@
 
 - (ClassBookCollectionView *)classBookCollectionView {
     if (_classBookCollectionView == nil) {
-        ClassBookFL *fl = [[ClassBookFL alloc] init];
-        fl.delegate = _solve;
+        ClassScheduleLayout *fl = [[ClassScheduleLayout alloc] init];
+        fl.delegate = self;
         fl.lineSpacing = 2;
         fl.interitemSpacing = 2;
+        fl.headerWidth = 45;
+        fl.itemHeight = 50;
         
-        _classBookCollectionView = [[ClassBookCollectionView alloc] initWithFrame:CGRectMake(10, 20, self.view.width - 20, self.view.height - 20) collectionViewLayout:fl];
+        
+        _classBookCollectionView = [[ClassBookCollectionView alloc] initWithFrame:CGRectMake(10, 80, self.view.width - 20, self.view.height - 80) collectionViewLayout:fl];
         
         [_classBookCollectionView registerClass:SchoolLessonItem.class forCellWithReuseIdentifier:SchoolLessonItemReuseIdentifier];
-        _classBookCollectionView.delegate = _solve;
-        _classBookCollectionView.dataSource = _solve;
+        _classBookCollectionView.delegate = self;
+        _classBookCollectionView.dataSource = self;
     }
     return _classBookCollectionView;
 }
 
-- (ClassBookDataSolve *)solve {
-    if (_solve == nil) {
-        _solve = [[ClassBookDataSolve alloc] init];
-        _solve.classBookModel = self.classBookModel;
-        _solve.classBookCollectionView = self.classBookCollectionView;
+#pragma mark - <UICollectionViewDataSource>
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return self.scheduleModel.classModel.count;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.scheduleModel.classModel[section].count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    SchoolLessonItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:SchoolLessonItemReuseIdentifier forIndexPath:indexPath];
+    
+    SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.item];
+    
+    if (lesson.period.location <= 4) {
+        cell.draw = ClassBookItemDrawMorning;
+    } else if (lesson.period.location <= 8) {
+        cell.draw = ClassBookItemDrawAfternoon;
+    } else {
+        cell.draw = ClassBookItemDrawNight;
     }
-    return _solve;
+    
+    [cell course:lesson.course classRoom:lesson.classRoom isMulty:NO];
+    
+    return cell;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
+    
+}
+
+#pragma mark - <ClassScheduleLayoutDelegate>
+
+- (NSIndexPath *)classScheduleLayout:(ClassScheduleLayout *)layout sectionWeekForIndexPath:(NSIndexPath *)indexPath {
+    SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.row];
+    return [NSIndexPath indexPathForItem:lesson.inWeek inSection:lesson.inSection];
+}
+
+- (NSRange)classScheduleLayout:(ClassScheduleLayout *)layout rangeForIndexPath:(NSIndexPath *)indexPath {
+    SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.row];
+    return lesson.period;
+}
+
+#pragma mark - <ClassBookCollectionViewDelegate>
+
+- (void)classBook:(ClassBookCollectionView *)view didTapEmptyItemAtWeekIndexPath:(nonnull NSIndexPath *)weekIndexPath ofRangeIndexPath:(nonnull NSIndexPath *)rangeIndexPath {
+    
 }
 
 #pragma mark - RisingRouterHandler
@@ -163,7 +197,5 @@
         completion(response);
     }
 }
-
-
 
 @end

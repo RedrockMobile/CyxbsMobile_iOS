@@ -112,7 +112,7 @@ WCDB_SYNTHESIZE(SchoolLesson, saveType)
         self.type = dic[@"type"];
         self.teacher = dic[@"teacher"];
         self.lesson = dic[@"lesson"];
-        self.saveType = (SchoolLessonType)[dic[@"save_type"] unsignedLongValue];
+        // TODO: self.saveType = (SchoolLessonType)[dic[@"save_type"] unsignedLongValue];
     }
     return self;
 }
