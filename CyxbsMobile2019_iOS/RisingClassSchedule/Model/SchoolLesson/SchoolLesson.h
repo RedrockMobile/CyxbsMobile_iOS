@@ -23,8 +23,7 @@ FOUNDATION_EXPORT NSString *SchoolLessonTableName;
 #pragma mark - SchoolLesson
 
 @interface SchoolLesson : NSObject <
-    NSCopying,
-    SchoolLessonDataSource
+    NSCopying
 >
 
 // !!!: Save

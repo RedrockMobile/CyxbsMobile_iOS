@@ -8,6 +8,8 @@
 
 #import "SchoolLesson.h"
 
+#import "SchoolLesson+Rising.h"
+
 #import <WCDB.h>
 
 NSString *SchoolLessonTableName = @"school_lesson";
@@ -26,33 +28,7 @@ WCTDatabase *schoolLessonDB;
 
 @end
 
-#pragma mark - SchoolLesson (WCTTableCoding)
-
-@interface SchoolLesson (WCTTableCoding) <
-    WCTTableCoding
->
-
-WCDB_PROPERTY(inWeek)
-WCDB_PROPERTY(inDay)
-WCDB_PROPERTY(period_location)
-WCDB_PROPERTY(period_lenth)
-
-WCDB_PROPERTY(course)
-WCDB_PROPERTY(courseNike)
-WCDB_PROPERTY(classRoom)
-WCDB_PROPERTY(classRoomNike)
-
-WCDB_PROPERTY(courseID)
-WCDB_PROPERTY(rawWeek)
-WCDB_PROPERTY(type)
-
-WCDB_PROPERTY(teacher)
-WCDB_PROPERTY(lesson)
-@end
-
-#pragma mark - SchoolLesson (WCDB_IMPLEMENTATION)
-
-@implementation SchoolLesson (WCDB_IMPLEMENTATION)
+@implementation SchoolLesson (Rising)
 
 WCDB_IMPLEMENTATION(SchoolLesson)
 
@@ -109,6 +85,8 @@ WCDB_SYNTHESIZE(SchoolLesson, lesson)
         self.type = dic[@"type"];
         self.teacher = dic[@"teacher"];
         self.lesson = dic[@"lesson"];
+        
+        
     }
     return self;
 }
@@ -146,31 +124,6 @@ WCDB_SYNTHESIZE(SchoolLesson, lesson)
 - (void)setPeriod_lenth:(NSInteger)period_lenth {
     _period_lenth = period_lenth;
     _period.length = period_lenth;
-}
-
-#pragma mark - WCDB
-
-+ (void)deleteAll {
-    // TODO: 个别不删除
-    [schoolLessonDB deleteAllObjectsFromTable:SchoolLessonTableName];
-}
-
-- (void)save {
-    [schoolLessonDB insertObject:self into:SchoolLessonTableName];
-}
-
-+ (NSArray <SchoolLesson *> *)aryFromWCDB {
-    NSArray<SchoolLesson *> *modelAry = [schoolLessonDB getAllObjectsOfClass:SchoolLesson.class fromTable:SchoolLessonTableName];
-    return modelAry;
-}
-
-+ (NSArray<SchoolLesson *> *)request:(void (^)(SchoolLesson * _Nonnull))requestBlock {
-    NSArray<SchoolLesson *> *modelAry =
-    [schoolLessonDB
-     getObjectsOfClass:self.class
-     fromTable:SchoolLessonTableName
-     where:SchoolLesson.period_location > 3];
-    return modelAry;
 }
 
 @end
