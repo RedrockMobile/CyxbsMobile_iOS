@@ -90,7 +90,7 @@ WCDB_SYNTHESIZE(SchoolLesson, saveType)
 
 #pragma mark - Life cycle
 
-+ (void)initialize {
+- (void)initialize {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         schoolLessonDB = [[WCTDatabase alloc] initWithPath:SchoolLesson.databasePath];
@@ -139,15 +139,15 @@ WCDB_SYNTHESIZE(SchoolLesson, saveType)
 
 + (void)deleteAll {
     // TODO: 个别不删除
-    [schoolLessonDB deleteAllObjectsFromTable:SchoolLesson.tableName];
+    [schoolLessonDB deleteAllObjectsFromTable:SchoolLessonTableName];
 }
 
 - (void)save {
-    [schoolLessonDB insertObject:self into:SchoolLesson.tableName];
+    [schoolLessonDB insertObject:self into:SchoolLessonTableName];
 }
 
 + (NSArray <SchoolLesson *> *)aryFromWCDB {
-    NSArray<SchoolLesson *> *modelAry = [schoolLessonDB getAllObjectsOfClass:SchoolLesson.class fromTable:SchoolLesson.tableName];
+    NSArray<SchoolLesson *> *modelAry = [schoolLessonDB getAllObjectsOfClass:SchoolLesson.class fromTable:SchoolLessonTableName];
     return modelAry;
 }
 
