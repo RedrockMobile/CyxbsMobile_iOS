@@ -85,6 +85,7 @@
 #import "FeedBackCenterHeader.h"
 
 #import "ClassScheduleHeader.h"
+#import "RisingClassScheduleHeader.h"
 
 #import "NewQAHeader.h"
 

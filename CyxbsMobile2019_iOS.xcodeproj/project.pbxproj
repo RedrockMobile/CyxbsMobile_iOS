@@ -47,8 +47,19 @@
 		14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F6D281BED7B00D08ADD /* MessagePresentController.m */; };
 		14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F83281CCC3000D08ADD /* MessageDetailVC.m */; };
 		14B73F8B2823577600D08ADD /* SSRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F8A2823577600D08ADD /* SSRButton.m */; };
-		14CED373288A590500BADA8B /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED36F288A590400BADA8B /* RisingFoundationExtention.m */; };
-		14CED374288A590500BADA8B /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED372288A590500BADA8B /* RisingUIKitExtension.m */; };
+		14CDC82128991F9F0009358F /* ClassBookFL.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC80828991F9F0009358F /* ClassBookFL.m */; };
+		14CDC82228991F9F0009358F /* ClassBookDataSolve.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC80C28991F9F0009358F /* ClassBookDataSolve.m */; };
+		14CDC82328991F9F0009358F /* ClassBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC80F28991F9F0009358F /* ClassBookModel.m */; };
+		14CDC82428991F9F0009358F /* SchoolLesson.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC81128991F9F0009358F /* SchoolLesson.mm */; };
+		14CDC82528991F9F0009358F /* SchoolLessonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC81728991F9F0009358F /* SchoolLessonItem.m */; };
+		14CDC82628991F9F0009358F /* SchoolLessonDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC81A28991F9F0009358F /* SchoolLessonDateView.m */; };
+		14CDC82728991F9F0009358F /* ClassBookCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC81C28991F9F0009358F /* ClassBookCollectionView.m */; };
+		14CDC82828991F9F0009358F /* RisingClassScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC81F28991F9F0009358F /* RisingClassScheduleController.m */; };
+		14CDC83828991FF30009358F /* UIView+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC82C28991FF30009358F /* UIView+Rising.m */; };
+		14CDC83928991FF30009358F /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC82D28991FF30009358F /* RisingUIKitExtension.m */; };
+		14CDC83A28991FF30009358F /* UIColor+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC83028991FF30009358F /* UIColor+Rising.m */; };
+		14CDC83B28991FF30009358F /* NSDate+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC83528991FF30009358F /* NSDate+Rising.m */; };
+		14CDC83C28991FF30009358F /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC83628991FF30009358F /* RisingFoundationExtention.m */; };
 		14CED37D288A594600BADA8B /* RisingRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED377288A594500BADA8B /* RisingRouter.m */; };
 		14CED37E288A594600BADA8B /* RisingRouterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED378288A594500BADA8B /* RisingRouterResponse.m */; };
 		14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED37B288A594600BADA8B /* RisingRouterRequest.m */; };
@@ -754,10 +765,34 @@
 		14B73F83281CCC3000D08ADD /* MessageDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailVC.m; sourceTree = "<group>"; };
 		14B73F892823577600D08ADD /* SSRButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSRButton.h; sourceTree = "<group>"; };
 		14B73F8A2823577600D08ADD /* SSRButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSRButton.m; sourceTree = "<group>"; };
-		14CED36F288A590400BADA8B /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
-		14CED370288A590400BADA8B /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
-		14CED371288A590500BADA8B /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
-		14CED372288A590500BADA8B /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
+		14CDC80728991F9F0009358F /* ClassBookFL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBookFL.h; sourceTree = "<group>"; };
+		14CDC80828991F9F0009358F /* ClassBookFL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBookFL.m; sourceTree = "<group>"; };
+		14CDC80C28991F9F0009358F /* ClassBookDataSolve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBookDataSolve.m; sourceTree = "<group>"; };
+		14CDC80D28991F9F0009358F /* ClassBookDataSolve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBookDataSolve.h; sourceTree = "<group>"; };
+		14CDC80F28991F9F0009358F /* ClassBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBookModel.m; sourceTree = "<group>"; };
+		14CDC81128991F9F0009358F /* SchoolLesson.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SchoolLesson.mm; sourceTree = "<group>"; };
+		14CDC81228991F9F0009358F /* SchoolLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolLesson.h; sourceTree = "<group>"; };
+		14CDC81328991F9F0009358F /* ClassBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBookModel.h; sourceTree = "<group>"; };
+		14CDC81628991F9F0009358F /* SchoolLessonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolLessonItem.h; sourceTree = "<group>"; };
+		14CDC81728991F9F0009358F /* SchoolLessonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolLessonItem.m; sourceTree = "<group>"; };
+		14CDC81928991F9F0009358F /* SchoolLessonDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolLessonDateView.h; sourceTree = "<group>"; };
+		14CDC81A28991F9F0009358F /* SchoolLessonDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolLessonDateView.m; sourceTree = "<group>"; };
+		14CDC81C28991F9F0009358F /* ClassBookCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassBookCollectionView.m; sourceTree = "<group>"; };
+		14CDC81D28991F9F0009358F /* ClassBookCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBookCollectionView.h; sourceTree = "<group>"; };
+		14CDC81F28991F9F0009358F /* RisingClassScheduleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingClassScheduleController.m; sourceTree = "<group>"; };
+		14CDC82028991F9F0009358F /* RisingClassScheduleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingClassScheduleController.h; sourceTree = "<group>"; };
+		14CDC82B28991FF30009358F /* UIView+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Rising.h"; sourceTree = "<group>"; };
+		14CDC82C28991FF30009358F /* UIView+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Rising.m"; sourceTree = "<group>"; };
+		14CDC82D28991FF30009358F /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
+		14CDC82F28991FF30009358F /* UIColor+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Rising.h"; sourceTree = "<group>"; };
+		14CDC83028991FF30009358F /* UIColor+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Rising.m"; sourceTree = "<group>"; };
+		14CDC83128991FF30009358F /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
+		14CDC83228991FF30009358F /* ExtensionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionHeader.h; sourceTree = "<group>"; };
+		14CDC83428991FF30009358F /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
+		14CDC83528991FF30009358F /* NSDate+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Rising.m"; sourceTree = "<group>"; };
+		14CDC83628991FF30009358F /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
+		14CDC83728991FF30009358F /* NSDate+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Rising.h"; sourceTree = "<group>"; };
+		14CDC83D2899217E0009358F /* RisingClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingClassScheduleHeader.h; sourceTree = "<group>"; };
 		14CED376288A594500BADA8B /* RisingRouterResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingRouterResponse.h; sourceTree = "<group>"; };
 		14CED377288A594500BADA8B /* RisingRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingRouter.m; sourceTree = "<group>"; };
 		14CED378288A594500BADA8B /* RisingRouterResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingRouterResponse.m; sourceTree = "<group>"; };
@@ -2760,13 +2795,156 @@
 			path = "animate manager";
 			sourceTree = "<group>";
 		};
+		14CDC80528991F9F0009358F /* RisingClassSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC81E28991F9F0009358F /* ViewController */,
+				14CDC80E28991F9F0009358F /* Model */,
+				14CDC80B28991F9F0009358F /* Presenter */,
+				14CDC81428991F9F0009358F /* View */,
+				14CDC80628991F9F0009358F /* ViewModel */,
+				14CDC80928991F9F0009358F /* Source */,
+			);
+			path = RisingClassSchedule;
+			sourceTree = "<group>";
+		};
+		14CDC80628991F9F0009358F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC80728991F9F0009358F /* ClassBookFL.h */,
+				14CDC80828991F9F0009358F /* ClassBookFL.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		14CDC80928991F9F0009358F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC83D2899217E0009358F /* RisingClassScheduleHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		14CDC80B28991F9F0009358F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC80D28991F9F0009358F /* ClassBookDataSolve.h */,
+				14CDC80C28991F9F0009358F /* ClassBookDataSolve.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		14CDC80E28991F9F0009358F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC81328991F9F0009358F /* ClassBookModel.h */,
+				14CDC80F28991F9F0009358F /* ClassBookModel.m */,
+				14CDC81028991F9F0009358F /* SchoolLesson */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14CDC81028991F9F0009358F /* SchoolLesson */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC81228991F9F0009358F /* SchoolLesson.h */,
+				14CDC81128991F9F0009358F /* SchoolLesson.mm */,
+			);
+			path = SchoolLesson;
+			sourceTree = "<group>";
+		};
+		14CDC81428991F9F0009358F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC81B28991F9F0009358F /* ClassBookCollectionView */,
+				14CDC81528991F9F0009358F /* SchoolLessonItem */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14CDC81528991F9F0009358F /* SchoolLessonItem */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC81628991F9F0009358F /* SchoolLessonItem.h */,
+				14CDC81728991F9F0009358F /* SchoolLessonItem.m */,
+				14CDC81828991F9F0009358F /* SchoolLessonDateView */,
+			);
+			path = SchoolLessonItem;
+			sourceTree = "<group>";
+		};
+		14CDC81828991F9F0009358F /* SchoolLessonDateView */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC81928991F9F0009358F /* SchoolLessonDateView.h */,
+				14CDC81A28991F9F0009358F /* SchoolLessonDateView.m */,
+			);
+			path = SchoolLessonDateView;
+			sourceTree = "<group>";
+		};
+		14CDC81B28991F9F0009358F /* ClassBookCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC81C28991F9F0009358F /* ClassBookCollectionView.m */,
+				14CDC81D28991F9F0009358F /* ClassBookCollectionView.h */,
+			);
+			path = ClassBookCollectionView;
+			sourceTree = "<group>";
+		};
+		14CDC81E28991F9F0009358F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC82028991F9F0009358F /* RisingClassScheduleController.h */,
+				14CDC81F28991F9F0009358F /* RisingClassScheduleController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14CDC82928991FF30009358F /* UIKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC83128991FF30009358F /* RisingUIKitExtension.h */,
+				14CDC82D28991FF30009358F /* RisingUIKitExtension.m */,
+				14CDC82E28991FF30009358F /* UIColor+Rising */,
+				14CDC82A28991FF30009358F /* UIView+Rising */,
+			);
+			path = "UIKit Extension";
+			sourceTree = "<group>";
+		};
+		14CDC82A28991FF30009358F /* UIView+Rising */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC82B28991FF30009358F /* UIView+Rising.h */,
+				14CDC82C28991FF30009358F /* UIView+Rising.m */,
+			);
+			path = "UIView+Rising";
+			sourceTree = "<group>";
+		};
+		14CDC82E28991FF30009358F /* UIColor+Rising */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC82F28991FF30009358F /* UIColor+Rising.h */,
+				14CDC83028991FF30009358F /* UIColor+Rising.m */,
+			);
+			path = "UIColor+Rising";
+			sourceTree = "<group>";
+		};
+		14CDC83328991FF30009358F /* FoundationExtension */ = {
+			isa = PBXGroup;
+			children = (
+				14CDC83728991FF30009358F /* NSDate+Rising.h */,
+				14CDC83528991FF30009358F /* NSDate+Rising.m */,
+				14CDC83428991FF30009358F /* RisingFoundationExtension.h */,
+				14CDC83628991FF30009358F /* RisingFoundationExtention.m */,
+			);
+			path = FoundationExtension;
+			sourceTree = "<group>";
+		};
 		14CED375288A590F00BADA8B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				14CED370288A590400BADA8B /* RisingFoundationExtension.h */,
-				14CED36F288A590400BADA8B /* RisingFoundationExtention.m */,
-				14CED371288A590500BADA8B /* RisingUIKitExtension.h */,
-				14CED372288A590500BADA8B /* RisingUIKitExtension.m */,
+				14CDC83228991FF30009358F /* ExtensionHeader.h */,
+				14CDC83328991FF30009358F /* FoundationExtension */,
+				14CDC82928991FF30009358F /* UIKit Extension */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -3987,6 +4165,7 @@
 				18CDF4D4257F91BC006E8E5C /* Discover */,
 				1817F00C2594D5C500FE1304 /* NewQA */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
+				14CDC80528991F9F0009358F /* RisingClassSchedule */,
 				1A5A5ED423600BA300543BAE /* Login */,
 				1A14132A235F523B0001417E /* Mine */,
 				AA0DDAC8286C8B1900802324 /* MineMainPage */,
@@ -6542,6 +6721,7 @@
 				AA0DDB83286C8B1A00802324 /* PMPHomePageViewController.m in Sources */,
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				18CDF6A1257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.m in Sources */,
+				14CDC83A28991FF30009358F /* UIColor+Rising.m in Sources */,
 				18CDF4C2257F8DBD006E8E5C /* changePassword.m in Sources */,
 				14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */,
 				73AAA1D326C918250084E44D /* PurchaseinfoViewController.m in Sources */,
@@ -6556,6 +6736,7 @@
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				646B1967282AA9420015DF28 /* BusGuideViewController.m in Sources */,
 				14B73F72281BED7B00D08ADD /* ActiveMessageCell.m in Sources */,
+				14CDC82228991F9F0009358F /* ClassBookDataSolve.m in Sources */,
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
 				14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */,
 				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
@@ -6572,6 +6753,7 @@
 				AA7AB95D2873E5EA00BA6790 /* SZHHotSearchView.m in Sources */,
 				14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
+				14CDC83C28991FF30009358F /* RisingFoundationExtention.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				646B199D28313CDB0015DF28 /* StationView.m in Sources */,
 				FE2C135827AEF629001CF7AF /* ToDoDetailBar.m in Sources */,
@@ -6598,7 +6780,6 @@
 				18CDF6BD257F91BE006E8E5C /* Credits.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				1893DC8D26EA32F1007E871E /* MGDQueue.m in Sources */,
-				14CED373288A590500BADA8B /* RisingFoundationExtention.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				18CDF4C1257F8DBD006E8E5C /* sendEmailModel.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
@@ -6619,6 +6800,7 @@
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */,
+				14CDC83828991FF30009358F /* UIView+Rising.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
 				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
@@ -6711,6 +6893,7 @@
 				18CDF713257F91BE006E8E5C /* ArchiveTool.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
+				14CDC82728991F9F0009358F /* ClassBookCollectionView.m in Sources */,
 				4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */,
 				FE2C135C27AEF629001CF7AF /* DiscoverTodoView.m in Sources */,
 				AA3F82E624EA4A8900B65042 /* LeftBar.m in Sources */,
@@ -6736,6 +6919,8 @@
 				AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */,
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
+				14CDC83B28991FF30009358F /* NSDate+Rising.m in Sources */,
+				14CDC82328991F9F0009358F /* ClassBookModel.m in Sources */,
 				4931630E26CD7B6800140412 /* StampCenterSecondHeaderView.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
@@ -6773,8 +6958,8 @@
 				AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
-				14CED374288A590500BADA8B /* RisingUIKitExtension.m in Sources */,
 				AA0DDB6F286C8B1A00802324 /* MineEditTextField.m in Sources */,
+				14CDC82628991F9F0009358F /* SchoolLessonDateView.m in Sources */,
 				14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */,
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
@@ -6858,6 +7043,7 @@
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
 				14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */,
 				AA7ABAB02873EA5500BA6790 /* NewQAFollowTableView.m in Sources */,
+				14CDC82828991F9F0009358F /* RisingClassScheduleController.m in Sources */,
 				18CDF681257F91BD006E8E5C /* EmptyClassPresenter.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				18CDF6AF257F91BD006E8E5C /* SCGenericChart.m in Sources */,
@@ -6865,6 +7051,7 @@
 				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */,
+				14CDC83928991FF30009358F /* RisingUIKitExtension.m in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
 				18CDF6B5257F91BD006E8E5C /* SCBar.m in Sources */,
 				AA7AB95A2873E5EA00BA6790 /* SZHSearchDataModel.m in Sources */,
@@ -6908,6 +7095,7 @@
 				18CDF719257F91BE006E8E5C /* VolunteerItem.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */,
+				14CDC82128991F9F0009358F /* ClassBookFL.m in Sources */,
 				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
 				AA0DDB5F286C8B1A00802324 /* IDMsgDisplayView.m in Sources */,
 				147842EA27F0758F002359BA /* UIView+Frame.m in Sources */,
@@ -6937,6 +7125,7 @@
 				14B73F75281BED7B00D08ADD /* SystemMessage.m in Sources */,
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
 				AA0DDB5C286C8B1A00802324 /* PMPBasicTableViewCell.m in Sources */,
+				14CDC82428991F9F0009358F /* SchoolLesson.mm in Sources */,
 				4999FA8326D44EA8005D0ADE /* HintView.m in Sources */,
 				18CDF6C1257F91BE006E8E5C /* ABScoreView.m in Sources */,
 				18CDF6D2257F91BE006E8E5C /* MGDSliderContentView.m in Sources */,
@@ -7090,6 +7279,7 @@
 				AA7AB96E2873E5EA00BA6790 /* SZHArchiveTool.m in Sources */,
 				18CDF69B257F91BD006E8E5C /* CQUPTMapMyStarButton.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
+				14CDC82528991F9F0009358F /* SchoolLessonItem.m in Sources */,
 				14B73F7A281BED7B00D08ADD /* MessageMoreCell.m in Sources */,
 				18CDF69D257F91BD006E8E5C /* CQUPTMapSearchResultCell.m in Sources */,
 				AA7ABA2A2873EA4100BA6790 /* SZHReleasView.m in Sources */,

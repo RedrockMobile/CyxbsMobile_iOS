@@ -10,6 +10,8 @@
 #ifndef RisingFoundationExtension_h
 #define RisingFoundationExtension_h
 
+#import "NSDate+Rising.h"
+
 typedef const char * RisingLogType;
 
 FOUNDATION_EXPORT RisingLogType R_defualt; // ⚪️

@@ -18,6 +18,7 @@
 #import "CyxbsMobileToolMacro.h"
 
 #import "RisingRouter.h"
-#import "RisingRouter+Extension.h"
+
+#import "ExtensionHeader.h"
 
 #endif
