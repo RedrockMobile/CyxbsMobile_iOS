@@ -15,6 +15,13 @@
 @interface HistoryView()<DLTimeSelectedButtonDelegate>
 @property (nonatomic, strong)UIButton *clearHistoryItemBtn;
 @property (nonatomic, strong)UILabel *historyLabel;
+// 我的关联
+@property (nonatomic, strong) UILabel *myCorrelation;
+@property (nonatomic, strong) UILabel *correlationNumberLabel;
+@property (nonatomic, strong) UIButton *correlationBtn;
+@property (nonatomic, strong) UIImageView *correlationBackground;// 背景
+@property (nonatomic, strong) UIImageView *correlationLine;
+
 @end
 
 @implementation HistoryView
@@ -34,6 +41,14 @@
         
         [self historyBtnAddConstraints];
         
+        // 添加显示“我的关联”
+        [self addMyCorrelationLabel];
+        // (?/1)
+        [self addCorrelationNumberLabel];
+        
+        [self addCorrelationPictures];
+        
+        [self correlationPosition];
     }
     return self;
 }
@@ -58,6 +73,7 @@
         
         [self.buttonArray addObject:button];
     }
+    
     
 }
 
@@ -88,6 +104,8 @@
             }
             });
     }
+    // 我的关联重新布局
+    [self correlationPosition];
 }
 
 - (void)addHistoryBtnWithString:(NSString*)string reLayout:(BOOL)is{
@@ -135,6 +153,7 @@
     if(self.buttonArray.count==0){
         self.clearHistoryItemBtn.enabled = NO;
     }
+    [self correlationPosition];
 }
 
 //把str写入key对应的那个缓存数组，再把数组放回去（在原有缓存里加上str），实现记录搜索记录的方法
@@ -213,6 +232,9 @@
         
         //3.让按钮取消失效
         self.clearHistoryItemBtn.enabled = NO;
+        
+        //4.我的关联重新布局
+        [self correlationPosition];
     }];
     
     [ac addAction:deleteAC];
@@ -238,6 +260,50 @@
         make.top.equalTo(self);
     }];
 }
+// 显示"我的关联"Label
+- (void)addMyCorrelationLabel {
+    UILabel *label = [[UILabel alloc] init];
+    self.myCorrelation = label;
+    label.text = @"我的关联";
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+    } else {
+        label.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1];
+    }
+    label.font = [UIFont fontWithName:PingFangSCBold size:15];
+    
+    [self addSubview:label];
+    
+}
+
+// label（0/1）
+- (void)addCorrelationNumberLabel {
+    UILabel *label = [[UILabel alloc] init];
+    self.correlationNumberLabel = label;
+    NSString *number = [NSString new];
+    number = @"0";
+    
+    // 1.如果有一位关联，nsuserDefault数为1，显示1/1
+    
+    // 2.如果没有关联，nsuserDefault为0，显示0/0
+    
+    label.text = [NSString stringWithFormat:@"（%@/1）",number];
+    
+    if (@available(iOS 11.0, *)) {
+        label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F08C" alpha:0.55]];
+    } else {
+        label.textColor = [UIColor colorWithHexString:@"#142C52" alpha:0.4];
+    }
+    label.font = [UIFont fontWithName:PingFangSC size:11];
+    
+    [self addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.myCorrelation.mas_right).mas_offset(2);
+        make.centerY.equalTo(self.myCorrelation);
+    }];
+    
+    
+}
 
 //清空历史记录
 - (void)removeHistoryBtn{
@@ -247,6 +313,48 @@
     [self.buttonArray removeAllObjects];
     [self.dataArray removeAllObjects];
 }
+// 我的关联下方图片
+- (void)addCorrelationPictures {
+    // 背景图片
+    UIImageView *imgView = [[UIImageView alloc] init];
+    self.correlationBackground = imgView;
+    imgView.image = [UIImage imageNamed:@"Rectangle 12"];
+    // 加载视图
+    [self addSubview:imgView];
+    [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.myCorrelation.mas_bottom).mas_offset(9);
+        make.left.equalTo(self.myCorrelation);
+    }];
+    // 分隔线
+    UIImageView *imgLine = [[UIImageView alloc] init];
+    self.correlationLine = imgLine;
+    imgLine.image = [UIImage imageNamed:@"Rectangle 69"];
+    // 加载视图
+    [self addSubview:imgLine];
+    [imgLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(imgView.mas_right).mas_offset(58);
+        make.centerY.equalTo(imgView);
+    }];
+    
+}
+// 我的关联布局，要动态变化
+- (void)correlationPosition {
+    if (self.dataArray.count == 0) {
+        [self.myCorrelation mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self);
+            make.top.equalTo(self).mas_offset(31);
+        }];
+    }
+    else{
+        UIButton *lastBtn = [self.buttonArray lastObject];
+        [self.myCorrelation mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self);
+            make.top.equalTo(lastBtn.mas_bottom).mas_offset(31);
+        }];
+    }
+    
+}
+
 
 
 @end
