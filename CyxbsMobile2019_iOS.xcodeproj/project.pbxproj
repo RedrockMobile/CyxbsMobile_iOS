@@ -57,7 +57,7 @@
 		14CDC83A28991FF30009358F /* UIColor+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC83028991FF30009358F /* UIColor+Rising.m */; };
 		14CDC83B28991FF30009358F /* NSDate+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC83528991FF30009358F /* NSDate+Rising.m */; };
 		14CDC83C28991FF30009358F /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC83628991FF30009358F /* RisingFoundationExtention.m */; };
-		14CDC84128993E1E0009358F /* ClassScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC84028993E1E0009358F /* ClassScheduleModel.m */; };
+		14CDC84128993E1E0009358F /* ClassScheduleModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC84028993E1E0009358F /* ClassScheduleModel.mm */; };
 		14CDC84E289987360009358F /* SchoolLesson+Rising.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14CDC84D289987360009358F /* SchoolLesson+Rising.mm */; };
 		14CED37D288A594600BADA8B /* RisingRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED377288A594500BADA8B /* RisingRouter.m */; };
 		14CED37E288A594600BADA8B /* RisingRouterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED378288A594500BADA8B /* RisingRouterResponse.m */; };
@@ -787,10 +787,11 @@
 		14CDC83728991FF30009358F /* NSDate+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Rising.h"; sourceTree = "<group>"; };
 		14CDC83D2899217E0009358F /* RisingClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingClassScheduleHeader.h; sourceTree = "<group>"; };
 		14CDC83F28993E1E0009358F /* ClassScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleModel.h; sourceTree = "<group>"; };
-		14CDC84028993E1E0009358F /* ClassScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassScheduleModel.m; sourceTree = "<group>"; };
+		14CDC84028993E1E0009358F /* ClassScheduleModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ClassScheduleModel.mm; sourceTree = "<group>"; };
 		14CDC84A289982080009358F /* SchoolLessonDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolLessonDataSource.h; sourceTree = "<group>"; };
 		14CDC84C289987360009358F /* SchoolLesson+Rising.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SchoolLesson+Rising.h"; sourceTree = "<group>"; };
 		14CDC84D289987360009358F /* SchoolLesson+Rising.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "SchoolLesson+Rising.mm"; sourceTree = "<group>"; };
+		14CDC84F2899F6B60009358F /* ClassScheduleModelDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleModelDelegate.h; sourceTree = "<group>"; };
 		14CED376288A594500BADA8B /* RisingRouterResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingRouterResponse.h; sourceTree = "<group>"; };
 		14CED377288A594500BADA8B /* RisingRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingRouter.m; sourceTree = "<group>"; };
 		14CED378288A594500BADA8B /* RisingRouterResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingRouterResponse.m; sourceTree = "<group>"; };
@@ -2825,8 +2826,9 @@
 		14CDC80E28991F9F0009358F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				14CDC84F2899F6B60009358F /* ClassScheduleModelDelegate.h */,
 				14CDC83F28993E1E0009358F /* ClassScheduleModel.h */,
-				14CDC84028993E1E0009358F /* ClassScheduleModel.m */,
+				14CDC84028993E1E0009358F /* ClassScheduleModel.mm */,
 				14CDC81028991F9F0009358F /* SchoolLesson */,
 			);
 			path = Model;
@@ -7042,7 +7044,7 @@
 				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				FE2C136127AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m in Sources */,
-				14CDC84128993E1E0009358F /* ClassScheduleModel.m in Sources */,
+				14CDC84128993E1E0009358F /* ClassScheduleModel.mm in Sources */,
 				AA0DDB57286C8B1A00802324 /* UIView+JHFrameExtension.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,

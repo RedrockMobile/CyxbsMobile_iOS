@@ -77,4 +77,8 @@ FOUNDATION_EXPORT NSString *SchoolLessonTableName;
 
 @end
 
+@interface SchoolLesson (test) <SchoolLessonDataSource>
+
+@end
+
 NS_ASSUME_NONNULL_END

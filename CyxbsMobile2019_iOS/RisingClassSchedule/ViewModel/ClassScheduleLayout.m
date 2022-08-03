@@ -88,6 +88,11 @@
             [self.attributes addObject:attribute];
         }
     }
+//    [self.attributes sortedArrayUsingComparator:^NSComparisonResult(UICollectionViewLayoutAttributes *obj1, UICollectionViewLayoutAttributes *obj2) {
+//        
+//        
+//        return NSOrderedSame;
+//    }];
 }
 
 #pragma mark - UICollectionViewLayout (UISubclassingHooks)
@@ -105,6 +110,7 @@
 //}
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
+    
     return self.attributes;
 }
 

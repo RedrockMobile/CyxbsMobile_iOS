@@ -121,6 +121,8 @@
         cell.draw = ClassBookItemDrawNight;
     }
     
+    // !(self.scheduleModel.a[lesson.inSection][lesson.inWeek][lesson.period.location] % 2)
+    
     [cell course:lesson.course classRoom:lesson.classRoom isMulty:NO];
     
     return cell;
@@ -137,12 +139,12 @@
 #pragma mark - <ClassScheduleLayoutDelegate>
 
 - (NSIndexPath *)classScheduleLayout:(ClassScheduleLayout *)layout sectionWeekForIndexPath:(NSIndexPath *)indexPath {
-    SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.row];
+    SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.item];
     return [NSIndexPath indexPathForItem:lesson.inWeek inSection:lesson.inSection];
 }
 
 - (NSRange)classScheduleLayout:(ClassScheduleLayout *)layout rangeForIndexPath:(NSIndexPath *)indexPath {
-    SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.row];
+    SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.item];
     return lesson.period;
 }
 

@@ -42,8 +42,4 @@ WCDB_PROPERTY(lesson)
 
 @end
 
-@interface SchoolLesson (test) <SchoolLessonDataSource>
-
-@end
-
 NS_ASSUME_NONNULL_END

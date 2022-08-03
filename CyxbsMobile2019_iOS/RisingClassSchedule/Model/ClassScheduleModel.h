@@ -10,6 +10,8 @@
 
 #import "SchoolLesson.h"
 
+#import "ClassScheduleModelDelegate.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString * ClassScheduleRequestType;

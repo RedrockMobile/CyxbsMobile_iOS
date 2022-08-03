@@ -14,10 +14,6 @@ ClassScheduleRequestType student = @"stu_num";
 
 ClassScheduleRequestType teacher = @"tea";
 
-/// 老师
-FOUNDATION_EXPORT ClassScheduleRequestType teacher;
-
-
 #pragma mark - ClassScheduleModel ()
 
 @interface ClassScheduleModel ()
@@ -32,6 +28,7 @@ FOUNDATION_EXPORT ClassScheduleRequestType teacher;
 @implementation ClassScheduleModel
 
 - (instancetype)init {
+    
     self = [super init];
     if (self) {
         _startDate =
@@ -69,8 +66,7 @@ FOUNDATION_EXPORT ClassScheduleRequestType teacher;
     });
 }
 
-
-#pragma mark - Method
+#pragma mark - Request
 
 - (void)request:(NSDictionary
                  <ClassScheduleRequestType,NSArray
@@ -84,10 +80,9 @@ FOUNDATION_EXPORT ClassScheduleRequestType teacher;
     };
     
     __block NSInteger count = 0;
+    __block NSInteger current = 0;
     
     [requestDictionary enumerateKeysAndObjectsUsingBlock:^(ClassScheduleRequestType  _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * _Nonnull stop) {
-        
-        __block NSInteger current = 0;
         
         for (NSString *num in obj) {
             count += 1;
@@ -116,19 +111,28 @@ FOUNDATION_EXPORT ClassScheduleRequestType teacher;
                         
                         SchoolLesson *lesson = [[SchoolLesson alloc] initWithDictionary:schoolLessonDic];
                         
+                        /// int a[25][7][12];
+                        /// for (int i = 0; i < lesson.period.lenth; i++) {
+                        ///     if object[@"stunum"] = usertool.stu
+                        ///     self.a[lesson.inSection][lesson.inWeek][lesson.period.location + i] = TODO
+                        /// }
+                        
                         // WCDB存
                         // TODO: [self saveLesson:lesson];
                         
-                        [self.model[weekOfLesson.unsignedLongValue] appendObject:lesson];
+                        [self.model[weekOfLesson.unsignedLongValue] addObject:lesson];
                     }
                     // 整周课表的存储
                     NSMutableDictionary *schoolLessonDic = oneLessonDic.mutableCopy;
                     
-                    schoolLessonDic[@"week"] = @0;
+                    schoolLessonDic[@"week"] = @0ull;
                     
                     SchoolLesson *lesson = [[SchoolLesson alloc] initWithDictionary:schoolLessonDic];
                     
-                    [self.model[0] appendObject:lesson];
+                    // WCDB存
+                    // TODO: [self saveLesson:lesson];
+                    
+                    [self.model[0] addObject:lesson];
                 }
                 
                 if (success) {
@@ -145,6 +149,23 @@ FOUNDATION_EXPORT ClassScheduleRequestType teacher;
             }];
         }
     }];
+}
+
+#pragma mark - WCDB
+
+- (void)awakeFromWCDB {
+    NSArray <SchoolLesson *> *ary = [SchoolLesson aryFromWCDB];
+    if (!_model) {
+        self.model = nil;
+    }
+    [self model];
+    
+    for (SchoolLesson *lesson in ary) {
+        [self.model[lesson.inSection] addObject:lesson];
+        /// for (int i = 0; i < lesson.period.lenth; i++) {
+        ///     self.a[lesson.inSection][lesson.inWeek][lesson.period.location + i] = TODO
+        /// }
+    }
 }
 
 #pragma mark - Getter

@@ -86,7 +86,6 @@ WCDB_SYNTHESIZE(SchoolLesson, lesson)
         self.teacher = dic[@"teacher"];
         self.lesson = dic[@"lesson"];
         
-        
     }
     return self;
 }
