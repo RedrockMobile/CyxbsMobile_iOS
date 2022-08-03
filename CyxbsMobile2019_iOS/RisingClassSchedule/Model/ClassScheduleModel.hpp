@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import <array>
+
 #import "SchoolLesson.h"
 
 #import "ClassScheduleModelDelegate.h"
@@ -29,6 +31,16 @@ typedef NSString * ClassScheduleRequestType;
 /// 课程
 @property (nonatomic, readonly) NSArray <NSArray <SchoolLesson *> *> *classModel;
 
+/// 快速表
+/// 0 : 无课
+/// 1 : 其他人单
+/// 2 : 其他人多
+/// 3 : 自定义单
+/// 4 : 自定义多
+/// 5 : 单人课单
+/// 6 : 单人课多
+@property (nonatomic, readonly) std::array <std::array <std::array <int, 13>, 8>, 25> fastAry;
+
 #pragma mark - Method
 
 /// 请求数据
@@ -45,7 +57,7 @@ typedef NSString * ClassScheduleRequestType;
         success:(void (^)(NSProgress *progress))success
         failure:(void (^)(NSError *error))failure;
 
-- (void)append:(SchoolLesson *)lesson __deprecated_msg("还没写");
+- (void)append:(SchoolLesson *)lesson __deprecated_msg("测试中");
 
 @end
 
@@ -53,6 +65,9 @@ typedef NSString * ClassScheduleRequestType;
 
 /// 学生
 FOUNDATION_EXPORT ClassScheduleRequestType student;
+
+/// 自定义
+FOUNDATION_EXPORT ClassScheduleRequestType custom __deprecated_msg("不知道接口");
 
 /// 老师
 FOUNDATION_EXPORT ClassScheduleRequestType teacher;

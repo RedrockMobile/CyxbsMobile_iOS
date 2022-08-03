@@ -13,11 +13,14 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SchoolLessonDataSource.h"
+#import <WCDB.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// 数据表
+/// 数据库
+FOUNDATION_EXPORT WCTDatabase *schoolLessonDB;
+
+/// 数据表名
 FOUNDATION_EXPORT NSString *SchoolLessonTableName;
 
 #pragma mark - SchoolLesson
@@ -43,6 +46,9 @@ FOUNDATION_EXPORT NSString *SchoolLessonTableName;
 @property (nonatomic) NSRange period;
 
 // !!!: Source
+
+/// 学号
+@property (nonatomic, copy) NSString *sno;
 
 /// 课程名
 @property (nonatomic, copy) NSString *course;
@@ -74,10 +80,6 @@ FOUNDATION_EXPORT NSString *SchoolLessonTableName;
 /// 根据字典来赋值
 /// @param dic 字典（这里必须看文档，注意使用）
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
-
-@end
-
-@interface SchoolLesson (test) <SchoolLessonDataSource>
 
 @end
 

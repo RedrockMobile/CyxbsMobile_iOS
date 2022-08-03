@@ -6,11 +6,15 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "ClassScheduleModel.h"
+#import "ClassScheduleModel.hpp"
+
+#import <array>
 
 #pragma mark - ClassScheduleRequestType
 
 ClassScheduleRequestType student = @"stu_num";
+
+ClassScheduleRequestType custom = @"custom";
 
 ClassScheduleRequestType teacher = @"tea";
 
@@ -40,6 +44,9 @@ ClassScheduleRequestType teacher = @"tea";
         _nowWeek = [NSUserDefaults.standardUserDefaults stringForKey:RisingClassSchedule_nowWeek_String].unsignedLongValue;
         
         [self model];
+        
+        std::array <std::array <std::array <int, 13>, 8>, 25> ary = {};
+        _fastAry = ary;
     }
     return self;
 }
@@ -57,13 +64,56 @@ ClassScheduleRequestType teacher = @"tea";
             [NSUserDefaults.standardUserDefaults setValue:startDateStr forKey:RisingClassSchedule_classBegin_String];
             [NSUserDefaults.standardUserDefaults setValue:nowWeek forKey:RisingClassSchedule_nowWeek_String];
         }
+        
         self->_startDate =
         [NSDate dateString:[NSUserDefaults.standardUserDefaults
                             stringForKey:RisingClassSchedule_classBegin_String]
              fromFormatter:NSDateFormatter.defaultFormatter
             withDateFormat:@"yyyy.M.d"];
-        self->_nowWeek = [nowWeek intValue];
+        self->_nowWeek = [NSUserDefaults.standardUserDefaults
+                          stringForKey:RisingClassSchedule_nowWeek_String].longValue;
     });
+}
+
+#pragma mark - Method
+
+- (void)append:(SchoolLesson *)lesson withKeyNum:(NSString *)num{
+    [self.model[lesson.inSection] addObject:lesson];
+    for (NSInteger i = 0; i < lesson.period.length; i++) {
+        if (_fastAry[lesson.inSection][lesson.inWeek][i] == 0) {
+            // 原来没存数据，来了个新的
+            if (![lesson.sno isEqualToString:num]) {
+                // 1.别人的课表
+                _fastAry[lesson.inSection][lesson.inWeek][i] = 1;
+            } else {
+                if ([lesson.type isEqualToString:@"自定义"]) {
+                    // 2.自定义课表
+                    _fastAry[lesson.inSection][lesson.inWeek][i] = 3;
+                } else {
+                    // 3.自己的课表
+                    _fastAry[lesson.inSection][lesson.inWeek][i] = 5;
+                }
+            }
+        } else {
+            int t = _fastAry[lesson.inSection][lesson.inWeek][i];
+            // 原来有数据，新添一个数据
+            if (![lesson.sno isEqualToString:UserItemTool.defaultItem.stuNum]
+                && t >= 1 && t <= 2) {
+                // 1.别人的课表
+                _fastAry[lesson.inSection][lesson.inWeek][i] = 2;
+            } else {
+                if ([lesson.type isEqualToString:@"自定义"]
+                    && t >= 1 && t <= 4) {
+                    // 2.自定义课表
+                    _fastAry[lesson.inSection][lesson.inWeek][i] = 4;
+                } else if (![lesson.type isEqualToString:@"自定义"]
+                    && t >= 1 && t <= 6) {
+                    // 3.自己的课表
+                    _fastAry[lesson.inSection][lesson.inWeek][i] = 6;
+                }
+            }
+        }
+    }
 }
 
 #pragma mark - Request
@@ -76,7 +126,8 @@ ClassScheduleRequestType teacher = @"tea";
     
     __block NSDictionary *apiDic = @{
         student : ClassSchedule_POST_keBiao_API,
-        teacher : ClassSchedule_POST_teaKeBiao_API
+        teacher : ClassSchedule_POST_teaKeBiao_API,
+        custom : @""
     };
     
     __block NSInteger count = 0;
@@ -101,14 +152,20 @@ ClassScheduleRequestType teacher = @"tea";
                 [self onceSave:object];
                 
                 NSArray *lessonAry = [object objectForKey:@"data"];
+                NSString *stuNum = object[@"stuNum"];
                 
                 for (NSDictionary *oneLessonDic in lessonAry) {
                     for (NSNumber *weekOfLesson in oneLessonDic[@"week"]) {
-                        // 单个课表的存储
+                        // 1.先copy一份，确保dic为一节课的所有信息
                         NSMutableDictionary *schoolLessonDic = oneLessonDic.mutableCopy;
                         
                         schoolLessonDic[@"week"] = weekOfLesson;
+                        schoolLessonDic[@"sno"] = stuNum;
+                        if ([key isEqualToString:custom]) {
+                            schoolLessonDic[@"type"] = @"自定义";
+                        }
                         
+                        // 2.转模型，并实现快速表
                         SchoolLesson *lesson = [[SchoolLesson alloc] initWithDictionary:schoolLessonDic];
                         
                         /// int a[25][7][12];
@@ -119,20 +176,28 @@ ClassScheduleRequestType teacher = @"tea";
                         
                         // WCDB存
                         // TODO: [self saveLesson:lesson];
+                        NSString *currentNum = (count == 1 ? stuNum : UserItemTool.defaultItem.stuNum);
+                        [self append:lesson withKeyNum:currentNum];
                         
-                        [self.model[weekOfLesson.unsignedLongValue] addObject:lesson];
+//                        [self.model[weekOfLesson.unsignedLongValue] addObject:lesson];
                     }
                     // 整周课表的存储
                     NSMutableDictionary *schoolLessonDic = oneLessonDic.mutableCopy;
                     
                     schoolLessonDic[@"week"] = @0ull;
+                    schoolLessonDic[@"sno"] = stuNum;
+                    if ([key isEqualToString:custom]) {
+                        schoolLessonDic[@"type"] = @"自定义";
+                    }
                     
                     SchoolLesson *lesson = [[SchoolLesson alloc] initWithDictionary:schoolLessonDic];
                     
                     // WCDB存
                     // TODO: [self saveLesson:lesson];
+                    NSString *currentNum = (count == 1 ? stuNum : UserItemTool.defaultItem.stuNum);
+                    [self append:lesson withKeyNum:currentNum];
                     
-                    [self.model[0] addObject:lesson];
+//                    [self.model[0] addObject:lesson];
                 }
                 
                 if (success) {
@@ -154,7 +219,8 @@ ClassScheduleRequestType teacher = @"tea";
 #pragma mark - WCDB
 
 - (void)awakeFromWCDB {
-    NSArray <SchoolLesson *> *ary = [SchoolLesson aryFromWCDB];
+//    NSArray <SchoolLesson *> *ary = [SchoolLesson aryFromWCDB];
+    NSArray <SchoolLesson *> *ary;
     if (!_model) {
         self.model = nil;
     }

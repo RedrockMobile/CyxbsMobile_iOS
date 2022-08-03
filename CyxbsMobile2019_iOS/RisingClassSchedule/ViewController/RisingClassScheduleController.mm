@@ -8,7 +8,7 @@
 
 #import "RisingClassScheduleController.h"
 
-#import "ClassScheduleModel.h"
+#import "ClassScheduleModel.hpp"
 
 #import "ClassBookCollectionView.h"
 
@@ -113,17 +113,36 @@
     
     SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.item];
     
-    if (lesson.period.location <= 4) {
-        cell.draw = ClassBookItemDrawMorning;
-    } else if (lesson.period.location <= 8) {
-        cell.draw = ClassBookItemDrawAfternoon;
-    } else {
-        cell.draw = ClassBookItemDrawNight;
+    int multyCode = self.scheduleModel.fastAry[lesson.inSection][lesson.inWeek][lesson.period.location];
+    
+    switch ((multyCode + 1) >> 1) {
+        case 1: {
+            // 1.其他人
+            cell.draw = ClassBookItemDrawMulty;
+        } break;
+            
+        case 2: {
+            // 2.自定义
+            cell.draw = ClassBookItemDrawCustom;
+        } break;
+            
+        case 3:
+        default: {
+            // 3.自己的
+            if (lesson.period.location <= 4) {
+                // 3.1 上午
+                cell.draw = ClassBookItemDrawMorning;
+            } else if (lesson.period.location <= 8) {
+                // 3.2 下午
+                cell.draw = ClassBookItemDrawAfternoon;
+            } else {
+                // 3.3 晚上
+                cell.draw = ClassBookItemDrawNight;
+            }
+        } break;
     }
     
-    // !(self.scheduleModel.a[lesson.inSection][lesson.inWeek][lesson.period.location] % 2)
-    
-    [cell course:lesson.course classRoom:lesson.classRoom isMulty:NO];
+    [cell course:lesson.course classRoom:lesson.classRoom isMulty:!(multyCode % 2)];
     
     return cell;
 }
@@ -145,6 +164,7 @@
 
 - (NSRange)classScheduleLayout:(ClassScheduleLayout *)layout rangeForIndexPath:(NSIndexPath *)indexPath {
     SchoolLesson *lesson = self.scheduleModel.classModel[indexPath.section][indexPath.item];
+    
     return lesson.period;
 }
 

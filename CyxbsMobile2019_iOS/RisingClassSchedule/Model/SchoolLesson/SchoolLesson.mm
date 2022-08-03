@@ -8,10 +8,6 @@
 
 #import "SchoolLesson.h"
 
-#import "SchoolLesson+Rising.h"
-
-#import <WCDB.h>
-
 NSString *SchoolLessonTableName = @"school_lesson";
 
 WCTDatabase *schoolLessonDB;
@@ -27,6 +23,37 @@ WCTDatabase *schoolLessonDB;
 @property (nonatomic) NSInteger period_lenth;
 
 @end
+
+@interface SchoolLesson (Rising) <
+    WCTTableCoding
+>
+
+WCDB_PROPERTY(inSection)
+WCDB_PROPERTY(inWeek)
+WCDB_PROPERTY(period_location)
+WCDB_PROPERTY(period_lenth)
+
+WCDB_PROPERTY(course)
+WCDB_PROPERTY(courseNike)
+WCDB_PROPERTY(classRoom)
+WCDB_PROPERTY(classRoomNike)
+
+WCDB_PROPERTY(courseID)
+WCDB_PROPERTY(rawWeek)
+WCDB_PROPERTY(type)
+
+WCDB_PROPERTY(sno)
+WCDB_PROPERTY(teacher)
+WCDB_PROPERTY(lesson)
+
+@end
+
+#pragma mark - SchoolLesson (Rising)
+
+/**
+ * 因为period_location和period_lenth在这个文件里，
+ * 所以这个implementation只能写在这个.m
+ */
 
 @implementation SchoolLesson (Rising)
 
@@ -46,6 +73,7 @@ WCDB_SYNTHESIZE(SchoolLesson, courseID)
 WCDB_SYNTHESIZE(SchoolLesson, rawWeek)
 WCDB_SYNTHESIZE(SchoolLesson, type)
 
+WCDB_SYNTHESIZE(SchoolLesson, sno)
 WCDB_SYNTHESIZE(SchoolLesson, teacher)
 WCDB_SYNTHESIZE(SchoolLesson, lesson)
 
@@ -61,7 +89,7 @@ WCDB_SYNTHESIZE(SchoolLesson, lesson)
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"school_lesson_database"];
 }
 
-#pragma mark - Life cycle
+#pragma mark - System
 
 - (void)initialize {
     static dispatch_once_t onceToken;
@@ -85,6 +113,7 @@ WCDB_SYNTHESIZE(SchoolLesson, lesson)
         self.type = dic[@"type"];
         self.teacher = dic[@"teacher"];
         self.lesson = dic[@"lesson"];
+        self.sno = dic[@"sno"];
         
     }
     return self;
