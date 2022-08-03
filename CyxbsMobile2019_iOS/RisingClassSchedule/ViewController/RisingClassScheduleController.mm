@@ -142,7 +142,13 @@
         } break;
     }
     
-    [cell course:lesson.course classRoom:lesson.classRoom isMulty:!(multyCode % 2)];
+    int max = multyCode;
+    for (int i = 0; i < lesson.period.length; i++) {
+        int compare = self.scheduleModel.fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i];
+        max = (max > compare ? max : compare);
+    }
+    
+    [cell course:lesson.course classRoom:lesson.classRoom isMulty:!(max % 2)];
     
     return cell;
 }

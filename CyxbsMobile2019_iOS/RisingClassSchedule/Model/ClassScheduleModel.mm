@@ -78,41 +78,50 @@ ClassScheduleRequestType teacher = @"tea";
 #pragma mark - Method
 
 - (void)append:(SchoolLesson *)lesson withKeyNum:(NSString *)num{
-    [self.model[lesson.inSection] addObject:lesson];
+    
+    BOOL insertToFirst = NO;
     for (NSInteger i = 0; i < lesson.period.length; i++) {
-        if (_fastAry[lesson.inSection][lesson.inWeek][i] == 0) {
+        if (_fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i] == 0) {
             // 原来没存数据，来了个新的
             if (![lesson.sno isEqualToString:num]) {
                 // 1.别人的课表
-                _fastAry[lesson.inSection][lesson.inWeek][i] = 1;
+                _fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i] = 1;
             } else {
                 if ([lesson.type isEqualToString:@"自定义"]) {
                     // 2.自定义课表
-                    _fastAry[lesson.inSection][lesson.inWeek][i] = 3;
+                    _fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i] = 3;
                 } else {
                     // 3.自己的课表
-                    _fastAry[lesson.inSection][lesson.inWeek][i] = 5;
+                    _fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i] = 5;
                 }
             }
         } else {
-            int t = _fastAry[lesson.inSection][lesson.inWeek][i];
+            int t = _fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i];
             // 原来有数据，新添一个数据
             if (![lesson.sno isEqualToString:UserItemTool.defaultItem.stuNum]
                 && t >= 1 && t <= 2) {
                 // 1.别人的课表
-                _fastAry[lesson.inSection][lesson.inWeek][i] = 2;
+                _fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i] = 2;
             } else {
                 if ([lesson.type isEqualToString:@"自定义"]
                     && t >= 1 && t <= 4) {
                     // 2.自定义课表
-                    _fastAry[lesson.inSection][lesson.inWeek][i] = 4;
+                    _fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i] = 4;
                 } else if (![lesson.type isEqualToString:@"自定义"]
                     && t >= 1 && t <= 6) {
                     // 3.自己的课表
-                    _fastAry[lesson.inSection][lesson.inWeek][i] = 6;
+                    _fastAry[lesson.inSection][lesson.inWeek][lesson.period.location + i] = 6;
                 }
             }
+            
+            insertToFirst = YES;
         }
+    }
+    
+    if (insertToFirst) {
+        [self.model[lesson.inSection] insertObject:lesson atIndex:0];
+    } else {
+        [self.model[lesson.inSection] addObject:lesson];
     }
 }
 
