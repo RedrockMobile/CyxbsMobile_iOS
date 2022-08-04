@@ -78,6 +78,13 @@
             CGFloat left = leftIndexPath.section * self.collectionView.width + self.headerWidth + holeItemWidth * (leftIndexPath.item - 1);
             // 上 = (第n节 - 1) * (行间距 + size高)
             CGFloat top = (range.location - 1) * (self.lineSpacing + self.itemHeight);
+            if (self.needNoon && range.location > 4) {
+                top += (self.lineSpacing + self.itemHeight);
+            }
+            if (self.needNight && range.location > 8) {
+                top += (self.lineSpacing + self.itemHeight);
+            }
+            
             // 高 = (有n节 - 1) * 行间距 + 有n节 * size高
             CGFloat height = (range.length - 1) * self.lineSpacing + range.length * self.itemHeight;
             
@@ -99,6 +106,7 @@
 
 - (void)prepareLayout {
     [super prepareLayout];
+    // 所有的准备工作
     
     if ([self attributesNeedToRemake]) {
         [self remakeAttributes];
@@ -110,12 +118,24 @@
 //}
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    
     return self.attributes;
 }
 
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
+    //当边界发生改变时，是否应该刷新布局。如果YES则在边界变化（一般是scroll到其他地方）时，将重新计算需要的布局信息。
+    
+    return NO;
+}
+
 - (CGSize)collectionViewContentSize {
-    return CGSizeMake(self.numberOfsections * self.collectionView.width, self.collectionView.height);
+    CGSize minSize = CGSizeMake(self.numberOfsections * self.collectionView.width, self.collectionView.height);
+    if (self.needNoon) {
+        minSize.height += (self.lineSpacing + self.itemHeight);
+    }
+    if (self.needNight) {
+        minSize.height += (self.lineSpacing + self.itemHeight);
+    }
+    return minSize;
 }
 
 @end

@@ -17,6 +17,7 @@
 #pragma mark - ClassBookController ()
 
 @interface RisingClassScheduleController () <
+    ClassBookCollectionViewDelegate,
     ClassScheduleLayoutDelegate,
     UICollectionViewDelegate,
     UICollectionViewDataSource
@@ -80,21 +81,37 @@
 
 - (ClassBookCollectionView *)classBookCollectionView {
     if (_classBookCollectionView == nil) {
-        ClassScheduleLayout *fl = [[ClassScheduleLayout alloc] init];
-        fl.delegate = self;
-        fl.lineSpacing = 2;
-        fl.interitemSpacing = 2;
-        fl.headerWidth = 45;
-        fl.itemHeight = 50;
-        
+        ClassScheduleLayout *fl = self.firstFL;
         
         _classBookCollectionView = [[ClassBookCollectionView alloc] initWithFrame:CGRectMake(10, 80, self.view.width - 20, self.view.height - 80) collectionViewLayout:fl];
         
         [_classBookCollectionView registerClass:SchoolLessonItem.class forCellWithReuseIdentifier:SchoolLessonItemReuseIdentifier];
         _classBookCollectionView.delegate = self;
         _classBookCollectionView.dataSource = self;
+        _classBookCollectionView.classBook_delegate = self;
     }
     return _classBookCollectionView;
+}
+
+- (ClassScheduleLayout *)firstFL {
+    ClassScheduleLayout *fl = [[ClassScheduleLayout alloc] init];
+    fl.delegate = self;
+    fl.lineSpacing = 2;
+    fl.interitemSpacing = 2;
+    fl.headerWidth = 45;
+    fl.itemHeight = 50;
+    return fl;
+}
+
+- (ClassScheduleLayout *)seconFL {
+    ClassScheduleLayout *fl = [[ClassScheduleLayout alloc] init];
+    fl.delegate = self;
+    fl.lineSpacing = 2;
+    fl.interitemSpacing = 2;
+    fl.headerWidth = 45;
+    fl.itemHeight = 50;
+    fl.needNoon = YES;
+    return fl;
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -148,7 +165,8 @@
         max = (max > compare ? max : compare);
     }
     
-    [cell course:lesson.course classRoom:lesson.classRoom isMulty:!(max % 2)];
+//    [cell course:lesson.course classRoom:lesson.classRoom isMulty:!(max % 2)];
+    [cell course:[NSString stringWithFormat:@"Sec\n%ld", indexPath.section] classRoom:[NSString stringWithFormat:@"Item\n%ld", indexPath.item] isMulty:!(max % 2)];
     
     return cell;
 }
@@ -158,7 +176,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
-    
+//    SchoolLesson *lesson = self.scheduleModel.classModel[sourceIndexPath.section][sourceIndexPath.item];
+//    [self.scheduleModel remove:lesson];
+//
 }
 
 #pragma mark - <ClassScheduleLayoutDelegate>
@@ -177,7 +197,7 @@
 #pragma mark - <ClassBookCollectionViewDelegate>
 
 - (void)classBook:(ClassBookCollectionView *)view didTapEmptyItemAtWeekIndexPath:(nonnull NSIndexPath *)weekIndexPath ofRangeIndexPath:(nonnull NSIndexPath *)rangeIndexPath {
-    
+    [self.classBookCollectionView setCollectionViewLayout:self.seconFL animated:YES];
 }
 
 #pragma mark - RisingRouterHandler

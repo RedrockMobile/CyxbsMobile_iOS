@@ -59,6 +59,8 @@ typedef NSString * ClassScheduleRequestType;
 
 - (void)append:(SchoolLesson *)lesson __deprecated_msg("测试中");
 
+- (void)remove:(SchoolLesson *)lesson __deprecated_msg("测试中");
+
 @end
 
 #pragma mark - ClassScheduleRequestType

@@ -44,9 +44,6 @@ typedef NS_ENUM(NSUInteger, ClassBookItemDraw) {
 /// 绘制类型
 @property (nonatomic) ClassBookItemDraw draw;
 
-/// 空样式
-- (void)emptyWithAdd;
-
 /// 绘制课程
 /// @param courseName 有课程时绘制
 /// @param classRoom 地点绘制

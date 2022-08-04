@@ -20,9 +20,6 @@ NSString *SchoolLessonItemReuseIdentifier = @"SchoolLessonItem";
 /// 上课地点
 @property (nonatomic, strong) UILabel *classRoomLab;
 
-/// 空课表时加号
-@property (nonatomic, strong) UIImageView *addImgView;
-
 /// 如果是多人的情况
 @property (nonatomic, strong) UIView *multyView;
 
@@ -42,11 +39,10 @@ NSString *SchoolLessonItemReuseIdentifier = @"SchoolLessonItem";
     if (self) {
         // 初始化的时候，一定要为一个假的数
         _draw = -1;
-        
+        M_PI;
         self.contentView.layer.cornerRadius = 5;
         
         [self.contentView addSubview:self.backgoundImgView];
-        [self.contentView addSubview:self.addImgView];
         [self.contentView addSubview:self.courseLab];
         [self.contentView addSubview:self.classRoomLab];
         [self.contentView addSubview:self.multyView];
@@ -69,17 +65,12 @@ NSString *SchoolLessonItemReuseIdentifier = @"SchoolLessonItem";
         make.left.right.equalTo(self.courseLab);
         make.bottom.equalTo(self.contentView).offset(-8);
     }];
-    [self.addImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.offset(self.contentView.width - 2);
-        make.center.equalTo(self.contentView);
-    }];
 }
 
 #pragma mark - <SchoolClassTranslateData>
 
 - (void)course:(NSString *)courseName classRoom:(NSString *)classRoom isMulty:(BOOL)isMulty {
     // 移除没必要的，和不确定的
-    self.addImgView.alpha = 0;
     self.multyView.alpha = 0;
     // 添加现有的
     self.courseLab.alpha = 1;
@@ -91,20 +82,6 @@ NSString *SchoolLessonItemReuseIdentifier = @"SchoolLessonItem";
     self.courseLab.text = courseName;
     self.classRoomLab.text = classRoom;
     
-}
-
-- (void)emptyWithAdd {
-    // 移除其他的
-    self.multyView.alpha = 0;
-    self.courseLab.alpha = 0;
-    self.classRoomLab.alpha = 0;
-    
-    // 添加现有的，如果本来就有，那就没必要了吧
-    self.contentView.backgroundColor = UIColor.grayColor;
-    if (self.contentView == self.addImgView.superview) {
-        return;
-    }
-    self.addImgView.alpha = 1;
 }
 
 #pragma mark - Getter
@@ -135,16 +112,6 @@ NSString *SchoolLessonItemReuseIdentifier = @"SchoolLessonItem";
         [_classRoomLab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     }
     return _classRoomLab;
-}
-
-- (UIImageView *)addImgView {
-    if (_addImgView == nil) {
-        _addImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        
-        // >>> 图片名字
-        _addImgView.image = [UIImage imageNamed:@"setting"];
-    }
-    return _addImgView;
 }
 
 - (UIView *)multyView {

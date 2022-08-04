@@ -9,6 +9,17 @@
 #ifndef RisingClassScheduleHeader_h
 #define RisingClassScheduleHeader_h
 
+/// 25周
+#define RisingClassSchedule_section 25
+
+// 8周（为了下标对应）
+#define RisingClassSchedule_week 8
+
+// 13节课（为了下标对应）
+#define RisingClassSchedule_perItem 13
+
+#define RisingClassSchedule
+
 #pragma mark - User Default
 
 /// 课程是从哪一天开始的

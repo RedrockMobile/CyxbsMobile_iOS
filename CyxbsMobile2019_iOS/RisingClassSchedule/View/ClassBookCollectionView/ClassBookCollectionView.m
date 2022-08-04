@@ -32,6 +32,12 @@
     return self;
 }
 
+#pragma mark - Touch
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.classBook_delegate classBook:self didTapEmptyItemAtWeekIndexPath:[NSIndexPath indexPathWithIndex:1] ofRangeIndexPath:[NSIndexPath indexPathWithIndex:1]];
+}
+
 #pragma mark - Method
 
 // MARK: SEL
