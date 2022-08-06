@@ -152,6 +152,13 @@
     [self.view addSubview:view];
     view.btnClickedDelegate = self;
     
+    if ([NSUserDefaults.standardUserDefaults boolForKey:ClassSchedule_correlationClass_BOOL]) {
+        self.historyView.noLabel.text = @"";
+        self.historyView.correlationName.text = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationName_String];
+        self.historyView.correlationMajor.text = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationMajor_String];
+        self.historyView.correlationNumber.text = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationStuNum_String];
+        self.historyView.correlationPeople.image = [UIImage imageNamed:@"addPeopleClass_selected"];
+    }
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.self.searchBackView.mas_bottom).offset(9);
@@ -159,6 +166,7 @@
         make.right.equalTo(self.searchBackView);
         make.height.mas_equalTo(400);
     }];
+    
 }
 
 //MARK: - 点击按钮后调用

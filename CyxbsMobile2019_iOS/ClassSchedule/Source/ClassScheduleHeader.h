@@ -9,6 +9,17 @@
 #ifndef ClassScheduleHeader_h
 #define ClassScheduleHeader_h
 
+#pragma mark - UserDefault
+// 是否关联同学课表
+#define ClassSchedule_correlationClass_BOOL @"ClassSchedule_correlationClass"
+// 名字
+#define ClassSchedule_correlationName_String @"ClassSchedule_correlationName"
+// 专业
+#define ClassSchedule_correlationMajor_String @"ClassSchedule_correlationMajor"
+// 学号
+#define ClassSchedule_correlationStuNum_String @"ClassSchedule_correlationStuNum"
+
+
 // “课表”、“备忘”接口
 #pragma mark - API
 

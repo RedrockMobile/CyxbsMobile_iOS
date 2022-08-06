@@ -11,7 +11,7 @@
 #import "WYCClassBookViewController.h"
 //#import "WYCClassAndRemindDataModel.h"
 
-@interface ChooseStudentListViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ChooseStudentListViewController ()<UITableViewDelegate, UITableViewDataSource, AddPeopleClassDelegate>
 
 @property (nonatomic, strong) ClassmatesList *classmatesList;
 
@@ -102,6 +102,9 @@
     cell.textLabel.text = self.classmatesList.classmatesArray[indexPath.row].name;
     cell.detailTextLabel.text = self.classmatesList.classmatesArray[indexPath.row].major;
     cell.stuNumLabel.text = self.classmatesList.classmatesArray[indexPath.row].stuNum;
+
+    cell.cellIndex = indexPath;
+    cell.delegate = self;
     return cell;
 }
 
@@ -161,5 +164,44 @@
 - (void)popController {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+// 点击关联按钮后
+- (void)addPeopleClass:(NSIndexPath *)indexPath {
+    // 1.如果没有关联，关联成功 名字学号专业
+    if (![NSUserDefaults.standardUserDefaults boolForKey:ClassSchedule_correlationClass_BOOL]) {
+        // 1.1
+        [NewQAHud showHudWith:@"关联成功！" AddView:self.view];
+        // 1.2 存储
+        [NSUserDefaults.standardUserDefaults setBool:YES forKey:ClassSchedule_correlationClass_BOOL];
+            // 名字
+        [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[indexPath.row].name forKey:ClassSchedule_correlationName_String];
+            // 专业
+        [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[indexPath.row].major forKey:ClassSchedule_correlationMajor_String];
+            // 学号
+        [NSUserDefaults.standardUserDefaults setObject: self.classmatesList.classmatesArray[indexPath.row].stuNum forKey:ClassSchedule_correlationStuNum_String];
+        // 1.3 显示
+        
+    }
+    // 2.如果已经有关联
+    else {
+        // 2.1 Alert
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"你已有一位关联同学" message:@"确定要替换吗" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *cancelAC = [UIAlertAction actionWithTitle:@"取消"                  style:(UIAlertActionStyleCancel) handler:nil];
+        UIAlertAction *deleteAC = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction * _Nonnull action) {
+                // 1.删原来的
+                
+                // 2.存储当前同学
+            
+                // 3.@“已取消关联”
+            [NewQAHud showHudWith:@"已取消关联" AddView:self.view];
+                // 4.显示
+        }];
+        
+        [alert addAction:deleteAC];
+        [alert addAction:cancelAC];
+    }
+}
+
+
 
 @end
