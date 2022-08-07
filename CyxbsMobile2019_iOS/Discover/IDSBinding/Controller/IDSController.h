@@ -10,7 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface IDSController : UIViewController 
+@interface IDSController : UIViewController <
+    RisingRouterHandler
+>
 
 @end
 

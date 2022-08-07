@@ -63,9 +63,9 @@
 }
 
 -(void)addIdsBindingView {
-    IDSController *vc = [[IDSController alloc] init];
-    vc.view.frame = CGRectMake(0, 86, self.view.width, 600);
-    [self.view.window setRootViewController:vc];
+    UIViewController *vc = [self.router controllerForRouterPath:@"IDSController"];
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
 }
 
 -(void)expandSubjectScoreTableView:(NSNotification *)notification {

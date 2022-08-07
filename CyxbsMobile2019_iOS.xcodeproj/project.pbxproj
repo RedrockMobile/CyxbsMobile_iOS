@@ -3237,6 +3237,7 @@
 				7AA4C48528922AE300E204C8 /* Source */,
 				FE0D60362801702B00319A9E /* Discover_SchoolBus */,
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
+				B07E734A289FF34600AB701C /* IDSBinding */,
 				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
 				FE2C131327AEF629001CF7AF /* ToDo */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
@@ -3691,8 +3692,6 @@
 			children = (
 				18CDF5A7257F91BD006E8E5C /* ScoreViewController.h */,
 				18CDF5A9257F91BD006E8E5C /* ScoreViewController.m */,
-				B0DB8ABE289FCEFB00D6769D /* IDSController.h */,
-				B0DB8ABF289FCEFB00D6769D /* IDSController.m */,
 				18CDF5AA257F91BD006E8E5C /* Model */,
 				18CDF5BC257F91BD006E8E5C /* View */,
 			);
@@ -3743,8 +3742,6 @@
 				18CDF5C4257F91BD006E8E5C /* DetailScorePerYearCell.m */,
 				18CDF5BF257F91BD006E8E5C /* DetailSubjectScoreCell.h */,
 				18CDF5C5257F91BD006E8E5C /* DetailSubjectScoreCell.m */,
-				18CDF5C2257F91BD006E8E5C /* IdsBindingView.h */,
-				18CDF5C6257F91BD006E8E5C /* IdsBindingView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6027,6 +6024,33 @@
 				B058EE20289D4D7200264EF3 /* SportAttendanceItem.m */,
 			);
 			path = SportAttendanceItem;
+			sourceTree = "<group>";
+		};
+		B07E734A289FF34600AB701C /* IDSBinding */ = {
+			isa = PBXGroup;
+			children = (
+				B07E734C289FF9BA00AB701C /* Controller */,
+				B07E734B289FF9AF00AB701C /* View */,
+			);
+			path = IDSBinding;
+			sourceTree = "<group>";
+		};
+		B07E734B289FF9AF00AB701C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF5C2257F91BD006E8E5C /* IdsBindingView.h */,
+				18CDF5C6257F91BD006E8E5C /* IdsBindingView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B07E734C289FF9BA00AB701C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B0DB8ABE289FCEFB00D6769D /* IDSController.h */,
+				B0DB8ABF289FCEFB00D6769D /* IDSController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
