@@ -7,6 +7,7 @@
 //点击键盘上的搜索按钮后跳转的那个选择人的界面就是这个类
 
 #import "ChooseStudentListViewController.h"
+#import "ScheduleViewController.h"
 #import "PeopleListCellTableViewCell.h"
 #import "WYCClassBookViewController.h"
 //#import "WYCClassAndRemindDataModel.h"
@@ -29,6 +30,10 @@
     }
     return self;
 }
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    NSLog(@"-----------------------==");
+//}
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"%@",self.classmatesList);
@@ -162,7 +167,37 @@
 //MARK: - 点击某按钮后调用的方法：
 //点击返回按钮后调用的方法
 - (void)popController {
-    [self.navigationController popViewControllerAnimated:YES];
+    UINavigationController *nav = self.navigationController;
+    [nav popViewControllerAnimated:YES];
+    UIViewController *vc = nav.topViewController;
+    [vc viewWillAppear:YES];
+    /*
+    // 1.新建vc使其可使用block：
+    ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:ClassSchedule_stuFindHistory_String andPeopleType:PeopleTypeStudent];
+    
+    ScheduleViewController *tea = [[ScheduleViewController alloc] initWithUserDefaultKey:ClassSchedule_teaFindHistory_String andPeopleType:PeopleTypeTeacher];
+    // 2.block中：
+        // 2.1 获得当前的数据
+    stu.reloadCorrelationBlock = ^(NSString * _Nonnull name, NSString * _Nonnull major, NSString * _Nonnull number) {
+        // 1.数据
+        name = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationName_String];
+        major = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationMajor_String];
+        number = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationStuNum_String];
+        // 2.跳
+        [self.navigationController popViewControllerAnimated:YES];
+    };
+    tea.reloadCorrelationBlock = ^(NSString * _Nonnull name, NSString * _Nonnull major, NSString * _Nonnull number) {
+        // 1.数据
+        name = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationName_String];
+        major = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationMajor_String];
+        number = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationStuNum_String];
+        // 2.跳
+        [self.navigationController popViewControllerAnimated:YES];
+    };
+     */
+        // 跳回的方法
+//    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 // 点击关联按钮后

@@ -9,8 +9,7 @@
 #import "ScheduleInquiryViewController.h"
 #import "QAListSegmentView.h"
 #import "ScheduleViewController.h"
-#define STU_FIND_HISTORY @"FindStudentSchedule_historyArray"
-#define TEA_FIND_HISTORY @"FindTeacherSchedule_historyArray"
+
 
 @interface ScheduleInquiryViewController () <ScheduleViewControllerDelegate>
 /**显示"查课表"三个字delabel*/
@@ -20,6 +19,16 @@
 @end
 
 @implementation ScheduleInquiryViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    // 返回之前刷新一次
+    [self addSegmentView];
+    for (UIViewController *vc in self.childViewControllers) {
+        [vc viewWillAppear:animated];
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -92,13 +101,16 @@
 
 //添加带标签栏的一个分页的一个scrollView（即QAListSegmentView）
 - (void)addSegmentView {
-    ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:STU_FIND_HISTORY andPeopleType:PeopleTypeStudent];
+    ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:ClassSchedule_stuFindHistory_String andPeopleType:PeopleTypeStudent];
     stu.title = @"同学课表";
     stu.delegate = self;
     
-    ScheduleViewController *tea = [[ScheduleViewController alloc] initWithUserDefaultKey:TEA_FIND_HISTORY andPeopleType:PeopleTypeTeacher];
+    ScheduleViewController *tea = [[ScheduleViewController alloc] initWithUserDefaultKey:ClassSchedule_teaFindHistory_String andPeopleType:PeopleTypeTeacher];
     tea.title = @"老师课表";
     tea.delegate = self;
+    
+    [self addChildViewController:stu];
+    [self addChildViewController:tea];
     
     
     QAListSegmentView *segmentView = [[QAListSegmentView alloc]initWithFrame:CGRectMake(0, 120, self.view.width, self.view.height-60) controllers:@[stu, tea]];

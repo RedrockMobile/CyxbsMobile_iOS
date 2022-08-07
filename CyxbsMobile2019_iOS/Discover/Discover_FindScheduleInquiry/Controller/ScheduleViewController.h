@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak)id <ScheduleViewControllerDelegate> delegate;
 //只能用这个方法初始化这个类
 /**参数key是用来当作从缓存取搜索记录数组时需要的UserDefaultKey，peopleType代表是搜索学生还是搜索老师 */
+
+///Block
+@property (nonatomic, copy) void (^reloadCorrelationBlock)(NSString *name, NSString *major, NSString *number);
+
 - (instancetype)initWithUserDefaultKey:(NSString*)key andPeopleType:(PeopleType)peopleType;
 @end
 

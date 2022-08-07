@@ -18,6 +18,7 @@
     // Initialization code
 
 }
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     if(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -43,6 +44,7 @@
     
     return self;
 }
+
 -(void) addStuNumLabel {
     UILabel *label = [[UILabel alloc]init];
     [self.contentView addSubview:label];
@@ -54,6 +56,7 @@
         label.textColor = [UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1];
     }
 }
+
 - (void)layoutSubviews {
     self.imageView.frame = CGRectMake(19, 18, 48, 48);
     [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {

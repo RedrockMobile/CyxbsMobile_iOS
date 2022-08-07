@@ -9,6 +9,7 @@
 #import "HistoryView.h"
 #import "HistoryCell.h"
 #import "DLTimeSelectedButton.h"
+#import "AlertView.h"
 ///item间距
 #define SPLIT 7
 ///行间距
@@ -50,16 +51,8 @@
         
         // 添加显示“我的关联”
         [self addMyCorrelationLabel];
-        // (?/1)
-        [self addCorrelationNumberLabel];
-        [self addCorrelationPictures];  // 底图
-        [self addClearCorrelationBtn];  // 清除按钮
-        [self addSeperateLine];         // 分割线
-        [self addPeoplePicture];        // 小人
-        [self addCorrelationCentureLabel];// label
-        [self addCorrelationName];      // name
-        [self addCorrelationMajor];     // major
-        [self addCorrelationNumber];    // number
+        // 我的关联图
+        [self addCorrelationPictures];
         // 关联块布局
         [self correlationPosition];
     }
@@ -360,7 +353,7 @@
     self.correlationLine = imgLine;
     imgLine.image = [UIImage imageNamed:@"Rectangle 69"];
         // 加载视图
-    [self addSubview:imgLine];
+    [self.correlationBackground addSubview:imgLine];
     [imgLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.correlationBackground.mas_left).mas_offset(58);
         make.centerY.equalTo(self.correlationBackground);
@@ -369,7 +362,7 @@
 }
 
 //没有关联同学Label
-- (void)addCorrelationCentureLabel {
+- (void)addCorrelationCentralLabel {
     UILabel *label = [[UILabel alloc] init];
     self.noLabel = label;
     label.text = @"\t还没有关联同学哦\n搜索同学添加关联关系吧！";
@@ -383,7 +376,7 @@
     
     // 如果无关联，则加载
     if (![NSUserDefaults.standardUserDefaults boolForKey:ClassSchedule_correlationClass_BOOL]) {
-        [self addSubview:label];
+        [self.correlationBackground addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.correlationLine).mas_offset(70);
             make.centerY.equalTo(self.correlationLine);
@@ -401,11 +394,11 @@
     else {
         imgPeople.image = [UIImage imageNamed:@"addPeopleClass_selected"];
     }
-    [self addSubview:imgPeople];
+    [self.correlationBackground addSubview:imgPeople];
     [imgPeople mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.correlationBackground).mas_offset(18);
         make.top.equalTo(self.correlationBackground).mas_offset(31);
-        make.right.equalTo(self.correlationLine).mas_offset(-17);
+        make.right.equalTo(self.correlationLine).mas_offset(-18);
         make.bottom.equalTo(self.correlationBackground).mas_offset(-31);
     }];
 }
@@ -422,6 +415,15 @@
         make.top.equalTo(self.myCorrelation.mas_bottom).mas_offset(9);
         make.left.equalTo(self.myCorrelation);
     }];
+    [self addCorrelationNumberLabel];// ?/1
+    [self addClearCorrelationBtn];  // 清除按钮
+    
+    [self addSeperateLine];         // 分割线
+    [self addPeoplePicture];        // 小人
+    [self addCorrelationCentralLabel];// label
+    [self addCorrelationName];      // name
+    [self addCorrelationMajor];     // major
+    [self addCorrelationNumber];    // number
 }
 
 // 添加清除关联按钮
@@ -430,7 +432,7 @@
     self.clearCorrelationBtn = btn;
     [btn setBackgroundImage:[UIImage imageNamed:@"clearCorrelation"] forState:UIControlStateNormal];
     // 1.如果没有关联同学，不显示
-    if (![NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationClass_BOOL]) {
+    if (![NSUserDefaults.standardUserDefaults boolForKey:ClassSchedule_correlationClass_BOOL]) {
         NSLog(@"没有关联同学");
     }
     // 2.如果有关联同学
@@ -528,13 +530,24 @@
     
 }
 
-// 清除
+// 点击清除按钮
 - (void)clearCorrelationPeople {
+//    AlertView *alertView = [[AlertView alloc] initWithTitle:@"确定要取消关联吗" AndHintTitle:@""];
+//    [self addSubview:alertView];
+    [self clearOldCorrelationPeopleView];
     [NSUserDefaults.standardUserDefaults setBool:NO forKey:ClassSchedule_correlationClass_BOOL];
     [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationName_String];
     [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationMajor_String];
     [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationStuNum_String];
 }
 
+- (void)clearOldCorrelationPeopleView {
+    [self.correlationName removeFromSuperview];
+    [self.correlationMajor removeFromSuperview];
+    [self.correlationNumber removeFromSuperview];
+    [self.correlationNumberLabel removeFromSuperview];
+    [self.clearCorrelationBtn removeFromSuperview];
+    [self addCorrelationPictures];
+}
 
 @end

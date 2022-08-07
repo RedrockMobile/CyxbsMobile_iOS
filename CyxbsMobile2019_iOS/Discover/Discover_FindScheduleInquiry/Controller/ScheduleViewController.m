@@ -34,6 +34,13 @@
 @end
 
 @implementation ScheduleViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self addHistoryView];
+    NSLog(@"1⃣️1⃣️1⃣️1⃣️1⃣️");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
@@ -166,7 +173,6 @@
         make.right.equalTo(self.searchBackView);
         make.height.mas_equalTo(400);
     }];
-    
 }
 
 //MARK: - 点击按钮后调用
