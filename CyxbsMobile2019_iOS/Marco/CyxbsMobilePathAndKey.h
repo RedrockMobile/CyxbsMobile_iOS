@@ -90,4 +90,6 @@
 
 #import "MineMainPageHeader.h"
 
+#import "SportAttendanceHeader.h"
+
 #endif /* CyxbsMobilePathAndKey_h */

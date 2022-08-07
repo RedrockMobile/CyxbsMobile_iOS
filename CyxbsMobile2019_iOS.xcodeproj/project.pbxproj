@@ -543,6 +543,13 @@
 		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B037FC36289CC5DE004B99DD /* SportAttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC2B289CC5DE004B99DD /* SportAttendanceModel.m */; };
+		B037FC37289CC5DE004B99DD /* SportAttendanceHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC2D289CC5DE004B99DD /* SportAttendanceHeadView.m */; };
+		B037FC38289CC5DE004B99DD /* SportAttendanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC2E289CC5DE004B99DD /* SportAttendanceTableViewCell.m */; };
+		B037FC39289CC5DE004B99DD /* SportAttendanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC32289CC5DE004B99DD /* SportAttendanceView.m */; };
+		B037FC3A289CC5DE004B99DD /* SportAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC34289CC5DE004B99DD /* SportAttendanceViewController.m */; };
+		B058EE1D289D288800264EF3 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */; };
+		B058EE21289D4D7200264EF3 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B058EE20289D4D7200264EF3 /* SportAttendanceItem.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1755,6 +1762,21 @@
 		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B037FC2A289CC5DE004B99DD /* SportAttendanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceModel.h; sourceTree = "<group>"; };
+		B037FC2B289CC5DE004B99DD /* SportAttendanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceModel.m; sourceTree = "<group>"; };
+		B037FC2D289CC5DE004B99DD /* SportAttendanceHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceHeadView.m; sourceTree = "<group>"; };
+		B037FC2E289CC5DE004B99DD /* SportAttendanceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceTableViewCell.m; sourceTree = "<group>"; };
+		B037FC2F289CC5DE004B99DD /* SportAttendanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceView.h; sourceTree = "<group>"; };
+		B037FC30289CC5DE004B99DD /* SportAttendanceHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceHeadView.h; sourceTree = "<group>"; };
+		B037FC31289CC5DE004B99DD /* SportAttendanceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceTableViewCell.h; sourceTree = "<group>"; };
+		B037FC32289CC5DE004B99DD /* SportAttendanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceView.m; sourceTree = "<group>"; };
+		B037FC34289CC5DE004B99DD /* SportAttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceViewController.m; sourceTree = "<group>"; };
+		B037FC35289CC5DE004B99DD /* SportAttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceViewController.h; sourceTree = "<group>"; };
+		B037FC3B289CC664004B99DD /* SportAttendanceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceHeader.h; sourceTree = "<group>"; };
+		B058EE1B289D288800264EF3 /* SportAttendanceItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItemModel.h; sourceTree = "<group>"; };
+		B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceItemModel.m; sourceTree = "<group>"; };
+		B058EE1F289D4D7200264EF3 /* SportAttendanceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItem.h; sourceTree = "<group>"; };
+		B058EE20289D4D7200264EF3 /* SportAttendanceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceItem.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -3012,6 +3034,7 @@
 		18CDF4D4257F91BC006E8E5C /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				B037FC28289CC5DE004B99DD /* Discover_SportAttendance */,
 				7AA4C48528922AE300E204C8 /* Source */,
 				FE0D60362801702B00319A9E /* Discover_SchoolBus */,
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
@@ -3514,10 +3537,10 @@
 				18CDF5BF257F91BD006E8E5C /* DetailSubjectScoreCell.h */,
 				18CDF5C0257F91BD006E8E5C /* ABScoreView.m */,
 				18CDF5C1257F91BD006E8E5C /* ScoreTwoTitleView.h */,
-				18CDF5C2257F91BD006E8E5C /* IdsBindingView.h */,
 				18CDF5C3257F91BD006E8E5C /* UserInfoView.m */,
 				18CDF5C4257F91BD006E8E5C /* DetailScorePerYearCell.m */,
 				18CDF5C5257F91BD006E8E5C /* DetailSubjectScoreCell.m */,
+				18CDF5C2257F91BD006E8E5C /* IdsBindingView.h */,
 				18CDF5C6257F91BD006E8E5C /* IdsBindingView.m */,
 				18CDF5C7257F91BD006E8E5C /* ScoreTwoTitleView.m */,
 				18CDF5C8257F91BD006E8E5C /* ABScoreView.h */,
@@ -4676,6 +4699,7 @@
 				7AA4C47628921BF400E204C8 /* SchoolCalendarHeader.h */,
 				7AA4C4822892213200E204C8 /* VolunteerHeader.h */,
 				7AA4C48628922F9A00E204C8 /* ToDoHeader.h */,
+				B037FC3B289CC664004B99DD /* SportAttendanceHeader.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -5755,6 +5779,59 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
+		B037FC28289CC5DE004B99DD /* Discover_SportAttendance */ = {
+			isa = PBXGroup;
+			children = (
+				B037FC29289CC5DE004B99DD /* Model */,
+				B037FC2C289CC5DE004B99DD /* View */,
+				B037FC33289CC5DE004B99DD /* ViewController */,
+			);
+			path = Discover_SportAttendance;
+			sourceTree = "<group>";
+		};
+		B037FC29289CC5DE004B99DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B037FC2A289CC5DE004B99DD /* SportAttendanceModel.h */,
+				B037FC2B289CC5DE004B99DD /* SportAttendanceModel.m */,
+				B058EE1B289D288800264EF3 /* SportAttendanceItemModel.h */,
+				B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */,
+				B058EE1E289D4D5A00264EF3 /* SportAttendanceItem */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B037FC2C289CC5DE004B99DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B037FC30289CC5DE004B99DD /* SportAttendanceHeadView.h */,
+				B037FC2D289CC5DE004B99DD /* SportAttendanceHeadView.m */,
+				B037FC2F289CC5DE004B99DD /* SportAttendanceView.h */,
+				B037FC32289CC5DE004B99DD /* SportAttendanceView.m */,
+				B037FC31289CC5DE004B99DD /* SportAttendanceTableViewCell.h */,
+				B037FC2E289CC5DE004B99DD /* SportAttendanceTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B037FC33289CC5DE004B99DD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B037FC35289CC5DE004B99DD /* SportAttendanceViewController.h */,
+				B037FC34289CC5DE004B99DD /* SportAttendanceViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B058EE1E289D4D5A00264EF3 /* SportAttendanceItem */ = {
+			isa = PBXGroup;
+			children = (
+				B058EE1F289D4D7200264EF3 /* SportAttendanceItem.h */,
+				B058EE20289D4D7200264EF3 /* SportAttendanceItem.m */,
+			);
+			path = SportAttendanceItem;
+			sourceTree = "<group>";
+		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
 			isa = PBXGroup;
 			children = (
@@ -6520,6 +6597,7 @@
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				646B1967282AA9420015DF28 /* BusGuideViewController.m in Sources */,
 				14B73F72281BED7B00D08ADD /* ActiveMessageCell.m in Sources */,
+				B037FC3A289CC5DE004B99DD /* SportAttendanceViewController.m in Sources */,
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
 				14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */,
 				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
@@ -6629,6 +6707,7 @@
 				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
+				B037FC36289CC5DE004B99DD /* SportAttendanceModel.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				7311328A26CCEC2400EF88C1 /* TopView.m in Sources */,
@@ -6639,6 +6718,7 @@
 				AA7ABAF42873EA6D00BA6790 /* DynamicDetailAddPhotoController.m in Sources */,
 				AA0DDB7E286C8B1A00802324 /* PMPHomePageHeaderView.m in Sources */,
 				AA0DDB5E286C8B1A00802324 /* AuthenticViewController.m in Sources */,
+				B037FC37289CC5DE004B99DD /* SportAttendanceHeadView.m in Sources */,
 				AA0DDB58286C8B1A00802324 /* UIScrollView+JHContentExtension.m in Sources */,
 				AA7ABAFB2873EA6D00BA6790 /* zhPopupController.m in Sources */,
 				AA0DDB82286C8B1A00802324 /* IDCardTableViewCell.m in Sources */,
@@ -6647,6 +6727,7 @@
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
 				18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */,
+				B037FC38289CC5DE004B99DD /* SportAttendanceTableViewCell.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
 				185AFA5627022258007F40F9 /* MGDCommen.swift in Sources */,
 				18CDF6B6257F91BD006E8E5C /* SCPieChartDataItem.m in Sources */,
@@ -6731,6 +6812,7 @@
 				7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
+				B037FC39289CC5DE004B99DD /* SportAttendanceView.m in Sources */,
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
 				AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */,
@@ -6756,6 +6838,7 @@
 				AA7ABA292873EA4100BA6790 /* CircleLabelBtn.m in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
 				14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */,
+				B058EE1D289D288800264EF3 /* SportAttendanceItemModel.m in Sources */,
 				AA0DDB75286C8B1A00802324 /* JHPageController.m in Sources */,
 				AA7ABAAA2873EA5500BA6790 /* MGDClickCoreLayer.m in Sources */,
 				14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */,
@@ -6782,6 +6865,7 @@
 				1893DC9126EA3375007E871E /* MGDGroup.m in Sources */,
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
+				B058EE21289D4D7200264EF3 /* SportAttendanceItem.m in Sources */,
 				1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				AA7ABAA72873EA5500BA6790 /* NewQACellCollectionView.m in Sources */,
