@@ -91,6 +91,10 @@ static RisingRouter *_router;
             response = responseObj;
         }];
         
+        if (response) {
+            response.responseClass = handlerObj;
+        }
+        
         if (completion) {
             completion(request, response);
         }

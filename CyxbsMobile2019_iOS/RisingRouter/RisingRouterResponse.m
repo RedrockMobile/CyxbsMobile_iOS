@@ -24,19 +24,19 @@
         case RouterResponseSuccess: {
             [string appendString:@"响应成功, "];
         } break;
-        case RouterParameterLoss: {
+        case RouterResponseParameterLoss: {
             [string appendString:@"参数缺失, "];
         } break;
-        case RouterParameterMatchFaild: {
+        case RouterResponseParameterMatchFaild: {
             [string appendString:@"匹配失败, "];
         } break;
-        case RouterParameterClassError: {
+        case RouterResponseParameterClassError: {
             [string appendString:@"类型错误, "];
         }
-        case RouterParameterConflict: {
+        case RouterResponseParameterConflict: {
             [string appendString:@"参数互斥, "];
         } break;
-        case RouterWithoutNavagation: {
+        case RouterResponseWithoutNavagation: {
             [string appendString:@"无栈管理, "];
         } break;
     }

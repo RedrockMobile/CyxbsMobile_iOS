@@ -17,4 +17,8 @@
 #import "CyxbsMobilePathAndKey.h"
 #import "CyxbsMobileToolMacro.h"
 
+#import "RisingRouter.h"
+
+#import "ExtensionHeader.h"
+
 #endif

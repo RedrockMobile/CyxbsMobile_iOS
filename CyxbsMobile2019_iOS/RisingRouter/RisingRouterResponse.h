@@ -14,19 +14,19 @@ NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSUInteger, RisingRouterResponseError) {
     RouterResponseSuccess,      // 成功响应
     
-    RouterParameterLoss,        // 参数缺失
-    RouterParameterMatchFaild,  // 匹配失败
-    RouterParameterClassError,  // 类型错误
-    RouterParameterConflict,    // 参数互斥
+    RouterResponseParameterLoss,        // 参数缺失
+    RouterResponseParameterMatchFaild,  // 匹配失败
+    RouterResponseParameterClassError,  // 类型错误
+    RouterResponseParameterConflict,    // 参数互斥
     
-    RouterWithoutNavagation     // 无栈管理
+    RouterResponseWithoutNavagation     // 无栈管理
 };
 
 #pragma mark - RisingRouterResponse
 
 @interface RisingRouterResponse : NSObject
 
-/// 响应的类
+/// 响应的类，会自动设置
 @property (nonatomic, nullable) Class responseClass;
 
 /// 响应的VC，可用于不push，而是要显示这个VC所使用

@@ -25,6 +25,9 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
+  - IGListDiffKit (4.0.0)
+  - IGListKit (4.0.0):
+    - IGListDiffKit (= 4.0.0)
   - IQKeyboardManager (6.5.10)
   - LookinServer (1.0.6)
   - Masonry (1.1.0)
@@ -44,6 +47,8 @@ PODS:
     - SDWebImage/Core (= 5.13.2)
   - SDWebImage/Core (5.13.2)
   - SnapKit (5.6.0)
+  - SQLiteRepairKit (1.2.2):
+    - WCDBOptimizedSQLCipher (~> 1.2.0)
   - SwiftyJSON (4.3.0)
   - TZImagePickerController (3.3.2)
   - UMCAnalytics (6.0.5):
@@ -66,6 +71,10 @@ PODS:
   - UMCShare/UI (6.9.10):
     - UMCCommon
     - UMCShare/Core
+  - WCDB (1.0.7.5):
+    - SQLiteRepairKit (~> 1.2.0)
+    - WCDBOptimizedSQLCipher (~> 1.2.0)
+  - WCDBOptimizedSQLCipher (1.2.1)
   - YBImageBrowser (3.0.9):
     - YBImageBrowser/Core (= 3.0.9)
   - YBImageBrowser/Core (3.0.9):
@@ -86,6 +95,7 @@ DEPENDENCIES:
   - Bugly
   - FluentDarkModeKit
   - FMDB
+  - IGListKit
   - IQKeyboardManager
   - LookinServer
   - Masonry
@@ -109,6 +119,7 @@ DEPENDENCIES:
   - UMCShare/Social/ReducedQQ (~> 6.9.6)
   - UMCShare/Social/ReducedWeChat (~> 6.9.6)
   - UMCShare/UI (~> 6.9.6)
+  - WCDB
   - YBImageBrowser
   - YYImage
   - YYKit
@@ -123,6 +134,8 @@ SPEC REPOS:
     - Bugly
     - FluentDarkModeKit
     - FMDB
+    - IGListDiffKit
+    - IGListKit
     - IQKeyboardManager
     - LookinServer
     - Masonry
@@ -136,6 +149,7 @@ SPEC REPOS:
     - SDCycleScrollView
     - SDWebImage
     - SnapKit
+    - SQLiteRepairKit
     - SwiftyJSON
     - TZImagePickerController
     - UMCAnalytics
@@ -145,6 +159,8 @@ SPEC REPOS:
     - UMCPush
     - UMCSecurityPlugins
     - UMCShare
+    - WCDB
+    - WCDBOptimizedSQLCipher
     - YBImageBrowser
     - YYImage
     - YYKit
@@ -158,6 +174,8 @@ SPEC CHECKSUMS:
   Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
   FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
+  IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
   IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
   LookinServer: 18155b1e4a08213c236a1dd6b7ca52328a70a1e3
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -171,6 +189,7 @@ SPEC CHECKSUMS:
   SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   TZImagePickerController: 36ca728ec681228918aa82e993aaab1962281b72
   UMCAnalytics: 045be2cd1ec05aa95ad62405a850757f932e2d59
@@ -180,10 +199,12 @@ SPEC CHECKSUMS:
   UMCPush: 078b5818e0e47c4cf8ab42a5a30e8b54a0854077
   UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
   UMCShare: a4a95fbdd61ecce5b6751d8c9ed9b519e80fcbc9
+  WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
+  WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   YBImageBrowser: 7ecc8bf33ffa5f3b94c397c29b4f3638dd37f527
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 3b0ca19a61b8841e92b26782c99f9b2b6065c8e2
+PODFILE CHECKSUM: d642d167a23d98c958ebd5e986df46769b779e73
 
 COCOAPODS: 1.11.3
