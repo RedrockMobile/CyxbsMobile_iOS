@@ -550,6 +550,7 @@
 		B037FC3A289CC5DE004B99DD /* SportAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC34289CC5DE004B99DD /* SportAttendanceViewController.m */; };
 		B058EE1D289D288800264EF3 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */; };
 		B058EE21289D4D7200264EF3 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B058EE20289D4D7200264EF3 /* SportAttendanceItem.m */; };
+		B0DB8AC0289FCEFB00D6769D /* IDSController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DB8ABF289FCEFB00D6769D /* IDSController.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1777,6 +1778,8 @@
 		B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceItemModel.m; sourceTree = "<group>"; };
 		B058EE1F289D4D7200264EF3 /* SportAttendanceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItem.h; sourceTree = "<group>"; };
 		B058EE20289D4D7200264EF3 /* SportAttendanceItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceItem.m; sourceTree = "<group>"; };
+		B0DB8ABE289FCEFB00D6769D /* IDSController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDSController.h; sourceTree = "<group>"; };
+		B0DB8ABF289FCEFB00D6769D /* IDSController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDSController.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -3492,6 +3495,8 @@
 			children = (
 				18CDF5A7257F91BD006E8E5C /* ScoreViewController.h */,
 				18CDF5A9257F91BD006E8E5C /* ScoreViewController.m */,
+				B0DB8ABE289FCEFB00D6769D /* IDSController.h */,
+				B0DB8ABF289FCEFB00D6769D /* IDSController.m */,
 				18CDF5AA257F91BD006E8E5C /* Model */,
 				18CDF5BC257F91BD006E8E5C /* View */,
 			);
@@ -3532,18 +3537,18 @@
 		18CDF5BC257F91BD006E8E5C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF5BD257F91BD006E8E5C /* DetailScorePerYearCell.h */,
 				18CDF5BE257F91BD006E8E5C /* UserInfoView.h */,
-				18CDF5BF257F91BD006E8E5C /* DetailSubjectScoreCell.h */,
+				18CDF5C3257F91BD006E8E5C /* UserInfoView.m */,
+				18CDF5C8257F91BD006E8E5C /* ABScoreView.h */,
 				18CDF5C0257F91BD006E8E5C /* ABScoreView.m */,
 				18CDF5C1257F91BD006E8E5C /* ScoreTwoTitleView.h */,
-				18CDF5C3257F91BD006E8E5C /* UserInfoView.m */,
+				18CDF5C7257F91BD006E8E5C /* ScoreTwoTitleView.m */,
+				18CDF5BD257F91BD006E8E5C /* DetailScorePerYearCell.h */,
 				18CDF5C4257F91BD006E8E5C /* DetailScorePerYearCell.m */,
+				18CDF5BF257F91BD006E8E5C /* DetailSubjectScoreCell.h */,
 				18CDF5C5257F91BD006E8E5C /* DetailSubjectScoreCell.m */,
 				18CDF5C2257F91BD006E8E5C /* IdsBindingView.h */,
 				18CDF5C6257F91BD006E8E5C /* IdsBindingView.m */,
-				18CDF5C7257F91BD006E8E5C /* ScoreTwoTitleView.m */,
-				18CDF5C8257F91BD006E8E5C /* ABScoreView.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6707,6 +6712,7 @@
 				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
+				B0DB8AC0289FCEFB00D6769D /* IDSController.m in Sources */,
 				B037FC36289CC5DE004B99DD /* SportAttendanceModel.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
