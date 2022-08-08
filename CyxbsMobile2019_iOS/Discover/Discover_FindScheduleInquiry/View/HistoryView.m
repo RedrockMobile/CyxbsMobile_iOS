@@ -420,7 +420,7 @@
     
     [self addSeperateLine];         // 分割线
     [self addPeoplePicture];        // 小人
-    [self addCorrelationCentralLabel];// label
+    [self addCorrelationCentralLabel];// @“还没有关联同学哦”
     [self addCorrelationName];      // name
     [self addCorrelationMajor];     // major
     [self addCorrelationNumber];    // number
@@ -532,22 +532,37 @@
 
 // 点击清除按钮
 - (void)clearCorrelationPeople {
-//    AlertView *alertView = [[AlertView alloc] initWithTitle:@"确定要取消关联吗" AndHintTitle:@""];
-//    [self addSubview:alertView];
+    // 弹窗
+    // 1.缓存移除
+    [self clearUserDefaultCorrelation];
+    // 2.视图移除
     [self clearOldCorrelationPeopleView];
+    
+}
+
+// 在清除按钮中使用：改变关联视图
+- (void)clearOldCorrelationPeopleView {
+    // 删：
+    [self.correlationName removeFromSuperview];// 名字
+    [self.correlationMajor removeFromSuperview];// 专业
+    [self.correlationNumber removeFromSuperview];// 学号
+    [self.correlationNumberLabel removeFromSuperview];// ？/1
+    [self.clearCorrelationBtn removeFromSuperview];// 扫帚
+    [self.correlationPeople removeFromSuperview];// 小人
+    // 加：
+        // 1.@“还没有关联同学哦”
+    [self addCorrelationCentralLabel];// @“还没有关联同学哦”
+        // 2.小人图
+    [self addPeoplePicture];        // 小人
+    
+}
+
+// 在清除按钮中使用：移除缓存
+- (void)clearUserDefaultCorrelation {
     [NSUserDefaults.standardUserDefaults setBool:NO forKey:ClassSchedule_correlationClass_BOOL];
     [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationName_String];
     [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationMajor_String];
     [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationStuNum_String];
-}
-
-- (void)clearOldCorrelationPeopleView {
-    [self.correlationName removeFromSuperview];
-    [self.correlationMajor removeFromSuperview];
-    [self.correlationNumber removeFromSuperview];
-    [self.correlationNumberLabel removeFromSuperview];
-    [self.clearCorrelationBtn removeFromSuperview];
-    [self addCorrelationPictures];
 }
 
 @end

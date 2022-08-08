@@ -22,12 +22,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    // 返回之前刷新一次
-    [self addSegmentView];
+    
     for (UIViewController *vc in self.childViewControllers) {
         [vc viewWillAppear:animated];
     }
-    
+
 }
 
 - (void)viewDidLoad {

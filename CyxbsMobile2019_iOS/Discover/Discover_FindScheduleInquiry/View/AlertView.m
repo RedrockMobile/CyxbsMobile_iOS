@@ -15,10 +15,6 @@
 @property (nonatomic, strong) NSString *title;
 /// 小标题
 @property (nonatomic, strong) NSString *hint;
-/// 左按钮
-@property (nonatomic, strong) UIButton *leftButton;
-/// 右按钮
-@property (nonatomic, strong) UIButton *rightButton;
 /// 大标题
 @property (nonatomic, strong) UILabel *titleLabel;
 /// 小标题
@@ -116,7 +112,6 @@
 - (void)addLeftButton {
     UIButton *leftBtn = [[UIButton alloc] init];
     self.leftButton = leftBtn;
-//    [leftBtn setBackgroundColor:[UIColor colorNamed:@"取消Color"]];
     if (@available(iOS 11.0, *)) {
         leftBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C3D4EE" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:0.8]];
     } else {
@@ -146,7 +141,6 @@
     UIButton *rightBtn = [[UIButton alloc] init];
     self.rightButton = rightBtn;
     rightBtn.layer.cornerRadius = 16;
-//    rightBtn.backgroundColor = [UIColor colorNamed:@"确定Color"];
     if (@available(iOS 11.0, *)) {
         rightBtn.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4A44E4" alpha:1] darkColor:[UIColor colorWithHexString:@"#4A44E4" alpha:0.8]];
     } else {
@@ -166,8 +160,11 @@
 
 // 右按钮方法
 - (void)rightButtonClicked {
-    [self.delegate rightButtonTouchedDelegateWithBtn:self.leftButton];
+
+    [self removeFromSuperview];
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

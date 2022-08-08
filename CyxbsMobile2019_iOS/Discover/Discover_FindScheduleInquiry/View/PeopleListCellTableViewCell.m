@@ -80,6 +80,7 @@
         make.height.mas_equalTo(16);
     }];
 }
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
@@ -92,26 +93,50 @@
         _addBtn = [[UIButton alloc] init];
         [_addBtn setImage:[UIImage imageNamed:@"addPeopleClass"] forState:UIControlStateNormal];
         [_addBtn setImage:[UIImage imageNamed:@"addPeopleClass_selected"] forState:UIControlStateSelected];
-        // 点击按钮
-        //1. 判断是否关联
-        //1.1 未关联点击方法：添加关联
         [_addBtn addTarget:self action:@selector(didClickedAddPeopleFromIndex) forControlEvents:UIControlEventTouchUpInside];
-        //1.2 已关联再点击：取消关联
-        
     }
     return _addBtn;
 }
 
-
-// 添加关联按钮方法
+// 按钮方法：
 - (void)didClickedAddPeopleFromIndex {
+    // 1.如果先开始没关联
     if(![NSUserDefaults.standardUserDefaults boolForKey:ClassSchedule_correlationClass_BOOL]) {
         self.addBtn.selected = YES;
         [self.delegate addPeopleClass:self.cellIndex];
     }
+    // 2.如果已经有关联
     else{
-        self.addBtn.selected = NO;
-        [NSUserDefaults.standardUserDefaults setBool:NO forKey:ClassSchedule_correlationClass_BOOL];
+        // 2.1 点击相同的人:取消关注
+        if([self judgeIfEqualPeople] == YES) {
+            // 2.1.1 取消按钮选择
+            self.addBtn.selected = NO;
+            // 2.1.2 删除存储
+            [NSUserDefaults.standardUserDefaults setBool:NO forKey:ClassSchedule_correlationClass_BOOL];
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationName_String];
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationMajor_String];
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationStuNum_String];
+            // 2.1.3 已取消弹窗
+            [self.delegate cancelPeopleClass:self.cellIndex];
+        }
+        // 2.2 点击不同的人:替换关注
+        else {
+            // 2.2.1 替换弹窗
+            [self.delegate replacePeopleClass:self.cellIndex];
+//            [self.delegate addPeopleClass:self.cellIndex];
+            
+        }
+    }
+}
+
+// 判断是相同？
+- (BOOL)judgeIfEqualPeople {
+    NSString *getSaveNumber = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationStuNum_String];
+    if ([self.stuNumLabel.text isEqualToString:getSaveNumber]) {
+        return YES;
+    }
+    else {
+        return NO;
     }
 }
 

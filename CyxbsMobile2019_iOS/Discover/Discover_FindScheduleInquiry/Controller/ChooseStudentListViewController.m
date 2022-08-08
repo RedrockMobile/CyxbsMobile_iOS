@@ -10,6 +10,7 @@
 #import "ScheduleViewController.h"
 #import "PeopleListCellTableViewCell.h"
 #import "WYCClassBookViewController.h"
+#import "AlertView.h"
 //#import "WYCClassAndRemindDataModel.h"
 
 @interface ChooseStudentListViewController ()<UITableViewDelegate, UITableViewDataSource, AddPeopleClassDelegate>
@@ -21,6 +22,7 @@
 @property (nonatomic, weak)UIButton *backButton;
 /**显示“同学课表”四个字的label*/
 @property (nonatomic, weak)UILabel *titleLabel;
+@property (nonatomic, strong) NSIndexPath *currentIndex;/// test当前index
 @end
 
 @implementation ChooseStudentListViewController
@@ -107,8 +109,11 @@
     cell.textLabel.text = self.classmatesList.classmatesArray[indexPath.row].name;
     cell.detailTextLabel.text = self.classmatesList.classmatesArray[indexPath.row].major;
     cell.stuNumLabel.text = self.classmatesList.classmatesArray[indexPath.row].stuNum;
-
     cell.cellIndex = indexPath;
+    // 如果当前名字符合关联人，按钮为选中状态
+    if ([[NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationName_String] isEqualToString:self.classmatesList.classmatesArray[indexPath.row].name]) {
+        cell.addBtn.selected = YES;
+    }
     cell.delegate = self;
     return cell;
 }
@@ -171,72 +176,53 @@
     [nav popViewControllerAnimated:YES];
     UIViewController *vc = nav.topViewController;
     [vc viewWillAppear:YES];
-    /*
-    // 1.新建vc使其可使用block：
-    ScheduleViewController *stu = [[ScheduleViewController alloc] initWithUserDefaultKey:ClassSchedule_stuFindHistory_String andPeopleType:PeopleTypeStudent];
-    
-    ScheduleViewController *tea = [[ScheduleViewController alloc] initWithUserDefaultKey:ClassSchedule_teaFindHistory_String andPeopleType:PeopleTypeTeacher];
-    // 2.block中：
-        // 2.1 获得当前的数据
-    stu.reloadCorrelationBlock = ^(NSString * _Nonnull name, NSString * _Nonnull major, NSString * _Nonnull number) {
-        // 1.数据
-        name = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationName_String];
-        major = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationMajor_String];
-        number = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationStuNum_String];
-        // 2.跳
-        [self.navigationController popViewControllerAnimated:YES];
-    };
-    tea.reloadCorrelationBlock = ^(NSString * _Nonnull name, NSString * _Nonnull major, NSString * _Nonnull number) {
-        // 1.数据
-        name = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationName_String];
-        major = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationMajor_String];
-        number = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationStuNum_String];
-        // 2.跳
-        [self.navigationController popViewControllerAnimated:YES];
-    };
-     */
         // 跳回的方法
 //    [self.navigationController popViewControllerAnimated:YES];
     
 }
 
-// 点击关联按钮后
+#pragma mark - cellDelegate
+// 添加的弹窗+存储
 - (void)addPeopleClass:(NSIndexPath *)indexPath {
-    // 1.如果没有关联，关联成功 名字学号专业
-    if (![NSUserDefaults.standardUserDefaults boolForKey:ClassSchedule_correlationClass_BOOL]) {
-        // 1.1
-        [NewQAHud showHudWith:@"关联成功！" AddView:self.view];
-        // 1.2 存储
-        [NSUserDefaults.standardUserDefaults setBool:YES forKey:ClassSchedule_correlationClass_BOOL];
+        // 1.弹窗
+    [NewQAHud showHudWith:@"关联成功！" AddView:self.view];
+        // 2.存储
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:ClassSchedule_correlationClass_BOOL];
             // 名字
-        [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[indexPath.row].name forKey:ClassSchedule_correlationName_String];
+    [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[indexPath.row].name forKey:ClassSchedule_correlationName_String];
             // 专业
-        [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[indexPath.row].major forKey:ClassSchedule_correlationMajor_String];
+    [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[indexPath.row].major forKey:ClassSchedule_correlationMajor_String];
             // 学号
-        [NSUserDefaults.standardUserDefaults setObject: self.classmatesList.classmatesArray[indexPath.row].stuNum forKey:ClassSchedule_correlationStuNum_String];
-        // 1.3 显示
-        
-    }
-    // 2.如果已经有关联
-    else {
-        // 2.1 Alert
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"你已有一位关联同学" message:@"确定要替换吗" preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *cancelAC = [UIAlertAction actionWithTitle:@"取消"                  style:(UIAlertActionStyleCancel) handler:nil];
-        UIAlertAction *deleteAC = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDestructive) handler:^(UIAlertAction * _Nonnull action) {
-                // 1.删原来的
-                
-                // 2.存储当前同学
-            
-                // 3.@“已取消关联”
-            [NewQAHud showHudWith:@"已取消关联" AddView:self.view];
-                // 4.显示
-        }];
-        
-        [alert addAction:deleteAC];
-        [alert addAction:cancelAC];
-    }
+    [NSUserDefaults.standardUserDefaults setObject: self.classmatesList.classmatesArray[indexPath.row].stuNum forKey:ClassSchedule_correlationStuNum_String];
 }
 
+// 取消关联的弹窗
+- (void)cancelPeopleClass:(NSIndexPath *)indexPath {
+    [NewQAHud showHudWith:@"已取消关联" AddView:self.view];
+}
 
+// 替换的弹窗
+- (void)replacePeopleClass:(NSIndexPath *)indexPath {
+    self.currentIndex = indexPath;
+    AlertView *alertView = [[AlertView alloc] initWithTitle:@"你已经有一位关联同学" AndHintTitle:@"确定要替换吗"];
+    [self.view addSubview:alertView];
+    [alertView.rightButton addTarget:self action:@selector(replaceCorrelation) forControlEvents:UIControlEventTouchUpInside];
+}
+
+// “确定”按钮方法
+- (void)replaceCorrelation {
+    // 1.删原来的
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationName_String];
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationMajor_String];
+    [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationStuNum_String];
+    // 2.存
+    [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[self.currentIndex.row].name forKey:ClassSchedule_correlationName_String];
+    [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[self.currentIndex.row].major forKey:ClassSchedule_correlationMajor_String];
+    [NSUserDefaults.standardUserDefaults setObject:self.classmatesList.classmatesArray[self.currentIndex.row].stuNum forKey:ClassSchedule_correlationStuNum_String];
+    // 3.弹窗
+    [NewQAHud showHudWith:@"关联成功！" AddView:self.view];
+    // 4.刷新
+    [self.tableView reloadData];
+}
 
 @end

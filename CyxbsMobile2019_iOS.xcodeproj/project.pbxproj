@@ -341,7 +341,6 @@
 		73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */; };
 		73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */; };
 		7AA2BEC0289E56AB00415A6C /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BEBF289E56AB00415A6C /* AlertView.m */; };
-		7AA2BEC7289EC47000415A6C /* CorrelationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BEC6289EC46F00415A6C /* CorrelationView.m */; };
 		7AB78E3B2897A16200215FB6 /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB78E3A2897A16200215FB6 /* HistoryCell.m */; };
 		7F101AC2260613E800F2034C /* YYZTopicGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */; };
 		7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */; };
@@ -1339,8 +1338,6 @@
 		7AA2BEBE289E56AB00415A6C /* AlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		7AA2BEBF289E56AB00415A6C /* AlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		7AA2BEC4289EBF8400415A6C /* FindScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindScheduleHeader.h; sourceTree = "<group>"; };
-		7AA2BEC5289EC46F00415A6C /* CorrelationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CorrelationView.h; sourceTree = "<group>"; };
-		7AA2BEC6289EC46F00415A6C /* CorrelationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CorrelationView.m; sourceTree = "<group>"; };
 		7AA4C469288D23A700E204C8 /* MineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeader.h; sourceTree = "<group>"; };
 		7AA4C46E288FCEA800E204C8 /* ClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleHeader.h; sourceTree = "<group>"; };
 		7AA4C4712891230900E204C8 /* ChangePasswordHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordHeader.h; sourceTree = "<group>"; };
@@ -3219,8 +3216,6 @@
 			children = (
 				18CDF522257F91BC006E8E5C /* HistoryView.h */,
 				18CDF521257F91BC006E8E5C /* HistoryView.m */,
-				7AA2BEC5289EC46F00415A6C /* CorrelationView.h */,
-				7AA2BEC6289EC46F00415A6C /* CorrelationView.m */,
 				7AA2BEBE289E56AB00415A6C /* AlertView.h */,
 				7AA2BEBF289E56AB00415A6C /* AlertView.m */,
 				7AB78E392897A16200215FB6 /* HistoryCell.h */,
@@ -6756,7 +6751,6 @@
 				7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
-				7AA2BEC7289EC47000415A6C /* CorrelationView.m in Sources */,
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
 				AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */,
