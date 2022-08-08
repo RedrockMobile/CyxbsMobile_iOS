@@ -28,7 +28,8 @@
     [HttpTool.shareTool
      request:Discover_GET_allMsg_API
      type:HttpToolRequestTypeGet
-     serializer:HttpToolRequestSerializerHTTP bodyParameters:nil progress:nil
+     serializer:HttpToolRequestSerializerHTTP bodyParameters:nil
+     progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSLog(@"🟢%@:\n%@", self.class, object);
         NSDictionary *data = object[@"data"];

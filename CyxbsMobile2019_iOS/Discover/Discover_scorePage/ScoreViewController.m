@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     [self addContentView];//scrollView
     [self addUserInfoView];
     [self tryIDSBinding];
@@ -64,6 +64,7 @@
 
 -(void)addIdsBindingView {
     UIViewController *vc = [self.router controllerForRouterPath:@"IDSController"];
+    vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];
 }
@@ -131,7 +132,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestGPASucceed) name:@"GPASucceed" object:nil];
 }
 
-- (void) addContentView {
+- (void)addContentView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     self.contentView = scrollView;
     [scrollView setBounces:NO];

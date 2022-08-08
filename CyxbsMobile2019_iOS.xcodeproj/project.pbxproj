@@ -3701,11 +3701,9 @@
 		18CDF5AA257F91BD006E8E5C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF5AB257F91BD006E8E5C /* GPA.h */,
-				18CDF5AC257F91BD006E8E5C /* IdsBinding.h */,
 				18CDF5AD257F91BD006E8E5C /* Item */,
+				18CDF5AB257F91BD006E8E5C /* GPA.h */,
 				18CDF5BA257F91BD006E8E5C /* GPA.m */,
-				18CDF5BB257F91BD006E8E5C /* IdsBinding.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6029,6 +6027,7 @@
 		B07E734A289FF34600AB701C /* IDSBinding */ = {
 			isa = PBXGroup;
 			children = (
+				B07E734D28A0D3B300AB701C /* Model */,
 				B07E734C289FF9BA00AB701C /* Controller */,
 				B07E734B289FF9AF00AB701C /* View */,
 			);
@@ -6051,6 +6050,15 @@
 				B0DB8ABF289FCEFB00D6769D /* IDSController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		B07E734D28A0D3B300AB701C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF5AC257F91BD006E8E5C /* IdsBinding.h */,
+				18CDF5BB257F91BD006E8E5C /* IdsBinding.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
@@ -7613,7 +7621,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 67QNT8WT7R;
+				DEVELOPMENT_TEAM = 8A7TGYQNRC;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7669,7 +7677,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 67QNT8WT7R;
+				DEVELOPMENT_TEAM = 8A7TGYQNRC;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7722,7 +7730,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = 8A7TGYQNRC;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -7747,7 +7755,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = 8A7TGYQNRC;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -7769,7 +7777,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = 8A7TGYQNRC;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7788,7 +7796,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D67VC378K4;
+				DEVELOPMENT_TEAM = 8A7TGYQNRC;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

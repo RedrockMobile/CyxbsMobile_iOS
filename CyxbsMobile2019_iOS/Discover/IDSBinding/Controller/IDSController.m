@@ -21,9 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.idsBindgView];
-    self.view.backgroundColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBinding_Error" object:nil];
 }
 
 -(void)idsBindingSuccess {
@@ -42,24 +41,23 @@
 
 //MARK: - IdsBindingViewDelegate
 - (void)touchBindingButton {
-    [self idsBindingSuccess];
-//    NSString *bindingNum = self.idsBindgView.accountfield.text;
-//    NSString *bindingPasswd = self.idsBindgView.passTextfield.text;
-//    if(![bindingNum isEqual: @""] && ![bindingPasswd isEqual: @""]) {
-//        self.loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//         self.loadHud.labelText = @"正在验证";
-//        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:bindingNum isPassword:bindingPasswd];
-//        [binding fetchData];
-//    }else {
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.idsBindgView animated:YES];
-//        hud.mode = MBProgressHUDModeText;
-//        hud.labelText = @"请输入统一认证码和密码呦～";
-//        [hud hide:YES afterDelay:2.0];
-//    }
+    NSString *bindingNum = self.idsBindgView.accountfield.text;
+    NSString *bindingPasswd = self.idsBindgView.passTextfield.text;
+    if(![bindingNum isEqual: @""] && ![bindingPasswd isEqual: @""]) {
+        self.loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.loadHud.labelText = @"正在验证";
+        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:bindingNum isPassword:bindingPasswd];
+        [binding fetchData];
+    }else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.idsBindgView animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"请输入统一认证码和密码呦～";
+        [hud hide:YES afterDelay:2.0];
+    }
 }
 - (IdsBindingView *)idsBindgView{
     if (!_idsBindgView) {
-        _idsBindgView = [[IdsBindingView alloc] initWithFrame:self.view.bounds];
+        _idsBindgView = [[IdsBindingView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         _idsBindgView.delegate = self;
     }
     return _idsBindgView;
