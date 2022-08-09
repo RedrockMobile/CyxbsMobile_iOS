@@ -36,6 +36,9 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        UIImageView *backImg = [[UIImageView alloc] initWithFrame:self.frame];
+        backImg.image = [UIImage imageNamed:@"Image"];
+        [self addSubview:backImg];
         self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [self addSubview:self.totLab];
         [self addSubview:self.runLab];

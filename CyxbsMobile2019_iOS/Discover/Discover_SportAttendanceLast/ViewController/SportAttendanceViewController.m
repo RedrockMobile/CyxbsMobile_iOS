@@ -118,7 +118,7 @@
 }
 
 #pragma mark - 返回条
-//自定义的Tabbar（显示“查课表”的那块）
+//自定义的Tabbar
 - (void)addCustomTabbarView {
     UIView *backgroundView;
     backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, NVGBARHEIGHT, SCREEN_WIDTH, STATUSBARHEIGHT)];

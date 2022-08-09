@@ -561,6 +561,7 @@
 		B037FC3A289CC5DE004B99DD /* SportAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC34289CC5DE004B99DD /* SportAttendanceViewController.m */; };
 		B03C249C28A13DCF00760EA9 /* DiscoverSportAttendanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = B03C249B28A13DCF00760EA9 /* DiscoverSportAttendanceView.m */; };
 		B03C24A128A1431D00760EA9 /* DiscoverSAVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B03C24A028A1431D00760EA9 /* DiscoverSAVC.m */; };
+		B03C24A828A220D500760EA9 /* DataContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B03C24A728A220D500760EA9 /* DataContentView.m */; };
 		B058EE1D289D288800264EF3 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */; };
 		B058EE21289D4D7200264EF3 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B058EE20289D4D7200264EF3 /* SportAttendanceItem.m */; };
 		B0DB8AC0289FCEFB00D6769D /* IDSController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DB8ABF289FCEFB00D6769D /* IDSController.m */; };
@@ -1816,6 +1817,8 @@
 		B03C249B28A13DCF00760EA9 /* DiscoverSportAttendanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverSportAttendanceView.m; sourceTree = "<group>"; };
 		B03C249F28A1431D00760EA9 /* DiscoverSAVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverSAVC.h; sourceTree = "<group>"; };
 		B03C24A028A1431D00760EA9 /* DiscoverSAVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverSAVC.m; sourceTree = "<group>"; };
+		B03C24A628A220D500760EA9 /* DataContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataContentView.h; sourceTree = "<group>"; };
+		B03C24A728A220D500760EA9 /* DataContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataContentView.m; sourceTree = "<group>"; };
 		B058EE1B289D288800264EF3 /* SportAttendanceItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItemModel.h; sourceTree = "<group>"; };
 		B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceItemModel.m; sourceTree = "<group>"; };
 		B058EE1F289D4D7200264EF3 /* SportAttendanceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItem.h; sourceTree = "<group>"; };
@@ -6022,6 +6025,7 @@
 		B03C249D28A1429600760EA9 /* SportAttendance */ = {
 			isa = PBXGroup;
 			children = (
+				B03C24A528A2205D00760EA9 /* View */,
 				B03C249E28A142B500760EA9 /* Contriller */,
 			);
 			path = SportAttendance;
@@ -6034,6 +6038,15 @@
 				B03C24A028A1431D00760EA9 /* DiscoverSAVC.m */,
 			);
 			path = Contriller;
+			sourceTree = "<group>";
+		};
+		B03C24A528A2205D00760EA9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B03C24A628A220D500760EA9 /* DataContentView.h */,
+				B03C24A728A220D500760EA9 /* DataContentView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B058EE1E289D4D5A00264EF3 /* SportAttendanceItem */ = {
@@ -6903,6 +6916,7 @@
 				14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */,
 				AA4FA1FA25C2E2E5005139BA /* PraiseTableViewCell.m in Sources */,
 				AA4FF36525879CD500C31286 /* MineSettingViewController.m in Sources */,
+				B03C24A828A220D500760EA9 /* DataContentView.m in Sources */,
 				14B73F76281BED7B00D08ADD /* SystemMessageCell.m in Sources */,
 				AA0DDB53286C8B1900802324 /* MineMSSEnterBtn.m in Sources */,
 				14B73F7B281BED7B00D08ADD /* MineMessageMoreVC.m in Sources */,

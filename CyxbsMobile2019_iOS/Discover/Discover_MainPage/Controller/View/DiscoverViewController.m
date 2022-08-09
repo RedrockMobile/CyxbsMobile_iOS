@@ -18,7 +18,6 @@
 #import "WeDateViewController.h"//没课约
 #import "CQUPTMapViewController.h"
 
-//#import "TODOMainViewController.h"  //邮子清单
 #import "SportAttendanceViewController.h"//体育打卡详情页面
 //#import "InstallRoomViewController.h"
 #import "ScheduleInquiryViewController.h"
@@ -38,7 +37,6 @@
 #import "QueryViewController.h"
 #import "ArchiveTool.h"
 //#import "DiscoverTodoView.h"
-//#import "DiscoverTodoSheetView.h"//点击添加事项后，弹出来的View
 #import "DiscoverSportAttendanceView.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
@@ -178,7 +176,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.navigationController.navigationBar.hidden = YES;
     
     if (self.loginStatus != AlreadyLogin) {
-        [self presentToLogin];
+//        [self presentToLogin];
         CCLog(@"needLogIn, %lud", self.loginStatus);
     } else {
         [self RequestCheckinInfo];
@@ -187,28 +185,28 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
-//    if(((ClassTabBar *)(self.tabBarController.tabBar))
-//       .classScheduleTabBarView == nil) {
-//        ClassScheduleTabBarView *classTabBarView =
-//        [[ClassScheduleTabBarView alloc] initWithFrame:
-//         CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
-//
-//        classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
-//        [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
-//
-//        ((ClassTabBar *)(self.tabBarController.tabBar))
-//            .classScheduleTabBarView = classTabBarView;
-//
-//        ((ClassTabBar *)(self.tabBarController.tabBar))
-//            .classScheduleTabBarView.userInteractionEnabled = YES;
-//
-//        if(![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
-//            [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
-//            classTabBarView.mySchedul.fakeBar.alpha = 0;
-//            [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
-//        }
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
-//    }
+    if(((ClassTabBar *)(self.tabBarController.tabBar))
+       .classScheduleTabBarView == nil) {
+        ClassScheduleTabBarView *classTabBarView =
+        [[ClassScheduleTabBarView alloc] initWithFrame:
+         CGRectMake(0, -self.classTabbarHeight, MAIN_SCREEN_W, self.classTabbarHeight)];
+
+        classTabBarView.layer.cornerRadius = self.classTabbarCornerRadius;
+        [(ClassTabBar *)(self.tabBarController.tabBar) addSubview:classTabBarView];
+
+        ((ClassTabBar *)(self.tabBarController.tabBar))
+            .classScheduleTabBarView = classTabBarView;
+
+        ((ClassTabBar *)(self.tabBarController.tabBar))
+            .classScheduleTabBarView.userInteractionEnabled = YES;
+
+        if(![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
+            [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+            classTabBarView.mySchedul.fakeBar.alpha = 0;
+            [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
+        }
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
+    }
 //    [self.todoView reloadData];
 }
 - (void)presentMySchedul{

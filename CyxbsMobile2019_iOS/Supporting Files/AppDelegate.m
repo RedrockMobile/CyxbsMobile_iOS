@@ -252,7 +252,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 - (UIViewController *)tabBarController {
-    return [self.router controllerForRouterPath:@"SchoolTabBarController"];
+    return [self.router controllerForRouterPath:@"ClassTabBarController"];
 }
 
 

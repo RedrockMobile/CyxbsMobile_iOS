@@ -258,8 +258,13 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #define PingFangSCBold @"PingFangSC-Semibold"
 
 
+
 // Bahnschrift字体
 #define BahnschriftBold @"Bahnschrift_Bold"
+
+//Impact数字字体
+#define ImpactMedium @"Impact"
+#define ImpactRegular @"Impact"
 
 // 周数
 #define weekCnt 25
