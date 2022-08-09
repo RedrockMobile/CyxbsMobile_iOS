@@ -10,9 +10,7 @@
 #import "VolunteerItem.h"
 #import "ArchiveTool.h"
 
-//Bahnschrift字体部分
-#define ImpactMedium @"Impact"
-#define ImpactRegular @"Impact"
+
 
 @interface VolunteerView()
 

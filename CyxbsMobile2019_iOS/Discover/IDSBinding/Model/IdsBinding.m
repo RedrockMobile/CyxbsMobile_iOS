@@ -19,7 +19,9 @@
 
 - (void)fetchData {
     
-    NSDictionary *paramters = @{@"idsNum":self.idsNum, @"idsPassword":self.idsPassword};
+    NSDictionary *paramters = @{
+        @"idsPassword":self.idsPassword,
+        @"idsNum":self.idsNum};
     
     [HttpTool.shareTool
      request:Discover_POST_idsBinding_API
@@ -35,9 +37,13 @@
             [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Success" object:nil];
             NSLog(@"ids绑定成功");
             [UserItem defaultItem].idsBindingSuccess = YES;
+        }else{
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Error" object:nil];
         }
     }
-     failure:nil];
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"ids绑定请求失败");
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Error" object:nil];
+        }];
 }
-
 @end

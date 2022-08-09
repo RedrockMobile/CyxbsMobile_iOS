@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-//Bahnschrift字体部分
-#define ImpactMedium @"Impact"
-#define ImpactRegular @"Impact"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ElectricityViewDelegate <NSObject>

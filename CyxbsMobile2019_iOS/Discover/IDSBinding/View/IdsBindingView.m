@@ -9,7 +9,7 @@
 #import "IdsBindingView.h"
 
 @interface IdsBindingView()
-@property (nonatomic, weak)UILabel *hintLabel;
+@property (nonatomic, strong)UILabel *hintLabel;
 @property (nonatomic, weak)UIImageView *accountIcon;
 @property (nonatomic, weak)UIImageView *passwdIcon;
 
@@ -20,15 +20,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         //hintLabel
-        UILabel *label = [[UILabel alloc]init];
-        self.hintLabel = label;
-        label.text = @"若要查询成绩，请输入您的统一认证码";
+        self.hintLabel = [[UILabel alloc]init];
+        self.hintLabel.text = @"若要查询成绩，请输入您的统一认证码";
         if (@available(iOS 11.0, *)) {
-            label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
+            self.hintLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
-        [self addSubview:label];
+        [self addSubview:self.hintLabel];
         
         //account image view
         UIImageView *accountImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"账号"]];
@@ -77,7 +76,8 @@
 - (void)layoutSubviews {
     [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(20);
-        make.top.equalTo(self).offset(20);
+        make.top.equalTo(self.mas_top).offset(86)
+        ;
     }];
     [self.accountIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.hintLabel);
