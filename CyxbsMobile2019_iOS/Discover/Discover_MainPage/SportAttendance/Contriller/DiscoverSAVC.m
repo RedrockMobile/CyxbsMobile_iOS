@@ -12,12 +12,12 @@
 #import "SportAttendanceViewController.h"
 
 #import "DataContentView.h"
-
+#import "popUpViewController.h"
 #import "DateModle.h"
 
 @interface DiscoverSAVC ()
 
-/// 进入详情页的btn
+/// 进入详情页/IDS绑定页的btn
 @property (nonatomic, strong) UIButton *SABtn;
 
 /// 进入信息说明的btn
@@ -25,11 +25,6 @@
 
 /// SportAttendance数据模型
 @property (nonatomic, strong) SportAttendanceModel *sAModel;
-
-
-
-///信息说明的contentView，他是一个button，用来保证点击空白处可以取消
-@property (nonatomic, weak) UIButton * learnAboutContentView;
 
 @end
 
@@ -42,16 +37,28 @@
     
     [self addbaseView];
     
-    [self addSuccessView];
-    
-    
+    self.sAModel = [[SportAttendanceModel alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.sAModel requestSuccess:^{
+        if (self.sAModel.status == 10000) {
+            [self addSuccessView];
+        }else{
+            [self.SABtn addTarget:self action:@selector(IDSBing) forControlEvents:UIControlEventTouchUpInside];
+        }
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"体育打卡加载失败");
+            [self addFailureView];
+    }];
 }
 
 
-#pragma mark - lan加载
+#pragma mark - getter
 
 - (UIButton *)learnBtn{
-    if (_learnBtn == nil) {
+    if (!_learnBtn) {
         _learnBtn = [[UIButton alloc] init];
         [_learnBtn setImage:[UIImage imageNamed:@"learnmore"] forState:UIControlStateNormal];
         [_learnBtn addTarget:self action:@selector(learnAbout) forControlEvents:UIControlEventTouchUpInside];
@@ -59,9 +66,18 @@
     return _learnBtn;
 }
 
+- (UIButton *)SABtn{
+    if (!_SABtn) {
+        _SABtn = [[UIButton alloc] init];
+        _SABtn.backgroundColor = UIColor.clearColor;
+        _SABtn.alpha = 0.1;
+    }
+    return _SABtn;
+}
+
 #pragma mark - 添加基础视图
 - (void)addbaseView{
-    UILabel *nameLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 50, 75, 25)];
+    UILabel *nameLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 23, 75, 25)];
     nameLab.text = @"体育打卡";
     nameLab.font = [UIFont fontWithName:PingFangSCBold size: 18];
     nameLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
@@ -85,6 +101,13 @@
         make.centerY.equalTo(nameLab);
         make.height.equalTo(@14);
         make.width.equalTo(@90);
+    }];
+    
+    [self.view addSubview:self.SABtn];
+    [_SABtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.learnBtn.mas_bottom).offset(10);
+        make.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
     }];
 }
 
@@ -111,7 +134,7 @@
     [self.view addSubview:view3];
     
     [view2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(120);
+        make.top.equalTo(self.SABtn).offset(30);
         make.centerX.equalTo(self.view);
     }];
     
@@ -125,125 +148,116 @@
         make.centerX.equalTo(self.view).offset((SCREEN_WIDTH - 44 - 60)/2 - 17);
     }];
     
+
 }
 
-#pragma mark -点击了解更多
-- (void)learnAbout {
-    //添加灰色背景板
-    UIButton * contentView = [[UIButton alloc]initWithFrame:self.view.frame];
-    self.learnAboutContentView = contentView;
-    [self.view addSubview:contentView];
-    contentView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    contentView.alpha = 0;
-
-//    UIView *hideTabbarView = [[UIView alloc]initWithFrame:CGRectMake(0,-self.classTabbarHeight, MAIN_SCREEN_W, 800)];
-//    hideTabbarView.layer.cornerRadius = self.classTabbarCornerRadius;
-//    self.hideTabbarView = hideTabbarView;
-//    hideTabbarView.backgroundColor = contentView.backgroundColor;
-//    hideTabbarView.alpha = 0;
-    [UIView animateWithDuration:0.3 animations:^{
-        contentView.alpha = 1;
-//        hideTabbarView.alpha = 1;
-//        self.tabBarController.tabBar.hidden=YES;
-        self.tabBarController.tabBar.userInteractionEnabled = NO;
-//        ((ClassTabBar *)(self.tabBarController.tabBar))
-//            .classScheduleTabBarView.userInteractionEnabled = NO;
-//        [self.tabBarController.tabBar addSubview:hideTabbarView];
-//        [[UIApplication.sharedApplication.windows firstObject] bringSubviewToFront:hideTabbarView];
-//        self.view.backgroundColor = [UIColor colorWithRed:242 green:243 blue:248 alpha:1];
-    }];
-    [contentView addTarget:self action:@selector(cancelLearnAbout) forControlEvents:UIControlEventTouchUpInside];
-//
-    UIView *learnView = [[UIView alloc]init];
-    //设置圆角
-    learnView.layer.cornerRadius = 8;
-    learnView.backgroundColor = [UIColor whiteColor];
-    [contentView addSubview:learnView];
-    [learnView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
-        make.height.equalTo(@425);
-    }];
+- (void)addFailureView{
+    UILabel *Lab = [[UILabel alloc] init];
+    Lab.text = @"查询失败，请先绑定 教务在线 后再试";
+    Lab.font = [UIFont fontWithName:PingFangSCMedium size:14];
+    Lab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.6] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
+    NSString *keyword = @"教务在线";
+    NSString *result = @"查询失败，请先绑定 教务在线 后再试";
+     
+    // 设置标签文字
+    NSMutableAttributedString *attrituteString = [[NSMutableAttributedString alloc] initWithString:result];
+     
+    // 获取标红的位置和长度
+    NSRange range = [result rangeOfString:keyword];
+     
+    // 设置标签文字的属性
+    [attrituteString setAttributes:@{
+        NSForegroundColorAttributeName:
+            [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4A44E4" alpha:1] darkColor:[UIColor colorWithHexString:@"#465FFF" alpha:1]],
+        NSFontAttributeName: [UIFont fontWithName:PingFangSCMedium size:14] } range:range];
+    [attrituteString addAttribute: NSUnderlineStyleAttributeName
+        value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];//下划线
     
-    UILabel *titLab = [[UILabel alloc] init];
-    [learnView addSubview:titLab];
-    titLab.text = @"体育打卡信息说明";
-    titLab.font = [UIFont fontWithName:PingFangSCBold size:19];
-    titLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    [titLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(learnView);
-        make.top.equalTo(learnView).offset(26);
-    }];
+    // 显示在Label上
+    Lab.attributedText = attrituteString;
     
-    UILabel *firstLab = [[UILabel alloc] init];
-    [learnView addSubview:firstLab];
-    firstLab.text = @"1.关于信息来源：";
-    firstLab.font = [UIFont fontWithName:PingFangSCBold size: 16.5];
-    firstLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    [firstLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(learnView).offset(26);
-        make.top.equalTo(titLab.mas_bottom).offset(20);
+    [self.view addSubview:Lab];
+    [Lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.centerY.equalTo(self.view).offset(20);
     }];
-    
-    UILabel *secondLab = [[UILabel alloc] init];
-    [learnView addSubview:secondLab];
-    secondLab.text = @"所有信息来源于教务在线，实际请以教务在线为准。";
-    secondLab.textAlignment = NSTextAlignmentJustified;
-    secondLab.numberOfLines = 0;
-    secondLab.font = [UIFont fontWithName:PingFangSC size: 14.5];
-    secondLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    [secondLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(learnView);
-        make.left.equalTo(firstLab);
-        make.top.equalTo(firstLab.mas_bottom).offset(8);
-    }];
-    
-    UILabel *thirdLab = [[UILabel alloc] init];
-    [learnView addSubview:thirdLab];
-    thirdLab.text = @"2.关于剩余次数：";
-    thirdLab.font = [UIFont fontWithName:PingFangSCBold size: 16.5];
-    thirdLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    [thirdLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(firstLab);
-        make.top.equalTo(secondLab.mas_bottom).offset(16);
-    }];
-    
-    UILabel *fourthLab = [[UILabel alloc] init];
-    [learnView addSubview:fourthLab];
-    fourthLab.text = @"根据重庆邮电大学体育打卡规定，跑步锻炼可以替代其他锻炼次数。所以关于主页面显示的其他剩余次数减少原因可能时由于其他锻炼造成，也有可能是由跑步锻炼造成。但是其他锻炼不可以代替跑步。";
-    fourthLab.textAlignment = NSTextAlignmentJustified;
-    fourthLab.numberOfLines = 0;
-    fourthLab.font = [UIFont fontWithName:PingFangSC size: 14.5];
-    fourthLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    [fourthLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(learnView);
-        make.left.equalTo(firstLab);
-        make.top.equalTo(thirdLab.mas_bottom).offset(8);
-    }];
-
-    UIButton *button = [[UIButton alloc] init];
-    [learnView addSubview:button];
-    button.backgroundColor = [UIColor colorWithHexString:@"#4A44E4" alpha:1];
-    [button setTitle:@"确认" forState:normal];
-    button.titleLabel.font = [UIFont fontWithName:PingFangSC size: 14];
-    button.layer.cornerRadius = 16;
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(learnView);
-        make.bottom.equalTo(learnView).offset(-26);
-        make.width.equalTo(@129);
-        make.height.equalTo(@34);
-    }];
-    [button addTarget:self action:@selector(cancelLearnAbout) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)cancelLearnAbout {
-//    self.tabBarController.tabBar.hidden=NO;
-    [self.learnAboutContentView removeFromSuperview];
-//    [self.hideTabbarView removeFromSuperview];
-    [self.tabBarController.tabBar setUserInteractionEnabled:YES];
-//    [((ClassTabBar *)(self.tabBarController.tabBar))
-//        .classScheduleTabBarView setUserInteractionEnabled:YES];
+- (void)addWrongView{
+    UILabel *Lab = [[UILabel alloc] init];
+    Lab.text = @"当前数据错误，正在努力修复中";
+    Lab.font = [UIFont fontWithName:PingFangSCMedium size:14];
+    Lab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.6] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
+    [self.view addSubview:Lab];
+    [Lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.centerY.equalTo(self.view).offset(20);
+    }];
 }
+
+- (void)learnAbout{
+    popUpViewController *vc = [[popUpViewController alloc] init];
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)lookData{
+    UIViewController *vc = [self.router controllerForRouterPath:@"SportController"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)IDSBing{
+    UIViewController *vc = [self.router controllerForRouterPath:@"IDSController"];
+    vc.view.backgroundColor = UIColor.whiteColor;
+    [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
+
+#pragma mark - RisingRouterHandler
+
++ (NSArray<NSString *> *)routerPath {
+    return @[
+        @"DiscoverSAVC"
+    ];
+}
+
++ (void)responseRequest:(RisingRouterRequest *)request completion:(RisingRouterResponseBlock)completion {
+    
+    RisingRouterResponse *response = [[RisingRouterResponse alloc] init];
+    
+    switch (request.requestType) {
+        case RouterRequestPush: {
+            
+            UINavigationController *nav = (request.requestController ? request.requestController : RisingRouterRequest.useTopController).navigationController;
+            
+            if (nav) {
+                DiscoverSAVC *vc = [[self alloc] init];
+                response.responseController = vc;
+                
+                [nav pushViewController:vc animated:YES];
+            } else {
+                
+                response.errorCode = RouterWithoutNavagation;
+            }
+            
+        } break;
+            
+        case RouterRequestParameters: {
+            // TODO: 传回参数
+        } break;
+            
+        case RouterRequestController: {
+            
+            DiscoverSAVC *vc = [[self alloc] init];
+            
+            response.responseController = vc;
+        } break;
+    }
+    
+    if (completion) {
+        completion(response);
+    }
+}
+
 
 @end

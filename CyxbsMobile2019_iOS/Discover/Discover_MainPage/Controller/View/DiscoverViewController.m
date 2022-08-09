@@ -18,7 +18,7 @@
 #import "WeDateViewController.h"//没课约
 #import "CQUPTMapViewController.h"
 
-//#import "TODOMainViewController.h"  //邮子清单
+#import "TODOMainViewController.h"  //邮子清单
 //#import "InstallRoomViewController.h"
 #import "SportAttendanceViewController.h"//体育打卡详情页面
 #import "DiscoverSAVC.h"//体育打卡发现页
@@ -119,6 +119,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //@property(nonatomic, strong)DiscoverTodoView* todoView;
 //
 //@property(nonatomic, strong)TodoSyncTool* todoSyncTool;
+@property(nonatomic, strong)DiscoverSAVC * sportVC;
 
 @end
 
@@ -197,6 +198,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addContentView];
     [self addFinderView];
 //    [self addTodoView];
+    [self addSportView];
     [self addEleView];
     [self addVolView];
     [self layoutSubviews];
@@ -249,8 +251,14 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //        make.top.equalTo(self.finderView.mas_bottom).offset(20);
 //    }];
     
+    [self.sportVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.finderView.mas_bottom).offset(20);
+        make.height.equalTo(@152);
+    }];
+    
     [self.eleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.finderView.mas_bottom).offset(20+152+2);
+        make.top.equalTo(self.sportVC.view.mas_bottom).offset(2);
         make.width.equalTo(self.contentView);
         make.height.equalTo(@152);
     }];
@@ -367,6 +375,14 @@ static int requestCheckinInfo = 0;
     [self.contentView addSubview:finderView];
     [self requestData];
 
+}
+
+- (void)addSportView {
+    UIViewController *vc = [self.router controllerForRouterPath:@"DiscoverSAVC"];
+    vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.sportVC = (DiscoverSAVC *)vc;
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
 }
 
 #pragma mark - 即将更改的东西
@@ -924,12 +940,12 @@ static int requestCheckinInfo = 0;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-//- (void)touchToDOList{
-//    NSLog(@"点击了邮子清单");
-//    TODOMainViewController *vc = [[TODOMainViewController alloc] init];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
+- (void)touchToDOList{
+    NSLog(@"点击了邮子清单");
+    TODOMainViewController *vc = [[TODOMainViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)touchSportAttendance {
     NSLog(@"点击了体育打卡");

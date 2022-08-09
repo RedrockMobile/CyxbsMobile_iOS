@@ -554,6 +554,7 @@
 		B0F08FF928A24F9000986EB6 /* IdsBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF428A24F9000986EB6 /* IdsBinding.m */; };
 		B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF728A24F9000986EB6 /* IdsBindingView.m */; };
 		B0F08FFD28A2509900986EB6 /* RisingRouter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FFB28A2509800986EB6 /* RisingRouter+Extension.m */; };
+		B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F0900028A2605E00986EB6 /* popUpViewController.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1789,6 +1790,8 @@
 		B0F08FF728A24F9000986EB6 /* IdsBindingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdsBindingView.m; sourceTree = "<group>"; };
 		B0F08FFB28A2509800986EB6 /* RisingRouter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RisingRouter+Extension.m"; sourceTree = "<group>"; };
 		B0F08FFC28A2509800986EB6 /* RisingRouter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RisingRouter+Extension.h"; sourceTree = "<group>"; };
+		B0F08FFF28A2605E00986EB6 /* popUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = popUpViewController.h; sourceTree = "<group>"; };
+		B0F0900028A2605E00986EB6 /* popUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = popUpViewController.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -5847,6 +5850,7 @@
 		B0F08FE428A249E200986EB6 /* SportAttendance */ = {
 			isa = PBXGroup;
 			children = (
+				B0F08FFE28A2602F00986EB6 /* popup */,
 				B0F08FE528A249E200986EB6 /* Contriller */,
 				B0F08FE828A249E200986EB6 /* View */,
 			);
@@ -5865,8 +5869,8 @@
 		B0F08FE828A249E200986EB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0F08FE928A249E200986EB6 /* DataContentView.m */,
 				B0F08FEA28A249E200986EB6 /* DataContentView.h */,
+				B0F08FE928A249E200986EB6 /* DataContentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5884,8 +5888,8 @@
 		B0F08FEF28A24F9000986EB6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B0F08FF028A24F9000986EB6 /* IDSController.m */,
 				B0F08FF128A24F9000986EB6 /* IDSController.h */,
+				B0F08FF028A24F9000986EB6 /* IDSController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5906,6 +5910,15 @@
 				B0F08FF728A24F9000986EB6 /* IdsBindingView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B0F08FFE28A2602F00986EB6 /* popup */ = {
+			isa = PBXGroup;
+			children = (
+				B0F08FFF28A2605E00986EB6 /* popUpViewController.h */,
+				B0F0900028A2605E00986EB6 /* popUpViewController.m */,
+			);
+			path = popup;
 			sourceTree = "<group>";
 		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
@@ -7262,6 +7275,7 @@
 				18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				1404747227F459B500307209 /* DiscoverADItem.m in Sources */,
+				B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
 				14B73F71281BED7B00D08ADD /* ActiveMessage.m in Sources */,
 				AA0DDB5B286C8B1A00802324 /* PMPBasicNavBarController.m in Sources */,

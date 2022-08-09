@@ -97,7 +97,7 @@
     return cell;
 }
 
-#pragma mark - lan加载
+#pragma mark - getter
 
 - (UITableView *)sADetails{
     if (!_sADetails) {
@@ -187,6 +187,52 @@
 //返回的方法
 - (void) back {
      [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - RisingRouterHandler
+
++ (NSArray<NSString *> *)routerPath {
+    return @[
+        @"SportController"
+    ];
+}
+
++ (void)responseRequest:(RisingRouterRequest *)request completion:(RisingRouterResponseBlock)completion {
+    
+    RisingRouterResponse *response = [[RisingRouterResponse alloc] init];
+    
+    switch (request.requestType) {
+        case RouterRequestPush: {
+            
+            UINavigationController *nav = (request.requestController ? request.requestController : RisingRouterRequest.useTopController).navigationController;
+            
+            if (nav) {
+                SportAttendanceViewController *vc = [[self alloc] init];
+                response.responseController = vc;
+                
+                [nav pushViewController:vc animated:YES];
+            } else {
+                
+                response.errorCode = RouterWithoutNavagation;
+            }
+            
+        } break;
+            
+        case RouterRequestParameters: {
+            // TODO: 传回参数
+        } break;
+            
+        case RouterRequestController: {
+            
+            SportAttendanceViewController *vc = [[self alloc] init];
+            
+            response.responseController = vc;
+        } break;
+    }
+    
+    if (completion) {
+        completion(response);
+    }
 }
 
 

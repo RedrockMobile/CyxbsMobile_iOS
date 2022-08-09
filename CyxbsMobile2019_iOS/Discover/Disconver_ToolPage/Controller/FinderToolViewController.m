@@ -253,9 +253,9 @@
     [itemsArray addObject:item5];
     [itemsArray addObject:item6];
     [itemsArray addObject:item7];
-    [itemsArray addObject:item8];
-    [itemsArray addObject:item9];
     [itemsArray addObject:item10];
+    [itemsArray addObject:item9];
+    [itemsArray addObject:item8];
     
     self.toolViewItems = itemsArray;
     for (FinderToolViewItem*item in self.toolViewItems) {
