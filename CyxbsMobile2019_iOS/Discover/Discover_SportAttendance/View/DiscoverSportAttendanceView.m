@@ -1,14 +1,14 @@
 //
-//  SportAttendanceView.m
+//  DiscoverSportAttendanceView.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 潘申冰 on 2022/8/4.
+//  Created by 潘申冰 on 2022/8/8.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "SportAttendanceView.h"
+#import "DiscoverSportAttendanceView.h"
 
-@implementation SportAttendanceView
+@implementation DiscoverSportAttendanceView
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -17,6 +17,7 @@
 #import "CQUPTMapViewController.h"
 #import "EmptyClassUnavailableViewController.h"
 #import "TODOMainViewController.h"
+#import "SportAttendanceViewController.h"
 
 @interface FinderToolViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
@@ -231,7 +232,8 @@
     FinderToolViewItem *item6 = [[FinderToolViewItem alloc]initWithIconView:@"校历" Title:@"校历" Detail:@"学期安排一目了然"];
     FinderToolViewItem *item7 = [[FinderToolViewItem alloc]initWithIconView:@"重邮地图" Title:@"重邮地图" Detail:@"校园地图，尽收重邮风光"];
     FinderToolViewItem *item8 = [[FinderToolViewItem alloc]initWithIconView:@"更多功能" Title:@"更多功能" Detail:@"敬请期待"];
-    FinderToolViewItem *item9 = [[FinderToolViewItem alloc] initWithIconView:@"邮子清单" Title:@"邮子清单" Detail:@"邮子清单"];
+//    FinderToolViewItem *item9 = [[FinderToolViewItem alloc] initWithIconView:@"邮子清单" Title:@"邮子清单" Detail:@"邮子清单"];
+    FinderToolViewItem *item9 = [[FinderToolViewItem alloc] initWithIconView:@"体育打卡" Title:@"体育打卡" Detail:@"体育打卡"];
     
     [item1 addTarget:self action:@selector(chooseWeDate:) forControlEvents:UIControlEventTouchUpInside];
     [item2 addTarget:self action:@selector(chooseSchoolBus:) forControlEvents:UIControlEventTouchUpInside];
@@ -240,7 +242,7 @@
     [item5 addTarget:self action:@selector(chooseScheduleInquiry:) forControlEvents:UIControlEventTouchUpInside];
     [item6 addTarget:self action:@selector(chooseSchoolSchedule:) forControlEvents:UIControlEventTouchUpInside];
     [item7 addTarget:self action:@selector(chooseCQUPTMap:) forControlEvents:UIControlEventTouchUpInside];
-    [item9 addTarget:self action:@selector(chooseToDo:) forControlEvents:UIControlEventTouchUpInside];
+    [item9 addTarget:self action:@selector(chooseSportAttendance:) forControlEvents:UIControlEventTouchUpInside];
     
     NSMutableArray *itemsArray = [NSMutableArray array];
     [itemsArray addObject:item1];
@@ -380,14 +382,25 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-// MARK: 邮子清单
-- (void)chooseToDo:(FinderToolViewItem *)sender{
+//// MARK: 邮子清单
+//- (void)chooseToDo:(FinderToolViewItem *)sender{
+//    if (sender.isChooingNow == YES) {
+//        [sender toggleFavoriteStates];
+//    } else {
+//        TODOMainViewController *vc = [[TODOMainViewController alloc] init];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//}
+// MARK: 体育打卡
+- (void)chooseSportAttendance:(FinderToolViewItem *)sender{
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     } else {
-        TODOMainViewController *vc = [[TODOMainViewController alloc] init];
+        SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
 @end

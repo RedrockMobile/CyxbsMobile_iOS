@@ -558,8 +558,9 @@
 		B037FC36289CC5DE004B99DD /* SportAttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC2B289CC5DE004B99DD /* SportAttendanceModel.m */; };
 		B037FC37289CC5DE004B99DD /* SportAttendanceHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC2D289CC5DE004B99DD /* SportAttendanceHeadView.m */; };
 		B037FC38289CC5DE004B99DD /* SportAttendanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC2E289CC5DE004B99DD /* SportAttendanceTableViewCell.m */; };
-		B037FC39289CC5DE004B99DD /* SportAttendanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC32289CC5DE004B99DD /* SportAttendanceView.m */; };
 		B037FC3A289CC5DE004B99DD /* SportAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B037FC34289CC5DE004B99DD /* SportAttendanceViewController.m */; };
+		B03C249C28A13DCF00760EA9 /* DiscoverSportAttendanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = B03C249B28A13DCF00760EA9 /* DiscoverSportAttendanceView.m */; };
+		B03C24A128A1431D00760EA9 /* DiscoverSAVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B03C24A028A1431D00760EA9 /* DiscoverSAVC.m */; };
 		B058EE1D289D288800264EF3 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */; };
 		B058EE21289D4D7200264EF3 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B058EE20289D4D7200264EF3 /* SportAttendanceItem.m */; };
 		B0DB8AC0289FCEFB00D6769D /* IDSController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DB8ABF289FCEFB00D6769D /* IDSController.m */; };
@@ -1806,13 +1807,15 @@
 		B037FC2B289CC5DE004B99DD /* SportAttendanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceModel.m; sourceTree = "<group>"; };
 		B037FC2D289CC5DE004B99DD /* SportAttendanceHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceHeadView.m; sourceTree = "<group>"; };
 		B037FC2E289CC5DE004B99DD /* SportAttendanceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceTableViewCell.m; sourceTree = "<group>"; };
-		B037FC2F289CC5DE004B99DD /* SportAttendanceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceView.h; sourceTree = "<group>"; };
 		B037FC30289CC5DE004B99DD /* SportAttendanceHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceHeadView.h; sourceTree = "<group>"; };
 		B037FC31289CC5DE004B99DD /* SportAttendanceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceTableViewCell.h; sourceTree = "<group>"; };
-		B037FC32289CC5DE004B99DD /* SportAttendanceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceView.m; sourceTree = "<group>"; };
 		B037FC34289CC5DE004B99DD /* SportAttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceViewController.m; sourceTree = "<group>"; };
 		B037FC35289CC5DE004B99DD /* SportAttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceViewController.h; sourceTree = "<group>"; };
 		B037FC3B289CC664004B99DD /* SportAttendanceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceHeader.h; sourceTree = "<group>"; };
+		B03C249A28A13DCF00760EA9 /* DiscoverSportAttendanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverSportAttendanceView.h; sourceTree = "<group>"; };
+		B03C249B28A13DCF00760EA9 /* DiscoverSportAttendanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverSportAttendanceView.m; sourceTree = "<group>"; };
+		B03C249F28A1431D00760EA9 /* DiscoverSAVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverSAVC.h; sourceTree = "<group>"; };
+		B03C24A028A1431D00760EA9 /* DiscoverSAVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverSAVC.m; sourceTree = "<group>"; };
 		B058EE1B289D288800264EF3 /* SportAttendanceItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItemModel.h; sourceTree = "<group>"; };
 		B058EE1C289D288800264EF3 /* SportAttendanceItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceItemModel.m; sourceTree = "<group>"; };
 		B058EE1F289D4D7200264EF3 /* SportAttendanceItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItem.h; sourceTree = "<group>"; };
@@ -3256,6 +3259,7 @@
 		18CDF4D5257F91BC006E8E5C /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
+				B03C249D28A1429600760EA9 /* SportAttendance */,
 				18CDF4D9257F91BC006E8E5C /* Controller */,
 				1404747F27F47F2A00307209 /* Discover_AD */,
 				18CDF580257F91BD006E8E5C /* DIscover_JWZX */,
@@ -5998,10 +6002,10 @@
 			children = (
 				B037FC30289CC5DE004B99DD /* SportAttendanceHeadView.h */,
 				B037FC2D289CC5DE004B99DD /* SportAttendanceHeadView.m */,
-				B037FC2F289CC5DE004B99DD /* SportAttendanceView.h */,
-				B037FC32289CC5DE004B99DD /* SportAttendanceView.m */,
 				B037FC31289CC5DE004B99DD /* SportAttendanceTableViewCell.h */,
 				B037FC2E289CC5DE004B99DD /* SportAttendanceTableViewCell.m */,
+				B03C249A28A13DCF00760EA9 /* DiscoverSportAttendanceView.h */,
+				B03C249B28A13DCF00760EA9 /* DiscoverSportAttendanceView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6013,6 +6017,23 @@
 				B037FC34289CC5DE004B99DD /* SportAttendanceViewController.m */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B03C249D28A1429600760EA9 /* SportAttendance */ = {
+			isa = PBXGroup;
+			children = (
+				B03C249E28A142B500760EA9 /* Contriller */,
+			);
+			path = SportAttendance;
+			sourceTree = "<group>";
+		};
+		B03C249E28A142B500760EA9 /* Contriller */ = {
+			isa = PBXGroup;
+			children = (
+				B03C249F28A1431D00760EA9 /* DiscoverSAVC.h */,
+				B03C24A028A1431D00760EA9 /* DiscoverSAVC.m */,
+			);
+			path = Contriller;
 			sourceTree = "<group>";
 		};
 		B058EE1E289D4D5A00264EF3 /* SportAttendanceItem */ = {
@@ -6827,6 +6848,7 @@
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				646B1967282AA9420015DF28 /* BusGuideViewController.m in Sources */,
+				B03C249C28A13DCF00760EA9 /* DiscoverSportAttendanceView.m in Sources */,
 				14B73F72281BED7B00D08ADD /* ActiveMessageCell.m in Sources */,
 				B037FC3A289CC5DE004B99DD /* SportAttendanceViewController.m in Sources */,
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
@@ -7048,7 +7070,6 @@
 				7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
-				B037FC39289CC5DE004B99DD /* SportAttendanceView.m in Sources */,
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
 				AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */,
@@ -7119,6 +7140,7 @@
 				AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */,
 				18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
 				AA0DDB71286C8B1A00802324 /* UserInformationIntorductionView.m in Sources */,
+				B03C24A128A1431D00760EA9 /* DiscoverSAVC.m in Sources */,
 				AA0DDB6E286C8B1A00802324 /* PMPDatePicker.m in Sources */,
 				AA7ABAA52873EA5400BA6790 /* PostTableViewCell.m in Sources */,
 				18CDF68B257F91BD006E8E5C /* ChoosePeopleListView.m in Sources */,

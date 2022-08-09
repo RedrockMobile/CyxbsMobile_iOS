@@ -14,7 +14,7 @@
 #import "SSRTextCycleView.h"
 
 #import "JWZXNewsModel.h"
-
+#import "DiscoverSAVC.h"
 #pragma mark - DiscoverJWZXVC ()
 
 /// 暴露在外面的教务新闻VC
@@ -85,7 +85,7 @@
 }
 
 - (void)pushToJWZXNewsController {
-    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
+    DiscoverSAVC *vc = [[DiscoverSAVC alloc] init];
         
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

@@ -1,5 +1,5 @@
 //
-//  SportAttendanceView.h
+//  DiscoverSAVC.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by 潘申冰 on 2022/8/4.
@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SportAttendanceView : UIView
+/// 暴露在发现页的体育打卡
+@interface DiscoverSAVC : UIViewController
 
 @end
 
