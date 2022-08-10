@@ -10,18 +10,32 @@
 
 @interface SportAttendanceHeadView()
 
-///
-/// 总计
-@property (nonatomic, strong) UILabel *totLab;
+/// "总计"
+@property (nonatomic, strong) UILabel *titelLab;
 
-/// 跑步
-@property (nonatomic, strong) UILabel *runLab;
+/// 已完成总计
+@property (nonatomic, strong) UILabel *totDoneLab;
 
-/// 其他
-@property (nonatomic, strong) UILabel *othLab;
+/// 未完成总计
+@property (nonatomic, strong) UILabel *totNeedLab;
+
+/// 已完成跑步
+@property (nonatomic, strong) UILabel *runDoneLab;
+
+/// 总跑步数
+@property (nonatomic, strong) UILabel *runNeedLab;
+
+/// 已完成其他
+@property (nonatomic, strong) UILabel *othDoneLab;
+
+/// 总其他数
+@property (nonatomic, strong) UILabel *othNeedLab;
 
 /// 奖励
 @property (nonatomic, strong) UILabel *awaLab;
+
+///
+@property (nonatomic, strong) UIImageView *iconImgView;
 
 @end
 
@@ -30,61 +44,192 @@
 #pragma mark - Init
 
 - (instancetype)init {
-    return [self initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    return [self initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        UIImageView *backImg = [[UIImageView alloc] initWithFrame:self.frame];
-        backImg.image = [UIImage imageNamed:@"Image"];
-        [self addSubview:backImg];
-        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-        [self addSubview:self.totLab];
-        [self addSubview:self.runLab];
-        [self addSubview:self.othLab];
-        [self addSubview:self.awaLab];
+        //背景渐变色
+        CAGradientLayer *gl = [CAGradientLayer layer];
+        gl.frame = self.frame;
+        //起点和终点表示的坐标系位置，（0，0)表示左上角，（1，1）表示右下角
+        gl.startPoint = CGPointMake(0, 0);
+        gl.endPoint = CGPointMake(1, 1);
+        gl.colors = @[
+            (__bridge id)[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#8CA3FD" alpha:0.2] darkColor:[UIColor colorWithHexString:@"#000000"]].CGColor,
+            (__bridge id)[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#D5F8FF" alpha:0.2] darkColor:[UIColor colorWithHexString:@"000000"]].CGColor
+//            (__bridge id)[UIColor colorWithHexString:@"#D5F8FF" alpha:0.2].CGColor
+        ];
+        gl.locations = @[@(0),@(1.0f)];
+        [self.layer addSublayer: gl];
+        
+        [self configUI];
     }
     return self;
 }
 
 #pragma mark - Getter
-
-- (UILabel *)totLab{
-    if (!_totLab) {
-        _totLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 100, 30)];
+- (UILabel *)titelLab{
+    if (!_titelLab) {
+        _titelLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 85, 50, 25)];
+        self.titelLab.text = @"总计:";
+        _titelLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
+        _titelLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B"] darkColor:[UIColor colorWithHexString:@"#DFDFE3"]];
+        
     }
-    return _totLab;
+    return _titelLab;
 }
 
-- (UILabel *)runLab{
-    if (!_runLab) {
-        _runLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 50, 100, 30)];
-        _totLab.text = @"总计:NULL";
+- (UILabel *)totDoneLab{
+    if (!_totDoneLab) {
+        _totDoneLab = [[UILabel alloc] init];
+        _totDoneLab.font = [UIFont fontWithName:ImpactRegular size:48];
+        _totDoneLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4A44E4"] darkColor:[UIColor colorWithHexString:@"#465FFF"]];
     }
-    return _runLab;
+    return _totDoneLab;
 }
 
-- (UILabel *)othLab{
-    if (!_othLab) {
-        _othLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 90, 100, 30)];
-        _othLab.text = @"跑步:NULL";
+- (UILabel *)totNeedLab{
+    if (!_totNeedLab) {
+        _totNeedLab = [[UILabel alloc] init];
+        _totNeedLab.font = [UIFont fontWithName:ImpactRegular size:36];
+        _totNeedLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4A44E4"] darkColor:[UIColor colorWithHexString:@"#465FFF"]];
     }
-    return _othLab;
+    return _totNeedLab;
+}
+
+- (UILabel *)runDoneLab{
+    if (!_runDoneLab) {
+        _runDoneLab = [[UILabel alloc] init];
+        _runDoneLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
+        _runDoneLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B"] darkColor:[UIColor colorWithHexString:@"#DFDFE3"]];
+    }
+    return _runDoneLab;
+}
+
+- (UILabel *)runNeedLab{
+    if (!_runNeedLab) {
+        _runNeedLab = [[UILabel alloc] init];
+        _runNeedLab.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        _runNeedLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.6] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:0.4]];
+    }
+    return _runNeedLab;
+}
+
+- (UILabel *)othDoneLab{
+    if (!_othDoneLab) {
+        _othDoneLab = [[UILabel alloc] init];
+        _othDoneLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
+        _othDoneLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B"] darkColor:[UIColor colorWithHexString:@"#DFDFE3"]];
+    }
+    return _othDoneLab;
+}
+
+- (UILabel *)othNeedLab{
+    if (!_othNeedLab) {
+        _othNeedLab = [[UILabel alloc] init];
+        _othNeedLab.font = [UIFont fontWithName:PingFangSCMedium size:12];
+        _othNeedLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.6] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:0.4]];
+    }
+    return _othNeedLab;
 }
 
 - (UILabel *)awaLab{
     if (!_awaLab) {
-        _awaLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 130, 100, 30)];
-        _awaLab.text = @"奖励:NULL";
+        _awaLab = [[UILabel alloc] init];
+        _awaLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
+        _awaLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B"] darkColor:[UIColor colorWithHexString:@"#DFDFE3"]];
     }
     return _awaLab;
 }
 
-- (void)loadViewWithDate:(SportAttendanceModel *)sAData{
-    self.totLab.text = [NSString stringWithFormat:@"总计:%ld/%ld", sAData.run_done + sAData.other_done, sAData.run_total + sAData.other_total];
-    self.runLab.text = [NSString stringWithFormat:@"跑步:%ld/%ld", sAData.run_done, sAData.run_total];
-    self.othLab.text = [NSString stringWithFormat:@"其他:%ld/%ld", sAData.other_done, sAData.other_total];
-    self.awaLab.text = [NSString stringWithFormat:@"奖励:%ld",sAData.award];
+- (UIImageView *)iconImgView{
+    if (!_iconImgView) {
+        _iconImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"体育小飞鞋"]];
+    }
+    return _iconImgView;
 }
+
+#pragma mark - Setter
+
+- (void)loadViewWithDate:(SportAttendanceModel *)sAData{
+    self.totDoneLab.text = [NSString stringWithFormat:@"%ld", sAData.run_done + sAData.other_done];
+    self.totNeedLab.text = [NSString stringWithFormat:@"/%ld", sAData.run_total + sAData.other_total];
+    self.runDoneLab.text = [NSString stringWithFormat:@"跑步：%ld", sAData.run_done];
+    self.runNeedLab.text = [NSString stringWithFormat:@" /%ld", sAData.run_total];
+    self.othDoneLab.text = [NSString stringWithFormat:@"其他：%ld", sAData.other_done];
+    self.othNeedLab.text = [NSString stringWithFormat:@" /%ld", sAData.other_total];
+    self.awaLab.text = [NSString stringWithFormat:@"奖励：%ld",sAData.award];
+}
+
+#pragma mark - Method
+
+- (void)configUI{
+    self.totDoneLab.text = @"0";
+    self.totNeedLab.text = @" /0";
+    
+    self.runDoneLab.text = @"跑步：0";
+    self.runNeedLab.text = @" /0";
+    
+    self.othDoneLab.text = @"其他：0";
+    self.othNeedLab.text = @" /0";
+    
+    self.awaLab.text = @"奖励:0";
+    
+    [self addSubview:self.titelLab];
+    
+    //总计
+    [self addSubview:self.totDoneLab];
+    [_totDoneLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titelLab.mas_bottom).offset(10);
+        make.left.equalTo(self.titelLab.mas_right).offset(-10);
+    }];
+    
+    [self addSubview:self.totNeedLab];
+    [_totNeedLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.totDoneLab).offset(-2);
+        make.left.equalTo(self.totDoneLab.mas_right);
+    }];
+
+    //跑步
+    [self addSubview:self.runDoneLab];
+    [_runDoneLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titelLab);
+        make.top.equalTo(self.totNeedLab.mas_bottom).offset(20);
+    }];
+    
+    [self addSubview:self.runNeedLab];
+    [_runNeedLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.runDoneLab.mas_right);
+        make.bottom.equalTo(self.runDoneLab).offset(-2);
+    }];
+    
+    //其他
+    [self addSubview:self.othDoneLab];
+    [_othDoneLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.centerY.equalTo(self.runDoneLab);
+    }];
+    
+    [self addSubview:self.othNeedLab];
+    [_othNeedLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.othDoneLab.mas_right);
+        make.bottom.equalTo(self.runNeedLab);
+    }];
+
+    //奖励
+    [self addSubview:self.awaLab];
+    [_awaLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(-16);
+        make.centerY.equalTo(self.runDoneLab);
+    }];
+
+    [self addSubview:self.iconImgView];
+    [_iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.awaLab.mas_top);
+        make.right.equalTo(self).offset(-12);
+    }];
+}
+
 @end

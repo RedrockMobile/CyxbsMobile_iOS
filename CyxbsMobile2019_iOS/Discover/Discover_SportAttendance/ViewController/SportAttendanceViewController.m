@@ -33,38 +33,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    //添加跑步的详情列表
-    [self.view addSubview:self.sADetails];
+    [self addSussesView];
     self.sAModel = [[SportAttendanceModel alloc] init];
-    
-    //获取当前周数
-    int count = [getNowWeek_NSString.numberValue intValue] ;
-    NSLog(@"%d",count);
-    
-    //获取当前月份
-    NSDate *currentDate = [NSDate date];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:currentDate];
-    long month = [components month];
-    long year = [components year];
-    NSLog(@"%ld", month);
-    
-    [self addCustomTabbarView];
-    [self addBackButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.sAModel requestSuccess:^{
-        SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
-        if (self.sAModel.status == 10000) {
-            [headView loadViewWithDate:self.sAModel];
-        }
-        self.sADetails.tableHeaderView = headView;
-        [self.sADetails reloadData];
-        } failure:^(NSError * _Nonnull error) {
-            NSLog(@"体育打卡加载失败");
-    }];
 }
 
 #pragma mark- UITableViewDelegate
@@ -75,12 +49,13 @@
 #pragma mark - UITableViewDataSource
 //设置每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.sAModel.sAItemModel.itemAry.count;
+    return 15;
+//    return self.sAModel.sAItemModel.itemAry.count;
 }
 
 //设置一行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120;
+    return 92;
 }
 
 //具体数据
@@ -93,7 +68,9 @@
     //禁止点击
     cell.userInteractionEnabled =NO;
     //   显示所有内容
-    cell.sa = _sAModel.sAItemModel.itemAry[indexPath.row];
+    if (!self.sAModel.sAItemModel.itemAry) {
+        cell.sa = self.sAModel.sAItemModel.itemAry[indexPath.row];
+    }
     return cell;
 }
 
@@ -101,17 +78,34 @@
 
 - (UITableView *)sADetails{
     if (!_sADetails) {
-        _sADetails = [[UITableView alloc] initWithFrame:CGRectMake(0, 90, SCREEN_WIDTH, SCREEN_HEIGHT - 90)];
+        _sADetails = [[UITableView alloc] initWithFrame:CGRectMake(0, 240, SCREEN_WIDTH, SCREEN_HEIGHT - 240)];
         _sADetails.delegate = self;
         _sADetails.dataSource = self;
+        _sADetails.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF"] darkColor:[UIColor colorWithHexString:@"#1D1D1D"]];
         _sADetails.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _sADetails.layer.cornerRadius = 20;
+
+        MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+        // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+        NSMutableArray *refreshingImages = [NSMutableArray array];
+        for (NSUInteger i = 1; i<=12; i++) {
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"sportrefreshIcon%zd", i]];
+            [refreshingImages addObject:image];
+        }
+        // 设置下拉刷新状态的动画图片
+        [header setImages:refreshingImages forState:MJRefreshStateIdle];
+        // 设置正在刷新状态的动画图片
+        [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
+        _sADetails.mj_header = header;
+        header.lastUpdatedTimeLabel.hidden = YES;
+        header.stateLabel.hidden = YES;
     }
     return _sADetails;
 }
 
+//获取当前周数
 - (DateModle *)dateModel{
-    if(_dateModel==nil){//@"2020-09-07"
-        //@"2020-08-24" @"2020-07-20" DateStart
+    if(_dateModel==nil){
         _dateModel = [DateModle initWithStartDate:getDateStart_NSString];
     }
     return _dateModel;
@@ -123,13 +117,13 @@
     UIView *backgroundView;
     backgroundView = [[UIView alloc]initWithFrame:CGRectMake(0, NVGBARHEIGHT, SCREEN_WIDTH, STATUSBARHEIGHT)];
     self.backgroundView = backgroundView;
-    backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+    backgroundView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:0] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:0]];
     [self.view addSubview:backgroundView];
     //addTitleView
     UILabel *titleLabel = [[UILabel alloc]init];
     self.titleLabel = titleLabel;
     titleLabel.text = @"体育打卡";
-    titleLabel.font = [UIFont fontWithName:PingFangSCBold size:21];
+    titleLabel.font = [UIFont fontWithName:PingFangSCBold size:22];
     [self.backgroundView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -168,12 +162,15 @@
         make.centerY.equalTo(self.backgroundView);
     }];
     timeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+    
+    //添加返回按钮
+    [self addBackButton];
 }
 
 //添加退出的按钮
 - (void)addBackButton {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self.view addSubview:backButton];
+    [self.backgroundView addSubview:backButton];
     [backButton setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(17);
@@ -187,6 +184,37 @@
 //返回的方法
 - (void) back {
      [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) loadNewData{
+    [self.sAModel requestSuccess:^{
+        if (self.sAModel.status == 10000) {
+           
+            [self addSussesView];
+           
+        }
+        [self.sADetails.mj_header endRefreshing];
+    }
+        failure:^(NSError * _Nonnull error) {
+            NSLog(@"体育打卡刷新失败");
+        [self.sADetails.mj_header endRefreshing];
+    }];
+    
+}
+#pragma mark - Method
+
+//获取数据成功加载此视图
+- (void) addSussesView{
+    //先移除所有View
+    [self.view removeAllSubviews];
+    //添加头视图
+    SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
+    [headView loadViewWithDate:self.sAModel];
+    [self.view addSubview:headView];
+    //添加返回条
+    [self addCustomTabbarView];
+    //添加跑步的详情列表
+    [self.view addSubview:self.sADetails];
 }
 
 #pragma mark - RisingRouterHandler

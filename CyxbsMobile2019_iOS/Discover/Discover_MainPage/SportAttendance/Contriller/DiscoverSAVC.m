@@ -33,29 +33,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor dm_colorWithLightColor: [UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor: [UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+    //只切上面的圆角
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH, 1000) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(16, 16)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.view.layer.mask = maskLayer;
+    //设置阴影
+    self.view.layer.shadowOpacity = 0.33f;
     self.view.layer.shadowColor = [UIColor dm_colorWithLightColor: [UIColor colorWithHexString:@"#AEB6D3" alpha:0.16] darkColor: [UIColor colorWithHexString:@"#AEB6D3" alpha:0.16]].CGColor;
+    self.view.layer.shadowOffset = CGSizeMake(0, -5);
+
+    //监听IDS绑定是否成功,成功后刷新数据
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     
-    [self addbaseView];
+    //默认为未绑定的失败页
+//    [self addFailureView];
+    [self addSuccessView];
     
-    self.sAModel = [[SportAttendanceModel alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.sAModel requestSuccess:^{
-        if (self.sAModel.status == 10000) {
-            [self addSuccessView];
-        }else{
-            [self.SABtn addTarget:self action:@selector(IDSBing) forControlEvents:UIControlEventTouchUpInside];
-        }
-        } failure:^(NSError * _Nonnull error) {
-            NSLog(@"体育打卡加载失败");
-            [self addFailureView];
-    }];
+    [self getSportData];
 }
 
-
 #pragma mark - getter
+- (SportAttendanceModel *)sAModel{
+    if (!_sAModel) {
+        self.sAModel = [[SportAttendanceModel alloc] init];
+    }
+    return _sAModel;
+}
 
 - (UIButton *)learnBtn{
     if (!_learnBtn) {
@@ -77,6 +86,7 @@
 
 #pragma mark - 添加基础视图
 - (void)addbaseView{
+    [self addSeperateLine];
     UILabel *nameLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 23, 75, 25)];
     nameLab.text = @"体育打卡";
     nameLab.font = [UIFont fontWithName:PingFangSCBold size: 18];
@@ -111,23 +121,38 @@
     }];
 }
 
+- (void)addSeperateLine {
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:0.5]];
+    [self.view addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self.view);
+        make.height.equalTo(@1);
+    }];
+}
 #pragma mark - 添加数据视图
+//查询成功,点击进入详情页
 - (void)addSuccessView{
+    [self removeView];
+    [self addbaseView];
     DataContentView *view1 = [[DataContentView alloc] init];
-    view1 = [DataContentView loadViewWithData:@"50"
+    NSString *str1 = [[NSString alloc] initWithFormat:@"%ld", ((self.sAModel.run_total - self.sAModel.run_done) > 0) ? (self.sAModel.run_total-self.sAModel.run_done) : 0 ];
+    view1 = [DataContentView loadViewWithData:str1
                                         unit:@"次"
                                         detail:@"跑步剩余"];
     [self.view addSubview:view1];
   
+    NSString *str2 = [[NSString alloc] initWithFormat:@"%ld", ((self.sAModel.other_total - self.sAModel.other_done) > 0) ? (self.sAModel.other_total-self.sAModel.other_done) : 0 ];
     DataContentView *view2 = [[DataContentView alloc] init];
-    view2 = [DataContentView loadViewWithData:@"50"
+    view2 = [DataContentView loadViewWithData:str2
                                         unit:@"次"
                                         detail:@"其他剩余"];
     view2.frame = CGRectMake(220, 50, 200, 200);
     [self.view addSubview:view2];
     
+    NSString *str3 = [[NSString alloc] initWithFormat:@"%ld",self.sAModel.award];
     DataContentView *view3 = [[DataContentView alloc] init];
-    view3 = [DataContentView loadViewWithData:@"50"
+    view3 = [DataContentView loadViewWithData:str3
                                         unit:@"次"
                                         detail:@"奖励"];
     view3.frame = CGRectMake(220, 50, 200, 200);
@@ -149,13 +174,19 @@
     }];
     
 
+    //点击按钮进入详情页
+    [_SABtn removeAllTargets];
+    [_SABtn addTarget:self action:@selector(lookData) forControlEvents:UIControlEventTouchUpInside];
 }
 
+//查询失败,点击进入绑定页
 - (void)addFailureView{
+    [self removeView];
+    [self addbaseView];
     UILabel *Lab = [[UILabel alloc] init];
-    Lab.text = @"查询失败，请先绑定 教务在线 后再试";
     Lab.font = [UIFont fontWithName:PingFangSCMedium size:14];
     Lab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.6] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
+    
     NSString *keyword = @"教务在线";
     NSString *result = @"查询失败，请先绑定 教务在线 后再试";
      
@@ -169,9 +200,12 @@
     [attrituteString setAttributes:@{
         NSForegroundColorAttributeName:
             [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4A44E4" alpha:1] darkColor:[UIColor colorWithHexString:@"#465FFF" alpha:1]],
-        NSFontAttributeName: [UIFont fontWithName:PingFangSCMedium size:14] } range:range];
-    [attrituteString addAttribute: NSUnderlineStyleAttributeName
-        value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];//下划线
+        NSFontAttributeName:
+            [UIFont fontWithName:PingFangSCMedium size:14],
+        NSUnderlineStyleAttributeName:
+            [NSNumber numberWithInteger:NSUnderlineStyleSingle]
+    }
+        range:range];
     
     // 显示在Label上
     Lab.attributedText = attrituteString;
@@ -181,9 +215,16 @@
         make.centerX.equalTo(self.view);
         make.centerY.equalTo(self.view).offset(20);
     }];
+    
+    //点击按钮进入绑定页
+    [_SABtn removeAllTargets];
+    [_SABtn addTarget:self action:@selector(IDSBing) forControlEvents:UIControlEventTouchUpInside];
 }
 
+//当前数据错误，无操作
 - (void)addWrongView{
+    [self removeView];
+    [self addbaseView];
     UILabel *Lab = [[UILabel alloc] init];
     Lab.text = @"当前数据错误，正在努力修复中";
     Lab.font = [UIFont fontWithName:PingFangSCMedium size:14];
@@ -193,8 +234,19 @@
         make.centerX.equalTo(self.view);
         make.centerY.equalTo(self.view).offset(20);
     }];
+    
+    //点击按钮无反应
+    [_SABtn removeAllTargets];
 }
 
+
+//移除视图
+- (void)removeView{
+    [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
+#pragma mark - Method
+//查看更多
 - (void)learnAbout{
     popUpViewController *vc = [[popUpViewController alloc] init];
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -202,15 +254,38 @@
     [self.navigationController presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)lookData{
-    UIViewController *vc = [self.router controllerForRouterPath:@"SportController"];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
+//进入IDS绑定页面
 - (void)IDSBing{
     UIViewController *vc = [self.router controllerForRouterPath:@"IDSController"];
     vc.view.backgroundColor = UIColor.whiteColor;
     [self.navigationController presentViewController:vc animated:YES completion:nil];
+}
+
+//查看详细数据
+- (void)lookData{
+    UIViewController *vc = [self.router controllerForRouterPath:@"SportController"];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//绑定成功刷新数据
+- (void)idsBindingSuccess{
+    
+    
+}
+
+- (void)getSportData{
+    [self.sAModel requestSuccess:^{
+        if (self.sAModel.status == 10000) {
+            //得到数据后加载成功页
+            [self addSuccessView];
+        }else{
+            //获取数据错误
+            [self addWrongView];
+        }
+        } failure:^(NSError * _Nonnull error) {
+            NSLog(@"体育打卡加载失败");
+    }];
 }
 
 #pragma mark - RisingRouterHandler
