@@ -44,7 +44,7 @@
 #pragma mark - Init
 
 - (instancetype)init {
-    return [self initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
+    return [self initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 260)];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -72,7 +72,7 @@
 #pragma mark - Getter
 - (UILabel *)titelLab{
     if (!_titelLab) {
-        _titelLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 85, 50, 25)];
+        _titelLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 90, 50, 25)];
         self.titelLab.text = @"总计:";
         _titelLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
         _titelLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B"] darkColor:[UIColor colorWithHexString:@"#DFDFE3"]];
@@ -153,29 +153,31 @@
 
 #pragma mark - Setter
 
-- (void)loadViewWithDate:(SportAttendanceModel *)sAData{
-    self.totDoneLab.text = [NSString stringWithFormat:@"%ld", sAData.run_done + sAData.other_done];
-    self.totNeedLab.text = [NSString stringWithFormat:@"/%ld", sAData.run_total + sAData.other_total];
-    self.runDoneLab.text = [NSString stringWithFormat:@"跑步：%ld", sAData.run_done];
-    self.runNeedLab.text = [NSString stringWithFormat:@" /%ld", sAData.run_total];
-    self.othDoneLab.text = [NSString stringWithFormat:@"其他：%ld", sAData.other_done];
-    self.othNeedLab.text = [NSString stringWithFormat:@" /%ld", sAData.other_total];
-    self.awaLab.text = [NSString stringWithFormat:@"奖励：%ld",sAData.award];
+- (void)loadViewWithDate:(SportAttendanceModel *)sAData Isholiday:(bool)holiday{
+    //如果数据正确且不在假期
+    if (sAData.status == 10000 && holiday == false ) {
+        self.totDoneLab.text = [NSString stringWithFormat:@"%ld", sAData.run_done + sAData.other_done];
+        self.totNeedLab.text = [NSString stringWithFormat:@"/%ld", sAData.run_total + sAData.other_total];
+        self.runDoneLab.text = [NSString stringWithFormat:@"跑步：%ld", sAData.run_done];
+        self.runNeedLab.text = [NSString stringWithFormat:@" /%ld", sAData.run_total];
+        self.othDoneLab.text = [NSString stringWithFormat:@"其他：%ld", sAData.other_done];
+        self.othNeedLab.text = [NSString stringWithFormat:@" /%ld", sAData.other_total];
+        self.awaLab.text = [NSString stringWithFormat:@"奖励：%ld",sAData.award];
+    }
 }
 
 #pragma mark - Method
 
 - (void)configUI{
-    self.totDoneLab.text = @"0";
-    self.totNeedLab.text = @" /0";
+    self.totDoneLab.text = @"null";
+
     
-    self.runDoneLab.text = @"跑步：0";
-    self.runNeedLab.text = @" /0";
+    self.runDoneLab.text = @"跑步：null";
+
     
-    self.othDoneLab.text = @"其他：0";
-    self.othNeedLab.text = @" /0";
+    self.othDoneLab.text = @"其他：null";
     
-    self.awaLab.text = @"奖励:0";
+    self.awaLab.text = @"奖励:null";
     
     [self addSubview:self.titelLab];
     
@@ -196,13 +198,13 @@
     [self addSubview:self.runDoneLab];
     [_runDoneLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titelLab);
-        make.top.equalTo(self.totNeedLab.mas_bottom).offset(20);
+        make.top.equalTo(self.totDoneLab.mas_bottom).offset(20);
     }];
     
     [self addSubview:self.runNeedLab];
     [_runNeedLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.runDoneLab.mas_right);
-        make.bottom.equalTo(self.runDoneLab).offset(-2);
+        make.bottom.equalTo(self.runDoneLab).offset(-1);
     }];
     
     //其他
@@ -215,7 +217,7 @@
     [self addSubview:self.othNeedLab];
     [_othNeedLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.othDoneLab.mas_right);
-        make.bottom.equalTo(self.runNeedLab);
+        make.bottom.equalTo(self.runDoneLab).offset(-1);
     }];
 
     //奖励

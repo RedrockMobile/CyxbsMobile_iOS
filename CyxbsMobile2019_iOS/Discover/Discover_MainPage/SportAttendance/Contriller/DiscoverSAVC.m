@@ -48,7 +48,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingSuccess) name:@"IdsBinding_Success" object:nil];
     
     //默认为未绑定的失败页
-//    [self addFailureView];
+    [self addFailureView];
+
+    //仅测试sa
+//    [self addWrongView];
     [self addSuccessView];
     
 }
@@ -270,8 +273,7 @@
 
 //绑定成功刷新数据
 - (void)idsBindingSuccess{
-    
-    
+    [self getSportData];
 }
 
 - (void)getSportData{

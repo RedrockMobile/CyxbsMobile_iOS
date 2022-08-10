@@ -18,12 +18,12 @@
 @property (nonatomic, strong) UITableView *sADetails;
 /// SportAttendance数据模型
 @property (nonatomic, strong) SportAttendanceModel *sAModel;
-//日期数据模型
-@property (nonatomic, strong) DateModle *dateModel;
 
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
+
+@property (nonatomic, assign) bool Isholiday;
 
 @end
 
@@ -33,22 +33,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    //仅测试sa
     [self addSussesView];
-    self.sAModel = [[SportAttendanceModel alloc] init];
+//    [self addFirstView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
 
-#pragma mark- UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   
-}
-
 #pragma mark - UITableViewDataSource
 //设置每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    //仅测试sa
     return 15;
 //    return self.sAModel.sAItemModel.itemAry.count;
 }
@@ -103,12 +100,12 @@
     return _sADetails;
 }
 
-//获取当前周数
-- (DateModle *)dateModel{
-    if(_dateModel==nil){
-        _dateModel = [DateModle initWithStartDate:getDateStart_NSString];
+
+- (SportAttendanceModel *)sAModel{
+    if (!_sAModel) {
+        _sAModel = [[SportAttendanceModel alloc] init];
     }
-    return _dateModel;
+    return _sAModel;
 }
 
 #pragma mark - 返回条
@@ -126,14 +123,14 @@
     titleLabel.font = [UIFont fontWithName:PingFangSCBold size:22];
     [self.backgroundView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
+        make.left.equalTo(self.view).offset(37);
         make.centerY.equalTo(self.backgroundView);
     }];
-    titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+    titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
 
     //获取当前周数
     int count = [getNowWeek_NSString.numberValue intValue] ;
-    NSLog(@"%d",count);
+//    NSLog(@"%d",count);
     
     //获取当前月份
     NSDate *currentDate = [NSDate date];
@@ -145,9 +142,12 @@
     UILabel *timeLabel = [[UILabel alloc]init];
     self.timeLabel = timeLabel;
     
+    //仅测试sa
     if (count > 50) {
         timeLabel.text = @"放假中";
+        self.Isholiday = true;
     }else{
+        self.Isholiday = false;
         if (month > 1 && month < 9) {
             timeLabel.text = [NSString stringWithFormat:@"%ld年 春", year];
         }else{
@@ -155,13 +155,13 @@
         }
     }
     
-    timeLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
+    timeLabel.font = [UIFont fontWithName:PingFangSCBold size:12];
     [self.backgroundView addSubview:timeLabel];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view).offset(100);
+        make.right.equalTo(self.backgroundView).offset(-16);
         make.centerY.equalTo(self.backgroundView);
     }];
-    timeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+    timeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.7] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
     
     //添加返回按钮
     [self addBackButton];
@@ -186,12 +186,11 @@
      [self.navigationController popViewControllerAnimated:YES];
 }
 
+//加载新数据
 - (void) loadNewData{
     [self.sAModel requestSuccess:^{
         if (self.sAModel.status == 10000) {
-           
             [self addSussesView];
-           
         }
         [self.sADetails.mj_header endRefreshing];
     }
@@ -209,7 +208,10 @@
     [self.view removeAllSubviews];
     //添加头视图
     SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
-    [headView loadViewWithDate:self.sAModel];
+    //仅测试sa
+    self.sAModel.status = 10000;
+    //判断是否为假期和获取数据成功
+    [headView loadViewWithDate:self.sAModel Isholiday:self.Isholiday];
     [self.view addSubview:headView];
     //添加返回条
     [self addCustomTabbarView];
